@@ -32,7 +32,7 @@
 #import "UGapplyWinLogDetail.h"
 #import "UGagentApplyInfo.h"
 #import "UGgaCaptchaModel.h"
-
+#import "LHUserModel.h"
 
 @implementation CMNetwork (Mine)
 
@@ -426,8 +426,6 @@
     
     
     CMMETHOD_END;
-    
-    
 }
 
 //手动额度转换记录
@@ -442,7 +440,28 @@
     
     
     CMMETHOD_END;
+}
 
+// 额度一键转出，第一步：获取需要转出的真人ID
++ (void)oneKeyTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[oneKeyTransferOutUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    CMMETHOD_END;
+}
+
+// 额度一键转出，第二步：根据真人ID并发请求单游戏快速转出
++ (void)quickTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[quickTransferOutUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    CMMETHOD_END;
 }
 
 //真人余额查询
@@ -651,6 +670,20 @@
     CMMETHOD_END;
 }
 
+//任务大厅分类 http://test10.6yc.com/wjapp/api.php?c=task&a=categories&token=SNNn1AN33aO3404nlaA33ZXN
++ (void)categoriesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[categoriesUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
 //领取任务 http://test10.6yc.com/wjapp/api.php?c=task&a=get  mid token
 + (void)taskGetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;
@@ -733,7 +766,7 @@
     CMMETHOD_END;
 }
 
-//下线信息 http://test10.6yc.com/wjapp/api.php?c=team&a=inviteList&token=2BoZKf4o22q8oKQz8OoDdd3Q
+//下线信息 http://test10.6yc.com/wjapp/api.php?c=team&a=inviteList&token=2BoZKf4o22q8oKQz8OoDdd3Q&usr=admin0
 + (void)teamInviteListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;
     [self.manager requestInMainThreadWithMethod:[teamInviteListUrl stringToRestfulUrlWithFlag:RESTFUL]
@@ -947,6 +980,7 @@
 
 
 //获取申请活动彩金记录 http://test10.6yc.com/wjapp/api.php?c=activity&a=applyWinLog&token=2OMm3aqQ46wX84Axb9o7wb29
+//category 这个参数 你传了id 那就是 某个类型筛选; 传了0 那就是 筛选除了未分类的其他所有数据 ;不传 那就是全部数据包括未分类
 + (void)activityApplyWinLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
     CMMETHOD_BEGIN;
     [self.manager requestInMainThreadWithMethod:[activityApplyWinLogUrl stringToRestfulUrlWithFlag:RESTFUL]
@@ -1010,5 +1044,46 @@
     
     CMMETHOD_END;
 }
+
+//六合用户数据
++ (void)lhcdocgetUserInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[lhcdocgetUserInfoUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(LHUserModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//聊天室数据
++ (void)chatgetTokenWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[chatgetTokenUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//给下级会员充值接口-/team/recharge
++ (void)teamRechargeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[teamRechargeUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+
 @end
 

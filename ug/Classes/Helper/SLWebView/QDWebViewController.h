@@ -4,6 +4,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "DKProgressLayer.h"
 
+// 第三方游戏
 @interface QDWebViewController : UIViewController
 
 @property (nonatomic) NSString *navigationTitle;

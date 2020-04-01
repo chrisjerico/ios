@@ -26,42 +26,32 @@
     _item = item;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.nameLabel.text = item.title;
+    
     if (item.balance) {
-        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",item.balance];
-    }else {
+        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", item.balance];
+    } else {
         self.balanceLabel.text = @"¥*****";
     }
     if (item.refreshing) {
         [self startAnimation];
-    }else {
+    } else {
         [self.refreshButton.layer removeAllAnimations];
     }
-    
 }
 
 - (IBAction)refreshClick:(id)sender {
     if (self.refreshBlock) {
         self.refreshBlock();
     }
-    
 }
 
 //刷新余额动画
--(void)startAnimation
-{
-    
+-(void)startAnimation {
     CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
     ReFreshAnimation.duration = 1;
     ReFreshAnimation.repeatCount = HUGE_VALF;
     [self.refreshButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
-    
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

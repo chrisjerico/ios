@@ -1,0 +1,6 @@
+framework module react_native_viewpager {
+  umbrella header "react-native-viewpager-umbrella.h"
+
+  export *
+  module * { export * }
+}

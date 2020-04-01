@@ -22,10 +22,10 @@
     [self xw_addNotificationForName:UIKeyboardWillShowNotification block:^(NSNotification * _Nonnull noti) {
         CGRect rect = [[[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGFloat offsetY = __self.alertView.height/2 + rect.size.height - APP.Height/2 + 30;
-        __self.alertView.zj_constraints.centerY.constant = MIN(-offsetY, 0);
+        __self.alertView.cc_constraints.centerY.constant = MIN(-offsetY, 0);
     }];
     [self xw_addNotificationForName:UIKeyboardWillHideNotification block:^(NSNotification * _Nonnull noti) {
-        __self.alertView.zj_constraints.centerY.constant = 0;
+        __self.alertView.cc_constraints.centerY.constant = 0;
     }];
 }
 
@@ -39,12 +39,12 @@
 - (void)show {
     self.alpha = 0;
     self.frame = APP.Window.bounds;
-    [NavController1.topView addSubview:self];
+    [TabBarController1.view addSubview:self];
     _alertView.transform = CGAffineTransformMakeScale(1.5, 1.5);
     
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
-        _alertView.transform = CGAffineTransformIdentity;
+        self.alertView.transform = CGAffineTransformIdentity;
     }];
     [_textField becomeFirstResponder];
 }
@@ -57,7 +57,7 @@
     
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
-        _alertView.transform = CGAffineTransformIdentity;
+        self.alertView.transform = CGAffineTransformIdentity;
     }];
     [_textField becomeFirstResponder];
 }

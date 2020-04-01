@@ -13,7 +13,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+      [self.contentView setBackgroundColor: Skin1.textColor4];
+    _firstLabel.textColor = Skin1.textColor1;
+    _secondLabel.textColor = Skin1.textColor1;
+    _thirdLabel.textColor = Skin1.textColor1;
+    _fourthLabel.textColor = Skin1.textColor1;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

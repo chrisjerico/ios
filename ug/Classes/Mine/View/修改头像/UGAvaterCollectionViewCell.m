@@ -8,21 +8,18 @@
 
 #import "UGAvaterCollectionViewCell.h"
 #import "UGAvatarModel.h"
+//#import "UIImageView+WebCache.h"
+//#import "FLAnimatedImageView+WebCache.h"
 @interface UGAvaterCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @end
-@implementation UGAvaterCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-     
-}
+
+@implementation UGAvaterCollectionViewCell
 
 - (void)setItem:(UGAvatarModel *)item {
     _item = item;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:item.url] placeholderImage:[UIImage imageNamed:@"txp"]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:item.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
 }
 
 @end

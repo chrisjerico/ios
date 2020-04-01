@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="oxL-VC-GFL" customClass="BetBeanView" customModule="UGChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="669" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="【01】" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbX-i8-jBE">
+                    <rect key="frame" x="6" y="33" width="38" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.36862745098039218" green="0.37647058823529411" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@43.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfH-LL-mc1">
+                    <rect key="frame" x="120" y="33" width="44.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBg-cm-ZLx">
+                    <rect key="frame" x="644.5" y="33" width="12.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfV-0V-lGz">
+                    <rect key="frame" x="608.5" y="33" width="24" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.90196078431372551" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="hBg-cm-ZLx" firstAttribute="centerY" secondItem="oxL-VC-GFL" secondAttribute="centerY" id="EOd-fl-AeS"/>
+                <constraint firstItem="JfV-0V-lGz" firstAttribute="centerY" secondItem="oxL-VC-GFL" secondAttribute="centerY" id="ESA-f3-IAG"/>
+                <constraint firstItem="cbX-i8-jBE" firstAttribute="centerY" secondItem="oxL-VC-GFL" secondAttribute="centerY" id="Thh-Co-uBc"/>
+                <constraint firstItem="cbX-i8-jBE" firstAttribute="leading" secondItem="oxL-VC-GFL" secondAttribute="leading" constant="6" id="YKg-Dw-Bis"/>
+                <constraint firstItem="gfH-LL-mc1" firstAttribute="centerY" secondItem="oxL-VC-GFL" secondAttribute="centerY" id="ZIh-gV-mak"/>
+                <constraint firstItem="hBg-cm-ZLx" firstAttribute="leading" secondItem="JfV-0V-lGz" secondAttribute="trailing" constant="12" id="cAx-75-e9a"/>
+                <constraint firstAttribute="trailing" secondItem="hBg-cm-ZLx" secondAttribute="trailing" constant="12" id="eHE-uz-oXx"/>
+                <constraint firstItem="gfH-LL-mc1" firstAttribute="leading" secondItem="oxL-VC-GFL" secondAttribute="leading" constant="120" id="xCk-K0-SSR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="amountLabel" destination="JfV-0V-lGz" id="1FZ-o2-4E3"/>
+                <outlet property="nameLabel" destination="cbX-i8-jBE" id="ewW-i9-ldM"/>
+                <outlet property="oddsLabel" destination="gfH-LL-mc1" id="iQX-GD-5zt"/>
+                <outlet property="suffixLabel" destination="hBg-cm-ZLx" id="r2H-lu-TXR"/>
+            </connections>
+            <point key="canvasLocation" x="-94.927536231884062" y="-145.98214285714286"/>
+        </view>
+    </objects>
+</document>

@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGAllNextIssueListModel.h"
+#import "GameCategoryDataModel.h"
+#import "UGSystemConfigModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define NavController1 [UGNavigationController shared]
-
+#define NavController1 ([UGNavigationController current])
 
 @interface UGNavigationController : UINavigationController
-+ (instancetype)shared;
-- (UIView *)topView;
+
 @end
 
 NS_ASSUME_NONNULL_END
+

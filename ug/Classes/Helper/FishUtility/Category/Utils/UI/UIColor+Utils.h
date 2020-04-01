@@ -26,3 +26,10 @@
 - (UIImage *)image;
 
 @end
+
+
+
+@interface NSValue (CGColorValue)
++ (NSValue *)valueWithCGColor:(CGColorRef)color;
+- (CGColorRef)CGColorValue;
+@end

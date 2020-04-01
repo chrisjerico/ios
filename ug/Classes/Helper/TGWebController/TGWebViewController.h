@@ -7,20 +7,21 @@
 // https://github.com/zhaoquntao/TGWebViewController
 
 #import <UIKit/UIKit.h>
-
+#import "TGWebProgressLayer.h"
 @interface TGWebViewController :  UIViewController
 
-
-
+@property (nonatomic,strong) TGWebProgressLayer *webProgressLayer;
 /** 相关链接*/
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, strong) NSString *url;
+
+@property (nonatomic,strong) WKWebView *tgWebView;
 
 /** 标题 */
-@property (nonatomic, copy) NSString *webTitle;
+@property (nonatomic, strong) NSString *webTitle;
 
 /** 进度条颜色 */
-@property (nonatomic) UIColor *progressColor;
-
-- (void)setWebViewFrame:(CGRect)frame;
+@property (nonatomic,strong) UIColor *progressColor;
 
 @end
+
+

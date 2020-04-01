@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CommentInputBar" customModule="UGChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aaD-Lg-QFU">
+                    <rect key="frame" x="16" y="8" width="301" height="38"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                </textView>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dna-gr-Xy3">
+                    <rect key="frame" x="317" y="0.0" width="58" height="54"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGu-ls-oil">
+                            <rect key="frame" x="0.0" y="0.0" width="58" height="54"/>
+                            <state key="normal" image="biaoqing"/>
+                            <state key="selected" image="keyboard_system"/>
+                            <connections>
+                                <action selector="emticonButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Etp-X0-iis"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="58" id="1gi-Ag-xw2"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在此评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys0-6G-bM6">
+                    <rect key="frame" x="32" y="18.5" width="57.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.73725490196078436" green="0.75294117647058822" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.92941176470588238" green="0.93725490196078431" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Dna-gr-Xy3" firstAttribute="leading" secondItem="aaD-Lg-QFU" secondAttribute="trailing" id="T9l-JM-za1"/>
+                <constraint firstAttribute="trailing" secondItem="Dna-gr-Xy3" secondAttribute="trailing" id="TvD-fy-4Qr"/>
+                <constraint firstItem="Dna-gr-Xy3" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="WzA-3e-vb1"/>
+                <constraint firstItem="Dna-gr-Xy3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dXt-ld-8Tf"/>
+                <constraint firstItem="ys0-6G-bM6" firstAttribute="centerY" secondItem="aaD-Lg-QFU" secondAttribute="centerY" id="eTz-ee-Vqg"/>
+                <constraint firstItem="aaD-Lg-QFU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="fUF-2h-EuW"/>
+                <constraint firstItem="ys0-6G-bM6" firstAttribute="leading" secondItem="aaD-Lg-QFU" secondAttribute="leading" constant="16" id="nv5-Nf-47B"/>
+                <constraint firstItem="aaD-Lg-QFU" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-8" id="wZT-CQ-Ha2"/>
+                <constraint firstAttribute="top" secondItem="aaD-Lg-QFU" secondAttribute="top" constant="-8" id="xcu-Vc-eCz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="tlJ-sC-cPY"/>
+            <connections>
+                <outlet property="emoticonButton" destination="aGu-ls-oil" id="cMy-wb-aGO"/>
+                <outlet property="inputTextView" destination="aaD-Lg-QFU" id="Mvz-b8-IHx"/>
+                <outlet property="placeHolderLabel" destination="ys0-6G-bM6" id="af4-94-mQ0"/>
+                <outlet property="rightStackView" destination="Dna-gr-Xy3" id="KdP-6J-pH6"/>
+            </connections>
+            <point key="canvasLocation" x="221.01449275362322" y="-115.17857142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="biaoqing" width="26" height="26"/>
+        <image name="keyboard_system" width="26" height="26"/>
+    </resources>
+</document>

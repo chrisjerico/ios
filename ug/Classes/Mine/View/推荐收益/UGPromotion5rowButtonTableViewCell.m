@@ -15,6 +15,16 @@
     // Initialization code
     _pointView.layer.cornerRadius = 5;
     _pointView.layer.masksToBounds = YES;
+    [self.contentView setBackgroundColor: Skin1.textColor4];
+    _firstLabel.textColor = Skin1.textColor1;
+    _secondLabel.textColor = Skin1.textColor1;
+    _thirdLabel.textColor = Skin1.textColor1;
+    _fourthLabel.textColor = Skin1.textColor1;
+    _fifthLabel.textColor = Skin1.textColor1;
+    
+    [_fifthButton setBackgroundColor:Skin1.textColor4];
+    
+    [_fifthButton setTitleColor:[UIColor greenColor] forState:(UIControlStateNormal)];
     
 }
 

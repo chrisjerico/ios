@@ -11,16 +11,14 @@
 
 @implementation CustomCollectionViewCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setupViews];
     }
     return self;
 }
 
-- (void)setupViews
-{
+- (void)setupViews {
     self.contentView.backgroundColor = [UIColor whiteColor];
     
     _imageView = [UIImageView new];
@@ -29,10 +27,8 @@
     [self.contentView addSubview:_imageView];
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
-    
     _imageView.frame = self.bounds;
 }
 

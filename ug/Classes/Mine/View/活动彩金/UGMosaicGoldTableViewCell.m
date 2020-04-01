@@ -19,26 +19,60 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-     self.tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
+    _tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     
-    self.myButton.layer.cornerRadius = 5; 
-    self.myButton.layer.masksToBounds = YES;
-    [self.myButton setBackgroundColor:UGNavColor];
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    _myButton.layer.cornerRadius = 5;
+    _myButton.layer.masksToBounds = YES;
+    _myButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    _myButton.layer.borderWidth = 1;
+    _myButton.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) :Skin1.navBarBgColor;
 }
 
 - (void)setItem:(UGMosaicGoldModel *)item {
     _item = item;
     self.tiltleLabel.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.4];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.param.win_apply_image] placeholderImage:[UIImage imageNamed:@"winapply_default"]];
-    self.tiltleLabel.text = item.name;
+    
+    NSString *titleShow = @"";
+    switch (item.param.activity_type2.intValue) {
+        case 1:
+            titleShow = @"热门";
+            break;
+        case 2:
+            titleShow = @"彩票";
+            break;
+        case 3:
+            titleShow = @"真人";
+            break;
+        case 4:
+            titleShow = @"捕鱼";
+            break;
+        case 5:
+            titleShow = @"电子";
+            break;
+        case 6:
+            titleShow = @"棋牌";
+            break;
+        case 7:
+            titleShow = @"体育";
+            break;
+        case 8:
+            titleShow = @"电竞";
+            break;
+        case 9:
+            titleShow = @"其他";
+            break;
+        default:
+            break;
+    }
+    
+    if ([SysConf.homeTypeSelect isEqualToString:@"1"]) {
+        self.tiltleLabel.text = [NSString stringWithFormat:@"%@--%@",titleShow,item.name];
+    }
+    else{
+        self.tiltleLabel.text = item.name;
+    }
+    
     
 }
 

@@ -8,11 +8,12 @@
 #import "SVIndefiniteAnimatedView.h"
 #import "SVProgressHUD.h"
 
+
 @interface SVIndefiniteAnimatedView ()
 
 @property (nonatomic, strong) CAShapeLayer *indefiniteAnimatedLayer;
-
 @end
+
 
 @implementation SVIndefiniteAnimatedView
 
@@ -104,7 +105,6 @@
             [self layoutAnimatedLayer];
         }
     }
-    
 }
 
 - (void)setRadius:(CGFloat)radius {

@@ -14,9 +14,28 @@
                                                        @"preResult":@"preNumSx"
                                                        }];
 }
+
++ (instancetype)modelWithGameId:(NSString *)gameId {
+    for (UGAllNextIssueListModel *listGame in UGAllNextIssueListModel.lotteryGamesArray) {
+        for (UGNextIssueModel *nim in listGame.list)
+            if ([nim.gameId isEqualToString:gameId])
+                return nim;
+    }
+    return nil;
+}
 @end
 
 @implementation UGAllNextIssueListModel
+
+static NSArray<UGAllNextIssueListModel *> *__lotteryGamesArray = nil;
+
++ (NSArray<UGAllNextIssueListModel *> *)lotteryGamesArray {
+    return __lotteryGamesArray;
+}
+
++ (void)setLotteryGamesArray:(NSArray<UGAllNextIssueListModel *> *)lotteryGamesArray {
+    __lotteryGamesArray = [lotteryGamesArray mutableCopy];
+}
 
 @end
 

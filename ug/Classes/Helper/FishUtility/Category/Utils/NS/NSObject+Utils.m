@@ -7,14 +7,13 @@
 //
 
 #import "NSObject+Utils.h"
-#import "zj_objc_msgSend.h"
-#import "zj_runtime_property.h"
+#import "cc_objc_msgSend.h"
+#import "cc_runtime_property.h"
 
 @implementation NSObject (Utils)
 
-_ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
-_ZJRuntimeProperty_Readonly(NSMutableDictionary *, zj_userInfo, [@{} mutableCopy])
-_ZJRuntimeProperty_Readonly(NSMutableDictionary *, zj_onceToken, [@{} mutableCopy])
+_CCRuntimeProperty_Copy(NSString *, tagString, setTagString)
+_CCRuntimeProperty_Readonly(NSMutableDictionary *, cc_userInfo, [@{} mutableCopy])
 
 + (NSArray<NSString *> *)methodList {
     NSMutableArray *list = [@[] mutableCopy];
@@ -58,19 +57,23 @@ _ZJRuntimeProperty_Readonly(NSMutableDictionary *, zj_onceToken, [@{} mutableCop
 }
 
 - (void *)performSelector:(SEL)aSelector arguments:(va_list)argList {
-    return zj_objc_msgSendv(self, NSStringFromSelector(aSelector).UTF8String, argList);
+    return cc_objc_msgSendv1(self, NSStringFromSelector(aSelector).UTF8String, argList);
+}
+
+- (id)performSelector:(SEL)aSelector argArray:(NSArray *)argArray {
+    return cc_objc_msgSendv2(self, NSStringFromSelector(aSelector).UTF8String, argArray);
 }
 
 - (void *)performSelector:(const char *)methodName, ... {
     va_list list;
     va_start(list, methodName);
-    return zj_objc_msgSendv(self, methodName, list);
+    return cc_objc_msgSendv1(self, methodName, list);
 }
 
 + (void *)performSelector:(const char *)methodName, ... {
     va_list list;
     va_start(list, methodName);
-    return zj_objc_msgSendv(self, methodName, list);
+    return cc_objc_msgSendv1(self, methodName, list);
 }
 
 - (void)setValuesWithObject:(NSObject *)obj {
@@ -91,17 +94,6 @@ _ZJRuntimeProperty_Readonly(NSMutableDictionary *, zj_onceToken, [@{} mutableCop
     for (NSString *key in dict.allKeys) {
         NSString *ivar = [@"_" stringByAppendingString:key];
         [self setValue:[obj valueForKey:ivar] forKey:ivar];
-    }
-}
-
-- (void)onceToken:(unsigned long *)onceToken block:(void (^)(void))block {
-    static unsigned long idx = 1;
-    if (*onceToken == 0) {
-        *onceToken = idx++;
-    }
-    if (!self.zj_onceToken[@(*onceToken)]) {
-        self.zj_onceToken[@(*onceToken)] = @true;
-        block();
     }
 }
 

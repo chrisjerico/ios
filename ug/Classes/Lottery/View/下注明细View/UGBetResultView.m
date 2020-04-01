@@ -7,8 +7,14 @@
 //
 
 #import "UGBetResultView.h"
+#import "BetImgView.h"
 
 @interface UGBetResultView()
+
+//用于保存[@"7", @"11", @"9"]  11 为六合秒秒彩
+
+@property(nonatomic, strong) NSMutableArray<BetImgView *> * numberImgVs;//用于加载球图图片
+
 @property(nonatomic, strong) NSMutableArray<UILabel *> * numberlabels;
 @property(nonatomic, strong) NSMutableArray<UILabel *> * resultlabels;
 @property(nonatomic, strong) UIImageView * resultImage;
@@ -25,21 +31,8 @@
 @end
 @implementation UGBetResultView
 
-static UGBetResultView *_singleInstance = nil;
 
-+ (instancetype)shareInstance
-{
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		if (_singleInstance == nil) {
-			_singleInstance = [[self alloc]init];
-		}
-	});
-	return _singleInstance;
-}
-
-
-- (instancetype)init
+- (instancetype)initWithShowSecondLine :(BOOL)showSecondLine
 {
 	self = [super init];
 	if (self) {
@@ -74,55 +67,107 @@ static UGBetResultView *_singleInstance = nil;
 			make.width.height.equalTo(@80);
 		}];
 		
-		UILabel *tempLabel;
-		for (int i = 0; i < 10 ; i ++) {
-			UILabel * label = [UILabel new];
-			label.textColor = UIColor.whiteColor;
-			label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
-			label.font = [UIFont systemFontOfSize: 12];
-			label.layer.cornerRadius = 2;
-			label.layer.masksToBounds = true;
-			label.textAlignment = NSTextAlignmentCenter;
-			[self.numberlabels addObject:label];
-			[self addSubview:label];
-			[label mas_makeConstraints:^(MASConstraintMaker *make) {
-				if (tempLabel) {
-					make.left.equalTo(tempLabel.mas_right).offset(3);
-					make.centerY.equalTo(tempLabel);
-				} else {
-					make.left.equalTo(image).offset(55);
-					make.centerY.equalTo(image).offset(55);
-				}
-				make.width.height.equalTo(@25);
-			}];
-			tempLabel = label;
-			
-		}
-		UILabel *tempLabel2;
-		for (int i = 0; i < 10 ; i ++) {
-			UILabel * label = [UILabel new];
-			label.textColor = [UIColor colorWithHex:0x2c962c];
-			label.backgroundColor = [UIColor whiteColor];
-			label.font = [UIFont systemFontOfSize: 10];
-			label.layer.borderWidth = 0.5;
-			label.layer.cornerRadius = 2;
-			label.layer.borderColor = UIColor.grayColor.CGColor;
-			label.textAlignment = NSTextAlignmentCenter;
-			[self.resultlabels addObject:label];
-			[self addSubview:label];
-			[label mas_makeConstraints:^(MASConstraintMaker *make) {
-				if (tempLabel2) {
-					make.left.equalTo(tempLabel2.mas_right).offset(3);
-					make.centerY.equalTo(tempLabel2);
-				} else {
-					make.left.equalTo(image).offset(55);
-					make.centerY.equalTo(image).offset(85);
-				}
-				make.width.height.equalTo(@25);
-			}];
-			tempLabel2 = label;
-			
-		}
+        
+        {
+            UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[({
+                // 号码
+                UIView *v = [UIView new];
+                v.backgroundColor = [UIColor clearColor];
+                UIStackView *sv = [UIStackView new];
+                [v addSubview:({
+                    
+                    if (APP.isBall &&  showSecondLine) {
+                        sv.spacing = 0;
+                        sv.axis = UILayoutConstraintAxisHorizontal;
+                        for (int i = 0; i < 10 ; i ++) {
+                            BetImgView * bet =  [[BetImgView alloc] initView];
+                            [self.numberImgVs addObject:bet];
+                            [sv addArrangedSubview:bet];
+                            [bet mas_makeConstraints:^(MASConstraintMaker *make) {
+                                make.width.height.equalTo(@34);
+                            }];
+                        }
+                    } else {
+                        sv.spacing = 3;
+                        sv.axis = UILayoutConstraintAxisHorizontal;
+                        for (int i = 0; i < 10 ; i ++) {
+                            UILabel * label = [UILabel new];
+                            label.textColor = UIColor.whiteColor;
+                            label.backgroundColor = [UIColor colorWithHex:0x2f9cf3];
+                            label.font = [UIFont systemFontOfSize: 12];
+                            label.layer.cornerRadius = 2;
+                            label.layer.masksToBounds = true;
+                            label.textAlignment = NSTextAlignmentCenter;
+                            [self.numberlabels addObject:label];
+                            [sv addArrangedSubview:label];
+                            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                                make.width.height.equalTo(@25);
+                            }];
+                        }
+                    }
+                    sv;
+                })];
+                [sv mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.centerX.equalTo(v);
+                    make.left.greaterThanOrEqualTo(v);
+                }];
+                v;
+            }), ({
+                // 结果
+                UIView *v = [UIView new];
+                v.tagString = @"第二行结果View";
+                v.backgroundColor = [UIColor clearColor];
+                UIStackView *sv = [UIStackView new];
+                [v addSubview:({
+                    if (APP.isBall && showSecondLine) {
+                           sv.spacing = 9;
+                    } else {
+                           sv.spacing = 3;
+                    }
+                 
+                    sv.axis = UILayoutConstraintAxisHorizontal;
+                    for (int i = 0; i < 10 ; i ++) {
+                        UILabel * label = [UILabel new];
+                        label.textColor = [UIColor blackColor];
+                        label.backgroundColor = [UIColor whiteColor];
+                        label.font = [UIFont boldSystemFontOfSize: 12];
+                        label.layer.borderWidth = 0.5;
+                        label.layer.cornerRadius = 2;
+                        label.layer.borderColor = UIColor.grayColor.CGColor;
+                        if (i == 6) {
+                            if (APP.isBall && showSecondLine) {
+                                label.layer.borderColor = [UIColor clearColor].CGColor;
+                                label.backgroundColor = [UIColor clearColor];
+                            }
+                        }
+                        label.textAlignment = NSTextAlignmentCenter;
+                        [self.resultlabels addObject:label];
+                        [sv addArrangedSubview:label];
+                        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.width.height.equalTo(@25);
+                        }];
+                    }
+                    sv;
+                })];
+                [sv mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.centerX.equalTo(v);
+                    make.left.greaterThanOrEqualTo(v);
+                }];
+                v;
+            })]];
+            if (APP.isBall && showSecondLine) {
+                stackView.spacing = 1;
+            } else {
+                stackView.spacing = 3;
+            }
+            
+            stackView.axis = UILayoutConstraintAxisVertical;
+            [self addSubview:stackView];
+            [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(image).offset(4);
+                make.centerY.equalTo(image).offset(71);
+            }];
+        }
 		
 		[self addSubview: self.bonusLabel];
 		[self.bonusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,90 +186,115 @@ static UGBetResultView *_singleInstance = nil;
 }
 
 
-+ (void)showWith: (UGBetDetailModel*)model
-	 timerAction: (void(^)(dispatch_source_t timer)) timerAction
-{
-	
-	UGBetResultView * resultView = [UGBetResultView shareInstance] ;
+- (void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)showSecondLine timerAction:(void(^)(dispatch_source_t timer))timerAction {
 
-	[resultView removeFromSuperview];
+	[self removeFromSuperview];
 	
 	UIWindow * window = [[UIApplication sharedApplication] keyWindow] ;
 	
-	[window addSubview: resultView];
+	[window addSubview: self];
 	
 	
-	[resultView mas_makeConstraints:^(MASConstraintMaker *make) {
+	[self mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(window);
 	}];
 	
+    
+    
 	NSArray<NSString *> * numbers = [model.openNum componentsSeparatedByString: @","];
 
 	for (int i = 0; i < 10; i ++) {
-		
-		if (i<numbers.count) {
-			resultView.numberlabels[i].text = numbers[i];
-			NSString *color = [CMCommon getHKLotteryNumColorString: numbers[i]];
-			if ([@"blue" isEqualToString:color]) {
-				 resultView.numberlabels[i].backgroundColor = UGRGBColor(86, 170, 236);
-			 }else if ([@"red" isEqualToString:color]) {
-				 resultView.numberlabels[i].backgroundColor = UGRGBColor(197, 52, 60);
-			 }else {
-				 resultView.numberlabels[i].backgroundColor = UGRGBColor(96, 174, 108);
-			 }
-
-		} else {
-			UILabel * label = resultView.numberlabels[i];
-			label.text = @"";
-			label.backgroundColor = UIColor.clearColor;
-
-		}
-		
+        
+        if (APP.isBall  &&  showSecondLine) {
+            BetImgView * bet = self.numberImgVs[i];
+            if (i < 8) {
+                bet.hidden = false;
+                if (i <  6) {
+                     bet.titleLabel.text = numbers[i];
+                    [bet.ballImgV setImage:[CMCommon getHKLotteryNumColorImg:numbers[i]]];
+               
+                }
+                else if(i == 6){
+                     bet.titleLabel.text = @"+";
+                }
+                else {
+                     bet.titleLabel.text = numbers[i - 1];
+                    [bet.ballImgV setImage:[CMCommon getHKLotteryNumColorImg:numbers[i - 1]]];
+                }
+            
+            } else {
+                bet.hidden = true;
+            }
+        } else {
+            UILabel * label = self.numberlabels[i];
+            if (i < numbers.count) {
+                label.hidden = false;
+                label.text = numbers[i];
+                NSString *color = [CMCommon getHKLotteryNumColorString:numbers[i]];
+                if ([@"blue" isEqualToString:color]) {
+                     label.backgroundColor = UGRGBColor(86, 170, 236);
+                } else if ([@"red" isEqualToString:color]) {
+                     label.backgroundColor = UGRGBColor(197, 52, 60);
+                } else {
+                     label.backgroundColor = UGRGBColor(96, 174, 108);
+                }
+            } else {
+                label.hidden = true;
+            }
+        }
 	}
+    
 	NSArray<NSString *> * results = [model.result componentsSeparatedByString: @","];
-
-	for (int i = 0; i < 10; i ++) {
-		
-		if (i<results.count) {
-			resultView.resultlabels[i].text = results[i];
-
-		} else {
-			UILabel * label = resultView.resultlabels[i];
-			label.text = @"";
-			label.backgroundColor = UIColor.clearColor;
-			label.layer.borderColor = UIColor.clearColor.CGColor;
-
-		}
-		
-	}
-	
-
-	
+    for (int i = 0; i < 10; i ++) {
+        if (APP.isBall  &&  showSecondLine) {
+            UILabel *label = self.resultlabels[i];
+            if (i < 8) {
+                label.hidden = false;
+                if (i <  6) {
+                     label.text = results[i];
+                }
+                else if(i == 6){
+                     label.text = @"+";
+                }
+                else {
+                    label.text = results[i - 1];
+                }
+                
+            } else {
+                label.hidden = true;
+            }
+        }
+        else{
+            UILabel *label = self.resultlabels[i];
+            if (i < results.count) {
+                label.hidden = false;
+                label.text = results[i];
+            } else {
+                label.hidden = true;
+            }
+        }
+    }
+	[self viewWithTagString:@"第二行结果View"].hidden = !showSecondLine;
+    
 	if ([model.bonus floatValue] > 0) {
-		resultView.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
-		resultView.resultImage.image = [UIImage imageNamed:@"mmczjl"];
+		self.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
+		self.resultImage.image = [UIImage imageNamed:@"mmczjl"];
 	} else {
-		resultView.bonusLabel.text = @"再接再历";
-		resultView.resultImage.image = [UIImage imageNamed:@"mmcwzj"];
+		self.bonusLabel.text = @"再接再历";
+		self.resultImage.image = [UIImage imageNamed:@"mmcwzj"];
 
 	}
 	
-	resultView.timerAction = timerAction;
-
-	
+    self.timerAction = timerAction;
 }
 
 - (UIButton *)closeButton {
-	
 	if (!_closeButton) {
-		
 		_closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		[_closeButton setImage:[UIImage imageNamed:@"guanbi"] forState: UIControlStateNormal];
-		[_closeButton addTarget:self action:@selector(closeButtonTaped:) forControlEvents: UIControlEventTouchUpInside];
+		[_closeButton addTarget:self action:@selector(closeButtonTaped) forControlEvents: UIControlEventTouchUpInside];
 		_closeButton.contentMode = UIViewContentModeCenter;
-		
 	}
-	
 	return _closeButton;
 }
 
@@ -239,24 +309,10 @@ static UGBetResultView *_singleInstance = nil;
 		
 		[_timerButton addTarget:self action:@selector(timerButtonTaped:) forControlEvents: UIControlEventTouchUpInside];
 		_timerButton.imageView.contentMode = UIViewContentModeScaleToFill;
-		
 	}
-	
 	return _timerButton;
 }
 
-
-- (void) closeButtonTaped: (UIButton *) sender {
-	UGBetResultView * resultView = [UGBetResultView shareInstance] ;
-	[resultView removeFromSuperview];
-	if (resultView.timer) {
-		dispatch_source_cancel(resultView.timer);
-	}
-	[self.timerButton setSelected:false];
-	self.timerLabel.text = nil;
-
-	
-}
 - (UIImageView *)resultImage {
 	
 	if (!_resultImage) {
@@ -264,27 +320,14 @@ static UGBetResultView *_singleInstance = nil;
 	}
 	return _resultImage;
 }
-- (void) timerButtonTaped: (UIButton *) sender {
-	[sender setSelected: !sender.isSelected];
-	if (sender.isSelected) {
-		
-		__block int i = 0;
-		self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-		dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-		dispatch_source_set_event_handler(self.timer, ^{
-			i ++ ;
-			if (self.timerAction && i%4 == 0) {
-				self.timerAction(self.timer);
-				self.timerLabel.text = nil;
-			} else {
-				self.timerLabel.text = [NSString stringWithFormat:@"倒计时%i秒",(4-i%4)];
-			}
-		});
-		dispatch_resume(self.timer);
-	} else {
-		self.timerLabel.text = nil;
-		dispatch_source_cancel(self.timer);
-	}
+
+
+
+- (NSMutableArray<BetImgView *> *)numberImgVs {
+    if (!_numberImgVs) {
+        _numberImgVs = [NSMutableArray array];
+    }
+    return _numberImgVs;
 }
 
 - (NSMutableArray<UILabel *> *)numberlabels {
@@ -310,7 +353,6 @@ static UGBetResultView *_singleInstance = nil;
 }
 
 - (UILabel *)timerLabel {
-	
 	if (!_timerLabel) {
 		_timerLabel = [UILabel new];
 		_timerLabel.textColor = UIColor.whiteColor;
@@ -318,5 +360,65 @@ static UGBetResultView *_singleInstance = nil;
 	}
 	return _timerLabel;
 }
+
+
+
+
+static BOOL preparedToClose = false;
+static BOOL paused = true;
+
+
+- (void)closeButtonTaped {
+	if (paused) {
+	
+		[self removeFromSuperview];
+		if (self.timer) {
+			dispatch_source_cancel(self.timer);
+			preparedToClose = false;
+			paused = true;
+		}
+		[self.timerButton setSelected:false];
+		self.timerLabel.text = nil;
+		preparedToClose = false;
+
+	} else {
+		preparedToClose = true;
+		if (self.timerButton.isSelected) {
+			[self timerButtonTaped:self.timerButton];
+		}
+	}
+	
+}
+
+- (void)timerButtonTaped: (UIButton *) sender {
+	[sender setSelected: !sender.isSelected];
+	if (sender.isSelected) {
+		preparedToClose = false;
+		paused = false;
+		__block int i = 0;
+		self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+		dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+		dispatch_source_set_event_handler(self.timer, ^{
+			i ++ ;
+			if (self.timerAction && i%4 == 0) {
+				self.timerAction(self.timer);
+				self.timerLabel.text = nil;
+				if (preparedToClose) {
+					dispatch_source_cancel(self.timer);
+					paused = true;
+				}
+			} else {
+				self.timerLabel.text = [NSString stringWithFormat:@"倒计时%i秒",(4-i%4)];
+			}
+		});
+		dispatch_resume(self.timer);
+	} else {
+//		self.timerLabel.text = nil;
+//		dispatch_source_cancel(self.timer);
+//		paused = true;
+		preparedToClose = true;
+	}
+}
+
 
 @end

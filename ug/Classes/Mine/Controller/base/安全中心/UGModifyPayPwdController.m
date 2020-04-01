@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *payPwdTextF;
 @property (weak, nonatomic) IBOutlet UITextField *checkPayPwdTextF;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (strong, nonatomic) IBOutlet UIView *bgView;
 
 
 @end
@@ -31,14 +32,23 @@
     });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
-    [self.submitButton setBackgroundColor:UGNavColor];
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
     self.loginPwdTextF.delegate = self;
     self.payPwdTextF.delegate = self;
     self.checkPayPwdTextF.delegate = self;
     
-    //添加通知，来控制键盘和输入框的位置
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+    FastSubViewCode(self.view);
+   [_bgView setBackgroundColor:Skin1.textColor4];
+   [subView(@"背景view") setBackgroundColor:Skin1.textColor4];
+   [subLabel(@"旧取款密码label") setTextColor:Skin1.textColor1];
+   [subTextField(@"旧取款密码txt") setTextColor:Skin1.textColor1];
+   [subLabel(@"新密码label") setTextColor:Skin1.textColor1];
+   [subTextField(@"新密码txt") setTextColor:Skin1.textColor1];
+   [subLabel(@"确认新密码label") setTextColor:Skin1.textColor1];
+   [subTextField(@"确认新密码txt") setTextColor:Skin1.textColor1];
+    subTextField(@"旧取款密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"旧取款密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    subTextField(@"新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    subTextField(@"确认新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"确认新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -88,60 +98,10 @@
         [self.checkPayPwdTextF resignFirstResponder];
         return NO;
     }
-    
     if ([textField.text stringByReplacingCharactersInRange:range withString:string].length > 30) {
         return NO;
     }
-    
     return YES;
 }
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationCurve:7];
-    if (self.checkPayPwdTextF.isFirstResponder) {
-        
-        self.view.y = -100;
-    }else {
-        self.view.y = 0;
-    }
-    [UIView commitAnimations];
-    
-}
-
-#pragma mark ----- 键盘显示的时候的处理
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-//    //获得键盘的大小
-//    NSDictionary* info = [aNotification userInfo];
-//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-//
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.25];
-//    [UIView setAnimationCurve:7];
-//    if (self.checkPayPwdTextF.isFirstResponder) {
-//
-//        self.view.y = -100;
-//    }else {
-//        self.view.y = 0;
-//    }
-//    [UIView commitAnimations];
-}
-
-#pragma mark -----    键盘消失的时候的处理
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.25];
-//    [UIView setAnimationCurve:7];
-//    if (self.checkPayPwdTextF.isFirstResponder) {
-//        
-//        self.view.y = 0;
-//    }
-//    [UIView commitAnimations];
-}
-
-
 
 @end

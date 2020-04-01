@@ -11,7 +11,7 @@
 #import "UGYuebaoProfitReportModel.h"
 @interface UGYubaoInComeController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGYuebaoProfitReportModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
@@ -24,6 +24,13 @@ static int size = 20;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [self.tableView setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"结算时间label") setTextColor:Skin1.textColor1];
+    [subLabel(@"收益label") setTextColor:Skin1.textColor1];
+    [subLabel(@"余额label") setTextColor:Skin1.textColor1];
     
     self.pageSize = size;
     self.pageNumber = page;
@@ -61,7 +68,9 @@ static int size = 20;
 }
 
 - (void)getIncomeData {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -128,7 +137,7 @@ static int size = 20;
     return 0.001;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGYuebaoProfitReportModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

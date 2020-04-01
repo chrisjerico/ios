@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMissionListController : UITableViewController
+@property (nonatomic, strong)NSString *typeid;//任务类型
 
+-(void)dataReLoad;
 @end
 
 NS_ASSUME_NONNULL_END

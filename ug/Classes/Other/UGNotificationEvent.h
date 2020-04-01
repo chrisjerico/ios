@@ -8,28 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXTERN NSString *UGNotificationLoginComplete;
-FOUNDATION_EXTERN NSString *UGNotificationloginCancel;
-FOUNDATION_EXTERN NSString *UGNotificationShowLoginView;
-FOUNDATION_EXTERN NSString *UGNotificationUserLogout;
-FOUNDATION_EXTERN NSString *UGNotificationloginTimeout;
-FOUNDATION_EXTERN NSString *UGNotificationGetUserInfo;
-FOUNDATION_EXTERN NSString *UGNotificationGetUserInfoComplete;
-FOUNDATION_EXTERN NSString *UGNotificationUserAvatarChanged;
-FOUNDATION_EXTERN NSString *UGNotificationAutoTransferOut;
-FOUNDATION_EXTERN NSString *UGNotificationYuebaoInfoChanged;
-FOUNDATION_EXTERN NSString *UGNotificationGetYuebaoInfo;
+FOUNDATION_EXTERN NSString *UGNotificationTryPlay;                  // 免费试玩
+FOUNDATION_EXTERN NSString *UGNotificationLoginComplete;            // 登录成功
+FOUNDATION_EXTERN NSString *UGNotificationloginCancel;              // 取消登录
+FOUNDATION_EXTERN NSString *UGNotificationShowLoginView;            // 去登录
+FOUNDATION_EXTERN NSString *UGNotificationUserLogout;               // 退出登录
+FOUNDATION_EXTERN NSString *UGNotificationloginTimeout;             // 登录超时
+
+FOUNDATION_EXTERN NSString *UGNotificationGetUserInfo;              // 获取我的信息
+FOUNDATION_EXTERN NSString *UGNotificationGetUserInfoComplete;      // 获取我的信息完成
+FOUNDATION_EXTERN NSString *UGNotificationGetSystemConfigComplete;  // 获取配置信息完成
+FOUNDATION_EXTERN NSString *UGNotificationUserAvatarChanged;        // 更新头像
+FOUNDATION_EXTERN NSString *UGNotificationYuebaoInfoChanged;        // 更新利息宝信息
+FOUNDATION_EXTERN NSString *UGNotificationGetYuebaoInfo;            //
 FOUNDATION_EXTERN NSString *UGNotificationFundTitlesTap;
 FOUNDATION_EXTERN NSString *UGNotificationGetChanglongBetRecrod;
 
 FOUNDATION_EXTERN NSString *UGNotificationDepositSuccessfully;
 FOUNDATION_EXTERN NSString *UGNotificationGetRewardsSuccessfully;
-FOUNDATION_EXTERN NSString *UGNotificationTryPlay;
 
 FOUNDATION_EXTERN NSString *UGNotificationWithdrawalsSuccess;
 
-FOUNDATION_EXTERN NSString *UGNotificationWithSkinSuccess;
-FOUNDATION_EXTERN NSString *UGNotificationWithResetTabSuccess;
+FOUNDATION_EXTERN NSString *UGNotificationWithSkinSuccess;          // 换肤
+FOUNDATION_EXTERN NSString *UGNotificationWithResetTabSuccess;     
+FOUNDATION_EXTERN NSString *UGNotificationWithRecordOfDeposit;
+
 /// 登录授权
 ///
 /// 如果没有授权将跳转至登录页面, 并在登录完成后回调

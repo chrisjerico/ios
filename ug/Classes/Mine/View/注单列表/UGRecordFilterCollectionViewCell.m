@@ -28,9 +28,9 @@
 
 - (void)setSelected:(BOOL)selected {
     if (selected) {
-        self.layer.borderColor = UGNavColor.CGColor;
+        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
         self.layer.borderWidth = 1;
-        self.titleLabel.textColor =UGNavColor;
+        self.titleLabel.textColor =Skin1.navBarBgColor;
     }else {
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.titleLabel.textColor = [UIColor blackColor];

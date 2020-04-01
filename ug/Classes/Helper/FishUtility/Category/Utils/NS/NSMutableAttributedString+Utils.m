@@ -7,10 +7,21 @@
 //
 
 #import "NSMutableAttributedString+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 #import "JRSwizzle.h"
 
 @implementation NSAttributedString (Utils)
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [NSAttributedString jr_swizzleMethod:@selector(initWithString:attributes:) withMethod:@selector(cc_safe_initWithString:attributes:) error:nil];
+    });
+}
+
+- (instancetype)cc_safe_initWithString:(NSString *)str attributes:(NSDictionary<NSAttributedStringKey,id> *)attrs {
+    return str.length ? [self cc_safe_initWithString:str attributes:attrs] : nil;
+}
 
 - (NSAttributedString *)substringWithSize:(CGSize)size {
     CGFloat h = [self boundingRectWithSize:CGSizeMake(size.width, MAXFLOAT)
@@ -46,25 +57,25 @@
 
 @implementation NSMutableAttributedString (Utils)
 
-_ZJRuntimeGetter(UIFont *, font)
-_ZJRuntimeGetter(UIColor *, color)
-_ZJRuntimeGetterDoubleValue(CGFloat, kern)
-_ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing)
-_ZJRuntimeGetterDoubleValue(NSLineBreakMode, lineBreakMode)
+_CCRuntimeGetter(UIFont *, font)
+_CCRuntimeGetter(UIColor *, color)
+_CCRuntimeGetterDoubleValue(CGFloat, kern)
+_CCRuntimeGetterDoubleValue(CGFloat, lineSpacing)
+_CCRuntimeGetterDoubleValue(NSLineBreakMode, lineBreakMode)
 
 - (void)setFont:(UIFont *)font {
     objc_setAssociatedObject(self, @selector(font), font, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, self.length)];
 }
 
 - (void)setColor:(UIColor *)color {
     objc_setAssociatedObject(self, @selector(color), color, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.length)];
 }
 
 - (void)setKern:(CGFloat)kern {
     objc_setAssociatedObject(self, @selector(kern), @(kern), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self addAttribute:NSKernAttributeName value:@(kern) range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSKernAttributeName value:@(kern) range:NSMakeRange(0, self.length)];
 }
 
 - (void)setLineSpacing:(CGFloat)lineSpacing {
@@ -72,27 +83,50 @@ _ZJRuntimeGetterDoubleValue(NSLineBreakMode, lineBreakMode)
     NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
     ps.lineSpacing = lineSpacing;
     ps.lineBreakMode = NSLineBreakByCharWrapping;
-    [self addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, self.string.length)];
+    [self addAttribute:NSParagraphStyleAttributeName value:ps range:NSMakeRange(0, self.length)];
 }
 
 - (void)replaceOccurrencesOfString:(NSString *)target withString:(NSString *)replacement {
-    NSRange r = [self.string rangeOfString:target];
-    if (r.length)
-        [self replaceCharactersInRange:NSMakeRange(r.location, r.length) withString:replacement ? : @""];
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:target options:NSLiteralSearch range:range]).length) {
+        [self replaceCharactersInRange:r withString:replacement ? : @""];
+        range.location = r.location + r.length;
+        range.length = self.length - range.location;
+    }
 }
+
+- (void)replaceOccurrencesOfString:(NSString *)target withAttributedString:(NSAttributedString *)replacement {
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:target options:NSLiteralSearch range:range]).length) {
+        [self replaceCharactersInRange:r withAttributedString:replacement ? : [NSAttributedString new]];
+        range.location = r.location + replacement.length;
+        range.length = self.length - range.location;
+    }
+}
+
 - (void)setString:(NSString *)aString {
-    [self replaceCharactersInRange:NSMakeRange(0, self.string.length) withString:aString ? : @""];
+    [self replaceCharactersInRange:NSMakeRange(0, self.length) withString:aString ? : @""];
 }
 
 - (void)addAttributes:(NSDictionary<NSAttributedStringKey, id> *)attrs withString:(NSString *)string {
-    NSRange r = [self.string rangeOfString:string];
-    if (r.length)
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:string options:NSLiteralSearch range:range]).length) {
         [self addAttributes:attrs range:r];
+        range.location = r.location + r.length;
+        range.length = self.length - range.location;
+    }
 }
 - (void)setAttributes:(NSDictionary<NSAttributedStringKey, id> *)attrs withString:(NSString *)string {
-    NSRange r = [self.string rangeOfString:string];
-    if (r.length)
+    NSRange range = NSMakeRange(0, self.length);
+    NSRange r;
+    while ((r = [self.string rangeOfString:string options:NSLiteralSearch range:range]).length) {
         [self replaceCharactersInRange:r withAttributedString:[[NSAttributedString alloc] initWithString:string attributes:attrs]];
+        range.location = r.location + r.length;
+        range.length = self.length - range.location;
+    }
 }
 
 @end
@@ -153,9 +187,9 @@ void updateAttributedText(UILabel *label, void (^block)(NSMutableAttributedStrin
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UILabel aspect_hookSelector:@selector(setText:) withOptions:AspectPositionInstead usingBlock:setText error:nil];
-        [UILabel aspect_hookSelector:@selector(setFont:) withOptions:AspectPositionInstead usingBlock:setFont error:nil];
-        [UILabel aspect_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:setTextColor error:nil];
+        [UILabel cc_hookSelector:@selector(setText:) withOptions:AspectPositionInstead usingBlock:setText error:nil];
+        [UILabel cc_hookSelector:@selector(setFont:) withOptions:AspectPositionInstead usingBlock:setFont error:nil];
+        [UILabel cc_hookSelector:@selector(setTextColor:) withOptions:AspectPositionInstead usingBlock:setTextColor error:nil];
     });
 }
 - (void)updateAttributedText:(void (^)(NSMutableAttributedString *))block {

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UGfinancialView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="sWV-Bi-afW">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NI0-By-3sK">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-B9-NiW">
+                                    <rect key="frame" x="30" y="8" width="314.5" height="44"/>
+                                    <string key="text">温馨提示：每次转账前请以此页面的银行账户为准，请勿保留之前的账户，以免转入停用账户里噢，谢谢配合！
+【公司转账，自动赠送1%入款优惠】</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="内容"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DsQ-LW-plp">
+                                    <rect key="frame" x="344.5" y="0.0" width="69.5" height="60"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="按钮"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BM_down" translatesAutoresizingMaskIntoConstraints="NO" id="UGz-nC-9oR">
+                                    <rect key="frame" x="367" y="18" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="1WI-IZ-eFO"/>
+                                        <constraint firstAttribute="height" constant="25" id="6nR-nk-Wxb"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="箭头图片"/>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="cO2-B9-NiW" secondAttribute="bottom" constant="8" id="48L-qZ-Yx8"/>
+                                <constraint firstAttribute="height" constant="60" id="86x-nG-1Pu"/>
+                                <constraint firstItem="DsQ-LW-plp" firstAttribute="leading" secondItem="cO2-B9-NiW" secondAttribute="trailing" id="9BL-aJ-GE6"/>
+                                <constraint firstAttribute="bottom" secondItem="DsQ-LW-plp" secondAttribute="bottom" id="ECT-DE-Igj"/>
+                                <constraint firstItem="cO2-B9-NiW" firstAttribute="leading" secondItem="NI0-By-3sK" secondAttribute="leading" constant="30" id="Gqt-Bp-JXn"/>
+                                <constraint firstAttribute="trailing" secondItem="DsQ-LW-plp" secondAttribute="trailing" id="JeT-ID-hdB"/>
+                                <constraint firstItem="UGz-nC-9oR" firstAttribute="top" secondItem="NI0-By-3sK" secondAttribute="top" constant="18" id="Kj3-zH-23w"/>
+                                <constraint firstItem="UGz-nC-9oR" firstAttribute="leading" secondItem="cO2-B9-NiW" secondAttribute="trailing" constant="22.5" id="WER-4h-4de"/>
+                                <constraint firstItem="DsQ-LW-plp" firstAttribute="top" secondItem="NI0-By-3sK" secondAttribute="top" id="raD-kL-fnW"/>
+                                <constraint firstAttribute="trailing" secondItem="UGz-nC-9oR" secondAttribute="trailing" constant="22" id="ufN-Ye-Qah"/>
+                                <constraint firstItem="cO2-B9-NiW" firstAttribute="top" secondItem="NI0-By-3sK" secondAttribute="top" constant="8" id="w8O-HM-3Hr"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="内容View"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zfg-Vk-cYM">
+                            <rect key="frame" x="0.0" y="60" width="414" height="758"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vY8-12-gT5">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="NI0-By-3sK" secondAttribute="trailing" id="HBG-22-23q"/>
+                        <constraint firstItem="NI0-By-3sK" firstAttribute="top" secondItem="sWV-Bi-afW" secondAttribute="top" id="fWl-4S-Hwh"/>
+                        <constraint firstItem="NI0-By-3sK" firstAttribute="leading" secondItem="sWV-Bi-afW" secondAttribute="leading" id="xGa-nI-Gie"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="sWV-Bi-afW" secondAttribute="bottom" id="Lrh-ld-SQg"/>
+                <constraint firstItem="sWV-Bi-afW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Uau-m3-uCY"/>
+                <constraint firstItem="sWV-Bi-afW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fru-hA-TmP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sWV-Bi-afW" secondAttribute="trailing" id="jzK-mI-yP1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="myCollectionView" destination="zfg-Vk-cYM" id="O7C-tm-HwR"/>
+                <outlet property="titleView" destination="NI0-By-3sK" id="PTo-5T-eEf"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="145.98214285714286"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BM_down" width="48" height="48"/>
+    </resources>
+</document>

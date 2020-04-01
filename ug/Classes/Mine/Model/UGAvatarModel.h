@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGAvatarModel : UGModel
 
-@property (nonatomic, strong) NSString *filename;
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *filename;   /**<   头像文件名 */
+@property (nonatomic, strong) NSString *url;        /**<   头像URL */
 
 @end
 

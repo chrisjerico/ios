@@ -13,7 +13,7 @@
  *
  *  @author LEE
  *  @copyright    Copyright © 2016 - 2019年 lee. All rights reserved.
- *  @version    V1.2.6
+ *  @version    V1.3.6
  */
 
 #import "LEEAlert.h"
@@ -39,13 +39,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     LEEBackgroundStyleTranslucent,
 };
 
-@interface LEEAlertConfigModel ()
+@interface LEEBaseConfigModel ()
 
 @property (nonatomic , strong ) NSMutableArray *modelActionArray;
 @property (nonatomic , strong ) NSMutableArray *modelItemArray;
 @property (nonatomic , strong ) NSMutableDictionary *modelItemInsetsInfo;
 
-@property (nonatomic , assign ) CGFloat modelCornerRadius;
 @property (nonatomic , assign ) CGFloat modelShadowOpacity;
 @property (nonatomic , assign ) CGFloat modelShadowRadius;
 @property (nonatomic , assign ) CGFloat modelOpenAnimationDuration;
@@ -64,6 +63,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 @property (nonatomic , assign ) BOOL modelIsQueue;
 @property (nonatomic , assign ) BOOL modelIsContinueQueueDisplay;
 @property (nonatomic , assign ) BOOL modelIsAvoidKeyboard;
+@property (nonatomic , assign ) BOOL modelIsScrollEnabled;
 
 @property (nonatomic , assign ) CGSize modelShadowOffset;
 @property (nonatomic , assign ) CGPoint modelAlertCenterOffset;
@@ -88,6 +88,11 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 @property (nonatomic , assign ) UIStatusBarStyle modelStatusBarStyle;
 @property (nonatomic , assign ) UIBlurEffectStyle modelBackgroundBlurEffectStyle;
 @property (nonatomic , assign ) UIInterfaceOrientationMask modelSupportedInterfaceOrientations;
+@property (nonatomic , assign ) UIUserInterfaceStyle modelUserInterfaceStyle API_AVAILABLE(ios(13.0), tvos(13.0));
+
+@property (nonatomic , assign ) CornerRadii modelCornerRadii;
+@property (nonatomic , assign ) CornerRadii modelActionSheetHeaderCornerRadii;
+@property (nonatomic , assign ) CornerRadii modelActionSheetCancelActionCornerRadii;
 
 @property (nonatomic , strong ) UIColor *modelActionSheetBackgroundColor;
 @property (nonatomic , strong ) UIColor *modelActionSheetCancelActionSpaceColor;
@@ -96,7 +101,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 @end
 
-@implementation LEEAlertConfigModel
+@implementation LEEBaseConfigModel
 
 - (void)dealloc{
     
@@ -111,8 +116,6 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     if (self) {
         
         // 初始化默认值
-        
-        _modelCornerRadius = 13.0f; //默认圆角半径
         _modelShadowOpacity = 0.3f; //默认阴影不透明度
         _modelShadowRadius = 5.0f; //默认阴影半径
         _modelShadowOffset = CGSizeMake(0.0f, 2.0f); //默认阴影偏移
@@ -130,7 +133,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         _modelActionSheetBottomMargin = 10.0f; //默认actionsheet距离屏幕底部距离
         
         _modelShadowColor = [UIColor blackColor]; //默认阴影颜色
-        _modelHeaderColor = [UIColor whiteColor]; //默认颜色
+        if (@available(iOS 13.0, *)) {
+            _modelHeaderColor = [UIColor tertiarySystemBackgroundColor]; //默认颜色
+            
+        } else {
+            _modelHeaderColor = [UIColor whiteColor]; //默认颜色
+        }
         _modelBackgroundColor = [UIColor blackColor]; //默认背景半透明颜色
         
         _modelIsClickBackgroundClose = NO; //默认点击背景不关闭
@@ -138,11 +146,20 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         _modelIsQueue = NO; //默认不加入队列
         _modelIsContinueQueueDisplay = YES; //默认继续队列显示
         _modelIsAvoidKeyboard = YES; //默认闪避键盘
+        _modelIsScrollEnabled = YES; //默认可以滑动
         
         _modelBackgroundStyle = LEEBackgroundStyleTranslucent; //默认为半透明背景样式
-        
         _modelBackgroundBlurEffectStyle = UIBlurEffectStyleDark; //默认模糊效果类型Dark
         _modelSupportedInterfaceOrientations = UIInterfaceOrientationMaskAll; //默认支持所有方向
+        
+        _modelCornerRadii = CornerRadiiMake(13.0f, 13.0f, 13.0f, 13.0f); //默认圆角半径
+        _modelActionSheetHeaderCornerRadii = CornerRadiiMake(13.0f, 13.0f, 13.0f, 13.0f); //默认圆角半径
+        _modelActionSheetCancelActionCornerRadii = CornerRadiiMake(13.0f, 13.0f, 13.0f, 13.0f); //默认圆角半径
+        
+        
+        if (@available(iOS 13.0, *)) {
+            _modelUserInterfaceStyle = UIUserInterfaceStyleUnspecified; //默认支持全部样式
+        }
         
         __weak typeof(self) weakSelf = self;
         
@@ -269,7 +286,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             
             action.title = title;
             
-            action.titleColor = [UIColor redColor];
+            action.titleColor = [UIColor systemRedColor];
             
             action.clickBlock = block;
         });
@@ -449,7 +466,18 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     return ^(CGFloat number){
         
-        self.modelCornerRadius = number;
+        self.modelCornerRadii = CornerRadiiMake(number, number, number, number);
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToCornerRadii)LeeCornerRadii{
+    
+    return ^(CornerRadii radii){
+        
+        self.modelCornerRadii = radii;
         
         return self;
     };
@@ -542,6 +570,17 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     return ^(BOOL is){
         
         self.modelIsClickBackgroundClose = is;
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToBool)LeeIsScrollEnabled{
+    
+    return ^(BOOL is){
+        
+        self.modelIsScrollEnabled = is;
         
         return self;
     };
@@ -723,99 +762,22 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
 }
 
+- (LEEConfigToUserInterfaceStyle)LeeUserInterfaceStyle {
+    
+    return ^(UIUserInterfaceStyle style){
+        
+        self.modelUserInterfaceStyle = style;
+        
+        return self;
+    };
+}
+
 
 - (LEEConfig)LeeShow{
     
     return ^{
         
         if (self.modelFinishConfig) self.modelFinishConfig();
-        
-        return self;
-    };
-    
-}
-
-#pragma mark Alert Config
-
-- (LEEConfigToConfigTextField)LeeAddTextField{
-    
-    return ^(void (^block)(UITextField *)){
-        
-        return self.LeeAddItem(^(LEEItem *item) {
-            
-            item.type = LEEItemTypeTextField;
-            
-            item.insets = UIEdgeInsetsMake(10, 0, 10, 0);
-            
-            item.block = block;
-        });
-        
-    };
-    
-}
-    
-- (LEEConfigToPoint)LeeAlertCenterOffset {
-    
-    return ^(CGPoint offset){
-        
-        self.modelAlertCenterOffset = offset;
-        
-        return self;
-    };
-    
-}
-
-- (LEEConfigToBool)LeeAvoidKeyboard{
-    
-    return ^(BOOL is){
-        
-        self.modelIsAvoidKeyboard = is;
-        
-        return self;
-    };
-    
-}
-
-#pragma mark ActionSheet Config
-
-- (LEEConfigToFloat)LeeActionSheetCancelActionSpaceWidth{
-    
-    return ^(CGFloat number){
-        
-        self.modelActionSheetCancelActionSpaceWidth = number;
-        
-        return self;
-    };
-    
-}
-
-- (LEEConfigToColor)LeeActionSheetCancelActionSpaceColor{
-    
-    return ^(UIColor *color){
-        
-        self.modelActionSheetCancelActionSpaceColor = color;
-        
-        return self;
-    };
-    
-}
-
-- (LEEConfigToFloat)LeeActionSheetBottomMargin{
-    
-    return ^(CGFloat number){
-        
-        self.modelActionSheetBottomMargin = number;
-        
-        return self;
-    };
-    
-}
-
-- (LEEConfigToColor)LeeActionSheetBackgroundColor{
-    
-    return ^(UIColor *color){
-        
-        self.modelActionSheetBackgroundColor = color;
         
         return self;
     };
@@ -880,13 +842,126 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 @end
 
+@implementation LEEBaseConfigModel (Alert)
+
+- (LEEConfigToConfigTextField)LeeAddTextField{
+    
+    return ^(void (^block)(UITextField *)){
+        
+        return self.LeeAddItem(^(LEEItem *item) {
+            
+            item.type = LEEItemTypeTextField;
+            
+            item.insets = UIEdgeInsetsMake(10, 0, 10, 0);
+            
+            item.block = block;
+        });
+        
+    };
+    
+}
+
+- (LEEConfigToPoint)LeeAlertCenterOffset {
+    
+    return ^(CGPoint offset){
+        
+        self.modelAlertCenterOffset = offset;
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToBool)LeeAvoidKeyboard{
+    
+    return ^(BOOL is){
+        
+        self.modelIsAvoidKeyboard = is;
+        
+        return self;
+    };
+    
+}
+
+@end
+
+@implementation LEEBaseConfigModel (ActionSheet)
+
+- (LEEConfigToFloat)LeeActionSheetCancelActionSpaceWidth{
+    
+    return ^(CGFloat number){
+        
+        self.modelActionSheetCancelActionSpaceWidth = number;
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToColor)LeeActionSheetCancelActionSpaceColor{
+    
+    return ^(UIColor *color){
+        
+        self.modelActionSheetCancelActionSpaceColor = color;
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToFloat)LeeActionSheetBottomMargin{
+    
+    return ^(CGFloat number){
+        
+        self.modelActionSheetBottomMargin = number;
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToColor)LeeActionSheetBackgroundColor{
+    
+    return ^(UIColor *color){
+        
+        self.modelActionSheetBackgroundColor = color;
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToCornerRadii)LeeActionSheetHeaderCornerRadii{
+    
+    return ^(CornerRadii radii){
+        
+        self.modelActionSheetHeaderCornerRadii = radii;
+        
+        return self;
+    };
+    
+}
+
+- (LEEConfigToCornerRadii)LeeActionSheetCancelActionCornerRadii{
+    
+    return ^(CornerRadii radii){
+        
+        self.modelActionSheetCancelActionCornerRadii = radii;
+        
+        return self;
+    };
+    
+}
+
+@end
+
 @interface LEEAlert ()
 
 @property (nonatomic , strong ) UIWindow *mainWindow;
 
 @property (nonatomic , strong ) LEEAlertWindow *leeWindow;
 
-@property (nonatomic , strong ) NSMutableArray <LEEAlertConfig *>*queueArray;
+@property (nonatomic , strong ) NSMutableArray <LEEBaseConfig *>*queueArray;
 
 @property (nonatomic , strong ) LEEBaseViewController *viewController;
 
@@ -914,22 +989,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 + (LEEAlertConfig *)alert{
     
-    LEEAlertConfig *config = [[LEEAlertConfig alloc] init];
-    
-    config.type = LEEAlertTypeAlert;
-    
-    return config;
+    return [[LEEAlertConfig alloc] init];
 }
 
-+ (LEEAlertConfig *)actionsheet{
++ (LEEActionSheetConfig *)actionsheet{
     
-    LEEAlertConfig *config = [[LEEAlertConfig alloc] init];
-    
-    config.type = LEEAlertTypeActionSheet;
-    
-    config.config.LeeClickBackgroundClose(YES);
-    
-    return config;
+    return [[LEEActionSheetConfig alloc] init];
 }
 
 + (LEEAlertWindow *)getAlertWindow{
@@ -952,7 +1017,22 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     [[LEEAlert shareManager].queueArray removeAllObjects];
 }
 
++ (BOOL)isQueueEmpty{
+    
+    return [LEEAlert shareManager].queueArray.count == 0;
+}
+
++ (BOOL)containsQueueWithIdentifier:(NSString *)identifier {
+    
+    for (LEEBaseConfig *config in [LEEAlert shareManager].queueArray) {
+        if ([config.config.modelIdentifier isEqualToString:identifier]) return YES;
+    }
+    
+    return NO;
+}
+
 + (void)closeWithIdentifier:(NSString *)identifier completionBlock:(void (^ _Nullable)(void))completionBlock{
+    
     [self closeWithIdentifier:identifier force:NO completionBlock:completionBlock];
 }
 
@@ -968,9 +1048,9 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         
         for (NSUInteger i = 0; i < count; i++) {
             
-            LEEAlertConfig *config = [LEEAlert shareManager].queueArray[i];
+            LEEBaseConfig *config = [LEEAlert shareManager].queueArray[i];
             
-            LEEAlertConfigModel *model = config.config;
+            LEEBaseConfigModel *model = config.config;
             
             if (model.modelIdentifier != nil && [identifier isEqualToString: model.modelIdentifier]) {
                 
@@ -1005,7 +1085,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     if ([LEEAlert shareManager].queueArray.count) {
         
-        LEEAlertConfig *item = [LEEAlert shareManager].queueArray.lastObject;
+        LEEBaseConfig *item = [LEEAlert shareManager].queueArray.lastObject;
         
         if ([item respondsToSelector:@selector(closeWithCompletionBlock:)]) [item performSelector:@selector(closeWithCompletionBlock:) withObject:completionBlock];
     }
@@ -1014,7 +1094,19 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 #pragma mark LazyLoading
 
-- (NSMutableArray <LEEAlertConfig *>*)queueArray{
+- (void)setMainWindow:(UIWindow *)mainWindow {
+    _mainWindow = mainWindow;
+    
+    if (@available(iOS 13.0, *)) {
+     
+        if (mainWindow.windowScene && _leeWindow) {
+            
+            _leeWindow.windowScene = mainWindow.windowScene;
+        }
+    }
+}
+
+- (NSMutableArray <LEEBaseConfig *>*)queueArray{
     
     if (!_queueArray) _queueArray = [NSMutableArray array];
     
@@ -1025,7 +1117,19 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     if (!_leeWindow) {
         
-        _leeWindow = [[LEEAlertWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        if (@available(iOS 13.0, *)) {
+            
+            if (_mainWindow.windowScene) {
+                
+                _leeWindow = [[LEEAlertWindow alloc] initWithWindowScene: _mainWindow.windowScene];
+                
+            } else {
+                _leeWindow = [[LEEAlertWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+            }
+            
+        } else {
+            _leeWindow = [[LEEAlertWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        }
         
         _leeWindow.rootViewController = [[UIViewController alloc] init];
         
@@ -1037,6 +1141,171 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     }
     
     return _leeWindow;
+}
+
+@end
+
+@interface UIView (LEEAlertExtension)
+
+@property (nonatomic , assign ) CornerRadii lee_alert_cornerRadii;
+
+@end
+
+@implementation UIView (LEEAlertExtension)
+
+CornerRadii CornerRadiiMake(CGFloat topLeft, CGFloat topRight, CGFloat bottomLeft, CGFloat bottomRight) {
+    return (CornerRadii){
+        topLeft,
+        topRight,
+        bottomLeft,
+        bottomRight,
+    };
+}
+
+CornerRadii CornerRadiiZero() {
+    return (CornerRadii){0, 0, 0, 0};
+}
+
+CornerRadii CornerRadiiNull() {
+    return (CornerRadii){-1, -1, -1, -1};
+}
+
+BOOL CornerRadiiEqualTo(CornerRadii lhs, CornerRadii rhs) {
+    return lhs.topLeft == rhs.topRight
+    && lhs.topRight == rhs.topRight
+    && lhs.bottomLeft == rhs.bottomLeft
+    && lhs.bottomRight == lhs.bottomRight;
+}
+
+// 切圆角函数
+CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii cornerRadii) {
+    const CGFloat minX = CGRectGetMinX(bounds);
+    const CGFloat minY = CGRectGetMinY(bounds);
+    const CGFloat maxX = CGRectGetMaxX(bounds);
+    const CGFloat maxY = CGRectGetMaxY(bounds);
+    
+    const CGFloat topLeftCenterX = minX + cornerRadii.topLeft;
+    const CGFloat topLeftCenterY = minY + cornerRadii.topLeft;
+    
+    const CGFloat topRightCenterX = maxX - cornerRadii.topRight;
+    const CGFloat topRightCenterY = minY + cornerRadii.topRight;
+    
+    const CGFloat bottomLeftCenterX = minX + cornerRadii.bottomLeft;
+    const CGFloat bottomLeftCenterY = maxY - cornerRadii.bottomLeft;
+    
+    const CGFloat bottomRightCenterX = maxX - cornerRadii.bottomRight;
+    const CGFloat bottomRightCenterY = maxY - cornerRadii.bottomRight;
+    // 虽然顺时针参数是YES，在iOS中的UIView中，这里实际是逆时针
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    // 顶 左
+    CGPathAddArc(path, NULL, topLeftCenterX, topLeftCenterY, cornerRadii.topLeft, M_PI, 3 * M_PI_2, NO);
+    // 顶 右
+    CGPathAddArc(path, NULL, topRightCenterX , topRightCenterY, cornerRadii.topRight, 3 * M_PI_2, 0, NO);
+    // 底 右
+    CGPathAddArc(path, NULL, bottomRightCenterX, bottomRightCenterY, cornerRadii.bottomRight, 0, M_PI_2, NO);
+    // 底 左
+    CGPathAddArc(path, NULL, bottomLeftCenterX, bottomLeftCenterY, cornerRadii.bottomLeft, M_PI_2,M_PI, NO);
+    CGPathCloseSubpath(path);
+    return path;
+}
+
++ (void)load{
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        NSArray *selStringsArray = @[@"layoutSubviews"];
+        
+        [selStringsArray enumerateObjectsUsingBlock:^(NSString *selString, NSUInteger idx, BOOL *stop) {
+            
+            NSString *leeSelString = [@"lee_alert_" stringByAppendingString:selString];
+            
+            Method originalMethod = class_getInstanceMethod(self, NSSelectorFromString(selString));
+            
+            Method leeMethod = class_getInstanceMethod(self, NSSelectorFromString(leeSelString));
+            
+            BOOL isAddedMethod = class_addMethod(self, NSSelectorFromString(selString), method_getImplementation(leeMethod), method_getTypeEncoding(leeMethod));
+            
+            if (isAddedMethod) {
+                
+                class_replaceMethod(self, NSSelectorFromString(leeSelString), method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+                
+            } else {
+                
+                method_exchangeImplementations(originalMethod, leeMethod);
+            }
+            
+        }];
+        
+    });
+    
+}
+
+- (void)lee_alert_updateCornerRadii{
+    
+    if (!CornerRadiiEqualTo([self lee_alert_cornerRadii], CornerRadiiNull())) {
+        
+        CAShapeLayer *lastLayer = (CAShapeLayer *)self.layer.mask;
+        CGPathRef lastPath = lastLayer.path ? lastLayer.path : CGPathCreateMutable();
+        CGPathRef path = LEECGPathCreateWithRoundedRect(self.bounds, [self lee_alert_cornerRadii]);
+        
+        // 防止相同路径多次设置
+        if (!CGPathEqualToPath(lastPath, path)) {
+            // 移除原有路径动画
+            [lastLayer removeAnimationForKey:@"path"];
+            // 重置新路径mask
+            CAShapeLayer *maskLayer = [CAShapeLayer layer];
+            maskLayer.path = path;
+            self.layer.mask = maskLayer;
+            // 同步视图大小变更动画
+            CAAnimation *temp = [self.layer animationForKey:@"bounds.size"];
+            if (temp) {
+                CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
+                animation.duration = temp.duration;
+                animation.fillMode = temp.fillMode;
+                animation.timingFunction = temp.timingFunction;
+                animation.fromValue = (__bridge id _Nullable)(lastPath);
+                animation.toValue = (__bridge id _Nullable)(path);
+                [maskLayer addAnimation:animation forKey:@"path"];
+            }
+            
+        }
+        
+    }
+    
+}
+
+- (void)lee_alert_layoutSubviews{
+    
+    [self lee_alert_layoutSubviews];
+    
+    [self lee_alert_updateCornerRadii];
+}
+
+- (CornerRadii)lee_alert_cornerRadii{
+    
+    NSValue *value = objc_getAssociatedObject(self, _cmd);
+    
+    CornerRadii cornerRadii;
+    
+    if (value) {
+        
+        [value getValue:&cornerRadii];
+    
+    } else {
+    
+        cornerRadii = CornerRadiiNull();
+    }
+    
+    return cornerRadii;
+}
+
+- (void)setLee_alert_cornerRadii:(CornerRadii)cornerRadii{
+    
+    NSValue *value = [NSValue valueWithBytes:&cornerRadii objCType:@encode(CornerRadii)];
+    
+    objc_setAssociatedObject(self, @selector(lee_alert_cornerRadii), value , OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
@@ -1184,6 +1453,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 @implementation LEEActionButton
 
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    /// 刷新Action设置
+    self.action = self.action;
+}
+
 + (LEEActionButton *)button{
     
     return [LEEActionButton buttonWithType:UIButtonTypeCustom];;
@@ -1202,6 +1477,8 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     if (action.attributedTitle) [self setAttributedTitle:action.attributedTitle forState:UIControlStateNormal];
     
     if (action.attributedHighlight) [self setAttributedTitle:action.attributedHighlight forState:UIControlStateHighlighted];
+    
+    if (action.numberOfLines) [self.titleLabel setNumberOfLines:action.numberOfLines];
     
     if (action.font) [self.titleLabel setFont:action.font];
     
@@ -1310,22 +1587,22 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 }
 
 - (void)addTopBorder{
-    
+    [self removeTopBorder];
     [self.layer addSublayer:self.topLayer];
 }
 
 - (void)addBottomBorder{
-    
+    [self removeBottomBorder];
     [self.layer addSublayer:self.bottomLayer];
 }
 
 - (void)addLeftBorder{
-    
+    [self removeLeftBorder];
     [self.layer addSublayer:self.leftLayer];
 }
 
 - (void)addRightBorder{
-    
+    [self removeRightBorder];
     [self.layer addSublayer:self.rightLayer];
 }
 
@@ -1551,15 +1828,13 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 @interface LEEBaseViewController ()<UIGestureRecognizerDelegate>
 
-@property (nonatomic , strong ) LEEAlertConfigModel *config;
+@property (nonatomic , strong ) LEEBaseConfigModel *config;
 
 @property (nonatomic , strong ) UIWindow *currentKeyWindow;
 
 @property (nonatomic , strong ) UIVisualEffectView *backgroundVisualEffectView;
 
 @property (nonatomic , assign ) LEEScreenOrientationType orientationType;
-
-@property (nonatomic , strong ) LEECustomView *customView;
 
 @property (nonatomic , assign ) BOOL isShowing;
 
@@ -1582,8 +1857,6 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     _currentKeyWindow = nil;
     
     _backgroundVisualEffectView = nil;
-    
-    _customView = nil;
 }
 
 - (void)viewDidLoad{
@@ -1801,6 +2074,8 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             
             self.alertView.frame = alertViewFrame;
             
+            [self.alertView layoutIfNeeded];
+            
             CGRect containerFrame = self.containerView.frame;
             
             containerFrame.size.width = alertViewFrame.size.width;
@@ -1842,7 +2117,6 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         
         self.containerView.frame = containerFrame;
     }
-    
 }
 
 - (CGFloat)updateAlertItemsLayout{
@@ -1983,7 +2257,9 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     self.containerView.layer.shadowColor = self.config.modelShadowColor.CGColor;
     
-    self.alertView.layer.cornerRadius = self.config.modelCornerRadius;
+    self.alertView.scrollEnabled = self.config.modelIsScrollEnabled;
+    
+    self.alertView.lee_alert_cornerRadii = self.config.modelCornerRadii;
     
     [self.config.modelItemArray enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -2013,7 +2289,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.font = [UIFont boldSystemFontOfSize:18.0f];
                 
-                label.textColor = [UIColor blackColor];
+                if (@available(iOS 13.0, *)) {
+                    label.textColor = [UIColor labelColor];
+                    
+                } else {
+                    label.textColor = [UIColor blackColor];
+                }
                 
                 label.numberOfLines = 0;
                 
@@ -2042,7 +2323,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.font = [UIFont systemFontOfSize:14.0f];
                 
-                label.textColor = [UIColor blackColor];
+                if (@available(iOS 13.0, *)) {
+                    label.textColor = [UIColor labelColor];
+                    
+                } else {
+                    label.textColor = [UIColor blackColor];
+                }
                 
                 label.numberOfLines = 0;
                 
@@ -2116,13 +2402,34 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         
         if (!action.title) action.title = @"按钮";
         
-        if (!action.titleColor) action.titleColor = [UIColor colorWithRed:21/255.0f green:123/255.0f blue:245/255.0f alpha:1.0f];
+        if (!action.titleColor) {
+            if (@available(iOS 13.0, *)) {
+                action.titleColor = [UIColor systemBlueColor];
+                
+            } else {
+                action.titleColor = [UIColor colorWithRed:21/255.0f green:123/255.0f blue:245/255.0f alpha:1.0f];
+            }
+        }
         
         if (!action.backgroundColor) action.backgroundColor = self.config.modelHeaderColor;
         
-        if (!action.backgroundHighlightColor) action.backgroundHighlightColor = action.backgroundHighlightColor = [UIColor colorWithWhite:0.97 alpha:1.0f];
+        if (!action.backgroundHighlightColor) {
+            if (@available(iOS 13.0, *)) {
+                action.backgroundHighlightColor = [UIColor systemGray6Color];
+                
+            } else {
+                action.backgroundHighlightColor = [UIColor colorWithWhite:0.97 alpha:1.0f];
+            }
+        }
         
-        if (!action.borderColor) action.borderColor = [UIColor colorWithWhite:0.84 alpha:1.0f];
+        if (!action.borderColor) {
+            if (@available(iOS 13.0, *)) {
+                action.borderColor = [UIColor systemGray3Color];
+                
+            } else {
+                action.borderColor = [UIColor colorWithWhite:0.84 alpha:1.0f];
+            }
+        }
         
         if (!action.borderWidth) action.borderWidth = DEFAULTBORDERWIDTH;
         
@@ -2630,6 +2937,8 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     self.actionSheetView.frame = actionSheetViewFrame;
     
+    [self.actionSheetView layoutIfNeeded];
+    
     if (self.actionSheetCancelAction) {
         
         CGRect spaceFrame = self.actionSheetCancelActionSpaceView.frame;
@@ -2695,7 +3004,11 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     self.containerView.layer.shadowColor = self.config.modelShadowColor.CGColor;
     
-    self.actionSheetView.layer.cornerRadius = self.config.modelCornerRadius;
+    self.actionSheetView.scrollEnabled = self.config.modelIsScrollEnabled;
+    
+    self.containerView.lee_alert_cornerRadii = self.config.modelCornerRadii;
+    
+    self.actionSheetView.lee_alert_cornerRadii = self.config.modelActionSheetHeaderCornerRadii;
     
     [self.config.modelItemArray enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -2724,7 +3037,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.font = [UIFont boldSystemFontOfSize:16.0f];
                 
-                label.textColor = [UIColor darkGrayColor];
+                if (@available(iOS 13.0, *)) {
+                    label.textColor = [UIColor secondaryLabelColor];
+                    
+                } else {
+                    label.textColor = [UIColor darkGrayColor];
+                }
                 
                 label.numberOfLines = 0;
                 
@@ -2753,7 +3071,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.font = [UIFont systemFontOfSize:14.0f];
                 
-                label.textColor = [UIColor grayColor];
+                if (@available(iOS 13.0, *)) {
+                    label.textColor = [UIColor tertiaryLabelColor];
+                    
+                } else {
+                    label.textColor = [UIColor grayColor];
+                }
                 
                 label.numberOfLines = 0;
                 
@@ -2806,13 +3129,34 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         
         if (!action.title) action.title = @"按钮";
         
-        if (!action.titleColor) action.titleColor = [UIColor colorWithRed:21/255.0f green:123/255.0f blue:245/255.0f alpha:1.0f];
+        if (!action.titleColor) {
+            if (@available(iOS 13.0, *)) {
+                action.titleColor = [UIColor systemBlueColor];
+                
+            } else {
+                action.titleColor = [UIColor colorWithRed:21/255.0f green:123/255.0f blue:245/255.0f alpha:1.0f];
+            }
+        }
         
         if (!action.backgroundColor) action.backgroundColor = self.config.modelHeaderColor;
         
-        if (!action.backgroundHighlightColor) action.backgroundHighlightColor = action.backgroundHighlightColor = [UIColor colorWithWhite:0.97 alpha:1.0f];
+        if (!action.backgroundHighlightColor) {
+            if (@available(iOS 13.0, *)) {
+                action.backgroundHighlightColor = [UIColor systemGray6Color];
+                
+            } else {
+                action.backgroundHighlightColor = [UIColor colorWithWhite:0.97 alpha:1.0f];
+            }
+        }
         
-        if (!action.borderColor) action.borderColor = [UIColor colorWithWhite:0.86 alpha:1.0f];
+        if (!action.borderColor) {
+            if (@available(iOS 13.0, *)) {
+                action.borderColor = [UIColor systemGray3Color];
+                
+            } else {
+                action.borderColor = [UIColor colorWithWhite:0.84 alpha:1.0f];
+            }
+        }
         
         if (!action.borderWidth) action.borderWidth = DEFAULTBORDERWIDTH;
         
@@ -2825,7 +3169,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             {
                 [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
                 
-                button.layer.cornerRadius = self.config.modelCornerRadius;
+                button.lee_alert_cornerRadii = self.config.modelActionSheetCancelActionCornerRadii;
                 
                 button.backgroundColor = action.backgroundColor;
                 
@@ -3177,11 +3521,13 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 @end
 
-@interface LEEAlertConfig ()<LEEAlertProtocol>
+@interface LEEBaseConfig ()<LEEAlertProtocol>
+
+- (void)show;
 
 @end
 
-@implementation LEEAlertConfig
+@implementation LEEBaseConfig
 
 - (void)dealloc{
     
@@ -3204,7 +3550,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             
             if ([LEEAlert shareManager].queueArray.count) {
                 
-                LEEAlertConfig *last = [LEEAlert shareManager].queueArray.lastObject;
+                LEEBaseConfig *last = [LEEAlert shareManager].queueArray.lastObject;
                 
                 if (!strongSelf.config.modelIsQueue && last.config.modelQueuePriority > strongSelf.config.modelQueuePriority) return;
                 
@@ -3214,7 +3560,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                     
                     [[LEEAlert shareManager].queueArray addObject:strongSelf];
                     
-                    [[LEEAlert shareManager].queueArray sortUsingComparator:^NSComparisonResult(LEEAlertConfig *configA, LEEAlertConfig *configB) {
+                    [[LEEAlert shareManager].queueArray sortUsingComparator:^NSComparisonResult(LEEBaseConfig *configA, LEEBaseConfig *configB) {
                         
                         return configA.config.modelQueuePriority > configB.config.modelQueuePriority ? NSOrderedDescending
                         : configA.config.modelQueuePriority == configB.config.modelQueuePriority ? NSOrderedSame : NSOrderedAscending;
@@ -3238,71 +3584,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     return self;
 }
 
-- (void)setType:(LEEAlertType)type{
-    
-    _type = type;
-    
-    // 处理默认值
-    
-    switch (type) {
-            
-        case LEEAlertTypeAlert:
-        
-            self.config
-            .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
-            
-                return 280.0f;
-            })
-            .LeeConfigMaxHeight(^CGFloat(LEEScreenOrientationType type) {
-            
-                return SCREEN_HEIGHT - 40.0f - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).top - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).bottom;
-            })
-            .LeeOpenAnimationStyle(LEEAnimationStyleOrientationNone | LEEAnimationStyleFade | LEEAnimationStyleZoomEnlarge)
-            .LeeCloseAnimationStyle(LEEAnimationStyleOrientationNone | LEEAnimationStyleFade | LEEAnimationStyleZoomShrink);
-        
-            break;
-            
-        case LEEAlertTypeActionSheet:
-            
-        self.config
-            .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
-                
-                return type == LEEScreenOrientationTypeHorizontal ? SCREEN_HEIGHT - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).top - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).bottom - 20.0f : SCREEN_WIDTH - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).left - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).right - 20.0f;
-            })
-            .LeeConfigMaxHeight(^CGFloat(LEEScreenOrientationType type) {
-                
-                return SCREEN_HEIGHT - 40.0f - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).top - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).bottom;
-            })
-            .LeeOpenAnimationStyle(LEEAnimationStyleOrientationBottom)
-            .LeeCloseAnimationStyle(LEEAnimationStyleOrientationBottom);
-            
-            break;
-            
-        default:
-            break;
-    }
-    
-}
-
 - (void)show{
-    
-    switch (self.type) {
-            
-        case LEEAlertTypeAlert:
-        
-            [LEEAlert shareManager].viewController = [[LEEAlertViewController alloc] init];
-            
-            break;
-            
-        case LEEAlertTypeActionSheet:
-        
-            [LEEAlert shareManager].viewController = [[LEEActionSheetViewController alloc] init];
-            
-            break;
-            
-        default:
-            break;
-    }
     
     if (![LEEAlert shareManager].viewController) return;
     
@@ -3313,6 +3595,10 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     [LEEAlert shareManager].leeWindow.windowLevel = self.config.modelWindowLevel;
     
     [LEEAlert shareManager].leeWindow.hidden = NO;
+    
+    if (@available(iOS 13.0, *)) {
+        [LEEAlert shareManager].leeWindow.overrideUserInterfaceStyle = self.config.modelUserInterfaceStyle;
+    }
     
     [[LEEAlert shareManager].leeWindow makeKeyAndVisible];
     
@@ -3359,11 +3645,73 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
 
 #pragma mark - LazyLoading
 
-- (LEEAlertConfigModel *)config{
+- (LEEBaseConfigModel *)config{
     
-    if (!_config) _config = [[LEEAlertConfigModel alloc] init];
+    if (!_config) _config = [[LEEBaseConfigModel alloc] init];
     
     return _config;
+}
+
+@end
+
+@implementation LEEAlertConfig
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        self.config
+        .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
+            
+            return 280.0f;
+        })
+        .LeeConfigMaxHeight(^CGFloat(LEEScreenOrientationType type) {
+            
+            return SCREEN_HEIGHT - 40.0f - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).top - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).bottom;
+        })
+        .LeeOpenAnimationStyle(LEEAnimationStyleOrientationNone | LEEAnimationStyleFade | LEEAnimationStyleZoomEnlarge)
+        .LeeCloseAnimationStyle(LEEAnimationStyleOrientationNone | LEEAnimationStyleFade | LEEAnimationStyleZoomShrink);
+    }
+    return self;
+}
+
+- (void)show {
+    
+    [LEEAlert shareManager].viewController = [[LEEAlertViewController alloc] init];
+    
+    [super show];
+}
+
+@end
+
+@implementation LEEActionSheetConfig
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.config
+        .LeeConfigMaxWidth(^CGFloat(LEEScreenOrientationType type) {
+            
+            return type == LEEScreenOrientationTypeHorizontal ? SCREEN_HEIGHT - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).top - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).bottom - 20.0f : SCREEN_WIDTH - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).left - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).right - 20.0f;
+        })
+        .LeeConfigMaxHeight(^CGFloat(LEEScreenOrientationType type) {
+            
+            return SCREEN_HEIGHT - 40.0f - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).top - VIEWSAFEAREAINSETS([LEEAlert getAlertWindow]).bottom;
+        })
+        .LeeOpenAnimationStyle(LEEAnimationStyleOrientationBottom)
+        .LeeCloseAnimationStyle(LEEAnimationStyleOrientationBottom)
+        .LeeClickBackgroundClose(YES);
+    }
+    return self;
+}
+
+- (void)show {
+    
+    [LEEAlert shareManager].viewController = [[LEEActionSheetViewController alloc] init];
+    
+    [super show];
 }
 
 @end

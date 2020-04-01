@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="Dcs-hU-DBs" customClass="UGPlatformTitleCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="62" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="62" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zwt" translatesAutoresizingMaskIntoConstraints="NO" id="78J-by-y9R" customClass="FLAnimatedImageView">
+                        <rect key="frame" x="4" y="4" width="54" height="53"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彩票" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cTh-7J-qbj">
+                        <rect key="frame" x="3" y="29.5" width="56" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彩票" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4g-bw-eHA">
+                        <rect key="frame" x="3" y="58" width="56" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="cTh-7J-qbj" firstAttribute="centerX" secondItem="Dcs-hU-DBs" secondAttribute="centerX" id="4LM-eW-lWn"/>
+                <constraint firstAttribute="bottom" secondItem="78J-by-y9R" secondAttribute="bottom" constant="23" id="5f0-ad-niC"/>
+                <constraint firstItem="78J-by-y9R" firstAttribute="leading" secondItem="Dcs-hU-DBs" secondAttribute="leading" constant="4" id="DNO-a3-rpq"/>
+                <constraint firstItem="cTh-7J-qbj" firstAttribute="leading" secondItem="Dcs-hU-DBs" secondAttribute="leading" constant="3" id="E7G-dK-ztN"/>
+                <constraint firstItem="A4g-bw-eHA" firstAttribute="centerX" secondItem="Dcs-hU-DBs" secondAttribute="centerX" id="IxX-xH-Tfd"/>
+                <constraint firstItem="78J-by-y9R" firstAttribute="top" secondItem="Dcs-hU-DBs" secondAttribute="top" constant="4" id="TZ7-8P-VoL"/>
+                <constraint firstItem="A4g-bw-eHA" firstAttribute="top" secondItem="78J-by-y9R" secondAttribute="bottom" constant="1" id="Tug-fI-X2z"/>
+                <constraint firstItem="cTh-7J-qbj" firstAttribute="centerY" secondItem="Dcs-hU-DBs" secondAttribute="centerY" id="dD7-fe-q9m"/>
+                <constraint firstItem="A4g-bw-eHA" firstAttribute="centerX" secondItem="Dcs-hU-DBs" secondAttribute="centerX" id="pYM-69-Ueh"/>
+                <constraint firstItem="A4g-bw-eHA" firstAttribute="leading" secondItem="Dcs-hU-DBs" secondAttribute="leading" constant="3" id="zZ0-3C-MAN"/>
+                <constraint firstAttribute="trailing" secondItem="78J-by-y9R" secondAttribute="trailing" constant="4" id="znF-aY-JPY"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="4RF-cP-cvW"/>
+            <size key="customSize" width="62" height="80"/>
+            <connections>
+                <outlet property="imageView" destination="78J-by-y9R" id="8cv-ur-Swg"/>
+                <outlet property="title2Label" destination="A4g-bw-eHA" id="Z4i-h0-x5S"/>
+                <outlet property="titleLabel" destination="cTh-7J-qbj" id="hPf-nc-A1k"/>
+            </connections>
+            <point key="canvasLocation" x="146.37681159420291" y="162.72321428571428"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="zwt" width="100" height="100"/>
+    </resources>
+</document>

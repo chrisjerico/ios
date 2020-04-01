@@ -9,10 +9,11 @@
 #import "UGBalanceConversionRecordController.h"
 #import "UGBalanceTransferLogsCell.h"
 #import "UGBalanceTransferLogsModel.h"
+#import "UITableView+LSEmpty.h"
 @interface UGBalanceConversionRecordController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *titleView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGBalanceTransferLogsModel *> *dataArray;
 
 @property (nonatomic, strong) NSString *startTime;
 
@@ -24,20 +25,13 @@ static int page = 1;
 static int size = 20;
 static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
 @implementation UGBalanceConversionRecordController
--(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.pageSize = size;
     self.pageNumber = page;
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
+    [self.view setBackgroundColor: Skin1.bgColor];
     self.navigationItem.title = @"额度转换记录";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -56,6 +50,15 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     
     [self setupRefreshView];
     [self getTransferLogs];
+    
+    FastSubViewCode(self.view);
+    subLabel(@"游戏TitleLabel").textColor = Skin1.textColor1;
+    subLabel(@"金额TitleLabel").textColor = Skin1.textColor1;
+    subLabel(@"日期TitleLabel").textColor = Skin1.textColor1;
+    subLabel(@"模式TitleLabel").textColor = Skin1.textColor1;
+    
+    self.tableView.startTip = YES;
+    self.tableView.tipTitle = @"暂无更多数据";
 }
 
 //添加上下拉刷新
@@ -75,12 +78,15 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
 }
 
 - (void)getTransferLogs {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
                              @"startTime":self.startTime,
                              @"endTime":@""
-                             };
+    };
     
     [CMNetwork transferLogsWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
@@ -142,7 +148,7 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     return 0.001f;
 }
 
--(NSMutableArray *)dataArray {
+- (NSMutableArray<UGBalanceTransferLogsModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

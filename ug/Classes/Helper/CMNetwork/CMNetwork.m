@@ -119,7 +119,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     }(JSON, JSON[@"data"]);
     
     // 提交数据
-    result->_error = err;
+    [result setValue:err forKey:@"_error"];
     *error = err;
     
     return result;
@@ -255,19 +255,151 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                                 model:(CMResultClass)model
                                  post:(BOOL)isPost
                            completion:(CMNetworkBlock)completion {
+#ifdef APP_TEST
+    CCSessionModel *sm = [CCSessionModel new];
+    sm.urlString = method;
+    sm.params = params;
+    sm.isPOST = isPost;
+#endif
+    __block id __block1 = nil;
+    __block id __block2 = __block1 = ^(CMResult<id> *model, NSError *err) {
+#ifdef APP_TEST
+        sm.responseObject = [__block2 cc_userInfo][@"responseObject"];
+        sm.error = [__block2 cc_userInfo][@"error"];
+        [LogVC addRequestModel:sm];
+#endif
+        if (completion == nil) {
+            return ;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(model, err);
+        });
+    };
     [self requestWithMethod:method
                      params:params
                       model:model
                        post:isPost
-                 completion:^(CMResult<id> *model, NSError *err) {
-                     if (completion == nil) {
-                         return ;
-                     }
-                      dispatch_async(dispatch_get_main_queue(), ^{
-                         completion(model, err);
-                     });
-                 }];
+                 completion:__block2];
 }
+/******************************************************************************
+ 函数名称 : encryptionCheckSignForURL;
+ 函数描述 : url参数加密
+ 输入参数 : url
+ 输出参数 : NSString 加密后url
+ 返回参数 : NSString 加密后url
+ 备注信息 :
+ ******************************************************************************/
+
++ (NSString *)encryptionCheckSignForURL:(NSString*)url {
+    
+    //    参数加密
+    if (checkSign) {
+        NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+        
+        tempDic =  [CMCommon yyUrlConversionParameter:url];
+        NSMutableDictionary *noChenkSignDic = [NSMutableDictionary dictionary];
+        NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
+        // 将所有的key取出放入数组arr中
+        NSArray *arr = [tempDic allKeys];
+        // 遍历arr 取出对应的key以及key对应的value
+        for (NSInteger i = 0; i < arr.count; i++) {
+            
+            //如果是a c 不加密，其他的加密，
+            if (![arr[i] isEqualToString:@"a"]&&![arr[i] isEqualToString:@"c"]) {
+                [newDic setObject:[tempDic objectForKey:arr[i]] forKey:arr[i]];
+            }
+            else{
+                [noChenkSignDic setObject:[tempDic objectForKey:arr[i]] forKey:arr[i]];
+            }
+            
+        }
+        
+        NSMutableDictionary *parmDic = [NSMutableDictionary dictionary];
+        
+        parmDic = [CMNetwork encryptionCheckSign:newDic];
+        
+        NSArray*array = [url componentsSeparatedByString:@"?"];//从字符A中分隔成2个元素的数组
+        
+        NSMutableString* methodUrl = [NSMutableString stringWithFormat:@"%@?checkSign=1",[array firstObject]];
+        
+        NSArray *noChenkSignArr = [noChenkSignDic allKeys];
+        // 遍历arr 取出对应的key以及key对应的value
+        for (NSInteger i = 0; i < noChenkSignArr.count; i++) {
+            
+            
+            [methodUrl appendString:@"&"];
+            [methodUrl appendFormat:@"%@",noChenkSignArr[i]];
+            [methodUrl appendString:@"="];
+            [methodUrl appendFormat:@"%@",[noChenkSignDic objectForKey:noChenkSignArr[i]]];
+        }
+        
+        
+        NSArray *parmDicArr = [parmDic allKeys];
+        // 遍历arr 取出对应的key以及key对应的value
+        for (NSInteger i = 0; i < parmDicArr.count; i++) {
+            
+            [methodUrl appendString:@"&"];
+            [methodUrl appendFormat:@"%@",parmDicArr[i]];
+            [methodUrl appendString:@"="];
+            [methodUrl appendFormat:@"%@",[parmDic objectForKey:parmDicArr[i]]];
+        }
+        
+        NSLog(@"methodUrl = %@",methodUrl);
+        return methodUrl;
+    }
+    else{
+        return url;
+    }
+
+  
+}
+
+/******************************************************************************
+ 函数名称 : encryptionCheckSignC;
+ 函数描述 : 网络请求的，游戏获得的url参数加密
+ 输入参数 : NSDictionary 参数
+ 输出参数 : NSMutableDictionary 加密后参数
+ 返回参数 : NSMutableDictionary 加密后参数
+ 备注信息 :
+ ******************************************************************************/
++ (NSMutableDictionary *)encryptionCheckSign:(NSDictionary *)params {
+    if (!params.count) {
+        return nil;
+    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    NSString *deskey = [UGEncryptUtil createUuid];
+    NSLog(@"deskey = %@", deskey);
+    NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
+    
+    [params enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull obj, BOOL * _Nonnull stop) {
+        NSData *resultData;
+        NSString *resultString;
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            NSNumber *temp = (NSNumber *)obj;
+            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+            obj = [numberFormatter stringFromNumber:temp];
+        }
+        NSData *encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
+        resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
+        resultString = [GLEncryptManager encodeBase64WithData:resultData];
+        [dict setValue:resultString forKey:key];
+    }];
+    [dict setValue:sign forKey:@"sign"];
+    if (UGLoginIsAuthorized()) {
+        UGUserModel *user = [UGUserModel currentUser];
+        NSData *resultData;
+        NSString *resultString;
+        NSData *encryptData = [user.sessid dataUsingEncoding:NSUTF8StringEncoding];
+        resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
+        resultString = [GLEncryptManager encodeBase64WithData:resultData];
+        [dict setValue:resultString forKey:@"token"];
+    }
+    
+    return dict;
+}
+
+
 /// @brief 请求数据
 ///
 /// @param method       方法
@@ -275,78 +407,24 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 /// @param model       响应结果类型
 /// @param completion   结果回调
 ///
-- (void)requestWithMethod:(NSString*)method
-params:(NSDictionary*)params
-model:(CMResultClass)model
-post:(BOOL)isPost
-completion:(CMNetworkBlock)completion {
-
-//    参数加密
-    if (checkSign) {
+- (void)requestWithMethod:(NSString*)method params:(NSDictionary*)params model:(CMResultClass)model post:(BOOL)isPost completion:(CMNetworkBlock)completion {
+    if (checkSign && ![method containsString:@"eapi"]) {
+        // 参数加密
         method = [NSString stringWithFormat:@"%@&checkSign=1",method];
-        if (params) {
-            NSString *deskey = [UGEncryptUtil createUuid];
-            NSLog(@"deskey = %@",deskey);
-            NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            [params enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull obj, BOOL * _Nonnull stop) {
-                NSData *resultData;
-                NSString *resultString;
-                if ([obj isKindOfClass:[NSNumber class]]) {
-                   NSNumber *temp = (NSNumber *)obj;
-                    NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                    obj = [numberFormatter stringFromNumber:temp];
-                }
-				
-				NSData * encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
-//				if ([obj isKindOfClass: [NSString class]]) {
-//					encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
-//				} else {
-//					encryptData = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:nil];
-//				}
-				
-                resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
-                resultString = [GLEncryptManager encodeBase64WithData:resultData];
-                [dict setValue:resultString forKey:key];
-            }];
-            [dict setValue:sign forKey:@"sign"];
-            if (UGLoginIsAuthorized()) {
-                UGUserModel *user = [UGUserModel currentUser];
-                NSData *resultData;
-                NSString *resultString;
-                NSData *encryptData = [user.sessid dataUsingEncoding:NSUTF8StringEncoding];
-                resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
-                resultString = [GLEncryptManager encodeBase64WithData:resultData];
-                [dict setValue:resultString forKey:@"token"];
-            }
-            if (isPost) {
-                [self postWithMethod:method params:dict  model:model retryCount:0 completion:completion];
-            } else {
-                [self getWithMethod:method params:dict  model:model retryCount:0 completion:completion];
-                
-            }
-        } else {
-            if (isPost) {
-                [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-            } else {
-                [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
-                
-            }
-            
-        }
-        
-    } else {
-        if (isPost) {
-            [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
-        } else {
-            [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
-            
-        }
-        
+        params = [CMNetwork encryptionCheckSign:params];
     }
-
-   
     
+    // 登录请求去掉token
+    if ([method containsString:@"a=login"]) {
+        [params setValue:nil forKey:@"token"];
+    }
+    NSLog(@"method   =%@",method);
+    NSLog(@"params   =%@",params);
+    if (isPost) {
+        [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
+    } else {
+        [self getWithMethod:method params:params  model:model retryCount:0 completion:completion];
+    }
 }
 
 - (void)getWithMethod:(NSString*)method
@@ -359,8 +437,8 @@ completion:(CMNetworkBlock)completion {
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-    NSLog(@"url = %@",method);
-    NSLog(@"params = %@",params);
+//    NSLog(@"url = %@",method);
+//    NSLog(@"params = %@",params);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 30;
@@ -372,9 +450,8 @@ completion:(CMNetworkBlock)completion {
     manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
-    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     
-    NSDate *startTime = [NSDate date];
     [manager GET:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 
         if ([method containsString:@"imgCaptcha"]) {
@@ -387,43 +464,42 @@ completion:(CMNetworkBlock)completion {
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
                                                              options:0
                                                                error:nil];
-//        NSLog(@"%@: json = %@",method,json);
+#ifdef DEBUG
+        NSLog(@"%@: json = %@",method,json);
+#endif
+
         NSError *error;
         CMResult* result;
         if (json) {
             result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
         }
-        
+#ifdef APP_TEST
+        [completion cc_userInfo][@"responseObject"] = json;
+#endif
         if (completion != nil) {
             completion(result, error);
         }
-        
-#if defined(DEBUG) || defined(APP_TEST)
-        [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = false;
-            sm.responseObject = json;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSHTTPURLResponse *errResponse = task.response;
         if (errResponse.statusCode == 401) {
             [SVProgressHUD dismiss];
             SANotificationEventPost(UGNotificationloginTimeout, nil);
+			completion(nil, error);
+
             return ;
         }
         if (errResponse.statusCode == 402) {
             [SVProgressHUD dismiss];
+            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+            UGUserModel.currentUser = nil;
             SANotificationEventPost(UGNotificationUserLogout, nil);
+			completion(nil, error);
+
             return ;
         }
         if (errResponse.statusCode == 403) {
-             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
             NSError *err;
             CMResult* result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
             if (completion != nil) {
@@ -431,22 +507,13 @@ completion:(CMNetworkBlock)completion {
                 return;
             }
         }
+#ifdef APP_TEST
+        [completion cc_userInfo][@"error"] = error;
+#endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
         if (completion != nil) {
             completion(result, error);
         }
-        
-#if defined(DEBUG) || defined(APP_TEST)
-        [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = false;
-            sm.error = error;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     }];
     
 }
@@ -478,8 +545,7 @@ completion:(CMNetworkBlock)completion {
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
     
-    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
-    NSDate *startTime = [NSDate date];
+//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     [manager POST:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         // 序列化数据
@@ -493,21 +559,12 @@ completion:(CMNetworkBlock)completion {
         if (json) {
             result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
         }
+#ifdef APP_TEST
+        [completion cc_userInfo][@"responseObject"] = json;
+#endif
         if (completion != nil) {
             completion(result, error);
         }
-        
-#if defined(DEBUG) || defined(APP_TEST)
-        [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = true;
-            sm.responseObject = json;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSHTTPURLResponse *errResponse = task.response;
         if (errResponse.statusCode == 401) {
@@ -517,6 +574,8 @@ completion:(CMNetworkBlock)completion {
         }
         if (errResponse.statusCode == 402) {
             [SVProgressHUD dismiss];
+            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+            UGUserModel.currentUser = nil;
             SANotificationEventPost(UGNotificationUserLogout, nil);
             return ;
         }
@@ -529,23 +588,13 @@ completion:(CMNetworkBlock)completion {
                 return;
             }
         }
-        
+#ifdef APP_TEST
+        [completion cc_userInfo][@"error"] = error;
+#endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
         if (completion != nil) {
             completion(result, error);
         }
-        
-#if defined(DEBUG) || defined(APP_TEST)
-        [LogVC addRequestModel:({
-            ZJSessionModel *sm = [ZJSessionModel new];
-            sm.urlString = method;
-            sm.params = params;
-            sm.isPOST = true;
-            sm.error = error;
-            sm.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
-            sm;
-        })];
-#endif
     }];
     
    

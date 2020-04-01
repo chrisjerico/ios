@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>tianjia</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon" transform="translate(-243.000000, -26.000000)" fill="#000000">
+            <path d="M258,26 C258.552285,26 259,26.4477153 259,27 L259,40 L272,40 C272.552285,40 273,40.4477153 273,41 C273,41.5522847 272.552285,42 272,42 L259,42 L259,55 C259,55.5522847 258.552285,56 258,56 C257.447715,56 257,55.5522847 257,55 L257,42 L244,42 C243.447715,42 243,41.5522847 243,41 C243,40.4477153 243.447715,40 244,40 L257,40 L257,27 C257,26.4477153 257.447715,26 258,26 Z" id="tianjia"></path>
+        </g>
+    </g>
+</svg>

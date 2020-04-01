@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *quickAmount11;      /**<   快捷按钮金额11 */
 @property (nonatomic, strong) NSString *quickAmount12;      /**<   快捷按钮金额12 */
 @property (nonatomic, strong) NSString *mid;//
+/**<   1热门2彩票3真人4捕鱼5电子6棋牌7体育8电竞9其他   */
+@property (nonatomic, strong) NSString *activity_type2;
 @end
 
 
@@ -37,8 +39,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface UGMosaicGoldModel : UGModel<UGMosaicGoldModel>
-@property (nonatomic, strong) NSString *mid;    /**<   id */
-@property (nonatomic, strong) NSString *name;   /**<   标题 */
+@property (nonatomic, strong) NSString *mid;            /**<   id */
+@property (nonatomic, strong) NSString *name;           /**<   标题 */
+@property (nonatomic, strong) NSString *category;       /**<   类别id */
+@property (nonatomic, strong) NSString *categoryName;   /**<   类别标题 */
+
 @property (nonatomic, strong) UGMosaicGoldParamModel *param;//
 @end
 

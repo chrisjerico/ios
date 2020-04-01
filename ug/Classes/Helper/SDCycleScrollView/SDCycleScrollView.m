@@ -164,15 +164,17 @@ NSString * const ID = @"SDCycleScrollViewCell";
     }
 }
 
-- (void)setPlaceholderImage:(UIImage *)placeholderImage
-{
+- (void)setPlaceholderImage:(UIImage *)placeholderImage {
     _placeholderImage = placeholderImage;
     
     if (!self.backgroundImageView) {
         UIImageView *bgImageView = [UIImageView new];
-        bgImageView.contentMode = UIViewContentModeScaleAspectFit;
+        bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+//         bgImageView.contentMode = UIViewContentModeScaleToFill;
+        bgImageView.clipsToBounds = true;
         [self insertSubview:bgImageView belowSubview:self.mainView];
         self.backgroundImageView = bgImageView;
+        self.backgroundImageView.backgroundColor = [UIColor clearColor];
     }
     
     self.backgroundImageView.image = placeholderImage;
@@ -478,8 +480,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
 + (void)clearImagesCache
 {
 //    [[[SDWebImageManager sharedManager] imageCache] clearWithCacheType:SDImageCacheTypeDisk completion:nil];
-    
-    [[[SDWebImageManager sharedManager] imageCache] clearDiskOnCompletion:nil];
+    [[SDImageCache sharedImageCache] clearDiskOnCompletion:nil];
 }
 
 #pragma mark - life circles
@@ -528,10 +529,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     self.pageControl.frame = pageControlFrame;
     self.pageControl.hidden = !_showPageControl;
     
-    if (self.backgroundImageView) {
-        self.backgroundImageView.frame = self.bounds;
-    }
-    
+    self.backgroundImageView.frame = self.bounds;
 }
 
 //解决当父View释放时，当前视图因为被Timer强引用而不能释放的问题
@@ -586,7 +584,8 @@ NSString * const ID = @"SDCycleScrollViewCell";
     
     if (!self.onlyDisplayText && [imagePath isKindOfClass:[NSString class]]) {
         if ([imagePath hasPrefix:@"http"]) {
-            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
+//            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath] placeholderImage:self.placeholderImage];
+             cell.imageView.yy_imageURL = [NSURL URLWithString:imagePath];
         } else {
             UIImage *image = [UIImage imageNamed:imagePath];
             if (!image) {

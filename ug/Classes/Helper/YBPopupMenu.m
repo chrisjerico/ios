@@ -293,11 +293,11 @@ UITableViewDataSource
     [UIView animateWithDuration: 0.001 animations:^{
         self.layer.affineTransform = CGAffineTransformMakeScale(0.1, 0.1);
         self.alpha = 0;
-        _bgView.alpha = 0;
+        self->_bgView.alpha = 0;
     } completion:^(BOOL finished) {
         self.delegate = nil;
         [self removeFromSuperview];
-        [_bgView removeFromSuperview];
+        [self->_bgView removeFromSuperview];
     }];
 }
 
@@ -485,16 +485,23 @@ UITableViewDataSource
 }
 
 - (void)show {
+    if (Skin1.isBlack) {
+        _textColor = [UIColor whiteColor];
+        _contentColor = Skin1.bgColor;
+        _contentView.backgroundColor = Skin1.bgColor;
+    } else {
+        self.type = YBPopupMenuTypeDefault;
+    }
     
     [kMainWindow addSubview: _bgView];
-    [kMainWindow addSubview: self];
+    [kMainWindow addSubview: self]; 
     YBPopupMenuCell *cell = [self getLastVisibleCell];
     cell.isShowSeparator = NO;
     self.layer.affineTransform = CGAffineTransformMakeScale(0.1, 0.1);
     [UIView animateWithDuration: 0.25 animations:^{
         self.layer.affineTransform = CGAffineTransformMakeScale(1.0, 1.0);
         self.alpha = 1;
-        _bgView.alpha = 1;
+        self->_bgView.alpha = 1;
     }];
 }
 

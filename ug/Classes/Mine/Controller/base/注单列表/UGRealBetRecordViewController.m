@@ -35,7 +35,7 @@
 
 @property (nonatomic, strong) STButton *titleView;
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGBetsRecordModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
@@ -46,20 +46,28 @@ static int size = 20;
 static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 @implementation UGRealBetRecordViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
     self.navigationItem.title = @"真人注单";
     self.navigationItem.titleView = self.titleView;
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
+    
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"游戏label") setTextColor:Skin1.textColor1];
+    [subLabel(@"时间label") setTextColor:Skin1.textColor1];
+    [subLabel(@"下注金额label") setTextColor:Skin1.textColor1];
+    [subLabel(@"输赢label") setTextColor:Skin1.textColor1];
+    [self.tableView setBackgroundColor:Skin1.textColor4];
     
     self.startDate = [[NSDate date] stringWithFormat:@"yyyy-MM-dd"];
     
@@ -100,6 +108,9 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 - (void)getBetsList {
     // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，
     // 注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"category":self.gameType,
 //                             @"status":self.status,
@@ -137,6 +148,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
+            NSLog(@"错误信息：%@",msg);
         }];
         
         if ([self.tableView.mj_header isRefreshing])
@@ -150,9 +162,9 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 
 - (void)rightBarButtonItemClick {
     static NSDate *selectedDate = nil;
-    [self onceToken:ZJOnceToken block:^{
+    if (OBJOnceToken(self)) {
         selectedDate = [NSDate date];
-    }];
+    }
     
     // 选择日期
     __weakSelf_(__self);
@@ -231,17 +243,21 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     model4.gameName = @"捕鱼注单";
     model4.gameType = @"fish";
     
+    Model *model5 = [Model new];
+    model5.gameName = @"电竞注单";
+    model5.gameType = @"esport";
+    
     //自行创建实例方法
     MOFSPickerView *p = [MOFSPickerView new];
     p.attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:16], NSForegroundColorAttributeName : [UIColor blackColor]};
-    [p showMOFSPickerViewWithCustomDataArray:@[model0, model1, model2, model3, model4] keyMapper:@"gameName" commitBlock:^(id model) {
+    [p showMOFSPickerViewWithCustomDataArray:@[model0, model1, model2, model3, model4, model5] keyMapper:@"gameName" commitBlock:^(id model) {
         Model *item = (Model *)model;
         if (![self.gameType isEqualToString:item.gameType]) {
             self.gameType = item.gameType;
             [self.titleView setTitle:item.gameName forState:UIControlStateNormal];
             [self getBetsList];
         }
-    } cancelBlock:nil];
+    } cancelBlock:^{}];
 }
 
 
@@ -259,7 +275,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     return _titleView;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGBetsRecordModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

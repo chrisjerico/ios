@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGOneTitleTableViewCell : UITableViewCell
 
-
 @property (nonatomic, strong) UGrechargeBankModel *item;
 
 @end

@@ -23,13 +23,14 @@
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;
 @property (nonatomic, strong) NSIndexPath *lastPath;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *tableDataArray;
-
+@property (nonatomic, strong) NSMutableArray <UGchannelModel *> *tableDataArray;
+@property (nonatomic, strong) UIView *bg1_label;
 @property (nonatomic, strong) UIView *bg_label;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UILabel *tiplabel;
-@property (nonatomic, strong) NSArray *channelDataArray;
+@property (nonatomic, strong) NSArray <UGchannelModel *> *channelDataArray;
 @property (nonatomic, strong) UILabel *tip2label;
+@property (nonatomic, strong) UIView *tip2bg_label;
 @property (nonatomic, strong) UGFundsTransferView *uGFundsTransferView;
 @property (nonatomic, strong) UGFundsTransfer2View *uGFundsTransfer2View;
 @property (nonatomic, strong) UGFunds2microcodeView *uGFunds2microcodeView;
@@ -51,12 +52,11 @@
     _tableDataArray = [NSMutableArray new];
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     
-    [self.view setBackgroundColor: [UIColor whiteColor]];
+    [self.view setBackgroundColor:Skin1.textColor4];
     
     if (self.item) {
         _channelDataArray = item.channel;
-        _tableDataArray =[[NSMutableArray alloc] initWithArray:_channelDataArray];
-        
+        _tableDataArray = [[NSMutableArray alloc] initWithArray:_channelDataArray];
     }
     
     [self creatUI];
@@ -66,7 +66,8 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         lastPath = indexPath;
 
-        self.title = item.name;
+        NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.name dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+        self.title = mas.string;
         [self setUIData:_selectChannelModel];
     }
     
@@ -86,8 +87,46 @@
     
      channelModel.paymentid = self.item.pid;
      [self.uGFundsTransferView setItem:channelModel];
-     self.tiplabel .text = self.item.depositPrompt;
-    self.label.text = self.item.prompt;
+    
+
+    CGSize basetipSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
+      CGSize tipsize  = [self.item.transferPrompt
+      boundingRectWithSize:basetipSize
+      options:NSStringDrawingUsesLineFragmentOrigin
+      attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
+      context:nil].size;
+      
+      int tipHeigth = tipsize.height +20;
+    
+    
+    self.tip2label.text = self.item.depositPrompt;
+    
+    CGSize baseSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
+    CGSize tip2size  = [self.item.depositPrompt
+    boundingRectWithSize:baseSize
+    options:NSStringDrawingUsesLineFragmentOrigin
+    attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
+    context:nil].size;
+    
+    int tip2Heigth = tip2size.height +20;
+    
+
+//    self.label.text = self.item.prompt;
+//    self.label.attributedText = ({
+//          NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+//          NSLog(@"string = %@",mas.string);
+//
+//          mas;
+//      });
+    
+    
+    CGSize labelsize  = [self.item.depositPrompt
+      boundingRectWithSize:baseSize
+      options:NSStringDrawingUsesLineFragmentOrigin
+      attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
+      context:nil].size;
+    
+    int labelHeigth = labelsize.height +40;
     
     if ([CMCommon arryIsNull:self->_blankDataArray]) {
         [self->_blank_button setHidden:YES];
@@ -137,32 +176,64 @@
     //==============================================================
     [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(20);
-         make.right.equalTo(self.view.mas_right).with.offset(-20);
+         make.left.equalTo(self.view.mas_left).with.offset(40);
+         make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.equalTo(self.mUIScrollView.mas_top).offset(20);
-         make.width.mas_equalTo(UGScreenW-20);
+         make.width.mas_equalTo(UGScreenW-40);
          
      }];
     [self.tiplabel setText:item.transferPrompt];
     [self.tiplabel sizeToFit];
     NSLog(@"%@",NSStringFromCGRect(self.tiplabel.frame));
+    
+    [self.bg1_label  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self.view.mas_left).with.offset(15);
+         make.right.equalTo(self.view.mas_right).with.offset(-15);
+         make.top.equalTo(self.mUIScrollView.mas_top).offset(10);
+         make.width.mas_equalTo(UGScreenW-20);
+         make.height.equalTo(self.tiplabel.mas_height).offset(20);
+
+     }];
+    
+    self.bg1_label.layer.cornerRadius = 5;
+    self.bg1_label.layer.masksToBounds = YES;
+    [self.bg1_label setBackgroundColor:Skin1.navBarBgColor];
+    
+    
+    
     //==============================================================
     [self.tip2label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
-         make.left.equalTo(self.view.mas_left).with.offset(20);
-         make.right.equalTo(self.view.mas_right).with.offset(-20);
-         make.top.equalTo(self.tiplabel.mas_bottom).offset(0);
-         make.width.mas_equalTo(UGScreenW-20);
-         make.height.mas_equalTo(34);
+         make.left.equalTo(self.view.mas_left).with.offset(40);
+         make.right.equalTo(self.view.mas_right).with.offset(-40);
+         make.top.equalTo(self.bg1_label.mas_bottom).offset(20);
+         make.width.mas_equalTo(UGScreenW-40);
      }];
+    [self.tip2label setText:item.depositPrompt];
+    [self.tip2label sizeToFit];
     NSLog(@"%@",NSStringFromCGRect(self.tip2label.frame));
+    
+    [self.tip2bg_label  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        make.left.equalTo(self.view.mas_left).with.offset(15);
+        make.right.equalTo(self.view.mas_right).with.offset(-15);
+        make.top.equalTo(self.bg1_label.mas_bottom).offset(10);
+        make.width.mas_equalTo(UGScreenW-20);
+        make.height.equalTo(self.tip2label.mas_height).offset(20);
+        
+    }];
+    
+    self.tip2bg_label.layer.cornerRadius = 5;
+    self.tip2bg_label.layer.masksToBounds = YES;
+    [self.tip2bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
     //==============================================================
     float tableViewHeight = self->_tableDataArray.count *44.0;
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.view.mas_left).with.offset(0);
          make.right.equalTo(self.view.mas_right).with.offset(0);
-         make.top.equalTo(self.tip2label.mas_bottom).offset(0);
+         make.top.equalTo(self.tip2bg_label.mas_bottom).offset(10);
          make.height.mas_equalTo(tableViewHeight);
 
      }];
@@ -217,7 +288,28 @@
 
      }];
     [self.label setText:self.item.prompt];
+    
+//    self.item.prompt = @"<font style='font-size:12px;'>温馨提示：为确保财务第一时间为您添加游戏额度，请您尽量不要转账整数（例如：欲入￥5000，请￥5000.68）谢谢！</font>";
+    if (self.item.prompt.isHtmlStr) {
+            self.label.attributedText = ({
+              NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+              NSLog(@"string = %@",mas.string);
+              
+              mas;
+          });
+        self.label.font = [UIFont systemFontOfSize:20];
+    }
+    
+    
+    
+    
+//    self.label.attributedText
+
+
+    
+
     [self.label sizeToFit];
+   
     NSLog(@"%@",NSStringFromCGRect(self.label.frame));
     
     
@@ -233,7 +325,10 @@
     
     self.bg_label.layer.cornerRadius = 5;
     self.bg_label.layer.masksToBounds = YES;
-    [self.bg_label setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+    if (!self.item.prompt.isHtmlStr) {
+          [self.bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
+    }
+  
     //==================================================================
     [self.blank_button  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
@@ -282,36 +377,15 @@
     } else {
         buttonHight = 30;
     }
-    
-    
-    if ([CMCommon stringIsNull:channelModel.qrcode]) {
-//        [self->_uGFunds2microcodeView setHidden:YES];
-        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tableView.height+self.submit_button.y+self.submit_button.height+buttonHight+k_Height_NavBar+k_Height_StatusBar);
-    } else {
-        _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 120+self.tableView.height+self.submit_button.y+self.submit_button.height+buttonHight+k_Height_NavBar+k_Height_StatusBar);
+//    996.333
+    NSLog(@"self.submit_button.y= %f",self.submit_button.y);
+    int codeHeight = 20;
+    if (![CMCommon stringIsNull:channelModel.qrcode]) {
+        codeHeight = 140;
+        
     }
+    _mUIScrollView.contentSize = CGSizeMake(UGScreenW, labelHeigth+tip2Heigth+tableViewHeight+181.0+191.0+self.submit_button.height+buttonHight+90 +tipHeigth+codeHeight+100+40);
 
-    
-//    [_mUIScrollView setBackgroundColor:[UIColor redColor]];
-    
-//    if ([CMCommon stringIsNull:channelModel.qrcode]) {
-//        if ([self.blank_button isHidden]) {
-//           _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height);
-//        } else {
-//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+44+self.uGFundsTransfer2View.height);
-//        }
-//
-//    } else {
-//        if ([self.blank_button isHidden]) {
-//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+20+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
-//        } else {
-//            _mUIScrollView.contentSize = CGSizeMake(UGScreenW, self.tiplabel.height+self.tip2label.height+self.tableView.height+self.uGFundsTransferView.height+self.bg_label.height+self.blank_button.height+self.submit_button.height+44+self.uGFundsTransfer2View.height+self.uGFunds2microcodeView.height);
-//        }
-//
-//    }
-    
-    
-    
     
 }
 
@@ -327,24 +401,23 @@
         //UIScrollView被push之后返回，会发生控件位置偏移，用下面的代码就OK
 //        self.automaticallyAdjustsScrollViewInsets = NO;
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
-         mUIScrollView.backgroundColor = [UIColor whiteColor];
-    
+         mUIScrollView.backgroundColor = [UIColor clearColor];
+        
         [self.view addSubview:mUIScrollView];
         self.mUIScrollView = mUIScrollView;
     }
-
     
     if (self.tiplabel == nil) {
+        self.bg1_label = [UIView new];
+        [self.mUIScrollView addSubview:self.bg1_label];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 40)];
         label.textAlignment = NSTextAlignmentLeft;
-        //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        label.backgroundColor = [UIColor whiteColor];
-//        label.backgroundColor = [UIColor redColor];
+        label.textColor = [UIColor whiteColor];
         label.numberOfLines = 0;
         label.text = @"ewerqwerqwerqwerqwer";
         [self.mUIScrollView addSubview:label];
+//        label.backgroundColor = Skin1.navBarBgColor;
         [label sizeToFit];
         NSLog(@"%@",NSStringFromCGRect(label.frame));
         
@@ -352,14 +425,13 @@
         self.tiplabel = label;
     }
     if (self.tip2label == nil) {
+        self.tip2bg_label = [UIView new];
+        [self.mUIScrollView addSubview:self.tip2bg_label];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, UGScreenW, 40)];
         label.textAlignment = NSTextAlignmentLeft;
-        //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont boldSystemFontOfSize:14];
-        label.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        label.backgroundColor = [UIColor whiteColor];
-//        label.backgroundColor = [UIColor yellowColor];
-
+        label.textColor = [UIColor whiteColor];
+//        label.backgroundColor = Skin1.navBarBgColor;
         label.numberOfLines = 0;
         label.text = @"请选择一个任意转入账户";
         [self.mUIScrollView addSubview:label];
@@ -372,7 +444,7 @@
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 500, UGScreenW , 120) style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
-        [tableView setBackgroundColor:UGRGBColor(239, 239, 244)];
+        [tableView setBackgroundColor:[UIColor clearColor]];
 //                [tableView setBackgroundColor:[UIColor greenColor]];
 
         [tableView registerNib:[UINib nibWithNibName:@"UGDepositDetailsTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGDepositDetailsTableViewCell"];
@@ -412,7 +484,7 @@
         //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor whiteColor];
-        label.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+//        label.backgroundColor = Skin1.navBarBgColor;
         label.numberOfLines = 0;
         label.text = @"";
         [self.mUIScrollView addSubview:label];
@@ -428,7 +500,7 @@
         // 按钮的正常状态
         [button setTitle:@"请选择银行" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        button.backgroundColor = Skin1.navBarBgColor;
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -450,7 +522,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
+        [layer setBorderColor:Skin1.navBarBgColor.CGColor];
         
         
         [self.mUIScrollView addSubview:button ];
@@ -464,7 +536,7 @@
         // 按钮的正常状态
         [button setTitle:@"提交" forState:UIControlStateNormal];
         // 设置按钮的背景色
-        button.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        button.backgroundColor = Skin1.navBarBgColor;
         
         // 设置正常状态下按钮文字的颜色，如果不写其他状态，默认都是用这个文字的颜色
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -488,7 +560,7 @@
         //设置边框线的宽
         [layer setBorderWidth:1];
         //设置边框线的颜色
-        [layer setBorderColor:[[UGSkinManagers shareInstance] setNavbgColor].CGColor];
+        [layer setBorderColor:Skin1.navBarBgColor.CGColor];
         
         
         [self.mUIScrollView addSubview:button ];
@@ -518,7 +590,7 @@
     
     UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
     
-    cell.nameStr = [NSString stringWithFormat:@"银行名称：%@",channelModel.payeeName];
+    cell.nameStr = [NSString stringWithFormat:@"%@",channelModel.payeeName];
     
     NSInteger row = [indexPath row];
     
@@ -584,7 +656,7 @@
     
     UGFundsBankView *notiveView = [[UGFundsBankView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
     notiveView.dataArray = self->_blankDataArray ;
-    notiveView.nameStr = @"请选择银行";
+    notiveView.nameStr = @"--- 请选择银行 ---";
     
     WeakSelf;
     notiveView.signInHeaderViewnBlock =  ^(id model) {
@@ -631,7 +703,9 @@
     NSDateFormatter*dateformatter=[[NSDateFormatter alloc] init];
     [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
      NSString * locationString=[dateformatter stringFromDate:timeDate];
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"amount":amount,
                              @"channel":_selectChannelModel.pid,
@@ -653,6 +727,8 @@
             [self.navigationController popViewControllerAnimated:YES]; 
             
              SANotificationEventPost(UGNotificationDepositSuccessfully, nil);
+            
+             SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
 
         } failure:^(id msg) {
             

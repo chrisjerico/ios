@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="ConcernedMomentsHeaderView" customModule="UGChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="264"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="momentsHeader" translatesAutoresizingMaskIntoConstraints="NO" id="ypA-dt-c8g">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="224"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="224" id="QQi-uo-Lhy"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5U1-oC-e0T">
+                    <rect key="frame" x="291" y="184" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="QA2-we-wx0"/>
+                        <constraint firstAttribute="height" constant="60" id="oGh-s8-8lt"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="隔壁张大爷" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUu-L4-IB6">
+                    <rect key="frame" x="207.5" y="195" width="71.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5U1-oC-e0T" firstAttribute="leading" secondItem="xUu-L4-IB6" secondAttribute="trailing" constant="12" id="66G-U8-oAn"/>
+                <constraint firstItem="ypA-dt-c8g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="D5V-Jc-irp"/>
+                <constraint firstItem="5U1-oC-e0T" firstAttribute="bottom" secondItem="ypA-dt-c8g" secondAttribute="bottom" constant="20" id="H53-Br-6jv"/>
+                <constraint firstItem="ypA-dt-c8g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QKB-Ro-LF1"/>
+                <constraint firstItem="xUu-L4-IB6" firstAttribute="bottom" secondItem="ypA-dt-c8g" secondAttribute="bottom" constant="-12" id="VNx-Y4-bsd"/>
+                <constraint firstAttribute="height" constant="264" id="Yo7-ff-0FN"/>
+                <constraint firstAttribute="trailing" secondItem="5U1-oC-e0T" secondAttribute="trailing" constant="24" id="bxs-o0-hWa"/>
+                <constraint firstAttribute="bottom" secondItem="5U1-oC-e0T" secondAttribute="bottom" constant="20" symbolic="YES" id="cWV-Dy-zjx"/>
+                <constraint firstAttribute="trailing" secondItem="ypA-dt-c8g" secondAttribute="trailing" id="hnK-qv-7pO"/>
+                <constraint firstAttribute="width" constant="375" id="pJJ-8V-gzV"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="avatarImageView" destination="5U1-oC-e0T" id="9cF-3W-KR0"/>
+                <outlet property="userNameLabel" destination="xUu-L4-IB6" id="hJ7-RU-TiC"/>
+            </connections>
+            <point key="canvasLocation" x="-344.20289855072468" y="-63.616071428571423"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="momentsHeader" width="125" height="75"/>
+    </resources>
+</document>

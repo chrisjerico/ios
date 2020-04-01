@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xz8-QJ-Jaw">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xz8-QJ-Jaw">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENZ-Db-hGR">
-                                <rect key="frame" x="0.0" y="44" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="80"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zwt" translatesAutoresizingMaskIntoConstraints="NO" id="vUU-O3-I9j">
                                         <rect key="frame" x="15" y="10" width="60" height="60"/>
@@ -74,7 +72,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9H0-5c-Jpp">
-                                <rect key="frame" x="0.0" y="124" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="134" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n80-Uh-t6z">
                                         <rect key="frame" x="15" y="43.5" width="384" height="0.5"/>
@@ -91,6 +89,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注时间Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-04-23 12:43:12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vt7-bd-AIR">
                                         <rect key="frame" x="91.5" y="13" width="147" height="18"/>
@@ -112,7 +113,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zok-aQ-nl0">
-                                <rect key="frame" x="0.0" y="168" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="178" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgO-9I-aS6">
                                         <rect key="frame" x="15" y="43.5" width="384" height="0.5"/>
@@ -129,6 +130,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注单号Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="115" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMb-rF-ZDp">
                                         <rect key="frame" x="91.5" y="13" width="23" height="18"/>
@@ -150,7 +154,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="her-ce-VMV">
-                                <rect key="frame" x="0.0" y="212" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="222" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-bP-wVo">
                                         <rect key="frame" x="15" y="43.5" width="384" height="0.5"/>
@@ -167,6 +171,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="投注金额Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xF-VC-TCt">
                                         <rect key="frame" x="91.5" y="13" width="50" height="18"/>
@@ -188,7 +195,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SQ-1T-Sxy">
-                                <rect key="frame" x="0.0" y="256" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="266" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtD-e1-LKE">
                                         <rect key="frame" x="15" y="43.5" width="384" height="0.5"/>
@@ -205,6 +212,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="派奖金额Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMC-Uu-oJl">
                                         <rect key="frame" x="91.5" y="13" width="53" height="18"/>
@@ -226,7 +236,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8h4-eS-9kw">
-                                <rect key="frame" x="0.0" y="300" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="310" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25c-h4-pOx">
                                         <rect key="frame" x="15" y="43.5" width="384" height="0.5"/>
@@ -243,6 +253,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖号码Label"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6,5,7,4,9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afm-Ng-kBW">
                                         <rect key="frame" x="91.5" y="13" width="57.5" height="18"/>
@@ -264,13 +277,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的投注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaI-Rr-ifz">
-                                <rect key="frame" x="20" y="364" width="73.5" height="21.5"/>
+                                <rect key="frame" x="20" y="374" width="73.5" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.8890112042427063" green="0.50456684827804565" blue="0.18819877505302429" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYy-Qm-RMk">
-                                <rect key="frame" x="314" y="357" width="80" height="36"/>
+                                <rect key="frame" x="314" y="367" width="80" height="36"/>
                                 <color key="backgroundColor" red="0.88901025056838989" green="0.50458073616027832" blue="0.18427634239196777" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="5fX-tp-X7a"/>
@@ -285,19 +298,19 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aR-P7-wgd">
-                                <rect key="frame" x="20" y="400.5" width="374" height="100"/>
+                                <rect key="frame" x="20" y="410.5" width="374" height="100"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="betDetailBg.a4692c81" translatesAutoresizingMaskIntoConstraints="NO" id="fx4-aM-ASL">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总和-龙虎和 - 总和大" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAX-sh-awi">
-                                        <rect key="frame" x="20" y="30" width="144.5" height="18"/>
+                                        <rect key="frame" x="25" y="30" width="144.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.73333835601806641" green="0.73332446813583374" blue="0.73333388566970825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="奖金：9999元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dak-4Y-brk">
-                                        <rect key="frame" x="20" y="53" width="98.5" height="18"/>
+                                        <rect key="frame" x="25" y="53" width="98.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.73333835599999997" green="0.73332446809999996" blue="0.73333388570000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
@@ -313,7 +326,7 @@
                                     <constraint firstItem="fx4-aM-ASL" firstAttribute="leading" secondItem="8aR-P7-wgd" secondAttribute="leading" id="QKv-py-ztQ"/>
                                     <constraint firstAttribute="height" constant="100" id="RYE-6W-2ai"/>
                                     <constraint firstItem="fx4-aM-ASL" firstAttribute="top" secondItem="8aR-P7-wgd" secondAttribute="top" id="S5w-Ci-e9M"/>
-                                    <constraint firstItem="VAX-sh-awi" firstAttribute="leading" secondItem="8aR-P7-wgd" secondAttribute="leading" constant="20" id="lMG-5F-6lJ"/>
+                                    <constraint firstItem="VAX-sh-awi" firstAttribute="leading" secondItem="8aR-P7-wgd" secondAttribute="leading" constant="25" id="lMG-5F-6lJ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -342,7 +355,7 @@
                             <constraint firstAttribute="trailing" secondItem="her-ce-VMV" secondAttribute="trailing" id="eFC-yz-EqW"/>
                             <constraint firstAttribute="trailing" secondItem="8h4-eS-9kw" secondAttribute="trailing" id="fay-d7-iNg"/>
                             <constraint firstItem="9H0-5c-Jpp" firstAttribute="top" secondItem="ENZ-Db-hGR" secondAttribute="bottom" id="fnU-Ja-opm"/>
-                            <constraint firstItem="ENZ-Db-hGR" firstAttribute="top" secondItem="3DR-sc-ADo" secondAttribute="top" id="oKX-eb-rRS"/>
+                            <constraint firstItem="ENZ-Db-hGR" firstAttribute="top" secondItem="3DR-sc-ADo" secondAttribute="top" constant="10" id="oKX-eb-rRS"/>
                             <constraint firstAttribute="trailing" secondItem="9SQ-1T-Sxy" secondAttribute="trailing" id="oST-Sz-QZi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3DR-sc-ADo"/>

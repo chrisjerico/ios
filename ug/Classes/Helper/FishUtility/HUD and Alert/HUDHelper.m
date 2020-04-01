@@ -31,6 +31,7 @@
 }
 
 + (void)removeViewPointer:(UIView *)view {
+    [SVProgressHUD showErrorWithStatus:nil];
     NSUInteger index = [self.views indexOfObject:view];
     if (view && index < self.views.count)
         [self.viewPointers removePointerAtIndex:index];
@@ -40,8 +41,6 @@
 #pragma mark - 请先选择一个PPT开始播放
 
 + (void)showPlayerTips {
-    NSLog(@"请先选择一个PPT开始播放");
-    
     CGFloat waitSecs = 2;              // 消息展示时间
     CGFloat animationDuration = 0.5;     // 动画时间
     
@@ -75,8 +74,10 @@
 
 #pragma mark - Show MsgView
 
-+ (MsgView *)showMsg:(NSString *)msg {
-    return [self showMsg:msg duration:2.0];
++ (MsgView *)showMsg:(NSString *)format, ... {
+    va_list list;
+    va_start(list, format);
+    return [self showMsg:[[NSString alloc] initWithFormat:format arguments:list] duration:2.0];
 }
 
 + (MsgView *)showMsg:(NSString *)msg duration:(CGFloat)dur {
@@ -91,7 +92,7 @@
     
     MsgView *v = [MsgView msgView:msg];
     if (!superview) 
-        superview = APP.Window;
+        superview = [UIApplication sharedApplication].keyWindow;
     [superview addSubview:v];
     
     // 展示消息
@@ -267,7 +268,7 @@
 
 - (void)setIconWidth:(CGFloat)iconWidth {
     _iconWidth = iconWidth;
-    [self viewWithTagString:@"ImageBgView"].zj_constraints.width.constant = iconWidth;
+    [self viewWithTagString:@"ImageBgView"].cc_constraints.width.constant = iconWidth;
 }
 
 - (void)setIcon:(UIImage *)icon {
@@ -278,8 +279,8 @@
 - (void)setIconOffset:(CGPoint)iconOffset {
     _iconOffset = iconOffset;
     UIImageView *imgView = [self viewWithTagString:@"ImageBgView"];
-    imgView.zj_constraints.centerX.constant = iconOffset.x;
-    imgView.zj_constraints.centerY.constant = iconOffset.y;
+    imgView.cc_constraints.centerX.constant = iconOffset.x;
+    imgView.cc_constraints.centerY.constant = iconOffset.y;
 }
 
 - (void)setDuration:(NSTimeInterval)duration {
@@ -304,7 +305,7 @@
 
 - (void)moveBelowToNavigationBar {
     self.y += 64;
-    self.zj_constraints.top.constant = 64;
+    self.cc_constraints.top.constant = 64;
     self.iconOffset = CGPointMake(0, -32);
 }
 

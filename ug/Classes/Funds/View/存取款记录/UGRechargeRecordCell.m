@@ -20,6 +20,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.contentView setBackgroundColor:Skin1.textColor4];
+    [self.timeLabel setTextColor:Skin1.textColor1];
+    [self.amountLabel setTextColor:Skin1.textColor1];
+    [self.statusLabel setTextColor:Skin1.textColor1];
 }
 
 - (void)setItem:(UGRechargeLogsModel *)item {

@@ -20,7 +20,16 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
+      [self setBackgroundColor: Skin1.homeContentColor];
+    if (Skin1.isBlack) {
+        [_dateLabel setTextColor:[UIColor whiteColor]];
+        [_numberLabel setTextColor:[UIColor whiteColor]];
+        [_remarkLabel setTextColor:[UIColor whiteColor]];
+    } else {
+        [_dateLabel setTextColor:[UIColor blackColor]];
+        [_numberLabel setTextColor:[UIColor blackColor]];
+        [_remarkLabel setTextColor:[UIColor blackColor]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

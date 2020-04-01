@@ -135,6 +135,27 @@ completion:(CMNetworkBlock)completion;
 ///
 - (NSURL*)redirectURLWithURL:(NSString*)url;
 
+/******************************************************************************
+ 函数名称 : encryptionCheckSignForURL;
+ 函数描述 : url参数加密
+ 输入参数 : url
+ 输出参数 : NSString 加密后url
+ 返回参数 : NSString 加密后url
+ 备注信息 :
+ ******************************************************************************/
+
++(NSString*)encryptionCheckSignForURL:(NSString*)url;
+
+/******************************************************************************
+ 函数名称 : encryptionCheckSignC;
+ 函数描述 : 网络请求的，游戏获得的url参数加密
+ 输入参数 : NSDictionary 参数
+ 输出参数 : NSMutableDictionary 加密后参数
+ 返回参数 : NSMutableDictionary 加密后参数
+ 备注信息 :
+ ******************************************************************************/
++(NSMutableDictionary*)encryptionCheckSign:(NSDictionary*)params;
+
 @end
 
 FOUNDATION_EXPORT CMResultClass CMResultClassMake(Class cls);

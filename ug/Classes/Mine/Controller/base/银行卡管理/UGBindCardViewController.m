@@ -20,36 +20,72 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bankTypeArrow;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
-@property (nonatomic, strong) NSArray *bankListArray;
-@property (nonatomic, strong) NSMutableArray *titlesArray;
+@property (nonatomic, strong) NSArray <UGbankModel *> *bankListArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *titlesArray;
 @property (nonatomic, assign) NSInteger selIndex;
 
 
 @end
 
 @implementation UGBindCardViewController
--(void)skin{
-    
+
+- (void)skin {
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"银行卡管理";
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
-    [self.submitButton setBackgroundColor:UGNavColor];
+    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
+    FastSubViewCode(self.view)
+    if (Skin1.isBlack) {
+        [self.view setBackgroundColor:Skin1.bgColor];
+        [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"开户银行label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"开户行地址label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"银行卡号label") setTextColor:[UIColor whiteColor]];
+        [subLabel(@"持卡人姓名label") setTextColor:[UIColor whiteColor]];
+        [self.bankTypeTextF setTextColor:[UIColor whiteColor]];
+        [self.bankAddressTextF setTextColor:[UIColor whiteColor]];
+        [self.cardNumberTextF setTextColor:[UIColor whiteColor]];
+        [self.nameTextF setTextColor:[UIColor whiteColor]];
+ 
+    } else {
+       [self.view setBackgroundColor:[UIColor whiteColor]];
+       [subLabel(@"标题label") setTextColor:[UIColor whiteColor]];
+       [subLabel(@"开户银行label") setTextColor:[UIColor blackColor]];
+       [subLabel(@"开户行地址label") setTextColor:[UIColor blackColor]];
+       [subLabel(@"银行卡号label") setTextColor:[UIColor blackColor]];
+       [subLabel(@"持卡人姓名label") setTextColor:[UIColor blackColor]];
+       [self.bankTypeTextF setTextColor:[UIColor blackColor]];
+       [self.bankAddressTextF setTextColor:[UIColor blackColor]];
+       [self.cardNumberTextF setTextColor:[UIColor blackColor]];
+       [self.nameTextF setTextColor:[UIColor blackColor]];
+    }
+    
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.bankTypeTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.bankAddressTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.cardNumberTextF];
+    [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:self.nameTextF];
 
     self.selIndex = -1;
     self.bankAddressTextF.delegate = self;
     self.cardNumberTextF.delegate = self;
     self.nameTextF.delegate = self;
     
-    [self getBankList];
+    {
+        // 若注册时填了真实姓名，则自动填充且不允许用户自己输入姓名
+        _nameTextF.text = UserI.fullName;
+        _nameTextF.userInteractionEnabled = ![UserI.fullName stringByReplacingOccurrencesOfString:@" " withString:@""].length;
+    }
     
+    [self getBankList];
 }
 
 - (void)getBankList {
@@ -80,6 +116,7 @@
 }
 
 - (IBAction)submit:(id)sender {
+    NSLog(@"go");
     ck_parameters(^{
         ck_parameter_non_empty(self.bankTypeTextF.text, @"请选择开户银行");
         ck_parameter_non_empty(self.bankAddressTextF.text, @"请输入开户行地址");
@@ -125,7 +162,7 @@
     }
 }
 
-- (NSMutableArray *)titlesArray {
+- (NSMutableArray<NSString *> *)titlesArray {
     if (_titlesArray == nil) {
         _titlesArray = [NSMutableArray array];
     }

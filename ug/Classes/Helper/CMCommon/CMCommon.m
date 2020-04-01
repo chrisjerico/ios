@@ -2,7 +2,9 @@
 //  CMCommon.m
 
 #import "CMCommon.h"
-
+#import <objc/runtime.h>
+#import <SafariServices/SafariServices.h>
+#import "SLWebViewController.h"
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -93,11 +95,9 @@ static NSString *uuidKey =@"uuidKey";
     
 }
 
-+ (NSString *)getNowTimeWithEndTimeStr:(NSString *)aTimeString currentTimeStr:(NSString *)currentTime{
-    NSDateFormatter* formater = [[NSDateFormatter alloc] init];
-    [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
++ (NSString *)getNowTimeWithEndTimeStr:(NSString *)aTimeString currentTimeStr:(NSString *)currentTime {
     // 截止时间date格式
-    NSDate  *expireDate = [formater dateFromString:aTimeString];
+    NSDate  *expireDate = [aTimeString dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     // 当前时间date格式
     NSDate *nowDate = [NSDate new];
     NSTimeInterval timeInterval = [expireDate timeIntervalSinceDate:nowDate];
@@ -233,6 +233,28 @@ static NSString *uuidKey =@"uuidKey";
     
 }
 
++ (UIImage *)getHKLotteryNumColorImg:(NSString *)num {
+    //    1、红波:1.2.7.8.12.13.18.19.23.24.29.30.34.35.40.45.46
+    //
+    //    2、蓝波:3.4.9.10.14.15.20.25.26.31.36.37.41.42.47.48
+    //
+    //    3、绿波:5.6.11.16.17.21.22.27.28.32.33.38.39.43.44.49
+    NSSet *redSet = [NSSet setWithObjects:@"01",@"02",@"07",@"08",@"12",@"13",@"18",@"19",@"23",@"24",@"29",@"30",@"34",@"35",@"40",@"45",@"46", nil];
+    NSSet *blueSet = [NSSet setWithObjects:@"03",@"04",@"09",@"10",@"14",@"15",@"20",@"25",@"26",@"31",@"36",@"37",@"41",@"42",@"47",@"48", nil];
+    NSSet *greenSet = [NSSet setWithObjects:@"05",@"06",@"11",@"16",@"17",@"21",@"22",@"27",@"28",@"32",@"33",@"38",@"39",@"43",@"44",@"49", nil];
+    if (num.length == 0) {
+        num = [NSString stringWithFormat:@"0%@",num];
+    }
+    if ([redSet containsObject:num]) {
+        return [UIImage imageNamed:@"lhc_red"];
+    }else if ([blueSet containsObject:num]) {
+        return [UIImage imageNamed:@"lhc_blue"];
+    }else {
+        return [UIImage imageNamed:@"lhc_green"];
+    }
+    
+}
+
 + (NSString *)getDateStringWithLastDate:(NSInteger)date {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -257,6 +279,19 @@ static NSString *uuidKey =@"uuidKey";
     return result;
 }
 
+//幸运农场 连码公式
++ (NSInteger)combination:(NSInteger)m Num:(NSInteger)n
+{
+    if (m <= n) {
+        NSInteger num1 = [self factorialWithNumber:n];
+        NSInteger num2 = [self factorialWithNumber:(n-m)];
+        return  num1/num2;
+    }
+    else{
+        return  0;
+    }
+}
+
 + (NSInteger)pickNum:(NSInteger)pickNum totalNum:(NSInteger)totalNum
 {
     if (pickNum > totalNum) {
@@ -268,7 +303,6 @@ static NSString *uuidKey =@"uuidKey";
         return  num1/num2;
     }
 }
-
 
 #pragma mark - 核心计算公式
 /**
@@ -336,6 +370,22 @@ static NSString *uuidKey =@"uuidKey";
         result = result * startNumber;
     }
     return  result;
+}
+
+/**
+ 阶乘
+ 
+ @param n
+ 
+ @return 阶乘结果
+ */
++ (NSInteger)factorialWithNumber:(NSInteger)n
+{
+    NSInteger sum = 1;
+    while (n>0) {
+        sum = sum*n--;
+    }
+    return  sum;
 }
 
 // #pragma mark ---------------------------------------------- 判断邮箱格式
@@ -437,7 +487,7 @@ static NSString *uuidKey =@"uuidKey";
  [self compareDate:@"2019-09-06" withDate:@"2019-09-02" withFormat:@"yyyy-MM-dd"]
  返回：//小  -1 一样  0 大   1
  */
-+(int)compareDate:(NSString*)date01 withDate:(NSString*)date02  withFormat:(NSString *)format{
++ (int)compareDate:(NSString *)date01 withDate:(NSString *)date02  withFormat:(NSString *)format{
     int ci;
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:format];
@@ -518,19 +568,24 @@ static NSString *uuidKey =@"uuidKey";
  *
  *  @return 高度
  */
-+ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowHeight:(CGFloat)height{
-    CGFloat width;
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(2000, height) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:font} context:nil];
-    width = rect.size.width;
-    return width;
++ (CGFloat)getLabelWidthWithText:(NSString *)text stringFont:(UIFont *)font allowWidth:(CGFloat)width{
+    CGFloat height;
+    CGSize basetipSize = CGSizeMake(width, CGFLOAT_MAX);
+    CGSize rect  = [text
+             boundingRectWithSize:basetipSize
+             options:NSStringDrawingUsesLineFragmentOrigin
+             attributes:@{NSFontAttributeName:font}
+             context:nil].size;
+    height = rect.height +20;
+    return height;
 }
 
 /**
  *  UIImageView 加载含有汉字的url处理方法
  *
  */
-+ (NSString *)imgformat:(NSString *)string{
-    NSString *url = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet  URLQueryAllowedCharacterSet]];
++ (NSString *)imgformat:(NSString *)string {
+    NSString *url = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return url;
 }
 /**
@@ -557,5 +612,626 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 
+/******************************************************************************
+ 函数名称 : yyUrlConversionParameter;
+ 函数描述 :把类似
+ http://test10.6yc.com/wjapp/api.php?c=real&a=gameUrl&id=53&game=&token=2k8cseq2TqQQ2PP2QDz428z3的URL里面的参数取出来以字典返回
+ {
+ token = "2k8cseq2TqQQ2PP2QDz428z3",
+ id = "53",
+ c = "real",
+ a = "gameUrl",
+ game = "",
+ }
+ 
+ 输入参数 : NSString
+ 输出参数 : NSMutableDictionary
+ 返回参数 : NSMutableDictionary
+ 备注信息 :
+ ******************************************************************************/
++ (NSMutableDictionary *)yyUrlConversionParameter:(NSString *)urlStr{
+    NSArray*array = [urlStr componentsSeparatedByString:@"?"];//从字符A中分隔成2个元素的数组
+    NSLog(@"lastObject ==== %@",[array lastObject]);
+    NSString * memberStr = (NSString *)[array lastObject];
+    NSArray *params =[memberStr componentsSeparatedByString:@"&"];
+    
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    for (NSString *paramStr in params) {
+        NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
+        if (dicArray.count > 1) {
+            NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [tempDic setObject:decodeValue forKey:dicArray[0]];
+        }
+    }
+    
+    NSLog(@"tempDic:%@",tempDic);
+    return tempDic;
+}
 
+//ios 指定范围内的随机数
++(int)getRandomNumber:(int)from to:(int)to
+{
+    return (int)(from + (arc4random() % (to - from + 1)));
+    
+}
+
+/**
+ *  @author zhengju, 16-06-29 10:06:05
+ *
+ *  @brief 检测字符串中是否含有中文，备注：中文代码范围0x4E00~0x9FA5，
+ *
+ *  @param string 传入检测到中文字符串
+ *
+ *  @return 是否含有中文，YES：有中文；NO：没有中文
+ */
++ (BOOL)checkIsChinese:(NSString *)string{
+    for (int i=0; i<string.length; i++) {
+        unichar ch = [string characterAtIndex:i];
+        if (0x4E00 <= ch  && ch <= 0x9FA5) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+/**
+ *  url 加载含有汉字的url处理方法
+ *
+ */
++ (NSString *)urlformat:(NSString *)string {
+     //中文转码处理
+      NSString * encodedString =  [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+      NSLog(@"中文转码处理encodedString: %@", encodedString);
+
+
+    return encodedString;
+}
+
+/**
+ *  "通过KVC修改占位文字的颜色""
+ *  NSGenericException" - reason: "Access to UITextField's _placeholderLabel ivar is prohibited. This is an application bug"
+ *
+ */
++ (void )textFieldSetPlaceholderLabelColor:(UIColor *)color TextField:(UITextField *)txtF {
+     // "通过KVC修改占位文字的颜色"
+     Ivar ivar =  class_getInstanceVariable([UITextField class], "_placeholderLabel");
+     UILabel *placeholderLabel = object_getIvar(txtF, ivar);
+     placeholderLabel.textColor = color;
+}
+
+/**
+ *  ios 自带//语音播报 默认
+ *
+ utterance.pitchMultiplier= 0.8;//设置语调
+ utterance.volume = 1.0f;//设置音量（0.0--1.0）
+ utterance.rate = 0.5f;//设置语速
+ *
+ */
++ (void )speakUtteranceWithString:(NSString *)string{
+    AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:string];
+//    utterance.pitchMultiplier= 0.8;//设置语调
+//    utterance.volume = 1.0f;//设置音量（0.0--1.0）
+//    utterance.rate = 0.5f;//设置语速
+    //中式发音
+    AVSpeechSynthesisVoice *voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"zh-CN"];
+    utterance.voice = voice;
+    AVSpeechSynthesizer *synth = [[AVSpeechSynthesizer alloc]init];
+    [synth speakUtterance:utterance];
+}
+
+/**
+*  ios 判断两个数组中的NSString 元素是否相同，但不判断顺序
+*
+*
+*/
++ (BOOL)array:(NSArray *)array1 isEqualTo:(NSArray *)array2 {
+    if (array1.count != array2.count) {
+        return NO;
+    }
+    for (NSString *str in array1) {
+        if (![array2 containsObject:str]) {
+            return NO;
+        }
+    }
+    return YES;
+    
+}
+
+/**
+*  ios 判断两个数组中的NSString 元素是否相同，同时也判断顺序
+*
+*
+*/
++ (BOOL)array:(NSArray *)array1 isOrderEqualTo:(NSArray *)array2 {
+
+    bool bol = false;
+    //创建俩新的数组
+    NSMutableArray *oldArr = [NSMutableArray arrayWithArray:array1];
+    NSMutableArray *newArr = [NSMutableArray arrayWithArray:array2];
+     
+    [oldArr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+           //        将数组中的对象升序排列
+           return NSOrderedAscending;
+    }];
+    
+    [newArr sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+           //        将数组中的对象升序排列
+           return NSOrderedAscending;
+    }];
+
+    if (newArr.count == oldArr.count) {
+        
+        bol = true;
+        for (int16_t i = 0; i < oldArr.count; i++) {
+            
+            id c1 = [oldArr objectAtIndex:i];
+            id newc = [newArr objectAtIndex:i];
+            
+            if (![newc isEqualToString:c1]) {
+                bol = false;
+                break;
+            }
+        }
+    }
+     
+    if (bol) {
+        NSLog(@"两个数组的内容相同！");
+    }
+    else {
+        NSLog(@"两个数组的内容不相同！");
+    }
+    return bol;
+}
+
+/**
+*  ios 比较两个数组,并除去相同元素
+*
+*
+*/
++ (NSArray*)arrayfilter:(NSArray *)array1 array2:(NSArray *)array2 {
+    NSPredicate * filterPredicate = [NSPredicate predicateWithFormat:@"NOT (SELF IN %@)",array1];
+    NSArray * filter = [array2 filteredArrayUsingPredicate:filterPredicate];
+    NSLog(@"%@",filter);
+    return filter;
+}
+
+/**
+*  ios 数组,并除去相同元素    isOrder    有序  yes 无序 no
+*
+*
+*/
++ (NSArray*)killRepeatNoOrderly:(NSArray *)array Orderly:(BOOL)isOrder {
+    if (isOrder) {
+        NSOrderedSet *set = [NSOrderedSet orderedSetWithArray:array];
+        NSArray *resultArray = set.array;
+        NSLog(@"%@", resultArray);
+        return resultArray;
+    } else {
+        NSSet *set = [NSSet setWithArray:array];
+        NSArray *resultArray = [set allObjects];
+        NSLog(@"%@", resultArray);
+        return resultArray;
+    }
+}
+
+/**
+*  ios 数组,逆序
+*
+*
+*/
++ (NSArray*) arrrayReverse:(NSArray *)array  {
+    NSArray *strRevArray = [[array reverseObjectEnumerator] allObjects];
+    return strRevArray;
+}
+
+/**
+*  ios是否是链接的判断方法
+*
+*
+*/
++(BOOL)hasLinkUrl:(NSString * )linkStr{
+    NSString*emailRegex = @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\-.]+(?::(\\d+))?(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES  %@",emailRegex];
+    return [predicate evaluateWithObject:linkStr];
+}
+
+
+/**
+*  ios调用QQ发起临时会话
+*
+*
+*/
++(void)goQQ:(NSString * )qqStr{
+    NSURL *url = [NSURL URLWithString:@"mqq://"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        NSString *qq=[NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",qqStr];
+        NSURL *url = [NSURL URLWithString:qq];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_10_0
+       [[UIApplication sharedApplication] openURL:url options:@{UIApplicationOpenURLOptionsSourceApplicationKey:@YES} completionHandler:^(BOOL success) {}];
+#else
+        [[UIApplication sharedApplication] openURL:url];
+#endif
+    }else {
+        [LEEAlert alert].config
+        .LeeTitle(@"不能打开QQ,请确保QQ可用")
+        .LeeContent(@"")
+        .LeeAction(@"确认", ^{
+        })
+        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+    }
+
+}
+
+/**
+*   简单，ios 提示
+*
+*
+*/
++(void)showTitle:(NSString * )str{
+    [LEEAlert alert].config
+    .LeeTitle(str)
+    .LeeContent(@"")
+    .LeeAction(@"确认", ^{
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
+    })
+    .LeeShow(); // 设置完成后 别忘记调用Show来显示
+
+}
+
+/**
+*   简单，ios Toast提示
+*
+*
+*/
++(void)showToastTitle:(NSString * )str{
+    [NavController1.view makeToast:str
+    duration:1.5
+    position:CSToastPositionCenter];
+}
+
+/**
+*   SVProgressHUD showErrorWithStatus
+*
+*
+*/
++(void)showErrorTitle:(NSString * )str{
+    [SVProgressHUD showErrorWithStatus:str];
+}
+
+/**
+*   简单系统，ios 提示  专门调试用
+*
+*
+*/
++(void)showSystemTitle:(NSString * )str{
+    #ifdef DEBUG
+    NSMutableArray *titles = @[].mutableCopy;
+    [titles addObject:@"复制"];
+    UIAlertController *ac = [AlertHelper showAlertView:nil msg:str  btnTitles:titles];
+    [ac setActionAtTitle:@"复制" handler:^(UIAlertAction *aa) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
+    }];
+    #endif
+
+}
+
+/**
+*   系统web
+*
+*
+*/
++(void)goUrl:(NSString *)url{
+    // 这段话是为了加载<SafariServices/SafariServices.h>库，不然打包后会无法联网（DEBUG可以是因为LogVC里面加载了）
+    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:url]];
+    sf.view.backgroundColor = APP.BackgroundColor;
+    sf.允许未登录访问 = true;
+    sf.允许游客访问 = true;
+    [NavController1 presentViewController:sf animated:YES completion:nil];
+}
+
+/**
+*   自定义web
+*
+*
+*/
++(void)goTGWebUrl:(NSString *)url title :(NSString *)title{
+    TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+    webViewVC.允许未登录访问 = true;
+    webViewVC.允许游客访问 = true;
+    webViewVC.url = url;
+    if (title) {
+        webViewVC.webTitle = title;
+    }
+    [NavController1 pushViewController:webViewVC animated:YES];
+}
+
+/**
+*   自定义web
+*
+*
+*/
++(void)goSLWebUrl:(NSString *)url {
+    SLWebViewController *webViewVC = [SLWebViewController new];
+    webViewVC.urlStr = url;
+    [NavController1 pushViewController:webViewVC animated:YES];
+}
+
+
+/**
+*   给float类型的NSString 返回 float; 长度==0 返回0
+*
+*
+*/
++(float)floatForNSString:(NSString * )str{
+    float n = 0.0;
+    if (str.length) {
+        if ( str.isNumber) {
+             n = [str floatValue];
+        }
+    }
+    return n;
+}
+
+
+/**
+*   针对与iOS7.0、iOS8.0、 WebView的缓存
+*
+*
+*/
++(void)clearWebCache{
+    NSString *libraryDir = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
+    NSUserDomainMask, YES)[0];
+    NSString *bundleId  =  [[[NSBundle mainBundle] infoDictionary]
+    objectForKey:@"CFBundleIdentifier"];
+    NSString *webkitFolderInLib = [NSString stringWithFormat:@"%@/WebKit",libraryDir];
+    NSString *webKitFolderInCaches = [NSString
+    stringWithFormat:@"%@/Caches/%@/WebKit",libraryDir,bundleId];
+     NSString *webKitFolderInCachesfs = [NSString
+     stringWithFormat:@"%@/Caches/%@/fsCachedData",libraryDir,bundleId];
+
+    NSError *error;
+    /* iOS8.0 WebView Cache的存放路径 */
+    [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCaches error:&error];
+    [[NSFileManager defaultManager] removeItemAtPath:webkitFolderInLib error:nil];
+
+    /* iOS7.0 WebView Cache的存放路径 */
+    [[NSFileManager defaultManager] removeItemAtPath:webKitFolderInCachesfs error:&error];
+}
+
+/**
+*   针对与iOS9.0 WebView的缓存
+*
+*
+*/
++(void)deleteWebCache{
+ //allWebsiteDataTypes清除所有缓存
+    NSSet *websiteDataTypes = [WKWebsiteDataStore allWebsiteDataTypes];
+
+       NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+
+       [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+           
+       }];
+}
+//自定义清除缓存
++ (void)deleteCustomWebCache {
+/*
+     在磁盘缓存上。
+     WKWebsiteDataTypeDiskCache,
+     
+     html离线Web应用程序缓存。
+     WKWebsiteDataTypeOfflineWebApplicationCache,
+     
+     内存缓存。
+     WKWebsiteDataTypeMemoryCache,
+     
+     本地存储。
+     WKWebsiteDataTypeLocalStorage,
+     
+     Cookies
+     WKWebsiteDataTypeCookies,
+     
+     会话存储
+     WKWebsiteDataTypeSessionStorage,
+     
+     IndexedDB数据库。
+     WKWebsiteDataTypeIndexedDBDatabases,
+     
+     查询数据库。
+     WKWebsiteDataTypeWebSQLDatabases
+     */
+    NSArray * types=@[WKWebsiteDataTypeCookies,WKWebsiteDataTypeLocalStorage,WKWebsiteDataTypeMemoryCache,WKWebsiteDataTypeOfflineWebApplicationCache];
+    
+    NSSet *websiteDataTypes= [NSSet setWithArray:types];
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+
+    }];
+}
+
+
+#pragma mark -隐藏TabBar
++ (void)hideTabBar {
+    if (TabBarController1.tabBar.hidden == YES) {
+        return;
+    }
+    UIView *contentView;
+    if ( [[TabBarController1.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )
+        contentView = [TabBarController1.view.subviews objectAtIndex:1];
+    else
+        contentView = [TabBarController1.view.subviews objectAtIndex:0];
+    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + TabBarController1.tabBar.frame.size.height);
+    TabBarController1.tabBar.hidden = YES;
+    
+}
+
+#pragma mark -显示TabBar
++ (void)showTabBar {
+    if (TabBarController1.tabBar.hidden == NO)
+    {
+        return;
+    }
+    UIView *contentView;
+    if ([[TabBarController1.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])
+        contentView = [TabBarController1.view.subviews objectAtIndex:1];
+    
+    else{
+         contentView = [TabBarController1.view.subviews objectAtIndex:0];
+    }
+        
+       
+    contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - TabBarController1.tabBar.frame.size.height);
+    TabBarController1.tabBar.hidden = NO;
+    
+}
+
+/**
+*   改变View的高度
+*
+*
+*/
++(UIView *)changeHeight:(UIView *)mView  Height:(CGFloat)h{
+    CGRect frame  =  mView.frame;
+    frame.size.height =  h ;
+    mView.frame = frame;
+    
+    return mView;
+}
+
+/**
+*   系统分享
+*    Text 文本  分享图片，不能传url；
+*    image 图片   url ：链接
+     type :1 :图片，2 url   3：带icon的url
+*/
++(UIActivityViewController *)sysSharText:(NSString *)text  Image:(UIImage *)image URL:(NSURL *)url  type:(NSString *)type{
+    NSString *shareText = text;
+    UIImage *shareImage = image;
+    NSURL *shareURL = url;
+    NSArray *activityItems;
+    
+    
+    if ([type  isEqualToString:@"1"]) {
+        activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage, nil];
+        
+    }
+    else if([type  isEqualToString:@"2"]){
+        activityItems = [[NSArray alloc] initWithObjects:shareText, shareURL, nil];
+        
+    }
+    else if([type  isEqualToString:@"3"]){
+        activityItems = [[NSArray alloc] initWithObjects:shareText, shareImage,shareURL, nil];
+        
+    }
+    
+
+    UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    vc.modalInPopover = YES;
+    //去除特定的分享功能 不需要展现的Activity类型
+    vc.excludedActivityTypes = @[
+        UIActivityTypePostToFacebook,
+        UIActivityTypePostToTwitter,
+        UIActivityTypePostToWeibo,
+        UIActivityTypeMessage,
+        UIActivityTypeMail,
+        UIActivityTypePrint,
+        UIActivityTypeCopyToPasteboard,
+        UIActivityTypeAssignToContact,
+        UIActivityTypeSaveToCameraRoll,
+        UIActivityTypeAddToReadingList,
+        UIActivityTypePostToFlickr,
+        UIActivityTypePostToVimeo,
+        UIActivityTypePostToTencentWeibo,
+        UIActivityTypeAirDrop,
+        UIActivityTypeOpenInIBooks
+    ];
+    UIActivityViewControllerCompletionWithItemsHandler myBlock = ^(UIActivityType activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
+        NSLog(@"%@",activityType);
+        if (completed) {
+            NSLog(@"分享成功");
+        } else {
+            NSLog(@"分享失败");
+        }
+        [vc dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    vc.completionWithItemsHandler = myBlock;
+    
+    return vc;
+
+}
+
+
+/**
+*   NavigationController返回上一层界面
+*
+*
+*/
++(void )goPreviousVC{
+    [NavController1 popViewControllerAnimated:YES];
+}
+
+/**
+*   NavigationController返回上一层界面
+*
+*
+*/
++(void )disPreviousVC{
+    [NavController1 dismissViewControllerAnimated:YES completion:nil];
+}
+
+/**
+*   加边框
+*
+*
+*/
++(void )addBordeView:(UIView *)view Width:(float ) width Color:(UIColor *)color{
+    view.layer.borderWidth = width;
+    view.layer.borderColor = [color CGColor];
+}
+
+/**
+*   返回下注界面边框颜色
+*
+*
+*/
++(UIColor * )bordeColor{
+    UIColor *borderColor;
+    if (Skin1.isBlack) {
+        borderColor = Skin1.textColor3;
+    }
+    else{
+        if (APP.betBgIsWhite) {
+            borderColor =  APP.LineColor;
+        } else {
+            borderColor =  [[UIColor whiteColor] colorWithAlphaComponent:0.3];
+        }
+    }
+    return borderColor;
+}
+
+/**
+*   iOS 阿拉伯数字转汉字(1转一)
+*原值:2.7999999999
+typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
+    kCFNumberFormatterRoundCeiling = 0,//四舍五入,直接输出3
+    kCFNumberFormatterRoundFloor = 1,//保留小数输出2.8
+    kCFNumberFormatterRoundDown = 2,//加上了人民币标志,原值输出￥2.8
+    kCFNumberFormatterRoundUp = 3,//本身数值乘以100后用百分号表示,输出280%
+    kCFNumberFormatterRoundHalfEven = 4,//输出2.799999999E0
+    kCFNumberFormatterRoundHalfDown = 5,//原值的中文表示,输出二点七九九九。。。。
+    kCFNumberFormatterRoundHalfUp = 6//原值中文表示,输出第三
+};
+*
+*/
++(NSString * )switchNumber:(int )number{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = kCFNumberFormatterRoundHalfDown;
+    NSString *string = [formatter stringFromNumber:[NSNumber numberWithInt:number]];
+    NSLog(@"str = %@", string);
+    return string;
+}
 @end

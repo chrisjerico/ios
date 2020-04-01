@@ -4,6 +4,7 @@
 //
 
 #import "SAROPSessionStorage.h"
+#import "UGAllNextIssueListModel.h"
 
 @interface CMNetworkStorage : SAROPSessionStorage
 /// 用户名

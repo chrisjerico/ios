@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MomentsPublishImageCell" customModule="UGChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="233" height="225"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="233" height="225"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIc-rc-ZeF">
+                        <rect key="frame" x="101.5" y="99.5" width="30" height="26"/>
+                        <color key="tintColor" red="0.55294117649999996" green="0.56470588239999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="2Tv-oV-Cv1"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="R5T-Am-jJ2"/>
+                            <constraint firstAttribute="width" constant="30" id="tqk-37-Muh"/>
+                            <constraint firstAttribute="height" constant="30" id="v8a-q7-7bf"/>
+                        </constraints>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jgb-mr-sLF">
+                        <rect key="frame" x="0.0" y="0.0" width="233" height="225"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="gIc-rc-ZeF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="DQZ-cH-zj5"/>
+                <constraint firstAttribute="trailing" secondItem="Jgb-mr-sLF" secondAttribute="trailing" id="LrD-p3-8c3"/>
+                <constraint firstItem="gIc-rc-ZeF" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Mlf-79-xMI"/>
+                <constraint firstAttribute="top" secondItem="Jgb-mr-sLF" secondAttribute="top" id="XWS-b6-t2Z"/>
+                <constraint firstItem="Jgb-mr-sLF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lTi-9O-lco"/>
+                <constraint firstAttribute="bottom" secondItem="Jgb-mr-sLF" secondAttribute="bottom" id="s06-hD-6s1"/>
+            </constraints>
+            <size key="customSize" width="233" height="225"/>
+            <connections>
+                <outlet property="itemImageView" destination="Jgb-mr-sLF" id="xvU-GL-2cN"/>
+            </connections>
+            <point key="canvasLocation" x="-302.17391304347831" y="87.388392857142847"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="plus" catalog="system" width="64" height="56"/>
+    </resources>
+</document>

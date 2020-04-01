@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *date;       /**<   日期 */
 @property (nonatomic, strong) NSString *bet_sum;    /**<   投注金额 */
 @property (nonatomic, strong) NSString *fandian_sum;/**<   佣金 */
+@property (nonatomic, strong) NSString *win_amount;    /**<   会员输赢 */
 @end
 
 NS_ASSUME_NONNULL_END

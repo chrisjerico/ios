@@ -10,6 +10,10 @@
 #import "MJExtension.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+#define UserI [UGUserModel currentUser]
+
+
 //data =     {
 //
 //    curLevelTitle = "新手",
@@ -21,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 //    curLevelInt = "0",
 //    nextLevelGrade = "无",
 //},
+
 @interface UGUserModel : UGModel
 //guest
 @property (nonatomic, strong) NSString *userId;
@@ -40,11 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, assign) BOOL enable;
 @property (nonatomic, strong) NSString *fullName;
-@property (nonatomic, assign) BOOL hasFundPwd;
+@property (nonatomic, assign) BOOL hasFundPwd;/**<   是否置取款密码的账号 */
 @property (nonatomic, assign) BOOL hasBankCard;
 @property (nonatomic, assign) NSInteger unreadFaq;
-@property (nonatomic, strong) NSString *unreadMsg;
-@property (nonatomic, assign) BOOL googleVerifier;
+@property (nonatomic, assign) NSInteger unreadMsg;  /**<   站内信未读消息数量 */
+@property (nonatomic, assign) BOOL googleVerifier;  /**<   是否显示活动彩金 */
+@property (nonatomic, assign) BOOL hasActLottery;   /**<   是否显示活动彩金 */
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *qq;
 @property (nonatomic, strong) NSString *result;
@@ -52,12 +58,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL showReal;
 @property (nonatomic, assign) BOOL testFlag;
 @property (nonatomic, assign) NSInteger type;
-@property (nonatomic, assign) NSString* usr;
+@property (nonatomic, strong) NSString *usr;
+@property (nonatomic, strong) NSString *clientIp;
 
+
+
+@property (nonatomic, assign) BOOL yuebaoSwitch;    /**<   是否是开启利息宝 */
+@property (nonatomic, assign) BOOL chatRoomSwitch;  /**<   是否是开启聊天室 */
 @property (nonatomic, assign) BOOL isAgent;         /**<   是否是代理 */
 @property (nonatomic, assign) BOOL checkinSwitch;   /**<   是否签到开关： */
+@property (nonatomic, assign) BOOL allowMemberCancelBet;    /**<   是否允许会员撤单 */
 
-@property (nonatomic, assign) NSInteger ggCheck;//1 要google验证
+@property (nonatomic, assign) NSInteger ggCheck;    /**<   1 要google验证 */
+
+@property (nonatomic, assign) BOOL isBindGoogleVerifier;   /**<   判断会员是否绑定谷歌验证码： */
 
 //积分
 @property (nonatomic, strong) NSString *curLevelTitle;
@@ -73,9 +87,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *todayWinAmount;
 @property (nonatomic, strong) NSString *unsettleAmount;
+
+@property (nonatomic, assign) BOOL isLhcdocVip;         /**<   是否是六合文档的VIP */
+@property (nonatomic, strong) NSString *lhnickname;      /**<   六合昵称 */
+
+
+@property (nonatomic,strong) NSMutableArray *hasPassWordAry;                    /**<   已经输入过密码*/
 + (instancetype)currentUser;
 
-+ (void)setCurrentUser:(UGUserModel *)user;
++ (void)setCurrentUser:(nullable UGUserModel *)user;
 
 @end
 

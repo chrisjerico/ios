@@ -9,7 +9,29 @@
 #ifndef UGPCH_pch
 #define UGPCH_pch
 
+// 用户区分《原生APP》和《聊天APP》，勿删
+#define isYSAPP
+
+
+// 引入Fish工具集
+#import "FishUtility.h"
+
+// 全局控制器
+#import "UGNavigationController.h"
+#import "UINavigationController+Push.h"
+#import "UGTabbarController.h"
+#import "UGTableViewController.h"
+#import "UGViewController.h"
+#import "QDWebViewController.h"
+
+// 全局数据文件
+#import "AppDelegate.h"
 #import "configuration.h"
+#import "UGSystemConfigModel.h"
+#import "UGUserModel.h"
+
+// Tools
+#import "JS_Sidebar.h"
 #import "Masonry.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "MJExtension.h"
@@ -17,7 +39,6 @@
 #import "UIView+ST.h"
 #import "UIColor+ST.h"
 #import "NSString+ST.h"
-#import "UGUserModel.h"
 #import "UGNotificationEvent.h"
 #import "SANotificationEvent.h"
 #import "CMNetwork+Hall.h"
@@ -29,11 +50,7 @@
 #import "UIImageView+WebCache.h"
 #import "QDAlertView.h"
 #import "WSLWaterFlowLayout.h"
-#import "UGUserModel.h"
 #import "MJRefresh.h"
-#import "QDWebViewController.h"
-#import "AppDelegate.h"
-#import "Masonry.h"
 #import "UIView+Extension.h"
 #import "UIView+Toast.h"
 #import "IQKeyboardManager.h"
@@ -44,14 +61,8 @@
 #import "UGTableViewCell.h"
 #import "UGView.h"
 #import "UIImage+YYgradientImage.h"
-#import "FFRouter.h"
-
-// 引入Fish工具集
-#import "FishUtility.h"
-#import "UGNavigationController.h"
-#import "UGTableViewController.h"
-#import "UGViewController.h"
-
-
-
+#import "SGQRCode.h"
+#import "UIView+Events.h"           //添加手势
+#import "UIView+yyCornerRadius.h"   //添加圆角
+#import "CMNetwork+LH.h"            //六合
 #endif /* UGPCH_pch */

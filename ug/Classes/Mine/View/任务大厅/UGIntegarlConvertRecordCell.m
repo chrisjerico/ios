@@ -23,7 +23,21 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    if (Skin1.isBlack) {
+        [self setBackgroundColor: Skin1.bgColor];
+        [self.typeLabel setTextColor:Skin1.textColor1];
+        [self.integralLabel setTextColor:Skin1.textColor1];
+        [self.gnewIntLabel setTextColor:Skin1.textColor1];
+        [self.addTimeLabel setTextColor:Skin1.textColor1];
+    } else {
+        [self setBackgroundColor: [UIColor whiteColor]];
+        [self.typeLabel setTextColor:[UIColor blackColor]];
+        [self.integralLabel setTextColor:[UIColor blackColor]];
+        [self.gnewIntLabel setTextColor:[UIColor blackColor]];
+        [self.addTimeLabel setTextColor:[UIColor blackColor]];
+    }
+    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -38,7 +52,5 @@
     self.integralLabel.text = item.integral;
     self.gnewIntLabel.text = item.gnewInt;
     self.addTimeLabel.text = item.addTime;
-
-    
 }
 @end

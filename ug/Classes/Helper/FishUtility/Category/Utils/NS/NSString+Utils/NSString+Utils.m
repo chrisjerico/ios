@@ -23,7 +23,7 @@
 - (BOOL)hasLowercaseLetter   {return [self isMatch:RX(@"[a-z]")]; }
 - (BOOL)hasUppercaseLetter   {return [self isMatch:RX(@"[A-Z]")]; }
 - (BOOL)hasSpecialCharacter  {return [self isMatch:RX(@"[^\\da-zA-Z\\u4e00-\\u9fff]")]; }
-
+- (BOOL)isHtmlStr            {return [self isMatch:RX(@"<[^>]+>")]; }
 
 - (BOOL)isNumber             {return [self isMatch:RX(@"^[+-]?((\\d*\\.?\\d+)|(\\d+\\.?\\d*))$")]; }
 - (BOOL)isFloat              {return [self isMatch:RX(@"^[+-]?((\\d*\\.\\d+)|(\\d+\\.\\d*))$")]; }
@@ -34,6 +34,7 @@
 - (BOOL)isLowercaseLetter    {return [self isMatch:RX(@"^[a-z]+$")]; }
 - (BOOL)isUppercaseLetter    {return [self isMatch:RX(@"^[A-Z]+$")]; }
 - (BOOL)isSpecialCharacter   {return [self isMatch:RX(@"^[^\\da-zA-Z\\u4e00-\\u9fff]+$")]; }
+
 
 
 //- (BOOL (^)(NSString *))isDate {
@@ -336,6 +337,30 @@
     if (self.length > idx)
         return [self substringWithRange:NSMakeRange(idx, 1)];
     return nil;
+}
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id  _Nullable [])buffer count:(NSUInteger)len {
+    NSUInteger count = 0;
+    
+    unsigned long countOfItemsAlreadyEnumerated = state->state;
+    
+    if (countOfItemsAlreadyEnumerated == 0) {
+        state->mutationsPtr = &state->extra[0];
+    }
+    
+    if (countOfItemsAlreadyEnumerated < [self length]) {
+        state->itemsPtr = buffer;
+        while ((countOfItemsAlreadyEnumerated < [self length]) && (count < len)) {
+            buffer[count] = [self objectAtIndexedSubscript:countOfItemsAlreadyEnumerated];
+            countOfItemsAlreadyEnumerated++;
+            count++;
+        }
+    } else {
+        count = 0;
+    }
+    
+    state->state = countOfItemsAlreadyEnumerated;
+    return count;
 }
 
 @end

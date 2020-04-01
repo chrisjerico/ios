@@ -21,7 +21,17 @@
     self.layer.cornerRadius = 3;
     self.layer.masksToBounds = YES;
     self.layer.borderWidth = 0.7;
-    self.layer.borderColor = UGBackgroundColor.CGColor;
+
+    
+    if (Skin1.isBlack) {
+        [self.contentView setBackgroundColor:Skin1.navBarBgColor];
+        [_titleLabel setTextColor:[UIColor whiteColor]];
+        self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+    } else {
+        [self.contentView setBackgroundColor:[UIColor whiteColor]];
+        [_titleLabel setTextColor:[UIColor blackColor]];
+        self.layer.borderColor = UGRGBColor(177, 188, 189).CGColor;
+    }
     
 }
 
@@ -36,13 +46,26 @@
 }
 
 - (void)setSelected:(BOOL)selected {
-    if (selected) {
-        self.layer.borderColor = UGNavColor.CGColor;
-        self.layer.borderWidth = 1;
-    }else {
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.layer.borderWidth = 1;
+    if (Skin1.isBlack) {
+        if (selected) {
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.layer.borderWidth = 1;
+        }else {
+            
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+            self.layer.borderWidth = 1;
+        }
+    } else {
+        if (selected) {
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+            self.layer.borderWidth = 1;
+        }else {
+            
+            self.layer.borderColor = UGRGBColor(177, 188, 189).CGColor;
+            self.layer.borderWidth = 1;
+        }
     }
+
 }
 
 @end

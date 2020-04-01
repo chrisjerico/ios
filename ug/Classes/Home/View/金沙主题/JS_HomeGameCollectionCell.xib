@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="JS_HomeGameCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="137" height="211"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="137" height="211"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Theme_jinsha_gam_placeholed" translatesAutoresizingMaskIntoConstraints="NO" id="Ai9-CE-WVZ">
+                        <rect key="frame" x="27.5" y="10" width="82" height="82"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Ai9-CE-WVZ" secondAttribute="height" id="bGa-sd-02Y"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GtS-hr-POt">
+                        <rect key="frame" x="0.0" y="102" width="137" height="99"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="斗地主" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAJ-cZ-ARA">
+                                <rect key="frame" x="48.5" y="0.0" width="40" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="TqG-JE-xgB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐️⭐️⭐️⭐️⭐️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYa-kM-AtO">
+                                <rect key="frame" x="33.5" y="40" width="70" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="fPb-K7-tfM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4t-DT-b2R">
+                                <rect key="frame" x="34.5" y="79" width="68" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVC-yH-Pho">
+                                        <rect key="frame" x="0.0" y="0.0" width="31" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="cqq-5H-u92"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人在玩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJf-9m-weC">
+                                        <rect key="frame" x="31" y="0.0" width="37" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="theme_js_gamecell_新" translatesAutoresizingMaskIntoConstraints="NO" id="RtG-TL-UC6">
+                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="1l2-aH-cTZ"/>
+                            <constraint firstAttribute="width" secondItem="RtG-TL-UC6" secondAttribute="height" multiplier="1:1" id="CJj-j7-dYd"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Ai9-CE-WVZ" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.6" id="2jW-xg-VRz"/>
+                <constraint firstItem="RtG-TL-UC6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="AEf-ei-nZY"/>
+                <constraint firstItem="Ai9-CE-WVZ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="E6L-Vy-5qr"/>
+                <constraint firstItem="Ai9-CE-WVZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="KW5-ZQ-ovZ"/>
+                <constraint firstItem="GtS-hr-POt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WvF-VT-25V"/>
+                <constraint firstAttribute="trailing" secondItem="GtS-hr-POt" secondAttribute="trailing" id="YaU-SI-i6l"/>
+                <constraint firstItem="GtS-hr-POt" firstAttribute="top" secondItem="Ai9-CE-WVZ" secondAttribute="bottom" constant="10" id="aJv-LK-Aum"/>
+                <constraint firstItem="RtG-TL-UC6" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xxx-iQ-F6P"/>
+                <constraint firstAttribute="bottom" secondItem="GtS-hr-POt" secondAttribute="bottom" constant="10" id="zdm-iU-joT"/>
+            </constraints>
+            <size key="customSize" width="137" height="211"/>
+            <connections>
+                <outlet property="cornerImage" destination="RtG-TL-UC6" id="KL7-v3-2Nz"/>
+                <outlet property="itemImage" destination="Ai9-CE-WVZ" id="3kw-0x-Oq9"/>
+                <outlet property="itemName" destination="gAJ-cZ-ARA" id="dVF-9X-HK5"/>
+                <outlet property="playerNumberLabel" destination="IVC-yH-Pho" id="Mtt-2Y-UhJ"/>
+                <outlet property="starLabel" destination="eYa-kM-AtO" id="g9j-ll-pxQ"/>
+            </connections>
+            <point key="canvasLocation" x="193.47826086956522" y="201.89732142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Theme_jinsha_gam_placeholed" width="75" height="58.5"/>
+        <image name="theme_js_gamecell_新" width="100" height="100"/>
+    </resources>
+</document>

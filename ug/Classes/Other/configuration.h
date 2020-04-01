@@ -11,10 +11,13 @@
 
 #import <Foundation/Foundation.h>
 
+//参数是否加密
+#define checkSign 1
+
+
+
 //路径转换为restful开关
 #define RESTFUL NO
-//参数是否加密
-#define checkSign 0
 //获取开奖数据间隔
 #define NextIssueSec 3
 
@@ -23,16 +26,12 @@
 
 #define RSAPublicKey @"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0CZTn+50HHM0QkziEunofDfIG77buLuRwItL8My9EYAyuLSW1qkLgqta2z2bIedx7Ro6enOZ0PZNFnqsztltGctwTwAVQDGoB+kpqUi5gs5jRTcoRkytgaLs7xZey45H0c2Hof4W+rcdHR/xc7C0hT5fBNqEDjBmGvoLlYpHag/p4m7h+JgpWHmKGWg7ijHMPWJQSFD1JPnP7upQlTJ8BKl24em6n2lSyH8qkoJKoEzUfQ7HricpF4S6MVCm36BSfkz35Oy4La7WxDrwW8KDs3ahKHM4uifgDlupZ+nV/dgzCQWDi5lNiQlvWR0xKsjwwrnXTdHPnMYDX8NdDTvTcQIDAQAB"
 
-static NSString *baseServerUrl = @"http://test10.6yc.com";
-//static NSString *baseServerUrl = @"http://test100f.fhptcdn.com";
-//static NSString *baseServerUrl = @"http://103.9.230.243";
-
 static NSString *swiperVerifyUrl = @"/dist/index.html#/swiperverify?platform=native";
 
 static NSString *imagesServerUrl = @"https://cdn01.fsjtzs.cn//images";
 static NSString *rechargeUrl = @"/dist/index.html#/funds/deposit";
 static NSString *fundUrl = @"/dist/index.html#/funds/Withdraw";
-static NSString *chatRoomUrl = @"/dist/index.html#/chatRoomList";
+static NSString *chatRoomUrl = @"/dist/index.html#/chatRoom?roomId=0&roomName=";
 static NSString *newChatRoomUrl = @"/dist/#/home?from=app&logintoken=";
 
 static NSString *yuebaoUrl = @"/dist/index.html#/yuebao";
@@ -42,198 +41,249 @@ static NSString *taskCenterUrl = @"/dist/index.html#/task/task";
 static NSString *signUrl = @"/dist/index.html#/Sign";
 static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
-#define systemConfigUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=config"]
+#define pcUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"index2.php"]
 
-#define guestLoginUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=guestLogin"]
+#define systemConfigUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=config"]
 
-#define checkVersionUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=version"]
+#define guestLoginUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=guestLogin"]
 
-#define getImgVcodeUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=secure&a=imgCaptcha"]
+#define checkVersionUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=version"]
 
-#define getSmsVcodeUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php/?c=secure&a=smsCaptcha"]
+#define getImgVcodeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=secure&a=imgCaptcha"]
 
-#define userLoginUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=login"]
+#define getSmsVcodeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=secure&a=smsCaptcha"]
 
-#define userLogoutUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php/?c=user&a=logout"]
+#define userLoginUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=login"]
 
-#define registerUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=reg"]
+#define userLogoutUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=logout"]
 
-#define userInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=info"]
+#define registerUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=reg"]
 
-#define modifyLoginPwdUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=changeLoginPwd"]
+#define userInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=info"]
 
-#define bankListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=bankList"]
+#define modifyLoginPwdUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=changeLoginPwd"]
 
-#define bindCardUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=bindBank"]
+#define bankListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=bankList"]
 
-#define getAvatarListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=avatarList"]
+#define bindCardUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=bindBank"]
 
-#define changAvatarListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=changeAvatar"]
+#define getAvatarListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=avatarList"]
 
-#define bankCardInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=bankCard"]
+#define changAvatarListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=changeAvatar"]
 
-#define addFundPwdUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=addFundPwd"]
+#define bankCardInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=bankCard"]
 
-#define modifyFundPwdUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=changeFundPwd"]
+#define addFundPwdUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=addFundPwd"]
 
-#define getAllNextIssue [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=lotteryGames"]
+#define modifyFundPwdUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=changeFundPwd"]
 
-#define getLotteryHistoryUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=lotteryHistory"]
+#define getAllNextIssue [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryGames"]
 
-#define getLotteryRuleUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=lotteryRule"]
+#define getLotteryHistoryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryHistory"]
 
-#define autoTransferOutUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=autoTransferOut"]
+#define getLotteryRuleUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryRule"]
 
-#define getNextIssueUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=nextIssue"]
+#define autoTransferOutUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=autoTransferOut"]
 
-#define changlongUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=changlong"]
+#define needToTransferOutUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=checkTransferStatus"]
 
-#define changlongBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=report&a=getUserRecentBet"]
+#define getNextIssueUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=nextIssue"]
 
-#define userBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=bet"]
-#define userinstantBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=instantBet"]
+#define changlongUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=changlong"]
 
-#define guestBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=guestBet"]
+#define changlongBetListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=report&a=getUserRecentBet"]
 
-#define getBetsListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=ticket&a=history"]
+#define userBetUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=bet"]
+#define userinstantBetUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=instantBet"]
 
-#define cancelBetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=cancelBet"]
+#define guestBetUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=guestBet"]
 
-#define getGameDataUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=playOdds"]
+#define getBetsListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=history"]
 
-#define getPlatformGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=homeRecommend"]
+#define cancelBetUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=cancelBet"]
 
-#define getCustomGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=customGames"]
+#define getGameDataUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=playOdds"]
 
-#define getGamelistUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=realGameTypes"]
+#define getPlatformGamesUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=homeRecommend"]
 
-#define gotoGameUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=gotoGame"]
+#define getCustomGamesUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=homeGames"]
 
-#define getBannerListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=banners"]
+#define getGamelistUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=realGameTypes"]
 
-#define getNoticeListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=notice&a=latest"]
+#define gotoGameUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=gotoGame"]
 
-//#define getRankListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=rank&a=singlePrize"]
+#define getBannerListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=banners"]
 
-#define getRankListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=rankingList"]
+#define getNoticeListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=notice&a=latest"]
 
-#define getPromoteListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=promotions"]
+//#define getRankListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=rank&a=singlePrize"]
 
-#define feedbackUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php/?c=user&a=addFeedback"]
+#define getRankListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=rankingList"]
 
-#define getFeedbackListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php/?c=user&a=myFeedback"]
+#define getPromoteListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=promotions"]
 
-#define getFeedbackDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=feedbackDetail"]
+#define getPromotionsTypeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=getPromotionsType"]
 
-#define getMsgListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=msgList"]
+#define feedbackUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=addFeedback"]
 
-#define readMsgListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=readMsg"]
+#define getFeedbackListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=myFeedback"]
 
-#define getLoginAddressUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=address"]
+#define getFeedbackDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=feedbackDetail"]
 
-#define modifyLoginAddressUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=changeAddress"]
+#define getMsgListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=msgList"]
 
-#define delLoginAddressUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=delAddress"]
+#define readMsgListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=readMsg"]
 
-#define realGamesUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=game&a=realGames"]
+#define getLoginAddressUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=address"]
 
-#define manualTransferUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=manualTransfer"]
+#define modifyLoginAddressUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=changeAddress"]
 
-#define transferLogsUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=transferLogs"]
+#define delLoginAddressUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=delAddress"]
 
-#define checkRealBalanceUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=real&a=checkBalance"]
+#define realGamesUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=realGames"]
 
-#define yuebaoInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=yuebao&a=stat"]
+#define manualTransferUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=manualTransfer"]
 
-#define yuebaoTransferUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=yuebao&a=transfer"]
+#define transferLogsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=transferLogs"]
 
-#define yuebaoTransferLogsUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=yuebao&a=transferLogs"]
+#define oneKeyTransferOutUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=oneKeyTransferOut"]
 
-#define yuebaoProfitReportUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=yuebao&a=profitReport"]
+#define quickTransferOutUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=quickTransferOut"]
 
-#define withdrawApplyUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=withdraw&a=apply"]
+#define checkRealBalanceUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=real&a=checkBalance"]
 
-#define rechargeLogsUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=logs"]
+#define yuebaoInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=yuebao&a=stat"]
 
-#define withdrawLogsUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=withdraw&a=logs"]
+#define yuebaoTransferUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=yuebao&a=transfer"]
 
-#define fundLogsUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=user&a=fundLogs"]
+#define yuebaoTransferLogsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=yuebao&a=transferLogs"]
 
-#define checkinListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkinList"]
+#define yuebaoProfitReportUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=yuebao&a=profitReport"]
 
-#define checkinBonusUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkinBonus"]
+#define withdrawApplyUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=withdraw&a=apply"]
 
-#define checkinUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkin"]
+#define rechargeLogsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=recharge&a=logs"]
 
-#define checkinHistoryUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=checkinHistory"]
+#define withdrawLogsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=withdraw&a=logs"]
 
-#define centerUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=center"]
+#define fundLogsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=fundLogs"]
 
-#define taskGetUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=get"]
+#define checkinListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=checkinList"]
 
-#define taskRewardUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=reward"]
+#define checkinBonusUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=checkinBonus"]
 
-#define taskCreditsLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=creditsLog"]
+#define checkinUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=checkin"]
 
-#define taskLevelsLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=levels"]
+#define checkinHistoryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=checkinHistory"]
 
-#define taskCreditsExchangeLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=task&a=creditsExchange"]
+#define centerUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=center"]
 
-#define teamInviteInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=inviteInfo"]
+#define categoriesUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=categories"]
 
-#define teamInviteListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=inviteList"]
+#define taskGetUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=get"]
 
-#define teamBetStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=betStat"]
+#define taskRewardUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=reward"]
 
-#define teamBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=betList"]
+#define taskCreditsLogUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=creditsLog"]
 
-#define teamTransferUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=transfer"]
+#define taskLevelsLogUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=levels"]
 
-#define teamInviteDomainUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=inviteDomain"]
+#define taskCreditsExchangeLogUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=creditsExchange"]
 
-#define teamDepositStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=depositStat"]
+#define teamInviteInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=inviteInfo"]
 
-#define teamDepositListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=depositList"]
+#define teamInviteListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=inviteList"]
 
-#define teamWithdrawStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=withdrawStat"]
+#define teamBetStatUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=betStat"]
 
-#define teamWithdrawListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=withdrawList"]
+#define teamBetListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=betList"]
 
-#define teamRealBetStatUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=realBetStat"]
+#define teamTransferUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=transfer"]
 
-#define teamRealBetListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=realBetList"]
+#define teamInviteDomainUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=inviteDomain"]
 
-#define rechargeCashierUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=cashier"]
+#define teamDepositStatUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=depositStat"]
 
-#define rechargeOnlinePayUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=onlinePay"]
+#define teamDepositListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=depositList"]
 
-#define rechargeTransferUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=recharge&a=transfer"]
+#define teamWithdrawStatUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=withdrawStat"]
 
-#define teamAgentApplyUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=agentApply"]
+#define teamWithdrawListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=withdrawList"]
 
-#define activityRedBagDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=redBagDetail"]
+#define teamRealBetStatUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=realBetStat"]
 
-#define activityGetRedBagUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=getRedBag"]
+#define teamRealBetListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=realBetList"]
 
-#define activityWinApplyListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=winApplyList"]
+#define rechargeCashierUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=recharge&a=cashier"]
 
-#define activityApplyWinLogUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWinLog"]
+#define rechargeOnlinePayUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=recharge&a=onlinePay"]
 
-#define activityApplyWinUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWin"]
+#define rechargeTransferUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=recharge&a=transfer"]
 
-#define activityApplyWinLogDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=activity&a=applyWinLogDetail"]
+#define teamAgentApplyUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=agentApply"]
 
-#define teamAgentApplyInfoUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=team&a=agentApplyInfo"]
+#define activityRedBagDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=redBagDetail"]
 
-#define secureGaCaptchaUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=secure&a=gaCaptcha"]
+#define activityGetRedBagUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=getRedBag"]
 
-#define getDocumentListUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=bbs&a=gameDocList"]
+#define chatRedBagLogPageUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=chat&a=redBagLogPage"]
 
-#define getDocumentDetailUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=bbs&a=gameDocDetail"]
+#define activityWinApplyListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=winApplyList"]
 
-#define getDocumentPayUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=bbs&a=gameDocPay"]
+#define activityApplyWinLogUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=applyWinLog"]
 
-#define systemOnlineCountUrl [NSString stringWithFormat:@"%@/%@",baseServerUrl,@"wjapp/api.php?c=system&a=onlineCount"]
+#define activityApplyWinUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=applyWin"]
+
+#define activityApplyWinLogDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=applyWinLogDetail"]
+
+#define teamAgentApplyInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=agentApplyInfo"]
+
+#define secureGaCaptchaUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=secure&a=gaCaptcha"]
+
+#define getDocumentListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=bbs&a=gameDocList"]
+
+#define getDocumentDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=bbs&a=gameDocDetail"]
+
+#define getDocumentPayUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=bbs&a=gameDocPay"]
+
+#define systemOnlineCountUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=onlineCount"]
+
+#define systemhomeAdsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=homeAds"]
+
+#define systemfloatAdsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=floatAds"]
+
+#define ticketlotteryStatisticsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=lotteryStatistics"]
+// 走势
+#define ownLotteryListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"/eapi/own_lottery_list?"]
+
+#define lotteryTrendUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"eapi/get_lottery_data?gameMark=jsxingyu"]
+#define officialLotteryTrendUrl [NSString stringWithFormat:@"%@/%@",@"https://www.fhptjk01.com",@"eapi/get_lottery_data?"]
+
+//给下级会员充值接口
+#define teamRechargeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=recharge"]
+
+//=============六合====================================================================================================
+#define lhlDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lhlDetail"]
+
+#define categoryListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=categoryList"]
+
+#define lotteryNumberUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lotteryNumber"]
+
+#define historyContentUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=historyContent"]
+
+#define followListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=followList"]
+
+#define favContentListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=favContentList"]
+
+#define lhcdocgetUserInfoUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=getUserInfo"]
+
+#define chatgetTokenUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=chat&a=getToken"]
+//=============开奖网url====================================================================================================
+#define lotteryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/index.mobile.html?navhidden=1"]
+//=============直播url====================================================================================================
+//http://test12.6yc.com/open_prize/video.html?id=1&&gameType=cqssc
+#define liveUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/video.html?navhidden=1&&id="]
+
 
 #if DEBUG
 
@@ -244,16 +294,23 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #else
 
-#define NSLog(...) {}
+//#define NSLog(...) {}
 
 #endif
 
-#define CMMETHOD_BEGIN          (NSLog(@"%s.begin", __func__))
-#define CMMETHOD_BEGIN_C(v)     (NSLog(@"%s.begin, param: %ld", __func__, (long)v))
-#define CMMETHOD_BEGIN_O(v)     (NSLog(@"%s.begin, param: %@", __func__, v))
-#define CMMETHOD_END            (NSLog(@"%s.end", __func__))
-#define CMMETHOD_END_C(v)       (NSLog(@"%s.end, result: %ld", __func__, (long)v), v)
-#define CMMETHOD_END_O(v)       (NSLog(@"%s.end, result: %@", __func__, v), v)
+#define CMMETHOD_BEGIN
+#define CMMETHOD_BEGIN_C(v)
+#define CMMETHOD_BEGIN_O(v)
+#define CMMETHOD_END
+#define CMMETHOD_END_C(v)
+#define CMMETHOD_END_O(v)
+
+//#define CMMETHOD_BEGIN          (NSLog(@"%s.begin", __func__))
+//#define CMMETHOD_BEGIN_C(v)     (NSLog(@"%s.begin, param: %ld", __func__, (long)v))
+//#define CMMETHOD_BEGIN_O(v)     (NSLog(@"%s.begin, param: %@", __func__, v))
+//#define CMMETHOD_END            (NSLog(@"%s.end", __func__))
+//#define CMMETHOD_END_C(v)       (NSLog(@"%s.end, result: %ld", __func__, (long)v), v)
+//#define CMMETHOD_END_O(v)       (NSLog(@"%s.end, result: %@", __func__, v), v)
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
 #define StrongSelf __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -294,8 +351,6 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
 #define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
 
-#define UGNavColor [[UGSkinManagers shareInstance] setNavbgColor]
-#define UGBackgroundColor [[UGSkinManagers shareInstance] setbgColor]
 #define UGRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0] ///< 用10进制表示颜色，例如（255,255,255）黑色
 #define RGBA(_R,_G,_B,_A) \
 [UIColor colorWithRed:((_R) / 255.0) green:((_G) / 255.0) blue:((_B) / 255.0) alpha:_A]

@@ -7,7 +7,11 @@
 //
 
 #import "AppDefine.h"
-#import "UIResponder+InterfaceOrientation.h"
+
+
+
+#define __SiteID__ @"test61f"
+
 
 @interface UIStoryboard ()
 - (BOOL)containsNibNamed:(NSString *)nibName;
@@ -22,7 +26,6 @@
 + (instancetype)shared {
     static id obj = nil;
     static dispatch_once_t onceToken;
-    
     dispatch_once(&onceToken, ^{
         obj = [self new];
     });
@@ -66,7 +69,24 @@
                 sb(@"Mine"),
                 sb(@"UGFC3DLotteryController"),
                 sb(@"Promote"),
-                ];
+                sb(@"UGLHC"),
+                sb(@"UGLHH"),
+                sb(@"BMpreferential"),
+                sb(@"BlackTemplate"),
+                sb(@"BMMine"),
+                sb(@"LHTemplate"),
+                sb(@"LHTemplate"),
+                sb(@"UGYubaoViewController"),
+                sb(@"JS_Mine"),
+                sb(@"HSC_Mine"),
+                sb(@"HSC_Mine"),
+                sb(@"MyPromotion"),
+                sb(@"ContractedTemplate"),
+                sb(@"RedEnvelope"),
+                sb(@"LineConversion"),
+                
+                
+        ];
     });
     
     const char *sel = [@"contains11111NibNamed:" stringByReplacingOccurrencesOfString:@"1" withString:@""].UTF8String;
@@ -86,15 +106,6 @@
     return [[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil].firstObject;
 }
 
-+ (void)createDirectoryAtPath:(NSString *)path {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
-        [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:true attributes:nil error:nil];
-}
-
-+ (void)setWindowInterfaceOrientation:(UIInterfaceOrientation)io {
-    [UIResponder setWindowInterfaceOrientation:io];
-}
-
 + (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d {
     NSString *format = _NSString(@"%%.%df", d);
     NSString *s = _NSString(format, f);
@@ -103,12 +114,6 @@
     if ([s hasSuffix:@"."])
         s = [s substringToIndex:s.length-1];
     return s;
-}
-
-+ (NSString *)stringWithInteger:(NSInteger)i {
-    if (labs(i) > 9999)
-        return _NSString(@"%.1fw", i/10000.0);
-    return @(i).stringValue;
 }
 
 + (NSString *)stringWithFileSize:(double)size {
@@ -123,25 +128,6 @@
     return _NSString(@"%.1fG", size/1024/1024/1024);
 }
 
-+ (double)folderSizeAtPath:(NSString *)folderPath {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:folderPath])
-        return 0;
-    NSEnumerator *childFilesEnumerator = [[[NSFileManager defaultManager] subpathsAtPath:folderPath] objectEnumerator];
-    NSString *fileName;
-    double folderSize = 0;
-    while ((fileName = [childFilesEnumerator nextObject]) != nil) {
-        NSString *fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
-        folderSize += [self fileSizeAtPath:fileAbsolutePath];
-    }
-    return folderSize;
-}
-
-+ (unsigned long long)fileSizeAtPath:(NSString *)filePath {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath])
-        return [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:nil] fileSize];
-    return 0;
-}
-
 
 #pragma mark - Init
 
@@ -149,21 +135,34 @@
 {
     self = [super init];
     if (self) {
-        _HOST = @"https://www.pptdaka.com:8443/";
-        
-        _StoreID = @"1469008808";
+        _allSites = [SiteModel allSites];
+        _SiteId = __SiteID__;
+        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
+#ifdef APP_TEST
+        _Test = true;
+        _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
+        if (!_SiteId.length) {
+            _SiteId = @"test61f";
+        }
+#endif
+        NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
+        _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
+        if (!_Host.length) {
+#ifdef DEBUG
+            @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
+#endif
+        }
         
         _PhotoMaxLength = 60 * 1024;    // 约等于1M大小
         _PageCount = 20;
-        _DefaultUserPhoto = @"common_default_userphoto.png";
-        _DefaultUserPhotoURL = @"";
-        
-        _apiVersion = API_Version;
-        
-        _InviteCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"InviteCode"];
+        _beginTime =  @"2020-01-01";
         
         [self setupSystem];
         [self setupColor];
+        
+        if (!_jspVersion.length) {
+            _jspVersion = _Version;
+        }
     }
     return self;
 }
@@ -175,29 +174,333 @@
 - (CGSize)Size                      { return _Window.bounds.size; }
 - (CGFloat)Width                    { return _Window.bounds.size.width; }
 - (CGFloat)Height                   { return _Window.bounds.size.height; }
+- (UIFont *)cellBigFont             { return [UIFont boldSystemFontOfSize:17]; }
+- (UIFont *)cellNormalFont          { return [UIFont systemFontOfSize:14]; }
+- (float )cellNormalFontSize        { return 14.0; }
+
+#pragma mark - 定制样式
 
 
 
-- (void)setInviteCode:(NSString *)InviteCode {
-    _InviteCode = InviteCode;
-    if (InviteCode.length)
-        [[NSUserDefaults standardUserDefaults] setObject:InviteCode forKey:@"InviteCode"];
+- (BOOL)isSectionWhite {
+     return [@"a002" containsString:_SiteId];
+}
+
+- (BOOL)isTitleWhite {
+     return [@"a002" containsString:_SiteId];
+}
+ 
+- (BOOL)isGPKDeposit {
+     return [@"c105b" containsString:_SiteId];
+}
+
+- (BOOL)isHideFoot {
+    if (Skin1.isBlack) {
+         return [@"c105b" containsString:_SiteId];
+    }
+    return false;
+}
+
+- (BOOL)isTextWhite {
+     return [@"a002" containsString:_SiteId];
+}
+
+- (BOOL)isTabMassageBadge {
+    return YES;
+}
+
+
+- (BOOL)isTabHot {
+    return [@"c208" containsString:_SiteId];
+}
+
+- (BOOL)isFireworks {
+    return [@"c193" containsString:_SiteId];
+}
+
+- (BOOL)isParagraphSpacing {
+    return [@"c134,c200,c213,a002" containsString:_SiteId];
+}
+
+- (BOOL)oldConversion {
+    return [@"c200,a002" containsString:_SiteId];
+}
+
+
+- (BOOL)isRedWhite {
+    if ( [@"新年红0" containsString:Skin1.skitType]) {
+        return [@"c184" containsString:_SiteId];
+    }
+    else{
+        return NO;
+    }
+}
+
+- (BOOL)isShow4 {
+    return [@"c200,c213,a002" containsString:_SiteId];
+}
+
+- (BOOL)isNoBorder {
+    return [@"c200,c208,c213,a002" containsString:_SiteId];
+}
+
+- (BOOL)isYHShowTitle {
+    return [@"c217" containsString:_SiteId];
+}
+
+- (float )borderWidthTimes          {
+    if ([@"a002,c085" containsString:_SiteId]) {
+        return  2.0;
+    } else {
+        return 1;
+    }
+}
+
+- (BOOL)isChatWhite {
+    if (!APP.betBgIsWhite) {
+        return YES ;
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)isHideChat {
+    return [@"c212,c208" containsString:_SiteId];
+}
+
+- (BOOL)isLight {
+    return [@"c134" containsString:_SiteId];
+}
+
+- (BOOL)isBall6 {
+    if (Skin1.isSLH) {
+        return YES;
+    } else {
+        return [@"c134,c200,c208,c213,a002" containsString:_SiteId];
+    }
+}
+
+- (BOOL)isYellow {
+    
+    return [@"c085,c134,c200,c208,c213,c212,a002" containsString:_SiteId];
+}
+
+- (BOOL)isSelectStyle {
+    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+}
+
+
+- (BOOL)isShowBorder {
+    
+    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+    
+}
+
+- (BOOL)isShowHornView {
+    return [@"l001,l002" containsString:_SiteId];
+}
+
+- (BOOL)isGrey {
+    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+}
+
+- (BOOL)isBorderNavBarBgColor {
+    if (Skin1.isBlack) {
+        return NO;
+    }
+    else {
+        return [@"c085,c212,c208,c134" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
+    }
+}
+
+- (BOOL)isBall {
+    if (Skin1.isSLH) {
+        return YES;
+    } else {
+        return [@"c212,c085,c208,c134,c200,c208,c213,a002" containsString:_SiteId];
+    }
+    
+}
+
+- (BOOL)isWhite {
+    if (Skin1.isBlack) {
+        return NO;
+    } else {
+        return [@"c213" containsString:_SiteId];
+    }
+}
+
+- (BOOL)isHideText {
+    return [@"c200" containsString:_SiteId];
+}
+
+- (BOOL)isShowJinbei {
+    return [@"c085,c208,c212,c200,c213,a002" containsString:_SiteId];
+}
+
+- (BOOL)isShowWZ {
+    return [@"c085" containsString:_SiteId];
+}
+
+- (BOOL)isShowLogo {
+    if ([@"黑色模板" containsString:Skin1.skitType]) {
+        return NO;
+    } else {
+        if (Skin1.isJY) {
+            return YES;
+        } else {
+            return [@"c190" containsString:_SiteId];
+        }
+        
+    }
+}
+
+- (BOOL)isShowArrow {
+    if ([@"黑色模板" containsString:Skin1.skitType]||Skin1.isJY) {
+        return NO;
+    } else {
+        return [@"c190" containsString:_SiteId];
+    }
+}
+
+
+- (BOOL)isCornerRadius {
+    return YES;
+//    return [@"c193" containsString:_SiteId];
+}
+
+- (BOOL)isFontSystemSize {
+    if (Skin1.isJY) {
+        return NO;
+    } else {
+        return NO;
+    }
+    
+}
+
+
+
+- (BOOL)isBA {
+    return [@"c001,c085,c208,a002,c054,c212,c200,c213" containsString:_SiteId];
+}
+
+- (BOOL)addIcons {
+    return [@"c190,c134,a002" containsString:_SiteId];
+}
+
+- (BOOL)lotteryHallCustomImgS {
+    return [@"c190" containsString:_SiteId];
+}
+
+- (BOOL)betOddsIsRed {
+    return [@"c194,c005" containsString:_SiteId];
+}
+
+- (BOOL)betBgIsWhite {
+    
+    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    
+}
+
+- (BOOL)betSizeIsBig {
+    return [@"c169" containsString:_SiteId];
+}
+
+
+#pragma mark - 热更新
+
+- (NSString *)jspPath {
+    return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, [_jspVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
+}
+
+- (void)setJspVersion:(NSString *)jspVersion {
+    _jspVersion = jspVersion;
+    [[NSUserDefaults standardUserDefaults] setObject:jspVersion forKey:@"jspVersion"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setRnPageInfos:(NSArray<RnPageModel *> *)rnPageInfos {
+    if ([rnPageInfos.firstObject isKindOfClass:[NSDictionary class]]) {
+        NSMutableArray *temp = @[].mutableCopy;
+        for (NSDictionary *dict in rnPageInfos) {
+            [temp addObject:[RnPageModel mj_objectWithKeyValues:dict]];
+        }
+        _rnPageInfos = temp.copy;
+    } else {
+        _rnPageInfos = rnPageInfos;
+    }
+}
+
+
+#pragma mark - H5 url
+
+- (NSString *)htmlStyleString:(NSString *)content {
+    return _NSString(@"<head><style>img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
+}
+
+- (NSString *)chatShareUrl {
+    NSString *url = _NSString(@"%@/dist/index.html#/home", _Host);
+    return [url stringByAppendingURLParams:@{
+        // 公共参数
+        @"from":@"app",
+        @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
+        @"endColor":Skin1.navBarBgColor.cc_userInfo[@"endColor"],
+        @"back":@"hide",
+        @"loginsessid":[UGUserModel currentUser].sessid,
+        @"logintoken":[UGUserModel currentUser].token,
+        // 定制参数
+        @"roomId":@"0",
+        @"roomName":[CMCommon urlformat:SysConf.chatRoomName] ,
+        @"tag":@"3",
+    }];
+}
+
+- (NSString *)chatHomeUrl {
+    //        SysConf.chatLink = @"/chat";
+    //    SysConf.chatLink = @"/chat/index.php";
+    NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
+    return [url stringByAppendingURLParams:@{
+        @"from":@"app",
+        @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
+        @"endColor":Skin1.navBarBgColor.cc_userInfo[@"endColor"],
+        @"back":@"hide",
+        @"loginsessid":[UGUserModel currentUser].sessid,
+        @"logintoken":[UGUserModel currentUser].token,
+    }];
+}
+
+
+- (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
+    NSMutableDictionary *dic = [NSMutableDictionary new];
+    [dic setValue:roomId forKey:@"roomId"];
+    if (hideHead) {
+        NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
+        [dic setValue:boolNum forKey:@"hideHead"];
+    }
+    
+    NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
+    NSLog(@"s= %@",s);
+    return s;
+}
+
+
+
+- (NSString *)chatMainGameUr {
+    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":@"0"}];
 }
 
 
 #pragma mark - Setup
 
 - (void)setupSystem {
-    _Name = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
-    _BundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-    _Version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    _Build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    
+    NSDictionary *info = [NSBundle mainBundle].infoDictionary;
+    _Name = info[@"CFBundleName"];
+    _BundleId = info[@"CFBundleIdentifier"];
+    _Version = _jspVersion ? : info[@"CFBundleShortVersionString"];
+    _Build = info[@"CFBundleVersion"];
 #ifdef DEBUG
-    _Debug = true;
-#endif
-#ifdef APP_TEST
-    _Test = true;
+    _DevUser = info[@"Dev1"];
+    _isFish = [_DevUser isEqualToString:@"fish"];
 #endif
     
     _Window = [UIApplication sharedApplication].windows.firstObject;
@@ -209,6 +512,12 @@
     
     _StatusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     _BottomSafeHeight = _Window.height - [UITabBarController new].tabBar.by;
+    
+    [UIViewController cc_hookSelector:@selector(viewDidLayoutSubviews) withOptions:AspectOptionAutomaticRemoval usingBlock:^(id<AspectInfo> ai) {
+        if (@available(iOS 11.0, *)) {
+            APP.BottomSafeHeight = ((UIViewController *)ai.instance).view.safeAreaInsets.bottom;
+        }
+    } error:nil];
 }
 
 
@@ -228,9 +537,6 @@
     _LoadingColor = UIColorRGB(238, 238, 238);
     _NavigationBarColor = UIColorRGB(243, 243, 243);
     _BackgroundColor = UIColorRGB(247, 247, 247);
-    _ShadeColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
-    _BlackColor = [UIColor blackColor];
-    _WhiteColor = [UIColor whiteColor];
 }
 
 @end

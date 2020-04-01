@@ -9,18 +9,18 @@
 #import "UGMosaicGoldViewController.h"
 #import "XYYSegmentControl.h"
 #import "UGActivityGoldTableViewController.h"
-#import "UGMosaicGoldController.h"
-
+#import "UGMosaicGoldMainViewController.h"
 @interface UGMosaicGoldViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)  NSArray *itemArray;
+@property (nonatomic,strong)  NSArray <NSString *> *itemArray;
 
 @end
 
 @implementation UGMosaicGoldViewController
--(void)skin{
-       [self buildSegment];
+- (void)skin {
+    [self buildSegment];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -46,56 +46,35 @@
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
     //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = [UIColor grayColor];
+    self.slideSwitchView.tabItemNormalColor = Skin1.textColor2;
     self.slideSwitchView.tabItemNormalFont = 13;
     //设置tab 被选中的颜色(可选)
-    self.slideSwitchView.tabItemSelectedColor = UGNavColor;
+    self.slideSwitchView.tabItemSelectedColor = Skin1.textColor1;
     //设置tab 背景颜色(可选)
-    self.slideSwitchView.tabItemNormalBackgroundColor = [UIColor whiteColor];;
+    self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.is23 ?RGBA(135 , 135 ,135, 1) : Skin1.textColor4;
     //设置tab 被选中的标识的颜色(可选)
-    self.slideSwitchView.tabItemSelectionIndicatorColor = UGNavColor;
+    self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor1;
     [self.view addSubview:self.slideSwitchView];
     
 }
 
 #pragma mark - XYYSegmentControlDelegate
--(NSUInteger)numberOfTab:(XYYSegmentControl *)view
-{
+- (NSUInteger)numberOfTab:(XYYSegmentControl *)view {
     return [self.itemArray count];//items决定
 }
 
-
 ///待加载的控制器
--(UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number
-{
-    if (number == 0) {
-       
-        UGMosaicGoldController *vc = [[UGMosaicGoldController alloc] init];
-        return  vc;
-        
-    }
-    else {
-        
-        UGActivityGoldTableViewController *vc = [[UGActivityGoldTableViewController alloc] init];
-        return  vc;
-        
-        
-    }
-    
+- (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
+    return number ? [UGActivityGoldTableViewController new] : [UGMosaicGoldMainViewController new];
 }
 
--(void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number
-{
-    
+- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
     if (number == 0) {
-        UGMosaicGoldController *vc  = (UGMosaicGoldController *) view.viewArray[number];
-        [vc rootLoadData];
-     
+        UGMosaicGoldMainViewController *vc  = (UGMosaicGoldMainViewController *) view.viewArray[number];
     }
     else {
         UGActivityGoldTableViewController *vc  = (UGActivityGoldTableViewController *) view.viewArray[number];
         [vc rootLoadData];
-        
     }
 }
 @end

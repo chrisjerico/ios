@@ -22,8 +22,8 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGSignInScrHeaderView" owner:self options:0].firstObject;
         self.frame = frame;
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-
+        [self setBackgroundColor: Skin1.bgColor];
+       
     }
     return self;
 }
@@ -34,7 +34,10 @@
     
     NSBundle *bundle=[NSBundle mainBundle];
     NSArray *objs=[bundle loadNibNamed:@"UGSignInScrHeaderView" owner:nil options:nil];
+    
     return [objs lastObject];
+    
+
     
 }
 

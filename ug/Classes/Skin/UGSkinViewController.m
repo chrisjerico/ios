@@ -16,7 +16,7 @@
 
 //@property (nonatomic, strong) UIScrollView *mUIScrollView;
 @property (nonatomic, strong) UICollectionView *collectionView ;
-@property (nonatomic, strong) NSMutableArray *colorDataArray;
+@property (nonatomic, strong) NSMutableArray<UIColor *> *colorDataArray;
 @property (nonatomic, strong)UILabel *tiplabel;
 
 @property (nonatomic, strong)UIButton *default_button;
@@ -288,7 +288,16 @@
 //    [[UGSkinManagers shareInstance] resetNavbarAndTabBarBgColor:str];
 //    
 //     SANotificationEventPost(UGNotificationWithSkinSuccess, nil);
-
+    
+    Skin1.bgColor.cc_userInfo[@"colorName"] = @"bgColor";
+    
+    
+//    self.view.backgroundColor = Skin1.bgColor;
+//    self.view.backgroundColor = Skin1.cellBgColor;
+//    self.view.layer.backgroundColor = Skin1.bgColor.CGColor;
+    UILabel *lb;
+    lb.textColor = Skin1.textColor1;
+    lb.backgroundColor = Skin1.bgColor;
 }
 
 #pragma mark -其他方法

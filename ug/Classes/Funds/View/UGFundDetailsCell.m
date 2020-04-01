@@ -23,6 +23,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.contentView setBackgroundColor:Skin1.textColor4];
+    [self.timeLabel setTextColor:Skin1.textColor1];
+    [self.changeAmountLabel setTextColor:Skin1.textColor1];
+    [self.typeLabel setTextColor:Skin1.textColor1];
+    [self.balanceLabel setTextColor:Skin1.textColor1];
      
 }
 

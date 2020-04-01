@@ -38,7 +38,12 @@
 //         [self.tableView registerNib:[UINib nibWithNibName:@"UGSingInHistoryTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:historyHeaderViewid];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 5;
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+
+        if (Skin1.isBlack) {
+            [self setBackgroundColor: Skin1.bgColor];
+        } else {
+            [self setBackgroundColor:[UIColor whiteColor]];
+        }
 
     }
     return self;
@@ -49,7 +54,7 @@
     [self hiddenSelf];
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<UGSignInHistoryModel *> *)dataArray {
     _dataArray = dataArray;
     [self.tableView reloadData];
     
@@ -124,6 +129,12 @@
     
     maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    
+    if (Skin1.isBlack) {
+        [_title1Label setTextColor:[UIColor whiteColor]];
+    } else {
+        [_title1Label setTextColor:[UIColor blackColor]];
+    }
     
     [maskView addSubview:view];
     [window addSubview:maskView];

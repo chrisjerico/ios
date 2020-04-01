@@ -13,11 +13,11 @@
 #import "UGIntegralConvertController.h"
 #import "UGIntegralConvertRecordController.h"
 #import "UGMissionLevelController.h"
-
+#import "UGMissionMainViewController.h"
 @interface UGMissionCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray *viewConterllers;
+@property (nonatomic, strong) NSArray <UIViewController *> *viewConterllers;
 
 @end
 
@@ -31,7 +31,7 @@ static NSString *missionCellid = @"missionCellid";
         
         self.frame = frame;
         
-            UGMissionListController *missionListVC = [[UGMissionListController alloc] initWithStyle:UITableViewStyleGrouped];
+            UGMissionMainViewController *missionListVC = [[UGMissionMainViewController alloc] init];
         
             UIStoryboard *storyboard0 = [UIStoryboard storyboardWithName:@"UGIntegralConvertController" bundle:nil];
             UGIntegralConvertController *convertVC = [storyboard0 instantiateInitialViewController];
@@ -43,7 +43,13 @@ static NSString *missionCellid = @"missionCellid";
         
         self.viewConterllers = @[missionListVC,convertVC,recordVC,levelVC];
         [self initCollectionView];
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        
+        if (Skin1.isBlack) {
+            [self setBackgroundColor: [UIColor clearColor]];
+        }
+        else {
+            [self setBackgroundColor: [UIColor whiteColor]];
+        }
 
         
     }

@@ -20,20 +20,29 @@
     self.nameLabel.layer.cornerRadius= self.nameLabel.height / 2;
     self.nameLabel.layer.masksToBounds = YES;
     self.nameLabel.backgroundColor = UGBlueColor;
-    
 }
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
     self.nameLabel.text = item.name;
-    if (item.select) {
-        
-        self.layer.borderColor = UGNavColor.CGColor;
-        self.layer.borderWidth = 1;
-    }else {
-        
-        self.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    self.layer.borderWidth = item.select ? 1 : 0.5;
+    
+    if (Skin1.isBlack||Skin1.is23) {
+        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+            self.backgroundColor = item.select ? RGBA(72, 146, 209, 1):  Skin1.homeContentSubColor;
+        } else {
+            self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        }
+        self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
+    } else {
+        self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        if (APP.isBorderNavBarBgColor) {
+            self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
+        }
+        self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
     }
 }
+
 
 @end

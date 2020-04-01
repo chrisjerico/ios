@@ -23,16 +23,19 @@
     self.bottomLine.hidden = YES;
     self.leftPoint.layer.cornerRadius = self.leftPoint.width / 2;
     self.leftPoint.layer.masksToBounds = YES;
-    self.bottomLine.backgroundColor =  UGRGBColor(223, 222, 227);
+    self.bottomLine.backgroundColor = Skin1.isBlack||Skin1.is23 ? Skin1.textColor2 : (APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor]);
+    if (APP.isRedWhite) {
+        self.bottomLine.backgroundColor = RGBA(231, 213, 231, 1.0);
+    }
 }
 
 - (void)setItem:(UGGameplayModel *)item {
     _item = item;
     self.titleLabel.text = item.name;
     if (item.select) {
-        self.leftPoint.backgroundColor = UGNavColor;
+        self.leftPoint.backgroundColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
     } else {
-        self.leftPoint.backgroundColor = UGRGBColor(195, 195, 196);
+        self.leftPoint.backgroundColor = APP.betBgIsWhite ? UGRGBColor(195, 195, 196) : APP.TextColor1;
     }
 }
 
@@ -43,18 +46,41 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    if (selected) {
-        self.titleLabel.textColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        self.bottomLine.hidden = NO;
-        self.layer.borderColor = UGNavColor.CGColor;
-        self.layer.borderWidth = 1;
-        self.leftPoint.backgroundColor = UGNavColor;
-    } else {
-        self.titleLabel.textColor = [UIColor blackColor];
-        self.bottomLine.hidden = YES;
-        self.layer.borderWidth = 0.7;
+    
+    self.bottomLine.hidden = !selected;
+    self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:14];
+    self.layer.borderWidth = selected * APP.borderWidthTimes;
+    
+    if (Skin1.isBlack||Skin1.is23) {
+        self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
+        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
-        self.leftPoint.backgroundColor = UGRGBColor(195, 195, 196);
+        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+            self.backgroundColor = selected ? RGBA(72, 146, 209, 1):  RGBA(102, 88, 78, 0.8);
+        }
+    } else {
+        if (APP.betBgIsWhite) {
+            self.titleLabel.textColor = selected ? Skin1.navBarBgColor : Skin1.textColor1;
+            self.leftPoint.backgroundColor = selected ? Skin1.navBarBgColor : UGRGBColor(195, 195, 196);
+            self.layer.borderColor = Skin1.navBarBgColor.CGColor;
+        } else {
+            self.titleLabel.textColor = selected ? [UIColor whiteColor] : Skin1.textColor1;
+            self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+            self.layer.borderColor = [UIColor whiteColor].CGColor;
+            self.layer.borderWidth = selected ? 0.5 : 0;
+            if (APP.isBorderNavBarBgColor) {
+                self.backgroundColor = selected ?[Skin1.navBarBgColor colorWithAlphaComponent:0.35]:[UIColor clearColor];
+            }
+
+        }
+    }
+    
+    if (APP.isRedWhite) {
+        self.titleLabel.textColor = selected ? [UIColor whiteColor] : Skin1.textColor1;
+        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+        self.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.layer.borderWidth = selected ? 0.5 : 0;
+        self.backgroundColor = selected ?Skin1.navBarBgColor :[UIColor clearColor];
     }
 }
 

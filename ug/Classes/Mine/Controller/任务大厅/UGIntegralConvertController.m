@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGMissionLevelModel *> *dataArray;
 
 
 @end
@@ -52,19 +52,30 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+
     self.convertView.layer.cornerRadius = 3;
     self.convertView.layer.masksToBounds = YES;
-    self.convertView.layer.borderColor = UGBackgroundColor.CGColor;
+    self.convertView.layer.borderColor = Skin1.bgColor.CGColor;
     self.convertView.layer.borderWidth = 1;
     self.submitButton.layer.cornerRadius = 3;
     self.submitButton.layer.masksToBounds = YES;
     self.inputTextF.delegate = self;
     [self initCollectionView];
     
+    if (Skin1.isBlack) {
+        self.view.backgroundColor = Skin1.bgColor;
+        [self.titleLabel setTextColor:Skin1.textColor1];
+        [self.submitButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+        
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        [self.titleLabel setTextColor:[UIColor blackColor]];
+        [self.submitButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    }
+    
 
     
-        [self getSystemConfig];
+    [self getSystemConfig];
 }
 
 - (IBAction)submitButton:(id)sender {
@@ -170,7 +181,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
     return YES;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGMissionLevelModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
         UGMissionLevelModel *model0 =  [[UGMissionLevelModel alloc] init];
@@ -201,6 +212,9 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
 
 //积分兑换
 - (void)creditsExchangeData:(NSString *)money {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"money":money
                              };
@@ -234,25 +248,40 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
             UGSystemConfigModel.currentConfig = config;
             
            
-            
-            if ([config.isIntToMoney isEqualToString:@"0"]) {
-                [self.submitButton setEnabled:NO];
-                self.submitButton.alpha = 0.4;
-                [self.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
-                [self.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
+            if (Skin1.isBlack) {
+                if ([config.isIntToMoney isEqualToString:@"0"]) {
+                    [self.submitButton setEnabled:NO];
+                    self.submitButton.alpha = 0.4;
+                    [self.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
+                    [self.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
+                } else {
+                    [self.submitButton setEnabled:YES];
+                    self.submitButton.alpha = 1;
+                    [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
+                    [self.submitButton setBackgroundColor:[UIColor whiteColor]];
+                }
+                
             } else {
-                [self.submitButton setEnabled:YES];
-                self.submitButton.alpha = 1;
-                [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
-                [self.submitButton setBackgroundColor:[[UGSkinManagers shareInstance] setNavbgColor]];
+                if ([config.isIntToMoney isEqualToString:@"0"]) {
+                    [self.submitButton setEnabled:NO];
+                    self.submitButton.alpha = 0.4;
+                    [self.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
+                    [self.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
+                } else {
+                    [self.submitButton setEnabled:YES];
+                    self.submitButton.alpha = 1;
+                    [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
+                    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
+                }
             }
+
             
-            NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币",config.missionBili,config.missionName];
+            NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币", config.missionBili ? : @"?", config.missionName];
             self.titleLabel.text = str1;
             self.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
-            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }

@@ -15,48 +15,47 @@
 
 @end
 @implementation UGhomeRecommendCollectionViewCell
-//-(void)skin{
-//     [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-//}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.backgroundColor = Skin1.homeContentColor;
+    self.nameLabel.textColor = Skin1.textColor1;
+    self.clipsToBounds = false;
     self.layer.cornerRadius = 10;
-    self.layer.masksToBounds = YES;
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
-    [self setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-    
-//    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-//        
-//        [self skin];
-//    });
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, 1);
+    self.layer.shadowRadius = 2;
+    self.layer.shadowOpacity = 0.1;
 }
 
 - (void)setItem:(UGYYPlatformGames *)item {
     _item = item;
-    self.nameLabel.text = [NSString stringWithFormat:@"%@系列",item.categoryName];
-   
-    if ([item.category isEqualToString:@"lottery"]) {
-         [self.imgView setImage:[UIImage imageNamed:@"cp"]];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@系列", item.categoryName];
+    NSDictionary *dict;
+    if (APP.lotteryHallCustomImgS) {
+      
+        dict = @{
+              @"lottery":[NSString stringWithFormat:@"cp_%@",APP.SiteId],   // 彩票系列
+              @"game":[NSString stringWithFormat:@"dz_%@",APP.SiteId],      // 电子系列
+              @"fish":[NSString stringWithFormat:@"by_%@",APP.SiteId],      // 捕鱼系列
+              @"card":[NSString stringWithFormat:@"qp_%@",APP.SiteId],      // 棋牌系列
+              @"sport":[NSString stringWithFormat:@"ty_%@",APP.SiteId],     // 体育系列
+              @"real":[NSString stringWithFormat:@"zr_%@",APP.SiteId],      // 真人系列
+              @"esport":[NSString stringWithFormat:@"dj_%@",APP.SiteId],    // 电竞系列
+          };
+    } else {
+        dict = @{
+              @"lottery":@"cp",   // 彩票系列
+              @"game":@"dz",      // 电子系列
+              @"fish":@"by",      // 捕鱼系列
+              @"card":@"qp",      // 棋牌系列
+              @"sport":@"ty",     // 体育系列
+              @"real":@"zr",      // 真人系列
+              @"esport":@"dj",    // 电竞系列
+          };
     }
-    else  if([item.category isEqualToString:@"game"]) {
-         [self.imgView setImage:[UIImage imageNamed:@"dz"]];
-    }
-    else  if([item.category isEqualToString:@"fish"]) {
-         [self.imgView setImage:[UIImage imageNamed:@"by"]];
-    }
-    else  if([item.category isEqualToString:@"card"]) {
-         [self.imgView setImage:[UIImage imageNamed:@"qp"]];
-    }
-    else  if([item.category isEqualToString:@"sport"]) {
-         [self.imgView setImage:[UIImage imageNamed:@"ty"]];
-    }
-    else  if([item.category isEqualToString:@"real"]) {
-         [self.imgView setImage:[UIImage imageNamed:@"zr"]];
-    }
-   
-   
+
+    [self.imgView setImage:[UIImage imageNamed:dict[item.category]]];
 }
 
 - (void)setItemGame:(UGYYGames *)itemGame {

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LineMainListCollectionViewCell" id="gTV-IL-0wX" customClass="LineMainListCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="152" height="137"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="152" height="137"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdQ-3O-jG2">
+                        <rect key="frame" x="31" y="0.0" width="90" height="90"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkS-gL-IfS">
+                                <rect key="frame" x="29" y="48" width="32.5" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="kZq-uy-4Zx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.76426142450000001" green="0.25971049070000002" blue="0.23527345059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="钱Label"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wk3-yp-ybQ">
+                                <rect key="frame" x="12.5" y="20" width="65.5" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="EKS-pS-Clp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0Q-VW-GIg">
+                                <rect key="frame" x="32.5" y="45" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="JFY-nU-rxK"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="hoD-6t-Ybr"/>
+                                    <constraint firstAttribute="width" constant="25" id="ulF-lG-9iF"/>
+                                    <constraint firstAttribute="height" constant="25" id="x68-dk-Zqo"/>
+                                </constraints>
+                                <state key="normal" image="shuaxin"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="加载Btn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="refreshClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="S3F-ck-iy5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m0Q-VW-GIg" firstAttribute="centerX" secondItem="vdQ-3O-jG2" secondAttribute="centerX" id="PGd-QA-VFL"/>
+                            <constraint firstItem="HkS-gL-IfS" firstAttribute="centerX" secondItem="vdQ-3O-jG2" secondAttribute="centerX" id="Rl0-uW-1Fb"/>
+                            <constraint firstItem="wk3-yp-ybQ" firstAttribute="top" secondItem="vdQ-3O-jG2" secondAttribute="top" constant="20" id="SNk-ci-9UZ"/>
+                            <constraint firstItem="wk3-yp-ybQ" firstAttribute="centerX" secondItem="vdQ-3O-jG2" secondAttribute="centerX" id="TNP-eU-hxA"/>
+                            <constraint firstAttribute="height" constant="90" id="fYE-tF-SPV"/>
+                            <constraint firstAttribute="width" constant="90" id="oGS-Wa-dU0"/>
+                            <constraint firstAttribute="bottom" secondItem="HkS-gL-IfS" secondAttribute="bottom" constant="20" id="pdG-tS-KFD"/>
+                            <constraint firstAttribute="bottom" secondItem="m0Q-VW-GIg" secondAttribute="bottom" constant="20" id="vrc-K9-reF"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="vdQ-3O-jG2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Vce-U9-XTj"/>
+                <constraint firstItem="vdQ-3O-jG2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zHh-Zu-vie"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="152" height="137"/>
+            <connections>
+                <outlet property="balanceLabel" destination="HkS-gL-IfS" id="CPd-0z-OCv"/>
+                <outlet property="nameLabel" destination="wk3-yp-ybQ" id="iyA-2t-u3I"/>
+                <outlet property="refreshButton" destination="m0Q-VW-GIg" id="Yef-hM-0bQ"/>
+            </connections>
+            <point key="canvasLocation" x="-65.217391304347828" y="67.96875"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="shuaxin" width="24" height="24"/>
+    </resources>
+</document>

@@ -13,11 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGChanglongBetRecordModel <NSObject>
 
 @end
+
+
+// 长龙助手投注记录
+// c=report&a=getUserRecentBet
 @interface UGChanglongBetRecordModel : UGModel<UGChanglongBetRecordModel>
 
 @property (nonatomic, assign) BOOL isWin;
 @property (nonatomic, strong) NSString *lotteryNo;
-@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, assign) NSInteger status; 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *playId;
 @property (nonatomic, strong) NSString *money;
@@ -41,9 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *rebate;
 @property (nonatomic, strong) NSString *resultMoney;
 @property (nonatomic, strong) NSString *msg;
+@property (nonatomic, assign) BOOL isAllowCancel;
 
+// 自定义字段
 @property (nonatomic, strong) NSString *pic;
-
 
 @end
 

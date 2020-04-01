@@ -33,6 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL hasLogin;        /**<   是否已登录 */
 
 @property (nonatomic, assign) BOOL canGet;          /**<   是否可以领红包 1可以 0不可以 */
+@property (nonatomic, assign) NSInteger attendedTimes;   /**<   用户已领取的次数 */
+@property (nonatomic, assign) NSInteger attendTimesLimit;/**<   用户总共可以领取的次数 */
+
 
 @property (nonatomic, strong) NSString *username;   /**<   用户名 */
 @property (nonatomic, strong) NSString *intro;      /**<   活动介绍 */

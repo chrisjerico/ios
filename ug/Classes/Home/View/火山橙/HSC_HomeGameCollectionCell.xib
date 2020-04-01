@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HSC_HomeGameCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="327" height="133"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="327" height="133"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cwe-D2-2so">
+                        <rect key="frame" x="20" y="36.5" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="cwe-D2-2so" secondAttribute="height" id="0bE-S2-6F8"/>
+                            <constraint firstAttribute="width" constant="60" id="ayA-aN-glB"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IXt-7k-7eB">
+                        <rect key="frame" x="90" y="49" width="227" height="35.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="香港六合彩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJ3-6a-Nuq">
+                                <rect key="frame" x="0.0" y="0.0" width="227" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每周开奖3期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuC-BD-DcL">
+                                <rect key="frame" x="0.0" y="22" width="227" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hCe-HL-8Yl">
+                        <rect key="frame" x="326" y="0.0" width="2" height="36.5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="2" id="Q3v-cD-1Gz"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Q0-dt-1pG">
+                        <rect key="frame" x="326" y="96.5" width="2" height="36.5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="2" id="3hB-IP-I9i"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="3Q0-dt-1pG" secondAttribute="bottom" id="5we-Js-2Hy"/>
+                <constraint firstItem="3Q0-dt-1pG" firstAttribute="top" secondItem="cwe-D2-2so" secondAttribute="bottom" id="Avr-fW-SfD"/>
+                <constraint firstItem="cwe-D2-2so" firstAttribute="top" secondItem="hCe-HL-8Yl" secondAttribute="bottom" id="C2n-3t-KKe"/>
+                <constraint firstItem="cwe-D2-2so" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="Gcj-oz-l6B"/>
+                <constraint firstAttribute="trailing" secondItem="3Q0-dt-1pG" secondAttribute="trailing" constant="-1" id="LwO-6l-o3Q"/>
+                <constraint firstAttribute="trailing" secondItem="IXt-7k-7eB" secondAttribute="trailing" constant="10" id="Rl9-Kj-weu"/>
+                <constraint firstItem="hCe-HL-8Yl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="TKP-1f-jVv"/>
+                <constraint firstItem="IXt-7k-7eB" firstAttribute="leading" secondItem="cwe-D2-2so" secondAttribute="trailing" constant="10" id="W0g-wR-jvC"/>
+                <constraint firstItem="cwe-D2-2so" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="iN7-wV-HAN"/>
+                <constraint firstAttribute="trailing" secondItem="hCe-HL-8Yl" secondAttribute="trailing" constant="-1" id="jfe-To-uNl"/>
+                <constraint firstItem="IXt-7k-7eB" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="uh9-0X-h0g"/>
+            </constraints>
+            <size key="customSize" width="327" height="133"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="RuC-BD-DcL" id="JBl-e1-EKD"/>
+                <outlet property="itemImageView" destination="cwe-D2-2so" id="TWO-CY-8Fz"/>
+                <outlet property="itemLabel" destination="GJ3-6a-Nuq" id="0vg-dN-Wmx"/>
+            </connections>
+            <point key="canvasLocation" x="-642.75362318840587" y="144.97767857142856"/>
+        </collectionViewCell>
+    </objects>
+</document>

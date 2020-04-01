@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGSigInCodeViewController :UGViewController
-
+//得到日期列表数据
+- (void)getCheckinListData ;
 @end
 
 NS_ASSUME_NONNULL_END

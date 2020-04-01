@@ -93,6 +93,12 @@ NS_ASSUME_NONNULL_BEGIN
 //手动额度转换记录
 + (void)transferLogsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+// 额度一键转出，第一步：获取需要转出的真人ID
++ (void)oneKeyTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+// 额度一键转出，第二步：根据真人ID并发请求单游戏快速转出
++ (void)quickTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 //真人余额查询
 + (void)checkRealBalanceWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
@@ -134,6 +140,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //任务大厅
 + (void)centerWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//任务大厅分类 http://test10.6yc.com/wjapp/api.php?c=task&a=categories&token=SNNn1AN33aO3404nlaA33ZXN
++ (void)categoriesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
 //领取任务
 + (void)taskGetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
@@ -215,6 +224,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 //个人中心谷歌验证相关操作：(操作方法：gen:二维码生成, bind:绑定, unbind:解绑) http://test10.6yc.com/wjapp/api.php?c=secure&a=gaCaptcha&token=1p3xAJrRzQH8PMeCAo8Rze3X&action=gen
 + (void)secureGaCaptchaWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+
+//六合用户数据
++ (void)lhcdocgetUserInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+
+//聊天室数据
++ (void)chatgetTokenWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//给下级会员充值接口-/team/recharge
++ (void)teamRechargeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

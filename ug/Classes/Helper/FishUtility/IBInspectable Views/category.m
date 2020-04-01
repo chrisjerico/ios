@@ -8,7 +8,7 @@
 
 #import "category.h"
 #import "NSMutableAttributedString+Utils.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 #import "JRSwizzle.h"
 #import "RegExCategories.h"
 
@@ -16,20 +16,20 @@
 // ——————————————————————————————————————————————————
 
 @implementation UILabel (IBInspectableUtils)
-_ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
+_CCRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UILabel jr_swizzleMethod:@selector(textRectForBounds:limitedToNumberOfLines:) withMethod:@selector(zj_textRectForBounds:limitedToNumberOfLines:) error:nil];
-        [UILabel jr_swizzleMethod:@selector(drawTextInRect:) withMethod:@selector(zj_drawTextInRect:) error:nil];
+        [UILabel jr_swizzleMethod:@selector(textRectForBounds:limitedToNumberOfLines:) withMethod:@selector(cc_textRectForBounds:limitedToNumberOfLines:) error:nil];
+        [UILabel jr_swizzleMethod:@selector(drawTextInRect:) withMethod:@selector(cc_drawTextInRect:) error:nil];
     });
 }
 
-- (CGRect)zj_textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
+- (CGRect)cc_textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
     CGPoint padding = self.内边距;
     UIEdgeInsets insets = UIEdgeInsetsMake(padding.y, padding.x, padding.y, padding.x);
-    CGRect rect = [self zj_textRectForBounds:UIEdgeInsetsInsetRect(bounds, insets) limitedToNumberOfLines:numberOfLines];
+    CGRect rect = [self cc_textRectForBounds:UIEdgeInsetsInsetRect(bounds, insets) limitedToNumberOfLines:numberOfLines];
     
     rect.origin.x    -= insets.left;
     rect.origin.y    -= insets.top;
@@ -38,9 +38,9 @@ _ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
     return rect;
 }
 
-- (void)zj_drawTextInRect:(CGRect)rect {
+- (void)cc_drawTextInRect:(CGRect)rect {
     CGPoint padding = self.内边距;
-    [self zj_drawTextInRect:UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(padding.y, padding.x, padding.y, padding.x))];
+    [self cc_drawTextInRect:UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(padding.y, padding.x, padding.y, padding.x))];
 }
 
 - (CGPoint)内边距 {
@@ -61,19 +61,39 @@ _ZJRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 
 
 
+@interface _CCTextDelegateModel : NSObject<UITextFieldDelegate, UITextViewDelegate>
+@end
+@implementation _CCTextDelegateModel
++ (instancetype)shared {
+    static _CCTextDelegateModel *obj = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        obj = [_CCTextDelegateModel new];
+    });
+    return obj;
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    return true;
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    return true;
+}
+@end
 
 
 @implementation UITextField (IBInspectableUtils)
-_ZJRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_ZJRuntimeProperty_Assign(BOOL, 禁用符号, set禁用符号)
-_ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
+_CCRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
+_CCRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
+_CCRuntimeProperty_Assign(NSUInteger, 仅数字含小数, set仅数字含小数)
+_CCRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
+_CCRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
+_CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // 交换setDelegate:方法
-        [UITextField jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(zj_layoutSubviews) error:nil];
-        [UITextField jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(zj_setDelegate:) error:nil];
+        [UITextField jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(cc_layoutSubviews) error:nil];
+        [UITextField jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(cc_setDelegate:) error:nil];
         // 监听文本长度
         [[NSNotificationCenter defaultCenter] addObserverForName:UITextFieldTextDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
             UITextField *tf = note.object;
@@ -81,40 +101,45 @@ _ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
                 UITextPosition *position = [tf positionFromPosition:[tf markedTextRange].start offset:0];
                 if (!position && tf.text.length > tf.限制长度) {
                     tf.text = [tf.text substringToIndex:tf.限制长度];
-                    [HUDHelper showMsg:_NSString(@"不得超过%d字符", (int)tf.限制长度)];
+                    [HUDHelper showMsg:_NSString(@"不得超过%d个字符", (int)tf.限制长度)];
                 }
             }
         }];
     });
 }
-- (void)zj_layoutSubviews {
-    if (!self.delegate) {
-        zj_once_block(self, ^{
-            self.delegate = (id)self;
-        });
+- (void)cc_layoutSubviews {
+    if (!self.delegate && OBJOnceToken(self)) {
+        self.delegate = [_CCTextDelegateModel shared];
     }
-    [self zj_layoutSubviews];
+    [self cc_layoutSubviews];
 }
-- (void)zj_setDelegate:(id<UITextFieldDelegate>)delegate {
-    [self zj_setDelegate:delegate];
-    if ([delegate isKindOfClass:[NSObject class]]) {
-        zj_once_block(delegate, ^{
-            [(id)delegate aspect_hookSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
-                [aInfo.originalInvocation invoke];
-                // 过滤文本
-                UITextField *tf = aInfo.arguments.firstObject;
-                NSString *text = aInfo.arguments[2];
-                BOOL ret = true;
-                if (tf.仅数字)
-                    ret &= [text isMatch:RX(@"^[0-9]*$")];
-                else if (tf.禁用符号)
-                    ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
-                else if (tf.禁用特殊字符)
-                    ret &= [text isMatch:RX(@"^[\x20-\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
-                if (!ret)
-                    [aInfo.originalInvocation setReturnValue:&ret];
-            } error:nil];
-        });
+- (void)cc_setDelegate:(id<UITextFieldDelegate>)delegate {
+    [self cc_setDelegate:delegate];
+    if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
+        [(id)delegate cc_hookSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
+            [aInfo.originalInvocation invoke];
+            // 过滤文本
+            UITextField *tf = aInfo.arguments.firstObject;
+            NSRange range = [aInfo.arguments[1] rangeValue];
+            NSString *text = aInfo.arguments[2];
+            
+            for (NSString *c in tf.额外允许的字符) {
+                text = [text stringByReplacingOccurrencesOfString:c withString:@""];
+            }
+            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
+            
+            BOOL ret = true;
+            if (tf.仅数字)
+                ret &= [text isMatch:RX(@"^[0-9]*$")];
+            else if (tf.仅数字含小数)
+                ret &= [text isMatch:RX(_NSString(@"^[0-9]*[.]?[0-9]{0,%d}$", (int)tf.仅数字含小数))];
+            else if (tf.仅数字加字母)
+                ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
+            else if (tf.仅可见的ASCII)
+                ret &= [text isMatch:RX(@"^[\\x20-\\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
+            if (!ret)
+                [aInfo.originalInvocation setReturnValue:&ret];
+        } error:nil];
     }
 }
 @end
@@ -123,17 +148,19 @@ _ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
 
 
 @implementation UITextView (IBInspectableUtils)
-_ZJRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
-_ZJRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
-_ZJRuntimeProperty_Assign(BOOL, 禁用符号, set禁用符号)
-_ZJRuntimeProperty_Assign(BOOL, 禁用特殊字符, set禁用特殊字符)
-_ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
+_CCRuntimeProperty_Assign(NSUInteger, 限制长度, set限制长度)
+_CCRuntimeProperty_Assign(BOOL, 仅数字, set仅数字)
+_CCRuntimeProperty_Assign(NSUInteger, 仅数字含小数, set仅数字含小数)
+_CCRuntimeProperty_Assign(BOOL, 仅数字加字母, set仅数字加字母)
+_CCRuntimeProperty_Assign(BOOL, 仅可见的ASCII, set仅可见的ASCII)
+_CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字符)
+_CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // 交换setDelegate:方法
-        [UITextView jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(zj_layoutSubviews) error:nil];
-        [UITextView jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(zj_setDelegate:) error:nil];
+        [UITextView jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(cc_layoutSubviews) error:nil];
+        [UITextView jr_swizzleMethod:@selector(setDelegate:) withMethod:@selector(cc_setDelegate:) error:nil];
         // 监听文本长度
         [[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
             UITextView *tf = note.object;
@@ -141,40 +168,46 @@ _ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
                 UITextPosition *position = [tf positionFromPosition:[tf markedTextRange].start offset:0];
                 if (!position && tf.text.length > tf.限制长度) {
                     tf.text = [tf.text substringToIndex:tf.限制长度];
-                    [HUDHelper showMsg:_NSString(@"不得超过%d字符", (int)tf.限制长度)];
+                    [HUDHelper showMsg:_NSString(@"不得超过%d个字符", (int)tf.限制长度)];
                 }
             }
         }];
     });
 }
-- (void)zj_layoutSubviews {
-    if (!self.delegate) {
-        zj_once_block(self, ^{
-            self.delegate = (id)self;
-        });
+- (void)cc_layoutSubviews {
+    if (!self.delegate && OBJOnceToken(self)) {
+        self.delegate = [_CCTextDelegateModel shared];
     }
-    [self zj_layoutSubviews];
+    [self cc_layoutSubviews];
 }
-- (void)zj_setDelegate:(id<UITextViewDelegate>)delegate {
-    [self zj_setDelegate:delegate];
-    if ([delegate isKindOfClass:[NSObject class]]) {
-        zj_once_block(delegate, ^{
-            [(id)delegate aspect_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
-                [aInfo.originalInvocation invoke];
-                // 过滤文本
-                UITextView *tf = aInfo.arguments.firstObject;
-                NSString *text = aInfo.arguments[2];
-                BOOL ret = true;
-                if (tf.仅数字)
-                    ret &= [text isMatch:RX(@"^[0-9]*$")];
-                else if (tf.禁用符号)
-                    ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
-                else if (tf.禁用特殊字符)
-                    ret &= [text isMatch:RX(@"^[\x20-\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
-                if (!ret)
-                    [aInfo.originalInvocation setReturnValue:&ret];
-            } error:nil];
-        });
+- (void)cc_setDelegate:(id<UITextViewDelegate>)delegate {
+    [self cc_setDelegate:delegate];
+    if ([delegate isKindOfClass:[NSObject class]] && OBJOnceToken(delegate)) {
+        [(id)delegate cc_hookSelector:@selector(textView:shouldChangeTextInRange:replacementText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aInfo) {
+            [aInfo.originalInvocation invoke];
+            
+            // 过滤文本
+            UITextView *tf = aInfo.arguments.firstObject;
+            NSRange range = [aInfo.arguments[1] rangeValue];
+            NSString *text = aInfo.arguments[2];
+            
+            for (NSString *c in tf.额外允许的字符) {
+                text = [text stringByReplacingOccurrencesOfString:c withString:@""];
+            }
+            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
+            
+            BOOL ret = true;
+            if (tf.仅数字)
+                ret &= [text isMatch:RX(@"^[0-9]*$")];
+            else if (tf.仅数字含小数)
+                ret &= [text isMatch:RX(_NSString(@"^[0-9]*[.]?[0-9]{0,%d}$", (int)tf.仅数字含小数))];
+            else if (tf.仅数字加字母)
+                ret &= [text isMatch:RX(@"^[0-9A-Za-z]*$")];
+            else if (tf.仅可见的ASCII)
+                ret &= [text isMatch:RX(@"^[\\x20-\\x7E]*$")];    // 不使用原生的正则函数是因为，原生函数会把中文标点符号误认为ASCII符号而匹配通过，比如“。”->"." 或 “，”->","
+            if (!ret)
+                [aInfo.originalInvocation setReturnValue:&ret];
+        } error:nil];
     }
 }
 - (void)set内容紧贴边框:(BOOL)内容紧贴边框 {
@@ -185,32 +218,20 @@ _ZJRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
 @end
 
 
-@interface NSObject (IBInspectableUtils)
-@end
-@implementation NSObject (IBInspectableUtils)
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    return true;
-}
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    return true;
-}
-@end
-
-
 
 
 
 @implementation UISearchBar (IBInspectableUtils)
-_ZJRuntimeProperty_Retain(UIColor *, textColor, setTextColor)
-_ZJRuntimeProperty_Assign(CGFloat, fontSize, setFontSize)
+_CCRuntimeProperty_Retain(UIColor *, textColor, setTextColor)
+_CCRuntimeProperty_Assign(CGFloat, fontSize, setFontSize)
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UISearchBar jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(zjIBView_layoutSubviews) error:nil];
+        [UISearchBar jr_swizzleMethod:@selector(layoutSubviews) withMethod:@selector(ccIBView_layoutSubviews) error:nil];
     });
 }
-- (void)zjIBView_layoutSubviews {
-    [self zjIBView_layoutSubviews];
+- (void)ccIBView_layoutSubviews {
+    [self ccIBView_layoutSubviews];
     self.textField.font = [UIFont systemFontOfSize:self.fontSize];
     self.textField.textColor = self.textColor;
 }
@@ -220,6 +241,18 @@ _ZJRuntimeProperty_Assign(CGFloat, fontSize, setFontSize)
             return (id)view;
     }
     return nil;
+}
+@end
+
+
+
+
+
+
+@implementation UISegmentedControl (IBInspectableUtils)
+- (UIColor *)textColor1 { return nil; }
+- (void)setTextColor1:(UIColor *)textColor1 {
+    [self setTitleTextAttributes:@{NSForegroundColorAttributeName:textColor1} forState:UIControlStateNormal];
 }
 @end
 

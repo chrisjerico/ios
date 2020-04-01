@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *typeName;
+@property (nonatomic, strong) NSString *from_id;
 
 @end
 
@@ -47,16 +48,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *maxMoney;       /**<   单注最高投注金额 */
 @property (nonatomic, strong) NSString *maxTurnMoney;   /**<   单期最高投注金额 */
 @property (nonatomic, assign) BOOL isBan;
+@property (nonatomic, strong) NSString *from_id;
 
 
 @property (nonatomic, strong) NSString *rebate;
 @property (nonatomic, assign) BOOL enable;              /**<   是否启用：0=否，1=是 */
+@property (nonatomic, assign) BOOL gameEnable;             /**<   是否启用：0=否，1=是   自己加的  == UGGameplaySectionModel 的enable*/
 @property (nonatomic, strong) NSString *groupNum;
 @property (nonatomic, strong) NSString *groupColor;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *money;
 
+// 自定义参数
 @property (nonatomic, assign) BOOL select;
+@property (nonatomic, strong) NSString *typeName2;
 
 @end
 
@@ -70,11 +75,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, assign) BOOL isShow;
 @property (nonatomic, assign) BOOL isBan;               
-@property (nonatomic, assign) BOOL enable;              /**<   是否启用，0否，1是 */
-@property (nonatomic, strong) NSString *alias;          /**<   玩法名 */
-@property (nonatomic, strong) NSArray *lhcOddsArray;    /**<   六合彩合肖玩法赔率 */
+@property (nonatomic, assign) BOOL enable;                      /**<   是否启用，0否，1是 */
+@property (nonatomic, strong) NSString *alias;                  /**<   玩法名 */
+@property (nonatomic, strong) NSArray<UGGameBetModel> *lhcOddsArray;            /**<   六合彩合肖玩法赔率 */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *list;    /**<   号码ModelList */
-
+@property (nonatomic, strong) NSArray<UGGameBetModel> *zxbzlist;            /**<  自选不中下注的数组 */
 @end
 
 @protocol UGGameplayModel <NSObject>

@@ -42,7 +42,7 @@
         
         //初始化子视图
         [self initSubview];
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        [self setBackgroundColor: Skin1.bgColor];
 
         //初始化数据
         
@@ -58,7 +58,7 @@
     
     _item = item;
  
-    NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",UGScreenW - 10,self.item.win_apply_content];
+    NSString *str = [APP htmlStyleString:self.item.win_apply_content];
     NSAttributedString *__block attStr = [[NSAttributedString alloc] init];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         attStr = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
@@ -250,7 +250,7 @@
             button.tag = i;
            
             CGRect frame = button.frame;
-            frame.size.width = [CMCommon getLabelWidthWithText:[quickAmountArray objectAtIndex:i] stringFont:[UIFont systemFontOfSize:9.0] allowHeight:15] + 20;
+            frame.size.width = [CMCommon getLabelWidthWithText:[quickAmountArray objectAtIndex:i] stringFont:[UIFont systemFontOfSize:9.0] allowWidth:15] + 20;
             frame.origin.x = beginX;
             frame.origin.y = beginY;
             frame.size.height = 15.0;

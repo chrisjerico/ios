@@ -35,10 +35,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *curLevel1Label;
 @property (weak, nonatomic) IBOutlet UILabel *nextLevel2Label;
 
-
-@property (weak, nonatomic) IBOutlet UILabel *missionLevelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextLevelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nextLevelNumLabel;
 @property (weak, nonatomic) IBOutlet UIView *progressView;
 @property (weak, nonatomic) IBOutlet UIButton *refreshBalanceButton;
 
@@ -55,15 +51,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;//积分，暂时隐藏
 @property (weak, nonatomic) IBOutlet UILabel *taskRewradTitleLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *waveUImageV;
 
 @end
 
 @implementation UGMissionCenterViewController
--(void)skin{
-    
-    [self initView];
-    
+
+static NSString *__title = nil;
+
++ (void)setTitle:(NSString *)title {
+    __title = title;
 }
+
+- (void)skin {
+    [self initView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -72,41 +75,53 @@
         
     });
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
-
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self setupUserInfo];
+    });
     [self initView];
 
 }
 
--(void)initView{
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self setupUserInfo];
+}
+
+- (void)initView {
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
-    self.navigationItem.title = @"任务大厅";
-    self.view.backgroundColor = UGBackgroundColor;
-    self.userInfoView.backgroundColor = UGNavColor;
+    self.navigationItem.title = __title.length ? __title : @"任务中心";
+
+    self.userInfoView.backgroundColor = Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
     self.avaterImageView.layer.masksToBounds = YES;
     self.levelNameLabel.layer.cornerRadius = self.levelNameLabel.height / 2;
     self.levelNameLabel.layer.masksToBounds = YES;
-    self.nextLevelLabel.layer.cornerRadius = self.nextLevelLabel.height / 2;
-    self.nextLevelLabel.layer.masksToBounds = YES;
-    self.view.backgroundColor = UGBackgroundColor;
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressLayer.path = [self progressPathWithProgress:0.3].CGPath;
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
-    self.progressView.backgroundColor = UGBackgroundColor;
+    self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
     
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];
     self.waveView.backgroundColor = [UIColor clearColor];
-    self.waveBottomView.backgroundColor = [[UGSkinManagers shareInstance] setTabbgColor];
-    self.waveView.realWaveColor = [[UGSkinManagers shareInstance] setTabbgColor];
+    self.waveBottomView.backgroundColor = Skin1.tabBarBgColor;
+    self.waveView.realWaveColor = Skin1.tabBarBgColor;
     self.waveView.maskWaveColor = [UIColor clearColor];
     self.waveView.waveHeight = 10;
     [self.waveView startWaveAnimation];
+    
+    if (Skin1.isBlack) {
+        [_waveUImageV setHidden:YES];
+        self.view.backgroundColor = Skin1.bgColor;
+    }
+    else {
+        [_waveUImageV setHidden:NO];
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     
     [self.view addSubview:self.titleCollectionView];
     [self.view addSubview:self.missionCollectionView];
@@ -114,7 +129,7 @@
     WeakSelf
     self.titleCollectionView.titleSelectBlock = ^(NSInteger index,NSString *title) {
         weakSelf.missionCollectionView.selectIndex = index;
-        weakSelf.title = title;
+//        weakSelf.title = title;
     };
     
     self.missionCollectionView.selectIndexBlock = ^(NSInteger selectIndex) {
@@ -163,9 +178,11 @@
 
 - (UIBezierPath *)progressPathWithProgress:(CGFloat)progress
 {
+    if (progress < 0.0001) 
+        return nil;
     UIBezierPath *path = [UIBezierPath bezierPath];
-    CGPoint startPoint = (CGPoint){0,CGRectGetHeight(self.progressView.frame)/2};
-    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress,startPoint.y};
+    CGPoint startPoint = (CGPoint){0, CGRectGetHeight(self.progressView.frame)/2};
+    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress, startPoint.y};
     [path moveToPoint:startPoint];
     [path addLineToPoint:endPoint];
     [path closePath];
@@ -177,7 +194,7 @@
     if (!_progressLayer) {
         _progressLayer = [self defaultLayer];
         _progressLayer.lineWidth = self.progressView.height;
-        _progressLayer.strokeColor = UGRGBColor(95, 190, 249).CGColor;
+        _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
     }
     return _progressLayer;
 }
@@ -219,7 +236,7 @@
     NSLog(@"imagerStr = %@",imagerStr);
     
     if (![CMCommon stringIsNull:user.curLevelGrade]) {
-        if (user.curLevelGrade.length>4) {
+        if (user.curLevelGrade.length>=4) {
             NSString *subStr = [user.curLevelGrade substringFromIndex:3];
             
             int levelsInt = [subStr intValue];
@@ -245,7 +262,7 @@
     }
     
     if (![CMCommon stringIsNull:user.nextLevelGrade]) {
-        if (user.nextLevelGrade.length>4) {
+        if (user.nextLevelGrade.length>=4) {
             NSString *sub2Str = [user.nextLevelGrade substringFromIndex:3];
             
             int levels2Int = [sub2Str intValue];
@@ -275,9 +292,8 @@
     double floatString = [user.balance doubleValue];
     self.balanceLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
     //进度条
-    float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
-    self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
-    
+    double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
+    self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
 }
 
 
@@ -294,13 +310,9 @@
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
             [self setupUserInfo];
-            
-             [self stopAnimation];
-            
-        } failure:^(id msg) {
-            
             [self stopAnimation];
-
+        } failure:^(id msg) {
+            [self stopAnimation];
         }];
     }];
 }
@@ -308,20 +320,23 @@
 
 #pragma mark - IBAction
 
-// 返回上一页
+//去会员中心
 - (IBAction)backCick:(id)sender {
     
-    if ([self.navigationController.viewControllers.firstObject isEqual:self])
-    {
-        //去会员中心
-         UGMineSkinViewController * viewController = [[UGMineSkinViewController alloc] init];
-         [self.navigationController pushViewController:viewController animated:YES];
-    }
-    else
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    // 会员中心
+       UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMineSkinViewController.class keyPath:@"class"];
+       if (vc) {
+           [NavController1 popToViewController:vc animated:false];
+       } else {
 
+           [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
+       }
+//    if ([self.navigationController.viewControllers.lastObject isEqual:self]) {
+//        //去会员中心
+//        [self.navigationController pushViewController:[UGMineSkinViewController new] animated:YES];
+//    } else {
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
 }
 
 // 刷新余额

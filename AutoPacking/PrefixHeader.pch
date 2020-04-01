@@ -1,0 +1,28 @@
+//
+//  PrefixHeader.pch
+//  AutoPacking
+//
+//  Created by fish on 2019/12/4.
+//  Copyright © 2019 fish. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define __weakSelf_(__self) __weak typeof(self) __self = self
+#define __blockSelf_(__self) __block typeof(self) __self = self
+#define __weak_Obj_(obj, name) __weak typeof(obj) name = obj
+#define __block_Obj_(obj, name) __block typeof(obj) name = obj
+#define __block_ElementaryDataType(variable, name) __block typeof(variable) *name = &variable
+
+#define _NSString(fmt, ...)  [NSString stringWithFormat:(fmt), ##__VA_ARGS__]
+
+#import "MJExtension.h"
+#import "CCNetworkRequests2.h"
+#import "NSTask+Block.h"
+
+#import "SiteModel.h"
+#import "PathDefine.h"
+
+
+#endif /* PrefixHeader_pch */

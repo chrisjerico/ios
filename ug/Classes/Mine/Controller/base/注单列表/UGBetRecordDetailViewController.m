@@ -28,30 +28,31 @@
 @end
 
 @implementation UGBetRecordDetailViewController
--(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
+    [self.view setBackgroundColor: Skin1.bgColor];
     self.navigationItem.title = @"注单详情";
     self.cancelBetButton.layer.cornerRadius = 3;
     self.cancelBetButton.layer.masksToBounds = YES;
+    self.titleLabel.textColor = Skin1.textColor1;
+    self.issueLabel.textColor = Skin1.textColor1;
+    self.betTimeLabel.textColor = Skin1.textColor1;
+    self.orderNoLabel.textColor = Skin1.textColor1;
+    self.winAmountLabel.textColor = Skin1.textColor1;
+    self.playTitleLabel.textColor = Skin1.textColor3;
+    self.resultMoneyLabel.textColor = Skin1.textColor3;
+    FastSubViewCode(self.view);
+    subLabel(@"投注时间Label").textColor = Skin1.textColor1;
+    subLabel(@"投注单号Label").textColor = Skin1.textColor1;
+    subLabel(@"投注金额Label").textColor = Skin1.textColor1;
+    subLabel(@"派奖金额Label").textColor = Skin1.textColor1;
+    subLabel(@"开奖号码Label").textColor = Skin1.textColor1;
     [self setupInfo];
 }
 
 - (void)setupInfo {
-    if (self.item.status) {
-        self.cancelBetButton.hidden = YES;
-    } else {
-        self.cancelBetButton.hidden = ![UGSystemConfigModel currentConfig].allowMemberCancelBet;
-    }
+    self.cancelBetButton.hidden = !self.item.isAllowCancel;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:self.item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = self.item.title;
     self.issueLabel.text = [NSString stringWithFormat:@"第%@期",self.item.issue];
@@ -92,7 +93,9 @@
 }
 
 - (void)cancelBetWith {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"orderId":self.item.orderNo
                              };

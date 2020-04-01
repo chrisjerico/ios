@@ -41,6 +41,8 @@ UIActionSheetDelegate> {
 
 @implementation QDWebViewController
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,7 +54,7 @@ UIActionSheetDelegate> {
     if (self.enterGame) {
         self.fd_prefersNavigationBarHidden = YES;
         [self.navigationController setNavigationBarHidden:YES];
-        self.webView.frame = self.view.bounds;
+        self.webView.frame = CGRectMake(0, k_Height_StatusBar, UGScreenW, UGScerrnH - k_Height_StatusBar);
         AppDelegate  *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appDelegate.allowRotation = 1;
         
@@ -88,7 +90,7 @@ UIActionSheetDelegate> {
     }
     
     // 退出页面前切换回竖屏
-    [self.navigationController aspect_hookSelector:@selector(popViewControllerAnimated:) withOptions:AspectPositionBefore usingBlock:^(id <AspectInfo>ai) {
+    [self.navigationController cc_hookSelector:@selector(popViewControllerAnimated:) withOptions:AspectPositionBefore usingBlock:^(id <AspectInfo>ai) {
         AppDelegate  *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appDelegate.allowRotation = 0;
         
@@ -107,11 +109,11 @@ UIActionSheetDelegate> {
 }
 
 - (BOOL)prefersStatusBarHidden {
-    return YES;// 返回YES表示隐藏，返回NO表示显示
+    return NO;// 返回YES表示隐藏，返回NO表示显示
 }
 
 - (void)viewWillLayoutSubviews {
-    self.webView.frame = self.view.bounds;
+    self.webView.frame = CGRectMake(0, k_Height_StatusBar, UGScreenW, UGScerrnH - k_Height_StatusBar);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -138,8 +140,8 @@ UIActionSheetDelegate> {
         self.navigationController.navigationBarHidden = NO;
     }
     
-    // 自动游戏额度转出
-    SANotificationEventPost(UGNotificationAutoTransferOut, nil);
+    // 自动转出游戏余额
+    [CMNetwork autoTransferOutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {}];
 }
 
 - (void)backClick {
@@ -198,14 +200,18 @@ UIActionSheetDelegate> {
     // 若跳转到 lobbyURL地址，则退出页面
     {
         static NSString *host = nil;
-        [self onceToken:ZJOnceToken block:^{
+        if (OBJOnceToken(self)) {
             host = nil;
-        }];
+            [self cc_hookSelector:@selector(webViewDidFinishLoad:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {
+                if (!host.length)
+                    host = [APP.Host copy];
+            } error:nil];
+        }
         NSString *url = request.URL.absoluteString;
         if ([url containsString:@"lobbyURL="]) {
             host = [[url componentsSeparatedByString:@"lobbyURL="].lastObject componentsSeparatedByString:@"&"].firstObject;
         }
-        if (host.length && [request.URL.host isEqualToString:host.lastPathComponent]) {
+        if ([request.URL.host isEqualToString:host.lastPathComponent]) {
             [self.navigationController popViewControllerAnimated:true];
         }
     }
@@ -219,7 +225,6 @@ UIActionSheetDelegate> {
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
     // 自动设置页面title
     NSString *webTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     if (webTitle.length) {
@@ -271,8 +276,8 @@ UIActionSheetDelegate> {
     NSMutableDictionary *properties = [NSMutableDictionary dictionary];
     [properties setValue:user.sessid forKey:NSHTTPCookieValue];
     [properties setValue:@"loginsessid" forKey:NSHTTPCookieName];
-    [properties setValue:[[NSURL URLWithString:baseServerUrl] host] forKey:NSHTTPCookieDomain];
-    [properties setValue:[[NSURL URLWithString:baseServerUrl] path] forKey:NSHTTPCookiePath];
+    [properties setValue:[[NSURL URLWithString:APP.Host] host] forKey:NSHTTPCookieDomain];
+    [properties setValue:[[NSURL URLWithString:APP.Host] path] forKey:NSHTTPCookiePath];
     [properties setValue:[NSDate dateWithTimeIntervalSinceNow:60*60*24] forKey:NSHTTPCookieExpires];
     NSHTTPCookie *cookieuser = [[NSHTTPCookie alloc] initWithProperties:properties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
@@ -280,8 +285,8 @@ UIActionSheetDelegate> {
     NSMutableDictionary *properties1 = [NSMutableDictionary dictionary];
     [properties1 setValue:user.token forKey:NSHTTPCookieValue];
     [properties1 setValue:@"logintoken" forKey:NSHTTPCookieName];
-    [properties1 setValue:[[NSURL URLWithString:baseServerUrl] host] forKey:NSHTTPCookieDomain];
-    [properties1 setValue:[[NSURL URLWithString:baseServerUrl] path] forKey:NSHTTPCookiePath];
+    [properties1 setValue:[[NSURL URLWithString:APP.Host] host] forKey:NSHTTPCookieDomain];
+    [properties1 setValue:[[NSURL URLWithString:APP.Host] path] forKey:NSHTTPCookiePath];
     [properties1 setValue:[NSDate dateWithTimeIntervalSinceNow:60*60*24] forKey:NSHTTPCookieExpires];
     
     NSHTTPCookie *cookieuser1 = [[NSHTTPCookie alloc] initWithProperties:properties1];

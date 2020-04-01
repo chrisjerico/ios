@@ -11,7 +11,7 @@
 #import "UGYuebaoTransferLogsModel.h"
 @interface UGYubaoConversionRecordController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGYuebaoTransferLogsModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 
 @property(nonatomic, assign) int pageSize;
@@ -25,6 +25,14 @@ static int size = 20;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [self.tableView setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"时间label") setTextColor:Skin1.textColor1];
+    [subLabel(@"类型label") setTextColor:Skin1.textColor1];
+    [subLabel(@"账变金额label") setTextColor:Skin1.textColor1];
+    [subLabel(@"余额label") setTextColor:Skin1.textColor1];
     
     self.pageSize = size;
     self.pageNumber = page;
@@ -64,7 +72,9 @@ static int size = 20;
 }
 
 - (void)getTransferLogs {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -130,7 +140,7 @@ static int size = 20;
 }
 
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGYuebaoTransferLogsModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

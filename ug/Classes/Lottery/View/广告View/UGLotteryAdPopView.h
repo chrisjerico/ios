@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGAllNextIssueListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^LotteryAdGoBlock)(void);
-@interface UGLotteryAdPopView : UIView
-- (void)show;
-@property (nonatomic, copy) LotteryAdGoBlock adGoBlcok;
-@property (nonatomic, strong) NSString *picUrl;
 
+@interface UGLotteryAdPopView : UIView
+@property (nonatomic) UGNextIssueModel *nm;
+
+- (void)show;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -27,29 +27,30 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFundsTransfer2View" owner:self options:0].firstObject;
         self.frame = frame;
-        [self setBackgroundColor: [UIColor whiteColor]];
-
-
+        
+        _myTextField.textColor = Skin1.textColor1;
+        _my2TextField.textColor = Skin1.textColor1;
+        _my3TextField.textColor = Skin1.textColor1;
+        _myTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_myTextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+        _my2TextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_my2TextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+        _my3TextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_my3TextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
         
         // 方式一
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_myTextField];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_my2TextField];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_my3TextField];
-        
-        
     }
     return self;
     
 }
 
 #pragma mark - Notification
+
 - (void)textDidChangeAction:(NSNotification *)sender {
     UITextField *textObject;
     if ([[sender class] isSubclassOfClass:[NSNotification class]]) {
@@ -88,8 +89,6 @@
             self.my3Label.text = [NSString stringWithFormat:@"%lu/20",(unsigned long)toBeString.length];
         }
     }
-    
-    
     
     // 获取高亮部分
     UITextRange *selectedRange = [textObject markedTextRange];

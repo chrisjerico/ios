@@ -8,6 +8,8 @@
 
 #import "UGLotteryGameCollectionViewCell.h"
 #import "UGAllNextIssueListModel.h"
+
+
 @interface UGLotteryGameCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
@@ -15,18 +17,25 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @end
+
+
 @implementation UGLotteryGameCollectionViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization cod
-    
-    self.layer.cornerRadius = 10;
-    self.layer.masksToBounds = YES;
     self.timeLabel.textColor = [UIColor redColor];
-    self.layer.borderWidth = 1;
-    self.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
-
+    self.nameLabel.textColor = Skin1.textColor1;
+    
+    self.clipsToBounds = false;
+    self.layer.cornerRadius = 10;
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, 1);
+    self.layer.shadowRadius = 2;
+    self.layer.shadowOpacity = 0.1;
+    
+    if (APP.isTitleWhite) {
+        [self.openCycleLabel setTextColor:[UIColor whiteColor]];
+    }
 }
 
 - (void)setItem:(UGNextIssueModel *)item {
@@ -36,13 +45,10 @@
     NSString *time = [CMCommon getNowTimeWithEndTimeStr:item.curCloseTime currentTimeStr:item.serverTime];
     if (time) {
         self.timeLabel.text = time;
-        
-    }else {
+    } else {
         self.timeLabel.text = @"获取下一期...";
-        
     }
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-
 	[self.timeLabel setHidden:[@[@"7", @"11", @"9"] containsObject: self.item.gameId]];
 }
 

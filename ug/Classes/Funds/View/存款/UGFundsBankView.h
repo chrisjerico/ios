@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGdepositModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,7 @@ typedef void(^UGFundsBankViewBlock)(id model);
 
 @interface UGFundsBankView : UIView
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray <UGrechargeBankModel *> *dataArray;
 
 @property (nonatomic, strong) NSString *nameStr;
 

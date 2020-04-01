@@ -25,34 +25,37 @@
         self.closeButton.layer.masksToBounds = YES;
         self.goButton.layer.cornerRadius = 6;
         self.goButton.layer.masksToBounds = YES;
-        
     }
-    
     return self;
 }
 
-- (void)setPicUrl:(NSString *)picUrl {
-    _picUrl = picUrl;
-    if (picUrl) {
-        [self.imgView sd_setImageWithURL:[NSURL URLWithString:picUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    }
+- (void)setNm:(UGNextIssueModel *)nm {
+    _nm = nm;
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:nm.adPic] placeholderImage:[UIImage imageNamed:@"placeholder"]];
 }
 
 - (IBAction)closeClick:(id)sender {
-    
     [self hiddenSelf];
 }
 
 - (IBAction)goClick:(id)sender {
-    
-    if (self.adGoBlcok) {
-        self.adGoBlcok();
-    }
     [self hiddenSelf];
+    
+    // 去任务大厅
+    if ([_nm.adLink isEqualToString:@"-2"]) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:YES];
+        return;
+    }
+    // 去利息宝
+    if ([_nm.adLink isEqualToString:@"-1"]) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
+        return;
+    }
+    // 去彩票下注页面
+    [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:_nm.adLink]];
 }
 
 - (void)show {
-    
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
     UIView* view = self;
@@ -63,15 +66,13 @@
     
     [maskView addSubview:view];
     [window addSubview:maskView];
-    
 }
 
 - (void)hiddenSelf {
-    
     UIView* view = self;
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
-    
 }
+
 @end

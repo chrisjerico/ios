@@ -8,6 +8,8 @@
 
 #import "UGSegmentCollectionViewCell.h"
 
+#import "UIColor+YYUI.h"
+
 @interface UGSegmentCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -16,7 +18,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    [self selectTextColor:self.selected];
 }
 
 - (void)setTitle:(NSString *)title {
@@ -25,10 +27,28 @@
 }
 
 - (void)setSelected:(BOOL)selected {
-    if (selected) {
-        self.titleLabel.textColor = UGNavColor;
-    }else {
-        self.titleLabel.textColor = [UIColor blackColor];
+    [self selectTextColor:selected];
+}
+
+-(void)selectTextColor:(BOOL)selected{
+    self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:14] : [UIFont systemFontOfSize:14];
+    if (Skin1.isBlack||Skin1.is23) {
+        self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
+        if (APP.isSelectStyle) {
+             self.backgroundColor = selected ? [RGBA(159, 166, 173, 1) colorWithAlphaComponent:0.2] : RGBA(159, 166, 173, 1);
+        }
+       
+    } else {
+        UIColor *selectedColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+        if ([@"c085" containsString:APP.SiteId]) {
+            selectedColor = [UIColor blueColor];
+        }
+      
+        self.titleLabel.textColor = selected ? selectedColor : [UIColor blackColor];
+        if (APP.isSelectStyle) {
+               self.backgroundColor = selected ?  [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        }
+      
     }
 }
 

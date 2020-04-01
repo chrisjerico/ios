@@ -20,6 +20,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.contentView setBackgroundColor:Skin1.textColor4];
+    [_timeLabel setTextColor:Skin1.textColor1];
+    [_typeLabel setTextColor:Skin1.textColor1];
+    [_amountLabel setTextColor:Skin1.textColor1];
+    [_balanceLabel setTextColor:Skin1.textColor1];
 }
 
 -(void)setItem:(UGYuebaoTransferLogsModel *)item {

@@ -17,7 +17,7 @@ static NSString *segmentCellId = @"UGSegmentCollectionViewCell";
 
 @implementation UGSegmentView
 
-- (instancetype)initWithFrame:(CGRect)frame titleArray:(NSArray *)array{
+- (instancetype)initWithFrame:(CGRect)frame titleArray:(nonnull NSArray<NSString *> *)array {
     self = [super initWithFrame:frame];
     if (self) {
         self.dataArray = array;
@@ -28,12 +28,13 @@ static NSString *segmentCellId = @"UGSegmentCollectionViewCell";
     return self;
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<NSString *> *)dataArray {
     _dataArray = dataArray;
     
     [self.collectionView reloadData];
     [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
+
 
 #pragma mark - UICollectionViewDelegate
 
@@ -54,11 +55,9 @@ static NSString *segmentCellId = @"UGSegmentCollectionViewCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (self.dataArray.count < 5) {
         return CGSizeMake((self.width - 5)/self.dataArray.count, self.height);
     }
-    
     return CGSizeMake((self.width - 5)/5 + 5, self.height);
 }
 

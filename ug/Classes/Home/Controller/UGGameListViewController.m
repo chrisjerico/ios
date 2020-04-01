@@ -14,7 +14,7 @@
 
 @interface UGGameListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGSubGameModel *> *dataArray;
 
 @end
 
@@ -22,11 +22,14 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 
 @implementation UGGameListViewController
 
+- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = self.game.title;
-    self.view.backgroundColor = UGBackgroundColor;
+    self.view.backgroundColor = Skin1.bgColor;
     [self.view addSubview:self.collectionView];
     [self getGameList];
 }
@@ -47,7 +50,10 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 }
 
 - (void)getGotoGameUrl:(UGSubGameModel *)game {
-    
+    if (!UGLoginIsAuthorized()) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":self.game.gameId,
                              @"game":game.code
@@ -57,7 +63,9 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-            qdwebVC.urlString = model.data;
+            
+            NSLog(@"网络链接：model.data = %@",model.data);
+            qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
             qdwebVC.enterGame = YES;
             [self.navigationController pushViewController:qdwebVC  animated:YES];
         } failure:^(id msg) {
@@ -155,7 +163,7 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
     return _collectionView;
 }
 
-- (NSArray *)dataArray {
+- (NSMutableArray<UGSubGameModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
         

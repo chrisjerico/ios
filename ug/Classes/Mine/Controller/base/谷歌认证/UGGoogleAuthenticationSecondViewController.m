@@ -11,7 +11,7 @@
 #import "UGGoogleAuthenticationThirdViewController.h"
 
 @interface UGGoogleAuthenticationSecondViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *myImageView;
+@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UIButton *mcopyButton;
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
@@ -21,7 +21,7 @@
 
 @implementation UGGoogleAuthenticationSecondViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
 }
 - (void)viewDidLoad {
@@ -32,6 +32,12 @@
         
         [self skin];
     });
+    
+    FastSubViewCode(self.view);
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"标题1") setTextColor:Skin1.textColor1];
+    [subLabel(@"标题2") setTextColor:Skin1.textColor1];
+    [_numberLabel setTextColor:Skin1.textColor1];
     [self secureGaCaptchaWithGen];
 }
 -(void)viewDidLayoutSubviews{
@@ -39,19 +45,21 @@
     //如果想要有点弧度的不是地球那么圆的可以设置
     self.returnButton.layer.cornerRadius = 3;//这个值越大弧度越大
     
-    [self.returnButton setBackgroundColor:UGNavColor];
+    [self.returnButton setBackgroundColor:Skin1.navBarBgColor];
     
     self.nextButton.layer.masksToBounds = YES;
     //如果想要有点弧度的不是地球那么圆的可以设置
     self.nextButton.layer.cornerRadius = 3;//这个值越大弧度越大
     
-    [self.nextButton setBackgroundColor:UGNavColor];
+    [self.nextButton setBackgroundColor:Skin1.navBarBgColor];
     
 }
 #pragma mark -- 网络请求
 //e二维码数据
 - (void)secureGaCaptchaWithGen {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"action":@"gen",
                              };
@@ -64,14 +72,20 @@
             [SVProgressHUD dismiss];
             
             weakSelf.model = model.data;
-            NSLog(@"checkinList = %@",weakSelf.model);
             
             UGgaCaptchaModel *obj = model.data;
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                NSString *url =[CMCommon imgformat:obj.qrcode];
-                [self.myImageView sd_setImageWithURL:[NSURL URLWithString: url] placeholderImage:[UIImage imageNamed:@"placeholder"]];//m_logo
+                // 2.1 创建一个远程URL
+
+                NSURL *remoteURL = [NSURL URLWithString: obj.qrcode] ;
+                
+                // 3.创建Request
+                NSURLRequest *request =[NSURLRequest requestWithURL:remoteURL];
+                   // 4.加载网页
+                [self->_myWebView loadRequest:request];
+
                 self.numberLabel.text = obj.secret;
                 
             });

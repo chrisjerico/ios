@@ -14,19 +14,23 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [self jr_swizzleClassMethod:@selector(stringByAppendingString:) withClassMethod:@selector(zjSafe_stringByAppendingString:) error:nil];
+        [self jr_swizzleClassMethod:@selector(stringByAppendingString:) withClassMethod:@selector(ccSafe_stringByAppendingString:) error:nil];
     });
 }
 
-- (NSString *)zjSafe_stringByAppendingString:(NSString *)aString {
+- (NSString *)ccSafe_stringByAppendingString:(NSString *)aString {
     NSAssert(aString, _NSString(@"*** -[%@ stringByAppendingString:]: nil argument", [self class]));
     if (aString)
-        return [self zjSafe_stringByAppendingString:aString];
+        return [self ccSafe_stringByAppendingString:aString];
     NSLog(@"*** -[%@ stringByAppendingString:]: nil argument", [self class]);
     return [self copy];
 }
 
 - (NSString *)stringValue {
     return [self copy];
+}
+
+- (id)objectForKeyedSubscript:(NSString *)key {
+    return nil;
 }
 @end

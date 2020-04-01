@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Black HomeVC-->
+        <scene sceneID="l1e-nb-4wZ">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cUA-y4-KmT" customClass="UGBlackHomeVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PlN-yl-ohb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lH-8E-fPV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="DlB-Sg-ucZ"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAL-gA-Jwc">
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Pem-Vv-Cgq">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="225"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPO-On-zr8" userLabel="Notification View">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notice" translatesAutoresizingMaskIntoConstraints="NO" id="ovl-xR-efb">
+                                                        <rect key="frame" x="8" y="9.5" width="25" height="25"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="CBa-ae-EwA"/>
+                                                            <constraint firstAttribute="width" constant="25" id="egd-mH-1MX"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="公告图标ImageView"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohi-FS-qd7" customClass="UUMarqueeView">
+                                                        <rect key="frame" x="38" y="0.0" width="376" height="44"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="Ohi-FS-qd7" firstAttribute="top" secondItem="iPO-On-zr8" secondAttribute="top" id="7Wr-Rl-fnm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ohi-FS-qd7" secondAttribute="bottom" id="9lq-oE-Pw7"/>
+                                                    <constraint firstAttribute="height" constant="44" id="TvJ-pl-mRT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ohi-FS-qd7" secondAttribute="trailing" id="d79-kX-VV6"/>
+                                                    <constraint firstItem="Ohi-FS-qd7" firstAttribute="leading" secondItem="ovl-xR-efb" secondAttribute="trailing" constant="5" id="oAx-J0-gBn"/>
+                                                    <constraint firstItem="ovl-xR-efb" firstAttribute="centerY" secondItem="iPO-On-zr8" secondAttribute="centerY" id="sch-Qd-bUe"/>
+                                                    <constraint firstItem="ovl-xR-efb" firstAttribute="leading" secondItem="iPO-On-zr8" secondAttribute="leading" constant="8" id="xf6-0g-t90"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdp-Iy-Jbf">
+                                                <rect key="frame" x="0.0" y="44" width="414" height="181"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Cdp-Iy-Jbf" secondAttribute="height" multiplier="640:280" id="VKl-tQ-i9f"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="横幅ContentView"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Pem-Vv-Cgq" firstAttribute="leading" secondItem="FAL-gA-Jwc" secondAttribute="leading" id="NSt-tp-iqG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pem-Vv-Cgq" secondAttribute="trailing" id="eVh-nv-UgW"/>
+                                    <constraint firstItem="Pem-Vv-Cgq" firstAttribute="top" secondItem="FAL-gA-Jwc" secondAttribute="top" id="esu-YO-9PM"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pem-Vv-Cgq" secondAttribute="bottom" id="sGd-Zr-4NL"/>
+                                    <constraint firstItem="Pem-Vv-Cgq" firstAttribute="centerX" secondItem="FAL-gA-Jwc" secondAttribute="centerX" id="zPd-fq-MV8"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FAL-gA-Jwc" secondAttribute="trailing" id="Rwa-dN-v9g"/>
+                            <constraint firstAttribute="bottom" secondItem="FAL-gA-Jwc" secondAttribute="bottom" id="SIZ-E7-Gji"/>
+                            <constraint firstItem="daH-W6-GQe" firstAttribute="trailing" secondItem="5lH-8E-fPV" secondAttribute="trailing" id="SOi-QB-fj9"/>
+                            <constraint firstItem="5lH-8E-fPV" firstAttribute="top" secondItem="daH-W6-GQe" secondAttribute="top" id="Y5m-dn-XTu"/>
+                            <constraint firstItem="FAL-gA-Jwc" firstAttribute="leading" secondItem="daH-W6-GQe" secondAttribute="leading" id="p3c-DN-oap"/>
+                            <constraint firstItem="FAL-gA-Jwc" firstAttribute="top" secondItem="5lH-8E-fPV" secondAttribute="bottom" id="wDR-S5-fln"/>
+                            <constraint firstItem="5lH-8E-fPV" firstAttribute="leading" secondItem="daH-W6-GQe" secondAttribute="leading" id="yNG-zX-099"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="daH-W6-GQe"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="允许未登录访问" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="允许游客访问" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="contentScrollView" destination="FAL-gA-Jwc" id="qad-qX-5mY"/>
+                        <outlet property="contentStackView" destination="Pem-Vv-Cgq" id="Oe1-S4-hIb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r0r-aP-JzK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53.623188405797109" y="173.4375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="notice" width="24" height="24"/>
+    </resources>
+</document>

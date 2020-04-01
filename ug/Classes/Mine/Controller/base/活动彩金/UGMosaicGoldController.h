@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMosaicGoldController : UITableViewController
-
+@property (nonatomic, strong)NSString *typeid;//类型
 -(void)rootLoadData;
 
 @end

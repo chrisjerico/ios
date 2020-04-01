@@ -13,7 +13,7 @@
 
 @interface UGMissionLevelController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGlevelsModel *> *dataArray;
 
 @end
 
@@ -27,36 +27,38 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
     
     [self getLevelsData];
     
+    if (Skin1.isBlack) {
+        [self.view setBackgroundColor:Skin1.bgColor];
+    } else {
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+    }
+    
     self.tableView.rowHeight = 44;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMissionLevelTableViewCell" bundle:nil] forCellReuseIdentifier:levelCellid];
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 120, 0);
 }
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGMissionLevelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:levelCellid forIndexPath:indexPath];
-   
     UGlevelsModel *item = self.dataArray[indexPath.row];
     cell.item = item;
-    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
     return 44;
 }
 
@@ -64,8 +66,8 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
     UGMissionLevelTableViewCell *headerView = (UGMissionLevelTableViewCell*)[[NSBundle mainBundle] loadNibNamed:@"UGMissionLevelTableViewCell" owner:self options:0].firstObject;
     
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    NSString *str1 = [NSString stringWithFormat:@"%@头衔",config.missionName];
-    NSString *str2 = [NSString stringWithFormat:@"成长%@",config.missionName];
+    NSString *str1 = [NSString stringWithFormat:@"成长%@", config.missionName];
+    NSString *str2 = [NSString stringWithFormat:@"%@头衔", config.missionName];
     
     UGlevelsModel *model = [UGlevelsModel new];
     model.levelName = @"";
@@ -74,7 +76,12 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
 
     headerView.item = model;
     
-    [headerView setSectionBgColor:[[UGSkinManagers shareInstance] setbgColor] levelsSectionStr:@"等级"];
+    if (Skin1.isBlack) {
+        [headerView setSectionBgColor:Skin1.bgColor levelsSectionStr:@"等级"];
+    } else {
+        [headerView setSectionBgColor:[UIColor whiteColor] levelsSectionStr:@"等级"];
+    }
+
     
     return headerView;
 }
@@ -87,28 +94,21 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
     return 0.001f;
 }
 
+
 #pragma mark -- 网络请求
 //得到等级列表数据
 - (void)getLevelsData {
-    
-    
 //     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     [CMNetwork taskLevelsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
             [SVProgressHUD dismiss];
-            
             self.dataArray = model.data;
-            
             NSLog(@"self.dataArray = %@",self.dataArray);
             [self.tableView reloadData];
-            
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
     }];
 }

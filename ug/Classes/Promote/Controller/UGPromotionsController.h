@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGPromotionsController : UIViewController
+@property (nonatomic, strong)NSString *typeid;//优惠活动类型
 
+-(void)dataReLoad;
 @end
 
 NS_ASSUME_NONNULL_END

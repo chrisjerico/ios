@@ -7,52 +7,47 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UGChatViewController.h"
-#import "UGNavigationController.h"
-#import "UGBalanceConversionController.h"
+
+#define TabBarController1 [UGTabbarController shared]
+
+#define CheckLogin(允许未登录访问, 允许游客访问, returnValue)\
+{\
+    UGUserModel *user = [UGUserModel currentUser];\
+    BOOL isLogin = UGLoginIsAuthorized();\
+    if (!isLogin && !(允许未登录访问)) {\
+        SANotificationEventPost(UGNotificationShowLoginView, nil);\
+        return returnValue;\
+    }\
+    if (user.isTest && !(允许游客访问)) {\
+        UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];\
+        [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {\
+            SANotificationEventPost(UGNotificationShowLoginView, nil);\
+        }];\
+        return returnValue;\
+    }\
+}
+
+
 NS_ASSUME_NONNULL_BEGIN
+
+
+@interface UIViewController (CanPush)
+
+@property (nonatomic) IBInspectable BOOL 允许未登录访问;   /**<   默认不允许 */
+@property (nonatomic) IBInspectable BOOL 允许游客访问;    /**<   默认不允许 */
+@end
+
+
+
+
+
 
 @interface UGTabbarController : UITabBarController
 
-@property (strong, nonatomic)UGBalanceConversionController *balanceConversionVC;
-@property (strong, nonatomic) UGChatViewController *qdwebVC;
-
-@property (strong, nonatomic) NSMutableArray *vcs;
-
-@property (strong, nonatomic) UGNavigationController *nvcHome;
-
-@property (strong, nonatomic) UGNavigationController *nvcChangLong;
-
-@property (strong, nonatomic) UGNavigationController *nvcLotteryList;
-
-@property (strong, nonatomic) UGNavigationController *nvcActivity;
-
-@property (strong, nonatomic) UGNavigationController *nvcChatRoomList;
-
-@property (strong, nonatomic) UGNavigationController *nvcLotteryRecord;
-
-@property (strong, nonatomic) UGNavigationController *nvcUser;
-
-@property (strong, nonatomic) UGNavigationController *nvcTask;
-
-@property (strong, nonatomic) UGNavigationController *nvcSecurityCenter;
-
-@property (strong, nonatomic) UGNavigationController *nvcFunds;
-
-@property (strong, nonatomic) UGNavigationController *nvcMessage;
-
-@property (strong, nonatomic) UGNavigationController *nvcConversion;
-
-@property (strong, nonatomic) UGNavigationController *nvcBanks;
-
-@property (strong, nonatomic) UGNavigationController *nvcYuebao;
-
-@property (strong, nonatomic) UGNavigationController *nvcSign;
-
-@property (strong, nonatomic) UGNavigationController *nvcReferrer;
-
-
-
++ (instancetype)shared;
++ (BOOL)canPushToViewController:(UIViewController *)vc;
+- (void)setTabbarHeight:(CGFloat)height;    /**<   改变tabbar高度 */
+-(void)setUGMailBoxTableViewControllerBadge; /**<   设置站内信有红点 */
 @end
 
 NS_ASSUME_NONNULL_END

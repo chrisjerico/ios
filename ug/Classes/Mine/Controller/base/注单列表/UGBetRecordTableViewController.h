@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *startDate;
 @property (nonatomic, assign) BOOL loadData;
 
+
 @end
 
 NS_ASSUME_NONNULL_END

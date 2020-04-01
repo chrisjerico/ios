@@ -10,6 +10,5 @@
 
 @property (nonatomic, strong) NSString *urlStr;
 
-
 @end
 

@@ -7,6 +7,8 @@
 //
 
 #import "UGYYLotterySecondHomeViewController.h"
+#import "UGGameListViewController.h"
+
 #import "UGhomeRecommendCollectionViewCell.h"
 
 @interface UGYYLotterySecondHomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -14,17 +16,20 @@
 
 @end
 
+
 @implementation UGYYLotterySecondHomeViewController
 
+- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问 { return true; }
+
 - (void)skin {
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     [self.collectionView  reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
@@ -35,11 +40,11 @@
 - (void)initCollectionView {
     float itemW = (UGScreenW - 15) / 2;
     UICollectionViewFlowLayout *layout = ({
-        
         layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(itemW, itemW / 2);
         layout.minimumInteritemSpacing = 5;
         layout.minimumLineSpacing = 5;
+        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.headerReferenceSize = CGSizeMake(UGScreenW, 10);
         layout;
@@ -47,11 +52,8 @@
     });
     
     UICollectionView *collectionView = ({
-        float collectionViewH;
-        
-        collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar+20;
-        
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5,10, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
+        float collectionViewH = UGScerrnH - k_Height_NavBar -k_Height_StatusBar+20;
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, UGScreenW, collectionViewH) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.layer.cornerRadius = 10;
         collectionView.layer.masksToBounds = YES;
@@ -59,6 +61,7 @@
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGhomeRecommendCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell"];
         [collectionView setShowsHorizontalScrollIndicator:NO];
+        collectionView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
         collectionView;
         
     });
@@ -81,38 +84,31 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UGhomeRecommendCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGhomeRecommendCollectionViewCell" forIndexPath:indexPath];
     cell.itemGame = (UGYYGames *)self.dataArray[indexPath.row];
-    [cell setBackgroundColor: [[UGSkinManagers shareInstance] sethomeContentColor]];
-    cell.layer.borderColor = [[[UGSkinManagers shareInstance] sethomeContentColor] CGColor];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    [self getGotoGameUrl:self.dataArray[indexPath.row]];
-}
 
-
-#pragma mark 网络请求
-
-- (void)getGotoGameUrl:(UGYYGames *)game {
-    
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"id":game.gameId
-                             };
-    [SVProgressHUD showWithStatus:nil];
-    [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD dismiss];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
-                qdwebVC.urlString = model.data;
-                qdwebVC.enterGame = YES;
-                [self.navigationController pushViewController:qdwebVC  animated:YES];
-            });
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
+    UGYYGames *game = self.dataArray[indexPath.row];
+    // 去二级游戏列表
+    if (game.isPopup) {
+        UGGameListViewController *vc = [[UGGameListViewController alloc] init];
+        vc.game = game;
+        [NavController1 pushViewController:vc animated:YES];
+        return;
+    }
+    NSDictionary *dict = @{@"real":@2,
+                           @"fish":@3,
+                           @"game":@4,
+                           @"card":@5,
+                           @"sport":@6,
+    };
+    NSInteger linkCategory = [dict[game.category] intValue];
+    if (!linkCategory) {
+        linkCategory = 2;
+    }
+    [NavController1 pushViewControllerWithLinkCategory:linkCategory linkPosition:game.gameId.intValue];
 }
 
 @end

@@ -8,253 +8,249 @@
 
 #import "UGCommonLotteryController.h"
 #import "UGLotterySelectController.h"
-
-#import "UGLotteryHomeController.h"
-#import "STBarButtonItem.h"
-#import "UGLotteryCollectionViewCell.h"
-#import "CMCommon.h"
-#import "UGRightMenuView.h"
-#import "UGLotteryAssistantController.h"
-#import "CountDown.h"
-#import "UGHallLotteryModel.h"
 #import "UGChangLongController.h"
-#import "UGAllNextIssueListModel.h"
-#import "UGFundsViewController.h"
-#import "UGBetRecordViewController.h"
-#import "UGLotteryRulesView.h"
-#import "UGTimeLotteryBetHeaderView.h"
-#import "UGLotteryGameCollectionViewCell.h"
+// View
+#import "STBarButtonItem.h"
+#import "CMTimeCommon.h"
 
-#import "UGPCDDLotteryController.h"
-#import "UGJSK3LotteryController.h"
-#import "UGHKLHCLotteryController.h"
-#import "UGBJPK10LotteryController.h"
-#import "UGQXCLotteryController.h"
-#import "UGSSCLotteryController.h"
-#import "UGGD11X5LotteryController.h"
-#import "UGXYNCLotteryController.h"
-#import "UGBJKL8LotteryController.h"
-#import "UGGDKL10LotteryController.h"
-#import "UGFC3DLotteryController.h"
-#import "UGPK10NNLotteryController.h"
-@interface UGCommonLotteryController ()
-
+#import "category.h"
+@interface UGCommonLotteryController (CC)
+@property (nonatomic) UITableView *tableView;
+@property (nonatomic) UIView *bottomView;
+@property (nonatomic) IBOutlet UILabel *nextIssueLabel;
+@property (nonatomic) IBOutlet UILabel *closeTimeLabel;
+@property (nonatomic) IBOutlet UILabel *openTimeLabel;
 @end
+
 
 @implementation UGCommonLotteryController
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	[self setupTitleView];
+- (void)dealloc {
+    [_nextIssueCountDown destoryTimer];
+    if (_timer) {
+        if ([_timer isValid]) {
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 
 }
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	
-	if (self.shoulHideHeader) {
-		[self hideHeader];
-	}
-	if (self.shoulHideContent) {
-		[self hideContent];
-	}
 
-	
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+
+    
+    if (self.shoulHideHeader) {
+        [self hideHeader];
+    }
+    [self getSystemConfig];     // APP配置信息
+    
+
+}
+- (BOOL)允许游客访问 { return true; }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupTitleView];
+
+    
+    
+    FastSubViewCode(self.view);
+    {
+        // 背景色
+//        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+//             self.view.backgroundColor = Skin1.bgColor;
+//        } else {
+             self.view.backgroundColor = Skin1.textColor4;
+//        }
+       
+        if (!APP.betBgIsWhite) {
+            [self.view insertSubview:({
+                UIView *bgView = [[UIView alloc] initWithFrame:APP.Bounds];
+                if (APP.isLight) {
+                      bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+                }
+                else{
+                      bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+                }
+              
+                bgView;
+            }) atIndex:0];
+        }
+        
+        // 左侧玩法栏背景色
+        
+        self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.separatorColor = [UIColor clearColor];
+        
+        if (APP.isGrey) {
+            self.tableView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+            self.tableView.separatorColor = [UIColor whiteColor];
+        }
+        
+        if (APP.isRedWhite) {
+             self.tableView.backgroundColor = RGBA(242, 242, 242, 1.0);
+             self.tableView.separatorColor = RGBA(231, 213, 231, 1.0);
+        }
+        
+        // 顶部栏背景色
+        [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
+        [subView(@"中间View") setBackgroundColor:[UIColor clearColor]];
+        subLabel(@"线label").hidden = true;
+        self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
+        self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
+        self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
+        
+        // 底部栏背景色
+        [self.bottomView setBackgroundColor:Skin1.bgColor];
+        [self.bottomView insertSubview:({
+            UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+            bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+            bgView;
+        }) atIndex:0];
+        
+        [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        
+        [subButton(@"长龙btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"长龙btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [NavController1 pushViewController:[UGChangLongController new] animated:true];
+        }];
+        [subButton(@"直播btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"直播btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            NSString *url = [NSString stringWithFormat:@"%@%@&&gameType=%@",liveUrl,self.gameId,self.nextIssueModel.gameType];
+            [CMCommon goSLWebUrl:url];
+        }];
+        [subButton(@"开奖btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"开奖btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [CMCommon goSLWebUrl:lotteryUrl];
+        }];
+   
+        [subButton(@"长龙btn") setHidden:!APP.addIcons];
+        [subButton(@"直播btn") setHidden:!APP.addIcons];
+        [subButton(@"开奖btn") setHidden:!APP.addIcons];
+        [subButton(@"长龙btn") setBackgroundImage: [[UIImage imageNamed:@"xz_icon_cl"] qmui_imageWithTintColor:[UIColor whiteColor]] forState:(UIControlStateNormal)];
+        [subButton(@"直播btn") setBackgroundImage: [[UIImage imageNamed:@"xz_icon_zb"] qmui_imageWithTintColor:[UIColor whiteColor]] forState:(UIControlStateNormal)];
+        [subButton(@"开奖btn") setBackgroundImage: [[UIImage imageNamed:@"xz_icon_kj"] qmui_imageWithTintColor:[UIColor whiteColor]] forState:(UIControlStateNormal)];
+        
+        [subButton(@"聊天Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"聊天Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom" object:nil userInfo:nil];
+        }];
+        
+
+        [subButton(@"金杯btn") setHidden:!APP.isShowJinbei];
+        [subButton(@"金杯btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [CMCommon goSLWebUrl:lotteryUrl];
+        }];
+        
+        if (APP.isTextWhite) {
+             [subLabel(@"封盘Label") setTextColor:[UIColor whiteColor]];
+        }
+ 
+
+
+        
+
+        
+        
+        
+    }
+    
+
+}
+
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            NSLog(@"model = %@",model);
+            FastSubViewCode(self.view);
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
+                [subTextView(@"下注TxtF") set仅数字:false];
+                [subTextView(@"下注TxtF") set仅数字含小数:true];
+            } else {
+                [subTextView(@"下注TxtF") set仅数字:true];
+            }
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 - (void)hideHeader {
-	UIImageView * mmcHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mmcbg" ]];
-	[self.view addSubview:mmcHeader];
-	[mmcHeader mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.right.top.equalTo(self.view);
-		make.height.equalTo(@114);
-	}];
-}
-- (void)hideContent {
-	
+    UIImageView * mmcHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mmcbg" ]];
+    [self.view addSubview:mmcHeader];
+    [mmcHeader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.equalTo(@114);
+    }];
 }
 
+- (void)getGameDatas {}
+
 - (void)setupTitleView {
-	
-	UILabel * titleLabel = [UILabel new];
-	[titleLabel setUserInteractionEnabled:true];
-	
-	self.navigationItem.titleView = titleLabel;
-	titleLabel.text = [NSString stringWithFormat:@"%@ ▼", self.model.title];
-	titleLabel.textColor = UIColor.whiteColor;
-	[titleLabel addGestureRecognizer: [UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
-		UGLotterySelectController * vc = [UGLotterySelectController new];
-		vc.dataArray = [self.allList mutableCopy];
-		vc.didSelectedItemBlock = ^(UGNextIssueModel *nextModel){
-			
-			
-			void(^judeBlock)(UGCommonLotteryController * lotteryVC) = ^(UGCommonLotteryController * lotteryVC) {
-				if ([@[@"7", @"11", @"9"] containsObject: nextModel.gameId]) {
-					lotteryVC.shoulHideHeader = true;
-				}
-				lotteryVC.allList = self.allList;
-				lotteryVC.model = nextModel;
-			};
-			
-			UGCommonLotteryController * preparePushVC;
-			
-			if ([@"cqssc" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGSSCLotteryController" bundle:nil];
-				UGSSCLotteryController *lotteryVC = [storyboard instantiateInitialViewController];
-				lotteryVC.nextIssueModel = nextModel;
-				lotteryVC.gameId = nextModel.gameId;
-				lotteryVC.lotteryGamesArray = self.allList;
-				//此处为重点
-				lotteryVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(lotteryVC);
-				preparePushVC = lotteryVC;
-			} else if ([@"pk10" isEqualToString:nextModel.gameType] ||
-					   [@"xyft" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJPK10LotteryController" bundle:nil];
-				UGBJPK10LotteryController *markSixVC = [storyboard instantiateInitialViewController];
-				markSixVC.nextIssueModel = nextModel;
-				markSixVC.gameId = nextModel.gameId;
-				markSixVC.lotteryGamesArray = self.allList;
-				//此处为重点
-				markSixVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(markSixVC);
-				
-				preparePushVC = markSixVC;
-				
-			} else if ([@"qxc" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGQXCLotteryController" bundle:nil];
-				UGQXCLotteryController *sevenVC = [storyboard instantiateInitialViewController];
-				sevenVC.nextIssueModel = nextModel;
-				sevenVC.gameId = nextModel.gameId;
-				sevenVC.lotteryGamesArray = self.allList;
-				sevenVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(sevenVC);
-				
-				preparePushVC = sevenVC;
-				
-			} else if ([@"lhc" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGHKLHCLotteryController" bundle:nil];
-				UGHKLHCLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-				markSixVC.nextIssueModel = nextModel;
-				markSixVC.gameId = nextModel.gameId;
-				markSixVC.lotteryGamesArray = self.allList;
-				markSixVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(markSixVC);
-				
-				preparePushVC = markSixVC;
-				
-			} else if ([@"jsk3" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGJSK3LotteryController" bundle:nil];
-				UGJSK3LotteryController *fastThreeVC = [storyboard instantiateInitialViewController];
-				fastThreeVC.nextIssueModel = nextModel;
-				fastThreeVC.gameId = nextModel.gameId;
-				fastThreeVC.lotteryGamesArray = self.allList;
-				fastThreeVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(fastThreeVC);
-				
-				preparePushVC = fastThreeVC;
-			} else if ([@"pcdd" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPCDDLotteryController" bundle:nil];
-				UGPCDDLotteryController *PCVC = [storyboard instantiateInitialViewController];
-				PCVC.nextIssueModel = nextModel;
-				PCVC.gameId = nextModel.gameId;
-				PCVC.lotteryGamesArray = self.allList;
-				PCVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(PCVC);
-				
-				preparePushVC = PCVC;
-				
-			} else if ([@"gd11x5" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGD11X5LotteryController" bundle:nil];
-				UGGD11X5LotteryController *PCVC = [storyboard instantiateInitialViewController];
-				PCVC.nextIssueModel = nextModel;
-				PCVC.gameId = nextModel.gameId;
-				PCVC.lotteryGamesArray = self.allList;
-				PCVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(PCVC);
-				
-				preparePushVC = PCVC;
-				
-			} else if ([@"bjkl8" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBJKL8LotteryController" bundle:nil];
-				UGBJKL8LotteryController *PCVC = [storyboard instantiateInitialViewController];
-				PCVC.nextIssueModel = nextModel;
-				PCVC.gameId = nextModel.gameId;
-				PCVC.lotteryGamesArray = self.allList;
-				PCVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(PCVC);
-				
-				preparePushVC = PCVC;
-				
-			} else if ([@"gdkl10" isEqualToString:nextModel.gameType] ||
-					   [@"xync" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGGDKL10LotteryController" bundle:nil];
-				UGGDKL10LotteryController *PCVC = [storyboard instantiateInitialViewController];
-				PCVC.nextIssueModel = nextModel;
-				PCVC.gameId = nextModel.gameId;
-				PCVC.lotteryGamesArray = self.allList;
-				PCVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(PCVC);
-				
-				preparePushVC = PCVC;
-				
-			} else if ([@"fc3d" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFC3DLotteryController" bundle:nil];
-				UGFC3DLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-				markSixVC.nextIssueModel = nextModel;
-				markSixVC.gameId = nextModel.gameId;
-				markSixVC.lotteryGamesArray = self.allList;
-				markSixVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(markSixVC);
-				
-				preparePushVC = markSixVC;
-				
-			} else if ([@"pk10nn" isEqualToString:nextModel.gameType]) {
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPK10NNLotteryController" bundle:nil];
-				UGPK10NNLotteryController *markSixVC = [storyboard instantiateInitialViewController];
-				markSixVC.nextIssueModel = nextModel;
-				markSixVC.gameId = nextModel.gameId;
-				markSixVC.lotteryGamesArray = self.allList;
-				markSixVC.gotoTabBlock = ^{
-					self.navigationController.tabBarController.selectedIndex = 0;
-				};
-				judeBlock(markSixVC);
-				
-				preparePushVC = markSixVC;
-				
-			}
-			
-			NSMutableArray *viewCtrs = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-			[viewCtrs removeLastObject];
-			[viewCtrs addObject: preparePushVC];
-			[preparePushVC setHidesBottomBarWhenPushed:true];
-			[self.navigationController setViewControllers:viewCtrs animated:YES];
-			
-			
-		};
-		UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
-		[self presentViewController:nav animated:true completion:nil];
-		
-	}]];
-	
+    self.title = @"聊天";
+    // 设置返回按钮
+    {
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+        [backButton sizeToFit];
+        [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            UIViewController *vc=  [NavController1 popViewControllerAnimated:true];
+
+        }];
+        UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+        [containView addSubview:backButton];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+
+        if (self.navigationController.viewControllers.count > 1) {
+            self.navigationItem.leftBarButtonItem = item;
+        }
+        else {
+            self.navigationItem.leftBarButtonItem = nil;
+        }
+    }
+    
+    // 设置标题
+    STBarButtonItem *item0 = [STBarButtonItem barButtonItemWithTitle:_NSString(@"%@ ▼", self.nextIssueModel.title ? : @"") target:self action:@selector(onTitleClick)];
+    self.navigationItem.leftBarButtonItems = @[self.navigationItem.leftBarButtonItems.firstObject, item0];
+    self.navigationItem.titleView = [UIView new];   // 隐藏标题
+#pragma mark - 去掉这里就不会标题变动。
+//    if (OBJOnceToken(self)) {
+//        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+//            NSString *title = ai.arguments.lastObject;
+//            NSLog(@"title = %@",title);
+//            [(UIButton *)item0.customView setTitle:_NSString(@"%@ ▼===", title) forState:UIControlStateNormal];
+//            [(UIButton *)item0.customView sizeToFit];
+//        } error:nil];
+//    }
 }
+
+- (void)onTitleClick {
+    UGLotterySelectController * vc = [UGLotterySelectController new];
+    vc.didSelectedItemBlock = ^(UGNextIssueModel *nextModel) {
+        [NavController1 pushViewControllerWithNextIssueModel:nextModel];
+    };
+    UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:true completion:nil];
+}
+
 @end

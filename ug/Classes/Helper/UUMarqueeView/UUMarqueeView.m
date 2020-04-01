@@ -52,6 +52,7 @@ static float const DEFAULT_ITEM_SPACING = 20.0f;
 
         _contentView = [[UIView alloc] initWithFrame:self.bounds];
         _contentView.clipsToBounds = YES;
+        _contentView.backgroundColor = [UIColor clearColor];
         [self addSubview:_contentView];
     }
     return self;
@@ -68,6 +69,7 @@ static float const DEFAULT_ITEM_SPACING = 20.0f;
 
         _contentView = [[UIView alloc] initWithFrame:self.bounds];
         _contentView.clipsToBounds = YES;
+        _contentView.backgroundColor = [UIColor clearColor];
         [self addSubview:_contentView];
     }
     return self;
@@ -84,6 +86,7 @@ static float const DEFAULT_ITEM_SPACING = 20.0f;
     
     _contentView = [[UIView alloc] initWithFrame:self.bounds];
     _contentView.clipsToBounds = YES;
+    _contentView.backgroundColor = [UIColor clearColor];
     [self addSubview:_contentView];
     
 }

@@ -36,14 +36,16 @@
 #import "UGMosaicGoldViewController.h"
 #import "UGagentApplyInfo.h"
 #import "UGAgentViewController.h"
-#import "UGAgentRefusedViewController.h"
+#import "UGAgentViewController.h"
 #import "UGChangLongController.h"
+#import "STBarButtonItem.h"
+#import "UGYYRightMenuView.h"
 
-
+#import "JYMineCollectionViewCell.h"
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
-    NSString *unreadMsg;
+    NSInteger unreadMsg;
 }
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIView *topupView;
@@ -60,84 +62,96 @@
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fristVipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondVipLabel;
-@property (weak, nonatomic) IBOutlet UIView *progressView;
+@property (weak, nonatomic) IBOutlet UIView *progressView;  /**<   进度条 */
 @property (weak, nonatomic) IBOutlet UIButton *taskButton;
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
 //===================================================
+@property (weak, nonatomic) IBOutlet UIView *headerLabelView;
 
 @property (weak, nonatomic) IBOutlet UIButton *topupButton;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawalsButton;
 @property (weak, nonatomic) IBOutlet UIButton *conversionButton;
 
-//===================================================
-@property (nonatomic, strong) NSMutableArray *menuNameArray;
-@property (nonatomic, strong) NSMutableArray *menuSecondNameArray;
+@property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
-@property (nonatomic, strong) NSArray *lotteryGamesArray;
+//===================================================
+@property (nonatomic, strong) NSMutableArray <UGUserCenterItem *>*menuNameArray;        /**<   行数据 */
+@property (nonatomic, strong) NSMutableArray <UGMineSkinModel *> *menuSecondNameArray;  /**<   新年红模版时的数据 */
 
 @end
 
 @implementation UGMineSkinViewController
--(void)skin{
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
-    
-     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    
-    [self.myCollectionView setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-    _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
-     [self.progressView.layer addSublayer:self.progressLayer];
-    
 
-    skitType = [[UGSkinManagers shareInstance] skitType];
+- (void)skin {
+   
+    [self.userInfoView setBackgroundColor:  Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor];
+   
     
-    if ([skitType isEqualToString:@"经典"]) {
+    [self.view setBackgroundColor: Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor];
+    
+    [self.myCollectionView setBackgroundColor: Skin1.bgColor];
+    _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
+    [self.progressView.layer addSublayer:self.progressLayer];
+    
+    
+    skitType = Skin1.skitType;
+    if ([skitType isEqualToString:@"经典"]||Skin1.isJY) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
+    else if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else{
+    else {
         self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 60;
+        self.topupViewNSLayoutConstraintHight.constant = 63;
     }
     [self.myCollectionView reloadData];
-
 }
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewWillAppear:(BOOL)animated {
-    SANotificationEventPost(UGNotificationGetUserInfo, nil);
+    [super viewWillAppear:animated];
+    [self.view layoutSubviews];
+    self.navigationController.navigationBarHidden = false;
+    if (!self.menuSecondNameArray.count || !self.menuNameArray.count) {
+        [self refreshBalance:nil];
+    }
+    //    SANotificationEventPost(UGNotificationGetUserInfo, nil);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.refreshFirstButton.layer removeAllAnimations];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-    if (self.refreshFirstButton.selected) {
+    [super viewDidAppear:animated];
+    if (self.refreshFirstButton.selected)
         [self startAnimation];
-        
-    }
-    
 }
 
-- (void)showAvaterSelectView {
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self setupUserInfo:true];
+}
+
+- (IBAction)showAvaterSelectView {
+    if (UserI.isTest) {
+        return;
+    }
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
     [avaterView show];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     //注册通知
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
@@ -156,46 +170,77 @@
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
-    [self.headImageView addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
+//    [self.headImageView addGestureRecognizer:tap];
+    
+    if ([@"c134" containsString:APP.SiteId]) {
+        [_headerLabelView setHidden:NO];
+    }
+
+    
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
     self.progressView.layer.masksToBounds = YES;
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
-    //初始化数据
-    [self getDateSource];
+    //    self.topupView.backgroundColor = Skin1.navBarBgColor;
+    //    FastSubViewCode(self.topupView);
+    //    subLabel(@"存款Label").textColor = Skin1.textColor1;
+    //    subLabel(@"提现Label").textColor = Skin1.textColor1;
+    //    subLabel(@"转换Label").textColor = Skin1.textColor1;
+    
     
     //设置皮肤
-    [self.view setBackgroundColor:[[UGSkinManagers shareInstance] setbgColor]];
-    [self.userInfoView setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+    [self.view setBackgroundColor: Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor];
+    [self.userInfoView setBackgroundColor: Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor];
+    [self.topupView setBackgroundColor:Skin1.bgColor];
     
-  
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     
-    if ([skitType isEqualToString:@"经典"]||[skitType isEqualToString:@"六合资料"]) {
+    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]|| Skin1.isJY) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else{
+    else {
         self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 60;
-      
+        self.topupViewNSLayoutConstraintHight.constant = 63;
         [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
     }
     
-//    //test用
-//    [self addRightBtn];
-
-    //初始化
-     [self initCollectionView];
+    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     
-    [self getAllNextIssueData];
-    [self getUserInfo];
+    
+    __weakSelf_(__self);
+    __self.menuNameArray = @[].mutableCopy;
+    [__self.menuNameArray setArray:SysConf.userCenter];
+    [__self skinSeconddataSource];
+    [__self.myCollectionView reloadData];
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        [__self.menuNameArray setArray:SysConf.userCenter];
+        [__self skinSeconddataSource];
+        [__self.myCollectionView reloadData];
+    });
+    
+    //初始化
+    [self initCollectionView];
 }
 
 - (void)addRightBtn {
     UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:self action:@selector(onClickedOKbtn)];
     self.navigationItem.rightBarButtonItem = rightBarItem;
+}
+
+
+#pragma mark --其他方法
+
+- (void)rightBarBtnClick {
+    self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
+    self.yymenuView.titleType = @"1";
+    //此处为重点
+    WeakSelf;
+    self.yymenuView.backToHomeBlock = ^{
+        weakSelf.navigationController.tabBarController.selectedIndex = 0;
+    };
+    [self.yymenuView show];
 }
 
 
@@ -210,194 +255,96 @@ BOOL isOk = NO;
     }
     else{
         self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 60;
+        self.topupViewNSLayoutConstraintHight.constant = 63;
         skitType = @"石榴红";
     }
     [self.myCollectionView reloadData];
-            isOk = !isOk;
-    
-}
-
--(void)getDateSource{
-    [self skinSeconddataSource];
-    [self skinFirstdataSource];
+    isOk = !isOk;
 }
 
 
--(UIImage *)retureRandomThemeColorImage:(NSString *)imageName{
-    UIImage *image = [UIImage imageNamed:imageName];
-    UIImage *afterImage = [image qmui_imageWithTintColor:[UGSkinManagers randomThemeColor]];
-    return afterImage;
-}
--(void)skinFirstdataSource{
-    //经典+石榴红
-    self.menuNameArray = [NSMutableArray array];
-     UGUserModel *user = [UGUserModel currentUser];
-    NSLog(@"isAgent= %d",user.isAgent);
-    if (user.isAgent) {
-        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureRandomThemeColorImage:@"chongzhi"] }];
-        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureRandomThemeColorImage:@"tixian"]}];
-        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
-        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureRandomThemeColorImage:@"yinhangqia"]}];
-        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-        
-         [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-         [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureRandomThemeColorImage:@"change"]}];
-         [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureRandomThemeColorImage:@"changlong"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"推荐收益" , @"imgName" : [self retureRandomThemeColorImage:@"shouyi1sel"]}];
-        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureRandomThemeColorImage:@"ziyuan"]}];
-        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureRandomThemeColorImage:@"zhanneixin"]}];
-     
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureRandomThemeColorImage:@"gerenzhongxinxuanzhong"]}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureRandomThemeColorImage:@"yijian"]}];
-        [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
-    } else {
-        [self.menuNameArray addObject:@{@"title" : @"存款" , @"imgName" : [self retureRandomThemeColorImage:@"chongzhi"] }];
-        [self.menuNameArray addObject:@{@"title" : @"取款" , @"imgName" :  [self retureRandomThemeColorImage:@"tixian"]}];
-        [self.menuNameArray addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
-        [self.menuNameArray addObject:@{@"title" : @"银行卡管理" , @"imgName" : [self retureRandomThemeColorImage:@"yinhangqia"]}];
-        [self.menuNameArray addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-
-        [self.menuNameArray addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-        [self.menuNameArray addObject:@{@"title" : @"额度转换" , @"imgName" : [self retureRandomThemeColorImage:@"change"]}];
-        [self.menuNameArray addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureRandomThemeColorImage:@"changlong"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"申请代理" , @"imgName" : [self retureRandomThemeColorImage:@"shouyi1sel"]}];
-        [self.menuNameArray addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureRandomThemeColorImage:@"ziyuan"]}];
-        [self.menuNameArray addObject:@{@"title" : @"站内信" , @"imgName" :[self retureRandomThemeColorImage:@"zhanneixin"]}];
-        
-        [self.menuNameArray addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureRandomThemeColorImage:@"gerenzhongxinxuanzhong"]}];
-        [self.menuNameArray addObject:@{@"title" : @"建议反馈" , @"imgName" :[self retureRandomThemeColorImage:@"yijian"]}];
-        [self.menuNameArray addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
-        
-    }
- 
+- (UIImage *)retureRandomThemeColorImage:(NSString *)imageName {
+    UIColor *tintColor = Skin1.isBlack ? [UIColor whiteColor] : [UGSkinManagers randomThemeColor];
+    return [[UIImage imageNamed:imageName] qmui_imageWithTintColor:tintColor];
 }
 
--(void)skinSeconddataSource{
+- (void)skinSeconddataSource {
     //新年红
     self.menuSecondNameArray = [NSMutableArray array];
-    {
-         NSMutableArray *dataArrayOne = [NSMutableArray array];
-        UGUserModel *user = [UGUserModel currentUser];
-        NSLog(@"isAgent= %d",user.isAgent);
-        if (user.isAgent) {
-            [dataArrayOne addObject:@{@"title" : @"推荐收益" , @"imgName" :  [self retureRandomThemeColorImage:@"shouyi1sel"]}];
-            [dataArrayOne addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
-            [dataArrayOne addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
-            [dataArrayOne addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
+    [self.menuSecondNameArray addObject:({
+        UGMineSkinModel *msm = [UGMineSkinModel new];
+        msm.name = @"我的";
+        msm.dataArray = @[].mutableCopy;
+        for (NSNumber *uciType in @[@(UCI_推荐收益), @(UCI_活动彩金), @(UCI_利息宝), @(UCI_在线客服), @(UCI_全民竞猜), @(UCI_开奖走势)]) {
+            [msm.dataArray addObject:[_menuNameArray objectWithValue:uciType keyPath:@"code"]];
         }
-        else{
-            [dataArrayOne addObject:@{@"title" : @"申请代理" , @"imgName" :  [self retureRandomThemeColorImage:@"shouyi1sel"]}];
-            [dataArrayOne addObject:@{@"title" : @"活动彩金" , @"imgName" : [self retureRandomThemeColorImage:@"zdgl"]}];
-            [dataArrayOne addObject:@{@"title" : @"利息宝" , @"imgName" : [self retureRandomThemeColorImage:@"lixibao"]}];
-            [dataArrayOne addObject:@{@"title" : @"在线客服" , @"imgName" : [self retureRandomThemeColorImage:@"zaixiankefu"]}];
+        msm;
+    })];
+    [self.menuSecondNameArray addObject:({
+        UGMineSkinModel *msm = [UGMineSkinModel new];
+        msm.name = @"注单详情";
+        msm.dataArray = @[].mutableCopy;
+        for (NSNumber *uciType in @[@(UCI_彩票注单记录), @(UCI_其他注单记录),]) {
+            [msm.dataArray addObject:[_menuNameArray objectWithValue:uciType keyPath:@"code"]];
         }
-        UGMineSkinModel *dic1 = [UGMineSkinModel new];
-        
-        [dic1 setName:@"我的"];
-        [dic1 setDataArray:dataArrayOne];
-        
-        [self.menuSecondNameArray addObject:dic1];
-    }
-    
-    //=======================================
-    {
-        NSMutableArray *dataArrayOne = [NSMutableArray array];
-        [dataArrayOne addObject:@{@"title" : @"彩票注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-        [dataArrayOne addObject:@{@"title" : @"其他注单记录" , @"imgName" :[self retureRandomThemeColorImage:@"zdgl"]}];
-        
-        UGMineSkinModel *dic1 = [UGMineSkinModel new];
-        
-        [dic1 setName:@"注单详情"];
-        [dic1 setDataArray:dataArrayOne];
-        
-        [self.menuSecondNameArray addObject:dic1];
-        
-    }
-    
-    //=======================================
-    {
-        NSMutableArray *dataArrayOne = [NSMutableArray array];
-        
-        
-        [dataArrayOne addObject:@{@"title" : @"银行卡管理" , @"imgName" :[self retureRandomThemeColorImage:@"yinhangqia"]}];
-        [dataArrayOne addObject:@{@"title" : @"安全中心" , @"imgName" : [self retureRandomThemeColorImage:@"ziyuan"]}];
-        [dataArrayOne addObject:@{@"title" : @"个人信息" , @"imgName" : [self retureRandomThemeColorImage:@"gerenzhongxinxuanzhong"]}];
-        
-
-        
-        UGMineSkinModel *dic1 = [UGMineSkinModel new];
-        
-        [dic1 setName:@"设置"];
-        [dic1 setDataArray:dataArrayOne];
-        
-        [self.menuSecondNameArray addObject:dic1];
-        
-    }
-    
-    //=======================================
-    {
-        NSMutableArray *dataArrayOne = [NSMutableArray array];
-        
-        
-        [dataArrayOne addObject:@{@"title" : @"长龙助手" , @"imgName" : [self retureRandomThemeColorImage:@"changlong"]}];
-        [dataArrayOne addObject:@{@"title" : @"站内信" , @"imgName" : [self retureRandomThemeColorImage:@"zhanneixin"]}];
-        [dataArrayOne addObject:@{@"title" : @"建议反馈" , @"imgName" : [self retureRandomThemeColorImage:@"yijian"]}];
-
-        UGMineSkinModel *dic1 = [UGMineSkinModel new];
-        
-        [dic1 setName:@"网站资料"];
-        [dic1 setDataArray:dataArrayOne];
-        
-        [self.menuSecondNameArray addObject:dic1];
-        
-    }
-  
-    
+        msm;
+    })];
+    [self.menuSecondNameArray addObject:({
+        UGMineSkinModel *msm = [UGMineSkinModel new];
+        msm.name = @"设置";
+        msm.dataArray = @[].mutableCopy;
+        for (NSNumber *uciType in @[@(UCI_银行卡管理), @(UCI_安全中心), @(UCI_个人信息),]) {
+            [msm.dataArray addObject:[_menuNameArray objectWithValue:uciType keyPath:@"code"]];
+        }
+        msm;
+    })];
+    [self.menuSecondNameArray addObject:({
+        UGMineSkinModel *msm = [UGMineSkinModel new];
+        msm.name = @"网站资料";
+        msm.dataArray = @[].mutableCopy;
+        for (NSNumber *uciType in @[@(UCI_长龙助手), @(UCI_站内信), @(UCI_建议反馈),]) {
+            [msm.dataArray addObject:[_menuNameArray objectWithValue:uciType keyPath:@"code"]];
+        }
+        msm;
+    })];
 }
 
 - (void)initCollectionView {
     
-       skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     
-//    float itemW = (UGScreenW - 8) / 3;
+    //    float itemW = (UGScreenW - 8) / 3;
     UICollectionViewFlowLayout *layout = ({
         
         layout = [[UICollectionViewFlowLayout alloc] init];
-//        layout.itemSize = CGSizeMake(itemW, itemW );
-//        layout.minimumInteritemSpacing = 1;
-//        layout.minimumLineSpacing = 1;
+        //        layout.itemSize = CGSizeMake(itemW, itemW );
+        //        layout.minimumInteritemSpacing = 1;
+        //        layout.minimumLineSpacing = 1;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         if ([skitType isEqualToString:@"新年红"]) {
-            layout.headerReferenceSize = CGSizeMake(UGScreenW, 50);
+            layout.headerReferenceSize = CGSizeMake(UGScreenW, 35);
         }
         else  if([skitType isEqualToString:@"石榴红"]){
-             layout.headerReferenceSize = CGSizeMake(UGScreenW, 80);
+            layout.headerReferenceSize = CGSizeMake(UGScreenW, 80);
         }
-        else  if([skitType isEqualToString:@"经典"]){
+        else  if([skitType isEqualToString:@"经典"]|| Skin1.isJY){
             layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
         }
         else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-             layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
+            layout.headerReferenceSize = CGSizeMake(UGScreenW, 0.1);
         }
         
         layout;
         
     });
-
-        self.myCollectionView.backgroundColor = [[UGSkinManagers shareInstance] setbgColor];
-        self.myCollectionView.dataSource = self;
-        self.myCollectionView.delegate = self;
-        [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
-        [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell"];
-    
+ 
+    self.myCollectionView.backgroundColor =    Skin1.is23 ? RGBA(135, 135, 135, 1) : Skin1.bgColor;
+    self.myCollectionView.dataSource = self;
+    self.myCollectionView.delegate = self;
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell"];
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell"];
+    [self.myCollectionView registerNib:[UINib nibWithNibName:@"JYMineCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JYMineCollectionViewCell"];
     
     [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGMineSkinFirstCollectionHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UGMineSkinFirstCollectionHeadView"];
     
@@ -405,9 +352,7 @@ BOOL isOk = NO;
     
     [self.myCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionReusableView"];
     
-        [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
-    
- 
+    [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
 }
 
 
@@ -416,102 +361,69 @@ BOOL isOk = NO;
 #pragma mark UICollectionView datasource
 //collectionView有几个section
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    
     int sections = 1;
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
         sections = (int) self.menuSecondNameArray.count;
     }
     else  if([skitType isEqualToString:@"石榴红"]){
         sections = 1;
     }
-    else  if([skitType isEqualToString:@"经典"]){
+    else  if([skitType isEqualToString:@"经典"]||Skin1.isJY){
         sections = 1;
     }
     else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
         sections = 1;
     }
     return sections;
-    
 }
 //每个section有几个item
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    int rows = 1;
-    skitType = [[UGSkinManagers shareInstance] skitType];
+    NSInteger rows = self.menuNameArray.count;
+    skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
-       UGMineSkinModel *dic = [self.menuSecondNameArray objectAtIndex:section];
-        rows = (int)  dic.dataArray.count;
-    }
-    else  if([skitType isEqualToString:@"石榴红"]){
-          rows = (int) self.menuNameArray.count;
-    }
-    else  if([skitType isEqualToString:@"经典"]){
-        rows = (int) self.menuNameArray.count;
-    }
-    else  if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        rows = (int) self.menuNameArray.count;
+        rows = self.menuSecondNameArray[section].dataArray.count;
     }
     return rows;
 }
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-//    NSString *skitType = [[UGSkinManagers shareInstance] skitType];
+    //    NSString *skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"新年红"]) {
-          UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
-        
-        UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
-        NSDictionary *dic = [model.dataArray objectAtIndex:indexPath.row];
-        
-        [cell setMenuName: [dic objectForKey:@"title"]];
-        
-        
-        cell.imageView.image = [dic objectForKey:@"imgName"];
-        if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
-            
-            if (![CMCommon stringIsNull:unreadMsg]) {
-                [cell setBadgeNum:[unreadMsg intValue]];
-            }
-            
-        }
-        else{
-            [cell setBadgeNum:0];
-        }
+        UGMineSkinCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineSkinCollectionViewCell" forIndexPath:indexPath];
+        UGUserCenterItem *uci = self.menuSecondNameArray[indexPath.section].dataArray[indexPath.row];
+        cell.menuName = uci.name;
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
+        cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
         [cell setBackgroundColor: [UIColor clearColor]];
-        
-        cell.layer.borderWidth = 1;
-        cell.layer.borderColor = [[UIColor whiteColor] CGColor];
+        cell.layer.borderWidth = 0.5;
+        cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
+        return cell;
+    }
+    else  if(Skin1.isJY) {
+        JYMineCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"JYMineCollectionViewCell" forIndexPath:indexPath];
+        FastSubViewCode(cell);
+        UGUserCenterItem *uci = self.menuNameArray[indexPath.row];
+        cell.menuName = uci.name;
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
+        subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;
+        subLabel(@"红点Label").hidden = !(uci.code==UCI_站内信 && [UGUserModel currentUser].unreadMsg);
         return cell;
     }
     else  {
-         UGMineMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell" forIndexPath:indexPath];
-        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
-        
-        [cell setMenuName: [dic objectForKey:@"title"]];
-        
-        cell.imageView.image = [dic objectForKey:@"imgName"];
-        
-        if ([[dic objectForKey:@"title"] isEqualToString:@"站内信"]) {
-            
-            if (![CMCommon stringIsNull:unreadMsg]) {
-                [cell setBadgeNum:[unreadMsg intValue]];
-            }
-           
-        }
-        else{
-            [cell setBadgeNum:0];
-        }
-        
+        UGMineMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGMineMenuCollectionViewCell" forIndexPath:indexPath];
+        UGUserCenterItem *uci = self.menuNameArray[indexPath.row];
+        cell.menuName = uci.name;
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
+        cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
         [cell setBackgroundColor: [UIColor clearColor]];
-        cell.layer.borderWidth = 1;
-        cell.layer.borderColor = [[UIColor whiteColor] CGColor];
+        cell.layer.borderWidth = 0.5;
+        cell.layer.borderColor = Skin1.isBlack ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
         return cell;
     }
-    
     return nil;
-
 }
 
 //头尾视图
@@ -528,8 +440,8 @@ BOOL isOk = NO;
             {
                 headerView = [[UGMineSkinFirstCollectionHeadView alloc] init];
             }
-
-             UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
+            
+            UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
             [headerView setMenuName :model.name];
             [headerView setBackgroundColor: [UIColor clearColor]];
             
@@ -546,14 +458,14 @@ BOOL isOk = NO;
             return headerView;
         }
         else{
-     
+            
             UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UICollectionReusableView" forIndexPath:indexPath];
             if(headerView == nil)
             {
                 headerView = [[UICollectionReusableView alloc] init];
             }
             headerView.backgroundColor = [UIColor clearColor];
-             return headerView;
+            return headerView;
         }
         
         
@@ -561,25 +473,23 @@ BOOL isOk = NO;
     }
     
     
-
+    
     return nil;
 }
+
+
 #pragma mark - UICollectionViewDelegate
 //头视图尺寸
--(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     if ([skitType isEqualToString:@"新年红"]) {
-
-        CGSize size = {UGScreenW, 50};
+        CGSize size = {UGScreenW, 35};
         return size;
     }
-    else  if([skitType isEqualToString:@"石榴红"]){
-      
+    else  if([skitType isEqualToString:@"石榴红"]) {
         CGSize size = {UGScreenW, 80};
         return size;
     }
-    else  if([skitType isEqualToString:@"经典"]){
+    else  if([skitType isEqualToString:@"经典"]||Skin1.isJY) {
         CGSize size = {UGScreenW, 0.1};
         return size;
     }
@@ -587,397 +497,128 @@ BOOL isOk = NO;
         CGSize size = {UGScreenW, 0.1};
         return size;
     }
-    
-    
 }
 
-
 //cell size
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-     float itemW = (UGScreenW - 0.0 )/ 3.0;
-
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    float itemW = (APP.Width - 0.0 )/ 3.0;
     if ([skitType isEqualToString:@"新年红"]) {
-        
         CGSize size = {itemW, 100};
         return size;
     }
+    else if(Skin1.isJY){
+         CGSize size = {APP.Width, 50};
+        return size;
+    }
     else {
-        
         CGSize size = {itemW, itemW};
         return size;
     }
-   
-    
 }
 
 //item偏移
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                       layout:(UICollectionViewLayout *)collectionViewLayout
-       insetForSectionAtIndex:(NSInteger)section {
-  
-        return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
-
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
 }
 
 //行间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView
-                   layout:(UICollectionViewLayout*)collectionViewLayout
-minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    
-        return 0.0;
-  
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
 }
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
-    NSString *title;
     if ([skitType isEqualToString:@"新年红"]) {
-      
-        UGMineSkinModel *model = [self.menuSecondNameArray objectAtIndex:indexPath.section];
-        NSDictionary *dic = [model.dataArray objectAtIndex:indexPath.row];
-        
-        title= [dic objectForKey:@"title"];
-        
+        UGUserCenterItem *uci = self.menuSecondNameArray[indexPath.section].dataArray[indexPath.row];
+        [NavController1 pushVCWithUserCenterItemType:uci.code];
+    } else  {
+        UGUserCenterItem *uci = self.menuNameArray[indexPath.row];
+        [NavController1 pushVCWithUserCenterItemType:uci.code];
     }
-    else  {
-        
-        NSDictionary *dic = [self.menuNameArray objectAtIndex:indexPath.row];
-        
-        title=  [dic objectForKey:@"title"];
-    }
-    
-    if ([title isEqualToString:@"存款"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-            fundsVC.selectIndex = 0;
-            [self.navigationController pushViewController:fundsVC animated:YES];
-        }
-        
-    }else if ([title isEqualToString:@"取款"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-            fundsVC.selectIndex = 1;
-            [self.navigationController pushViewController:fundsVC animated:YES];
-        }
-        
-    }else if ([title isEqualToString:@"在线客服"]) {
-        SLWebViewController *webViewVC = [[SLWebViewController alloc] init];
-        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        if (config.zxkfUrl) {
-            
-            webViewVC.urlStr = config.zxkfUrl;
-		} else {
-			[SVProgressHUD showWithStatus:@"链接未配置"];
-				return;
-		}
-        [self.navigationController pushViewController:webViewVC animated:YES];
-        
-    }else if ([title isEqualToString:@"银行卡管理"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBindCardViewController" bundle:nil];
-            if (user.hasBankCard) {
-                UGBankCardInfoController *binkVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBankCardInfoController"];
-                [self.navigationController pushViewController:binkVC animated:YES];
-            }else {
-                if (user.hasFundPwd) {
-                    
-                    UGBindCardViewController *bankCardVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBindCardViewController"];
-                    [self.navigationController pushViewController:bankCardVC animated:YES];
-                }else {
-                    UGSetupPayPwdController *fundVC = [storyboard instantiateViewControllerWithIdentifier:@"UGSetupPayPwdController"];
-                    [self.navigationController pushViewController:fundVC animated:YES];
-                }
-            }
-        }
-        
-    }else if ([title isEqualToString:@"利息宝"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGYubaoViewController" bundle:nil];
-        UGYubaoViewController *lixibaoVC = [storyboard instantiateInitialViewController];
-        [self.navigationController pushViewController:lixibaoVC  animated:YES];
-        
-    }else if ([title isEqualToString:@"额度转换"]){
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-            UGBalanceConversionController *conversion = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionController"];
-            [self.navigationController pushViewController:conversion  animated:YES];
-        }
-        
-    }else if ([title isEqualToString:@"推荐收益"]) {
-        
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            if (user.isAgent) {
-                UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
-                [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            else{
-                
-                [self.navigationController.view makeToast:@"会员中心申请代理已关闭"
-                                                 duration:1.5
-                                                 position:CSToastPositionCenter];
-            }
-            
-        }
-    } else if ([title isEqualToString:@"申请代理"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        user.isTest = NO;
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-            if ([config.agent_m_apply isEqualToString:@"1"]) {
-                //调接口
-                [self teamAgentApplyInfoWithParams];
-                
-            } else {
-                [self.navigationController.view makeToast:@"在线注册代理已关闭"
-                                                 duration:1.5
-                                                 position:CSToastPositionCenter];
-            }
-        }
-    }else if ([title isEqualToString:@"安全中心"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            UGSecurityCenterViewController *securityCenterVC = [[UGSecurityCenterViewController alloc] init];
-            [self.navigationController pushViewController:securityCenterVC animated:YES];
-        }
-        
-    }else if ([title isEqualToString:@"站内信"]) {
-        UGMailBoxTableViewController *mailBoxVC = [[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:mailBoxVC animated:YES];
-        
-    } else if([title isEqualToString:@"彩票注单记录"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-            [self.navigationController pushViewController:betRecordVC animated:YES];
-        }
-    } else if ([title isEqualToString:@"其他注单记录"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        } else {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGRealBetRecordViewController" bundle:nil];
-            UGRealBetRecordViewController *betRecordVC = [storyboard instantiateInitialViewController];
-            betRecordVC.gameType = @"real";
-            [self.navigationController pushViewController:betRecordVC animated:YES];
-        }
-    } else if ([title isEqualToString:@"个人信息"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGUserInfoViewController" bundle:nil];
-            UGUserInfoViewController *userInfoVC = [storyboard instantiateInitialViewController];
-            [self.navigationController pushViewController:userInfoVC animated:YES];
-        }
-        
-    }
-    else if ([title isEqualToString:@"建议反馈"]) {
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGFeedBackController" bundle:nil];
-            UGFeedBackController *feedbackVC = [storyboard instantiateInitialViewController];
-            [self.navigationController pushViewController:feedbackVC animated:YES];
-        }
-    }
-    else if ([title isEqualToString:@"活动彩金"]) {
-        
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            
-            UGMosaicGoldViewController *vc = [[UGMosaicGoldViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
-    
-    else if ([title isEqualToString:@"长龙助手"]) {
-        
-        UGUserModel *user = [UGUserModel currentUser];
-        if (user.isTest) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                if (buttonIndex == 1) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }
-            }];
-        }else {
-            
-            
-            UGChangLongController *changlongVC = [[UGChangLongController alloc] init];
-            [self.navigationController pushViewController:changlongVC animated:YES];
-        }
-    }
-    
-    
 }
+
 
 #pragma mark - 其他方法
+
+// 任务中心
 - (IBAction)showMissionVC:(id)sender {
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
-    }else {
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGMissionCenterViewController" bundle:nil];
-        UGMissionCenterViewController *missionVC = [storyboard instantiateInitialViewController];
-        [self.navigationController pushViewController:missionVC animated:YES];
-    }
-    
-}
-- (IBAction)showSign:(id)sender {
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
+    // 任务中心
+    UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
+    if (vc) {
+        [NavController1 popToViewController:vc animated:false];
     } else {
-        UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
     }
 }
 
-- (IBAction)refreshBalance:(id)sender {
+// 每日签到
+- (IBAction)showSign:(id)sender {
+    [self.navigationController pushViewController:[UGSigInCodeViewController new] animated:YES];
+}
 
+// 刷新余额
+- (IBAction)refreshBalance:(id)sender {
     [self getUserInfo];
-    [self getAllNextIssueData];
- 
+    
+    if (sender) {
+        __weakSelf_(__self);
+        [CMNetwork needToTransferOutWithParams:@{@"token":UserI.token} completion:^(CMResult<id> *model, NSError *err) {
+            BOOL needToTransferOut = [model.data[@"needToTransferOut"] boolValue];
+            if (needToTransferOut) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"真人游戏正在进行或有余额未成功转出，请确认是否需要转出游戏余额" btnTitles:@[@"取消", @"确认"]];
+                [ac setActionAtTitle:@"确认" handler:^(UIAlertAction *aa) {
+                    [CMNetwork autoTransferOutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                        if (!err) {
+                            [SVProgressHUD showSuccessWithStatus:@"转出成功"];
+                            [__self getUserInfo];
+                        }
+                    }];
+                }];
+            }
+        }];
+    }
 }
 
 //刷新余额动画
--(void)startAnimation
-{
-    
+- (void)startAnimation {
     CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
     ReFreshAnimation.duration = 1;
     ReFreshAnimation.repeatCount = HUGE_VALF;
     [self.refreshFirstButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
-    
 }
 
 //刷新余额动画
--(void)stopAnimation
-{
-    
+- (void)stopAnimation {
     [self.refreshFirstButton.layer removeAllAnimations];
-    
 }
 
-- (CAShapeLayer *)containerLayer
-{
+- (CAShapeLayer *)containerLayer {
     if (!_containerLayer) {
         _containerLayer = [self defaultLayer];
-        CGRect rect = (CGRect){(self.progressView.bounds.size.width-self.progressView.bounds.size.height)/2,0,self.progressView.bounds.size.height,self.progressView.bounds.size.height};
+        CGRect rect = (CGRect){(self.progressView.bounds.size.width-self.progressView.bounds.size.height)/2, 0, self.progressView.bounds.size.height, self.progressView.bounds.size.height};
         _containerLayer.path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:5].CGPath;
     }
     return _containerLayer;
 }
 
-- (UIBezierPath *)progressPathWithProgress:(CGFloat)progress
-{
+- (UIBezierPath *)progressPathWithProgress:(CGFloat)progress {
+    if (progress < 0.0001) { return nil; }
+    
     UIBezierPath *path = [UIBezierPath bezierPath];
-    CGPoint startPoint = (CGPoint){0,CGRectGetHeight(self.progressView.frame)/2};
-    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress,startPoint.y};
+    CGPoint startPoint = (CGPoint){-5, CGRectGetHeight(self.progressView.frame)/2};
+    CGPoint endPoint = (CGPoint){CGRectGetWidth(self.progressView.frame)*progress, startPoint.y};
     [path moveToPoint:startPoint];
     [path addLineToPoint:endPoint];
     [path closePath];
     return path;
-    
 }
-- (CAShapeLayer *)defaultLayer
-{
+
+- (CAShapeLayer *)defaultLayer {
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.fillColor = [UIColor grayColor].CGColor;
     layer.strokeColor = [UIColor grayColor].CGColor;
@@ -986,12 +627,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     layer.frame = self.progressView.bounds;
     return layer;
 }
-- (CAShapeLayer *)progressLayer
-{
+
+- (CAShapeLayer *)progressLayer {
     if (!_progressLayer) {
         _progressLayer = [self defaultLayer];
         _progressLayer.lineWidth = self.progressView.height;
-        _progressLayer.strokeColor = [[UGSkinManagers shareInstance] setMineProgressViewColor].CGColor;
+        _progressLayer.strokeColor = Skin1.progressBgColor.CGColor;
     }
     return _progressLayer;
 }
@@ -999,25 +640,21 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 #pragma mark - UIS
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
-    
-    
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if (config.checkinSwitch) {
-        [self.signButton setHidden:NO];
-    } else {
-        [self.signButton setHidden:YES];
-    }
-    
     
     if ([config.missionSwitch isEqualToString:@"0"]) {
         [self.taskButton setHidden:NO];
+        if ([config.checkinSwitch isEqualToString:@"0"]) {
+            [self.signButton setHidden:YES];
+        } else {
+            [self.signButton setHidden:NO];
+        }
     } else {
         [self.taskButton setHidden:YES];
+        [self.signButton setHidden:YES];
     }
     
-    
     if (flag) {
-        
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
     
@@ -1026,13 +663,13 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     self.fristVipLabel.text = user.curLevelGrade;
     NSString *imagerStr = [user.curLevelGrade lowercaseString];
     NSLog(@"imagerStr = %@",imagerStr);
-           unreadMsg = user.unreadMsg;
-    NSLog(@"unreadMsg = %@",unreadMsg);
-
-      self.secondVipLabel.text = user.nextLevelGrade;
+    unreadMsg = user.unreadMsg;
+    NSLog(@"unreadMsg = %d", (int)unreadMsg);
+    
+    self.secondVipLabel.text = user.nextLevelGrade;
     
     self.valueLabel.text = _NSString(@"成长值（%@-%@）", _FloatString4(user.taskRewardTotal.doubleValue), _FloatString4(user.nextLevelInt.doubleValue));
-   
+    
     if (![CMCommon stringIsNull:user.taskRewardTitle]) {
         self.moneyNameLabel.text = user.taskRewardTitle;
     }
@@ -1043,73 +680,12 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     double floatString = [user.balance doubleValue];
     self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
     //进度条
-    float floatProgress = (float)[user.taskRewardTotal doubleValue]/[user.nextLevelInt doubleValue];
-    self.progressLayer.path = [self progressPathWithProgress:floatProgress].CGPath;
-    
+    double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
+    self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
 }
+
 
 #pragma mark -- 网络请求
-
-//用户签到（签到类型：0是签到，1是补签）
-- (void)teamAgentApplyInfoWithParams{
-    
-    //    NSString *date = @"2019-09-04";
-    
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid
-                             };
-    
-    [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
-    [CMNetwork teamAgentApplyInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            
-            [SVProgressHUD dismiss];
-            UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
-            
-            NSLog(@"%@",obj.reviewStatus);
-            
-            NSNumber *numberStatus = obj.reviewStatus;
-            int intStatus = [numberStatus intValue];
-            //0 未提交  1 待审核  2 审核通过 3 审核拒绝
-            
-            if (intStatus == 0) {//==>
-                //提交代理==》UGAgentViewController
-                UGAgentViewController *incomeVC = [[UGAgentViewController alloc] init];
-                incomeVC.item = obj;
-                [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            else if (intStatus == 1) {
-                //待审核==》UGAgentViewController
-                UGAgentViewController *incomeVC = [[UGAgentViewController alloc] init];
-                incomeVC.item = obj;
-                [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            else if (intStatus == 2) {
-                //审核通过==> 推荐
-                UGPromotionIncomeController *incomeVC = [[UGPromotionIncomeController alloc] init];
-                [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            else if (intStatus == 3) {
-                //审核拒绝==》拒绝
-                UGAgentRefusedViewController*incomeVC = [[UGAgentRefusedViewController alloc] init];
-                incomeVC.item = obj;
-                [self.navigationController pushViewController:incomeVC animated:YES];
-            }
-            //            "username": "ugtmac",
-            //            "qq": "12345678",
-            //            "mobile": "13707890978",
-            //            "applyReason": "QWERTY",
-            //            "reviewResult": "",
-            //            "reviewStatus": 1
-            
-            
-        } failure:^(id msg) {
-            
-            [SVProgressHUD showErrorWithStatus:msg];
-            
-        }];
-    }];
-}
 
 - (void)getUserInfo {
     [self startAnimation];
@@ -1124,15 +700,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
             NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
             
             [self getSystemConfig];
-            
-            
-            
-            
-            
+            //            //初始化数据
+            //            [self getDateSource];
         } failure:^(id msg) {
-            
             [self stopAnimation];
-            
         }];
     }];
 }
@@ -1143,95 +714,31 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            
-            
             NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
-            
-           
-            
             [self setupUserInfo:YES];
-            
-            
             [self stopAnimation];
-            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
-}
-
-- (void)getAllNextIssueData {
-    [SVProgressHUD showWithStatus: nil];
-    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD dismiss];
-        [CMResult processWithResult:model success:^{
-            
-            self.lotteryGamesArray = model.data;
-            
-        } failure:^(id msg) {
-            
-        }];
-    }];
-    
-}
-
-- (void)userLogout {
-    
-    
-    [self.tabBarController setSelectedIndex:0];
-    
-    SANotificationEventPost(UGNotificationUserLogout, nil);
-    
-    
 }
 
 - (IBAction)depositAction:(id)sender {
     //存款
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
-    }else {
-        
-        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-        fundsVC.selectIndex = 0;
-        [self.navigationController pushViewController:fundsVC animated:YES];
-    }
+    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    fundsVC.selectIndex = 0;
+    [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withdrawalActon:(id)sender {
     //提现
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
-    }else {
-        
-        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-        fundsVC.selectIndex = 1;
-        [self.navigationController pushViewController:fundsVC animated:YES];
-    }
+    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    fundsVC.selectIndex = 1;
+    [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)conversionAction:(id)sender {
     //转换
-    UGUserModel *user = [UGUserModel currentUser];
-    if (user.isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
-    }else {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
-        UGBalanceConversionController *conversion = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionController"];
-        [self.navigationController pushViewController:conversion  animated:YES];
-    }
-    
+    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController") animated:YES];
 }
 
 @end

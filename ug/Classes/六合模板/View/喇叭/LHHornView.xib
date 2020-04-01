@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LHHornView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qwI-Np-aqr">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9N-KG-M8R">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LH_laba.gif" translatesAutoresizingMaskIntoConstraints="NO" id="kMl-10-FUQ" customClass="FLAnimatedImageView">
+                                    <rect key="frame" x="5" y="7.5" width="15" height="10"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="AE3-07-TEa"/>
+                                        <constraint firstAttribute="width" constant="15" id="FpM-cN-Zmg"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐下载4988.com六合宝典APP,体验全网最快开奖查询!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MS3-iR-62D">
+                                    <rect key="frame" x="20" y="5.5" width="308" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="kMl-10-FUQ" firstAttribute="centerY" secondItem="p9N-KG-M8R" secondAttribute="centerY" id="IdQ-lr-kxU"/>
+                                <constraint firstItem="MS3-iR-62D" firstAttribute="centerY" secondItem="p9N-KG-M8R" secondAttribute="centerY" id="JOY-rT-s0Y"/>
+                                <constraint firstItem="MS3-iR-62D" firstAttribute="leading" secondItem="kMl-10-FUQ" secondAttribute="trailing" id="ks2-W7-RUj"/>
+                                <constraint firstItem="kMl-10-FUQ" firstAttribute="leading" secondItem="p9N-KG-M8R" secondAttribute="leading" constant="5" id="oUY-6m-wdO"/>
+                                <constraint firstAttribute="height" constant="25" id="zxi-DA-8Sx"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdw-Wa-3hM">
+                            <rect key="frame" x="0.0" y="25" width="414" height="25"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LH_laba.gif" translatesAutoresizingMaskIntoConstraints="NO" id="rn6-JY-UiT" customClass="FLAnimatedImageView">
+                                    <rect key="frame" x="5" y="7.5" width="15" height="10"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="10" id="OaV-hI-Jd3"/>
+                                        <constraint firstAttribute="width" constant="15" id="x6R-Bq-icb"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一个发帖就能赚钱的论坛，你们还在等什么呢!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzR-n8-99Z">
+                                    <rect key="frame" x="20" y="5.5" width="256.5" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="5L4-nR-J9s"/>
+                                <constraint firstItem="XzR-n8-99Z" firstAttribute="centerY" secondItem="Jdw-Wa-3hM" secondAttribute="centerY" id="DCQ-tB-jU2"/>
+                                <constraint firstItem="rn6-JY-UiT" firstAttribute="leading" secondItem="Jdw-Wa-3hM" secondAttribute="leading" constant="5" id="XGd-0b-SBa"/>
+                                <constraint firstItem="XzR-n8-99Z" firstAttribute="leading" secondItem="rn6-JY-UiT" secondAttribute="trailing" id="hN0-Tw-UlH"/>
+                                <constraint firstItem="rn6-JY-UiT" firstAttribute="centerY" secondItem="Jdw-Wa-3hM" secondAttribute="centerY" id="so8-7r-rfk"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cek-qa-JMG">
+                            <rect key="frame" x="0.0" y="50" width="414" height="40"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LH_l001jt.gif" translatesAutoresizingMaskIntoConstraints="NO" id="VtH-XA-8Tk" customClass="FLAnimatedImageView">
+                                    <rect key="frame" x="5" y="7" width="15" height="10"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="15" id="1lE-J2-0Mn"/>
+                                        <constraint firstAttribute="height" constant="10" id="bXH-od-y2n"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本站备用网址一:889777.com备用网址二:668000.com截图保存相册" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihy-L4-XWI">
+                                    <rect key="frame" x="20" y="0.0" width="393" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="sA4-bp-QGG"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Ihy-L4-XWI" firstAttribute="leading" secondItem="VtH-XA-8Tk" secondAttribute="trailing" id="Bl2-5V-h2s"/>
+                                <constraint firstAttribute="trailing" secondItem="Ihy-L4-XWI" secondAttribute="trailing" constant="1" id="C0d-9u-rLv"/>
+                                <constraint firstAttribute="height" constant="40" id="HTf-co-ZWm"/>
+                                <constraint firstItem="VtH-XA-8Tk" firstAttribute="top" secondItem="Cek-qa-JMG" secondAttribute="top" constant="7" id="Hv5-ac-5Dt"/>
+                                <constraint firstItem="Ihy-L4-XWI" firstAttribute="centerY" secondItem="Cek-qa-JMG" secondAttribute="centerY" id="Okh-ty-ezI"/>
+                                <constraint firstItem="VtH-XA-8Tk" firstAttribute="leading" secondItem="Cek-qa-JMG" secondAttribute="leading" constant="5" id="Wcy-v0-klZ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qwI-Np-aqr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5oc-4n-vEe"/>
+                <constraint firstItem="qwI-Np-aqr" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="T1W-EJ-2zr"/>
+                <constraint firstItem="qwI-Np-aqr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xhb-pM-NQh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qwI-Np-aqr" secondAttribute="trailing" id="hmY-Zy-wJr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="imgGif1" destination="kMl-10-FUQ" id="yqr-WG-0ej"/>
+                <outlet property="imgGif2" destination="rn6-JY-UiT" id="Iqo-e8-Dtf"/>
+                <outlet property="imgGif3" destination="VtH-XA-8Tk" id="ixm-9V-CWQ"/>
+                <outlet property="titleLab1" destination="MS3-iR-62D" id="IGX-TH-d0N"/>
+                <outlet property="titleLab2" destination="XzR-n8-99Z" id="Ikh-n2-eUH"/>
+                <outlet property="titleLab3" destination="Ihy-L4-XWI" id="cz4-uC-jAl"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="LH_l001jt.gif" width="30" height="20"/>
+        <image name="LH_laba.gif" width="300" height="300"/>
+    </resources>
+</document>

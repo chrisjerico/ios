@@ -7,23 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SiteModel.h"
+#import "ReactNativeVC.h"
 
-#define APP_TEST 1      // 测试环境宏
-#define API_Version 3   // 接口版本号
-/*
- 以下是接口版本与对应的需求版本：
- apiVersion(0) = 1.0.0
- apiVersion(1) = 1.0.1
- apiVersion(2) = 1.1.0
- apiVersion(3) = 1.1.1
- */
+// 测试环境宏
+#define APP_TEST
 
-
-#define _FloatString1(f) [AppDefine stringWithFloat:f decimal:1]
-#define _FloatString2(f) [AppDefine stringWithFloat:f decimal:2]
-#define _FloatString4(f) [AppDefine stringWithFloat:f decimal:4]
-#define _IntString(i) [AppDefine stringWithInteger:i]
-#define _FileSizeString(byte) [AppDefine stringWithFileSize:(byte)]
 
 #define APP [AppDefine shared]
 
@@ -33,30 +22,87 @@
 
 @interface AppDefine : NSObject
 
-@property (nonatomic) NSString *StoreID;                /**<    在 App Store 上的 Appid */
-@property (nonatomic) NSString *HOST;                   /**<    服务器地址 */
-@property (nonatomic) NSInteger apiVersion;             /**<    接口版本 */
-
-@property (nonatomic) NSString *InviteCode;             /**<    被邀请码 */
-
-@property (nonatomic) NSString *DefaultUserPhoto;       /**<    默认用户头像 */
-@property (nonatomic) NSString *DefaultUserPhotoURL;    /**<    默认用户头像 */
+@property (nonatomic, readonly) NSString *Host;         /**<    服务器地址 */
+@property (nonatomic, readonly) NSString *SiteId;       /**<   当前站点ID */
+@property (nonatomic, readonly) NSArray <SiteModel *> *allSites;  /**<   所有站点 */
 
 @property (nonatomic) NSInteger PageCount;              /**<    TableView每页显示多少条数据 */
-
 @property (nonatomic) NSUInteger PhotoMaxLength;        /**<    图片上传允许的最大大小 */
+@property (nonatomic, readonly) NSString *beginTime;         /**<    推荐收益的默认开始时间*/
+
+@property (nonatomic) BOOL isFish;
+
+@property (nonatomic) BOOL betOddsIsRed;                        /**<   下注页面赔率显示为红色 */
+@property (nonatomic) BOOL betBgIsWhite;                         /**<   下注页面背景白色 */
+@property (nonatomic) BOOL betSizeIsBig;                         /**<   下注页面Cell大字体 */
+@property (nonatomic,readonly) UIFont *cellBigFont;              /**<   下注页面Cell大字体  [UIFont boldSystemFontOfSize:17];*/
+@property (nonatomic,readonly) UIFont *cellNormalFont;           /**<   下注页面Cel正常l字体  [UIFont systemFontOfSize:14];*/
+@property (nonatomic) float cellNormalFontSize;                  /**<    下注页面Cel正常l字体  14] */
+@property (nonatomic) float borderWidthTimes;                    /**<    下注页面Cel边框宽的倍数 */
+@property (nonatomic) BOOL lotteryHallCustomImgS;                 /**<   彩票大厅自定义图标 */
+@property (nonatomic) BOOL addIcons;                             /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
+@property (nonatomic) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
+@property (nonatomic) BOOL isShowLogo;                           /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动  有左右箭头*/
+@property (nonatomic) BOOL isShowArrow;                          /**<  首页中间游戏导航需增加左右箭头 */
+@property (nonatomic) BOOL isShow4;                              /**<  任务中心显示4个，不显示图片 */
+@property (nonatomic) BOOL isShowWZ;                             /**<  将选填 这两个字更换为  如果没有，可不填写 */
+@property (nonatomic) BOOL isShowJinbei;                         /**<  显示金杯 */
+@property (nonatomic) BOOL isHideText;                           /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
+@property (nonatomic) BOOL isWhite;                              /**<  首页游戏cell加白边 */
+@property (nonatomic) BOOL isBall;                               /**<  下注界面号码显示为球图 */
+@property (nonatomic) BOOL isBorderNavBarBgColor;                /**<  选中底色为navBarBgColor */
+@property (nonatomic) BOOL isShowHornView;                       /**<  六合模板显示喇叭*/
+@property (nonatomic) BOOL isShowBorder;                         /**< 下注上面显示边框*/
+@property (nonatomic) BOOL isSelectStyle;                        /**< 下注六合彩 特码A|特码B 有选中效果*/
+@property (nonatomic) BOOL isGrey;                               /**<  下注界面tableCell 背景为灰色*/
+@property (nonatomic) BOOL isYellow;                             /**<  下注界面已选中数字为亮黄色*/
+@property (nonatomic) BOOL isBall6;                              /**<  下注界面六合彩上面显示为球图*/
+@property (nonatomic) BOOL isLight;                              /**<  下注界面背景色变淡*/
+@property (nonatomic) BOOL isCornerRadius;                       /**<  首页广告View加圆角*/
+@property (nonatomic) BOOL isFontSystemSize;                     /**<  首页导航文字不加粗*/
+@property (nonatomic) BOOL isChatWhite;                           /**<  下注界面 投注区，聊天室标题文字为白色*/
+@property (nonatomic) BOOL isHideChat;                            /**<  下注界面 投注区，聊天室图片隐藏  显示历史开奖几期*/
+
+@property (nonatomic) BOOL isYHShowTitle;                          /**<  优惠详情现在titleLabel ,导航条显示：活动详情*/
+@property (nonatomic) BOOL isNoBorder;                             /**<  首页优惠活动没有外面的View */
+@property (nonatomic) BOOL isRedWhite;                             /**<  下注界面新年红模板样式 红白配色*/
+@property (nonatomic) BOOL oldConversion;                          /**<  老的转换界面*/
+@property (nonatomic) BOOL isParagraphSpacing;                     /**<  首页公告详情段落有间距*/
+@property (nonatomic) BOOL isFireworks;                            /**<  首页cell加烟花背景*/
+@property (nonatomic) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
+@property (nonatomic) BOOL isTabMassageBadge;                      /**< 底部导航栏【站内信】收到新的站内信时，添加提示功能 */
+@property (nonatomic) BOOL isTextWhite;                            /**< 投注页面封盘时间字体颜色需要调整为白色 */
+@property (nonatomic) BOOL isHideFoot;                             /**< 首页面手机端标记处去除  */
+@property (nonatomic) BOOL isGPKDeposit;                            /**< GPK版右上角最近浏览改为 存取款  */
+@property (nonatomic) BOOL isTitleWhite;                            /**< 游戏大厅绿色字体改为白色字体 */
+@property (nonatomic) BOOL isSectionWhite;                          /**< IOS 彩票投注页面，所选的玩法名称显示修改成白色字体  */
+// 热更新相关字段
+                                                   
+@property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
+@property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
+@property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
+@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
+//@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
 
 
 + (instancetype)shared;
+@end
 
-// double
-+ (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d;
-+ (NSString *)stringWithInteger:(NSInteger)i;
-+ (NSString *)stringWithFileSize:(double)size;
-+ (double)folderSizeAtPath:(NSString *)folderPath;
-+ (unsigned long long)fileSizeAtPath:(NSString *)filePath;
+
+
+#pragma mark - H5 url
+// ——————————————————————————
+@interface AppDefine ()
+
+@property (nonatomic, readonly) NSString *chatShareUrl; /**<   分享注单到聊天室URL */
+@property (nonatomic, readonly) NSString *chatHomeUrl;  /**<   聊天室大厅URL */
+@property(nonatomic, strong) dispatch_source_t messageRequestTimer;
+- (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead ;          /**<   聊天室-游戏房间 */
+- (NSString *)htmlStyleString:(NSString *)content;  /**<   添加html样式 */
 
 @end
+
+
 
 
 
@@ -68,9 +114,7 @@
 @property (nonatomic) NSString *BundleId;           /**<    BundleID */
 @property (nonatomic) NSString *Version;            /**<    版本号 */
 @property (nonatomic) NSString *Build;              /**<    Build号 */
-
-@property (nonatomic) BOOL Debug;                   /**<    是否debug环境 */
-@property (nonatomic) BOOL Test;                    /**<    是否test环境 */
+@property (nonatomic) NSString *DevUser;            /**<    开发者在当前电脑登录的用户名 */
 
 @property (nonatomic) UIWindow *Window;             /**<    UIApplication.windows.first */
 @property (nonatomic) CGRect Bounds;                /**<    bounds */
@@ -88,9 +132,8 @@
 + (__kindof UIViewController *)viewControllerWithStoryboardID:(NSString *)sid;  /**<    从Storyboard加载vc */
 + (__kindof UIViewController *)viewControllerWithNibName:(NSString *)nibName;   /**<    从xib加载vc */
 + (__kindof UIView *)viewWithNibName:(NSString *)nibName;                       /**<    从xib加载view */
-+ (void)createDirectoryAtPath:(NSString *)path;
-+ (void)setWindowInterfaceOrientation:(UIInterfaceOrientation)io;               /**<    设置屏幕方向 */
-
++ (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d;              /**<   double转字符串，去除末尾的0 */
++ (NSString *)stringWithFileSize:(double)size;
 @end
 
 
@@ -118,13 +161,13 @@
 @property (nonatomic) UIColor *LoadingColor;         /**<    加载/缺省 淡灰色 238 */
 @property (nonatomic) UIColor *NavigationBarColor;   /**<    导航条 淡灰色 243 */
 @property (nonatomic) UIColor *BackgroundColor;      /**<    背景色 淡灰色 247 */
-
-// 半透明
-@property (nonatomic) UIColor *ShadeColor;           /**<    遮罩 黑色半透明 */
-
-// 黑/白色
-@property (nonatomic) UIColor *BlackColor;           /**<    黑色 */
-@property (nonatomic) UIColor *WhiteColor;           /**<    白色 */
-
 @end
+
+
+
+
+// double转字符串，去除末尾的0
+#define _FloatString1(f) [AppDefine stringWithFloat:f decimal:1]
+#define _FloatString2(f) [AppDefine stringWithFloat:f decimal:2]
+#define _FloatString4(f) [AppDefine stringWithFloat:f decimal:4]
 

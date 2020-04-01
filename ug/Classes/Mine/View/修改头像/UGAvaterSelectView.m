@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIView *avatersBgView;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGAvatarModel *> *dataArray;
 @property (nonatomic, assign) CGRect oldFrame;
 @property (nonatomic, assign) NSInteger selIndex;
 @property (nonatomic, assign) NSInteger leftIndex;
@@ -42,12 +42,12 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         self.submitButton.layer.cornerRadius = 3;
         self.submitButton.layer.masksToBounds = YES;
        
-        [self.submitButton setBackgroundColor: [[UGSkinManagers shareInstance] setNavbgColor]];
+        [self.submitButton setBackgroundColor: Skin1.navBarBgColor];
         self.cancelButton.layer.cornerRadius = 3;
         self.cancelButton.layer.masksToBounds = YES;
         [self initCollectionView];
         [self getAvatarList];
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+        [self setBackgroundColor: Skin1.bgColor];
     }
     return self;
 }
@@ -73,7 +73,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
             }
             UGAvatarModel *avatar = self.dataArray.firstObject;
             [self.collectionView reloadData];
-            [self.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"]];
+            [self.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
@@ -83,6 +83,9 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 }
 
 - (void)changAvatar:(UGAvatarModel *)avatar {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"filename":avatar.filename
                              };
@@ -214,7 +217,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     }];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGAvatarModel *> *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
     }

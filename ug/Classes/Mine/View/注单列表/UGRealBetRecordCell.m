@@ -21,7 +21,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    [self.contentView setBackgroundColor:Skin1.textColor4];
+    [_gameNameLabel setTextColor:Skin1.textColor1];
+    [_timeLabel setTextColor:Skin1.textColor1];
+    [_betAmountLabel setTextColor:Skin1.textColor1];
+    [_winAmountLabel setTextColor:Skin1.textColor1];
 }
 
 - (void)setItem:(UGBetsRecordModel *)item {

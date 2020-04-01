@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 自定义参数
 @property (nonatomic) NSAttributedString *attrString;
+@property (nonatomic, assign) CGFloat cellHeight;
 @end
 
 

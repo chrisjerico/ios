@@ -16,6 +16,42 @@
 #import "UGBetDetailModel.h"
 @implementation CMNetwork (Hall)
 
++ (void)getOwnLotteryList: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+     
+     [self.manager requestInMainThreadWithMethod:[ownLotteryListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                          params:params
+                                           model:nil
+                                            post:NO
+                                      completion:completionBlock];
+     
+     CMMETHOD_END;
+}
+
++ (void)getLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
+	CMMETHOD_BEGIN;
+	 
+	 [self.manager requestInMainThreadWithMethod:[lotteryTrendUrl stringToRestfulUrlWithFlag:RESTFUL]
+										  params:params
+										   model:nil
+											post:NO
+									  completion:completionBlock];
+	 
+	 CMMETHOD_END;
+}
+
++ (void)getOfficialLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+     
+     [self.manager requestInMainThreadWithMethod:[officialLotteryTrendUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                          params:params
+                                           model:nil
+                                            post:NO
+                                      completion:completionBlock];
+     
+     CMMETHOD_END;
+}
+
 //获取彩票大厅数据
 + (void)getAllNextIssueWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     
@@ -150,11 +186,9 @@
     
     [self.manager requestInMainThreadWithMethod:[getLotteryHistoryUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-//<<<<<<< HEAD
-//                                          model:CMResultClassMake(UGLotteryHistoryModelList.class)
-//=======
+
                                           model:CMResultClassMake(UGLotteryHistoryListModel.class)
-//>>>>>>> dev_fish
+
                                            post:NO
                                      completion:completionBlock];
     
@@ -194,4 +228,29 @@
     
 }
 
+// 增检查真人游戏是否存在余额未转出
++ (void)needToTransferOutWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    [self.manager requestInMainThreadWithMethod:[needToTransferOutUrl stringToRestfulUrlWithFlag:RESTFUL]
+        params:params
+         model:nil
+          post:false
+    completion:completionBlock];
+}
+
+
+//彩票注单统计
++ (void)ticketlotteryStatisticsUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[ticketlotteryStatisticsUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGBetsRecordListModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+    
+   
 @end

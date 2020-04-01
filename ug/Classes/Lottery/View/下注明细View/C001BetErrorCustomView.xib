@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="C001BetErrorCustomView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="177"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBr-jw-vvz">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKg-1E-QEz">
+                            <rect key="frame" x="8" y="11.5" width="35" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loA-ez-lax">
+                            <rect key="frame" x="375" y="9.5" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="0dU-bO-VNH"/>
+                                <constraint firstAttribute="height" constant="25" id="qwJ-kf-hjg"/>
+                            </constraints>
+                            <state key="normal" image="btn_common_close_wh.png"/>
+                            <connections>
+                                <action selector="closeButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="otT-ug-XCX"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.11372549019607843" green="0.23529411764705882" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="loA-ez-lax" firstAttribute="centerY" secondItem="oBr-jw-vvz" secondAttribute="centerY" id="7aJ-FV-Zxl"/>
+                        <constraint firstAttribute="trailing" secondItem="loA-ez-lax" secondAttribute="trailing" constant="14" id="FPo-o1-iNI"/>
+                        <constraint firstItem="pKg-1E-QEz" firstAttribute="leading" secondItem="oBr-jw-vvz" secondAttribute="leading" constant="8" id="ISV-R0-rIb"/>
+                        <constraint firstAttribute="height" constant="44" id="Rea-0G-eSG"/>
+                        <constraint firstItem="pKg-1E-QEz" firstAttribute="centerY" secondItem="oBr-jw-vvz" secondAttribute="centerY" id="sEv-yT-Ejr"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error msg: 404" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJQ-65-vRk">
+                    <rect key="frame" x="20" y="64" width="374" height="43"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzU-lg-kHc">
+                    <rect key="frame" x="144.5" y="127" width="125" height="30"/>
+                    <color key="backgroundColor" red="0.1137254902" green="0.23529411759999999" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="125" id="Xhc-IX-FGL"/>
+                        <constraint firstAttribute="height" constant="30" id="lfh-uf-koS"/>
+                    </constraints>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="confirButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="4T9-LV-bP4"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="top" secondItem="oBr-jw-vvz" secondAttribute="top" id="7Fo-xG-PBS"/>
+                <constraint firstItem="gzU-lg-kHc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="D5Z-T3-ihN"/>
+                <constraint firstItem="gzU-lg-kHc" firstAttribute="top" secondItem="CJQ-65-vRk" secondAttribute="bottom" constant="20" id="Efl-xH-Zgl"/>
+                <constraint firstAttribute="bottom" secondItem="gzU-lg-kHc" secondAttribute="bottom" constant="20" id="HUq-nP-V9A"/>
+                <constraint firstAttribute="trailing" secondItem="CJQ-65-vRk" secondAttribute="trailing" constant="20" id="QLF-DP-iAF"/>
+                <constraint firstItem="CJQ-65-vRk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="eLD-MB-z1l"/>
+                <constraint firstItem="oBr-jw-vvz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fty-Jg-35J"/>
+                <constraint firstAttribute="trailing" secondItem="oBr-jw-vvz" secondAttribute="trailing" id="ihG-QL-6hK"/>
+                <constraint firstItem="CJQ-65-vRk" firstAttribute="top" secondItem="oBr-jw-vvz" secondAttribute="bottom" constant="20" id="wfa-8b-ELE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="msgLabel" destination="CJQ-65-vRk" id="VO1-C7-zQh"/>
+            </connections>
+            <point key="canvasLocation" x="-134.78260869565219" y="167.07589285714286"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_common_close_wh.png" width="32" height="32"/>
+    </resources>
+</document>

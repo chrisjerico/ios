@@ -11,6 +11,7 @@
 @interface UGLotteryResultCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+
 @end
 @implementation UGLotteryResultCollectionViewCell
 
@@ -19,23 +20,46 @@
     
     self.layer.cornerRadius = self.width / 2;
     self.layer.masksToBounds = YES;
+    
 }
 
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;
-    
+}
+
+- (CALayer *)layer {
+    return _titleLabel.layer;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    _titleLabel.backgroundColor = backgroundColor;
 }
 
 - (void)setColor:(NSString *)color {
     _color = color;
-    if ([@"blue" isEqualToString:color]) {
-        self.backgroundColor = UGRGBColor(86, 170, 236);
-    }else if ([@"red" isEqualToString:color]) {
-        self.backgroundColor = UGRGBColor(197, 52, 60);
-    }else {
-        self.backgroundColor = UGRGBColor(96, 174, 108);
+    
+    if (self.showBall6) {
+        [self.ballImg setHidden:NO];
+        
+        if ([@"blue" isEqualToString:color]) {
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_blue"]];
+        } else if ([@"red" isEqualToString:color]) {
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_red"]];
+        } else {
+            [self.ballImg setImage:[UIImage imageNamed:@"lhc_green"]];
+        }
+    } else {
+        if ([@"blue" isEqualToString:color]) {
+            self.backgroundColor = UGRGBColor(86, 170, 236);
+        } else if ([@"red" isEqualToString:color]) {
+            self.backgroundColor = UGRGBColor(197, 52, 60);
+        } else {
+            self.backgroundColor = UGRGBColor(96, 174, 108);
+        }
     }
+    
+    
 }
 
 - (void)setShowBorder:(BOOL)showBorder {
@@ -45,9 +69,14 @@
         self.layer.borderWidth = 1;
         self.backgroundColor = [UIColor clearColor];
         self.titleLabel.textColor = [UIColor blackColor];
-    }else {
+    } else {
+        if (self.showBall6) {
+            self.backgroundColor = [UIColor clearColor];
+        } else {
+            self.backgroundColor = Skin1.navBarBgColor;
+        }
         self.layer.borderColor = [UIColor clearColor].CGColor;
-        self.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
+        
         self.titleLabel.textColor = [UIColor whiteColor];
     }
 }
@@ -57,8 +86,14 @@
     self.layer.cornerRadius = self.width / 2;
     self.layer.masksToBounds = YES;
     if (showAdd) {
+        [self.ballImg setHidden:YES];
         self.backgroundColor = [UIColor clearColor];
-        self.titleLabel.textColor = [UIColor blackColor];
+        if (Skin1.isBlack||Skin1.is23) {
+            self.titleLabel.textColor = [UIColor whiteColor];
+            
+        } else {
+            self.titleLabel.textColor = [UIColor blackColor];
+        }
         if (self.showIsequal) {
             self.titleLabel.text = @"=";
         }else {
@@ -66,8 +101,22 @@
             self.titleLabel.text = @"+";
         }
     }else {
-        self.backgroundColor = [[UGSkinManagers shareInstance] setNavbgColor];
-        self.titleLabel.textColor = [UIColor whiteColor];
+        
+        if (self.showBall6) {
+            [self.titleLabel  mas_remakeConstraints:^(MASConstraintMaker *make)
+             {
+                make.centerX.equalTo(self.mas_centerX).with.offset(-1);
+                make.centerY.equalTo(self.mas_centerY).with.offset(-1);
+            }];
+            [self.titleLabel setFont:[UIFont systemFontOfSize:12.0]];
+            self.titleLabel.textColor = [UIColor blackColor];
+            self.backgroundColor = [UIColor clearColor];
+        }
+        else{
+            self.backgroundColor = Skin1.navBarBgColor;
+            self.titleLabel.textColor = [UIColor whiteColor];
+        }
+        
         
     }
 }

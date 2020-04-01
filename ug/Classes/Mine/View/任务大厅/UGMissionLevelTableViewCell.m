@@ -23,45 +23,32 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    if (Skin1.isBlack) {
+        [self.levelsLabel setTextColor: Skin1.textColor1];
+        [self setBackgroundColor: Skin1.bgColor];
+        [self.levelTitleLabel setTextColor: Skin1.textColor1];
+        [self.integralLabel setTextColor: Skin1.textColor1];
+        [self.levelsSectionLabel setTextColor: Skin1.textColor1];
+    } else {
+        [self.levelsLabel setTextColor: [UIColor blackColor]];
+        [self setBackgroundColor: [UIColor whiteColor]];
+        [self.levelTitleLabel setTextColor: [UIColor blackColor]];
+        [self.integralLabel setTextColor: [UIColor blackColor]];
+        [self.levelsSectionLabel setTextColor: [UIColor blackColor]];
+    }
+
 }
-
-
-
 
 - (void)setItem:(UGlevelsModel *)item {
     _item = item;
     self.levelsLabel.text = item.levelName;
     self.levelTitleLabel.text = item.levelTitle;
     self.integralLabel.text = item.integral;
-    
-   
-    
-    int levelsInt = [item.levelsId intValue];
-    
-     self.levelsSectionLabel.text = [NSString stringWithFormat:@"vip%d",levelsInt];
-    
+    self.levelsSectionLabel.text = item.levelName;
     [self.levelsSectionLabel setHidden:NO];
-    
-//    NSString *imgStr = @"";
-//    if (levelsInt <11) {
-//      imgStr = [NSString stringWithFormat:@"vip%d",levelsInt];
-//    } else {
-//      imgStr = @"vip11";
-//    }
-//
-//    [self.levelsImager setImage: [UIImage imageNamed:imgStr]];
-    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(void)setSectionBgColor:(UIColor *)bgColor levelsSectionStr:(NSString *)levelsSectionStr{
+- (void)setSectionBgColor:(UIColor *)bgColor levelsSectionStr:(NSString *)levelsSectionStr{
     [self setBackgroundColor:bgColor];
     [self.levelTitleLabel setBackgroundColor:bgColor];
     [self.integralLabel setBackgroundColor:bgColor];
@@ -70,4 +57,5 @@
     self.levelsSectionLabel.text = levelsSectionStr;
     [self.levelsView setHidden:YES];
 }
+
 @end

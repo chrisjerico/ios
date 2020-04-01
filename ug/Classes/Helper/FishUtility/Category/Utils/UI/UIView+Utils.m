@@ -8,60 +8,60 @@
 
 #import "UIView+Utils.h"
 
-typedef NS_ENUM(NSInteger, ZJConstraintType) {
-    ZJConstraintTop,
-    ZJConstraintLeft,
-    ZJConstraintBottom,
-    ZJConstraintRight,
-    ZJConstraintWidth,
-    ZJConstraintHeight,
-    ZJConstraintCenterX,
-    ZJConstraintCenterY,
+typedef NS_ENUM(NSInteger, CCConstraintType) {
+    CCConstraintTop,
+    CCConstraintLeft,
+    CCConstraintBottom,
+    CCConstraintRight,
+    CCConstraintWidth,
+    CCConstraintHeight,
+    CCConstraintCenterX,
+    CCConstraintCenterY,
 };
 
 
 
-@implementation ZJGetConstraint
+@implementation CCGetConstraint
 
-+ (NSArray <NSNumber *>*)constraintAttributesWithType:(ZJConstraintType)type {
++ (NSArray <NSNumber *>*)constraintAttributesWithType:(CCConstraintType)type {
     NSArray *attr = nil;
     switch (type) {
-        case ZJConstraintTop: {
+        case CCConstraintTop: {
             attr = @[@(NSLayoutAttributeTop),
                      @(NSLayoutAttributeTopMargin)];
             break;
         }
-        case ZJConstraintLeft: {
+        case CCConstraintLeft: {
             attr = @[@(NSLayoutAttributeLeft),
                      @(NSLayoutAttributeLeading),
                      @(NSLayoutAttributeLeftMargin)];
             break;
         }
-        case ZJConstraintBottom: {
+        case CCConstraintBottom: {
             attr = @[@(NSLayoutAttributeBottom),
                      @(NSLayoutAttributeBottomMargin),];
             break;
         }
-        case ZJConstraintRight: {
+        case CCConstraintRight: {
             attr = @[@(NSLayoutAttributeRight),
                      @(NSLayoutAttributeTrailing),
                      @(NSLayoutAttributeTrailingMargin)];
             break;
         }
-        case ZJConstraintWidth: {
+        case CCConstraintWidth: {
             attr = @[@(NSLayoutAttributeWidth)];
             break;
         }
-        case ZJConstraintHeight: {
+        case CCConstraintHeight: {
             attr = @[@(NSLayoutAttributeHeight)];
             break;
         }
-        case ZJConstraintCenterX: {
+        case CCConstraintCenterX: {
             attr = @[@(NSLayoutAttributeCenterX),
                      @(NSLayoutAttributeCenterXWithinMargins)];
             break;
         }
-        case ZJConstraintCenterY: {
+        case CCConstraintCenterY: {
             attr = @[@(NSLayoutAttributeCenterY),
                      @(NSLayoutAttributeCenterYWithinMargins)];
             break;
@@ -76,9 +76,9 @@ typedef NS_ENUM(NSInteger, ZJConstraintType) {
     return _constraints.count;
 }
 
-- (NSLayoutConstraint *)constraintWithType:(ZJConstraintType)type item:(id)item {
+- (NSLayoutConstraint *)constraintWithType:(CCConstraintType)type item:(id)item {
     NSLayoutConstraint *temp = nil;
-    NSArray <NSNumber *>*attrs = [ZJGetConstraint constraintAttributesWithType:type];
+    NSArray <NSNumber *>*attrs = [CCGetConstraint constraintAttributesWithType:type];
     
     for (NSLayoutConstraint *lc in _constraints) {
         // 筛选作用在_owner上的约束
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSInteger, ZJConstraintType) {
                 continue;
             
             // 过滤掉 AspectRatio（长宽比）
-            if ((type == ZJConstraintWidth || type == ZJConstraintHeight) && anotherItem)
+            if ((type == CCConstraintWidth || type == CCConstraintHeight) && anotherItem)
                 continue;
         }
         
@@ -121,24 +121,24 @@ typedef NS_ENUM(NSInteger, ZJConstraintType) {
 }
 
 
-- (NSLayoutConstraint *)top                 { return [self constraintWithType:ZJConstraintTop      item:nil];}
-- (NSLayoutConstraint *)left                { return [self constraintWithType:ZJConstraintLeft     item:nil];}
-- (NSLayoutConstraint *)bottom              { return [self constraintWithType:ZJConstraintBottom   item:nil];}
-- (NSLayoutConstraint *)right               { return [self constraintWithType:ZJConstraintRight    item:nil];}
-- (NSLayoutConstraint *)width               { return [self constraintWithType:ZJConstraintWidth    item:nil];}
-- (NSLayoutConstraint *)height              { return [self constraintWithType:ZJConstraintHeight   item:nil];}
-- (NSLayoutConstraint *)centerX             { return [self constraintWithType:ZJConstraintCenterX  item:nil];}
-- (NSLayoutConstraint *)centerY             { return [self constraintWithType:ZJConstraintCenterY  item:nil];}
+- (NSLayoutConstraint *)top                 { return [self constraintWithType:CCConstraintTop      item:nil];}
+- (NSLayoutConstraint *)left                { return [self constraintWithType:CCConstraintLeft     item:nil];}
+- (NSLayoutConstraint *)bottom              { return [self constraintWithType:CCConstraintBottom   item:nil];}
+- (NSLayoutConstraint *)right               { return [self constraintWithType:CCConstraintRight    item:nil];}
+- (NSLayoutConstraint *)width               { return [self constraintWithType:CCConstraintWidth    item:nil];}
+- (NSLayoutConstraint *)height              { return [self constraintWithType:CCConstraintHeight   item:nil];}
+- (NSLayoutConstraint *)centerX             { return [self constraintWithType:CCConstraintCenterX  item:nil];}
+- (NSLayoutConstraint *)centerY             { return [self constraintWithType:CCConstraintCenterY  item:nil];}
 
 
-- (NSLayoutConstraint *)top:(id)item        { return [self constraintWithType:ZJConstraintTop      item:item];}
-- (NSLayoutConstraint *)left:(id)item       { return [self constraintWithType:ZJConstraintLeft     item:item];}
-- (NSLayoutConstraint *)bottom:(id)item     { return [self constraintWithType:ZJConstraintBottom   item:item];}
-- (NSLayoutConstraint *)right:(id)item      { return [self constraintWithType:ZJConstraintRight    item:item];}
-- (NSLayoutConstraint *)width:(id)item      { return [self constraintWithType:ZJConstraintWidth    item:item];}
-- (NSLayoutConstraint *)height:(id)item     { return [self constraintWithType:ZJConstraintHeight   item:item];}
-- (NSLayoutConstraint *)centerX:(id)item    { return [self constraintWithType:ZJConstraintCenterX  item:item];}
-- (NSLayoutConstraint *)centerY:(id)item    { return [self constraintWithType:ZJConstraintCenterY  item:item];}
+- (NSLayoutConstraint *)top:(id)item        { return [self constraintWithType:CCConstraintTop      item:item];}
+- (NSLayoutConstraint *)left:(id)item       { return [self constraintWithType:CCConstraintLeft     item:item];}
+- (NSLayoutConstraint *)bottom:(id)item     { return [self constraintWithType:CCConstraintBottom   item:item];}
+- (NSLayoutConstraint *)right:(id)item      { return [self constraintWithType:CCConstraintRight    item:item];}
+- (NSLayoutConstraint *)width:(id)item      { return [self constraintWithType:CCConstraintWidth    item:item];}
+- (NSLayoutConstraint *)height:(id)item     { return [self constraintWithType:CCConstraintHeight   item:item];}
+- (NSLayoutConstraint *)centerX:(id)item    { return [self constraintWithType:CCConstraintCenterX  item:item];}
+- (NSLayoutConstraint *)centerY:(id)item    { return [self constraintWithType:CCConstraintCenterY  item:item];}
 
 @end
 
@@ -146,8 +146,8 @@ typedef NS_ENUM(NSInteger, ZJConstraintType) {
 
 @implementation UIView (Utils)
 
-- (void)zj_updateConstraints:(void (^)(ZJGetConstraint *))block {
-    block(self.zj_constraints);
+- (void)cc_updateConstraints:(void (^)(CCGetConstraint *))block {
+    block(self.cc_constraints);
 }
 
 - (BOOL)existSubview:(UIView *)view {
@@ -159,17 +159,17 @@ typedef NS_ENUM(NSInteger, ZJConstraintType) {
 }
 
 - (void)removeAllConstraints {
-    [self removeConstraints:self.zj_constraints.constraints];
+    [self removeConstraints:self.cc_constraints.constraints];
 }
 
-- (ZJGetConstraint *)zj_constraints {
-    ZJGetConstraint *zj_constraints = objc_getAssociatedObject(self, @selector(zj_constraints));
-    if (!zj_constraints) {
-        zj_constraints = [ZJGetConstraint new];
-        objc_setAssociatedObject(self, @selector(zj_constraints), zj_constraints, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (CCGetConstraint *)cc_constraints {
+    CCGetConstraint *cc_constraints = objc_getAssociatedObject(self, @selector(cc_constraints));
+    if (!cc_constraints) {
+        cc_constraints = [CCGetConstraint new];
+        objc_setAssociatedObject(self, @selector(cc_constraints), cc_constraints, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
-    zj_constraints.constraints = ({
+    cc_constraints.constraints = ({
         [self.superview updateConstraintsIfNeeded];
         
         NSMutableArray <NSLayoutConstraint *>*constraints = [NSMutableArray array];
@@ -179,8 +179,8 @@ typedef NS_ENUM(NSInteger, ZJConstraintType) {
         
         [[NSSet setWithArray:constraints] allObjects];
     });
-    zj_constraints.owner = self;
-    return zj_constraints;
+    cc_constraints.owner = self;
+    return cc_constraints;
 }
 
 - (UIImage *)screenshot {
@@ -191,5 +191,18 @@ typedef NS_ENUM(NSInteger, ZJConstraintType) {
     return img;
 }
 
+
+@end
+
+
+
+
+@implementation UIStackView (CCUtils)
+
+- (void)addArrangedSubviews:(NSArray <UIView *> *)views {
+    for (UIView *v in views) {
+        [self addArrangedSubview:v];
+    }
+}
 
 @end

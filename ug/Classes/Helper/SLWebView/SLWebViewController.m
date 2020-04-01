@@ -8,7 +8,7 @@
 #import <WebKit/WebKit.h>
 #import "SLPrefixHeader.pch"
 #import "STBarButtonItem.h"
-
+#import "OnlineServiceViewController.h"
 // WKWebView 内存不释放的问题解决
 @interface WeakWebViewScriptMessageDelegate : NSObject<WKScriptMessageHandler>
     
@@ -55,7 +55,22 @@
 @end
 
 @implementation SLWebViewController
-    
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    //TODO: 页面appear 禁用
+   [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    //TODO: 页面Disappear 启用
+   [[IQKeyboardManager sharedManager] setEnable:YES];
+}
+- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -211,9 +226,16 @@
 
 - (void)setUrlStr:(NSString *)urlStr {
     _urlStr = urlStr;
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if (url.scheme == nil) {
+        url = [NSURL URLWithString:_NSString(@"http://%@", urlStr)];
+    }
+    
+//    [CMCommon showSystemTitle:[NSString stringWithFormat:@"SLWeb.url = %@",url]];
+    
     [self setCookie];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     if (UGLoginIsAuthorized()) {
         
         UGUserModel *user = [UGUserModel currentUser];
@@ -342,10 +364,16 @@
     [self getCookie];
     
     if ([self.webView canGoBack]) {
+        
         self.navigationItem.leftBarButtonItems = @[self.backBtn,self.closeBtn];
         self.navigationItem.rightBarButtonItem = self.homeBtn;
     }else {
-        self.navigationItem.leftBarButtonItems = @[self.backBtn];
+        if ([self isKindOfClass:[OnlineServiceViewController class]]) {
+            self.navigationItem.leftBarButtonItems = nil;
+        }
+        else{
+            self.navigationItem.leftBarButtonItems = @[self.backBtn];
+        }
         self.navigationItem.rightBarButtonItem = nil;
         
     }
@@ -372,6 +400,17 @@
 //        NSLog(@"cookie-------%@",result);
 //
 //    }];
+    
+    NSLog(@"%@",navigationAction.request.URL.absoluteString);
+    NSString* reqUrl = navigationAction.request.URL.absoluteString;
+    if ([reqUrl hasPrefix:@"alipays://"] || [reqUrl hasPrefix:@"alipay://"]) {
+        [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
+        //bSucc是否成功调起支付宝
+    }
+    if ([reqUrl hasPrefix:@"weixin://"]) {
+        [[UIApplication sharedApplication]openURL:navigationAction.request.URL];
+        //bSucc是否成功调起微信
+    }
 
     decisionHandler(WKNavigationActionPolicyAllow);
     
@@ -412,36 +451,42 @@
      *  @param message           警告框中的内容
      *  @param completionHandler 警告框消失调用
      */
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential,card);
+    }
+}
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"HTML的弹出框" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-//    [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        completionHandler();
-//    }])];
-//    [self presentViewController:alertController animated:YES completion:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler();
+    }])];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
     // 确认框
     //JavaScript调用confirm方法后回调的方法 confirm是js中的确定框，需要在block中把用户选择的情况传递进去
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
-//    [alertController addAction:([UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//        completionHandler(NO);
-//    }])];
-//    [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        completionHandler(YES);
-//    }])];
-//    [self presentViewController:alertController animated:YES completion:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(NO);
+    }])];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(YES);
+    }])];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
-    // 输入框
-    //JavaScript调用prompt方法后回调的方法 prompt是js中的输入框 需要在block中把用户输入的信息传入
+// 输入框
+//JavaScript调用prompt方法后回调的方法 prompt是js中的输入框 需要在block中把用户输入的信息传入
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
-//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-//        textField.text = defaultText;
-//    }];
-//    [alertController addAction:([UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        completionHandler(alertController.textFields[0].text?:@"");
-//    }])];
-//    [self presentViewController:alertController animated:YES completion:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = defaultText;
+    }];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(alertController.textFields[0].text?:@"");
+    }])];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
     // 页面是弹出窗口 _blank 处理
 

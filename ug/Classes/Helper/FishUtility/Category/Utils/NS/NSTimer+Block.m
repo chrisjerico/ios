@@ -7,15 +7,15 @@
 //
 
 #import "NSTimer+Block.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 
-@interface ZJTimerModel : NSObject
+@interface CCTimerModel : NSObject
 @property (copy, nonatomic) void (^block)(NSTimer *timer);
 - (void)onTiming:(NSTimer *)timer;
 @end
 
-@implementation ZJTimerModel
+@implementation CCTimerModel
 - (void)onTiming:(NSTimer *)timer {
     if (self.block)
         self.block(timer);
@@ -24,15 +24,15 @@
 
 
 @interface NSTimer ()
-@property (nonatomic) ZJTimerModel *model;
+@property (nonatomic) CCTimerModel *model;
 @end
 
 @implementation NSTimer (Block)
 
-_ZJRuntimeProperty_Retain(ZJTimerModel *, model, setModel);
+_CCRuntimeProperty_Retain(CCTimerModel *, model, setModel);
 
 + (NSTimer *)timerWithInterval:(NSTimeInterval)ti repeats:(BOOL)repeats block:(void (^)(NSTimer *))block {
-    ZJTimerModel *tm = [ZJTimerModel new];
+    CCTimerModel *tm = [CCTimerModel new];
     tm.block = block;
     
     NSTimer *timer = [NSTimer timerWithTimeInterval:ti target:tm selector:@selector(onTiming:) userInfo:nil repeats:repeats];
@@ -41,7 +41,7 @@ _ZJRuntimeProperty_Retain(ZJTimerModel *, model, setModel);
 }
 
 + (NSTimer *)scheduledTimerWithInterval:(NSTimeInterval)ti repeats:(BOOL)repeats block:(void (^)(NSTimer *))block {
-    ZJTimerModel *tm = [ZJTimerModel new];
+    CCTimerModel *tm = [CCTimerModel new];
     tm.block = block;
     
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:ti target:tm selector:@selector(onTiming:) userInfo:nil repeats:repeats];

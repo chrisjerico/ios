@@ -11,11 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGBetRecordViewController :UGViewController
+@interface UGBetRecordViewController : UGViewController
+
+@property (nonatomic, assign) int selectIndex;
 @property (nonatomic, strong) XYYSegmentControl *slideSwitchView;
 
--(void)buildSegment;
--(void)setSelectIndex:(int) index;
 @end
 
 @interface SModel : NSObject

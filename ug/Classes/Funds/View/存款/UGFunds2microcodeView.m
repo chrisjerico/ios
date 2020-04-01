@@ -24,11 +24,15 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFunds2microcodeView" owner:self options:0].firstObject;
         self.frame = frame;
-        [self setBackgroundColor: [UIColor whiteColor]];
-
     }
     return self;
-    
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    FastSubViewCode(self);
+    subLabel(@"二维码Label").textColor = Skin1.textColor1;
+    subLabel(@"扫码Label").textColor = Skin1.textColor1;
 }
 
 - (void)setHeaderImageStr:(NSString *)headerImageStr {

@@ -10,20 +10,26 @@
 
 @interface UGGoogleAuthenticationThirdViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
+@property (weak, nonatomic) IBOutlet UILabel *myTitle;
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @end
 
 @implementation UGGoogleAuthenticationThirdViewController
 -(void)skin{
-    [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    [self.view setBackgroundColor: Skin1.bgColor];
     
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"二次验证";
-    
+    [self.view setBackgroundColor:Skin1.textColor4];
+    [self.myTitle setTextColor:Skin1.textColor1];
+    [self.myTextField setTextColor:Skin1.textColor1];
+    _myTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_myTextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    [self.returnButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.nextButton setBackgroundColor:Skin1.navBarBgColor];
     [IQKeyboardManager.sharedManager.disabledDistanceHandlingClasses addObject:[self class]];
     
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -48,24 +54,29 @@
 - (void)secureGaCaptchaWithBind {
     
     
+    
     NSString *code = [self.myTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     if ([CMCommon stringIsNull:code]) {
         [self.view makeToast:@"请填写验证码"];
         return;
     }
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"action":@"bind",
                              @"code":code,
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
+
     [CMNetwork secureGaCaptchaWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
           [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+           [self.navigationController popToRootViewControllerAnimated:YES];
   
         } failure:^(id msg) {
             

@@ -9,6 +9,7 @@
 #import "UGLotterySubResultCollectionViewCell.h"
 
 @interface UGLotterySubResultCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
@@ -16,16 +17,24 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _bgImageView.image = [[UIImage imageNamed:@"qb"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    _titleLabel.layer.cornerRadius = 3;
+    _titleLabel.layer.masksToBounds = true;
     
-    self.layer.cornerRadius = 3;
-    self.layer.masksToBounds = YES;
-    self.layer.borderColor = [UIColor blackColor].CGColor;
-    self.layer.borderWidth = 0.7;
+    if (Skin1.isBlack||Skin1.is23) {
+         [self  setBackgroundColor:Skin1.bgColor];
+         [_titleLabel setTextColor:[UIColor blackColor]];
+    } else {
+         [_titleLabel setTextColor:[UIColor blackColor]];
+         [self  setBackgroundColor:[UIColor whiteColor]];
+    }
+   
+    
 }
 
 - (void)setTitle:(NSString *)title {
     _title = title;
-    self.titleLabel.text = title;
+    _titleLabel.text = title;
 }
 
 - (void)setTitleColor:(UIColor *)titleColor {
@@ -35,23 +44,22 @@
 
 - (void)setShowAdd:(BOOL)showAdd {
     _showAdd = showAdd;
-    if (showAdd) {
-        self.titleLabel.hidden = YES;
-        self.layer.borderColor = [UIColor clearColor].CGColor;
+    if ([@"c085" containsString:APP.SiteId]) {
+        _titleLabel.hidden = NO;
+        if (showAdd) {
+            _titleLabel.text = @"+";
+        }
         
-    }else {
-        self.titleLabel.hidden = NO;
-        self.layer.borderColor =  UGRGBColor(218, 218, 218).CGColor;
+    } else {
+        _titleLabel.hidden = showAdd;
     }
+
+    _bgImageView.hidden = showAdd;
 }
 
 - (void)setWin:(BOOL)win {
     _win = win;
-    if (win) {
-        self.backgroundColor = [UIColor yellowColor];
-    }else {
-        self.backgroundColor = [UIColor whiteColor];
-    }
+    _titleLabel.backgroundColor = win ? [UIColor yellowColor] : [UIColor whiteColor];
 }
 
 @end

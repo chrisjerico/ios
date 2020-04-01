@@ -7,15 +7,15 @@
 //
 
 #import "UITableView+Refresh.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 #import "MJRefresh.h"
 
 @implementation UITableView (RefreshRequest)
 
-_ZJRuntimeProperty_Assign(NSInteger, willClearDataArray, setWillClearDataArray)
-_ZJRuntimeProperty_Retain(UIView *, footerView, setFooterView)
-_ZJRuntimeProperty_Readonly(NSMutableArray *, dataArray, [NSMutableArray array])
-_ZJRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
+_CCRuntimeProperty_Assign(NSInteger, willClearDataArray, setWillClearDataArray)
+_CCRuntimeProperty_Retain(UIView *, footerView, setFooterView)
+_CCRuntimeProperty_Readonly(NSMutableArray *, dataArray, [NSMutableArray array])
+_CCRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
     UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 100)];
     lb.textAlignment = NSTextAlignmentCenter;
     lb.text = @"暂无记录";
@@ -29,12 +29,12 @@ _ZJRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
     return (self.willClearDataArray > 0 ? 0 : self.dataArray.count/APP.PageCount) + 1;
 }
 
-- (void)setupHeaderRefreshRequest:(ZJSessionModel *(^)(UITableView *))request completion:(NSArray *(^)(UITableView *, ZJSessionModel *))completion {
+- (void)setupHeaderRefreshRequest:(CCSessionModel *(^)(UITableView *))request completion:(NSArray *(^)(UITableView *, CCSessionModel *))completion {
     __weakSelf_(__self);
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        ZJSessionModel *sm = self.zj_userInfo[@"HeaderReuqest"] = request(__self);
-        sm.completionBlock = ^(ZJSessionModel *sm) {
-            if (sm != __self.zj_userInfo[@"HeaderReuqest"]) {
+        CCSessionModel *sm = self.cc_userInfo[@"HeaderReuqest"] = request(__self);
+        sm.completionBlock = ^(CCSessionModel *sm) {
+            if (sm != __self.cc_userInfo[@"HeaderReuqest"]) {
                 sm.noShowErrorHUD = true;
                 return ;
             }
@@ -58,12 +58,12 @@ _ZJRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
     }];
 }
 
-- (void)setupFooterRefreshRequest:(ZJSessionModel *(^)(UITableView *))request completion:(NSArray *(^)(UITableView *, ZJSessionModel *))completion {
+- (void)setupFooterRefreshRequest:(CCSessionModel *(^)(UITableView *))request completion:(NSArray *(^)(UITableView *, CCSessionModel *))completion {
     __weakSelf_(__self);
     self.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        ZJSessionModel *sm = self.zj_userInfo[@"FooterReuqest"] = request(__self);
-        sm.completionBlock = ^(ZJSessionModel *sm) {
-            if (sm != __self.zj_userInfo[@"FooterReuqest"]) {
+        CCSessionModel *sm = self.cc_userInfo[@"FooterReuqest"] = request(__self);
+        sm.completionBlock = ^(CCSessionModel *sm) {
+            if (sm != __self.cc_userInfo[@"FooterReuqest"]) {
                 sm.noShowErrorHUD = true;
                 return ;
             }

@@ -30,20 +30,32 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *winAmount;      /**<   输赢金额 */
 @property (nonatomic, strong) NSString *settleAmount;   /**<   结算金额 （彩票） */
 @property (nonatomic, strong) NSString *lotteryNo;      /**<   开奖号（彩票） */
-@property (nonatomic, assign) NSInteger status;         /**<   注单状态 */
+@property (nonatomic, assign) NSInteger status;         /**<   注单状态 1=待开奖，2=已中奖，3=未中奖，4=已撤单 */
 @property (nonatomic, strong) NSString *playCateId;
 @property (nonatomic, strong) NSString *statusName;
 @property (nonatomic, strong) NSString *odds;           /**<   赔率（彩票） */
 @property (nonatomic, strong) NSString *issue;          /**<   彩票期号（彩票） */
 @property (nonatomic, strong) NSString *betInfo;        /**<   下注号码 */
+@property (nonatomic, strong) NSString *expectAmount;   /**<   可赢金额 */
+@property (nonatomic, assign) BOOL isAllowCancel;       /**<   是否允许撤单 */
+
+//==========注单明细
+@property (nonatomic, strong) NSString *date;           /**<  时间  */
+@property (nonatomic, strong) NSString *dayOfWeek;          /**<   星期 */
+@property (nonatomic, strong) NSString *betCount;        /**<  笔数*/
+@property (nonatomic, strong) NSString *winCount;   /**<   中奖笔数 */
+//@property (nonatomic, strong) NSString *winAmount;   /**<   中奖金额 */
+@property (nonatomic, strong) NSString *winLoseAmount;   /**<  输赢 */
 @end
 
 @interface UGBetsRecordListModel : UGModel
 @property (nonatomic, assign) NSInteger total;              /**<   数据总数 */
 @property (nonatomic, strong) NSString *totalBetAmount;     /**<   总下注金额 */
 @property (nonatomic, strong) NSString *totalWinAmount;     /**<   输赢总金额 */
+@property (nonatomic, strong) NSString *totalBetCount;     /**<   总下注笔数 */
 @property (nonatomic, strong) NSArray<UGBetsRecordModel> *list;
 
+@property (nonatomic, strong) NSArray<UGBetsRecordModel> *tickets;
 @end
 
 NS_ASSUME_NONNULL_END

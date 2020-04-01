@@ -12,11 +12,12 @@
 #import "UGChanglongBetRecordModel.h"
 #import "UGBetRecordDetailViewController.h"
 #import "UGAllNextIssueListModel.h"
+
 @interface UGChanglongBetRecordController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
-
+@property (nonatomic, strong) NSMutableArray<UGChanglongBetRecordModel *> *dataArray;
 @end
+
 static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
 @implementation UGChanglongBetRecordController
 
@@ -30,15 +31,17 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"UGChanglongBetRecrodCell" bundle:nil] forCellReuseIdentifier:changlongBetRecordCellId];
     
+    [self.view setBackgroundColor:Skin1.CLBgColor];
     UIView *footerVC = [[UIView alloc] init];
     footerVC.backgroundColor = [UIColor clearColor];
     footerVC.size = CGSizeMake(UGScreenW, 80);
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(10, 20, UGScreenW - 20, 44)];
-    button.backgroundColor = [UIColor whiteColor];
+    button.backgroundColor = Skin1.navBarBgColor;
     [button setTitle:@"查看更多" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(showBetRrecordList) forControlEvents:UIControlEventTouchUpInside];
     [footerVC addSubview:button];
+    [button makeRoundedCorner:5];
     self.tableView.tableFooterView = footerVC;
     WeakSelf
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -53,22 +56,13 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
 }
 
 - (void)showBetRrecordList {
-    if ([UGUserModel currentUser].isTest) {
-        [QDAlertView showWithTitle:@"温馨提示" message:@"请先登录您的正式账号" cancelButtonTitle:@"取消" otherButtonTitle:@"马上登录" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                SANotificationEventPost(UGNotificationShowLoginView, nil);
-            }
-        }];
-    }else {
-        
-        UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
-        [self.navigationController pushViewController:betRecordVC animated:YES];
-    }
-   
+    [self.navigationController pushViewController:[UGBetRecordViewController new] animated:YES];
 }
 
 - (void)getChanglongBetRecord {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"betId":@"",
                              @"gameId":@"",
@@ -80,7 +74,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
             self.dataArray = model.data;
             [self.tableView reloadData];
         } failure:^(id msg) {
-            
+            [SVProgressHUD dismiss];
         }];
     }];
 }
@@ -89,7 +83,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return UserI.isTest ? 0 : self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -111,16 +105,12 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBetRecordDetailViewController" bundle:nil];
     UGBetRecordDetailViewController *detailVC = [storyboard instantiateInitialViewController];
     UGChanglongBetRecordModel *model = self.dataArray[indexPath.row];
-    for (UGAllNextIssueListModel *listGame in self.lotteryGamesArray) {
-        for (UGNextIssueModel *game in listGame.list)
-            if ([game.gameId isEqualToString:model.gameId])
-                model.pic = game.pic;
-    }
+    model.pic = [UGNextIssueModel modelWithGameId:model.gameId].pic;
     detailVC.item = model;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGChanglongBetRecordModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

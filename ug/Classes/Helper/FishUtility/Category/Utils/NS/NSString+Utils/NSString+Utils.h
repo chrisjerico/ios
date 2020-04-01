@@ -34,7 +34,7 @@
 @property (readonly, nonatomic) BOOL isLowercaseLetter;             /**<   纯小写字母 */
 @property (readonly, nonatomic) BOOL isUppercaseLetter;             /**<   纯大写字母 */
 @property (readonly, nonatomic) BOOL isSpecialCharacter;            /**<   纯特殊字符 */
-
+@property (readonly, nonatomic) BOOL isHtmlStr;                     /**<   含有html标签的检测 */
 
 //@property (readonly, nonatomic) BOOL (^isDate)(NSString *format);   /**<   日期 */
 @property (readonly, nonatomic) BOOL isEmail;                       /**<   Email */
@@ -70,10 +70,11 @@
 - (NSDate *)dateWithFormat:(NSString *)format;                  /**<    获取日期 */
 - (UIImage *)qrCodeWithWidth:(CGFloat)w;                        /**<    获取二维码图片 */
 - (UIImage *)qrCodeWithWidth:(CGFloat)w color:(UIColor *)color; /**<    获取二维码图片 */
-- (NSString *)stringByAppendingURLParams:(NSDictionary *)dict;
+- (NSString *)stringByAppendingURLParams:(NSDictionary *)dict;  /**<    拼接url参数 */
 - (NSString *)substringWithSize:(CGSize)size font:(UIFont *)font;   /**<    按照显示框大小裁剪字符串 */
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained _Nullable [_Nonnull])buffer count:(NSUInteger)len;
 @end
 
 

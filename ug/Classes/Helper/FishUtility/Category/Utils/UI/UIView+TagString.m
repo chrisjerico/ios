@@ -7,12 +7,27 @@
 //
 
 #import "UIView+TagString.h"
-#import "zj_runtime_property.h"
+#import "cc_runtime_property.h"
 
 @implementation UIView (TagString)
 
-_ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
+_CCRuntimeProperty_Copy(NSString *, tagString, setTagString)
 
+- (NSArray<UIView *> *)viewsWithMemberOfClass:(Class)cls {
+    NSMutableArray *vs = @[].mutableCopy;
+    void (^findSubview)(UIView *) = nil;
+    void (^__block __findSubview)(UIView *) = findSubview = ^(UIView *v) {
+        for (UIView *subview in v.subviews) {
+            if ([subview isMemberOfClass:cls]) {
+                [vs addObject:subview];
+            }
+            
+            __findSubview(subview);
+        }
+    };
+    findSubview(self);
+    return vs.copy;
+}
 
 - (nullable __kindof UIView *)viewWithTagString:(NSString *)tagString {
     if (!tagString.length)
@@ -48,7 +63,7 @@ _ZJRuntimeProperty_Copy(NSString *, tagString, setTagString)
 }
 
 - (NSLayoutConstraint *)constraintWithIdentifier:(NSString *)identifier {
-    for (NSLayoutConstraint *lc in self.zj_constraints.constraints) {
+    for (NSLayoutConstraint *lc in self.cc_constraints.constraints) {
         if ([lc isKindOfClass:[NSLayoutConstraint class]] && [lc.identifier isEqualToString:identifier])
             return lc;
     }

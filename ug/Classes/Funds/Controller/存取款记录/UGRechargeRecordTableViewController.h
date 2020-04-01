@@ -15,6 +15,8 @@ typedef NS_OPTIONS(NSInteger, RecordType) {
 };
 @interface UGRechargeRecordTableViewController : UITableViewController
 @property (nonatomic, assign) RecordType recordType;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

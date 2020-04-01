@@ -7,13 +7,13 @@
 //
 
 #import "UGBetRecordTableViewController.h"
-#import "UGBetRecordTableViewCell.h"
 #import "UGBetRecordDetailViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGBetRecorddHeaderView.h"
 #import "UGBetsRecordListModel.h"
 #import "UGLotteryRecordCell.h"
 #import "CountDown.h"
+
 @interface UGBetRecordTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
 
 @property (nonatomic, strong) CountDown *countDown;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGBetsRecordModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
@@ -34,22 +34,16 @@ static int page = 1;
 static int size = 20;
 static NSString *betRecordCellid = @"UGLotteryRecordCell";
 @implementation UGBetRecordTableViewController
--(void)skin{
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"彩票注单记录";
     self.pageSize = size;
     self.pageNumber = page;
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = Skin1.textColor4;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 125;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 44;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 220, 0);
@@ -81,16 +75,16 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if ([@"2" isEqualToString:self.status] || [@"3" isEqualToString:self.status]) {
         self.winAmountLabel.hidden = NO;
     } else {
         self.winAmountLabel.hidden = YES;
     }
-    
-    [self getBetsList];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
 }
 
@@ -107,13 +101,21 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
         [weakSelf getBetsList];
     }];
     self.tableView.mj_footer.hidden = YES;
+    
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
 
 }
 
 - (void)setLoadData:(BOOL)loadData {
     _loadData = loadData;
     if (loadData && self.status && self.startDate && self.gameType) {
-        [self getBetsList];
+         // 马上进入刷新状态
+        dispatch_async(dispatch_get_main_queue(), ^{
+           // UI更新代码
+           [self.tableView.mj_header beginRefreshing];
+        });
+        
     }
 }
 
@@ -121,6 +123,9 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，
     // 注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
     self.tableView.mj_footer.hidden = YES;
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"category":self.gameType,
                              @"status":self.status,
@@ -176,7 +181,9 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (void)cancelBetWith:(UGBetsRecordModel *)model {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"orderId":model.betId
                              };
@@ -210,7 +217,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.dataArray.count;
 }
 
@@ -218,7 +224,11 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     UGLotteryRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:betRecordCellid forIndexPath:indexPath];
     UGBetsRecordModel *model = self.dataArray[indexPath.row];
     cell.item = model;
-    cell.backgroundColor = indexPath.row%2 ? APP.WhiteColor : APP.BackgroundColor;
+    if (Skin1.isBlack) {
+        cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : Skin1.bgColor;
+    } else {
+        cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : APP.BackgroundColor;
+    }
     WeakSelf
     cell.cancelBlock = ^{
         [QDAlertView showWithTitle:@"温馨提示" message:[NSString stringWithFormat:@"您要撤销注单号%@订单吗？",model.betId] cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -229,7 +239,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
             }
         }];
     };
-    
     return cell;
 }
 
@@ -246,7 +255,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
 }
 
 - (void)setupTotalAmountLabelTextColor {
@@ -261,7 +269,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     self.winAmountLabel.attributedText = abStr;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGBetsRecordModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

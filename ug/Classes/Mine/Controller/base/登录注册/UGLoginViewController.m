@@ -13,6 +13,7 @@
 #import <WebKit/WebKit.h>
 #import "UGImgVcodeModel.h"
 #import "UGSecurityCenterViewController.h"
+#import "SLWebViewController.h"
 
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
@@ -25,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *rigesterButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
+
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *gouImageView;
@@ -35,52 +36,87 @@
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
 @property (nonatomic, assign) NSInteger errorTimes;
 
+@property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
+@property (weak, nonatomic) IBOutlet UIButton *btn_c49goHome;
 @property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
 @end
 
 @implementation UGLoginViewController
--(void)skin{
-   
-    
-    [self.loginButton setBackgroundColor:UGNavColor];
-    [self.rigesterButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-    [self.playButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
-    
+
+- (void)skin {
+    [self.loginButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    [self.playButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
 }
+
+- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问 { return true; }
+
+-(void)viewWillAppear:(BOOL)animated{
+//    [self viewWillAppear:animated];
+    
+    if ([@"c049,c008" containsString:APP.SiteId]) {
+        [self.goHomeButton setTitle:@"在线客服" forState:(UIControlStateNormal)];
+        [self.btn_c49goHome setHidden:NO];
+        
+    } else {
+        [self.goHomeButton setTitle:@"回到首页" forState:(UIControlStateNormal)];
+        [self.btn_c49goHome setHidden:YES];
+    }
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    
+    //检查记住密码标记，如果为YES，那么就读取用户名和密码并为TextField赋值
+    ///并将图标背景设置为记住状态，如果为NO，那么设置背景为未记住状态
+    if([userDefault boolForKey:@"isRememberPsd"])
+    {
+        [userDefault setBool:YES forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+         self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
+         self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
+       
+    }
+    else if(![userDefault boolForKey:@"isRememberPsd"])
+    {
+         [userDefault setBool:NO forKey:@"isRememberPsd"];
+         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-  
-    
+    self.fd_interactivePopDisabled = true;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
         [self skin];
     });
     
-    self.fd_interactivePopDisabled = YES;
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 5;
     self.loginButton.layer.masksToBounds = YES;
-    [self.loginButton setBackgroundColor:UGNavColor];
+    [self.loginButton setBackgroundColor:Skin1.navBarBgColor];
     
     self.rigesterButton.layer.cornerRadius = 5;
     self.rigesterButton.layer.masksToBounds = YES;
-     [self.rigesterButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+     [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.playButton.layer.cornerRadius = 5;
     self.playButton.layer.masksToBounds = YES;
-    [self.playButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.playButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.goHomeButton.layer.cornerRadius = 5;
     self.goHomeButton.layer.masksToBounds = YES;
-    [self.goHomeButton setTitleColor:UGNavColor forState:UIControlStateNormal];
+    [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    
+    self.btn_c49goHome.layer.cornerRadius = 5;
+    self.btn_c49goHome.layer.masksToBounds = YES;
+    [self.btn_c49goHome setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.userNameTextF.delegate = self;
     self.passwordTextF.delegate = self;
     self.navigationController.delegate = self;
     [self.webBgView addSubview:self.webView];
-    NSString *url = [NSString stringWithFormat:@"%@%@",baseServerUrl,swiperVerifyUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [self.webView loadRequest:request];
     self.webBgView.hidden = YES;
@@ -130,6 +166,7 @@
         NSDictionary *params = @{@"usr":self.userNameTextF.text,
                                  @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
                                  @"ggCode":self->ggCode.length ? ggCode : @"",
+                                 @"device":@"3",    // 0未知，1PC，2原生安卓，3原生iOS，4安卓H5，5iOS_H5，6豪华安卓，7豪华iOS，8混合安卓，9混合iOS，10聊天安卓，11聊天iOS
                                  };
       
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
@@ -151,24 +188,25 @@
                 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 
+                // 退出登录上一个账号
+                if (UGUserModel.currentUser) {
+                    [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                    UGUserModel.currentUser = nil;
+                    SANotificationEventPost(UGNotificationUserLogout, nil);
+                }
+               
                 
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;
                 
-               NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-               if([userDefault boolForKey:@"isRememberPsd"])
+                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                if([userDefault boolForKey:@"isRememberPsd"])
                 {
                     [userDefault setObject:self.userNameTextF.text forKey:@"userName"];
                     [userDefault setObject:self.passwordTextF.text forKey:@"userPsw"];
                 }
                 
                 SANotificationEventPost(UGNotificationLoginComplete, nil);
-                
-                AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-                
-                
-                NSString *colorStr = [[UGSkinManagers shareInstance] setChatNavbgStringColor];
-                appDelegate.tabbar.qdwebVC.url = [NSString stringWithFormat:@"%@%@%@&loginsessid=%@&color=%@",baseServerUrl,newChatRoomUrl,[UGUserModel currentUser].token,[UGUserModel currentUser].sessid,colorStr];
                 
                 NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
                 
@@ -184,21 +222,16 @@
                 }
               
                 if (isGoRoot) {
-                     [self.navigationController popToRootViewControllerAnimated:YES];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
                 } else {
-                    [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码"
-                                                     duration:3.0
-                                                     position:CSToastPositionCenter];
+                    [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
                     UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
-                    vc.fromVC = @"UGLoginViewController";
+                    vc.fromVC = @"fromLoginViewController";
                     [self.navigationController pushViewController:vc animated:YES];
                 }
                
             } failure:^(id msg) {
-                
-              
-                
-            
+
                 self.errorTimes += 1;
                 if (self.errorTimes == 4) {
                     self.webBgView.hidden = NO;
@@ -281,7 +314,6 @@
 }
 
 - (IBAction)playAction:(id)sender {
-  
     SANotificationEventPost(UGNotificationTryPlay, nil);
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -289,6 +321,18 @@
 - (IBAction)goHomeAction:(id)sender {
     
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)c49goHomeAction:(id)sender {
+    
+    if ([@"c049,c008" containsString:APP.SiteId]) {
+        //在线客服
+        [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+
+    } else {
+        //去首页
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (IBAction)recoredBtnClick:(id)sender {

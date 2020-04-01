@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 //查询优惠活动列表
 + (void)getPromoteListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//查询优惠图片分类信息
++ (void)getPromotionsTypeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
+
 //检查app版本
 + (void)checkVersionWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
@@ -47,9 +50,17 @@ NS_ASSUME_NONNULL_BEGIN
 //领红包 {{TEST_HOST}}?c=activity&a=getRedBag
 + (void)activityGetRedBagWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//红包日志
++ (void)chatRedBagLogPageWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 //APP在线人数 http://test10.6yc.com/wjapp/api.php?c=system&a=onlineCount
 + (void)systemOnlineCountWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//首页广告图片 http://test100f.fhptcdn.com/wjapp/api.php?c=system&a=homeAds
++ (void)systemhomeAdsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//首页左右浮窗  {TEST_HOST}}?c=system&a=floatAds&token={{TOKEN}
++ (void)systemfloatAdsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -6,9 +6,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGAppVersionManager : NSObject
-+(UGAppVersionManager *)shareInstance;
++ (UGAppVersionManager *)shareInstance;
 
--(void)updateVersionNow:(BOOL)isNow;
+- (void)updateVersionApi:(BOOL)flag;    /**<   flag= 1时，无最新版本提示“已是最新”，flag=0则不提示 */
 @end
 
 NS_ASSUME_NONNULL_END

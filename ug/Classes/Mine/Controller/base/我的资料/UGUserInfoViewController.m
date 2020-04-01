@@ -27,19 +27,30 @@
 @end
 
 @implementation UGUserInfoViewController
--(void)skin{
-  
-    
-}
+
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        
-        [self skin];
-    });
     self.navigationItem.title = @"我的资料";
+    {
+        self.view.backgroundColor = Skin1.textColor4;
+        self.userNameLabel.textColor = Skin1.textColor1;
+        self.timeLabel.textColor = Skin1.textColor2;
+        self.accountLabel.textColor = Skin1.textColor1;
+        self.fullNameLabel.textColor = Skin1.textColor1;
+        self.qqLabel.textColor = Skin1.textColor1;
+        self.phoneLabel.textColor = Skin1.textColor1;
+        self.emailLabel.textColor = Skin1.textColor1;
+        self.moneyType.textColor = Skin1.textColor1;
+        ((UILabel *)[self.view viewWithTagString:@"我的资料Label"]).textColor = Skin1.textColor1;
+        
+        _avaterImageView.layer.masksToBounds = YES;
+        _avaterImageView.layer.cornerRadius = 32.5;
+
+    }
+    
+    
     [self setupUserInfo];
     [self getUserInfo];
     
@@ -55,18 +66,26 @@
             if (hour <=5) {
                 __self.titleLabel.text = @"凌晨好，";
                 __self.time2Label.text = @"凌晨，时间不早了记得休息";
+                __self.userNameLabel.textColor = [UIColor whiteColor];
+                __self.timeLabel.textColor = [UIColor whiteColor];
             }
             else if (hour <=11) {
                 __self.titleLabel.text = @"上午好，";
                 __self.time2Label.text = @"上午，补充能量继续战斗";
+                __self.userNameLabel.textColor = [UIColor blackColor];
+                __self.timeLabel.textColor = [UIColor blackColor];
             }
             else if (hour <=17) {
                 __self.titleLabel.text = @"下午好，";
                 __self.time2Label.text = @"下午，补充能量继续战斗";
+                __self.userNameLabel.textColor = [UIColor blackColor];
+                __self.timeLabel.textColor = [UIColor blackColor];
             }
             else {
                 __self.titleLabel.text = @"晚上好，";
                 __self.time2Label.text = @"傍晚，安静的夜晚是不可多得的享受";
+                __self.userNameLabel.textColor = [UIColor whiteColor];
+                __self.timeLabel.textColor = [UIColor whiteColor];
             }
         }
         
@@ -77,6 +96,9 @@
             __timer = nil;
         }
     }];
+    if (__timer.block) {
+        __timer.block(nil);
+    }
 }
 
 - (void)getUserInfo {
@@ -103,7 +125,7 @@
     self.accountLabel.text = [NSString stringWithFormat:@"账号：%@",user.username];
     self.fullNameLabel.text = [NSString stringWithFormat:@"真实姓名：%@",user.fullName];
     self.qqLabel.text = [NSString stringWithFormat:@"QQ：%@",user.qq];
-    self.phoneLabel.text = [NSString stringWithFormat:@"手机：%@",user.phone];
+    self.phoneLabel.text = [NSString stringWithFormat:@"手机：%@", user.phone.length ? _NSString(@"%@******%@", [user.phone substringToIndex:MIN(user.phone.length, 3)], [user.phone substringFromIndex:user.phone.length-MIN(user.phone.length, 2)]) : @""];
     self.emailLabel.text = [NSString stringWithFormat:@"邮箱：%@",user.email];
     self.timeLabel.text = [[NSDate date] stringWithFormat:@"yyyy.MM.dd HH:mm"];
     

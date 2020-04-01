@@ -139,6 +139,7 @@
                 <outlet property="applyLabel" destination="65S-T5-LNL" id="6tN-fB-ZXa"/>
                 <outlet property="bankAccountLabel" destination="7gE-JN-7KI" id="fYU-d7-snt"/>
                 <outlet property="bankCardLabel" destination="Ovm-0i-5ER" id="wuQ-37-Bwg"/>
+                <outlet property="myButton" destination="luC-i4-4Gk" id="wq9-qf-9kh"/>
                 <outlet property="orderNoLabel" destination="3qd-JD-A1I" id="krl-fO-fRo"/>
                 <outlet property="remarkLabel" destination="SFl-SC-ZN8" id="rW3-nv-GVZ"/>
                 <outlet property="statusLabel" destination="Ka3-8x-6qj" id="6hA-rs-ei0"/>

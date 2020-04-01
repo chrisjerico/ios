@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCSessionModel.h"
 
 // 当 DEBUG 或 APP_TEST 时，启用LogVC
-#if defined(DEBUG) || defined(APP_TEST)
-#define NSLog(s, ...) {NSString *log = [NSString stringWithFormat:(s), ##__VA_ARGS__];[LogVC addLog:log];NSLog( @"%@", log);}
+#ifdef APP_TEST
+//#define NSLog(s, ...) {NSString *log = [NSString stringWithFormat:(s), ##__VA_ARGS__];[LogVC addLog:log];NSLog( @"%@", log);}
 
 @interface LogVC : UIViewController
 
 + (void)enableLogVC;
 
-+ (void)addRequestModel:(ZJSessionModel *)sm;
++ (void)addRequestModel:(CCSessionModel *)sm;
 + (void)addLog:(NSString *)log;
 @end
 

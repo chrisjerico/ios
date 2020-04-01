@@ -14,7 +14,7 @@
 #import "UGWithdrawRecordDetailView.h"
 @interface UGRechargeRecordTableViewController ()
 
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGRechargeLogsModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 
 @property(nonatomic, assign) int pageSize;
@@ -28,15 +28,19 @@ static NSString *fundDetailsCell = @"UGFundDetailsCell";
 static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 @implementation UGRechargeRecordTableViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
     SANotificationEventSubscribe(UGNotificationWithdrawalsSuccess, self, ^(typeof (self) self, id obj) {
         [self getWithdrawData];
-        
     });
-     [self.view setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
+    
+    SANotificationEventSubscribe(UGNotificationWithRecordOfDeposit, self, ^(typeof (self) self, id obj) {
+        // 马上进入刷新状态
+        [self.tableView.mj_header beginRefreshing];
+    });
+    [self.view setBackgroundColor: Skin1.bgColor];
     self.pageSize = size;
     self.pageNumber = page;
     self.tableView.rowHeight = 50;
@@ -55,10 +59,13 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     [self setupRefreshView];
     if (self.recordType == RecordTypeWithdraw) {
         [self getWithdrawData];
-    }else {
-        
+    } else {
         [self getRechargeData];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 //添加上下拉刷新
@@ -88,7 +95,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 
 - (void)getRechargeData {
-    
+    if (UserI.isTest) {
+        return;
+    }
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -131,6 +143,12 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 }
 //取款
 - (void)getWithdrawData {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    if ([UGUserModel currentUser].isTest) {
+        return;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
@@ -159,7 +177,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
                 [self.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
         }];
         
         if ([self.tableView.mj_header isRefreshing]) {
@@ -215,70 +233,67 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     if (self.recordType == RecordTypeWithdraw) {
        //1
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-        headerView.backgroundColor = [UIColor whiteColor];
+        headerView.backgroundColor = Skin1.textColor4;
         UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UGScreenW / 3, 44)];
         timeLable.text = @"时间";
-        timeLable.textColor = [UIColor blackColor];
+        timeLable.textColor = Skin1.textColor1;
         timeLable.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         timeLable.textAlignment = NSTextAlignmentCenter;
         
         UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(timeLable.frame) + 10, 0, (UGScreenW - CGRectGetMaxX(timeLable.frame) - 10) / 2, 44)];
         amountLabel.text = @"金额";
-        amountLabel.textColor = [UIColor blackColor];
+        amountLabel.textColor = Skin1.textColor1;
         amountLabel.textAlignment = NSTextAlignmentCenter;
         amountLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         
         UILabel *stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(amountLabel.frame), 0, UGScreenW - CGRectGetMaxX(amountLabel.frame), 44)];
         stateLabel.text = @"状态";
         stateLabel.textAlignment = NSTextAlignmentCenter;
-        stateLabel.textColor = [UIColor blackColor];
+        stateLabel.textColor = Skin1.textColor1;
         stateLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         
-        UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
-        line.backgroundColor = UGBackgroundColor;
+
         
         [headerView addSubview:timeLable];
         [headerView addSubview:amountLabel];
         [headerView addSubview:stateLabel];
-        [headerView addSubview:line];
+
         
         return headerView;
     }else {
         
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-        headerView.backgroundColor = [UIColor whiteColor];
+        headerView.backgroundColor = Skin1.textColor4;
         UILabel *timeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, UGScreenW / 4, 44)];
         timeLable.text = @"时间";
-        timeLable.textColor = [UIColor blackColor];
+        timeLable.textColor = Skin1.textColor1;
         timeLable.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         timeLable.textAlignment = NSTextAlignmentCenter;
         
         UILabel *amountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(timeLable.frame), 0,UGScreenW / 4, 44)];
         amountLabel.text = @"金额";
-        amountLabel.textColor = [UIColor blackColor];
+        amountLabel.textColor = Skin1.textColor1;
         amountLabel.textAlignment = NSTextAlignmentCenter;
         amountLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         
         UILabel *stateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(amountLabel.frame), 0, UGScreenW / 4, 44)];
         stateLabel.text = @"存款方式";
         stateLabel.textAlignment = NSTextAlignmentCenter;
-        stateLabel.textColor = [UIColor blackColor];
+        stateLabel.textColor = Skin1.textColor1;
         stateLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         
         UILabel *balanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(stateLabel.frame), 0, UGScreenW / 4, 44)];
         balanceLabel.text = @"状态";
         balanceLabel.textAlignment = NSTextAlignmentCenter;
-        balanceLabel.textColor = [UIColor blackColor];
+        balanceLabel.textColor = Skin1.textColor1;
         balanceLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
         
-        UILabel *line = [[UILabel alloc] initWithFrame:CGRectMake(15, 43, UGScreenW, 0.5)];
-        line.backgroundColor = UGBackgroundColor;
+ 
         
         [headerView addSubview:timeLable];
         [headerView addSubview:amountLabel];
         [headerView addSubview:stateLabel];
         [headerView addSubview:balanceLabel];
-        [headerView addSubview:line];
         
         return headerView;
     }
@@ -298,7 +313,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     }
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGRechargeLogsModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }

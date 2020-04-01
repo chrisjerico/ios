@@ -6,6 +6,7 @@
 //  Copyright © 2019 ug. All rights reserved.
 //
 
+// Model
 #import "UGPromoteModel.h"
 
 @implementation UGPromoteModel
@@ -16,6 +17,11 @@
 @end
 
 @implementation UGPromoteListModel
+
+
+@end
+
+@implementation UGPromoteTitleCellModel
 
 
 @end

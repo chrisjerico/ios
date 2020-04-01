@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MomentsCellImageItem" customModule="UGChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="252" height="191"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="252" height="191"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UVz-Ng-eV9">
+                        <rect key="frame" x="0.0" y="0.0" width="252" height="191"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="UVz-Ng-eV9" secondAttribute="bottom" id="HB8-V0-VzW"/>
+                <constraint firstItem="UVz-Ng-eV9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ilx-KH-2vx"/>
+                <constraint firstAttribute="trailing" secondItem="UVz-Ng-eV9" secondAttribute="trailing" id="omq-VB-Sog"/>
+                <constraint firstItem="UVz-Ng-eV9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yoW-BX-Tiy"/>
+            </constraints>
+            <size key="customSize" width="252" height="191"/>
+            <connections>
+                <outlet property="itemImageView" destination="UVz-Ng-eV9" id="WhG-SN-xtJ"/>
+            </connections>
+            <point key="canvasLocation" x="-243" y="87"/>
+        </collectionViewCell>
+    </objects>
+</document>

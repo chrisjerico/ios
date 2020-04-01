@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *openNum;
 @property (nonatomic, strong) NSString *result;
 @property (nonatomic, strong) NSString *bonus;
-
-
+//自定义参数
+@property (nonatomic, strong) NSString *gameId;
 @end
 
 NS_ASSUME_NONNULL_END

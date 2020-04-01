@@ -19,8 +19,11 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-      [self setBackgroundColor: [[UGSkinManagers shareInstance] setCellbgColor]];
+    self.backgroundColor = Skin1.cellBgColor;
+    self.nameLabel.textColor = Skin1.textColor1;
+    self.amountLabel.textColor = Skin1.textColor1;
+    self.dateLabel.textColor = Skin1.textColor1;
+    self.modeLabel.textColor = Skin1.textColor1;
 }
 
 - (void)setItem:(UGBalanceTransferLogsModel *)item {
@@ -29,12 +32,6 @@
     self.amountLabel.text = item.amount;
     self.dateLabel.text = item.actionTime;
     self.modeLabel.text = item.isAuto ? @"自动" : @"手动";
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

@@ -13,10 +13,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *title1Label;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-
 @property (nonatomic, assign) NSInteger selectSection;
-
 @end
+
+
 @implementation UGFundsBankView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -35,27 +35,23 @@
         //         [self.tableView registerNib:[UINib nibWithNibName:@"UGSingInHistoryTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:historyHeaderViewid];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 5;
-        [self setBackgroundColor: [[UGSkinManagers shareInstance] setbgColor]];
-
+        [self.tableView setBackgroundColor:Skin1.bgColor];
     }
     return self;
-    
 }
 
 - (IBAction)close:(id)sender {
     [self hiddenSelf];
 }
 
-- (void)setDataArray:(NSArray *)dataArray {
+- (void)setDataArray:(NSArray<UGrechargeBankModel *> *)dataArray {
     _dataArray = dataArray;
     [self.tableView reloadData];
-    
 }
 
 - (void)setNameStr:(NSString *)nameStr {
     _nameStr = nameStr;
     self.title1Label.text = nameStr;
-    
 }
 
 
@@ -66,19 +62,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGOneTitleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGOneTitleTableViewCell" forIndexPath:indexPath];
     cell.item = (UGrechargeBankModel*)self.dataArray[indexPath.row];
-    
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
 }
 
@@ -90,24 +83,15 @@
     return 0.001f;
 }
 
-
-
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-   UGrechargeBankModel *model = self.dataArray[indexPath.row];
-    
+    UGrechargeBankModel *model = self.dataArray[indexPath.row];
     if (self.signInHeaderViewnBlock) {
         self.signInHeaderViewnBlock(model);
         [self hiddenSelf];
     }
-    
 }
 
-
 - (void)show {
-    
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
     UIView* view = self;
@@ -118,16 +102,13 @@
     
     [maskView addSubview:view];
     [window addSubview:maskView];
-    
 }
 
 - (void)hiddenSelf {
-    
     UIView* view = self;
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
-    
 }
 
 @end

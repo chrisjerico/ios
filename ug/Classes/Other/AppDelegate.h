@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UGTabbarController.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -18,9 +17,6 @@
 @property(nonatomic, assign) BOOL allowRotation;
 
 @property(nonatomic, assign) BOOL notiveViewHasShow;
-
-
-@property (strong, nonatomic) UGTabbarController *tabbar;
 
 @end
 

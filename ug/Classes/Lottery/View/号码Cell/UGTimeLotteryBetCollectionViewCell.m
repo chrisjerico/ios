@@ -8,7 +8,7 @@
 
 #import "UGTimeLotteryBetCollectionViewCell.h"
 #import "UGGameplayModel.h"
-
+#import "CMLabelCommon.h"
 @interface UGTimeLotteryBetCollectionViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -18,7 +18,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
+    if (APP.betSizeIsBig) {
+        self.titleLabel.font = APP.cellBigFont;
+        //        [CMLabelCommon setRichNumberWithLabel:self.titleLabel Color:self.titleLabel.textColor FontSize:APP.cellNormalFontSize];
+    } else {
+        self.titleLabel.font = APP.cellNormalFont;
+    }
 }
 
 - (void)setTitle:(NSString *)title {
@@ -28,21 +34,67 @@
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
-   
-    self.titleLabel.text = [NSString stringWithFormat:@"%@  %@",item.name,[item.odds removeFloatAllZero]];
-    if (item.select) {
-        self.titleLabel.textColor = UGNavColor;
-        self.layer.borderColor = UGNavColor.CGColor;
-        self.layer.borderWidth = 1;
-    }else {
-        self.titleLabel.textColor = [UIColor blackColor];
-        self.layer.borderWidth = 0.7;
-        self.layer.borderColor =  UGRGBColor(239, 239, 244).CGColor;
+    
+    
+    
+    if (APP.betOddsIsRed) {
+        self.titleLabel.attributedText = ({
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[item.odds removeFloatAllZero]];
+            mas;
+        });
+    } else {
+        
+        
+        if (item.enable && item.gameEnable) {
+            self.titleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+        }
+        else{
+            self.titleLabel.text = _NSString(@"%@ --",item.name);
+        }
+        
+        
+        
+    }
+    
+    self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes *  0.5;
+    
+    if (Skin1.isBlack||Skin1.is23) {
+        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+            self.backgroundColor = item.select ? RGBA(72, 146, 209, 1):  Skin1.homeContentSubColor;
+        } else {
+            self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
+        }
+        self.layer.borderColor = (item.select ? [UIColor whiteColor] : Skin1.textColor3).CGColor;
+        
+        if (!APP.betOddsIsRed) {
+            self.titleLabel.textColor = Skin1.textColor2;
+            self.titleLabel.highlightedTextColor = [UIColor whiteColor];
+            self.titleLabel.highlighted = item.select;
+        }
+    } else {
+        self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
+        if (APP.isBorderNavBarBgColor) {
+            self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
+        }
+        if (APP.betBgIsWhite) {
+            self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
+        } else {
+            self.layer.borderColor = (item.select ? [UIColor whiteColor] : [[UIColor whiteColor] colorWithAlphaComponent:0.3]).CGColor;
+        }
+        
+        if (!APP.betOddsIsRed) {
+            if (APP.betBgIsWhite) {
+                self.titleLabel.textColor = Skin1.textColor1;
+            } else {
+                self.titleLabel.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;
+            }
+        }
     }
 }
 
 - (void)setSelected:(BOOL)selected {
-
+    
 }
 
 @end

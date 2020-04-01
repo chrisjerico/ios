@@ -12,6 +12,9 @@
 #import "UGFeedbackTableViewCell.h"
 #import "UGMessageModel.h"
 @interface UGFeedBackRecordController ()<UITableViewDelegate,UITableViewDataSource,YBPopupMenuDelegate>
+
+@property (strong, nonatomic) IBOutlet UIView *bgView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *dateArrow;
 @property (weak, nonatomic) IBOutlet UIImageView *stateArrow;
 @property (weak, nonatomic) IBOutlet UIImageView *typeArrow;
@@ -22,17 +25,24 @@
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UIButton *stateButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UILabel *ktypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *kstateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *kConternLabel;
+
+
+
 @property (nonatomic, strong) YBPopupMenu *datePopView;
 @property (nonatomic, strong) YBPopupMenu *statePopView;
 @property (nonatomic, strong) YBPopupMenu *typePopView;
 
-@property (nonatomic, strong) NSMutableArray *dateArray;
-@property (nonatomic, strong) NSMutableArray *stateArray;
-@property (nonatomic, strong) NSMutableArray *typeArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *dateArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *stateArray;
+@property (nonatomic, strong) NSMutableArray <NSString *> *typeArray;
 
 @property (nonatomic, assign) NSInteger selectType;
 @property (nonatomic, assign) NSInteger selectStatus;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray <UGMessageModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
 @end
@@ -54,6 +64,26 @@ static int size = 20;
         
         [self skin];
     });
+    
+    [self.bgView setBackgroundColor:Skin1.textColor4];
+    [self.dateLabel setTextColor:Skin1.textColor1];
+    [self.stateLabel setTextColor:Skin1.textColor1];
+    [self.typeLabel setTextColor:Skin1.textColor1];
+    [self.ktypeLabel setTextColor:Skin1.textColor1];
+    [self.kstateLabel setTextColor:Skin1.textColor1];
+    [self.kConternLabel setTextColor:Skin1.textColor1];
+    if (Skin1.isBlack) {
+        _dateArrow.image =  [UIImage imageNamed:@"baijiantou"];
+        _stateArrow.image =  [UIImage imageNamed:@"baijiantou"];
+        _typeArrow.image =  [UIImage imageNamed:@"baijiantou"];
+
+    } else {
+        _dateArrow.image =  [UIImage imageNamed:@"jiantou1"];
+        _stateArrow.image =  [UIImage imageNamed:@"jiantou1"];
+        _typeArrow.image =  [UIImage imageNamed:@"jiantou1"];
+    }
+    
+    
     self.navigationItem.title = @"反馈记录";
     self.pageSize = size;
     self.pageNumber = page;
@@ -62,6 +92,7 @@ static int size = 20;
     self.tableView.rowHeight = 60;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
+    [self.tableView setBackgroundColor:Skin1.textColor4];
     self.stateArray = @[@"全部",@"已回复",@"待回复"].mutableCopy;
     self.typeArray = @[@"全部",@"建议反馈",@"投诉建议"].mutableCopy;
     self.dateLabel.text = self.dateArray.firstObject;
@@ -123,7 +154,9 @@ static int size = 20;
 }
 
 - (void)getFeedbackListData {
-    
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
     NSDictionary *params = @{@"page":@(self.pageNumber),
                              @"rows":@(self.pageSize),
                              @"token":[UGUserModel currentUser].sessid,
@@ -238,7 +271,7 @@ static int size = 20;
     self.typeArrow.transform = transform;
 }
 
-- (NSMutableArray *)dateArray {
+- (NSMutableArray<NSString *> *)dateArray {
     if (_dateArray == nil) {
         _dateArray = [NSMutableArray array];
         for (int i = 0; i < 30; i++) {
@@ -254,14 +287,14 @@ static int size = 20;
     return _dateArray;
 }
 
-- (NSMutableArray *)dataArray {
+- (NSMutableArray<UGMessageModel *> *)dataArray {
     if (_dataArray == nil) {
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
 }
 
-- (NSMutableArray *)stateArray {
+- (NSMutableArray<NSString *> *)stateArray {
     if (_stateArray == nil) {
         _stateArray = [NSMutableArray array];
     }
