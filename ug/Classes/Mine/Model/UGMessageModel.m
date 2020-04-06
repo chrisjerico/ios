@@ -8,6 +8,13 @@
 
 #import "UGMessageModel.h"
 
+@implementation UGMessagerealTime
+
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"messageId"}];
+}
+@end
+
 @implementation UGMessageModel
 
 + (JSONKeyMapper *)keyMapper {

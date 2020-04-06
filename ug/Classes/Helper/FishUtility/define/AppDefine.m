@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"c190"
+#define __SiteID__ @"test36a"
 
 
 @interface UIStoryboard ()
@@ -142,7 +142,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"c190";
+            _SiteId = @"test36a";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);

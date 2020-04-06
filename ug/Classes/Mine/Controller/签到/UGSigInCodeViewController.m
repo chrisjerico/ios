@@ -329,7 +329,7 @@
             
             [SVProgressHUD dismiss];
             weakSelf.checkinListModel = model.data;
-//            NSLog(@"checkinList = %@",weakSelf.checkinListModel);
+            NSLog(@"checkinList = %@",weakSelf.checkinListModel);
 //            NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
             
             if (weakSelf.checkinListModel.checkinSwitch) {

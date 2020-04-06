@@ -10,6 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol UGMessagerealTime <NSObject>
+
+@end
+@interface UGMessagerealTime : UGModel<UGMessagerealTime>
+//msg
+@property (nonatomic, strong) NSString *messageId;
+@end
+
 @protocol UGMessageModel <NSObject>
 
 @end
@@ -35,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSInteger total;
 @property (nonatomic, assign) NSInteger readTotal;
+@property (nonatomic, strong) UGMessagerealTime * realTime;
 @property (nonatomic, strong) NSArray<UGMessageModel> *list;
 
 @end

@@ -126,6 +126,11 @@ static UGTabbarController *_tabBarVC = nil;
     [self beginMessageRequest];
     self.delegate = self;
     
+    // 注册成功
+      SANotificationEventSubscribe(UGNotificationRegisterComplete, self, ^(typeof (self) self, id obj) {
+          
+            [self performSelector:@selector(loadMessageList) withObject:nil/*可传任意类型参数*/ afterDelay:5.0];
+      });
     
     [[UGSkinManagers skinWithSysConf] useSkin];
     
@@ -620,6 +625,12 @@ static UGTabbarController *_tabBarVC = nil;
         [CMResult processWithResult:model success:^{
             NSDate *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"最新站内信的创建时间"];
             UGMessageListModel *mlm = model.data;
+            
+            NSLog(@"mlm.realTime.messageId =%@",mlm.realTime.messageId);
+            if ([CMCommon stringIsNull:mlm.realTime.messageId] || [mlm.realTime.messageId isEqualToString:@"0"]) {
+                return ;
+            }
+            
             NSArray <UGMessageModel *>*unreadArray = [mlm.list filteredArrayUsingPredicate: [NSPredicate predicateWithBlock:^BOOL(UGMessageModel *mm, NSDictionary<NSString *,id> * _Nullable bindings) {
                 NSDate *date = [mm.updateTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
                 if ([date isLaterThan:lastDate]) {
