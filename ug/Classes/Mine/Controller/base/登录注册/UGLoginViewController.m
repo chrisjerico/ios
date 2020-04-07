@@ -48,6 +48,8 @@
     [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     [self.playButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    
+    
 }
 
 - (BOOL)允许未登录访问 { return true; }
