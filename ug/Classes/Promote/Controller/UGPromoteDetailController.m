@@ -50,7 +50,7 @@
     
     labelH = 1;
     ImgH = 1;
-    webH = 100;
+    webH = 1500;
     //-滚动面版======================================
     if (_mUIScrollView == nil) {
         UIScrollView *mUIScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, UGScreenW , UGScerrnH -IPHONE_SAFEBOTTOMAREA_HEIGHT-k_Height_NavBar)];
@@ -64,6 +64,10 @@
         
         [self.view addSubview:mUIScrollView];
         self.mUIScrollView = mUIScrollView;
+        
+        [_mUIScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.right.left.equalTo(self.view);
+        }];
     }
     
     self.view.backgroundColor = Skin1.textColor4;
@@ -95,6 +99,7 @@
             make.height.mas_equalTo(50);
         }];
     }
+    [self setViewContr];
 }
 
 - (void)setItem:(UGPromoteModel *)item {
@@ -157,111 +162,126 @@
     }
 }
 
-- (void)viewWillLayoutSubviews
+-(void)setViewContr{
+    
+       CGFloat labelX = 10;
+       CGFloat labelY = 8;
+       CGFloat labelW = UGScreenW - 2*labelX;
+       if (![@"c001" containsString:APP.SiteId]) {
+           self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
+           [self.titleLabel sizeToFit];
+           
+       }
+       if (APP.isYHShowTitle) {
+           self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
+           [self.titleLabel sizeToFit];
+           [_titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+               make.centerX.equalTo(self.view);
+               make.top.equalTo(self.view.mas_top).offset(labelY);
+           }];
+           
+           labelH = [_titleLabel.text heightForFont:[UIFont systemFontOfSize:17] width:labelW] + 16;
+           
+       }
+       
+       // 图片
+       if (_item.pic.length) {
+           FLAnimatedImageView *imgView = [FLAnimatedImageView new];
+           _mimgView = imgView;
+           imgView.contentMode = UIViewContentModeScaleAspectFit;
+           NSURL *url = [NSURL URLWithString:_item.pic];
+           UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
+           if (image) {
+               
+               CGFloat w = labelW;
+               CGFloat h = image.height/image.width * w;
+               imgView.cc_constraints.height.constant = h;
+               [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
+               
+               [self.mUIScrollView addSubview:imgView];
+               [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                   make.centerX.equalTo(self.view);
+                   make.top.equalTo(_titleLabel.mas_bottom).offset(labelY);
+                   make.width.mas_equalTo(labelW);
+                   make.height.mas_equalTo(h);
+               }];
+               
+               ImgH = h+8;
+               
+           }
+       }
+       
+       
+       if (self.item.content.length) {
+           
+           
+           if (APP.isYHShowTitle) {
+               if (_item.pic.length) {
+                   [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                       make.centerX.equalTo(self.view);
+                       make.top.equalTo(_mimgView.mas_bottom).offset(labelY);
+                       make.width.mas_equalTo(labelW);
+//                       make.height.mas_equalTo(webH);
+                        make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                   }];
+               } else {
+                   [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                       make.centerX.equalTo(self.view);
+                       make.top.equalTo(_titleLabel.mas_bottom).offset(labelY);
+                       make.width.mas_equalTo(labelW);
+                      make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                   }];
+               }
+               
+           }
+           else{
+               if (_item.pic.length) {
+                   [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                       make.centerX.equalTo(self.view);
+                       make.top.equalTo(_mimgView.mas_bottom).offset(labelY);
+                       make.width.mas_equalTo(labelW);
+                       make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                   }];
+               } else {
+                   [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                       make.centerX.equalTo(self.view);
+                       make.top.equalTo(self.view.mas_top).offset(labelY);
+                       make.width.mas_equalTo(labelW);
+                       make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                   }];
+               }
+           }
+           
+       }
+       self.mUIScrollView.contentSize = CGSizeMake(APP.Width, 3000);
+       self.activity.center = CGPointMake(UGScreenW / 2, UGScerrnH / 2 - 50);
+}
+
+- (void)viewDidLayoutSubviews
 {
-    [super viewWillLayoutSubviews];
-    
-    
-    CGFloat labelX = 10;
-    CGFloat labelY = 8;
-    CGFloat labelW = UGScreenW - 2*labelX;
-    if (![@"c001" containsString:APP.SiteId]) {
-        self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
-        [self.titleLabel sizeToFit];
-        
-    }
-    if (APP.isYHShowTitle) {
-        self.titleLabel.frame = CGRectMake(labelX, labelY, labelW, 0);
-        [self.titleLabel sizeToFit];
-        [_titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.top.equalTo(self.view.mas_top).offset(labelY);
-        }];
-        
-        labelH = [_titleLabel.text heightForFont:[UIFont systemFontOfSize:17] width:labelW] + 16;
-        
-    }
-    
-    // 图片
-    if (_item.pic.length) {
-        FLAnimatedImageView *imgView = [FLAnimatedImageView new];
-        _mimgView = imgView;
-        imgView.contentMode = UIViewContentModeScaleAspectFit;
-        NSURL *url = [NSURL URLWithString:_item.pic];
-        UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
-        if (image) {
-            
-            CGFloat w = labelW;
-            CGFloat h = image.height/image.width * w;
-            imgView.cc_constraints.height.constant = h;
-            [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
-            
-            [self.mUIScrollView addSubview:imgView];
-            [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self.view);
-                make.top.equalTo(_titleLabel.mas_bottom).offset(labelY);
-                make.width.mas_equalTo(labelW);
-                make.height.mas_equalTo(h);
-            }];
-            
-            ImgH = h+8;
-            
-        }
-    }
-    
-    
-    if (self.item.content.length) {
-        
-        
-        if (APP.isYHShowTitle) {
-            if (_item.pic.length) {
-                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(self.view);
-                    make.top.equalTo(_mimgView.mas_bottom).offset(labelY);
-                    make.width.mas_equalTo(labelW);
-                    make.height.mas_equalTo(webH);
-                }];
-            } else {
-                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(self.view);
-                    make.top.equalTo(_titleLabel.mas_bottom).offset(labelY);
-                    make.width.mas_equalTo(labelW);
-                    make.height.mas_equalTo(webH);
-                }];
-            }
-            
-        }
-        else{
-            if (_item.pic.length) {
-                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(self.view);
-                    make.top.equalTo(_mimgView.mas_bottom).offset(labelY);
-                    make.width.mas_equalTo(labelW);
-                    make.height.mas_equalTo(webH);
-                }];
-            } else {
-                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.centerX.equalTo(self.view);
-                    make.top.equalTo(self.view.mas_top).offset(labelY);
-                    make.width.mas_equalTo(labelW);
-                    make.height.mas_equalTo(webH);
-                }];
-            }
-        }
-        
-    }
-    self.mUIScrollView.contentSize = CGSizeMake(100, labelH + ImgH +webH);
-    self.activity.center = CGPointMake(UGScreenW / 2, UGScerrnH / 2 - 50);
+    [super viewDidLayoutSubviews];
+
+
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     
     if ([keyPath isEqualToString:@"contentSize"]) {
         NSLog(@"得到监听");
-        CGFloat contentHeight = _myWebView.scrollView.contentSize.height;
-        self.myWebView.cc_constraints.height.constant = contentHeight;
-        self.myWebView.scrollView.scrollEnabled = NO;
-        self.mUIScrollView.contentSize = CGSizeMake(100, labelH + ImgH +contentHeight);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CGFloat contentHeight  = self->_myWebView.scrollView.contentSize.height;
+//            self.myWebView.cc_constraints.height.constant = contentHeight;
+//            self->webH = contentHeight =3000;
+//            self.myWebView.scrollView.scrollEnabled = NO;
+            self.mUIScrollView.contentSize = CGSizeMake(APP.Width, self->labelH + self->ImgH + contentHeight +110);
+            self.mUIScrollView.scrollEnabled = YES;
+            NSLog(@"WebcontentHeight= %f",contentHeight);
+            NSLog(@"web.fromH = %f",self->_myWebView.frame.size.height);
+            NSLog(@"self.mUIScrollView.contentSize = %f",self.mUIScrollView.contentSize.height);
+              NSLog(@"self.mUIScrollView.fromH = %f",self.mUIScrollView.frame.size.height);
+
+        });
+
     }
     
 }
