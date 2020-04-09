@@ -59,12 +59,12 @@
             site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签
             site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://wap4988.com/",                        @"超级签名",    @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji
             site(@"c228",        @"c228hy",     @"249",     @"io.fhpt.YSAC228",         @"https://app77787.co",                         @"超级签名",    @"太陽城集團"),//https://app77787.co/  https://app77787.com/ https://77787app.co/  https://77787app.com/，超级签名：15346561706 / aa362600
+            site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://204421.com",                          @"超级签名",     @"2044彩票"),// 超级签，13085780849   666666zq
             
             
             site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://7033301.com",                         @"企业包",     @"王中王"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码
             site(@"h002",        @"",           @"",        @"",                        @"",                                            @"企业包",     @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
             site(@"h005",        @"h005hy",     @"236",     @"io.fhpt.H5EAA48E4",       @"https://534023.com",                          @"企业包",     @"开心红包"),// 超级签 15757187321    dz990990
-            site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://204421.com",                          @"企业包",     @"2044彩票"),
             site(@"c021",        @"",           @"",        @"io.fhpt.H5A730C2F",       @"",                                            @"企业包",     @"幸运彩票"),
             site(@"c028",        @"",           @"",        @"io.fhpt.H5DBF1426",       @"",                                            @"企业包",     @"鳳凰彩票"),
             site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.H563009C8",       @"https://988c53.com",                          @"企业包",     @"彩53"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
