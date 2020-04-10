@@ -122,6 +122,7 @@
 #import "RCTModalHostView.h"
 #import "RCTModalHostViewController.h"
 #import "RCTModalHostViewManager.h"
+#import "RCTModalManager.h"
 #import "RCTPicker.h"
 #import "RCTPickerManager.h"
 #import "RCTPointerEvents.h"
