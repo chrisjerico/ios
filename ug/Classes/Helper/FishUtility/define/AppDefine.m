@@ -180,7 +180,9 @@
 
 #pragma mark - 定制样式
 
-
+- (BOOL)isShowSalary {
+     return [@"c217" containsString:_SiteId];
+}
 
 - (BOOL)isSectionWhite {
      return [@"a002" containsString:_SiteId];

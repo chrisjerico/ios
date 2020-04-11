@@ -53,6 +53,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *waveUImageV;
 
+@property (weak, nonatomic) IBOutlet UIButton *salaryBtn;//领取俸禄
+
+
 @end
 
 @implementation UGMissionCenterViewController
@@ -93,6 +96,10 @@ static NSString *__title = nil;
     [self.integralLabel setHidden:YES];
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = __title.length ? __title : @"任务中心";
+    
+//    [self.salaryBtn setHidden:!APP.isShowSalary];
+    
+    [self.salaryBtn setHidden:NO];
 
     self.userInfoView.backgroundColor = Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
@@ -348,5 +355,10 @@ static NSString *__title = nil;
 - (IBAction)goSigInCode:(id)sender {
     UGSigInCodeViewController *vc = [[UGSigInCodeViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 领取俸禄
+- (IBAction)goSalary:(id)sender {
+ 
 }
 @end

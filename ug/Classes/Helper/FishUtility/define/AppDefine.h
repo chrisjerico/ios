@@ -76,6 +76,7 @@
 @property (nonatomic) BOOL isGPKDeposit;                            /**< GPK版右上角最近浏览改为 存取款  */
 @property (nonatomic) BOOL isTitleWhite;                            /**< 游戏大厅绿色字体改为白色字体 */
 @property (nonatomic) BOOL isSectionWhite;                          /**< IOS 彩票投注页面，所选的玩法名称显示修改成白色字体  */
+@property (nonatomic) BOOL isShowSalary;                            /**<  任务系统周俸禄、月俸禄   */
 
 // 热更新相关字段
                                                    
