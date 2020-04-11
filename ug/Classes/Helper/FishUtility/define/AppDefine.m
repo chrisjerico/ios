@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test36a"
+#define __SiteID__ @"c048"
 
 
 @interface UIStoryboard ()
@@ -142,7 +142,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test36a";
+            _SiteId = @"c048";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
@@ -241,7 +241,7 @@
 }
 
 - (BOOL)isNoBorder {
-    return [@"c200,c208,c213,a002" containsString:_SiteId];
+    return [@"c200,c208,c213,a002,c134" containsString:_SiteId];
 }
 
 - (BOOL)isYHShowTitle {
@@ -317,7 +317,7 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c212,c085,c208,c134,c200,c208,c213,a002" containsString:_SiteId];
+        return [@"c212,c085,c208,c134,c200,c213,a002" containsString:_SiteId];
     }
     
 }
@@ -381,7 +381,7 @@
 
 
 - (BOOL)isBA {
-    return [@"c001,c085,c208,a002,c054,c212,c200,c213" containsString:_SiteId];
+    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134" containsString:_SiteId];
 }
 
 - (BOOL)addIcons {
