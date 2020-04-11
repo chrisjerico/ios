@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zwt" translatesAutoresizingMaskIntoConstraints="NO" id="78J-by-y9R" customClass="FLAnimatedImageView">
-                        <rect key="frame" x="4" y="4" width="54" height="53"/>
+                        <rect key="frame" x="10" y="8" width="42" height="49"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彩票" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cTh-7J-qbj">
                         <rect key="frame" x="3" y="29.5" width="56" height="21.5"/>
@@ -27,8 +27,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彩票" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4g-bw-eHA">
-                        <rect key="frame" x="3" y="58" width="56" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="3" y="58" width="56" height="15.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -38,15 +38,15 @@
             <constraints>
                 <constraint firstItem="cTh-7J-qbj" firstAttribute="centerX" secondItem="Dcs-hU-DBs" secondAttribute="centerX" id="4LM-eW-lWn"/>
                 <constraint firstAttribute="bottom" secondItem="78J-by-y9R" secondAttribute="bottom" constant="23" id="5f0-ad-niC"/>
-                <constraint firstItem="78J-by-y9R" firstAttribute="leading" secondItem="Dcs-hU-DBs" secondAttribute="leading" constant="4" id="DNO-a3-rpq"/>
+                <constraint firstItem="78J-by-y9R" firstAttribute="leading" secondItem="Dcs-hU-DBs" secondAttribute="leading" constant="10" id="DNO-a3-rpq"/>
                 <constraint firstItem="cTh-7J-qbj" firstAttribute="leading" secondItem="Dcs-hU-DBs" secondAttribute="leading" constant="3" id="E7G-dK-ztN"/>
                 <constraint firstItem="A4g-bw-eHA" firstAttribute="centerX" secondItem="Dcs-hU-DBs" secondAttribute="centerX" id="IxX-xH-Tfd"/>
-                <constraint firstItem="78J-by-y9R" firstAttribute="top" secondItem="Dcs-hU-DBs" secondAttribute="top" constant="4" id="TZ7-8P-VoL"/>
+                <constraint firstItem="78J-by-y9R" firstAttribute="top" secondItem="Dcs-hU-DBs" secondAttribute="top" constant="8" id="TZ7-8P-VoL"/>
                 <constraint firstItem="A4g-bw-eHA" firstAttribute="top" secondItem="78J-by-y9R" secondAttribute="bottom" constant="1" id="Tug-fI-X2z"/>
                 <constraint firstItem="cTh-7J-qbj" firstAttribute="centerY" secondItem="Dcs-hU-DBs" secondAttribute="centerY" id="dD7-fe-q9m"/>
                 <constraint firstItem="A4g-bw-eHA" firstAttribute="centerX" secondItem="Dcs-hU-DBs" secondAttribute="centerX" id="pYM-69-Ueh"/>
                 <constraint firstItem="A4g-bw-eHA" firstAttribute="leading" secondItem="Dcs-hU-DBs" secondAttribute="leading" constant="3" id="zZ0-3C-MAN"/>
-                <constraint firstAttribute="trailing" secondItem="78J-by-y9R" secondAttribute="trailing" constant="4" id="znF-aY-JPY"/>
+                <constraint firstAttribute="trailing" secondItem="78J-by-y9R" secondAttribute="trailing" constant="10" id="znF-aY-JPY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="4RF-cP-cvW"/>
             <size key="customSize" width="62" height="80"/>
