@@ -98,8 +98,7 @@ static NSString *__title = nil;
     self.navigationItem.title = __title.length ? __title : @"任务中心";
     
 //    [self.salaryBtn setHidden:!APP.isShowSalary];
-    
-    [self.salaryBtn setHidden:NO];
+
 
     self.userInfoView.backgroundColor = Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor;
     self.avaterImageView.layer.cornerRadius = self.avaterImageView.height / 2 ;
