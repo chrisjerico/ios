@@ -1632,12 +1632,12 @@
     if (marqueeView == self.leftwardMarqueeView) {
         UILabel *content = [itemView viewWithTag:1001];
         
-        if (APP.isRollingTextWhite) {
-            content.textColor = [UIColor whiteColor];
-        }
-        else{
+//        if (APP.isRollingTextBlack) {
+//            content.textColor = [UIColor blackColor];
+//        }
+//        else{
              content.textColor = Skin1.textColor1;
-        }
+//        }
        
         content.text = self.leftwardMarqueeViewData[index];
     } else {

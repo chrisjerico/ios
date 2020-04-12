@@ -180,9 +180,9 @@
 
 #pragma mark - 定制样式
 
-- (BOOL)isRollingTextWhite {
-     return [@"c134" containsString:_SiteId];
-}
+//- (BOOL)isRollingTextBlack {
+//     return [@"c134" containsString:_SiteId];
+//}
 
 - (BOOL)isShowSalary {
      return [@"c217,test29" containsString:_SiteId];
