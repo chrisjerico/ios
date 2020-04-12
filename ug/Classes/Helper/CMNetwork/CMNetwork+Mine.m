@@ -1085,5 +1085,19 @@
 }
 
 
+//获取俸禄列表接口（不需要参数） c=task&a=getMissionBonusList
++ (void)getMissionBonusListUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[getMissionBonusListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultArrayClassMake(UGSignInHistoryModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
 @end
 

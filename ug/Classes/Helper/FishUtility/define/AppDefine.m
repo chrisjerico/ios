@@ -180,8 +180,12 @@
 
 #pragma mark - 定制样式
 
+- (BOOL)isRollingTextWhite {
+     return [@"c134" containsString:_SiteId];
+}
+
 - (BOOL)isShowSalary {
-     return [@"c217" containsString:_SiteId];
+     return [@"c217,test29" containsString:_SiteId];
 }
 
 - (BOOL)isSectionWhite {

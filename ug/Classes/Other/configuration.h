@@ -261,7 +261,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 //给下级会员充值接口
 #define teamRechargeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=recharge"]
-
+//1 获取俸禄列表接口
+#define getMissionBonusListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=getMissionBonusList"]
 //=============六合====================================================================================================
 #define lhlDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lhlDetail"]
 

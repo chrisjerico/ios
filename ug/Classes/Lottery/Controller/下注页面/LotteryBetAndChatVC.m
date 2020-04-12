@@ -80,6 +80,14 @@
                 oc.title = @"一分六合彩";
                 _nim = oc;
         }
+        else if ([@"c217" containsString:APP.SiteId]) {
+                 UGNextIssueModel * oc = [UGNextIssueModel new];
+                 oc.gameId = @"98";
+                 oc.gameType = @"pk10";
+                 oc.name = @"pk10";
+                 oc.title = @"极速赛车";
+                 _nim = oc;
+         }
         else {
             UGNextIssueModel * oc = [UGNextIssueModel new];
             oc.gameId = @"70";

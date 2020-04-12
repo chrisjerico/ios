@@ -1631,7 +1631,14 @@
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
     if (marqueeView == self.leftwardMarqueeView) {
         UILabel *content = [itemView viewWithTag:1001];
-        content.textColor = Skin1.textColor1;
+        
+        if (APP.isRollingTextWhite) {
+            content.textColor = [UIColor whiteColor];
+        }
+        else{
+             content.textColor = Skin1.textColor1;
+        }
+       
         content.text = self.leftwardMarqueeViewData[index];
     } else {
         UGRankModel *rank = self.rankArray[index];

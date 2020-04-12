@@ -235,6 +235,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //给下级会员充值接口-/team/recharge
 + (void)teamRechargeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//获取俸禄列表接口 c=task&a=getMissionBonusList
++ (void)getMissionBonusListUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

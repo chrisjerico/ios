@@ -33,7 +33,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dV0-rB-Txb">
-                                        <rect key="frame" x="287" y="81.5" width="80" height="26"/>
+                                        <rect key="frame" x="287" y="82" width="80" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="J0l-Ar-m43"/>
                                             <constraint firstAttribute="height" constant="26" id="luP-6f-tZJ"/>
@@ -89,7 +89,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥ 8908.55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLF-Nu-icO">
-                                        <rect key="frame" x="100" y="53" width="85.5" height="21"/>
+                                        <rect key="frame" x="100" y="53" width="85.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -120,7 +120,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1V-e8-RRS">
-                                        <rect key="frame" x="190.5" y="48.5" width="30" height="30"/>
+                                        <rect key="frame" x="190.5" y="49" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="5ze-0v-tUf"/>
                                             <constraint firstAttribute="height" constant="30" id="zj7-cK-jwU"/>
@@ -158,7 +158,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7e-cw-73a">
-                                        <rect key="frame" x="287" y="50.5" width="80" height="26"/>
+                                        <rect key="frame" x="287" y="51" width="80" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="hYm-Lz-6bi"/>
                                             <constraint firstAttribute="height" constant="26" id="z89-Lr-lVz"/>
@@ -168,35 +168,35 @@
                                             <action selector="backCick:" destination="2Vo-rA-yjY" eventType="touchUpInside" id="Dt0-2h-z6M"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98s-4u-nyB">
-                                        <rect key="frame" x="287" y="112.5" width="80" height="26"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="YzN-vf-NkQ"/>
-                                            <constraint firstAttribute="height" constant="26" id="eO3-QB-8D2"/>
-                                        </constraints>
-                                        <state key="normal" image="dailysalary"/>
-                                        <connections>
-                                            <action selector="backCick:" destination="2Vo-rA-yjY" eventType="touchUpInside" id="sT6-eR-5IH"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分:3443.2346" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPa-Eg-ssg">
                                         <rect key="frame" x="206" y="18.5" width="92" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.80495341840000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCL-aI-nwa">
+                                        <rect key="frame" x="287" y="113" width="80" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="7EI-fh-13n"/>
+                                            <constraint firstAttribute="height" constant="26" id="GG1-wd-fFz"/>
+                                        </constraints>
+                                        <state key="normal" image="usercenter03"/>
+                                        <connections>
+                                            <action selector="goSalary:" destination="2Vo-rA-yjY" eventType="touchUpInside" id="4CB-Wz-X3v"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28788453339999998" green="0.58269137140000005" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="98s-4u-nyB" firstAttribute="top" secondItem="dV0-rB-Txb" secondAttribute="bottom" constant="5" id="1oe-Li-HjG"/>
                                     <constraint firstItem="nIa-rW-eli" firstAttribute="leading" secondItem="wyM-eP-2gj" secondAttribute="trailing" id="2S3-M3-chf"/>
                                     <constraint firstItem="f5t-Fe-xPH" firstAttribute="centerY" secondItem="wyM-eP-2gj" secondAttribute="centerY" id="4a6-XJ-e9V"/>
                                     <constraint firstItem="qik-ZV-Go7" firstAttribute="top" secondItem="QRf-tD-WHm" secondAttribute="bottom" id="6Lq-hl-I1A"/>
-                                    <constraint firstItem="98s-4u-nyB" firstAttribute="trailing" secondItem="dV0-rB-Txb" secondAttribute="trailing" id="6xz-2V-GU8"/>
                                     <constraint firstAttribute="trailing" secondItem="jTb-az-66R" secondAttribute="trailing" id="7Fp-YO-A27"/>
                                     <constraint firstItem="C1V-e8-RRS" firstAttribute="centerY" secondItem="dLF-Nu-icO" secondAttribute="centerY" id="9uR-Qv-bS2"/>
+                                    <constraint firstItem="uCL-aI-nwa" firstAttribute="top" secondItem="dV0-rB-Txb" secondAttribute="bottom" constant="5" id="9vS-RL-nD4"/>
                                     <constraint firstItem="dLF-Nu-icO" firstAttribute="top" secondItem="rkD-4O-J3F" secondAttribute="bottom" constant="5" id="9xW-79-11b"/>
                                     <constraint firstItem="Nu6-Cu-ZXI" firstAttribute="leading" secondItem="Xx8-av-ouu" secondAttribute="leading" constant="25" id="C1A-I7-Pag"/>
+                                    <constraint firstItem="uCL-aI-nwa" firstAttribute="trailing" secondItem="dV0-rB-Txb" secondAttribute="trailing" id="HCi-mO-LHv"/>
                                     <constraint firstItem="qPa-Eg-ssg" firstAttribute="top" secondItem="Xx8-av-ouu" secondAttribute="top" constant="18.5" id="HSJ-Le-1Lw"/>
                                     <constraint firstItem="dLF-Nu-icO" firstAttribute="leading" secondItem="Fgr-cv-rxZ" secondAttribute="leading" id="HVe-Mc-JDj"/>
                                     <constraint firstAttribute="trailing" secondItem="qik-ZV-Go7" secondAttribute="trailing" id="KUp-d7-fqJ"/>
@@ -257,6 +257,7 @@
                         <outlet property="nextLevelImageView" destination="f5t-Fe-xPH" id="COt-YQ-2Je"/>
                         <outlet property="progressView" destination="nIa-rW-eli" id="zkG-IX-UuG"/>
                         <outlet property="refreshBalanceButton" destination="C1V-e8-RRS" id="UOp-cR-djT"/>
+                        <outlet property="salaryBtn" destination="uCL-aI-nwa" id="TVj-3E-SCk"/>
                         <outlet property="taskRewradTitleLabel" destination="r6w-ad-hbX" id="iC0-Qo-DrY"/>
                         <outlet property="userInfoView" destination="Xx8-av-ouu" id="AZB-57-HTW"/>
                         <outlet property="userNameLabel" destination="Fgr-cv-rxZ" id="bzg-tR-Bpy"/>
@@ -273,13 +274,13 @@
     </scenes>
     <resources>
         <image name="baibolang" width="187.5" height="24"/>
-        <image name="dailysalary" width="75" height="19.5"/>
         <image name="dailysign" width="75" height="19.5"/>
         <image name="huangzhuan" width="50" height="50"/>
         <image name="lvzhuan" width="50" height="50"/>
         <image name="shuaxin" width="24" height="24"/>
         <image name="txp" width="100" height="100"/>
         <image name="usercenter0" width="75" height="19.5"/>
+        <image name="usercenter03" width="75" height="19.5"/>
         <image name="vipdengji" width="150" height="50"/>
     </resources>
 </document>

@@ -1870,6 +1870,8 @@
 		D4250BF623F27BE700ABA3C9 /* JYRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4250BF523F27BE700ABA3C9 /* JYRegisterViewController.m */; };
 		D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */; };
 		D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
+		D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */; };
+		D428E8C02441EC3C000B8980 /* UGSalaryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */; };
 		D42B958323F3E3270030C653 /* JYLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */; };
 		D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */; };
 		D42B958923F3EAD00030C653 /* JYLotteryTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */; };
@@ -3696,6 +3698,9 @@
 		D42752CD23EFFA31001E27A0 /* RedEnvelopeVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedEnvelopeVCViewController.h; sourceTree = "<group>"; };
 		D42752CE23EFFA31001E27A0 /* RedEnvelopeVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedEnvelopeVCViewController.m; sourceTree = "<group>"; };
 		D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContractedTemplate.storyboard; sourceTree = "<group>"; };
+		D428E8BC2441EBFA000B8980 /* UGSalaryListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSalaryListView.h; sourceTree = "<group>"; };
+		D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSalaryListView.m; sourceTree = "<group>"; };
+		D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSalaryListView.xib; sourceTree = "<group>"; };
 		D42B958123F3E3270030C653 /* JYLotteryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLotteryCollectionViewCell.h; sourceTree = "<group>"; };
 		D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -6515,6 +6520,9 @@
 				031E18B623BE812600B0F813 /* UGMissionTitleCollectionView.m */,
 				031E18BF23BE812600B0F813 /* UGIntegarlConvertRecordCell.h */,
 				031E18B823BE812600B0F813 /* UGIntegarlConvertRecordCell.m */,
+				D428E8BC2441EBFA000B8980 /* UGSalaryListView.h */,
+				D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */,
+				D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */,
 			);
 			path = "任务大厅";
 			sourceTree = "<group>";
@@ -8770,6 +8778,7 @@
 				031E1BC023BE812900B0F813 /* UGBMfinancialCollectionViewCell.xib in Resources */,
 				CF4758AD239636D200966536 /* 156.gif in Resources */,
 				CF4758D9239636D200966536 /* 146.gif in Resources */,
+				D428E8C02441EC3C000B8980 /* UGSalaryListView.xib in Resources */,
 				031E1C6423BE812A00B0F813 /* UGLotteryCollectionViewCell.xib in Resources */,
 				03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				CF4758A2239636D200966536 /* 124.gif in Resources */,
@@ -9894,6 +9903,7 @@
 				031E1C7623BE812A00B0F813 /* UGRechargeLogsModel.m in Sources */,
 				031E1B2A23BE812800B0F813 /* UGRedEnvelopeModel.m in Sources */,
 				031E1CEC23BE812A00B0F813 /* SVRadialGradientLayer.m in Sources */,
+				D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */,
 				031E1C5E23BE812A00B0F813 /* UGLotteryGameCollectionViewCell.m in Sources */,
 				D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */,
 				031E1D9A23BE812B00B0F813 /* UGYubaoInComeController.m in Sources */,
