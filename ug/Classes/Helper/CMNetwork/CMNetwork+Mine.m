@@ -1099,5 +1099,18 @@
     CMMETHOD_END;
 }
 
+
+//领取俸禄接口 c=task&a=sendMissionBonus   (参数bonsId 领取俸禄的id 前面列表会传过去)
++ (void)taskSendMissionBonusWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[taskSendMissionBonusUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
 

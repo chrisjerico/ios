@@ -88,6 +88,16 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
     }
     
+    if ([@"c126" containsString:APP.SiteId]) {
+        NSArray *arrayTmp = @[@"开奖网"];
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(5, 1)];
+        [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
+        
+        NSArray *arrayImg = @[@"cb_kaijiang"];
+        [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+    }
+
     
     
 }
@@ -536,6 +546,10 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
         recordVC.type = 2;
         [NavController1 pushViewController:recordVC animated:true];
+    }
+    
+    else if ([title isEqualToString:@"开奖网"]) {
+        [CMCommon goSLWebUrl:lotteryUrl];
     }
     
 }

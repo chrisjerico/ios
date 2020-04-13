@@ -238,6 +238,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取俸禄列表接口 c=task&a=getMissionBonusList
 + (void)getMissionBonusListUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//领取俸禄接口 c=task&a=sendMissionBonus   (参数bonsId 领取俸禄的id 前面列表会传过去)
++ (void)taskSendMissionBonusWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

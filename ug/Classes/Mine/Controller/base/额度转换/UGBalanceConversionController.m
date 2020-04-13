@@ -203,7 +203,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
                                               
                                               __cnt++;
                                               if (__cnt == arry.count) {
-                                                  [SVProgressHUD showSuccessWithStatus:@"一键提取成功"];
+                                                  [SVProgressHUD showSuccessWithStatus:@"一键提取完成"];
                                                   // 刷新余额并刷新UI
                                                   SANotificationEventPost(UGNotificationGetUserInfo, nil);
                                                   for (UGPlatformGameModel *pgm in __self.dataArray) {

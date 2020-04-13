@@ -42,6 +42,27 @@
     
 }
 
+
+//获取俸禄列表数据
+- (void)getMissionBonusList {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    
+    [SVProgressHUD showWithStatus:nil];
+//    WeakSelf;
+    [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
+            NSLog(@"model.data = %@",model.data);
+            self.dataArray = model.data;
+            NSLog(@"dataArray = %@",self.dataArray);
+
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 - (IBAction)close:(id)sender {
     [self hiddenSelf];
 }
@@ -76,7 +97,27 @@
     [cell.fourthLabel setHidden:YES];
     cell.promotion4rowButtonBlock = ^{
         if (model.bonsId) {
-            [CMCommon showTitle:model.bonsId];
+           NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                                    @"bonsId":model.bonsId,
+                                    };
+           
+           [SVProgressHUD showWithStatus:nil];
+           //    WeakSelf;
+           [CMNetwork taskSendMissionBonusWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+               [CMResult processWithResult:model success:^{
+                     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                         [SVProgressHUD showSuccessWithStatus:model.msg];
+                         
+//                         [self getMissionBonusList];
+                   });
+                 
+                   
+               } failure:^(id msg) {
+                   
+                   [SVProgressHUD showErrorWithStatus:msg];
+                   [self close:nil];
+               }];
+           }];
         }
     };
     
