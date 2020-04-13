@@ -69,7 +69,10 @@
 
 - (void)setDataArray:(NSArray<UGSignInHistoryModel *> *)dataArray {
     _dataArray = dataArray;
-    [self.tableView reloadData];
+    if (![CMCommon arryIsNull:_dataArray]) {
+         [self.tableView reloadData];
+    }
+   
     
 }
 
@@ -107,15 +110,14 @@
                [CMResult processWithResult:model success:^{
                      dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                          [SVProgressHUD showSuccessWithStatus:model.msg];
-                         
-//                         [self getMissionBonusList];
-                   });
+                           NSLog(@"model.data = %@",model.data);
+                    });
                  
                    
                } failure:^(id msg) {
                    
                    [SVProgressHUD showErrorWithStatus:msg];
-                   [self close:nil];
+                  
                }];
            }];
         }
