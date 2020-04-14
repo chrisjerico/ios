@@ -75,7 +75,7 @@ static NSString *__title = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _historyDataArray = [NSMutableArray new];
     SANotificationEventSubscribe(UGNotificationGetRewardsSuccessfully, self, ^(typeof (self) self, id obj) {
         [self getUserInfo];
         
@@ -368,27 +368,44 @@ static NSString *__title = nil;
 //获取俸禄列表数据
 - (void)getMissionBonusList {
     
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+//    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+//
+//    [SVProgressHUD showWithStatus:nil];
+////    WeakSelf;
+//    [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+//        [CMResult processWithResult:model success:^{
+//            [SVProgressHUD dismiss];
+//            NSLog(@"model.data = %@",model.data);
+//            self.historyDataArray = model.data;
+//            NSLog(@"_historyDataArray = %@",self.historyDataArray);
+//
+//            [self showUGSignInHistoryView];
+//        } failure:^(id msg) {
+//            [SVProgressHUD showErrorWithStatus:msg];
+//        }];
+//    }];
     
-    [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
-    [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD dismiss];
-            NSLog(@"model.data = %@",model.data);
-            self.historyDataArray = model.data;
-            NSLog(@"_historyDataArray = %@",self.historyDataArray);
-    
-            [self showUGSignInHistoryView];
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
+     [self showUGSignInHistoryView];
 }
 
 #pragma mark -- 其他方法
 
 - (void)showUGSignInHistoryView {
+    
+    
+     UGSignInHistoryModel *model = [UGSignInHistoryModel new];
+     model.levelName = @"1";
+     model.weekBons = @"1";
+     model.MonthBons = @"2";
+    
+    [self.historyDataArray addObject:model];
+    
+     UGSignInHistoryModel *model1 = [UGSignInHistoryModel new];
+     model1.levelName = @"2";
+     model1.weekBons = @"212121";
+     model1.MonthBons = @"2121212";
+    
+    [self.historyDataArray addObject:model1];
     
     UGSalaryListView *notiveView = [[UGSalaryListView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
     notiveView.dataArray = self.historyDataArray;

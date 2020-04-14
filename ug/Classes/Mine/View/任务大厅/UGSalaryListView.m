@@ -29,7 +29,13 @@
         self.tableView.estimatedSectionFooterHeight = 0;
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion4rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion4rowTableViewCell"];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.layer.cornerRadius = 5;
+        self.layer.cornerRadius = 8;
+        
+        self.closeButton.layer.cornerRadius = 5;
+         self.closeButton.layer.masksToBounds = YES;
+        self.layer.masksToBounds = YES;
+
+        
 
         if (Skin1.isBlack) {
             [self setBackgroundColor: Skin1.bgColor];
@@ -68,6 +74,7 @@
 }
 
 - (void)setDataArray:(NSArray<UGSignInHistoryModel *> *)dataArray {
+
     _dataArray = dataArray;
     if (![CMCommon arryIsNull:_dataArray]) {
          [self.tableView reloadData];
@@ -77,6 +84,7 @@
 }
 
 #pragma mark - UITableViewDataSource
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -96,6 +104,7 @@
     cell.firstLabel.text = model.levelName;
     cell.secondLabel.text = model.weekBons;
     cell.thirdLabel.text = model.MonthBons;
+    [cell.lineView setHidden:NO];
     [cell.fouthButton setHidden:NO];
     [cell.fourthLabel setHidden:YES];
     cell.promotion4rowButtonBlock = ^{
@@ -146,6 +155,7 @@
     headerView.secondLabel.text = @"周俸禄";
     headerView.thirdLabel.text = @"月俸禄";
     headerView.fourthLabel.text = @"领取";
+   [headerView.lineView setHidden:NO];
     
     return headerView;
 }
@@ -166,11 +176,7 @@
     maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     
-    if (Skin1.isBlack) {
-        [_title1Label setTextColor:[UIColor whiteColor]];
-    } else {
-        [_title1Label setTextColor:[UIColor blackColor]];
-    }
+
     
     [maskView addSubview:view];
     [window addSubview:maskView];

@@ -62,13 +62,26 @@
                             <action selector="signInClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jL9-ef-zQQ"/>
                         </connections>
                     </button>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ku1-Eh-JDy">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.85098618268966675" green="0.85097020864486694" blue="0.85098105669021606" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="QXK-cO-7KX"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="ku1-Eh-JDy" secondAttribute="bottom" id="Ag7-cD-aSf"/>
+                    <constraint firstItem="ku1-Eh-JDy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aAm-TK-SHT"/>
+                    <constraint firstAttribute="trailing" secondItem="ku1-Eh-JDy" secondAttribute="trailing" id="yOx-fB-Bbx"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="firstLabel" destination="QeK-xf-xrw" id="ok6-XO-QqB"/>
                 <outlet property="fourthLabel" destination="1gq-um-FRw" id="0dD-FY-YYD"/>
                 <outlet property="fouthButton" destination="BIc-Xm-rtH" id="ws4-Q5-pKN"/>
+                <outlet property="lineView" destination="ku1-Eh-JDy" id="8bg-Tx-fYf"/>
                 <outlet property="secondLabel" destination="WdP-iI-Erp" id="k0z-2h-rnF"/>
                 <outlet property="thirdLabel" destination="s5i-le-WUr" id="ekI-Yy-8Pz"/>
             </connections>

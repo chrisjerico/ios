@@ -77,7 +77,7 @@
 @property (nonatomic) BOOL isTitleWhite;                            /**< 游戏大厅绿色字体改为白色字体 */
 @property (nonatomic) BOOL isSectionWhite;                          /**< IOS 彩票投注页面，所选的玩法名称显示修改成白色字体  */
 @property (nonatomic) BOOL isShowSalary;                            /**<  任务系统周俸禄、月俸禄   */
-//@property (nonatomic) BOOL isRollingTextBlack;                      /**< 首页滚动公告字体颜色黑色   */
+@property (nonatomic) BOOL isBgColorForMoneyVC;                     /**< 存款页面进去的底色为bg色   */
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

@@ -18,7 +18,7 @@ typedef void(^Promotion4rowButtonBlock)(void);
 @property (weak, nonatomic) IBOutlet UILabel *thirdLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fourthLabel;
 
-
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIButton *fouthButton;
 @property (nonatomic, copy) Promotion4rowButtonBlock promotion4rowButtonBlock;
 @end
