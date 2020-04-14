@@ -425,7 +425,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         };
         [betDetailView show];
         
-       
+        
     });
 }
 
@@ -897,20 +897,32 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateHeaderViewData {
-    if (self.nextIssueModel.preIssue.length) {
+    if (self.nextIssueModel.preIssue.length >=12) {
         NSString *str4 = [self.nextIssueModel.preIssue substringFromIndex:2];
         self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",str4];
     }
-    if (self.nextIssueModel.curIssue.length) {
+    else {
+        self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
+    }
+    if (self.nextIssueModel.curIssue.length >=12) {
         NSString *str4 = [self.nextIssueModel.curIssue substringFromIndex:2];
         self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",str4];
+    }
+    else {
+        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
     }
     _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
     CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
-    self.headerCollectionView.x = 30 + size.width-18;
+    if (self.nextIssueModel.curIssue.length >=12) {
+       self.headerCollectionView.x = 30 + size.width-18;
+    }
+    else {
+       self.headerCollectionView.x = 30 + size.width;
+    }
+    
     [self.headerCollectionView reloadData];
 }
 
