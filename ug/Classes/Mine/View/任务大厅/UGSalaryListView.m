@@ -120,12 +120,14 @@
                      dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                          [SVProgressHUD showSuccessWithStatus:model.msg];
                            NSLog(@"model.data = %@",model.data);
+                         [self close:nil];
                     });
                  
                    
                } failure:^(id msg) {
                    
                    [SVProgressHUD showErrorWithStatus:msg];
+                    [self close:nil];
                   
                }];
            }];
