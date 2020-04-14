@@ -834,7 +834,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         NSString *str4 = [self.nextIssueModel.preIssue substringFromIndex:2];
         self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",str4];
     }
-    self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+     if (self.nextIssueModel.curIssue.length) {
+        NSString *str4 = [self.nextIssueModel.curIssue substringFromIndex:2];
+        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",str4];
+    }
     _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
