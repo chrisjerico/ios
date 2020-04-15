@@ -1318,10 +1318,15 @@
                     [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                     
                 }
-                NSLog(@"chatIdAry = %@",chatIdAry);
-                NSLog(@"chatRoomAry = %@",chatRoomAry);
+
                 SysConf.typeIdAry = typeIdAry;
                 SysConf.chatRoomAry = chatRoomAry;
+                
+                if (![CMCommon arryIsNull:chatRoomAry]) {
+                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+                }
+              
                 
                 
             } failure:^(id msg) {

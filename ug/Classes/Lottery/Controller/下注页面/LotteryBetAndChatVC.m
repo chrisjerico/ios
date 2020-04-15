@@ -215,8 +215,8 @@
                     vc.url = [APP chatGameUrl:obj.roomId hide:YES];
                 }
             } else {
-                vc.roomId = @"0";   // 主聊天室
-                [self saveRoomName:@"聊天室" RoomId:@"0"];
+                vc.roomId = SysConf.defaultChatRoom.roomId;   // 主聊天室
+                [self saveRoomName:SysConf.defaultChatRoom.roomName RoomId:SysConf.defaultChatRoom.roomId];
                 vc.url = [APP chatGameUrl:vc.roomId hide:YES];
                 //            NSLog(@"vc.url = %@",vc.url);
             }
@@ -387,12 +387,12 @@
                                 //                            }
                                 
                             } else {
-                                if(![__self.vc2.roomId isEqualToString:@"0"]){
-                                    __self.vc2.roomId = @"0";   // 主聊天室
-                                    [self saveRoomName:@"聊天室" RoomId:@"0"];
-                                    __self.vc2.url = [APP chatGameUrl:@"0" hide:YES];
+                                if(![__self.vc2.roomId isEqualToString:SysConf.defaultChatRoom.roomId]){
+                                    __self.vc2.roomId = SysConf.defaultChatRoom.roomId;   // 主聊天室
+                                    [self saveRoomName:SysConf.defaultChatRoom.roomName RoomId:SysConf.defaultChatRoom.roomId];
+                                    __self.vc2.url = [APP chatGameUrl:SysConf.defaultChatRoom.roomId hide:YES];
                                     //                                NSLog(@"vc2.url = %@",vc2.url);
-                                    __self.mLabel.text = [NSString stringWithFormat:@"聊天室▼"];
+                                    __self.mLabel.text = [NSString stringWithFormat:@"%@▼",SysConf.defaultChatRoom.roomName];
                                 }
                                 
                             }
