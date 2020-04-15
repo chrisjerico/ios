@@ -42,6 +42,8 @@
 #import "UGYYRightMenuView.h"
 
 #import "JYMineCollectionViewCell.h"
+#import "UGSignInHistoryModel.h"
+#import "UGSalaryListView.h"
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
@@ -79,7 +81,9 @@
 //===================================================
 @property (nonatomic, strong) NSMutableArray <UGUserCenterItem *>*menuNameArray;        /**<   行数据 */
 @property (nonatomic, strong) NSMutableArray <UGMineSkinModel *> *menuSecondNameArray;  /**<   新年红模版时的数据 */
-
+//===================================================
+@property (weak, nonatomic) IBOutlet UIButton *salaryBtn; /**<   领取俸禄 */
+@property (nonatomic, strong) NSMutableArray <UGSignInHistoryModel *> *historyDataArray;
 @end
 
 @implementation UGMineSkinViewController
@@ -223,6 +227,7 @@
         [__self.myCollectionView reloadData];
     });
     
+    [self.salaryBtn setHidden:!APP.isShowSalary];
     //初始化
     [self initCollectionView];
 }
@@ -742,6 +747,48 @@ BOOL isOk = NO;
 - (IBAction)conversionAction:(id)sender {
     //转换
     [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController") animated:YES];
+}
+
+// 领取俸禄
+- (IBAction)goSalary:(id)sender {
+ 
+    [self getMissionBonusList];
+}
+//获取俸禄列表数据
+- (void)getMissionBonusList {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+
+    [SVProgressHUD showWithStatus:nil];
+//    WeakSelf;
+    [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
+            NSLog(@"model.data = %@",model.data);
+            self.historyDataArray = model.data;
+            NSLog(@"_historyDataArray = %@",self.historyDataArray);
+            if (![CMCommon arryIsNull:self.historyDataArray]) {
+                [self showUGSignInHistoryView];
+            }
+
+
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+
+}
+
+#pragma mark -- 其他方法
+
+- (void)showUGSignInHistoryView {
+
+    UGSalaryListView *notiveView = [[UGSalaryListView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+    notiveView.dataArray = self.historyDataArray;
+    [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+
+    [notiveView show];
+    
 }
 
 @end

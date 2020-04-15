@@ -54,7 +54,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *waveUImageV;
 
-@property (weak, nonatomic) IBOutlet UIButton *salaryBtn;
+@property (weak, nonatomic) IBOutlet UIButton *salaryBtn;  /**<   领取俸禄 */
+
 
 @property (nonatomic, strong) NSMutableArray <UGSignInHistoryModel *> *historyDataArray;
 
