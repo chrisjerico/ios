@@ -31,6 +31,7 @@
 @property (nonatomic, strong) RnPageModel *rpm;
 @property (nonatomic, strong) NSDictionary<NSString *,id> *params;
 @property (nonatomic, assign) BOOL navigationBarHidden;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 @end
 
 @implementation ReactNativeVC
@@ -70,6 +71,13 @@ static RCTRootView *_rnView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // backgroundImageView
+    [self.view addSubview:_backgroundImageView = [UIImageView new]];
+    [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    // RnView
     if (!_rnView) {
         NSURL *bundleURL = [CodePush bundleURL];
 #ifdef DEBUG
@@ -107,6 +115,7 @@ static RCTRootView *_rnView;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    _backgroundImageView.image = _rnView.snapshotImage;
     [self setStateViewHidden:false];
     self.navigationController.navigationBarHidden = _navigationBarHidden;
 }
@@ -123,6 +132,10 @@ static RCTRootView *_rnView;
             break;
         }
     }
+}
+
+- (BOOL)isEqualRPM:(RnPageModel *)rpm {
+    return [_rpm.rnName isEqualToString:rpm.rnName];
 }
 
 @end

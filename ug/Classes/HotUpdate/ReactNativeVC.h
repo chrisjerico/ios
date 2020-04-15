@@ -51,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ReactNativeVC : UIViewController
 
 + (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary <NSString *, id>* _Nullable)params;  /**<   切换rn页面 */
+- (BOOL)isEqualRPM:(RnPageModel *)rpm;
 @end
 
 NS_ASSUME_NONNULL_END
