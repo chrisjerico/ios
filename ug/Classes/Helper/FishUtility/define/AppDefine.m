@@ -341,7 +341,7 @@
 }
 
 - (BOOL)isShowJinbei {
-    return [@"c085,c208,c212,c200,c213,a002" containsString:_SiteId];
+    return [@"c085,c208,c212,c200,c213,a002,c126" containsString:_SiteId];
 }
 
 - (BOOL)isShowWZ {
