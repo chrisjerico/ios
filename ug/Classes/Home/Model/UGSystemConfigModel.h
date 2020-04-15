@@ -30,7 +30,8 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_长龙助手    = 16,
     UCI_全民竞猜    = 17,
     UCI_开奖走势    = 18,
-    UCI_QQ客服    = 19,
+    UCI_QQ客服     = 19,
+    UCI_开奖网     = 20,
 };
 
 // （TabbarController包含的）功能页面

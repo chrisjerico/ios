@@ -538,7 +538,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_开奖走势: {
-//            [HUDHelper showMsg:@"敬请期待"];
+            [HUDHelper showMsg:@"敬请期待"];
+            return true;
+        }
+        case UCI_开奖网: {
             [CMCommon goSLWebUrl:lotteryUrl];
             return true;
         }

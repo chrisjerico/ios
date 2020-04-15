@@ -99,6 +99,12 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 + (NSString *)getNowTimeWithEndTimeStr:(NSString *)aTimeString currentTimeStr:(NSString *)currentTime {
+    NSLog(@"curCloseTime =%@",aTimeString);
+    
+    NSLog(@"serverTime =%@",currentTime);
+    
+//    2020-04-15 16:23:13.868372+0800 UGBWApp[2076:128817] aTimeString =2020-04-15 21:30:00
+//    2020-04-15 16:23:13.868545+0800 UGBWApp[2076:128817] currentTime =2020-04-15 16:23:12
     // 截止时间date格式
     NSDate  *expireDate = [aTimeString dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     // 当前时间date格式
@@ -108,15 +114,15 @@ static NSString *uuidKey =@"uuidKey";
     // 时间不知道为什么快了一点点，这里手动加上，慢总比快好一点
     timeInterval += 0.2;
     
-//    int days = (int)(timeInterval/(3600*24));
+    int days = (int)(timeInterval/(3600*24));
     int hours = (int)((timeInterval)/3600);
     int minutes = (int)(timeInterval-hours*3600)/60;
     int seconds = timeInterval-hours*3600-minutes*60;
     
-//    NSString *dayStr;
+    NSString *dayStr;
 	NSString *hoursStr;NSString *minutesStr; NSString *secondsStr;
     //天
-//    dayStr = [NSString stringWithFormat:@"%d",days];
+    dayStr = [NSString stringWithFormat:@"%d",days];
     //小时
     if (hours < 10) {
           hoursStr = [NSString stringWithFormat:@"0%d",hours];
@@ -134,13 +140,13 @@ static NSString *uuidKey =@"uuidKey";
         secondsStr = [NSString stringWithFormat:@"0%d", seconds];
     else
         secondsStr = [NSString stringWithFormat:@"%d",seconds];
-    if (hours<=0&&minutes<=0&&seconds<=0) {
+    if (days<=0&&hours<=0&&minutes<=0&&seconds<=0) {
         return nil;
     }
     
-//    if (days) {
-//        return [NSString stringWithFormat:@"%@天%@:%@:%@", dayStr,hoursStr, minutesStr,secondsStr];
-//    }
+    if (days) {
+        return [NSString stringWithFormat:@"%@天%@:%@:%@", dayStr,hoursStr, minutesStr,secondsStr];
+    }
     if (hours) {
         return [NSString stringWithFormat:@"%@:%@:%@",hoursStr , minutesStr,secondsStr];
     }
