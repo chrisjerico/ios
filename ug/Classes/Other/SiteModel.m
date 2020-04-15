@@ -207,18 +207,18 @@
             site(@"l001gbhy",    @"l001gbhy",   @"252",     @"com.UGGame.cp",           @"https://demo.gbbet.com/",                     @"内测包",     @"港博"),//
             site(@"test60f",     @"test60f",    @"275",     @"com.UGGame.cp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//
             site(@"test61f",     @"test61f",    @"276",     @"com.UGGame.cp",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//
-            site(@"test58f",     @"test58f",    @"",        @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
+            site(@"test58f",     @"test58f",    @"282",     @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
             site(@"test5801",     @"test5801",    @"",      @"com.UGGame.cp",           @"http://test5801.ccpt.site",                    @"内测包",     @"test5801"),//
             site(@"test5802",     @"test5802",    @"",      @"com.UGGame.cp",           @"http://test5802.ccpt.site",                    @"内测包",     @"test5802"),//
-            site(@"tess6001",    @"tess6001",   @"",        @"com.UGGame.cp",           @"http://tess6001.fhptcdn.com",                 @"内测包",     @"tess6001"),//
-            site(@"tess6002",    @"tess6002",   @"",        @"com.UGGame.cp",           @"http://tess6002.fhptcdn.com",                 @"内测包",     @"tess6002"),//
-            site(@"tess6003",    @"tess6003",   @"",        @"com.UGGame.cp",           @"http://tess6003.fhptcdn.com",                 @"内测包",     @"tess6003"),//
-            site(@"t600f",       @"t600f",      @"",        @"com.UGGame.cp",           @"http://www.t600f.fhptcdn.com",                @"内测包",     @"t600f"),//
-            site(@"wt600f",      @"wt600f",     @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                 @"内测包",     @"wt600f"),//
-            site(@"test05",      @"",           @"",        @"com.UGGame.cp",           @"http://test05.6yc.com",                       @"内测包",     @"test05"),    // (原生APP组)
-            site(@"test30",      @"",           @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),    // (原生APP组)
-            site(@"test28f",     @"",           @"",        @"com.UGGame.cp",           @"http://test28f.fhptcdn.com",                   @"内测包",     @"test28f"),    // (原生APP组)
-            site(@"test58",     @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                     @"内测包",     @"test58"),    // (原生APP组)
+            site(@"tess6001",     @"tess6001",   @"",        @"com.UGGame.cp",           @"http://tess6001.fhptcdn.com",                 @"内测包",     @"tess6001"),//
+            site(@"tess6002",     @"tess6002",   @"",        @"com.UGGame.cp",           @"http://tess6002.fhptcdn.com",                 @"内测包",     @"tess6002"),//
+            site(@"tess6003",     @"tess6003",   @"",        @"com.UGGame.cp",           @"http://tess6003.fhptcdn.com",                 @"内测包",     @"tess6003"),//
+            site(@"t600f",        @"t600f",      @"",        @"com.UGGame.cp",           @"http://www.t600f.fhptcdn.com",                @"内测包",     @"t600f"),//
+            site(@"wt600f",       @"wt600f",     @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                 @"内测包",     @"wt600f"),//
+            site(@"test05",       @"",           @"",        @"com.UGGame.cp",           @"http://test05.6yc.com",                       @"内测包",     @"test05"),    // (原生APP组)
+            site(@"test30",       @"",           @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),    // (原生APP组)
+            site(@"test28f",      @"",           @"",        @"com.UGGame.cp",           @"http://test28f.fhptcdn.com",                   @"内测包",     @"test28f"),    // (原生APP组)
+            site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                     @"内测包",     @"test58"),    // (原生APP组)
             
             
             
