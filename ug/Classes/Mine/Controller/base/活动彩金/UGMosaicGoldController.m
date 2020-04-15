@@ -97,6 +97,7 @@
     
     cell.item = self.dataArray[indexPath.row];
     UGMosaicGoldModel *model = self.dataArray[indexPath.row];
+       NSLog(@"model=%@",model);
     WeakSelf
     cell.myBlock = ^{
 //        model.param.showWinAmount = YES;
@@ -116,6 +117,7 @@
         
         UGActivityGoldView *notiveView = _LoadView_from_nib_(@"UGActivityGoldView");
         notiveView.frame = CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260);
+         NSLog(@"model=%@",model);
         notiveView.item = ({
             model.param.mid = model.mid;
             model.param;

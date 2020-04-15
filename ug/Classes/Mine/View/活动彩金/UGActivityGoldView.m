@@ -128,6 +128,8 @@
 
 - (void)setItem:(UGMosaicGoldParamModel *)item {
     _item = item;
+    
+    NSLog(@"item=%@",item);
     _quickAmountArray = ({
         _quickAmountArray = [NSMutableArray new];
         for (int i = 1 ; i<=12; i++) {
@@ -141,11 +143,14 @@
     
     
     FastSubViewCode(self);
+    NSLog(@"item.showWinAmount=%d",item.showWinAmount);
     if (item.showWinAmount) {
+        subTextField(@"金额TextField").hidden = NO;
         subLabel(@"快捷金额Label").hidden = !_quickAmountArray.count;
         _collectionView.hidden = !_quickAmountArray.count;
     }
     else {
+        subTextField(@"金额TextField").hidden = YES;
         subLabel(@"快捷金额Label").hidden = true;
         _collectionView.hidden = true;
     }
