@@ -341,7 +341,7 @@
 }
 
 - (BOOL)isShowOtherJinbei {
-    return [@"c126" containsString:_SiteId];
+    return [@"c085,c208,c212,c200,c213,a002,c126" containsString:_SiteId];
 }
 
 - (BOOL)isShowJinbei {
@@ -395,7 +395,7 @@
 }
 
 - (BOOL)addIcons {
-    return [@"c190,c134,a002" containsString:_SiteId];
+    return [@"c190,c134" containsString:_SiteId];
 }
 
 - (BOOL)lotteryHallCustomImgS {
