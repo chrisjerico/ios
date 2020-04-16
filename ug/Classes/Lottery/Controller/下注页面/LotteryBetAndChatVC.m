@@ -57,7 +57,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"聊天室";
+    //    self.title = @"聊天室";
     
     if (!self.title) {
         self.title = @"聊天室";;
@@ -72,22 +72,22 @@
             oc.title = @"分分六合彩";
             _nim = oc;
         }
-       else if ([@"c208" containsString:APP.SiteId]) {
-                UGNextIssueModel * oc = [UGNextIssueModel new];
-                oc.gameId = @"78";
-                oc.gameType = @"lhc";
-                oc.name = @"lhc";
-                oc.title = @"一分六合彩";
-                _nim = oc;
+        else if ([@"c208" containsString:APP.SiteId]) {
+            UGNextIssueModel * oc = [UGNextIssueModel new];
+            oc.gameId = @"78";
+            oc.gameType = @"lhc";
+            oc.name = @"lhc";
+            oc.title = @"一分六合彩";
+            _nim = oc;
         }
         else if ([@"c217" containsString:APP.SiteId]) {
-                 UGNextIssueModel * oc = [UGNextIssueModel new];
-                 oc.gameId = @"98";
-                 oc.gameType = @"pk10";
-                 oc.name = @"pk10";
-                 oc.title = @"极速赛车";
-                 _nim = oc;
-         }
+            UGNextIssueModel * oc = [UGNextIssueModel new];
+            oc.gameId = @"98";
+            oc.gameType = @"pk10";
+            oc.name = @"pk10";
+            oc.title = @"极速赛车";
+            _nim = oc;
+        }
         else {
             UGNextIssueModel * oc = [UGNextIssueModel new];
             oc.gameId = @"70";
@@ -302,7 +302,7 @@
                     label.textColor = [UIColor whiteColor];
                 }
             }
-
+            
             label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
             
             if (APP.isRedWhite) {
@@ -325,7 +325,7 @@
             }
             
             if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
-                 label.textColor = [UIColor whiteColor];
+                label.textColor = [UIColor whiteColor];
             }
             
             
@@ -333,7 +333,7 @@
         };
         ssv1.didSelectedIndex = ^(NSUInteger idx) {
             if (idx) {
- 
+                
                 [__self.downBtn setHidden:NO];
                 //得到线上配置的聊天室
                 [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
@@ -361,6 +361,17 @@
                         }
                         SysConf.typeIdAry = typeIdAry;
                         SysConf.chatRoomAry = chatRoomAry;
+                        
+                        
+                        if (![CMCommon arryIsNull:chatRoomAry]) {
+                            UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                            NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+                        }
+                        else{
+                            UGChatRoomModel *obj  = [UGChatRoomModel new];
+                            obj.roomId = @"0";
+                            obj.roomName = @"聊天室";
+                        }
                         
                         if ([self hasLastRoom]) {
                             NSDictionary *dic = [self LastRoom];
@@ -405,7 +416,7 @@
                 
             }
             else{
-
+                
                 [__self.downBtn setHidden:YES];
                 if ([__self.mLabel.text containsString:@"▼"]) {
                     NSString *text = __self.mLabel.text;
@@ -466,6 +477,16 @@
             SysConf.chatRoomAry = chatRoomAry;
             NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
             //            SysConf.chatRoomAry = __self.chatAry;
+            
+            if (![CMCommon arryIsNull:chatRoomAry]) {
+                UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+            }
+            else{
+                UGChatRoomModel *obj  = [UGChatRoomModel new];
+                obj.roomId = @"0";
+                obj.roomName = @"聊天室";
+            }
             
             UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];
             for (NSString *key in chatTitleAry) {

@@ -1322,9 +1322,15 @@
                 SysConf.typeIdAry = typeIdAry;
                 SysConf.chatRoomAry = chatRoomAry;
                 
+                
                 if (![CMCommon arryIsNull:chatRoomAry]) {
                       UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
                     NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+                }
+                else{
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
+                    obj.roomId = @"0";
+                    obj.roomName = @"聊天室";
                 }
               
                 
