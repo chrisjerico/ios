@@ -283,6 +283,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define chatgetTokenUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=chat&a=getToken"]
 //=============开奖网url====================================================================================================
 #define lotteryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/index.mobile.html?navhidden=1"]
+
+#define lotteryByIdUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/history.mobile.html?navhidden=1&&id="]
 //=============直播url====================================================================================================
 //http://test12.6yc.com/open_prize/video.html?id=1&&gameType=cqssc
 #define liveUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/video.html?navhidden=1&&id="]

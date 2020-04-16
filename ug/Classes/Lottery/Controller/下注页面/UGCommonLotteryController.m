@@ -133,7 +133,8 @@
         }];
         [subButton(@"开奖btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"开奖btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [CMCommon goSLWebUrl:lotteryUrl];
+             NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            [CMCommon goSLWebUrl:url];
         }];
    
         [subButton(@"长龙btn") setHidden:!APP.addIcons];
@@ -152,7 +153,8 @@
         [subButton(@"金杯btn") setHidden:!APP.isShowJinbei];
         [subButton(@"金杯btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            [CMCommon goSLWebUrl:lotteryUrl];
+              NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+              [CMCommon goSLWebUrl:url];
         }];
         
         if (APP.isTextWhite) {
