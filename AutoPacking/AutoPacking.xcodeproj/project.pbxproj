@@ -43,6 +43,7 @@
 		CF5D3E642397929E00CC3D6B /* NSNumber+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E5E2397929E00CC3D6B /* NSNumber+Safe.m */; };
 		CF5D3E652397929E00CC3D6B /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E602397929E00CC3D6B /* NSArray+Safe.m */; };
 		CF5D3E892397D9D800CC3D6B /* 0encrypt.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */; };
+		CFB6867624484A6F00C51533 /* NodeModulesFix.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB6867524484A6F00C51533 /* NodeModulesFix.m */; };
 		CFDB111623A14D160040DE2B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB111523A14D160040DE2B /* JRSwizzle.m */; };
 		CFDB111D23A15C450040DE2B /* PathDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB111C23A15C450040DE2B /* PathDefine.m */; };
 		CFDB112223A160550040DE2B /* 4plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112123A160550040DE2B /* 4plist.sh */; };
@@ -50,6 +51,7 @@
 		CFDB113B23A3B62F0040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113923A3B62F0040DE2B /* SiteModel.m */; };
 		CFDB113E23A3E1AD0040DE2B /* 6clean.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB113D23A3E1AD0040DE2B /* 6clean.sh */; };
 		CFE8765623D424A200BAA5D4 /* 8zip.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFE8765523D424A200BAA5D4 /* 8zip.sh */; };
+		CFFAE9D1244821DF00DADF0A /* NSAppleScript+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFAE9D0244821DF00DADF0A /* NSAppleScript+Helper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		CF5D3E5F2397929E00CC3D6B /* NSNull+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+Safe.h"; sourceTree = "<group>"; };
 		CF5D3E602397929E00CC3D6B /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
 		CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 0encrypt.sh; sourceTree = "<group>"; };
+		CFB6867424484A6F00C51533 /* NodeModulesFix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeModulesFix.h; sourceTree = "<group>"; };
+		CFB6867524484A6F00C51533 /* NodeModulesFix.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeModulesFix.m; sourceTree = "<group>"; };
 		CFDB111423A14D160040DE2B /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = ../../ug/Classes/Helper/FishUtility/JRSwizzle/JRSwizzle.h; sourceTree = "<group>"; };
 		CFDB111523A14D160040DE2B /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = ../../ug/Classes/Helper/FishUtility/JRSwizzle/JRSwizzle.m; sourceTree = "<group>"; };
 		CFDB111B23A15C450040DE2B /* PathDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathDefine.h; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		CFDB113C23A3D2670040DE2B /* cc_runtime_property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cc_runtime_property.h; path = ../../../ug/Classes/Helper/FishUtility/define/cc_runtime_property.h; sourceTree = "<group>"; };
 		CFDB113D23A3E1AD0040DE2B /* 6clean.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 6clean.sh; sourceTree = "<group>"; };
 		CFE8765523D424A200BAA5D4 /* 8zip.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 8zip.sh; sourceTree = "<group>"; };
+		CFFAE9CF244821DE00DADF0A /* NSAppleScript+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAppleScript+Helper.h"; sourceTree = "<group>"; };
+		CFFAE9D0244821DF00DADF0A /* NSAppleScript+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAppleScript+Helper.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +195,10 @@
 			children = (
 				CF5D3DA62396BC9300CC3D6B /* ShellHelper.h */,
 				CF5D3DA82396BC9400CC3D6B /* ShellHelper.m */,
+				CFFAE9CF244821DE00DADF0A /* NSAppleScript+Helper.h */,
+				CFFAE9D0244821DF00DADF0A /* NSAppleScript+Helper.m */,
+				CFB6867424484A6F00C51533 /* NodeModulesFix.h */,
+				CFB6867524484A6F00C51533 /* NodeModulesFix.m */,
 				CF3263CE23CF37B000D4B79A /* NSTask+Block.h */,
 				CF3263CF23CF37B000D4B79A /* NSTask+Block.m */,
 				CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */,
@@ -408,6 +418,7 @@
 				CFDB113B23A3B62F0040DE2B /* SiteModel.m in Sources */,
 				CF5D3E1C2397819C00CC3D6B /* AFURLRequestSerialization.m in Sources */,
 				CF5D3D6E2396B8CE00CC3D6B /* AutoPackingVC.m in Sources */,
+				CFFAE9D1244821DF00DADF0A /* NSAppleScript+Helper.m in Sources */,
 				CF5D3E632397929E00CC3D6B /* NSNull+Safe.m in Sources */,
 				CF5D3E42239781B700CC3D6B /* MJPropertyType.m in Sources */,
 				CF5D3E622397929E00CC3D6B /* NSString+Safe.m in Sources */,
@@ -419,6 +430,7 @@
 				CFDB111D23A15C450040DE2B /* PathDefine.m in Sources */,
 				CF5D3E1B2397819C00CC3D6B /* AFURLSessionManager.m in Sources */,
 				CF5D3E46239781B800CC3D6B /* MJExtensionConst.m in Sources */,
+				CFB6867624484A6F00C51533 /* NodeModulesFix.m in Sources */,
 				CF5D3E47239781B800CC3D6B /* NSObject+MJProperty.m in Sources */,
 				CF5D3E43239781B800CC3D6B /* NSObject+MJKeyValue.m in Sources */,
 				CF5D3E4B239781B800CC3D6B /* MJFoundation.m in Sources */,

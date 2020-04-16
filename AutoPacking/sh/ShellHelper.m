@@ -37,7 +37,7 @@
             if (!sm.uploadId.length) {
                 [errs addObject:[NSString stringWithFormat:@"上传ID未配置, %@", sm.siteId]];
             }
-            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/%@", Path.projectDir, sm.siteId]]) {
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/%@", Path.iosProjectDir, sm.siteId]]) {
                 [errs addObject:[NSString stringWithFormat:@"app图标未配置, %@", sm.siteId]];
             }
         } else {
@@ -48,10 +48,10 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:Path.tempPlist]) {
         [errs addObject:_NSString(@"找不到plist模板，请在此路径放置一个plist模板：%@", Path.tempPlist)];
     }
-    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Other/configuration.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#define checkSign 1"]) {
+    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Other/configuration.h", Path.iosProjectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#define checkSign 1"]) {
         [errs addObject:@"未开启参数加密，请到 configuration.h 文件开启参数加密"];
     }
-    NSString *appDefine = [NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir) encoding:NSUTF8StringEncoding error:nil];
+    NSString *appDefine = [NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.iosProjectDir) encoding:NSUTF8StringEncoding error:nil];
     if (!([appDefine componentsSeparatedByString:@"#define APP_TEST"].count == 2 && [appDefine containsString:@"\n#define APP_TEST\n"])) {
         [errs addObject:@"未正确配置 APP_TEST宏，请在AppDefine.h上配置。"];
     }
@@ -258,16 +258,16 @@
             return ;
         }
         
-        NSLog(@"Path.projectDir = %@",Path.projectDir);
+        NSLog(@"Path.projectDir = %@",Path.iosProjectDir);
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];;
-        task.arguments = @[__sm.siteId, __sm.appName, Path.gitVersion, __sm.appId, Path.projectDir, ];
+        task.arguments = @[__sm.siteId, __sm.appName, Path.gitVersion, __sm.appId, Path.iosProjectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
             
             // 注释掉APP_TEST
             if (![__sm.siteId isEqualToString:@"hotUpdate"]) {
-                NSString *filePath = _NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.projectDir);
+                NSString *filePath = _NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.iosProjectDir);
                 NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
                 [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
                 content = [content stringByReplacingOccurrencesOfString:@"#define APP_TEST" withString:@"//#define APP_TEST"];
@@ -279,7 +279,7 @@
             BOOL isEnterprise = [@"企业包,内测包" containsString:__sm.type];
             NSTask *task = [[NSTask alloc] init];
             task.launchPath = [[NSBundle mainBundle] pathForResource:@"3packing" ofType:@"sh"];
-            task.arguments = @[isEnterprise ? @"2" : @"1", Path.projectDir, ];
+            task.arguments = @[isEnterprise ? @"2" : @"1", Path.iosProjectDir, ];
             task.terminationHandler = ^(NSTask *ts) {
                 [ts terminate];
                 NSLog(@"Path.tempIpa = %@",Path.tempIpa);
@@ -292,7 +292,7 @@
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.xcarchivePath error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:Path.tempIpa toPath:__sm.ipaPath error:nil];
                     [[NSFileManager defaultManager] moveItemAtPath:Path.tempXcarchive toPath:__sm.xcarchivePath error:nil];
-                    [[NSFileManager defaultManager] moveItemAtPath:_NSString(@"%@/PullSuccess.txt", Path.projectDir) toPath:_NSString(@"%@/%@/log.txt", Path.ipaExportDir, Path.commitId) error:nil];
+                    [[NSFileManager defaultManager] moveItemAtPath:_NSString(@"%@/PullSuccess.txt", Path.iosProjectDir) toPath:_NSString(@"%@/%@/log.txt", Path.ipaExportDir, Path.commitId) error:nil];
                     NSLog(@"%@ 打包成功", __sm.siteId);
                     [okSites addObject:__sm];
                     __sm = nil;
@@ -304,7 +304,7 @@
                         NSLog(@"%@ 打包失败，再试一次", __sm.siteId);
                     }
                 }
-                [ShellHelper clean:Path.projectDir completion:^{
+                [ShellHelper clean:Path.iosProjectDir completion:^{
                     __next();
                 }];
             };

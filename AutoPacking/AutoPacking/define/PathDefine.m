@@ -36,16 +36,18 @@ static BOOL isFish = false;
         _jsLogPath = isFish ? @"/Users/fish/自动打包/log/热更新发包记录.txt" : @"/Users/ug/自动打包/log/热更新发包记录.txt";
         
         _jspatchDir = isFish ? @"/Users/fish/自动打包/pack/js/jspatch" : @"/Users/ug/自动打包/pack/js/jspatch";
-        _projectDir = isFish ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/自动打包/pack/ios";
-        _shellDir = [_projectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
+        _rnProjectDir = isFish ? @"/Users/fish/自动打包/pack" : @"/Users/ug/自动打包/pack";
+        _iosProjectDir = isFish ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/自动打包/pack/ios";
+        _shellDir = [_iosProjectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
         
-        _tempIpa        = [_projectDir stringByAppendingPathComponent:@"ug.ipa"];
-        _tempXcarchive  = [_projectDir stringByAppendingPathComponent:@"ug.xcarchive"];
+        _tempIpa        = [_iosProjectDir stringByAppendingPathComponent:@"ug.ipa"];
+        _tempXcarchive  = [_iosProjectDir stringByAppendingPathComponent:@"ug.xcarchive"];
         _tempPlist      = [_shellDir stringByAppendingPathComponent:@"a.plist"];
         _tempCiphertext = [_shellDir stringByAppendingPathComponent:@"Ciphertext.txt"];
-        _tempCommitId   = [_projectDir stringByAppendingPathComponent:@"CommitId.txt"];
-        _tempLog        = [_projectDir stringByAppendingPathComponent:@"ShortLog.txt"];
-        _tempVersion    = [_projectDir stringByAppendingPathComponent:@"Version.txt"];
+        _tempCommitId   = [_iosProjectDir stringByAppendingPathComponent:@"CommitId.txt"];
+        _tempLog        = [_iosProjectDir stringByAppendingPathComponent:@"ShortLog.txt"];
+        _tempIOSVersion = [_iosProjectDir stringByAppendingPathComponent:@"Version.txt"];
+        _tempRNVersion  = [_rnProjectDir stringByAppendingPathComponent:@"Version.txt"];
     }
     return self;
 }

@@ -20,6 +20,8 @@
 #import "MJExtension.h"
 #import "CCNetworkRequests2.h"
 #import "NSTask+Block.h"
+#import "NSAppleScript+Helper.h"
+#import "NodeModulesFix.h"
 
 #import "SiteModel.h"
 #import "PathDefine.h"

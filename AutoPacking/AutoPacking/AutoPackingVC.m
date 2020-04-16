@@ -24,38 +24,67 @@
 //        }];
 //        return;
 //    }
-
+//    [self postHotUpdateReactNative:@"1.6.68" log:@"新2：优惠活动页改为H5样式一样，修复了c190优惠活动页图片被裁减bug。" completion:nil];
+//    return ;
 
     BOOL isPack = ![NSUserName() isEqualToString:@"fish"];  // 0全站提交热更新，1批量打包上传APP后台
     NSLog(@"isPack = %d",isPack);
     isPack = 1;
     // 拉取最新代码
-    [ShellHelper pullCode:Path.projectDir completion:^{
+    __weakSelf_(__self);
+    [ShellHelper pullCode:Path.iosProjectDir completion:^{
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
-        Path.gitVersion = ({
-            NSString *vStr = [[NSString stringWithContentsOfFile:Path.tempVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-            if (vStr.length != 4) {
-                @throw [NSException exceptionWithName:@"版本号获取失败。" reason:@"" userInfo:nil];
+        NSInteger iosCount = [[NSString stringWithContentsOfFile:Path.tempIOSVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""].integerValue;
+        if (iosCount < 1000 || iosCount > 10000) {
+            @throw [NSException exceptionWithName:@"原生项目git提交数获取失败。" reason:@"" userInfo:nil];
+        }
+        [ShellHelper pullCode:Path.rnProjectDir completion:^{
+            [NodeModulesFix fixExportType];
+            NSString *version = Path.gitVersion = ({
+                NSInteger rnCount = [[NSString stringWithContentsOfFile:Path.tempRNVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""].integerValue;
+                if (rnCount < 10 || rnCount > 10000) {
+                    @throw [NSException exceptionWithName:@"RN项目git提交数获取失败。" reason:@"" userInfo:nil];
+                }
+                NSString *vStr = @(iosCount + rnCount).stringValue;
+                NSString *(^getChar)(int) = ^NSString *(int idx) {
+                    return [vStr substringWithRange:NSMakeRange(idx, 1)];
+                };
+                _NSString(@"%@.%@.%@%@", getChar(0), getChar(1), getChar(2), getChar(3));
+            });
+            
+            if (isPack) {
+                NSString *ids = @"hotUpdate";   // 站点编号  c175  c008 c049
+                //            NSString *ids = @"c084,c199,c208,c213,c208,l001,c212,c153,c200,c085,c053,c084,l002,c085,c199,c213,c208,c216,c048,ic213,l002,c018,h005,c053,c062,c085,c137,c141,c150,c151,c153,c158,c163,c165,c169,c173,c175,c177,c002,c091,c084,c049,c011,c012,c073,c092,c116,c129,c192,c194,c035,c047”;   // 站点编号
+                
+                BOOL willUpload = 1; // 打包后是否上传审核
+                [self startPackingWithIds:ids willUpload:willUpload];
             }
-            NSString *(^getChar)(int) = ^NSString *(int idx) {
-                return [vStr substringWithRange:NSMakeRange(idx, 1)];
-            };
-            _NSString(@"%@.%@.%@%@", getChar(0), getChar(1), getChar(2), getChar(3));
-        });
-        
-        if (isPack) {
-
-            NSString *ids = @"c018";   // 站点编号  c175  c008 c049
-//            NSString *ids = @"c084,c199,c208,c213,c208,l001,c212,c153,c200,c085,c053,c084,l002,c085,c199,c213,c208,c216,c048,ic213,l002,c018,h005,c053,c062,c085,c137,c141,c150,c151,c153,c158,c163,c165,c169,c173,c175,c177,c002,c091,c084,c049,c011,c012,c073,c092,c116,c129,c192,c194,c035,c047”;   // 站点编号
-
-            BOOL willUpload = 1; // 打包后是否上传审核
-            [self startPackingWithIds:ids willUpload:willUpload];
-        }
-        else {
-            NSString *log = @"热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试，热更新发包测试2，";    // 更新日志
-            [self postHotUpdate:log];
-        }
+            else {
+                NSString *log = @"香槟金模板提测";    // 更新日志
+                [__self postHotUpdateReactNative:version log:log completion:^{
+                    [__self postHotUpdateJspatch:version log:log completion:^{
+                        // 记录热更新日志
+                        [ShellHelper pullCode:Path.jsLogPath.stringByDeletingLastPathComponent completion:^{
+                            
+                            NSDateFormatter *df = [NSDateFormatter new];
+                            [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+                            
+                            NSString *jsLog = _NSString(@"（%@）%@  |  %@，%@（%@）", Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog, [log stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
+                            [self saveString:jsLog toFile:Path.jsLogPath];
+                            
+                            // 提交发包日志到git
+                            NSString *title = _NSString(@"%@ 提交热更新，%@", version, log);
+                            [ShellHelper pushCode:Path.jsLogPath.stringByDeletingLastPathComponent title:title completion:^{
+                                NSLog(@"发包日志提交成功");
+                                NSLog(@"退出程序！");
+                                exit(0);
+                            }];
+                        }];
+                    }];
+                }];
+            }
+        }];
     }];
 }
 
@@ -90,7 +119,7 @@
 
 #pragma mark - 发布热更新
 
-- (void)postHotUpdate:(NSString *)log {
+- (void)postHotUpdateJspatch:(NSString *)version log:(NSString *)log completion:(void (^)(void))completion {
     if (log.length < 10) {
         NSLog(@"日志太短，请写详细点。");
         @throw [NSException exceptionWithName:@"日志太短，请写详细点。" reason:@"" userInfo:nil];
@@ -104,7 +133,7 @@
     {
         NSString *versionPath = _NSString(@"%@/Version.txt", Path.jspatchDir);
         [[NSFileManager defaultManager]  removeItemAtPath:versionPath error:nil];
-        [Path.gitVersion writeToFile:versionPath atomically:true encoding:NSUTF8StringEncoding error:nil];
+        [version writeToFile:versionPath atomically:true encoding:NSUTF8StringEncoding error:nil];
     }
     
     // 列举目录内容，可以遍历子目录
@@ -144,17 +173,17 @@
         }
         
         // 压缩
-        NSString *zipPath = _NSString(@"%@/%@.zip", rootDir, Path.gitVersion);
-        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"8zip" ofType:@"sh"] arguments:@[Path.gitVersion, rootDir] completion:^(NSTask * _Nonnull ts) {
+        NSString *zipPath = _NSString(@"%@/%@.zip", rootDir, version);
+        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"8zip" ofType:@"sh"] arguments:@[version, rootDir] completion:^(NSTask * _Nonnull ts) {
             
             // 上传js压缩包
             __block int __progress = 0;
-            CCSessionModel *sm = [NetworkManager1 addHotUpdateVersion:Path.gitVersion log:log filePath:zipPath];
+            CCSessionModel *sm = [NetworkManager1 addHotUpdateVersion:version log:log filePath:zipPath];
             sm.progressBlock = ^(NSProgress *progress) {
                 int p = progress.completedUnitCount/(double)progress.totalUnitCount * 100;
                 if (p != __progress) {
                     __progress = p;
-                    NSLog(@"%@ js压缩包上传进度：%.2f", Path.gitVersion, (double)__progress);
+                    NSLog(@"%@ js压缩包上传进度：%.2f", version, (double)__progress);
                 }
             };
             sm.completionBlock = ^(CCSessionModel *sm) {
@@ -164,36 +193,39 @@
                     return ;
                 }
                 
-                NSLog(@"%@ JSPatch热更新提交成功。", Path.gitVersion);
-                // 提交rn资源包
-                NSLog(@"准备打包rn代码");
-                [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, Path.gitVersion, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.privateKey, Path.projectDir.stringByDeletingLastPathComponent] completion:^(NSTask * _Nonnull ts) {
-                    NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.projectDir.stringByDeletingLastPathComponent) encoding:NSUTF8StringEncoding error:nil];
-                    [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-                    if ([rnRet hasSuffix:@"info Done copying assets"]) {
-                        @throw [NSException exceptionWithName:@"rn打包失败。" reason:@"" userInfo:nil];
-                    }
-                    
-                    // 记录热更新日志
-                    [ShellHelper pullCode:Path.jsLogPath.stringByDeletingLastPathComponent completion:^{
-                        
-                        NSDateFormatter *df = [NSDateFormatter new];
-                        [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
-                        
-                        NSString *jsLog = _NSString(@"（%@）%@  |  %@，%@（%@）", Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog, [log stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
-                        [self saveString:jsLog toFile:Path.jsLogPath];
-                        
-                        // 提交发包日志到git
-                        NSString *title = _NSString(@"%@ 提交热更新，%@", Path.gitVersion, log);
-                        [ShellHelper pushCode:Path.jsLogPath.stringByDeletingLastPathComponent title:title completion:^{
-                            NSLog(@"发包日志提交成功");
-                            NSLog(@"退出程序！");
-                            exit(0);
-                        }];
-                    }];
-                }];
+                NSLog(@"%@ JSPatch热更新提交成功。", version);
+                if (completion) {
+                    completion();
+                }
             };
         }];
+    }];
+}
+
+- (void)postHotUpdateReactNative:(NSString *)version log:(NSString *)log completion:(void (^)(void))completion {
+    // 提交rn资源包
+    NSLog(@"准备打包rn代码");
+//    NSString *outupt = [NSAppleScript runProcessAsAdministrator:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, version, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.privateKey, Path.rnProjectDir]];
+//    NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.rnProjectDir) encoding:NSUTF8StringEncoding error:nil];
+//    [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+//    if ([rnRet hasSuffix:@";;;mn  "]) {
+//        @throw [NSException exceptionWithName:@"rn打包失败。" reason:@"" userInfo:nil];
+//    }
+//    NSLog(@"发布CodePush输入, %@", outupt);
+//    if (completion) {
+//        completion();
+//    }
+    
+    [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, version, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.privateKey, Path.rnProjectDir] completion:^(NSTask * _Nonnull ts) {
+        NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.rnProjectDir) encoding:NSUTF8StringEncoding error:nil];
+        [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        if ([rnRet hasSuffix:@";;;mn  "]) {
+            @throw [NSException exceptionWithName:@"rn打包失败。" reason:@"" userInfo:nil];
+        }
+
+        if (completion) {
+            completion();
+        }
     }];
 }
 

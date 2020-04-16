@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *gitLog;               /**<   此次打包的 git 提交记录 */
 
 @property (nonatomic, readonly) NSString *jspatchDir;       /**<   jspatch文件目录 */
-@property (nonatomic, readonly) NSString *projectDir;       /**<   打包项目目录 */
+@property (nonatomic, readonly) NSString *rnProjectDir;       /**<   打包项目目录 */
+@property (nonatomic, readonly) NSString *iosProjectDir;       /**<   打包项目目录 */
 @property (nonatomic, readonly) NSString *ipaExportDir;     /**<   ipa导出目录 */
 @property (nonatomic, readonly) NSString *jsExportDir;      /**<   js导出目录 */
 @property (nonatomic, readonly) NSString *shellDir;         /**<   脚本目录 */
@@ -35,7 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *tempCiphertext;   /**<   （临时）rsa加密文本 */
 @property (nonatomic, readonly) NSString *tempCommitId;     /**<   （临时）git最后一次提交的ID */
 @property (nonatomic, readonly) NSString *tempLog;          /**<   （临时）git最后一次提交的记录 */
-@property (nonatomic, readonly) NSString *tempVersion;      /**<   （临时）git提交次数 */
+@property (nonatomic, readonly) NSString *tempIOSVersion;      /**<   （临时）git提交次数 */
+@property (nonatomic, readonly) NSString *tempRNVersion;      /**<   （临时）git提交次数 */
 
 + (instancetype)shared;
 @end

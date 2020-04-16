@@ -25,10 +25,10 @@ export PATH=/usr/local/bin:$PATH
 
 
 # 删除依赖库
-rm -rf node_modules
+#rm -rf node_modules
 
 # 重新安装依赖库
-yarn install
+#yarn install
 
 #【Bundle打包】
 react-native bundle --entry-file index.ios.js --bundle-output ./bundle/main.jsbundle --platform ios --assets-dest ./bundle --dev false > rn打包结果.txt

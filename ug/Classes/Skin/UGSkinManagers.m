@@ -1374,7 +1374,7 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 - (BOOL)isBlack {
-	return [_skitType isEqualToString:@"黑色模板"];
+	return [@"黑色模板,香槟金1" containsString:_skitType];
 }
 
 - (BOOL)isLH {
