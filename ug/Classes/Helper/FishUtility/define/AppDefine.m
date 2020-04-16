@@ -340,6 +340,10 @@
     return [@"c200" containsString:_SiteId];
 }
 
+- (BOOL)isShowOtherJinbei {
+    return [@"c126" containsString:_SiteId];
+}
+
 - (BOOL)isShowJinbei {
     return [@"c085,c208,c212,c200,c213,a002,c126" containsString:_SiteId];
 }

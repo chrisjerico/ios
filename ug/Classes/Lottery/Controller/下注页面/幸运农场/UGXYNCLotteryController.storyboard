@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r92-tg-yeV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -266,6 +265,16 @@
                                             <constraint firstAttribute="height" constant="28" id="pjn-jZ-qbj"/>
                                         </constraints>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-3H-oFP">
+                                        <rect key="frame" x="369" y="7" width="40" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="XpJ-Fg-GLw"/>
+                                        </constraints>
+                                        <state key="normal" image="kjw_01"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金杯2btn"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -275,10 +284,13 @@
                                     <constraint firstItem="5Uj-Fc-fyn" firstAttribute="leading" secondItem="KAz-0q-ctc" secondAttribute="trailing" constant="5" id="GiE-Xy-nY2"/>
                                     <constraint firstAttribute="bottom" secondItem="dDq-AY-Dma" secondAttribute="bottom" id="LqG-SQ-m82"/>
                                     <constraint firstItem="KAz-0q-ctc" firstAttribute="centerY" secondItem="qrn-5W-DqT" secondAttribute="centerY" id="NBJ-EH-HE0"/>
+                                    <constraint firstItem="dDq-AY-Dma" firstAttribute="top" secondItem="V7B-3H-oFP" secondAttribute="bottom" constant="6.5" id="VRh-zm-HBe"/>
                                     <constraint firstItem="dmT-Lb-fTn" firstAttribute="centerY" secondItem="qrn-5W-DqT" secondAttribute="centerY" id="XA4-mJ-fHP"/>
                                     <constraint firstAttribute="trailing" secondItem="XDP-ap-T8N" secondAttribute="trailing" constant="8" id="XCl-rU-LgQ"/>
                                     <constraint firstItem="5Uj-Fc-fyn" firstAttribute="centerY" secondItem="qrn-5W-DqT" secondAttribute="centerY" id="XPu-P1-Swe"/>
+                                    <constraint firstItem="V7B-3H-oFP" firstAttribute="centerY" secondItem="XDP-ap-T8N" secondAttribute="centerY" id="Xtd-My-ulG"/>
                                     <constraint firstAttribute="height" constant="44" id="bDU-de-xkH"/>
+                                    <constraint firstAttribute="trailing" secondItem="V7B-3H-oFP" secondAttribute="trailing" constant="5" id="drA-6F-JQ3"/>
                                     <constraint firstItem="XDP-ap-T8N" firstAttribute="centerY" secondItem="dmT-Lb-fTn" secondAttribute="centerY" id="ioi-2U-uR5"/>
                                     <constraint firstItem="dDq-AY-Dma" firstAttribute="leading" secondItem="qrn-5W-DqT" secondAttribute="leading" id="juB-Xw-jMc"/>
                                 </constraints>
@@ -324,6 +336,7 @@
     </scenes>
     <resources>
         <image name="icon_sound01" width="34" height="34"/>
+        <image name="kjw_01" width="24" height="24"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>

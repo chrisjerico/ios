@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4k1-Qb-ehd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -268,12 +267,24 @@
                                             <constraint firstAttribute="width" constant="90" id="odj-TK-ZhL"/>
                                         </constraints>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdi-fh-yCa">
+                                        <rect key="frame" x="369" y="6.5" width="40" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="Th6-qo-OIP"/>
+                                        </constraints>
+                                        <state key="normal" image="kjw_01"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金杯2btn"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="2XO-Gj-elE"/>
                                     <constraint firstAttribute="trailing" secondItem="RUS-Qc-37r" secondAttribute="trailing" constant="8" id="6sV-lu-Ql0"/>
                                     <constraint firstItem="d8a-tS-zlq" firstAttribute="centerY" secondItem="GlT-uh-YUq" secondAttribute="centerY" id="7Ra-In-pvM"/>
+                                    <constraint firstItem="Iz5-wf-tiF" firstAttribute="top" secondItem="gdi-fh-yCa" secondAttribute="bottom" constant="6" id="W7g-cw-gm2"/>
+                                    <constraint firstItem="gdi-fh-yCa" firstAttribute="centerY" secondItem="RUS-Qc-37r" secondAttribute="centerY" id="Wzi-lM-iQM"/>
                                     <constraint firstAttribute="bottom" secondItem="Iz5-wf-tiF" secondAttribute="bottom" id="XBA-75-bSV"/>
                                     <constraint firstItem="Iz5-wf-tiF" firstAttribute="leading" secondItem="GlT-uh-YUq" secondAttribute="leading" id="XPu-67-Wyb"/>
                                     <constraint firstItem="Rut-tI-nKO" firstAttribute="leading" secondItem="d8a-tS-zlq" secondAttribute="trailing" constant="5" id="a4P-la-6tK"/>
@@ -281,6 +292,7 @@
                                     <constraint firstItem="HNn-mo-kb5" firstAttribute="centerY" secondItem="GlT-uh-YUq" secondAttribute="centerY" id="f7U-58-W9L"/>
                                     <constraint firstItem="Rut-tI-nKO" firstAttribute="centerY" secondItem="GlT-uh-YUq" secondAttribute="centerY" id="g5g-7c-xQW"/>
                                     <constraint firstItem="HNn-mo-kb5" firstAttribute="leading" secondItem="GlT-uh-YUq" secondAttribute="leading" constant="5" id="jbS-Bo-bs6"/>
+                                    <constraint firstAttribute="trailing" secondItem="gdi-fh-yCa" secondAttribute="trailing" constant="5" id="r1c-Nn-3bY"/>
                                     <constraint firstAttribute="trailing" secondItem="Iz5-wf-tiF" secondAttribute="trailing" id="t7E-nD-DWn"/>
                                     <constraint firstItem="d8a-tS-zlq" firstAttribute="leading" secondItem="HNn-mo-kb5" secondAttribute="trailing" constant="5" id="vve-IA-vQe"/>
                                 </constraints>
@@ -326,6 +338,7 @@
     </scenes>
     <resources>
         <image name="icon_sound01" width="34" height="34"/>
+        <image name="kjw_01" width="24" height="24"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>

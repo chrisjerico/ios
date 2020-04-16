@@ -46,7 +46,8 @@
 @property (nonatomic) BOOL isShowArrow;                          /**<  首页中间游戏导航需增加左右箭头 */
 @property (nonatomic) BOOL isShow4;                              /**<  任务中心显示4个，不显示图片 */
 @property (nonatomic) BOOL isShowWZ;                             /**<  将选填 这两个字更换为  如果没有，可不填写 */
-@property (nonatomic) BOOL isShowJinbei;                         /**<  显示金杯 */
+@property (nonatomic) BOOL isShowJinbei;                         /**<  显示金杯  六合彩种*/
+@property (nonatomic) BOOL isShowOtherJinbei;                    /**<  显示金杯   除六合彩种之外其他全部 */
 @property (nonatomic) BOOL isHideText;                           /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
 @property (nonatomic) BOOL isWhite;                              /**<  首页游戏cell加白边 */
 @property (nonatomic) BOOL isBall;                               /**<  下注界面号码显示为球图 */

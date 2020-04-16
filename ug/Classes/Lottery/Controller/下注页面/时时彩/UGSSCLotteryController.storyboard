@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F99-Mv-w7O">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -267,14 +266,26 @@
                                             <constraint firstAttribute="height" constant="28" id="DFG-Kb-UAh"/>
                                         </constraints>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MoH-BN-Nkr">
+                                        <rect key="frame" x="369" y="6.5" width="40" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="DmC-kQ-9FD"/>
+                                        </constraints>
+                                        <state key="normal" image="kjw_01"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金杯2btn"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="hij-8H-g5a" firstAttribute="leading" secondItem="Iwq-Rg-bAY" secondAttribute="trailing" constant="5" id="0bB-IA-Nbb"/>
                                     <constraint firstItem="whc-di-IUj" firstAttribute="centerY" secondItem="hij-8H-g5a" secondAttribute="centerY" id="2Of-EB-91b"/>
+                                    <constraint firstItem="MoH-BN-Nkr" firstAttribute="centerY" secondItem="whc-di-IUj" secondAttribute="centerY" id="6ic-J0-wRG"/>
                                     <constraint firstItem="hij-8H-g5a" firstAttribute="centerY" secondItem="liL-H7-uqq" secondAttribute="centerY" id="9fx-KC-6yS"/>
                                     <constraint firstItem="5La-oS-JpC" firstAttribute="leading" secondItem="liL-H7-uqq" secondAttribute="leading" id="9lf-ks-hlP"/>
                                     <constraint firstAttribute="bottom" secondItem="5La-oS-JpC" secondAttribute="bottom" id="C5k-0m-3tV"/>
+                                    <constraint firstItem="5La-oS-JpC" firstAttribute="top" secondItem="MoH-BN-Nkr" secondAttribute="bottom" constant="6" id="F7n-N5-VJL"/>
                                     <constraint firstItem="Iwq-Rg-bAY" firstAttribute="leading" secondItem="vLB-Mz-dwQ" secondAttribute="trailing" constant="5" id="FbR-3j-Ius"/>
                                     <constraint firstItem="Iwq-Rg-bAY" firstAttribute="centerY" secondItem="liL-H7-uqq" secondAttribute="centerY" id="KHO-pU-kAV"/>
                                     <constraint firstItem="vLB-Mz-dwQ" firstAttribute="leading" secondItem="liL-H7-uqq" secondAttribute="leading" constant="5" id="T02-ZO-X30"/>
@@ -282,6 +293,7 @@
                                     <constraint firstItem="vLB-Mz-dwQ" firstAttribute="centerY" secondItem="liL-H7-uqq" secondAttribute="centerY" id="U0C-fP-45L"/>
                                     <constraint firstAttribute="trailing" secondItem="5La-oS-JpC" secondAttribute="trailing" id="j5I-fB-fxq"/>
                                     <constraint firstAttribute="trailing" secondItem="whc-di-IUj" secondAttribute="trailing" constant="8" id="kAs-sa-Wet"/>
+                                    <constraint firstAttribute="trailing" secondItem="MoH-BN-Nkr" secondAttribute="trailing" constant="5" id="yVr-VQ-asX"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中间View"/>
@@ -320,11 +332,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFQ-EO-CFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-110" y="181"/>
+            <point key="canvasLocation" x="-110.14492753623189" y="180.80357142857142"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon_sound01" width="34" height="34"/>
+        <image name="kjw_01" width="24" height="24"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>

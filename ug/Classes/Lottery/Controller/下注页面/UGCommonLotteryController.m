@@ -48,42 +48,42 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-
+    
     
     if (self.shoulHideHeader) {
         [self hideHeader];
     }
     [self getSystemConfig];     // APP配置信息
     
-
+    
 }
 - (BOOL)允许游客访问 { return true; }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupTitleView];
-
     
-
+    
+    
     FastSubViewCode(self.view);
     {
         // 背景色
-//        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
-//             self.view.backgroundColor = Skin1.bgColor;
-//        } else {
-             self.view.backgroundColor = Skin1.textColor4;
-//        }
-       
+        //        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        //             self.view.backgroundColor = Skin1.bgColor;
+        //        } else {
+        self.view.backgroundColor = Skin1.textColor4;
+        //        }
+        
         if (!APP.betBgIsWhite) {
             [self.view insertSubview:({
                 UIView *bgView = [[UIView alloc] initWithFrame:APP.Bounds];
                 if (APP.isLight) {
-                      bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+                    bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
                 }
                 else{
-                      bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+                    bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
                 }
-              
+                
                 bgView;
             }) atIndex:0];
         }
@@ -99,8 +99,8 @@
         }
         
         if (APP.isRedWhite) {
-             self.tableView.backgroundColor = RGBA(242, 242, 242, 1.0);
-             self.tableView.separatorColor = RGBA(231, 213, 231, 1.0);
+            self.tableView.backgroundColor = RGBA(242, 242, 242, 1.0);
+            self.tableView.separatorColor = RGBA(231, 213, 231, 1.0);
         }
         
         // 顶部栏背景色
@@ -133,10 +133,10 @@
         }];
         [subButton(@"开奖btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"开奖btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-             NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
             [CMCommon goSLWebUrl:url];
         }];
-   
+        
         [subButton(@"长龙btn") setHidden:!APP.addIcons];
         [subButton(@"直播btn") setHidden:!APP.addIcons];
         [subButton(@"开奖btn") setHidden:!APP.addIcons];
@@ -146,27 +146,34 @@
         
         [subButton(@"聊天Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"聊天Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom" object:nil userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom" object:nil userInfo:nil];
         }];
         
-
+        
         [subButton(@"金杯btn") setHidden:!APP.isShowJinbei];
         [subButton(@"金杯btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-              NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
-              [CMCommon goSLWebUrl:url];
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            [CMCommon goSLWebUrl:url];
+        }];
+        
+        [subButton(@"金杯2btn") setHidden:!APP.isShowOtherJinbei];
+        [subButton(@"金杯2btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"金杯2btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            [CMCommon goSLWebUrl:url];
         }];
         
         if (APP.isTextWhite) {
-             [subLabel(@"封盘Label") setTextColor:[UIColor whiteColor]];
+            [subLabel(@"封盘Label") setTextColor:[UIColor whiteColor]];
         }
- 
+        
         if ([[NSUserDefaults standardUserDefaults]boolForKey:@"lotteryHormIsOpen"]) {
             [subImageView(@"开奖喇叭ImgV") setImage:[UIImage imageNamed:@"icon_sound01"]];
         } else {
             [subImageView(@"开奖喇叭ImgV")setImage:[UIImage imageNamed:@"icon_sound02"]];
         }
-
+        
         [subButton(@"声音按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             sender.selected = !sender.selected;
             
@@ -185,7 +192,7 @@
         
     }
     
-
+    
 }
 
 // 获取系统配置
@@ -235,12 +242,12 @@
         [backButton sizeToFit];
         [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             UIViewController *vc=  [NavController1 popViewControllerAnimated:true];
-
+            
         }];
         UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
         [containView addSubview:backButton];
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
-
+        
         if (self.navigationController.viewControllers.count > 1) {
             self.navigationItem.leftBarButtonItem = item;
         }
@@ -254,14 +261,14 @@
     self.navigationItem.leftBarButtonItems = @[self.navigationItem.leftBarButtonItems.firstObject, item0];
     self.navigationItem.titleView = [UIView new];   // 隐藏标题
 #pragma mark - 去掉这里就不会标题变动。
-//    if (OBJOnceToken(self)) {
-//        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
-//            NSString *title = ai.arguments.lastObject;
-//            NSLog(@"title = %@",title);
-//            [(UIButton *)item0.customView setTitle:_NSString(@"%@ ▼===", title) forState:UIControlStateNormal];
-//            [(UIButton *)item0.customView sizeToFit];
-//        } error:nil];
-//    }
+    //    if (OBJOnceToken(self)) {
+    //        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+    //            NSString *title = ai.arguments.lastObject;
+    //            NSLog(@"title = %@",title);
+    //            [(UIButton *)item0.customView setTitle:_NSString(@"%@ ▼===", title) forState:UIControlStateNormal];
+    //            [(UIButton *)item0.customView sizeToFit];
+    //        } error:nil];
+    //    }
 }
 
 - (void)onTitleClick {
@@ -276,9 +283,9 @@
 
 -(void)playerLotterySound{
     if ([@"c126" containsString:APP.SiteId]) {
-//          [self startWinPlayerFileName:@"lottery" Type:@"wav"];
+        //          [self startWinPlayerFileName:@"lottery" Type:@"wav"];
     } else {
-//        [self startWinPlayerFileName:@"otherLotter" Type:@"wav"];
+        //        [self startWinPlayerFileName:@"otherLotter" Type:@"wav"];
         
     }
 }
@@ -292,7 +299,7 @@
     static SystemSoundID soundIDTest = 0;//当soundIDTest == kSystemSoundID_Vibrate的时候为震动
     self.path = [[NSBundle mainBundle] pathForResource:fName ofType:tNmae];
     if (self.path) {
-         AudioServicesCreateSystemSoundID( (__bridge CFURLRef)[NSURL fileURLWithPath:self.path], &soundIDTest );
+        AudioServicesCreateSystemSoundID( (__bridge CFURLRef)[NSURL fileURLWithPath:self.path], &soundIDTest );
     }
     AudioServicesPlaySystemSound( soundIDTest );
 }

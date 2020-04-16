@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s2f-Wb-pWd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -269,6 +268,16 @@
                                             <constraint firstAttribute="width" constant="90" id="kqH-hA-9cN"/>
                                         </constraints>
                                     </stackView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-z5-FBW">
+                                        <rect key="frame" x="369" y="6.5" width="40" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="yrT-ae-axk"/>
+                                        </constraints>
+                                        <state key="normal" image="kjw_01"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金杯2btn"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -278,7 +287,10 @@
                                     <constraint firstAttribute="trailing" secondItem="GM9-wz-LmI" secondAttribute="trailing" id="97h-EF-MMU"/>
                                     <constraint firstAttribute="height" constant="44" id="CUf-wv-HlA"/>
                                     <constraint firstItem="GM9-wz-LmI" firstAttribute="leading" secondItem="zPg-cb-6rb" secondAttribute="leading" id="Llt-OI-Ivj"/>
+                                    <constraint firstAttribute="trailing" secondItem="nEA-z5-FBW" secondAttribute="trailing" constant="5" id="Ojk-a8-gcw"/>
+                                    <constraint firstItem="GM9-wz-LmI" firstAttribute="top" secondItem="nEA-z5-FBW" secondAttribute="bottom" constant="6" id="Ozs-kZ-hhf"/>
                                     <constraint firstItem="04d-tq-dN9" firstAttribute="centerY" secondItem="zyz-dv-RSx" secondAttribute="centerY" id="Qoa-2z-ev8"/>
+                                    <constraint firstItem="nEA-z5-FBW" firstAttribute="centerY" secondItem="04d-tq-dN9" secondAttribute="centerY" id="V55-sU-4xM"/>
                                     <constraint firstAttribute="bottom" secondItem="GM9-wz-LmI" secondAttribute="bottom" id="eAD-Tb-FNx"/>
                                     <constraint firstItem="zyz-dv-RSx" firstAttribute="centerY" secondItem="zPg-cb-6rb" secondAttribute="centerY" id="j37-Sp-z3B"/>
                                     <constraint firstItem="cMy-Eq-ir1" firstAttribute="centerY" secondItem="zPg-cb-6rb" secondAttribute="centerY" id="j7B-se-Ksi"/>
@@ -327,6 +339,7 @@
     </scenes>
     <resources>
         <image name="icon_sound01" width="34" height="34"/>
+        <image name="kjw_01" width="24" height="24"/>
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
