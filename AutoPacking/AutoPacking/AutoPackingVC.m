@@ -28,8 +28,9 @@
 //    return ;
 
     BOOL isPack = ![NSUserName() isEqualToString:@"fish"];  // 0全站提交热更新，1批量打包上传APP后台
-    NSLog(@"isPack = %d",isPack);
+    NSString *rnLog = @"修复了 c018优惠活动页分类数据不显示bug。";    // 更新日志
     isPack = 1;
+    
     // 拉取最新代码
     __weakSelf_(__self);
     [ShellHelper pullCode:Path.iosProjectDir completion:^{
@@ -61,20 +62,19 @@
                 [self startPackingWithIds:ids willUpload:willUpload];
             }
             else {
-                NSString *log = @"香槟金模板提测";    // 更新日志
-                [__self postHotUpdateReactNative:version log:log completion:^{
-                    [__self postHotUpdateJspatch:version log:log completion:^{
+                [__self postHotUpdateReactNative:version log:rnLog completion:^{
+                    [__self postHotUpdateJspatch:version log:rnLog completion:^{
                         // 记录热更新日志
                         [ShellHelper pullCode:Path.jsLogPath.stringByDeletingLastPathComponent completion:^{
                             
                             NSDateFormatter *df = [NSDateFormatter new];
                             [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
                             
-                            NSString *jsLog = _NSString(@"（%@）%@  |  %@，%@（%@）", Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog, [log stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
+                            NSString *jsLog = _NSString(@"（%@）%@  |  %@，%@（%@）", Path.username, [df stringFromDate:[NSDate date]], Path.commitId, Path.gitLog, [rnLog stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
                             [self saveString:jsLog toFile:Path.jsLogPath];
                             
                             // 提交发包日志到git
-                            NSString *title = _NSString(@"%@ 提交热更新，%@", version, log);
+                            NSString *title = _NSString(@"%@ 提交热更新，%@", version, rnLog);
                             [ShellHelper pushCode:Path.jsLogPath.stringByDeletingLastPathComponent title:title completion:^{
                                 NSLog(@"发包日志提交成功");
                                 NSLog(@"退出程序！");
@@ -205,17 +205,6 @@
 - (void)postHotUpdateReactNative:(NSString *)version log:(NSString *)log completion:(void (^)(void))completion {
     // 提交rn资源包
     NSLog(@"准备打包rn代码");
-//    NSString *outupt = [NSAppleScript runProcessAsAdministrator:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, version, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.privateKey, Path.rnProjectDir]];
-//    NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.rnProjectDir) encoding:NSUTF8StringEncoding error:nil];
-//    [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-//    if ([rnRet hasSuffix:@";;;mn  "]) {
-//        @throw [NSException exceptionWithName:@"rn打包失败。" reason:@"" userInfo:nil];
-//    }
-//    NSLog(@"发布CodePush输入, %@", outupt);
-//    if (completion) {
-//        completion();
-//    }
-    
     [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"] arguments:@[APPVersion, version, [log stringByReplacingOccurrencesOfString:@"\n" withString:@";"], Path.privateKey, Path.rnProjectDir] completion:^(NSTask * _Nonnull ts) {
         NSString *rnRet = [NSString stringWithContentsOfFile:_NSString(@"%@/rn打包结果.txt", Path.rnProjectDir) encoding:NSUTF8StringEncoding error:nil];
         [rnRet stringByReplacingOccurrencesOfString:@"\n" withString:@""];

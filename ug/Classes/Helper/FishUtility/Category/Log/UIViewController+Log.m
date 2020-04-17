@@ -17,6 +17,7 @@
     dispatch_once(&onceToken, ^{
         [UIViewController jr_swizzleMethod:@selector(cc_dealloc) withMethod:NSSelectorFromString(@"dealloc") error:nil];
         [UIViewController jr_swizzleMethod:@selector(cc_viewWillAppear:) withMethod:@selector(viewWillAppear:) error:nil];
+        [UIViewController jr_swizzleMethod:@selector(cc_viewWillDisappear:) withMethod:@selector(viewWillDisappear:) error:nil];
         
         __block NSDate *__lastDate = nil;
         NSMutableDictionary *dict = @{}.mutableCopy;
@@ -72,9 +73,22 @@
 }
 
 - (void)cc_viewWillAppear:(BOOL)animated {
-    if (self.classIsCustom)
+    if (self.classIsCustom) {
         NSLog(@"——————————————控制器出现： %@，title=%@", [self class], self.title);
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            [ReactNativeHelper sendEvent:@"viewWillAppear" params:self.className];
+        }];
+    }
     [self cc_viewWillAppear:animated];
+}
+
+- (void)cc_viewWillDisappear:(BOOL)animated {
+    if (self.classIsCustom) {
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            [ReactNativeHelper sendEvent:@"viewWillDisappear" params:self.className];
+        }];
+    }
+    [self cc_viewWillDisappear:animated];
 }
 
 @end
