@@ -221,7 +221,7 @@
 }
 
 // 批量打包
-+ (void)packing:(NSArray<SiteModel *> *)_sites completion:(nonnull void (^)(NSArray<SiteModel *> * _Nonnull))completion {
++ (void)packing:(NSArray<SiteModel *> *)_sites version:(NSString *)version completion:(nonnull void (^)(NSArray<SiteModel *> * _Nonnull))completion {
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
     for (SiteModel *sm in sites) {
@@ -261,7 +261,7 @@
         NSLog(@"Path.projectDir = %@",Path.iosProjectDir);
         NSTask *task = [[NSTask alloc] init];
         task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];;
-        task.arguments = @[__sm.siteId, __sm.appName, Path.gitVersion, __sm.appId, Path.iosProjectDir, ];
+        task.arguments = @[__sm.siteId, __sm.appName, version, __sm.appId, Path.iosProjectDir, ];
         task.terminationHandler = ^(NSTask *ts) {
             [ts terminate];
             
