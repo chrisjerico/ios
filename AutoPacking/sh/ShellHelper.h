@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)pushCode:(NSString *)path title:(NSString *)title completion:(void (^)(void))completion;
 
 // 批量打包
-+ (void)packing:(NSArray <SiteModel *> *)sites completion:(void (^)(NSArray <SiteModel *>*okSites))completion;
++ (void)packing:(NSArray <SiteModel *> *)sites version:(NSString *)version completion:(void (^)(NSArray <SiteModel *>*okSites))completion;
 
 // 配置plist文件
 + (void)setupPlist:(SiteModel *)sm ipaUrl:(NSString *)ipaUrl completion:(void (^)(void))completion;

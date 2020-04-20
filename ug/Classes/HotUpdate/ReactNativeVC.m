@@ -111,6 +111,7 @@ static RCTRootView *_rnView;
     if (_rpm.fd_prefersNavigationBarHidden) {
         [self setStateViewHidden:true];
     }
+    _rnView.frame = self.view.bounds;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

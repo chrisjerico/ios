@@ -36,34 +36,34 @@
     [ShellHelper pullCode:Path.iosProjectDir completion:^{
         Path.commitId = [[NSString stringWithContentsOfFile:Path.tempCommitId encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         Path.gitLog = [[[NSString stringWithContentsOfFile:Path.tempLog encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
-        NSInteger iosCount = [[NSString stringWithContentsOfFile:Path.tempIOSVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""].integerValue;
-        if (iosCount < 1000 || iosCount > 10000) {
+        NSString *iosCount = [[NSString stringWithContentsOfFile:Path.tempIOSVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        if (iosCount.intValue < 1000 || iosCount.intValue > 10000) {
             @throw [NSException exceptionWithName:@"原生项目git提交数获取失败。" reason:@"" userInfo:nil];
         }
         [ShellHelper pullCode:Path.rnProjectDir completion:^{
             [NodeModulesFix fixExportType];
-            NSString *version = Path.gitVersion = ({
-                NSInteger rnCount = [[NSString stringWithContentsOfFile:Path.tempRNVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""].integerValue;
-                if (rnCount < 10 || rnCount > 10000) {
-                    @throw [NSException exceptionWithName:@"RN项目git提交数获取失败。" reason:@"" userInfo:nil];
-                }
-                NSString *vStr = @(iosCount + rnCount).stringValue;
-                NSString *(^getChar)(int) = ^NSString *(int idx) {
-                    return [vStr substringWithRange:NSMakeRange(idx, 1)];
-                };
-                _NSString(@"%@.%@.%@%@", getChar(0), getChar(1), getChar(2), getChar(3));
-            });
+            NSString *rnCount = [[NSString stringWithContentsOfFile:Path.tempRNVersion encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            if (rnCount.intValue < 10 || rnCount.intValue > 10000) {
+                @throw [NSException exceptionWithName:@"RN项目git提交数获取失败。" reason:@"" userInfo:nil];
+            }
+            NSString *(^getChar)(NSString *, int) = ^NSString *(NSString *vStr, int idx) {
+                return [vStr substringWithRange:NSMakeRange(idx, 1)];
+            };
+            NSString *ipaVersion = _NSString(@"%@.%@%@.0", getChar(iosCount, 0), getChar(iosCount, 1), getChar(iosCount, 2));
+            NSString *rnVersion  = _NSString(@"%@.%@%@.%@",getChar(iosCount, 0), getChar(iosCount, 1), getChar(iosCount, 2), rnCount);
+            
+            
             
             if (isPack) {
                 NSString *ids = @"c217";   // 站点编号  c175  c008 c049
                 //            NSString *ids = @"c084,c199,c208,c213,c208,l001,c212,c153,c200,c085,c053,c084,l002,c085,c199,c213,c208,c216,c048,ic213,l002,c018,h005,c053,c062,c085,c137,c141,c150,c151,c153,c158,c163,c165,c169,c173,c175,c177,c002,c091,c084,c049,c011,c012,c073,c092,c116,c129,c192,c194,c035,c047”;   // 站点编号
                 
                 BOOL willUpload = 1; // 打包后是否上传审核
-                [self startPackingWithIds:ids willUpload:willUpload];
+                [self startPackingWithIds:ids version:ipaVersion willUpload:willUpload];
             }
             else {
-                [__self postHotUpdateReactNative:version log:rnLog completion:^{
-                    [__self postHotUpdateJspatch:version log:rnLog completion:^{
+                [__self postHotUpdateReactNative:rnVersion log:rnLog completion:^{
+                    [__self postHotUpdateJspatch:rnVersion log:rnLog completion:^{
                         // 记录热更新日志
                         [ShellHelper pullCode:Path.jsLogPath.stringByDeletingLastPathComponent completion:^{
                             
@@ -74,7 +74,7 @@
                             [self saveString:jsLog toFile:Path.jsLogPath];
                             
                             // 提交发包日志到git
-                            NSString *title = _NSString(@"%@ 提交热更新，%@", version, rnLog);
+                            NSString *title = _NSString(@"%@ 提交热更新，%@", rnVersion, rnLog);
                             [ShellHelper pushCode:Path.jsLogPath.stringByDeletingLastPathComponent title:title completion:^{
                                 NSLog(@"发包日志提交成功");
                                 NSLog(@"退出程序！");
@@ -222,13 +222,13 @@
 #pragma mark - 批量打包+上传
 
 // 批量打包
-- (void)startPackingWithIds:(NSString *)ids willUpload:(BOOL)willUpload {
+- (void)startPackingWithIds:(NSString *)ids version:(NSString *)version willUpload:(BOOL)willUpload {
     __weakSelf_(__self);
     // 检查配置
     [ShellHelper checkSiteInfo:ids];
     
     // 批量打包
-    [ShellHelper packing:[SiteModel sites:ids] completion:^(NSArray<SiteModel *> *okSites) {
+    [ShellHelper packing:[SiteModel sites:ids] version:version completion:^(NSArray<SiteModel *> *okSites) {
         if (!okSites.count) {
             NSLog(@"没有一个打包成功的。");
             exit(0);
