@@ -1147,6 +1147,9 @@
     self.titleView.showLoginView = YES;
     [NavController1 popToRootViewControllerAnimated:true];
     [TabBarController1 setSelectedIndex:0];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomName"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomId"];
     [CMCommon clearWebCache];
     [CMCommon deleteWebCache];
 }
@@ -1314,23 +1317,25 @@
                 for (int i = 0; i< chatAry.count; i++) {
                     RoomChatModel *dic =  [chatAry objectAtIndex:i];
                     [chatIdAry addObject:dic.roomId];
-                    [typeIdAry addObject:dic.typeId];
                     [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                     
                 }
 
-                SysConf.typeIdAry = typeIdAry;
                 SysConf.chatRoomAry = chatRoomAry;
                 
+                 NSLog(@"typeIdAry = %@",typeIdAry);
                 
                 if (![CMCommon arryIsNull:chatRoomAry]) {
                       UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
                     NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+            
                 }
                 else{
                     UGChatRoomModel *obj  = [UGChatRoomModel new];
                     obj.roomId = @"0";
                     obj.roomName = @"聊天室";
+                    SysConf.defaultChatRoom = obj;
+                    
                 }
               
                 

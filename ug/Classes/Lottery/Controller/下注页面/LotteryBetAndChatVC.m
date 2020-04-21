@@ -200,25 +200,18 @@
         if ([self hasLastRoom]) {
             NSDictionary *dic = [self LastRoom];
             vc.roomId = dic[@"roomId"];
-            [self saveRoomName:dic[@"roomName"] RoomId:dic[@"roomId"]];
             vc.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
+            self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
         }
         else{
-            //        NSLog(@"model.gameId = %@",model.gameId);
-            //        NSLog(@"包含 = %d",[SysConf.typeIdAry containsObject:model.gameId]);
-            if (model.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:model.gameId]) {
-                vc.roomId = model.gameId;
-                UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:vc.roomId keyPath:@"typeId"];
-                if (![CMCommon stringIsNull:obj.roomId]) {
-                    vc.roomId = obj.roomId;
-                    [self saveRoomName:obj.roomName RoomId:obj.roomId];
-                    vc.url = [APP chatGameUrl:obj.roomId hide:YES];
-                }
-            } else {
-                vc.roomId = SysConf.defaultChatRoom.roomId;   // 主聊天室
-                [self saveRoomName:SysConf.defaultChatRoom.roomName RoomId:SysConf.defaultChatRoom.roomId];
-                vc.url = [APP chatGameUrl:vc.roomId hide:YES];
-                //            NSLog(@"vc.url = %@",vc.url);
+            NSLog(@"model.gameId = %@",model.gameId);
+
+            if (model.gameId ) {
+                UGChatRoomModel *roomModel =  [self getRoomMode:model.gameId];
+
+                vc.roomId = roomModel.roomId;
+                vc.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                 self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
             }
         }
         // 隐藏退出按钮
@@ -230,6 +223,71 @@
     
     [self addChildViewController:_vc1];
     [self addChildViewController:_vc2];
+    
+    [self getChatRoomData];
+}
+
+-(void)getChatRoomData{
+      //得到线上配置的聊天室
+    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+        if (!sm.error) {
+            NSLog(@"model.data = %@",sm.responseObject[@"data"]);
+            NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+            NSMutableArray *chatIdAry = [NSMutableArray new];
+            NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+            
+            NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+            
+            NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+            }];
+            for (int i = 0; i< chatAry.count; i++) {
+                RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                [chatIdAry addObject:dic.roomId];
+
+                [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                
+            }
+
+            SysConf.chatRoomAry = chatRoomAry;
+            
+            
+            if (![CMCommon arryIsNull:chatRoomAry]) {
+                UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+            }
+            else{
+                UGChatRoomModel *obj  = [UGChatRoomModel new];
+                obj.roomId = @"0";
+                obj.roomName = @"聊天室";
+            }
+            
+            if ([self hasLastRoom]) {
+                NSDictionary *dic = [self LastRoom];
+                self.vc2.roomId = dic[@"roomId"];
+                self.vc2.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
+                self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
+            }
+            
+            else{
+                
+                NSLog(@"model.gameId = %@",self.nim.gameId);
+                
+                if (self.nim.gameId ) {
+                    UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
+                    self.vc2.roomId = roomModel.roomId;
+                    self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                    self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
+                }
+
+            }
+            
+            
+        }
+    };
 }
 
 - (void)viewDidLayoutSubviews {
@@ -335,83 +393,10 @@
             if (idx) {
                 
                 [__self.downBtn setHidden:NO];
-                //得到线上配置的聊天室
-                [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
-                    if (!sm.error) {
-                        NSLog(@"model.data = %@",sm.responseObject[@"data"]);
-                        NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
-                        NSMutableArray *chatIdAry = [NSMutableArray new];
-                        NSMutableArray *typeIdAry = [NSMutableArray new];
-                        NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-                        
-                        NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
-                        
-                        NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
-                            //对数组进行排序（升序）
-                            return p1.sortId > p2.sortId;
-                            //对数组进行排序（降序）
-                            // return [p2.dateOfBirth compare:p1.dateOfBirth];
-                        }];
-                        for (int i = 0; i< chatAry.count; i++) {
-                            RoomChatModel *dic =  [chatAry objectAtIndex:i];
-                            [chatIdAry addObject:dic.roomId];
-                            [typeIdAry addObject:dic.typeId];
-                            [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
-                            
-                        }
-                        SysConf.typeIdAry = typeIdAry;
-                        SysConf.chatRoomAry = chatRoomAry;
-                        
-                        
-                        if (![CMCommon arryIsNull:chatRoomAry]) {
-                            UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
-                            NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
-                        }
-                        else{
-                            UGChatRoomModel *obj  = [UGChatRoomModel new];
-                            obj.roomId = @"0";
-                            obj.roomName = @"聊天室";
-                        }
-                        
-                        if ([self hasLastRoom]) {
-                            NSDictionary *dic = [self LastRoom];
-                            __self.vc2.roomId = dic[@"roomId"];
-                            [self saveRoomName:dic[@"roomName"] RoomId:dic[@"roomId"]];
-                            __self.vc2.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
-                            __self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
-                        }
-                        
-                        else{
-                            if (__self.nim.gameId && SysConf.typeIdAry.count && [SysConf.typeIdAry containsObject:__self.nim.gameId]) {
-                                //                            if (![vc2.gameId isEqualToString:__self.nim.gameId]) {
-                                __self.vc2.roomId = __self.nim.gameId;
-                                UGChatRoomModel *obj = [SysConf.chatRoomAry objectWithValue:__self.vc2.roomId keyPath:@"typeId"];
-                                
-                                if (![__self.vc2.roomId isEqualToString:obj.roomId]) {
-                                    __self.vc2.roomId = obj.roomId;
-                                    [self saveRoomName:obj.roomName RoomId:obj.roomId];
-                                    __self.vc2.url = [APP chatGameUrl:obj.roomId hide:YES];
-                                    //                                NSLog(@"vc2.url = %@",vc2.url);
-                                    __self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
-                                }
-                                
-                                //                            }
-                                
-                            } else {
-                                if(![__self.vc2.roomId isEqualToString:SysConf.defaultChatRoom.roomId]){
-                                    __self.vc2.roomId = SysConf.defaultChatRoom.roomId;   // 主聊天室
-                                    [self saveRoomName:SysConf.defaultChatRoom.roomName RoomId:SysConf.defaultChatRoom.roomId];
-                                    __self.vc2.url = [APP chatGameUrl:SysConf.defaultChatRoom.roomId hide:YES];
-                                    //                                NSLog(@"vc2.url = %@",vc2.url);
-                                    __self.mLabel.text = [NSString stringWithFormat:@"%@▼",SysConf.defaultChatRoom.roomName];
-                                }
-                                
-                            }
-                        }
-                        
-                        
-                    }
-                };
+                             //得到线上配置的聊天室
+                
+                  [self getChatRoomData];
+
                 
                 
             }
@@ -467,13 +452,12 @@
                 RoomChatModel *dic =  [__self.chatAry objectAtIndex:i];
                 [chatIdAry addObject:dic.roomId];
                 [chatTitleAry addObject:dic.roomName];
-                [typeIdAry addObject:dic.typeId];
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
             }
             
             NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:__self.chatAry];
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
-            SysConf.typeIdAry = typeIdAry;
+     
             SysConf.chatRoomAry = chatRoomAry;
             NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
             //            SysConf.chatRoomAry = __self.chatAry;
@@ -486,6 +470,7 @@
                 UGChatRoomModel *obj  = [UGChatRoomModel new];
                 obj.roomId = @"0";
                 obj.roomName = @"聊天室";
+                SysConf.defaultChatRoom  = obj;
             }
             
             UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];
@@ -669,6 +654,31 @@
     } else {
         return YES;
     }
+}
+
+
+-(UGChatRoomModel *)getRoomMode:(NSString *)gameId{
+    
+    UGChatRoomModel *obj  = [UGChatRoomModel new];
+    
+    obj.roomName = SysConf.defaultChatRoom.roomName;
+    obj.roomId  = SysConf.defaultChatRoom.roomId;
+    
+    NSLog(@"SysConf.chatRoomAry=%@",SysConf.chatRoomAry);
+    
+    
+    for (UGChatRoomModel *object in SysConf.chatRoomAry) {
+        
+        NSLog(@"object.typeIds = %@",object.typeIds);
+        if ( [object.typeIds containsObject:gameId]) {
+            
+            obj.roomName = object.roomName;
+            obj.roomId  = object.roomId;
+            break;
+        }
+    }
+    
+    return obj;
 }
 @end
 

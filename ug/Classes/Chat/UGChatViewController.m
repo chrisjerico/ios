@@ -252,11 +252,9 @@
                 RoomChatModel *dic =  [chatAry objectAtIndex:i];
                 [chatIdAry addObject:dic.roomId];
                 [chatTitleAry addObject:dic.roomName];
-                [typeIdAry addObject:dic.typeId];
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
             }
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
-            SysConf.typeIdAry = typeIdAry;
             SysConf.chatRoomAry = chatRoomAry;
             NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
             //            SysConf.chatRoomAry = chatAry;
