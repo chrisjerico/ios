@@ -35,9 +35,9 @@ static BOOL isFish = false;
         _ipaLogPath = isFish ? @"/Users/fish/自动打包/log/PackingLog.txt" : @"/Users/ug/自动打包/log/PackingLog.txt";
         _jsLogPath = isFish ? @"/Users/fish/自动打包/log/热更新发包记录.txt" : @"/Users/ug/自动打包/log/热更新发包记录.txt";
         
-        _jspatchDir = isFish ? @"/Users/fish/自动打包/pack/js/jspatch" : @"/Users/ug/自动打包/pack/js/jspatch";
         _rnProjectDir = isFish ? @"/Users/fish/自动打包/pack" : @"/Users/ug/自动打包/pack";
-        _iosProjectDir = isFish ? @"/Users/fish/自动打包/pack/ios" : @"/Users/ug/自动打包/pack/ios";
+        _jspatchDir = _NSString(@"%@/js/jspatch", _rnProjectDir);
+        _iosProjectDir = _NSString(@"%@/ios", _rnProjectDir);
         _shellDir = [_iosProjectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
         
         _tempIpa        = [_iosProjectDir stringByAppendingPathComponent:@"ug.ipa"];

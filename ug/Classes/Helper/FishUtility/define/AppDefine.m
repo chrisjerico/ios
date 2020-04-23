@@ -159,10 +159,6 @@
         
         [self setupSystem];
         [self setupColor];
-        
-        if (!_jspVersion.length) {
-            _jspVersion = _Version;
-        }
     }
     return self;
 }
@@ -177,6 +173,13 @@
 - (UIFont *)cellBigFont             { return [UIFont boldSystemFontOfSize:17]; }
 - (UIFont *)cellNormalFont          { return [UIFont systemFontOfSize:14]; }
 - (float )cellNormalFontSize        { return 14.0; }
+- (NSString *)Version {
+    NSString *v1 = [_Version componentsSeparatedByString:@"."].firstObject;
+    NSString *v2 = [_Version componentsSeparatedByString:@"."][1];
+    NSString *v3 = [_jspVersion componentsSeparatedByString:@"."].lastObject;
+    return _NSString(@"%@.%@.%@", v1, v2, v3);
+}
+
 
 #pragma mark - 定制样式
 
@@ -506,7 +509,7 @@
     NSDictionary *info = [NSBundle mainBundle].infoDictionary;
     _Name = info[@"CFBundleName"];
     _BundleId = info[@"CFBundleIdentifier"];
-    _Version = _jspVersion ? : info[@"CFBundleShortVersionString"];
+    _Version = info[@"CFBundleShortVersionString"];
     _Build = info[@"CFBundleVersion"];
 #ifdef DEBUG
     _DevUser = info[@"Dev1"];
