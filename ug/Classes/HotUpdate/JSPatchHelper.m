@@ -271,9 +271,6 @@
     NSArray *currentV = [v2 componentsSeparatedByString:@"."];
     NSArray *newestV = [v1 componentsSeparatedByString:@"."];
     for (int i=0; i<4; i++) {
-        if (i < 3) {
-            continue;
-        }
         NSString *v1 = currentV.count > i ? currentV[i] : nil;
         NSString *v2 = newestV.count > i ? newestV[i] : nil;
         if (v2.intValue > v1.intValue)
