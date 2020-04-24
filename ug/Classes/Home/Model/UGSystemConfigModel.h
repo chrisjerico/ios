@@ -192,6 +192,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString * chatLink;/**<   聊天的链接*/
 @property (nonatomic) BOOL switchAgentRecharge;                /**<   给下级会员充值开关 */
 @property (nonatomic) BOOL betAmountIsDecimal;          /**<   1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1 */
+
+@property (nonatomic) BOOL activeReturnCoinStatus ;                /**<   是否開啟拉條模式 */
+@property (nonatomic) int activeReturnCoinRatio  ;                /**<  拉條最大值    拉條最小值固定為 0   */
+
+
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

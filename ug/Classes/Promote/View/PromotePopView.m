@@ -10,6 +10,7 @@
 #import "UGPromoteModel.h"
 #import "FLAnimatedImageView.h"
 #import "SLWebViewController.h"
+#import "UGMosaicGoldViewController.h"
 @interface PromotePopView ()<UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIWebView *myWebView;
@@ -125,4 +126,52 @@
         ];
     }
 }
+
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{//判断是否是单击
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+
+        NSString *url = [request.URL absoluteString];
+        
+        //拦截链接跳转到货源圈的动态详情
+        if ([url rangeOfString:@"http"].location != NSNotFound)
+        {
+            //跳转到你想跳转的页面
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = url;
+            [NavController1 pushViewController:webViewVC animated:YES];
+            [self close:nil];
+            return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+        }
+        else{
+//            url = @"/moblie/#/ucenter/promote?app_params=goto_act_file";
+            if ([url containsString:@"?"]) {
+                
+                NSArray *params =[url componentsSeparatedByString:@"?"];
+                NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+                for (NSString *paramStr in params) {
+                    NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
+                    if (dicArray.count > 1) {
+                        NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                        [tempDic setObject:decodeValue forKey:dicArray[0]];
+                    }
+                }
+                NSLog(@"tempDic:%@",tempDic);
+                NSString *app_params = [tempDic objectForKey:@"app_params"];
+                
+                if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
+                    [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+                }
+                [self close:nil];
+                return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+                
+            }
+            
+        }
+
+        return NO;
+    }
+    return YES;
+}
+
 @end

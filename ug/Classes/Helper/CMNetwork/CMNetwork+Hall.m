@@ -95,7 +95,7 @@
     CMMETHOD_END;
 }
 
-//用户投注
+//用户投注  新增傳入字段 activeReturnCoinRatio   傳入格式 string    列 : 拉條值為 4.5% , 則傳入 4.5
 + (void)userBetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
     NSString *url = nil;
