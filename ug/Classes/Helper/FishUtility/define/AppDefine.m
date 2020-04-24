@@ -11,6 +11,7 @@
 
 
 #define __SiteID__ @"c217"
+#define LocalRnVersion @"1.4.66"
 
 
 @interface UIStoryboard ()
@@ -137,7 +138,7 @@
     if (self) {
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
-        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
+        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"] ? : LocalRnVersion;
 #ifdef APP_TEST
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
