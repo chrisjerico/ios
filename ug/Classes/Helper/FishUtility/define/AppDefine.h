@@ -40,14 +40,11 @@
 @property (nonatomic) float cellNormalFontSize;                  /**<    下注页面Cel正常l字体  14] */
 @property (nonatomic) float borderWidthTimes;                    /**<    下注页面Cel边框宽的倍数 */
 @property (nonatomic) BOOL lotteryHallCustomImgS;                 /**<   彩票大厅自定义图标 */
-@property (nonatomic) BOOL addIcons;                             /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
 @property (nonatomic) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
 @property (nonatomic) BOOL isShowLogo;                           /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动  有左右箭头*/
 @property (nonatomic) BOOL isShowArrow;                          /**<  首页中间游戏导航需增加左右箭头 */
 @property (nonatomic) BOOL isShow4;                              /**<  任务中心显示4个，不显示图片 */
 @property (nonatomic) BOOL isShowWZ;                             /**<  将选填 这两个字更换为  如果没有，可不填写 */
-@property (nonatomic) BOOL isShowJinbei;                         /**<  显示金杯  六合彩种*/
-@property (nonatomic) BOOL isShowOtherJinbei;                    /**<  显示金杯   除六合彩种之外其他全部 */
 @property (nonatomic) BOOL isHideText;                           /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
 @property (nonatomic) BOOL isWhite;                              /**<  首页游戏cell加白边 */
 @property (nonatomic) BOOL isBall;                               /**<  下注界面号码显示为球图 */
@@ -79,6 +76,11 @@
 @property (nonatomic) BOOL isSectionWhite;                          /**< IOS 彩票投注页面，所选的玩法名称显示修改成白色字体  */
 @property (nonatomic) BOOL isShowSalary;                            /**<  任务系统周俸禄、月俸禄   */
 @property (nonatomic) BOOL isBgColorForMoneyVC;                     /**< 存款页面进去的底色为bg色   */
+
+@property (nonatomic) BOOL isShowJinbei;                         /**<  显示金杯  六合彩种*/
+@property (nonatomic) BOOL isShowOtherJinbei;                    /**<  显示金杯   除六合彩种之外其他全部 */
+@property (nonatomic) BOOL addIcons;                                /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
+@property (nonatomic) BOOL isReplaceIcon;                           /**< 投注页面开奖旁边添加 开奖直播 长龙助手 开奖网更换图标样式1   */
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

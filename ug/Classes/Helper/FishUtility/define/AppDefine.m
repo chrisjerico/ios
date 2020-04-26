@@ -344,13 +344,7 @@
     return [@"c200" containsString:_SiteId];
 }
 
-- (BOOL)isShowOtherJinbei {
-    return [@"c085,c208,c212,c200,c213,a002,c126" containsString:_SiteId];
-}
 
-- (BOOL)isShowJinbei {
-    return [@"c085,c208,c212,c200,c213,a002,c126" containsString:_SiteId];
-}
 
 - (BOOL)isShowWZ {
     return [@"c085" containsString:_SiteId];
@@ -393,14 +387,10 @@
 }
 
 
-
 - (BOOL)isBA {
     return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134" containsString:_SiteId];
 }
 
-- (BOOL)addIcons {
-    return [@"c190,c134" containsString:_SiteId];
-}
 
 - (BOOL)lotteryHallCustomImgS {
     return [@"c190" containsString:_SiteId];
@@ -419,6 +409,24 @@
 - (BOOL)betSizeIsBig {
     return [@"c169" containsString:_SiteId];
 }
+
+
+- (BOOL)isShowOtherJinbei {
+    return [@"c208,c212,c200,c213,a002,c126" containsString:_SiteId];
+}
+
+- (BOOL)isShowJinbei {
+    return [@"c208,c212,c200,c213,a002,c126" containsString:_SiteId];
+}
+
+- (BOOL)addIcons {
+    return [@"c190,c134,c085" containsString:_SiteId];
+}
+
+- (BOOL)isReplaceIcon {
+    return [@"c085" containsString:_SiteId];
+}
+
 
 
 #pragma mark - 热更新

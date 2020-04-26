@@ -1899,6 +1899,12 @@
 		D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D435F90823CEF996008648CE /* AudioToolbox.framework */; };
 		D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */; };
 		D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B77EB242E2B5400913BE1 /* UIViewController+vcTabName.m */; };
+		D43DAF642453283A0014A301 /* ztlight.gif in Resources */ = {isa = PBXBuildFile; fileRef = D43DAF622453283A0014A301 /* ztlight.gif */; };
+		D43DAF692453EFBF0014A301 /* DZPMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF682453EFBF0014A301 /* DZPMainView.m */; };
+		D43DAF6C2453F2DF0014A301 /* DZPMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43DAF6B2453F2DF0014A301 /* DZPMainView.xib */; };
+		D43DAF7924545B270014A301 /* LYLuckyCardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF7724545B270014A301 /* LYLuckyCardCellView.m */; };
+		D43DAF7F245479F30014A301 /* LYLuckyCardRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF7B245479F20014A301 /* LYLuckyCardRotationView.m */; };
+		D43DAF80245479F30014A301 /* LYLuckyCardRotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */; };
 		D44258462413BAE800601D70 /* UGMosaicGoldMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */; };
 		D44258FD23E948D80067E981 /* LH_laba.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FC23E948D80067E981 /* LH_laba.gif */; };
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
@@ -3738,6 +3744,15 @@
 		D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RedEnvelope.storyboard; sourceTree = "<group>"; };
 		D43B77EA242E2B5400913BE1 /* UIViewController+vcTabName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+vcTabName.h"; sourceTree = "<group>"; };
 		D43B77EB242E2B5400913BE1 /* UIViewController+vcTabName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+vcTabName.m"; sourceTree = "<group>"; };
+		D43DAF622453283A0014A301 /* ztlight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ztlight.gif; sourceTree = "<group>"; };
+		D43DAF672453EFBF0014A301 /* DZPMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPMainView.h; sourceTree = "<group>"; };
+		D43DAF682453EFBF0014A301 /* DZPMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPMainView.m; sourceTree = "<group>"; };
+		D43DAF6B2453F2DF0014A301 /* DZPMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPMainView.xib; sourceTree = "<group>"; };
+		D43DAF7724545B270014A301 /* LYLuckyCardCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLuckyCardCellView.m; sourceTree = "<group>"; };
+		D43DAF7824545B270014A301 /* LYLuckyCardCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLuckyCardCellView.h; sourceTree = "<group>"; };
+		D43DAF7B245479F20014A301 /* LYLuckyCardRotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLuckyCardRotationView.m; sourceTree = "<group>"; };
+		D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYLuckyCardRotationView.xib; sourceTree = "<group>"; };
+		D43DAF7E245479F30014A301 /* LYLuckyCardRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLuckyCardRotationView.h; sourceTree = "<group>"; };
 		D44258442413BAE800601D70 /* UGMosaicGoldMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMosaicGoldMainViewController.h; sourceTree = "<group>"; };
 		D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMosaicGoldMainViewController.m; sourceTree = "<group>"; };
 		D44258FC23E948D80067E981 /* LH_laba.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_laba.gif; sourceTree = "<group>"; };
@@ -7856,9 +7871,25 @@
 			path = "VC类别";
 			sourceTree = "<group>";
 		};
+		D43DAF6524532A320014A301 /* 大转盘 */ = {
+			isa = PBXGroup;
+			children = (
+				D43DAF672453EFBF0014A301 /* DZPMainView.h */,
+				D43DAF682453EFBF0014A301 /* DZPMainView.m */,
+				D43DAF6B2453F2DF0014A301 /* DZPMainView.xib */,
+				D43DAF7E245479F30014A301 /* LYLuckyCardRotationView.h */,
+				D43DAF7B245479F20014A301 /* LYLuckyCardRotationView.m */,
+				D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */,
+				D43DAF7824545B270014A301 /* LYLuckyCardCellView.h */,
+				D43DAF7724545B270014A301 /* LYLuckyCardCellView.m */,
+			);
+			path = "大转盘";
+			sourceTree = "<group>";
+		};
 		D44258FB23E948C50067E981 /* git */ = {
 			isa = PBXGroup;
 			children = (
+				D43DAF622453283A0014A301 /* ztlight.gif */,
 				D458ED7D240F9EF100575C3F /* hot_act.gif */,
 				D424D61F240931F300339D89 /* redbag_act.gif */,
 				D422E92E2407F5AC00276E7A /* effects.gif */,
@@ -8004,6 +8035,7 @@
 				D4773AB923FC163500D38D60 /* 额度转换 */,
 				D4486C23241D07EE00E5CCEA /* 在线客服 */,
 				D43A784F23EFEB1A00F75B0C /* 红包扫雷 */,
+				D43DAF6524532A320014A301 /* 大转盘 */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
@@ -8682,6 +8714,7 @@
 				CF4758B2239636D200966536 /* 5.gif in Resources */,
 				CF475917239636D200966536 /* 116.gif in Resources */,
 				D458ED7F240F9EF100575C3F /* hot_act.gif in Resources */,
+				D43DAF80245479F30014A301 /* LYLuckyCardRotationView.xib in Resources */,
 				CF4758BC239636D200966536 /* 140.gif in Resources */,
 				CF4758EA239636D200966536 /* 62.gif in Resources */,
 				031E1AAE23BE812800B0F813 /* icon_arrow@2x.png in Resources */,
@@ -8709,6 +8742,7 @@
 				031E1B8A23BE812900B0F813 /* UGNoticeHeaderView.xib in Resources */,
 				CF4758E6239636D200966536 /* 88.gif in Resources */,
 				CF8E242C23DDBFD80054BF0F /* Zocial.ttf in Resources */,
+				D43DAF642453283A0014A301 /* ztlight.gif in Resources */,
 				031E1B4C23BE812800B0F813 /* UGYYRightMenuView.xib in Resources */,
 				CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */,
 				CF475915239636D200966536 /* 15.gif in Resources */,
@@ -8831,6 +8865,7 @@
 				CF4758BD239636D200966536 /* 141.gif in Resources */,
 				031E1C4A23BE812A00B0F813 /* UGSegmentCollectionViewCell.xib in Resources */,
 				031E19FC23BE812700B0F813 /* Image_loading_failed.jpeg in Resources */,
+				D43DAF6C2453F2DF0014A301 /* DZPMainView.xib in Resources */,
 				CF475882239636D200966536 /* 108.gif in Resources */,
 				CF475919239636D200966536 /* 103.gif in Resources */,
 				031E1BEE23BE812900B0F813 /* UGJSK3LotteryController.storyboard in Resources */,
@@ -9632,6 +9667,7 @@
 				030A872123C4E5B00001EF82 /* JS_Sidebar.m in Sources */,
 				031E1A8023BE812700B0F813 /* SANotDataView.m in Sources */,
 				031E1CAC23BE812A00B0F813 /* UGFundDetailsCell.m in Sources */,
+				D43DAF692453EFBF0014A301 /* DZPMainView.m in Sources */,
 				031E1DA423BE812B00B0F813 /* UGSignInHistoryModel.m in Sources */,
 				031E1B4223BE812800B0F813 /* UGRankModel.m in Sources */,
 				031E1D0423BE812A00B0F813 /* JSONValueTransformer.m in Sources */,
@@ -9652,6 +9688,7 @@
 				031E1A2A23BE812700B0F813 /* UITableView+LSEmpty.m in Sources */,
 				031E1E2623BE812C00B0F813 /* UGActivityGoldTableViewCell.m in Sources */,
 				031E1CD223BE812A00B0F813 /* MJRefreshBackStateFooter.m in Sources */,
+				D43DAF7F245479F30014A301 /* LYLuckyCardRotationView.m in Sources */,
 				031E1E8423BE812D00B0F813 /* UGYubaoIncomeTableViewCell.m in Sources */,
 				031E1D9423BE812B00B0F813 /* UGYubaoConversionRecordController.m in Sources */,
 				031E1CF023BE812A00B0F813 /* SVProgressHUD.m in Sources */,
@@ -10202,6 +10239,7 @@
 				031E1B4623BE812800B0F813 /* UGYYPlatformGames.m in Sources */,
 				031E1A7223BE812700B0F813 /* UIView+WZLBadge.m in Sources */,
 				031E1A0023BE812700B0F813 /* MediaViewer.m in Sources */,
+				D43DAF7924545B270014A301 /* LYLuckyCardCellView.m in Sources */,
 				031E1B6A23BE812800B0F813 /* UGPlatformCollectionView.m in Sources */,
 				031E1CA823BE812A00B0F813 /* UGFundRecordDetailView.m in Sources */,
 				031E194223BE812600B0F813 /* UGSkinManagers.m in Sources */,

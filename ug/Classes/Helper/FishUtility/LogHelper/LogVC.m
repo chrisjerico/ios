@@ -16,6 +16,7 @@
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
 #import "UGPromotionsListController.h"
+#import "DZPMainView.h"
 
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
@@ -140,23 +141,32 @@ static LogVC *_logVC = nil;
 
 // 重发
 - (IBAction)onRepeatBtnClick:(UIButton *)sender {
-    
+    #define k_Height_NavContentBar 44.0f
+    #define k_Height_NavBar (IS_PhoneXAll ? 88.0 : 64.0)//导航栏
+    #define k_Height_StatusBar (IS_PhoneXAll? 44.0 : 20.0)//状态栏
+    #define k_Height_TabBar (IS_PhoneXAll ? 83.0 : 49.0)//标签栏的高度
+    #define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
+    #define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
     
     
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"播音"];
         [titles addObject:@"聊天室"];
-        [titles addObject:@"优惠活动"];
+        [titles addObject:@"大转盘"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
 
-        [ac setActionAtTitle:@"优惠活动" handler:^(UIAlertAction *aa) {
-                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    // 需要在主线程执行的代码
-                    UGPromotionsListController *recordVC = _LoadVC_from_storyboard_(@"UGPromotionsListController");
-                    [NavController1 pushViewController:recordVC animated:true];
-                   
-                });
+        [ac setActionAtTitle:@"大转盘" handler:^(UIAlertAction *aa) {
+            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                // 需要在主线程执行的代码
+                
+                DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
+                [self.view addSubview:recordVC];
+                [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.equalTo(self.view);
+                }];
+                
+            });
         }];
         [ac setActionAtTitle:@"播音" handler:^(UIAlertAction *aa) {
                 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

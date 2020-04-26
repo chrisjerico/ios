@@ -189,6 +189,11 @@
         [subImageView(@"开奖喇叭ImgV") setHidden:YES];
         
         
+        if (APP.isReplaceIcon) {
+            [subButton(@"长龙btn") setBackgroundImage: [UIImage imageNamed:@"kjw_long"] forState:(UIControlStateNormal)];
+            [subButton(@"直播btn") setBackgroundImage: [UIImage imageNamed:@"kjw_tv"]  forState:(UIControlStateNormal)];
+            [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
+        }
         
     }
     
