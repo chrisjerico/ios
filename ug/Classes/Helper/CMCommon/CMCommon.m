@@ -128,7 +128,12 @@ static NSString *uuidKey =@"uuidKey";
           hoursStr = [NSString stringWithFormat:@"0%d",hours];
     }else {
     
-        hoursStr = [NSString stringWithFormat:@"%d",hours];
+        if (days) {
+             hoursStr = [NSString stringWithFormat:@"%d",hours - 24*days];
+        } else {
+             hoursStr = [NSString stringWithFormat:@"%d",hours];
+        }
+       
     }
     //分钟
     if(minutes<10)

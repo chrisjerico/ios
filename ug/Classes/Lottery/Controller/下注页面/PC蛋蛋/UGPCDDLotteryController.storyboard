@@ -132,7 +132,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nHi-AN-CpD">
-                                        <rect key="frame" x="0.0" y="39" width="60" height="44"/>
+                                        <rect key="frame" x="0.0" y="35.5" width="60" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="ha8-7K-7ma"/>
@@ -147,8 +147,8 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511045期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jk-4I-1RQ">
-                                        <rect key="frame" x="5" y="10" width="102.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="5" y="10" width="82.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -156,7 +156,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDX-6R-vTv">
-                                        <rect key="frame" x="112.5" y="5" width="296.5" height="55"/>
+                                        <rect key="frame" x="92.5" y="5" width="316.5" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="le1-8m-YTC">
@@ -198,20 +198,20 @@
                                 <rect key="frame" x="0.0" y="70" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511082期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2k2-Jt-wbs">
-                                        <rect key="frame" x="5" y="13.5" width="102.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="5" y="15.5" width="82.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘:04:12:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEK-mz-fUx">
-                                        <rect key="frame" x="112.5" y="13.5" width="90.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="92.5" y="15.5" width="72.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="开奖:04:12:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZX-cf-JkE">
-                                        <rect key="frame" x="208" y="13.5" width="90" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="170" y="15.5" width="72.5" height="13.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -232,9 +232,9 @@
                                         <rect key="frame" x="316" y="8" width="90" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkc-V1-1rB">
-                                                <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="25" height="28"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="28" id="BmQ-CV-KKv"/>
+                                                    <constraint firstAttribute="width" constant="25" id="BmQ-CV-KKv"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="xz_icon_cl"/>
                                                 <userDefinedRuntimeAttributes>
@@ -242,9 +242,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ax6-3j-aaj">
-                                                <rect key="frame" x="31" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="32.5" y="0.0" width="25" height="28"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="28" id="VjW-vS-t2q"/>
+                                                    <constraint firstAttribute="width" constant="25" id="VjW-vS-t2q"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="xz_icon_kj"/>
                                                 <userDefinedRuntimeAttributes>
@@ -252,9 +252,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhW-gF-faZ">
-                                                <rect key="frame" x="62" y="0.0" width="28" height="28"/>
+                                                <rect key="frame" x="65" y="0.0" width="25" height="28"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="28" id="LCA-nx-VXg"/>
+                                                    <constraint firstAttribute="width" constant="25" id="LCA-nx-VXg"/>
                                                 </constraints>
                                                 <state key="normal" backgroundImage="xz_icon_zb"/>
                                                 <userDefinedRuntimeAttributes>

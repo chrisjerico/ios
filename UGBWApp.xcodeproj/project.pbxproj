@@ -1905,6 +1905,7 @@
 		D43DAF7924545B270014A301 /* LYLuckyCardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF7724545B270014A301 /* LYLuckyCardCellView.m */; };
 		D43DAF7F245479F30014A301 /* LYLuckyCardRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF7B245479F20014A301 /* LYLuckyCardRotationView.m */; };
 		D43DAF80245479F30014A301 /* LYLuckyCardRotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */; };
+		D43DAF8624555B1C0014A301 /* MGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF8424555B1C0014A301 /* MGSlider.m */; };
 		D44258462413BAE800601D70 /* UGMosaicGoldMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */; };
 		D44258FD23E948D80067E981 /* LH_laba.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FC23E948D80067E981 /* LH_laba.gif */; };
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
@@ -3753,6 +3754,8 @@
 		D43DAF7B245479F20014A301 /* LYLuckyCardRotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLuckyCardRotationView.m; sourceTree = "<group>"; };
 		D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYLuckyCardRotationView.xib; sourceTree = "<group>"; };
 		D43DAF7E245479F30014A301 /* LYLuckyCardRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLuckyCardRotationView.h; sourceTree = "<group>"; };
+		D43DAF8324555B1C0014A301 /* MGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSlider.h; sourceTree = "<group>"; };
+		D43DAF8424555B1C0014A301 /* MGSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSlider.m; sourceTree = "<group>"; };
 		D44258442413BAE800601D70 /* UGMosaicGoldMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMosaicGoldMainViewController.h; sourceTree = "<group>"; };
 		D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMosaicGoldMainViewController.m; sourceTree = "<group>"; };
 		D44258FC23E948D80067E981 /* LH_laba.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_laba.gif; sourceTree = "<group>"; };
@@ -4054,9 +4057,10 @@
 			isa = PBXGroup;
 			children = (
 				031E142223BE812300B0F813 /* FishUtility */,
-				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
+				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
+				D43DAF8224555B1C0014A301 /* 自定义拖动条 */,
 				D43B77E8242E2AED00913BE1 /* VC类别 */,
 				D458ED8A2412411C00575C3F /* 给tab加badge分类 */,
 				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
@@ -7886,6 +7890,15 @@
 			path = "大转盘";
 			sourceTree = "<group>";
 		};
+		D43DAF8224555B1C0014A301 /* 自定义拖动条 */ = {
+			isa = PBXGroup;
+			children = (
+				D43DAF8324555B1C0014A301 /* MGSlider.h */,
+				D43DAF8424555B1C0014A301 /* MGSlider.m */,
+			);
+			path = "自定义拖动条";
+			sourceTree = "<group>";
+		};
 		D44258FB23E948C50067E981 /* git */ = {
 			isa = PBXGroup;
 			children = (
@@ -9766,6 +9779,7 @@
 				031E1E4423BE812C00B0F813 /* UGPormotionView.m in Sources */,
 				031E198223BE812600B0F813 /* UGScratchMusicView.m in Sources */,
 				031E195E23BE812600B0F813 /* LHJournalDetailVC.m in Sources */,
+				D43DAF8624555B1C0014A301 /* MGSlider.m in Sources */,
 				031E1D5223BE812B00B0F813 /* UGModifyPayPwdController.m in Sources */,
 				031E1A7E23BE812700B0F813 /* SLWebViewController.m in Sources */,
 				031E199023BE812600B0F813 /* UGPostCell1.m in Sources */,
