@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZEk-Cw-r45">
-                                <rect key="frame" x="0.0" y="44" width="414" height="753"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="770"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pVi-LO-8KO" userLabel="头_上">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -116,10 +116,10 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上背景View"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHd-Jg-7aj" userLabel="头_中">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lHd-Jg-7aj" userLabel="头_中">
                                         <rect key="frame" x="0.0" y="70" width="414" height="200"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gyZ-Yx-PfD">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gyZ-Yx-PfD" userLabel="历史开奖">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </tableView>
@@ -134,7 +134,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mV0-Ou-flp" userLabel="头_下">
-                                        <rect key="frame" x="0.0" y="70" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="270" width="414" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511082期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOk-tj-qSW">
                                                 <rect key="frame" x="5" y="15.5" width="82.5" height="13.5"/>
@@ -241,17 +241,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OQ-h6-ree" userLabel="内容">
-                                        <rect key="frame" x="0.0" y="114" width="414" height="639"/>
+                                        <rect key="frame" x="0.0" y="314" width="414" height="456"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VbX-Zk-6TS" userLabel=" 玩法列表">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="639"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="456"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="110" id="QuK-5V-bU2"/>
                                                 </constraints>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6vx-66-uFp" userLabel="右边内容">
-                                                <rect key="frame" x="110" y="0.0" width="304" height="639"/>
+                                                <rect key="frame" x="110" y="0.0" width="304" height="456"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -268,16 +268,16 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95b-2L-sLd" userLabel="底部">
-                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
+                                <rect key="frame" x="0.0" y="814" width="414" height="82"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选中 0 注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbl-5c-yON">
-                                        <rect key="frame" x="10" y="3" width="73.5" height="17"/>
+                                        <rect key="frame" x="10" y="3" width="73.5" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入下注金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a7d-N8-JkA">
-                                        <rect key="frame" x="10" y="23" width="120" height="32"/>
+                                        <rect key="frame" x="10" y="6" width="120" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="mJu-hu-rCn"/>
                                             <constraint firstAttribute="height" constant="32" id="xCg-bF-kSa"/>
@@ -352,10 +352,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f9i-92-8rB">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7S-li-2cF">
-                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="31.5" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -412,6 +412,7 @@
                         <outlet property="currentIssueLabel" destination="Vi2-my-glz" id="C4W-pA-8M2"/>
                         <outlet property="headerMidView" destination="lHd-Jg-7aj" id="xsG-KJ-bS0"/>
                         <outlet property="headerOneView" destination="pVi-LO-8KO" id="Met-bA-7OJ"/>
+                        <outlet property="headerTabView" destination="gyZ-Yx-PfD" id="4B9-Gd-9F3"/>
                         <outlet property="nextIssueLabel" destination="vOk-tj-qSW" id="ZvK-o7-5hk"/>
                         <outlet property="nextIssueView" destination="mV0-Ou-flp" id="YyP-kr-L5y"/>
                         <outlet property="openTimeLabel" destination="L2n-Ux-00V" id="UqM-7x-F4W"/>
