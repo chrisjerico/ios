@@ -9,10 +9,19 @@
 #import "DZPMainView.h"
 #import "LYLuckyCardRotationView.h"
 #import "FLAnimatedImageView.h"
+#import "DZPTwoView.h"
+#import "DZPOneView.h"
+#import "FLAnimatedImageView.h"
 @interface DZPMainView ()
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgGif;//转盘头部gif
 @property (weak, nonatomic) IBOutlet LYLuckyCardRotationView *mDZPView;//转盘
+@property (weak, nonatomic) IBOutlet UIImageView *btnBgImgV;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
+@property (strong, nonatomic)  DZPTwoView *twoView;
+@property (strong, nonatomic)  DZPOneView *oneView;
+
 @end
 
 @implementation DZPMainView
@@ -40,9 +49,8 @@
 
 
 - (instancetype)DZPMainView {
-    NSBundle *bundle=[NSBundle mainBundle];
-    NSArray *objs=[bundle loadNibNamed:@"DZPMainView" owner:nil options:nil];
 
+    NSArray *objs= [[UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil] instantiateWithOwner:self options:nil];
     // 按屏幕比例缩放（因为等比例约束太复杂，所以直接缩放得了）
 //    CGFloat scale = APP.Width/414;
 //    self.transform = CGAffineTransformMakeScale(scale, scale);
@@ -55,8 +63,37 @@
     if(self){
         self = [self DZPMainView];
         _imgGif.contentMode = UIViewContentModeScaleAspectFit;
+        [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"ztlight" withExtension:@"gif"]];
+        _oneView = [[DZPOneView alloc] initWithFrame:CGRectZero];
+        _twoView = [[DZPTwoView alloc] initWithFrame:CGRectZero];
+        [_contentView addSubview:_oneView];
+        [_oneView mas_makeConstraints:^(MASConstraintMaker *make) {
+             make.edges.equalTo(_contentView);
+         }];
+        
     }
     return self;
+}
+
+- (IBAction)leftAction:(id)sender {
+    [_btnBgImgV setImage:[UIImage imageNamed:@"seg_leftSelected"]];
+    
+    [_contentView removeAllSubviews];
+    [_contentView addSubview:_oneView];
+    [_oneView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_contentView);
+    }];
+    
+}
+- (IBAction)rightAciton:(id)sender {
+    [_btnBgImgV setImage:[UIImage imageNamed:@"seg_rightSelected"]];
+    [_contentView removeAllSubviews];
+    
+    
+    [_contentView addSubview:_twoView];
+    [_twoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_contentView);
+    }];
 }
 
 

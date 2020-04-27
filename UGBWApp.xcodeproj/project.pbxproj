@@ -1863,6 +1863,10 @@
 		D40A295823E173A900F07146 /* PromotionWithdrawalsRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */; };
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
+		D420722D2456A8DB008D0749 /* DZPOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = D420722C2456A8DB008D0749 /* DZPOneView.m */; };
+		D42072302456A8E9008D0749 /* DZPOneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D420722F2456A8E9008D0749 /* DZPOneView.xib */; };
+		D42072332456AE80008D0749 /* DZPTwoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42072322456AE80008D0749 /* DZPTwoView.m */; };
+		D42072372456B521008D0749 /* DZPTwoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42072362456B521008D0749 /* DZPTwoView.xib */; };
 		D422D67F22D9A766008E7065 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
 		D422E9302407F5AC00276E7A /* effects.gif in Resources */ = {isa = PBXBuildFile; fileRef = D422E92E2407F5AC00276E7A /* effects.gif */; };
 		D424D621240931F300339D89 /* redbag_act.gif in Resources */ = {isa = PBXBuildFile; fileRef = D424D61F240931F300339D89 /* redbag_act.gif */; };
@@ -3695,6 +3699,12 @@
 		D40FA8BE229910EE003E596F /* yuebaoMone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yuebaoMone.gif; sourceTree = "<group>"; };
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
+		D420722B2456A8DB008D0749 /* DZPOneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneView.h; sourceTree = "<group>"; };
+		D420722C2456A8DB008D0749 /* DZPOneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPOneView.m; sourceTree = "<group>"; };
+		D420722F2456A8E9008D0749 /* DZPOneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPOneView.xib; sourceTree = "<group>"; };
+		D42072312456AE80008D0749 /* DZPTwoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPTwoView.h; sourceTree = "<group>"; };
+		D42072322456AE80008D0749 /* DZPTwoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPTwoView.m; sourceTree = "<group>"; };
+		D42072362456B521008D0749 /* DZPTwoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPTwoView.xib; sourceTree = "<group>"; };
 		D422D67E22D9A764008E7065 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		D422E92E2407F5AC00276E7A /* effects.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = effects.gif; sourceTree = "<group>"; };
 		D424D61F240931F300339D89 /* redbag_act.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = redbag_act.gif; sourceTree = "<group>"; };
@@ -7886,6 +7896,12 @@
 				D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */,
 				D43DAF7824545B270014A301 /* LYLuckyCardCellView.h */,
 				D43DAF7724545B270014A301 /* LYLuckyCardCellView.m */,
+				D420722B2456A8DB008D0749 /* DZPOneView.h */,
+				D420722C2456A8DB008D0749 /* DZPOneView.m */,
+				D420722F2456A8E9008D0749 /* DZPOneView.xib */,
+				D42072312456AE80008D0749 /* DZPTwoView.h */,
+				D42072322456AE80008D0749 /* DZPTwoView.m */,
+				D42072362456B521008D0749 /* DZPTwoView.xib */,
 			);
 			path = "大转盘";
 			sourceTree = "<group>";
@@ -8837,6 +8853,7 @@
 				031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */,
 				CF47591C239636D200966536 /* 12.gif in Resources */,
 				CF4758FE239636D200966536 /* 64.gif in Resources */,
+				D42072372456B521008D0749 /* DZPTwoView.xib in Resources */,
 				CF475909239636D200966536 /* 73.gif in Resources */,
 				031E1AB423BE812800B0F813 /* tag_list_s@2x.png in Resources */,
 				D451A46923F538D800CD0E36 /* JYGameCollectionViewCell.xib in Resources */,
@@ -8885,6 +8902,7 @@
 				031E1C3A23BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.xib in Resources */,
 				CF8E242323DDBFD80054BF0F /* Entypo.ttf in Resources */,
 				CF8E242D23DDBFD80054BF0F /* EvilIcons.ttf in Resources */,
+				D42072302456A8E9008D0749 /* DZPOneView.xib in Resources */,
 				031E1AB823BE812800B0F813 /* icon_arrow@3x.png in Resources */,
 				CF475904239636D200966536 /* 99.gif in Resources */,
 				031E1B9C23BE812900B0F813 /* UGChanglongBetRecrodCell.xib in Resources */,
@@ -10074,6 +10092,8 @@
 				031E1BD623BE812900B0F813 /* UGPCDDLotteryController.m in Sources */,
 				031E1CC623BE812A00B0F813 /* MJRefreshConst.m in Sources */,
 				031E1CD623BE812A00B0F813 /* MJRefreshAutoStateFooter.m in Sources */,
+				D42072332456AE80008D0749 /* DZPTwoView.m in Sources */,
+				D420722D2456A8DB008D0749 /* DZPOneView.m in Sources */,
 				031E1D7423BE812B00B0F813 /* UGWriteMessageViewController.m in Sources */,
 				D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */,
 				031E1A3223BE812700B0F813 /* CMNetwork+Document.m in Sources */,
