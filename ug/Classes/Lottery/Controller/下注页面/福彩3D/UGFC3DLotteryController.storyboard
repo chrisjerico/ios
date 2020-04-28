@@ -426,6 +426,7 @@
                         <outlet property="headerMidView" destination="14N-2f-DCn" id="Tfy-EV-ocX"/>
                         <outlet property="headerOneView" destination="Qbq-QZ-4jw" id="4Uj-zO-R8Z"/>
                         <outlet property="headerTabView" destination="1bZ-hu-rei" id="gTw-H0-W3e"/>
+                        <outlet property="historyBtn" destination="Yih-Rp-c9Q" id="PpB-nK-4jc"/>
                         <outlet property="iphoneXBottomView" destination="7IE-TP-aWc" id="5SN-nY-y20"/>
                         <outlet property="nextIssueLabel" destination="1z3-1y-PPM" id="oLs-ab-g4e"/>
                         <outlet property="nextIssueView" destination="UzJ-3p-haU" id="0q1-xq-ZQU"/>

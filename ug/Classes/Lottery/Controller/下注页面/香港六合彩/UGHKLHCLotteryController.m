@@ -55,6 +55,7 @@
 @interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,YBPopupMenuDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
+@property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
 @property (weak, nonatomic) IBOutlet UILabel *nextIssueLabel;               /**<   下期数Label */
 @property (weak, nonatomic) IBOutlet UILabel *closeTimeLabel;               /**<   下期封盘时间Label */
 @property (weak, nonatomic) IBOutlet UILabel *openTimeLabel;                /**<   下期开奖时间Label */
@@ -1449,7 +1450,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     });
     self.headerCollectionView = collectionView;
     [self.headerOneView addSubview:collectionView];
-    
+    [self.headerOneView bringSubviewToFront:self.historyBtn];
     
 }
 
