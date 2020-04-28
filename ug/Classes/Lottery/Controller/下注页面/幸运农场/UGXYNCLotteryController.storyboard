@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dM5-J1-DtU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="753"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="770"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIh-KE-9va" userLabel="头_上">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -70,7 +70,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEI-6C-TIU" userLabel="历史记录按钮">
                                                 <rect key="frame" x="364" y="0.0" width="50" height="60"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="MnH-5W-0E7"/>
                                                     <constraint firstAttribute="height" constant="60" id="ofk-Nv-5Pr"/>
@@ -78,6 +78,9 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="历史记录按钮"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="showHistoryLottery:" destination="r92-tg-yeV" eventType="touchUpInside" id="bRu-lk-Gno"/>
+                                                </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_sx" translatesAutoresizingMaskIntoConstraints="NO" id="W5t-R7-XtK" userLabel="双箭头图片">
                                                 <rect key="frame" x="377" y="9" width="27" height="52"/>
@@ -233,17 +236,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-dj-gpk" userLabel="内容">
-                                        <rect key="frame" x="0.0" y="114" width="414" height="639"/>
+                                        <rect key="frame" x="0.0" y="114" width="414" height="656"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Em3-ak-1yT" userLabel=" 玩法列表">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="639"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="656"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="110" id="GuF-jF-wKz"/>
                                                 </constraints>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ppa-yR-S8F" userLabel="右边内容">
-                                                <rect key="frame" x="110" y="0.0" width="304" height="639"/>
+                                                <rect key="frame" x="110" y="0.0" width="304" height="656"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -260,7 +263,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOb-Ww-ECM" userLabel="底部">
-                                <rect key="frame" x="0.0" y="797" width="414" height="99"/>
+                                <rect key="frame" x="0.0" y="814" width="414" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选中 0 注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDF-Ca-zhc" userLabel="已选中">
                                         <rect key="frame" x="10" y="3" width="73.5" height="17"/>
@@ -335,10 +338,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Faa-g0-FOI" userLabel="封盘">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGq-Rf-7hE">
-                                                <rect key="frame" x="182.5" y="40" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="31.5" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -362,7 +365,7 @@
                                     <constraint firstItem="X09-F7-tK2" firstAttribute="top" secondItem="ruE-Bm-seo" secondAttribute="top" id="NIG-hS-Lmf"/>
                                     <constraint firstItem="NDF-Ca-zhc" firstAttribute="top" secondItem="vOb-Ww-ECM" secondAttribute="top" constant="3" id="PCK-oF-Mlc"/>
                                     <constraint firstAttribute="trailing" secondItem="77E-n9-yfy" secondAttribute="trailing" constant="10" id="bSg-ei-qtg"/>
-                                    <constraint firstAttribute="bottom" secondItem="Faa-g0-FOI" secondAttribute="bottom" id="eBW-b9-jSk"/>
+                                    <constraint firstAttribute="bottom" secondItem="Faa-g0-FOI" secondAttribute="bottom" constant="17" id="eBW-b9-jSk"/>
                                     <constraint firstItem="9nK-C6-1ie" firstAttribute="top" secondItem="NDF-Ca-zhc" secondAttribute="bottom" constant="3" id="evP-bs-JOY"/>
                                     <constraint firstItem="Faa-g0-FOI" firstAttribute="top" secondItem="vOb-Ww-ECM" secondAttribute="top" id="hjr-Po-RBa"/>
                                     <constraint firstItem="77E-n9-yfy" firstAttribute="top" secondItem="ruE-Bm-seo" secondAttribute="top" id="iVe-8t-rJi"/>
@@ -390,10 +393,32 @@
                             <constraint firstItem="dM5-J1-DtU" firstAttribute="top" secondItem="5Oz-xA-udw" secondAttribute="top" id="gno-ye-Mu1"/>
                             <constraint firstAttribute="bottom" secondItem="gG8-wU-3U7" secondAttribute="bottom" constant="-40" id="mPt-FX-s3o"/>
                             <constraint firstItem="gG8-wU-3U7" firstAttribute="trailing" secondItem="vOb-Ww-ECM" secondAttribute="trailing" id="rmJ-Tv-yWC"/>
-                            <constraint firstAttribute="bottom" secondItem="vOb-Ww-ECM" secondAttribute="bottom" id="ziK-lv-5sj"/>
+                            <constraint firstAttribute="bottom" secondItem="vOb-Ww-ECM" secondAttribute="bottom" constant="-17" id="ziK-lv-5sj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Oz-xA-udw"/>
                     </view>
+                    <connections>
+                        <outlet property="amountTextF" destination="9nK-C6-1ie" id="a23-u1-xyk"/>
+                        <outlet property="betButton" destination="X09-F7-tK2" id="YWU-LL-p7v"/>
+                        <outlet property="bottomCloseView" destination="Faa-g0-FOI" id="Lez-v8-xyF"/>
+                        <outlet property="bottomView" destination="vOb-Ww-ECM" id="4gq-VA-NRv"/>
+                        <outlet property="chipButton" destination="ruE-Bm-seo" id="cH9-fZ-p1w"/>
+                        <outlet property="closeTimeLabel" destination="JEZ-tL-Fnc" id="3Pa-ZL-RL8"/>
+                        <outlet property="contentView" destination="dAe-dj-gpk" id="dbU-XY-hpd"/>
+                        <outlet property="currentIssueLabel" destination="LPj-KO-h37" id="vGC-nI-xJN"/>
+                        <outlet property="headerMidView" destination="dn7-d3-fcz" id="NeP-ZA-9PI"/>
+                        <outlet property="headerOneView" destination="GIh-KE-9va" id="9x3-Wm-ilX"/>
+                        <outlet property="headerTabView" destination="Qre-OD-BAO" id="yLf-Pl-2I8"/>
+                        <outlet property="historyBtn" destination="YEI-6C-TIU" id="fWe-Wo-pSE"/>
+                        <outlet property="iphoneXBottomView" destination="gG8-wU-3U7" id="xSO-l7-7Rw"/>
+                        <outlet property="nextIssueLabel" destination="AiR-vh-FoG" id="c0J-TH-2sZ"/>
+                        <outlet property="nextIssueView" destination="pxo-HK-n0j" id="0hJ-DT-vP6"/>
+                        <outlet property="openTimeLabel" destination="9qY-QG-p5e" id="pZk-xK-6jS"/>
+                        <outlet property="resetButton" destination="77E-n9-yfy" id="eXF-ba-9UX"/>
+                        <outlet property="rightStackView" destination="ppa-yR-S8F" id="YAz-UF-172"/>
+                        <outlet property="selectLabel" destination="NDF-Ca-zhc" id="LSM-JD-cq9"/>
+                        <outlet property="tableView" destination="Em3-ak-1yT" id="Pxo-dF-X5l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MnF-Iy-dBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

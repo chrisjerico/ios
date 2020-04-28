@@ -221,8 +221,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             self.nextIssueModel = model.data;
-            if (OBJOnceToken(self)) {
-                [self getLotteryHistory ];
+            if (self.nextIssueModel) {
+                if (OBJOnceToken(self)) {
+                    [self getLotteryHistory ];
+                }
             }
             [self showAdPoppuView:model.data];
             [self updateHeaderViewData];
