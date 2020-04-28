@@ -46,15 +46,15 @@
 #import "UIColor+YYUI.h"
 #import "UGYYRightMenuView.h"
 #import "UGLotterySettingModel.h"
-#import "UGLotteryHistoryModel.h"
 
+
+#import "UGLotteryHistoryModel.h"
 #import "UGLotteryRecordTableViewCell.h"
 #import "CMTimeCommon.h"
 
 @interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,YBPopupMenuDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
-@property (weak, nonatomic) IBOutlet UIView *currentIssueCollectionBgView;  /**<   当前期开奖号码的背景VIew */
 @property (weak, nonatomic) IBOutlet UILabel *nextIssueLabel;               /**<   下期数Label */
 @property (weak, nonatomic) IBOutlet UILabel *closeTimeLabel;               /**<   下期封盘时间Label */
 @property (weak, nonatomic) IBOutlet UILabel *openTimeLabel;                /**<   下期开奖时间Label */
@@ -277,9 +277,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             self.nextIssueModel = model.data;
-            if (OBJOnceToken(self)) {
-                [self getLotteryHistory ];
+            
+            NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+            if (self.nextIssueModel) {
+                if (OBJOnceToken(self)) {
+                    [self getLotteryHistory ];
+                }
             }
+
             
             [self showAdPoppuView:model.data];
             [self updateHeaderViewData];
@@ -437,9 +442,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)getLotteryHistory {
 
+    if (!self.nextIssueModel) {
+        return;
+    }
     NSString *dataStr = nil;
     if (![self.nextIssueModel.lowFreq isEqualToString:@"1"]) {
         dataStr =  [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
+    }
+    else{
+        dataStr = nil;
     }
     
     NSDictionary *params = @{@"id":self.nextIssueModel.gameId,
@@ -1810,6 +1821,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 
 - (IBAction)showHistoryLottery:(UIButton *)sender {
+    
+    if (!self.nextIssueModel) {
+        return;
+    }
     // 切换按钮的状态
     sender.selected = !sender.selected;
     if (sender.selected) { // 按下去了就是明文

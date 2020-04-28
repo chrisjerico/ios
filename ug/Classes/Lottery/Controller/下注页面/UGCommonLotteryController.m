@@ -13,6 +13,7 @@
 #import "STBarButtonItem.h"
 #import "CMTimeCommon.h"
 
+#import "UGLotteryHistoryModel.h"
 #import "category.h"
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
@@ -21,8 +22,9 @@
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
 @property (nonatomic) UIView *iphoneXBottomView;/**<iphoneX的t底部*/
-
-
+@property (nonatomic) UITableView *headerTabView;
+@property (nonatomic) NSMutableArray <UGLotteryHistoryModel *> *dataArray;/**<   历史开奖数据*/
+@property (nonatomic) UGNextIssueModel *nextIssueModel;
 @end
 
 
@@ -194,7 +196,7 @@
         }];
         
         [subImageView(@"开奖喇叭ImgV") setHidden:YES];
-        
+
         
         if (APP.isReplaceIcon) {
             [subButton(@"长龙btn") setBackgroundImage: [UIImage imageNamed:@"kjw_long"] forState:(UIControlStateNormal)];
