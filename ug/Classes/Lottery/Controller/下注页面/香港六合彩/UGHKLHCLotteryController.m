@@ -59,7 +59,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *closeTimeLabel;               /**<   下期封盘时间Label */
 @property (weak, nonatomic) IBOutlet UILabel *openTimeLabel;                /**<   下期开奖时间Label */
 @property (weak, nonatomic) IBOutlet UIView *nextIssueView;                 /**<   下期信息父View */
-@property (weak, nonatomic) IBOutlet UIView *bottomView;                    /**<   底部信息父View */
 @property (weak, nonatomic) IBOutlet UIView *bottomCloseView;               /**<   底部封盘View */
 
 @property (weak, nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
@@ -107,6 +106,8 @@
 @property (nonatomic, weak)IBOutlet UITableView *tableView;                   /**<   玩法列表TableView */
 @property (nonatomic, strong) NSMutableArray <UGGameplayModel *>*gameDataArray;    /**<   玩法列表 */
 @property (weak, nonatomic) IBOutlet UIStackView *rightStackView;/**<右边内容*/
+@property (weak, nonatomic) IBOutlet UIView *bottomView;         /**<   底部 */
+@property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 
 
 
@@ -145,7 +146,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     self.amountTextF.delegate = self;
 //    [self.view addSubview:self.tableView];//===========
 //    [self.contentView addSubview:self.tableView];
+
     [self tableViewInit];
+    [self headertableViewInit];
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.contentView.mas_left).with.offset(0);
@@ -210,7 +213,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self getGameDatas];
     [self getNextIssueData];
     
-    [self getLotteryHistory];
+  
     
     // 轮循刷新封盘时间、开奖时间
     // 轮循刷新封盘时间、开奖时间
@@ -243,8 +246,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.bottomView];
-    
+//    [self.view bringSubviewToFront:self.bottomView];
+    [self.view bringSubviewToFront:self.iphoneXBottomView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -274,6 +277,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             self.nextIssueModel = model.data;
+            if (OBJOnceToken(self)) {
+                [self getLotteryHistory ];
+            }
+            
             [self showAdPoppuView:model.data];
             [self updateHeaderViewData];
         } failure:^(id msg) {
@@ -657,6 +664,23 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         return cell;
     }
    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([tableView isEqual:self.tableView]) {
+        return  40.0;
+    } else {
+        UGLotteryHistoryModel *model = self.dataArray.firstObject;
+        if ([@"bjkl8" isEqualToString:model.gameType] ||
+            [@"pk10nn" isEqualToString:model.gameType] ||
+            [@"jsk3" isEqualToString:model.gameType]
+            ) {
+            return 100;
+        }
+        return 80;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -1625,12 +1649,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 #pragma mark - getting
 - (UITableView *)tableViewInit {
-    float height;
-    if ([CMCommon isPhoneX]) {
-        height = UGScerrnH - 88 - 83 - 114;
-    } else {
-        height = UGScerrnH - 64 - 49 - 114;
-    }
 
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -1640,13 +1658,24 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
-        //        if (Skin1.isBlack) {
-        //            [_tableView setBackgroundColor:[UIColor clearColor]];
-        //        } else {
-        //            [_tableView setBackgroundColor:[UIColor whiteColor]];
-        //        }
+
     
     return _tableView;
+}
+
+- (UITableView *)headertableViewInit {
+
+        _headerTabView.delegate = self;
+        _headerTabView.dataSource = self;
+        [_headerTabView registerNib:[UINib nibWithNibName:@"UGLotteryRecordTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGLotteryRecordTableViewCell"];
+        [self.headerTabView setBackgroundColor:[UIColor clearColor]];
+        self.headerTabView.delegate = self;
+        self.headerTabView.dataSource = self;
+        self.headerTabView.estimatedRowHeight = 100;
+        self.headerTabView.estimatedSectionHeaderHeight = 0;
+        self.headerTabView.estimatedSectionFooterHeight = 0;
+    
+    return _headerTabView;
 }
 
 - (UGSegmentView *)segmentView {
@@ -1779,11 +1808,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _numColorArray;
 }
 
-bool isHide = YES;
-- (IBAction)showHistoryLottery:(id)sender {
-    
-    isHide = !isHide;
-    self.headerMidView.hidden = isHide;
+
+- (IBAction)showHistoryLottery:(UIButton *)sender {
+    // 切换按钮的状态
+    sender.selected = !sender.selected;
+    if (sender.selected) { // 按下去了就是明文
+        self.headerMidView.hidden = NO;
+    } else { // 暗文
+        self.headerMidView.hidden = YES;
+    }
     
 }
 

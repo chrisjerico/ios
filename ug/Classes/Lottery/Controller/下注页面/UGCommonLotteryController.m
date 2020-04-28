@@ -20,7 +20,7 @@
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
-
+@property (nonatomic) UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 
 
 @end
@@ -114,6 +114,13 @@
         // 底部栏背景色
         [self.bottomView setBackgroundColor:Skin1.bgColor];
         [self.bottomView insertSubview:({
+            UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+            bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+            bgView;
+        }) atIndex:0];
+        // iphoneX的t底部背景色
+        [self.iphoneXBottomView setBackgroundColor:Skin1.bgColor];
+        [self.iphoneXBottomView insertSubview:({
             UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
             bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
             bgView;
