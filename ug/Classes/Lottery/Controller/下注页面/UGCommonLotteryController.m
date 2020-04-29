@@ -13,6 +13,7 @@
 #import "STBarButtonItem.h"
 #import "CMTimeCommon.h"
 
+#import "UGLotteryHistoryModel.h"
 #import "category.h"
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
@@ -21,8 +22,12 @@
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
 
+@property (nonatomic) UIView *iphoneXBottomView;/**<iphoneX的t底部*/
+@property (nonatomic) UITableView *headerTabView;
+@property (nonatomic) NSMutableArray <UGLotteryHistoryModel *> *dataArray;/**<   历史开奖数据*/
+@property (nonatomic) UGNextIssueModel *nextIssueModel;
 
-
+@property ( nonatomic) IBOutlet UIButton *historyBtn;
 @end
 
 
@@ -52,6 +57,10 @@
     
     if (self.shoulHideHeader) {
         [self hideHeader];
+        [self.historyBtn setEnabled:NO];
+    }
+    else{
+         [self.historyBtn setEnabled:YES];
     }
     [self getSystemConfig];     // APP配置信息
     
@@ -114,6 +123,13 @@
         // 底部栏背景色
         [self.bottomView setBackgroundColor:Skin1.bgColor];
         [self.bottomView insertSubview:({
+            UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+            bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+            bgView;
+        }) atIndex:0];
+        // iphoneX的t底部背景色
+        [self.iphoneXBottomView setBackgroundColor:Skin1.bgColor];
+        [self.iphoneXBottomView insertSubview:({
             UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
             bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
             bgView;
@@ -187,7 +203,7 @@
         }];
         
         [subImageView(@"开奖喇叭ImgV") setHidden:YES];
-        
+
         
         if (APP.isReplaceIcon) {
             [subButton(@"长龙btn") setBackgroundImage: [UIImage imageNamed:@"kjw_long"] forState:(UIControlStateNormal)];
@@ -309,4 +325,29 @@
     AudioServicesPlaySystemSound( soundIDTest );
 }
 
+
+- (void)getLotteryHistory {
+
+    NSString *dataStr = nil;
+    if (![self.nextIssueModel.lowFreq isEqualToString:@"1"]) {
+        dataStr =  [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
+    }
+    else{
+        dataStr = nil;
+    }
+    
+    NSDictionary *params = @{@"id":self.nextIssueModel.gameId,
+                             @"date":dataStr ,
+                             };
+    [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [self.tableView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
+            [self.headerTabView reloadData];
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+    
+}
 @end

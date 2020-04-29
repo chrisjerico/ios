@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getNextIssueData;
 -(void)playerLotterySound;
 
+
+- (void)getLotteryHistory;
+
 @end
 
 NS_ASSUME_NONNULL_END
