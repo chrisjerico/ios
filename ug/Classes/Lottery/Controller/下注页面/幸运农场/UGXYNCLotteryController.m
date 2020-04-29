@@ -1100,6 +1100,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)getLotteryHistory {
 
+    if (self.nextIssueModel == nil ) {
+        return;
+    }
     NSString *dataStr = nil;
     if (![self.nextIssueModel.lowFreq isEqualToString:@"1"]) {
         dataStr =  [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
