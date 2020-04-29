@@ -21,10 +21,13 @@
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
+
 @property (nonatomic) UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 @property (nonatomic) UITableView *headerTabView;
 @property (nonatomic) NSMutableArray <UGLotteryHistoryModel *> *dataArray;/**<   历史开奖数据*/
 @property (nonatomic) UGNextIssueModel *nextIssueModel;
+
+@property ( nonatomic) IBOutlet UIButton *historyBtn;
 @end
 
 
@@ -54,6 +57,10 @@
     
     if (self.shoulHideHeader) {
         [self hideHeader];
+        [self.historyBtn setEnabled:NO];
+    }
+    else{
+         [self.historyBtn setEnabled:YES];
     }
     [self getSystemConfig];     // APP配置信息
     
@@ -318,4 +325,29 @@
     AudioServicesPlaySystemSound( soundIDTest );
 }
 
+
+- (void)getLotteryHistory {
+
+    NSString *dataStr = nil;
+    if (![self.nextIssueModel.lowFreq isEqualToString:@"1"]) {
+        dataStr =  [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
+    }
+    else{
+        dataStr = nil;
+    }
+    
+    NSDictionary *params = @{@"id":self.nextIssueModel.gameId,
+                             @"date":dataStr ,
+                             };
+    [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [self.tableView.mj_header endRefreshing];
+        [CMResult processWithResult:model success:^{
+            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
+            [self.headerTabView reloadData];
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+    
+}
 @end

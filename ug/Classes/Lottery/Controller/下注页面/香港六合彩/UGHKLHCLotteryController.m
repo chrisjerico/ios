@@ -441,33 +441,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateOpenLabel];
 }
 
-- (void)getLotteryHistory {
 
-    if (!self.nextIssueModel) {
-        return;
-    }
-    NSString *dataStr = nil;
-    if (![self.nextIssueModel.lowFreq isEqualToString:@"1"]) {
-        dataStr =  [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
-    }
-    else{
-        dataStr = nil;
-    }
-    
-    NSDictionary *params = @{@"id":self.nextIssueModel.gameId,
-                             @"date":dataStr ,
-                             };
-    [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
-            [self.headerTabView reloadData];
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-    
-}
 #pragma mark - IBAction
 
 // 筹码弹框
@@ -1836,5 +1810,33 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
+
+//- (void)getLotteryHistory {
+//
+//    if (!self.nextIssueModel) {
+//        return;
+//    }
+//    NSString *dataStr = nil;
+//    if (![self.nextIssueModel.lowFreq isEqualToString:@"1"]) {
+//        dataStr =  [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
+//    }
+//    else{
+//        dataStr = nil;
+//    }
+//    
+//    NSDictionary *params = @{@"id":self.nextIssueModel.gameId,
+//                             @"date":dataStr ,
+//                             };
+//    [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+//        [self.tableView.mj_header endRefreshing];
+//        [CMResult processWithResult:model success:^{
+//            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
+//            [self.headerTabView reloadData];
+//        } failure:^(id msg) {
+//            [SVProgressHUD showErrorWithStatus:msg];
+//        }];
+//    }];
+//    
+//}
 @end
 
