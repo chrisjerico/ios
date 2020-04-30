@@ -224,9 +224,9 @@
     return [@"c208" containsString:_SiteId];
 }
 
-- (BOOL)isFireworks {
-    return [@"000" containsString:_SiteId];
-}
+//- (BOOL)isFireworks {
+//    return [@"000" containsString:_SiteId];
+//}
 
 - (BOOL)isParagraphSpacing {
     return [@"c134,c200,c213,a002" containsString:_SiteId];

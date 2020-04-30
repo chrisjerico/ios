@@ -66,13 +66,13 @@
     }];
     
     
-    if (APP.isFireworks) {
-        [_effImgView setHidden:NO];
-        _effImgView.contentMode = UIViewContentModeScaleAspectFit;
-        _effImgView.userInteractionEnabled = true;
-        [_effImgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
-    }
-   
+//    if (APP.isFireworks) {
+//        [_effImgView setHidden:NO];
+//        _effImgView.contentMode = UIViewContentModeScaleAspectFit;
+//        _effImgView.userInteractionEnabled = true;
+//        [_effImgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
+//    }
+//
 
 
     
@@ -95,12 +95,19 @@
         }
     }];
     
+    [self.effImgView sd_setImageWithURL:[NSURL URLWithString:item.hotIcon] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error) {
+            [__self.effImgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
+        }
+    }];
+    
     FastSubViewCode(self);
     BOOL isBlack = Skin1.isBlack;
     _hotImageView.hidden = isBlack || !item.tipFlag;
     subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
+    _effImgView.hidden = !(item.tipFlag==4);
 }
 
 

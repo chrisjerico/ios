@@ -66,7 +66,7 @@
 @property (nonatomic) BOOL isRedWhite;                             /**<  下注界面新年红模板样式 红白配色*/
 @property (nonatomic) BOOL oldConversion;                          /**<  老的转换界面*/
 @property (nonatomic) BOOL isParagraphSpacing;                     /**<  首页公告详情段落有间距*/
-@property (nonatomic) BOOL isFireworks;                            /**<  首页cell加烟花背景*/
+//@property (nonatomic) BOOL isFireworks;                            /**<  首页cell加烟花背景*/
 @property (nonatomic) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
 @property (nonatomic) BOOL isTabMassageBadge;                      /**< 底部导航栏【站内信】收到新的站内信时，添加提示功能 */
 @property (nonatomic) BOOL isTextWhite;                            /**< 投注页面封盘时间字体颜色需要调整为白色 */
