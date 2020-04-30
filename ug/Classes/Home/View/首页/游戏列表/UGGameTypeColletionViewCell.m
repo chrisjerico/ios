@@ -107,6 +107,7 @@
     subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
+
     _effImgView.hidden = !(item.tipFlag==4);
 }
 
