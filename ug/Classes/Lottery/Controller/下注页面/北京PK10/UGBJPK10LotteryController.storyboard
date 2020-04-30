@@ -78,9 +78,6 @@
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="历史记录按钮"/>
                                                 </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="showHistoryLottery:" destination="s2f-Wb-pWd" eventType="touchUpInside" id="drg-US-YR9"/>
-                                                </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_sx" translatesAutoresizingMaskIntoConstraints="NO" id="PCB-gA-l7o" userLabel="双箭头图片">
                                                 <rect key="frame" x="386" y="9" width="27" height="52"/>

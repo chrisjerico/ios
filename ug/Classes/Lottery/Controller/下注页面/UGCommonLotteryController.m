@@ -26,6 +26,7 @@
 @property (nonatomic) UITableView *headerTabView;
 @property (nonatomic) NSMutableArray <UGLotteryHistoryModel *> *dataArray;/**<   历史开奖数据*/
 @property (nonatomic) UGNextIssueModel *nextIssueModel;
+@property (nonatomic) UIView *headerMidView;/**<头 中*/
 
 @property ( nonatomic) IBOutlet UIButton *historyBtn;
 @end
@@ -200,6 +201,18 @@
                 [subImageView(@"开奖喇叭ImgV") setImage:[UIImage imageNamed:@"icon_sound01"]];
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"lotteryHormIsOpen"];//下注界面喇叭
             }
+        }];
+        
+        [subButton(@"历史记录按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            // 切换按钮的状态
+            sender.selected = !sender.selected;
+            if (sender.selected) { // 按下去了就是明文
+                self.headerMidView.hidden = NO;
+            } else { // 暗文
+                self.headerMidView.hidden = YES;
+            }
+            [self getLotteryHistory];
+            
         }];
         
         [subImageView(@"开奖喇叭ImgV") setHidden:YES];

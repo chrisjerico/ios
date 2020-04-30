@@ -824,39 +824,5 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _gameDataArray;
 }
 
-- (IBAction)showHistoryLottery:(UIButton *)sender {
-    // 切换按钮的状态
-    sender.selected = !sender.selected;
-    if (sender.selected) { // 按下去了就是明文
-        self.headerMidView.hidden = NO;
-    } else { // 暗文
-        self.headerMidView.hidden = YES;
-    }
-    
-}
-//
-//- (void)getLotteryHistory {
-//
-//    NSString *dataStr = nil;
-//    if (![self.nextIssueModel.lowFreq isEqualToString:@"1"]) {
-//        dataStr =  [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd"];
-//    }
-//    else{
-//        dataStr = nil;
-//    }
-//    
-//    NSDictionary *params = @{@"id":self.nextIssueModel.gameId,
-//                             @"date":dataStr ,
-//                             };
-//    [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-//        [self.tableView.mj_header endRefreshing];
-//        [CMResult processWithResult:model success:^{
-//            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
-//            [self.headerTabView reloadData];
-//        } failure:^(id msg) {
-//            [SVProgressHUD showErrorWithStatus:msg];
-//        }];
-//    }];
-//    
-//}
+
 @end
