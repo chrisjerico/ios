@@ -103,7 +103,14 @@
     
     FastSubViewCode(self);
     BOOL isBlack = Skin1.isBlack;
-    _hotImageView.hidden = isBlack || !item.tipFlag;
+    
+    if (item.tipFlag==1) {
+        if (isBlack) {
+               _hotImageView.hidden = YES;
+        } else {
+               _hotImageView.hidden = NO;
+        }
+    }
     subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
