@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DZPMainView : UIView
 
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
 @end
 
 NS_ASSUME_NONNULL_END

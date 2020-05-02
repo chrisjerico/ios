@@ -8,6 +8,7 @@
 
 #import "LYLuckyCardCellView.h"
 
+
 @interface LYLuckyCardCellView ()
 
 @end
@@ -31,14 +32,12 @@
     self.label.center = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0 );
     [self addSubview:self.label];
     
-    _imageView = [UIImageView new];
+    _imageView = [FLAnimatedImageView new];
     _imageView.frame = CGRectMake(0, 0, 50, 50);
     _imageView.center = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0 - 45);
     [self addSubview:self.imageView];
 }
 
-- (void)configCell:(NSInteger)type {
-    self.label.text = [NSString stringWithFormat:@"第%@个", @(type)];
-}
+
 
 @end

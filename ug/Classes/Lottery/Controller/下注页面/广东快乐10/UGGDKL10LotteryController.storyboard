@@ -299,6 +299,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="chipClick:" destination="4k1-Qb-ehd" eventType="touchUpInside" id="wfm-bZ-e8C"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-QY-ShJ" userLabel="下注" customClass="IBButton">
                                         <rect key="frame" x="274" y="12" width="60" height="36"/>
@@ -316,6 +319,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="betClick:" destination="4k1-Qb-ehd" eventType="touchUpInside" id="LJz-2T-5Kd"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfY-UH-fWc" userLabel="重置" customClass="IBButton">
                                         <rect key="frame" x="344" y="12" width="60" height="36"/>
@@ -333,6 +339,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="resetClick:" destination="4k1-Qb-ehd" eventType="touchUpInside" id="Zxd-ai-zIT"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvQ-rt-ZbT" userLabel="封盘">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>

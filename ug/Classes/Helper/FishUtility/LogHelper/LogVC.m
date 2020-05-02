@@ -18,6 +18,8 @@
 #import "UGPromotionsListController.h"
 #import "DZPMainView.h"
 
+
+#import "DZPModel.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -33,6 +35,10 @@
 @property (nonatomic) NSArray <NSString *>*selectedModelKeys;       /**<    选中请求的参数名 */
 
 @property (nonatomic) NSMutableString *log;                         /**<    日志 */
+
+
+
+@property (nonatomic, strong) NSArray <DZPModel *> *dzpArray;   /**<   转盘活动数据 */
 @end
 
 @implementation LogVC
@@ -139,6 +145,52 @@ static LogVC *_logVC = nil;
     }
 }
 
+
+//大转盘
+- (void)getactivityTurntableList {
+ 
+    self.dzpArray = [NSArray new];
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             };
+    [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                 self.dzpArray = model.data;
+
+                if (self.dzpArray.count) {
+
+                   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:self.dzpArray];
+                    
+                    
+                    DZPModel *obj = [data objectAtIndex:0];
+                    
+                    
+                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        // 需要在主线程执行的代码
+                        
+                        DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
+                        [self.view addSubview:recordVC];
+                        [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.edges.equalTo(self.view);
+                        }];
+                        
+                        recordVC.dataArray = [DZPprizeModel mj_objectArrayWithKeyValuesArray:obj.param.prizeArr];
+                        
+                    });
+    
+                }
+
+            });
+            
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+
+        }];
+    }];
+}
 // 重发
 - (IBAction)onRepeatBtnClick:(UIButton *)sender {
     #define k_Height_NavContentBar 44.0f
@@ -151,32 +203,14 @@ static LogVC *_logVC = nil;
     
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"播音"];
         [titles addObject:@"聊天室"];
         [titles addObject:@"大转盘"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
 
         [ac setActionAtTitle:@"大转盘" handler:^(UIAlertAction *aa) {
-            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                // 需要在主线程执行的代码
-                
-                DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
-                [self.view addSubview:recordVC];
-                [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.edges.equalTo(self.view);
-                }];
-                
-            });
+                     [self getactivityTurntableList ];
         }];
-        [ac setActionAtTitle:@"播音" handler:^(UIAlertAction *aa) {
-                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    // 需要在主线程执行的代码
 
-//                    CMAudioPlayer *play = [[CMAudioPlayer alloc] init];
-//                    [play playerFileName:@"lottery" Type:@"wav"];
-                    
-                });
-        }];
         [ac setActionAtTitle:@"聊天室" handler:^(UIAlertAction *aa) {
             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 // 需要在主线程执行的代码

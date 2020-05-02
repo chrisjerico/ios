@@ -278,4 +278,39 @@
        
        CMMETHOD_END;
 }
+
+
+//大转盘活动数据 {TEST_HOST}}?c=activity&a=turntableList&token=F9YhrIONRI8jrSbKFNiJrFBo
++ (void)activityTurntableListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock
+{
+    CMMETHOD_BEGIN;
+       
+       [self.manager requestInMainThreadWithMethod:[activityTurntableListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                            params:params
+                                             model:nil
+                                              post:NO
+                                        completion:completionBlock];
+       
+       CMMETHOD_END;
+}
+
+//获取大转盘该用户当天抽奖日志（最新10条） {TEST_HOST}}?c=activity&a=turntableLog&token=F9YhrIONRI8jrSbKFNiJrFBo&activityId=13
+//方式：GET
+//参数 token
+//     activityId 活动id
++ (void)activityTurntableLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock
+{
+    CMMETHOD_BEGIN;
+       
+       [self.manager requestInMainThreadWithMethod:[activityTurntableLogUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                            params:params
+                                             model:nil
+                                              post:NO
+                                        completion:completionBlock];
+       
+       CMMETHOD_END;
+}
+
+
+
 @end

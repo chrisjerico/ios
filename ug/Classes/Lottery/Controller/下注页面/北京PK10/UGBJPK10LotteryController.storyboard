@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YfN-h2-Ubm">
-                                <rect key="frame" x="0.0" y="44" width="414" height="775"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9DV-4u-SqI" userLabel="头_上">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -237,10 +237,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZc-OW-hjH" userLabel="内容">
-                                        <rect key="frame" x="0.0" y="114" width="414" height="661"/>
+                                        <rect key="frame" x="0.0" y="114" width="414" height="644"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xYI-c8-mLQ" userLabel=" 玩法列表">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="661"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="644"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="110" id="M9a-eo-mX5"/>
@@ -251,7 +251,7 @@
                                                 </connections>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Bu1-fb-6Wz" userLabel="右边内容">
-                                                <rect key="frame" x="110" y="0.0" width="304" height="661"/>
+                                                <rect key="frame" x="110" y="0.0" width="304" height="644"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -268,16 +268,16 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNN-Td-hwh" userLabel="底部">
-                                <rect key="frame" x="0.0" y="819" width="414" height="82"/>
+                                <rect key="frame" x="0.0" y="802" width="414" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选中 0 注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yo4-r8-76h" userLabel="已选中">
-                                        <rect key="frame" x="10" y="3" width="73.5" height="0.0"/>
+                                        <rect key="frame" x="10" y="3" width="73.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入下注金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lqX-r6-nDe" userLabel="下注金额">
-                                        <rect key="frame" x="10" y="6" width="120" height="32"/>
+                                        <rect key="frame" x="10" y="23" width="120" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="eAh-wO-M2u"/>
                                             <constraint firstAttribute="height" constant="32" id="wqA-Vg-TDt"/>
@@ -307,6 +307,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="chipClick:" destination="s2f-Wb-pWd" eventType="touchUpInside" id="ccr-n9-5TR"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5H-IJ-aas" userLabel="下注" customClass="IBButton">
                                         <rect key="frame" x="274" y="12" width="60" height="36"/>
@@ -324,6 +327,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="betClick:" destination="s2f-Wb-pWd" eventType="touchUpInside" id="356-Vs-4EA"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qy5-n2-dVm" userLabel="重置" customClass="IBButton">
                                         <rect key="frame" x="344" y="12" width="60" height="36"/>
@@ -341,12 +347,15 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="resetClick:" destination="s2f-Wb-pWd" eventType="touchUpInside" id="amy-yb-KVD"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Yt-OH-qUr" userLabel="封盘">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHO-x9-0Og">
-                                                <rect key="frame" x="182.5" y="23" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="31.5" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>

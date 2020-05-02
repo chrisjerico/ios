@@ -61,6 +61,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //首页左右浮窗  {TEST_HOST}}?c=system&a=floatAds&token={{TOKEN}
 + (void)systemfloatAdsWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//大转盘活动数据 {TEST_HOST}}?c=activity&a=turntableList&token=F9YhrIONRI8jrSbKFNiJrFBo
++ (void)activityTurntableListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

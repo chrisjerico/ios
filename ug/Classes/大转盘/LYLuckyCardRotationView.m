@@ -42,22 +42,48 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.cellArray = [NSMutableArray arrayWithCapacity:kLuckyCardCellCount];
-    CGFloat angle = 2 * M_PI / (CGFloat)kLuckyCardCellCount;
-    for (int i = 0; i < kLuckyCardCellCount; i++) {
+//    self.cellArray = [NSMutableArray arrayWithCapacity:kLuckyCardCellCount];
+//    CGFloat angle = 2 * M_PI / (CGFloat)kLuckyCardCellCount;
+//    for (int i = 0; i < kLuckyCardCellCount; i++) {
+//        CGRect cellFrame = CGRectZero;
+//        cellFrame.origin = CGPointMake(0, 0);
+//        cellFrame.size = kLuckyCardCellViewSize;
+//        LYLuckyCardCellView *cellView = [[LYLuckyCardCellView alloc] initWithFrame:cellFrame];
+//        [cellView configCell:i + 1];
+//        cellView.imageView.image = [UIImage imageNamed:@"dzp_Icon"];
+//        cellView.layer.anchorPoint = CGPointMake(0.5, 1);
+//        cellView.layer.position = CGPointMake(self.canRotationView.bounds.size.width / 2.0, self.canRotationView.bounds.size.height / 2.0);
+//        cellView.transform = CGAffineTransformMakeRotation(angle * i);
+//        [self.canRotationView addSubview:cellView];
+//        [self.cellArray addObject:cellView];
+//    }
+}
+
+
+-(void)setDataArray:(NSArray<DZPprizeModel *> *)dataArray{
+    _dataArray = dataArray;
+    self.cellArray = [NSMutableArray arrayWithCapacity:_dataArray.count];
+    CGFloat angle = 2 * M_PI / (CGFloat)_dataArray.count;
+    for (int i = 0; i < _dataArray.count; i++) {
+        
+        DZPprizeModel *model = [_dataArray objectAtIndex:i];
         CGRect cellFrame = CGRectZero;
         cellFrame.origin = CGPointMake(0, 0);
         cellFrame.size = kLuckyCardCellViewSize;
         LYLuckyCardCellView *cellView = [[LYLuckyCardCellView alloc] initWithFrame:cellFrame];
-        [cellView configCell:i + 1];
-        cellView.imageView.image = [UIImage imageNamed:@"dzp_Icon"];
+        [cellView.label setText:model.prizeName];
+        [cellView.imageView sd_setImageWithURL:[NSURL URLWithString:model.prizeIcon] placeholderImage:[UIImage imageNamed:@"loading"]];
         cellView.layer.anchorPoint = CGPointMake(0.5, 1);
         cellView.layer.position = CGPointMake(self.canRotationView.bounds.size.width / 2.0, self.canRotationView.bounds.size.height / 2.0);
         cellView.transform = CGAffineTransformMakeRotation(angle * i);
         [self.canRotationView addSubview:cellView];
         [self.cellArray addObject:cellView];
     }
+    
+    [self setNeedsDisplay];
 }
+
+
 
 - (IBAction)beginAction:(id)sender {
     [self beignRotaion];
@@ -65,7 +91,7 @@
 
 //开启动画方法
 - (void)beignRotaion {
-    NSInteger index = random() % kLuckyCardCellCount;
+    NSInteger index = random() % _dataArray.count;
     LYLuckyCardCellView *cellView = self.cellArray[index];
     CGFloat angle = atan2(cellView.transform.b, cellView.transform.a);
     self.canRotationView.transform = CGAffineTransformMakeRotation(-angle);

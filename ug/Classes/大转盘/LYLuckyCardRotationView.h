@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DZPModel.h"
 @interface LYLuckyCardRotationView : UIView
-
+@property (nonatomic, strong) NSArray<DZPprizeModel*> *dataArray;
 - (void)beignRotaion;
 
 @end

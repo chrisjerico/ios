@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FLAnimatedImageView.h"
 
 @interface LYLuckyCardCellView : UIView
 @property (nonatomic, strong) UILabel *label;
-@property (nonatomic, strong) UIImageView *imageView;
-- (void)configCell:(NSInteger)type;
+@property (nonatomic, strong) FLAnimatedImageView *imageView;
+
 
 @end

@@ -1926,6 +1926,7 @@
 		D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC123A773F9008EF03D /* libz.tbd */; };
 		D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC323A77404008EF03D /* UserNotifications.framework */; };
 		D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AC523A7740E008EF03D /* libresolv.tbd */; };
+		D4468CA7245D3F1000EA7573 /* DZPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4468CA6245D3F1000EA7573 /* DZPModel.m */; };
 		D4486C1E241A545A00E5CCEA /* RoomChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4486C1D241A545A00E5CCEA /* RoomChatModel.m */; };
 		D4486C27241D082E00E5CCEA /* OnlineServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4486C26241D082E00E5CCEA /* OnlineServiceViewController.m */; };
 		D451A46623F538B000CD0E36 /* JYGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D451A46523F538B000CD0E36 /* JYGameCollectionViewCell.m */; };
@@ -3784,6 +3785,8 @@
 		D4463AC123A773F9008EF03D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D4463AC323A77404008EF03D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D4463AC523A7740E008EF03D /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		D4468CA5245D3F1000EA7573 /* DZPModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPModel.h; sourceTree = "<group>"; };
+		D4468CA6245D3F1000EA7573 /* DZPModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPModel.m; sourceTree = "<group>"; };
 		D4486C1C241A545A00E5CCEA /* RoomChatModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoomChatModel.h; sourceTree = "<group>"; };
 		D4486C1D241A545A00E5CCEA /* RoomChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomChatModel.m; sourceTree = "<group>"; };
 		D4486C25241D082E00E5CCEA /* OnlineServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnlineServiceViewController.h; sourceTree = "<group>"; };
@@ -7888,6 +7891,7 @@
 		D43DAF6524532A320014A301 /* 大转盘 */ = {
 			isa = PBXGroup;
 			children = (
+				D4468CA3245D3E4B00EA7573 /* models */,
 				D43DAF672453EFBF0014A301 /* DZPMainView.h */,
 				D43DAF682453EFBF0014A301 /* DZPMainView.m */,
 				D43DAF6B2453F2DF0014A301 /* DZPMainView.xib */,
@@ -7936,6 +7940,15 @@
 				D442590423E949F00067E981 /* LHHornView.xib */,
 			);
 			path = "喇叭";
+			sourceTree = "<group>";
+		};
+		D4468CA3245D3E4B00EA7573 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				D4468CA5245D3F1000EA7573 /* DZPModel.h */,
+				D4468CA6245D3F1000EA7573 /* DZPModel.m */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		D4486C23241D07EE00E5CCEA /* 在线客服 */ = {
@@ -10094,6 +10107,7 @@
 				031E1CD623BE812A00B0F813 /* MJRefreshAutoStateFooter.m in Sources */,
 				D42072332456AE80008D0749 /* DZPTwoView.m in Sources */,
 				D420722D2456A8DB008D0749 /* DZPOneView.m in Sources */,
+				D4468CA7245D3F1000EA7573 /* DZPModel.m in Sources */,
 				031E1D7423BE812B00B0F813 /* UGWriteMessageViewController.m in Sources */,
 				D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */,
 				031E1A3223BE812700B0F813 /* CMNetwork+Document.m in Sources */,

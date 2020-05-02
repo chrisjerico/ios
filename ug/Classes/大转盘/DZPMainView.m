@@ -12,6 +12,7 @@
 #import "DZPTwoView.h"
 #import "DZPOneView.h"
 #import "FLAnimatedImageView.h"
+#import "DZPModel.h"
 @interface DZPMainView ()
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgGif;//转盘头部gif
@@ -21,6 +22,8 @@
 
 @property (strong, nonatomic)  DZPTwoView *twoView;
 @property (strong, nonatomic)  DZPOneView *oneView;
+
+@property (nonatomic, strong) NSArray <DZPModel *> *dzpArray;   /**<   转盘活动数据 */
 
 @end
 
@@ -43,6 +46,8 @@
         [v mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
+        
+
     }
     return self;
 }
@@ -70,6 +75,8 @@
         [_oneView mas_makeConstraints:^(MASConstraintMaker *make) {
              make.edges.equalTo(_contentView);
          }];
+        
+       
         
     }
     return self;
@@ -106,4 +113,13 @@
 - (IBAction)close:(id)sender {
     [self hiddenSelf];
 }
+
+
+
+-(void)setDataArray:(NSMutableArray*)dataArray{
+    _dataArray = dataArray;
+    self.mDZPView.dataArray =  dataArray;
+}
+
+
 @end
