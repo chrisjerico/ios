@@ -38,7 +38,7 @@ static BOOL isFish = false;
         _rnProjectDir = isFish ? @"/Users/fish/自动打包/pack" : @"/Users/ug/自动打包/pack";
         _jspatchDir = _NSString(@"%@/js/jspatch", _rnProjectDir);
         _iosProjectDir = _NSString(@"%@/ios", _rnProjectDir);
-        _shellDir = [_iosProjectDir stringByAppendingPathComponent:@"AutoPacking/sh"];
+        _shellDir = [_iosProjectDir stringByAppendingPathComponent:@"AutoPacking/AutoPacking/sh"];
         
         _tempIpa        = [_iosProjectDir stringByAppendingPathComponent:@"ug.ipa"];
         _tempXcarchive  = [_iosProjectDir stringByAppendingPathComponent:@"ug.xcarchive"];
