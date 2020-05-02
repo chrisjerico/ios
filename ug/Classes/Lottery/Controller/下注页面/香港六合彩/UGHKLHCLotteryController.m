@@ -204,7 +204,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateOpenLabel];
     self.chipArray = @[@"10", @"100", @"1000", @"10000", @"清除"];
     self.countDown = [[CountDown alloc] init];
-    [self updateHeaderViewData];
+
     self.nextIssueCountDown = [[CountDown alloc] init];
     
     [self updateHeaderViewData];
@@ -240,6 +240,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0
                 || nim.curIssue.intValue != nim.preIssue.intValue+1) {
                 [weakSelf getNextIssueData];
+                [weakSelf getLotteryHistory];
             }
         }];
     }

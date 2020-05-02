@@ -356,7 +356,11 @@
         [self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
-            [self.headerTabView reloadData];
+            if (self.dataArray.count>1) {
+                [self.dataArray removeFirstObject];
+                 [self.headerTabView reloadData];
+            }
+           
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

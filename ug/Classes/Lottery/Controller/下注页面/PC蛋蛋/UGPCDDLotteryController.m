@@ -182,6 +182,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if ([[nim.curOpenTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSinceDate:[NSDate date]] < 0
                 || nim.curIssue.intValue != nim.preIssue.intValue+1) {
                 [weakSelf getNextIssueData];
+                   [weakSelf getLotteryHistory];
             }
         }];
     }
