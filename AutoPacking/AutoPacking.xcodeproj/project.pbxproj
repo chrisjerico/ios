@@ -173,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				CF5D3DFA2397813D00CC3D6B /* 引用主项目的文件（别改会影响主项目） */,
+				CF5D3D9E2396BC4600CC3D6B /* sh */,
 				CF5D3E5223978BEC00CC3D6B /* CCNetworkRequests2 */,
 				CFDB111A23A15C060040DE2B /* define */,
 				CF5D3D692396B8CE00CC3D6B /* AppDelegate.h */,
@@ -211,13 +212,12 @@
 				CFE8765523D424A200BAA5D4 /* 8zip.sh */,
 			);
 			name = sh;
-			path = "AutoPacking/引用主项目的文件（别改会影响主项目）/sh";
+			path = AutoPacking/sh;
 			sourceTree = SOURCE_ROOT;
 		};
 		CF5D3DFA2397813D00CC3D6B /* 引用主项目的文件（别改会影响主项目） */ = {
 			isa = PBXGroup;
 			children = (
-				CF5D3D9E2396BC4600CC3D6B /* sh */,
 				CFDB113C23A3D2670040DE2B /* cc_runtime_property.h */,
 				CF5D3E66239792B300CC3D6B /* JRSwizzle */,
 				CF5D3E562397929E00CC3D6B /* Safe */,
