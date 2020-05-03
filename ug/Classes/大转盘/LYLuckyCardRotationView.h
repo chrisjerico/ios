@@ -10,6 +10,9 @@
 #import "DZPModel.h"
 @interface LYLuckyCardRotationView : UIView
 @property (nonatomic, strong) NSArray<DZPprizeModel*> *dataArray;
+
+@property (weak, nonatomic) IBOutlet UIView *canRotationView;//可旋转的图
+@property (nonatomic, strong) CABasicAnimation *animationPart1;
 - (void)beignRotaion;
 
 @end

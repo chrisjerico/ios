@@ -86,7 +86,7 @@
                 <constraint firstItem="TLH-NI-WkC" firstAttribute="centerY" secondItem="nht-FG-dcf" secondAttribute="centerY" id="pJh-dF-iNT"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="19" y="-40"/>
+            <point key="canvasLocation" x="17.600000000000001" y="-40.479760119940032"/>
         </view>
     </objects>
     <resources>

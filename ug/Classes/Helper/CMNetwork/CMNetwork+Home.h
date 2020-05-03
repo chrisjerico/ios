@@ -64,6 +64,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //大转盘活动数据 {TEST_HOST}}?c=activity&a=turntableList&token=F9YhrIONRI8jrSbKFNiJrFBo
 + (void)activityTurntableListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//抽奖接口： http://test28f.fhptcdn.com//wjapp/api.php?c=activity&a=turntableWin
+//方式：POST
+//参数 token
+//     activityId 活动id
++ (void)activityTurntableWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

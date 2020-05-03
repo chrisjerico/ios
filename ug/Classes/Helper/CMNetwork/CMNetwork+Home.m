@@ -310,7 +310,20 @@
        
        CMMETHOD_END;
 }
-
-
+//抽奖接口： http://test28f.fhptcdn.com//wjapp/api.php?c=activity&a=turntableWin
+//方式：POST
+//参数 token
+//     activityId 活动id
++ (void)activityTurntableWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[activityTurntableWinUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 
 @end

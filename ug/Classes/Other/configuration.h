@@ -258,6 +258,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define  activityTurntableLogUrl   [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=turntableLog"]
 
+#define  activityTurntableWinUrl   [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=turntableWin"]
+
 #define ticketlotteryStatisticsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=lotteryStatistics"]
 // 走势
 #define ownLotteryListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"/eapi/own_lottery_list?"]

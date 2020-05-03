@@ -37,7 +37,9 @@
     _imageView.center = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0 - 45);
     [self addSubview:self.imageView];
 }
-
+-(void)configCell:(int )a{
+    self.label.text = [NSString stringWithFormat:@"第%d个",a];
+}
 
 
 @end
