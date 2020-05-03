@@ -461,7 +461,8 @@
         [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         
-        
+        self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+        [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
         
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         if (Skin1.isJY) {
@@ -684,28 +685,34 @@
     
     // 拉取数据
     _contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [__self getSystemConfig];     // APP配置信息
-        [__self getBannerList];       // Banner图
-        //        if (__self.notiveView == nil) {
-        [__self getNoticeList];   // 公告列表
+//        [__self getSystemConfig];     // APP配置信息
+//        [__self getBannerList];       // Banner图
+//        //        if (__self.notiveView == nil) {
+//        [__self getNoticeList];   // 公告列表
+//        //        }
+//        [__self getUserInfo];         // 用户信息
+//        [__self getCheckinListData];  // 红包数据
+//        [__self systemOnlineCount];   // 在线人数
+//        [__self getPromoteList];      // 优惠活动
+//        [__self getRankList];         // 投注排行榜/中奖排行榜
+//        [__self gethomeAdsList];      //首页广告图片
+//        [__self chatgetToken] ;        //在线配置的聊天室
+//        [__self getfloatAdsList];      //首页左右浮窗
+//
+//        //        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+//        [__self getCategoryList];     //栏目列表
+//        [__self getPlatformGamesWithParams];//购彩大厅信息
+//        [__self.lhPrizeView getLotteryNumberList];
         //        }
-        [__self getUserInfo];         // 用户信息
-        [__self getCheckinListData];  // 红包数据
-        [__self systemOnlineCount];   // 在线人数
-        [__self getPromoteList];      // 优惠活动
-        [__self getRankList];         // 投注排行榜/中奖排行榜
-        [__self gethomeAdsList];      //首页广告图片
-        [__self chatgetToken] ;        //在线配置的聊天室
-        [__self getfloatAdsList];      //首页左右浮窗
         
-        //        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-        [__self getCategoryList];     //栏目列表
-        [__self getPlatformGamesWithParams];//购彩大厅信息
-        [__self.lhPrizeView getLotteryNumberList];
-        //        }
+        [__self requestUrl];
         
         
     }];
+    
+    
+    
+    
     if (_contentScrollView.mj_header.refreshingBlock) {
         _contentScrollView.mj_header.refreshingBlock();
     }
@@ -720,6 +727,128 @@
     }
     
 }
+
+-(void)requestUrl{
+    // 创建信号量
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    // 创建全局并行
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求一  // APP配置信息
+          [self getSystemConfig];     // APP配置信息
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求二 // Banner图
+        [self getBannerList];       // Banner图
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求3  公告列表
+         [self getNoticeList];   // 公告列表
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求4  用户信息
+        [self getUserInfo];         // 用户信息
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求5 红包数据
+         [self getCheckinListData];  // 红包数据
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求6 在线人数
+        [self systemOnlineCount];   // 在线人数
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求7在线人数
+        [self getPromoteList];    // 优惠活动
+        
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求8在线人数
+           [self getRankList];     // 投注排行榜/中奖排行榜
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求9 在线人数
+           [self gethomeAdsList];     // 首页广告图片
+           
+    });
+       
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求10 在线人数
+           [self chatgetToken];     // 在线配置的聊天室
+           
+    });
+       
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求11 在线人数
+           [self getfloatAdsList];     // 首页左右浮窗
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求12 在线人数
+           [self getCategoryList];     //栏目列表
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求13在线人数
+           [self getPlatformGamesWithParams];     //购彩大厅信息
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求14 在线人数
+           [self.lhPrizeView  getLotteryNumberList];     //购彩大厅信息
+           
+    });
+       
+       
+    
+    dispatch_group_notify(group, queue, ^{
+        
+        // 三个请求对应三次信号等待
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        //在这里 进行请求后的方法，回到主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+        });
+        
+        
+    });
+}
+
 
 - (BOOL)prefersStatusBarHidden {
     return NO;
@@ -1194,9 +1323,8 @@
                     [self.leftwardMarqueeViewData addObject:notice.title];
                 }
                 [self.leftwardMarqueeView reloadData];
-                if (self.popNoticeArray.count) {
-                    [self showPlatformNoticeView];
-                }
+   
+                [self showPlatformNoticeView];
             });
         } failure:nil];
     }];
@@ -1540,18 +1668,11 @@
 
 
 - (void)showPlatformNoticeView {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (self.notiveView == nil) {
-        if (!appDelegate.notiveViewHasShow) {
-            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
-            self.notiveView.dataArray = self.popNoticeArray;
-            [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-            
-        }
-        
-    }
+    
+    self.notiveView.dataArray = self.popNoticeArray;
+    
     [self.notiveView show];
-    appDelegate.notiveViewHasShow = YES;
+    
     
     
 }

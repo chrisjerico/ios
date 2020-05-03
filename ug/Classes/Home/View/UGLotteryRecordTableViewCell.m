@@ -44,22 +44,8 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
         [_issueLabel setTextColor:[UIColor blackColor]];
     }
     
-    
-    self.backgroundColor = Skin1.textColor4;
-    
-    if (!APP.betBgIsWhite) {
-        [self insertSubview:({
-            UIView *bgView = [[UIView alloc] initWithFrame:APP.Bounds];
-            if (APP.isLight) {
-                bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
-            }
-            else{
-                bgView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
-            }
-            
-            bgView;
-        }) atIndex:0];
-    }
+    [self setBackgroundColor:Skin1.bgColor];
+
 }
 
 - (void)setItem:(UGLotteryHistoryModel *)item {

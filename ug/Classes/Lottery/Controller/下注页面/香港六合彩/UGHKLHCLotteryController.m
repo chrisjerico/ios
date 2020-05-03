@@ -164,7 +164,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
           make.left.equalTo(_tableView.mas_right).with.offset(0);
           make.top.right.bottom.equalTo(self.contentView).offset(0);
       }];
-     
+ 
+     [self.headerTabView  mas_remakeConstraints:^(MASConstraintMaker *make)
+      {
+          make.left.right.equalTo(self.headerMidView).with.offset(0);
+          make.top.bottom.equalTo(self.headerMidView).offset(0);
+         
+      }];
     
     
     self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -1662,8 +1668,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [self.headerTabView setBackgroundColor:[UIColor clearColor]];
         self.headerTabView.delegate = self;
         self.headerTabView.dataSource = self;
-        self.headerTabView.estimatedSectionHeaderHeight = 0;
-        self.headerTabView.estimatedSectionFooterHeight = 0;
+
     
     return _headerTabView;
 }
