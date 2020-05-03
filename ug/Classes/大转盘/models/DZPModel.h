@@ -77,9 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *prizeType;   /**<  奖品类型 1为彩金 2为积分 3为其他 4为 未中奖 */
 
 @property (nonatomic, strong) NSString *prizeMsg;   /**<  信息*/
-@property (nonatomic) int *prizeflag;   /**<是否中奖标识 0为未中奖 1为中奖*/
-@property (nonatomic) int *integralOld;   /**<抽奖前积分*/
-@property (nonatomic) int *integral;   /**<抽奖后积分（算上中奖的）*/
+@property (nonatomic) int prizeflag;   /**<是否中奖标识 0为未中奖 1为中奖*/
+@property (nonatomic) int integralOld;   /**<抽奖前积分*/
+@property (nonatomic) int integral;   /**<抽奖后积分（算上中奖的）*/
 @end
 
 @protocol DZPparamModel <NSObject>

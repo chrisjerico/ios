@@ -81,6 +81,7 @@
         cellView.layer.anchorPoint = CGPointMake(0.5, 1);
         cellView.layer.position = CGPointMake(self.canRotationView.bounds.size.width / 2.0, self.canRotationView.bounds.size.height / 2.0);
         cellView.transform = CGAffineTransformMakeRotation(angle * i);
+        
         [self.canRotationView addSubview:cellView];
         [self.cellArray addObject:cellView];
     }
@@ -113,9 +114,9 @@
     CABasicAnimation *animationPart1 = [CABasicAnimation animation];
      animationPart1.keyPath = @"transform.rotation";
     //  最初的动画位置
-        animationPart1.fromValue = [NSNumber numberWithDouble:1.0];
-    //  结束的动画位置
-        animationPart1.toValue = [NSNumber numberWithDouble:0.0];
+//        animationPart1.fromValue = [NSNumber numberWithDouble:1.0];
+//    //  结束的动画位置
+//        animationPart1.toValue = [NSNumber numberWithDouble:0.0];
 //    animationPart1.byValue = @(randomInt * 2 * M_PI);
        animationPart1.byValue = @(5 * 2 * M_PI);
     //    动画间隔时间
@@ -137,38 +138,36 @@
     NSLog(@"");
 }
 //动画方法
-//- (void)animationPart {
-//
-//    [self.canRotationView.layer removeAllAnimations];
-//
-//    self.animationPart1 = [CABasicAnimation animation];
-//    _animationPart1.keyPath = @"transform.rotation";
-//    //  最初的动画位置
-//        _animationPart1.fromValue = [NSNumber numberWithDouble:1.0];
-//    //  结束的动画位置
-//        _animationPart1.toValue = [NSNumber numberWithDouble:0.0];
-////    animationPart1.byValue = @(randomInt * 2 * M_PI);
-////    _animationPart1.byValue = @(2.25 * 2 * M_PI);
-//    //    动画间隔时间
-//        _animationPart1.duration= 3.0;
-//        _animationPart1.autoreverses= NO;
-//    //    动画完成之后是否还原
-//        _animationPart1.removedOnCompletion= NO;
-//    //     动画的次数      FLT_MAX=="forever"
-////    _animationPart1.repeatCount = CGFLOAT_MAX;
-//    //    设置代理
-//        _animationPart1.delegate = self;
-//
-//    _animationPart1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]; //由快变慢
-//    _animationPart1.fillMode = kCAFillModeForwards;
-//
-//
-//
-//
-//    [self.canRotationView.layer addAnimation:_animationPart1 forKey:@"animationPart1"];
-//
-//    NSLog(@"");
-//}
+- (void)animationPart :(float )angle{
+
+    self.animationPart = [CABasicAnimation animation];
+    _animationPart.keyPath = @"transform.rotation";
+    //  最初的动画位置
+        _animationPart.fromValue = [NSNumber numberWithDouble:0.0];
+    //  结束的动画位置
+        _animationPart.toValue = [NSNumber numberWithDouble:angle];
+//    animationPart1.byValue = @(randomInt * 2 * M_PI);
+//    _animationPart1.byValue = @(2.25 * 2 * M_PI);
+    //    动画间隔时间
+        _animationPart.duration= 3.0;
+        _animationPart.autoreverses= NO;
+    //    动画完成之后是否还原
+        _animationPart.removedOnCompletion= NO;
+    //     动画的次数      FLT_MAX=="forever"
+//    _animationPart1.repeatCount = CGFLOAT_MAX;
+    //    设置代理
+        _animationPart.delegate = self;
+
+    _animationPart.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]; //由快变慢
+    _animationPart.fillMode = kCAFillModeForwards;
+
+
+
+
+    [self.canRotationView.layer addAnimation:_animationPart forKey:@"animationPart"];
+
+    NSLog(@"");
+}
 
 #pragma mark -CAAnimationDelegate
 - (void)animationDidStart:(CAAnimation *)anim
@@ -180,15 +179,72 @@
     
     NSLog(@"animationDidStop%@",self.layer.animationKeys);
 
-//    if (anim==[self.layer animationForKey:DISMISSANIMATION]) {
-//        [self removeFromSuperview];
-//
-//    }
-//
+    if (anim==[self.layer animationForKey:@"animationPart"]) {
+        NSLog(@"提示中奖");
+        
+
+    }
+
 }
 
 #pragma mark -网络请求
+//"prizeId": 2,  奖品id
+//  "prizeIcon": "https://cdn01.asqmena.com/upload/t028/customise/images/157976179284prizeIconNew.jpg?v=1579761792", 奖品图标
+//  "prizeIconName": "157976179284prizeIconNew", 图标名字
+//  "prizeName": "3",奖品名称
+//  "prizeType": "4",奖品类型 参考后台 1为彩金 2为积分 3为其他 4为 未中奖
+//  "prizeAmount": "0",中奖数值
+//  "prizeMsg": "未中奖", 信息
+//  "prizeflag": 0, 是否中奖标识 0为未中奖 1为中奖
+//  "integralOld": 3708, 抽奖前积分
+//  "integral": 3708 抽奖后积分（算上中奖的）
+- (void)loadData {
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
 
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"activityId":self.DZPid,
+                             
+    };
+
+    WeakSelf;
+    //投注记录信息
+    [CMNetwork activityTurntableWinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+           
+            NSDictionary *data =  model.data;
+           DZPprizeModel *obj = [DZPprizeModel mj_setKeyValues:data];
+            if (obj.prizeflag == 1) {//中奖
+
+                NSLog(@"奖品id = %@", obj.prizeId );
+                //计算角度，开启动画
+                for (int i = 0; i < self->_dataArray.count; i++) {
+                     DZPprizeModel *model = [weakSelf.dataArray objectAtIndex:i];
+                    if ([model.prizeId isEqualToString:obj.prizeId ]) {
+                    
+                        float angle = i/weakSelf.dataArray.count;
+                        
+                        [self animationPart:angle];
+                        
+                        break;
+                    }
+                }
+                
+                
+            } else  if (obj.prizeflag == 0) {//没中奖
+                           
+            }
+            
+            
+            
+
+        } failure:^(id msg) {
+            
+        }];
+    }];
+}
 
 
 @end
