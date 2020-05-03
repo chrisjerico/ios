@@ -800,7 +800,6 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
         [self.headerTabView setBackgroundColor:[UIColor clearColor]];
         self.headerTabView.delegate = self;
         self.headerTabView.dataSource = self;
-        self.headerTabView.estimatedRowHeight = 100;
         self.headerTabView.estimatedSectionHeaderHeight = 0;
         self.headerTabView.estimatedSectionFooterHeight = 0;
     
