@@ -208,12 +208,12 @@ static LogVC *_logVC = nil;
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
 
         [ac setActionAtTitle:@"大转盘" handler:^(UIAlertAction *aa) {
-//                     [self getactivityTurntableList ];
-            DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
-                                   [self.view addSubview:recordVC];
-                                   [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
-                                       make.edges.equalTo(self.view);
-                                   }];
+                     [self getactivityTurntableList ];
+//            DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
+//                                   [self.view addSubview:recordVC];
+//                                   [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
+//                                       make.edges.equalTo(self.view);
+//                                   }];
         }];
 
         [ac setActionAtTitle:@"聊天室" handler:^(UIAlertAction *aa) {

@@ -88,6 +88,14 @@
             oc.title = @"极速赛车";
             _nim = oc;
         }
+        else if ([@"c126" containsString:APP.SiteId]) {
+            UGNextIssueModel * oc = [UGNextIssueModel new];
+            oc.gameId = @"55";
+            oc.gameType = @"xyft";
+            oc.name = @"xyft";
+            oc.title = @"幸运飞艇";
+            _nim = oc;
+        }
         else {
             UGNextIssueModel * oc = [UGNextIssueModel new];
             oc.gameId = @"70";
