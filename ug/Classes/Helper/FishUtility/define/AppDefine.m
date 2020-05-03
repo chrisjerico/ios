@@ -388,7 +388,7 @@
 
 
 - (BOOL)isBA {
-    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134" containsString:_SiteId];
+    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092" containsString:_SiteId];
 }
 
 

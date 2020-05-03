@@ -205,13 +205,9 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
-
-    
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"activityId":self.DZPid,
-                             
     };
-
     WeakSelf;
     //投注记录信息
     [CMNetwork activityTurntableWinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -235,13 +231,9 @@
                     }
                 }
                 
-                
             } else  if (obj.prizeflag == 0) {//没中奖
                            
             }
-            
-            
-            
 
         } failure:^(id msg) {
             
