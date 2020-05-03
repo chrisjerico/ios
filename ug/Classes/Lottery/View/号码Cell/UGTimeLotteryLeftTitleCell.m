@@ -27,6 +27,7 @@
     if (APP.isRedWhite) {
         self.bottomLine.backgroundColor = RGBA(231, 213, 231, 1.0);
     }
+
 }
 
 - (void)setItem:(UGGameplayModel *)item {

@@ -65,11 +65,17 @@ NS_ASSUME_NONNULL_BEGIN
 //大转盘活动数据 {TEST_HOST}}?c=activity&a=turntableList&token=F9YhrIONRI8jrSbKFNiJrFBo
 + (void)activityTurntableListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//获取大转盘该用户当天抽奖日志（最新10条） {TEST_HOST}}?c=activity&a=turntableLog&token=F9YhrIONRI8jrSbKFNiJrFBo&activityId=13
+//方式：GET
+//参数 token
+//     activityId 活动id
++ (void)activityTurntableLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 //抽奖接口： http://test28f.fhptcdn.com//wjapp/api.php?c=activity&a=turntableWin
 //方式：POST
 //参数 token
 //     activityId 活动id
 + (void)activityTurntableWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

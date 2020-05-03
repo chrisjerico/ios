@@ -140,6 +140,9 @@
 //动画方法
 - (void)animationPart :(float )angle{
 
+    
+    [self activityTurntableWin];
+    
     self.animationPart = [CABasicAnimation animation];
     _animationPart.keyPath = @"transform.rotation";
     //  最初的动画位置
@@ -198,7 +201,7 @@
 //  "prizeflag": 0, 是否中奖标识 0为未中奖 1为中奖
 //  "integralOld": 3708, 抽奖前积分
 //  "integral": 3708 抽奖后积分（算上中奖的）
-- (void)loadData {
+- (void)activityTurntableWin {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }

@@ -150,6 +150,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
     [self tableViewInit];
     [self headertableViewInit];
+    [self.contentView setBackgroundColor:[UIColor clearColor]];
+      [self.tableView setBackgroundColor:[UIColor clearColor]];
+    [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.contentView.mas_left).with.offset(0);
@@ -1645,6 +1648,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+        _tableView.badgeBgColor = [UIColor clearColor];
 
     
     return _tableView;

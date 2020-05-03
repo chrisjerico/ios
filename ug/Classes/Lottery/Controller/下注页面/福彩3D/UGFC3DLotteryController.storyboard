@@ -114,6 +114,9 @@
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1bZ-hu-rei" userLabel="历史开奖">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="gnQ-tC-7Y5"/>
+                                                </constraints>
                                                 <connections>
                                                     <outlet property="dataSource" destination="8X6-Ey-2lP" id="PO2-tM-zFf"/>
                                                     <outlet property="delegate" destination="8X6-Ey-2lP" id="xS1-20-Ste"/>
