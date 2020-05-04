@@ -463,15 +463,7 @@
         
 
         
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        if (self.notiveView == nil) {
-            if (!appDelegate.notiveViewHasShow) {
-                self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
-                [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-                 appDelegate.notiveViewHasShow = YES;
-            }
-            
-        }
+
        
        
         
@@ -696,29 +688,12 @@
     
     // 拉取数据
     _contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [__self getSystemConfig];     // APP配置信息
-//        [__self getBannerList];       // Banner图
-//        //        if (__self.notiveView == nil) {
-//        [__self getNoticeList];   // 公告列表
-//        //        }
-//        [__self getUserInfo];         // 用户信息
-//        [__self getCheckinListData];  // 红包数据
-//        [__self systemOnlineCount];   // 在线人数
-//        [__self getPromoteList];      // 优惠活动
-//        [__self getRankList];         // 投注排行榜/中奖排行榜
-//        [__self gethomeAdsList];      //首页广告图片
-//        [__self chatgetToken] ;        //在线配置的聊天室
-//        [__self getfloatAdsList];      //首页左右浮窗
-//
-//        //        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-//        [__self getCategoryList];     //栏目列表
-//        [__self getPlatformGamesWithParams];//购彩大厅信息
-//        [__self.lhPrizeView getLotteryNumberList];
-        //        }
+
         
         [__self requestUrl];
         
-        
+
+       
     }];
     
     
@@ -1680,11 +1655,24 @@
 
 - (void)showPlatformNoticeView {
     
-    self.notiveView.dataArray = self.popNoticeArray;
     
-    [self.notiveView show];
+        //在这里 进行请求后的方法，回到主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    
+                if (!appDelegate.notiveViewHasShow) {
+                    UGPlatformNoticeView *notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+                    [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+                    notiveView.dataArray = self.popNoticeArray;
+                    [notiveView show];
+                    appDelegate.notiveViewHasShow = YES;
+                }
+
+        });
+        
+
+ 
     
 }
 

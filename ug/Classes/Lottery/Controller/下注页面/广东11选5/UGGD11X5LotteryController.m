@@ -127,7 +127,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
      [self tableViewInit];
      [self headertableViewInit];
     [self.contentView setBackgroundColor:[UIColor clearColor]];
-      [self.tableView setBackgroundColor:[UIColor clearColor]];
+
      [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
       {
          make.left.equalTo(self.contentView.mas_left).with.offset(0);

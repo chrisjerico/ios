@@ -90,6 +90,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
         UGLotteryResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotteryResultCellid forIndexPath:indexPath];
         cell.showAdd = NO;
         cell.showBorder = NO;
+        cell.showBall6 = APP.isBall6;
         
         if ([@"lhc" isEqualToString:self.item.gameType]) {
             cell.showBorder = NO;

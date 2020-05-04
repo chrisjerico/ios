@@ -84,6 +84,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 
 
 - (void)show {
+    
+ 
     [self.bgView setBackgroundColor: Skin1.navBarBgColor];
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
@@ -103,6 +105,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+     appDelegate.notiveViewHasShow = NO;
 }
 
 

@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iZn-uq-zUg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="775"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM5-lQ-nxw" userLabel="头_上">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -240,11 +240,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTq-f7-5VN" userLabel="内容">
-                                        <rect key="frame" x="0.0" y="114" width="414" height="661"/>
+                                        <rect key="frame" x="0.0" y="114" width="414" height="644"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fj4-x6-MyA" userLabel=" 玩法列表">
-                                                <rect key="frame" x="0.0" y="0.0" width="110" height="661"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="644"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="110" id="YEW-Nf-Ib3"/>
                                                 </constraints>
@@ -254,7 +254,8 @@
                                                 </connections>
                                             </tableView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fpW-sq-Uzu" userLabel="右边内容">
-                                                <rect key="frame" x="110" y="0.0" width="304" height="661"/>
+                                                <rect key="frame" x="110" y="0.0" width="304" height="644"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -271,16 +272,16 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FMs-xs-hGl" userLabel="底部">
-                                <rect key="frame" x="0.0" y="819" width="414" height="82"/>
+                                <rect key="frame" x="0.0" y="802" width="414" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选中 0 注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL4-lc-nbs" userLabel="已选中">
-                                        <rect key="frame" x="10" y="3" width="73.5" height="0.0"/>
+                                        <rect key="frame" x="10" y="3" width="73.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入下注金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gm8-z8-gT3" userLabel="下注金额">
-                                        <rect key="frame" x="10" y="6" width="120" height="32"/>
+                                        <rect key="frame" x="10" y="23" width="120" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="IuJ-al-gtK"/>
                                             <constraint firstAttribute="width" constant="120" id="tlG-bd-Szw"/>
@@ -355,10 +356,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdn-ka-gbX" userLabel="封盘">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuR-MR-fao">
-                                                <rect key="frame" x="182.5" y="23" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="31.5" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
