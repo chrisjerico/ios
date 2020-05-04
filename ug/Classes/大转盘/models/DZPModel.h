@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface DZPprizeModel : UGModel<DZPprizeModel>
-@property (nonatomic, strong) NSString *prizeId;   /**<   奖品id*/
+@property (nonatomic, strong) NSNumber *prizeId;   /**<   奖品id*/
 @property (nonatomic, strong) NSString *prizeIcon;   /**<  奖品图标 */
 @property (nonatomic, strong) NSString *prizeIconName;   /**<  图标名字 */
 @property (nonatomic, strong) NSString *prizeName;   /**<  奖品名字 */
@@ -77,9 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *prizeType;   /**<  奖品类型 1为彩金 2为积分 3为其他 4为 未中奖 */
 
 @property (nonatomic, strong) NSString *prizeMsg;   /**<  信息*/
-@property (nonatomic) int prizeflag;   /**<是否中奖标识 0为未中奖 1为中奖*/
-@property (nonatomic) int integralOld;   /**<抽奖前积分*/
-@property (nonatomic) int integral;   /**<抽奖后积分（算上中奖的）*/
+@property (nonatomic,strong) NSNumber * prizeflag;   /**<是否中奖标识 0为未中奖 1为中奖*/
+@property (nonatomic,strong) NSNumber * integralOld;   /**<抽奖前积分*/
+@property (nonatomic,strong) NSNumber * integral;   /**<抽奖后积分（算上中奖的）*/
 @end
 
 @protocol DZPparamModel <NSObject>

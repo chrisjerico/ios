@@ -19,8 +19,11 @@
 
 
 @implementation DZPModel
-+ (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"DZPid",
-                                                       }];
+//+ (JSONKeyMapper *)keyMapper {
+//    return [[JSONKeyMapper alloc] initWithDictionary:@{@"DZPid":@"id",
+//                                                       }];
+//}
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"DZPid":@"id"};
 }
 @end

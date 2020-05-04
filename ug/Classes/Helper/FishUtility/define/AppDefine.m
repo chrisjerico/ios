@@ -221,7 +221,7 @@
 
 
 - (BOOL)isTabHot {
-    return [@"c208" containsString:_SiteId];
+    return [@"===" containsString:_SiteId];
 }
 
 //- (BOOL)isFireworks {

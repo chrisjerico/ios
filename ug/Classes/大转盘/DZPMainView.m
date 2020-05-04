@@ -116,9 +116,11 @@
 
 
 
--(void)setDataArray:(NSMutableArray*)dataArray{
-    _dataArray = dataArray;
-    self.mDZPView.dataArray =  dataArray;
+
+-(void)setItem:(DZPModel *)item{
+    self.mDZPView.DZPid = item.DZPid;
+    self.mDZPView.dataArray =  [DZPprizeModel mj_objectArrayWithKeyValuesArray:item.param.prizeArr];
+   
 }
 
 

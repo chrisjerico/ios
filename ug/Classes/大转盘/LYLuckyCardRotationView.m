@@ -76,12 +76,12 @@
         cellFrame.origin = CGPointMake(0, 0);
         cellFrame.size = kLuckyCardCellViewSize;
         LYLuckyCardCellView *cellView = [[LYLuckyCardCellView alloc] initWithFrame:cellFrame];
-        [cellView.label setText:model.prizeName];
+//        [cellView.label setText:model.prizeName];
         [cellView.imageView sd_setImageWithURL:[NSURL URLWithString:model.prizeIcon] placeholderImage:[UIImage imageNamed:@"loading"]];
         cellView.layer.anchorPoint = CGPointMake(0.5, 1);
         cellView.layer.position = CGPointMake(self.canRotationView.bounds.size.width / 2.0, self.canRotationView.bounds.size.height / 2.0);
         cellView.transform = CGAffineTransformMakeRotation(angle * i);
-        
+        [cellView.label setText:[NSString stringWithFormat:@"%f",angle * i]];
         [self.canRotationView addSubview:cellView];
         [self.cellArray addObject:cellView];
     }
@@ -97,12 +97,14 @@
 
 //开启动画方法
 - (void)beignRotaion {
-    NSInteger index = random() % _dataArray.count;
-    LYLuckyCardCellView *cellView = self.cellArray[index];
-    CGFloat angle = atan2(cellView.transform.b, cellView.transform.a);
-    self.canRotationView.transform = CGAffineTransformMakeRotation(-angle);
+//    NSInteger index = random() % _dataArray.count;
+//    LYLuckyCardCellView *cellView = self.cellArray[index];
+//    CGFloat angle = atan2(cellView.transform.b, cellView.transform.a);
+//    self.canRotationView.transform = CGAffineTransformMakeRotation(-angle);
 
-    [self animationPart1];
+     
+//    [self animationPart1];
+        [self activityTurntableWin];
 
 }
 
@@ -141,16 +143,17 @@
 - (void)animationPart :(float )angle{
 
     
-    [self activityTurntableWin];
+       [self.canRotationView.layer removeAllAnimations];
     
     self.animationPart = [CABasicAnimation animation];
     _animationPart.keyPath = @"transform.rotation";
     //  最初的动画位置
-        _animationPart.fromValue = [NSNumber numberWithDouble:0.0];
-    //  结束的动画位置
-        _animationPart.toValue = [NSNumber numberWithDouble:angle];
+//        _animationPart.fromValue = [NSNumber numberWithDouble:0.0];
+//    //  结束的动画位置
+//        _animationPart.toValue = [NSNumber numberWithDouble:angle];
 //    animationPart1.byValue = @(randomInt * 2 * M_PI);
-//    _animationPart1.byValue = @(2.25 * 2 * M_PI);
+    float bf = 5+angle;
+    _animationPart.byValue = @(bf * 2 * M_PI);
     //    动画间隔时间
         _animationPart.duration= 3.0;
         _animationPart.autoreverses= NO;
@@ -160,12 +163,8 @@
 //    _animationPart1.repeatCount = CGFLOAT_MAX;
     //    设置代理
         _animationPart.delegate = self;
-
     _animationPart.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]; //由快变慢
     _animationPart.fillMode = kCAFillModeForwards;
-
-
-
 
     [self.canRotationView.layer addAnimation:_animationPart forKey:@"animationPart"];
 
@@ -176,17 +175,19 @@
 - (void)animationDidStart:(CAAnimation *)anim
 {
     NSLog(@"animationDidStart%@",self.layer.animationKeys);
+    
+//    if (![anim isEqual:_animationPart]) {
+//        [self activityTurntableWin];
+//    }
  
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     
     NSLog(@"animationDidStop%@",self.layer.animationKeys);
 
-    if (anim==[self.layer animationForKey:@"animationPart"]) {
-        NSLog(@"提示中奖");
-        
-
-    }
+     if ([anim isEqual:_animationPart]) {
+         NSLog(@" 中大奖===");
+       }
 
 }
 
@@ -205,25 +206,47 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+     NSLog(@"self.DZPid = %@",self.DZPid);
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"activityId":self.DZPid,
     };
+    
+    NSLog(@"params = %@",params);
     WeakSelf;
     //投注记录信息
     [CMNetwork activityTurntableWinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
            
             NSDictionary *data =  model.data;
-           DZPprizeModel *obj = [DZPprizeModel mj_setKeyValues:data];
-            if (obj.prizeflag == 1) {//中奖
-
-                NSLog(@"奖品id = %@", obj.prizeId );
+            
+//            prizeflag = 1,
+//            integralOld = 39916,
+//            prizeAmount = "100",
+//            prizeId = 5,
+//            prizeType = "2",
+//            prizeMsg = "中奖",
+//            integral = 40016,
+//            prizeIcon = "https://cdn01.kspass.cn/upload/t029/customise/images/158582532987prizeIconNew.jpg?v=1585825329",
+//            prizeIconName = "158582532987prizeIconNew",
+//            prizeName = "100积分",
+            NSNumber * prizeflag = [data objectForKey:@"prizeflag"];
+            
+            if ([prizeflag isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {//中奖
+                NSNumber * prizeId = [data objectForKey:@"prizeId"];
+                NSLog(@"奖品id = %@", prizeId );
+                
+                NSLog(@"prizeName= %@", [data objectForKey:@"prizeName"] );
                 //计算角度，开启动画
                 for (int i = 0; i < self->_dataArray.count; i++) {
                      DZPprizeModel *model = [weakSelf.dataArray objectAtIndex:i];
-                    if ([model.prizeId isEqualToString:obj.prizeId ]) {
+                    if ([model.prizeId isEqualToNumber:prizeId ]) {
                     
-                        float angle = i/weakSelf.dataArray.count;
+                        float fi = (float)i;
+                        float fcount = (float)weakSelf.dataArray.count;
+                        
+                        float angle = fi/fcount;
+                        
+                        NSLog(@"angle = %f",angle);
                         
                         [self animationPart:angle];
                         
@@ -231,7 +254,7 @@
                     }
                 }
                 
-            } else  if (obj.prizeflag == 0) {//没中奖
+            } else  {//没中奖
                            
             }
 

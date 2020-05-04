@@ -177,8 +177,8 @@ static LogVC *_logVC = nil;
                             make.edges.equalTo(self.view);
                         }];
                         
-                        recordVC.dataArray = [DZPprizeModel mj_objectArrayWithKeyValuesArray:obj.param.prizeArr];
-                        
+//                        recordVC.dataArray = [DZPprizeModel mj_objectArrayWithKeyValuesArray:obj.param.prizeArr];
+                        recordVC.item = obj;
                     });
     
                 }
