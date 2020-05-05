@@ -210,6 +210,7 @@
             site(@"test58f",     @"test58f",    @"282",     @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
             site(@"test5801",     @"test5801",    @"",      @"com.UGGame.cp",           @"http://test5801.ccpt.site",                    @"内测包",     @"test5801"),//
             site(@"test5802",     @"test5802",    @"",      @"com.UGGame.cp",           @"http://test5802.ccpt.site",                    @"内测包",     @"test5802"),//
+            site(@"test5804",     @"test5804",   @"286",     @"com.UGGame.cp",           @"http://test5804.ccpt.site",                   @"内测包",     @"test5804"),    // (原生APP组)
             site(@"tess6001",     @"tess6001",   @"",        @"com.UGGame.cp",           @"http://tess6001.fhptcdn.com",                 @"内测包",     @"tess6001"),//
             site(@"tess6002",     @"tess6002",   @"",        @"com.UGGame.cp",           @"http://tess6002.fhptcdn.com",                 @"内测包",     @"tess6002"),//
             site(@"tess6003",     @"tess6003",   @"",        @"com.UGGame.cp",           @"http://tess6003.fhptcdn.com",                 @"内测包",     @"tess6003"),//
@@ -221,6 +222,8 @@
             site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),    // (原生APP组)
             site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),    // (原生APP组)
             site(@"testadaf",     @"testadaf",   @"285",     @"com.UGGame.cp",            @"http://testadaf.fhptcdn.com",                @"内测包",     @"testadaf"),    // (ada)
+          
+            
             
             site(@"hotUpdate",   @"hotUpdate",  @"260",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"热更新测试包"),
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名

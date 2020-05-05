@@ -130,7 +130,7 @@
 					[__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 						NSLog(@"分享结果：%@----%@", result, error);
 						SysConf.hasShare = NO;
-						//                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
+//						                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
 						NSLog(@"分享结果：%@", __self.shareBetJson);
 						
 						
