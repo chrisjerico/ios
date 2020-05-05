@@ -17,9 +17,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    self.layer.cornerRadius = self.width / 2;
-    self.layer.masksToBounds = YES;
+    if (APP.isBallParty) {
+        self.titleLabel.layer.cornerRadius = self.titleLabel.width / 8;
+    }
+    else{
+       self.titleLabel.layer.cornerRadius = self.titleLabel.width / 4;
+    }
+    self.titleLabel.layer.masksToBounds = YES;
     
 }
 
@@ -83,8 +87,7 @@
 
 - (void)setShowAdd:(BOOL)showAdd {
     _showAdd = showAdd;
-    self.layer.cornerRadius = self.width / 2;
-    self.layer.masksToBounds = YES;
+
     if (showAdd) {
         [self.ballImg setHidden:YES];
         self.backgroundColor = [UIColor clearColor];
@@ -119,6 +122,8 @@
         
         
     }
+    
+
 }
 
 

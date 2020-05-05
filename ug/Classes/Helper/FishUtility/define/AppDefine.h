@@ -47,14 +47,16 @@
 @property (nonatomic) BOOL isShowWZ;                             /**<  将选填 这两个字更换为  如果没有，可不填写 */
 @property (nonatomic) BOOL isHideText;                           /**<  在线三方支付设置快捷金额后，隐藏掉输入金额那一栏 */
 @property (nonatomic) BOOL isWhite;                              /**<  首页游戏cell加白边 */
-@property (nonatomic) BOOL isBall;                               /**<  下注界面号码显示为球图 */
 @property (nonatomic) BOOL isBorderNavBarBgColor;                /**<  选中底色为navBarBgColor */
 @property (nonatomic) BOOL isShowHornView;                       /**<  六合模板显示喇叭*/
 @property (nonatomic) BOOL isShowBorder;                         /**< 下注上面显示边框*/
 @property (nonatomic) BOOL isSelectStyle;                        /**< 下注六合彩 特码A|特码B 有选中效果*/
 @property (nonatomic) BOOL isGrey;                               /**<  下注界面tableCell 背景为灰色*/
 @property (nonatomic) BOOL isYellow;                             /**<  下注界面已选中数字为亮黄色*/
-@property (nonatomic) BOOL isBall6;                              /**<  下注界面六合彩上面显示为球图*/
+@property (nonatomic) BOOL isBall6;                              /**<  下注界面上面显示为球图*/
+@property (nonatomic) BOOL isBallParty;                          /**<  下注界面上面显示为方形*/
+@property (nonatomic) BOOL isBall;                               /**<  下注界面号码显示为球图 */
+
 @property (nonatomic) BOOL isLight;                              /**<  下注界面背景色变淡*/
 @property (nonatomic) BOOL isCornerRadius;                       /**<  首页广告View加圆角*/
 @property (nonatomic) BOOL isFontSystemSize;                     /**<  首页导航文字不加粗*/

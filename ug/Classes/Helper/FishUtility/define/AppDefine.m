@@ -282,14 +282,6 @@
     return [@"c134" containsString:_SiteId];
 }
 
-- (BOOL)isBall6 {
-    if (Skin1.isSLH) {
-        return YES;
-    } else {
-        return [@"c134,c200,c208,c213,a002,c193" containsString:_SiteId];
-    }
-}
-
 - (BOOL)isYellow {
     
     return [@"c085,c134,c200,c193,c208,c213,c212,a002" containsString:_SiteId];
@@ -327,10 +319,25 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c212,c085,c208,c134,c200,c213,a002,c193" containsString:_SiteId];
+        return [@"c212,c085,c208,c134,c200,c213,a002,c193,c092" containsString:_SiteId];
     }
     
 }
+
+- (BOOL)isBall6 {
+    if (Skin1.isSLH) {
+        return YES;
+    } else {
+        return [@"c134,c200,c208,c213,a002,c193" containsString:_SiteId];
+    }
+}
+
+- (BOOL)isBallParty {
+
+        return [@"c092" containsString:_SiteId];
+}
+
+
 
 - (BOOL)isWhite {
     if (Skin1.isBlack) {
