@@ -1843,6 +1843,7 @@
 		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CF9A93C42407F2C200D6E4F3 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C02407F2C200D6E4F3 /* FLAnimatedImage.m */; };
 		CF9A93C52407F2C200D6E4F3 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */; };
+		CFBD91352461AD4100FFFDEB /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBD91322461AD4100FFFDEB /* PieView.m */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */; };
 		CFCF6DC423C5F3CE0039588D /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
@@ -3667,6 +3668,8 @@
 		CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		CF9A93C22407F2C200D6E4F3 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
 		CF9A93C32407F2C200D6E4F3 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		CFBD91322461AD4100FFFDEB /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieView.m; sourceTree = "<group>"; };
+		CFBD91342461AD4100FFFDEB /* PieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieView.h; sourceTree = "<group>"; };
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
 		CFCF6DBD23C5B8370039588D /* ReactNativeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactNativeHelper.h; sourceTree = "<group>"; };
 		CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeHelper.m; sourceTree = "<group>"; };
@@ -7905,6 +7908,8 @@
 				D43DAF672453EFBF0014A301 /* DZPMainView.h */,
 				D43DAF682453EFBF0014A301 /* DZPMainView.m */,
 				D43DAF6B2453F2DF0014A301 /* DZPMainView.xib */,
+				CFBD91342461AD4100FFFDEB /* PieView.h */,
+				CFBD91322461AD4100FFFDEB /* PieView.m */,
 				D43DAF7E245479F30014A301 /* LYLuckyCardRotationView.h */,
 				D43DAF7B245479F20014A301 /* LYLuckyCardRotationView.m */,
 				D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */,
@@ -9805,6 +9810,7 @@
 				CFD85F0923F44754000898CC /* NSObject+RnKeyValues.m in Sources */,
 				031E19BC23BE812700B0F813 /* AVAsset+Degress.m in Sources */,
 				031E1E3023BE812C00B0F813 /* UGPromotion5rowButtonTableViewCell.m in Sources */,
+				CFBD91352461AD4100FFFDEB /* PieView.m in Sources */,
 				031E1BBC23BE812900B0F813 /* UGBMfinancialCollectionViewCell.m in Sources */,
 				031E1BA223BE812900B0F813 /* UGBMRegisterViewController.m in Sources */,
 				031E1D9023BE812B00B0F813 /* UGYubaoViewController.m in Sources */,

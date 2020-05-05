@@ -9,6 +9,7 @@
 #import "LYLuckyCardRotationView.h"
 #import "Masonry.h"
 #import "LYLuckyCardCellView.h"
+#import "PieView.h"
 
 #define kLuckyCardCellViewSize CGSizeMake(68, 173) //每个小格子大小
 
@@ -51,6 +52,13 @@
 -(void)setDataArray:(NSArray<DZPprizeModel *> *)dataArray{
     _dataArray = dataArray;
     self.cellArray = [NSMutableArray arrayWithCapacity:_dataArray.count];
+    
+    // 转盘添加扇形背景色
+    PieView *pieView = [[PieView alloc] initWithFrame:self.canRotationView.bounds count:dataArray.count];
+    [self.canRotationView addSubview:pieView];
+    pieView.hidden = false;
+    
+    // 转盘奖品图片和文字
     CGFloat angle = 2 * M_PI / (CGFloat)_dataArray.count;
     for (int i = 0; i < _dataArray.count; i++) {
         DZPprizeModel *model = [_dataArray objectAtIndex:i];
