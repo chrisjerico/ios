@@ -118,9 +118,47 @@
 
 
 -(void)setItem:(DZPModel *)item{
+    [self activityTurntableLog:item.DZPid];
+    self.oneView.dataArray = item.param.content_turntable;
     self.mDZPView.DZPid = item.DZPid;
     self.mDZPView.dataArray =  [DZPprizeModel mj_objectArrayWithKeyValuesArray:item.param.prizeArr];
    
+}
+
+
+//大转盘
+- (void)activityTurntableLog :(NSString *)pzdid{
+ 
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"activityId":pzdid,
+    };
+    [CMNetwork activityTurntableLogWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                 NSArray * dataArray = (NSArray *)model.data;
+
+                if ( dataArray.count) {
+
+                   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dataArray];
+
+                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        // 需要在主线程执行的代码
+                         self.twoView.dataArray =  data;
+                    });
+    
+                }
+
+            });
+            
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+
+        }];
+    }];
 }
 
 

@@ -39,7 +39,7 @@
     
     if (APP.betOddsIsRed) {
         self.titleLabel.attributedText = ({
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"%@    %@",item.name, [item.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
             [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[item.odds removeFloatAllZero]];
             mas;
         });
@@ -47,7 +47,7 @@
         
         
         if (item.enable && item.gameEnable) {
-            self.titleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+            self.titleLabel.text = _NSString(@"%@    %@",item.name, [item.odds removeFloatAllZero]);
         }
         else{
             self.titleLabel.text = _NSString(@"%@ --",item.name);

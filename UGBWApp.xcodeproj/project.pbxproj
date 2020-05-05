@@ -1915,6 +1915,10 @@
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
 		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
 		D442590523E949F00067E981 /* LHHornView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442590423E949F00067E981 /* LHHornView.xib */; };
+		D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AAB824614D25002737CB /* DZPOneTableViewCell.m */; };
+		D444AABC24614D3B002737CB /* DZPOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */; };
+		D444AABF246161F6002737CB /* DZPTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AABE246161F6002737CB /* DZPTwoTableViewCell.m */; };
+		D444AAC12461620E002737CB /* DZPTwoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D444AAC02461620E002737CB /* DZPTwoTableViewCell.xib */; };
 		D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB123A773AF008EF03D /* CFNetwork.framework */; };
 		D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB323A773B9008EF03D /* CoreFoundation.framework */; };
 		D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4463AB523A773C4008EF03D /* CoreTelephony.framework */; };
@@ -3774,6 +3778,12 @@
 		D442590123E949600067E981 /* LHHornView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHHornView.h; sourceTree = "<group>"; };
 		D442590223E949600067E981 /* LHHornView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHHornView.m; sourceTree = "<group>"; };
 		D442590423E949F00067E981 /* LHHornView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHHornView.xib; sourceTree = "<group>"; };
+		D444AAB724614D25002737CB /* DZPOneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneTableViewCell.h; sourceTree = "<group>"; };
+		D444AAB824614D25002737CB /* DZPOneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPOneTableViewCell.m; sourceTree = "<group>"; };
+		D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPOneTableViewCell.xib; sourceTree = "<group>"; };
+		D444AABD246161F6002737CB /* DZPTwoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPTwoTableViewCell.h; sourceTree = "<group>"; };
+		D444AABE246161F6002737CB /* DZPTwoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPTwoTableViewCell.m; sourceTree = "<group>"; };
+		D444AAC02461620E002737CB /* DZPTwoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPTwoTableViewCell.xib; sourceTree = "<group>"; };
 		D4463AB123A773AF008EF03D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D4463AB323A773B9008EF03D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D4463AB523A773C4008EF03D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -7906,6 +7916,12 @@
 				D42072312456AE80008D0749 /* DZPTwoView.h */,
 				D42072322456AE80008D0749 /* DZPTwoView.m */,
 				D42072362456B521008D0749 /* DZPTwoView.xib */,
+				D444AAB724614D25002737CB /* DZPOneTableViewCell.h */,
+				D444AAB824614D25002737CB /* DZPOneTableViewCell.m */,
+				D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */,
+				D444AABD246161F6002737CB /* DZPTwoTableViewCell.h */,
+				D444AABE246161F6002737CB /* DZPTwoTableViewCell.m */,
+				D444AAC02461620E002737CB /* DZPTwoTableViewCell.xib */,
 			);
 			path = "大转盘";
 			sourceTree = "<group>";
@@ -8651,6 +8667,7 @@
 				031E199623BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				CF475910239636D200966536 /* 115.gif in Resources */,
 				03314FD423CDA0900070CB54 /* HSC_Mine.storyboard in Resources */,
+				D444AABC24614D3B002737CB /* DZPOneTableViewCell.xib in Resources */,
 				D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */,
 				CFFAB58D23755569009593AF /* lxb.gif in Resources */,
 				031E1B9023BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
@@ -8803,6 +8820,7 @@
 				CF4758E8239636D200966536 /* 163.gif in Resources */,
 				031E1C8023BE812A00B0F813 /* UGDepositDetailsTableViewCell.xib in Resources */,
 				CF8E242523DDBFD80054BF0F /* MaterialCommunityIcons.ttf in Resources */,
+				D444AAC12461620E002737CB /* DZPTwoTableViewCell.xib in Resources */,
 				CF4758C2239636D200966536 /* 68.gif in Resources */,
 				CF4758EF239636D200966536 /* 161.gif in Resources */,
 				031E1E2023BE812C00B0F813 /* UGMosaicGoldTableViewCell.xib in Resources */,
@@ -9989,6 +10007,7 @@
 				031E1C5E23BE812A00B0F813 /* UGLotteryGameCollectionViewCell.m in Sources */,
 				D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */,
 				031E1D9A23BE812B00B0F813 /* UGYubaoInComeController.m in Sources */,
+				D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */,
 				031E1E7023BE812C00B0F813 /* UGBetRecorddHeaderView.m in Sources */,
 				031E1B5223BE812800B0F813 /* UGYYRightMenuView.m in Sources */,
 				031E1A5623BE812700B0F813 /* UUMarqueeView.m in Sources */,
@@ -10018,6 +10037,7 @@
 				D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */,
 				031E195C23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
 				D4DB5D4123FBB4DD001C6D8F /* UIView+JHViewCorner.m in Sources */,
+				D444AABF246161F6002737CB /* DZPTwoTableViewCell.m in Sources */,
 				D4326F1B23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */,
 				D4250BF623F27BE700ABA3C9 /* JYRegisterViewController.m in Sources */,
 				031E1C7023BE812A00B0F813 /* UGWithdrawalViewController.m in Sources */,

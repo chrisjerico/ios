@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DZPOneView : UIView
-
+@property (nonatomic, strong) NSArray<NSString*>  *dataArray;/**<   数据*/
 @end
 
 NS_ASSUME_NONNULL_END

@@ -1397,7 +1397,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         collectionView;
         
     });
-    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     self.betCollectionView = collectionView;
     [self.rightStackView addSubview:collectionView];
 
