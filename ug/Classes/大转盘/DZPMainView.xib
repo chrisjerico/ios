@@ -60,7 +60,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcT-NK-3jN">
                     <rect key="frame" x="0.0" y="528" width="414" height="334"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shenzagasdfasfasfasd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ0-vS-q6X">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shenzagasdfasfasfasd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ0-vS-q6X" userLabel="用户积分">
                             <rect key="frame" x="121.5" y="5" width="171.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="tfa-1S-FGq"/>
@@ -68,6 +68,9 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="用户积分"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="seg_leftSelected" translatesAutoresizingMaskIntoConstraints="NO" id="4I3-Lb-kcD" userLabel="按钮背景">
                             <rect key="frame" x="60" y="34" width="294" height="32.5"/>
@@ -80,14 +83,12 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XlL-7s-KJq" userLabel="按钮1">
                                     <rect key="frame" x="0.0" y="0.0" width="159.5" height="41.5"/>
-                                    <state key="normal" title="按钮1"/>
                                     <connections>
                                         <action selector="leftAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Zm0-kT-ynz"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fa-VV-MBd" userLabel="按钮2">
                                     <rect key="frame" x="159.5" y="0.0" width="159.5" height="41.5"/>
-                                    <state key="normal" title="按钮2"/>
                                     <connections>
                                         <action selector="rightAciton:" destination="iN0-l3-epB" eventType="touchUpInside" id="4m3-az-myb"/>
                                     </connections>
@@ -148,6 +149,7 @@
                 <outlet property="contentView" destination="oAc-S3-XiC" id="N8X-Zk-X6o"/>
                 <outlet property="imgGif" destination="vLm-VA-79D" id="Vh6-g1-1kf"/>
                 <outlet property="mDZPView" destination="p7n-Od-kZw" id="G8M-cC-KWp"/>
+                <outlet property="moenyNumberLabel" destination="fZ0-vS-q6X" id="jUA-ym-paE"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="152.67857142857142"/>
         </view>

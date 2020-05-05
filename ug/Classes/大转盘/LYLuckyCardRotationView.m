@@ -174,14 +174,17 @@
         else{
              subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_failure"];
         }
-
+         NSNumber * integral = [data objectForKey:@"integral"];
+        //发送通知
+        NSDictionary *dict = @{@"MoenyNumber":integral};
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"setMoenyNumber" object:nil userInfo:dict]];
 
     }
 }
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     
     NSLog(@"animationDidStop%@",self.winView.layer.animationKeys);
-    if ([self.canRotationView.layer.animationKeys[0] isEqualToString:@"animationPart"]) {
+    if ([self.canRotationView.layer.animationKeys[0] isEqualToString:@"animationPart"] && flag) {
         NSNumber * prizeId = [data objectForKey:@"prizeId"];
         NSLog(@"奖品id = %@", prizeId );
         NSLog(@"prizeName= %@", [data objectForKey:@"prizeName"] );
@@ -194,12 +197,15 @@
     }
     if ([self.canRotationView.layer.animationKeys[0] isEqualToString:@"beginAnima"]) {
 
-        if (self.angle != -1) {
+        if (self.angle != -1  && flag) {
             [self animationPart:self.angle];
         }
     }
     if ([self.winView.layer.animationKeys[0] isEqualToString:@"animationWin"]) {
-        [self performSelector:@selector(winner) withObject:nil/*可传任意类型参数*/ afterDelay:3.0];
+        if (flag) {
+              [self performSelector:@selector(winner) withObject:nil/*可传任意类型参数*/ afterDelay:3.0];
+        }
+      
     }
     
 }
@@ -248,6 +254,7 @@
                 NSNumber * prizeflag = [self->data objectForKey:@"prizeflag"];
                 if ([prizeflag isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {//中奖
                     NSNumber * prizeId = [self->data objectForKey:@"prizeId"];
+                    
                     //计算角度，开启动画
                     for (int i = 0; i < self->_dataArray.count; i++) {
                         DZPprizeModel *model = [weakSelf.dataArray objectAtIndex:i];

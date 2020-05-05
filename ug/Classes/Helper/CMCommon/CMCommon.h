@@ -365,4 +365,9 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 +(NSString * )switchNumber:(int )number;
 
 
+/**
+ *  读取本地JSON文件
+ *
+ */
++ (NSDictionary *)readLocalFileWithName:(NSString *)name;
 @end

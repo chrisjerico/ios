@@ -40,7 +40,7 @@
                             <rect key="frame" x="0.0" y="30" width="314" height="232"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <outlet property="dataSource" destination="-1" id="917-Bi-h2L"/>
+                                <outlet property="dataSource" destination="-1" id="iTv-xt-qFb"/>
                                 <outlet property="delegate" destination="-1" id="8Fe-Me-ge2"/>
                             </connections>
                         </tableView>
@@ -67,6 +67,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="contentView" destination="RmC-LH-TPM" id="x9H-Df-3aq"/>
+                <outlet property="tableView" destination="3VU-Z9-Cpa" id="iDK-7j-5fX"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="106.47321428571428"/>
         </view>

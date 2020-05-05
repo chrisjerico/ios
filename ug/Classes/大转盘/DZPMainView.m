@@ -24,6 +24,7 @@
 @property (strong, nonatomic)  DZPOneView *oneView;
 
 @property (nonatomic, strong) NSArray <DZPModel *> *dzpArray;   /**<   转盘活动数据 */
+@property (weak, nonatomic) IBOutlet UILabel *moenyNumberLabel; /**<   用户积分 */
 
 @end
 
@@ -75,9 +76,16 @@
         [_oneView mas_makeConstraints:^(MASConstraintMaker *make) {
              make.edges.equalTo(_contentView);
          }];
-        
+        UGUserModel *user = [UGUserModel currentUser];
+        if (![CMCommon stringIsNull:user.taskRewardTotal]) {
+            self.moenyNumberLabel.text = [NSString stringWithFormat:@"剩余积分：%@",_FloatString4(user.taskReward.doubleValue)];
+        }
+        else{
+            self.moenyNumberLabel.text = @"剩余积分：0";
+        }
+        //注册通知：
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setMoenyNumber:) name:@"setMoenyNumber" object:nil];
        
-        
     }
     return self;
 }
@@ -161,6 +169,16 @@
     }];
 }
 
+//实现监听方法
+-(void)setMoenyNumber:(NSNotification *)notification
+{
+    NSNumber *moenyNumber = notification.userInfo[@"MoenyNumber"];//1316
+    self.moenyNumberLabel.text = [NSString stringWithFormat:@"剩余积分：%@",moenyNumber];
+    
+}
 
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"setMoenyNumber" object:self];
+}
 @end
