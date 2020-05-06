@@ -54,7 +54,7 @@
     self.cellArray = [NSMutableArray arrayWithCapacity:_dataArray.count];
     
     // 转盘添加扇形背景色
-    PieView *pieView = [[PieView alloc] initWithFrame:self.canRotationView.bounds count:dataArray.count];
+    PieView *pieView = [[PieView alloc] initWithFrame:self.canRotationView.bounds count:dataArray.count*2];
     [self.canRotationView addSubview:pieView];
     pieView.hidden = false;
     
@@ -231,16 +231,7 @@
     
 }
 #pragma mark -网络请求  抽奖接口
-//            prizeflag = 1,
-//            integralOld = 39916,
-//            prizeAmount = "100",
-//            prizeId = 5,
-//            prizeType = "2",
-//            prizeMsg = "中奖",
-//            integral = 40016,
-//            prizeIcon = "https://cdn01.kspass.cn/upload/t029/customise/images/158582532987prizeIconNew.jpg?v=1585825329",
-//            prizeIconName = "158582532987prizeIconNew",
-//            prizeName = "100积分",
+
 - (void)activityTurntableWin {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
@@ -282,11 +273,19 @@
                     [self animationWinning];
                 }
             }
+            else{
+                self->_myBtn.enabled = YES;
+                [self.winView.layer removeAllAnimations];
+                [self.canRotationView.layer removeAllAnimations];
+                
+            }
            
             
         } failure:^(id msg) {
             self->_myBtn.enabled = YES;
             NSLog(@" 网络出错");
+            [SVProgressHUD showErrorWithStatus:msg];
+            [self.winView.layer removeAllAnimations];
             [self.canRotationView.layer removeAllAnimations];
         }];
     }];

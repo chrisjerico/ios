@@ -10,7 +10,7 @@
 #import "UGRedEnvelopeModel.h"
 
 @interface UGredEnvelopeView ()
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+
 
 @end
 

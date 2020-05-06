@@ -159,6 +159,7 @@ static LogVC *_logVC = nil;
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                  self.dzpArray = model.data;
+                 NSLog(@"dzpArray = %@",self.dzpArray);
 
                 if (self.dzpArray.count) {
 
