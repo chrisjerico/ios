@@ -84,7 +84,6 @@
 @property (nonatomic) BOOL addIcons;                                /**<   投注页面开奖旁边添加 开奖直播 长龙助手 开奖网  */
 @property (nonatomic) BOOL isReplaceIcon;                           /**< 投注页面开奖旁边添加 开奖直播 长龙助手 开奖网更换图标样式1   */
 
-@property (nonatomic) BOOL isSealTitleWhite;                            /**<  下注界面f封盘文字为白色*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

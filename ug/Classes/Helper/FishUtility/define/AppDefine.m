@@ -212,7 +212,7 @@
 }
 
 - (BOOL)isTextWhite {
-     return [@"a002" containsString:_SiteId];
+     return [@"a002,c116" containsString:_SiteId];
 }
 
 - (BOOL)isTabMassageBadge {
