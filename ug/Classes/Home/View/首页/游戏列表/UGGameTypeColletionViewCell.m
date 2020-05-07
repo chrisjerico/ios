@@ -104,7 +104,7 @@
     FastSubViewCode(self);
     BOOL isBlack = Skin1.isBlack;
     
-    if (item.tipFlag==1) {
+    if (item.tipFlag==1 || item.tipFlag==2 ||item.tipFlag==3) {
         if (isBlack) {
                _hotImageView.hidden = YES;
         } else {
