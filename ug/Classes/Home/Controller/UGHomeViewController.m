@@ -1435,6 +1435,8 @@
                     
                 }
 
+                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+                SysConf.chatRoomRedirect = [number intValue];
                 SysConf.chatRoomAry = chatRoomAry;
                 
                  NSLog(@"typeIdAry = %@",typeIdAry);

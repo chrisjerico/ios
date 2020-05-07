@@ -208,6 +208,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic,strong) NSMutableArray<UGChatRoomModel *> *chatRoomAry;                    /**<    在线配置的聊天室i*/
 
 @property (nonatomic,strong) UGChatRoomModel *defaultChatRoom;                                  /**<    默认的聊天室（取列表的第1条数据）i*/
+@property (nonatomic) NSInteger chatRoomRedirect;           /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
 
 @property (nonatomic) BOOL hasShare;                /**<   是否可以下注分享*/
 //优惠图片分类信息

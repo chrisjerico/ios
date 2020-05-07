@@ -204,24 +204,35 @@
         UGChatViewController *vc = [[UGChatViewController alloc] init];
         vc.hideHead = YES;
         
-        
-        if ([self hasLastRoom]) {
-            NSDictionary *dic = [self LastRoom];
-            vc.roomId = dic[@"roomId"];
-            vc.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
-            self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
-        }
-        else{
-            NSLog(@"model.gameId = %@",model.gameId);
-
+        if (SysConf.chatRoomRedirect == 1) {
             if (model.gameId ) {
                 UGChatRoomModel *roomModel =  [self getRoomMode:model.gameId];
-
+                
                 vc.roomId = roomModel.roomId;
                 vc.url = [APP chatGameUrl:roomModel.roomId hide:YES];
-                 self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
+                self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
             }
+        } else {
+            if ([self hasLastRoom]) {
+                       NSDictionary *dic = [self LastRoom];
+                       vc.roomId = dic[@"roomId"];
+                       vc.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
+                       self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
+                   }
+                   else{
+                       NSLog(@"model.gameId = %@",model.gameId);
+
+                       if (model.gameId ) {
+                           UGChatRoomModel *roomModel =  [self getRoomMode:model.gameId];
+
+                           vc.roomId = roomModel.roomId;
+                           vc.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                            self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
+                       }
+                   }
         }
+        
+       
         // 隐藏退出按钮
         [vc cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
             ((UGChatViewController *)ai.instance).closeBtn.hidden = true;
@@ -259,7 +270,8 @@
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                 
             }
-
+            NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+            SysConf.chatRoomRedirect = [number intValue];
             SysConf.chatRoomAry = chatRoomAry;
             
             
@@ -273,27 +285,35 @@
                 obj.roomName = @"聊天室";
             }
             
-            if ([self hasLastRoom]) {
-                NSDictionary *dic = [self LastRoom];
-                self.vc2.roomId = dic[@"roomId"];
-                self.vc2.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
-                self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
-            }
-            
-            else{
-                
-                NSLog(@"model.gameId = %@",self.nim.gameId);
-                
+            if (SysConf.chatRoomRedirect == 1) {
                 if (self.nim.gameId ) {
                     UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
                     self.vc2.roomId = roomModel.roomId;
                     self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
                     self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
                 }
-
+            } else {
+                if ([self hasLastRoom]) {
+                    NSDictionary *dic = [self LastRoom];
+                    self.vc2.roomId = dic[@"roomId"];
+                    self.vc2.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
+                    self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
+                }
+                
+                else{
+                    
+                    NSLog(@"model.gameId = %@",self.nim.gameId);
+                    
+                    if (self.nim.gameId ) {
+                        UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
+                        self.vc2.roomId = roomModel.roomId;
+                        self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                        self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
+                    }
+                    
+                }
             }
-            
-            
+ 
         }
     };
 }
@@ -465,7 +485,8 @@
             
             NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:__self.chatAry];
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
-     
+            NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+            SysConf.chatRoomRedirect = [number intValue];
             SysConf.chatRoomAry = chatRoomAry;
             NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
             //            SysConf.chatRoomAry = __self.chatAry;
