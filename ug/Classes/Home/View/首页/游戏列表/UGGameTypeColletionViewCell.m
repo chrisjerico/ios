@@ -111,7 +111,10 @@
                _hotImageView.hidden = NO;
         }
     }
-    _hotImageView.hidden = !(item.tipFlag==1);
+    else{
+       _hotImageView.hidden = YES;
+    }
+
     subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
