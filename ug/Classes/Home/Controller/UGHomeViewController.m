@@ -1943,7 +1943,14 @@
     self.homeAdsView.backgroundColor = [UIColor clearColor];
     self.homeAdsView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     self.homeAdsView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.homeAdsView.autoScrollTimeInterval = 3.0;
+    
+    if ([@"c018" containsString:APP.SiteId]) {
+            self.homeAdsView.autoScrollTimeInterval = 5.0;
+    } else {
+            self.homeAdsView.autoScrollTimeInterval = 3.0;
+    }
+    
+
     self.homeAdsView.delegate = self;
     self.homeAdsView.pageDotColor = RGBA(210, 210, 210, 0.4);
     [self.homeAdsBgView insertSubview:self.homeAdsView atIndex:0];
