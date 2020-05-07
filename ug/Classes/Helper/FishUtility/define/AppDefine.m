@@ -294,7 +294,7 @@
 
 - (BOOL)isShowBorder {
     
-    return [@"c212,c208,c134,c200,c213,a002,c193,c116" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002,c193,c116,c092" containsString:_SiteId];
     
 }
 

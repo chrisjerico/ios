@@ -118,7 +118,7 @@
         // 顶部栏背景色
         [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
         [subView(@"中间View") setBackgroundColor:[UIColor clearColor]];
-        subLabel(@"线label").hidden = true;
+        subLabel(@"线label").hidden = !APP.isShowBorder;
         self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
