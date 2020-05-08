@@ -244,6 +244,7 @@
     [self addChildViewController:_vc2];
     
     [self getChatRoomData];
+    [self performSelector:@selector(getChatRoomData) afterDelay:1];
 }
 
 -(void)getChatRoomData{
@@ -419,16 +420,13 @@
         };
         ssv1.didSelectedIndex = ^(NSUInteger idx) {
             if (idx) {
-                
                 [__self.downBtn setHidden:NO];
-                             //得到线上配置的聊天室
-                
-                  [self getChatRoomData];
-
-                
-                
+                //得到线上配置的聊天室
+                if (OBJOnceToken(__self)) {
+                    [self performSelector:@selector(getChatRoomData) afterDelay:0.2];
+                }
             }
-            else{
+            else {
                 
                 [__self.downBtn setHidden:YES];
                 if ([__self.mLabel.text containsString:@"▼"]) {
