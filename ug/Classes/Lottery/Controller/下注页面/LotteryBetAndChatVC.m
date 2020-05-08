@@ -243,8 +243,11 @@
     [self addChildViewController:_vc1];
     [self addChildViewController:_vc2];
     
+    // 聊天室第一次加载有概率无法显示内容，多加载几次
     [self getChatRoomData];
+    [self performSelector:@selector(getChatRoomData) afterDelay:0.5];
     [self performSelector:@selector(getChatRoomData) afterDelay:1];
+    [self performSelector:@selector(getChatRoomData) afterDelay:1.5];
 }
 
 -(void)getChatRoomData{
