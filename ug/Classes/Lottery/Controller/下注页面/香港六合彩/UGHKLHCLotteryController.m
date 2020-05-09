@@ -52,6 +52,8 @@
 #import "UGLotteryRecordTableViewCell.h"
 #import "CMTimeCommon.h"
 
+#import "MGSlider.h"
+
 @interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,YBPopupMenuDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
@@ -110,7 +112,13 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;         /**<   底部 */
 @property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 
-
+//拖动条=======================================================
+@property (strong, nonatomic)  MGSlider *slider;/**<拖动条*/
+@property (strong, nonatomic)  UILabel *sliderLB;/**<拖动条 刻度显示*/
+@property (strong, nonatomic)  UIButton *reductionBtn;/**<拖动条 -按钮*/
+@property (strong, nonatomic)  UIButton *addBtn;/**<拖动条 +按钮*/
+@property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
+@property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
 @end
 
@@ -147,9 +155,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     self.amountTextF.delegate = self;
 //    [self.view addSubview:self.tableView];//===========
 //    [self.contentView addSubview:self.tableView];
-
+  
     [self tableViewInit];
     [self headertableViewInit];
+    [self sliderViewInit ];
     [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
@@ -1642,6 +1651,122 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 #pragma mark - getting
+
+- (void )sliderViewInit {
+    
+    _proportion = 10.0;
+    _lattice = 0.01 * _proportion;
+    
+    _slider = [[MGSlider alloc] initWithFrame:CGRectMake(20, 200, [UIScreen mainScreen].bounds.size.width - 40, 50)];
+    _slider.thumbSize = CGSizeMake(50, 50);//锚点的大小
+    _slider.thumbImage = [UIImage imageNamed:@"icon_activity_ticket_details_rebate"];//锚点的图片
+    _slider.thumbColor = [UIColor clearColor];//锚点的背景色
+    _slider.trackColor = [UIColor colorWithRed:0.29 green:0.42 blue:0.86 alpha:1.00];//进度条的颜色+
+    _slider.untrackColor = [UIColor greenColor];//进度条的颜色-
+    _slider.zoom = NO; // 默认点击放大
+    _slider.progress = 0;// 默认第一次锚点所在的位置，1：100%
+    _slider.margin = 70; // 距离左右内间距
+    [self.bottomView addSubview:_slider];
+    [_slider changeValue:^(CGFloat value) {
+        NSLog(@">>>>>>>>>>>>>>>>>>>>>拖动==== %f", value);
+        
+        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * value*100,@"%"];
+        [self->_sliderLB setText:x];
+        
+    } endValue:^(CGFloat value) {
+        NSLog(@"end====: %f", value);
+    }];
+    
+    
+    _reductionBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [_reductionBtn setBackgroundImage:[UIImage imageNamed:@"icon_activity_ticket_details_minus"] forState:(UIControlStateNormal)];
+    _reductionBtn.frame = CGRectMake(20, 200, 50, 50);
+    [self.bottomView addSubview:_reductionBtn];
+    [_reductionBtn addTarget:self  action:@selector(reductionAction:) forControlEvents:(UIControlEventTouchDown)];
+    
+    
+    
+    
+    _addBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [_addBtn setBackgroundImage:[UIImage imageNamed:@"icon_activity_ticket_details_add"] forState:(UIControlStateNormal)];
+    _addBtn.frame = CGRectMake(350, 200, 50, 50);
+    [self.bottomView addSubview:_addBtn];
+    [_addBtn addTarget:self  action:@selector(addImgVAction:) forControlEvents:(UIControlEventTouchDown)];
+    
+    
+    
+    _sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(150, 250, 200, 50)];
+    _sliderLB.text = @"显示0.0%";
+    [self.bottomView addSubview:_sliderLB];
+    
+    
+//    [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+//        
+//        make.right.equalTo(self.bottomView.mas_right).offset(10);
+//        make.height.equalTo([NSNumber numberWithFloat:50]);
+//        make.width.equalTo([NSNumber numberWithFloat:50]);
+//        make.centerY.mas_equalTo(self.selectLabel.centerY);
+//    }];
+//
+//    [_slider mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+//
+//        make.right.equalTo(self.addBtn.mas_left).offset(0);
+//        make.height.equalTo([NSNumber numberWithFloat:50]);
+//        make.width.equalTo([NSNumber numberWithFloat:UGScreenW/4]);
+//        make.centerY.mas_equalTo(self.selectLabel.centerY);
+//    }];
+//
+//    [_reductionBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+//
+//        make.right.equalTo(self.slider.mas_left).offset(10);
+//        make.height.equalTo([NSNumber numberWithFloat:50]);
+//        make.width.equalTo([NSNumber numberWithFloat:50]);
+//        make.centerY.mas_equalTo(self.selectLabel.centerY);
+//    }];
+//
+//    [_sliderLB mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+//
+//        make.right.equalTo(self.reductionBtn.mas_left).offset(10);
+//        make.height.equalTo([NSNumber numberWithFloat:50]);
+//        make.centerY.mas_equalTo(self.selectLabel.centerY);
+//    }];
+    
+}
+
+-(void)reductionAction:(UIButton *)sender{
+    NSLog(@"移动的progress = %f",_slider.moveProgress);
+
+    NSLog(@"结束的progress = %f",_slider.endProgress);
+
+    NSLog(@"当前的progress = %f",_slider.progress);
+    
+    if (_slider.moveProgress> 0) {
+        
+        _slider.moveProgress = _slider.moveProgress - 0.001;
+        _slider.progress = _slider.moveProgress;
+        NSLog(@"slider.progress = %f ",_slider.progress);
+        
+        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * _slider.progress*100,@"%"];
+        NSLog(@"当前的 = %@",x);
+        [self->_sliderLB setText:x];
+    }
+
+}
+
+-(void)addImgVAction:(UIButton *)sender{
+    NSLog(@"移动的progress = %f",_slider.moveProgress);
+
+    if (_slider.moveProgress< 1.0) {
+        _slider.moveProgress = _slider.moveProgress + 0.001;
+        _slider.progress = _slider.moveProgress;
+        NSLog(@"slider.progress = %f ",_slider.progress);
+        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * _slider.progress*100 ,@"%"];
+        NSLog(@"当前的 = %@",x);
+        [self->_sliderLB setText:x];
+    }
+
+}
+
 - (UITableView *)tableViewInit {
 
         _tableView.delegate = self;
