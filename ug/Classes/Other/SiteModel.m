@@ -222,7 +222,7 @@
             site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),    // (原生APP组)
             site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),    // (原生APP组)
             site(@"testadaf",     @"testadaf",   @"285",     @"com.UGGame.cp",            @"http://testadaf.fhptcdn.com",                @"内测包",     @"testadaf"),    // (ada)
-            site(@"test62",       @"test62",     @"",        @"com.UGGame.cp",            @"http://test62f.ccpt.site",                   @"内测包",     @"test62"),    // (原生APP组)
+            site(@"test62",       @"test62",     @"289",     @"com.UGGame.cp",            @"http://test62f.ccpt.site",                   @"内测包",     @"test62"),    // (原生APP组)
       
             
             
