@@ -1657,15 +1657,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     _proportion = 10.0;
     _lattice = 0.01 * _proportion;
     
-    _slider = [[MGSlider alloc] initWithFrame:CGRectMake(20, 200, [UIScreen mainScreen].bounds.size.width - 40, 50)];
-    _slider.thumbSize = CGSizeMake(50, 50);//锚点的大小
+    _slider = [[MGSlider alloc] initWithFrame:CGRectMake(150, 5,150 , 50)];
+    _slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
+    _slider.thumbSize = CGSizeMake(40, 40);//锚点的大小
     _slider.thumbImage = [UIImage imageNamed:@"icon_activity_ticket_details_rebate"];//锚点的图片
     _slider.thumbColor = [UIColor clearColor];//锚点的背景色
     _slider.trackColor = [UIColor colorWithRed:0.29 green:0.42 blue:0.86 alpha:1.00];//进度条的颜色+
-    _slider.untrackColor = [UIColor greenColor];//进度条的颜色-
+    _slider.untrackColor = [UIColor grayColor];//进度条的颜色-
     _slider.zoom = NO; // 默认点击放大
     _slider.progress = 0;// 默认第一次锚点所在的位置，1：100%
-    _slider.margin = 70; // 距离左右内间距
+    _slider.margin = 10; // 距离左右内间距
     [self.bottomView addSubview:_slider];
     [_slider changeValue:^(CGFloat value) {
         NSLog(@">>>>>>>>>>>>>>>>>>>>>拖动==== %f", value);
@@ -1696,40 +1697,41 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
     
     _sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(150, 250, 200, 50)];
-    _sliderLB.text = @"显示0.0%";
+    _sliderLB.font = [UIFont systemFontOfSize:14.0];
+    _sliderLB.text = @"10.00%";
+    _sliderLB.textColor = [UIColor whiteColor];
     [self.bottomView addSubview:_sliderLB];
     
     
-//    [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-//        
-//        make.right.equalTo(self.bottomView.mas_right).offset(10);
-//        make.height.equalTo([NSNumber numberWithFloat:50]);
-//        make.width.equalTo([NSNumber numberWithFloat:50]);
-//        make.centerY.mas_equalTo(self.selectLabel.centerY);
-//    }];
-//
-//    [_slider mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-//
-//        make.right.equalTo(self.addBtn.mas_left).offset(0);
-//        make.height.equalTo([NSNumber numberWithFloat:50]);
-//        make.width.equalTo([NSNumber numberWithFloat:UGScreenW/4]);
-//        make.centerY.mas_equalTo(self.selectLabel.centerY);
-//    }];
-//
-//    [_reductionBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-//
-//        make.right.equalTo(self.slider.mas_left).offset(10);
-//        make.height.equalTo([NSNumber numberWithFloat:50]);
-//        make.width.equalTo([NSNumber numberWithFloat:50]);
-//        make.centerY.mas_equalTo(self.selectLabel.centerY);
-//    }];
-//
-//    [_sliderLB mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-//
-//        make.right.equalTo(self.reductionBtn.mas_left).offset(10);
-//        make.height.equalTo([NSNumber numberWithFloat:50]);
-//        make.centerY.mas_equalTo(self.selectLabel.centerY);
-//    }];
+    [_addBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+        
+        make.right.equalTo(self.bottomView.mas_right).offset(-10);
+        make.height.equalTo([NSNumber numberWithFloat:32]);
+        make.width.equalTo([NSNumber numberWithFloat:32]);
+        make.top.equalTo([NSNumber numberWithFloat:13]);
+    }];
+
+    [_slider mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+
+        make.right.equalTo(self.bottomView.mas_right).offset(-50);
+        make.height.equalTo([NSNumber numberWithFloat:50]);
+        make.width.equalTo([NSNumber numberWithFloat:120]);
+        make.top.equalTo([NSNumber numberWithFloat:5]);
+    }];
+
+    [_reductionBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+        
+        make.right.equalTo(self.bottomView.mas_right).offset(-181);
+        make.height.equalTo([NSNumber numberWithFloat:32]);
+        make.width.equalTo([NSNumber numberWithFloat:32]);
+        make.top.equalTo([NSNumber numberWithFloat:13]);
+    }];
+
+    [_sliderLB mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+        make.right.equalTo(self.reductionBtn.mas_left).offset(-20);
+        make.height.equalTo([NSNumber numberWithFloat:20]);
+        make.top.equalTo([NSNumber numberWithFloat:18]);
+    }];
     
 }
 

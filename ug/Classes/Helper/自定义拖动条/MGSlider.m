@@ -142,7 +142,7 @@
     _trackView.x = _margin;
     _trackView.width =  _valveIV.centerX - _margin;
     
-    _valveRect = CGRectMake(self.valveIV.centerX - _thumbSize.width * 0.5f, (self.height - _thumbSize.height) * 0.5f, _thumbSize.width, _thumbSize.height);
+    _valveRect = CGRectMake(self.valveIV.centerX - _thumbSize.width * 0.5f-10, (self.height - _thumbSize.height) * 0.5f-10, _thumbSize.width+40, _thumbSize.height+40);
 }
 
 - (void)changeValue:(void(^_Nullable)(CGFloat value))changeEvent endValue:(void(^_Nullable)(CGFloat value))endValue
