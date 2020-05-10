@@ -24,6 +24,7 @@
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
+@property (nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
 
 @property (nonatomic) UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 @property (nonatomic) UITableView *headerTabView;
@@ -329,6 +330,8 @@
         make.height.equalTo([NSNumber numberWithFloat:20]);
         make.top.equalTo([NSNumber numberWithFloat:18]);
     }];
+    
+    [self.bottomView bringSubviewToFront:self.bottomCloseView];
     
 }
 

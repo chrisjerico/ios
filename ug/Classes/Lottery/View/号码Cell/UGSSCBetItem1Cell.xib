@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qR-op-ast">
-                        <rect key="frame" x="48" y="14" width="28" height="28"/>
+                        <rect key="frame" x="10" y="14" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="IFe-Xa-PgZ"/>
                             <constraint firstAttribute="height" constant="28" id="yS8-92-F1C"/>
@@ -28,8 +27,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VO1-pl-p7v">
-                        <rect key="frame" x="80" y="19.5" width="29.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="42" y="20" width="28" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -39,7 +38,7 @@
             <constraints>
                 <constraint firstItem="4qR-op-ast" firstAttribute="centerY" secondItem="jf2-zr-Qsu" secondAttribute="centerY" id="4fa-2Q-Tcd"/>
                 <constraint firstItem="VO1-pl-p7v" firstAttribute="centerY" secondItem="jf2-zr-Qsu" secondAttribute="centerY" id="6AX-Pn-l8f"/>
-                <constraint firstItem="4qR-op-ast" firstAttribute="centerX" secondItem="jf2-zr-Qsu" secondAttribute="centerX" constant="-15" id="ZYc-y9-eH6"/>
+                <constraint firstItem="4qR-op-ast" firstAttribute="leading" secondItem="jf2-zr-Qsu" secondAttribute="leading" constant="10" id="HoI-9U-Mvy"/>
                 <constraint firstItem="VO1-pl-p7v" firstAttribute="leading" secondItem="4qR-op-ast" secondAttribute="trailing" constant="4" id="l7t-iY-TCy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q09-oz-Fdd"/>

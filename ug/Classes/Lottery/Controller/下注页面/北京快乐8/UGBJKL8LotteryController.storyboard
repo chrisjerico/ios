@@ -206,7 +206,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2f-Lz-hrM">
-                                                <rect key="frame" x="369" y="7" width="40" height="30.5"/>
+                                                <rect key="frame" x="361" y="7" width="48" height="30.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="PB6-Ej-Mkz"/>
                                                     <constraint firstAttribute="height" constant="30.5" id="ebZ-5s-7Y0"/>
