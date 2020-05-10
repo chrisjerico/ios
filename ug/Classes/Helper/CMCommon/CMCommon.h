@@ -370,4 +370,13 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
  *
  */
 + (NSDictionary *)readLocalFileWithName:(NSString *)name;
+
+/**
+* 计算新的赔率，公式： 新賠率 = 原始賠率 - ( 原始賠率無條件進位至整數位 * 退水)，
+* 如 退水是 0.4% 就应该是 0.0004，公式就是：48.8 - （49 * 0.0004）= 新赔率
+*
+* ogOdds: 原始賠率
+* rebate: 退水
+*/
++(float )newOgOdds:(float)ogOdds rebate:(float)rebate;
 @end

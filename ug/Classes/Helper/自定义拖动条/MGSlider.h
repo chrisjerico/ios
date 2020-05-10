@@ -27,7 +27,7 @@
 @property (nonatomic, assign) CGFloat endProgress;//移动的刻度
 
 
-
+@property (nonatomic, strong) UIImageView * _Nullable valveIV;
 
 
 - (void)changeValue:(void(^_Nullable)(CGFloat value))changeEvent endValue:(void(^_Nullable)(CGFloat value))endValue;

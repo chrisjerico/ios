@@ -10,6 +10,7 @@
 
 @implementation Global
 @synthesize lotterydataArray;
+@synthesize rebate;
 
 static Global *mglobal;
 

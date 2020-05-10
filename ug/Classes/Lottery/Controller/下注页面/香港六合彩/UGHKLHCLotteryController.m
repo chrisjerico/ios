@@ -1658,7 +1658,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     _lattice = 0.01 * _proportion;
     
     _slider = [[MGSlider alloc] initWithFrame:CGRectMake(150, 5,150 , 50)];
-    _slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
+//    _slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
     _slider.thumbSize = CGSizeMake(40, 40);//锚点的大小
     _slider.thumbImage = [UIImage imageNamed:@"icon_activity_ticket_details_rebate"];//锚点的图片
     _slider.thumbColor = [UIColor clearColor];//锚点的背景色
@@ -1667,15 +1667,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     _slider.zoom = NO; // 默认点击放大
     _slider.progress = 0;// 默认第一次锚点所在的位置，1：100%
     _slider.margin = 10; // 距离左右内间距
+    [[Global getInstanse] setRebate:0.0];//进入界面，初始退水为0
     [self.bottomView addSubview:_slider];
     [_slider changeValue:^(CGFloat value) {
         NSLog(@">>>>>>>>>>>>>>>>>>>>>拖动==== %f", value);
         
-        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * value*100,@"%"];
-        [self->_sliderLB setText:x];
+//        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * value*100,@"%"];
+//        [self->_sliderLB setText:x];
+        
+        [self setRebateAndSliderLB:value];
         
     } endValue:^(CGFloat value) {
         NSLog(@"end====: %f", value);
+        CGRect frame =  self->_slider.valveIV.frame;
+           NSLog(@"x= %f",frame.origin.x);
     }];
     
     
@@ -1698,7 +1703,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
     _sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(150, 250, 200, 50)];
     _sliderLB.font = [UIFont systemFontOfSize:14.0];
-    _sliderLB.text = @"10.00%";
+    _sliderLB.text = @"0.00%";
     _sliderLB.textColor = [UIColor whiteColor];
     [self.bottomView addSubview:_sliderLB];
     
@@ -1735,6 +1740,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
+-(void)setRebateAndSliderLB :(float )value{
+    NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * value*100,@"%"];
+    NSLog(@"当前的 = %@",x);
+    [self->_sliderLB setText:x];
+    
+    NSString *rebateStr = [NSString stringWithFormat:@"%.4f",self->_lattice * value];
+    float rebateF = [rebateStr floatValue];
+    [[Global getInstanse] setRebate:rebateF];
+    [self.betCollectionView reloadData];
+}
+
 -(void)reductionAction:(UIButton *)sender{
     NSLog(@"移动的progress = %f",_slider.moveProgress);
 
@@ -1748,9 +1764,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _slider.progress = _slider.moveProgress;
         NSLog(@"slider.progress = %f ",_slider.progress);
         
-        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * _slider.progress*100,@"%"];
-        NSLog(@"当前的 = %@",x);
-        [self->_sliderLB setText:x];
+//        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * _slider.progress*100,@"%"];
+//        NSLog(@"当前的 = %@",x);
+//        [self->_sliderLB setText:x];
+        [self setRebateAndSliderLB:_slider.progress];
+        
+        if (_slider.progress >0.8) {
+            //该控件的bug
+            CGRect frame =  _slider.valveIV.frame;
+            if (frame.origin.x >= 90.0) {
+                frame.origin.x = 90.0;
+                _slider.valveIV.frame = frame;
+            }
+            NSLog(@"x= %f",frame.origin.x);
+        }
     }
 
 }
@@ -1762,9 +1789,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _slider.moveProgress = _slider.moveProgress + 0.001;
         _slider.progress = _slider.moveProgress;
         NSLog(@"slider.progress = %f ",_slider.progress);
-        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * _slider.progress*100 ,@"%"];
-        NSLog(@"当前的 = %@",x);
-        [self->_sliderLB setText:x];
+//        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * _slider.progress*100 ,@"%"];
+//        NSLog(@"当前的 = %@",x);
+//        [self->_sliderLB setText:x];
+        [self setRebateAndSliderLB:_slider.progress];
+        
+        if (_slider.progress >0.8) {
+            //该控件的bug
+            CGRect frame =  _slider.valveIV.frame;
+            if (frame.origin.x >= 90.0) {
+                frame.origin.x = 90.0;
+                _slider.valveIV.frame = frame;
+            }
+            NSLog(@"x= %f",frame.origin.x);
+        }
+      
     }
 
 }

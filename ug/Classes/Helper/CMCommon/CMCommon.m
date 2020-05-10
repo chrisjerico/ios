@@ -1263,4 +1263,33 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 }
 
 
+/**
+* 计算新的赔率，公式： 新賠率 = 原始賠率 - ( 原始賠率無條件進位至整數位 * 退水)，
+* 如 退水是 0.4% 就应该是 0.0004，公式就是：48.8 - （49 * 0.0004）= 新赔率
+*
+* ogOdds: 原始賠率
+* rebate: 退水
+ 
+ 小数向上取整，指小数部分直接进1：
+
+  x = 2.222，ceilf(x) = 3。
+
+ 小数向下取整，指直接去掉小数部分：
+
+  x = 2.222，floor(x) = 2。
+
+ 小数四舍五入，指>0.5向上加1 ，小于0.5去掉小数部分 ：
+
+ x = 2.222，round(x) = 2;
+
+ y = 2.555，round(y) = 3。
+
+*/
++(float )newOgOdds:(float)ogOdds rebate:(float)rebate{
+    NSLog(@"ceilf(ogOdds) = %f",ceilf(ogOdds));
+    NSLog(@"rebate = %f",rebate);
+    NSLog(@"ogOdds- (ceilf(ogOdds) * rebate) = %f",ogOdds- (ceilf(ogOdds) * rebate));
+    
+  return   ogOdds- (ceilf(ogOdds) * rebate);
+}
 @end

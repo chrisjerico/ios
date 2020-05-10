@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) UIImageView *untrackView;
 @property (nonatomic, strong) UIImageView *trackView;
-@property (nonatomic, strong) UIImageView *valveIV;
+
 @property (nonatomic, assign) CGRect valveRect;
 @property (nonatomic, assign, getter=isSpot) BOOL spot;
 @property (nonatomic, copy) void(^changeEvent)(CGFloat value);

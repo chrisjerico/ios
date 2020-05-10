@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGMarkSixLotteryBetItem1Cell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *numberLB;
+
 @property (nonatomic, strong) UGGameBetModel *item;
 @property (nonatomic, strong) UGPlayOddsModel *playModel;
 @property (nonatomic, assign) BOOL num4Hidden;
