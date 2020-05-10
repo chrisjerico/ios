@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
-               BuildableName = "chat.app"
+               BuildableName = "&#x804a;&#x5929;APP.app"
                BlueprintName = "chat"
                ReferencedContainer = "container:UGBWApp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
-            BuildableName = "chat.app"
+            BuildableName = "&#x804a;&#x5929;APP.app"
             BlueprintName = "chat"
             ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "031EF3FD23BE7A9400B0F813"
-            BuildableName = "chat.app"
+            BuildableName = "&#x804a;&#x5929;APP.app"
             BlueprintName = "chat"
             ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>

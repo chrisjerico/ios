@@ -12,10 +12,8 @@
 
 #import <SafariServices/SafariServices.h>
 
-#ifdef isYSAPP  // 原生APP时才引用热更新文件
 #import "ReactNativeHelper.h"
 #import "JSPatchHelper.h"
-#endif
 
 
 @interface LaunchPageModel : UGModel
