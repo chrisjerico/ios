@@ -55,6 +55,11 @@
 -(void)showLeeView{
     
 }
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self saveRoomName:nil RoomId:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     //    self.title = @"聊天室";
