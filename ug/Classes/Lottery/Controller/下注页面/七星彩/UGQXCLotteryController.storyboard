@@ -271,17 +271,17 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-fA-yvy" userLabel="底部">
-                                <rect key="frame" x="0.0" y="802" width="414" height="99"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-fA-yvy" userLabel="底部">
+                                <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选中 0 注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sR-dE-BD5" userLabel="已选中">
-                                        <rect key="frame" x="10" y="3" width="73.5" height="17"/>
+                                        <rect key="frame" x="10" y="3" width="73.5" height="12"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入下注金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Lr-cd-Ycb" userLabel="下注金额">
-                                        <rect key="frame" x="10" y="23" width="120" height="32"/>
+                                        <rect key="frame" x="10" y="18" width="120" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="BWI-TF-9ta"/>
                                             <constraint firstAttribute="height" constant="32" id="qk1-mz-EYl"/>
@@ -356,10 +356,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nlo-Zq-fZn" userLabel="封盘">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ts-Yc-xe1">
-                                                <rect key="frame" x="182.5" y="31.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="37.5" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -387,7 +387,7 @@
                                     <constraint firstItem="Okk-Gx-okU" firstAttribute="top" secondItem="1G3-cB-B11" secondAttribute="top" id="ZM2-lg-AQN"/>
                                     <constraint firstItem="h9k-LT-Gcj" firstAttribute="top" secondItem="1G3-cB-B11" secondAttribute="top" id="cge-v2-SDh"/>
                                     <constraint firstItem="Nlo-Zq-fZn" firstAttribute="leading" secondItem="5Wx-fA-yvy" secondAttribute="leading" id="cqD-be-P1z"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nlo-Zq-fZn" secondAttribute="bottom" constant="17" id="el4-dd-pBf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Nlo-Zq-fZn" secondAttribute="bottom" id="el4-dd-pBf"/>
                                     <constraint firstItem="Okk-Gx-okU" firstAttribute="leading" secondItem="1G3-cB-B11" secondAttribute="trailing" constant="10" id="plU-eW-ibi"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="OFD-3I-NBV"/>
@@ -411,7 +411,7 @@
                             <constraint firstAttribute="bottom" secondItem="icK-Uh-hQQ" secondAttribute="bottom" constant="-40" id="bXS-zt-C7r"/>
                             <constraint firstAttribute="trailing" secondItem="icK-Uh-hQQ" secondAttribute="trailing" id="kG5-X7-f0V"/>
                             <constraint firstItem="icK-Uh-hQQ" firstAttribute="trailing" secondItem="5Wx-fA-yvy" secondAttribute="trailing" id="mC4-0J-fvx"/>
-                            <constraint firstAttribute="bottom" secondItem="5Wx-fA-yvy" secondAttribute="bottom" constant="-5" id="oPu-sm-4X8"/>
+                            <constraint firstAttribute="bottom" secondItem="5Wx-fA-yvy" secondAttribute="bottom" id="oPu-sm-4X8"/>
                             <constraint firstItem="icK-Uh-hQQ" firstAttribute="leading" secondItem="VwI-Xg-6po" secondAttribute="leading" id="zjd-u7-teG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ihF-Zt-cwa"/>
