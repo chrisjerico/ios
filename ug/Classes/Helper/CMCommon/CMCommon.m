@@ -1286,9 +1286,9 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 
 */
 +(float )newOgOdds:(float)ogOdds rebate:(float)rebate{
-    NSLog(@"ceilf(ogOdds) = %f",ceilf(ogOdds));
-    NSLog(@"rebate = %f",rebate);
-    NSLog(@"ogOdds- (ceilf(ogOdds) * rebate) = %f",ogOdds- (ceilf(ogOdds) * rebate));
+//    NSLog(@"ceilf(ogOdds) = %f",ceilf(ogOdds));
+//    NSLog(@"rebate = %f",rebate);
+//    NSLog(@"ogOdds- (ceilf(ogOdds) * rebate) = %f",ogOdds- (ceilf(ogOdds) * rebate));
     
   return   ogOdds- (ceilf(ogOdds) * rebate);
 }
