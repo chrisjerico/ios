@@ -214,21 +214,21 @@
             }
         } else {
             if ([self hasLastRoom]) {
-                       NSDictionary *dic = [self LastRoom];
-                       vc.roomId = dic[@"roomId"];
-                       vc.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
-                       self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
-                   }
-                   else{
-                       UGChatRoomModel *obj  = [UGChatRoomModel new];
-                       
-                       obj.roomName = SysConf.defaultChatRoom.roomName;
-                       obj.roomId  = SysConf.defaultChatRoom.roomId;
-                       
-                       vc.roomId = obj.roomId;
-                       vc.url = [APP chatGameUrl:obj.roomId hide:YES];
-                       self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
-                   }
+                NSDictionary *dic = [self LastRoom];
+                vc.roomId = dic[@"roomId"];
+                vc.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
+                self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
+            }
+            else{
+                UGChatRoomModel *obj  = [UGChatRoomModel new];
+                
+                obj.roomName = SysConf.defaultChatRoom.roomName;
+                obj.roomId  = SysConf.defaultChatRoom.roomId;
+                
+                vc.roomId = obj.roomId;
+                vc.url = [APP chatGameUrl:obj.roomId hide:YES];
+                self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
+            }
         }
         
        
@@ -436,6 +436,15 @@
                     text =  [text stringByReplacingOccurrencesOfString:@"▼"withString:@""];;
                     __self.mLabel.text = text;
                 }
+                
+                // 聊天室第一次加载有概率无法显示内容，多加载几次
+                [self getChatRoomData];
+                [self performSelector:@selector(getChatRoomData) afterDelay:0.5];
+                [self performSelector:@selector(getChatRoomData) afterDelay:1];
+
+                
+                
+                
             }
         };
         ssv1.titleBar.underlineView.hidden = true;
