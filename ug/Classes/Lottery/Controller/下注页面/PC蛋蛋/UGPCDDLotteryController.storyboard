@@ -359,7 +359,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAQ-Rk-58S">
-                                                <rect key="frame" x="182.5" y="60.5" width="49" height="19.5"/>
+                                                <rect key="frame" x="182.5" y="31.5" width="49" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -367,8 +367,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="PAQ-Rk-58S" firstAttribute="top" secondItem="IEd-DU-s4w" secondAttribute="top" constant="60.5" id="0R0-mo-RJa"/>
-                                            <constraint firstItem="PAQ-Rk-58S" firstAttribute="centerY" secondItem="IEd-DU-s4w" secondAttribute="centerY" constant="0.25" id="FnA-cS-n3I"/>
+                                            <constraint firstItem="PAQ-Rk-58S" firstAttribute="centerY" secondItem="IEd-DU-s4w" secondAttribute="centerY" constant="-28.75" id="FnA-cS-n3I"/>
                                             <constraint firstItem="PAQ-Rk-58S" firstAttribute="centerX" secondItem="IEd-DU-s4w" secondAttribute="centerX" id="zht-1V-nVv"/>
                                         </constraints>
                                     </view>

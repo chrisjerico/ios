@@ -264,16 +264,10 @@
     [self.bottomView addSubview:self.slider];
     [self.slider changeValue:^(CGFloat value) {
         NSLog(@">>>>>>>>>>>>>>>>>>>>>拖动==== %f", value);
-        
-//        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * value*100,@"%"];
-//        [self->self.sliderLB setText:x];
-        
         [self setRebateAndSliderLB:value];
         
     } endValue:^(CGFloat value) {
-        NSLog(@"end====: %f", value);
-        CGRect frame =  self.slider.valveIV.frame;
-           NSLog(@"x= %f",frame.origin.x);
+
     }];
     
     
@@ -337,7 +331,6 @@
 
 -(void)setRebateAndSliderLB :(float )value{
     NSString *x =[NSString stringWithFormat:@"%.2f%@",self.lattice * value*100,@"%"];
-    NSLog(@"当前的 = %@",x);
     [self.sliderLB setText:x];
     
     NSString *rebateStr = [NSString stringWithFormat:@"%.4f",self.lattice * value];
@@ -347,21 +340,13 @@
 }
 
 -(void)reductionAction:(UIButton *)sender{
-    NSLog(@"移动的progress = %f",self.slider.moveProgress);
 
-    NSLog(@"结束的progress = %f",self.slider.endProgress);
-
-    NSLog(@"当前的progress = %f",self.slider.progress);
     
     if (self.slider.moveProgress> 0) {
         
         self.slider.moveProgress = self.slider.moveProgress - 0.001;
         self.slider.progress = self.slider.moveProgress;
-        NSLog(@"slider.progress = %f ",self.slider.progress);
-        
-//        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * self.slider.progress*100,@"%"];
-//        NSLog(@"当前的 = %@",x);
-//        [self->self.sliderLB setText:x];
+
         [self setRebateAndSliderLB:self.slider.progress];
         
         if (self.slider.progress >0.8) {
@@ -378,15 +363,11 @@
 }
 
 -(void)addImgVAction:(UIButton *)sender{
-    NSLog(@"移动的progress = %f",self.slider.moveProgress);
 
     if (self.slider.moveProgress< 1.0) {
         self.slider.moveProgress = self.slider.moveProgress + 0.001;
         self.slider.progress = self.slider.moveProgress;
-        NSLog(@"slider.progress = %f ",self.slider.progress);
-//        NSString *x =[NSString stringWithFormat:@"%.2f%@",self->_lattice * self.slider.progress*100 ,@"%"];
-//        NSLog(@"当前的 = %@",x);
-//        [self->self.sliderLB setText:x];
+        
         [self setRebateAndSliderLB:self.slider.progress];
         
         if (self.slider.progress >0.8) {
