@@ -204,7 +204,7 @@
         UGChatViewController *vc = [[UGChatViewController alloc] init];
         vc.hideHead = YES;
         
-        if (SysConf.chatRoomRedirect == 1) {
+        if (SysConf.chatRoomRedirect == 1) { /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
             if (model.gameId ) {
                 UGChatRoomModel *roomModel =  [self getRoomMode:model.gameId];
                 
@@ -220,15 +220,14 @@
                        self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
                    }
                    else{
-                       NSLog(@"model.gameId = %@",model.gameId);
-
-                       if (model.gameId ) {
-                           UGChatRoomModel *roomModel =  [self getRoomMode:model.gameId];
-
-                           vc.roomId = roomModel.roomId;
-                           vc.url = [APP chatGameUrl:roomModel.roomId hide:YES];
-                            self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
-                       }
+                       UGChatRoomModel *obj  = [UGChatRoomModel new];
+                       
+                       obj.roomName = SysConf.defaultChatRoom.roomName;
+                       obj.roomId  = SysConf.defaultChatRoom.roomId;
+                       
+                       vc.roomId = obj.roomId;
+                       vc.url = [APP chatGameUrl:obj.roomId hide:YES];
+                       self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
                    }
         }
         
@@ -289,7 +288,7 @@
                 obj.roomName = @"聊天室";
             }
             
-            if (SysConf.chatRoomRedirect == 1) {
+            if (SysConf.chatRoomRedirect == 1) { /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
                 if (self.nim.gameId ) {
                     UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
                     self.vc2.roomId = roomModel.roomId;
@@ -306,14 +305,14 @@
                 
                 else{
                     
-                    NSLog(@"model.gameId = %@",self.nim.gameId);
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
                     
-                    if (self.nim.gameId ) {
-                        UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
-                        self.vc2.roomId = roomModel.roomId;
-                        self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
-                        self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
-                    }
+                    obj.roomName = SysConf.defaultChatRoom.roomName;
+                    obj.roomId  = SysConf.defaultChatRoom.roomId;
+                    
+                    self.vc2.roomId = obj.roomId;
+                    self.vc2.url = [APP chatGameUrl:obj.roomId hide:YES];
+                    self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
                     
                 }
             }
@@ -466,7 +465,6 @@
             __self.chatAry = [NSMutableArray new];
             NSMutableArray *chatIdAry = [NSMutableArray new];
             NSMutableArray *chatTitleAry = [NSMutableArray new];
-            NSMutableArray *typeIdAry = [NSMutableArray new];
             NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
             //            __self.chatAry = [data objectForKey:@"chatAry"];
             NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
@@ -687,7 +685,7 @@
 }
 
 
--(UGChatRoomModel *)getRoomMode:(NSString *)gameId{
+-(UGChatRoomModel *)getRoomMode:(NSString *)gameId{//强制跳转至彩种对应聊天室,没有跳到默认聊天室
     
     UGChatRoomModel *obj  = [UGChatRoomModel new];
     
