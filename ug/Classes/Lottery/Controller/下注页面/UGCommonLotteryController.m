@@ -247,8 +247,6 @@
 //拖动条
 - (void )sliderViewInit {
     
-    self.proportion = 10.0;
-    self.lattice = 0.01 * self.proportion;
     
     self.slider = [[MGSlider alloc] initWithFrame:CGRectMake(150, 5,150 , 50)];
 //    self.slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
@@ -327,6 +325,10 @@
     
     [self.bottomView bringSubviewToFront:self.bottomCloseView];
     
+    
+    [self showSlider:NO];
+    [self showSliderAction];
+    
 }
 
 -(void)setRebateAndSliderLB :(float )value{
@@ -399,12 +401,30 @@
             } else {
                 [subTextView(@"下注TxtF") set仅数字:true];
             }
+            
+            [self showSliderAction];
+            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
 }
 
+-(void)showSliderAction{
+    if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
+        self.proportion = SysConf.activeReturnCoinRatio;
+        self.lattice = 0.01 * self.proportion;
+        [self showSlider:YES];
+    } else {
+        [self showSlider:NO];
+    }
+}
+-(void)showSlider:(BOOL)isShow{
+    self.slider.hidden = !isShow;
+    self.sliderLB.hidden = !isShow;
+    self.reductionBtn.hidden = !isShow;
+    self.addBtn.hidden = !isShow;
+}
 
 
 
