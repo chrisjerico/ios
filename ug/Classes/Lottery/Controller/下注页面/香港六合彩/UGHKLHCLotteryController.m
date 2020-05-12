@@ -52,6 +52,8 @@
 #import "UGLotteryRecordTableViewCell.h"
 #import "CMTimeCommon.h"
 
+
+
 @interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,YBPopupMenuDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
@@ -147,9 +149,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     self.amountTextF.delegate = self;
 //    [self.view addSubview:self.tableView];//===========
 //    [self.contentView addSubview:self.tableView];
-
+  
     [self tableViewInit];
     [self headertableViewInit];
+
     [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
@@ -1644,6 +1647,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 #pragma mark - getting
+
+
+
 - (UITableView *)tableViewInit {
 
         _tableView.delegate = self;

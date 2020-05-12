@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSArray <UGYYPlatformGames *>*lotterydataArray;/**<   彩票大厅的数据   全局使用" */
 
+@property (nonatomic) float rebate;/**<   退水的数据   全局使用" */
+
 +(Global *)getInstanse;
 
 @end

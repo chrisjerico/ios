@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,8 +51,8 @@
                             <constraint firstAttribute="width" constant="28" id="NeU-Dy-7lI"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1尾 9.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuY-dQ-rQG">
-                        <rect key="frame" x="30" y="19.5" width="45" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1尾 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuY-dQ-rQG">
+                        <rect key="frame" x="5" y="19.5" width="24.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -108,6 +107,15 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h1-V0-N4f">
+                        <rect key="frame" x="39.5" y="18" width="25.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="15U-fT-YfZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -120,8 +128,9 @@
                 <constraint firstItem="Dbd-ZJ-HGd" firstAttribute="leading" secondItem="ipX-gH-Pud" secondAttribute="trailing" constant="2" id="OFp-7e-gGN"/>
                 <constraint firstItem="ipX-gH-Pud" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Pk2-ux-Saj"/>
                 <constraint firstItem="7iB-Aj-Ssh" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="QMg-yE-C56"/>
-                <constraint firstItem="IuY-dQ-rQG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="QNz-dG-4mM"/>
+                <constraint firstItem="IuY-dQ-rQG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="QNz-dG-4mM"/>
                 <constraint firstItem="bBV-BL-Bgg" firstAttribute="leading" secondItem="Dsc-CA-i5h" secondAttribute="trailing" constant="2" id="VsA-RA-chb"/>
+                <constraint firstItem="6h1-V0-N4f" firstAttribute="leading" secondItem="IuY-dQ-rQG" secondAttribute="trailing" constant="10" id="YNl-Ie-HAg"/>
                 <constraint firstItem="Dbd-ZJ-HGd" firstAttribute="leading" secondItem="7iB-Aj-Ssh" secondAttribute="trailing" id="YWj-SY-NdL"/>
                 <constraint firstItem="9ox-cr-6eD" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="cPH-1G-O8s"/>
                 <constraint firstItem="WaJ-6l-UJd" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="dQy-cP-RdU"/>
@@ -131,6 +140,7 @@
                 <constraint firstItem="0Gw-7g-8Nn" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="hIu-Za-mGS"/>
                 <constraint firstItem="IuY-dQ-rQG" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="k2c-GS-K12"/>
                 <constraint firstItem="Dbd-ZJ-HGd" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="lOw-nJ-S0L"/>
+                <constraint firstItem="6h1-V0-N4f" firstAttribute="centerY" secondItem="IuY-dQ-rQG" secondAttribute="centerY" id="lka-7h-afz"/>
                 <constraint firstItem="0Gw-7g-8Nn" firstAttribute="leading" secondItem="Dsc-CA-i5h" secondAttribute="trailing" constant="4" id="w42-E4-AmY"/>
                 <constraint firstItem="bBV-BL-Bgg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="xGZ-3w-Xxo"/>
                 <constraint firstItem="Dsc-CA-i5h" firstAttribute="leading" secondItem="Dbd-ZJ-HGd" secondAttribute="trailing" constant="2" id="zlB-wP-zWY"/>
@@ -149,6 +159,7 @@
                 <outlet property="num2Label" destination="Dbd-ZJ-HGd" id="LyG-Fh-xLJ"/>
                 <outlet property="num3Label" destination="Dsc-CA-i5h" id="QjE-nJ-Oiv"/>
                 <outlet property="num4Label" destination="bBV-BL-Bgg" id="UNJ-ug-k2K"/>
+                <outlet property="numberLB" destination="6h1-V0-N4f" id="jJm-Av-auv"/>
             </connections>
             <point key="canvasLocation" x="299.27536231884062" y="154.6875"/>
         </collectionViewCell>

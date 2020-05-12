@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) UIImageView *untrackView;
 @property (nonatomic, strong) UIImageView *trackView;
-@property (nonatomic, strong) UIImageView *valveIV;
+
 @property (nonatomic, assign) CGRect valveRect;
 @property (nonatomic, assign, getter=isSpot) BOOL spot;
 @property (nonatomic, copy) void(^changeEvent)(CGFloat value);
@@ -37,19 +37,6 @@
 
 @end
 @implementation MGSlider
-
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (!self.subviews.count) {
-        MGSlider *v = [[MGSlider alloc] initWithFrame:CGRectZero];
-        [self addSubview:v];
-        [v mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
-    }
-    return self;
-}
 
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -126,6 +113,8 @@
     if (self.endValueEvent && self.spot) {
         CGFloat progress = (self.valveIV.centerX - _margin) / (self.width - _margin * 2);
         self.endValueEvent(progress);
+        self.endProgress = progress;
+        
     }
     if (self.isZoom) {
         [UIView animateWithDuration:0.25 animations:^{
@@ -148,11 +137,12 @@
     if (self.changeEvent) {
         self.changeEvent(progress);
     }
+    self.moveProgress = progress;
     
     _trackView.x = _margin;
     _trackView.width =  _valveIV.centerX - _margin;
     
-    _valveRect = CGRectMake(self.valveIV.centerX - _thumbSize.width * 0.5f, (self.height - _thumbSize.height) * 0.5f, _thumbSize.width, _thumbSize.height);
+    _valveRect = CGRectMake(self.valveIV.centerX - _thumbSize.width * 0.5f-10, (self.height - _thumbSize.height) * 0.5f-10, _thumbSize.width+40, _thumbSize.height+40);
 }
 
 - (void)changeValue:(void(^_Nullable)(CGFloat value))changeEvent endValue:(void(^_Nullable)(CGFloat value))endValue
@@ -232,6 +222,7 @@
 
 - (void)updateSubviewFrame
 {
+
     _valveIV.frame = CGRectMake(_margin + (self.width - _margin * 2) * _progress, 0.5f * (self.height - _thumbSize.height), _thumbSize.width, _thumbSize.height);
     self.valveRect = _valveIV.frame;
     _valveIV.layer.cornerRadius = _valveIV.width * 0.5f;
