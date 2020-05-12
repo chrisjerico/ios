@@ -603,15 +603,16 @@
     }
     
     {//大转盘 右上
-        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
         [self.view addSubview:_bigWheelView];
-//
+
         [self.bigWheelView setHidden:YES];
+        
         [self.bigWheelView bringSubviewToFront:self.bigWheelView];
         [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
-            make.width.mas_equalTo(95.0);
-            make.height.mas_equalTo(95.0);
+            make.width.mas_equalTo(70.0);
+            make.height.mas_equalTo(70.0);
             make.top.equalTo(__self.view.mas_top).offset(150+105);
         }];
         self.bigWheelView.cancelClickBlock = ^(void) {
@@ -620,11 +621,9 @@
         self.bigWheelView.redClickBlock = ^(void) {
             DZPModel *banner = (DZPModel*)__self.bigWheelView.itemData;
             DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
-            [__self.view addSubview:recordVC];
-            [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(__self.view);
-            }];
-            
+
+             CGPoint showCenter = CGPointMake(APP.Width/2,APP.Height/2);
+             [SGBrowserView showMoveView:recordVC moveToCenter:showCenter];
             recordVC.item = banner;
         };
     }

@@ -13,6 +13,7 @@
 #import "DZPOneView.h"
 #import "FLAnimatedImageView.h"
 #import "DZPModel.h"
+#import "SGBrowserView.h"
 @interface DZPMainView ()
 
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgGif;//转盘头部gif
@@ -90,6 +91,8 @@
     return self;
 }
 
+
+
 - (IBAction)leftAction:(id)sender {
     [_btnBgImgV setImage:[UIImage imageNamed:@"seg_leftSelected"]];
     
@@ -115,7 +118,8 @@
 - (void)hiddenSelf {
 
 //    [view.superview removeFromSuperview];
-    [self  removeFromSuperview];
+//    [self  removeFromSuperview];
+    [SGBrowserView hide];
 }
 
 - (IBAction)close:(id)sender {

@@ -25,6 +25,7 @@
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
 @property (nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
+@property (nonatomic) IBOutlet UIStackView *rightStackView;/**<右边内容*/
 
 @property (nonatomic) UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 @property (nonatomic) UITableView *headerTabView;
@@ -112,6 +113,25 @@
                 bgView;
             }) atIndex:0];
         }
+        
+        
+        float borderWidth = APP.borderWidthTimes * 0.5;
+        UIColor* borderColor;
+        if (Skin1.isBlack||Skin1.is23) {
+            borderColor = Skin1.textColor3;
+        } else {
+            
+            if (APP.betBgIsWhite) {
+                borderColor =  APP.LineColor;
+            } else {
+                borderColor =  [[UIColor whiteColor] colorWithAlphaComponent:0.3];
+            }
+        }
+
+        if (APP.isShowBorder) {
+              [CMCommon setBorderWithView:self.rightStackView top:NO left:YES bottom:NO right:YES borderColor:borderColor borderWidth:borderWidth];
+        }
+       
         
         // 左侧玩法栏背景色
         

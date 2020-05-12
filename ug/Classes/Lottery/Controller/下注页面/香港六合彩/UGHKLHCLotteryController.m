@@ -150,6 +150,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 //    [self.view addSubview:self.tableView];//===========
 //    [self.contentView addSubview:self.tableView];
   
+   
     [self tableViewInit];
     [self headertableViewInit];
 
@@ -317,8 +318,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             NSLog(@"model.data = %@",model.data);
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
-//            [self.view addSubview:self.zodiacScrollView];
             [self.rightStackView addSubview:self.zodiacScrollView];
+          
             
             [self initBetCollectionView];
             
@@ -1662,7 +1663,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
         _tableView.badgeBgColor = [UIColor clearColor];
 
-    
+     
     return _tableView;
 }
 

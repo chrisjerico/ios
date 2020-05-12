@@ -19,10 +19,10 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7n-Od-kZw" userLabel="转盘" customClass="LYLuckyCardRotationView">
-                    <rect key="frame" x="10" y="124" width="394" height="394"/>
+                    <rect key="frame" x="20" y="112" width="374" height="374"/>
                     <subviews>
                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dzp_turnplate_bg" translatesAutoresizingMaskIntoConstraints="NO" id="CZK-Sd-eQa">
-                            <rect key="frame" x="0.0" y="0.0" width="394" height="394"/>
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="374"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,7 +45,7 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ztlight.gif" translatesAutoresizingMaskIntoConstraints="NO" id="vLm-VA-79D" customClass="FLAnimatedImageView">
-                    <rect key="frame" x="56.5" y="56" width="301" height="153"/>
+                    <rect key="frame" x="56.5" y="44" width="301" height="153"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="301" id="oEL-5h-OCD"/>
                     </constraints>
@@ -58,7 +58,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcT-NK-3jN">
-                    <rect key="frame" x="0.0" y="528" width="414" height="334"/>
+                    <rect key="frame" x="0.0" y="496" width="414" height="366"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shenzagasdfasfasfasd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ0-vS-q6X" userLabel="用户积分">
                             <rect key="frame" x="121.5" y="5" width="171.5" height="21"/>
@@ -96,7 +96,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAc-S3-XiC" userLabel="内容视图">
-                            <rect key="frame" x="50" y="66.5" width="314" height="262.5"/>
+                            <rect key="frame" x="50" y="66.5" width="314" height="294.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -123,11 +123,11 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ZcT-NK-3jN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0Si-Il-fBf"/>
-                <constraint firstItem="p7n-Od-kZw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="3gM-GE-oIj"/>
+                <constraint firstItem="p7n-Od-kZw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="3gM-GE-oIj"/>
                 <constraint firstItem="MRR-rI-o5M" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6WT-lG-5Cg"/>
                 <constraint firstItem="vmA-MF-MjA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="54" id="6vT-db-8Mf"/>
-                <constraint firstItem="vLm-VA-79D" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="E9H-Fj-yDq"/>
-                <constraint firstItem="p7n-Od-kZw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="80" id="Esn-7e-Z9g"/>
+                <constraint firstItem="vLm-VA-79D" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="E9H-Fj-yDq"/>
+                <constraint firstItem="p7n-Od-kZw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="68" id="Esn-7e-Z9g"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MRR-rI-o5M" secondAttribute="bottom" id="KO0-vs-Xt1"/>
                 <constraint firstItem="vLm-VA-79D" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Siz-fi-e4O"/>
                 <constraint firstItem="ZcT-NK-3jN" firstAttribute="top" secondItem="p7n-Od-kZw" secondAttribute="bottom" constant="10" id="UGd-i8-Azl"/>
@@ -136,7 +136,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vmA-MF-MjA" secondAttribute="trailing" constant="27" id="beh-eD-xoY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MRR-rI-o5M" secondAttribute="trailing" id="h1N-G9-5ZB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ZcT-NK-3jN" secondAttribute="bottom" id="haT-oh-6Dh"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="p7n-Od-kZw" secondAttribute="trailing" constant="10" id="qim-QQ-B0g"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="p7n-Od-kZw" secondAttribute="trailing" constant="20" id="qim-QQ-B0g"/>
                 <constraint firstItem="lqn-Xu-pr0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="wAH-IQ-kaT"/>
                 <constraint firstItem="MRR-rI-o5M" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yJF-T3-oEI"/>
             </constraints>
