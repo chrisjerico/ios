@@ -310,6 +310,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
+            
+            NSLog(@"model.data = %@",model.data);
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
 //            [self.view addSubview:self.zodiacScrollView];

@@ -225,14 +225,10 @@
                 self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
             }
             else{
-                UGChatRoomModel *obj  = [UGChatRoomModel new];
-                
-                obj.roomName = SysConf.defaultChatRoom.roomName;
-                obj.roomId  = SysConf.defaultChatRoom.roomId;
-                
-                vc.roomId = obj.roomId;
-                vc.url = [APP chatGameUrl:obj.roomId hide:YES];
-                self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
+                UGChatRoomModel *roomModel =  [self getRoomMode:model.gameId];
+                vc.roomId = roomModel.roomId;
+                vc.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
             }
         }
         
@@ -310,14 +306,10 @@
                 
                 else{
                     
-                    UGChatRoomModel *obj  = [UGChatRoomModel new];
-                    
-                    obj.roomName = SysConf.defaultChatRoom.roomName;
-                    obj.roomId  = SysConf.defaultChatRoom.roomId;
-                    
-                    self.vc2.roomId = obj.roomId;
-                    self.vc2.url = [APP chatGameUrl:obj.roomId hide:YES];
-                    self.mLabel.text = [NSString stringWithFormat:@"%@▼",obj.roomName];
+                    UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
+                     self.vc2.roomId = roomModel.roomId;
+                     self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                     self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
                     
                 }
             }
