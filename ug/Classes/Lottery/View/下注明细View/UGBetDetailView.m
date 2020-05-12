@@ -568,7 +568,13 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         bet.playId = model.playId;
         bet.title = model.title;
         bet.name = model.name;
-        bet.odds = model.odds;
+        
+        if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
+            bet.odds = [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+        } else {
+            bet.odds = model.odds;
+        }
+        
         bet.alias = model.alias;
         bet.typeName = model.typeName;
         bet.betInfo = model.betInfo;

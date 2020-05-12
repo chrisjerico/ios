@@ -70,7 +70,9 @@
     }
     
     self.amountField.text = _NSString(@"%@", item.money);
-    self.oddsLabel.text = _NSString(@"@%@", [item.odds removeFloatAllZero]);
+    self.oddsLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [item.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+    
+
     
     // 以下玩法不允许求改金额
     NSArray *titles = @[@"连码", @"连肖", @"合肖", @"连尾", @"自选不中", ];
