@@ -114,6 +114,9 @@
 #import "UIColor+RGBValues.h"
 #import "BetFormViewModel.h"
 #import "HSC_BetFormCell.h"
+//大转盘
+#import "DZPMainView.h"
+#import "DZPModel.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
@@ -199,7 +202,9 @@
 @property (nonatomic, strong)  UGredEnvelopeView *uUpperRightView;    /**<   手机端浮窗3  右上 */
 @property (nonatomic, strong)  UGredEnvelopeView *uLowerRightView;    /**<   手机端浮窗4  右下 */
 
-//优惠活动列表-------------------------------------------
+//-------------------------------------------
+//大转盘
+@property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
 
 @end
 
@@ -597,6 +602,32 @@
         };
     }
     
+    {//大转盘 右上
+        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+        [self.view addSubview:_bigWheelView];
+//
+        [self.bigWheelView setHidden:YES];
+        [self.bigWheelView bringSubviewToFront:self.bigWheelView];
+        [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(__self.view.mas_right).with.offset(-10);
+            make.width.mas_equalTo(95.0);
+            make.height.mas_equalTo(95.0);
+            make.top.equalTo(__self.view.mas_top).offset(150+105);
+        }];
+        self.bigWheelView.cancelClickBlock = ^(void) {
+            [__self.bigWheelView setHidden:YES];
+        };
+        self.bigWheelView.redClickBlock = ^(void) {
+            DZPModel *banner = (DZPModel*)__self.bigWheelView.itemData;
+            DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
+            [__self.view addSubview:recordVC];
+            [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(__self.view);
+            }];
+            
+            recordVC.item = banner;
+        };
+    }
     
     // 手机悬浮按钮
     {
@@ -608,7 +639,12 @@
                 make.left.equalTo(__self.view.mas_left).with.offset(10);
                 make.width.mas_equalTo(95.0);
                 make.height.mas_equalTo(95.0);
-                make.top.equalTo(__self.view.mas_top).offset(150+105);
+                if (self.bigWheelView.hidden) {
+                      make.top.equalTo(__self.view.mas_top).offset(150+105);
+                } else {
+                      make.top.equalTo(__self.bigWheelView.mas_bottom).offset(5);
+                }
+              
             }];
             self.uUpperLeftView.cancelClickBlock = ^(void) {
                 [__self.uUpperLeftView setHidden:YES];
@@ -645,7 +681,11 @@
                 make.right.equalTo(__self.view.mas_right).with.offset(-10);
                 make.width.mas_equalTo(95.0);
                 make.height.mas_equalTo(95.0);
-                make.top.equalTo(__self.view.mas_top).offset(150+105);
+                if (self.bigWheelView.hidden) {
+                      make.top.equalTo(__self.view.mas_top).offset(150+105);
+                } else {
+                      make.top.equalTo(__self.bigWheelView.mas_bottom).offset(5);
+                }
             }];
             self.uUpperRightView.cancelClickBlock = ^(void) {
                 [__self.uUpperRightView setHidden:YES];
@@ -673,6 +713,10 @@
                 BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
             };
         }
+        
+
+        
+        
     }
     // c200、c035站点定制需求
     if ([APP.SiteId containsString:@"c035"]) {
@@ -722,23 +766,23 @@
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_async(group, queue, ^{
         
-        // 请求一  // APP配置信息
+        // 请求一
           [self getSystemConfig];     // APP配置信息
         
     });
     dispatch_group_async(group, queue, ^{
         
-        // 请求二 // Banner图
+        // 请求二
         [self getBannerList];       // Banner图
     });
     dispatch_group_async(group, queue, ^{
         
-        // 请求3  公告列表
+        // 请求3
          [self getNoticeList];   // 公告列表
     });
     dispatch_group_async(group, queue, ^{
         
-        // 请求4  用户信息
+        // 请求4
         [self getUserInfo];         // 用户信息
     });
     dispatch_group_async(group, queue, ^{
@@ -749,7 +793,7 @@
     });
     dispatch_group_async(group, queue, ^{
         
-        // 请求6 在线人数
+        // 请求6
         [self systemOnlineCount];   // 在线人数
         
     });
@@ -761,49 +805,55 @@
     });
     dispatch_group_async(group, queue, ^{
            
-           // 请求8在线人数
+           // 请求8
            [self getRankList];     // 投注排行榜/中奖排行榜
            
     });
     dispatch_group_async(group, queue, ^{
            
-           // 请求9 在线人数
+           // 请求9
            [self gethomeAdsList];     // 首页广告图片
            
     });
        
     dispatch_group_async(group, queue, ^{
            
-           // 请求10 在线人数
+           // 请求10
            [self chatgetToken];     // 在线配置的聊天室
            
     });
        
     dispatch_group_async(group, queue, ^{
            
-           // 请求11 在线人数
+           // 请求11
            [self getfloatAdsList];     // 首页左右浮窗
            
     });
     dispatch_group_async(group, queue, ^{
            
-           // 请求12 在线人数
+           // 请求12
            [self getCategoryList];     //栏目列表
            
     });
     dispatch_group_async(group, queue, ^{
            
-           // 请求13在线人数
+           // 请求13
            [self getPlatformGamesWithParams];     //购彩大厅信息
            
     });
     dispatch_group_async(group, queue, ^{
            
-           // 请求14 在线人数
+           // 请求14
            [self.lhPrizeView  getLotteryNumberList];     //购彩大厅信息
            
     });
-       
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求15 在线人数
+           [self  getactivityTurntableList];     //大转盘
+           
+    });
+      
        
     
     dispatch_group_notify(group, queue, ^{
@@ -823,6 +873,7 @@
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         
@@ -1550,6 +1601,14 @@
                         self.uUpperLeftView.itemSuspension = banner;
                         self.uUpperLeftView.hidden = NO;
                         
+                        if (!self.bigWheelView.hidden) {
+                            [self.uUpperLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
+                                make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                            }];
+    
+                        }
+
+                        
                     }
                     else{
                         self.uUpperLeftView.hidden = YES;
@@ -1594,6 +1653,80 @@
             
         } failure:^(id msg) {
             
+        }];
+    }];
+}
+
+//大转盘
+- (void)getactivityTurntableList {
+
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             };
+    [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray <DZPModel *> *dzpArray = [NSArray new];
+                // 需要在主线程执行的代码
+                 dzpArray = model.data;
+                
+                NSLog(@"dzpArray = %@",dzpArray);
+
+                if (dzpArray.count) {
+
+                   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
+                    DZPModel *obj = [data objectAtIndex:0];
+                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        // 需要在主线程执行的代码
+                       self.bigWheelView.itemData = obj;
+                       self.bigWheelView.hidden = NO;
+                        [self.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                        
+                       [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(self.view.mas_left).with.offset(10);
+                              make.width.mas_equalTo(95.0);
+                              make.height.mas_equalTo(95.0);
+                              if (self.bigWheelView.hidden) {
+                                    make.top.equalTo(self.view.mas_top).offset(150+105);
+                              } else {
+                                    make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                              }
+                        }];
+                        
+                        [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.left.equalTo(self.view.mas_left).with.offset(10);
+                              make.width.mas_equalTo(95.0);
+                              make.height.mas_equalTo(95.0);
+                              make.top.equalTo(self.uUpperLeftView.mas_bottom).offset(5);
+                          }];
+                        
+                        [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.right.equalTo(self.view.mas_right).with.offset(-10);
+                            make.width.mas_equalTo(95.0);
+                            make.height.mas_equalTo(95.0);
+                            if (self.bigWheelView.hidden) {
+                                  make.top.equalTo(self.view.mas_top).offset(150+105);
+                            } else {
+                                  make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                            }
+                        }];
+                        [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.right.equalTo(self.view.mas_right).with.offset(-10);
+                              make.width.mas_equalTo(95.0);
+                              make.height.mas_equalTo(95.0);
+                              make.top.equalTo(self.uUpperRightView.mas_bottom).offset(5);
+                          }];
+                        
+                    });
+    
+                }
+
+            });
+            
+        } failure:^(id msg) {
+//            [SVProgressHUD showErrorWithStatus:msg];
+
         }];
     }];
 }
