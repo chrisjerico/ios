@@ -121,7 +121,7 @@
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfV-js-kSn">
                                                         <rect key="frame" x="0.0" y="580" width="414" height="101.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7L-nt-EpM">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7L-nt-EpM" userLabel=" 首页广告图片View">
                                                                 <rect key="frame" x="8" y="1" width="398" height="99.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
