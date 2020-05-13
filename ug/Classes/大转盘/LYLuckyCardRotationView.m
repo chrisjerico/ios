@@ -201,6 +201,9 @@
         if (self.angle != -1) {
              [self animationWinning];
         }
+        else{
+            [self removeAnimations];
+        }
       
     }
     if ([self.canRotationView.layer.animationKeys[0] isEqualToString:@"beginAnima"]) {
@@ -208,10 +211,17 @@
         if (self.angle != -1  && flag) {
             [self animationPart:self.angle];
         }
+        else{
+            [self removeAnimations];
+        }
+        
     }
     if ([self.winView.layer.animationKeys[0] isEqualToString:@"animationWin"]) {
         if (flag) {
               [self performSelector:@selector(winner) withObject:nil/*可传任意类型参数*/ afterDelay:3.0];
+        }
+        else{
+            [self removeAnimations];
         }
       
     }
@@ -274,22 +284,25 @@
                 }
             }
             else{
-                self->_myBtn.enabled = YES;
-                [self.winView.layer removeAllAnimations];
-                [self.canRotationView.layer removeAllAnimations];
-                
+ 
+                [self removeAnimations];
             }
            
             
         } failure:^(id msg) {
-            self->_myBtn.enabled = YES;
+
             NSLog(@" 网络出错");
             [SVProgressHUD showErrorWithStatus:msg];
-            [self.winView.layer removeAllAnimations];
-            [self.canRotationView.layer removeAllAnimations];
+            [self removeAnimations];
+
         }];
     }];
 }
 
-
+-(void)removeAnimations{
+    self.myBtn.enabled = YES;
+    [self winner];
+     [self.winView.layer removeAllAnimations];
+     [self.canRotationView.layer removeAllAnimations];
+}
 @end

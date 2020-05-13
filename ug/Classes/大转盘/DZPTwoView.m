@@ -57,7 +57,7 @@
     _tableView.estimatedRowHeight = 0;
     _tableView.estimatedSectionHeaderHeight = 0;
     _tableView.estimatedSectionFooterHeight = 0;
-    _tableView.rowHeight = 50;
+    _tableView.rowHeight = 25;
     
     return _tableView;
 }
@@ -79,13 +79,19 @@
     cell.rowLB.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
     cell.numberLB.text = model.codeNum;
     cell.recordLB.text = model.prize_name;
+    
+    if ((indexPath.row+1)%2 ==0) {
+        cell.backgroundColor = RGBA(80, 40, 130, 0.8);
+    } else {
+        cell.backgroundColor = [UIColor clearColor];
+    }
     return cell;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return  40.0;
+    return  25.0;
 }
 
 
@@ -95,7 +101,11 @@
 }
 
 -(void)setDataArray:(NSArray<DZPModel *> *)dataArray{
-    _dataArray = dataArray;
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithArray:dataArray];
+    // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"codeNum" ascending:NO];
+//    _dataArray =  (NSMutableArray *)[[temp reverseObjectEnumerator] allObjects];
+     _dataArray =  [temp sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     [_tableView reloadData];
 }
 @end

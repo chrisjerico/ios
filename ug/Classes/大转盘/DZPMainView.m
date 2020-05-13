@@ -49,6 +49,7 @@
             make.edges.equalTo(self);
         }];
         
+        
 
     }
     return self;
@@ -57,10 +58,13 @@
 
 - (instancetype)DZPMainView {
 
-    NSArray *objs= [[UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil] instantiateWithOwner:self options:nil];
+//    NSArray *objs= [[UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil] instantiateWithOwner:self options:nil];
     // 按屏幕比例缩放（因为等比例约束太复杂，所以直接缩放得了）
 //    CGFloat scale = APP.Width/414;
 //    self.transform = CGAffineTransformMakeScale(scale, scale);
+    NSBundle *bundle=[NSBundle mainBundle];
+    NSArray *objs=[bundle loadNibNamed:@"DZPMainView" owner:nil options:nil];
+
     return [objs firstObject];
 }
 
@@ -69,6 +73,8 @@
     self = [super initWithFrame:frame];
     if(self){
         self = [self DZPMainView];
+        
+
         _imgGif.contentMode = UIViewContentModeScaleAspectFit;
         [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"ztlight" withExtension:@"gif"]];
         _oneView = [[DZPOneView alloc] initWithFrame:CGRectZero];

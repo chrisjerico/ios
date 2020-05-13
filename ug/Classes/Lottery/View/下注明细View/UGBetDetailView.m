@@ -198,11 +198,14 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         NSString *money = [NSString stringWithFormat:@"betBean[%d][money]",i];
         NSString *betInfo = [NSString stringWithFormat:@"betBean[%d][betInfo]",i];
         NSString *playIds = [NSString stringWithFormat:@"betBean[%d][playIds]",i];
+        NSString *odds = [NSString stringWithFormat:@"betBean[%d][odds]",i];
         UGBetModel *bet = self.betArray[i];
         [mutDict setValue:bet.playId forKey:playId];
         [mutDict setValue: [NSString stringWithFormat:@"%.2f", [bet.money floatValue]]  forKey:money];
         [mutDict setObject:bet.betInfo.length ? bet.betInfo : @"" forKey:betInfo];
         [mutDict setObject:bet.playIds.length ? bet.playIds : @"" forKey:playIds];
+        [mutDict setObject:bet.money.length ? bet.money : @"" forKey:money];
+        [mutDict setObject:bet.odds.length ? bet.odds : @"" forKey:odds];
         
     }
     
