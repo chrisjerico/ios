@@ -204,7 +204,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         [mutDict setValue: [NSString stringWithFormat:@"%.2f", [bet.money floatValue]]  forKey:money];
         [mutDict setObject:bet.betInfo.length ? bet.betInfo : @"" forKey:betInfo];
         [mutDict setObject:bet.playIds.length ? bet.playIds : @"" forKey:playIds];
-        [mutDict setObject:bet.money.length ? bet.money : @"" forKey:money];
+//        [mutDict setObject:bet.money.length ? bet.money : @"" forKey:money];
         [mutDict setObject:bet.odds.length ? bet.odds : @"" forKey:odds];
         
     }
