@@ -1992,6 +1992,7 @@
 		D4773ABF23FC16B100D38D60 /* LineConversion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */; };
 		D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */; };
 		D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
+		D4ACBF5D246C25C3005AB971 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
 		D4B75E16227802600007047C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E17227802600007047C /* LaunchScreen.storyboard */; };
@@ -3870,6 +3871,8 @@
 		D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineConversionHeaderVC.m; sourceTree = "<group>"; };
 		D4773ACC23FD628800D38D60 /* LineMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainViewController.h; sourceTree = "<group>"; };
 		D4773ACD23FD628800D38D60 /* LineMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainViewController.m; sourceTree = "<group>"; };
+		D4ACBF5B246C25C3005AB971 /* NSArray+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
+		D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4B75E092278025E0007047C /* UGBWApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UGBWApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -4123,6 +4126,7 @@
 				031E14C223BE812300B0F813 /* CMNetwork */,
 				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
 				D43DAF8224555B1C0014A301 /* 自定义拖动条 */,
+				D4ACBF56246C21D9005AB971 /* 打印json分类 */,
 				D43B77E8242E2AED00913BE1 /* VC类别 */,
 				D458ED8A2412411C00575C3F /* 给tab加badge分类 */,
 				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
@@ -8086,6 +8090,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D4ACBF56246C21D9005AB971 /* 打印json分类 */ = {
+			isa = PBXGroup;
+			children = (
+				D4ACBF5B246C25C3005AB971 /* NSArray+Log.h */,
+				D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */,
+			);
+			path = "打印json分类";
+			sourceTree = "<group>";
+		};
 		D4B75E002278025E0007047C = {
 			isa = PBXGroup;
 			children = (
@@ -10061,6 +10074,7 @@
 				D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */,
 				031E1AF423BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031E1A6223BE812700B0F813 /* NSString+ST.m in Sources */,
+				D4ACBF5D246C25C3005AB971 /* NSArray+Log.m in Sources */,
 				036CA78923C7DD9D007BBD25 /* MyPromotionMembersVC.m in Sources */,
 				031E1B9823BE812900B0F813 /* UGChanglongBetRecrodCell.m in Sources */,
 				031E1A4C23BE812700B0F813 /* CMCommon.m in Sources */,

@@ -66,4 +66,5 @@
 #import "UIView+yyCornerRadius.h"   //添加圆角
 #import "CMNetwork+LH.h"            //六合
 #import "Global.h"                  //全局数据
+#import "NSArray+Log.h"             //XCode状态栏打印Json格式数据
 #endif /* UGPCH_pch */

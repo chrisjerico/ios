@@ -296,18 +296,21 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define liveUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/video.html?navhidden=1&&id="]
 
 
-#if DEBUG
 
-//#define NSLog(...) NSLog(__VA_ARGS__)
 
-#define NSLog(FORMAT, ...) fprintf(stderr,"[%s:%d行] %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
+
+#ifdef DEBUG
+#define NSLog(format, ...) printf("\n%s HHLog %s(line%d) %s\n%s\n\n", __TIME__, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String])
+//NSLog输出日志不全的解决方法 https://www.jianshu.com/p/287ad5861ff4
+#define HJSonLog(...) printf("%f %s\n",[[NSDate date]timeIntervalSince1970],[[NSString stringWithFormat:__VA_ARGS__]UTF8String]);
 
 #else
-
-//#define NSLog(...) {}
-
+#define NSLog(format, ...)
+#define HJSonLog(format, ...)
 #endif
+
+
 
 #define CMMETHOD_BEGIN
 #define CMMETHOD_BEGIN_C(v)

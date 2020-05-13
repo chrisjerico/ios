@@ -418,8 +418,8 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     if ([method containsString:@"a=login"]) {
         [params setValue:nil forKey:@"token"];
     }
-    NSLog(@"method   =%@",method);
-    NSLog(@"params   =%@",params);
+    NSLog(@"请求method   =%@",method);
+    NSLog(@"请求params   =%@",params);
     if (isPost) {
         [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
     } else {
@@ -460,12 +460,18 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                 return ;
             }
         }
+        
+        
         // 序列化数据
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
                                                              options:0
                                                                error:nil];
+        
+ 
 #ifdef DEBUG
-        NSLog(@"%@: json = %@",method,json);
+        
+        HJSonLog(@"%@: 返回的json = %@",method,json);
+
 #endif
 
         NSError *error;

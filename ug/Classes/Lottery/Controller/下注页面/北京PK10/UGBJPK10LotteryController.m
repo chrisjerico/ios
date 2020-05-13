@@ -262,6 +262,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     NSDictionary *params = @{@"id":self.gameId};
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
+            
+            
+            NSLog(@"model.data= %@",model.data);
             UGPlayOddsModel *play = model.data;
             self.gameDataArray = play.playOdds.mutableCopy;
             for (UGGameplayModel *gm in play.playOdds) {
