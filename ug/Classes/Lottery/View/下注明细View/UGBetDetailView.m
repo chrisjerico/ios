@@ -4,7 +4,7 @@
 //
 //  Created by ug on 2019/5/14.
 //  Copyright © 2019 ug. All rights reserved.
-//
+//  adfdadsf
 
 #import "UGBetDetailView.h"
 #import "UGBetDetailTableViewCell.h"
