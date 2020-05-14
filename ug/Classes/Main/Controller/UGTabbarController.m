@@ -567,14 +567,14 @@ static UGTabbarController *_tabBarVC = nil;
     UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
     NSLog(@"vc = %@",vc);
     
-    BOOL isEqualRPM = false;
+    BOOL isDifferentRPM = false;
     if ([vc isKindOfClass:ReactNativeVC.class] && [vc.className isEqualToString:mm.clsName]) {
         RnPageModel *rpm = [APP.rnPageInfos objectWithValue:mm.path keyPath:@"tabbarItemPath"];
-        isEqualRPM = [((ReactNativeVC *)vc) isEqualRPM:rpm];
+        isDifferentRPM = ![((ReactNativeVC *)vc) isEqualRPM:rpm];
     }
     
     // 控制器需要重新加载
-    if (!isEqualRPM || ![vc.className isEqualToString:mm.clsName]) {
+    if (isDifferentRPM || ![vc.className isEqualToString:mm.clsName]) {
         [mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
             RnPageModel *rpm = [APP.rnPageInfos objectWithValue:vc.className keyPath:@"vcName"];
             if (rpm) {
