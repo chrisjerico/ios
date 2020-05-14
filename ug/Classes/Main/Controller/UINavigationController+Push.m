@@ -194,64 +194,78 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         return false;
     }
     
-    // 去（彩票下注+聊天室）集合页
-    {
-        LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
-
-       
-        vc.nim = model;
-//        if (vc.navigationController.viewControllers.count > 1){
-                  // 隐藏底部条
-            vc.hidesBottomBarWhenPushed = YES;
-//        }
-//        else{
-//            vc.hidesBottomBarWhenPushed = NO;
-//        }
-        // Push
-        if ([UGTabbarController canPushToViewController:vc]) {
-            [NavController1 setViewControllers:({
-                NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
-                for (UIViewController *vc in NavController1.viewControllers) {
-                    if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
-                        [vcs removeObject:vc];
-                    }
-                }
-                [vcs addObject:vc];
-                vcs;
-            }) animated:YES];
-        }
-        return true;
+   
+    if ([CMCommon getRoomMode:model.gameId]) {
+        return [self goLotteryBetAndChatVC:model];
+    } else {
+        return [self goUGCommonLotteryController:model vcName:vcName];
     }
-    
+   
+}
+
+ // 去（彩票下注+聊天室）集合页
+-(BOOL)goLotteryBetAndChatVC:(UGNextIssueModel *)model {
+     // 去（彩票下注+聊天室）集合页
+        {
+            LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
+
+           
+            vc.nim = model;
+    //        if (vc.navigationController.viewControllers.count > 1){
+                      // 隐藏底部条
+                vc.hidesBottomBarWhenPushed = YES;
+    //        }
+    //        else{
+    //            vc.hidesBottomBarWhenPushed = NO;
+    //        }
+            // Push
+            if ([UGTabbarController canPushToViewController:vc]) {
+                [NavController1 setViewControllers:({
+                    NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+                    for (UIViewController *vc in NavController1.viewControllers) {
+                        if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
+                            [vcs removeObject:vc];
+                        }
+                    }
+                    [vcs addObject:vc];
+                    vcs;
+                }) animated:YES];
+            }
+            return true;
+        }
+}
+
+ // 去（彩票下注页
+-(BOOL )goUGCommonLotteryController:(UGNextIssueModel *)model vcName :(NSString *)vcName{
     // 去彩票下注页
-    {
-        UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
-        //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
-        if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
-            vc.shoulHideHeader = true;
-        }
-        vc.nextIssueModel = model;
-        vc.gameId = model.gameId;
-        vc.gotoTabBlock = ^{
-            TabBarController1.selectedIndex = 0;
-        };
+       {
+           UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
+           //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+           if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
+               vc.shoulHideHeader = true;
+           }
+           vc.nextIssueModel = model;
+           vc.gameId = model.gameId;
+           vc.gotoTabBlock = ^{
+               TabBarController1.selectedIndex = 0;
+           };
 
 
-        // Push
-        if ([UGTabbarController canPushToViewController:vc]) {
-            [NavController1 setViewControllers:({
-                NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
-                for (UIViewController *vc in NavController1.viewControllers) {
-                    if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
-                        [vcs removeObject:vc];
-                    }
-                }
-                [vcs addObject:vc];
-                vcs;
-            }) animated:YES];
-        }
-        return true;
-    }
+           // Push
+           if ([UGTabbarController canPushToViewController:vc]) {
+               [NavController1 setViewControllers:({
+                   NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+                   for (UIViewController *vc in NavController1.viewControllers) {
+                       if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
+                           [vcs removeObject:vc];
+                       }
+                   }
+                   [vcs addObject:vc];
+                   vcs;
+               }) animated:YES];
+           }
+           return true;
+       }
 }
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {

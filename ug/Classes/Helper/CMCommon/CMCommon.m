@@ -1292,4 +1292,28 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     
   return   ogOdds- (ceilf(ogOdds) * rebate);
 }
+
+
+/**
+* 判断该彩种是否绑定聊天室没
+*
+*/
++(BOOL )getRoomMode:(NSString *)gameId{
+
+    UGChatRoomModel *obj  = [UGChatRoomModel new];
+    
+    for (UGChatRoomModel *object in SysConf.chatRoomAry) {
+        
+        NSLog(@"object.typeIds = %@",object.typeIds);
+        if ( [object.typeIds containsObject:gameId]) {
+            
+            obj.roomName = object.roomName;
+            obj.roomId  = object.roomId;
+    
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 @end

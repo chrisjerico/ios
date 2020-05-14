@@ -44,6 +44,9 @@
 #import "UITabBar+CustomBadge.h"
 #import "UGUserModel.h"
 
+#import "CMTimeCommon.h"
+#import "RoomChatModel.h"
+
 
 @implementation UIViewController (CanPush)
 
@@ -257,6 +260,10 @@ static UGTabbarController *_tabBarVC = nil;
             [TabBarController1 setTabbarHeight:black ? 53 : 50];
         }];
     }
+    
+    
+    [self chatgetToken];
+    
 }
 
 - (void)setTabbarStyle {
@@ -716,4 +723,66 @@ static UGTabbarController *_tabBarVC = nil;
     APP.messageRequestTimer = timer;
 }
 
+#pragma mark - 网络请求
+// 得到线上配置的聊天室
+- (void)chatgetToken {
+    
+    {//得到线上配置的聊天室
+        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
+                                 @"token":[UGUserModel currentUser].sessid
+        };
+        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
+        [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                NSLog(@"model.data = %@",model.data);
+                NSDictionary *data = (NSDictionary *)model.data;
+                NSMutableArray *chatIdAry = [NSMutableArray new];
+                NSMutableArray *typeIdAry = [NSMutableArray new];
+                NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+//                NSArray * chatAry = [data objectForKey:@"chatAry"];
+                
+                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+                
+                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                    return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+                }];
+                
+                for (int i = 0; i< chatAry.count; i++) {
+                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                    [chatIdAry addObject:dic.roomId];
+                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                    
+                }
+
+                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+                SysConf.chatRoomRedirect = [number intValue];
+                SysConf.chatRoomAry = chatRoomAry;
+                
+                 NSLog(@"typeIdAry = %@",typeIdAry);
+                
+                if (![CMCommon arryIsNull:chatRoomAry]) {
+                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+            
+                }
+                else{
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
+                    obj.roomId = @"0";
+                    obj.roomName = @"聊天室";
+                    SysConf.defaultChatRoom = obj;
+                    
+                }
+              
+                
+                
+            } failure:^(id msg) {
+                //            [self stopAnimation];
+            }];
+        }];
+        
+    }
+}
 @end

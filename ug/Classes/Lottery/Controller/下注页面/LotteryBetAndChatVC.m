@@ -56,10 +56,7 @@
     
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [self saveRoomName:nil RoomId:nil];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //    self.title = @"聊天室";
@@ -434,15 +431,7 @@
                     text =  [text stringByReplacingOccurrencesOfString:@"▼"withString:@""];;
                     __self.mLabel.text = text;
                 }
-                
-                // 聊天室第一次加载有概率无法显示内容，多加载几次
-                [self getChatRoomData];
-                [self performSelector:@selector(getChatRoomData) afterDelay:0.5];
-                [self performSelector:@selector(getChatRoomData) afterDelay:1];
-
-                
-                
-                
+     
             }
         };
         ssv1.titleBar.underlineView.hidden = true;

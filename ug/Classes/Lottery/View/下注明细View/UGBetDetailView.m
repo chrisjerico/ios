@@ -212,10 +212,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
         float f =  [[Global getInstanse] rebate] *100;//拉條值為 4.5% , 則傳入 4.5
         NSLog(@"rebate = %f",f);
-        [mutDict setValue: [[NSNumber alloc] initWithFloat:f] forKey:@"activeReturnCoinRatio"];
+        NSString *strValue=[NSString stringWithFormat:@"%0.2f", f];
+        
+        [mutDict setValue:strValue  forKey:@"activeReturnCoinRatio"];
     }
 
-      
+      HJSonLog(@"mutDict = %@",mutDict);
     [self submitBet:mutDict];
     
 }

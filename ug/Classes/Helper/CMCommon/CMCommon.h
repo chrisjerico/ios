@@ -379,4 +379,10 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 * rebate: 退水
 */
 +(float )newOgOdds:(float)ogOdds rebate:(float)rebate;
+
+/**
+* 判断该彩种是否绑定聊天室没
+*
+*/
++(BOOL )getRoomMode:(NSString *)gameId;
 @end
