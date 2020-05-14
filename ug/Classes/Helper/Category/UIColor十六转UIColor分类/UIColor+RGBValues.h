@@ -21,7 +21,16 @@
 - (BOOL)isClearColor;
 
 /**
+*  随机
+*/
++ (UIColor *)randomColor;
+/**
  *  十六进制的颜色转换为UIColor
  */
 + (UIColor *)colorWithHexString: (NSString *)color;
+/**
+*  十六进制的颜色转换为UIColor
+*/
++ (instancetype)opacityColorWithHex: (NSUInteger)hex;
+
 @end

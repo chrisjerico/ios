@@ -67,6 +67,12 @@
     }
     return nil;
 }
+
++(UIColor *)randomColor
+{
+    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0];
+}
+
 + (UIColor *) colorWithHexString: (NSString *)color
 {
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
@@ -107,6 +113,13 @@
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
     
     return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
+}
+
++ (instancetype)opacityColorWithHex: (NSUInteger)hex {
+    return [self colorWithRed: ((hex >> 16) & 0xFF) / 255.0
+                        green: ((hex >> 8) & 0xFF) / 255.0
+                         blue: ((hex >> 0) & 0xFF) / 255.0
+                        alpha: 1];
 }
 
 @end
