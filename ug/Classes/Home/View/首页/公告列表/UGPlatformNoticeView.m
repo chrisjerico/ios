@@ -105,8 +105,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-     appDelegate.notiveViewHasShow = NO;
+
+
 }
 
 

@@ -206,6 +206,8 @@
 //大转盘
 @property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
 
+
+
 @end
 
 @implementation UGHomeViewController
@@ -378,6 +380,7 @@
     }
 
     self.navigationController.navigationBarHidden = [Skin1 isBlack];
+  
 
 }
 
@@ -737,11 +740,11 @@
     
     
     
-    if (OBJOnceToken(self)) {
-        if (_contentScrollView.mj_header.refreshingBlock) {
-            _contentScrollView.mj_header.refreshingBlock();
-        }
+
+    if (_contentScrollView.mj_header.refreshingBlock) {
+        _contentScrollView.mj_header.refreshingBlock();
     }
+  
    
     
     
@@ -773,9 +776,9 @@
         [self getBannerList];       // Banner图
     });
     dispatch_group_async(group, queue, ^{
-        
-        // 请求3
-         [self getNoticeList];   // 公告列表
+          // 请求3
+           [self getNoticeList];   // 公告列表
+
     });
     dispatch_group_async(group, queue, ^{
         
@@ -1786,20 +1789,21 @@
 
 
 - (void)showPlatformNoticeView {
-    
-    
+
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
+       
+            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+            [self->_notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+            self->_notiveView.dataArray = self.popNoticeArray;
             
-            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-                if (!appDelegate.notiveViewHasShow) {
-                    UGPlatformNoticeView *notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
-                    [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-                    notiveView.dataArray = self.popNoticeArray;
-                    [notiveView show];
-                    appDelegate.notiveViewHasShow = YES;
-                }
+            UIWindow* window = UIApplication.sharedApplication.keyWindow;
+            BOOL isSubView = [self.notiveView isDescendantOfView:window];
+            
+            if (!isSubView) {
+                [self->_notiveView show];
+            }
+
 
         });
         
