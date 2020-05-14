@@ -82,7 +82,7 @@
 #ifdef DEBUG
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
     [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
-//     [self initBugly];
+     [self initBugly];
  
 #else
     [self initBugly];

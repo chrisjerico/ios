@@ -136,6 +136,8 @@
 
 
 -(void)setItem:(DZPModel *)item{
+    
+    [[Global getInstanse] setDZPid:item.DZPid];
     [self activityTurntableLog:item.DZPid];
     self.oneView.dataArray = item.param.content_turntable;
     self.mDZPView.DZPid = item.DZPid;
@@ -184,6 +186,7 @@
 {
     NSNumber *moenyNumber = notification.userInfo[@"MoenyNumber"];//1316
     self.moenyNumberLabel.text = [NSString stringWithFormat:@"剩余积分：%@",moenyNumber];
+    [self activityTurntableLog:[Global getInstanse].DZPid];
     
 }
 

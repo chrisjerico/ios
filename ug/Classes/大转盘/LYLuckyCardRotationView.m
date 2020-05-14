@@ -182,10 +182,7 @@
         else{
              subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_failure"];
         }
-         NSNumber * integral = [data objectForKey:@"integral"];
-        //发送通知
-        NSDictionary *dict = @{@"MoenyNumber":integral};
-        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"setMoenyNumber" object:nil userInfo:dict]];
+  
 
     }
 }
@@ -218,7 +215,8 @@
     }
     if ([self.winView.layer.animationKeys[0] isEqualToString:@"animationWin"]) {
         if (flag) {
-              [self performSelector:@selector(winner) withObject:nil/*可传任意类型参数*/ afterDelay:3.0];
+            [self performSelector:@selector(winner) withObject:nil/*可传任意类型参数*/ afterDelay:3.0];
+    
         }
         else{
             [self removeAnimations];
@@ -228,17 +226,34 @@
     
 }
 
+
+-(void)removeAnimations{
+    [self winner];
+     [self.canRotationView.layer removeAllAnimations];
+}
+
 -(void)winner{
-    FastSubViewCode(self);
+    
+    [self fireNotification];
+   _myBtn.enabled = YES;
     [self.winView.layer removeAllAnimations];
+    
+    FastSubViewCode(self);
     subView(@"半透明背景").hidden = YES;
     [self.winView setHidden:YES];
     subLabel(@"奖品").hidden = YES;
     subImageView(@"奖品图").hidden = YES;
     subImageView(@"中奖文字").hidden = YES;
-    _myBtn.enabled = YES;
-    
-    
+
+}
+
+
+-(void)fireNotification{
+    //发送通知
+    NSNumber * integral = [data objectForKey:@"integral"];
+    NSDictionary *dict = @{@"MoenyNumber":integral};
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"setMoenyNumber" object:nil userInfo:dict]];
+  
 }
 #pragma mark -网络请求  抽奖接口
 
@@ -278,31 +293,30 @@
                         }
                     }
                 } else  {//没中奖
-                    self->_myBtn.enabled = YES;
+  
                     NSLog(@"没中奖");
                     [self animationWinning];
                 }
             }
             else{
- 
+                
                 [self removeAnimations];
             }
            
             
         } failure:^(id msg) {
 
-            NSLog(@" 网络出错");
-            [SVProgressHUD showErrorWithStatus:msg];
-            [self removeAnimations];
+            // 3.GCD
+            dispatch_async(dispatch_get_main_queue(), ^{
+                          NSLog(@" 网络出错");
+               [SVProgressHUD showErrorWithStatus:msg];
+               [self removeAnimations];
+            });
+
 
         }];
     }];
 }
 
--(void)removeAnimations{
-    self.myBtn.enabled = YES;
-    [self winner];
-     [self.winView.layer removeAllAnimations];
-     [self.canRotationView.layer removeAllAnimations];
-}
+
 @end

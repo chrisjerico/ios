@@ -18,7 +18,7 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7n-Od-kZw" userLabel="转盘" customClass="LYLuckyCardRotationView">
-                    <rect key="frame" x="30" y="130" width="364" height="364"/>
+                    <rect key="frame" x="30" y="170" width="364" height="364"/>
                     <subviews>
                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dzp_turnplate_bg" translatesAutoresizingMaskIntoConstraints="NO" id="CZK-Sd-eQa">
                             <rect key="frame" x="0.0" y="0.0" width="334" height="364"/>
@@ -34,7 +34,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqn-Xu-pr0" userLabel="关闭按钮">
-                    <rect key="frame" x="306" y="90" width="88" height="74"/>
+                    <rect key="frame" x="306" y="130" width="88" height="74"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="88" id="1SG-du-7Ve"/>
                         <constraint firstAttribute="height" constant="74" id="Bed-jJ-r6f"/>
@@ -44,21 +44,21 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ztlight.gif" translatesAutoresizingMaskIntoConstraints="NO" id="vLm-VA-79D" customClass="FLAnimatedImageView">
-                    <rect key="frame" x="64.5" y="85" width="285" height="109"/>
+                    <rect key="frame" x="64.5" y="125" width="285" height="109"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="vLm-VA-79D" secondAttribute="height" multiplier="400:153" id="Dw5-vi-l9A"/>
                         <constraint firstAttribute="width" constant="285" id="oEL-5h-OCD"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dzp_close" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-MF-MjA">
-                    <rect key="frame" x="351" y="95" width="36" height="36"/>
+                    <rect key="frame" x="351" y="135" width="36" height="36"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="0g4-0v-SP3"/>
                         <constraint firstAttribute="width" constant="36" id="ZPT-LE-hPv"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcT-NK-3jN">
-                    <rect key="frame" x="0.0" y="494" width="414" height="402"/>
+                    <rect key="frame" x="0.0" y="534" width="414" height="362"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shenzagasdfasfasfasd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ0-vS-q6X" userLabel="用户积分">
                             <rect key="frame" x="121.5" y="5" width="171.5" height="21"/>
@@ -96,7 +96,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAc-S3-XiC" userLabel="内容视图">
-                            <rect key="frame" x="50" y="66.5" width="314" height="330.5"/>
+                            <rect key="frame" x="50" y="66.5" width="314" height="290.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -125,9 +125,9 @@
                 <constraint firstItem="ZcT-NK-3jN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Si-Il-fBf"/>
                 <constraint firstItem="p7n-Od-kZw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="3gM-GE-oIj"/>
                 <constraint firstItem="MRR-rI-o5M" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="6WT-lG-5Cg"/>
-                <constraint firstItem="vmA-MF-MjA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="95" id="6vT-db-8Mf"/>
-                <constraint firstItem="vLm-VA-79D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="85" id="E9H-Fj-yDq"/>
-                <constraint firstItem="p7n-Od-kZw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="130" id="Esn-7e-Z9g"/>
+                <constraint firstItem="vmA-MF-MjA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="135" id="6vT-db-8Mf"/>
+                <constraint firstItem="vLm-VA-79D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="125" id="E9H-Fj-yDq"/>
+                <constraint firstItem="p7n-Od-kZw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="170" id="Esn-7e-Z9g"/>
                 <constraint firstAttribute="bottom" secondItem="MRR-rI-o5M" secondAttribute="bottom" id="KO0-vs-Xt1"/>
                 <constraint firstItem="vLm-VA-79D" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Siz-fi-e4O"/>
                 <constraint firstItem="ZcT-NK-3jN" firstAttribute="top" secondItem="p7n-Od-kZw" secondAttribute="bottom" id="UGd-i8-Azl"/>
@@ -137,7 +137,7 @@
                 <constraint firstAttribute="trailing" secondItem="MRR-rI-o5M" secondAttribute="trailing" id="h1N-G9-5ZB"/>
                 <constraint firstAttribute="bottom" secondItem="ZcT-NK-3jN" secondAttribute="bottom" id="haT-oh-6Dh"/>
                 <constraint firstAttribute="trailing" secondItem="p7n-Od-kZw" secondAttribute="trailing" constant="20" id="qim-QQ-B0g"/>
-                <constraint firstItem="lqn-Xu-pr0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="wAH-IQ-kaT"/>
+                <constraint firstItem="lqn-Xu-pr0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="130" id="wAH-IQ-kaT"/>
                 <constraint firstItem="MRR-rI-o5M" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="wa8-7c-fgq"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

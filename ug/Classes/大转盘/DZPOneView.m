@@ -56,7 +56,7 @@
     _tableView.estimatedRowHeight = 0;
     _tableView.estimatedSectionHeaderHeight = 0;
     _tableView.estimatedSectionFooterHeight = 0;
-    _tableView.rowHeight = 50;
+    _tableView.rowHeight = 30;
     
     return _tableView;
 }
@@ -80,10 +80,6 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return  50.0;
-}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

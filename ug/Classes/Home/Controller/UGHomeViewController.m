@@ -731,19 +731,18 @@
     // 拉取数据
     _contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 
-        
         [__self requestUrl];
-        
-
        
     }];
     
     
     
-    
-    if (_contentScrollView.mj_header.refreshingBlock) {
-        _contentScrollView.mj_header.refreshingBlock();
+    if (OBJOnceToken(self)) {
+        if (_contentScrollView.mj_header.refreshingBlock) {
+            _contentScrollView.mj_header.refreshingBlock();
+        }
     }
+   
     
     
     if (APP.isCornerRadius) {
