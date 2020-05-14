@@ -70,7 +70,9 @@
     }
     
     self.amountField.text = _NSString(@"%@", item.money);
-    self.oddsLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [item.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+    
+    NSLog(@"item.odds= %@",item.odds);
+    self.oddsLabel.text = item.odds;
     
 
     
