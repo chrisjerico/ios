@@ -3951,15 +3951,11 @@
 			children = (
 				031E13C423BE812300B0F813 /* UGSkinManagers.h */,
 				031E13C723BE812300B0F813 /* UGSkinManagers.m */,
-				031E13C923BE812300B0F813 /* UIImage+YYgradientImage.h */,
-				031E13C523BE812300B0F813 /* UIImage+YYgradientImage.m */,
 				031E13CA23BE812300B0F813 /* UGSkinCollectionViewCell.h */,
 				031E13C623BE812300B0F813 /* UGSkinCollectionViewCell.m */,
 				031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */,
 				031E13C323BE812300B0F813 /* UGSkinViewController.h */,
 				031E13C823BE812300B0F813 /* UGSkinViewController.m */,
-				D4BF9D1923C1D0060047D89C /* UIColor+YYUI.h */,
-				D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -4579,19 +4575,21 @@
 		031E14DE23BE812300B0F813 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
+				D4ACC02B246D6953005AB971 /* 图片渐变纹理等 */,
+				D4ACC02A246D692E005AB971 /* UIColor颜色变化 */,
+				D4326F1723FA815B00BEEA1B /* UIColor十六转UIColor分类 */,
 				031E14BD23BE812300B0F813 /* UITableView无内容提示 */,
 				031E152C23BE812300B0F813 /* 日志Unicode编码显示中文 */,
+				D4ACBF56246C21D9005AB971 /* 打印json分类 */,
 				031E151D23BE812300B0F813 /* view圆角 */,
+				D4ACC029246D64AE005AB971 /* View+XY */,
+				D4DB5D3E23FBB48D001C6D8F /* 可以画心的UIView分类 */,
+				D4564A4123E326FE00A1A8C6 /* View带阴影分类 */,
 				031E14F723BE812300B0F813 /* 手势 */,
 				031E14D823BE812300B0F813 /* 获得当前导航控制器 */,
-				D4564A4123E326FE00A1A8C6 /* View带阴影分类 */,
-				D4326F1723FA815B00BEEA1B /* UIColor十六转UIColor分类 */,
-				D4DB5D3E23FBB48D001C6D8F /* 可以画心的UIView分类 */,
-				D433EBF323D4939000D31008 /* 截屏UIImage分类 */,
 				D458ED8A2412411C00575C3F /* 给tab加badge分类 */,
 				D43B77E8242E2AED00913BE1 /* VC类别 */,
-				D4ACC029246D64AE005AB971 /* View+XY */,
-				D4ACBF56246C21D9005AB971 /* 打印json分类 */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -8093,6 +8091,24 @@
 				031E14DF23BE812300B0F813 /* UIView+CTop.m */,
 			);
 			path = "View+XY";
+			sourceTree = "<group>";
+		};
+		D4ACC02A246D692E005AB971 /* UIColor颜色变化 */ = {
+			isa = PBXGroup;
+			children = (
+				D4BF9D1923C1D0060047D89C /* UIColor+YYUI.h */,
+				D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */,
+			);
+			path = "UIColor颜色变化";
+			sourceTree = "<group>";
+		};
+		D4ACC02B246D6953005AB971 /* 图片渐变纹理等 */ = {
+			isa = PBXGroup;
+			children = (
+				031E13C923BE812300B0F813 /* UIImage+YYgradientImage.h */,
+				031E13C523BE812300B0F813 /* UIImage+YYgradientImage.m */,
+			);
+			path = "图片渐变纹理等";
 			sourceTree = "<group>";
 		};
 		D4B75E002278025E0007047C = {
