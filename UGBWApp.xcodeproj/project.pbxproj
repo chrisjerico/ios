@@ -1817,6 +1817,7 @@
 		CF5B5D1C23E30854007CBEE0 /* BetFormViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA21323D2F21800E4D921 /* BetFormViewModel.m */; };
 		CF5B5D1D23E3087A007CBEE0 /* RememberPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411923C86A6A0070D2B5 /* RememberPass.m */; };
 		CF5B5D1E23E30892007CBEE0 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
+		CF639D7A246E645B00A54CE7 /* MGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF8424555B1C0014A301 /* MGSlider.m */; };
 		CF85084F2466D4510025672F /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
 		CF8508512466D4E40025672F /* UGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E176823BE812500B0F813 /* UGTabbarController.m */; };
 		CF8508522466D5000025672F /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DF423C9F51C0039588D /* RSA.m */; };
@@ -9700,6 +9701,7 @@
 				CF85085C2466D5EA0025672F /* DZPTwoView.m in Sources */,
 				031E1DC923BE812C00B0F813 /* UGrealBetStatModel.m in Sources */,
 				031E1C7D23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
+				CF639D7A246E645B00A54CE7 /* MGSlider.m in Sources */,
 				031E1B6723BE812800B0F813 /* UGPlatformTitleCollectionView.m in Sources */,
 				031EF5DA23BE7B4E00B0F813 /* RedPacketProduceView.swift in Sources */,
 				031E1DEF23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,

@@ -65,4 +65,7 @@
 #import "UIView+Events.h"           //添加手势
 #import "UIView+yyCornerRadius.h"   //添加圆角
 #import "CMNetwork+LH.h"            //六合
+
+
+#import "Global.h"
 #endif /* UGPCH_pch */
