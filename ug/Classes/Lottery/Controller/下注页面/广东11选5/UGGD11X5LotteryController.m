@@ -766,12 +766,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 					UGBetModel *bet = type.list.firstObject;
                     if (APP.betOddsIsRed) {
                         headerView.titleLabel.attributedText = ({
-                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"赔率：%@", [bet.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                            
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero] attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
                             [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
                             mas;
                         });
                     } else {
-                        headerView.titleLabel.text = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                        headerView.titleLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+
                     }
 				}
 			}else if ([@"直选" isEqualToString:model.name]) {
@@ -788,14 +790,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 						type = model.list[2];
 					}
 					UGGameBetModel *bet = type.list.firstObject;
+        
                     if (APP.betOddsIsRed) {
                         headerView.titleLabel.attributedText = ({
-                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"赔率：%@", [bet.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString: [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero] attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
                             [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
                             mas;
                         });
                     } else {
-                        headerView.titleLabel.text = [NSString stringWithFormat:@"赔率：%@",[bet.odds removeFloatAllZero]];
+                        
+                        headerView.titleLabel.text =  [[NSString stringWithFormat:@"%@%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
                     }
 				}else {
 					

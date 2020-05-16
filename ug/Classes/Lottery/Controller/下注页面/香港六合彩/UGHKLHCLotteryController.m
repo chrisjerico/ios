@@ -972,10 +972,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             headerView.titleLabel.text = type.alias;
             
             if ([@"自选不中" isEqualToString:type.alias]) {
-                headerView.titleLabel.text = _headerViewTitle;
+                if ([_headerViewTitle isEqualToString:@"自选不中"]) {
+                    headerView.titleLabel.text = _headerViewTitle;
+                } else {
+                    headerView.titleLabel.text =[[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [_headerViewTitle floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+                }
+                
             }
             if ([@"合肖" isEqualToString:type.alias]) {
-                headerView.titleLabel.text = _hxheaderViewTitle;
+                if ([_hxheaderViewTitle isEqualToString:@"自选不中"]) {
+                    headerView.titleLabel.text = _hxheaderViewTitle;
+                } else {
+                    headerView.titleLabel.text =[[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [_hxheaderViewTitle floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+                }
             }
         } else {
             headerView.titleLabel.text = @"";
@@ -1242,7 +1251,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
             if (num >= 5  && num <= 12) {
                 UGGameBetModel *model = type.lhcOddsArray[num-5];
-                self.headerViewTitle = [NSString stringWithFormat:@"赔率：%@",model.odds];
+                
+                
+                self.headerViewTitle = model.odds;
             }
             else{
                 self.headerViewTitle = @"自选不中";
@@ -1259,7 +1270,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
             if (num >= 2  && num <= 11) {
                 UGGameBetModel *model = type.lhcOddsArray[num-2];
-                self.hxheaderViewTitle = [NSString stringWithFormat:@"赔率：%@",model.odds];
+                self.hxheaderViewTitle = model.odds;
             }
             else{
                 self.hxheaderViewTitle = @"合肖";
