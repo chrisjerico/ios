@@ -621,6 +621,25 @@
             [__self.bigWheelView setHidden:YES];
         };
         self.bigWheelView.redClickBlock = ^(void) {
+            
+            if (!UGLoginIsAuthorized()) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    UGLoginAuthorize(^(BOOL isFinish) {
+                        if (!isFinish)
+                            return ;
+                    });
+                }];
+                return;
+            }
+            if ([UGUserModel currentUser].isTest) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }];
+                return ;
+            }
+            
             DZPModel *banner = (DZPModel*)__self.bigWheelView.itemData;
             DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectMake(0, 0, APP.Width-60, APP.Height-60)];
 
@@ -1311,6 +1330,9 @@
 - (void)userLogout {
     [SVProgressHUD showSuccessWithStatus:@"退出成功"];
     self.titleView.showLoginView = YES;
+    [UGUserModel setCurrentUser:nil];
+    [self.bigWheelView setHidden:YES];
+    
     [NavController1 popToRootViewControllerAnimated:true];
     [TabBarController1 setSelectedIndex:0];
     
@@ -1721,11 +1743,15 @@
                     });
     
                 }
+                else{
+                                 self.bigWheelView.hidden = YES;
+                }
 
             });
             
         } failure:^(id msg) {
 //            [SVProgressHUD showErrorWithStatus:msg];
+             self.bigWheelView.hidden = YES;
 
         }];
     }];
