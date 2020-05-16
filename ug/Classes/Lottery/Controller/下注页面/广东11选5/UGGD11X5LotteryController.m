@@ -799,7 +799,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                         });
                     } else {
                         
-                        headerView.titleLabel.text =  [[NSString stringWithFormat:@"%@%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+                        headerView.titleLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
                     }
 				}else {
 					

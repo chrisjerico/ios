@@ -17,6 +17,7 @@
 #import "category.h"
 
 #import "MGSlider.h"
+#import "UIButton+touch.h"
 
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
@@ -87,7 +88,7 @@
     [super viewDidLoad];
     [self setupTitleView];
     
-    
+     self.fd_interactivePopDisabled = true;
     
     FastSubViewCode(self.view);
     {

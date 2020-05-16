@@ -82,6 +82,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    
+    NavController1.interactivePopGestureRecognizer.enabled = FALSE;
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     CGRect hitFrame = UIEdgeInsetsInsetRect(self.valveRect, _touchRangeEdgeInsets);
@@ -101,6 +103,7 @@
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     if (self.isSpot) {
@@ -122,6 +125,7 @@
         }];
     }
     self.spot = NO;
+   
 }
 
 - (void)moveValvePoint:(CGPoint)point

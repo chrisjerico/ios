@@ -4,7 +4,8 @@
 //
 //  initiated by Yann Lechelle (cofounder @Appsfire) on 8/28/11.
 //  Copyright 2011 OpenUDID.org
-//
+//关于OpenUDID的测试分析
+//   https://blog.csdn.net/u012963325/article/details/50474111
 //  Main branches
 //      iOS code: https://github.com/ylechelle/OpenUDID
 //

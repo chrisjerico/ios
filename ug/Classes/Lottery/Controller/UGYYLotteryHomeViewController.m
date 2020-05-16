@@ -28,8 +28,14 @@
     [self getPlatformGamesWithParams];
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 禁用侧滑返回
+//    self.fd_interactivePopDisabled = true;
+    
 
     if (!self.title) {
         self.title =@"游戏大厅";

@@ -1,14 +1,14 @@
 //
-//  UIView+CTop.m
-//  CarKeys
+//  UIView+Extension.m
+//  微博
 //
-//  Created by Apple on 2016/12/14.
-//  Copyright © 2016年 comtop. All rights reserved.
+//  Created by tianwang on 15-3-28.
+//  Copyright (c) 2015年 shenlan. All rights reserved.
 //
 
-#import "UIView+CTop.h"
+#import "UIView+Extension.h"
 
-@implementation UIView (CTop)
+@implementation UIView (Extension)
 
 - (void)setX:(CGFloat)x
 {
@@ -17,16 +17,16 @@
     self.frame = frame;
 }
 
-- (CGFloat)x
-{
-    return self.frame.origin.x;
-}
-
 - (void)setY:(CGFloat)y
 {
     CGRect frame = self.frame;
     frame.origin.y = y;
     self.frame = frame;
+}
+
+- (CGFloat)x
+{
+    return self.frame.origin.x;
 }
 
 - (CGFloat)y
@@ -41,11 +41,6 @@
     self.frame = frame;
 }
 
-- (CGFloat)width
-{
-    return self.frame.size.width;
-}
-
 - (void)setHeight:(CGFloat)height
 {
     CGRect frame = self.frame;
@@ -56,6 +51,11 @@
 - (CGFloat)height
 {
     return self.frame.size.height;
+}
+
+- (CGFloat)width
+{
+    return self.frame.size.width;
 }
 
 - (void)setSize:(CGSize)size
@@ -69,6 +69,44 @@
 {
     return self.frame.size;
 }
+
+- (void)setOrigin:(CGPoint)origin
+{
+    CGRect frame = self.frame;
+    frame.origin = origin;
+    self.frame = frame;
+}
+
+- (CGPoint)origin
+{
+    return self.frame.origin;
+}
+
+- (void)setCenterX:(CGFloat)centerX
+{
+    CGPoint center = self.center;
+    center.x = centerX;
+    self.center = center;
+}
+
+- (CGFloat)centerX
+{
+    return self.center.x;
+}
+
+- (void)setCenterY:(CGFloat)centerY
+{
+    CGPoint center = self.center;
+    center.y = centerY;
+    self.center = center;
+}
+
+- (CGFloat)centerY
+{
+    return self.center.y;
+}
+
+
 
 - (void)show {
     
@@ -153,3 +191,4 @@
 }
 
 @end
+

@@ -17,4 +17,8 @@
 @property (nonatomic, assign) CGFloat centerX;
 @property (nonatomic, assign) CGFloat centerY;
 
+
+
+- (void)show;
+- (void)hidden;
 @end

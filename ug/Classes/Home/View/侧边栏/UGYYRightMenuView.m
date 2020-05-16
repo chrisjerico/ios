@@ -17,7 +17,7 @@
 #import "UGFundsViewController.h"
 #import "UGYYRightMenuTableViewCell.h"
 #import "UGLotteryRulesView.h"
-#import "UINavigationController+UGExtension.h"
+#import "UINavigationController+Extension.h"
 #import "UGSkinViewController.h"
 #import "UGAppVersionManager.h"
 #import "SLWebViewController.h"

@@ -698,6 +698,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         self.segmentIndex = 0;
         UGGameplayModel *model = self.gameDataArray[indexPath.row];
         
+        if (![model.name isEqualToString:@"自选不中"]) {
+            _headerViewTitle = @"自选不中";
+        }
+        
         NSDictionary *dict = @{@"特码":self.tmTitleArray,
                                @"连码":self.lmTitleArray,
                                @"正特":self.ztTitleArray,
@@ -980,7 +984,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 
             }
             if ([@"合肖" isEqualToString:type.alias]) {
-                if ([_hxheaderViewTitle isEqualToString:@"自选不中"]) {
+                if ([_hxheaderViewTitle isEqualToString:@"合肖"]) {
                     headerView.titleLabel.text = _hxheaderViewTitle;
                 } else {
                     headerView.titleLabel.text =[[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [_hxheaderViewTitle floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
@@ -1251,8 +1255,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
             if (num >= 5  && num <= 12) {
                 UGGameBetModel *model = type.lhcOddsArray[num-5];
-                
-                
                 self.headerViewTitle = model.odds;
             }
             else{
