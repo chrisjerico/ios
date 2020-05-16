@@ -487,7 +487,9 @@
 - (NSString *)chatHomeUrl {
     //        SysConf.chatLink = @"/chat";
     //    SysConf.chatLink = @"/chat/index.php";
+    
     NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
+    NSLog(@" SysConf.chatLink=%@", SysConf.chatLink);
     return [url stringByAppendingURLParams:@{
         @"from":@"app",
         @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
@@ -495,6 +497,8 @@
         @"back":@"hide",
         @"loginsessid":[UGUserModel currentUser].sessid,
         @"logintoken":[UGUserModel currentUser].token,
+        @"hideHead":[[NSNumber alloc] initWithBool:YES],
+        @"roomId":@"0",
     }];
 }
 
