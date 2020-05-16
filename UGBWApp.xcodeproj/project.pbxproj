@@ -451,8 +451,6 @@
 		031E1AF723BE812800B0F813 /* SANotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15AD23BE812400B0F813 /* SANotificationEvent.m */; };
 		031E1AF823BE812800B0F813 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15B423BE812400B0F813 /* UITextView+Extension.m */; };
 		031E1AF923BE812800B0F813 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15B423BE812400B0F813 /* UITextView+Extension.m */; };
-		031E1AFC23BE812800B0F813 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15B623BE812400B0F813 /* UIView+Extension.m */; };
-		031E1AFD23BE812800B0F813 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15B623BE812400B0F813 /* UIView+Extension.m */; };
 		031E1AFE23BE812800B0F813 /* GLEncryptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15B723BE812400B0F813 /* GLEncryptManager.m */; };
 		031E1AFF23BE812800B0F813 /* GLEncryptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15B723BE812400B0F813 /* GLEncryptManager.m */; };
 		031E1B0023BE812800B0F813 /* NSDate+XHCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15BA23BE812400B0F813 /* NSDate+XHCategory.m */; };
@@ -2428,9 +2426,7 @@
 		031E15AE23BE812400B0F813 /* SANotDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SANotDataView.h; sourceTree = "<group>"; };
 		031E15AF23BE812400B0F813 /* UGEncryptUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGEncryptUtil.h; sourceTree = "<group>"; };
 		031E15B123BE812400B0F813 /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
-		031E15B323BE812400B0F813 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		031E15B423BE812400B0F813 /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
-		031E15B623BE812400B0F813 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		031E15B723BE812400B0F813 /* GLEncryptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEncryptManager.m; sourceTree = "<group>"; };
 		031E15B923BE812400B0F813 /* NSDateComponents+XHCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateComponents+XHCategory.h"; sourceTree = "<group>"; };
 		031E15BA23BE812400B0F813 /* NSDate+XHCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+XHCategory.m"; sourceTree = "<group>"; };
@@ -2685,7 +2681,6 @@
 		031E16EF23BE812400B0F813 /* UGSSCBetItem1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGSSCBetItem1Cell.m; sourceTree = "<group>"; };
 		031E16F023BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGTimeLotteryBetCollectionViewCell.h; sourceTree = "<group>"; };
 		031E16F123BE812400B0F813 /* UGTimeLotteryBetHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGTimeLotteryBetHeaderView.m; sourceTree = "<group>"; };
-		031E16F223BE812400B0F813 /* UGLotteryResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLotteryResultCollectionViewCell.h; sourceTree = "<group>"; };
 		031E16F323BE812400B0F813 /* UGLotterySubResultCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGLotterySubResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E16F523BE812400B0F813 /* UGMarkSixLotteryBetItem0Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMarkSixLotteryBetItem0Cell.h; sourceTree = "<group>"; };
 		031E16F623BE812400B0F813 /* UGMarkSixLotteryBetItem1Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMarkSixLotteryBetItem1Cell.h; sourceTree = "<group>"; };
@@ -2694,7 +2689,6 @@
 		031E16F923BE812400B0F813 /* UGMarkSixLotteryBetItem1Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMarkSixLotteryBetItem1Cell.m; sourceTree = "<group>"; };
 		031E16FA23BE812400B0F813 /* UGMarkSixLotteryBetItem1Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGMarkSixLotteryBetItem1Cell.xib; sourceTree = "<group>"; };
 		031E16FB23BE812400B0F813 /* UGLinkNumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLinkNumCollectionViewCell.m; sourceTree = "<group>"; };
-		031E16FC23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLotterySubResultCollectionViewCell.h; sourceTree = "<group>"; };
 		031E16FE23BE812400B0F813 /* UGPK10SubResultCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPK10SubResultCollectionViewCell.m; sourceTree = "<group>"; };
 		031E16FF23BE812400B0F813 /* UGPK10SubResultCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGPK10SubResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E170023BE812400B0F813 /* UGPK10SubResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPK10SubResultCollectionViewCell.h; sourceTree = "<group>"; };
@@ -3857,6 +3851,8 @@
 		D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		D4ACC04524701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
 		D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+FDFullscreenPopGesture.m"; sourceTree = "<group>"; };
+		D4ACC074247041AE005AB971 /* UGLotterySubResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLotterySubResultCollectionViewCell.h; sourceTree = "<group>"; };
+		D4ACC075247041F8005AB971 /* UGLotteryResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLotteryResultCollectionViewCell.h; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D4B75E092278025E0007047C /* UGBWApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UGBWApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -4120,7 +4116,6 @@
 				031E15C023BE812400B0F813 /* SGSegmentedControl */,
 				031E14F123BE812300B0F813 /* CountDown */,
 				031E14F423BE812300B0F813 /* UUMarqueeView */,
-				031E14FB23BE812300B0F813 /* STKit */,
 				031E150D23BE812300B0F813 /* WZLBadge */,
 				031E152123BE812300B0F813 /* SLWebView */,
 				031E153423BE812300B0F813 /* ROP */,
@@ -4560,6 +4555,7 @@
 		031E14DE23BE812300B0F813 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				031E14FB23BE812300B0F813 /* STKit */,
 				031E14DB23BE812300B0F813 /* UILabel+YBAttributeTextTapAction */,
 				D4ACC04424701F6E005AB971 /* FDFullscreenPopGesture全屏滑动返回 */,
 				031E15A223BE812300B0F813 /* NullSafe */,
@@ -4573,7 +4569,6 @@
 				031E152C23BE812300B0F813 /* 日志Unicode编码显示中文 */,
 				D4ACBF56246C21D9005AB971 /* 打印json分类 */,
 				031E151D23BE812300B0F813 /* view圆角 */,
-				D4ACC029246D64AE005AB971 /* View+XY */,
 				D4DB5D3E23FBB48D001C6D8F /* 可以画心的UIView分类 */,
 				D4564A4123E326FE00A1A8C6 /* View带阴影分类 */,
 				031E14F723BE812300B0F813 /* 手势 */,
@@ -5639,7 +5634,7 @@
 				031E16DC23BE812400B0F813 /* UGSSCBetItem1Cell.h */,
 				031E16EF23BE812400B0F813 /* UGSSCBetItem1Cell.m */,
 				031E16DE23BE812400B0F813 /* UGSSCBetItem1Cell.xib */,
-				031E16FC23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.h */,
+				D4ACC074247041AE005AB971 /* UGLotterySubResultCollectionViewCell.h */,
 				031E16ED23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.m */,
 				031E16F323BE812400B0F813 /* UGLotterySubResultCollectionViewCell.xib */,
 				031E16DA23BE812400B0F813 /* UGTimeLotteryBetHeaderView.h */,
@@ -5651,7 +5646,7 @@
 				031E16F023BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.h */,
 				031E16DB23BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.m */,
 				031E16D923BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.xib */,
-				031E16F223BE812400B0F813 /* UGLotteryResultCollectionViewCell.h */,
+				D4ACC075247041F8005AB971 /* UGLotteryResultCollectionViewCell.h */,
 				031E16D823BE812400B0F813 /* UGLotteryResultCollectionViewCell.m */,
 				031E170123BE812400B0F813 /* UGLotteryResultCollectionViewCell.xib */,
 			);
@@ -8052,15 +8047,6 @@
 			path = "打印json分类";
 			sourceTree = "<group>";
 		};
-		D4ACC029246D64AE005AB971 /* View+XY */ = {
-			isa = PBXGroup;
-			children = (
-				031E15B323BE812400B0F813 /* UIView+Extension.h */,
-				031E15B623BE812400B0F813 /* UIView+Extension.m */,
-			);
-			path = "View+XY";
-			sourceTree = "<group>";
-		};
 		D4ACC02A246D692E005AB971 /* UIColor颜色变化 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9772,7 +9758,6 @@
 				031E1C0F23BE812900B0F813 /* UGLotteryAdPopView.m in Sources */,
 				031E19E323BE812700B0F813 /* NSUserDefaults+Utils.m in Sources */,
 				031E1D3723BE812B00B0F813 /* UGAgentViewController.m in Sources */,
-				031E1AFD23BE812800B0F813 /* UIView+Extension.m in Sources */,
 				031EF54023BE7B4D00B0F813 /* RedPacketMessageModel.swift in Sources */,
 				031E193F23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,
 				031E1C0123BE812900B0F813 /* UGYYLotterySecondHomeViewController.m in Sources */,
@@ -9866,7 +9851,6 @@
 				031E1D9C23BE812B00B0F813 /* UGImgVcodeModel.m in Sources */,
 				031E1CFC23BE812A00B0F813 /* AFURLRequestSerialization.m in Sources */,
 				031E1C0023BE812900B0F813 /* UGYYLotterySecondHomeViewController.m in Sources */,
-				031E1AFC23BE812800B0F813 /* UIView+Extension.m in Sources */,
 				D4486C1E241A545A00E5CCEA /* RoomChatModel.m in Sources */,
 				031E1BDE23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
 				031E1B1023BE812800B0F813 /* UGLotteryRecordController.m in Sources */,

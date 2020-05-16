@@ -90,4 +90,7 @@
 - (void)popupShow;
 
 - (void)popupHidden;
+
+- (void)show;
+- (void)hidden;
 @end
