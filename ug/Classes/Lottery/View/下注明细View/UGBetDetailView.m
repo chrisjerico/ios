@@ -261,6 +261,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 
                 NSLog(@"SysConf.chatFollowSwitch = %d",SysConf.chatFollowSwitch);
                 
+//                if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat) && (![CMCommon getRoomMode:self.nextIssueModel.gameId])) {
                 if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
                     
                     if (Skin1.isBlack||Skin1.is23) {
