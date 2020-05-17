@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *password;       /**<  密码 */
 @property (nonatomic, strong) NSString *typeId;         /**<   游戏id   已废弃*/
 @property (nonatomic)  BOOL isChatBan;                   /**<   */
+@property (nonatomic)  BOOL isShareBet;                   /**< //聊天室是否支持分享  */
 @property (nonatomic)  int  sortId;                      /**<   */
 @property (nonatomic, strong) NSString *isMine;         /**<  */
 @property (nonatomic, strong) NSString *maxAmount;         /**<    */
