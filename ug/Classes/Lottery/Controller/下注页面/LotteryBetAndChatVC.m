@@ -59,7 +59,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //    self.title = @"聊天室";
+     self.fd_interactivePopDisabled = YES;
     
     if (!self.title) {
         self.title = @"聊天室";;

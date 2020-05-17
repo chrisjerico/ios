@@ -110,7 +110,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.fd_interactivePopDisabled = YES;
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
     self.betButton.layer.cornerRadius = 5;

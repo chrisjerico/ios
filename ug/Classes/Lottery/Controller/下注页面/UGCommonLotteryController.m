@@ -86,10 +86,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+     self.fd_interactivePopDisabled = YES;
     [self setupTitleView];
-    
-     self.fd_interactivePopDisabled = true;
-    
     FastSubViewCode(self.view);
     {
         // 背景色
@@ -261,8 +260,11 @@
         }
         
     }
-    
-    [self sliderViewInit ];
+
+  if (OBJOnceToken(self)) {
+        [self sliderViewInit ];
+  };
+
     
 }
 //拖动条
@@ -367,7 +369,7 @@
     
     if (self.slider.moveProgress> 0) {
         
-        self.slider.moveProgress = self.slider.moveProgress - 0.001;
+        self.slider.moveProgress = self.slider.moveProgress - 0.0005;
         self.slider.progress = self.slider.moveProgress;
 
         [self setRebateAndSliderLB:self.slider.progress];
@@ -388,7 +390,7 @@
 -(void)addImgVAction:(UIButton *)sender{
 
     if (self.slider.moveProgress< 1.0) {
-        self.slider.moveProgress = self.slider.moveProgress + 0.001;
+        self.slider.moveProgress = self.slider.moveProgress + 0.0005;
         self.slider.progress = self.slider.moveProgress;
         
         [self setRebateAndSliderLB:self.slider.progress];

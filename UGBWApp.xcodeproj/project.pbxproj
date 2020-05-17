@@ -3854,7 +3854,7 @@
 		D4ACC074247041AE005AB971 /* UGLotterySubResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLotterySubResultCollectionViewCell.h; sourceTree = "<group>"; };
 		D4ACC075247041F8005AB971 /* UGLotteryResultCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLotteryResultCollectionViewCell.h; sourceTree = "<group>"; };
 		D4AE1C0922C0FCC300C142FE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D4B75E092278025E0007047C /* UGBWApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UGBWApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B75E092278025E0007047C /* UGBWApp_A.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UGBWApp_A.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B75E0C2278025E0007047C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D4B75E15227802600007047C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4B75E18227802600007047C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -8116,7 +8116,7 @@
 		D4B75E0A2278025E0007047C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4B75E092278025E0007047C /* UGBWApp.app */,
+				D4B75E092278025E0007047C /* UGBWApp_A.app */,
 				031EF3FE23BE7A9400B0F813 /* 聊天APP.app */,
 			);
 			name = Products;
@@ -8251,7 +8251,7 @@
 			);
 			name = UGBWApp;
 			productName = ug;
-			productReference = D4B75E092278025E0007047C /* UGBWApp.app */;
+			productReference = D4B75E092278025E0007047C /* UGBWApp_A.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -10620,7 +10620,7 @@
 				MARKETING_VERSION = 1.1.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.fhpt.H5DBF1426-a";
-				PRODUCT_NAME = UGBWApp;
+				PRODUCT_NAME = UGBWApp_A;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -10646,7 +10646,7 @@
 				);
 				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.fhpt.H5DBF1426-a";
-				PRODUCT_NAME = UGBWApp;
+				PRODUCT_NAME = UGBWApp_A;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
