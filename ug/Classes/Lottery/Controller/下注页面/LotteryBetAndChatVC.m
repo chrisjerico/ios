@@ -46,8 +46,6 @@
 
 @property (nonatomic, strong) NSMutableDictionary *jsDic ;         /**<   分享数据*/
 
-
-@property (nonatomic)bool   selectChatRoom_share;             /**<  接到分享的通知*/
 @end
 
 
@@ -122,7 +120,7 @@
         
         __self.jsDic = [da objectForKey:@"jsDic"];
         SysConf.hasShare = YES;
-        __self.selectChatRoom_share = YES;
+
         //        NSLog(@"js = %@",js);
         //
         [__self selectChatRoom ];
@@ -476,7 +474,7 @@
             }];
             
             NSMutableArray *chat2Ary = [NSMutableArray new] ;
-            if (__self.selectChatRoom_share) {
+            if ( SysConf.hasShare) {
                 for (int i = 0; i< __self.chatAry.count; i++) {
                     RoomChatModel *dic =  [__self.chatAry objectAtIndex:i];
                     
@@ -502,7 +500,7 @@
             NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
             SysConf.chatRoomRedirect = [number intValue];
             SysConf.chatRoomAry = chatRoomAry;
-            __self.selectChatRoom_share = NO;
+
             
             if (![CMCommon arryIsNull:chatRoomAry]) {
                 UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
