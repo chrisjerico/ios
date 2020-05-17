@@ -45,6 +45,9 @@
 @property (nonatomic, strong) NSArray *chatAry ;         /**<   聊天室数据*/
 
 @property (nonatomic, strong) NSMutableDictionary *jsDic ;         /**<   分享数据*/
+
+
+@property (nonatomic)bool   selectChatRoom_share;             /**<  接到分享的通知*/
 @end
 
 
@@ -119,6 +122,7 @@
         
         __self.jsDic = [da objectForKey:@"jsDic"];
         SysConf.hasShare = YES;
+        __self.selectChatRoom_share = YES;
         //        NSLog(@"js = %@",js);
         //
         [__self selectChatRoom ];
@@ -254,7 +258,7 @@
         if (!sm.error) {
             NSLog(@"model.data = %@",sm.responseObject[@"data"]);
             NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
-            NSMutableArray *chatIdAry = [NSMutableArray new];
+
             NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
             
             NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
@@ -267,7 +271,7 @@
             }];
             for (int i = 0; i< chatAry.count; i++) {
                 RoomChatModel *dic =  [chatAry objectAtIndex:i];
-                [chatIdAry addObject:dic.roomId];
+
 
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                 
@@ -459,10 +463,9 @@
             NSLog(@"model.data = %@",sm.responseObject[@"data"]);
             NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
             __self.chatAry = [NSMutableArray new];
-            NSMutableArray *chatIdAry = [NSMutableArray new];
+ 
             NSMutableArray *chatTitleAry = [NSMutableArray new];
             NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-            //            __self.chatAry = [data objectForKey:@"chatAry"];
             NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
             
             __self.chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
@@ -471,20 +474,35 @@
                 //对数组进行排序（降序）
                 // return [p2.dateOfBirth compare:p1.dateOfBirth];
             }];
-            for (int i = 0; i< __self.chatAry.count; i++) {
-                RoomChatModel *dic =  [__self.chatAry objectAtIndex:i];
-                [chatIdAry addObject:dic.roomId];
-                [chatTitleAry addObject:dic.roomName];
-                [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+            
+            NSMutableArray *chat2Ary = [NSMutableArray new] ;
+            if (__self.selectChatRoom_share) {
+                for (int i = 0; i< __self.chatAry.count; i++) {
+                    RoomChatModel *dic =  [__self.chatAry objectAtIndex:i];
+                    
+                    if ([dic isShareBet]) {
+                        [chatTitleAry addObject:dic.roomName];
+                        [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                        [chat2Ary addObject:[dic mj_keyValues]];
+                        
+                    }
+                }
+
+            } else {
+                for (int i = 0; i< __self.chatAry.count; i++) {
+                    RoomChatModel *dic =  [__self.chatAry objectAtIndex:i];
+      
+                    [chatTitleAry addObject:dic.roomName];
+                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                }
+               chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:__self.chatAry];
             }
             
-            NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:__self.chatAry];
-            //                             NSLog(@"chatIdAry = %@",chatIdAry);
+
             NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
             SysConf.chatRoomRedirect = [number intValue];
             SysConf.chatRoomAry = chatRoomAry;
-            NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
-            //            SysConf.chatRoomAry = __self.chatAry;
+            __self.selectChatRoom_share = NO;
             
             if (![CMCommon arryIsNull:chatRoomAry]) {
                 UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];

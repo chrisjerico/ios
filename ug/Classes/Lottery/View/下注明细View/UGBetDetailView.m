@@ -259,6 +259,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 float amountfloat = [self->amount floatValue];
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
                 
+                NSLog(@"SysConf.chatFollowSwitch = %d",SysConf.chatFollowSwitch);
+                
                 if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
                     
                     if (Skin1.isBlack||Skin1.is23) {
