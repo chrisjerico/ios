@@ -195,11 +195,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     
    
-    if ([CMCommon getRoomMode:model.gameId]) {
+//    if ([CMCommon getRoomMode:model.gameId]) {
         return [self goLotteryBetAndChatVC:model];
-    } else {
-        return [self goUGCommonLotteryController:model vcName:vcName];
-    }
+//    } else {
+//        return [self goUGCommonLotteryController:model vcName:vcName];
+//    }
    
 }
 
