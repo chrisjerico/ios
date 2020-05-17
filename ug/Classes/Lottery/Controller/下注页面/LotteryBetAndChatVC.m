@@ -123,7 +123,13 @@
 
         //        NSLog(@"js = %@",js);
         //
-        [__self selectChatRoom ];
+        
+        // 3.GCD
+        dispatch_async(dispatch_get_main_queue(), ^{
+           // UI更新代码
+           [__self selectChatRoom ];
+        });
+       
     }];
     // 每次‘彩票下注页’设置导航条按钮时，改为设置LotteryBetAndChatVC页的导航条按钮
     {
