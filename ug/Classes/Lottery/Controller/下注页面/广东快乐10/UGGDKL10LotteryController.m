@@ -140,10 +140,25 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
      
     
 
-     //连码
-     [self.rightStackView addSubview:self.segmentView];
-     [self initHeaderCollectionView];
-     [self initBetCollectionView];
+    //连码
+    [self.rightStackView addSubview:self.segmentView];
+    [self initHeaderCollectionView];
+    [self initBetCollectionView];
+    [self initHeaderCollectionView];
+    
+    [self.segmentView  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        make.left.right.equalTo(self.rightStackView).offset(0);
+        make.top.equalTo(self.rightStackView.mas_top).offset(0);
+        make.height.mas_equalTo(50);
+        
+    }];
+    [self.betCollectionView  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        make.left.right.equalTo(self.rightStackView).offset(0);
+        make.bottom.equalTo(self.rightStackView).offset(0);
+        make.top.equalTo(self.segmentView.mas_bottom).offset(0);
+    }];
     WeakSelf
     self.segmentIndex = 0;
     self.segmentView.segmentIndexBlock = ^(NSInteger row) {
@@ -151,8 +166,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [weakSelf.betCollectionView reloadData];
         [weakSelf resetClick:nil];
     };
-    [self initBetCollectionView];
-    [self initHeaderCollectionView];
+    
+    
+    
+  
     
     self.typeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.itemIndexPath = nil;
@@ -495,20 +512,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
             
             if ([@"连码" isEqualToString:model.name]) {
-                if (self.segmentView.hidden) {
-                    
-                    self.betCollectionView.y += self.segmentView.height;
-                    self.betCollectionView.height -= self.segmentView.height;
-                }
+//                if (self.segmentView.hidden) {
+//
+//                    self.betCollectionView.y += self.segmentView.height;
+//                    self.betCollectionView.height -= self.segmentView.height;
+//                }
                 self.segmentView.hidden = NO;
                 [self resetClick:nil];
                 
             }else {
-                if (!self.segmentView.hidden) {
-                    
-                    self.betCollectionView.y -= self.segmentView.height;
-                    self.betCollectionView.height += self.segmentView.height;
-                }
+//                if (!self.segmentView.hidden) {
+//
+//                    self.betCollectionView.y -= self.segmentView.height;
+//                    self.betCollectionView.height += self.segmentView.height;
+//                }
                 self.segmentView.hidden = YES;
             }
             
