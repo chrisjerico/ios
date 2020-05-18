@@ -74,7 +74,7 @@
             
         } else {
             self.leftTitleLabel.text = item.name;
-            self.numberLB.text = @"%@ --";
+            self.numberLB.text = @" --";
         }
         
         

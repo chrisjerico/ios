@@ -1535,6 +1535,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     for (UGGameplayModel *model in self.gameDataArray) {
         if ([@"特码" isEqualToString:model.name]) {
             [self.tmTitleArray removeAllObjects];
+            
             for (int i = 0; i < model.list.count; i++) {
                 UGGameplaySectionModel *type = model.list[i];
                 type.name = type.alias;
@@ -1543,6 +1544,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     [self.tmTitleArray addObject:type.alias];
                 }
             }
+            
+            if ([@"c018" containsString:APP.SiteId] && [self.nextIssueModel.title isEqualToString:@"新加坡六合彩"]) {
+                 [self.tmTitleArray removeAllObjects];
+                  [self.tmTitleArray addObject:@"特码B"];
+            }
+            
             if (APP.isBA) {
                 self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
             }
