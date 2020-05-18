@@ -410,7 +410,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         NSLog(@"array = %@",array);
         betDetailView.nextIssueModel = self.nextIssueModel;
         betDetailView.code = selCode;
-         NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+        betDetailView.name = selName;
         WeakSelf
         betDetailView.betClickBlock = ^{
             [weakSelf resetClick:nil];

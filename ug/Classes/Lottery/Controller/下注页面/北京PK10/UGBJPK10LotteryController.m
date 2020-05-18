@@ -417,6 +417,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
         NSString *selCode = @"";
+        NSString *selName = @"";
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
             if (!model.select) {
@@ -425,6 +426,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             NSLog(@"model.code ======================== %@",model.code);
             NSLog(@"model.name ======================== %@",model.name);
             selCode = model.code;
+            selName = model.name;
             
             if ([model.name isEqualToString:@"官方玩法"]) {
                 
@@ -460,6 +462,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         betDetailView.dataArray = array;
         betDetailView.nextIssueModel = self.nextIssueModel;
         betDetailView.code = selCode;
+        betDetailView.name = selName;
         WeakSelf
         betDetailView.betClickBlock = ^{
             [weakSelf resetClick:nil];

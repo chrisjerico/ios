@@ -234,6 +234,14 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom_share" object:nil userInfo:dic];
 }
 
+-(BOOL)isTeMa:(NSString *)name{
+    if ([name isEqualToString:@"连码"]||[name isEqualToString:@"连肖连尾"]||[name isEqualToString:@"官方玩法"]||[name isEqualToString:@"合肖"]||[name isEqualToString:@"自选不中"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 - (void)submitBet:(NSDictionary *)params {
     [SVProgressHUD showWithStatus:nil];
     [CMNetwork userBetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -261,8 +269,10 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 
                 NSLog(@"SysConf.chatFollowSwitch = %d",SysConf.chatFollowSwitch);
                 
+                BOOL isTaM =  [self isTeMa:self.name];
+
 //                if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat) && (![CMCommon getRoomMode:self.nextIssueModel.gameId])) {
-                if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
+                if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat) && !isTaM) {
                     
                     if (Skin1.isBlack||Skin1.is23) {
                         [LEEAlert alert].config

@@ -375,6 +375,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		[SVProgressHUD showInfoWithStatus:err];
 	}, ^{
         NSString *selCode = @"";
+        NSString *selName = @"";
 		NSMutableArray *array = [NSMutableArray array];
 		
 		UGGameplayModel *play = self.gameDataArray[self.typeIndexPath.row];
@@ -383,6 +384,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		if ([@"直选" isEqualToString:play.name]) {
             
             selCode = play.code;
+            selName = play.name;
 			if (play.list.count) {
 				NSMutableArray *mutArr0 = [NSMutableArray array];
 				NSMutableArray *mutArr1 = [NSMutableArray array];
@@ -493,6 +495,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 				}
                 NSLog(@"model.code ======================== %@",model.code);
                 selCode = model.code;
+                selName = model.name;
 				for (UGGameplaySectionModel *type in model.list) {
 					
 					for (UGGameBetModel *game in type.list) {
@@ -519,6 +522,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		betDetailView.dataArray = array;
 		betDetailView.nextIssueModel = self.nextIssueModel;
         betDetailView.code = selCode;
+        betDetailView.name = selName;
 		WeakSelf
 		betDetailView.betClickBlock = ^{
             [weakSelf resetClick:nil];
