@@ -194,7 +194,7 @@
         NSLog(@"奖品id = %@", prizeId );
         NSLog(@"prizeName= %@", [data objectForKey:@"prizeName"] );
         NSLog(@"prizeIcon= %@", [data objectForKey:@"prizeIcon"] );
-        [self.canRotationView.layer removeAllAnimations];
+  
         if (self.angle != -1) {
              [self animationWinning];
         }
