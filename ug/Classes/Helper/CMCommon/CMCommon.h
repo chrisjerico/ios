@@ -385,4 +385,10 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(BOOL )getRoomMode:(NSString *)gameId;
+
+/**
+* 当传入nim 为空时，各个站点默认的彩种
+*
+*/
++(UGNextIssueModel * )getBetAndChatModel:(UGNextIssueModel *)nim;
 @end

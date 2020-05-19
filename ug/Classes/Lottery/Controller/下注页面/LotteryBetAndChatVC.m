@@ -65,48 +65,7 @@
         self.title = @"聊天室";;
     }
     if (!_nim) {
-        
-        if ([@"c084" containsString:APP.SiteId]) {
-            UGNextIssueModel * oc = [UGNextIssueModel new];
-            oc.gameId = @"164";
-            oc.gameType = @"lhc";
-            oc.name = @"jslhc";
-            oc.title = @"分分六合彩";
-            _nim = oc;
-        }
-        else if ([@"c208" containsString:APP.SiteId]) {
-            UGNextIssueModel * oc = [UGNextIssueModel new];
-            oc.gameId = @"78";
-            oc.gameType = @"lhc";
-            oc.name = @"lhc";
-            oc.title = @"一分六合彩";
-            _nim = oc;
-        }
-        else if ([@"c217" containsString:APP.SiteId]) {
-            UGNextIssueModel * oc = [UGNextIssueModel new];
-            oc.gameId = @"98";
-            oc.gameType = @"pk10";
-            oc.name = @"pk10";
-            oc.title = @"极速赛车";
-            _nim = oc;
-        }
-        else if ([@"c126" containsString:APP.SiteId]) {
-            UGNextIssueModel * oc = [UGNextIssueModel new];
-            oc.gameId = @"55";
-            oc.gameType = @"xyft";
-            oc.name = @"xyft";
-            oc.title = @"幸运飞艇";
-            _nim = oc;
-        }
-        else {
-            UGNextIssueModel * oc = [UGNextIssueModel new];
-            oc.gameId = @"70";
-            oc.gameType = @"lhc";
-            oc.name = @"lhc";
-            oc.title = @"香港六合彩";
-            _nim = oc;
-        }
-        
+        _nim = [CMCommon getBetAndChatModel:_nim];
     }
     
     __weakSelf_(__self);

@@ -1316,4 +1316,58 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     
     return NO;
 }
+
+
+/**
+* 当传入nim 为空时，各个站点默认的彩种
+*
+*/
++(UGNextIssueModel * )getBetAndChatModel:(UGNextIssueModel *)nim{
+    if (!nim) {
+           
+           if ([@"c084" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"164";
+               oc.gameType = @"lhc";
+               oc.name = @"jslhc";
+               oc.title = @"分分六合彩";
+               nim = oc;
+           }
+           else if ([@"c208" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"78";
+               oc.gameType = @"lhc";
+               oc.name = @"lhc";
+               oc.title = @"一分六合彩";
+               nim = oc;
+           }
+           else if ([@"c217" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"98";
+               oc.gameType = @"pk10";
+               oc.name = @"pk10";
+               oc.title = @"极速赛车";
+               nim = oc;
+           }
+           else if ([@"c126" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"55";
+               oc.gameType = @"xyft";
+               oc.name = @"xyft";
+               oc.title = @"幸运飞艇";
+               nim = oc;
+           }
+           else {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"70";
+               oc.gameType = @"lhc";
+               oc.name = @"lhc";
+               oc.title = @"香港六合彩";
+               nim = oc;
+           }
+           
+       }
+    return nim;
+       
+}
 @end

@@ -173,6 +173,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)model {
+    
+    
+    if (!model) {
+        model = [CMCommon getBetAndChatModel:model];
+    }
+    
     NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
                            @"pk10"  :@"UGBJPK10LotteryController",  // pk10
                            @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
@@ -346,7 +352,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 3: {
             // 聊天室
-            [NavController1 pushViewController:[UGChatViewController new] animated:YES];
+
+            [NavController1 pushViewControllerWithNextIssueModel:nil  ];
             break;
         }
         case 4: {
