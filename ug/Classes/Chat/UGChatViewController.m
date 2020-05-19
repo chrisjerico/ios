@@ -225,6 +225,7 @@
             [(UIButton *)item0.customView sizeToFit];
         } error:nil];
     }
+    
 }
 
 -(void)selectChatRoom {
