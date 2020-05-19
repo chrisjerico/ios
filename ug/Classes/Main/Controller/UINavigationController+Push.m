@@ -352,8 +352,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 3: {
             // 聊天室
-
-            [NavController1 pushViewControllerWithNextIssueModel:nil  ];
+            UGChatViewController *vc = [[UGChatViewController alloc] init];
+            vc.showChangeRoomTitle = true;
+            vc.title = @"聊天室";
+            [NavController1 pushViewController:vc animated:YES];
             break;
         }
         case 4: {
