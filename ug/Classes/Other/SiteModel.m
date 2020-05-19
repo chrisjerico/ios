@@ -67,7 +67,7 @@
             site(@"h005",        @"h005hy",     @"236",     @"io.fhpt.H5EAA48E4",       @"https://534023.com",                          @"企业包",     @"开心红包"),// 超级签 15757187321    dz990990
             site(@"c021",        @"",           @"",        @"io.fhpt.H5A730C2F",       @"",                                            @"企业包",     @"幸运彩票"),
             site(@"c028",        @"",           @"",        @"io.fhpt.H5DBF1426",       @"",                                            @"企业包",     @"鳳凰彩票"),
-            site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.YSAC053",       @"https://988c53.com",                          @"企业包",     @"彩53"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
+            site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.YSAC053",       @"https://988c53.com",                          @"企业包",     @"0069彩票"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
             site(@"c062",        @"c062hy",     @"153",     @"io.fhpt.H5AF9FDA4",       @"",                                            @"企业包",     @"六合彩票"),
             site(@"c067",        @"",           @"",        @"io.fhpt.H59B0EF77",       @"",                                            @"企业包",     @"乐盈彩票"),
             site(@"c068",        @"",           @"",        @"io.fhpt.H5E98EDD5",       @"",                                            @"企业包",     @"⾦牌⼿游"),
