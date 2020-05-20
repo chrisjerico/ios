@@ -138,7 +138,7 @@
                                    @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
                                    @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                                    @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
-                                   @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
+//                                   @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
             };
             NSString *vcName = dict[model.gameType];
             UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
