@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *btnBgImgV;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
+
 @property (strong, nonatomic)  DZPTwoView *twoView;
 @property (strong, nonatomic)  DZPOneView *oneView;
 
@@ -91,7 +92,9 @@
             self.moenyNumberLabel.text = @"剩余积分：0";
         }
         //注册通知：
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setMoenyNumber:) name:@"setMoenyNumber" object:nil];
+         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setMoenyNumber:) name:@"setMoenyNumber" object:nil];
+         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setDZPStar:) name:@"setDZPStar" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setDZPEnd:) name:@"setDZPEnd" object:nil];
        
     }
     return self;
@@ -187,11 +190,22 @@
     NSNumber *moenyNumber = notification.userInfo[@"MoenyNumber"];//1316
     self.moenyNumberLabel.text = [NSString stringWithFormat:@"剩余积分：%@",moenyNumber];
     [self activityTurntableLog:[Global getInstanse].DZPid];
+ }
+
+-(void)setDZPStar:(NSNotification *)notification
+{
+    [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"ztlight2" withExtension:@"gif"]];
+    
+}
+-(void)setDZPEnd:(NSNotification *)notification
+{
+    [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"ztlight" withExtension:@"gif"]];
     
 }
 
-
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"setMoenyNumber" object:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"setDZPStar" object:self];
+     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"setDZPEnd" object:self];
 }
 @end

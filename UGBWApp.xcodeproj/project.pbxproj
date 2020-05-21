@@ -2000,6 +2000,7 @@
 		D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */; };
 		D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
 		D4F0411A23C86A6A0070D2B5 /* RememberPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411923C86A6A0070D2B5 /* RememberPass.m */; };
+		D4FBD67C24767E0F008CD488 /* ztlight2.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4FBD67A24767E0F008CD488 /* ztlight2.gif */; };
 		F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30193B1626262AA87797C0E9 /* Pods_chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -3883,6 +3884,7 @@
 		D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WHC_ModelSqlite.m; sourceTree = "<group>"; };
 		D4F0411823C86A6A0070D2B5 /* RememberPass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RememberPass.h; sourceTree = "<group>"; };
 		D4F0411923C86A6A0070D2B5 /* RememberPass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RememberPass.m; sourceTree = "<group>"; };
+		D4FBD67A24767E0F008CD488 /* ztlight2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ztlight2.gif; sourceTree = "<group>"; };
 		E98695D8DC0D2512B92A7C32 /* Pods-ug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.debug.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7938,6 +7940,7 @@
 			isa = PBXGroup;
 			children = (
 				D43DAF622453283A0014A301 /* ztlight.gif */,
+				D4FBD67A24767E0F008CD488 /* ztlight2.gif */,
 				D458ED7D240F9EF100575C3F /* hot_act.gif */,
 				D424D61F240931F300339D89 /* redbag_act.gif */,
 				D422E92E2407F5AC00276E7A /* effects.gif */,
@@ -8919,6 +8922,7 @@
 				D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */,
 				031E1D4C23BE812B00B0F813 /* UGMineSkinViewController.xib in Resources */,
 				CF475884239636D200966536 /* 134.gif in Resources */,
+				D4FBD67C24767E0F008CD488 /* ztlight2.gif in Resources */,
 				CF475894239636D200966536 /* 132.gif in Resources */,
 				CF4758B4239636D200966536 /* 7.gif in Resources */,
 				031E1D6823BE812B00B0F813 /* UGBindCardViewController.storyboard in Resources */,

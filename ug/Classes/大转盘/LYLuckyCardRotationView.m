@@ -107,6 +107,8 @@
     animationPart1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]; //由慢变快
     animationPart1.fillMode = kCAFillModeForwards;
     [self.canRotationView.layer addAnimation:animationPart1 forKey:@"beginAnima"];
+    
+    [self fireStartNotification];
 }
 //动画方法
 - (void)animationPart :(float )angle{
@@ -162,6 +164,7 @@
 //    NSLog(@"animationDidStart%@",self.canRotationView.layer.animationKeys);
     NSLog(@"animationDidStart%@",self.winView.layer.animationKeys);
     if ([self.canRotationView.layer.animationKeys[0] isEqualToString:@"beginAnima"]) {
+        
         [self activityTurntableWin];
     }
     else if ([self.winView.layer.animationKeys[0] isEqualToString:@"animationWin"]) {
@@ -197,6 +200,7 @@
   
         if (self.angle != -1) {
              [self animationWinning];
+              [self fireEndNotification];
         }
         else{
             [self removeAnimations];
@@ -230,6 +234,7 @@
 -(void)removeAnimations{
     [self winner];
      [self.canRotationView.layer removeAllAnimations];
+    [self fireEndNotification];
 }
 
 -(void)winner{
@@ -253,6 +258,21 @@
     NSNumber * integral = [data objectForKey:@"integral"];
     NSDictionary *dict = @{@"MoenyNumber":integral};
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"setMoenyNumber" object:nil userInfo:dict]];
+  
+}
+
+
+-(void)fireStartNotification{
+    //发送通知
+
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"setDZPStar" object:nil userInfo:nil]];
+  
+}
+
+-(void)fireEndNotification{
+    //发送通知
+
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"setDZPEnd" object:nil userInfo:nil]];
   
 }
 #pragma mark -网络请求  抽奖接口

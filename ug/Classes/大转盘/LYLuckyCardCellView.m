@@ -25,8 +25,9 @@
 }
 
 - (void)commonInit {
-    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 68, 50)];
     self.label.textAlignment = NSTextAlignmentCenter;
+    [self.label setNumberOfLines:2];
     self.label.font = [UIFont systemFontOfSize:11];
     [self.label setTextColor:[UIColor whiteColor]];
     self.label.center = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0 );
