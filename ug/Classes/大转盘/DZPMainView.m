@@ -188,6 +188,13 @@
 -(void)setMoenyNumber:(NSNotification *)notification
 {
     NSNumber *moenyNumber = notification.userInfo[@"MoenyNumber"];//1316
+    NSString *moenyNumberStr = [NSString stringWithFormat:@"%@",moenyNumber];
+    if (![CMCommon stringIsNull:moenyNumberStr]) {
+        self.moenyNumberLabel.text = [NSString stringWithFormat:@"剩余积分：%@",_FloatString4(moenyNumberStr.doubleValue)];
+    }
+    else{
+        self.moenyNumberLabel.text = @"剩余积分：0";
+    }
     self.moenyNumberLabel.text = [NSString stringWithFormat:@"剩余积分：%@",moenyNumber];
     [self activityTurntableLog:[Global getInstanse].DZPid];
  }

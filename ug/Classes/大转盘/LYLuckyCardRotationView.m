@@ -51,10 +51,10 @@
 
 -(void)setDataArray:(NSArray<DZPprizeModel *> *)dataArray{
     _dataArray = dataArray;
-    self.cellArray = [NSMutableArray arrayWithCapacity:_dataArray.count];
+    self.cellArray = [NSMutableArray arrayWithCapacity:_dataArray.count +1 ];
     
     // 转盘添加扇形背景色
-    PieView *pieView = [[PieView alloc] initWithFrame:self.canRotationView.bounds count:dataArray.count*2];
+    PieView *pieView = [[PieView alloc] initWithFrame:self.canRotationView.bounds count:dataArray.count];
     [self.canRotationView addSubview:pieView];
     pieView.hidden = false;
     
