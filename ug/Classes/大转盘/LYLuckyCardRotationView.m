@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *myBtn;//点击按钮
 @property (weak, nonatomic) IBOutlet UIView *winView;//可旋转的中奖View
 @property (weak, nonatomic) IBOutlet UIImageView *dzpBgImgV;//背景图
-
+@property (strong, nonatomic)  PieView *pieView;//阴影
 @end
 
 @implementation LYLuckyCardRotationView
@@ -55,9 +55,9 @@
     self.cellArray = [NSMutableArray arrayWithCapacity:_dataArray.count +1 ];
     
     // 转盘添加扇形背景色
-    PieView *pieView = [[PieView alloc] initWithFrame:self.canRotationView.bounds count:dataArray.count];
-    [self.canRotationView addSubview:pieView];
-    pieView.hidden = false;
+    _pieView = [[PieView alloc] initWithFrame:self.canRotationView.bounds count:dataArray.count];
+    [self.canRotationView addSubview:_pieView];
+    _pieView.hidden = false;
     
     // 转盘奖品图片和文字
     CGFloat angle = 2 * M_PI / (CGFloat)_dataArray.count;
@@ -83,9 +83,20 @@
     if (![CMCommon stringIsNull:_chassis_img]) {
         NSURL *url = [NSURL URLWithString:chassis_img];
         [_dzpBgImgV  sd_setImageWithURL:url];
+        
+        for (int i = 0; i< self.cellArray.count; i++) {
+            LYLuckyCardCellView *cellView = [self.cellArray objectAtIndex:i];
+            [cellView setHidden:YES];
+            _pieView.hidden = true;
+        }
     }
     else{
        [_dzpBgImgV setImage:[UIImage imageNamed:@"dzp_turnplate_bg"]];
+        for (int i = 0; i< self.cellArray.count; i++) {
+             LYLuckyCardCellView *cellView = [self.cellArray objectAtIndex:i];
+             [cellView setHidden:NO];
+            _pieView.hidden = false;
+         }
     }
     
 }
