@@ -11,7 +11,7 @@
 @interface LYLuckyCardRotationView : UIView
 @property (nonatomic, strong) NSArray<DZPprizeModel*> *dataArray;
 @property (nonatomic, strong) NSString *DZPid;   /**id*/
-
+@property (nonatomic, strong) NSString *chassis_img;   /**大转盘背景图*/
 - (void)beignRotaion;
 
 @end

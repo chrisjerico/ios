@@ -1668,6 +1668,7 @@
                     self.ulowerLefttView.hidden = YES;
                     self.uUpperRightView.hidden = YES;
                     self.uLowerRightView.hidden = YES;
+                    
                 }
                 
                 

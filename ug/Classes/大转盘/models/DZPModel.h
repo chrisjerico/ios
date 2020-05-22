@@ -94,6 +94,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *buy_amount;   /**<  消耗的金额 */
 @property (nonatomic, strong) NSString *check_in_user_levels;   /**< 可以参与的层级 没有则是全部  */
 @property (nonatomic, strong) NSArray<NSString*>  *content_turntable;   /**<  活动藐视 每个逗号前代表一行 */
+@property (nonatomic, strong) NSString *chassis_img;   /*网络大转盘背景图 chassis_img*/
 @end
 
 

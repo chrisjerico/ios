@@ -24,6 +24,7 @@
 @property (nonatomic, strong) CABasicAnimation *animationPart;//动画
 @property (weak, nonatomic) IBOutlet UIButton *myBtn;//点击按钮
 @property (weak, nonatomic) IBOutlet UIView *winView;//可旋转的中奖View
+@property (weak, nonatomic) IBOutlet UIImageView *dzpBgImgV;//背景图
 
 @end
 
@@ -75,6 +76,18 @@
         [self.cellArray addObject:cellView];
     }
     [self setNeedsDisplay];
+}
+
+-(void)setChassis_img:(NSString *)chassis_img{
+    _chassis_img = chassis_img;
+    if (![CMCommon stringIsNull:_chassis_img]) {
+        NSURL *url = [NSURL URLWithString:chassis_img];
+        [_dzpBgImgV  sd_setImageWithURL:url];
+    }
+    else{
+       [_dzpBgImgV setImage:[UIImage imageNamed:@"dzp_turnplate_bg"]];
+    }
+    
 }
 
 - (IBAction)beginAction:(id)sender {

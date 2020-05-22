@@ -11,6 +11,7 @@
             <connections>
                 <outlet property="canRotationView" destination="T2N-u3-Qbm" id="zOg-Vx-v8F"/>
                 <outlet property="contentView" destination="nht-FG-dcf" id="ORL-g4-dnV"/>
+                <outlet property="dzpBgImgV" destination="4Zo-ln-kiD" id="Zpx-96-p0S"/>
                 <outlet property="myBtn" destination="4lp-s0-o6V" id="g6X-Jt-mPG"/>
                 <outlet property="winView" destination="Yce-Vq-pZk" id="l6g-SK-hOV"/>
             </connections>

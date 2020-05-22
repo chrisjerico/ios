@@ -145,7 +145,8 @@
     self.oneView.dataArray = item.param.content_turntable;
     self.mDZPView.DZPid = item.DZPid;
     self.mDZPView.dataArray =  [DZPprizeModel mj_objectArrayWithKeyValuesArray:item.param.prizeArr];
-   
+    
+    self.mDZPView.chassis_img = item.param.chassis_img;
 }
 
 
