@@ -93,4 +93,11 @@
 
 - (void)show;
 - (void)hidden;
+
+/**
+*  1.获得UIView的父控制器
+*
+*  
+*/
+-(UIViewController* )superViewController ;
 @end
