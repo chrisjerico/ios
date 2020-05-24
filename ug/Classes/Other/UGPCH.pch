@@ -66,4 +66,5 @@
 #import "CMNetwork+LH.h"            //六合
 #import "Global.h"                  //全局数据
 #import "NSArray+Log.h"             //XCode状态栏打印Json格式数据
+#import "SGBrowserView.h"            //弹窗
 #endif /* UGPCH_pch */

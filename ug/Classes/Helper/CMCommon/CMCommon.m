@@ -1393,10 +1393,13 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
          if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
              [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
          }
-         else if ([app_params isEqualToString:@"goto_coupon_list"]) {//申请优惠
+         else if ([app_params isEqualToString:@"goto_coupon_list"]) {//优惠活动
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
          }
 
     
 }
+
+
+
 @end

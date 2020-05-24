@@ -350,7 +350,7 @@
             return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
         }
         else{
-//            url = @"/moblie/#/ucenter/promote?app_params=goto_coupon_list";
+
             if ([url containsString:@"?"]) {
                 
                 [CMCommon goVCWithUrl:url];

@@ -122,7 +122,9 @@
             model.param.mid = model.mid;
             model.param;
         });
-        [notiveView show];
+//        [notiveView show];
+        CGPoint showCenter = CGPointMake(APP.Width/2,APP.Height/2);
+        [SGBrowserView showMoveView:notiveView moveToCenter:showCenter];
     };
     return cell;
 }

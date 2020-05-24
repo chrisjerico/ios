@@ -12,6 +12,7 @@
 #import "UGContentMoneyCollectionViewCell.h"
 #import "OpenUDID.h"
 
+#import "UGMosaicGoldViewController.h"
 #define SCHorizontalMargin   5.0f
 #define SCVerticalMargin     5.0f
 
@@ -201,15 +202,23 @@
 
 
 #pragma mark - IBAction
+- (void)hiddenSelf {
 
+//    UIView *view = self;
+//    self.superview.backgroundColor = [UIColor clearColor];
+//    [view.superview removeFromSuperview];
+//    [view removeFromSuperview];
+    [SGBrowserView hide];
+}
 - (IBAction)close:(id)sender {
-    UIView *view = self;
-    self.superview.backgroundColor = [UIColor clearColor];
-    [view.superview removeFromSuperview];
-    [view removeFromSuperview];
+
+        [self hiddenSelf];
 }
 
+
+
 - (IBAction)okButtonClicked:(id)sender {
+
     FastSubViewCode(self);
     // 得到领取连续签到奖励数据
     
@@ -353,8 +362,9 @@
                 return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
             }
             else{
-//                url = @"/moblie/#/ucenter/promote?app_params=goto_coupon_list";
                 if ([url containsString:@"?"]) {
+                    
+                    NSLog(@"url = %@",url);
                     
                     [CMCommon goVCWithUrl:url];
                     
