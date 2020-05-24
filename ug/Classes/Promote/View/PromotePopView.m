@@ -147,21 +147,8 @@
 //            url = @"/moblie/#/ucenter/promote?app_params=goto_act_file";
             if ([url containsString:@"?"]) {
                 
-                NSArray *params =[url componentsSeparatedByString:@"?"];
-                NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
-                for (NSString *paramStr in params) {
-                    NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
-                    if (dicArray.count > 1) {
-                        NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                        [tempDic setObject:decodeValue forKey:dicArray[0]];
-                    }
-                }
-                NSLog(@"tempDic:%@",tempDic);
-                NSString *app_params = [tempDic objectForKey:@"app_params"];
-                
-                if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
-                    [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
-                }
+                [CMCommon goVCWithUrl:url];
+
                 [self close:nil];
                 return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
                 

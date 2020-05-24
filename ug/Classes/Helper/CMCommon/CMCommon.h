@@ -391,4 +391,11 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(UGNextIssueModel * )getBetAndChatModel:(UGNextIssueModel *)nim;
+
+
+/**
+* webView 内部url 统一跳转
+*
+*/
++(void)goVCWithUrl:(NSString *)url;
 @end

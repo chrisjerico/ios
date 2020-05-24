@@ -337,22 +337,37 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     //判断是否是单击
-    if (navigationType == UIWebViewNavigationTypeLinkClicked)
-    {
-        NSString *url = [request.URL absoluteString];
-        
-        //拦截链接跳转到货源圈的动态详情
-        if ([url rangeOfString:@"http"].location != NSNotFound)
-        {
-            //跳转到你想跳转的页面
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = url;
-            [NavController1 pushViewController:webViewVC animated:YES];
-            [self close:nil];
-            return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+        if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+
+            NSString *url = [request.URL absoluteString];
+            
+            //拦截链接跳转到货源圈的动态详情
+            if ([url rangeOfString:@"http"].location != NSNotFound)
+            {
+                //跳转到你想跳转的页面
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                webViewVC.url = url;
+                [NavController1 pushViewController:webViewVC animated:YES];
+                
+                [self close:self];
+                return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+            }
+            else{
+//                url = @"/moblie/#/ucenter/promote?app_params=goto_coupon_list";
+                if ([url containsString:@"?"]) {
+                    
+                    [CMCommon goVCWithUrl:url];
+                    
+                    [self close:self];
+                    return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+                    
+                }
+                
+            }
+
+            return NO;
         }
-    }
-    return YES;
+        return YES;
 }
 
 @end
