@@ -1545,10 +1545,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
             }
             
-            if ([@"c018" containsString:APP.SiteId] && [self.nextIssueModel.title isEqualToString:@"新加坡六合彩"]) {
-                 [self.tmTitleArray removeAllObjects];
-                  [self.tmTitleArray addObject:@"特码B"];
-            }
+//            if ([@"c018" containsString:APP.SiteId] && [self.nextIssueModel.title isEqualToString:@"新加坡六合彩"]) {
+//                 [self.tmTitleArray removeAllObjects];
+//                  [self.tmTitleArray addObject:@"特码B"];
+//            }
             
             if (APP.isBA) {
                 self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
