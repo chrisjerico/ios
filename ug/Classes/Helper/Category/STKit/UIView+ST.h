@@ -83,7 +83,7 @@
 /**
  *  1.添加边框
  *
- *  @param color <#color description#>
+ *  @param color color description
  */
 - (void)addBorderColor:(UIColor *)color;
 
@@ -97,7 +97,7 @@
 /**
 *  1.获得UIView的父控制器
 *
-*  
+*
 */
 -(UIViewController* )superViewController ;
 @end

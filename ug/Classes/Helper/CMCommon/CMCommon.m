@@ -1379,24 +1379,24 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 +(void)goVCWithUrl:(NSString *)url{
     
     NSArray *params =[url componentsSeparatedByString:@"?"];
-         NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
-         for (NSString *paramStr in params) {
-             NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
-             if (dicArray.count > 1) {
-                 NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                 [tempDic setObject:decodeValue forKey:dicArray[0]];
-             }
-         }
-         NSLog(@"tempDic:%@",tempDic);
-         NSString *app_params = [tempDic objectForKey:@"app_params"];
-         
-         if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
-             [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
-         }
-         else if ([app_params isEqualToString:@"goto_coupon_list"]) {//优惠活动
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-         }
-
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    for (NSString *paramStr in params) {
+        NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
+        if (dicArray.count > 1) {
+            NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [tempDic setObject:decodeValue forKey:dicArray[0]];
+        }
+    }
+    NSLog(@"tempDic:%@",tempDic);
+    NSString *app_params = [tempDic objectForKey:@"app_params"];
+    
+    if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
+        [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+    }
+    else if ([app_params isEqualToString:@"goto_coupon_list"]) {//优惠活动
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+    }
+    
     
 }
 

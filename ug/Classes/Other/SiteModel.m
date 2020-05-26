@@ -102,7 +102,7 @@
             site(@"c169",        @"c169hy",     @"162",     @"io.fhpt.H529081C9",       @"http://heixxqic169cqhmszw.playzone88.com",    @"企业包",     @"太阳城集团"),
             site(@"c172",        @"",           @"",        @"io.fhpt.H5534F908",       @"",                                            @"企业包",     @"凤凰彩票"),
             site(@"c173",        @"c173hy",     @"147",     @"io.fhpt.H50900911",       @"https://www.dfjt1.com",                       @"企业包",     @"东⽅集团"),
-            site(@"c175",        @"c175hy",     @"148",     @"io.fhpt.H57F31D1D",       @"http://dajidali88888.com",                    @"企业包",     @"太阳城集团"), // 已上架
+            site(@"c175",        @"c175hy",     @"148",     @"io.fhpt.H57F31D1D",       @"https://7053fndsjfkn.com",                    @"企业包",     @"太阳城集团"), // 已上架
             site(@"c177",        @"c177hy",     @"163",     @"io.fhpt.H5B410AF8",       @"https://lzcp11.com",                          @"企业包",     @"联众彩票"),
             site(@"c178",        @"",           @"",        @"io.fhpt.H54810967",       @"",                                            @"企业包",     @"百度彩票"),
             site(@"c182",        @"",           @"",        @"io.fhpt.H55A3FE0A",       @"",                                            @"企业包",     @"澳⻔⼤世界"),
