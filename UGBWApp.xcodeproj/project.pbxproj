@@ -896,7 +896,6 @@
 		031E1CC223BE812A00B0F813 /* UGChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177923BE812500B0F813 /* UGChatViewController.m */; };
 		031E1CC323BE812A00B0F813 /* UGChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177923BE812500B0F813 /* UGChatViewController.m */; };
 		031E1CC423BE812A00B0F813 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177C23BE812500B0F813 /* UIScrollView+MJRefresh.m */; };
-		031E1CC523BE812A00B0F813 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177C23BE812500B0F813 /* UIScrollView+MJRefresh.m */; };
 		031E1CC623BE812A00B0F813 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177D23BE812500B0F813 /* MJRefreshConst.m */; };
 		031E1CC723BE812A00B0F813 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177D23BE812500B0F813 /* MJRefreshConst.m */; };
 		031E1CC823BE812A00B0F813 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 031E178123BE812500B0F813 /* MJRefresh.bundle */; };
@@ -1622,6 +1621,8 @@
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
 		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
+		03F8A510247F63F600466124 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */; };
+		03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030A874323C5C2C00001EF82 /* JS_Mine.storyboard */; };
 		21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */; };
 		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
 		226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */; };
@@ -8349,6 +8350,7 @@
 				CF8508762466D71B0025672F /* PromotePopView.xib in Resources */,
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
 				031EF57623BE7B4D00B0F813 /* yinhangkaguanli.svg in Resources */,
+				03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */,
 				031EF5AD23BE7B4D00B0F813 /* MomentsHomeCell.xib in Resources */,
 				031E1ABB23BE812800B0F813 /* Shade_left@2x.png in Resources */,
 				031E199323BE812600B0F813 /* LHPostCommentInputView.xib in Resources */,
@@ -9223,7 +9225,6 @@
 				D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */,
 				031E1ABF23BE812800B0F813 /* WMMenuCell.m in Sources */,
 				031E19C523BE812700B0F813 /* UIView+Utils.m in Sources */,
-				031E1CC523BE812A00B0F813 /* UIScrollView+MJRefresh.m in Sources */,
 				031E1E2D23BE812C00B0F813 /* UGActivityGoldView.m in Sources */,
 				031E1C8723BE812A00B0F813 /* UGFundsBankView.m in Sources */,
 				031EF54123BE7B4D00B0F813 /* RedpacketModel.swift in Sources */,
@@ -9391,6 +9392,7 @@
 				031E1CF723BE812A00B0F813 /* AFURLResponseSerialization.m in Sources */,
 				031E1A2723BE812700B0F813 /* CCNetworkRequests1.m in Sources */,
 				CF85087B2466D7810025672F /* FLAnimatedImageView.m in Sources */,
+				03F8A510247F63F600466124 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				031EF55623BE7B4D00B0F813 /* DispatchQueue+XFoundation.swift in Sources */,
 				031E1DA723BE812B00B0F813 /* UGwithdrawListModel.m in Sources */,
 				031E1A2123BE812700B0F813 /* CCNetworkRequests1+UGLiuHe.m in Sources */,
@@ -10453,6 +10455,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X33J5AQVAV;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -10482,6 +10485,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X33J5AQVAV;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

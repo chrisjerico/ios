@@ -23,11 +23,18 @@ enum ChatTarget {
 	case roomList
 	case delConversation(parameters: [String: Any])
 	case messageRecord(from: String, lastMessage: String = "", number: Int = 20)
+	case groupMessageRecord(roomId: String, lastMessage: String = "", number: Int = 20)
+	
 	case creatRedPacket(amount: Float, roomId: Int, title: String, quantity: Int)
 	case creatMinePacket(amount: Float, roomId: Int, mineNumber: Int)
 	case grabPacket(packetId: String)
 	case redPacketInfo(packetId: String)
 	case betList(page: Int, pageSize: Int)
+	
+	case roomConversationTop(dataId: Int)
+	case roomConversationTopCancel(dataId: Int)
+	case privateConversationTop(dataId: Int)
+	case privateConversationTopCancel(dataId: Int)
 	
 }
 
@@ -93,6 +100,7 @@ extension ChatTarget: TargetType {
 			urlParameters["c"] = "chat"
 			urlParameters["a"] = "messageRecord"
 			
+			bodyParameters["chat_type"] = 1
 			bodyParameters["number"] = number
 			bodyParameters["sendUid"] = from;
 			if lastMessage.count > 0 {
@@ -100,6 +108,19 @@ extension ChatTarget: TargetType {
 				
 			}
 			bodyParameters["token"] = App.user.sessid;
+			
+		case let .groupMessageRecord(roomId, lastMessage, number):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "messageRecord"
+			bodyParameters["chat_type"] = 0
+			bodyParameters["roomId"] = roomId
+			bodyParameters["number"] = number
+			if lastMessage.count > 0 {
+				bodyParameters["messageCode"] = lastMessage;
+				
+			}
+			bodyParameters["token"] = App.user.sessid;
+			
 			
 		case let .creatRedPacket(amount, roomId, title, quantity):
 			urlParameters["c"] = "chat"
@@ -146,7 +167,7 @@ extension ChatTarget: TargetType {
 			
 			bodyParameters["page"] = page
 			bodyParameters["rows"] = rows
-
+			
 			bodyParameters["token"] = App.user.sessid
 		case .redPacketInfo(let packetId):
 			urlParameters["c"] = "chat"
@@ -158,13 +179,47 @@ extension ChatTarget: TargetType {
 		case .delConversation(let parameters):
 			urlParameters["c"] = "chat"
 			urlParameters["a"] = "conversationDel"
-
+			
 			bodyParameters["token"] = App.user.sessid
 			parameters.forEach { (key,value) in
 				bodyParameters[key] = value
 			}
-	
+			
+			
+		case .roomConversationTop(dataId: let dataId):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "conversationTop"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["roomId"] = dataId
+			bodyParameters["type"] = 1
+			bodyParameters["operate"] = 1
+			
+		case .roomConversationTopCancel(dataId: let dataId):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "conversationTop"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["roomId"] = dataId
+			bodyParameters["type"] = 1
+			bodyParameters["operate"] = 2
 
+		case .privateConversationTop(dataId: let dataId):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "conversationTop"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["dataId"] = dataId
+			bodyParameters["type"] = 2
+			bodyParameters["operate"] = 1
+		case .privateConversationTopCancel(dataId: let dataId):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "conversationTop"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["dataId"] = dataId
+			bodyParameters["type"] = 2
+			bodyParameters["operate"] = 2
 		}
 		
 		var should = checkSign == 1

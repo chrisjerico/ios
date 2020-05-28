@@ -54,6 +54,12 @@ class ConcernedMomentsVC: BaseVC {
 		tableView.register(UINib(nibName: "MomentsBetCell", bundle: nil), forCellReuseIdentifier: "MomentsBetCell")
 		tableView.register(UINib(nibName: "MomentsCell", bundle: nil), forCellReuseIdentifier: "MomentsCell")
 		tableView.tableHeaderView = headerView
+		headerView.backgroundColor = UIColor.red
+		headerView.snp.makeConstraints { (make) in
+			make.width.equalToSuperview()
+			make.height.equalTo(300)
+			make.top.leading.equalToSuperview()
+		}
 		tableView.tableFooterView = UIView()
 		headerView.bind(name: App.user.username, avatar: App.user.avatar)
 		tableView.mj_header = RefreshHeader()

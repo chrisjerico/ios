@@ -78,6 +78,38 @@ class UGGroupChatVC: MessagesViewController {
 		
 		configMessageInputBar()
 		
+		
+		var isFirstReload = true
+			messagesCollectionView.mj_header.rx.refreshing.startWith(())
+				.flatMap { [weak self] _ in
+					ChatAPI.rx.request(ChatTarget.groupMessageRecord(roomId: "\(self!.room.roomId)", lastMessage: self?.messages.first?.messageId ?? ""))
+			}
+				.subscribe(onNext: { [weak self] (response) in
+					self?.messagesCollectionView.mj_header.endRefreshing()
+					guard
+						let json = try? response.mapJSON() as? [String: Any],
+						let messageJson = json["data"] as? [[String: Any]]
+					else {
+						Alert.showTip("JSON解析出错")
+						return
+					}
+					
+					let messages = messageJson.map{ MessageModel(JSON: $0)!}
+					self?.messages.insert(contentsOf: messages, at: 0)
+					if isFirstReload {
+						self?.messagesCollectionView.reloadData()
+						self?.messagesCollectionView.scrollToBottom()
+					} else {
+						self?.messagesCollectionView.reloadDataAndKeepOffset()
+					}
+					isFirstReload = false
+					}, onError: { [weak self] (error) in
+						self?.messagesCollectionView.mj_header.endRefreshing()
+						Alert.showTip(error.localizedDescription)
+						
+				}).disposed(by: disposeBag)
+		
+		
 		MessageManager.shared.newMessage.filter { [weak self] message in
 			guard
 				let weakSelf = self,
@@ -116,7 +148,8 @@ class UGGroupChatVC: MessagesViewController {
 		messagesCollectionView.messagesDisplayDelegate = self
 		maintainPositionOnKeyboardFrameChanged = true
 		scrollsToBottomOnKeyboardBeginsEditing = true
-		
+		messagesCollectionView.mj_header = RefreshHeader()
+
 		
 	}
 	private func configMessageInputBar() {
