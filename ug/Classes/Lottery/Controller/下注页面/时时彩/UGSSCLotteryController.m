@@ -42,10 +42,12 @@
 #import "UGPK10NNLotteryController.h"
 
 #import "UGYYRightMenuView.h"
+#import "UGLinkNumCollectionViewCell.h"
 
 #import "UGLotteryHistoryModel.h"
 #import "UGLotteryRecordTableViewCell.h"
 #import "CMTimeCommon.h"
+#import "UGSegmentView.h"
 @interface UGSSCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,UITextFieldDelegate,WSLWaterFlowLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
@@ -92,6 +94,11 @@
 
 @property (weak, nonatomic) IBOutlet UIView *middleView;
 
+@property (nonatomic, strong) UGSegmentView *segmentView;  /**<    */
+@property (nonatomic, strong) NSMutableArray <NSString *> *yzgmentTitleArray; /**<   一字定位 */
+@property (nonatomic, strong) NSMutableArray <NSString *> *rzgmentTitleArray; /**<   二字定位 */
+@property (nonatomic, strong) NSMutableArray <NSString *> *szgmentTitleArray; /**<   三字定位 */
+@property (nonatomic, assign) NSInteger segmentIndex;
 
 
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;
@@ -103,6 +110,7 @@ static NSString *sscBetItem1CellId = @"UGSSCBetItem1Cell";
 static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 static NSString *lotteryResultCellid = @"UGLotteryResultCollectionViewCell";
 static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell";
+static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 
 @implementation UGSSCLotteryController
@@ -137,8 +145,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
           make.top.right.bottom.equalTo(self.contentView).offset(0);
       }];
     
+    //一字
+    [self.rightStackView addSubview:self.segmentView];
     [self initBetCollectionView];
     [self initHeaderCollectionView];
+    
+    WeakSelf
+    self.segmentIndex = 0;
+    self.segmentView.segmentIndexBlock = ^(NSInteger row) {
+        weakSelf.segmentIndex = row;
+        [weakSelf.betCollectionView reloadData];
+        [weakSelf resetClick:nil];
+    };
     
     self.typeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.itemIndexPath = nil;
@@ -162,7 +180,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self getGameDatas];
     [self getNextIssueData];
 
-       WeakSelf
     // 轮循刷新封盘时间、开奖时间
     if (OBJOnceToken(self)) {
             self.timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
@@ -254,10 +271,32 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
-    [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
+            HJSonLog(@" 返回的json = %@",model);
+            
             UGPlayOddsModel *play = model.data;
+            NSLog(@"model.data = %@",model.data);
             self.gameDataArray = play.playOdds.mutableCopy;
+            for (UGGameplayModel *model in self.gameDataArray) {
+                if ([@"一字定位" isEqualToString:model.name]) {
+                    for (UGGameplaySectionModel *type in model.list) {
+                        [self.yzgmentTitleArray addObject:type.alias];
+                    }
+                }
+                if ([@"二字定位" isEqualToString:model.name]) {
+                       for (UGGameplaySectionModel *type in model.list) {
+                           [self.rzgmentTitleArray addObject:type.alias];
+                       }
+                   }
+                if ([@"三字定位" isEqualToString:model.name]) {
+                       for (UGGameplaySectionModel *type in model.list) {
+                           [self.szgmentTitleArray addObject:type.alias];
+                       }
+                   }
+            }
+            
+            
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     for (UGGameBetModel *gbm in gsm.lhcOddsArray){
@@ -276,6 +315,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                         [self.gameDataArray removeObject:gm];
                 }
             }
+            [self handleData];
+            self.segmentView.dataArray = self.yzgmentTitleArray;
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -495,6 +536,41 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([tableView isEqual:self.tableView]) {
         self.typeIndexPath = indexPath;
+        UGGameplayModel *model = self.gameDataArray[indexPath.row];
+        if ([@"一字定位" isEqualToString:model.name]) {
+            self.segmentView.dataArray = self.yzgmentTitleArray;
+            if (self.segmentView.hidden) {
+                
+                self.betCollectionView.y += self.segmentView.height;
+                self.betCollectionView.height -= self.segmentView.height;
+            }
+            self.segmentView.hidden = NO;
+            [self resetClick:nil];
+            
+        }
+        if ([@"二字定位" isEqualToString:model.name]) {
+             self.segmentView.dataArray = self.rzgmentTitleArray;
+             if (self.segmentView.hidden) {
+                 
+                 self.betCollectionView.y += self.segmentView.height;
+                 self.betCollectionView.height -= self.segmentView.height;
+             }
+             self.segmentView.hidden = NO;
+             [self resetClick:nil];
+             
+         }
+        if ([@"三字定位" isEqualToString:model.name]) {
+             self.segmentView.dataArray = self.szgmentTitleArray;
+             if (self.segmentView.hidden) {
+                 
+                 self.betCollectionView.y += self.segmentView.height;
+                 self.betCollectionView.height -= self.segmentView.height;
+             }
+             self.segmentView.hidden = NO;
+             [self resetClick:nil];
+             
+         }
+
         [self.betCollectionView reloadData];
         [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
     }
@@ -508,7 +584,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         if (self.gameDataArray.count) {
             
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-            return model.list.count;
+            if ([@"一字定位" isEqualToString:model.name]) {
+                return 1;
+            }
+            else if ([@"二字定位" isEqualToString:model.name]) {
+
+                return 3;
+            }
+            else if ([@"三字定位" isEqualToString:model.name]) {
+
+                return 4;
+            }
+            else {
+                
+                return model.list.count;
+            }
         }
         return 0;
         
@@ -521,6 +611,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     if (collectionView == self.betCollectionView) {
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = model.list[section];
+
+        if ([@"二字定位" isEqualToString:model.name] && section == 0) {
+            return 0;
+        }
+        if ([@"三字定位" isEqualToString:model.name] && section == 0) {
+             return 0;
+         }
         return type.list.count;
     }else {
         if (section == 0) {
@@ -534,8 +631,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     if (collectionView == self.betCollectionView) {
         
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-        UGGameplaySectionModel *type = model.list[indexPath.section];
+        UGGameplaySectionModel *type = nil;
+        
+        if ([@"一字连码" isEqualToString:model.name]) {
+            type = model.list[self.segmentIndex];
+            
+        }
+        else if ([@"二字连码" isEqualToString:model.name]) {
+             type = model.list[self.segmentIndex];
+             
+         }
+        else if ([@"三字连码" isEqualToString:model.name]) {
+             type = model.list[self.segmentIndex];
+             
+         }
+        else{
+            type = model.list[indexPath.section];
+        }
+
         UGGameBetModel *game = type.list[indexPath.row];
+
+        
         if ([@"1-5球" isEqualToString:model.name] ||
             [@"第一球" isEqualToString:model.name] ||
             [@"第二球" isEqualToString:model.name] ||
@@ -558,6 +674,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if ([game.name containsString:@"和"]) {
                 game.name = @"和";
             }
+        }
+        
+        NSLog(@":model.name=%@",model.name);
+        if ([@"一字定位" isEqualToString:model.name] ||
+            [@"二字定位" isEqualToString:model.name]||
+            [@"三字定位" isEqualToString:model.name]) {
+                UGLinkNumCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:linkNumCellId forIndexPath:indexPath];
+                cell.item = game;
+                return cell;
         }
         UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
         cell.item = game;
@@ -586,8 +711,88 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         UGTimeLotteryBetHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID forIndexPath:indexPath];
         if (collectionView == self.betCollectionView) {
             UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-            UGGameplaySectionModel *type = model.list[indexPath.section];
-            headerView.titleLabel.text = type.alias;
+            UGGameplaySectionModel *type = nil;
+            if ([@"一字定位" isEqualToString:model.name]) {
+                if (model.list.count) {
+                    
+                    type = model.list[self.segmentIndex];
+                    UGBetModel *bet = type.list.firstObject;
+                    NSLog(@"bet.odds =%@",bet.odds);
+                    if (bet == nil) {
+                        bet = [UGBetModel new];
+                        bet.odds = @"9.8";
+                    }
+                    
+                    if (APP.betOddsIsRed) {
+                        headerView.titleLabel.attributedText = ({
+                            
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:[[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero] attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
+                            mas;
+                        });
+                    } else {
+                        headerView.titleLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+
+                    }
+                }
+            }
+            else if ([@"二字定位" isEqualToString:model.name]) {
+                if (!model.list.count) {
+                    headerView.titleLabel.text = @"";
+                    return headerView;
+                }
+                if (indexPath.section == 0) {
+                    type = model.list[self.segmentIndex];
+                    UGGameBetModel *bet = type.list.firstObject;
+                    NSLog(@"bet.odds =%@",bet.odds);
+                    if (bet == nil) {
+                        bet = [UGBetModel new];
+                        bet.odds = @"83";
+                    }
+                    if (APP.betOddsIsRed) {
+                        headerView.titleLabel.attributedText = ({
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString: [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero] attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
+                            mas;
+                        });
+                    } else {
+                        
+                        headerView.titleLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+                    }
+                }
+                else if (indexPath.section == 1){
+                    type = model.list[indexPath.section ];
+                    headerView.titleLabel.text = type.name;
+                }
+                else if (indexPath.section == 2){
+                    type = model.list[indexPath.section ];
+                    headerView.titleLabel.text = type.name;
+                }
+            }
+            else if ([@"三字定位" isEqualToString:model.name]) {
+                if (!model.list.count) {
+                    headerView.titleLabel.text = @"";
+                    return headerView;
+                }
+                type = model.list[self.segmentIndex];
+                UGGameBetModel *bet = type.list.firstObject;
+                
+                if (APP.betOddsIsRed) {
+                    headerView.titleLabel.attributedText = ({
+                        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString: [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero] attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                        [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
+                        mas;
+                    });
+                } else {
+                    
+                    headerView.titleLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+                }
+            }
+            else{
+                type = model.list[indexPath.section];
+                headerView.titleLabel.text = type.alias;
+            }
+
         }else {
             
             headerView.titleLabel.text = @"";
@@ -646,6 +851,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    if ([@"一字定位" isEqualToString:model.name] ||
+        [@"二字定位" isEqualToString:model.name] ||
+        [@"三字定位" isEqualToString:model.name]) {
+        if (indexPath.row < 9) {
+            return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
+        }
+        return CGSizeMake((UGScreenW / 4 * 3 - 4) / 1, 40);
+        
+    }
     return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
     
 }
@@ -690,6 +905,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lottryBetCellid];
         [collectionView registerNib:[UINib nibWithNibName:@"UGSSCBetItem1Cell" bundle:nil] forCellWithReuseIdentifier:sscBetItem1CellId];
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID];
+        [collectionView registerNib:[UINib nibWithNibName:@"UGLinkNumCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:linkNumCellId];
         collectionView;
         
     });
@@ -836,6 +1052,109 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return YES;
 }
 
+//一字定位玩法数据处理
+- (void)handleData {
+    for (UGGameplayModel *model in self.gameDataArray) {
+        if ([@"一字定位" isEqualToString:model.name]) {
+            for (UGGameplaySectionModel *group in model.list) {
+                if (group.list.count) {
+                    UGGameBetModel *play = group.list.firstObject;
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (int i = 0; i < 10; i++) {
+                        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                        [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                        bet.alias = bet.name;
+                        bet.typeName = group.name;
+                        bet.name = [NSString stringWithFormat:@"%d",i + 1];
+                        [array addObject:bet];
+                    }
+                    group.list = array.copy;
+                }
+            }
+        }
+        
+        if ([@"二字定位" isEqualToString:model.name]) {
+            if (!model.list.count) {
+                return;
+            }
+            UGGameplaySectionModel *section0 = model.list.firstObject;
+            NSLog(@"section0.alias =%@",section0.alias);
+            NSMutableArray *sectionArray = [NSMutableArray array];
+            for (int i = 0; i< 3; i++) {
+                UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
+                if (i == 0 ) {
+                    sectionModel.name = @"";
+                }else if (i == 1 ) {
+                    sectionModel.name = [NSString stringWithFormat:@"%@定位", [section0.alias substringToIndex:1]] ;
+                }
+                else if (i == 2 ) {
+                    sectionModel.name = [NSString stringWithFormat:@"%@定位", [section0.alias substringFromIndex:section0.alias.length] ];
+                }
+                [sectionArray addObject:sectionModel];
+            }
+            
+            for (int i =  0; i<sectionArray.count; i++) {
+                <#statements#>
+            }
+            for (UGGameplaySectionModel *sectionModel in sectionArray) {
+                UGGameBetModel *play = sectionModel.list.firstObject;
+                NSMutableArray *array = [NSMutableArray array];
+                for (int i = 0; i < 10; i++) {
+                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                    [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                    bet.alias = bet.name;
+                    bet.typeName = model.name;
+                    bet.name = [NSString stringWithFormat:@"%d",i + 1];
+                    [array addObject:bet];
+                }
+                sectionModel.list = array.copy;
+            }
+            
+            model.list = sectionArray.copy;
+        }
+        
+        if ([@"三字定位" isEqualToString:model.name]) {
+            if (!model.list.count) {
+                return;
+            }
+            UGGameplaySectionModel *section0 = model.list.firstObject;
+            NSLog(@"section0.alias =%@",section0.alias);
+            NSMutableArray *sectionArray = [NSMutableArray array];
+            for (int i = 0; i< 4; i++) {
+                UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
+                if (i == 0 ) {
+                    sectionModel.name = @"";
+                }else if (i == 1 ) {
+                    sectionModel.name = @"万定位";
+                }
+                else if (i == 2 ) {
+                    sectionModel.name = @"千定位";
+                }
+                else if (i == 3 ) {
+                    sectionModel.name = @"百定位";
+                }
+                [sectionArray addObject:sectionModel];
+            }
+            for (UGGameplaySectionModel *sectionModel in sectionArray) {
+                UGGameBetModel *play = sectionModel.list.firstObject;
+                NSMutableArray *array = [NSMutableArray array];
+                for (int i = 0; i < 10; i++) {
+                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                    [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                    bet.alias = bet.name;
+                    bet.typeName = model.name;
+                    bet.name = [NSString stringWithFormat:@"%d",i + 1];
+                    [array addObject:bet];
+                }
+                sectionModel.list = array.copy;
+            }
+            
+            model.list = sectionArray.copy;
+        }
+    }
+    
+}
+
 - (UITableView *)tableViewInit {
 
         _tableView.delegate = self;
@@ -872,7 +1191,38 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _gameDataArray;
 }
 
+- (UGSegmentView *)segmentView {
+    if (_segmentView == nil) {
+        _segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW /4 * 3, 50) titleArray:self.yzgmentTitleArray];
+        _segmentView.hidden = YES;
+        
+    }
+    return _segmentView;
+    
+}
 
+- (NSMutableArray *)yzgmentTitleArray {
+    if (_yzgmentTitleArray == nil) {
+        _yzgmentTitleArray = [NSMutableArray array];
+    }
+    return _yzgmentTitleArray;
+    
+}
+
+- (NSMutableArray *)rzgmentTitleArray {
+    if (_rzgmentTitleArray == nil) {
+        _rzgmentTitleArray = [NSMutableArray array];
+    }
+    return _rzgmentTitleArray;
+}
+
+- (NSMutableArray *)szgmentTitleArray {
+    if (_szgmentTitleArray == nil) {
+        _szgmentTitleArray = [NSMutableArray array];
+    }
+    return _szgmentTitleArray;
+    
+}
 
 
 @end
