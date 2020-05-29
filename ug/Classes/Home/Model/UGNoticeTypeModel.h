@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UGNoticeModel.h"
+@protocol UGNoticeTypeModel <NSObject>
 
+@end
 @interface UGNoticeTypeModel : UGModel
 
 @property (nonatomic, strong) NSArray<UGNoticeModel> *popup;    /**<   弹窗公告 */

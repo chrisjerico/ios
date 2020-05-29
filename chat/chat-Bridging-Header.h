@@ -54,3 +54,4 @@
 #import "CMNetwork+Mine.h"
 
 #import "LogVC.h"
+#import "UGNoticeTypeModel.h"

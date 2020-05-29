@@ -20,6 +20,7 @@
 #import "UGYYPlatformGames.h"
 #import "UGhomeAdsModel.h"
 #import "RedBagLogModel.h"
+#import "UGNoticeTypeModel.h"
 @implementation CMNetwork (Home)
 
 //获取系统配置

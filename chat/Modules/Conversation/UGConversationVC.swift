@@ -48,11 +48,14 @@ class UGConversationVC: BaseVC {
 		let view = UINib(nibName: "ConversationBottomView", bundle: nil).instantiate(withOwner: self, options: nil).first as! ConversationBottomView
 		view.announcementButton.rx.tap.subscribe(onNext: { () in
 			
-//			CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
-//				CMResult<UGNoticeTypeModel>.process(withResult: result) {
-//					
-//				}
-//			}
+			CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
+				CMResult<UGNoticeTypeModel>.process(withResult: result) {
+					let noticeTypeModel: UGNoticeTypeModel = result?.data as! UGNoticeTypeModel
+					if let noticeModel = noticeTypeModel.popup.first as? UGNoticeModel {
+						
+					}
+				}
+			}
 			
 			
 		}).disposed(by: self.disposeBag)

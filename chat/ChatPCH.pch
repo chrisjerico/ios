@@ -123,6 +123,5 @@
 #import "Global.h"
 
 
-#import "UGNoticeTypeModel.h"
 
 #endif /* UGPCH_pch */
