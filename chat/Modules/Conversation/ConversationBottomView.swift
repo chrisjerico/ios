@@ -11,7 +11,11 @@ import UIKit
 class ConversationBottomView: UIView {
 
 	@IBOutlet weak var announcementButton: UIButton!
+	@IBOutlet weak var announcementContentLabel: UILabel!
+	@IBOutlet weak var announcementTimeLabel: UILabel!
 	@IBOutlet weak var notificationButton: UIButton!
+	@IBOutlet weak var notificationContentLabel: UILabel!
+	@IBOutlet weak var notificationTimeLabel: UILabel!
 	/*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

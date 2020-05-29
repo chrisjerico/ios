@@ -142,7 +142,7 @@ class ConversationCell: UITableViewCell {
 			titleLable.text = userName
 			subTitleLable.text = content
 			if let lastMessage = item.lastMessageInfo, let url = URL(string: lastMessage.avator) {
-				iconImage.kf.setImage(with: url)
+				iconImage.kf.setImage(with: url, placeholder: UIImage(named: "gly"))
 			} else {
 				iconImage.image = UIImage(named: "gly")
 			}

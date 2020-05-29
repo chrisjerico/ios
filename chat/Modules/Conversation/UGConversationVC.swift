@@ -21,47 +21,37 @@ class UGConversationVC: BaseVC {
 	let modelRead = PublishRelay<UGConversationModel>()
 	let modelDel = PublishRelay<UGConversationModel>()
 	
-	
-	
-//	[CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-//		 [self.contentScrollView.mj_header endRefreshing];
-//		 [CMResult processWithResult:model success:^{
-//			 dispatch_async(dispatch_get_main_queue(), ^{
-//				 UGNoticeTypeModel *type = model.data;
-//				 self.noticeTypeModel = model.data;
-//				 self.popNoticeArray = type.popup.mutableCopy;
-//				 for (UGNoticeModel *notice in type.scroll) {
-//					 //                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-//					 [self.leftwardMarqueeViewData addObject:notice.title];
-//				 }
-//				 [self.leftwardMarqueeView reloadData];
-//
-//				 [self showPlatformNoticeView];
-//			 });
-//		 } failure:nil];
-//	 }];
-	
 	lazy var footerView: UIView = {
 		let containerView = UIView()
 		containerView.frame = CGRect(x: 0, y: 0, width: App.width, height: 120)
-
 		let view = UINib(nibName: "ConversationBottomView", bundle: nil).instantiate(withOwner: self, options: nil).first as! ConversationBottomView
+		view.isHidden = true
+
+		// TODO: 公告的点击事件
 		view.announcementButton.rx.tap.subscribe(onNext: { () in
-			
-			CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
-				CMResult<UGNoticeTypeModel>.process(withResult: result) {
-					let noticeTypeModel: UGNoticeTypeModel = result?.data as! UGNoticeTypeModel
-					if let noticeModel = noticeTypeModel.popup.first as? UGNoticeModel {
-						
-					}
-				}
-			}
-			
+
 			
 		}).disposed(by: self.disposeBag)
+		
+		// TODO: 站内信的点击事件
 		view.notificationButton.rx.tap.subscribe(onNext: { () in
 			
 		}).disposed(by: self.disposeBag)
+		CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
+			CMResult<UGNoticeTypeModel>.process(withResult: result) {
+				view.isHidden = false
+				let noticeTypeModel: UGNoticeTypeModel = result?.data as! UGNoticeTypeModel
+				if let noticeModel = noticeTypeModel.popup.first as? UGNoticeModel {
+					view.announcementContentLabel.text = noticeModel.title
+					view.announcementTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
+				}
+				if let noticeModel = noticeTypeModel.scroll.first as? UGNoticeModel {
+					view.notificationContentLabel.text = noticeModel.title
+					view.notificationTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
+				}
+			}
+		}
+		
 		containerView.addSubview(view)
 		view.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
@@ -190,7 +180,7 @@ class UGConversationVC: BaseVC {
 		tableView.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
 		}
-
+		
 	}
 	
 }

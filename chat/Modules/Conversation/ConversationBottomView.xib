@@ -33,7 +33,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[公告]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcR-o5-qNY">
-                                    <rect key="frame" x="63" y="33" width="39" height="17"/>
+                                    <rect key="frame" x="63" y="33" width="331" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.55294117647058827" green="0.56470588235294117" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -52,6 +52,7 @@
                             <constraints>
                                 <constraint firstItem="QBH-2v-v4T" firstAttribute="top" secondItem="1gb-3u-Txl" secondAttribute="top" id="0df-Wy-2ux"/>
                                 <constraint firstItem="4Xl-E1-qJa" firstAttribute="top" secondItem="1bm-r6-8JU" secondAttribute="top" id="4by-3f-a8V"/>
+                                <constraint firstAttribute="trailing" secondItem="wcR-o5-qNY" secondAttribute="trailing" constant="20" id="9sc-1J-8av"/>
                                 <constraint firstAttribute="trailing" secondItem="4Xl-E1-qJa" secondAttribute="trailing" id="NJ5-cB-Whw"/>
                                 <constraint firstItem="wcR-o5-qNY" firstAttribute="leading" secondItem="QBH-2v-v4T" secondAttribute="leading" id="U6y-hh-iJh"/>
                                 <constraint firstAttribute="bottom" secondItem="4Xl-E1-qJa" secondAttribute="bottom" id="Ys2-DG-2pZ"/>
@@ -82,7 +83,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2y-Lf-Nvi">
-                                    <rect key="frame" x="63" y="33" width="29" height="17"/>
+                                    <rect key="frame" x="63" y="33" width="331" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" red="0.55294117649999996" green="0.56470588239999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -110,6 +111,7 @@
                                 <constraint firstAttribute="trailing" secondItem="AYN-XC-1fJ" secondAttribute="trailing" constant="15" id="eak-f4-zE3"/>
                                 <constraint firstItem="Re1-rr-XIs" firstAttribute="leading" secondItem="w5k-5A-akv" secondAttribute="leading" id="jxW-EA-t49"/>
                                 <constraint firstAttribute="trailing" secondItem="Re1-rr-XIs" secondAttribute="trailing" id="pAm-F2-7dy"/>
+                                <constraint firstAttribute="trailing" secondItem="e2y-Lf-Nvi" secondAttribute="trailing" constant="20" id="vlF-Ad-Mkt"/>
                                 <constraint firstItem="GMD-hY-Bb3" firstAttribute="centerY" secondItem="w5k-5A-akv" secondAttribute="centerY" id="wJP-U8-yXO"/>
                                 <constraint firstAttribute="height" constant="60" id="zQ4-Bx-aZs"/>
                             </constraints>
@@ -127,7 +129,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="announcementButton" destination="4Xl-E1-qJa" id="6Kr-GR-ZEU"/>
+                <outlet property="announcementContentLabel" destination="wcR-o5-qNY" id="I48-3A-DQv"/>
+                <outlet property="announcementTimeLabel" destination="eNi-Es-GZx" id="rdu-A7-S2m"/>
                 <outlet property="notificationButton" destination="Re1-rr-XIs" id="oMA-ZS-muD"/>
+                <outlet property="notificationContentLabel" destination="e2y-Lf-Nvi" id="qf3-2a-Mm7"/>
+                <outlet property="notificationTimeLabel" destination="AYN-XC-1fJ" id="rWj-DF-i3P"/>
             </connections>
             <point key="canvasLocation" x="-68.115942028985515" y="1.3392857142857142"/>
         </view>

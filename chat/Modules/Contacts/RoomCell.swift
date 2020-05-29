@@ -71,7 +71,7 @@ class RoomCell: UITableViewCell {
 			iconImage.image = UIImage(named: "qm")
 		case let .privat(_, userName):
 			titleLable.text = userName
-			iconImage.image = UIImage(named: "gly")
+			iconImage.image = item.type == 2 ? UIImage(named: "gly") : UIImage(named: "kefu")
 		}
 	}
 	
