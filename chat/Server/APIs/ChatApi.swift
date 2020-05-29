@@ -36,6 +36,9 @@ enum ChatTarget {
 	case privateConversationTop(dataId: Int)
 	case privateConversationTopCancel(dataId: Int)
 	
+	case roomConversationRead(roomId: Int)
+	case privateConversationRead(targetUid: Int)
+	
 }
 
 extension ChatTarget: TargetType {
@@ -220,6 +223,20 @@ extension ChatTarget: TargetType {
 			bodyParameters["dataId"] = dataId
 			bodyParameters["type"] = 2
 			bodyParameters["operate"] = 2
+		case let .roomConversationRead(roomId):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "conversationRead"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["roomId"] = roomId
+			bodyParameters["type"] = 1
+		case let .privateConversationRead(targetUid):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "conversationRead"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["targetUid"] = targetUid
+			bodyParameters["type"] = 2
 		}
 		
 		var should = checkSign == 1

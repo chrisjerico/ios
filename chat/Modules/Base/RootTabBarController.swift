@@ -27,12 +27,12 @@ class RootTabBarController: ESTabBarController {
 		let v6 = UIStoryboard(name: "MineTableController", bundle: nil).instantiateInitialViewController()!
 		//		let v6 = UIStoryboard(name: "TestVC", bundle: nil).instantiateInitialViewController()!
 		
-		v1.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "发现", image: UIImage(named: "fx_1"), selectedImage: UIImage(named: "fxd"))
-		v2.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "通讯录", image: UIImage(named: "qz_1"), selectedImage: UIImage(named: "qzd"))
+		v1.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "发现", image: UIImage(named: "faxian1"), selectedImage: UIImage(named: "faxian"))
+		v2.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "通讯录", image: UIImage(named: "tongxunlu1"), selectedImage: UIImage(named: "tongxunlu"))
 		v3.tabBarItem = ESTabBarItem.init(IrregularityContentView(), title: "游戏大厅", image: UIImage(named: "yxdt"), selectedImage: UIImage(named: "yxdt"))
-		v4.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "消息", image: UIImage(named: "xx"), selectedImage: UIImage(named: "xxd"))
-		v5.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "我的", image: UIImage(named: "资源 70"), selectedImage: UIImage(named: "wdd"))
-		v6.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "我的", image: UIImage(named: "资源 70"), selectedImage: UIImage(named: "wdd"))
+		v4.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "消息", image: UIImage(named: "xiaoxi1"), selectedImage: UIImage(named: "xiaoxi"))
+		v5.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "我的", image: UIImage(named: "wode1"), selectedImage: UIImage(named: "wode"))
+		v6.tabBarItem = ESTabBarItem.init(BouncesContentView(), title: "我的", image: UIImage(named: "wode1"), selectedImage: UIImage(named: "wode"))
 		
 		viewControllers = [v4, v2, v3, v1, v6].map { BaseNav(rootViewController: $0)}
 		

@@ -1360,11 +1360,9 @@
 		031EF40A23BE7A9600B0F813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40923BE7A9600B0F813 /* Assets.xcassets */; };
 		031EF40D23BE7A9600B0F813 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40B23BE7A9600B0F813 /* LaunchScreen.storyboard */; };
 		031EF52923BE7B4D00B0F813 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41923BE7B4C00B0F813 /* UserApi.swift */; };
-		031EF52A23BE7B4D00B0F813 /* OSSObjectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41A23BE7B4C00B0F813 /* OSSObjectAPI.swift */; };
 		031EF52B23BE7B4D00B0F813 /* MessageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41B23BE7B4C00B0F813 /* MessageAPI.swift */; };
 		031EF52C23BE7B4D00B0F813 /* MomentsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41C23BE7B4C00B0F813 /* MomentsApi.swift */; };
 		031EF52D23BE7B4D00B0F813 /* FileUploadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41D23BE7B4C00B0F813 /* FileUploadAPI.swift */; };
-		031EF52E23BE7B4D00B0F813 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41E23BE7B4C00B0F813 /* SearchAPI.swift */; };
 		031EF52F23BE7B4D00B0F813 /* FileDownloadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41F23BE7B4C00B0F813 /* FileDownloadAPI.swift */; };
 		031EF53023BE7B4D00B0F813 /* ChatApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF42023BE7B4C00B0F813 /* ChatApi.swift */; };
 		031EF53123BE7B4D00B0F813 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF42223BE7B4C00B0F813 /* APIError.swift */; };
@@ -1621,8 +1619,16 @@
 		03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */; };
 		03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */; };
 		03E4228423C1E5B8004AB7C6 /* LotteryBetAndChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE074D023C0BBBF0083EA7E /* LotteryBetAndChatVC.m */; };
+		03E56F872480A56400996099 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = D422D67E22D9A764008E7065 /* address.json */; };
+		03E56F8A2480E67800996099 /* ConversationBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F892480E67800996099 /* ConversationBottomView.swift */; };
+		03E56F8C2480E68C00996099 /* ConversationBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F8B2480E68C00996099 /* ConversationBottomView.xib */; };
+		03E56F8F2480FB0E00996099 /* UGNoticeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */; };
+		03E56F902480FB0E00996099 /* UGNoticeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */; };
 		03F8A510247F63F600466124 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030A874323C5C2C00001EF82 /* JS_Mine.storyboard */; };
+		03F8A514247F9FDE00466124 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
+		03F8A515247FA07400466124 /* RedEnvelope.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */; };
+		03F8A516247FA0BB00466124 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
 		21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */; };
 		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
 		226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */; };
@@ -3213,11 +3219,9 @@
 		031EF40E23BE7A9600B0F813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		031EF41323BE7ABE00B0F813 /* chat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chat-Bridging-Header.h"; sourceTree = "<group>"; };
 		031EF41923BE7B4C00B0F813 /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
-		031EF41A23BE7B4C00B0F813 /* OSSObjectAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSSObjectAPI.swift; sourceTree = "<group>"; };
 		031EF41B23BE7B4C00B0F813 /* MessageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPI.swift; sourceTree = "<group>"; };
 		031EF41C23BE7B4C00B0F813 /* MomentsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsApi.swift; sourceTree = "<group>"; };
 		031EF41D23BE7B4C00B0F813 /* FileUploadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadAPI.swift; sourceTree = "<group>"; };
-		031EF41E23BE7B4C00B0F813 /* SearchAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 		031EF41F23BE7B4C00B0F813 /* FileDownloadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDownloadAPI.swift; sourceTree = "<group>"; };
 		031EF42023BE7B4C00B0F813 /* ChatApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatApi.swift; sourceTree = "<group>"; };
 		031EF42223BE7B4C00B0F813 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -3468,6 +3472,10 @@
 		03E41B2E23C09055004AB7C6 /* JS_HomePromoteView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomePromoteView.xib; sourceTree = "<group>"; };
 		03E41B3023C09363004AB7C6 /* JS_HomePromoteContainerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomePromoteContainerView.h; sourceTree = "<group>"; };
 		03E41B3123C09363004AB7C6 /* JS_HomePromoteContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomePromoteContainerView.m; sourceTree = "<group>"; };
+		03E56F892480E67800996099 /* ConversationBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationBottomView.swift; sourceTree = "<group>"; };
+		03E56F8B2480E68C00996099 /* ConversationBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationBottomView.xib; sourceTree = "<group>"; };
+		03E56F8D2480FB0E00996099 /* UGNoticeTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNoticeTypeModel.h; sourceTree = "<group>"; };
+		03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNoticeTypeModel.m; sourceTree = "<group>"; };
 		073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.debug.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.debug.xcconfig"; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_BetFormCell.h; sourceTree = "<group>"; };
@@ -5091,6 +5099,8 @@
 				031E15EF23BE812400B0F813 /* UGonlineCount.m */,
 				031E160623BE812400B0F813 /* UGPlatformGameModel.h */,
 				031E15F023BE812400B0F813 /* UGPlatformGameModel.m */,
+				03E56F8D2480FB0E00996099 /* UGNoticeTypeModel.h */,
+				03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6809,13 +6819,11 @@
 			isa = PBXGroup;
 			children = (
 				031EF41923BE7B4C00B0F813 /* UserApi.swift */,
-				031EF41A23BE7B4C00B0F813 /* OSSObjectAPI.swift */,
 				031EF41B23BE7B4C00B0F813 /* MessageAPI.swift */,
 				031EF41C23BE7B4C00B0F813 /* MomentsApi.swift */,
-				031EF41D23BE7B4C00B0F813 /* FileUploadAPI.swift */,
-				031EF41E23BE7B4C00B0F813 /* SearchAPI.swift */,
-				031EF41F23BE7B4C00B0F813 /* FileDownloadAPI.swift */,
 				031EF42023BE7B4C00B0F813 /* ChatApi.swift */,
+				031EF41D23BE7B4C00B0F813 /* FileUploadAPI.swift */,
+				031EF41F23BE7B4C00B0F813 /* FileDownloadAPI.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -7280,6 +7288,8 @@
 				031EF52623BE7B4D00B0F813 /* ConversationCell.swift */,
 				031EF52723BE7B4D00B0F813 /* ConversationModel.swift */,
 				031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */,
+				03E56F892480E67800996099 /* ConversationBottomView.swift */,
+				03E56F8B2480E68C00996099 /* ConversationBottomView.xib */,
 			);
 			path = Conversation;
 			sourceTree = "<group>";
@@ -8450,11 +8460,13 @@
 				031E1B5523BE812800B0F813 /* UGredEnvelopeView.xib in Resources */,
 				031E1C1523BE812900B0F813 /* UGLinkNumCollectionViewCell.xib in Resources */,
 				031E198723BE812600B0F813 /* UGScratchMusicView.xib in Resources */,
+				03E56F872480A56400996099 /* address.json in Resources */,
 				D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */,
 				031EF57223BE7B4D00B0F813 /* kai.svg in Resources */,
 				031E1D3523BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
 				031E1BF123BE812900B0F813 /* UGQXCLotteryController.storyboard in Resources */,
 				031EF58D23BE7B4D00B0F813 /* jiaguanzhu.svg in Resources */,
+				03E56F8C2480E68C00996099 /* ConversationBottomView.xib in Resources */,
 				031E1BB523BE812900B0F813 /* UGBMUnderMenuView.xib in Resources */,
 				031E1CF523BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
 				031E1E4123BE812C00B0F813 /* UGPormotionUserInfoView.xib in Resources */,
@@ -8471,6 +8483,7 @@
 				031E1C9B23BE812A00B0F813 /* UGFunds2microcodeView.xib in Resources */,
 				D466533B24305FAE000D5377 /* lottery.wav in Resources */,
 				031E1B9523BE812900B0F813 /* UGLotteryRulesView.xib in Resources */,
+				03F8A514247F9FDE00466124 /* ContractedTemplate.storyboard in Resources */,
 				031E1B9D23BE812900B0F813 /* UGChanglongBetRecrodCell.xib in Resources */,
 				031E1E8123BE812D00B0F813 /* UGPlatformBalanceTableViewCell.xib in Resources */,
 				031EF58C23BE7B4D00B0F813 /* qukuan.svg in Resources */,
@@ -8517,6 +8530,7 @@
 				031E1B1D23BE812800B0F813 /* UGHomeViewController.storyboard in Resources */,
 				031E1C7F23BE812A00B0F813 /* UGDepositDetailsCollectionViewCell.xib in Resources */,
 				031EF5A223BE7B4D00B0F813 /* gongneng.svg in Resources */,
+				03F8A515247FA07400466124 /* RedEnvelope.storyboard in Resources */,
 				031E1D4923BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
 				031E1E1323BE812C00B0F813 /* UGSignInScrHeaderView.xib in Resources */,
 				031EF5B523BE7B4D00B0F813 /* MomentsCellLikesLabel.xib in Resources */,
@@ -9335,7 +9349,6 @@
 				031E19BF23BE812700B0F813 /* UIResponder+InterfaceOrientation.m in Sources */,
 				031E1CCF23BE812A00B0F813 /* UIView+MJExtension.m in Sources */,
 				031E1B3D23BE812800B0F813 /* UGhomeAdsModel.m in Sources */,
-				031EF52E23BE7B4D00B0F813 /* SearchAPI.swift in Sources */,
 				031EF55423BE7B4D00B0F813 /* App.swift in Sources */,
 				031E1C7723BE812A00B0F813 /* UGRechargeLogsModel.m in Sources */,
 				031E1C6323BE812A00B0F813 /* UGLotteryCollectionViewCell.m in Sources */,
@@ -9500,6 +9513,7 @@
 				031EF40523BE7A9400B0F813 /* ViewController.swift in Sources */,
 				031EF53023BE7B4D00B0F813 /* ChatApi.swift in Sources */,
 				031E1DCD23BE812C00B0F813 /* UGCreditsLogModel.m in Sources */,
+				03E56F8A2480E67800996099 /* ConversationBottomView.swift in Sources */,
 				031E1D5723BE812B00B0F813 /* UGModifyLoginPwdController.m in Sources */,
 				031E1AE523BE812800B0F813 /* TAAnimatedDotView.m in Sources */,
 				031E1B0723BE812800B0F813 /* UIView+SGExtension.m in Sources */,
@@ -9610,7 +9624,6 @@
 				031EF5CE23BE7B4E00B0F813 /* MessageCollectionViewBetCell.swift in Sources */,
 				031E1A6523BE812700B0F813 /* UIImage+ST.m in Sources */,
 				031EF54C23BE7B4D00B0F813 /* JSONArrayTransform.swift in Sources */,
-				031EF52A23BE7B4D00B0F813 /* OSSObjectAPI.swift in Sources */,
 				031EF5B123BE7B4D00B0F813 /* CommentInputBar.swift in Sources */,
 				031E1A9323BE812700B0F813 /* MOFSDatePicker.m in Sources */,
 				031E1DBF23BE812B00B0F813 /* UGLoginAddressModel.m in Sources */,
@@ -9659,6 +9672,7 @@
 				031EF5BE23BE7B4D00B0F813 /* ConcernedMomentsHeaderView.swift in Sources */,
 				031E199D23BE812600B0F813 /* category.m in Sources */,
 				03D6926A23C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
+				03E56F902480FB0E00996099 /* UGNoticeTypeModel.m in Sources */,
 				031E1A2523BE812700B0F813 /* CCSessionModel.m in Sources */,
 				031E1D9F23BE812B00B0F813 /* UGUserLevelModel.m in Sources */,
 				031E1A0523BE812700B0F813 /* SlideSegmentView2.m in Sources */,
@@ -9703,6 +9717,7 @@
 				031E1B6723BE812800B0F813 /* UGPlatformTitleCollectionView.m in Sources */,
 				031EF5DA23BE7B4E00B0F813 /* RedPacketProduceView.swift in Sources */,
 				031E1DEF23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,
+				03F8A516247FA0BB00466124 /* CCNetworkRequests1+UG.m in Sources */,
 				031E1AF123BE812800B0F813 /* WavesView.m in Sources */,
 				031E1E7D23BE812D00B0F813 /* UGPlatformBalanceTableViewCell.m in Sources */,
 				031E1C6923BE812A00B0F813 /* UGDepositDetailsViewController.m in Sources */,
@@ -10122,6 +10137,7 @@
 				031E1D3623BE812B00B0F813 /* UGAgentViewController.m in Sources */,
 				031E195A23BE812600B0F813 /* UGChessViewController.m in Sources */,
 				D40A295823E173A900F07146 /* PromotionWithdrawalsRecordVC.m in Sources */,
+				03E56F8F2480FB0E00996099 /* UGNoticeTypeModel.m in Sources */,
 				031E199C23BE812600B0F813 /* category.m in Sources */,
 				031E1CF823BE812A00B0F813 /* AFHTTPSessionManager.m in Sources */,
 				031E1D5C23BE812B00B0F813 /* UGLoginViewController.m in Sources */,

@@ -64,7 +64,7 @@ class MyWalletVC: BaseVC {
 		setupSubView()
 		let items = Observable.just([SectionModel(model: "现金管理", items: ["存款","取款","利息宝","推荐收益","活动彩金","资金明细"]),
 									 SectionModel(model: "注单管理", items: ["彩票注单记录","其它注单记录","红包扫雷"]),
-									 SectionModel(model: "其他", items: ["站内信","任务中心","每日签到","安全中心"])])
+									 SectionModel(model: "其他", items: ["站内信","任务中心","每日签到"])])
 		
 		let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, String>>(configureCell: { (dataSource, collectionView, indexPath, title) -> UICollectionViewCell in
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCollectionViewCell", for: indexPath) as! WalletCollectionViewCell
@@ -92,7 +92,9 @@ class MyWalletVC: BaseVC {
 				let vc = UIStoryboard(name: "UGYubaoViewController", bundle: nil).instantiateViewController(withIdentifier: "UGYubaoViewController")
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case(0, 3):
-				weakSelf.navigationController?.pushViewController(UGPromotionInfoController(), animated: true)
+				weakSelf.navigationController?.pushViewController(UIStoryboard(name: "UGPromotionInfoController", bundle: nil).instantiateViewController(withIdentifier: "UGPromotionInfoController") , animated: true)
+
+//				weakSelf.navigationController?.pushViewController(UGPromotionInfoController(), animated: true)
 			case (0, 4):
 				weakSelf.navigationController?.pushViewController(UGActivityGoldTableViewController(), animated: true)
 			case (0, 5):
@@ -146,7 +148,8 @@ class MyWalletVC: BaseVC {
 	}
 	@objc
 	func bankCardMangeItemTaped() {
-		navigationController?.pushViewController(UGBindCardViewController(), animated: true)
+		let vc = UIStoryboard(name: "UGBindCardViewController", bundle: nil).instantiateViewController(withIdentifier: "UGBindCardViewController")
+		navigationController?.pushViewController(vc, animated: true)
 	}
 	
 }

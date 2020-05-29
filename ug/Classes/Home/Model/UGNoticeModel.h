@@ -32,12 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat cellHeight;
 @end
 
-
-@interface UGNoticeTypeModel : UGModel
-
-@property (nonatomic, strong) NSArray<UGNoticeModel> *popup;    /**<   弹窗公告 */
-@property (nonatomic, strong) NSArray<UGNoticeModel> *scroll;   /**<   滚动公告 */
-
-@end
+//
+//@interface UGNoticeTypeModel : UGModel
+//
+//@property (nonatomic, strong) NSArray<UGNoticeModel> *popup;    /**<   弹窗公告 */
+//@property (nonatomic, strong) NSArray<UGNoticeModel> *scroll;   /**<   滚动公告 */
+//
+//@end
 
 NS_ASSUME_NONNULL_END

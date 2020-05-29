@@ -121,4 +121,8 @@
 #import "UGDocumentVC.h"
 #import "SGBrowserView.h"
 #import "Global.h"
+
+
+#import "UGNoticeTypeModel.h"
+
 #endif /* UGPCH_pch */

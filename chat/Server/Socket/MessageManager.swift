@@ -15,6 +15,8 @@ class MessageManager: NSObject {
 	
 	public let newError = PublishRelay<[String: Any]>()
 	public let newMessage = PublishRelay<[String: Any]>()
+	public let newLotteryWin = PublishRelay<[String: Any]>()
+
 	public let newNotification = PublishRelay<[String: Any]>()
 	
 	

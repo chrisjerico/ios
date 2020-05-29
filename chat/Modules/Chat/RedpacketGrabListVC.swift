@@ -67,6 +67,7 @@ class RedpacketGrabListVC: BaseVC {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		view.backgroundColor = .white
 		let rightItem = UIBarButtonItem(image: UIImage(named: "close_white")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
 		navigationItem.rightBarButtonItem = rightItem
 		

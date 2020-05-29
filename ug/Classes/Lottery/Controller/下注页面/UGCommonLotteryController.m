@@ -465,33 +465,47 @@
 - (void)setupTitleView {
     self.title = @"聊天";
     // 设置返回按钮
-    {
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
-        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
-        [backButton sizeToFit];
-        [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            UIViewController *vc=  [NavController1 popViewControllerAnimated:true];
-            
-        }];
-        UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
-        [containView addSubview:backButton];
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
-        
-        if (self.navigationController.viewControllers.count > 1) {
-            self.navigationItem.leftBarButtonItem = item;
-        }
-        else {
-            self.navigationItem.leftBarButtonItem = nil;
-        }
-    }
+    
+	UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	[backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	[backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+	[backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+	[backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+	[backButton sizeToFit];
+	[backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+		UIViewController *vc=  [NavController1 popViewControllerAnimated:true];
+		
+	}];
+	UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+	[containView addSubview:backButton];
+	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+	
+	if (self.navigationController.viewControllers.count > 1) {
+		self.navigationItem.leftBarButtonItem = item;
+	}
+	else {
+		self.navigationItem.leftBarButtonItem = nil;
+	}
+
     
     // 设置标题
-    STBarButtonItem *item0 = [STBarButtonItem barButtonItemWithTitle:_NSString(@"%@ ▼", self.nextIssueModel.title ? : @"") target:self action:@selector(onTitleClick)];
+	UIBarButtonItem * item0;
+    item0 = [STBarButtonItem barButtonItemWithTitle:_NSString(@"%@ ▼", self.nextIssueModel.title ? : @"") target:self action:@selector(onTitleClick)];
+	
+	// #101134 【IOS聊天App】投注页面顶部标题空白
+	#ifdef isChatAPP
+	UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+	[button setTitle: [NSString stringWithFormat:@"%@ ▼", self.nextIssueModel.title ? : @""] forState:UIControlStateNormal];
+	[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	[button addTarget:self action:@selector(onTitleClick)];
+	item0 = [[UIBarButtonItem alloc] initWithCustomView:button];
+	
+	[backButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateNormal];
+	[backButton setImage:[UIImage imageNamed:@"nav_back_black"] forState:UIControlStateHighlighted];
+	#endif
     self.navigationItem.leftBarButtonItems = @[self.navigationItem.leftBarButtonItems.firstObject, item0];
     self.navigationItem.titleView = [UIView new];   // 隐藏标题
+
 #pragma mark - 去掉这里就不会标题变动。
     //    if (OBJOnceToken(self)) {
     //        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {

@@ -28,6 +28,7 @@ class LoginVC: BaseVC {
 	@IBOutlet weak var goRegistButton: UIButton!
 	@IBOutlet weak var playButton: UIButton!
 	@IBOutlet weak var resetPasswordButton: UIButton!
+	@IBOutlet weak var clearButton: UIButton!
 	
 	
 	
@@ -52,6 +53,10 @@ class LoginVC: BaseVC {
 			
 		}).disposed(by: disposeBag)
 		
+		passwordField.rx.text.map { $0 == nil || $0?.count == 0 }.bind(to: clearButton.rx.isHidden).disposed(by: disposeBag)
+		clearButton.rx.tap.subscribe(onNext: { [weak self] () in
+			self?.passwordField.text = nil
+			}).disposed(by: disposeBag)
 	}
 	
 	@IBAction func loginButtonTaped(_ sender: Any) {

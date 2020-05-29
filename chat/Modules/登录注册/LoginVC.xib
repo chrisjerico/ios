@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="UGChat" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="聊天APP" customModuleProvider="target">
             <connections>
+                <outlet property="clearButton" destination="cnV-uK-ecx" id="jYZ-ir-0eF"/>
                 <outlet property="goRegistButton" destination="UqE-8V-O6O" id="2Qc-1s-ysY"/>
                 <outlet property="loginButton" destination="A7Z-0c-XVP" id="e3l-qP-u4L"/>
                 <outlet property="logoImageView" destination="EQG-dT-O9m" id="DaW-Io-5h1"/>
@@ -131,12 +132,22 @@
                             <state key="normal" image="eye.fill" catalog="system"/>
                             <state key="selected" image="eye.slash.fill" catalog="system"/>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnV-uK-ecx">
+                            <rect key="frame" x="277" y="34" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="7NG-1U-wX1"/>
+                                <constraint firstAttribute="width" secondItem="cnV-uK-ecx" secondAttribute="height" multiplier="1:1" id="90o-6d-gPy"/>
+                            </constraints>
+                            <state key="normal" image="qingkong"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="N5e-Vm-Gp1" secondAttribute="trailing" id="3Bq-bM-BjY"/>
+                        <constraint firstItem="cnV-uK-ecx" firstAttribute="centerY" secondItem="ST9-fa-6jg" secondAttribute="centerY" id="3rl-XM-fqa"/>
                         <constraint firstItem="2Rr-Ll-J8E" firstAttribute="centerY" secondItem="E0Z-V3-CeN" secondAttribute="centerY" id="EyA-Us-bdO"/>
                         <constraint firstItem="2Rr-Ll-J8E" firstAttribute="trailing" secondItem="N5e-Vm-Gp1" secondAttribute="trailing" id="GDB-XP-VFF"/>
+                        <constraint firstItem="ST9-fa-6jg" firstAttribute="leading" secondItem="cnV-uK-ecx" secondAttribute="trailing" constant="10" id="KgB-7H-rlM"/>
                         <constraint firstItem="E0Z-V3-CeN" firstAttribute="leading" secondItem="N5e-Vm-Gp1" secondAttribute="leading" id="PTz-4q-LLR"/>
                         <constraint firstItem="N5e-Vm-Gp1" firstAttribute="top" secondItem="E0Z-V3-CeN" secondAttribute="bottom" constant="13" id="TBg-s3-cGl"/>
                         <constraint firstItem="E0Z-V3-CeN" firstAttribute="leading" secondItem="0YB-UJ-IHD" secondAttribute="leading" id="TTo-ci-GrV"/>
@@ -269,9 +280,10 @@
         </view>
     </objects>
     <resources>
-        <image name="checkmark.square.fill" catalog="system" width="64" height="56"/>
-        <image name="eye.fill" catalog="system" width="64" height="38"/>
-        <image name="eye.slash.fill" catalog="system" width="64" height="40"/>
-        <image name="square" catalog="system" width="64" height="56"/>
+        <image name="checkmark.square.fill" catalog="system" width="128" height="114"/>
+        <image name="eye.fill" catalog="system" width="128" height="78"/>
+        <image name="eye.slash.fill" catalog="system" width="128" height="82"/>
+        <image name="qingkong" width="33.5" height="33.5"/>
+        <image name="square" catalog="system" width="128" height="114"/>
     </resources>
 </document>

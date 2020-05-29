@@ -14,6 +14,7 @@ class MineTableController: BaseTableVC {
 	@IBOutlet weak var avatarImageView: UIImageView!
 	@IBOutlet weak var userIdLabel: UILabel!
 	@IBOutlet weak var userNameLabel: UILabel!
+	@IBOutlet weak var genderImageView: UIImageView!
 	
 	
 	@IBOutlet var itemImages: [UIImageView]!
@@ -33,7 +34,7 @@ class MineTableController: BaseTableVC {
 		avatarImageView.kf.setImage(with: URL(string: App.user.avatar), placeholder: UIImage(named: "placeholder_avatar"))
 		userIdLabel.text = "ID: \(App.user.userId)"
 		userNameLabel.text = App.user.username as String
-		
+//		genderImageView.image = UIImage(named: App.user.)
 	}
 	override func awakeFromNib() {
 		super.awakeFromNib()

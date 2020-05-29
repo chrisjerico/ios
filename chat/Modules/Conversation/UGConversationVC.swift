@@ -21,11 +21,60 @@ class UGConversationVC: BaseVC {
 	let modelRead = PublishRelay<UGConversationModel>()
 	let modelDel = PublishRelay<UGConversationModel>()
 	
+	
+	
+//	[CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+//		 [self.contentScrollView.mj_header endRefreshing];
+//		 [CMResult processWithResult:model success:^{
+//			 dispatch_async(dispatch_get_main_queue(), ^{
+//				 UGNoticeTypeModel *type = model.data;
+//				 self.noticeTypeModel = model.data;
+//				 self.popNoticeArray = type.popup.mutableCopy;
+//				 for (UGNoticeModel *notice in type.scroll) {
+//					 //                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+//					 [self.leftwardMarqueeViewData addObject:notice.title];
+//				 }
+//				 [self.leftwardMarqueeView reloadData];
+//
+//				 [self showPlatformNoticeView];
+//			 });
+//		 } failure:nil];
+//	 }];
+	
+	lazy var footerView: UIView = {
+		let containerView = UIView()
+		containerView.frame = CGRect(x: 0, y: 0, width: App.width, height: 120)
+
+		let view = UINib(nibName: "ConversationBottomView", bundle: nil).instantiate(withOwner: self, options: nil).first as! ConversationBottomView
+		view.announcementButton.rx.tap.subscribe(onNext: { () in
+			
+//			CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
+//				CMResult<UGNoticeTypeModel>.process(withResult: result) {
+//					
+//				}
+//			}
+			
+			
+		}).disposed(by: self.disposeBag)
+		view.notificationButton.rx.tap.subscribe(onNext: { () in
+			
+		}).disposed(by: self.disposeBag)
+		containerView.addSubview(view)
+		view.snp.makeConstraints { (make) in
+			make.edges.equalToSuperview()
+			make.width.equalTo(App.width)
+			make.height.equalTo(120)
+		}
+		return containerView
+		
+	}()
+	
 	lazy var tableView: UITableView = {
 		let tableView = UITableView()
 		tableView.separatorStyle = .none
 		tableView.register(ConversationCell.self, forCellReuseIdentifier: "ConversationCell")
 		tableView.mj_header = RefreshHeader()
+		tableView.tableFooterView = footerView
 		return tableView
 	}()
 	
@@ -60,10 +109,10 @@ class UGConversationVC: BaseVC {
 				self?.navigationController?.pushViewController(UGGroupChatVC(room: Room(conversation: conversation)), animated: true)
 			}
 		}).disposed(by: disposeBag)
-
+		
 		
 		// 会话置顶
-		modelTop.flatMap { $0.type == 1 ? ChatAPI.rx.request(ChatTarget.roomConversationTop(dataId: $0.roomId)): ChatAPI.rx.request(ChatTarget.privateConversationTop(dataId: $0.roomId))}
+		modelTop.flatMap { $0.type == 1 ? ChatAPI.rx.request(ChatTarget.roomConversationTop(dataId: $0.roomId)): ChatAPI.rx.request(ChatTarget.privateConversationTop(dataId: $0.uid))}
 			.mapBool()
 			.do(onError: { (error) in
 				Alert.showTip(error.localizedDescription)
@@ -78,7 +127,7 @@ class UGConversationVC: BaseVC {
 			}).disposed(by: disposeBag)
 		
 		// 取消置顶
-		modelCancelTop.flatMap { $0.type == 1 ? ChatAPI.rx.request(ChatTarget.roomConversationTopCancel(dataId: $0.roomId)): ChatAPI.rx.request(ChatTarget.privateConversationTopCancel(dataId: $0.roomId))}
+		modelCancelTop.flatMap { $0.type == 1 ? ChatAPI.rx.request(.roomConversationTopCancel(dataId: $0.roomId)): ChatAPI.rx.request(.privateConversationTopCancel(dataId: $0.uid))}
 			.mapBool()
 			.do(onError: { (error) in
 				Alert.showTip(error.localizedDescription)
@@ -91,12 +140,23 @@ class UGConversationVC: BaseVC {
 				shouldRefresh.accept(())
 				
 			}).disposed(by: disposeBag)
+		
 		// 会话已读
-		modelRead.subscribe(onNext: {_ in shouldRefresh.accept(()) }).disposed(by: disposeBag)
+		modelRead.flatMap { $0.type == 1 ? ChatAPI.rx.request(ChatTarget.roomConversationRead(roomId: $0.roomId)) : ChatAPI.rx.request(.privateConversationRead(targetUid: $0.uid)) }
+			.mapBool()
+			.do(onError: { (error) in
+				Alert.showTip(error.localizedDescription)
+				shouldRefresh.accept(())
+				
+			}).retry()
+			.subscribe(onNext: { (success) in
+				Alert.showTip("操作成功")
+				shouldRefresh.accept(())
+			}).disposed(by: disposeBag)
 		
 		// 会话删除
 		modelDel.flatMap { conversation -> Single<Response> in
-//			MessageManager.shared.send(exit: Room(conversation: conversation))
+			//			MessageManager.shared.send(exit: Room(conversation: conversation))
 			var parmaters = [String: Any]()
 			switch conversation.chatType {
 			case let .privat(uid, _):
@@ -127,6 +187,7 @@ class UGConversationVC: BaseVC {
 		tableView.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
 		}
+
 	}
 	
 }

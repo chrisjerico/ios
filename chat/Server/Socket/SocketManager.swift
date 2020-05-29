@@ -129,6 +129,8 @@ extension SocketManager: WebSocketDelegate {
 			MessageManager.shared.newError.accept(dic)
 		case 1:
 			MessageManager.shared.newMessage.accept(dic)
+		case 0888:
+			MessageManager.shared.newLotteryWin.accept(dic)
 		default:
 			MessageManager.shared.newNotification.accept(dic)
 		}
