@@ -411,6 +411,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     NSLog(@"type=%@",type);
     *selCode = type.code;
     if (type.list.count) {
+        NSLog(@"self.segmentIndex = %ld",(long)self.segmentIndex);
         UGGameplaySectionModel *play = type.list[self.segmentIndex];
         if (play.ezdwlist.count) {
             NSMutableArray *mutArr1 = [NSMutableArray array];
@@ -570,10 +571,6 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
             }
         }
-           
-        
-        
-
         
         if ([CMCommon arryIsNull:array]) {
             [self.navigationController.view makeToast:@"请输入投注金额"
@@ -675,7 +672,9 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         self.typeIndexPath = indexPath;
         UGGameplayModel *model = self.gameDataArray[indexPath.row];
         if ([@"一字定位" isEqualToString:model.name]) {
+       
             self.segmentView.dataArray = self.yzgmentTitleArray;
+     
             if (self.segmentView.hidden) {
                 
                 self.betCollectionView.y += self.segmentView.height;
@@ -697,6 +696,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
              
          }
       else   if ([@"三字定位" isEqualToString:model.name]) {
+    
              self.segmentView.dataArray = self.szgmentTitleArray;
              if (self.segmentView.hidden) {
                  
@@ -716,9 +716,13 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
           self.segmentView.hidden = YES;
           
       }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.betCollectionView reloadData];
+            [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
+        });
 
-        [self.betCollectionView reloadData];
-        [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
+
     }
     
 }
