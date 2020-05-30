@@ -795,7 +795,12 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = nil;
         UGGameBetModel *game = nil;
-        if ([@"二字定位" isEqualToString:model.name]) {
+        if ([@"一字定位" isEqualToString:model.name]) {
+            type = model.list[self.segmentIndex];
+            game = type.list[indexPath.row];
+            
+        }
+        else if ([@"二字定位" isEqualToString:model.name]) {
             type = model.list[self.segmentIndex];
             UGGameplaySectionModel *obj = type.ezdwlist[indexPath.section];
             game = obj.list[indexPath.row];
@@ -1454,6 +1459,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 - (void)handleData {
     for (UGGameplayModel *model in self.gameDataArray) {
         if ([@"一字定位" isEqualToString:model.name]) {
+            NSLog(@"model = %@",model);
             for (UGGameplaySectionModel *group in model.list) {
                 if (group.list.count) {
                     UGGameBetModel *play = group.list.firstObject;
@@ -1463,7 +1469,8 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                         [bet setValuesForKeysWithDictionary:play.mj_keyValues];
                         bet.alias = bet.name;
                         bet.typeName = group.name;
-                        bet.name = [NSString stringWithFormat:@"%d",i + 1];
+                        bet.name = [NSString stringWithFormat:@"%d",i ];
+                        bet.betInfo = bet.name;
                         [array addObject:bet];
                     }
                     group.list = array.copy;
@@ -1505,7 +1512,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                             [bet setValuesForKeysWithDictionary:play.mj_keyValues];
                             bet.alias = bet.name;
                             bet.typeName = group.name;
-                            bet.name = [NSString stringWithFormat:@"%d",i + 1];
+                            bet.name = [NSString stringWithFormat:@"%d",i ];
                             [array addObject:bet];
                         }
                         sectionModel.list = array.copy;
@@ -1580,7 +1587,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                             [bet setValuesForKeysWithDictionary:play.mj_keyValues];
                             bet.alias = bet.name;
                             bet.typeName = group.name;
-                            bet.name = [NSString stringWithFormat:@"%d",i + 1];
+                            bet.name = [NSString stringWithFormat:@"%d",i ];
                             [array addObject:bet];
                         }
                         sectionModel.list = array.copy;
