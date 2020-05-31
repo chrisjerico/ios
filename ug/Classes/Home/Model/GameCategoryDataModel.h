@@ -5,6 +5,15 @@
 //  Created by xionghx on 2019/9/19.
 //  Copyright © 2019 ug. All rights reserved.
 //
+//seriesId：11=注单信息
+//subId列表数据：
+//'1' => '彩票注单',
+//'2' => '真人注单',
+//'3' => '棋牌注单',
+//'4' => '电子注单',
+//'5' => '体育注单',
+//'6' => '捕鱼注单',
+//'7' => '电竞注单',
 
 #import <Foundation/Foundation.h>
 
@@ -32,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * levelType;   /**<   分类层级：1 无子类 2 有子类一级分类 3 子类 */
 @property (nonatomic, strong) NSString * category;    /**<   图标分类 */
 @property (nonatomic, strong) NSString * sort;        /**<   排序 */
-@property (nonatomic, assign) NSInteger  seriesId;    /**<   系列ID：1 普通彩票 2 真人视讯 3 捕鱼游戏 4 电子游戏 5 棋牌游戏 6 体育赛事 7导航链接 */
+@property (nonatomic, assign) NSInteger  seriesId;    /**<   系列ID：1 普通彩票 2 真人视讯 3 捕鱼游戏 4 电子游戏 5 棋牌游戏 6 体育赛事 7导航链接  11=注单信息*/
 @property (nonatomic, assign) NSInteger  subId;       /**<   1存取款 2APP下载 3聊天室 4在线客服 5长龙助手 6推广收益 7开奖网 8利息宝 9优惠活动 10游戏记录 11QQ客服 13任务大厅 14站内信 15站内信 16投诉中心 */
 @property (nonatomic, assign) NSInteger  tipFlag;     /**<   标记：0 无 1 热门 2 活动 3 大奖 4 中大奖*/
 @property (nonatomic, strong) NSString * openWay;     /**<   打开方式：0 本窗口 1 新窗口 */
