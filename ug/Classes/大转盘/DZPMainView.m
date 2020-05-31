@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet LYLuckyCardRotationView *mDZPView;//转盘
 @property (weak, nonatomic) IBOutlet UIImageView *btnBgImgV;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIImageView *imgBianBg;//底图边框gif
 
 
 @property (strong, nonatomic)  DZPTwoView *twoView;
@@ -146,7 +147,14 @@
     self.mDZPView.DZPid = item.DZPid;
     self.mDZPView.dataArray =  [DZPprizeModel mj_objectArrayWithKeyValuesArray:item.param.prizeArr];
     
-    self.mDZPView.chassis_img = item.param.chassis_img;
+    
+    if (![CMCommon stringIsNull:item.param.chassis_img]) {
+        self.mDZPView.chassis_img = item.param.chassis_img;
+        [self.imgBianBg setHidden:NO];
+    } else {
+        [self.imgBianBg setHidden:YES];
+    }
+
 }
 
 

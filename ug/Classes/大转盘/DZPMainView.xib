@@ -21,7 +21,7 @@
                     <rect key="frame" x="30" y="170" width="364" height="364"/>
                     <subviews>
                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dzp_turnplate_bg" translatesAutoresizingMaskIntoConstraints="NO" id="CZK-Sd-eQa">
-                            <rect key="frame" x="0.0" y="0.0" width="334" height="364"/>
+                            <rect key="frame" x="0.0" y="0.0" width="364" height="364"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -30,7 +30,7 @@
                         <constraint firstAttribute="bottom" secondItem="CZK-Sd-eQa" secondAttribute="bottom" id="ayD-gO-QmG"/>
                         <constraint firstItem="CZK-Sd-eQa" firstAttribute="top" secondItem="p7n-Od-kZw" secondAttribute="top" id="neC-S8-oJs"/>
                         <constraint firstItem="CZK-Sd-eQa" firstAttribute="leading" secondItem="p7n-Od-kZw" secondAttribute="leading" id="r7z-PK-0qC"/>
-                        <constraint firstAttribute="trailing" secondItem="CZK-Sd-eQa" secondAttribute="trailing" constant="30" id="wcH-Qh-4YM"/>
+                        <constraint firstAttribute="trailing" secondItem="CZK-Sd-eQa" secondAttribute="trailing" id="wcH-Qh-4YM"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqn-Xu-pr0" userLabel="关闭按钮">
@@ -43,6 +43,9 @@
                         <action selector="close:" destination="iN0-l3-epB" eventType="touchUpInside" id="uSO-nl-jYO"/>
                     </connections>
                 </button>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turnplate_bgbian" translatesAutoresizingMaskIntoConstraints="NO" id="YKI-Rk-ySK">
+                    <rect key="frame" x="25" y="165" width="374" height="374"/>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ztlight.gif" translatesAutoresizingMaskIntoConstraints="NO" id="vLm-VA-79D" customClass="FLAnimatedImageView">
                     <rect key="frame" x="64.5" y="125" width="285" height="109"/>
                     <constraints>
@@ -58,7 +61,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcT-NK-3jN">
-                    <rect key="frame" x="0.0" y="534" width="414" height="362"/>
+                    <rect key="frame" x="0.0" y="539" width="414" height="357"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shenzagasdfasfasfasd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ0-vS-q6X" userLabel="用户积分">
                             <rect key="frame" x="121.5" y="5" width="171.5" height="21"/>
@@ -96,7 +99,7 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAc-S3-XiC" userLabel="内容视图">
-                            <rect key="frame" x="50" y="66.5" width="314" height="290.5"/>
+                            <rect key="frame" x="50" y="66.5" width="314" height="285.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -130,15 +133,19 @@
                 <constraint firstItem="p7n-Od-kZw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="170" id="Esn-7e-Z9g"/>
                 <constraint firstAttribute="bottom" secondItem="MRR-rI-o5M" secondAttribute="bottom" id="KO0-vs-Xt1"/>
                 <constraint firstItem="vLm-VA-79D" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Siz-fi-e4O"/>
-                <constraint firstItem="ZcT-NK-3jN" firstAttribute="top" secondItem="p7n-Od-kZw" secondAttribute="bottom" id="UGd-i8-Azl"/>
+                <constraint firstItem="ZcT-NK-3jN" firstAttribute="top" secondItem="p7n-Od-kZw" secondAttribute="bottom" constant="5" id="UGd-i8-Azl"/>
                 <constraint firstAttribute="trailing" secondItem="lqn-Xu-pr0" secondAttribute="trailing" constant="20" id="Uxl-mJ-tI6"/>
                 <constraint firstAttribute="trailing" secondItem="ZcT-NK-3jN" secondAttribute="trailing" id="b4m-AM-9HL"/>
                 <constraint firstAttribute="trailing" secondItem="vmA-MF-MjA" secondAttribute="trailing" constant="27" id="beh-eD-xoY"/>
                 <constraint firstAttribute="trailing" secondItem="MRR-rI-o5M" secondAttribute="trailing" id="h1N-G9-5ZB"/>
                 <constraint firstAttribute="bottom" secondItem="ZcT-NK-3jN" secondAttribute="bottom" id="haT-oh-6Dh"/>
+                <constraint firstItem="ZcT-NK-3jN" firstAttribute="top" secondItem="YKI-Rk-ySK" secondAttribute="bottom" id="kjB-1h-tI6"/>
+                <constraint firstItem="YKI-Rk-ySK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="l78-l9-fAw"/>
+                <constraint firstItem="YKI-Rk-ySK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="165" id="nCR-7F-xsj"/>
                 <constraint firstAttribute="trailing" secondItem="p7n-Od-kZw" secondAttribute="trailing" constant="20" id="qim-QQ-B0g"/>
                 <constraint firstItem="lqn-Xu-pr0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="130" id="wAH-IQ-kaT"/>
                 <constraint firstItem="MRR-rI-o5M" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="wa8-7c-fgq"/>
+                <constraint firstAttribute="trailing" secondItem="YKI-Rk-ySK" secondAttribute="trailing" constant="15" id="zWC-j2-LNq"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -146,6 +153,7 @@
             <connections>
                 <outlet property="btnBgImgV" destination="4I3-Lb-kcD" id="C29-so-ddw"/>
                 <outlet property="contentView" destination="oAc-S3-XiC" id="N8X-Zk-X6o"/>
+                <outlet property="imgBianBg" destination="YKI-Rk-ySK" id="mzQ-I1-p4f"/>
                 <outlet property="imgGif" destination="vLm-VA-79D" id="Vh6-g1-1kf"/>
                 <outlet property="mDZPView" destination="p7n-Od-kZw" id="G8M-cC-KWp"/>
                 <outlet property="moenyNumberLabel" destination="fZ0-vS-q6X" id="jUA-ym-paE"/>
@@ -157,6 +165,7 @@
         <image name="dzp_close" width="21" height="21"/>
         <image name="dzp_turnplate_bg" width="236.5" height="236.5"/>
         <image name="seg_leftSelected" width="191" height="21"/>
+        <image name="turnplate_bgbian" width="236.5" height="236.5"/>
         <image name="ztlight.gif" width="400" height="153"/>
     </resources>
 </document>
