@@ -680,6 +680,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 self.betCollectionView.y += self.segmentView.height;
                 self.betCollectionView.height -= self.segmentView.height;
             }
+            self.segmentIndex = 0;
             self.segmentView.hidden = NO;
             [self resetClick:nil];
             
@@ -691,6 +692,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                  self.betCollectionView.y += self.segmentView.height;
                  self.betCollectionView.height -= self.segmentView.height;
              }
+             self.segmentIndex = 0;
              self.segmentView.hidden = NO;
              [self resetClick:nil];
              
@@ -703,6 +705,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                  self.betCollectionView.y += self.segmentView.height;
                  self.betCollectionView.height -= self.segmentView.height;
              }
+             self.segmentIndex = 0;
              self.segmentView.hidden = NO;
              [self resetClick:nil];
              
