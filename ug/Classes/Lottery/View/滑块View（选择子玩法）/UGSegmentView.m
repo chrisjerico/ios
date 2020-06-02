@@ -30,9 +30,11 @@ static NSString *segmentCellId = @"UGSegmentCollectionViewCell";
 
 - (void)setDataArray:(NSArray<NSString *> *)dataArray {
     _dataArray = dataArray;
-    
-    [self.collectionView reloadData];
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [self.collectionView reloadData];
+       [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    });
+
 }
 
 

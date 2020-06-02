@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) CountDown *countDown;
 
-@property (nonatomic, readonly) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
 @end
 
 
@@ -62,7 +62,11 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self->_lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            
+            HJSonLog(@"model =%@",model);
+            
+            
+            self.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
             [self.collectionView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
