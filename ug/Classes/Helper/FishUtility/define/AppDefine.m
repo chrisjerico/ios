@@ -251,7 +251,7 @@
 }
 
 - (BOOL)isNoBorder {
-    return [@"c200,c208,c213,a002,c134,c092,c012" containsString:_SiteId];
+    return [@"c200,c208,c213,a002,c134,c092" containsString:_SiteId];
 }
 
 - (BOOL)isYHShowTitle {

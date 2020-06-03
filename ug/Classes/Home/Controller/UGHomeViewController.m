@@ -512,6 +512,11 @@
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
             
+            if ( [@"c012" containsString:APP.SiteId]) {
+                subView(@"优惠活动外View").layer.borderWidth = 1;
+                subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
+            }
+           
         }
         
         if (Skin1.isJY) {
@@ -2317,15 +2322,18 @@
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
             if (APP.isC190Cell) {
-                CGFloat w = APP.Width-48;
+                CGFloat w;
+                if ([@"c012" containsString:APP.SiteId]) {
+                    w = APP.Width-48;
+                } else {
+                    w = APP.Width-88;
+                }
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
             } else {
-                CGFloat w = APP.Width - 88;
+                CGFloat w = APP.Width-88;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
-                
-                
             }
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
         } else {
