@@ -343,7 +343,7 @@
     if (Skin1.isBlack) {
         return NO;
     } else {
-        return [@"c213" containsString:_SiteId];
+        return [@"c213,c012" containsString:_SiteId];
     }
 }
 
@@ -434,7 +434,9 @@
     return [@"c085" containsString:_SiteId];
 }
 
-
+- (BOOL)isC190Cell {
+    return [@"c190,c012" containsString:_SiteId];
+}
 
 #pragma mark - 热更新
 

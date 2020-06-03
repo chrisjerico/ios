@@ -355,6 +355,9 @@
             } else {
                 if (APP.betBgIsWhite) {
                     cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
+//                    if ([@"c012" containsString:APP.SiteId]) {
+//                         cell.backgroundColor = !selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor whiteColor];
+//                    }
                 }
                 else{
                     cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
@@ -365,6 +368,7 @@
                 NSLog(@"Skin1.is23 = %d",Skin1.is23);
                 
                 __ssv1.titleBar.backgroundColor = Skin1.isBlack||Skin1.is23 || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+                
             }
             
             if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {

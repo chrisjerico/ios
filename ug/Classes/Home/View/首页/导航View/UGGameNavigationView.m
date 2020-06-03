@@ -87,7 +87,7 @@
     maskLayer.path = maskPath.CGPath;
     _scrollRightButton.layer.mask = maskLayer;
     
-    if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) || [Skin1 isJY]) {
+    if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] &&[@"c190" containsString:APP.SiteId]) || [Skin1 isJY]) {
         
         [self.scrollRightButton setHidden:false];
     } else {

@@ -121,6 +121,7 @@
             }];
         }
     }];
+
     return cell;
 }
 
@@ -197,6 +198,7 @@
                 [cv setContentOffset:CGPointMake(right-cv.width, 0) animated:animated];
             }
         }
+
         
         // 选中指定item
         [cv selectItemAtIndexPath:[NSIndexPath indexPathForItem:_selectedIndex inSection:0] animated:animated scrollPosition:UICollectionViewScrollPositionNone];

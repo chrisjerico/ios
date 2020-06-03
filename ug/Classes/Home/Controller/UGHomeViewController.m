@@ -2283,7 +2283,7 @@
         return cell;
     } else {
         UITableViewCell *cell;
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
         }
         else{
@@ -2292,7 +2292,7 @@
      
         UGPromoteModel *pm = tableView.dataArray[indexPath.row];
         FastSubViewCode(cell);
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
             subView(@"StackView").cc_constraints.bottom.constant = 0;
         }
@@ -2316,7 +2316,7 @@
         NSURL *url = [NSURL URLWithString:pm.pic];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
-            if ([@"c190" containsString:APP.SiteId]) {
+            if (APP.isC190Cell) {
                 CGFloat w = APP.Width-48;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
@@ -2379,7 +2379,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([_style isEqualToString:@"slide"]) {
         UGPromoteModel *item = tableView.dataArray[section];
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
                return [UGCell190HeaderView heightWithModel:item];
           }
           else{
@@ -2399,7 +2399,7 @@
     UGCellHeaderView *headerView = [contentView viewWithTagString:@"headerView"];
     if (!headerView) {
         
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
              headerView = _LoadView_from_nib_(@"UGCell190HeaderView");
          }
          else{

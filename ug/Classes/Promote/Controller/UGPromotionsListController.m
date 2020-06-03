@@ -129,7 +129,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    if ([@"c190" containsString:APP.SiteId]) {
+    if (APP.isC190Cell) {
         cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
     }
     else{
@@ -137,7 +137,7 @@
     }
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
-    if ([@"c190" containsString:APP.SiteId]) {
+    if (APP.isC190Cell) {
         subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
         subView(@"StackView").cc_constraints.bottom.constant = 0;
     }
@@ -161,7 +161,7 @@
     NSURL *url = [NSURL URLWithString:pm.pic];
     UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
     if (image) {
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             CGFloat w = APP.Width;
             CGFloat h = image.height/image.width * w;
             imgView.cc_constraints.height.constant = h;

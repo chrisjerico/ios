@@ -46,7 +46,7 @@ static CGFloat _contentWidth = 0;
 -(void)setItem:(UGPromoteModel *)item{
     _item = item;
     FastSubViewCode(self);
-    if ([@"c190" containsString:APP.SiteId]) {
+    if (APP.isC190Cell) {
         _stackView.cc_constraints.top.constant = _item.title.length ? 12 : 0;
         _stackView.cc_constraints.bottom.constant = 0;
     }
