@@ -69,7 +69,7 @@
 - (void)setTipStr:(NSString *)tipStr {
     
     _tipStr = tipStr;
-    
+    self.tipLabel.text = tipStr;
     if (tipStr.isHtmlStr) {
             self.tipLabel.attributedText = ({
             NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[tipStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
