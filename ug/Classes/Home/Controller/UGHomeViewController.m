@@ -2299,6 +2299,10 @@
         FastSubViewCode(cell);
         if (APP.isC190Cell) {
             subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+            
+            if ([@"c012" containsString:APP.SiteId]) {
+                subView(@"StackView").cc_constraints.top.constant = 12 ;
+            }
             subView(@"StackView").cc_constraints.bottom.constant = 0;
         }
         if ([@"c199" containsString:APP.SiteId]) {
