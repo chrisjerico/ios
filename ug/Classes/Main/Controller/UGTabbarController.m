@@ -756,7 +756,8 @@ static UGTabbarController *_tabBarVC = nil;
                     [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                     
                 }
-
+                [CMCommon removeLastRoomAction:chatIdAry];
+                
                 NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
                 SysConf.chatRoomRedirect = [number intValue];
                 SysConf.chatRoomAry = chatRoomAry;
@@ -775,6 +776,11 @@ static UGTabbarController *_tabBarVC = nil;
                     SysConf.defaultChatRoom = obj;
                     
                 }
+                
+         
+                
+        
+                
               
                 
                 

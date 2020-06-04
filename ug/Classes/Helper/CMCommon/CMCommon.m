@@ -1400,6 +1400,59 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     
 }
 
+/**
+*删除本地保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoom{
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"roomName"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"roomId"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
 
+/**
+*本地保存的最后一次选择的房间
+*
+*/
 
++(NSDictionary *)LastRoom{
+    NSString *roomId = [[NSUserDefaults standardUserDefaults]objectForKey:@"roomId"];
+    NSString *roomName = [[NSUserDefaults standardUserDefaults]objectForKey:@"roomName"];
+    
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                          roomId,@"roomId",
+                          roomName,@"roomName",
+                          nil];
+    return dic;
+}
+/**
+*本地i是否保存的最后一次选择的房间
+*
+*/
++(BOOL )hasLastRoom{
+    
+    NSDictionary *dic = [self LastRoom];
+    if ([CMCommon stringIsNull:dic[@"roomId"]]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+/**
+*  判断本地最后一次房间是否在网络房间列表中，没有删除保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoomAction:(NSMutableArray *)chatIdAry{
+    if ([CMCommon hasLastRoom]) {
+        NSDictionary *roomDic = [CMCommon LastRoom];
+        NSString *roomId  = [roomDic objectForKey:@"roomId"];
+        
+        BOOL isbool = [chatIdAry containsObject: roomId];
+        
+        if (!isbool) {
+            [CMCommon removeLastRoom];
+        }
+    }
+    
+}
 @end

@@ -255,6 +255,8 @@
                 [chatTitleAry addObject:dic.roomName];
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
             }
+            
+            [CMCommon removeLastRoomAction:chatIdAry];
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
             SysConf.chatRoomAry = chatRoomAry;
             NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);

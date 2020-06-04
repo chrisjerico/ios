@@ -1512,6 +1512,8 @@
                     [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                     
                 }
+                
+                [CMCommon removeLastRoomAction:chatIdAry];
 
                 NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
                 SysConf.chatRoomRedirect = [number intValue];
