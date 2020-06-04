@@ -504,24 +504,15 @@
     }];
 }
 
-
 - (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
-    NSMutableDictionary *dic = [NSMutableDictionary new];
+    NSMutableDictionary *dic = self.chatHomeUrl.urlParams.mutableCopy;
     [dic setValue:roomId forKey:@"roomId"];
     if (hideHead) {
         NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
         [dic setValue:boolNum forKey:@"hideHead"];
     }
-    
-    NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
-    NSLog(@"s= %@",s);
-    return s;
-}
-
-
-
-- (NSString *)chatMainGameUr {
-    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":@"0"}];
+    NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
+    return [url stringByAppendingURLParams:dic];
 }
 
 
