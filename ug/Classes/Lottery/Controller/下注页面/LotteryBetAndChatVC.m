@@ -59,7 +59,12 @@
 -(void)setJsDic:(NSMutableDictionary *)jsDic{
     _jsDic = jsDic;
     SysConf.hasShare = YES;
-    [self selectChatRoom ];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+       // UI更新代码
+       [self selectChatRoom ];
+    });
+   
 }
 
 
