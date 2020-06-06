@@ -329,8 +329,16 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     SysConf.hasShare = YES;
     LotteryBetAndChatVC * chat = [LotteryBetAndChatVC new];
     chat.selectChat = YES;
-    chat.jsDic = self.jsDic;
     [NavController1 pushViewController:chat animated:YES];
+    
+    WeakSelf;
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
+
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        NSDictionary *dic = [[NSDictionary alloc] initWithObjectsAndKeys:weakSelf.jsDic,@"jsDic", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom_share" object:nil userInfo:dic];
+    });
+
     
 }
 

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) bool selectChat;
 
-@property (nonatomic, strong) NSMutableDictionary *jsDic ;         /**<   分享数据*/
+
 
 @end
 
