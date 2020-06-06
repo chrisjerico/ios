@@ -118,6 +118,8 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
         }
         else if ([@"dlt" isEqualToString:self.item.gameType]) {
             cell.color = [CMCommon getDLTColor:indexPath.row+1];
+            NSString *num =  self.numArray[indexPath.row];
+            cell.title = self.numArray[indexPath.row];
         }
         else {
             cell.backgroundColor = Skin1.navBarBgColor;
