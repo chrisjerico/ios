@@ -39,6 +39,8 @@
 + (UIColor *)getPcddNumColor:(NSString *)num;
 
 + (UIColor *)getPreNumColor:(NSString *)num;
+//大乐透颜色，前5 红，后2蓝
++ (NSString *)getDLTColor:(NSInteger )num ;
 
 + (UIColor *)getHKLotteryNumColor:(NSString *)num;
 

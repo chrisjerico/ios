@@ -185,6 +185,28 @@ static NSString *uuidKey =@"uuidKey";
     
 }
 
++ (NSString *)getDLTColor:(NSInteger )num {
+    NSInteger preNum = num;
+    if (preNum == 1) {
+        return @"red";
+    }else if (preNum == 2) {
+        return @"red";
+    }else if (preNum == 3) {
+        return @"red";
+    }else if (preNum == 4) {
+        return @"red";
+    }else if (preNum == 5) {
+        return @"red";
+    }else if (preNum == 6) {
+        return @"blue";
+    }else if (preNum == 7) {
+        return @"blue";
+    }else {
+        return @"blue";
+    }
+    
+}
+
 + (UIColor *)getPcddNumColor:(NSString *)num {
     NSSet *graySet = [NSSet setWithObjects:@"0",@"13",@"14",@"27", nil];
     NSSet *redSet = [NSSet setWithObjects:@"3",@"6",@"9",@"12",@"15",@"18",@"21",@"24", nil];

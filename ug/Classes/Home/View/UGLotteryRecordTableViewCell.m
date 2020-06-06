@@ -116,10 +116,14 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
             cell.backgroundColor = [UGSkinManagers jsftColor:[num intValue]];
             cell.title = self.numArray[indexPath.row];
         }
+        else if ([@"dlt" isEqualToString:self.item.gameType]) {
+            cell.color = [CMCommon getDLTColor:indexPath.row+1];
+        }
         else {
             cell.backgroundColor = Skin1.navBarBgColor;
             cell.title = self.numArray[indexPath.row];
         }
+
         return cell;
     } else {
         if ([@"pk10nn" isEqualToString:self.item.gameType]){
