@@ -668,7 +668,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             cell.title = self.preNumArray[indexPath.row];
             cell.showAdd = NO;
             cell.showBorder = NO;
-            cell.backgroundColor = [CMCommon getPreNumColor:self.preNumArray[indexPath.row]];
+            
+            NSLog(@"self.nextIssueModel.gameType = %@",self.nextIssueModel.gameType);
+            if ([self.nextIssueModel.gameType isEqualToString:@"dlt"]) {
+                cell.color = [CMCommon getDLTColor:indexPath.row+1];
+            } else {
+                cell.backgroundColor = [CMCommon getPreNumColor:self.preNumArray[indexPath.row]];
+            }
             return cell;
         }else {
             UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
