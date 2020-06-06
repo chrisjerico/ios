@@ -204,7 +204,7 @@
     else{
         self.moenyNumberLabel.text = @"剩余积分：0";
     }
-    self.moenyNumberLabel.text = [NSString stringWithFormat:@"剩余积分：%@",moenyNumber];
+
     [self activityTurntableLog:[Global getInstanse].DZPid];
  }
 
