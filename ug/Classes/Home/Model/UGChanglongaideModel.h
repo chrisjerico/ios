@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *fengpanCountdown;
 @property (nonatomic, strong) NSString *gameId;
 @property (nonatomic, strong) NSString *issue;
+@property (nonatomic, strong) NSString *roomId;      /**<   房间id*/
 @property (nonatomic, assign) BOOL isSeal;
 @property (nonatomic, strong) NSString *logo;
 @property (nonatomic, strong) NSString *lotteryCountdown;

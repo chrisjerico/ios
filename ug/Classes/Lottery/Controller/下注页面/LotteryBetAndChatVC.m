@@ -44,7 +44,7 @@
 
 @property (nonatomic, strong) NSArray *chatAry ;         /**<   聊天室数据*/
 
-@property (nonatomic, strong) NSMutableDictionary *jsDic ;         /**<   分享数据*/
+
 @end
 
 
@@ -54,6 +54,12 @@
 
 -(void)showLeeView{
     
+}
+
+-(void)setJsDic:(NSMutableDictionary *)jsDic{
+    _jsDic = jsDic;
+    SysConf.hasShare = YES;
+    [self selectChatRoom ];
 }
 
 
@@ -77,10 +83,10 @@
         NSDictionary *da = (NSDictionary *)notification.userInfo;
         
         __self.jsDic = [da objectForKey:@"jsDic"];
-        SysConf.hasShare = YES;
+    
         //        NSLog(@"js = %@",js);
         //
-        [__self selectChatRoom ];
+//        [__self selectChatRoom ];
     }];
     // 每次‘彩票下注页’设置导航条按钮时，改为设置LotteryBetAndChatVC页的导航条按钮
     {
@@ -510,9 +516,17 @@
                                 
                             }
                             NSLog(@"listjsonString = %@",listjsonString);
-                            NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
-                            NSLog(@"jsonStr = %@",jsonStr);
-                            __self.vc2.shareBetJson = jsonStr;
+                            
+                            if ([CMCommon arryIsNull:list]) {
+                                NSString *jsonStr = [__self.jsDic objectForKey:@"jsonStr"];
+                                NSLog(@"jsonStr = %@",jsonStr);
+                                __self.vc2.shareBetJson = jsonStr;
+                            } else {
+                                NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
+                                NSLog(@"jsonStr = %@",jsonStr);
+                                __self.vc2.shareBetJson = jsonStr;
+                            }
+                 
                         }
                         
                         
@@ -577,10 +591,15 @@
                                         listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                                         
                                     }
-                                    NSLog(@"listjsonString = %@",listjsonString);
-                                    NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
-                                    NSLog(@"jsonStr = %@",jsonStr);
-                                    __self.vc2.shareBetJson = jsonStr;
+                                    if ([CMCommon arryIsNull:list]) {
+                                        NSString *jsonStr = [__self.jsDic objectForKey:@"jsonStr"];
+                                        NSLog(@"jsonStr = %@",jsonStr);
+                                        __self.vc2.shareBetJson = jsonStr;
+                                    } else {
+                                        NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
+                                        NSLog(@"jsonStr = %@",jsonStr);
+                                        __self.vc2.shareBetJson = jsonStr;
+                                    }
                                 }
                                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                                     //需要在主线程执行的代码

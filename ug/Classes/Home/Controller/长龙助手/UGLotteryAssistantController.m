@@ -16,6 +16,7 @@
 #import "CountDown.h"
 #import "UGbetModel.h"
 #import "CMTimeCommon.h"
+#import "LotteryBetAndChatVC.h"
 @interface UGLotteryAssistantController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     
@@ -41,6 +42,8 @@
 @property (nonatomic, assign)BOOL isHaveDian;
 
 @property (nonatomic, strong) NSString *shareJsonStr;
+
+@property (nonatomic, strong) NSMutableDictionary *jsDic; //分享的json 数据
 
 @property (nonatomic, strong) NSString *amount;
 
@@ -226,7 +229,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
 //    NSLog(@"%@",betModel.toJSONString);
 
-    self.shareJsonStr = [self shareBettingData:self.betModel amount:self.amount];
+   self.jsDic =  [self shareBettingData:self.betModel amount:self.amount];
     
 
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
@@ -280,10 +283,11 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
                     })
                     .LeeAction(@"取消", nil)
                     .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                        SysConf.hasShare = YES;
-                        UGChatViewController *vc = [[UGChatViewController alloc] init];
-                        vc.shareBetJson = __self.shareJsonStr;
-                        [NavController1 pushViewController:vc animated:YES];
+//                        SysConf.hasShare = YES;
+//                        UGChatViewController *vc = [[UGChatViewController alloc] init];
+//                        vc.shareBetJson = __self.shareJsonStr;
+//                        [NavController1 pushViewController:vc animated:YES];
+                        [self goLotteryBetAndChatVC];
                     })
                     .LeeHeaderColor(Skin1.bgColor)
                     .LeeShow();
@@ -294,10 +298,11 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
                     .LeeContent(@"是否分享到聊天室")
                     .LeeAction(@"取消", nil)
                     .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                        SysConf.hasShare = YES;
-                        UGChatViewController *vc = [[UGChatViewController alloc] init];
-                        vc.shareBetJson = __self.shareJsonStr;
-                        [NavController1 pushViewController:vc animated:YES];
+//                        SysConf.hasShare = YES;
+//                        UGChatViewController *vc = [[UGChatViewController alloc] init];
+//                        vc.shareBetJson = __self.shareJsonStr;
+//                        [NavController1 pushViewController:vc animated:YES];
+                         [self goLotteryBetAndChatVC];
                     })
                     
                     .LeeShow();
@@ -320,7 +325,16 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
 }
 
--(NSString *)shareBettingData :(UGChanglongaideModel *)betModel  amount:(NSString *)amount{
+-(void)goLotteryBetAndChatVC{
+    SysConf.hasShare = YES;
+    LotteryBetAndChatVC * chat = [LotteryBetAndChatVC new];
+    chat.selectChat = YES;
+    chat.jsDic = self.jsDic;
+    [NavController1 pushViewController:chat animated:YES];
+    
+}
+
+-(NSMutableDictionary *)shareBettingData :(UGChanglongaideModel *)betModel  amount:(NSString *)amount{
     
     UGBetItemModel *betS ;
     NSMutableArray *list = [NSMutableArray new];
@@ -374,8 +388,12 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         betObj.ftime = [NSString stringWithFormat:@"%ld",(long)timeInt];
         betObj.code = @"";
         betObj.specialPlay = NO;
+        
     }
     
+    NSMutableDictionary *jsDic = [NSMutableDictionary new];
+    [jsDic setValue:betObj forKey:@"betModel"];
+    [jsDic setValue:list forKey:@"list"];
     //以字符串形式导出
     NSString* paramsjsonString = [betObj toJSONString];
     
@@ -395,7 +413,9 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
 //         NSLog(@"jsonStr = %@",jsonStr);
     
-    return jsonStr;
+    [jsDic setValue:jsonStr forKey:@"jsonStr"];
+    
+    return jsDic;
 }
 
 #pragma mark - UITableViewDataSource
