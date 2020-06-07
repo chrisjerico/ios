@@ -1347,7 +1347,7 @@
     [CMCommon deleteWebCache];
 }
 
-// 横幅广告
+//查询轮播图
 - (void)getBannerList {
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
@@ -1586,11 +1586,11 @@
                 if (self.homeAdsArray.count) {
                     [self.homeAdsBigBgView setHidden:NO];
                     for (UGhomeAdsModel *banner in self.homeAdsArray) {
-                        [mutArr addObject:banner.image];
+                            [mutArr addObject:banner.image];
                     }
                     NSLog(@"mutArr = %@",mutArr);
                     self.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
-                    //                    self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                    
                 }
                 else{
                     [self.homeAdsBigBgView setHidden:YES];
@@ -2100,7 +2100,7 @@
     self.bannerView.backgroundColor = [UIColor clearColor];
     self.bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     self.bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.bannerView.autoScrollTimeInterval = 2.0;
+    self.bannerView.autoScrollTimeInterval = 3.0;
     self.bannerView.delegate = self;
     self.bannerView.pageDotColor = RGBA(210, 210, 210, 0.4);
     [self.bannerBgView insertSubview:self.bannerView atIndex:0];
@@ -2112,7 +2112,7 @@
     self.homeAdsView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     self.homeAdsView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    if ([@"c018" containsString:APP.SiteId]) {
+    if ([@"c018,c217" containsString:APP.SiteId]) {
             self.homeAdsView.autoScrollTimeInterval = 5.0;
     } else {
             self.homeAdsView.autoScrollTimeInterval = 3.0;
