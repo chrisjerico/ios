@@ -116,6 +116,12 @@
                                                         <constraint firstAttribute="height" constant="20" id="uZZ-V6-r52"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVt-Bf-1jF">
+                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="40"/>
+                                                    <connections>
+                                                        <segue destination="paC-Ux-4wq" kind="show" id="tHc-Lo-uJL"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
@@ -125,8 +131,12 @@
                                                 <constraint firstItem="Vhi-kR-qRH" firstAttribute="leading" secondItem="byk-H4-vb2" secondAttribute="leading" id="HgY-Cr-fsC"/>
                                                 <constraint firstAttribute="bottom" secondItem="ruY-SY-PvO" secondAttribute="bottom" id="LeZ-T9-jtb"/>
                                                 <constraint firstAttribute="width" constant="108" id="SDL-gT-OEG"/>
+                                                <constraint firstItem="jVt-Bf-1jF" firstAttribute="top" secondItem="byk-H4-vb2" secondAttribute="top" id="Tr4-nu-uhu"/>
                                                 <constraint firstItem="Vhi-kR-qRH" firstAttribute="centerY" secondItem="byk-H4-vb2" secondAttribute="centerY" id="fgk-IC-8JQ"/>
                                                 <constraint firstItem="ruY-SY-PvO" firstAttribute="top" secondItem="zG7-Rf-yAB" secondAttribute="bottom" constant="8" id="ggO-cI-xAU"/>
+                                                <constraint firstItem="jVt-Bf-1jF" firstAttribute="leading" secondItem="byk-H4-vb2" secondAttribute="leading" id="jMi-fZ-yjk"/>
+                                                <constraint firstAttribute="trailing" secondItem="jVt-Bf-1jF" secondAttribute="trailing" id="juL-Fc-EwJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="jVt-Bf-1jF" secondAttribute="bottom" id="t9a-1Q-A1O"/>
                                                 <constraint firstItem="3aQ-q6-xp9" firstAttribute="centerY" secondItem="byk-H4-vb2" secondAttribute="centerY" id="uiB-Hh-a7h"/>
                                                 <constraint firstItem="zG7-Rf-yAB" firstAttribute="top" secondItem="byk-H4-vb2" secondAttribute="top" id="xSs-6L-DKc"/>
                                             </constraints>
@@ -358,10 +368,10 @@
             </objects>
             <point key="canvasLocation" x="909" y="-86"/>
         </scene>
-        <!--MyShare-->
+        <!--MySetting-->
         <scene sceneID="2nY-ha-aK2">
             <objects>
-                <viewControllerPlaceholder storyboardName="MyShare" id="mus-VQ-UDT" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MySetting" id="mus-VQ-UDT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6tx-8Z-cO9"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5E-tG-gAc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -386,7 +396,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUG-hw-iNX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="47"/>
+            <point key="canvasLocation" x="968" y="47"/>
+        </scene>
+        <!--FansListVC-->
+        <scene sceneID="oXo-xl-Nre">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FansListVC" id="paC-Ux-4wq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="CzS-er-NDw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ezZ-qu-6gP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="917" y="-127"/>
         </scene>
     </scenes>
     <resources>

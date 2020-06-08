@@ -1624,6 +1624,12 @@
 		03E56F8C2480E68C00996099 /* ConversationBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F8B2480E68C00996099 /* ConversationBottomView.xib */; };
 		03E56F8F2480FB0E00996099 /* UGNoticeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */; };
 		03E56F902480FB0E00996099 /* UGNoticeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */; };
+		03E56F952482BCA600996099 /* FansListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F932482BCA600996099 /* FansListVC.swift */; };
+		03E56F992482BCC600996099 /* FollowListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F972482BCC600996099 /* FollowListVC.swift */; };
+		03E56F9A2482BCC600996099 /* FollowListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F982482BCC600996099 /* FollowListVC.xib */; };
+		03E56F9D2482BDE000996099 /* FansListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F9B2482BDE000996099 /* FansListCell.swift */; };
+		03E56F9E2482BDE100996099 /* FansListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F9C2482BDE000996099 /* FansListCell.xib */; };
+		03E56FA02482C30F00996099 /* FansListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F9F2482C30F00996099 /* FansListVC.storyboard */; };
 		03F8A510247F63F600466124 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030A874323C5C2C00001EF82 /* JS_Mine.storyboard */; };
 		03F8A514247F9FDE00466124 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
@@ -3476,6 +3482,12 @@
 		03E56F8B2480E68C00996099 /* ConversationBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationBottomView.xib; sourceTree = "<group>"; };
 		03E56F8D2480FB0E00996099 /* UGNoticeTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNoticeTypeModel.h; sourceTree = "<group>"; };
 		03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNoticeTypeModel.m; sourceTree = "<group>"; };
+		03E56F932482BCA600996099 /* FansListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansListVC.swift; sourceTree = "<group>"; };
+		03E56F972482BCC600996099 /* FollowListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListVC.swift; sourceTree = "<group>"; };
+		03E56F982482BCC600996099 /* FollowListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowListVC.xib; sourceTree = "<group>"; };
+		03E56F9B2482BDE000996099 /* FansListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansListCell.swift; sourceTree = "<group>"; };
+		03E56F9C2482BDE000996099 /* FansListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FansListCell.xib; sourceTree = "<group>"; };
+		03E56F9F2482C30F00996099 /* FansListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FansListVC.storyboard; sourceTree = "<group>"; };
 		073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.debug.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.debug.xcconfig"; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_BetFormCell.h; sourceTree = "<group>"; };
@@ -7107,6 +7119,8 @@
 			isa = PBXGroup;
 			children = (
 				031EF4CC23BE7B4D00B0F813 /* UGMomentsHomeVC.swift */,
+				03E56F922482BC7300996099 /* FansList */,
+				03E56F912482BC6500996099 /* FollowList */,
 				031EF4B523BE7B4D00B0F813 /* Cells */,
 				031EF4C723BE7B4D00B0F813 /* Concerned */,
 				031EF4CD23BE7B4D00B0F813 /* Publish */,
@@ -7388,6 +7402,26 @@
 				036CA77823C72657007BBD25 /* JS_TitleView.xib */,
 			);
 			path = "金沙主题";
+			sourceTree = "<group>";
+		};
+		03E56F912482BC6500996099 /* FollowList */ = {
+			isa = PBXGroup;
+			children = (
+				03E56F972482BCC600996099 /* FollowListVC.swift */,
+				03E56F982482BCC600996099 /* FollowListVC.xib */,
+			);
+			path = FollowList;
+			sourceTree = "<group>";
+		};
+		03E56F922482BC7300996099 /* FansList */ = {
+			isa = PBXGroup;
+			children = (
+				03E56F932482BCA600996099 /* FansListVC.swift */,
+				03E56F9F2482C30F00996099 /* FansListVC.storyboard */,
+				03E56F9B2482BDE000996099 /* FansListCell.swift */,
+				03E56F9C2482BDE000996099 /* FansListCell.xib */,
+			);
+			path = FansList;
 			sourceTree = "<group>";
 		};
 		222A0AF323D29DBE00A058B0 /* 香槟金模板 */ = {
@@ -8347,6 +8381,7 @@
 				031E1CA723BE812A00B0F813 /* UGRechargeRecordCell.xib in Resources */,
 				036CA77A23C72657007BBD25 /* JS_TitleView.xib in Resources */,
 				031E1E3723BE812C00B0F813 /* UGPormotionView.xib in Resources */,
+				03E56FA02482C30F00996099 /* FansListVC.storyboard in Resources */,
 				031EF57323BE7B4D00B0F813 /* Emoji.bundle in Resources */,
 				031EF57A23BE7B4D00B0F813 /* yixihuan.svg in Resources */,
 				031E1AB923BE812800B0F813 /* icon_arrow@3x.png in Resources */,
@@ -8507,6 +8542,8 @@
 				031E1DF123BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
 				031EF57C23BE7B4D00B0F813 /* pinglun.svg in Resources */,
 				031E194D23BE812600B0F813 /* UGLHC.storyboard in Resources */,
+				03E56F9E2482BDE100996099 /* FansListCell.xib in Resources */,
+				03E56F9A2482BCC600996099 /* FollowListVC.xib in Resources */,
 				031E1D6123BE812B00B0F813 /* UGgoBindViewController.xib in Resources */,
 				031E1E8923BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
 				CF8508662466D67F0025672F /* UGCellHeaderView.xib in Resources */,
@@ -9496,6 +9533,7 @@
 				032412C123CC62B900FABD51 /* PromotionOtherBetRecordVC.m in Sources */,
 				031E197123BE812600B0F813 /* LHUserModel.m in Sources */,
 				031E1A8D23BE812700B0F813 /* SAROPSessionConfiguration.m in Sources */,
+				03E56F9D2482BDE000996099 /* FansListCell.swift in Sources */,
 				031E1DD323BE812C00B0F813 /* UGlevelsModel.m in Sources */,
 				031E1AE923BE812800B0F813 /* LeeTagItemViewModel.m in Sources */,
 				031E1D1323BE812B00B0F813 /* JSONAPI.m in Sources */,
@@ -9504,6 +9542,7 @@
 				031E1A8323BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				031E1D0123BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
 				031E1D7F23BE812B00B0F813 /* UGBetRecordViewController.m in Sources */,
+				03E56F952482BCA600996099 /* FansListVC.swift in Sources */,
 				031E1D8B23BE812B00B0F813 /* UGBalanceConversionRecordController.m in Sources */,
 				031E19D323BE812700B0F813 /* NSObject+Utils.m in Sources */,
 				031E196F23BE812600B0F813 /* UGLHGalleryModel.m in Sources */,
@@ -9621,6 +9660,7 @@
 				031E1DE723BE812C00B0F813 /* UGagentApplyInfo.m in Sources */,
 				031E1CF923BE812A00B0F813 /* AFHTTPSessionManager.m in Sources */,
 				031E1CB323BE812A00B0F813 /* UGLaunchPageVC.m in Sources */,
+				03E56F992482BCC600996099 /* FollowListVC.swift in Sources */,
 				031EF5CE23BE7B4E00B0F813 /* MessageCollectionViewBetCell.swift in Sources */,
 				031E1A6523BE812700B0F813 /* UIImage+ST.m in Sources */,
 				031EF54C23BE7B4D00B0F813 /* JSONArrayTransform.swift in Sources */,

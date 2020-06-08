@@ -23,6 +23,8 @@ enum MomentsTarget {
 	case cancelFollow(uid: String)
 	case shareBet(params: [String: Any])
 	case addBetMoments(betInfo: String)
+	case followList(page: Int, rows: Int)
+	case fansList(page: Int, rows: Int)
 	
 }
 
@@ -43,7 +45,7 @@ extension MomentsTarget: TargetType {
 		case .allMoments, .myMoments:
 			return .get
 			
-		case .publishImages, .comment, .addLike, .cancelLike, .delMoment, .addFollow, .cancelFollow, .shareBet, .addBetMoments:
+		case .publishImages, .comment, .addLike, .cancelLike, .delMoment, .addFollow, .cancelFollow, .shareBet, .addBetMoments, .followList, .fansList:
 			return .post
 		}
 	}
@@ -142,6 +144,22 @@ extension MomentsTarget: TargetType {
 			bodyParameters["otherData"] = betInfo
 			bodyParameters["content"] = "投注分享!"
 
+		case .followList(page: let page, rows: let rows):
+			urlParameters["c"] = "moment"
+			urlParameters["a"] = "followList"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["page"] = page
+			bodyParameters["rows"] = rows
+
+			
+		case .fansList(page: let page, rows: let rows):
+			urlParameters["c"] = "moment"
+			urlParameters["a"] = "fansList"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["page"] = page
+			bodyParameters["rows"] = rows
 		}
 		
 		if checkSign == 1 {
