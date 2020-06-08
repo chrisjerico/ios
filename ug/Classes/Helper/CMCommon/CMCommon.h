@@ -39,6 +39,8 @@
 + (UIColor *)getPcddNumColor:(NSString *)num;
 
 + (UIColor *)getPreNumColor:(NSString *)num;
+//大乐透颜色，前5 红，后2蓝
++ (NSString *)getDLTColor:(NSInteger )num ;
 
 + (UIColor *)getHKLotteryNumColor:(NSString *)num;
 
@@ -398,4 +400,29 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(void)goVCWithUrl:(NSString *)url;
+
+/**
+*删除本地保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoom;
+
+
+/**
+*本地保存的最后一次选择的房间
+*
+*/
+
++(NSDictionary *)LastRoom;
+/**
+*本地i是否保存的最后一次选择的房间
+*
+*/
++(BOOL )hasLastRoom;
+
+/**
+*  判断本地最后一次房间是否在网络房间列表中，没有删除保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoomAction:(NSMutableArray *)chatIdAry;
 @end

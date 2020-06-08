@@ -73,7 +73,8 @@
     }
     NSDictionary *params = @{
         @"startDate":self.startDate,
-        @"endDate":[CMCommon getDateStringWithLastDate:0]
+        @"endDate":[CMCommon getDateStringWithLastDate:0],
+        @"token":[UGUserModel currentUser].sessid,
     };
     NSLog(@"params= %@",params);
     [CMNetwork ticketlotteryStatisticsUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {

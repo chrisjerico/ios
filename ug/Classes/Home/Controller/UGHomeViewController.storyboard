@@ -373,7 +373,7 @@
                                                                                                 <constraint firstItem="TJa-Nh-fe2" firstAttribute="leading" secondItem="yJf-Fm-qq9" secondAttribute="leading" id="s3p-XA-tDM"/>
                                                                                             </constraints>
                                                                                         </tableViewCellContentView>
-                                                                                        <color key="backgroundColor" red="0.78829783200000003" green="0.21705946330000001" blue="0.16467148070000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     </tableViewCell>
                                                                                 </prototypes>
                                                                                 <connections>

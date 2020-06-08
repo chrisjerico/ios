@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"c217"
+#define __SiteID__ @"c213"
 #define LocalRnVersion @"1.4.66"
 
 
@@ -143,7 +143,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test10";
+            _SiteId = @"c213";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
@@ -343,7 +343,7 @@
     if (Skin1.isBlack) {
         return NO;
     } else {
-        return [@"c213" containsString:_SiteId];
+        return [@"c213,c012" containsString:_SiteId];
     }
 }
 
@@ -434,7 +434,9 @@
     return [@"c085" containsString:_SiteId];
 }
 
-
+- (BOOL)isC190Cell {
+    return [@"c190,c012" containsString:_SiteId];
+}
 
 #pragma mark - 热更新
 
@@ -502,24 +504,15 @@
     }];
 }
 
-
 - (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
-    NSMutableDictionary *dic = [NSMutableDictionary new];
+    NSMutableDictionary *dic = self.chatHomeUrl.urlParams.mutableCopy;
     [dic setValue:roomId forKey:@"roomId"];
     if (hideHead) {
         NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
         [dic setValue:boolNum forKey:@"hideHead"];
     }
-    
-    NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
-    NSLog(@"s= %@",s);
-    return s;
-}
-
-
-
-- (NSString *)chatMainGameUr {
-    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":@"0"}];
+    NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
+    return [url stringByAppendingURLParams:dic];
 }
 
 

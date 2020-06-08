@@ -185,6 +185,28 @@ static NSString *uuidKey =@"uuidKey";
     
 }
 
++ (NSString *)getDLTColor:(NSInteger )num {
+    NSInteger preNum = num;
+    if (preNum == 1) {
+        return @"red";
+    }else if (preNum == 2) {
+        return @"red";
+    }else if (preNum == 3) {
+        return @"red";
+    }else if (preNum == 4) {
+        return @"red";
+    }else if (preNum == 5) {
+        return @"red";
+    }else if (preNum == 6) {
+        return @"blue";
+    }else if (preNum == 7) {
+        return @"blue";
+    }else {
+        return @"blue";
+    }
+    
+}
+
 + (UIColor *)getPcddNumColor:(NSString *)num {
     NSSet *graySet = [NSSet setWithObjects:@"0",@"13",@"14",@"27", nil];
     NSSet *redSet = [NSSet setWithObjects:@"3",@"6",@"9",@"12",@"15",@"18",@"21",@"24", nil];
@@ -1400,6 +1422,59 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     
 }
 
+/**
+*删除本地保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoom{
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"roomName"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"roomId"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
 
+/**
+*本地保存的最后一次选择的房间
+*
+*/
 
++(NSDictionary *)LastRoom{
+    NSString *roomId = [[NSUserDefaults standardUserDefaults]objectForKey:@"roomId"];
+    NSString *roomName = [[NSUserDefaults standardUserDefaults]objectForKey:@"roomName"];
+    
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                          roomId,@"roomId",
+                          roomName,@"roomName",
+                          nil];
+    return dic;
+}
+/**
+*本地i是否保存的最后一次选择的房间
+*
+*/
++(BOOL )hasLastRoom{
+    
+    NSDictionary *dic = [self LastRoom];
+    if ([CMCommon stringIsNull:dic[@"roomId"]]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+/**
+*  判断本地最后一次房间是否在网络房间列表中，没有删除保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoomAction:(NSMutableArray *)chatIdAry{
+    if ([CMCommon hasLastRoom]) {
+        NSDictionary *roomDic = [CMCommon LastRoom];
+        NSString *roomId  = [roomDic objectForKey:@"roomId"];
+        
+        BOOL isbool = [chatIdAry containsObject: roomId];
+        
+        if (!isbool) {
+            [CMCommon removeLastRoom];
+        }
+    }
+    
+}
 @end

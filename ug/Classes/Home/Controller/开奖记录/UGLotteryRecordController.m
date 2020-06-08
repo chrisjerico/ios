@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) YBPopupMenu *lotteryTypePopView;  /**<   彩种选择弹框 */
-@property (nonatomic, readonly) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
 
 @property (nonatomic, strong) NSMutableArray <NSString *> *lowFrequencydateArray;   /**<   低频id数组 */
 

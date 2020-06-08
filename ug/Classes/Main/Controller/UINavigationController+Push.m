@@ -192,7 +192,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                            @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
                            @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                            @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
-//                           @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
+                           @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
     };
     
     NSString *vcName = dict[model.gameType];
@@ -307,6 +307,64 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         // 去手机资料栏目
         
     }
+    if (linkCategory == 11) {
+        // 去注单信息
+        switch (linkPosition) {
+            case 1: {
+                // 彩票注单
+                [NavController1 pushViewController:[UGBetRecordViewController new] animated:YES];
+                break;
+            }
+            case 2: {
+                // 真人注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"real";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 3: {
+                // 棋牌注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"card";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 4: {
+                // 电子注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"game";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                
+                break;
+            }
+            case 5: {
+                // 体育注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"sport";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 6: {
+                // 体育注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"fish";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 7: {
+                // 电竞注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"esport";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            default: {
+                return false;
+            }
+        }
+        return true;
+    }
+
     
     if (linkCategory != 7) {
         // 去第三方游戏页面

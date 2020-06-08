@@ -138,7 +138,7 @@
                                    @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
                                    @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                                    @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
-//                                   @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
+                                   @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
             };
             NSString *vcName = dict[model.gameType];
             UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
@@ -231,6 +231,8 @@
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                 
             }
+            
+            [CMCommon removeLastRoomAction:chatIdAry];
             NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
             SysConf.chatRoomRedirect = [number intValue];
             SysConf.chatRoomAry = chatRoomAry;
@@ -355,6 +357,9 @@
             } else {
                 if (APP.betBgIsWhite) {
                     cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
+//                    if ([@"c012" containsString:APP.SiteId]) {
+//                         cell.backgroundColor = !selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor whiteColor];
+//                    }
                 }
                 else{
                     cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
@@ -365,6 +370,7 @@
                 NSLog(@"Skin1.is23 = %d",Skin1.is23);
                 
                 __ssv1.titleBar.backgroundColor = Skin1.isBlack||Skin1.is23 || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+                
             }
             
             if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
@@ -436,7 +442,7 @@
                 [chatTitleAry addObject:dic.roomName];
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
             }
-            
+            [CMCommon removeLastRoomAction:chatIdAry];
             NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:__self.chatAry];
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
             NSNumber *number = [data objectForKey:@"chatRoomRedirect"];

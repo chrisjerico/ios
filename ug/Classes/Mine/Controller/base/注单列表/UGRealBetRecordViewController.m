@@ -52,7 +52,9 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = Skin1.bgColor;
-    self.navigationItem.title = @"真人注单";
+    
+
+
     self.navigationItem.titleView = self.titleView;
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
     [self.view setBackgroundColor: Skin1.bgColor];
@@ -267,7 +269,30 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     if (_titleView == nil) {
         STButton *titleButton = [[STButton alloc] init];
         titleButton.titleSideType = STButtonTypeTitleLeft;
-        [titleButton setTitle:@"真人注单" forState:UIControlStateNormal];
+        
+        if ([self.gameType isEqualToString:@"real"]) {
+            [titleButton setTitle:@"真人注单" forState:UIControlStateNormal];
+        }
+        else if([self.gameType isEqualToString:@"card"]) {
+            
+            [titleButton setTitle:@"棋牌注单" forState:UIControlStateNormal];
+        }
+        else if([self.gameType isEqualToString:@"game"]) {
+            [titleButton setTitle:@"电子注单" forState:UIControlStateNormal];
+        }
+        else if([self.gameType isEqualToString:@"sport"]) {
+            [titleButton setTitle:@"体育注单" forState:UIControlStateNormal];
+        }
+        else if([self.gameType isEqualToString:@"fish"]) {
+            [titleButton setTitle:@"捕鱼注单" forState:UIControlStateNormal];
+        }
+        else if([self.gameType isEqualToString:@"esport"]) {
+            [titleButton setTitle:@"电竞注单" forState:UIControlStateNormal];
+        }
+        else {
+            [titleButton setTitle:@"真人注单" forState:UIControlStateNormal];
+        }
+        
         [titleButton setImage:[UIImage imageNamed:@"baijiantou"] forState:UIControlStateNormal];
         [titleButton addTarget:self action:@selector(titleViewClick)];
         _titleView = titleButton;

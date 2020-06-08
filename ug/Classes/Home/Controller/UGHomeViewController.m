@@ -512,6 +512,11 @@
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
             
+            if ( [@"c012" containsString:APP.SiteId]) {
+                subView(@"优惠活动外View").layer.borderWidth = 1;
+                subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
+            }
+           
         }
         
         if (Skin1.isJY) {
@@ -1342,7 +1347,7 @@
     [CMCommon deleteWebCache];
 }
 
-// 横幅广告
+//查询轮播图
 - (void)getBannerList {
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
@@ -1507,6 +1512,8 @@
                     [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                     
                 }
+                
+                [CMCommon removeLastRoomAction:chatIdAry];
 
                 NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
                 SysConf.chatRoomRedirect = [number intValue];
@@ -1579,11 +1586,11 @@
                 if (self.homeAdsArray.count) {
                     [self.homeAdsBigBgView setHidden:NO];
                     for (UGhomeAdsModel *banner in self.homeAdsArray) {
-                        [mutArr addObject:banner.image];
+                            [mutArr addObject:banner.image];
                     }
                     NSLog(@"mutArr = %@",mutArr);
                     self.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
-                    //                    self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                    
                 }
                 else{
                     [self.homeAdsBigBgView setHidden:YES];
@@ -2093,7 +2100,7 @@
     self.bannerView.backgroundColor = [UIColor clearColor];
     self.bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     self.bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.bannerView.autoScrollTimeInterval = 2.0;
+    self.bannerView.autoScrollTimeInterval = 3.0;
     self.bannerView.delegate = self;
     self.bannerView.pageDotColor = RGBA(210, 210, 210, 0.4);
     [self.bannerBgView insertSubview:self.bannerView atIndex:0];
@@ -2105,7 +2112,7 @@
     self.homeAdsView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     self.homeAdsView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    if ([@"c018" containsString:APP.SiteId]) {
+    if ([@"c018,c217" containsString:APP.SiteId]) {
             self.homeAdsView.autoScrollTimeInterval = 5.0;
     } else {
             self.homeAdsView.autoScrollTimeInterval = 3.0;
@@ -2283,7 +2290,7 @@
         return cell;
     } else {
         UITableViewCell *cell;
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
         }
         else{
@@ -2292,8 +2299,12 @@
      
         UGPromoteModel *pm = tableView.dataArray[indexPath.row];
         FastSubViewCode(cell);
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+            
+            if ([@"c012" containsString:APP.SiteId]) {
+                subView(@"StackView").cc_constraints.top.constant = 12 ;
+            }
             subView(@"StackView").cc_constraints.bottom.constant = 0;
         }
         if ([@"c199" containsString:APP.SiteId]) {
@@ -2316,16 +2327,19 @@
         NSURL *url = [NSURL URLWithString:pm.pic];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
-            if ([@"c190" containsString:APP.SiteId]) {
-                CGFloat w = APP.Width-48;
+            if (APP.isC190Cell) {
+                CGFloat w;
+                if ([@"c012" containsString:APP.SiteId]) {
+                    w = APP.Width-48;
+                } else {
+                    w = APP.Width-88;
+                }
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
             } else {
-                CGFloat w = APP.Width - 88;
+                CGFloat w = APP.Width-88;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
-                
-                
             }
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
         } else {
@@ -2379,7 +2393,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([_style isEqualToString:@"slide"]) {
         UGPromoteModel *item = tableView.dataArray[section];
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
                return [UGCell190HeaderView heightWithModel:item];
           }
           else{
@@ -2399,7 +2413,7 @@
     UGCellHeaderView *headerView = [contentView viewWithTagString:@"headerView"];
     if (!headerView) {
         
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
              headerView = _LoadView_from_nib_(@"UGCell190HeaderView");
          }
          else{
