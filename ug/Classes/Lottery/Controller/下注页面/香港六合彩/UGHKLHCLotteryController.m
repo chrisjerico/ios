@@ -1456,22 +1456,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateSelectLabelWithCount:(NSInteger)count {
-    self.selectLabel.text = [NSString stringWithFormat:@"已选中 %ld 注",count];
+    self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
     if (Skin1.isBlack||Skin1.is23) {
-        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.selectLabel.text.length - 4)];
-        self.selectLabel.attributedText = abStr;
+        [self.selectLabel setTextColor:[UIColor whiteColor]];
     } else {
         
         if (APP.isYellow) {
-            NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-            [abStr addAttribute:NSForegroundColorAttributeName value:RGBA(247, 211, 72, 1)  range:NSMakeRange(3, self.selectLabel.text.length - 4)];
-            self.selectLabel.attributedText = abStr;
+            [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
         }
         else{
-            NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-            [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
-            self.selectLabel.attributedText = abStr;
+             [self.selectLabel setTextColor:Skin1.navBarBgColor ];
         }
         
     }

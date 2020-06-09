@@ -259,6 +259,9 @@
             [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
         }
         
+        subButton(@"追号btn").layer.cornerRadius = 5;
+        subButton(@"追号btn").layer.masksToBounds = YES;
+        
     }
 
   if (OBJOnceToken(self)) {
