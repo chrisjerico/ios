@@ -195,7 +195,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic) BOOL activeReturnCoinStatus ;                /**<   是否開啟拉條模式 */
 @property (nonatomic) int activeReturnCoinRatio  ;                /**<  拉條最大值    拉條最小值固定為 0   */
-
+@property (nonatomic) int adSliderTimer  ;                /**<  首页腰部广告轮播时间间隔  */
 
 + (instancetype)currentConfig;
 

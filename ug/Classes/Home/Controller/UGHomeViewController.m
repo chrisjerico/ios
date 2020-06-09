@@ -173,8 +173,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *homeAdsBigBgView;           /**<   首页广告图片大背景View */
 @property (nonatomic, strong) NSArray <UGhomeAdsModel *> *homeAdsArray;   /**<   首页广告图片 */
-@property (weak, nonatomic) IBOutlet UIView *homeAdsBgView;                  /**<   首页广告图片背景View */
-@property (nonatomic, strong) SDCycleScrollView *homeAdsView;                /**<   首页广告图片View */
+@property (weak, nonatomic) IBOutlet UIView *homeAdsBgView;                  /**<   首页腰部广告图片背景View */
+@property (nonatomic, strong) SDCycleScrollView *homeAdsView;                /**<   首页腰部广告图片View */
 //-------------------------------------------
 //六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *LhPrize_FView;
@@ -836,7 +836,7 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求9
-           [self gethomeAdsList];     // 首页广告图片
+//           [self gethomeAdsList];     // 首页广告图片
            
     });
        
@@ -1290,7 +1290,7 @@
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
-            NSLog(@"model = %@",model);
+            HJSonLog(@"model = %@",model);
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
@@ -1302,6 +1302,8 @@
             
             
             [self getPromotionsType ];// 获取优惠图片分类信息
+            
+            [self gethomeAdsList];     // 首页广告图片
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
@@ -1364,6 +1366,11 @@
                     self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
                     NSLog(@"轮播时间：%f",((UGBannerModel*)model.data).interval.floatValue);
                     self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                    if (mutArr.count>1) {
+                        self.bannerView.autoScroll = YES;
+                    } else {
+                         self.bannerView.autoScroll = NO;
+                    }
                 }
             });
             
@@ -1588,9 +1595,15 @@
                     for (UGhomeAdsModel *banner in self.homeAdsArray) {
                             [mutArr addObject:banner.image];
                     }
-                    NSLog(@"mutArr = %@",mutArr);
+
+                    NSLog(@"SysConf.adSliderTimer = %d",SysConf.adSliderTimer);
                     self.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
-                    
+                    self.homeAdsView.autoScrollTimeInterval = SysConf.adSliderTimer;
+                    if (mutArr.count>1) {
+                        self.homeAdsView.autoScroll = YES;
+                    } else {
+                         self.homeAdsView.autoScroll = NO;
+                    }
                 }
                 else{
                     [self.homeAdsBigBgView setHidden:YES];
