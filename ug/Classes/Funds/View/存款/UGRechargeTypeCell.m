@@ -132,6 +132,7 @@
         
         @"tenpay_online"            :@"yunshanfu",      // 云闪付在线支付
         @"yunshanfu_transfer"       :@"yunshanfu",      // 云闪付
+        @"ysf_transfer"            :@"yunshanfu",      // 云闪付在线支付
         
         @"qq_online"                :@"qq_online",      // QQ钱包在线支付
         @"qqpay_transfer"           :@"qq_online",      // QQ钱包转账
