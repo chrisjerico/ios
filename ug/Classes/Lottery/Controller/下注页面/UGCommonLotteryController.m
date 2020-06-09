@@ -269,7 +269,7 @@
                 [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
             }
             else{
-                [self.selectLabel setTextColor:Skin1.navBarBgColor ];
+                [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
             }
             
         }
