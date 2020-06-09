@@ -1647,8 +1647,6 @@
 		22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */; };
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
-		CF2E5BAA2473D4D70094000D /* YunCeng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2E5BA82473D4D70094000D /* YunCeng.framework */; };
-		CF2E5BAB2473D4D70094000D /* YunCeng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2E5BA82473D4D70094000D /* YunCeng.framework */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -3508,7 +3506,6 @@
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
-		CF2E5BA82473D4D70094000D /* YunCeng.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YunCeng.framework; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -3914,7 +3911,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF2E5BAB2473D4D70094000D /* YunCeng.framework in Frameworks */,
 				F5614FBC2C7545CF870A0AD2 /* Pods_chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3935,7 +3931,6 @@
 				D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */,
 				D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */,
 				D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */,
-				CF2E5BAA2473D4D70094000D /* YunCeng.framework in Frameworks */,
 				21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7478,7 +7473,6 @@
 		2E2BF98637033623A296F5F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CF2E5BA82473D4D70094000D /* YunCeng.framework */,
 				D435F90823CEF996008648CE /* AudioToolbox.framework */,
 				D4463AC523A7740E008EF03D /* libresolv.tbd */,
 				D4463AC323A77404008EF03D /* UserNotifications.framework */,

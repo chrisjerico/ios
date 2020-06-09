@@ -155,7 +155,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
 
     // 去彩票下注页、或第三方游戏页、或功能页
-    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId gameCode:model.gameCode];
     
     if (!ret) {
         // 去外部链接
@@ -275,6 +275,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
+    return [self pushViewControllerWithLinkCategory:linkCategory linkPosition:linkPosition gameCode:nil];
+}
+
+- (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition gameCode:(nullable NSString *)gameCode {
     if (!linkCategory) {
         return false;
     }
@@ -372,7 +376,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
             return true;
         }
-        NSDictionary *params = @{@"token":UserI.sessid, @"id":@(linkPosition).stringValue};
+        NSDictionary *params = @{@"token":UserI.sessid,
+                                 @"id":@(linkPosition).stringValue,
+                                 @"game":gameCode,
+        };
         [SVProgressHUD showWithStatus:nil];
         [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{

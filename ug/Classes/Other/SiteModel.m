@@ -197,7 +197,7 @@
             site(@"test20",      @"test20",     @"263",     @"com.UGGame.cp",           @"http://test20.6yc.com",                       @"内测包",     @"test20"),    // (朗朗)
             site(@"test29",      @"test29",     @"245",     @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
             site(@"test29b",      @"test29b",    @"291",     @"com.UGGame.cp",           @"http://t029bz.fhptcdn.com",                  @"内测包",     @"test29b"),// (fly)
-            site(@"test30",      @"",           @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",                  @"内测包",     @"test30"),
+            site(@"test30f",     @"",           @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",                  @"内测包",     @"test30"),
             site(@"test19",      @"test19",     @"214",     @"com.UGGame.cp",           @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
             site(@"t005",        @"t005",       @"241",     @"com.UGGame.cp",           @"http://t005f.fhptcdn.com",                    @"内测包",     @"t500"),
@@ -220,12 +220,11 @@
             site(@"wt600f",       @"wt600f",     @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                 @"内测包",     @"wt600f"),//
             site(@"test05",       @"",           @"",        @"com.UGGame.cp",           @"http://test05.6yc.com",                       @"内测包",     @"test05"),    // (原生APP组)
             site(@"test30",       @"",           @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),    // (原生APP组)
-            site(@"test28f",      @"",           @"",        @"com.UGGame.cp",           @"http://test28f.fhptcdn.com",                  @"内测包",     @"test28f"),    // (原生APP组)
-            site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),    // (原生APP组)
-            site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),    // (原生APP组)
+            site(@"test28f",      @"",           @"",        @"com.UGGame.cp",           @"http://test28f.fhptcdn.com",                  @"内测包",     @"test28f"),
+            site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),
             site(@"testadaf",     @"testadaf",   @"285",     @"com.UGGame.cp",            @"http://testadaf.fhptcdn.com",                @"内测包",     @"testadaf"),    // (ada)
-            site(@"test62",       @"test62",     @"289",     @"com.UGGame.cp",            @"http://test62f.ccpt.site",                   @"内测包",     @"test62"),    // (原生APP组)
-            site(@"test09",    @"test09",           @"",     @"com.UGGame.cp",            @"http://test09.6yc.com",                @"内测包",     @"test09"),    // 
+            site(@"test62",       @"test62",     @"289",     @"com.UGGame.cp",            @"http://test62f.ccpt.site",                   @"内测包",     @"test62"),
+            site(@"test09",       @"test09",     @"",        @"com.UGGame.cp",            @"http://test09.6yc.com",                      @"内测包",     @"test09"),
 
             
             site(@"hotUpdate",   @"hotUpdate",  @"260",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"热更新测试包"),
