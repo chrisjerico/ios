@@ -25,6 +25,8 @@
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
+
+@property (nonatomic) IBOutlet UILabel *selectLabel;      /**<   注数Label */
 @property (nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
 @property (nonatomic) IBOutlet UIStackView *rightStackView;/**<右边内容*/
 
@@ -257,6 +259,19 @@
             [subButton(@"长龙btn") setBackgroundImage: [UIImage imageNamed:@"kjw_long"] forState:(UIControlStateNormal)];
             [subButton(@"直播btn") setBackgroundImage: [UIImage imageNamed:@"kjw_tv"]  forState:(UIControlStateNormal)];
             [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
+        }
+        
+        if (Skin1.isBlack||Skin1.is23) {
+            [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
+        } else {
+            
+            if (APP.isYellow) {
+                [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
+            }
+            else{
+                [self.selectLabel setTextColor:Skin1.navBarBgColor ];
+            }
+            
         }
         
         subButton(@"追号btn").layer.cornerRadius = 5;

@@ -1457,18 +1457,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)updateSelectLabelWithCount:(NSInteger)count {
     self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
-    if (Skin1.isBlack||Skin1.is23) {
-        [self.selectLabel setTextColor:[UIColor whiteColor]];
-    } else {
-        
-        if (APP.isYellow) {
-            [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
-        }
-        else{
-             [self.selectLabel setTextColor:Skin1.navBarBgColor ];
-        }
-        
-    }
+   
 }
 
 - (void)updateCloseLabel {
