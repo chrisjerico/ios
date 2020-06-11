@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *pic;            /**<   游戏图片 */
 @property (nonatomic, strong) NSString *openCycle;      /**<   开奖周期 */
 
-@property (nonatomic, strong) NSString *curIssue;       /**<   当前期期号 */
+
 @property (nonatomic, strong) NSString *curCloseTime;   /**<   当期期封盘时间 */
 @property (nonatomic, strong) NSString *curOpenTime;    /**<   当前期开奖时间 */
 @property (nonatomic, strong) NSString *nums;
@@ -45,6 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *dataNum;
 @property (nonatomic, strong) NSString *totalNum;
 @property (nonatomic, strong) NSString *lowFreq;         /**<   1 是低频 0 高频  */
+
+@property (nonatomic, copy) NSString *displayNumber;     //开奖期数  自营优先使用
+@property (nonatomic, strong) NSString *curIssue;       /**<   当前期期号 */
 
 //弹窗广告
 @property (nonatomic, strong) NSString *adPic;          /**<   彩票广告图片 */

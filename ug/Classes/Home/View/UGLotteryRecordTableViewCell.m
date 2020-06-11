@@ -50,7 +50,13 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 
 - (void)setItem:(UGLotteryHistoryModel *)item {
     _item = item;
-    self.issueLabel.text = item.issue;
+    
+    if (![CMCommon stringIsNull:item.displayNumber]) {
+        self.issueLabel.text = item.displayNumber;
+    } else {
+        self.issueLabel.text = item.issue;
+    }
+
     self.tiemLabel.text = item.openTime;
     self.numArray = [item.num componentsSeparatedByString:@","];
     self.resultArray = [item.result componentsSeparatedByString:@","];

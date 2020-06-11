@@ -67,7 +67,12 @@
     NSLog(@"v");
     [self.logoView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = item.title;
-    self.issueLabel.text = item.issue;
+    
+    if (![CMCommon stringIsNull:item.displayNumber]) {
+        self.issueLabel.text = [NSString stringWithFormat:@"%@",item.displayNumber];
+    } else {
+        self.issueLabel.text = [NSString stringWithFormat:@"%@",item.issue];
+    }
     NSString *lotteryTime = [CMCommon getNowTimeWithEndTimeStr:item.closeTime currentTimeStr:item.serverTime];
     if (lotteryTime) {
         self.lotteryTimeLabel.text = lotteryTime;

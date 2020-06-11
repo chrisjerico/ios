@@ -23,6 +23,23 @@
     }
     return nil;
 }
+
+
+- (void)setDisplayNumber:(NSString *)displayNumber{
+    if (![CMCommon stringIsNull:displayNumber]) {
+        _displayNumber = displayNumber;
+    } else {
+        _displayNumber = _curIssue;
+    }
+}
+
+- (void)setCurIssue:(NSString *)curIssue{
+    if (![CMCommon stringIsNull:_displayNumber]) {
+        _curIssue = _displayNumber;
+    } else {
+        _curIssue = curIssue;
+    }
+}
 @end
 
 @implementation UGAllNextIssueListModel

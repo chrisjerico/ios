@@ -31,7 +31,13 @@
     _item = item;
     self.nameLabel.text = item.title;
     self.betAmountLabel.text = [NSString stringWithFormat:@"¥%@",[item.money removeFloatAllZero]];
-    self.issueLabel.text = [NSString stringWithFormat:@"%@ 期",item.issue];
+    
+    if (![CMCommon stringIsNull:item.displayNumber]) {
+        self.issueLabel.text = [NSString stringWithFormat:@"%@ 期",item.displayNumber];
+    } else {
+        self.issueLabel.text = [NSString stringWithFormat:@"%@ 期",item.issue];
+    }
+    
     if (item.isWin) {
         self.winAmountLabel.hidden = NO;
         self.statusWinLabel.hidden = NO;

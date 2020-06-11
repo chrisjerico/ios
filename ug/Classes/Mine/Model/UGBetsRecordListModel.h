@@ -34,11 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *playCateId;
 @property (nonatomic, strong) NSString *statusName;
 @property (nonatomic, strong) NSString *odds;           /**<   赔率（彩票） */
-@property (nonatomic, strong) NSString *issue;          /**<   彩票期号（彩票） */
+
 @property (nonatomic, strong) NSString *betInfo;        /**<   下注号码 */
 @property (nonatomic, strong) NSString *expectAmount;   /**<   可赢金额 */
 @property (nonatomic, assign) BOOL isAllowCancel;       /**<   是否允许撤单 */
 
+@property (nonatomic, strong) NSString *issue;          /**<   彩票期号（彩票） */
+@property (nonatomic, copy) NSString *displayNumber;     //开奖期数  自营优先使用
 //==========注单明细
 @property (nonatomic, strong) NSString *date;           /**<  时间  */
 @property (nonatomic, strong) NSString *dayOfWeek;          /**<   星期 */

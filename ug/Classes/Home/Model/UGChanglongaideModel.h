@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *sort;
 @property (nonatomic, copy) NSString *title;
 
+@property (nonatomic, copy) NSString *displayNumber;//开奖期数  自营优先使用
+
 @property (nonatomic, strong) NSArray<UGBetItemModel> *betList;
 
 
