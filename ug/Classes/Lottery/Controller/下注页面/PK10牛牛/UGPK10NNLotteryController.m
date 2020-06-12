@@ -672,8 +672,16 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     
     
     
-    self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
-    self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+       if (![CMCommon stringIsNull:self.nextIssueModel.preDisplayNumber]) {
+         self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preDisplayNumber];
+    } else {
+        self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
+    }
+    if (![CMCommon stringIsNull:self.nextIssueModel.displayNumber]) {
+        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.displayNumber];
+    } else {
+        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+    }
     
     
     _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;

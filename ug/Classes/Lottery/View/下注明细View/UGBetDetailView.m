@@ -183,6 +183,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+
     NSDictionary *dict = @{
         @"token":[UGUserModel currentUser].sessid,
         @"gameId":self.nextIssueModel.gameId,
@@ -481,6 +482,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
         betModel.totalMoney = amount;
         betModel.turnNum = self.nextIssueModel.curIssue;
+   
+       
         NSInteger timeInt =  [CMTimeCommon timeSwitchTimestamp:self.nextIssueModel.curCloseTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
         NSLog(@"time = %ld",(long)timeInt);
         betModel.ftime = [NSString stringWithFormat:@"%ld",(long)timeInt];
@@ -725,7 +728,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         [self.closeTimeLabel setHidden:true] ;
         self.titleLabel.text = [NSString stringWithFormat:@"%@ 下注明细", nextIssueModel.title];
     } else {
-        self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
+        if (![CMCommon stringIsNull:nextIssueModel.displayNumber]) {
+            self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.displayNumber,nextIssueModel.title];
+        } else {
+            self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
+        }
+        
     }
 }
 

@@ -34,7 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *curCloseTime;   /**<   当期期封盘时间 */
 @property (nonatomic, strong) NSString *curOpenTime;    /**<   当前期开奖时间 */
 @property (nonatomic, strong) NSString *nums;
-@property (nonatomic, strong) NSString *preIssue;       /**<   上期期号 */
 @property (nonatomic, strong) NSString *preOpenTime;    /**<   上次开奖时间 */
 @property (nonatomic, strong) NSString *preNum;         /**<   上期开奖号码 */
 @property (nonatomic, strong) NSString *preNumColor;
@@ -48,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *displayNumber;     //开奖期数  自营优先使用
 @property (nonatomic, strong) NSString *curIssue;       /**<   当前期期号 */
+@property (nonatomic, copy) NSString *preDisplayNumber;     //上期开奖期数  自营优先使用
+@property (nonatomic, strong) NSString *preIssue;       /**<   上期期号 */
 
 //弹窗广告
 @property (nonatomic, strong) NSString *adPic;          /**<   彩票广告图片 */

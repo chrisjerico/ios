@@ -977,19 +977,35 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateHeaderViewData {
-    if (self.nextIssueModel.preIssue.length >=12) {
-        NSString *str4 = [self.nextIssueModel.preIssue substringFromIndex:2];
+
+    
+    NSString *preStr = @"";
+     if (![CMCommon stringIsNull:self.nextIssueModel.preDisplayNumber]) {
+        preStr = self.nextIssueModel.preDisplayNumber;
+    } else {
+        preStr = self.nextIssueModel.preIssue;
+    }
+    if (preStr.length >=12) {
+        NSString *str4 = [preStr substringFromIndex:2];
         self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",str4];
     }
     else {
-        self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
+        self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",preStr];
+    
     }
-    if (self.nextIssueModel.curIssue.length >=12) {
-        NSString *str4 = [self.nextIssueModel.curIssue substringFromIndex:2];
+    NSString *curStr = @"";
+     if (![CMCommon stringIsNull:self.nextIssueModel.displayNumber]) {
+        curStr = self.nextIssueModel.displayNumber;
+    } else {
+        curStr = self.nextIssueModel.curIssue;
+    }
+    
+    if (curStr.length >=12) {
+        NSString *str4 = [curStr substringFromIndex:2];
         self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",str4];
     }
     else {
-        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",curStr];
     }
     _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
