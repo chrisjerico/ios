@@ -438,6 +438,10 @@
     return [@"c190,c012" containsString:_SiteId];
 }
 
+- (BOOL)isC217RWDT {
+    return [@"c217" containsString:_SiteId];
+}
+
 #pragma mark - 热更新
 
 - (NSString *)jspPath {

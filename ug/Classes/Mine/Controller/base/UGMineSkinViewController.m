@@ -230,6 +230,13 @@
     [self.salaryBtn setHidden:!APP.isShowSalary];
     //初始化
     [self initCollectionView];
+    
+    
+    if (APP.isC217RWDT) {
+        [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
+    } else {
+        [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
+    }
 }
 
 - (void)addRightBtn {
@@ -661,7 +668,7 @@ BOOL isOk = NO;
         [self.taskButton setHidden:YES];
         [self.signButton setHidden:YES];
     }
-    
+
     if (flag) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
