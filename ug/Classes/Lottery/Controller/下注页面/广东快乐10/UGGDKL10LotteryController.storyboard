@@ -270,6 +270,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFg-l2-zyD" userLabel="底部">
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_latiao" translatesAutoresizingMaskIntoConstraints="NO" id="kOf-L7-xh2" userLabel="拉条赔率图片">
+                                        <rect key="frame" x="10" y="17" width="90" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="OXD-wo-an8"/>
+                                            <constraint firstAttribute="width" secondItem="kOf-L7-xh2" secondAttribute="height" multiplier="86:21" id="kAP-Kg-5X9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拉条赔率ImgV"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYN-ko-VST">
                                         <rect key="frame" x="10" y="15" width="74" height="30"/>
                                         <color key="backgroundColor" red="0.22706577180000001" green="0.2430337071" blue="0.25098091360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -404,6 +414,7 @@
                                 <color key="backgroundColor" red="0.37226372959999998" green="0.38425695900000001" blue="0.38823580740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="EW8-yM-Gse" firstAttribute="leading" secondItem="eFg-l2-zyD" secondAttribute="leading" constant="10" id="0Tq-24-4KA"/>
+                                    <constraint firstItem="kOf-L7-xh2" firstAttribute="top" secondItem="eFg-l2-zyD" secondAttribute="top" constant="17" id="15x-qZ-E6w"/>
                                     <constraint firstItem="ff4-9g-Mbe" firstAttribute="leading" secondItem="EW8-yM-Gse" secondAttribute="trailing" constant="10" id="3yi-AW-Lpa"/>
                                     <constraint firstItem="AfY-UH-fWc" firstAttribute="centerY" secondItem="cg3-QY-ShJ" secondAttribute="centerY" id="F7s-6i-phU"/>
                                     <constraint firstItem="cg3-QY-ShJ" firstAttribute="centerY" secondItem="2D3-96-EZv" secondAttribute="centerY" id="I6o-4u-MWG"/>
@@ -414,6 +425,7 @@
                                     <constraint firstItem="cg3-QY-ShJ" firstAttribute="leading" secondItem="2D3-96-EZv" secondAttribute="trailing" constant="5" id="QOL-aa-Orl"/>
                                     <constraint firstItem="mvQ-rt-ZbT" firstAttribute="leading" secondItem="eFg-l2-zyD" secondAttribute="leading" id="TdC-CG-v6D"/>
                                     <constraint firstItem="2D3-96-EZv" firstAttribute="centerY" secondItem="ff4-9g-Mbe" secondAttribute="centerY" id="aHs-W2-5C1"/>
+                                    <constraint firstItem="kOf-L7-xh2" firstAttribute="leading" secondItem="eFg-l2-zyD" secondAttribute="leading" constant="10" id="azk-Xf-FxR"/>
                                     <constraint firstAttribute="bottom" secondItem="ff4-9g-Mbe" secondAttribute="bottom" constant="10" id="bvJ-8H-F2a"/>
                                     <constraint firstItem="2D3-96-EZv" firstAttribute="leading" secondItem="ff4-9g-Mbe" secondAttribute="trailing" constant="5" id="dTT-xa-wFM"/>
                                     <constraint firstAttribute="height" constant="96" id="fBI-iB-Nrl"/>
@@ -482,6 +494,7 @@
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
+        <image name="xz_latiao" width="86" height="21"/>
         <image name="xz_sx" width="100" height="100"/>
     </resources>
 </document>

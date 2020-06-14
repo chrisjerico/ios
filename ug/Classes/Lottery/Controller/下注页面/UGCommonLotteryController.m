@@ -48,6 +48,7 @@
 @property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
+
 @end
 
 
@@ -280,8 +281,6 @@
         subButton(@"追号btn").layer.cornerRadius = 5;
         subButton(@"追号btn").layer.masksToBounds = YES;
         
-
-        
         [subButton(@"追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
                 NSDictionary *lastGengHao = [CMCommon LastGengHao];
@@ -290,6 +289,7 @@
             }
             
         }];
+
         
     }
 
@@ -456,6 +456,14 @@
             } else {
                 [subTextView(@"下注TxtF") set仅数字:true];
             }
+            if (SysConf.chaseNumber  == 1) {//追号开关  默认关
+                 [subImageView(@"拉条赔率ImgV") setHidden:NO];
+                 [subButton(@"追号btn") setHidden:YES];
+             } else {
+                 [subImageView(@"拉条赔率ImgV") setHidden:YES];
+                 [subButton(@"追号btn") setHidden:NO];
+             }
+            
             
             [self showSliderAction];
             

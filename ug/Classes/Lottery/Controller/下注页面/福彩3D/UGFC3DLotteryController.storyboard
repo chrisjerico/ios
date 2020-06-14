@@ -275,6 +275,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4mp-FV-m7u" userLabel="底部">
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_latiao" translatesAutoresizingMaskIntoConstraints="NO" id="Iyu-7I-pfq" userLabel="拉条赔率图片">
+                                        <rect key="frame" x="10" y="17" width="90" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="Ffg-B6-1xw"/>
+                                            <constraint firstAttribute="width" secondItem="Iyu-7I-pfq" secondAttribute="height" multiplier="86:21" id="bDu-9j-VzZ"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拉条赔率ImgV"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUr-XZ-twr">
                                         <rect key="frame" x="10" y="15" width="74" height="30"/>
                                         <color key="backgroundColor" red="0.22706577180000001" green="0.2430337071" blue="0.25098091360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -415,10 +425,12 @@
                                     <constraint firstItem="cdL-Ae-Wpm" firstAttribute="centerY" secondItem="uTQ-Z2-o6e" secondAttribute="centerY" id="Dma-Wo-1G5"/>
                                     <constraint firstAttribute="bottom" secondItem="LrJ-Md-g2a" secondAttribute="bottom" constant="10" id="Gju-uc-VwB"/>
                                     <constraint firstItem="uTQ-Z2-o6e" firstAttribute="centerY" secondItem="qas-VB-EKl" secondAttribute="centerY" id="H7z-Gd-NyT"/>
+                                    <constraint firstItem="Iyu-7I-pfq" firstAttribute="top" secondItem="4mp-FV-m7u" secondAttribute="top" constant="17" id="ISN-nm-DQj"/>
                                     <constraint firstItem="yUr-XZ-twr" firstAttribute="top" secondItem="4mp-FV-m7u" secondAttribute="top" constant="15" id="M1x-NH-yhQ"/>
                                     <constraint firstItem="cdL-Ae-Wpm" firstAttribute="leading" secondItem="4mp-FV-m7u" secondAttribute="leading" id="MID-7J-hCY"/>
                                     <constraint firstItem="qas-VB-EKl" firstAttribute="leading" secondItem="v7t-7Z-414" secondAttribute="trailing" constant="5" id="Pa4-xM-yf1"/>
                                     <constraint firstAttribute="bottom" secondItem="wLn-ZM-ZG1" secondAttribute="bottom" constant="25" id="Q45-Os-fkv"/>
+                                    <constraint firstItem="Iyu-7I-pfq" firstAttribute="leading" secondItem="4mp-FV-m7u" secondAttribute="leading" constant="10" id="ROM-47-wpg"/>
                                     <constraint firstItem="cdL-Ae-Wpm" firstAttribute="top" secondItem="4mp-FV-m7u" secondAttribute="top" id="RoD-67-hL7"/>
                                     <constraint firstItem="wLn-ZM-ZG1" firstAttribute="leading" secondItem="4mp-FV-m7u" secondAttribute="leading" constant="10" id="ZAP-Xy-C5T"/>
                                     <constraint firstItem="Jhg-JM-Zi6" firstAttribute="leading" secondItem="uTQ-Z2-o6e" secondAttribute="trailing" constant="5" id="bXn-9T-Iob"/>
@@ -486,6 +498,7 @@
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
+        <image name="xz_latiao" width="86" height="21"/>
         <image name="xz_sx" width="100" height="100"/>
     </resources>
 </document>

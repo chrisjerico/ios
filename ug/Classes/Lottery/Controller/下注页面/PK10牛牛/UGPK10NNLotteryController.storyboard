@@ -278,6 +278,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STG-Zv-03i" userLabel="底部">
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_latiao" translatesAutoresizingMaskIntoConstraints="NO" id="Ryd-dw-khW" userLabel="拉条赔率图片">
+                                        <rect key="frame" x="10" y="17" width="90" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="Oiq-cK-cGS"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拉条赔率ImgV"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHu-Wm-Soq">
                                         <rect key="frame" x="10" y="15" width="74" height="30"/>
                                         <color key="backgroundColor" red="0.22706577180000001" green="0.2430337071" blue="0.25098091360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -415,11 +424,13 @@
                                     <constraint firstItem="fij-wv-dW8" firstAttribute="leading" secondItem="8u5-0j-KGw" secondAttribute="trailing" constant="10" id="Csa-u0-E3I"/>
                                     <constraint firstAttribute="height" constant="96" id="Gee-Sb-37f"/>
                                     <constraint firstItem="fij-wv-dW8" firstAttribute="leading" secondItem="Gy3-iq-sKK" secondAttribute="trailing" constant="10" id="JFM-fa-B4H"/>
+                                    <constraint firstItem="Ryd-dw-khW" firstAttribute="top" secondItem="STG-Zv-03i" secondAttribute="top" constant="17" id="JHM-L8-o8t"/>
                                     <constraint firstItem="UHu-Wm-Soq" firstAttribute="top" secondItem="STG-Zv-03i" secondAttribute="top" constant="15" id="Kwj-9X-uMK"/>
                                     <constraint firstAttribute="trailing" secondItem="DP9-xe-XNO" secondAttribute="trailing" id="SPm-YS-eXk"/>
                                     <constraint firstItem="8u5-0j-KGw" firstAttribute="leading" secondItem="STG-Zv-03i" secondAttribute="leading" constant="10" id="Vqn-3U-dxC"/>
                                     <constraint firstItem="DP9-xe-XNO" firstAttribute="leading" secondItem="STG-Zv-03i" secondAttribute="leading" id="X9o-jq-Z9w"/>
                                     <constraint firstItem="DP9-xe-XNO" firstAttribute="top" secondItem="STG-Zv-03i" secondAttribute="top" id="XZJ-iZ-rxM"/>
+                                    <constraint firstItem="Ryd-dw-khW" firstAttribute="width" secondItem="Ryd-dw-khW" secondAttribute="height" multiplier="86:21" id="XzX-xJ-QFH"/>
                                     <constraint firstAttribute="bottom" secondItem="8u5-0j-KGw" secondAttribute="bottom" constant="25" id="YDq-Za-8Y5"/>
                                     <constraint firstAttribute="trailing" secondItem="aVf-Kd-6X1" secondAttribute="trailing" constant="10" id="ZYo-SB-Tv8"/>
                                     <constraint firstItem="UHu-Wm-Soq" firstAttribute="leading" secondItem="STG-Zv-03i" secondAttribute="leading" constant="10" id="am9-en-FJu"/>
@@ -432,6 +443,7 @@
                                     <constraint firstItem="aVf-Kd-6X1" firstAttribute="centerY" secondItem="WjC-ny-3K3" secondAttribute="centerY" id="p2Q-yj-u80"/>
                                     <constraint firstAttribute="bottom" secondItem="Gy3-iq-sKK" secondAttribute="bottom" constant="10" id="swz-w3-4Rw"/>
                                     <constraint firstItem="WjC-ny-3K3" firstAttribute="centerY" secondItem="fij-wv-dW8" secondAttribute="centerY" id="v10-gs-1H9"/>
+                                    <constraint firstItem="Ryd-dw-khW" firstAttribute="leading" secondItem="STG-Zv-03i" secondAttribute="leading" constant="10" id="x84-XJ-W8X"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BJn-29-S7t" userLabel="iphoneX的底部">
@@ -491,6 +503,7 @@
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
+        <image name="xz_latiao" width="86" height="21"/>
         <image name="xz_sx" width="100" height="100"/>
     </resources>
 </document>

@@ -275,6 +275,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNN-Td-hwh" userLabel="底部">
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_latiao" translatesAutoresizingMaskIntoConstraints="NO" id="qru-Xp-6Yf" userLabel="拉条赔率图片">
+                                        <rect key="frame" x="10" y="17" width="90" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="P2k-XR-gba"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拉条赔率ImgV"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJh-c9-ya0">
                                         <rect key="frame" x="10" y="15" width="74" height="30"/>
                                         <color key="backgroundColor" red="0.22706577180000001" green="0.2430337071" blue="0.25098091360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -408,6 +417,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.37226372959999998" green="0.38425695900000001" blue="0.38823580740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="qru-Xp-6Yf" firstAttribute="leading" secondItem="gNN-Td-hwh" secondAttribute="leading" constant="10" id="2dc-da-UQp"/>
                                     <constraint firstItem="Qy5-n2-dVm" firstAttribute="centerY" secondItem="K5H-IJ-aas" secondAttribute="centerY" id="5cp-ha-Cuv"/>
                                     <constraint firstItem="qJh-c9-ya0" firstAttribute="top" secondItem="gNN-Td-hwh" secondAttribute="top" constant="15" id="8Xz-Dn-swo"/>
                                     <constraint firstItem="9Yt-OH-qUr" firstAttribute="leading" secondItem="gNN-Td-hwh" secondAttribute="leading" id="9Af-UN-6zJ"/>
@@ -419,6 +429,7 @@
                                     <constraint firstItem="Yo4-r8-76h" firstAttribute="leading" secondItem="gNN-Td-hwh" secondAttribute="leading" constant="10" id="QfL-ja-pL5"/>
                                     <constraint firstAttribute="trailing" secondItem="9Yt-OH-qUr" secondAttribute="trailing" id="Slh-XO-I3d"/>
                                     <constraint firstItem="K5H-IJ-aas" firstAttribute="leading" secondItem="OKj-5a-wrt" secondAttribute="trailing" constant="5" id="VKp-e7-vIk"/>
+                                    <constraint firstItem="qru-Xp-6Yf" firstAttribute="width" secondItem="qru-Xp-6Yf" secondAttribute="height" multiplier="86:21" id="WQB-a2-PvU"/>
                                     <constraint firstAttribute="trailing" secondItem="Qy5-n2-dVm" secondAttribute="trailing" constant="10" id="bTB-TV-S2o"/>
                                     <constraint firstAttribute="height" constant="96" id="bTY-Cf-8ko"/>
                                     <constraint firstItem="OKj-5a-wrt" firstAttribute="centerY" secondItem="lqX-r6-nDe" secondAttribute="centerY" id="e7N-g7-aPS"/>
@@ -426,6 +437,7 @@
                                     <constraint firstItem="K5H-IJ-aas" firstAttribute="centerY" secondItem="OKj-5a-wrt" secondAttribute="centerY" id="his-j2-Nya"/>
                                     <constraint firstItem="lqX-r6-nDe" firstAttribute="leading" secondItem="Yo4-r8-76h" secondAttribute="trailing" constant="10" id="kif-fB-Hxv"/>
                                     <constraint firstItem="3ZC-Et-EtI" firstAttribute="leading" secondItem="gNN-Td-hwh" secondAttribute="leading" constant="10" id="mpP-nw-sOJ"/>
+                                    <constraint firstItem="qru-Xp-6Yf" firstAttribute="top" secondItem="gNN-Td-hwh" secondAttribute="top" constant="17" id="ooC-Ua-nO5"/>
                                     <constraint firstItem="OKj-5a-wrt" firstAttribute="leading" secondItem="lqX-r6-nDe" secondAttribute="trailing" constant="5" id="u8s-In-jXV"/>
                                     <constraint firstItem="9Yt-OH-qUr" firstAttribute="top" secondItem="gNN-Td-hwh" secondAttribute="top" id="yco-RJ-5CM"/>
                                     <constraint firstItem="qJh-c9-ya0" firstAttribute="leading" secondItem="gNN-Td-hwh" secondAttribute="leading" constant="10" id="z6U-nN-Vme"/>
@@ -489,6 +501,7 @@
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
+        <image name="xz_latiao" width="86" height="21"/>
         <image name="xz_sx" width="100" height="100"/>
     </resources>
 </document>

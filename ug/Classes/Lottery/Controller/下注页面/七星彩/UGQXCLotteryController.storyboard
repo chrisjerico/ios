@@ -275,6 +275,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-fA-yvy" userLabel="底部">
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_latiao" translatesAutoresizingMaskIntoConstraints="NO" id="8IS-7a-nGu" userLabel="拉条赔率图片">
+                                        <rect key="frame" x="10" y="17" width="90" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="MmN-72-nU9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拉条赔率ImgV"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0s-1Y-2gP">
                                         <rect key="frame" x="10" y="15" width="74" height="30"/>
                                         <color key="backgroundColor" red="0.22706577180000001" green="0.2430337071" blue="0.25098091360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -411,6 +420,7 @@
                                     <constraint firstItem="Nlo-Zq-fZn" firstAttribute="top" secondItem="5Wx-fA-yvy" secondAttribute="top" id="1Hn-SR-ktQ"/>
                                     <constraint firstItem="h9k-LT-Gcj" firstAttribute="centerY" secondItem="1G3-cB-B11" secondAttribute="centerY" id="1Ox-qS-yQo"/>
                                     <constraint firstItem="1G3-cB-B11" firstAttribute="leading" secondItem="0Lr-cd-Ycb" secondAttribute="trailing" constant="5" id="1pt-Ld-KjQ"/>
+                                    <constraint firstItem="8IS-7a-nGu" firstAttribute="top" secondItem="5Wx-fA-yvy" secondAttribute="top" constant="17" id="6wA-i5-FIQ"/>
                                     <constraint firstItem="5sR-dE-BD5" firstAttribute="leading" secondItem="5Wx-fA-yvy" secondAttribute="leading" constant="10" id="EZQ-Tv-7Np"/>
                                     <constraint firstItem="A0s-1Y-2gP" firstAttribute="leading" secondItem="5Wx-fA-yvy" secondAttribute="leading" constant="10" id="FgR-Os-ksN"/>
                                     <constraint firstItem="h9k-LT-Gcj" firstAttribute="leading" secondItem="Okk-Gx-okU" secondAttribute="trailing" constant="5" id="HFN-7z-KaG"/>
@@ -423,9 +433,11 @@
                                     <constraint firstItem="Nlo-Zq-fZn" firstAttribute="leading" secondItem="5Wx-fA-yvy" secondAttribute="leading" id="cqD-be-P1z"/>
                                     <constraint firstItem="1G3-cB-B11" firstAttribute="centerY" secondItem="0Lr-cd-Ycb" secondAttribute="centerY" id="dpd-oM-tSB"/>
                                     <constraint firstAttribute="bottom" secondItem="5sR-dE-BD5" secondAttribute="bottom" constant="10" id="e24-Jh-AVe"/>
+                                    <constraint firstItem="8IS-7a-nGu" firstAttribute="width" secondItem="8IS-7a-nGu" secondAttribute="height" multiplier="86:21" id="eQA-91-l6J"/>
                                     <constraint firstAttribute="bottom" secondItem="Nlo-Zq-fZn" secondAttribute="bottom" id="el4-dd-pBf"/>
                                     <constraint firstAttribute="height" constant="96" id="fsj-qe-p4W"/>
                                     <constraint firstItem="rl3-di-dL7" firstAttribute="leading" secondItem="5Wx-fA-yvy" secondAttribute="leading" constant="10" id="oAR-Ml-2x0"/>
+                                    <constraint firstItem="8IS-7a-nGu" firstAttribute="leading" secondItem="5Wx-fA-yvy" secondAttribute="leading" constant="10" id="oTu-sJ-PB1"/>
                                     <constraint firstItem="Okk-Gx-okU" firstAttribute="leading" secondItem="1G3-cB-B11" secondAttribute="trailing" constant="5" id="plU-eW-ibi"/>
                                     <constraint firstAttribute="bottom" secondItem="rl3-di-dL7" secondAttribute="bottom" constant="25" id="rhU-p8-uKj"/>
                                     <constraint firstItem="A0s-1Y-2gP" firstAttribute="top" secondItem="5Wx-fA-yvy" secondAttribute="top" constant="15" id="u5n-Ja-SfH"/>
@@ -489,6 +501,7 @@
         <image name="xz_icon_cl" width="100" height="100"/>
         <image name="xz_icon_kj" width="100" height="100"/>
         <image name="xz_icon_zb" width="100" height="100"/>
+        <image name="xz_latiao" width="86" height="21"/>
         <image name="xz_sx" width="100" height="100"/>
     </resources>
 </document>
