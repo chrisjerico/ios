@@ -271,9 +271,9 @@
                                 <rect key="frame" x="0.0" y="797" width="414" height="99"/>
                                 <subviews>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_latiao" translatesAutoresizingMaskIntoConstraints="NO" id="IAb-Ja-bry" userLabel="拉条赔率图片">
-                                        <rect key="frame" x="10" y="17" width="90" height="22"/>
+                                        <rect key="frame" x="10" y="17" width="82" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="L7G-w0-spG"/>
+                                            <constraint firstAttribute="height" constant="20" id="L7G-w0-spG"/>
                                             <constraint firstAttribute="width" secondItem="IAb-Ja-bry" secondAttribute="height" multiplier="86:21" id="b1e-p8-fSq"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>

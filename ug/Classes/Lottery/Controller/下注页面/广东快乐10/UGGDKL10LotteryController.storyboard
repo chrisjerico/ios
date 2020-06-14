@@ -271,9 +271,9 @@
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_latiao" translatesAutoresizingMaskIntoConstraints="NO" id="kOf-L7-xh2" userLabel="拉条赔率图片">
-                                        <rect key="frame" x="10" y="17" width="90" height="22"/>
+                                        <rect key="frame" x="10" y="17" width="82" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="OXD-wo-an8"/>
+                                            <constraint firstAttribute="height" constant="20" id="OXD-wo-an8"/>
                                             <constraint firstAttribute="width" secondItem="kOf-L7-xh2" secondAttribute="height" multiplier="86:21" id="kAP-Kg-5X9"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
