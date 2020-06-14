@@ -425,4 +425,28 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(void)removeLastRoomAction:(NSMutableArray *)chatIdAry;
+
+/**
+*删除本地保存的最后一次跟号信息
+*
+*/
++(void)removeLastGengHao;
+/**
+*本地保存的最后一次跟号信息
+*
+*/
+
++(NSDictionary *)LastGengHao;
+
+/**
+*若之前未有投注，或上一注与当前计划投注的彩种不一致，则“追号”按钮为禁用状态。
+*
+*/
++(BOOL )hasGengHao:(NSString *)mgameId;
+
+/**
+*保存本地保存的最后一次跟号信息
+*
+*/
++(void)saveLastGengHao:(NSMutableArray *)array gameId:(NSString  *)gameId selCode:(NSString *)selCode;
 @end

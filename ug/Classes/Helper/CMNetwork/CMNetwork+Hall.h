@@ -56,6 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
 //彩票注单统计
 + (void)ticketlotteryStatisticsUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
 
+// 获得最后一次莫彩种的下注信息
++ (void)ticketgetLotteryFirstOrderWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

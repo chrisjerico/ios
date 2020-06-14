@@ -223,6 +223,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.tableView removeObserver:self forKeyPath:@"contentSize" context:@"tableContext"];
 }
+
+
 - (JS_TitleView *)js_titleView {
     if (!_js_titleView) {
         _js_titleView = [[UINib nibWithNibName:@"JS_TitleView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
@@ -416,6 +418,7 @@
         SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
             [CMCommon clearWebCache];
             [CMCommon deleteWebCache];
+            [CMCommon removeLastGengHao];
             [__self tryPlayClick];
         });
         // 去登录
@@ -427,6 +430,7 @@
             
             [CMCommon deleteWebCache];
             [CMCommon clearWebCache];
+            [CMCommon removeLastGengHao];
             [__self getUserInfo];
             __self.titleView.showLoginView = NO;
             
@@ -1347,6 +1351,7 @@
     [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomId"];
     [CMCommon clearWebCache];
     [CMCommon deleteWebCache];
+    [CMCommon removeLastGengHao];
 }
 
 //查询轮播图

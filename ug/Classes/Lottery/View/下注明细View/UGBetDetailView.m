@@ -18,6 +18,7 @@
 #import "C001BetErrorCustomView.h"
 #import "CCNetworkRequests1+UG.h"
 #import "CMLabelCommon.h"
+#import "SGBrowserView.h"
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
     
     NSInteger count;  /**<   总注数*/
@@ -876,6 +877,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
+//     [SGBrowserView hide];
 }
 
 - (UITableView *)tableView {

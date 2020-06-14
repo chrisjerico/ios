@@ -597,24 +597,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
         }
          NSLog(@"array ============ %@",array);
-        if ([CMCommon arryIsNull:array]) {
-            [self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
-            return ;
-        }
-        UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
-        betDetailView.dataArray = array;
-        betDetailView.nextIssueModel = self.nextIssueModel;
-        betDetailView.code = selCode;
-        WeakSelf
-        betDetailView.betClickBlock = ^{
-            [weakSelf handleData];
-            [weakSelf resetClick:nil];
-        };
-        betDetailView.cancelBlock = ^{
-            [weakSelf handleData];
-            [weakSelf resetClick:nil];
-        };
-        [betDetailView show];
+        NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
+        [self goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:self.nextIssueModel  gameType:self.nextIssueModel.gameId selCode:selCode];
+
     });
 }
 
@@ -1455,10 +1440,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
-- (void)updateSelectLabelWithCount:(NSInteger)count {
-    self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
-   
-}
+
 
 - (void)updateCloseLabel {
     if (APP.isTextWhite) {

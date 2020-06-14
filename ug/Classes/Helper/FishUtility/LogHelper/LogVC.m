@@ -132,6 +132,7 @@ static LogVC *_logVC = nil;
     
     [CMCommon clearWebCache];
     [CMCommon deleteWebCache];
+    [CMCommon removeLastGengHao];
     
     if (_toolSegmentedControl.selectedSegmentIndex == 0) {
         [_allRequest removeAllObjects];

@@ -19,6 +19,8 @@
 #import "MGSlider.h"
 #import "UIButton+touch.h"
 
+#import "UGBetDetailView.h"
+
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *bottomView;
@@ -82,6 +84,7 @@
     }
     [self getSystemConfig];     // APP配置信息
     
+    [self resetGengHaoBtn];
     
 }
 - (BOOL)允许游客访问 { return true; }
@@ -276,6 +279,17 @@
         
         subButton(@"追号btn").layer.cornerRadius = 5;
         subButton(@"追号btn").layer.masksToBounds = YES;
+        
+
+        
+        [subButton(@"追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
+                NSDictionary *lastGengHao = [CMCommon LastGengHao];
+                NSMutableArray *objArray = [UGGameBetModel mj_objectArrayWithKeyValuesArray:lastGengHao[@"array"]];
+                [self goUGBetDetailViewObjArray:objArray dicArray:lastGengHao[@"array"] issueModel:self.nextIssueModel gameType:lastGengHao[@"gameId"] selCode:lastGengHao[@"selCode"]];
+            }
+            
+        }];
         
     }
 
@@ -596,5 +610,75 @@
         }];
     }];
     
+}
+
+- (void)getLotteryFirstOrder {
+
+ 
+    NSDictionary *params = @{@"id":self.gameId,
+                             };
+    NSLog(@"self.gameId=%@",self.gameId);
+    [CMNetwork ticketgetLotteryFirstOrderWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        
+        
+        NSLog(@"model= %@",model);
+        
+        [CMResult processWithResult:model success:^{
+           
+            self.zuiHaoIssueModel = (UGNextIssueModel *)model.data;
+            
+            NSLog(@"zuiHaoIssueModel = %@",self.zuiHaoIssueModel);
+             
+           
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+    
+}
+
+- (void)updateSelectLabelWithCount:(NSInteger)count {
+    self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
+   
+}
+
+//调用下注界面
+-(void)goUGBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode{
+    
+    if ([CMCommon arryIsNull:objArray]) {
+        [self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
+        return ;
+    }
+    
+    
+    UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
+    betDetailView.dataArray = objArray;
+    betDetailView.nextIssueModel = self.nextIssueModel;
+    betDetailView.code = selCode;
+    WeakSelf
+    betDetailView.betClickBlock = ^{
+        [weakSelf handleData];
+        [weakSelf resetClick:nil];
+    };
+    betDetailView.cancelBlock = ^{
+        [weakSelf handleData];
+        [weakSelf resetClick:nil];
+    };
+    [betDetailView show];
+    [CMCommon saveLastGengHao:dicArray.copy gameId:gameId selCode:selCode];
+    [self resetGengHaoBtn];
+    
+
+}
+
+-(void)resetGengHaoBtn{
+    FastSubViewCode(self.view);
+    if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
+        [subButton(@"追号btn") setEnabled:YES];
+        [subButton(@"追号btn") setAlpha:1.0];
+    } else {
+         [subButton(@"追号btn") setEnabled:NO];
+         [subButton(@"追号btn") setAlpha:0.3];
+    }
 }
 @end

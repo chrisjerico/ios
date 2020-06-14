@@ -1477,4 +1477,69 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }
     
 }
+
+
+/**
+*删除本地保存的最后一次跟号信息
+*
+*/
++(void)removeLastGengHao{
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"gameId"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"selCode"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"array"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
+/**
+*本地保存的最后一次跟号信息
+*
+*/
+
++(NSDictionary *)LastGengHao{
+    NSString *gameId = [[NSUserDefaults standardUserDefaults]objectForKey:@"gameId"];
+    NSString *selCode = [[NSUserDefaults standardUserDefaults]objectForKey:@"selCode"];
+    NSArray *array = [[NSUserDefaults standardUserDefaults]objectForKey:@"array"];
+    
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                          gameId,@"gameId",
+                          selCode,@"selCode",
+                          array,@"array",
+                          nil];
+    return dic;
+}
+
+/**
+*若之前未有投注，或上一注与当前计划投注的彩种不一致，则“追号”按钮为禁用状态。
+*
+*/
++(BOOL )hasGengHao:(NSString *)mgameId{
+    
+    NSDictionary *dic = [self LastGengHao];
+    NSString *gameId = dic[@"gameId"];
+    NSMutableArray  *array = dic[@"array"];
+    
+    if ([CMCommon arryIsNull:array]) {
+        return NO;
+    } else {
+        if ([gameId isEqualToString:mgameId]) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+}
+
+
+/**
+*保存本地保存的最后一次跟号信息
+*
+*/
++(void)saveLastGengHao:(NSArray *)array gameId:(NSString  *)gameId selCode:(NSString *)selCode{
+    [[NSUserDefaults standardUserDefaults]setObject:gameId forKey:@"gameId"];
+    [[NSUserDefaults standardUserDefaults]setObject:selCode forKey:@"selCode"];
+    [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"array"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
+
 @end

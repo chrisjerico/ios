@@ -6,6 +6,7 @@
 //  Copyright © 2019 ug. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "UGModel.h"
 @class UGLotterySettingModel;
 NS_ASSUME_NONNULL_BEGIN
@@ -31,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 // 号码Model
-@interface UGGameBetModel : UGModel<UGGameBetModel>
+@interface UGGameBetModel : UGModel<UGGameBetModel,NSCoding>
 
 @property (nonatomic, strong) NSString *playId;
 @property (nonatomic, strong) NSString *playIds;
