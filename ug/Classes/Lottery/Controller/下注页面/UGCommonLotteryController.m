@@ -65,6 +65,8 @@
     if (_path) {
         _path = nil;
     }
+    
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"resetGengHaoBtn" object:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -95,6 +97,12 @@
 
      self.fd_interactivePopDisabled = YES;
     [self setupTitleView];
+    
+    //注册通知
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGengHaoBtn) name:@"resetGengHaoBtn"object:nil];
+
+
     FastSubViewCode(self.view);
     {
         // 背景色
@@ -457,11 +465,9 @@
                 [subTextView(@"下注TxtF") set仅数字:true];
             }
             if (SysConf.chaseNumber  == 1) {//追号开关  默认关
-                 [subImageView(@"拉条赔率ImgV") setHidden:NO];
-                 [subButton(@"追号btn") setHidden:YES];
-             } else {
-                 [subImageView(@"拉条赔率ImgV") setHidden:YES];
                  [subButton(@"追号btn") setHidden:NO];
+             } else {
+                 [subButton(@"追号btn") setHidden:YES];
              }
             
             
@@ -673,9 +679,6 @@
         [weakSelf resetClick:nil];
     };
     [betDetailView show];
-    [CMCommon saveLastGengHao:dicArray.copy gameId:gameId selCode:selCode];
-    [self resetGengHaoBtn];
-    
 
 }
 

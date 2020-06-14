@@ -133,6 +133,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if (!self.dataArray.count) {
         [SVProgressHUD showInfoWithStatus:@"投注信息有误"];
     }
+    NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:self.betArray];
+    [CMCommon saveLastGengHao:dicArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"resetGengHaoBtn" object:nil userInfo:nil]];
+    
+    
     float totalAmount = 0.0;
     NSInteger totalNum = 0;
     for (UGBetModel *model in self.betArray) {
