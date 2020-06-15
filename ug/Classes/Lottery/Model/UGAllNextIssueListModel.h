@@ -55,6 +55,27 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *adLink;         /**<   彩票广告链接：-2=任务大厅，-1=利息宝，其他=彩票 */
 @property (nonatomic, assign) BOOL adEnable;            /**<   彩票广告是否开启：1=开启，0=关闭 */
 
+//最近一期
+@property (nonatomic, strong) NSString *gameName;          /**<   彩种名称 */
+@property (nonatomic, strong) NSString *issue;              /**<   期号 */
+@property (nonatomic, strong) NSString *lotteryNo;          /**<  彩票 号码 */
+@property (nonatomic, assign) int winCount;                  /**<    */
+@property (nonatomic, assign) int betCount;                  /**<    */
+@property (nonatomic, strong) NSString *rebateRate;          /**<  退水率 */
+@property (nonatomic, strong) NSString *odds;          /**<    */
+@property (nonatomic, strong) NSString *settleAmount;              /**<    */
+@property (nonatomic, strong) NSString *betTime;          /**<   */
+@property (nonatomic, strong) NSString *betAmount;          /**<    */
+@property (nonatomic, strong) NSString *rebateAmount;              /**<    */
+@property (nonatomic, strong) NSString *winAmount;          /**<   */
+@property (nonatomic, strong) NSString *betInfo;          /**<   */
+@property (nonatomic, strong) NSString *playName;          /**<   */
+@property (nonatomic, strong) NSString *expectAmount;          /**<   */
+@property (nonatomic, assign) BOOL isAllowCancel;            /**<    */
+@property (nonatomic, assign) int status;                  /**<    */
+
+
+
 + (instancetype)modelWithGameId:(NSString *)gameId;
 @end
 

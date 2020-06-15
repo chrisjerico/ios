@@ -18,6 +18,7 @@
 #import "C001BetErrorCustomView.h"
 #import "CCNetworkRequests1+UG.h"
 #import "CMLabelCommon.h"
+#import "SGBrowserView.h"
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
     
     NSInteger count;  /**<   总注数*/
@@ -132,6 +133,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if (!self.dataArray.count) {
         [SVProgressHUD showInfoWithStatus:@"投注信息有误"];
     }
+    NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:self.betArray];
+    [CMCommon saveLastGengHao:dicArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"resetGengHaoBtn" object:nil userInfo:nil]];
+    
+    
     float totalAmount = 0.0;
     NSInteger totalNum = 0;
     for (UGBetModel *model in self.betArray) {
@@ -884,6 +890,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
+//     [SGBrowserView hide];
 }
 
 - (UITableView *)tableView {

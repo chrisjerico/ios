@@ -6,6 +6,7 @@
 //  Copyright © 2019 ug. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "UGModel.h"
 @class UGLotterySettingModel;
 NS_ASSUME_NONNULL_BEGIN
@@ -33,22 +34,29 @@ NS_ASSUME_NONNULL_BEGIN
 // 号码Model
 @interface UGGameBetModel : UGModel<UGGameBetModel>
 
+@property (nonatomic, strong) NSString *money;
 @property (nonatomic, strong) NSString *playId;
-@property (nonatomic, strong) NSString *playIds;
+@property (nonatomic, strong) NSString *odds;           /**<   赔率 */
 @property (nonatomic, strong) NSString *betInfo;
-@property (nonatomic, strong) NSString *name;           /**<   玩法名称 */
+@property (nonatomic, strong) NSString *displayInfo;
+@property (nonatomic, strong) NSString *playIds;
 @property (nonatomic, strong) NSString *alias;          /**<   玩法别名 */
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *name;           /**<   玩法名称 */
 @property (nonatomic, strong) NSString *typeName;
+@property (nonatomic, strong) NSString *from_id;
+
 @property (nonatomic, strong) NSString *code;           /**<   玩法标识 */
 @property (nonatomic, strong) NSString *gameId;         /**<   玩法ID */
 @property (nonatomic, strong) NSString *groupId;        /**<   玩法分组ID */
-@property (nonatomic, strong) NSString *odds;           /**<   赔率 */
+
 @property (nonatomic, strong) NSString *offlineOdds;    /**<   线下赔率 */
 @property (nonatomic, strong) NSString *minMoney;       /**<   单注最低投注金额 */
 @property (nonatomic, strong) NSString *maxMoney;       /**<   单注最高投注金额 */
 @property (nonatomic, strong) NSString *maxTurnMoney;   /**<   单期最高投注金额 */
 @property (nonatomic, assign) BOOL isBan;
-@property (nonatomic, strong) NSString *from_id;
+
 
 
 @property (nonatomic, strong) NSString *rebate;
@@ -56,8 +64,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL gameEnable;             /**<   是否启用：0=否，1=是   自己加的  == UGGameplaySectionModel 的enable*/
 @property (nonatomic, strong) NSString *groupNum;
 @property (nonatomic, strong) NSString *groupColor;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *money;
+
+
 
 // 自定义参数
 @property (nonatomic, assign) BOOL select;

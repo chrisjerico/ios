@@ -40,6 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
 
+//追号=======================================================
+@property (nonatomic, strong) UGNextIssueModel*zuiHaoIssueModel;/**<莫彩种的最近一期下注*/
+
+
 
 - (void)getGameDatas;
 - (void)getNextIssueData;
@@ -47,6 +51,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)getLotteryHistory;
+
+- (void)updateSelectLabelWithCount:(NSInteger)count;
+
+//连码玩法数据处理
+- (void)handleData;
+
+// 重置
+- (IBAction)resetClick:(id)sender ;
+
+//调用下注界面   objArray:模型数组  dicArray 字典数组
+-(void)goUGBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode;
 
 @end
 
