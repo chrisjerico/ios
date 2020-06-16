@@ -1517,7 +1517,9 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     NSDictionary *dic = [self LastGengHao];
     NSString *gameId = dic[@"gameId"];
     NSMutableArray  *array = dic[@"array"];
-    
+    if ([CMCommon stringIsNull:gameId]) {
+        return NO;
+    }
     if ([CMCommon arryIsNull:array]) {
         return NO;
     } else {

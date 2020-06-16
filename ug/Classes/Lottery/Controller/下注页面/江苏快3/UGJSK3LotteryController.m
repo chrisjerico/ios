@@ -379,6 +379,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
+
 #pragma mark - YBPopupMenuDelegate
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {

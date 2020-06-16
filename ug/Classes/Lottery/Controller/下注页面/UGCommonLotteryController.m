@@ -692,4 +692,14 @@
          [subButton(@"追号btn") setAlpha:0.3];
     }
 }
+
+//连码玩法数据处理
+- (void)handleData{
+    
+}
+
+// 重置
+- (IBAction)resetClick:(id)sender {
+    
+}
 @end
