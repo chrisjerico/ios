@@ -66,6 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<UGbetParamModel> *betParams;
 @property (nonatomic, strong) NSArray<UGplayNameModel> *playNameArray;
 @property (nonatomic, strong) UGselectSubModel *selectSub; /**<   用于电脑版*/
+@property (nonatomic, copy) NSString *displayNumber;     //开奖期数  自营优先使用
 @end
 
 NS_ASSUME_NONNULL_END

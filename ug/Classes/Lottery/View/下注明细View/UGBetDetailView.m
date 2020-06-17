@@ -135,9 +135,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     }
     
     if (SysConf.chaseNumber  == 1) {//追号开关  默认关
-        NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:self.betArray];
-        [CMCommon saveLastGengHao:dicArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
-        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"resetGengHaoBtn" object:nil userInfo:nil]];
+              NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:self.betArray];
+           [CMCommon saveLastGengHao:dicArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
+           [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"resetGengHaoBtn" object:nil userInfo:nil]];
     }
 
     
@@ -487,6 +487,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     {//其他数据
         NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+        betModel.displayNumber = self.nextIssueModel.displayNumber;
         betModel.gameName = self.nextIssueModel.title;
         betModel.gameId = self.nextIssueModel.gameId;
         betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
