@@ -18,6 +18,7 @@
 #import "C001BetErrorCustomView.h"
 #import "CCNetworkRequests1+UG.h"
 #import "CMLabelCommon.h"
+#import "SGBrowserView.h"
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
     
     NSInteger count;  /**<   总注数*/
@@ -132,6 +133,15 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if (!self.dataArray.count) {
         [SVProgressHUD showInfoWithStatus:@"投注信息有误"];
     }
+    
+    if (SysConf.chaseNumber  == 1) {//追号开关  默认关
+        NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:self.betArray];
+        [CMCommon saveLastGengHao:dicArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"resetGengHaoBtn" object:nil userInfo:nil]];
+    }
+
+    
+    
     float totalAmount = 0.0;
     NSInteger totalNum = 0;
     for (UGBetModel *model in self.betArray) {
@@ -183,6 +193,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+
     NSDictionary *dict = @{
         @"token":[UGUserModel currentUser].sessid,
         @"gameId":self.nextIssueModel.gameId,
@@ -476,11 +487,14 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     {//其他数据
         NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+        betModel.displayNumber = self.nextIssueModel.displayNumber;
         betModel.gameName = self.nextIssueModel.title;
         betModel.gameId = self.nextIssueModel.gameId;
         betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
         betModel.totalMoney = amount;
         betModel.turnNum = self.nextIssueModel.curIssue;
+   
+       
         NSInteger timeInt =  [CMTimeCommon timeSwitchTimestamp:self.nextIssueModel.curCloseTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
         NSLog(@"time = %ld",(long)timeInt);
         betModel.ftime = [NSString stringWithFormat:@"%ld",(long)timeInt];
@@ -725,7 +739,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         [self.closeTimeLabel setHidden:true] ;
         self.titleLabel.text = [NSString stringWithFormat:@"%@ 下注明细", nextIssueModel.title];
     } else {
-        self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
+        if (![CMCommon stringIsNull:nextIssueModel.displayNumber]) {
+            self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.displayNumber,nextIssueModel.title];
+        } else {
+            self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
+        }
+        
     }
 }
 
@@ -876,6 +895,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
+//     [SGBrowserView hide];
 }
 
 - (UITableView *)tableView {

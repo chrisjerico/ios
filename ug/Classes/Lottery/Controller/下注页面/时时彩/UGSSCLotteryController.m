@@ -572,25 +572,8 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             }
         }
         
-        if ([CMCommon arryIsNull:array]) {
-            [self.navigationController.view makeToast:@"请输入投注金额"
-                                             duration:1.5
-                                             position:CSToastPositionCenter];
-            return ;
-        }
-        
-        
-        UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
-        betDetailView.dataArray = array;
-        NSLog(@"array111 = %@",array);
-        betDetailView.nextIssueModel = self.nextIssueModel;
-        betDetailView.code = selCode;
-         NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
-        WeakSelf
-        betDetailView.betClickBlock = ^{
-            [weakSelf resetClick:nil];
-        };
-        [betDetailView show];
+        NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
+        [self goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:self.nextIssueModel  gameType:self.nextIssueModel.gameId selCode:selCode];
         
     });
 }
@@ -1356,8 +1339,16 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 - (void)updateHeaderViewData {
      
-     self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
-     self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+     if (![CMCommon stringIsNull:self.nextIssueModel.preDisplayNumber]) {
+          self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preDisplayNumber];
+     } else {
+         self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
+     }
+      if (![CMCommon stringIsNull:self.nextIssueModel.displayNumber]) {
+         self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.displayNumber];
+     } else {
+         self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+     }
     _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
@@ -1367,22 +1358,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     [self.headerCollectionView reloadData];
 }
 
-- (void)updateSelectLabelWithCount:(NSInteger)count {
-    // 3.GCD
-    dispatch_async(dispatch_get_main_queue(), ^{
-         self.selectLabel.text = [NSString stringWithFormat:@"已选中 %ld 注",count];
-         if (Skin1.isBlack) {
-             NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-             [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(3, self.selectLabel.text.length - 4)];
-             self.selectLabel.attributedText = abStr;
-         } else {
-             NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.selectLabel.text];
-             [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(3, self.selectLabel.text.length - 4)];
-             self.selectLabel.attributedText = abStr;
-         }
-    });
-  
-}
+
 
 - (void)updateCloseLabelText{
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];

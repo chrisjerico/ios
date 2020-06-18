@@ -32,7 +32,6 @@
 #import "KMCGeigerCounter.h"
 #import "AppDelegate+HgBugly.h"
 #import "JPUSHService.h"
-#import <YunCeng/YunCeng.h>
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
@@ -76,6 +75,11 @@
                            @"c052":@"bc76977c162ffe40285b9dc7",
                            @"c193":@"9cbb58d0eebcb5c1b421163e",
                            @"c012":@"2772c653994de0f3faa0f4eb",
+                           @"c230":@"ac740711a824da1018ef0810",
+                           @"c085":@"c50224b5f533daabb09fbfc7",
+                           @"c002":@"216c64bd4631f22235cb8cc5",
+                           @"c175":@"e7d80ea4cf6ee9d2b39208f4",
+                           @"c217":@"854010b0c6c28834fe3f2c59",
     };
     
     NSLog(@"APP.SiteId = %@",APP.SiteId);
@@ -100,35 +104,6 @@
         entity.types = JPAuthorizationOptionAlert | JPAuthorizationOptionBadge | JPAuthorizationOptionSound | JPAuthorizationOptionProvidesAppNotificationSettings;
         entity;
     }) delegate:self];
-    
-    
-    // 游戏盾
-    if ([APP.SiteId isEqualToString:@"a002"]) {
-        const char *appKey = "IiCJZtVLWMDn-RwCrHYVU7yl32EXfL7yYzrnCC-I1_GGW-J_3dLjRyaM-v_Frp7sKW5LTBCcyXA+NUv2RF7EPOOAaHsENPTwc3MawM_NeFssWsvyJ+YNSP_Yjn0wyoQYP_3z2Bw3KKeNnqcFFzS-y6z22YJElbA7HAuFfsDnWOdJoOnwTb4h7JZ5b4tB9sQoxbG6gobyhwbBhbeb77A8oEZi+kb+WceFMdmBM1k-gUAeAE_wTc5YUev-DGyiFlvtv8a_NWWIkOdTwz_WhGYzlRPlaR05JVwvlsp+qP51heTd2zLqn6sJrsAFXEpf0X05mlllpv6q-A_DcpRCSwrtEassbZ3RkS2hdTFuzGY6hfCIzT5X8HwarALxAi+r2TgxUgIn7hwOOgNNfFHBjnyXQ4IwlWZ";
-        const char *token = "001";
-        const char *groupName = "groupnameug01.W4Eyq4un0q.ftnormal03ah.com";
-        const char *dip = "ug01";
-        const char *dport = "9080";
-        
-        NSLog(@"游戏盾初始化前，appKey=%s, token=%s", appKey, token);
-        int ret = [YunCeng initEx:appKey :token];
-        NSLog(@"游戏盾初始化%@，错误码：%d", ret ? @"失败" : @"成功", ret);
-        
-        int ipLen = 100;
-        char *ipString = (char *)malloc(ipLen * sizeof(char));
-        int portLen = 100;
-        char *portString = (char *)malloc(ipLen * sizeof(char));
-        
-        NSLog(@"获取ip前：token=%s, groupName=%s, dip=%s, dport=%s, ip=%s, ipLen=%d, port=%s, portLen=%d", token, groupName, dip, dport, ipString, ipLen, portString, portLen);
-//        int ipStatus = [YunCeng getProxyTcpByIp:token :groupName :dip :dport :ipString :ipLen :portString :portLen];
-        int ipStatus = [YunCeng getProxyTcpByDomain:token :groupName :dip :dport :ipString :ipLen :portString :portLen];
-        NSLog(@"获取ip%@，错误码：%d", ipStatus ? @"失败" : @"成功", ipStatus);
-        
-        NSLog(@"ip = %s", ipString);
-        NSLog(@"port = %s", portString);
-        [APP setValue:_NSString(@"http://%s:%s", ipString, portString) forKey:@"_Host"];
-        NSLog(@"APP.Host = %@", APP.Host);
-    }
     
 
     [self userAgent];

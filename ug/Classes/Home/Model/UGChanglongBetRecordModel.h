@@ -41,12 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *openTime;
 @property (nonatomic, strong) NSString *usr;
 @property (nonatomic, assign) BOOL isTest;
-@property (nonatomic, strong) NSString *issue;
+
 @property (nonatomic, strong) NSString *rebate;
 @property (nonatomic, strong) NSString *resultMoney;
 @property (nonatomic, strong) NSString *msg;
 @property (nonatomic, assign) BOOL isAllowCancel;
 
+@property (nonatomic, strong) NSString *issue;
+@property (nonatomic, copy) NSString *displayNumber;     //开奖期数  自营优先使用
 // 自定义字段
 @property (nonatomic, strong) NSString *pic;
 

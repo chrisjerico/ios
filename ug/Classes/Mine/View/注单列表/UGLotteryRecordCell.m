@@ -43,7 +43,13 @@
     
     FastSubViewCode(self);
     subLabel(@"彩种Label").text = item.gameName;
-    subLabel(@"期数Label").text = item.issue;
+    
+    if (![CMCommon stringIsNull:item.displayNumber]) {
+        subLabel(@"期数Label").text = item.displayNumber;
+    } else {
+        subLabel(@"期数Label").text = item.issue;
+    }
+    
     subLabel(@"注单号Label").text = item.betId;
     subLabel(@"赔率Label").text = item.odds;
     subLabel(@"注单金额Label").text = item.betAmount;

@@ -19,12 +19,16 @@
 #import "MGSlider.h"
 #import "UIButton+touch.h"
 
+#import "UGBetDetailView.h"
+
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *bottomView;
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
+
+@property (nonatomic) IBOutlet UILabel *selectLabel;      /**<   注数Label */
 @property (nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
 @property (nonatomic) IBOutlet UIStackView *rightStackView;/**<右边内容*/
 
@@ -44,6 +48,7 @@
 @property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
+
 @end
 
 
@@ -60,6 +65,10 @@
     if (_path) {
         _path = nil;
     }
+    
+   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"resetGengHaoBtn" object:self];
+        [self.nextIssueCountDown destoryTimer];
+    NSLog(@"%s dealloc", object_getClassName(self));
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -80,6 +89,7 @@
     }
     [self getSystemConfig];     // APP配置信息
     
+    [self resetGengHaoBtn];
     
 }
 - (BOOL)允许游客访问 { return true; }
@@ -89,6 +99,12 @@
 
      self.fd_interactivePopDisabled = YES;
     [self setupTitleView];
+    
+    //注册通知
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGengHaoBtn) name:@"resetGengHaoBtn"object:nil];
+
+
     FastSubViewCode(self.view);
     {
         // 背景色
@@ -259,6 +275,32 @@
             [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
         }
         
+        if (Skin1.isBlack||Skin1.is23) {
+            [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
+        } else {
+            
+            if (APP.isYellow) {
+                [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
+            }
+            else{
+                [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
+            }
+            
+        }
+        
+        subButton(@"追号btn").layer.cornerRadius = 5;
+        subButton(@"追号btn").layer.masksToBounds = YES;
+        
+        [subButton(@"追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
+                NSDictionary *lastGengHao = [CMCommon LastGengHao];
+                NSMutableArray *objArray = [UGGameBetModel mj_objectArrayWithKeyValuesArray:lastGengHao[@"array"]];
+                [self goUGBetDetailViewObjArray:objArray dicArray:lastGengHao[@"array"] issueModel:self.nextIssueModel gameType:lastGengHao[@"gameId"] selCode:lastGengHao[@"selCode"]];
+            }
+            
+        }];
+
+        
     }
 
   if (OBJOnceToken(self)) {
@@ -424,6 +466,12 @@
             } else {
                 [subTextView(@"下注TxtF") set仅数字:true];
             }
+            if (SysConf.chaseNumber  == 1) {//追号开关  默认关
+                 [subButton(@"追号btn") setHidden:NO];
+             } else {
+                 [subButton(@"追号btn") setHidden:YES];
+             }
+            
             
             [self showSliderAction];
             
@@ -574,9 +622,88 @@
             }
            
         } failure:^(id msg) {
+//            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+    
+}
+
+- (void)getLotteryFirstOrder {
+
+ 
+    NSDictionary *params = @{@"id":self.gameId,
+                             };
+    NSLog(@"self.gameId=%@",self.gameId);
+    [CMNetwork ticketgetLotteryFirstOrderWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        
+        
+        NSLog(@"model= %@",model);
+        
+        [CMResult processWithResult:model success:^{
+           
+            self.zuiHaoIssueModel = (UGNextIssueModel *)model.data;
+            
+            NSLog(@"zuiHaoIssueModel = %@",self.zuiHaoIssueModel);
+             
+           
+        } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
     
 }
+
+- (void)updateSelectLabelWithCount:(NSInteger)count {
+    self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
+   
+}
+
+//调用下注界面
+-(void)goUGBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode{
+    
+    if ([CMCommon arryIsNull:objArray]) {
+        [self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
+        return ;
+    }
+    
+    
+    UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
+    betDetailView.dataArray = objArray;
+    betDetailView.nextIssueModel = self.nextIssueModel;
+    betDetailView.code = selCode;
+    WeakSelf
+    betDetailView.betClickBlock = ^{
+        [weakSelf handleData];
+        [weakSelf resetClick:nil];
+    };
+    betDetailView.cancelBlock = ^{
+        [weakSelf handleData];
+        [weakSelf resetClick:nil];
+    };
+    [betDetailView show];
+
+}
+
+-(void)resetGengHaoBtn{
+    FastSubViewCode(self.view);
+    if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
+        [subButton(@"追号btn") setEnabled:YES];
+        [subButton(@"追号btn") setAlpha:1.0];
+    } else {
+         [subButton(@"追号btn") setEnabled:NO];
+         [subButton(@"追号btn") setAlpha:0.3];
+    }
+}
+
+//连码玩法数据处理
+- (void)handleData{
+    
+}
+
+// 重置
+- (IBAction)resetClick:(id)sender {
+    
+}
+
+
 @end

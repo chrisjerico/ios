@@ -55,7 +55,12 @@
     self.cancelBetButton.hidden = !self.item.isAllowCancel;
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:self.item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
     self.titleLabel.text = self.item.title;
-    self.issueLabel.text = [NSString stringWithFormat:@"第%@期",self.item.issue];
+    
+    if (![CMCommon stringIsNull:self.item.displayNumber]) {
+        self.issueLabel.text = [NSString stringWithFormat:@"第%@期",self.item.displayNumber];
+    } else {
+        self.issueLabel.text = [NSString stringWithFormat:@"第%@期",self.item.issue];
+    }
     self.betTimeLabel.text = self.item.addTime;
     self.orderNoLabel.text = self.item.orderNo;
     self.betAmontLabel.text = [NSString stringWithFormat:@"%@元",self.item.money];

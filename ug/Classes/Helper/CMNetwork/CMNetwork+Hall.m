@@ -252,5 +252,17 @@
     CMMETHOD_END;
 }
     
-   
+// 获得最后一次莫彩种的下注信息  请求参数 ： id  必填（int）
++ (void)ticketgetLotteryFirstOrderWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[ticketgetLotteryFirstOrderUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGNextIssueModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end

@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *odds;
 @property (nonatomic, assign) BOOL select;
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END
