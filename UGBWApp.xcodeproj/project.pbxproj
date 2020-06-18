@@ -115,7 +115,6 @@
 		031E199A23BE812600B0F813 /* LHPostPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E141F23BE812300B0F813 /* LHPostPayView.xib */; };
 		031E199B23BE812600B0F813 /* LHPostPayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E141F23BE812300B0F813 /* LHPostPayView.xib */; };
 		031E199C23BE812600B0F813 /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142523BE812300B0F813 /* category.m */; };
-		031E199D23BE812600B0F813 /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142523BE812300B0F813 /* category.m */; };
 		031E199E23BE812600B0F813 /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142723BE812300B0F813 /* IBTextField.m */; };
 		031E199F23BE812600B0F813 /* IBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142723BE812300B0F813 /* IBTextField.m */; };
 		031E19A023BE812600B0F813 /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142823BE812300B0F813 /* IBButton.m */; };
@@ -9710,7 +9709,6 @@
 				031E1CB123BE812A00B0F813 /* UGNavigationController.m in Sources */,
 				031E1B8523BE812900B0F813 /* UGNoticePopView.m in Sources */,
 				031EF5BE23BE7B4D00B0F813 /* ConcernedMomentsHeaderView.swift in Sources */,
-				031E199D23BE812600B0F813 /* category.m in Sources */,
 				03D6926A23C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
 				03E56F902480FB0E00996099 /* UGNoticeTypeModel.m in Sources */,
 				031E1A2523BE812700B0F813 /* CCSessionModel.m in Sources */,
