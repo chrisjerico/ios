@@ -67,6 +67,8 @@
     }
     
    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"resetGengHaoBtn" object:self];
+        [self.nextIssueCountDown destoryTimer];
+    NSLog(@"%s dealloc", object_getClassName(self));
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -620,7 +622,7 @@
             }
            
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
     
@@ -702,4 +704,6 @@
 - (IBAction)resetClick:(id)sender {
     
 }
+
+
 @end

@@ -385,7 +385,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         [betObj setPlayNameArray:playNameArray];
     }
     {//其他数据
-        
+        betObj.displayNumber = betModel.displayNumber;
         betObj.gameName = betModel.title;
         betObj.gameId = betModel.gameId;
         betObj.totalNums = @"1";

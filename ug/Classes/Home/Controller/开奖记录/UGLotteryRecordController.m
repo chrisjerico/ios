@@ -171,7 +171,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
             self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
             [self.tableView reloadData];
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
     
