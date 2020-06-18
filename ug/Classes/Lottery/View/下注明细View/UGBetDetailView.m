@@ -487,6 +487,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     {//其他数据
         NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+        betModel.displayNumber = self.nextIssueModel.displayNumber;
         betModel.gameName = self.nextIssueModel.title;
         betModel.gameId = self.nextIssueModel.gameId;
         betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
