@@ -101,8 +101,11 @@
                                 <constraint firstItem="QPD-mp-8WO" firstAttribute="top" secondItem="h1l-FX-nWf" secondAttribute="top" id="xPl-ia-TdV"/>
                                 <constraint firstAttribute="trailing" secondItem="QPD-mp-8WO" secondAttribute="trailing" id="yEb-Cg-gmI"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="全部已读面板"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7z-gP-zGt" userLabel="全部已读面板">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7z-gP-zGt" userLabel="全部删除面板">
                             <rect key="frame" x="167" y="10" width="132" height="40"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="站内信_全部删除" translatesAutoresizingMaskIntoConstraints="NO" id="7po-sN-OLe">
@@ -141,6 +144,9 @@
                                 <constraint firstItem="mfO-gt-dj7" firstAttribute="top" secondItem="z7z-gP-zGt" secondAttribute="top" id="lnY-5b-e7Q"/>
                                 <constraint firstItem="lDY-cf-eD4" firstAttribute="leading" secondItem="7po-sN-OLe" secondAttribute="trailing" constant="8" id="ypW-oU-MMI"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="全部删除面板"/>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.35645335912704468" green="0.53080987930297852" blue="0.90980881452560425" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -151,6 +157,9 @@
                         <constraint firstItem="z7z-gP-zGt" firstAttribute="leading" secondItem="h1l-FX-nWf" secondAttribute="trailing" constant="20" id="dDt-e2-C36"/>
                         <constraint firstItem="h1l-FX-nWf" firstAttribute="centerY" secondItem="iKZ-Of-pZC" secondAttribute="centerY" id="rH3-e5-Zzv"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="底部面板"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

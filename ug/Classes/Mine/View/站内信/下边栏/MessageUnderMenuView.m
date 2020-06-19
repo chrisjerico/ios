@@ -43,11 +43,13 @@
 
         FastSubViewCode(self);
        
-       subButton(@"已读btn").layer.cornerRadius = 5;
-       subButton(@"已读btn").layer.masksToBounds = YES;
+       subView(@"全部已读面板").layer.cornerRadius = 5;
+       subView(@"全部已读面板").layer.masksToBounds = YES;
        
-       subButton(@"删除btn").layer.cornerRadius = 5;
-       subButton(@"删除btn").layer.masksToBounds = YES;
+       subView(@"全部删除面板").layer.cornerRadius = 5;
+       subView(@"全部删除面板").layer.masksToBounds = YES;
+       
+       [subView(@"底部面板") setBackgroundColor:RGBA(60, 136, 247, 1)];
      
         [subButton(@"已读btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
