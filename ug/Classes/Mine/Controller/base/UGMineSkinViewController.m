@@ -26,7 +26,7 @@
 #import "UGSetupPayPwdController.h"
 #import "UGYubaoViewController.h"
 #import "UGSecurityCenterViewController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
 #import "UGUserInfoViewController.h"

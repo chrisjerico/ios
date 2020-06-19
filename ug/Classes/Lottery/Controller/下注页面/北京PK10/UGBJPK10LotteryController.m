@@ -20,7 +20,7 @@
 #import "UGAllNextIssueListModel.h"
 #import "STBarButtonItem.h"
 #import "WSLWaterFlowLayout.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGChangLongController.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"

@@ -29,7 +29,7 @@
 #import "UGPromotionsController.h"               // 模板优惠专区
 #import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
-#import "UGMailBoxTableViewController.h"         // 站内信
+#import "MailBoxTableViewController.h"         // 站内信
 #import "UGSigInCodeViewController.h"            // 每日签到
 #import "SLWebViewController.h"
 #import "UGSecurityCenterViewController.h"  // 安全中心
