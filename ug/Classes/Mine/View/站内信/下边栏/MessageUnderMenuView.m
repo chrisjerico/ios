@@ -42,6 +42,12 @@
         self = [self MessageUnderMenuView];
 
         FastSubViewCode(self);
+       
+       subButton(@"已读btn").layer.cornerRadius = 5;
+       subButton(@"已读btn").layer.masksToBounds = YES;
+       
+       subButton(@"删除btn").layer.cornerRadius = 5;
+       subButton(@"删除btn").layer.masksToBounds = YES;
      
         [subButton(@"已读btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
@@ -65,6 +71,7 @@
             }];
 
          }];
+
 
         [subButton(@"删除btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
