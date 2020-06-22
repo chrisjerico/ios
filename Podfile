@@ -81,7 +81,7 @@ pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
 pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
 pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
+pod 'react-native-webview', :podspec => '../node_modules/react-native-webview/react-native-webview.podspec'
   use_native_modules!
 
 
