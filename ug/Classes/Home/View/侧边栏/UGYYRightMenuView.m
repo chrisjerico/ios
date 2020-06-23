@@ -245,9 +245,40 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         
         [self initTitleAndImgs ];
         
+        [self tableDataAction];
+        
     }
     return self;
     
+}
+
+
+-(void)tableDataAction{
+        NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                                 };
+        [CMNetwork systemMobileRightWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+
+            [CMResult processWithResult:model success:^{
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"=====");
+                    // 需要在主线程执行的代码
+//                     self.dzpArray = model.data;
+//                     NSLog(@"dzpArray = %@",self.dzpArray);
+//
+//                    if (self.dzpArray.count) {
+//
+//
+//
+//                    }
+
+                });
+                
+            } failure:^(id msg) {
+                [SVProgressHUD showErrorWithStatus:msg];
+
+            }];
+        }];
 }
 
 -(IBAction)showMMemberCenterView{
