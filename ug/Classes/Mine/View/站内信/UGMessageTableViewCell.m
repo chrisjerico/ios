@@ -27,8 +27,8 @@
     self.titleLabel.text = item.title;
     self.timeLabel.text = item.updateTime;
     if (item.isRead) {
-        self.titleLabel.textColor = Skin1.textColor2;
-        self.timeLabel.textColor = Skin1.textColor2;
+        self.titleLabel.textColor = Skin1.textColor3;
+        self.timeLabel.textColor = Skin1.textColor3;
     } else {
         self.titleLabel.textColor = Skin1.textColor1;
         self.timeLabel.textColor = Skin1.textColor1;

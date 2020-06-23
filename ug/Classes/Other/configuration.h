@@ -124,6 +124,10 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define feedbackUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=addFeedback"]
 
+#define deleteMsgAllUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=deleteMsgAll"]
+
+#define readMsgAllUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=readMsgAll"]
+
 #define getFeedbackListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=myFeedback"]
 
 #define getFeedbackDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=feedbackDetail"]

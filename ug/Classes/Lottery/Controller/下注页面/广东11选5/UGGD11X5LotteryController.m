@@ -19,7 +19,7 @@
 #import "CountDown.h"
 #import "UGAllNextIssueListModel.h"
 #import "STBarButtonItem.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 
 #import "UGChangLongController.h"
 #import "UGFundsViewController.h"

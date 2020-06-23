@@ -18,7 +18,7 @@
 #import "UGLotteryRecordController.h"       // 开奖记录
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGSecurityCenterViewController.h"  // 安全中心
-#import "UGMailBoxTableViewController.h"    // 站内信
+#import "MailBoxTableViewController.h"    // 站内信
 #import "UGBankCardInfoController.h"        // 我的银行卡
 #import "UGBindCardViewController.h"        // 银行卡管理
 #import "UGYubaoViewController.h"           // 利息宝
@@ -154,7 +154,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,        @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,         @"任务中心"),
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,            @"签到"),
-            item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.className,         MM_站内信,           @"站内信"),
+            item(@"/message",           @"zhanneixin",                  MailBoxTableViewController.className,         MM_站内信,           @"站内信"),
             item(@"/activity",          @"youhui1",                     UGPromotionsController.className,               MM_优惠活动_默认,     @"优惠活动"),
             item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,           @"聊天室"),
             item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,         @"推广收益"),

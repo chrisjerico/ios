@@ -1953,6 +1953,9 @@
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
 		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
 		D442590523E949F00067E981 /* LHHornView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442590423E949F00067E981 /* LHHornView.xib */; };
+		D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442695F249C83D10006878C /* MessageUnderMenuView.xib */; };
+		D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
+		D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4426964249CABEC0006878C /* MailBoxTableViewController.xib */; };
 		D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AAB824614D25002737CB /* DZPOneTableViewCell.m */; };
 		D444AABC24614D3B002737CB /* DZPOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */; };
 		D444AABF246161F6002737CB /* DZPTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AABE246161F6002737CB /* DZPTwoTableViewCell.m */; };
@@ -3816,6 +3819,10 @@
 		D442590123E949600067E981 /* LHHornView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHHornView.h; sourceTree = "<group>"; };
 		D442590223E949600067E981 /* LHHornView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHHornView.m; sourceTree = "<group>"; };
 		D442590423E949F00067E981 /* LHHornView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHHornView.xib; sourceTree = "<group>"; };
+		D442695F249C83D10006878C /* MessageUnderMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageUnderMenuView.xib; sourceTree = "<group>"; };
+		D4426962249CABEC0006878C /* MailBoxTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailBoxTableViewController.h; sourceTree = "<group>"; };
+		D4426963249CABEC0006878C /* MailBoxTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailBoxTableViewController.m; sourceTree = "<group>"; };
+		D4426964249CABEC0006878C /* MailBoxTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailBoxTableViewController.xib; sourceTree = "<group>"; };
 		D444AAB724614D25002737CB /* DZPOneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneTableViewCell.h; sourceTree = "<group>"; };
 		D444AAB824614D25002737CB /* DZPOneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPOneTableViewCell.m; sourceTree = "<group>"; };
 		D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -6346,6 +6353,9 @@
 			children = (
 				031E181F23BE812600B0F813 /* UGMailBoxTableViewController.h */,
 				031E182023BE812600B0F813 /* UGMailBoxTableViewController.m */,
+				D4426962249CABEC0006878C /* MailBoxTableViewController.h */,
+				D4426963249CABEC0006878C /* MailBoxTableViewController.m */,
+				D4426964249CABEC0006878C /* MailBoxTableViewController.xib */,
 			);
 			path = "站内信";
 			sourceTree = "<group>";
@@ -8094,6 +8104,7 @@
 			children = (
 				D48075D2249C777500E1E5F5 /* MessageUnderMenuView.h */,
 				D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */,
+				D442695F249C83D10006878C /* MessageUnderMenuView.xib */,
 			);
 			path = "下边栏";
 			sourceTree = "<group>";
@@ -8756,6 +8767,7 @@
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
 				CF4758AA239636D200966536 /* 95.gif in Resources */,
 				031E1CF423BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
+				D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */,
 				D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */,
 				031E1BA023BE812900B0F813 /* BMpreferential.storyboard in Resources */,
 				031E1AB223BE812800B0F813 /* icon_arrow_up@2x.png in Resources */,
@@ -8874,6 +8886,7 @@
 				CF8E242923DDBFD80054BF0F /* FontAwesome5_Solid.ttf in Resources */,
 				030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */,
 				CF4758D4239636D200966536 /* 3.gif in Resources */,
+				D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */,
 				CF475912239636D200966536 /* 100.gif in Resources */,
 				031E1BE023BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
 				031E1CAA23BE812A00B0F813 /* UGFundDetailsCell.xib in Resources */,
@@ -10338,6 +10351,7 @@
 				031E1CD423BE812A00B0F813 /* MJRefreshBackNormalFooter.m in Sources */,
 				031E196223BE812600B0F813 /* UGPostListVC.m in Sources */,
 				031E19E623BE812700B0F813 /* UIViewController+Log.m in Sources */,
+				D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */,
 				031E1A6623BE812700B0F813 /* UIView+ST.m in Sources */,
 				031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1B1823BE812800B0F813 /* UGDocumentVC.m in Sources */,
