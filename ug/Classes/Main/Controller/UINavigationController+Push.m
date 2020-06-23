@@ -618,7 +618,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 25: {
             //25' => '今日输赢',
-            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
+            [NavController1 pushViewController:betRecordVC animated:true];
+
             break;
         }
         case 26: {

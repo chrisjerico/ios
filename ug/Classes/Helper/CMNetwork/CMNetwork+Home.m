@@ -333,7 +333,7 @@
     CMMETHOD_BEGIN;
     [self.manager requestInMainThreadWithMethod:[systemMobileRightUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-                                          model:nil
+                                          model:CMResultArrayClassMake(GameModel.class)
                                            post:NO
                                      completion:completionBlock];
     
