@@ -123,7 +123,15 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSLog(@"=====");
+                    
+                    NSMutableArray <GameModel *> *tempArry = model.data;
+                    
+                    // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
+                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
+                    // 排序结果
                     self.tableArray = [NSMutableArray new];
+                    self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+                    
                     // 需要在主线程执行的代码
                      self.tableArray = model.data;
                      NSLog(@"tableArray = %@",self.tableArray);
