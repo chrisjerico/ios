@@ -76,6 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
 //     activityId 活动id
 + (void)activityTurntableWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//侧边栏数据 {TEST_HOST}}?c=system&a=mobileRight
++ (void)systemMobileRightWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -590,6 +590,78 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:vc animated:true];
             break;
         }
+        case 21: {
+            //21' => '充值',
+            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            fundsVC.selectIndex = 0;
+            [NavController1 pushViewController:fundsVC animated:true];
+            break;
+        }
+        case 22: {
+            //22' => '提现',
+            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            fundsVC.selectIndex = 1;
+            [NavController1 pushViewController:fundsVC animated:true];
+            break;
+        }
+        case 23: {
+            //23' => '额度转换',
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
+            break;
+        }
+        case 24: {
+            //24' => '即时注单',
+            UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
+            betRecordVC.selectIndex = 2;
+            [NavController1 pushViewController:betRecordVC animated:true];
+            break;
+        }
+        case 25: {
+            //25' => '今日输赢',
+            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            break;
+        }
+        case 26: {
+            //26' => '开奖结果',
+            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            break;
+        }
+        case 27: {
+            //27' => '当前版本号',
+            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            break;
+        }
+        case 28: {
+            //21' => '账号管理',
+            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            break;
+        }
+        case 29: {
+            //29' => '回到电脑版',
+            TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
+            qdwebVC.url = pcUrl;
+            qdwebVC.webTitle = UGSystemConfigModel.currentConfig.webName;
+            [NavController1 pushViewController:qdwebVC animated:YES];
+            break;
+        }
+        case 30: {
+            //30' => '返回首页',
+            
+            break;
+        }
+        case 31: {
+            //31' => '退出登录',
+            [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                        UGUserModel.currentUser = nil;
+                        SANotificationEventPost(UGNotificationUserLogout, nil);
+                    });
+                }
+            }];
+            break;
+        }
         default: {
             return false;
         }

@@ -327,4 +327,17 @@
     CMMETHOD_END;
 }
 
+
+//侧边栏数据 {TEST_HOST}}?c=system&a=mobileRight
++ (void)systemMobileRightWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[systemMobileRightUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
