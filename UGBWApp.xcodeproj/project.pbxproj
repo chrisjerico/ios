@@ -1646,6 +1646,8 @@
 		22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */; };
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
+		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
+		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -3509,6 +3511,9 @@
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
+		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
+		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
+		CF166B2E24A343BE00EF8835 /* SitesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SitesView.xib; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -4459,6 +4464,9 @@
 				031E14A423BE812300B0F813 /* LogVC.h */,
 				031E14A523BE812300B0F813 /* LogVC.m */,
 				031E149F23BE812300B0F813 /* Log.storyboard */,
+				CF166B2A24A3405A00EF8835 /* SitesView.h */,
+				CF166B2B24A3405A00EF8835 /* SitesView.m */,
+				CF166B2E24A343BE00EF8835 /* SitesView.xib */,
 			);
 			path = LogHelper;
 			sourceTree = "<group>";
@@ -8765,6 +8773,7 @@
 				031E1E2423BE812C00B0F813 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				031E1B1223BE812800B0F813 /* UGLotteryRecordController.storyboard in Resources */,
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
+				CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */,
 				CF4758AA239636D200966536 /* 95.gif in Resources */,
 				031E1CF423BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
 				D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */,
@@ -9953,6 +9962,7 @@
 				D4B75E1C227802600007047C /* main.m in Sources */,
 				031E1C3823BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				031E1BFE23BE812900B0F813 /* UGYYLotteryHomeViewController.m in Sources */,
+				CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */,
 				031E1A7A23BE812700B0F813 /* UIWebView+DKProgress.m in Sources */,
 				031E1A4223BE812700B0F813 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				031E1D1A23BE812B00B0F813 /* UGPromoteDetailController.m in Sources */,
