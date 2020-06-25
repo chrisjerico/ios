@@ -13,6 +13,7 @@
 
 #import "CodePush.h"
 #import "RSA.h"
+#import "RNCWebView.h"
 
 #define CodePushHost @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/"
 #ifdef APP_TEST
@@ -71,6 +72,22 @@
         [[CodePushConfig current] setServerURL:CodePushHost];
         [[CodePushConfig current] setDeploymentKey:CodePushKey];
 //        [[CodePushConfig current] configuration[@"publicKey"] = ;
+        
+        
+        // ——————修复react-native-webview 移除后重新添加时闪退bug
+        // 错误信息：Cannot form weak reference to instance (0x7fab8494e600) of class WKWebView. It is possible that this object was over-released, or is in the process of deallocation.
+        // 解决方法：移除时保留webview在内存里面使其能被正常引用（保留3个）
+        static NSMutableArray *__wvs = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            __wvs = @[].mutableCopy;
+        });
+        [RNCWebView cc_hookSelector:@selector(removeFromSuperview) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            [__wvs addObject:[ai.instance webView]];
+            if (__wvs.count > 3) {
+                [__wvs removeFirstObject];
+            }
+        } error:nil];
     });
 }
 @end
