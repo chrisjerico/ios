@@ -43,7 +43,7 @@
         };
         // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
         __dataArray = @[
-            site(@"a002",        @"a002hy",     @"129",     @"com.UGGame.cp",           @"https://5049uuu.com",                         @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
+            site(@"a002",        @"a002hy",     @"129",     @"com.UGGame.cp",           @"https://5049uuu.com",                         @"企业包",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123   改成非超级签名
             site(@"a002a",       @"",           @"",        @"io.fhpt.H52A8B80A",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
             site(@"a002b",       @"",           @"",        @"io.fhpt.H53D2C0A9",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
             site(@"a002c",       @"",           @"",        @"io.fhpt.H5069C7C0",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
@@ -54,7 +54,7 @@
             site(@"c105",        @"",           @"",        @"",                        @"",                                            @"超级签名",    @"澳⻔彩票"),          // https://dev.app2.xin/index | 15542484889 | aa168168
             site(@"c105b",       @"c105bhy",    @"268",     @"io.fhpt.YSAC105B",       @"https://390qp8.com",                           @"超级签名",    @"390棋牌"),          // https://dev.app2.xin/index | 15542484889 | aa168168
             site(@"c114",        @"c114hy",     @"157",     @"",                        @"",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
-            site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://875454.com",                          @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：xiaokeai190
+            site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://875454.com",                          @"企业包",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：xiaokeai190  改成非超级签名
             site(@"c190hyls",    @"c190hyls",   @"299",     @"io.fhpt.YSAC190hyls",     @"https://875454.com",                          @"企业包",    @"22333彩世界"),          //超级签名出问题，客户要求临时上一个
             site(@"c201",        @"c201hy",     @"213",     @"io.fhpt.YSFC201",         @"https://dkcp520.com",                         @"超级签名",    @"大咖彩票"),          //https://dev.app2.xin/index | 18675958156 | dk789789
             site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",    @"凤凰国际"),//用户15687374617  密码   qaz123123  超级苹果签

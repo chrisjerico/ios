@@ -168,7 +168,14 @@
 #pragma mark - Getter & Setter
 #pragma mark -rn模板出现问题，暂时清空
 //@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
-//-(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
+
+#ifdef DEBUG
+ -(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
+#else
+  
+#endif
+
+//
 
 - (CGRect)Bounds                    { return _Window.bounds; }
 - (CGSize)Size                      { return _Window.bounds.size; }
