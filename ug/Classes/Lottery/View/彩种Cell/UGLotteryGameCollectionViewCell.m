@@ -49,7 +49,7 @@
         self.timeLabel.text = @"获取下一期...";
     }
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
-	[self.timeLabel setHidden:[@[@"7", @"11", @"9"] containsObject: self.item.gameId]];
+	[self.timeLabel setHidden:item.isInstant];
 }
 
 - (void)setTime:(NSString *)time {

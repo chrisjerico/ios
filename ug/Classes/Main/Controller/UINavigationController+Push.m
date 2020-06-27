@@ -247,7 +247,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
        {
            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
            //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
-           if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
+           if (model.isInstant) {
                vc.shoulHideHeader = true;
            }
            vc.nextIssueModel = model;
