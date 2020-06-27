@@ -166,6 +166,9 @@
 
 
 #pragma mark - Getter & Setter
+#pragma mark -rn模板出现问题，暂时清空
+//@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
+//-(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
 
 - (CGRect)Bounds                    { return _Window.bounds; }
 - (CGSize)Size                      { return _Window.bounds.size; }
@@ -463,9 +466,9 @@
         for (NSDictionary *dict in rnPageInfos) {
             [temp addObject:[RnPageModel mj_objectWithKeyValues:dict]];
         }
-        _rnPageInfos = temp.copy;
+        rnPageInfos = temp.copy;
     } else {
-        _rnPageInfos = rnPageInfos;
+        rnPageInfos = rnPageInfos;
     }
 }
 
