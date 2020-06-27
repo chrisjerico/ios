@@ -1646,6 +1646,8 @@
 		22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */; };
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
+		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
+		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -1953,6 +1955,9 @@
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
 		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
 		D442590523E949F00067E981 /* LHHornView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442590423E949F00067E981 /* LHHornView.xib */; };
+		D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442695F249C83D10006878C /* MessageUnderMenuView.xib */; };
+		D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
+		D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4426964249CABEC0006878C /* MailBoxTableViewController.xib */; };
 		D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AAB824614D25002737CB /* DZPOneTableViewCell.m */; };
 		D444AABC24614D3B002737CB /* DZPOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */; };
 		D444AABF246161F6002737CB /* DZPTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AABE246161F6002737CB /* DZPTwoTableViewCell.m */; };
@@ -3506,6 +3511,9 @@
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
+		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
+		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
+		CF166B2E24A343BE00EF8835 /* SitesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SitesView.xib; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -3816,6 +3824,10 @@
 		D442590123E949600067E981 /* LHHornView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHHornView.h; sourceTree = "<group>"; };
 		D442590223E949600067E981 /* LHHornView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHHornView.m; sourceTree = "<group>"; };
 		D442590423E949F00067E981 /* LHHornView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHHornView.xib; sourceTree = "<group>"; };
+		D442695F249C83D10006878C /* MessageUnderMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageUnderMenuView.xib; sourceTree = "<group>"; };
+		D4426962249CABEC0006878C /* MailBoxTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailBoxTableViewController.h; sourceTree = "<group>"; };
+		D4426963249CABEC0006878C /* MailBoxTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailBoxTableViewController.m; sourceTree = "<group>"; };
+		D4426964249CABEC0006878C /* MailBoxTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailBoxTableViewController.xib; sourceTree = "<group>"; };
 		D444AAB724614D25002737CB /* DZPOneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneTableViewCell.h; sourceTree = "<group>"; };
 		D444AAB824614D25002737CB /* DZPOneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPOneTableViewCell.m; sourceTree = "<group>"; };
 		D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -4452,6 +4464,9 @@
 				031E14A423BE812300B0F813 /* LogVC.h */,
 				031E14A523BE812300B0F813 /* LogVC.m */,
 				031E149F23BE812300B0F813 /* Log.storyboard */,
+				CF166B2A24A3405A00EF8835 /* SitesView.h */,
+				CF166B2B24A3405A00EF8835 /* SitesView.m */,
+				CF166B2E24A343BE00EF8835 /* SitesView.xib */,
 			);
 			path = LogHelper;
 			sourceTree = "<group>";
@@ -6346,6 +6361,9 @@
 			children = (
 				031E181F23BE812600B0F813 /* UGMailBoxTableViewController.h */,
 				031E182023BE812600B0F813 /* UGMailBoxTableViewController.m */,
+				D4426962249CABEC0006878C /* MailBoxTableViewController.h */,
+				D4426963249CABEC0006878C /* MailBoxTableViewController.m */,
+				D4426964249CABEC0006878C /* MailBoxTableViewController.xib */,
 			);
 			path = "站内信";
 			sourceTree = "<group>";
@@ -8094,6 +8112,7 @@
 			children = (
 				D48075D2249C777500E1E5F5 /* MessageUnderMenuView.h */,
 				D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */,
+				D442695F249C83D10006878C /* MessageUnderMenuView.xib */,
 			);
 			path = "下边栏";
 			sourceTree = "<group>";
@@ -8754,8 +8773,10 @@
 				031E1E2423BE812C00B0F813 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				031E1B1223BE812800B0F813 /* UGLotteryRecordController.storyboard in Resources */,
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
+				CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */,
 				CF4758AA239636D200966536 /* 95.gif in Resources */,
 				031E1CF423BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
+				D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */,
 				D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */,
 				031E1BA023BE812900B0F813 /* BMpreferential.storyboard in Resources */,
 				031E1AB223BE812800B0F813 /* icon_arrow_up@2x.png in Resources */,
@@ -8874,6 +8895,7 @@
 				CF8E242923DDBFD80054BF0F /* FontAwesome5_Solid.ttf in Resources */,
 				030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */,
 				CF4758D4239636D200966536 /* 3.gif in Resources */,
+				D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */,
 				CF475912239636D200966536 /* 100.gif in Resources */,
 				031E1BE023BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
 				031E1CAA23BE812A00B0F813 /* UGFundDetailsCell.xib in Resources */,
@@ -9940,6 +9962,7 @@
 				D4B75E1C227802600007047C /* main.m in Sources */,
 				031E1C3823BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				031E1BFE23BE812900B0F813 /* UGYYLotteryHomeViewController.m in Sources */,
+				CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */,
 				031E1A7A23BE812700B0F813 /* UIWebView+DKProgress.m in Sources */,
 				031E1A4223BE812700B0F813 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				031E1D1A23BE812B00B0F813 /* UGPromoteDetailController.m in Sources */,
@@ -10338,6 +10361,7 @@
 				031E1CD423BE812A00B0F813 /* MJRefreshBackNormalFooter.m in Sources */,
 				031E196223BE812600B0F813 /* UGPostListVC.m in Sources */,
 				031E19E623BE812700B0F813 /* UIViewController+Log.m in Sources */,
+				D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */,
 				031E1A6623BE812700B0F813 /* UIView+ST.m in Sources */,
 				031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1B1823BE812800B0F813 /* UGDocumentVC.m in Sources */,

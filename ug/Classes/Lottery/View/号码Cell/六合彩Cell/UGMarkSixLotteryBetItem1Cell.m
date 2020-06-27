@@ -41,12 +41,12 @@
     [self.num3Label setTextColor:Skin1.textColor1];
     [self.num4Label setTextColor:Skin1.textColor1];
     
-    if (APP.betSizeIsBig) {
-        self.leftTitleLabel.font = APP.cellBigFont;
-
-    } else {
-        self.leftTitleLabel.font = APP.cellNormalFont;
-    }
+//    if (APP.betSizeIsBig) {
+//        self.leftTitleLabel.font = APP.cellBigFont;
+//
+//    } else {
+//        self.leftTitleLabel.font = APP.cellNormalFont;
+//    }
 }
 
 - (void)setItem:(UGGameBetModel *)item {

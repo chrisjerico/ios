@@ -60,6 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
 //写站内信
 + (void)writeMessageWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//刪除全部站內信
++ (void)deleteMsgAllWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
+
+//全部站內信全部已讀
++ (void)readMsgAllUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
+
 //反馈列表
 + (void)getFeedbackListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MessageUnderMenuView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZsQ-n0-vpd" userLabel="上部按钮面板">
+                    <rect key="frame" x="324" y="0.0" width="90" height="36"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="站内信_底" translatesAutoresizingMaskIntoConstraints="NO" id="Xwl-ay-Hu0">
+                            <rect key="frame" x="-3.6666666666666856" y="10" width="85.666666666666671" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Xwl-ay-Hu0" secondAttribute="height" multiplier="132:40" id="heu-GP-YVc"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="站内信_三角形" translatesAutoresizingMaskIntoConstraints="NO" id="36h-NE-73Z">
+                            <rect key="frame" x="33" y="22" width="12" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="2fW-bR-4wX"/>
+                                <constraint firstAttribute="width" constant="12" id="uGc-hd-gZz"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="箭头图片"/>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gei-i1-hiw" userLabel="上部按钮">
+                            <rect key="frame" x="0.0" y="0.0" width="90" height="36"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上部btn"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Xwl-ay-Hu0" secondAttribute="bottom" id="36O-bc-QyH"/>
+                        <constraint firstAttribute="width" constant="90" id="6xW-vG-u6L"/>
+                        <constraint firstItem="Gei-i1-hiw" firstAttribute="leading" secondItem="ZsQ-n0-vpd" secondAttribute="leading" id="EWm-HN-Faa"/>
+                        <constraint firstItem="36h-NE-73Z" firstAttribute="centerY" secondItem="ZsQ-n0-vpd" secondAttribute="centerY" constant="10" id="FLq-4m-JDZ"/>
+                        <constraint firstAttribute="trailing" secondItem="Gei-i1-hiw" secondAttribute="trailing" id="Lqy-c3-cvC"/>
+                        <constraint firstAttribute="bottom" secondItem="Gei-i1-hiw" secondAttribute="bottom" id="Oxk-4C-NBr"/>
+                        <constraint firstItem="Gei-i1-hiw" firstAttribute="top" secondItem="ZsQ-n0-vpd" secondAttribute="top" id="Rrv-yV-v9M"/>
+                        <constraint firstAttribute="trailing" secondItem="Xwl-ay-Hu0" secondAttribute="trailing" constant="8" id="a0L-zL-uhO"/>
+                        <constraint firstAttribute="height" constant="36" id="fdj-O1-Vcc"/>
+                        <constraint firstItem="Xwl-ay-Hu0" firstAttribute="top" secondItem="ZsQ-n0-vpd" secondAttribute="top" constant="10" id="qeq-Zq-8J1"/>
+                        <constraint firstItem="36h-NE-73Z" firstAttribute="centerX" secondItem="ZsQ-n0-vpd" secondAttribute="centerX" constant="-6" id="zqC-ex-Cwt"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKZ-Of-pZC" userLabel="底部面板">
+                    <rect key="frame" x="0.0" y="36" width="414" height="60"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1l-FX-nWf" userLabel="全部已读面板">
+                            <rect key="frame" x="15" y="10" width="132" height="40"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="站内信_全部已读" translatesAutoresizingMaskIntoConstraints="NO" id="bwY-tt-V7T">
+                                    <rect key="frame" x="20" y="10" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="9EZ-i9-UTx"/>
+                                        <constraint firstAttribute="width" constant="20" id="ic7-v1-5J0"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全部已读" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znb-l0-hYi">
+                                    <rect key="frame" x="48" y="10" width="64" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="3LU-fc-Z7E"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QPD-mp-8WO" userLabel="全部已读按钮">
+                                    <rect key="frame" x="0.0" y="0.0" width="132" height="40"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="7x3-nZ-pgI"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="已读btn"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="znb-l0-hYi" firstAttribute="leading" secondItem="bwY-tt-V7T" secondAttribute="trailing" constant="8" id="0cc-eC-PoC"/>
+                                <constraint firstItem="bwY-tt-V7T" firstAttribute="centerY" secondItem="h1l-FX-nWf" secondAttribute="centerY" id="GE9-tf-lDe"/>
+                                <constraint firstAttribute="bottom" secondItem="QPD-mp-8WO" secondAttribute="bottom" id="LD2-gn-LnG"/>
+                                <constraint firstAttribute="width" constant="132" id="Pdj-sk-BFx"/>
+                                <constraint firstItem="znb-l0-hYi" firstAttribute="centerY" secondItem="h1l-FX-nWf" secondAttribute="centerY" id="VCe-10-TZZ"/>
+                                <constraint firstItem="QPD-mp-8WO" firstAttribute="leading" secondItem="h1l-FX-nWf" secondAttribute="leading" id="VMn-hx-IdL"/>
+                                <constraint firstItem="bwY-tt-V7T" firstAttribute="leading" secondItem="h1l-FX-nWf" secondAttribute="leading" constant="20" id="bAX-NG-2dw"/>
+                                <constraint firstAttribute="height" constant="40" id="sdX-n1-pec"/>
+                                <constraint firstItem="QPD-mp-8WO" firstAttribute="top" secondItem="h1l-FX-nWf" secondAttribute="top" id="xPl-ia-TdV"/>
+                                <constraint firstAttribute="trailing" secondItem="QPD-mp-8WO" secondAttribute="trailing" id="yEb-Cg-gmI"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="全部已读面板"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7z-gP-zGt" userLabel="全部删除面板">
+                            <rect key="frame" x="167" y="10" width="132" height="40"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="站内信_全部删除" translatesAutoresizingMaskIntoConstraints="NO" id="7po-sN-OLe">
+                                    <rect key="frame" x="20" y="10" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="bNU-u0-ghx"/>
+                                        <constraint firstAttribute="height" constant="20" id="ixX-Op-Loz"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全部删除" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDY-cf-eD4">
+                                    <rect key="frame" x="48" y="10" width="64" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="Kjh-og-eLR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfO-gt-dj7" userLabel="全部删除按钮">
+                                    <rect key="frame" x="0.0" y="0.0" width="132" height="40"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="删除btn"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="mfO-gt-dj7" secondAttribute="bottom" id="6En-e7-VFt"/>
+                                <constraint firstAttribute="trailing" secondItem="mfO-gt-dj7" secondAttribute="trailing" id="Pbl-i6-8IW"/>
+                                <constraint firstAttribute="width" constant="132" id="Sn7-sO-EWQ"/>
+                                <constraint firstItem="lDY-cf-eD4" firstAttribute="centerY" secondItem="z7z-gP-zGt" secondAttribute="centerY" id="bZq-6c-DGj"/>
+                                <constraint firstItem="7po-sN-OLe" firstAttribute="leading" secondItem="z7z-gP-zGt" secondAttribute="leading" constant="20" id="hh5-IF-pxH"/>
+                                <constraint firstItem="mfO-gt-dj7" firstAttribute="leading" secondItem="z7z-gP-zGt" secondAttribute="leading" id="kjZ-l5-dpg"/>
+                                <constraint firstItem="7po-sN-OLe" firstAttribute="centerY" secondItem="z7z-gP-zGt" secondAttribute="centerY" id="l3y-DL-3yY"/>
+                                <constraint firstAttribute="height" constant="40" id="l56-1R-ReV"/>
+                                <constraint firstItem="mfO-gt-dj7" firstAttribute="top" secondItem="z7z-gP-zGt" secondAttribute="top" id="lnY-5b-e7Q"/>
+                                <constraint firstItem="lDY-cf-eD4" firstAttribute="leading" secondItem="7po-sN-OLe" secondAttribute="trailing" constant="8" id="ypW-oU-MMI"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="全部删除面板"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.35645335912704468" green="0.53080987930297852" blue="0.90980881452560425" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstItem="h1l-FX-nWf" firstAttribute="leading" secondItem="iKZ-Of-pZC" secondAttribute="leading" constant="15" id="Aoc-in-emC"/>
+                        <constraint firstAttribute="height" constant="60" id="BSY-2Y-PLA"/>
+                        <constraint firstItem="h1l-FX-nWf" firstAttribute="top" secondItem="z7z-gP-zGt" secondAttribute="top" id="K6b-PA-Xju"/>
+                        <constraint firstItem="z7z-gP-zGt" firstAttribute="leading" secondItem="h1l-FX-nWf" secondAttribute="trailing" constant="20" id="dDt-e2-C36"/>
+                        <constraint firstItem="h1l-FX-nWf" firstAttribute="centerY" secondItem="iKZ-Of-pZC" secondAttribute="centerY" id="rH3-e5-Zzv"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="底部面板"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iKZ-Of-pZC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ha6-xe-sEs"/>
+                <constraint firstItem="ZsQ-n0-vpd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="V2M-F4-fwy"/>
+                <constraint firstAttribute="trailing" secondItem="iKZ-Of-pZC" secondAttribute="trailing" id="fVe-rh-2md"/>
+                <constraint firstAttribute="bottom" secondItem="iKZ-Of-pZC" secondAttribute="bottom" id="qdO-YY-nRd"/>
+                <constraint firstItem="iKZ-Of-pZC" firstAttribute="top" secondItem="ZsQ-n0-vpd" secondAttribute="bottom" id="t0g-m3-FGQ"/>
+                <constraint firstAttribute="trailing" secondItem="ZsQ-n0-vpd" secondAttribute="trailing" id="vYw-Y0-qnJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Euf-Di-Yu4"/>
+            <connections>
+                <outlet property="arrowImg" destination="36h-NE-73Z" id="8Av-Yr-Dwb"/>
+                <outlet property="showBtn" destination="Gei-i1-hiw" id="Rkf-lu-ws1"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="125.89285714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="站内信_三角形" width="10" height="6"/>
+        <image name="站内信_全部删除" width="12" height="12"/>
+        <image name="站内信_全部已读" width="12" height="12"/>
+        <image name="站内信_底" width="66" height="20"/>
+    </resources>
+</document>

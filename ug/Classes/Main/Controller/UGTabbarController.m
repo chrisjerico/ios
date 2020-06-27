@@ -17,7 +17,7 @@
 #import "UGLotteryRecordController.h"       // 开奖记录
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGSecurityCenterViewController.h"  // 安全中心
-#import "UGMailBoxTableViewController.h"    // 站内信
+#import "MailBoxTableViewController.h"    // 站内信
 #import "UGBankCardInfoController.h"        // 我的银行卡
 #import "UGBindCardViewController.h"        // 银行卡管理
 #import "UGYubaoViewController.h"           // 利息宝
@@ -493,7 +493,7 @@ static UGTabbarController *_tabBarVC = nil;
             UINavigationController *navCtrl = (UINavigationController *)viewController;
             
             UIViewController * viewController  = navCtrl.firstVC;
-            if([viewController isKindOfClass:[UGMailBoxTableViewController class]])
+            if([viewController isKindOfClass:[MailBoxTableViewController class]])
             {
                 //UGMailBoxTableViewController
                 [self setTabBadgeIndex:i];
@@ -507,7 +507,7 @@ static UGTabbarController *_tabBarVC = nil;
         else
         {
             // view controller
-            if([viewController isKindOfClass:[UGMailBoxTableViewController class]])
+            if([viewController isKindOfClass:[MailBoxTableViewController class]])
             {
                 //UGMailBoxTableViewController
                 [self setTabBadgeIndex:i];

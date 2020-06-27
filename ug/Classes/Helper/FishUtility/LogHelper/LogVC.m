@@ -17,7 +17,7 @@
 #import <SafariServices/SafariServices.h>
 #import "UGPromotionsListController.h"
 #import "DZPMainView.h"
-
+#import "SitesView.h"
 
 #import "DZPModel.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
@@ -267,25 +267,13 @@ static LogVC *_logVC = nil;
 
 // 切换站点
 - (IBAction)onChangeSiteIdBtnClick:(UIButton *)sender {
-    NSMutableArray *titles = @[].mutableCopy;
-    for (SiteModel *sm in APP.allSites) {
-        if (sm.host.length) {
-            [titles addObject:sm.siteId];
-        }
-    }
-    [titles sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-        return [obj1 substringFromIndex:1].intValue > [obj2 substringFromIndex:1].intValue;
+    [[SitesView show] setDidClick:^(NSString *key) {
+        [APP setValue:key forKey:@"_SiteId"];
+        [APP setValue:[APP.allSites objectWithValue:key keyPath:@"siteId"].host forKey:@"_Host"];
+        [_logVC.currentSiteIdButton setTitle:key forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }];
-    UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的站点" btnTitles:[titles arrayByAddingObject:@"取消"]];
-    for (NSString *key in titles) {
-        [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
-            [APP setValue:key forKey:@"_SiteId"];
-            [APP setValue:[APP.allSites objectWithValue:key keyPath:@"siteId"].host forKey:@"_Host"];
-            [_logVC.currentSiteIdButton setTitle:key forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }];
-    }
 }
 
 // 下载APP

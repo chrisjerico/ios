@@ -11,7 +11,7 @@
 #import "UGFundsViewController.h"
 #import "UGSecurityCenterViewController.h"
 #import "UGBetRecordViewController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 @interface JS_Sidebar()
 {
 	UIView * _backDropView;
@@ -107,7 +107,7 @@
 			[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
 			break;
 		case 9:
-			[NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
+			[NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
 			break;
 		case 10:
 			[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];

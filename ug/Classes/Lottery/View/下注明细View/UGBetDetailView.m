@@ -227,7 +227,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         
         [mutDict setValue:strValue  forKey:@"activeReturnCoinRatio"];
     }
-
+    
+    
+    [mutDict setValue:[NSNumber numberWithBool:self.nextIssueModel.isInstant]  forKey:@"isInstant"];
       HJSonLog(@"mutDict = %@",mutDict);
     [self submitBet:mutDict];
     
@@ -253,7 +255,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             
             
             // 秒秒彩系列（即时开奖无需等待）
-            if ([@[@"7", @"11", @"9"] containsObject:self.nextIssueModel.gameId]) {
+            if (self.nextIssueModel.isInstant) {
                 BOOL showSecondLine = [@[@"11"] containsObject:self.nextIssueModel.gameId]; // 六合秒秒彩
                 UGBetDetailModel *mod = (UGBetDetailModel *)model.data;
                 mod.gameId = self.nextIssueModel.gameId;
@@ -735,7 +737,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     }];
     
     [self updateTotalLabelText];
-    if ([@[@"7", @"11", @"9"] containsObject: self.nextIssueModel.gameId]) {
+    if (self.nextIssueModel.isInstant) {
         [self.closeTimeLabel setHidden:true] ;
         self.titleLabel.text = [NSString stringWithFormat:@"%@ 下注明细", nextIssueModel.title];
     } else {

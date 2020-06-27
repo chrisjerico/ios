@@ -21,7 +21,7 @@
 #import "UGMissionCenterViewController.h"
 #import "UGSecurityCenterViewController.h"
 #import "UGFundsViewController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGBalanceConversionController.h"
 #import "UGBankCardInfoController.h"
 #import "UGYubaoViewController.h"
