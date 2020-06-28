@@ -228,7 +228,11 @@
             site(@"testadaf",     @"testadaf",   @"285",     @"com.UGGame.cp",            @"http://testadaf.fhptcdn.com",                @"内测包",     @"testadaf"),    // (ada)
             site(@"test62",       @"test62",     @"289",     @"com.UGGame.cp",            @"http://test62f.ccpt.site",                   @"内测包",     @"test62"),
             site(@"test09",       @"test09",     @"",        @"com.UGGame.cp",            @"http://test09.6yc.com",                      @"内测包",     @"test09"),
-
+            site(@"test61b",      @"test61bhy",  @"302",     @"com.UGGame.cp",            @"http://test61a.fhptcdn.com",                 @"内测包",     @"test61b"),
+            site(@"test61c",      @"test61chy",  @"304",     @"com.UGGame.cp",            @"http://test61c.fhptcdn.com",                 @"内测包",     @"test61c"),
+            site(@"test61d",      @"test61Dhy",  @"303",     @"com.UGGame.cp",            @"http://test61d.fhptcdn.com",                 @"内测包",     @"test61d"),
+            site(@"test61e",      @"test61Ehy",  @"305",     @"com.UGGame.cp",            @"http://test61e.fhptcdn.com",                 @"内测包",     @"test61e"),
+            
             
             site(@"hotUpdate",   @"hotUpdate",  @"260",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"热更新测试包"),
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
