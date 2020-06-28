@@ -19,6 +19,9 @@
     if ([NSUserName() isEqualToString:@"fish"]) {
         autoPackPlist = @"/Users/fish/Desktop/AutoPack.plist";
     }
+    else{
+         autoPackPlist = @"/Users/ug/Desktop/AutoPack.plist";
+    }
     if (![[NSFileManager defaultManager] fileExistsAtPath:autoPackPlist]) {
         assert(!@"plist文件不存在".length);
     }
