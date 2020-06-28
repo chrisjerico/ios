@@ -310,7 +310,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     if (linkCategory == 10) {
         // 去手机资料栏目
-        
+        NSLog(@"model = %@",model);
+        [NavController1 pushViewController:[[UGDocumentVC alloc] initWithModel:model] animated:true];
     }
     if (linkCategory == 11) {
         // 去注单信息
@@ -626,9 +627,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 26: {
             //26' => '开奖结果',
-            if (model.gameId) {
+            if (model.realGameId) {
                 UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
-                recordVC.gameId = model.gameId;
+                recordVC.gameId = model.realGameId;
                 [NavController1 pushViewController:recordVC animated:true];
             }
           
@@ -642,7 +643,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 28: {
             //21' => '账号管理',
-            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+//            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
             break;
         }
         case 29: {
@@ -673,14 +674,14 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 32: {
             //32' => '投注记录',
-            
+            [NavController1 pushViewController:[UGBetRecordViewController new] animated:true];
             break;
         }
         case 33: {
             //33' => '彩种规则',
             if (model.gameId) {
                 UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];
-                rulesView.gameId = model.gameId;
+                rulesView.gameId = model.realGameId;
                 [rulesView show];
             } else {
                  [SVProgressHUD showInfoWithStatus:@"请到彩种里面查看"];

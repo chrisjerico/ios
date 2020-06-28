@@ -285,7 +285,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             cell.title = [NSString stringWithFormat:@"今日输赢(%@)",[UGUserModel currentUser].todayWinAmount];
         }
         else{
-            cell.title = model.name;
+            if ([CMCommon stringIsNull:model.name]) {
+                cell.title = model.title;
+            } else {
+                cell.title = model.name;
+            }
+         
         }
     }
     else{
@@ -293,7 +298,11 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             cell.title = [NSString stringWithFormat:@"当前版本号(%@)", APP.Version] ;
         }
         else{
-            cell.title = model.name;
+            if ([CMCommon stringIsNull:model.name]) {
+                cell.title = model.title;
+            } else {
+                cell.title = model.name;
+            }
         }
     }
 
@@ -315,6 +324,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     //    }
     [self hiddenSelf];
     GameModel *model = [self.tableArray objectAtIndex:indexPath.row];
+    model.realGameId = self.gameId;
     [self didSelectCellWitModel:model];
 }
 
@@ -346,7 +356,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_headImageView setHidden:YES];
         [_myButton setHidden:YES];
         [_welComeLabel setHidden:NO];
-        [_bg2View setHidden:NO];
+        [_bg2View setHidden:YES];
         self.bgViewHeightConstraint.constant = 180;
     }
     

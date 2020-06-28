@@ -142,7 +142,7 @@
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="U1B-Oq-wrD"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBZ-gP-6rH">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBZ-gP-6rH">
                             <rect key="frame" x="0.0" y="244" width="247" height="55"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n5K-yu-wLZ">
@@ -231,7 +231,7 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="43P-ey-REM">
-                            <rect key="frame" x="0.0" y="299" width="247" height="460"/>
+                            <rect key="frame" x="0.0" y="244" width="247" height="515"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="ztz-5v-jHT"/>
