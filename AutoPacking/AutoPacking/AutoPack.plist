@@ -5,7 +5,7 @@
 	<key>打包项目路径</key>
 	<string>/Users/ug/自动打包/pack</string>
 	<key>日志项目路径</key>
-	<string>/Users/ug/自动打包/log </string>
+	<string>/Users/ug/自动打包/log</string>
 	<key>导出目录</key>
 	<string>/Library/WebServer/Documents</string>
 	<key>后台用户名</key>
