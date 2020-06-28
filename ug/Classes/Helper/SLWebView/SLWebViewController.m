@@ -407,7 +407,7 @@
         [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
         //bSucc是否成功调起支付宝
     }
-    if ([reqUrl hasPrefix:@"weixin://"]) {
+    if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"weixin"]) {
         [[UIApplication sharedApplication]openURL:navigationAction.request.URL];
         //bSucc是否成功调起微信
     }
