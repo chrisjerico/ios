@@ -9,6 +9,7 @@
 #import "HotBranchView.h"
 
 @interface HotBranchView()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UILabel *currentBranchLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray <NSString *>*sectionTitles;
 @property (nonatomic, strong) NSMutableArray <NSMutableArray <NSString *>*>*dataArray;
@@ -22,6 +23,7 @@
     sv.frame = APP.Bounds;
     sv.tableView.delegate = sv;
     sv.tableView.dataSource = sv;
+    sv.currentBranchLabel.text = _NSString(@"当前环境：%@", [[ReactNativeHelper allCodePushKey] allKeysForObject:[ReactNativeHelper currentCodePushKey]].firstObject);
     [sv.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [APP.Window addSubview:sv];
     

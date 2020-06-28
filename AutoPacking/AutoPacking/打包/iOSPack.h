@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-// 原生iOS打包存放路径
+// 原生iOS导出路径
 @interface SiteModel (Helper)
 @property (nonatomic, readonly) NSString *ipaPath;
 @property (nonatomic, readonly) NSString *plistPath;
