@@ -169,11 +169,11 @@
 #pragma mark -rn模板出现问题，暂时清空
 //@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
 
-#ifdef DEBUG
- -(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
-#else
-  
-#endif
+//#ifdef DEBUG
+// -(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
+//#else
+//  
+//#endif
 
 //
 
