@@ -16,13 +16,6 @@
 #import "RNCWebView.h"
 
 #define CodePushHost @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/"
-#ifdef APP_TEST
-#define CodePushKey @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog"
-#else
-#define CodePushKey @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog"
-#endif
-
-
 
 
 @interface RCTHTTPRequestHandler (RnHelper)
@@ -70,7 +63,7 @@
     dispatch_once(&onceToken, ^{
         [[CodePushConfig current] setAppVersion:@"1.1.1"];
         [[CodePushConfig current] setServerURL:CodePushHost];
-        [[CodePushConfig current] setDeploymentKey:CodePushKey];
+        [[CodePushConfig current] setDeploymentKey:ReactNativeHelper.currentCodePushKey];
 //        [[CodePushConfig current] configuration[@"publicKey"] = ;
         
         
@@ -370,7 +363,7 @@ RCT_EXPORT_METHOD(launchFinish) {
 - (NSDictionary *)constantsToExport {
     return @{
         // 发布环境Key
-        @"CodePushKey": CodePushKey,
+        @"CodePushKey": ReactNativeHelper.currentCodePushKey,
     };
 }
 
@@ -381,6 +374,31 @@ RCT_EXPORT_METHOD(launchFinish) {
         @"SelectVC",// 用于切换页面
         @"RemoveVC",// 用于移除页面
     ];
+}
+
++ (NSDictionary <NSString *, NSString *>*)allCodePushKey {
+    return @{
+        @"线上环境":@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
+        @"测试":@"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
+        @"fish1":@"L7T5GuCg35qe08E4z4BmG9U396j74ksvOXqog",
+        @"fish2":@"dc6cZWHC1HTF7ZeOaJekmDh6XCgD4ksvOXqog",
+        @"parker":@"",
+        @"tars":@"",
+        @"ezer":@"",
+    };
+}
+
++ (NSString *)currentCodePushKey {
+#ifdef APP_TEST
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"线上环境"];
+#else
+    return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
+#endif
+}
+
++ (void)setCurrentCodePushKey:(NSString *)currentCodePushKey {
+    [[NSUserDefaults standardUserDefaults] setObject:currentCodePushKey forKey:@"CodePushKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

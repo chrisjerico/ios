@@ -10,14 +10,17 @@
 
 #import "LogVC.h"
 #import "CMAudioPlayer.h"
-#import "TextFieldAlertView.h"
 
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
 #import "UGPromotionsListController.h"
+
+// View
+#import "TextFieldAlertView.h"
 #import "DZPMainView.h"
 #import "SitesView.h"
+#import "HotBranchView.h"
 
 #import "DZPModel.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
@@ -276,33 +279,9 @@ static LogVC *_logVC = nil;
     }];
 }
 
-// 下载APP
+// 切换热更新
 - (IBAction)onLHBtnClick:(UIButton *)sender {
-    // 文本弹框
-    TextFieldAlertView *tfav = _LoadView_from_nib_(@"TextFieldAlertView");
-    tfav.title = @"下载链接中的id";
-    tfav.didConfirmBtnClick = ^(TextFieldAlertView *__weak tfav, NSString *text) {
-        text = [text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        if (!text.isInteger) {
-            [HUDHelper showMsg:@"id必须为数字"];
-            return ;
-        }
-        UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"下载已审核的APP", @"下载审核中的APP"] cancel:@"取消"];
-        [ac setActionAtTitle:@"下载已审核的APP" handler:^(UIAlertAction *aa) {
-            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"https://fhapp168l.com/eipeyipeyi/index-%@.html?rand=%u", text, arc4random())]];
-            sf.允许未登录访问 = true;
-            sf.允许游客访问 = true;
-            [NavController1 presentViewController:sf animated:YES completion:nil];
-        }];
-        [ac setActionAtTitle:@"下载审核中的APP" handler:^(UIAlertAction *aa) {
-            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"https://fhapp168l.com/eipeyipeyi/index-%@.html?test=9999&rand=%u", text, arc4random())]];
-            sf.允许未登录访问 = true;
-            sf.允许游客访问 = true;
-            [NavController1 presentViewController:sf animated:YES completion:nil];
-        }];
-        [tfav hide];
-    };
-    [tfav showToWindow];
+    [HotBranchView show];
 }
 
 // 收藏

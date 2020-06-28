@@ -11,18 +11,22 @@
 
 # ************************* 需要配置 Start ********************************
 
+__OutputFile1=$1
+__OutputFile2=$2
+__OutputFile3=$3
+__OutputFile4=$4
+
+__Path=$5
+__isEnterprise=$6
+
+cd $__Path
+
+
 
 # 编译生成文件目录
 __EXPORT_PATH=`pwd`
 __EXPORT_PATH="$__EXPORT_PATH/AutoPackingDir"
 echo $__EXPORT_PATH
-
-# 从Xcode运行需要先cd到当前目录
-if [ ! -n "$2" ] ;then
-    echo "you have not input a word!"
-else
-    cd $2
-fi
 
 # 项目名称
 __BUILD_TARGET="UGBWApp"
@@ -48,7 +52,7 @@ __IOS_SUBMIT_PASSWORD="Z@yKYgR#0$!!"
 
 # 打包类型 AdHoc, Enterprise
 __PACK_TYPES=("1.AdHoc" "2.Enterprise")
-__PACK_TYPE=$1
+__PACK_TYPE=$__isEnterprise
 if [[ $__PACK_TYPE -eq 1 ]]; then
   __EXPORT_OPTIONS_PLIST_PATH="./AutoPacking/Plist/AdHocExportOptionsPlist.plist"
   __BUILD_METHOD_NAME="AdHoc"

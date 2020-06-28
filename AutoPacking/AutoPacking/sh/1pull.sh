@@ -1,49 +1,65 @@
 #!/bin/sh
 
-# 从Xcode运行需要先cd到当前目录
-if [ ! -n "$1" ] ;then
-    echo "you have not input a word!"
-else
-    cd $1
-fi
+__OutputFile1=$1
+__OutputFile2=$2
+__OutputFile3=$3
+__OutputFile4=$4
 
+__Path=$5
+__Branch=$6
 
+# 先cd到目录
+cd $__Path
 
 # 配置环境变量
 export PATH=/usr/local/bin:$PATH
 
-# 删除依赖库
-rm -rf node_modules
+# —————— 切换到指定分支 start
+# 1. 删除改动
+__CommitId=`git rev-parse HEAD`
+git reset --hard $__CommitId
+git clean -d -f
+git reset --hard $__CommitId
+# 2. 切换分支
+git checkout -b $__Branch origin/$__Branch
+git checkout $__Branch
+# 3. 拉取最新代码
+__CommitId=`git rev-parse origin/$__Branch`
+git reset --hard $__CommitId
+git clean -d -f
+git reset --hard $__CommitId
+git pull
 
-# 重新安装rn依赖库
-yarn install
+__Result=`git checkout $__Branch`
+echo $__Result
+if [[ "$__Result" =~ "Your branch is up to date with 'origin/$__Branch'." ]]
+then
+    echo "\n———————— 切换 $__Branch 分支成功 ————————\n"
+else
+    echo "\n———————— 切换 $__Branch 分支错误 ————————\n"
+    exit 1
+fi
+# —————— 切换到指定分支 end
 
 
-# 循环10次拉取代码，直到已经是最新代码
-for i in $(seq 1 10)
-do
-    __CommitId=`git rev-parse HEAD`
-    git reset --hard $__CommitId
-    git clean -d -f
-    __Result=`git pull`
+# 再拉一次最新代码
+git clean -d -f
+__Result=`git pull`
 
-    echo $__Result;
-    if [ "$__Result" == "Already up to date." ];then
-        # 已是最新代码
-        git rev-parse --short HEAD > CommitId.txt
-        git shortlog -1 > ShortLog.txt
-        echo "CommitId = `git rev-parse --short HEAD`" >> PullSuccess.txt
-        echo "————————————————————————————————————\n\n\n" >> PullSuccess.txt
-        git log -10 --oneline >> PullSuccess.txt
-        break;
-    fi
-done
+if [ "$__Result" == "Already up to date." ];then
+    # 已是最新代码
+    git rev-parse --short HEAD > $__OutputFile1
+    git shortlog -1 > $__OutputFile2
+    echo `git rev-list HEAD|wc -l` > $__OutputFile3
+    echo "当前 $__Branch 已是最新代码"
+    
+    # 删除依赖库
+    echo '删除 node_modules'
+    rm -rf node_modules
 
-
-# 判断是否拉取成功
-if [ ! -f 'CommitId.txt' ]; then
-    echo "拉取代码失败，请手动拉取代码！" > PullFail.txt
+    # 重新安装rn依赖库
+    echo '\n———————— 正在 yarn install... ————————\n'
+    yarn install > null
+    echo '\n———————— 已完成 yarn install ————————\n'
 fi
 
-# 把提交次数作为版本号
-echo `git rev-list HEAD|wc -l` > Version.txt

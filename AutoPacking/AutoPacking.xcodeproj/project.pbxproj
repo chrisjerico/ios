@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF166B3824A4920C00EF8835 /* ReactNativePack.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3724A4920C00EF8835 /* ReactNativePack.m */; };
+		CF166B3C24A4925E00EF8835 /* iOSPack.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3B24A4925E00EF8835 /* iOSPack.m */; };
+		CF30224024A5CE4900FCF066 /* RnInfo.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF30223F24A5CE4900FCF066 /* RnInfo.sh */; };
+		CF30224224A5D19000FCF066 /* ReadPlist.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF30224124A5D19000FCF066 /* ReadPlist.sh */; };
 		CF3263D023CF37B000D4B79A /* NSTask+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3263CF23CF37B000D4B79A /* NSTask+Block.m */; };
 		CF3263D223CF3ABB00D4B79A /* 7codepush.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF3263D123CF3ABB00D4B79A /* 7codepush.sh */; };
 		CF5D3D6B2396B8CE00CC3D6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */; };
@@ -43,18 +47,23 @@
 		CF5D3E642397929E00CC3D6B /* NSNumber+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E5E2397929E00CC3D6B /* NSNumber+Safe.m */; };
 		CF5D3E652397929E00CC3D6B /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5D3E602397929E00CC3D6B /* NSArray+Safe.m */; };
 		CF5D3E892397D9D800CC3D6B /* 0encrypt.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */; };
+		CF68BDA524A5976B00775B0A /* GitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68BDA424A5976B00775B0A /* GitModel.m */; };
+		CF68BDA824A59B2500775B0A /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68BDA724A59B2500775B0A /* SiteModel.m */; };
 		CFB6867624484A6F00C51533 /* NodeModulesFix.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB6867524484A6F00C51533 /* NodeModulesFix.m */; };
 		CFDB111623A14D160040DE2B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB111523A14D160040DE2B /* JRSwizzle.m */; };
-		CFDB111D23A15C450040DE2B /* PathDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB111C23A15C450040DE2B /* PathDefine.m */; };
 		CFDB112223A160550040DE2B /* 4plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112123A160550040DE2B /* 4plist.sh */; };
 		CFDB112C23A3AE6F0040DE2B /* 5push.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112B23A3AE6F0040DE2B /* 5push.sh */; };
-		CFDB113B23A3B62F0040DE2B /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113923A3B62F0040DE2B /* SiteModel.m */; };
 		CFDB113E23A3E1AD0040DE2B /* 6clean.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB113D23A3E1AD0040DE2B /* 6clean.sh */; };
 		CFE8765623D424A200BAA5D4 /* 8zip.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFE8765523D424A200BAA5D4 /* 8zip.sh */; };
-		CFFAE9D1244821DF00DADF0A /* NSAppleScript+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFAE9D0244821DF00DADF0A /* NSAppleScript+Helper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF166B3624A4920C00EF8835 /* ReactNativePack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactNativePack.h; sourceTree = "<group>"; };
+		CF166B3724A4920C00EF8835 /* ReactNativePack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativePack.m; sourceTree = "<group>"; };
+		CF166B3A24A4925E00EF8835 /* iOSPack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSPack.h; sourceTree = "<group>"; };
+		CF166B3B24A4925E00EF8835 /* iOSPack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSPack.m; sourceTree = "<group>"; };
+		CF30223F24A5CE4900FCF066 /* RnInfo.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RnInfo.sh; sourceTree = "<group>"; };
+		CF30224124A5D19000FCF066 /* ReadPlist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = ReadPlist.sh; sourceTree = "<group>"; };
 		CF3263CE23CF37B000D4B79A /* NSTask+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTask+Block.h"; sourceTree = "<group>"; };
 		CF3263CF23CF37B000D4B79A /* NSTask+Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTask+Block.m"; sourceTree = "<group>"; };
 		CF3263D123CF3ABB00D4B79A /* 7codepush.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 7codepush.sh; sourceTree = "<group>"; };
@@ -124,21 +133,19 @@
 		CF5D3E5F2397929E00CC3D6B /* NSNull+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+Safe.h"; sourceTree = "<group>"; };
 		CF5D3E602397929E00CC3D6B /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
 		CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 0encrypt.sh; sourceTree = "<group>"; };
+		CF68BDA324A5976B00775B0A /* GitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GitModel.h; sourceTree = "<group>"; };
+		CF68BDA424A5976B00775B0A /* GitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitModel.m; sourceTree = "<group>"; };
+		CF68BDA624A59B2500775B0A /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = ../../../ug/Classes/Other/SiteModel.h; sourceTree = "<group>"; };
+		CF68BDA724A59B2500775B0A /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = ../../../ug/Classes/Other/SiteModel.m; sourceTree = "<group>"; };
 		CFB6867424484A6F00C51533 /* NodeModulesFix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeModulesFix.h; sourceTree = "<group>"; };
 		CFB6867524484A6F00C51533 /* NodeModulesFix.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeModulesFix.m; sourceTree = "<group>"; };
 		CFDB111423A14D160040DE2B /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = ../../ug/Classes/Helper/FishUtility/JRSwizzle/JRSwizzle.h; sourceTree = "<group>"; };
 		CFDB111523A14D160040DE2B /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = ../../ug/Classes/Helper/FishUtility/JRSwizzle/JRSwizzle.m; sourceTree = "<group>"; };
-		CFDB111B23A15C450040DE2B /* PathDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathDefine.h; sourceTree = "<group>"; };
-		CFDB111C23A15C450040DE2B /* PathDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathDefine.m; sourceTree = "<group>"; };
 		CFDB112123A160550040DE2B /* 4plist.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 4plist.sh; sourceTree = "<group>"; };
 		CFDB112B23A3AE6F0040DE2B /* 5push.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 5push.sh; sourceTree = "<group>"; };
-		CFDB113923A3B62F0040DE2B /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = ../../../ug/Classes/Other/SiteModel.m; sourceTree = "<group>"; };
-		CFDB113A23A3B62F0040DE2B /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = ../../../ug/Classes/Other/SiteModel.h; sourceTree = "<group>"; };
 		CFDB113C23A3D2670040DE2B /* cc_runtime_property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cc_runtime_property.h; path = ../../../ug/Classes/Helper/FishUtility/define/cc_runtime_property.h; sourceTree = "<group>"; };
 		CFDB113D23A3E1AD0040DE2B /* 6clean.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 6clean.sh; sourceTree = "<group>"; };
 		CFE8765523D424A200BAA5D4 /* 8zip.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 8zip.sh; sourceTree = "<group>"; };
-		CFFAE9CF244821DE00DADF0A /* NSAppleScript+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAppleScript+Helper.h"; sourceTree = "<group>"; };
-		CFFAE9D0244821DF00DADF0A /* NSAppleScript+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAppleScript+Helper.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +159,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF166B3924A4921400EF8835 /* 打包 */ = {
+			isa = PBXGroup;
+			children = (
+				CF166B3624A4920C00EF8835 /* ReactNativePack.h */,
+				CF166B3724A4920C00EF8835 /* ReactNativePack.m */,
+				CF166B3A24A4925E00EF8835 /* iOSPack.h */,
+				CF166B3B24A4925E00EF8835 /* iOSPack.m */,
+			);
+			path = "打包";
+			sourceTree = "<group>";
+		};
 		CF5D3D5D2396B8CE00CC3D6B = {
 			isa = PBXGroup;
 			children = (
@@ -178,8 +196,8 @@
 				CFDB111A23A15C060040DE2B /* define */,
 				CF5D3D692396B8CE00CC3D6B /* AppDelegate.h */,
 				CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */,
-				CF5D3D6C2396B8CE00CC3D6B /* AutoPackingVC.h */,
 				CF5D3D6D2396B8CE00CC3D6B /* AutoPackingVC.m */,
+				CF166B3924A4921400EF8835 /* 打包 */,
 				CF5D3D6F2396B8D000CC3D6B /* Assets.xcassets */,
 				CF5D3D712396B8D000CC3D6B /* Main.storyboard */,
 				CF5D3D742396B8D000CC3D6B /* Info.plist */,
@@ -195,12 +213,12 @@
 			children = (
 				CF5D3DA62396BC9300CC3D6B /* ShellHelper.h */,
 				CF5D3DA82396BC9400CC3D6B /* ShellHelper.m */,
-				CFFAE9CF244821DE00DADF0A /* NSAppleScript+Helper.h */,
-				CFFAE9D0244821DF00DADF0A /* NSAppleScript+Helper.m */,
 				CFB6867424484A6F00C51533 /* NodeModulesFix.h */,
 				CFB6867524484A6F00C51533 /* NodeModulesFix.m */,
 				CF3263CE23CF37B000D4B79A /* NSTask+Block.h */,
 				CF3263CF23CF37B000D4B79A /* NSTask+Block.m */,
+				CF30223F24A5CE4900FCF066 /* RnInfo.sh */,
+				CF30224124A5D19000FCF066 /* ReadPlist.sh */,
 				CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */,
 				CF5D3DA02396BC4600CC3D6B /* 1pull.sh */,
 				CF5D3DA12396BC4600CC3D6B /* 2setup.sh */,
@@ -218,6 +236,8 @@
 		CF5D3DFA2397813D00CC3D6B /* 引用主项目的文件（别改会影响主项目） */ = {
 			isa = PBXGroup;
 			children = (
+				CF68BDA624A59B2500775B0A /* SiteModel.h */,
+				CF68BDA724A59B2500775B0A /* SiteModel.m */,
 				CFDB113C23A3D2670040DE2B /* cc_runtime_property.h */,
 				CF5D3E66239792B300CC3D6B /* JRSwizzle */,
 				CF5D3E562397929E00CC3D6B /* Safe */,
@@ -328,10 +348,9 @@
 		CFDB111A23A15C060040DE2B /* define */ = {
 			isa = PBXGroup;
 			children = (
-				CFDB113A23A3B62F0040DE2B /* SiteModel.h */,
-				CFDB113923A3B62F0040DE2B /* SiteModel.m */,
-				CFDB111B23A15C450040DE2B /* PathDefine.h */,
-				CFDB111C23A15C450040DE2B /* PathDefine.m */,
+				CF5D3D6C2396B8CE00CC3D6B /* AutoPackingVC.h */,
+				CF68BDA324A5976B00775B0A /* GitModel.h */,
+				CF68BDA424A5976B00775B0A /* GitModel.m */,
 			);
 			path = define;
 			sourceTree = "<group>";
@@ -399,9 +418,11 @@
 				CFE8765623D424A200BAA5D4 /* 8zip.sh in Resources */,
 				CFDB112C23A3AE6F0040DE2B /* 5push.sh in Resources */,
 				CF5D3D732396B8D000CC3D6B /* Main.storyboard in Resources */,
+				CF30224224A5D19000FCF066 /* ReadPlist.sh in Resources */,
 				CF5D3DA42396BC4600CC3D6B /* 2setup.sh in Resources */,
 				CF5D3DA22396BC4600CC3D6B /* 3packing.sh in Resources */,
 				CFDB113E23A3E1AD0040DE2B /* 6clean.sh in Resources */,
+				CF30224024A5CE4900FCF066 /* RnInfo.sh in Resources */,
 				CF3263D223CF3ABB00D4B79A /* 7codepush.sh in Resources */,
 				CF5D3DA32396BC4600CC3D6B /* 1pull.sh in Resources */,
 				CF5D3E512397863400CC3D6B /* 打包文件 in Resources */,
@@ -415,11 +436,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF68BDA524A5976B00775B0A /* GitModel.m in Sources */,
 				CF5D3E45239781B800CC3D6B /* NSObject+MJCoding.m in Sources */,
-				CFDB113B23A3B62F0040DE2B /* SiteModel.m in Sources */,
 				CF5D3E1C2397819C00CC3D6B /* AFURLRequestSerialization.m in Sources */,
 				CF5D3D6E2396B8CE00CC3D6B /* AutoPackingVC.m in Sources */,
-				CFFAE9D1244821DF00DADF0A /* NSAppleScript+Helper.m in Sources */,
+				CF166B3C24A4925E00EF8835 /* iOSPack.m in Sources */,
 				CF5D3E632397929E00CC3D6B /* NSNull+Safe.m in Sources */,
 				CF5D3E42239781B700CC3D6B /* MJPropertyType.m in Sources */,
 				CF5D3E622397929E00CC3D6B /* NSString+Safe.m in Sources */,
@@ -428,7 +449,6 @@
 				CF3263D023CF37B000D4B79A /* NSTask+Block.m in Sources */,
 				CF5D3E44239781B800CC3D6B /* MJProperty.m in Sources */,
 				CF5D3E48239781B800CC3D6B /* NSObject+MJClass.m in Sources */,
-				CFDB111D23A15C450040DE2B /* PathDefine.m in Sources */,
 				CF5D3E1B2397819C00CC3D6B /* AFURLSessionManager.m in Sources */,
 				CF5D3E46239781B800CC3D6B /* MJExtensionConst.m in Sources */,
 				CFB6867624484A6F00C51533 /* NodeModulesFix.m in Sources */,
@@ -439,12 +459,14 @@
 				CF5D3E2A239781AC00CC3D6B /* CCSessionModel.m in Sources */,
 				CF5D3E642397929E00CC3D6B /* NSNumber+Safe.m in Sources */,
 				CF5D3E49239781B800CC3D6B /* NSString+MJExtension.m in Sources */,
+				CF166B3824A4920C00EF8835 /* ReactNativePack.m in Sources */,
 				CF5D3E1D2397819C00CC3D6B /* AFNetworkReachabilityManager.m in Sources */,
 				CF5D3E612397929E00CC3D6B /* NSDictionary+NilSafe.m in Sources */,
 				CF5D3DAA2396BC9500CC3D6B /* ShellHelper.m in Sources */,
 				CFDB111623A14D160040DE2B /* JRSwizzle.m in Sources */,
 				CF5D3E652397929E00CC3D6B /* NSArray+Safe.m in Sources */,
 				CF5D3E192397819C00CC3D6B /* AFURLResponseSerialization.m in Sources */,
+				CF68BDA824A59B2500775B0A /* SiteModel.m in Sources */,
 				CF5D3E1E2397819C00CC3D6B /* AFSecurityPolicy.m in Sources */,
 				CF5D3E4A239781B800CC3D6B /* MJPropertyKey.m in Sources */,
 				CF5D3D6B2396B8CE00CC3D6B /* AppDelegate.m in Sources */,
@@ -588,7 +610,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AutoPacking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";
@@ -611,7 +633,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AutoPacking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "";

@@ -38,6 +38,7 @@
 #import "UGPromotionInfoController.h"		// 推荐收益
 #import "UGRealBetRecordViewController.h"   // 真人注单记录
 #import "UGBetRecordViewController.h"       // 注单记录
+#import "UGMailBoxTableViewController.h"       // 注单记录
 #import "MailBoxTableViewController.h"    // 站内信
 #import "UGSigInCodeViewController.h"		// 每日签到
 #import "UGYubaoViewController.h"			// 利息宝

@@ -1648,6 +1648,12 @@
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
+		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
+		CF166B3424A47E8700EF8835 /* HotBranchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3224A47E8700EF8835 /* HotBranchView.m */; };
+		CF166B3D24A495A900EF8835 /* HotBranchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3224A47E8700EF8835 /* HotBranchView.m */; };
+		CF166B3E24A495B000EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
+		CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
+		CF166B4024A495CF00EF8835 /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -3514,6 +3520,9 @@
 		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
 		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
 		CF166B2E24A343BE00EF8835 /* SitesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SitesView.xib; sourceTree = "<group>"; };
+		CF166B3024A47E8600EF8835 /* HotBranchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotBranchView.xib; sourceTree = "<group>"; };
+		CF166B3124A47E8700EF8835 /* HotBranchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotBranchView.h; sourceTree = "<group>"; };
+		CF166B3224A47E8700EF8835 /* HotBranchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotBranchView.m; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -4460,13 +4469,11 @@
 		031E149E23BE812300B0F813 /* LogHelper */ = {
 			isa = PBXGroup;
 			children = (
+				CF166B3524A47E9C00EF8835 /* 切站点、切热更新 */,
 				031E14A023BE812300B0F813 /* TextFieldAlertView */,
 				031E14A423BE812300B0F813 /* LogVC.h */,
 				031E14A523BE812300B0F813 /* LogVC.m */,
 				031E149F23BE812300B0F813 /* Log.storyboard */,
-				CF166B2A24A3405A00EF8835 /* SitesView.h */,
-				CF166B2B24A3405A00EF8835 /* SitesView.m */,
-				CF166B2E24A343BE00EF8835 /* SitesView.xib */,
 			);
 			path = LogHelper;
 			sourceTree = "<group>";
@@ -7512,6 +7519,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF166B3524A47E9C00EF8835 /* 切站点、切热更新 */ = {
+			isa = PBXGroup;
+			children = (
+				CF166B3124A47E8700EF8835 /* HotBranchView.h */,
+				CF166B3224A47E8700EF8835 /* HotBranchView.m */,
+				CF166B3024A47E8600EF8835 /* HotBranchView.xib */,
+				CF166B2A24A3405A00EF8835 /* SitesView.h */,
+				CF166B2B24A3405A00EF8835 /* SitesView.m */,
+				CF166B2E24A343BE00EF8835 /* SitesView.xib */,
+			);
+			path = "切站点、切热更新";
+			sourceTree = "<group>";
+		};
 		CF4757D3239636D100966536 /* 六合表情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8906,6 +8926,7 @@
 				D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */,
 				031E1D3423BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
 				CF4758FA239636D200966536 /* 158.gif in Resources */,
+				CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */,
 				CF475907239636D200966536 /* 98.gif in Resources */,
 				031E1D1E23BE812B00B0F813 /* UGIntegralConvertController.storyboard in Resources */,
 				CF4758CC239636D200966536 /* 93.gif in Resources */,
@@ -9239,6 +9260,7 @@
 				031E1B7F23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
 				031EF5CB23BE7B4E00B0F813 /* UGPrivateChatVC.swift in Sources */,
 				031EF5D523BE7B4E00B0F813 /* EmojiCell.swift in Sources */,
+				CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */,
 				031E1CAD23BE812A00B0F813 /* UGFundDetailsCell.m in Sources */,
 				031E1C2D23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.m in Sources */,
 				031E1D6B23BE812B00B0F813 /* UGActivityGoldTableViewController.m in Sources */,
@@ -9521,6 +9543,7 @@
 				031EF5D123BE7B4E00B0F813 /* BetFollowView.swift in Sources */,
 				03314FD023CDA04D0070CB54 /* HSC_MineVC.m in Sources */,
 				031EF5DB23BE7B4E00B0F813 /* MessageCollectionViewGifCell.swift in Sources */,
+				CF166B3D24A495A900EF8835 /* HotBranchView.m in Sources */,
 				031EF5E623BE7B4E00B0F813 /* MineTableController.swift in Sources */,
 				031EF55723BE7B4D00B0F813 /* UIImage+UIColor.swift in Sources */,
 				031E1BBF23BE812900B0F813 /* UGfinancialView.m in Sources */,
@@ -9566,6 +9589,7 @@
 				031E1AE923BE812800B0F813 /* LeeTagItemViewModel.m in Sources */,
 				031E1D1323BE812B00B0F813 /* JSONAPI.m in Sources */,
 				031E199523BE812600B0F813 /* LHPostVoteView.m in Sources */,
+				CF166B4024A495CF00EF8835 /* MailBoxTableViewController.m in Sources */,
 				031E197523BE812600B0F813 /* UGLHPostModel.m in Sources */,
 				031E1A8323BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				031E1D0123BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
@@ -9778,6 +9802,7 @@
 				031E1ABD23BE812800B0F813 /* WMPickupList.m in Sources */,
 				031EF53A23BE7B4D00B0F813 /* APIProvider.swift in Sources */,
 				CF85085C2466D5EA0025672F /* DZPTwoView.m in Sources */,
+				CF166B3E24A495B000EF8835 /* SitesView.m in Sources */,
 				031E1DC923BE812C00B0F813 /* UGrealBetStatModel.m in Sources */,
 				031E1C7D23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
 				CF639D7A246E645B00A54CE7 /* MGSlider.m in Sources */,
@@ -10134,6 +10159,7 @@
 				031E1DA023BE812B00B0F813 /* UGdepositStatModel.m in Sources */,
 				031E1A9C23BE812800B0F813 /* MOFSAddressPickerView.m in Sources */,
 				031E1A8823BE812700B0F813 /* SAROPSessionTask.m in Sources */,
+				CF166B3424A47E8700EF8835 /* HotBranchView.m in Sources */,
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
 				22FAD04723D471630002EA1D /* LotteryTrendContentCell.m in Sources */,
 				031E1D6E23BE812B00B0F813 /* UGMosaicGoldViewController.m in Sources */,
