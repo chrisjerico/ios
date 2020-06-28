@@ -473,9 +473,9 @@
         for (NSDictionary *dict in rnPageInfos) {
             [temp addObject:[RnPageModel mj_objectWithKeyValues:dict]];
         }
-        rnPageInfos = temp.copy;
+        _rnPageInfos = temp.copy;
     } else {
-        rnPageInfos = rnPageInfos;
+        _rnPageInfos = rnPageInfos;
     }
 }
 
