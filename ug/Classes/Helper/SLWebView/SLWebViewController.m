@@ -403,11 +403,11 @@
     
     NSLog(@"%@",navigationAction.request.URL.absoluteString);
     NSString* reqUrl = navigationAction.request.URL.absoluteString;
-    if ([reqUrl hasPrefix:@"alipays://"] || [reqUrl hasPrefix:@"alipay://"]||[reqUrl hasPrefix:@"alipay"]) {
+    if ([reqUrl hasPrefix:@"alipay"]) {
         [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
         //bSucc是否成功调起支付宝
     }
-    if ([reqUrl hasPrefix:@"weixin://"]||[reqUrl hasPrefix:@"weixin"]) {
+    if ([reqUrl hasPrefix:@"weixin"]) {
         [[UIApplication sharedApplication]openURL:navigationAction.request.URL];
         //bSucc是否成功调起微信
     }
