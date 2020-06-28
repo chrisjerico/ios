@@ -196,6 +196,7 @@
 				CFDB111A23A15C060040DE2B /* define */,
 				CF5D3D692396B8CE00CC3D6B /* AppDelegate.h */,
 				CF5D3D6A2396B8CE00CC3D6B /* AppDelegate.m */,
+				CF5D3D6C2396B8CE00CC3D6B /* AutoPackingVC.h */,
 				CF5D3D6D2396B8CE00CC3D6B /* AutoPackingVC.m */,
 				CF166B3924A4921400EF8835 /* 打包 */,
 				CF5D3D6F2396B8D000CC3D6B /* Assets.xcassets */,
@@ -348,7 +349,6 @@
 		CFDB111A23A15C060040DE2B /* define */ = {
 			isa = PBXGroup;
 			children = (
-				CF5D3D6C2396B8CE00CC3D6B /* AutoPackingVC.h */,
 				CF68BDA324A5976B00775B0A /* GitModel.h */,
 				CF68BDA424A5976B00775B0A /* GitModel.m */,
 			);

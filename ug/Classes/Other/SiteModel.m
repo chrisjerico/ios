@@ -186,7 +186,7 @@
             site(@"c211",        @"c211hy",     @"259",     @"io.fhpt.YSFC211",         @"https://310310app.com",                       @"企业包",     @"4484娱乐城"),
             site(@"c230",       @"c230hy",     @"288",      @"io.fhpt.YSFC230",         @"https://www.jdapp588.com",                    @"企业包",     @"九鼎彩票"),
             site(@"c233",       @"c233hy",     @"294",      @"io.fhpt.YSAC233",         @"https://9115111.com",                         @"企业包",     @"太阳城集团"),
-            site(@"c235",       @"c235hy",     @"300",      @"io.fhpt.YSAC235",         @"https://p36005.com",                         @"企业包",     @"新葡京娱乐城I"),
+            site(@"c235",       @"c235hy",     @"300",      @"io.fhpt.YSAC235",         @"https://p36005.com",                         @"企业包",     @"新葡京娱乐城"),
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
             site(@"test10",      @"88",         @"125",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"test10"),
