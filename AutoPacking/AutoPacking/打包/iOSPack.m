@@ -32,7 +32,7 @@
 - (void)setupPlist:(NSDictionary *)dict {
     _projectDir = [NSString stringWithFormat:@"%@/ios", dict[@"打包项目路径"]];
     _plistFile = [_projectDir stringByAppendingString:@"/AutoPacking/AutoPacking/sh/a.plist"];
-    _exportDir = @"/Library/WebServer/Documents/ipa";
+    _exportDir =  [dict[@"导出目录"] stringByAppendingPathComponent:@"ipa"];
     _logFile = [NSString stringWithFormat:@"%@/PackingLog.txt", dict[@"日志项目路径"]];
 }
 

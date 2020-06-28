@@ -32,7 +32,7 @@
 - (void)setupPlist:(NSDictionary *)dict {
     _projectDir = dict[@"打包项目路径"];
     _jspatchDir = [_projectDir stringByAppendingPathComponent:@"js/jspatch"];
-    _jspExportDir = @"/Library/WebServer/Documents/js";
+    _jspExportDir =  [dict[@"导出目录"] stringByAppendingPathComponent:@"js"];
     _privateKey = [NSTemporaryDirectory() stringByAppendingString:@"/.privateKey"];
     [dict[@"私钥"] writeToFile:_privateKey atomically:true encoding:NSUTF8StringEncoding error:nil];
 }

@@ -379,18 +379,25 @@ RCT_EXPORT_METHOD(launchFinish) {
 + (NSDictionary <NSString *, NSString *>*)allCodePushKey {
     return @{
         @"线上环境":@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
-        @"测试":@"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
-        @"fish1":@"L7T5GuCg35qe08E4z4BmG9U396j74ksvOXqog",
-        @"fish2":@"dc6cZWHC1HTF7ZeOaJekmDh6XCgD4ksvOXqog",
-        @"parker":@"",
-        @"tars":@"",
-        @"ezer":@"",
+        @"master":@"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
+        @"fish1":@"Nu5AeIufjECzzYroZ1xaX0oYqZbl4ksvOXqog",
+        @"fish2":@"fY4dAKb8mxJkcLvTUtH0JpuyAWJ94ksvOXqog",
+        @"fish3":@"ynI3JzBw7aJyQ6YfabwwTY3FhAVd4ksvOXqog",
+        @"parker1":@"nBH5uXNMEvkZVzUOLKdzgul2xS134ksvOXqog",
+        @"parker2":@"djpZFtyRw7vswSHwiQ2vifHOs82G4ksvOXqog",
+        @"parker3":@"JzFvDUISZHKIeOeUHKgTVAwPnJOe4ksvOXqog",
+        @"tars1":@"G275knJSNe2VzJtWiEABcAs8qPGq4ksvOXqog",
+        @"tars2":@"WpkJXxo3Cye5yAO1hoSaGWBOuUmi4ksvOXqog",
+        @"tars3":@"5bC93JFt3mIo1hYtjER08AMZnwZb4ksvOXqog",
+        @"ezer1":@"EU5wjwXEOTQuI1ErQCHQ8mhzKPur4ksvOXqog",
+        @"ezer2":@"PtdtqigJTT6mOShzqiABXkYIdPop4ksvOXqog",
+        @"ezer3":@"hGaea8a4UVUJPBL0tKJGJat4yD8n4ksvOXqog",
     };
 }
 
 + (NSString *)currentCodePushKey {
 #ifdef APP_TEST
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"线上环境"];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"master"];
 #else
     return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
 #endif
