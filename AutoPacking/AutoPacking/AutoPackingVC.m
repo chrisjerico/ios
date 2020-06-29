@@ -35,7 +35,7 @@
             
             BOOL isPack = 1;  // 打包类型：0热更新，1原生iOS
             if (isPack) {
-                NSString *ids = @"a002,c190,c048,c105b,c228,c018";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+                NSString *ids = @"c213";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
                 NSString *branch = @"dev_master";// 分支名
                 BOOL willUpload = 1;        // 打包后是否上传审核
                 
