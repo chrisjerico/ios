@@ -521,6 +521,8 @@
                 subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
             }
            
+            _promotionsStackView.cc_constraints.top.constant = 0;
+            _promotionsStackView.cc_constraints.left.constant = 0;
         }
         
         if (Skin1.isJY) {
