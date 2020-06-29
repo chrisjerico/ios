@@ -516,7 +516,7 @@
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
             
-            if ( [@"c012" containsString:APP.SiteId]) {
+            if ( [@"c012," containsString:APP.SiteId]) {
                 subView(@"优惠活动外View").layer.borderWidth = 1;
                 subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
             }
@@ -2334,6 +2334,15 @@
         }
         else{
              subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+        }
+        
+        
+        subView(@"cell背景View").layer.cornerRadius = 8;
+        subView(@"cell背景View").layer.masksToBounds = YES;
+        
+        if (APP.isWihiteBorder) {
+            subView(@"cell背景View").layer.borderWidth = 1;
+            subView(@"cell背景View").layer.borderColor = [[UIColor whiteColor] CGColor];
         }
        
         subLabel(@"标题Label").textColor = Skin1.textColor1;
