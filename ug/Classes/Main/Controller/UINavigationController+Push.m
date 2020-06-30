@@ -311,7 +311,14 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (linkCategory == 10) {
         // 去手机资料栏目
         NSLog(@"model = %@",model);
-        [NavController1 pushViewController:[[UGDocumentVC alloc] initWithModel:model] animated:true];
+        if (model.list) {
+     
+           [NavController1 pushViewController:[[UGDocumentVC alloc] initWithModel:model.list] animated:true];
+            
+            return true;
+            
+        }
+       
     }
     if (linkCategory == 11) {
         // 去注单信息
@@ -372,7 +379,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
 
     
-    if (linkCategory != 7) {
+    if (linkCategory != 7  ) {
         // 去第三方游戏页面
         if (!UGLoginIsAuthorized()) {
             [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
@@ -642,8 +649,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             break;
         }
         case 28: {
-            //21' => '账号管理',
+            //21' => '资金明细',
 //            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            fundsVC.selectIndex = 4;
+            [NavController1 pushViewController:fundsVC animated:YES];
+            return true;
+            
             break;
         }
         case 29: {

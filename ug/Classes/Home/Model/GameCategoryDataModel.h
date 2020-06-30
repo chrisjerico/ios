@@ -60,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSArray<GameSubModel> * subType;
 
+@property(nonatomic, strong) GameModel * list;/**<  手机资料栏目l */
+
 @property (nonatomic, strong) NSString * realGameId;      /**<   自定义参数   游戏ID */
 
 + (instancetype)modelWithSeriesId:(NSInteger)seriesId subId:(NSInteger)subId;
