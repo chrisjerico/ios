@@ -368,7 +368,7 @@ static NSString *const footerId = @"footerId";
        
     }
     else {
-        return UIEdgeInsetsMake(6, 5, 0, 5);
+        return UIEdgeInsetsMake(9, 5, 0, 5);
         
     }
 }
