@@ -164,43 +164,6 @@ static UGTabbarController *_tabBarVC = nil;
         }
     }
     
-    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
-        }];
-        
-        if (OBJOnceToken(TabBarController1)) {
-            NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
-                return obj1.sort > obj2.sort;
-            }];
-            NSArray<UGMobileMenu *> *smallmenus;
-            if (menus.count > 5) {
-                smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
-            }
-            else{
-                smallmenus = menus;
-            }
-            NSLog(@"menus = %@",smallmenus);
-            if (smallmenus.count > 3) {
-                // 后台配置的页面
-                [TabBarController1 resetUpChildViewController:smallmenus];
-            } else {
-                // 默认加载的页面
-                NSMutableArray *temp = @[].mutableCopy;
-                for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                    if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-                        [temp addObject:mm];
-                    }
-                }
-                [TabBarController1 resetUpChildViewController:temp];
-            }
-            [[UGSkinManagers skinWithSysConf] useSkin];
-        }
-        
-
-        [self setHotImg];
-    });
-    
     //    版本更新
     [[UGAppVersionManager shareInstance] updateVersionApi:false];
     [self setTabbarStyle];
@@ -343,6 +306,7 @@ static UGTabbarController *_tabBarVC = nil;
 - (void)resetUpChildViewController:(NSArray<UGMobileMenu *> *)menus {
     NSMutableArray <UIViewController *>*vcs = [NSMutableArray new];
     NSMutableArray *mms = @[].mutableCopy;
+    NSMutableArray *currentVCs = self.viewControllers.mutableCopy;
     for (UGMobileMenu *mm in menus) {
         if (![[UGMobileMenu allMenus] objectWithValue:mm.path keyPath:@"path"]) {
             continue;
@@ -355,10 +319,11 @@ static UGTabbarController *_tabBarVC = nil;
         
         // 已存在的控制器不需要重新初始化
         BOOL existed = false;
-        for (UINavigationController *nav in self.viewControllers) {
+        for (UINavigationController *nav in currentVCs) {
             if ([nav.viewControllers.firstObject isKindOfClass:NSClassFromString(mm.clsName)]) {
                 [vcs addObject:nav];
                 [mms addObject:mm];
+                [currentVCs removeObject:nav];
                 existed = true;
                 break;
             }
