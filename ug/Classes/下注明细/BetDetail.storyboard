@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Bet Detail View Controller-->
+        <scene sceneID="2Zg-4a-fd2">
+            <objects>
+                <viewController storyboardIdentifier="BetDetailViewController" id="p7t-vW-f5O" customClass="BetDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t9g-5X-r6m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0br-nq-QIQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="VKz-Kv-BmV">
+                                        <rect key="frame" x="0.0" y="1" width="414" height="38"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsg-A2-ltx">
+                                                <rect key="frame" x="0.0" y="0.0" width="103" height="38"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="彩种" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0k-bl-U44">
+                                                        <rect key="frame" x="39" y="12" width="25" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="输赢Label"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="q0k-bl-U44" firstAttribute="centerX" secondItem="gsg-A2-ltx" secondAttribute="centerX" id="ZRN-Tw-0Sg"/>
+                                                    <constraint firstItem="q0k-bl-U44" firstAttribute="centerY" secondItem="gsg-A2-ltx" secondAttribute="centerY" id="aTN-6C-nLD"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="输赢View"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V8l-E8-Ngq">
+                                                <rect key="frame" x="104" y="0.0" width="102.5" height="38"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="笔数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FK8-C2-e78">
+                                                        <rect key="frame" x="38.5" y="12" width="25" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="时间Label"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="FK8-C2-e78" firstAttribute="centerX" secondItem="V8l-E8-Ngq" secondAttribute="centerX" id="Dt2-rv-6mV"/>
+                                                    <constraint firstItem="FK8-C2-e78" firstAttribute="centerY" secondItem="V8l-E8-Ngq" secondAttribute="centerY" id="ygO-vf-ylp"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="时间View"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBy-B0-hIX">
+                                                <rect key="frame" x="207.5" y="0.0" width="103" height="38"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下注金额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nt-JP-DJt">
+                                                        <rect key="frame" x="26.5" y="12" width="49.5" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="类型Label"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="9nt-JP-DJt" firstAttribute="centerX" secondItem="yBy-B0-hIX" secondAttribute="centerX" id="7MU-Et-isv"/>
+                                                    <constraint firstItem="9nt-JP-DJt" firstAttribute="centerY" secondItem="yBy-B0-hIX" secondAttribute="centerY" id="eyr-Wq-lgU"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="类型View"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j03-4o-rjL">
+                                                <rect key="frame" x="311.5" y="0.0" width="102.5" height="38"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输赢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJB-Vf-fgu">
+                                                        <rect key="frame" x="38.5" y="12" width="25" height="14.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="0.52156862749999999" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="输赢Label"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="MJB-Vf-fgu" firstAttribute="centerY" secondItem="j03-4o-rjL" secondAttribute="centerY" id="Gvn-T0-kwM"/>
+                                                    <constraint firstItem="MJB-Vf-fgu" firstAttribute="centerX" secondItem="j03-4o-rjL" secondAttribute="centerX" id="gNo-Bj-aF8"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="输赢View"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.89787632230000003" green="0.90568476919999996" blue="0.92156952619999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="VKz-Kv-BmV" secondAttribute="trailing" id="ECy-zb-cSU"/>
+                                    <constraint firstItem="VKz-Kv-BmV" firstAttribute="leading" secondItem="0br-nq-QIQ" secondAttribute="leading" id="Jl3-G3-GMY"/>
+                                    <constraint firstItem="VKz-Kv-BmV" firstAttribute="top" secondItem="0br-nq-QIQ" secondAttribute="top" constant="1" id="NCr-ys-kqM"/>
+                                    <constraint firstAttribute="bottom" secondItem="VKz-Kv-BmV" secondAttribute="bottom" constant="1" id="tsf-us-XX4"/>
+                                    <constraint firstAttribute="height" constant="40" id="zPv-Li-s0f"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Oe-jQ-807">
+                                <rect key="frame" x="0.0" y="84" width="414" height="778"/>
+                                <color key="backgroundColor" red="0.95677274469999996" green="0.96077066659999999" blue="0.96078509089999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="p7t-vW-f5O" id="BGd-8I-4Yf"/>
+                                    <outlet property="delegate" destination="p7t-vW-f5O" id="GLZ-Xa-b8K"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0br-nq-QIQ" firstAttribute="trailing" secondItem="6Oe-jQ-807" secondAttribute="trailing" id="DQY-50-Y3A"/>
+                            <constraint firstItem="0br-nq-QIQ" firstAttribute="leading" secondItem="6Oe-jQ-807" secondAttribute="leading" id="GQV-RZ-0Mp"/>
+                            <constraint firstItem="0br-nq-QIQ" firstAttribute="top" secondItem="dHz-cb-hup" secondAttribute="top" id="O4y-4N-2R6"/>
+                            <constraint firstItem="6Oe-jQ-807" firstAttribute="bottom" secondItem="dHz-cb-hup" secondAttribute="bottom" id="a0r-NY-Mgu"/>
+                            <constraint firstItem="6Oe-jQ-807" firstAttribute="leading" secondItem="dHz-cb-hup" secondAttribute="leading" id="d1y-i5-xt5"/>
+                            <constraint firstItem="6Oe-jQ-807" firstAttribute="top" secondItem="0br-nq-QIQ" secondAttribute="bottom" id="qfb-7s-NNL"/>
+                            <constraint firstItem="6Oe-jQ-807" firstAttribute="trailing" secondItem="dHz-cb-hup" secondAttribute="trailing" id="znR-xc-GZV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dHz-cb-hup"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="6Oe-jQ-807" id="zPG-GC-8m2"/>
+                        <outletCollection property="itemViews" destination="gsg-A2-ltx" id="vN8-Ho-aaD"/>
+                        <outletCollection property="itemViews" destination="V8l-E8-Ngq" id="kqk-3V-gpp"/>
+                        <outletCollection property="itemViews" destination="yBy-B0-hIX" id="OAb-ag-DVF"/>
+                        <outletCollection property="itemViews" destination="j03-4o-rjL" id="ino-dR-Ejy"/>
+                        <outletCollection property="itemLabels" destination="q0k-bl-U44" id="ewZ-cp-lyY"/>
+                        <outletCollection property="itemLabels" destination="FK8-C2-e78" id="Dlm-AL-xkO"/>
+                        <outletCollection property="itemLabels" destination="9nt-JP-DJt" id="flc-CI-5fm"/>
+                        <outletCollection property="itemLabels" destination="MJB-Vf-fgu" id="pNM-oN-6w9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HjO-Ha-71Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-132" y="80"/>
+        </scene>
+    </scenes>
+</document>

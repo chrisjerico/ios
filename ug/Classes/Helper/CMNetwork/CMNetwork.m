@@ -560,6 +560,12 @@ completion:(CMNetworkBlock)completion {
                                                                error:nil];
         
 //        NSLog(@"%@: json = %@",method,json);
+        
+        #ifdef DEBUG
+                
+                HJSonLog(@"%@: 返回的json = %@",method,json);
+
+        #endif
         NSError *error;
         CMResult* result;
         if (json) {

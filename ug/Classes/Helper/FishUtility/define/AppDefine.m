@@ -85,6 +85,7 @@
                 sb(@"ContractedTemplate"),
                 sb(@"RedEnvelope"),
                 sb(@"LineConversion"),
+                sb(@"BetDetail"),
                 
                 
         ];

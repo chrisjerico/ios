@@ -21,7 +21,7 @@
 #import "DZPMainView.h"
 #import "SitesView.h"
 #import "HotBranchView.h"
-
+#import "BetDetailViewController.h"
 #import "DZPModel.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
@@ -209,16 +209,13 @@ static LogVC *_logVC = nil;
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"聊天室"];
-        [titles addObject:@"大转盘"];
+        [titles addObject:@"下注明细"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
 
-        [ac setActionAtTitle:@"大转盘" handler:^(UIAlertAction *aa) {
-                     [self getactivityTurntableList ];
-//            DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
-//                                   [self.view addSubview:recordVC];
-//                                   [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
-//                                       make.edges.equalTo(self.view);
-//                                   }];
+        [ac setActionAtTitle:@"下注明细" handler:^(UIAlertAction *aa) {
+            BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
+            [NavController1 pushViewController:recordVC animated:true];
+
         }];
 
         [ac setActionAtTitle:@"聊天室" handler:^(UIAlertAction *aa) {

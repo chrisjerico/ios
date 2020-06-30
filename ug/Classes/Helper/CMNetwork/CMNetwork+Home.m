@@ -21,6 +21,7 @@
 #import "UGhomeAdsModel.h"
 #import "RedBagLogModel.h"
 #import "UGNoticeTypeModel.h"
+#import "UGBetsRecordListModel.h"
 @implementation CMNetwork (Home)
 
 //获取系统配置
@@ -327,4 +328,19 @@
     CMMETHOD_END;
 }
 
+
+//下注明细：
+//方式：POST
+//参数 token + date UGBetsRecordModel
++ (void)userLotteryDayStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+     [self.manager requestInMainThreadWithMethod:[userLotteryDayStatUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                          params:params
+                                           model:nil
+                                            post:YES
+                                      completion:completionBlock];
+     
+     
+     CMMETHOD_END;
+}
 @end
