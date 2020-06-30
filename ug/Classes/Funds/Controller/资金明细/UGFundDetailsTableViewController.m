@@ -192,17 +192,9 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     if (![CMCommon arryIsNull:array]) {
         NSString *date = [array objectAtIndex:0];
         
-        #ifdef DEBUG
-              BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
-              recordVC.date = date;
-              [NavController1 pushViewController:recordVC animated:true];
-         
-        #else
-
-        #endif
-        
-  
-        
+        BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
+        recordVC.date = date;
+        [NavController1 pushViewController:recordVC animated:true];
 
     }
        
