@@ -348,7 +348,12 @@ static NSString *const footerId = @"footerId";
       
     }
     else {
-        return CGSizeMake(UGScreenW/3-10, 110);
+        if (APP.isNoSubtitle) {
+                 return CGSizeMake(UGScreenW/3-10, 95);
+        } else {
+                 return CGSizeMake(UGScreenW/3-10, 110);
+        }
+   
         
     }
 }

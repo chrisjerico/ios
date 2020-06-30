@@ -458,6 +458,10 @@
     return [@"c217" containsString:_SiteId];
 }
 
+- (BOOL)isNoSubtitle {
+    return [@"c006" containsString:_SiteId];
+}
+
 
 
 #pragma mark - 热更新
