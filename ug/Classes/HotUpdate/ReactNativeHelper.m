@@ -392,6 +392,12 @@ RCT_EXPORT_METHOD(launchFinish) {
         @"ezer1":@"EU5wjwXEOTQuI1ErQCHQ8mhzKPur4ksvOXqog",
         @"ezer2":@"PtdtqigJTT6mOShzqiABXkYIdPop4ksvOXqog",
         @"ezer3":@"hGaea8a4UVUJPBL0tKJGJat4yD8n4ksvOXqog",
+        @"andrew1":@"QxBMAXzrr7IAb8KNrHsHL322hh4G4ksvOXqog",
+        @"andrew2":@"CBJU3vsKEDDGvmmXx6cfCW87N6324ksvOXqog",
+        @"andrew3":@"oI1nTHrlKcL5wEkGh5mdRkBE07Gp4ksvOXqog",
+        @"arc1":@"nkFhELSoqcpHEvcIuwVEkoOiOWAh4ksvOXqog",
+        @"arc2":@"TWQY0Nf6z44N6wuXMleCXfVYXM274ksvOXqog",
+        @"arc3":@"StnHanrZU4z4TgwHxRu8T0dBDh0G4ksvOXqog",
     };
 }
 
