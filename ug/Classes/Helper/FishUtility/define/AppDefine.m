@@ -443,11 +443,11 @@
 }
 
 - (BOOL)addIcons {
-    return [@"c190,c134,c085" containsString:_SiteId];
+    return [@"c190,c134,c085,c193" containsString:_SiteId];
 }
 
 - (BOOL)isReplaceIcon {
-    return [@"c085" containsString:_SiteId];
+    return [@"c085,c193" containsString:_SiteId];
 }
 
 - (BOOL)isC190Cell {
