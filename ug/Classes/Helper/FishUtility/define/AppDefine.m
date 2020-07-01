@@ -200,7 +200,7 @@
 }
 
 - (BOOL)isShowSalary {
-     return [@"c217,c018" containsString:_SiteId];
+     return [@"c217,test29" containsString:_SiteId];
 }
 
 - (BOOL)isSectionWhite {
