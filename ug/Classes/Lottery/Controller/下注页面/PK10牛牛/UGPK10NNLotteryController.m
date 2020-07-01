@@ -241,13 +241,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
                 }
             }
             
-            // 删除enable为NO的数据（不显示出来）
-            for (UGGameplayModel *gm in play.playOdds) {
-                for (UGGameplaySectionModel *gsm in gm.list) {
-                    if (!gsm.enable)
-                        [self.gameDataArray removeObject:gm];
-                }
-            }            [self.tableView reloadData];
+          [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
             

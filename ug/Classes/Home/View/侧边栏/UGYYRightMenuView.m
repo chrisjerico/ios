@@ -157,10 +157,16 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
        
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
+            
+          ;
+     
             UGUserModel *oldUser = [UGUserModel currentUser];
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
+            
+            
+            NSLog(@"unsettleAmount=%@",  [UGUserModel currentUser].unsettleAmount);
             [self.refreshButton.layer removeAllAnimations];
              self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
              [self tableDataAction ];
@@ -279,6 +285,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     
     if (UGLoginIsAuthorized()) {//已经登录
         if (model.subId == 24) {
+            
+            NSLog(@"[UGUserModel currentUser].unsettleAmount =%@",[UGUserModel currentUser].unsettleAmount);
             cell.title = [NSString stringWithFormat:@"即时注单(%@)",[UGUserModel currentUser].unsettleAmount];
         }
         else if (model.subId == 25) {
@@ -445,6 +453,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                  self.backToHomeBlock();
     }
     else{
+        if (modle.list) {
+            modle.subId = modle.list.subId;
+        }
         [NavController1 pushViewControllerWithGameModel:modle];
     }
 }

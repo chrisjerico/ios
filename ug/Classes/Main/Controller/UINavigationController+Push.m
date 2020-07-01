@@ -634,11 +634,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 26: {
             //26' => '开奖结果',
-            if (model.realGameId) {
-                UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
+
+            UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
+            if ([CMCommon stringIsNull:model.realGameId]) {
                 recordVC.gameId = model.realGameId;
-                [NavController1 pushViewController:recordVC animated:true];
             }
+            [NavController1 pushViewController:recordVC animated:true];
+    
           
     
             break;
@@ -691,7 +693,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 33: {
             //33' => '彩种规则',
-            if (model.gameId) {
+            if (![CMCommon stringIsNull:model.realGameId]) {
                 UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];
                 rulesView.gameId = model.realGameId;
                 [rulesView show];
