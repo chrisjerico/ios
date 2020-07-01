@@ -7,7 +7,7 @@
 //
 
 #import "UGNotDetailViewController.h"
-
+#import "BetDetailViewController.h"
 #import "UGBetsRecordListModel.h"
 
 @interface UGNotDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -141,6 +141,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+      UGBetsRecordModel *model = self.dataArray[indexPath.row];
+    
+    NSLog(@"model.time = %@",model.date);
+    
+     NSArray  *array = [model.date componentsSeparatedByString:@" "];//--分隔符
+    if (![CMCommon arryIsNull:array]) {
+        NSString *date = [array objectAtIndex:0];
+        
+        BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
+        recordVC.date = date;
+        [NavController1 pushViewController:recordVC animated:true];
+
+    }
 }
 
 - (void)setupTotalAmountLabelTextColor {
