@@ -11,12 +11,15 @@
 #import "QDAlertView.h"
 #import "UGMessageModel.h"
 #import "MJRefresh.h"
+#import "MessageUnderMenuView.h"
 
 @interface UGMailBoxTableViewController ()
 
 @property (nonatomic, strong) NSMutableArray <UGMessageModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
+
+@property (nonatomic, strong)MessageUnderMenuView *underMenu; /**<   下边栏 */
 @end
 //分页初始值
 static int page = 1;
@@ -41,6 +44,23 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     self.tableView.estimatedSectionHeaderHeight = 0;
     [self setupRefreshView];
     [self loadMessageList];
+
+//
+    
+    self.underMenu = [[MessageUnderMenuView alloc] initView];
+    [self.view addSubview:self.underMenu];
+    [self.underMenu bringSubviewToFront:self.tableView];
+    
+    WeakSelf
+    self.underMenu.delclickBllock = ^{
+        weakSelf.pageNumber = 1;
+        [weakSelf loadMessageList];
+    };
+    self.underMenu.readedclickBllock = ^{
+        weakSelf.pageNumber = 1;
+        [weakSelf loadMessageList];
+    };
+    
 }
 
 //添加上下拉刷新

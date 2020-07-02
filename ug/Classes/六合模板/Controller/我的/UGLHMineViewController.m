@@ -13,7 +13,7 @@
 #import "UGPromotionIncomeController.h"
 #import "UGAgentViewController.h"
 #import "UGSecurityCenterViewController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
 #import "UGMosaicGoldViewController.h"

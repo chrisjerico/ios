@@ -148,7 +148,7 @@
             };
             NSString *vcName = dict[model.gameType];
             UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
-            if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
+            if (model.isInstant) {
                 vc.shoulHideHeader = true;
             }
             vc.nextIssueModel = model;

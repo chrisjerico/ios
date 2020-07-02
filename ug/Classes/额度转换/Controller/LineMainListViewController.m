@@ -371,7 +371,7 @@
     if ([btn.tagString isEqualToString:@"5000Btn"]) {
         _moneyTxt.text = @"5000";
     }
-    if ([btn.tagString isEqualToString:@"1000Btn"]) {
+    if ([btn.tagString isEqualToString:@"10000Btn"]) {
         _moneyTxt.text = @"10000";
     }
 }

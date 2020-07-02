@@ -89,13 +89,15 @@ https://app.pindanduo.cn/ipa/c085/c085_1577104817.ipa
     https://c105bhy.app2.xin
     
     描叙：凤凰控制台 ==》站点的前台==》复制关于我们头一段文字
+    超级签名后台 ==》上架
+    UG集团APP管理中心 c190hy   编辑==》是否超级签名 ==是
     
     给后端发条消息
     https://baidujump.app/eipeyipeyi/jump-167.html     ==》167 是你在App管理平台建的hy 的编号，要换
     c190hy （原生App）超级签加个判断
     
-    UG集团APP管理中心 c190hy   编辑==》是否超级签名 ==是
-    超级签名后台 ==》上架
+
+
     
     
     

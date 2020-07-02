@@ -269,7 +269,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="366" height="132"/>
                                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                                             <subviews>
-                                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-fy-6kQ" customClass="IBView">
+                                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-fy-6kQ">
                                                                                                     <rect key="frame" x="10" y="10" width="346" height="112"/>
                                                                                                     <subviews>
                                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lHV-hR-uPo">

@@ -13,15 +13,9 @@
 
 #import "CodePush.h"
 #import "RSA.h"
+#import "RNCWebView.h"
 
 #define CodePushHost @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/"
-#ifdef APP_TEST
-#define CodePushKey @"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog"
-#else
-#define CodePushKey @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog"
-#endif
-
-
 
 
 @interface RCTHTTPRequestHandler (RnHelper)
@@ -69,8 +63,24 @@
     dispatch_once(&onceToken, ^{
         [[CodePushConfig current] setAppVersion:@"1.1.1"];
         [[CodePushConfig current] setServerURL:CodePushHost];
-        [[CodePushConfig current] setDeploymentKey:CodePushKey];
+        [[CodePushConfig current] setDeploymentKey:ReactNativeHelper.currentCodePushKey];
 //        [[CodePushConfig current] configuration[@"publicKey"] = ;
+        
+        
+        // ——————修复react-native-webview 移除后重新添加时闪退bug
+        // 错误信息：Cannot form weak reference to instance (0x7fab8494e600) of class WKWebView. It is possible that this object was over-released, or is in the process of deallocation.
+        // 解决方法：移除时保留webview在内存里面使其能被正常引用（保留3个）
+        static NSMutableArray *__wvs = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            __wvs = @[].mutableCopy;
+        });
+        [RNCWebView cc_hookSelector:@selector(removeFromSuperview) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            [__wvs addObject:[ai.instance webView]];
+            if (__wvs.count > 3) {
+                [__wvs removeFirstObject];
+            }
+        } error:nil];
     });
 }
 @end
@@ -353,7 +363,7 @@ RCT_EXPORT_METHOD(launchFinish) {
 - (NSDictionary *)constantsToExport {
     return @{
         // 发布环境Key
-        @"CodePushKey": CodePushKey,
+        @"CodePushKey": ReactNativeHelper.currentCodePushKey,
     };
 }
 
@@ -364,6 +374,44 @@ RCT_EXPORT_METHOD(launchFinish) {
         @"SelectVC",// 用于切换页面
         @"RemoveVC",// 用于移除页面
     ];
+}
+
++ (NSDictionary <NSString *, NSString *>*)allCodePushKey {
+    return @{
+        @"线上环境":@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
+        @"master":@"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
+        @"fish1":@"Nu5AeIufjECzzYroZ1xaX0oYqZbl4ksvOXqog",
+        @"fish2":@"fY4dAKb8mxJkcLvTUtH0JpuyAWJ94ksvOXqog",
+        @"fish3":@"ynI3JzBw7aJyQ6YfabwwTY3FhAVd4ksvOXqog",
+        @"parker1":@"nBH5uXNMEvkZVzUOLKdzgul2xS134ksvOXqog",
+        @"parker2":@"djpZFtyRw7vswSHwiQ2vifHOs82G4ksvOXqog",
+        @"parker3":@"JzFvDUISZHKIeOeUHKgTVAwPnJOe4ksvOXqog",
+        @"tars1":@"G275knJSNe2VzJtWiEABcAs8qPGq4ksvOXqog",
+        @"tars2":@"WpkJXxo3Cye5yAO1hoSaGWBOuUmi4ksvOXqog",
+        @"tars3":@"5bC93JFt3mIo1hYtjER08AMZnwZb4ksvOXqog",
+        @"ezer1":@"EU5wjwXEOTQuI1ErQCHQ8mhzKPur4ksvOXqog",
+        @"ezer2":@"PtdtqigJTT6mOShzqiABXkYIdPop4ksvOXqog",
+        @"ezer3":@"hGaea8a4UVUJPBL0tKJGJat4yD8n4ksvOXqog",
+        @"andrew1":@"QxBMAXzrr7IAb8KNrHsHL322hh4G4ksvOXqog",
+        @"andrew2":@"CBJU3vsKEDDGvmmXx6cfCW87N6324ksvOXqog",
+        @"andrew3":@"oI1nTHrlKcL5wEkGh5mdRkBE07Gp4ksvOXqog",
+        @"arc1":@"nkFhELSoqcpHEvcIuwVEkoOiOWAh4ksvOXqog",
+        @"arc2":@"TWQY0Nf6z44N6wuXMleCXfVYXM274ksvOXqog",
+        @"arc3":@"StnHanrZU4z4TgwHxRu8T0dBDh0G4ksvOXqog",
+    };
+}
+
++ (NSString *)currentCodePushKey {
+#ifdef APP_TEST
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"master"];
+#else
+    return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
+#endif
+}
+
++ (void)setCurrentCodePushKey:(NSString *)currentCodePushKey {
+    [[NSUserDefaults standardUserDefaults] setObject:currentCodePushKey forKey:@"CodePushKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

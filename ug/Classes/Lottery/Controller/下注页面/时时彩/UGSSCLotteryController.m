@@ -25,7 +25,7 @@
 #import "UGLotteryRulesView.h"
 #import "UGLotteryRecordController.h"
 #import "WSLWaterFlowLayout.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGSSCBetItem1Cell.h"
 #import "UGLotteryAdPopView.h"
 

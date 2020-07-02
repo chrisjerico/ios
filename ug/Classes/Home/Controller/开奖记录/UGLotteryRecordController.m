@@ -105,7 +105,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         void (^setupData)(void) = ^{
             for (UGAllNextIssueListModel *listModel in __self.lotteryGamesArray) {
                 for (UGNextIssueModel *model in listModel.list) {
-                    if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
+                    if (model.isInstant) {
                         // bug fix: 52941 彩种：开奖记录中去掉秒秒彩类彩票。
                         continue;
                     }

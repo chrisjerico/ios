@@ -104,6 +104,10 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     _titleView.selectIndex = 0;
     _contentScrollView.contentOffset = CGPointZero;
     
+//    if (gameTypeArray.count==1) {
+//        [_titleView setHidden:YES];
+//    }
+    
     // 清空_collectionViews
     for (UGPlatformCollectionView *pcv in _contentStackView.arrangedSubviews)
         [pcv removeFromSuperview];

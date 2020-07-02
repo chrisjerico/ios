@@ -9,7 +9,7 @@
 #import "UGFundDetailsTableViewController.h"
 #import "UGFundDetailsCell.h"
 #import "UGFundLogsModel.h"
-
+#import "BetDetailViewController.h"
 
 @interface UGFundDetailsTableViewController ()
 
@@ -179,6 +179,39 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     
     
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+       
+       UGFundLogsModel *model = self.dataArray[indexPath.row];
+    
+    NSLog(@"model.time = %@",model.time);
+    
+     NSArray  *array = [model.time componentsSeparatedByString:@" "];//--分隔符
+    if (![CMCommon arryIsNull:array]) {
+        NSString *date = [array objectAtIndex:0];
+        
+        #ifdef DEBUG
+              BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
+              recordVC.date = date;
+              [NavController1 pushViewController:recordVC animated:true];
+         
+        #else
+
+        #endif
+        
+  
+        
+
+    }
+       
+    
+
+}
+
+
+
 
 - (NSMutableArray<UGFundLogsModel *> *)dataArray {
     if (_dataArray == nil) {

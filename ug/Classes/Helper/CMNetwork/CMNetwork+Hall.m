@@ -99,15 +99,28 @@
 + (void)userBetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
     NSString *url = nil;
-	NSArray * gameIdArray = @[@"9", @"7", @"11"];
-
-    if ( [gameIdArray containsObject: [NSString stringWithFormat:@"%@", params[@"gameId"]]])  {
-        url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-    }else if([UGUserModel currentUser].isTest) {
-        url = [guestBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-	} else {
-		url = [userBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-	}
+    
+    if([UGUserModel currentUser].isTest) {
+        
+        NSNumber *isInstant = params[@"isInstant"];
+        BOOL isInstantBool = [isInstant boolValue];
+        if (isInstantBool) {
+            url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        } else {
+            url = [guestBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        }
+        
+    } else {
+        
+        NSNumber *isInstant = params[@"isInstant"];
+        BOOL isInstantBool = [isInstant boolValue];
+        if (isInstantBool) {
+            url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        } else {
+            url = [userBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        }
+        
+    }
     [self.manager requestInMainThreadWithMethod:url
                                          params:params
                                           model:CMResultClassMake([UGBetDetailModel class])

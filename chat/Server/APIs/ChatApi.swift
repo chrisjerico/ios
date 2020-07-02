@@ -71,7 +71,7 @@ enum ChatTarget {
 extension ChatTarget: TargetType {
 	var baseURL: URL {
 		if case .test = self {
-			return URL(string: "http://t111f.fhptcdn.com")!
+			return URL(string: "http://test10.6yc.com")!
 		}
 		
 		return URL(string: AppDefine.shared()!.host)!

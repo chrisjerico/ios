@@ -10,69 +10,10 @@
 
 @implementation ShellHelper
 
-// 检查配置
-+ (void)checkSiteInfo:(NSString *)siteIds {
-    NSMutableArray *errs = @[].mutableCopy;
-    for (NSString *siteId in [siteIds componentsSeparatedByString:@","]) {
-        SiteModel *sm = [SiteModel modelWithId:siteId];
-        if (sm) {
-            if (!sm.type.length || [sm.type isEqualToString:@"未确定签名方式"]) {
-                [errs addObject:[NSString stringWithFormat:@"未确定签名方式, %@", sm.siteId]];
-            }
-            if (!sm.appName.length) {
-                [errs addObject:[NSString stringWithFormat:@"app名称未配置, %@", sm.siteId]];
-            }
-            if (!sm.appId.length) {
-                [errs addObject:[NSString stringWithFormat:@"bundleId未配置, %@", sm.siteId]];
-            }
-            if (!sm.host.length) {
-                [errs addObject:[NSString stringWithFormat:@"接口域名未配置, %@", sm.siteId]];
-            }
-            if (![sm.host hasPrefix:@"http"]) {
-                [errs addObject:[NSString stringWithFormat:@"接口域名未配置, %@", sm.siteId]];
-            }
-            if (!sm.uploadNum.length) {
-                [errs addObject:[NSString stringWithFormat:@"上传编号未配置, %@", sm.siteId]];
-            }
-            if (!sm.uploadId.length) {
-                [errs addObject:[NSString stringWithFormat:@"上传ID未配置, %@", sm.siteId]];
-            }
-            if (![[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/%@", Path.iosProjectDir, sm.siteId]]) {
-                [errs addObject:[NSString stringWithFormat:@"app图标未配置, %@", sm.siteId]];
-            }
-        } else {
-            [errs addObject:[NSString stringWithFormat:@"没有此站点，请检查是否拼写错误, %@", siteId]];
-        }
-    }
-    NSLog(@"Path.tempPlist= %@",Path.tempPlist);
-    if (![[NSFileManager defaultManager] fileExistsAtPath:Path.tempPlist]) {
-        [errs addObject:_NSString(@"找不到plist模板，请在此路径放置一个plist模板：%@", Path.tempPlist)];
-    }
-    if (![[NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Other/configuration.h", Path.iosProjectDir) encoding:NSUTF8StringEncoding error:nil] containsString:@"#define checkSign 1"]) {
-        [errs addObject:@"未开启参数加密，请到 configuration.h 文件开启参数加密"];
-    }
-    NSString *appDefine = [NSString stringWithContentsOfFile:_NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.iosProjectDir) encoding:NSUTF8StringEncoding error:nil];
-    if (!([appDefine componentsSeparatedByString:@"#define APP_TEST"].count == 2 && [appDefine containsString:@"\n#define APP_TEST\n"])) {
-        [errs addObject:@"未正确配置 APP_TEST宏，请在AppDefine.h上配置。"];
-    }
-    
-    NSLog(@"\n\n");
-    NSLog(@"-——————————检查站点配置———————————\n\n");
-    for (NSString *err in errs) {
-        NSLog(@"%@", err);
-    }
-    if (errs.count) {
-        NSLog(@"\n\n");
-        @throw [NSException exceptionWithName:@"缺少已上配置，请配置完成后再打包" reason:@"" userInfo:nil];
-        return ;
-    }
-    NSLog(@"-——————————配置ok-——————————");
-}
-
 // rsa加密
-+ (void)encrypt:(NSArray<NSString *> *)stringArray completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
++ (void)encrypt:(NSArray<NSString *> *)stringArray privateKey:(NSString *)privateKey completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
     if (!stringArray.count) {
-        @throw [NSException exceptionWithName:@"字符串为空。" reason:@"" userInfo:nil];
+        assert(!@"字符串为空。".length);
     }
     // 遍历加密字符串列表
     NSMutableArray *temp = stringArray.mutableCopy;
@@ -85,7 +26,6 @@
             [temp removeObject:__orString];
         }
         if (!__orString) {
-            //            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
             NSLog(@"所有字符串已加密完毕！");
             if (completion) {
                 completion(okStrings);
@@ -105,7 +45,7 @@
         });
         
         // 分段加密，每段之间用\n隔开（因为rsa无法加密太长的字符串）
-        [self encryptSubstrins:substrings completion:^(NSArray<NSString *> *rets) {
+        [self encryptSubstrins:substrings privateKey:privateKey completion:^(NSArray<NSString *> *rets) {
             NSLog(@"完整的字符串加密完成");
             [okStrings addObject:[rets componentsJoinedByString:@"\n"]];
             __orString = nil;
@@ -117,9 +57,9 @@
 }
 
 // rsa加密
-+ (void)encryptSubstrins:(NSArray<NSString *> *)substrings completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
++ (void)encryptSubstrins:(NSArray<NSString *> *)substrings privateKey:(NSString *)privateKey completion:(void (^)(NSArray<NSString *> * _Nonnull))completion {
     if (!substrings.count) {
-        @throw [NSException exceptionWithName:@"字符串为空。" reason:@"" userInfo:nil];
+        assert(!@"字符串为空。".length);
     }
     // 遍历加密字符串列表
     NSMutableArray *temp = substrings.mutableCopy;
@@ -132,19 +72,19 @@
             [temp removeObject:__orString];
         }
         if (!__orString) {
-            //            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
             NSLog(@"-分割出来的字符串加密完成！");
             if (completion) {
                 completion(okStrings);
             }
             return ;
         }
-        [[NSFileManager defaultManager] removeItemAtPath:Path.tempCiphertext error:nil];
 //        NSLog(@"__orString= %@",__orString);
-        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"] arguments:@[__orString, Path.privateKey, Path.tempCiphertext,] completion:^(NSTask * _Nonnull ts) {
-            NSString *ret = [NSString stringWithContentsOfFile:Path.tempCiphertext encoding:NSUTF8StringEncoding error:nil];
+        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"0encrypt" ofType:@"sh"]
+                                 arguments:@[__orString, privateKey]
+                                completion:^(OutputModel * _Nonnull om) {
+            NSString *ret = om.output1;
             if (!ret.length) {
-                @throw [NSException exceptionWithName:@"js分段加密为空。" reason:@"" userInfo:nil];
+                assert(!@"js分段加密为空。".length);
             }
             [okStrings addObject:ret];
             __orString = nil;
@@ -176,26 +116,30 @@
 }
 
 // 拉取最新代码
-+ (void)pullCode:(NSString *)path completion:(void (^)(void))completion {
-    NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [[NSBundle mainBundle] pathForResource:@"1pull" ofType:@"sh"];
-    task.arguments = @[path,];
-    task.terminationHandler = ^(NSTask *ts) {
-        [ts terminate];
-        if (![[NSFileManager defaultManager] fileExistsAtPath:_NSString(@"%@/CommitId.txt", path)]) {
-            @throw [NSException exceptionWithName:@"拉取代码失败，请手动更新代码。" reason:@"" userInfo:nil];
++ (void)pullCode:(NSString *)projectPath branch:(NSString *)branch completion:(void (^)(GitModel *gm))completion {
+    NSLog(@"拉取最新代码...");
+    [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"1pull" ofType:@"sh"]
+                             arguments:@[projectPath, branch]
+                            completion:^(OutputModel * _Nonnull om) {
+        if (!om.output1.length) {
+            assert(!@"【1pull.sh脚本】拉取代码失败，请尝试命令行是否能正常执行。".length);
             return ;
         }
         NSLog(@"拉取完毕");
         if (completion) {
-            completion();
+            NSString *commitId = [om.output1 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            NSString *log = [[om.output2 stringByReplacingOccurrencesOfString:@"\n" withString:@""] componentsSeparatedByString:@"(1):      "].lastObject;
+            NSString *number = [om.output3 stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            
+            GitModel *gm = [GitModel new];
+            gm.path = projectPath;
+            gm.branch = branch;
+            gm.commitId = commitId;
+            gm.log = log;
+            gm.number = number;
+            completion(gm);
         }
-    };
-    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"拉取最新代码...");
-        [task launch];
-        [task waitUntilExit];
-    });
+    }];
 }
 
 // 提交代码
@@ -203,25 +147,18 @@
     if (!title.length) {
         title = @"发包";
     }
-    NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [[NSBundle mainBundle] pathForResource:@"5push" ofType:@"sh"];
-    task.arguments = @[title, path,];
-    task.terminationHandler = ^(NSTask *ts) {
-        [ts terminate];
-        NSLog(@"提交完毕");
+    [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"5push" ofType:@"sh"]
+                             arguments:@[path, title,]
+                            completion:^(OutputModel * _Nonnull om) {
+        NSLog(@"提交发包记录");
         if (completion) {
             completion();
         }
-    };
-    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-        NSLog(@"提交发包记录");
-        [task launch];
-        [task waitUntilExit];
-    });
+    }];
 }
 
 // 批量打包
-+ (void)packing:(NSArray<SiteModel *> *)_sites version:(NSString *)version completion:(nonnull void (^)(NSArray<SiteModel *> * _Nonnull))completion {
++ (void)iosPacking:(NSString *)projectPath sites:(NSArray <SiteModel *> *)_sites version:(NSString *)version completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
     for (SiteModel *sm in sites) {
@@ -244,7 +181,6 @@
             }
         }
         if (!__sm) {
-//            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[Path.exportDir]];
             if (okSites.count < _sites.count) {
                 NSMutableArray *errs = [_sites mutableCopy];
                 [errs removeObjectsInArray:okSites];
@@ -258,16 +194,13 @@
             return ;
         }
         
-        NSLog(@"Path.projectDir = %@",Path.iosProjectDir);
-        NSTask *task = [[NSTask alloc] init];
-        task.launchPath = [[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"];
-        task.arguments = @[__sm.siteId, __sm.appName, version, __sm.appId, Path.iosProjectDir, ];
-        task.terminationHandler = ^(NSTask *ts) {
-            [ts terminate];
-            
+        NSLog(@"Path.projectDir = %@", projectPath);
+        [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"2setup" ofType:@"sh"]
+                                 arguments:@[projectPath, __sm.siteId, __sm.appName, version, __sm.appId, ]
+                                completion:^(OutputModel * _Nonnull om) {
             // 注释掉APP_TEST
             if (![__sm.siteId isEqualToString:@"hotUpdate"]) {
-                NSString *filePath = _NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", Path.iosProjectDir);
+                NSString *filePath = _NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", projectPath);
                 NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
                 [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
                 content = [content stringByReplacingOccurrencesOfString:@"#define APP_TEST" withString:@"//#define APP_TEST"];
@@ -277,22 +210,18 @@
             NSLog(@"%@ 站点信息配置完成，开始打包", __sm.siteId);
             NSLog(@"%@ ", __sm.type);
             BOOL isEnterprise = [@"企业包,内测包" containsString:__sm.type];
-            NSTask *task = [[NSTask alloc] init];
-            task.launchPath = [[NSBundle mainBundle] pathForResource:@"3packing" ofType:@"sh"];
-            task.arguments = @[isEnterprise ? @"2" : @"1", Path.iosProjectDir, ];
-            task.terminationHandler = ^(NSTask *ts) {
-                [ts terminate];
-                NSLog(@"Path.tempIpa = %@",Path.tempIpa);
-                NSLog(@"Path.tempXcarchive = %@",Path.tempXcarchive);
+            NSString *tempIpa = [NSString stringWithFormat:@"%@/ug.ipa", projectPath];
+            NSString *tempXcarchive = [NSString stringWithFormat:@"%@/ug.xcarchive", projectPath];
+            [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"3packing" ofType:@"sh"]
+                                     arguments:@[projectPath, isEnterprise ? @"2" : @"1",]
+                                    completion:^(OutputModel * _Nonnull om) {
                 NSLog(@"__sm.ipaPath = %@",__sm.ipaPath);
-                NSLog(@"Path.exportDir = %@,Path.commitId= %@",Path.ipaExportDir,Path.commitId);
-                if ([[NSFileManager defaultManager] fileExistsAtPath:Path.tempIpa]) {
+                if ([[NSFileManager defaultManager] fileExistsAtPath:tempIpa]) {
                     [[NSFileManager defaultManager] createDirectoryAtPath:__sm.ipaPath.stringByDeletingLastPathComponent withIntermediateDirectories:true attributes:nil error:nil];
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.ipaPath error:nil];
                     [[NSFileManager defaultManager] removeItemAtPath:__sm.xcarchivePath error:nil];
-                    [[NSFileManager defaultManager] moveItemAtPath:Path.tempIpa toPath:__sm.ipaPath error:nil];
-                    [[NSFileManager defaultManager] moveItemAtPath:Path.tempXcarchive toPath:__sm.xcarchivePath error:nil];
-                    [[NSFileManager defaultManager] moveItemAtPath:_NSString(@"%@/PullSuccess.txt", Path.iosProjectDir) toPath:_NSString(@"%@/%@/log.txt", Path.ipaExportDir, Path.commitId) error:nil];
+                    [[NSFileManager defaultManager] moveItemAtPath:tempIpa toPath:__sm.ipaPath error:nil];
+                    [[NSFileManager defaultManager] moveItemAtPath:tempXcarchive toPath:__sm.xcarchivePath error:nil];
                     NSLog(@"%@ 打包成功", __sm.siteId);
                     [okSites addObject:__sm];
                     __sm = nil;
@@ -304,42 +233,27 @@
                         NSLog(@"%@ 打包失败，再试一次", __sm.siteId);
                     }
                 }
-                [ShellHelper clean:Path.iosProjectDir completion:^{
+                [ShellHelper clean:projectPath completion:^{
                     __next();
                 }];
-            };
-            
-            dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-                [task launch];
-                [task waitUntilExit];
-            });
-        };
-        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-            [task launch];
-            [task waitUntilExit];
-        });
+            }];
+        }];
     };
     
     startPacking();
 }
 
 // 配置plist文件
-+ (void)setupPlist:(SiteModel *)sm ipaUrl:(NSString *)ipaUrl completion:(void (^)(void))completion {
++ (void)setupPlist:(NSString *)plistFile sm:(SiteModel *)sm ipaUrl:(NSString *)ipaUrl completion:(void (^)(void))completion {
     NSString *logoUrl = _NSString(@"https://app.pindanduo.cn/img/%@/%@.png", sm.uploadNum, sm.uploadNum);
     
-    NSTask *task = [[NSTask alloc] init];
-    task.launchPath = [[NSBundle mainBundle] pathForResource:@"4plist" ofType:@"sh"];
-    task.arguments = @[ipaUrl, logoUrl, sm.appId, sm.appName, Path.shellDir,];
-    task.terminationHandler = ^(NSTask *ts) {
-        [ts terminate];
+    [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"4plist" ofType:@"sh"]
+                             arguments:@[plistFile, ipaUrl, logoUrl, sm.appId, sm.appName,]
+                            completion:^(OutputModel * _Nonnull om) {
         if (completion) {
             completion();
         }
-    };
-    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
-        [task launch];
-        [task waitUntilExit];
-    });
+    }];
 }
 
 @end

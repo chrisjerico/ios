@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)selectVC:(NSString *)vcName params:(NSDictionary * _Nullable)params;    /**<   切换rn页面 */
 + (void)removeVC:(NSString *)vcName;    /**<   移除页面 */
 
+// 切换热更新
+@property (nonatomic, class) NSString *currentCodePushKey;
++ (NSDictionary <NSString *, NSString *>*)allCodePushKey;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -276,6 +276,38 @@
     
 }
 
+//刪除全部站內信
++ (void)deleteMsgAllWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[deleteMsgAllUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+    
+}
+
+//全部站內信全部已讀
++ (void)readMsgAllUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[readMsgAllUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+    
+}
+
+
+
 //反馈列表
 + (void)getFeedbackListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;

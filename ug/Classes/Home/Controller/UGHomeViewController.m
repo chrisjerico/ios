@@ -22,7 +22,7 @@
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
 #import "UGLotteryRecordController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGDocumentVC.h"
 #import "UGFundsViewController.h"
@@ -414,47 +414,27 @@
         SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
             [__self skin];
         });
-        // 免费试玩
-        SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
-            [CMCommon clearWebCache];
-            [CMCommon deleteWebCache];
-            [CMCommon removeLastGengHao];
-            [__self tryPlayClick];
-        });
-        // 去登录
-        [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-        }];
         // 登录成功
         SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-            
-            [CMCommon deleteWebCache];
-            [CMCommon clearWebCache];
-            [CMCommon removeLastGengHao];
-            [__self getUserInfo];
             __self.titleView.showLoginView = NO;
-            
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-            [__self userLogout];
+            __self.titleView.showLoginView = YES;
+            [__self.bigWheelView setHidden:YES];
         });
         // 登录超时
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
             // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
             if (OBJOnceToken(UGUserModel.currentUser)) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您的账号已经登录超时，请重新登录。" btnTitles:@[@"确定"]];
-                [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
-                    __self.titleView.showLoginView = YES;
-                    UGUserModel.currentUser = nil;
-                    [__self.tabBarController setSelectedIndex:0];
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-                }];
+                __self.titleView.showLoginView = YES;
             }
         });
-        // 获取用户信息成功
         SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-            [__self getUserInfo];
+            [self.contentScrollView.mj_header endRefreshing];
+        });
+        SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+            self.titleView.userName = UserI.username;
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -472,12 +452,6 @@
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        
-
-        
-
-       
-       
         
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         if (Skin1.isJY) {
@@ -516,11 +490,13 @@
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
             
-            if ( [@"c012" containsString:APP.SiteId]) {
+            if ( [@"c012," containsString:APP.SiteId]) {
                 subView(@"优惠活动外View").layer.borderWidth = 1;
                 subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
             }
            
+            _promotionsStackView.cc_constraints.top.constant = 0;
+            _promotionsStackView.cc_constraints.left.constant = 0;
         }
         
         if (Skin1.isJY) {
@@ -1337,23 +1313,6 @@
     }];
 }
 
-
-- (void)userLogout {
-    [SVProgressHUD showSuccessWithStatus:@"退出成功"];
-    self.titleView.showLoginView = YES;
-    [UGUserModel setCurrentUser:nil];
-    [self.bigWheelView setHidden:YES];
-    
-    [NavController1 popToRootViewControllerAnimated:true];
-    [TabBarController1 setSelectedIndex:0];
-    
-    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomName"];
-    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomId"];
-    [CMCommon clearWebCache];
-    [CMCommon deleteWebCache];
-    [CMCommon removeLastGengHao];
-}
-
 //查询轮播图
 - (void)getBannerList {
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -2028,25 +1987,6 @@
     [self.yymenuView show];
 }
 
-- (void)tryPlayClick {
-    NSDictionary *params = @{@"usr":@"46da83e1773338540e1e1c973f6c8a68",
-                             @"pwd":@"46da83e1773338540e1e1c973f6c8a68"
-    };
-    [SVProgressHUD showWithStatus:nil];
-    [CMNetwork guestLoginWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            
-            [SVProgressHUD showSuccessWithStatus:model.msg];
-            UGUserModel *user = model.data;
-            UGUserModel.currentUser = user;
-            SANotificationEventPost(UGNotificationLoginComplete, nil);
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-}
-
 - (void)showNoticeInfo {
     NSMutableString *str = [[NSMutableString alloc] init];
     for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
@@ -2075,7 +2015,7 @@
         [weakSelf rightBarBtnClick];
     };
     self.titleView.tryPlayClickBlock = ^{
-        [weakSelf tryPlayClick];
+        SANotificationEventPost(UGNotificationTryPlay, nil);
     };
     self.titleView.loginClickBlock = ^{
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
@@ -2213,7 +2153,7 @@
     [TabBarController1 setSelectedIndex:4];
 }
 - (void)emailButtonTaped {
-    [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
+    [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
 }
 
 #pragma mark - Table view data source
@@ -2320,9 +2260,9 @@
         if (APP.isC190Cell) {
             subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
             
-            if ([@"c012" containsString:APP.SiteId]) {
-                subView(@"StackView").cc_constraints.top.constant = 12 ;
-            }
+//            if ([@"c012" containsString:APP.SiteId]) {
+//                subView(@"StackView").cc_constraints.top.constant = 12 ;
+//            }
             subView(@"StackView").cc_constraints.bottom.constant = 0;
         }
         if ([@"c199" containsString:APP.SiteId]) {
@@ -2334,6 +2274,15 @@
         }
         else{
              subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+        }
+        
+        
+        subView(@"cell背景View").layer.cornerRadius = 8;
+        subView(@"cell背景View").layer.masksToBounds = YES;
+        
+        if (APP.isWihiteBorder) {
+            subView(@"cell背景View").layer.borderWidth = 1;
+            subView(@"cell背景View").layer.borderColor = [[UIColor whiteColor] CGColor];
         }
        
         subLabel(@"标题Label").textColor = Skin1.textColor1;

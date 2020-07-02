@@ -1662,6 +1662,14 @@
 		22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */; };
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
+		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
+		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
+		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
+		CF166B3424A47E8700EF8835 /* HotBranchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3224A47E8700EF8835 /* HotBranchView.m */; };
+		CF166B3D24A495A900EF8835 /* HotBranchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3224A47E8700EF8835 /* HotBranchView.m */; };
+		CF166B3E24A495B000EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
+		CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
+		CF166B4024A495CF00EF8835 /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -1950,6 +1958,10 @@
 		D4346B652406407C00D8FE7C /* UGMissionMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */; };
 		D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */; };
 		D4346B912407E5DA00D8FE7C /* UGCell190HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */; };
+		D434743A24AB270100B0F598 /* BetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D434743924AB270100B0F598 /* BetDetail.storyboard */; };
+		D434743D24AB2B8100B0F598 /* BetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D434743C24AB2B8100B0F598 /* BetDetailViewController.m */; };
+		D434744024AB2FFA00B0F598 /* BetDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D434743F24AB2FFA00B0F598 /* BetDetailTableViewCell.m */; };
+		D434744224AB30C500B0F598 /* BetDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D434744124AB30C500B0F598 /* BetDetailTableViewCell.xib */; };
 		D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */; };
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
@@ -1969,6 +1981,9 @@
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
 		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
 		D442590523E949F00067E981 /* LHHornView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442590423E949F00067E981 /* LHHornView.xib */; };
+		D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442695F249C83D10006878C /* MessageUnderMenuView.xib */; };
+		D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
+		D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4426964249CABEC0006878C /* MailBoxTableViewController.xib */; };
 		D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AAB824614D25002737CB /* DZPOneTableViewCell.m */; };
 		D444AABC24614D3B002737CB /* DZPOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */; };
 		D444AABF246161F6002737CB /* DZPTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AABE246161F6002737CB /* DZPTwoTableViewCell.m */; };
@@ -2009,6 +2024,7 @@
 		D4773ABF23FC16B100D38D60 /* LineConversion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */; };
 		D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */; };
 		D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
+		D48075D4249C777500E1E5F5 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
 		D4ACBF5D246C25C3005AB971 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */; };
 		D4ACC04724701F6F005AB971 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
@@ -3537,6 +3553,12 @@
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
+		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
+		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
+		CF166B2E24A343BE00EF8835 /* SitesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SitesView.xib; sourceTree = "<group>"; };
+		CF166B3024A47E8600EF8835 /* HotBranchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotBranchView.xib; sourceTree = "<group>"; };
+		CF166B3124A47E8700EF8835 /* HotBranchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotBranchView.h; sourceTree = "<group>"; };
+		CF166B3224A47E8700EF8835 /* HotBranchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotBranchView.m; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -3822,6 +3844,12 @@
 		D4346B8C2407E5C900D8FE7C /* UGCell190HeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCell190HeaderView.h; sourceTree = "<group>"; };
 		D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCell190HeaderView.m; sourceTree = "<group>"; };
 		D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCell190HeaderView.xib; sourceTree = "<group>"; };
+		D434743924AB270100B0F598 /* BetDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BetDetail.storyboard; sourceTree = "<group>"; };
+		D434743B24AB2B8100B0F598 /* BetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BetDetailViewController.h; sourceTree = "<group>"; };
+		D434743C24AB2B8100B0F598 /* BetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetDetailViewController.m; sourceTree = "<group>"; };
+		D434743E24AB2FFA00B0F598 /* BetDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BetDetailTableViewCell.h; sourceTree = "<group>"; };
+		D434743F24AB2FFA00B0F598 /* BetDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetDetailTableViewCell.m; sourceTree = "<group>"; };
+		D434744124AB30C500B0F598 /* BetDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BetDetailTableViewCell.xib; sourceTree = "<group>"; };
 		D435F90023CEF940008648CE /* KMCGeigerCounterTick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = KMCGeigerCounterTick.aiff; sourceTree = "<group>"; };
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
@@ -3847,6 +3875,10 @@
 		D442590123E949600067E981 /* LHHornView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LHHornView.h; sourceTree = "<group>"; };
 		D442590223E949600067E981 /* LHHornView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHHornView.m; sourceTree = "<group>"; };
 		D442590423E949F00067E981 /* LHHornView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHHornView.xib; sourceTree = "<group>"; };
+		D442695F249C83D10006878C /* MessageUnderMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageUnderMenuView.xib; sourceTree = "<group>"; };
+		D4426962249CABEC0006878C /* MailBoxTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailBoxTableViewController.h; sourceTree = "<group>"; };
+		D4426963249CABEC0006878C /* MailBoxTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailBoxTableViewController.m; sourceTree = "<group>"; };
+		D4426964249CABEC0006878C /* MailBoxTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailBoxTableViewController.xib; sourceTree = "<group>"; };
 		D444AAB724614D25002737CB /* DZPOneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneTableViewCell.h; sourceTree = "<group>"; };
 		D444AAB824614D25002737CB /* DZPOneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPOneTableViewCell.m; sourceTree = "<group>"; };
 		D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -3900,6 +3932,8 @@
 		D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineConversionHeaderVC.m; sourceTree = "<group>"; };
 		D4773ACC23FD628800D38D60 /* LineMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainViewController.h; sourceTree = "<group>"; };
 		D4773ACD23FD628800D38D60 /* LineMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainViewController.m; sourceTree = "<group>"; };
+		D48075D2249C777500E1E5F5 /* MessageUnderMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageUnderMenuView.h; sourceTree = "<group>"; };
+		D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageUnderMenuView.m; sourceTree = "<group>"; };
 		D4ACBF5B246C25C3005AB971 /* NSArray+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
 		D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		D4ACC04524701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
@@ -4477,6 +4511,7 @@
 		031E149E23BE812300B0F813 /* LogHelper */ = {
 			isa = PBXGroup;
 			children = (
+				CF166B3524A47E9C00EF8835 /* 切站点、切热更新 */,
 				031E14A023BE812300B0F813 /* TextFieldAlertView */,
 				031E14A423BE812300B0F813 /* LogVC.h */,
 				031E14A523BE812300B0F813 /* LogVC.m */,
@@ -6375,6 +6410,9 @@
 			children = (
 				031E181F23BE812600B0F813 /* UGMailBoxTableViewController.h */,
 				031E182023BE812600B0F813 /* UGMailBoxTableViewController.m */,
+				D4426962249CABEC0006878C /* MailBoxTableViewController.h */,
+				D4426963249CABEC0006878C /* MailBoxTableViewController.m */,
+				D4426964249CABEC0006878C /* MailBoxTableViewController.xib */,
 			);
 			path = "站内信";
 			sourceTree = "<group>";
@@ -6654,6 +6692,7 @@
 		031E18D923BE812600B0F813 /* 站内信 */ = {
 			isa = PBXGroup;
 			children = (
+				D48075D1249C761B00E1E5F5 /* 下边栏 */,
 				031E18DB23BE812600B0F813 /* UGMessageTableViewCell.h */,
 				031E18DA23BE812600B0F813 /* UGMessageTableViewCell.m */,
 				031E18DC23BE812600B0F813 /* UGMessageTableViewCell.xib */,
@@ -7538,6 +7577,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CF166B3524A47E9C00EF8835 /* 切站点、切热更新 */ = {
+			isa = PBXGroup;
+			children = (
+				CF166B3124A47E8700EF8835 /* HotBranchView.h */,
+				CF166B3224A47E8700EF8835 /* HotBranchView.m */,
+				CF166B3024A47E8600EF8835 /* HotBranchView.xib */,
+				CF166B2A24A3405A00EF8835 /* SitesView.h */,
+				CF166B2B24A3405A00EF8835 /* SitesView.m */,
+				CF166B2E24A343BE00EF8835 /* SitesView.xib */,
+			);
+			path = "切站点、切热更新";
+			sourceTree = "<group>";
+		};
 		CF4757D3239636D100966536 /* 六合表情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7935,6 +7987,35 @@
 			path = "折叠优惠HeaderView";
 			sourceTree = "<group>";
 		};
+		D434743424AB264900B0F598 /* 下注明细 */ = {
+			isa = PBXGroup;
+			children = (
+				D434743924AB270100B0F598 /* BetDetail.storyboard */,
+				D434743624AB266700B0F598 /* Controller */,
+				D434743724AB267400B0F598 /* Cell */,
+			);
+			path = "下注明细";
+			sourceTree = "<group>";
+		};
+		D434743624AB266700B0F598 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D434743B24AB2B8100B0F598 /* BetDetailViewController.h */,
+				D434743C24AB2B8100B0F598 /* BetDetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D434743724AB267400B0F598 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D434743E24AB2FFA00B0F598 /* BetDetailTableViewCell.h */,
+				D434743F24AB2FFA00B0F598 /* BetDetailTableViewCell.m */,
+				D434744124AB30C500B0F598 /* BetDetailTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		D435F8FF23CEF940008648CE /* KMCGeigerCounter */ = {
 			isa = PBXGroup;
 			children = (
@@ -8133,6 +8214,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D48075D1249C761B00E1E5F5 /* 下边栏 */ = {
+			isa = PBXGroup;
+			children = (
+				D48075D2249C777500E1E5F5 /* MessageUnderMenuView.h */,
+				D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */,
+				D442695F249C83D10006878C /* MessageUnderMenuView.xib */,
+			);
+			path = "下边栏";
+			sourceTree = "<group>";
+		};
 		D4ACBF56246C21D9005AB971 /* 打印json分类 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8244,6 +8335,7 @@
 				D4773AB923FC163500D38D60 /* 额度转换 */,
 				D4486C23241D07EE00E5CCEA /* 在线客服 */,
 				D43A784F23EFEB1A00F75B0C /* 红包扫雷 */,
+				D434743424AB264900B0F598 /* 下注明细 */,
 				D43DAF6524532A320014A301 /* 大转盘 */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
@@ -8797,8 +8889,10 @@
 				031E1E2423BE812C00B0F813 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				031E1B1223BE812800B0F813 /* UGLotteryRecordController.storyboard in Resources */,
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
+				CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */,
 				CF4758AA239636D200966536 /* 95.gif in Resources */,
 				031E1CF423BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
+				D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */,
 				D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */,
 				031E1BA023BE812900B0F813 /* BMpreferential.storyboard in Resources */,
 				031E1AB223BE812800B0F813 /* icon_arrow_up@2x.png in Resources */,
@@ -8917,6 +9011,7 @@
 				CF8E242923DDBFD80054BF0F /* FontAwesome5_Solid.ttf in Resources */,
 				030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */,
 				CF4758D4239636D200966536 /* 3.gif in Resources */,
+				D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */,
 				CF475912239636D200966536 /* 100.gif in Resources */,
 				031E1BE023BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
 				031E1CAA23BE812A00B0F813 /* UGFundDetailsCell.xib in Resources */,
@@ -8927,6 +9022,7 @@
 				D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */,
 				031E1D3423BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
 				CF4758FA239636D200966536 /* 158.gif in Resources */,
+				CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */,
 				CF475907239636D200966536 /* 98.gif in Resources */,
 				031E1D1E23BE812B00B0F813 /* UGIntegralConvertController.storyboard in Resources */,
 				CF4758CC239636D200966536 /* 93.gif in Resources */,
@@ -8965,6 +9061,7 @@
 				031E1A9E23BE812800B0F813 /* ZZCircleProgress.bundle in Resources */,
 				CF47588B239636D200966536 /* 22.gif in Resources */,
 				031E1B2223BE812800B0F813 /* UGLotteryAssistantController.storyboard in Resources */,
+				D434743A24AB270100B0F598 /* BetDetail.storyboard in Resources */,
 				CF8E242423DDBFD80054BF0F /* FontAwesome5_Brands.ttf in Resources */,
 				CF4758FC239636D200966536 /* 165.gif in Resources */,
 				CF4758C7239636D200966536 /* 50.gif in Resources */,
@@ -8983,6 +9080,7 @@
 				CF475915239636D200966536 /* 15.gif in Resources */,
 				CF4758F2239636D200966536 /* 49.gif in Resources */,
 				031E198023BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */,
+				D434744224AB30C500B0F598 /* BetDetailTableViewCell.xib in Resources */,
 				031E196623BE812600B0F813 /* LHTemplate.storyboard in Resources */,
 				CF475881239636D200966536 /* 35.gif in Resources */,
 				031E1B7823BE812800B0F813 /* UGGameTypeColletionViewCell.xib in Resources */,
@@ -9261,6 +9359,7 @@
 				031E1B7F23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
 				031EF5CB23BE7B4E00B0F813 /* UGPrivateChatVC.swift in Sources */,
 				031EF5D523BE7B4E00B0F813 /* EmojiCell.swift in Sources */,
+				CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */,
 				031E1CAD23BE812A00B0F813 /* UGFundDetailsCell.m in Sources */,
 				031E1C2D23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.m in Sources */,
 				031E1D6B23BE812B00B0F813 /* UGActivityGoldTableViewController.m in Sources */,
@@ -9546,6 +9645,7 @@
 				031EF5D123BE7B4E00B0F813 /* BetFollowView.swift in Sources */,
 				03314FD023CDA04D0070CB54 /* HSC_MineVC.m in Sources */,
 				031EF5DB23BE7B4E00B0F813 /* MessageCollectionViewGifCell.swift in Sources */,
+				CF166B3D24A495A900EF8835 /* HotBranchView.m in Sources */,
 				031EF5E623BE7B4E00B0F813 /* MineTableController.swift in Sources */,
 				031EF55723BE7B4D00B0F813 /* UIImage+UIColor.swift in Sources */,
 				031E1BBF23BE812900B0F813 /* UGfinancialView.m in Sources */,
@@ -9591,6 +9691,7 @@
 				031E1AE923BE812800B0F813 /* LeeTagItemViewModel.m in Sources */,
 				031E1D1323BE812B00B0F813 /* JSONAPI.m in Sources */,
 				031E199523BE812600B0F813 /* LHPostVoteView.m in Sources */,
+				CF166B4024A495CF00EF8835 /* MailBoxTableViewController.m in Sources */,
 				031E197523BE812600B0F813 /* UGLHPostModel.m in Sources */,
 				031E1A8323BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				031E1D0123BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
@@ -9803,6 +9904,7 @@
 				031E1ABD23BE812800B0F813 /* WMPickupList.m in Sources */,
 				031EF53A23BE7B4D00B0F813 /* APIProvider.swift in Sources */,
 				CF85085C2466D5EA0025672F /* DZPTwoView.m in Sources */,
+				CF166B3E24A495B000EF8835 /* SitesView.m in Sources */,
 				031E1DC923BE812C00B0F813 /* UGrealBetStatModel.m in Sources */,
 				031E1C7D23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
 				CF639D7A246E645B00A54CE7 /* MGSlider.m in Sources */,
@@ -9991,6 +10093,7 @@
 				D4B75E1C227802600007047C /* main.m in Sources */,
 				031E1C3823BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				031E1BFE23BE812900B0F813 /* UGYYLotteryHomeViewController.m in Sources */,
+				CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */,
 				031E1A7A23BE812700B0F813 /* UIWebView+DKProgress.m in Sources */,
 				031E1A4223BE812700B0F813 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				031E1D1A23BE812B00B0F813 /* UGPromoteDetailController.m in Sources */,
@@ -10095,6 +10198,7 @@
 				031E1BE423BE812900B0F813 /* UGPK10NNLotteryController.m in Sources */,
 				031E1AC623BE812800B0F813 /* WMTabControl.m in Sources */,
 				031E1DBE23BE812B00B0F813 /* UGLoginAddressModel.m in Sources */,
+				D434744024AB2FFA00B0F598 /* BetDetailTableViewCell.m in Sources */,
 				031E19A223BE812600B0F813 /* IBView.m in Sources */,
 				031E193E23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,
 				031E1DA623BE812B00B0F813 /* UGwithdrawListModel.m in Sources */,
@@ -10154,6 +10258,7 @@
 				CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */,
 				031E1A1E23BE812700B0F813 /* AlertHelper.m in Sources */,
 				031E196C23BE812600B0F813 /* UGLHAdModel.m in Sources */,
+				D48075D4249C777500E1E5F5 /* MessageUnderMenuView.m in Sources */,
 				031E19D623BE812700B0F813 /* NSDate+Millisecond.m in Sources */,
 				031E1B6C23BE812800B0F813 /* UGPlatformTitleBlackCell.m in Sources */,
 				031E197623BE812600B0F813 /* UGLHPostCommentModel.m in Sources */,
@@ -10161,6 +10266,7 @@
 				031E1DA023BE812B00B0F813 /* UGdepositStatModel.m in Sources */,
 				031E1A9C23BE812800B0F813 /* MOFSAddressPickerView.m in Sources */,
 				031E1A8823BE812700B0F813 /* SAROPSessionTask.m in Sources */,
+				CF166B3424A47E8700EF8835 /* HotBranchView.m in Sources */,
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
 				22FAD04723D471630002EA1D /* LotteryTrendContentCell.m in Sources */,
 				031E1D6E23BE812B00B0F813 /* UGMosaicGoldViewController.m in Sources */,
@@ -10256,6 +10362,7 @@
 				031E1DD823BE812C00B0F813 /* UGAddressListModel.m in Sources */,
 				031E1B8C23BE812900B0F813 /* UGLotteryRecordTableViewCell.m in Sources */,
 				D4ACC04724701F6F005AB971 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
+				D434743D24AB2B8100B0F598 /* BetDetailViewController.m in Sources */,
 				031E1BE823BE812900B0F813 /* UGSSCLotteryController.m in Sources */,
 				031E194423BE812600B0F813 /* UGSkinViewController.m in Sources */,
 				031E19B023BE812700B0F813 /* NSNull+Safe.m in Sources */,
@@ -10388,6 +10495,7 @@
 				031E1CD423BE812A00B0F813 /* MJRefreshBackNormalFooter.m in Sources */,
 				031E196223BE812600B0F813 /* UGPostListVC.m in Sources */,
 				031E19E623BE812700B0F813 /* UIViewController+Log.m in Sources */,
+				D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */,
 				031E1A6623BE812700B0F813 /* UIView+ST.m in Sources */,
 				031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1B1823BE812800B0F813 /* UGDocumentVC.m in Sources */,

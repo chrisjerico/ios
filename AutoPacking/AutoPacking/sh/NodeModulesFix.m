@@ -12,7 +12,7 @@
 + (void)fixExportType {
     BOOL isDir = NO;
     
-    NSString *node_modules_path = [NSString stringWithFormat:@"%@/node_modules/@react-navigation", Path.rnProjectDir];
+    NSString *node_modules_path = [NSString stringWithFormat:@"%@/node_modules/@react-navigation", RNPack.projectDir];
     for (NSString *path in [[NSFileManager defaultManager] enumeratorAtPath:node_modules_path].allObjects) {
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@", node_modules_path, path];
         BOOL isExist = [[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir];

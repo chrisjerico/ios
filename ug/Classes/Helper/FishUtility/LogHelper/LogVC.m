@@ -10,15 +10,18 @@
 
 #import "LogVC.h"
 #import "CMAudioPlayer.h"
-#import "TextFieldAlertView.h"
 
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
 #import "UGPromotionsListController.h"
+
+// View
+#import "TextFieldAlertView.h"
 #import "DZPMainView.h"
-
-
+#import "SitesView.h"
+#import "HotBranchView.h"
+#import "BetDetailViewController.h"
 #import "DZPModel.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
@@ -206,16 +209,13 @@ static LogVC *_logVC = nil;
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"聊天室"];
-        [titles addObject:@"大转盘"];
+        [titles addObject:@"下注明细"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
 
-        [ac setActionAtTitle:@"大转盘" handler:^(UIAlertAction *aa) {
-                     [self getactivityTurntableList ];
-//            DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
-//                                   [self.view addSubview:recordVC];
-//                                   [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
-//                                       make.edges.equalTo(self.view);
-//                                   }];
+        [ac setActionAtTitle:@"下注明细" handler:^(UIAlertAction *aa) {
+            BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
+            [NavController1 pushViewController:recordVC animated:true];
+
         }];
 
         [ac setActionAtTitle:@"聊天室" handler:^(UIAlertAction *aa) {
@@ -267,54 +267,18 @@ static LogVC *_logVC = nil;
 
 // 切换站点
 - (IBAction)onChangeSiteIdBtnClick:(UIButton *)sender {
-    NSMutableArray *titles = @[].mutableCopy;
-    for (SiteModel *sm in APP.allSites) {
-        if (sm.host.length) {
-            [titles addObject:sm.siteId];
-        }
-    }
-    [titles sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-        return [obj1 substringFromIndex:1].intValue > [obj2 substringFromIndex:1].intValue;
+    [[SitesView show] setDidClick:^(NSString *key) {
+        [APP setValue:key forKey:@"_SiteId"];
+        [APP setValue:[APP.allSites objectWithValue:key keyPath:@"siteId"].host forKey:@"_Host"];
+        [_logVC.currentSiteIdButton setTitle:key forState:UIControlStateNormal];
+        [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }];
-    UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的站点" btnTitles:[titles arrayByAddingObject:@"取消"]];
-    for (NSString *key in titles) {
-        [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
-            [APP setValue:key forKey:@"_SiteId"];
-            [APP setValue:[APP.allSites objectWithValue:key keyPath:@"siteId"].host forKey:@"_Host"];
-            [_logVC.currentSiteIdButton setTitle:key forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }];
-    }
 }
 
-// 下载APP
+// 切换热更新
 - (IBAction)onLHBtnClick:(UIButton *)sender {
-    // 文本弹框
-    TextFieldAlertView *tfav = _LoadView_from_nib_(@"TextFieldAlertView");
-    tfav.title = @"下载链接中的id";
-    tfav.didConfirmBtnClick = ^(TextFieldAlertView *__weak tfav, NSString *text) {
-        text = [text stringByReplacingOccurrencesOfString:@" " withString:@""];
-        if (!text.isInteger) {
-            [HUDHelper showMsg:@"id必须为数字"];
-            return ;
-        }
-        UIAlertController *ac = [AlertHelper showActionSheet:nil msg:nil btnTitles:@[@"下载已审核的APP", @"下载审核中的APP"] cancel:@"取消"];
-        [ac setActionAtTitle:@"下载已审核的APP" handler:^(UIAlertAction *aa) {
-            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"https://fhapp168l.com/eipeyipeyi/index-%@.html?rand=%u", text, arc4random())]];
-            sf.允许未登录访问 = true;
-            sf.允许游客访问 = true;
-            [NavController1 presentViewController:sf animated:YES completion:nil];
-        }];
-        [ac setActionAtTitle:@"下载审核中的APP" handler:^(UIAlertAction *aa) {
-            SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"https://fhapp168l.com/eipeyipeyi/index-%@.html?test=9999&rand=%u", text, arc4random())]];
-            sf.允许未登录访问 = true;
-            sf.允许游客访问 = true;
-            [NavController1 presentViewController:sf animated:YES completion:nil];
-        }];
-        [tfav hide];
-    };
-    [tfav showToWindow];
+    [HotBranchView show];
 }
 
 // 收藏

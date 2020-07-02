@@ -27,7 +27,7 @@
 #import "UGPromotionsController.h"               // 模板优惠专区
 #import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
-#import "UGMailBoxTableViewController.h"         // 站内信
+#import "MailBoxTableViewController.h"         // 站内信
 #import "UGSigInCodeViewController.h"            // 每日签到
 #import "SLWebViewController.h"
 #import "UGSecurityCenterViewController.h"  // 安全中心
@@ -247,7 +247,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
        {
            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
            //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
-           if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
+           if (model.isInstant) {
                vc.shoulHideHeader = true;
            }
            vc.nextIssueModel = model;
@@ -555,7 +555,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 14: {
             // 站内信
-            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
+            [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
             break;
         }
         case 15: {
@@ -710,7 +710,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_站内信: {
-            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:YES];
             return true;
         }
         case UCI_彩票注单记录: {

@@ -65,6 +65,7 @@
 
 @property (nonatomic) BOOL isYHShowTitle;                          /**<  优惠详情现在titleLabel ,导航条显示：活动详情*/
 @property (nonatomic) BOOL isNoBorder;                             /**<  首页优惠活动没有外面的View */
+@property (nonatomic) BOOL isWihiteBorder;                          /**<  首页优惠活动外面的View白色边框 */
 @property (nonatomic) BOOL isRedWhite;                             /**<  下注界面新年红模板样式 红白配色*/
 @property (nonatomic) BOOL oldConversion;                          /**<  老的转换界面*/
 @property (nonatomic) BOOL isParagraphSpacing;                     /**<  首页公告详情段落有间距*/
@@ -86,6 +87,7 @@
 
 @property (nonatomic) BOOL isC190Cell;                                /**<  首页中优惠活动列表c190，c012 图片贴边 */
 @property (nonatomic) BOOL isC217RWDT;                                /**<  我的把任务中心4个字换成任务大厅*/
+@property (nonatomic) BOOL isNoSubtitle;                               /**<  首页游戏cell没有副标题的高度*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

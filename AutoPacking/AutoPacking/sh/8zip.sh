@@ -1,16 +1,15 @@
 #!/bin/sh
 
+__OutputFile1=$1
+__OutputFile2=$2
+__OutputFile3=$3
+__OutputFile4=$4
 
-__Version=$1
+__Path=$5
+__Version=$6
 
 
-# 从Xcode运行需要先cd到当前目录
-if [ ! -n "$2" ] ;then
-    echo "you have not input a word!"
-else
-    cd $2
-fi
-
+cd $__Path
 
 # 删除旧的压缩包
 rm -rf *.zip

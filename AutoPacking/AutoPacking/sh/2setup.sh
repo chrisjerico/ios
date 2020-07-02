@@ -1,19 +1,17 @@
 #!/bin/sh
 
-__SiteId=$1
-__DisplayName=$2
-__Version=$3
-__BundleId=$4
+__OutputFile1=$1
+__OutputFile2=$2
+__OutputFile3=$3
+__OutputFile4=$4
 
+__Path=$5
+__SiteId=$6
+__DisplayName=$7
+__Version=$8
+__BundleId=$9
 
-# 从Xcode运行需要先cd到当前目录
-if [ ! -n "$5" ] ;then
-    echo "you have not input a word!"
-else
-    cd $5
-fi
-
-
+cd $__Path
 
 
 # 替换站点ID
@@ -37,10 +35,3 @@ cp -rf "AutoPacking/打包文件/各站点AppIcon（拷贝出来使用）/$__Sit
 
 # 删除开发者的用户名
 /usr/libexec/PlistBuddy -c 'Delete :Dev1' ug/Classes/Other/Info.plist
-
-# ————————————————————
-#【Bundle打包】
-cd ..
-export PATH=/usr/local/bin:$PATH
-react-native bundle --entry-file index.ios.js --bundle-output ./bundle/main.jsbundle --platform ios --assets-dest ./bundle --dev false > rn打包结果.txt
-

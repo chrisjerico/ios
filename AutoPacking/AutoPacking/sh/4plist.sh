@@ -1,33 +1,26 @@
 #!/bin/sh
 
+__OutputFile1=$1
+__OutputFile2=$2
+__OutputFile3=$3
+__OutputFile4=$4
 
-# 从Xcode运行需要先cd到当前目录
-if [ ! -n "$5" ] ;then
-    echo "you have not input a word!"
-else
-    cd $5
-fi
-
-
-
-__IpaUrl=$1
-__LogoUrl=$2
-__BundleId=$3
-__DisplayName=$4
-
-
-
+__PlistFile=$5
+__IpaUrl=$6
+__LogoUrl=$7
+__BundleId=$8
+__DisplayName=$9
 
 
 # 替换ipa路径
-/usr/libexec/PlistBuddy -c "Set :items:0:assets:0:url $__IpaUrl" a.plist
+/usr/libexec/PlistBuddy -c "Set :items:0:assets:0:url $__IpaUrl" $__PlistFile
 
 # 替换logo路径
-/usr/libexec/PlistBuddy -c "Set :items:0:assets:1:url $__LogoUrl" a.plist
-/usr/libexec/PlistBuddy -c "Set :items:0:assets:2:url $__LogoUrl" a.plist
+/usr/libexec/PlistBuddy -c "Set :items:0:assets:1:url $__LogoUrl" $__PlistFile
+/usr/libexec/PlistBuddy -c "Set :items:0:assets:2:url $__LogoUrl" $__PlistFile
 
 # 替换bundleId
-/usr/libexec/PlistBuddy -c "Set :items:0:metadata:bundle-identifier $__BundleId" a.plist
+/usr/libexec/PlistBuddy -c "Set :items:0:metadata:bundle-identifier $__BundleId" $__PlistFile
 
 # 替换APP名
-/usr/libexec/PlistBuddy -c "Set :items:0:metadata:title $__DisplayName" a.plist
+/usr/libexec/PlistBuddy -c "Set :items:0:metadata:title $__DisplayName" $__PlistFile

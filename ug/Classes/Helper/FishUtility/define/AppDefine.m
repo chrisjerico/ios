@@ -85,6 +85,7 @@
                 sb(@"ContractedTemplate"),
                 sb(@"RedEnvelope"),
                 sb(@"LineConversion"),
+                sb(@"BetDetail"),
                 
                 
         ];
@@ -166,6 +167,16 @@
 
 
 #pragma mark - Getter & Setter
+#pragma mark -rn模板出现问题，暂时清空
+//@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
+
+//#ifdef DEBUG
+// -(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
+//#else
+//  
+//#endif
+
+//
 
 - (CGRect)Bounds                    { return _Window.bounds; }
 - (CGSize)Size                      { return _Window.bounds.size; }
@@ -189,7 +200,7 @@
 }
 
 - (BOOL)isShowSalary {
-     return [@"c217,c018" containsString:_SiteId];
+     return [@"c217,test29" containsString:_SiteId];
 }
 
 - (BOOL)isSectionWhite {
@@ -251,7 +262,11 @@
 }
 
 - (BOOL)isNoBorder {
-    return [@"c200,c208,c213,a002,c134,c092" containsString:_SiteId];
+    return [@"c200,c208,a002,c134,c092" containsString:_SiteId];
+}
+
+- (BOOL)isWihiteBorder {
+    return [@"c213" containsString:_SiteId];
 }
 
 - (BOOL)isYHShowTitle {
@@ -302,9 +317,6 @@
     return [@"l001,l002" containsString:_SiteId];
 }
 
-- (BOOL)isGrey {
-    return [@"c212,c208,c134,c200,c213,a002,c193,c116" containsString:_SiteId];
-}
 
 - (BOOL)isBorderNavBarBgColor {
     if (Skin1.isBlack) {
@@ -395,7 +407,7 @@
 
 
 - (BOOL)isBA {
-    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116" containsString:_SiteId];
+    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
 }
 
 
@@ -409,8 +421,12 @@
 
 - (BOOL)betBgIsWhite {
     
-    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
     
+}
+
+- (BOOL)isGrey {
+    return [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
 }
 
 - (BOOL)betSizeIsBig {
@@ -427,11 +443,11 @@
 }
 
 - (BOOL)addIcons {
-    return [@"c190,c134,c085" containsString:_SiteId];
+    return [@"c190,c134,c085,c193" containsString:_SiteId];
 }
 
 - (BOOL)isReplaceIcon {
-    return [@"c085" containsString:_SiteId];
+    return [@"c085,c193" containsString:_SiteId];
 }
 
 - (BOOL)isC190Cell {
@@ -441,6 +457,12 @@
 - (BOOL)isC217RWDT {
     return [@"c217" containsString:_SiteId];
 }
+
+- (BOOL)isNoSubtitle {
+    return [@"c006" containsString:_SiteId];
+}
+
+
 
 #pragma mark - 热更新
 
