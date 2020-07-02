@@ -31,13 +31,40 @@ enum ChatTarget {
 	case redPacketInfo(packetId: String)
 	case betList(page: Int, pageSize: Int)
 	
+	
+	// 公聊置顶
 	case roomConversationTop(dataId: Int)
+	
+	// 公聊取消置顶
 	case roomConversationTopCancel(dataId: Int)
+	
+	// 私聊置顶
 	case privateConversationTop(dataId: Int)
+	
+	// 私聊取消置顶
 	case privateConversationTopCancel(dataId: Int)
 	
+	// 公聊会话已读
 	case roomConversationRead(roomId: Int)
+	
+	// 私聊会话已读
 	case privateConversationRead(targetUid: Int)
+	
+	// 获取他人信息（聊天）
+	case otherUserInfo(target: String)
+	
+	// 获取自己信息（聊天）
+	case selfUserInfo(target: String)
+	
+	// 设置用户签名
+	case updateSignature(text: String)
+	// 设置用户昵称
+	case updateNickname(text: String)
+	// 设置用户性别
+	case updateGender(text: String)
+
+	// 平台公告
+	case platformAlert(type: Int, page: Int, pageSize: Int)
 	
 }
 
@@ -164,6 +191,8 @@ extension ChatTarget: TargetType {
 			urlParameters["a"] = "info"
 			
 			bodyParameters["token"] = sessid
+			bodyParameters["type"] = 1
+			
 		case .betList(let page, let rows):
 			urlParameters["c"] = "chat"
 			urlParameters["a"] = "betList"
@@ -206,13 +235,13 @@ extension ChatTarget: TargetType {
 			bodyParameters["roomId"] = dataId
 			bodyParameters["type"] = 1
 			bodyParameters["operate"] = 2
-
+			
 		case .privateConversationTop(dataId: let dataId):
 			urlParameters["c"] = "chat"
 			urlParameters["a"] = "conversationTop"
 			
 			bodyParameters["token"] = App.user.sessid
-			bodyParameters["dataId"] = dataId
+			bodyParameters["targetUid"] = dataId
 			bodyParameters["type"] = 2
 			bodyParameters["operate"] = 1
 		case .privateConversationTopCancel(dataId: let dataId):
@@ -220,7 +249,7 @@ extension ChatTarget: TargetType {
 			urlParameters["a"] = "conversationTop"
 			
 			bodyParameters["token"] = App.user.sessid
-			bodyParameters["dataId"] = dataId
+			bodyParameters["targetUid"] = dataId
 			bodyParameters["type"] = 2
 			bodyParameters["operate"] = 2
 		case let .roomConversationRead(roomId):
@@ -237,6 +266,48 @@ extension ChatTarget: TargetType {
 			bodyParameters["token"] = App.user.sessid
 			bodyParameters["targetUid"] = targetUid
 			bodyParameters["type"] = 2
+		case let .otherUserInfo(targetUid):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "userInfo"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["targetUid"] = targetUid
+			bodyParameters["type"] = 2
+			
+		case .selfUserInfo(target: let target):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "userInfo"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["targetUid"] = target
+			bodyParameters["type"] = 1
+		case let .updateSignature(text):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "updateDescribe"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["text"] = text
+		case let .updateNickname(text):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "updateNickname"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["text"] = text
+		
+			case let .updateGender(text):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "updateGender"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["text"] = text
+		case .platformAlert(type: let type, page: let page, pageSize: let pageSize):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "platformAlert"
+			
+			bodyParameters["token"] = App.user.sessid
+			bodyParameters["type"] = type
+			bodyParameters["page"] = page
+			bodyParameters["rows"] = pageSize
 		}
 		
 		var should = checkSign == 1

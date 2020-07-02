@@ -19,8 +19,8 @@ public struct AppKit<Base> {
 public protocol AppKitCompatible {
 //    associatedtype CompatibleType
 //
-//    static var app: AppKit<CompatibleType>.Type { get }
-//    var app: AppKit<CompatibleType> { get }
+//    static var x: AppKit<CompatibleType>.Type { get }
+//    var x: AppKit<CompatibleType> { get }
 }
 
 extension AppKitCompatible {

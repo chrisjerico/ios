@@ -23,7 +23,11 @@ enum MomentsTarget {
 	case cancelFollow(uid: String)
 	case shareBet(params: [String: Any])
 	case addBetMoments(betInfo: String)
+	
+	// 关注列表
 	case followList(page: Int, rows: Int)
+	
+	// 粉丝列表
 	case fansList(page: Int, rows: Int)
 	
 }

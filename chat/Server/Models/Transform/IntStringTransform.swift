@@ -39,3 +39,21 @@ public let intTransform = TransformOf<Int, Any>(fromJSON: { (value: Any?) -> Int
 		return nil
 	}
 })
+
+public let doubleTransform = TransformOf<Double, Any>(fromJSON: { (value: Any?) -> Double? in
+	
+	if let value = value as? Double {
+		return value
+	} else if let value = value as? String {
+		return Double(value)
+	}
+	return nil
+	
+}, toJSON: { (value: Double?) -> Double? in
+	
+	if let value = value {
+		return value
+	} else {
+		return nil
+	}
+})

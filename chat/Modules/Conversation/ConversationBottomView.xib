@@ -19,6 +19,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bm-r6-8JU">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-E1-qJa">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <connections>
+                                        <action selector="announcementButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="5xa-3x-FJA"/>
+                                    </connections>
+                                </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pingtai" translatesAutoresizingMaskIntoConstraints="NO" id="1gb-3u-Txl">
                                     <rect key="frame" x="15" y="10" width="40" height="40"/>
                                     <constraints>
@@ -44,9 +50,6 @@
                                     <color key="textColor" red="0.55294117647058827" green="0.56470588235294117" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xl-E1-qJa">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
@@ -69,6 +72,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5k-5A-akv">
                             <rect key="frame" x="0.0" y="60" width="414" height="60"/>
                             <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-rr-XIs">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <connections>
+                                        <action selector="notificationButtonTaped:" destination="iN0-l3-epB" eventType="touchUpInside" id="3rn-n6-EVy"/>
+                                    </connections>
+                                </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="xitongtongzhi" translatesAutoresizingMaskIntoConstraints="NO" id="GMD-hY-Bb3">
                                     <rect key="frame" x="15" y="10" width="40" height="40"/>
                                     <constraints>
@@ -94,9 +103,6 @@
                                     <color key="textColor" red="0.55294117649999996" green="0.56470588239999997" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-rr-XIs">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>

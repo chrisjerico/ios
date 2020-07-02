@@ -162,12 +162,22 @@
                                                     <color key="textColor" red="0.55294117649999996" green="0.56470588239999997" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elT-B3-lRB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="40"/>
+                                                    <connections>
+                                                        <segue destination="YsZ-Z2-nOA" kind="show" id="BSw-Dd-K6k"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstItem="zYy-Y4-3D4" firstAttribute="centerX" secondItem="DNi-1J-TrI" secondAttribute="centerX" id="3Eq-4q-7cI"/>
+                                                <constraint firstAttribute="bottom" secondItem="elT-B3-lRB" secondAttribute="bottom" id="3k4-jh-Lmr"/>
+                                                <constraint firstItem="elT-B3-lRB" firstAttribute="leading" secondItem="DNi-1J-TrI" secondAttribute="leading" id="4uR-d1-AI1"/>
                                                 <constraint firstItem="IpQ-Ss-fJj" firstAttribute="centerX" secondItem="DNi-1J-TrI" secondAttribute="centerX" id="J3c-iG-O3M"/>
+                                                <constraint firstAttribute="trailing" secondItem="elT-B3-lRB" secondAttribute="trailing" id="Ktc-OU-EJf"/>
                                                 <constraint firstItem="zYy-Y4-3D4" firstAttribute="top" secondItem="DNi-1J-TrI" secondAttribute="top" id="Nln-ab-rZC"/>
+                                                <constraint firstItem="elT-B3-lRB" firstAttribute="top" secondItem="DNi-1J-TrI" secondAttribute="top" id="PVu-rU-qxe"/>
                                                 <constraint firstAttribute="bottom" secondItem="IpQ-Ss-fJj" secondAttribute="bottom" id="h3I-JB-Bi7"/>
                                                 <constraint firstAttribute="width" constant="108" id="iXT-18-bSV"/>
                                                 <constraint firstItem="IpQ-Ss-fJj" firstAttribute="top" secondItem="zYy-Y4-3D4" secondAttribute="bottom" constant="8" id="rNd-Rx-HM5"/>
@@ -398,6 +408,16 @@
             </objects>
             <point key="canvasLocation" x="968" y="47"/>
         </scene>
+        <!--FollowListVC-->
+        <scene sceneID="MPd-aU-ONc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FollowListVC" id="YsZ-Z2-nOA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8He-mM-KEE"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gM4-GL-BZ7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="920" y="-124"/>
+        </scene>
         <!--FansListVC-->
         <scene sceneID="oXo-xl-Nre">
             <objects>
@@ -406,7 +426,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezZ-qu-6gP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="917" y="-127"/>
+            <point key="canvasLocation" x="916" y="-155"/>
         </scene>
     </scenes>
     <resources>

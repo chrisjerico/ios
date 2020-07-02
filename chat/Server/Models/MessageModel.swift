@@ -23,7 +23,7 @@ class MessageModel: Mappable, MessageType {
 	var time = ""
 	var uid = ""
 	var avator = ""
-	var t = 0
+	var t: TimeInterval = 0
 	var isManager = false
 	var level = 0
 	var data_type = ""  //image: 图片
@@ -64,7 +64,7 @@ class MessageModel: Mappable, MessageType {
 		time <- map["time"]
 		uid <- map["uid"]
 		avator <- map["avator"]
-		t <- map["t"]
+		t <- (map["t"], doubleTransform)
 		isManager <- map["isManager"]
 		level <- map["level"]
 		data_type <- map["data_type"]

@@ -8,99 +8,34 @@
 
 import Foundation
 
-extension TimeInterval {
+extension TimeInterval: AppKitCompatible { }
+
+extension AppKit where Base == TimeInterval {
 	
-	private var timeFormatter: DateFormatter {
-		
-		get {
-			let formater = DateFormatter.init()
-			formater.dateFormat = "aaa hh:mm"
-			return formater
+	var timeTomCurrent: String {
+		let currentTime = Date().timeIntervalSince1970
+		let reduceTime : TimeInterval = currentTime - base
+		if reduceTime < 60 {
+			return "刚刚"
 		}
-		set {}
+		let mins = Int(reduceTime / 60)
+		if mins < 60 {
+			return "\(mins)分钟前"
+		}
+		let hours = Int(reduceTime / 3600)
+		if hours < 24 {
+			return "\(hours)小时前"
+		}
+		let days = Int(reduceTime / 3600 / 24)
+		if days < 30 {
+			return "\(days)天前"
+		}
+		let months = Int(reduceTime / 3600 / 24 / 30)
+		if months < 12 {
+			return "\(months)月前"
+		}
+		let years = Int(reduceTime / 3600 / 24 / 30 / 23)
+		return "\(years)年前"
 	}
 	
-	private var weekFormatter: DateFormatter {
-		
-		get {
-			let formater = DateFormatter.init()
-			formater.dateFormat = "EEEE"
-			return formater
-		}
-		set {}
-	}
-	
-	private var dateFormatter: DateFormatter {
-		
-		get {
-			let formater = DateFormatter.init()
-			formater.dateFormat = "yyyy年MM月dd日"
-			return formater
-		}
-		set {}
-	}
-	
-	private var timeString: String { get { return timeFormatter.string(from: Date(timeIntervalSince1970: self))} set {}}
-	private var weekString: String { get { return weekFormatter.string(from: Date(timeIntervalSince1970: self))} set {}}
-	private var dateString: String { get { return dateFormatter.string(from: Date(timeIntervalSince1970: self))} set {}}
-	
-	public func timeStringCompareCurrent() -> String? {
-		
-		let calendar = Calendar(identifier: .gregorian)
-		
-//		let componentsSet: Set<Calendar.Component> = ([.year, .month, .day, .hour, .minute, .second])
-//		let componentsSelf = calendar.dateComponents(componentsSet, from: Date(timeIntervalSince1970: self))
-//		let componentsNow = calendar.dateComponents(componentsSet, from: Date())
-		
-		let dateSelf = Date(timeIntervalSince1970: self)
-		
-		// 当天
-		if calendar.isDateInToday(dateSelf) {
-			return timeString
-		}
-		
-		//昨天
-		if calendar.isDateInYesterday(dateSelf) {
-			return "昨天" + timeString
-		}
-		
-		return dateString + timeString
-		
-	}
-	public func caculatorDayString(otherTimeInterval: TimeInterval?) -> String? {
-			
-		guard let otherTimeInterval = otherTimeInterval else {
-			return timeStringCompareCurrent()
-		}
-		
-		guard self - otherTimeInterval > 60*5 else {
-			return nil
-		}
-		
-		return timeStringCompareCurrent()
-		
-	}
-	
-	public func detailDisplayString() -> String {
-		let formatter = DateFormatter()
-		
-		let date = Date(timeIntervalSince1970: self)
-		
-		let displayString: String
-		
-		if Calendar.current.isDateInToday(date) { // 今天
-			formatter.dateFormat = "aaa hh:mm"
-			displayString = formatter.string(from: date)
-			
-		} else if Calendar.current.isDateInYesterday(date) { // 昨天
-			formatter.dateFormat = "aaa hh:mm"
-			displayString = "昨天 \(formatter.string(from: date))"
-			
-		} else { // 其他
-			formatter.dateFormat = "yyyy-MM-dd aaa hh:mm"
-			displayString = formatter.string(from: date)
-		}
-		
-		return displayString
-	}
 }

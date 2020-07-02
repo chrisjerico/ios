@@ -147,9 +147,10 @@ class ConversationCell: UITableViewCell {
 				iconImage.image = UIImage(named: "gly")
 			}
 		}
-		timeLabel.text = item.lastMessageInfo?.time
-//		badgeLabel.text = item.unreadCount > 0 ?"\(item.unreadCount)" : ""
-		badgeLabel.text = "99"
+		timeLabel.text = item.lastMessageInfo?.t.x.timeTomCurrent
+		badgeLabel.text = item.unreadCount > 0 ?"\(item.unreadCount)" : ""
+		badgeLabel.isHidden = item.unreadCount == 0
+//		badgeLabel.text = "99"
 
 	}
 	

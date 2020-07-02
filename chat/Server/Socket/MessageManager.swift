@@ -36,6 +36,42 @@ class MessageManager: NSObject {
 		]
 		SocketManager.shared.send(dic)
 	}
+	func send(imageUrl: String, imageUri: String, to receiver: Sender) {
+		let dic: [String: Any] = [
+			"betFollowFlag":false,
+			"code":"R0002",
+			"ip": App.user.clientIp,
+			"channel":"2",
+			"data_type":"image",
+			"username": App.user.username,
+			"msg":imageUrl,
+			"image_path": imageUri,
+			"level": App.user.curLevelInt,
+			"chatUid": receiver.senderId,
+			"chat_type": 1
+		]
+		SocketManager.shared.send(dic)
+	}
+	func send(bet: BetModel,to receiver: Sender) {
+		
+		let dic: [String: Any] = [
+			"betFollowFlag":true,
+			"betUrl":bet.betInfo,
+			"code":"R0002",
+			"ip": App.user.clientIp,
+			"channel":"2",
+			"data_type":"text",
+			"username": App.user.username,
+			"msg":bet.betDisplayText,
+			"msgJson": bet.toJSON(),
+			"level": App.user.curLevelInt,
+			"chatUid": receiver.senderId,
+			"chat_type": 1
+		]
+		SocketManager.shared.send(dic)
+
+	}
+	
 	
 	func send(text: String, to room: Room) {
 		let dic: [String: Any] = [

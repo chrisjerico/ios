@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationMessageVC" customModule="聊天APP" customModuleProvider="target">
+            <connections>
+                <outlet property="segmentAnimationView" destination="r2J-KP-D0K" id="PaM-sn-CBy"/>
+                <outlet property="segmentAnimationViewCenterX" destination="BMD-aS-K0C" id="JWR-rD-JTN"/>
+                <outlet property="tableView" destination="UvA-tl-qsK" id="JqP-GD-gFg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="segmentButtons" destination="dg9-u7-AnR" collectionClass="NSMutableArray" id="w9Q-HF-2qa"/>
+                <outletCollection property="segmentButtons" destination="qoG-lc-Mth" collectionClass="NSMutableArray" id="APt-xA-ed7"/>
+                <outletCollection property="segmentButtons" destination="rKL-W9-Qeh" collectionClass="NSMutableArray" id="v2T-yD-ptA"/>
+                <outletCollection property="segmentButtons" destination="qXu-DG-eTb" collectionClass="NSMutableArray" id="6cf-TU-ubN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UjB-1e-KxM">
+                    <rect key="frame" x="77" y="12" width="260" height="30"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2J-KP-D0K">
+                            <rect key="frame" x="0.0" y="0.0" width="65" height="30"/>
+                            <color key="backgroundColor" red="0.37626776099999998" green="0.51721978189999995" blue="0.97400707009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="LayerMasksToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="LayerCornerRadius">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tK8-0t-NYo">
+                            <rect key="frame" x="0.0" y="0.0" width="260" height="30"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg9-u7-AnR">
+                                    <rect key="frame" x="0.0" y="0.0" width="65" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="全部">
+                                        <color key="titleColor" red="0.1843137255" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="segmentButtonTaped:" destination="-1" eventType="touchUpInside" id="zjX-2K-zlV"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoG-lc-Mth">
+                                    <rect key="frame" x="65" y="0.0" width="65" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="公告">
+                                        <color key="titleColor" red="0.1843137255" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="segmentButtonTaped:" destination="-1" eventType="touchUpInside" id="892-1l-BCr"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKL-W9-Qeh">
+                                    <rect key="frame" x="130" y="0.0" width="65" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="新闻">
+                                        <color key="titleColor" red="0.1843137255" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="segmentButtonTaped:" destination="-1" eventType="touchUpInside" id="usd-UW-NMp"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXu-DG-eTb">
+                                    <rect key="frame" x="195" y="0.0" width="65" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" title="活动">
+                                        <color key="titleColor" red="0.1843137255" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <state key="disabled">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="segmentButtonTaped:" destination="-1" eventType="touchUpInside" id="bbU-vI-MXf"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="rKL-W9-Qeh" firstAttribute="height" secondItem="dg9-u7-AnR" secondAttribute="height" id="Ycm-KW-shN"/>
+                                <constraint firstItem="dg9-u7-AnR" firstAttribute="height" secondItem="tK8-0t-NYo" secondAttribute="height" id="cML-VR-uHD"/>
+                                <constraint firstItem="qoG-lc-Mth" firstAttribute="height" secondItem="dg9-u7-AnR" secondAttribute="height" id="paK-CK-0m3"/>
+                                <constraint firstItem="qXu-DG-eTb" firstAttribute="height" secondItem="dg9-u7-AnR" secondAttribute="height" id="phP-Jk-GVT"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="r2J-KP-D0K" firstAttribute="centerX" secondItem="dg9-u7-AnR" secondAttribute="centerX" id="BMD-aS-K0C"/>
+                        <constraint firstAttribute="height" constant="30" id="Cp2-RT-Kj8"/>
+                        <constraint firstItem="tK8-0t-NYo" firstAttribute="leading" secondItem="UjB-1e-KxM" secondAttribute="leading" id="Hab-lt-M9h"/>
+                        <constraint firstAttribute="width" constant="260" id="JDI-eB-7hm"/>
+                        <constraint firstItem="r2J-KP-D0K" firstAttribute="centerY" secondItem="UjB-1e-KxM" secondAttribute="centerY" id="MNl-rq-XSh"/>
+                        <constraint firstAttribute="bottom" secondItem="tK8-0t-NYo" secondAttribute="bottom" id="UH0-Xi-i3V"/>
+                        <constraint firstItem="r2J-KP-D0K" firstAttribute="width" secondItem="UjB-1e-KxM" secondAttribute="width" multiplier="0.25" id="c4s-RC-2Cg"/>
+                        <constraint firstItem="tK8-0t-NYo" firstAttribute="top" secondItem="UjB-1e-KxM" secondAttribute="top" id="hXN-Fe-mMd"/>
+                        <constraint firstItem="r2J-KP-D0K" firstAttribute="height" secondItem="UjB-1e-KxM" secondAttribute="height" id="hdc-13-mWc"/>
+                        <constraint firstAttribute="trailing" secondItem="tK8-0t-NYo" secondAttribute="trailing" id="zGb-5a-8IL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="LayerMasksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="LayerCornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="insetGrouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UvA-tl-qsK">
+                    <rect key="frame" x="0.0" y="54" width="414" height="754"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="UvA-tl-qsK" secondAttribute="trailing" id="79Z-fa-tCg"/>
+                <constraint firstItem="UvA-tl-qsK" firstAttribute="top" secondItem="UjB-1e-KxM" secondAttribute="bottom" constant="12" id="Fpt-HY-geC"/>
+                <constraint firstItem="UvA-tl-qsK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GqR-8o-JRg"/>
+                <constraint firstItem="UjB-1e-KxM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="nVc-Iw-gCc"/>
+                <constraint firstAttribute="bottom" secondItem="UvA-tl-qsK" secondAttribute="bottom" id="ujQ-iA-iji"/>
+                <constraint firstItem="UjB-1e-KxM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="vrg-tZ-2r9"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="132" y="153"/>
+        </view>
+    </objects>
+</document>

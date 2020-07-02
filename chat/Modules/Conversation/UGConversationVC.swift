@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import SnapKit
 import ObjectMapper
 import RxCocoa
@@ -20,16 +21,17 @@ class UGConversationVC: BaseVC {
 	let modelCancelTop = PublishRelay<UGConversationModel>()
 	let modelRead = PublishRelay<UGConversationModel>()
 	let modelDel = PublishRelay<UGConversationModel>()
+	var notificationView: ConversationBottomView!
 	
 	lazy var footerView: UIView = {
 		let containerView = UIView()
 		containerView.frame = CGRect(x: 0, y: 0, width: App.width, height: 120)
 		let view = UINib(nibName: "ConversationBottomView", bundle: nil).instantiate(withOwner: self, options: nil).first as! ConversationBottomView
 		view.isHidden = true
-
+		self.notificationView = view
 		// TODO: 公告的点击事件
 		view.announcementButton.rx.tap.subscribe(onNext: { () in
-
+			
 			
 		}).disposed(by: self.disposeBag)
 		
@@ -37,20 +39,29 @@ class UGConversationVC: BaseVC {
 		view.notificationButton.rx.tap.subscribe(onNext: { () in
 			
 		}).disposed(by: self.disposeBag)
-		CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
-			CMResult<UGNoticeTypeModel>.process(withResult: result) {
-				view.isHidden = false
-				let noticeTypeModel: UGNoticeTypeModel = result?.data as! UGNoticeTypeModel
-				if let noticeModel = noticeTypeModel.popup.first as? UGNoticeModel {
-					view.announcementContentLabel.text = noticeModel.title
-					view.announcementTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
-				}
-				if let noticeModel = noticeTypeModel.scroll.first as? UGNoticeModel {
-					view.notificationContentLabel.text = noticeModel.title
-					view.notificationTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
-				}
-			}
-		}
+		
+		ChatAPI.rx.request(ChatTarget.platformAlert(type: 0, page: 1, pageSize: 5)).subscribe(onSuccess: { (response) in
+			logger.debug(try! response.mapString())
+		}) { (error) in
+			logger.debug(error.localizedDescription)
+		}.disposed(by: self.disposeBag)
+		
+		
+		//
+		//				CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
+		//					CMResult<UGNoticeTypeModel>.process(withResult: result) {
+		//						view.isHidden = false
+		//						let noticeTypeModel: UGNoticeTypeModel = result?.data as! UGNoticeTypeModel
+		//						if let noticeModel = noticeTypeModel.popup.first as? UGNoticeModel {
+		//							view.announcementContentLabel.text = noticeModel.title
+		//							view.announcementTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
+		//						}
+		//						if let noticeModel = noticeTypeModel.scroll.first as? UGNoticeModel {
+		//							view.notificationContentLabel.text = noticeModel.title
+		//							view.notificationTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
+		//						}
+		//					}
+		//				}
 		
 		containerView.addSubview(view)
 		view.snp.makeConstraints { (make) in
@@ -77,7 +88,7 @@ class UGConversationVC: BaseVC {
 		navigationItem.title = "消息"
 		setupSubView()
 		
-		let headerRefreshing = tableView.mj_header.rx.refreshing.map { _ in }
+		let headerRefreshing = tableView.mj_header.rx.refreshing.asObservable().share()
 		let newMessage = MessageManager.shared.newMessage.throttle(DispatchTimeInterval.seconds(3), scheduler: MainScheduler.instance).map { _ in }
 		let newNotification = MessageManager.shared.newNotification.throttle(DispatchTimeInterval.seconds(1), scheduler: MainScheduler.instance).map { _ in }
 		let shouldRefresh = PublishRelay<()>()
@@ -93,6 +104,25 @@ class UGConversationVC: BaseVC {
 			cell.bind(item: element)
 			return cell
 		}.disposed(by: disposeBag)
+		
+		Observable.merge(headerRefreshing, shouldRefresh.map {_ in })
+			.flatMap { _ in
+				Observable.zip(ChatAPI.rx.request(ChatTarget.platformAlert(type: 1, page: 1, pageSize: 1)).mapArray(NotificationMessageModel.self, keyPath: "data.list").do(onError: { Alert.showTip($0.localizedDescription)}).asObservable(),
+							   ChatAPI.rx.request(ChatTarget.platformAlert(type: 2, page: 1, pageSize: 1)).mapArray(NotificationMessageModel.self, keyPath: "data.list").do(onError: { Alert.showTip($0.localizedDescription)}).asObservable())
+		}.retry()
+			.subscribe(onNext: { [weak self] (arg) in
+				guard let self = self else { return }
+				if let model1 = arg.0.first, let model2 = arg.1.first {
+					self.notificationView.announcementContentLabel.text = model1.title
+					self.notificationView.announcementTimeLabel.text = DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss", locale: "zh-CN").date(from: model1.addTime)?.timeIntervalSince1970.x.timeTomCurrent
+					self.notificationView.notificationContentLabel.text = model2.title
+					self.notificationView.notificationTimeLabel.text = DateFormatter(withFormat: "yyyy-MM-dd HH:mm:ss", locale: "zh-CN").date(from: model2.addTime)?.timeIntervalSince1970.x.timeTomCurrent
+					self.notificationView.isHidden = false
+				} else {
+					self.notificationView.isHidden = true
+				}
+				
+			}).disposed(by: disposeBag)
 		
 		tableView.rx.modelSelected(UGConversationModel.self).subscribe(onNext: { [weak self] (conversation) in
 			switch conversation.chatType {
@@ -173,6 +203,8 @@ class UGConversationVC: BaseVC {
 			}).disposed(by: disposeBag)
 		tableView.rx.setDelegate(self).disposed(by: disposeBag)
 		shouldRefresh.accept(())
+		
+	
 	}
 	
 	func setupSubView() {

@@ -16,6 +16,13 @@
 		030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030A874323C5C2C00001EF82 /* JS_Mine.storyboard */; };
 		030A874723C5C3070001EF82 /* JS_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A874623C5C3070001EF82 /* JS_MineVC.m */; };
 		030A874823C5C3070001EF82 /* JS_MineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 030A874623C5C3070001EF82 /* JS_MineVC.m */; };
+		0315DC8C24AC2C6800D635E2 /* MinePacketProduceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC8A24AC2C6800D635E2 /* MinePacketProduceVC.swift */; };
+		0315DC8D24AC2C6800D635E2 /* MinePacketProduceVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC8B24AC2C6800D635E2 /* MinePacketProduceVC.xib */; };
+		0315DC9024AC5FDE00D635E2 /* NotificationMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC8F24AC5FDE00D635E2 /* NotificationMessageModel.swift */; };
+		0315DC9324ACA86200D635E2 /* NotificationMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC9124ACA86200D635E2 /* NotificationMessageVC.swift */; };
+		0315DC9424ACA86200D635E2 /* NotificationMessageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC9224ACA86200D635E2 /* NotificationMessageVC.xib */; };
+		0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC9524AD74A900D635E2 /* NotificationMessageCell.swift */; };
+		0315DC9824AD74A900D635E2 /* NotificationMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC9624AD74A900D635E2 /* NotificationMessageCell.xib */; };
 		031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
 		031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
 		031A781F23D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */; };
@@ -1586,6 +1593,17 @@
 		0372B59123C9984F00B564FF /* PromotionRecordCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372B58E23C9984F00B564FF /* PromotionRecordCell1.m */; };
 		0372B59223C9984F00B564FF /* PromotionRecordCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0372B58F23C9984F00B564FF /* PromotionRecordCell1.xib */; };
 		0372B59323C9984F00B564FF /* PromotionRecordCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0372B58F23C9984F00B564FF /* PromotionRecordCell1.xib */; };
+		038A584824A9C87F0099D659 /* MomentUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A584724A9C87F0099D659 /* MomentUserModel.swift */; };
+		038A584B24A9D8790099D659 /* UIView+XFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A584A24A9D8790099D659 /* UIView+XFoundation.swift */; };
+		038A584D24A9DD1D0099D659 /* FollowListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 038A584C24A9DD1D0099D659 /* FollowListVC.storyboard */; };
+		038A585024A9DD340099D659 /* FollowListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A584E24A9DD340099D659 /* FollowListVC.swift */; };
+		038A585124A9DD340099D659 /* FollowListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A584F24A9DD340099D659 /* FollowListVC.xib */; };
+		038A585424AACFC30099D659 /* GenderEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A585224AACFC30099D659 /* GenderEditVC.swift */; };
+		038A585524AACFC30099D659 /* GenderEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585324AACFC30099D659 /* GenderEditVC.xib */; };
+		038A585824AAD03D0099D659 /* NameEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A585624AAD03D0099D659 /* NameEditVC.swift */; };
+		038A585924AAD03D0099D659 /* NameEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585724AAD03D0099D659 /* NameEditVC.xib */; };
+		038A585B24AB185F0099D659 /* RedPacketProduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585A24AB185E0099D659 /* RedPacketProduceView.xib */; };
+		038A585D24AB25840099D659 /* MinePacketProduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585C24AB25840099D659 /* MinePacketProduceView.xib */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -1624,16 +1642,14 @@
 		03E56F8F2480FB0E00996099 /* UGNoticeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */; };
 		03E56F902480FB0E00996099 /* UGNoticeTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */; };
 		03E56F952482BCA600996099 /* FansListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F932482BCA600996099 /* FansListVC.swift */; };
-		03E56F992482BCC600996099 /* FollowListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F972482BCC600996099 /* FollowListVC.swift */; };
-		03E56F9A2482BCC600996099 /* FollowListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F982482BCC600996099 /* FollowListVC.xib */; };
-		03E56F9D2482BDE000996099 /* FansListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E56F9B2482BDE000996099 /* FansListCell.swift */; };
-		03E56F9E2482BDE100996099 /* FansListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F9C2482BDE000996099 /* FansListCell.xib */; };
 		03E56FA02482C30F00996099 /* FansListVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E56F9F2482C30F00996099 /* FansListVC.storyboard */; };
 		03F8A510247F63F600466124 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030A874323C5C2C00001EF82 /* JS_Mine.storyboard */; };
 		03F8A514247F9FDE00466124 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
 		03F8A515247FA07400466124 /* RedEnvelope.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */; };
 		03F8A516247FA0BB00466124 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
+		03F935BC24A1057C001D8A59 /* FansListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F935BA24A1057C001D8A59 /* FansListCell.swift */; };
+		03F935BD24A1057C001D8A59 /* FansListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F935BB24A1057C001D8A59 /* FansListCell.xib */; };
 		21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */; };
 		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
 		226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */; };
@@ -2033,6 +2049,13 @@
 		030A874323C5C2C00001EF82 /* JS_Mine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JS_Mine.storyboard; sourceTree = "<group>"; };
 		030A874523C5C3070001EF82 /* JS_MineVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_MineVC.h; sourceTree = "<group>"; };
 		030A874623C5C3070001EF82 /* JS_MineVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_MineVC.m; sourceTree = "<group>"; };
+		0315DC8A24AC2C6800D635E2 /* MinePacketProduceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinePacketProduceVC.swift; sourceTree = "<group>"; };
+		0315DC8B24AC2C6800D635E2 /* MinePacketProduceVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePacketProduceVC.xib; sourceTree = "<group>"; };
+		0315DC8F24AC5FDE00D635E2 /* NotificationMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessageModel.swift; sourceTree = "<group>"; };
+		0315DC9124ACA86200D635E2 /* NotificationMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessageVC.swift; sourceTree = "<group>"; };
+		0315DC9224ACA86200D635E2 /* NotificationMessageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationMessageVC.xib; sourceTree = "<group>"; };
+		0315DC9524AD74A900D635E2 /* NotificationMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessageCell.swift; sourceTree = "<group>"; };
+		0315DC9624AD74A900D635E2 /* NotificationMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationMessageCell.xib; sourceTree = "<group>"; };
 		031A781A23D35A9C00FF2FFA /* LotteryTrendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryTrendVC.h; sourceTree = "<group>"; };
 		031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryTrendVC.m; sourceTree = "<group>"; };
 		031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotteryTrendVC.xib; sourceTree = "<group>"; };
@@ -3444,6 +3467,17 @@
 		0372B58D23C9984F00B564FF /* PromotionRecordCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionRecordCell1.h; sourceTree = "<group>"; };
 		0372B58E23C9984F00B564FF /* PromotionRecordCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionRecordCell1.m; sourceTree = "<group>"; };
 		0372B58F23C9984F00B564FF /* PromotionRecordCell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionRecordCell1.xib; sourceTree = "<group>"; };
+		038A584724A9C87F0099D659 /* MomentUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentUserModel.swift; sourceTree = "<group>"; };
+		038A584A24A9D8790099D659 /* UIView+XFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+XFoundation.swift"; sourceTree = "<group>"; };
+		038A584C24A9DD1D0099D659 /* FollowListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FollowListVC.storyboard; sourceTree = "<group>"; };
+		038A584E24A9DD340099D659 /* FollowListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListVC.swift; sourceTree = "<group>"; };
+		038A584F24A9DD340099D659 /* FollowListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowListVC.xib; sourceTree = "<group>"; };
+		038A585224AACFC30099D659 /* GenderEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderEditVC.swift; sourceTree = "<group>"; };
+		038A585324AACFC30099D659 /* GenderEditVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenderEditVC.xib; sourceTree = "<group>"; };
+		038A585624AAD03D0099D659 /* NameEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditVC.swift; sourceTree = "<group>"; };
+		038A585724AAD03D0099D659 /* NameEditVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameEditVC.xib; sourceTree = "<group>"; };
+		038A585A24AB185E0099D659 /* RedPacketProduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedPacketProduceView.xib; sourceTree = "<group>"; };
+		038A585C24AB25840099D659 /* MinePacketProduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePacketProduceView.xib; sourceTree = "<group>"; };
 		03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameCollectionCell.h; sourceTree = "<group>"; };
 		03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameCollectionCell.m; sourceTree = "<group>"; };
 		03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
@@ -3480,11 +3514,9 @@
 		03E56F8D2480FB0E00996099 /* UGNoticeTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNoticeTypeModel.h; sourceTree = "<group>"; };
 		03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNoticeTypeModel.m; sourceTree = "<group>"; };
 		03E56F932482BCA600996099 /* FansListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansListVC.swift; sourceTree = "<group>"; };
-		03E56F972482BCC600996099 /* FollowListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowListVC.swift; sourceTree = "<group>"; };
-		03E56F982482BCC600996099 /* FollowListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowListVC.xib; sourceTree = "<group>"; };
-		03E56F9B2482BDE000996099 /* FansListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansListCell.swift; sourceTree = "<group>"; };
-		03E56F9C2482BDE000996099 /* FansListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FansListCell.xib; sourceTree = "<group>"; };
 		03E56F9F2482C30F00996099 /* FansListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FansListVC.storyboard; sourceTree = "<group>"; };
+		03F935BA24A1057C001D8A59 /* FansListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansListCell.swift; sourceTree = "<group>"; };
+		03F935BB24A1057C001D8A59 /* FansListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FansListCell.xib; sourceTree = "<group>"; };
 		073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.debug.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.debug.xcconfig"; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_BetFormCell.h; sourceTree = "<group>"; };
@@ -6879,6 +6911,7 @@
 		031EF43323BE7B4C00B0F813 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0315DC8F24AC5FDE00D635E2 /* NotificationMessageModel.swift */,
 				031EF43423BE7B4C00B0F813 /* MessageModel.swift */,
 				031EF43523BE7B4C00B0F813 /* RedPacketMessageModel.swift */,
 				031EF43623BE7B4C00B0F813 /* RedpacketModel.swift */,
@@ -6946,6 +6979,7 @@
 				031EF46223BE7B4C00B0F813 /* UIImagePickerController+RxCreate.swift */,
 				031EF52423BE7B4D00B0F813 /* NSObject+HasDisposeBag.swift */,
 				031EF46323BE7B4C00B0F813 /* TimeIntervalExtension+XFoundation.swift */,
+				038A584A24A9D8790099D659 /* UIView+XFoundation.swift */,
 			);
 			path = XFoundation;
 			sourceTree = "<group>";
@@ -7202,11 +7236,15 @@
 				031EF4E023BE7B4D00B0F813 /* AttachMenusView */,
 				031EF4E323BE7B4D00B0F813 /* EmojiKeyBoard */,
 				031EF4E623BE7B4D00B0F813 /* MessageCollectionViewRedpacketCell.swift */,
-				031EF4E723BE7B4D00B0F813 /* MinePacketProduceView.swift */,
 				031EF4E823BE7B4D00B0F813 /* BetMessageContentView.xib */,
 				031EF4E923BE7B4D00B0F813 /* BetMessageContentView.swift */,
-				031EF4EA23BE7B4D00B0F813 /* RedPacketProduceView.swift */,
 				031EF4EB23BE7B4D00B0F813 /* MessageCollectionViewGifCell.swift */,
+				031EF4EA23BE7B4D00B0F813 /* RedPacketProduceView.swift */,
+				038A585A24AB185E0099D659 /* RedPacketProduceView.xib */,
+				031EF4E723BE7B4D00B0F813 /* MinePacketProduceView.swift */,
+				038A585C24AB25840099D659 /* MinePacketProduceView.xib */,
+				0315DC8A24AC2C6800D635E2 /* MinePacketProduceVC.swift */,
+				0315DC8B24AC2C6800D635E2 /* MinePacketProduceVC.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -7264,6 +7302,10 @@
 				031EF51123BE7B4D00B0F813 /* MyShare.storyboard */,
 				030A872E23C59FEB0001EF82 /* ProfileEditVC.swift */,
 				030A872F23C59FEB0001EF82 /* ProfileEditVC.xib */,
+				038A585224AACFC30099D659 /* GenderEditVC.swift */,
+				038A585324AACFC30099D659 /* GenderEditVC.xib */,
+				038A585624AAD03D0099D659 /* NameEditVC.swift */,
+				038A585724AAD03D0099D659 /* NameEditVC.xib */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -7298,6 +7340,10 @@
 				031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */,
 				03E56F892480E67800996099 /* ConversationBottomView.swift */,
 				03E56F8B2480E68C00996099 /* ConversationBottomView.xib */,
+				0315DC9124ACA86200D635E2 /* NotificationMessageVC.swift */,
+				0315DC9224ACA86200D635E2 /* NotificationMessageVC.xib */,
+				0315DC9524AD74A900D635E2 /* NotificationMessageCell.swift */,
+				0315DC9624AD74A900D635E2 /* NotificationMessageCell.xib */,
 			);
 			path = Conversation;
 			sourceTree = "<group>";
@@ -7401,8 +7447,9 @@
 		03E56F912482BC6500996099 /* FollowList */ = {
 			isa = PBXGroup;
 			children = (
-				03E56F972482BCC600996099 /* FollowListVC.swift */,
-				03E56F982482BCC600996099 /* FollowListVC.xib */,
+				038A584E24A9DD340099D659 /* FollowListVC.swift */,
+				038A584C24A9DD1D0099D659 /* FollowListVC.storyboard */,
+				038A584F24A9DD340099D659 /* FollowListVC.xib */,
 			);
 			path = FollowList;
 			sourceTree = "<group>";
@@ -7412,8 +7459,9 @@
 			children = (
 				03E56F932482BCA600996099 /* FansListVC.swift */,
 				03E56F9F2482C30F00996099 /* FansListVC.storyboard */,
-				03E56F9B2482BDE000996099 /* FansListCell.swift */,
-				03E56F9C2482BDE000996099 /* FansListCell.xib */,
+				03F935BA24A1057C001D8A59 /* FansListCell.swift */,
+				03F935BB24A1057C001D8A59 /* FansListCell.xib */,
+				038A584724A9C87F0099D659 /* MomentUserModel.swift */,
 			);
 			path = FansList;
 			sourceTree = "<group>";
@@ -8388,6 +8436,7 @@
 				CF8508762466D71B0025672F /* PromotePopView.xib in Resources */,
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
 				031EF57623BE7B4D00B0F813 /* yinhangkaguanli.svg in Resources */,
+				038A585D24AB25840099D659 /* MinePacketProduceView.xib in Resources */,
 				03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */,
 				031EF5AD23BE7B4D00B0F813 /* MomentsHomeCell.xib in Resources */,
 				031E1ABB23BE812800B0F813 /* Shade_left@2x.png in Resources */,
@@ -8455,6 +8504,7 @@
 				031E1CC923BE812A00B0F813 /* MJRefresh.bundle in Resources */,
 				031E1BD523BE812900B0F813 /* UGPCDDLotteryController.storyboard in Resources */,
 				031E1C1123BE812900B0F813 /* UGLotteryAdPopView.xib in Resources */,
+				038A585924AAD03D0099D659 /* NameEditVC.xib in Resources */,
 				031EF5C623BE7B4D00B0F813 /* MomentsPublishImageCell.xib in Resources */,
 				031E1DFB23BE812C00B0F813 /* UGMissionTitleCell.xib in Resources */,
 				031EF58423BE7B4D00B0F813 /* chakan_hongbao.svg in Resources */,
@@ -8462,6 +8512,7 @@
 				031EF5EC23BE7B4E00B0F813 /* MyShare.storyboard in Resources */,
 				031E1D1723BE812B00B0F813 /* Promote.storyboard in Resources */,
 				031E1E0923BE812C00B0F813 /* UGSignInHeaderView.xib in Resources */,
+				0315DC9424ACA86200D635E2 /* NotificationMessageVC.xib in Resources */,
 				031E1B6F23BE812800B0F813 /* UGPlatformTitleCollectionViewCell.xib in Resources */,
 				031EF5BB23BE7B4D00B0F813 /* MomentsCellCommentLabel.xib in Resources */,
 				031E1E7723BE812C00B0F813 /* UGLotteryRecordCell.xib in Resources */,
@@ -8469,14 +8520,17 @@
 				031E1D3D23BE812B00B0F813 /* UGUserInfoViewController.storyboard in Resources */,
 				031E1D8723BE812B00B0F813 /* UGBetRecordTableViewController.storyboard in Resources */,
 				031E1A1923BE812700B0F813 /* loadingA.png in Resources */,
+				0315DC8D24AC2C6800D635E2 /* MinePacketProduceVC.xib in Resources */,
 				031E1D1F23BE812B00B0F813 /* UGIntegralConvertController.storyboard in Resources */,
 				031E1A0723BE812700B0F813 /* SlideSegmentView1.xib in Resources */,
 				031E1AB523BE812800B0F813 /* tag_list_s@2x.png in Resources */,
 				031E1B6323BE812800B0F813 /* UGHomeTitleView.xib in Resources */,
+				0315DC9824AD74A900D635E2 /* NotificationMessageCell.xib in Resources */,
 				031E1C7323BE812A00B0F813 /* UGWithdrawalViewController.storyboard in Resources */,
 				031EF5B223BE7B4D00B0F813 /* MomentsCell.xib in Resources */,
 				031E1BF523BE812900B0F813 /* UGGD11X5LotteryController.storyboard in Resources */,
 				031E1BE123BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
+				03F935BD24A1057C001D8A59 /* FansListCell.xib in Resources */,
 				031E1C6123BE812A00B0F813 /* UGLotteryGameCollectionViewCell.xib in Resources */,
 				031E1E2523BE812C00B0F813 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				031EF5EB23BE7B4E00B0F813 /* MyWallet.storyboard in Resources */,
@@ -8535,8 +8589,6 @@
 				031E1DF123BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
 				031EF57C23BE7B4D00B0F813 /* pinglun.svg in Resources */,
 				031E194D23BE812600B0F813 /* UGLHC.storyboard in Resources */,
-				03E56F9E2482BDE100996099 /* FansListCell.xib in Resources */,
-				03E56F9A2482BCC600996099 /* FollowListVC.xib in Resources */,
 				031E1D6123BE812B00B0F813 /* UGgoBindViewController.xib in Resources */,
 				031E1E8923BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
 				CF8508662466D67F0025672F /* UGCellHeaderView.xib in Resources */,
@@ -8566,6 +8618,7 @@
 				031EF5B523BE7B4D00B0F813 /* MomentsCellLikesLabel.xib in Resources */,
 				031E1C3723BE812900B0F813 /* UGLotterySubResultCollectionViewCell.xib in Resources */,
 				031E19FF23BE812700B0F813 /* black_bg.png in Resources */,
+				038A585B24AB185F0099D659 /* RedPacketProduceView.xib in Resources */,
 				031E1E7F23BE812D00B0F813 /* UGBalanceTransferLogsCell.xib in Resources */,
 				031E1D4D23BE812B00B0F813 /* UGMineSkinViewController.xib in Resources */,
 				031EF58323BE7B4D00B0F813 /* renwuzhongxin.svg in Resources */,
@@ -8578,6 +8631,7 @@
 				CF85085D2466D5F00025672F /* DZPTwoView.xib in Resources */,
 				031EF5C823BE7B4E00B0F813 /* PublicMomentsVC.xib in Resources */,
 				031EF5CC23BE7B4E00B0F813 /* BetFollowView.xib in Resources */,
+				038A585124A9DD340099D659 /* FollowListVC.xib in Resources */,
 				031E1B2323BE812800B0F813 /* UGLotteryAssistantController.storyboard in Resources */,
 				031E1E4D23BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
 				03A5D38723C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */,
@@ -8644,9 +8698,11 @@
 				031E1DFD23BE812C00B0F813 /* UGSingInHistoryTableViewCell.xib in Resources */,
 				03D6927B23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */,
 				031EF59323BE7B4D00B0F813 /* caipiaozhudanjilu.svg in Resources */,
+				038A584D24A9DD1D0099D659 /* FollowListVC.storyboard in Resources */,
 				031E1BEB23BE812900B0F813 /* UGSSCLotteryController.storyboard in Resources */,
 				031E1E5323BE812C00B0F813 /* UGMenuTableViewCell.xib in Resources */,
 				031E1C2123BE812900B0F813 /* UGFastThreeThreeCollectionViewCell.xib in Resources */,
+				038A585524AACFC30099D659 /* GenderEditVC.xib in Resources */,
 				031EF5AB23BE7B4D00B0F813 /* kanyikan.svg in Resources */,
 				031EF59B23BE7B4D00B0F813 /* qingkong.svg in Resources */,
 				031E1D2123BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
@@ -9198,6 +9254,7 @@
 				031E1CBB23BE812A00B0F813 /* UGTableViewController.m in Sources */,
 				031E1E3D23BE812C00B0F813 /* UGPromotion2rowTableViewCell.m in Sources */,
 				031E1DED23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
+				038A585824AAD03D0099D659 /* NameEditVC.swift in Sources */,
 				D4326F0F23F7B51200BEEA1B /* RedBagLogModel.m in Sources */,
 				031E1AAB23BE812800B0F813 /* WMIconSegmentControl.m in Sources */,
 				031E1E0323BE812C00B0F813 /* UGSingInHistoryTableViewCell.m in Sources */,
@@ -9209,6 +9266,7 @@
 				031E1D6B23BE812B00B0F813 /* UGActivityGoldTableViewController.m in Sources */,
 				030A874823C5C3070001EF82 /* JS_MineVC.m in Sources */,
 				031E19F923BE812700B0F813 /* ChineseSortHelper.m in Sources */,
+				0315DC8C24AC2C6800D635E2 /* MinePacketProduceVC.swift in Sources */,
 				031EF55A23BE7B4D00B0F813 /* UIColor+XFoundation.swift in Sources */,
 				031E1D4123BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				031E1A8F23BE812700B0F813 /* SAROPSession.m in Sources */,
@@ -9227,6 +9285,7 @@
 				031E1D7923BE812B00B0F813 /* UGFeedBackController.m in Sources */,
 				031E1AC923BE812800B0F813 /* YLEdgeLabel.m in Sources */,
 				031E197B23BE812600B0F813 /* UGLHlotteryNumberModel.m in Sources */,
+				038A584824A9C87F0099D659 /* MomentUserModel.swift in Sources */,
 				031E1A3523BE812700B0F813 /* CMNetwork.m in Sources */,
 				031E1C5D23BE812A00B0F813 /* UGhomeRecommendCollectionViewCell.m in Sources */,
 				031E1A9D23BE812800B0F813 /* MOFSAddressPickerView.m in Sources */,
@@ -9277,6 +9336,7 @@
 				031E1DFF23BE812C00B0F813 /* UGSignInHeaderView.m in Sources */,
 				031EF5B023BE7B4D00B0F813 /* MomentsCellCommentLabel.swift in Sources */,
 				031E1DE523BE812C00B0F813 /* UGMineSkinModel.m in Sources */,
+				038A585424AACFC30099D659 /* GenderEditVC.swift in Sources */,
 				031E1CEF23BE812A00B0F813 /* SVProgressAnimatedView.m in Sources */,
 				031E1CBD23BE812A00B0F813 /* UGCollectionViewCell.m in Sources */,
 				031E1A5D23BE812700B0F813 /* STBarButtonItem.m in Sources */,
@@ -9526,7 +9586,7 @@
 				032412C123CC62B900FABD51 /* PromotionOtherBetRecordVC.m in Sources */,
 				031E197123BE812600B0F813 /* LHUserModel.m in Sources */,
 				031E1A8D23BE812700B0F813 /* SAROPSessionConfiguration.m in Sources */,
-				03E56F9D2482BDE000996099 /* FansListCell.swift in Sources */,
+				03F935BC24A1057C001D8A59 /* FansListCell.swift in Sources */,
 				031E1DD323BE812C00B0F813 /* UGlevelsModel.m in Sources */,
 				031E1AE923BE812800B0F813 /* LeeTagItemViewModel.m in Sources */,
 				031E1D1323BE812B00B0F813 /* JSONAPI.m in Sources */,
@@ -9647,13 +9707,13 @@
 				031EF5DD23BE7B4E00B0F813 /* BetListCell.swift in Sources */,
 				CF8508682466D6860025672F /* UGCell190HeaderView.m in Sources */,
 				031E1BDF23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
+				0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */,
 				031E1BA523BE812900B0F813 /* UGBMLoginViewController.m in Sources */,
 				CF5B5D1D23E3087A007CBEE0 /* RememberPass.m in Sources */,
 				031EF5E223BE7B4E00B0F813 /* LoginVC.swift in Sources */,
 				031E1DE723BE812C00B0F813 /* UGagentApplyInfo.m in Sources */,
 				031E1CF923BE812A00B0F813 /* AFHTTPSessionManager.m in Sources */,
 				031E1CB323BE812A00B0F813 /* UGLaunchPageVC.m in Sources */,
-				03E56F992482BCC600996099 /* FollowListVC.swift in Sources */,
 				031EF5CE23BE7B4E00B0F813 /* MessageCollectionViewBetCell.swift in Sources */,
 				031E1A6523BE812700B0F813 /* UIImage+ST.m in Sources */,
 				031EF54C23BE7B4D00B0F813 /* JSONArrayTransform.swift in Sources */,
@@ -9762,6 +9822,7 @@
 				031EF5C523BE7B4D00B0F813 /* MomentsPublishImageCell.swift in Sources */,
 				031E1DCB23BE812C00B0F813 /* UGYuebaoProfitReportModel.m in Sources */,
 				031EF5ED23BE7B4E00B0F813 /* RootTabBarController.swift in Sources */,
+				0315DC9024AC5FDE00D635E2 /* NotificationMessageModel.swift in Sources */,
 				031E1A6F23BE812700B0F813 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				CF8508522466D5000025672F /* RSA.m in Sources */,
 				031E1A9523BE812700B0F813 /* MOFSToolView.m in Sources */,
@@ -9777,6 +9838,7 @@
 				036CA78223C75A02007BBD25 /* MyPromotionVC.m in Sources */,
 				031E1C3923BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				031E1D5923BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */,
+				038A584B24A9D8790099D659 /* UIView+XFoundation.swift in Sources */,
 				031E194323BE812600B0F813 /* UGSkinManagers.m in Sources */,
 				031EF5B723BE7B4D00B0F813 /* MomentsCellCommentTextView.swift in Sources */,
 				031E1C2323BE812900B0F813 /* UGFastThreeOneCollectionViewCell.m in Sources */,
@@ -9851,10 +9913,12 @@
 				031E1A0323BE812700B0F813 /* SlideSegmentView1.m in Sources */,
 				031E195723BE812600B0F813 /* LHGalleryListVC1.m in Sources */,
 				031E1D0923BE812A00B0F813 /* JSONModel.m in Sources */,
+				038A585024A9DD340099D659 /* FollowListVC.swift in Sources */,
 				031E1D6323BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
 				031E1E2923BE812C00B0F813 /* UGMosaicGoldFinishView.m in Sources */,
 				031E1C3D23BE812900B0F813 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,
 				031E1C6723BE812A00B0F813 /* UGDepositDetailsNoLineViewController.m in Sources */,
+				0315DC9324ACA86200D635E2 /* NotificationMessageVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

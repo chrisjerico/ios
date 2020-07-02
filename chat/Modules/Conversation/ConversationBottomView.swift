@@ -23,5 +23,12 @@ class ConversationBottomView: UIView {
         // Drawing code
     }
     */
-
+	@IBAction func announcementButtonTaped(_ sender: Any) {
+		let vc = NotificationMessageVC()
+		UINavigationController.current().pushViewController(vc, animated: true)
+	}
+	@IBAction func notificationButtonTaped(_ sender: Any) {
+		
+	}
+	
 }

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "hongbaobeijing_kai.png",
+      "filename" : "redpacket_send_button.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "hongbaobeijing_kai@2x.png",
+      "filename" : "redpacket_send_button@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "hongbaobeijing_kai@3x.png",
+      "filename" : "redpacket_send_button@3x.png",
       "scale" : "3x"
     }
   ],
