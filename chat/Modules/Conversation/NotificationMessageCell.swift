@@ -23,27 +23,7 @@ class NotificationMessageCell: UITableViewCell {
 	override func prepareForReuse() {
 		super.prepareForReuse()
 		disposeBag = DisposeBag()
-	}
-	override func setSelected(_ selected: Bool, animated: Bool) {
-		super.setSelected(selected, animated: animated)
-//		guard let model = model else {
-//			contentTextView.attributedText = nil
-//			return
-//		}
-//		if selected {
-//			let attributedText = (try? NSMutableAttributedString(data: model.content.data(using: .unicode) ?? Data(), options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)) ?? "".mutableAttributedString()
-//			contentTextView.attributedText = (model.addTime + "\n\n").mutableAttributedString().x.color(UIColor(hex: "A5A8B3")).x.fontSize(12) + attributedText.x.fontSize(12).x.color(UIColor(hex: "A5A8B3"))
-//		} else {
-//			contentTextView.attributedText = nil
-//		}
-//		setNeedsUpdateConstraints()
-//		updateConstraintsIfNeeded()
-//		contentView.setNeedsLayout()
-//		contentView.layoutIfNeeded()
-		setNeedsLayout()
-		layoutIfNeeded()
-	}
-	
+	}	
 	func bind(model: NotificationMessageModel) {
 		typeIcon.image = UIImage(named: ["1":"zj_gonggao", "2":"zj_huodong", "3":"zj_xinwen"]["\(model.alert_type)"] ?? "zj_xinwen")
 		titleLabel.text = model.title
@@ -56,14 +36,14 @@ class NotificationMessageCell: UITableViewCell {
 			return
 		}
 		selectedIndex.subscribe(onNext: { [weak self](selected) in
-			
 			if selected.contains(index) {
 				let attributedText = (try? NSMutableAttributedString(data: model.content.data(using: .unicode) ?? Data(), options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)) ?? "".mutableAttributedString()
 				self?.contentTextView.attributedText = (model.addTime + "\n\n").mutableAttributedString().x.color(UIColor(hex: "A5A8B3")).x.fontSize(12) + attributedText.x.fontSize(12).x.color(UIColor(hex: "A5A8B3"))
+				self?.arrowIcon.transform = CGAffineTransform(rotationAngle: CGFloat(Float.pi))
 			} else {
 				self?.contentTextView.attributedText = nil
+				self?.arrowIcon.transform = CGAffineTransform(rotationAngle: 0)
 			}
-			
 		}).disposed(by: disposeBag)
 		
 	}

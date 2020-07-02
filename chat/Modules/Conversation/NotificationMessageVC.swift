@@ -74,14 +74,14 @@ class NotificationMessageVC: BaseVC {
 		
 		newsList.map { $0.map { SectionModel(model: "", items: [$0]) } }.bind(to: tableView.rx.items(dataSource:  dataSource)).disposed(by: disposeBag)
 		tableView.rx.itemSelected.subscribe(onNext: { [unowned self] (path) in
-			self.selectedRows.accept(self.selectedRows.value + [path.section])
+			if self.selectedRows.value.contains(path.section) {
+				self.selectedRows.accept(self.selectedRows.value.filter { $0 != path.section })
+			} else {
+				self.selectedRows.accept(self.selectedRows.value + [path.section])
+			}
 			self.tableView.reloadData()
 		}).disposed(by: disposeBag)
-		tableView.rx.itemDeleted.subscribe(onNext: { [unowned self] (path) in
-			self.selectedRows.accept(self.selectedRows.value.filter { $0 != path.section })
-			self.tableView.reloadData()
 
-		}).disposed(by: disposeBag)
 		selectedIndex.accept(0)
 	}
 

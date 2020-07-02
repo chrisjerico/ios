@@ -54,8 +54,8 @@
                         </constraints>
                     </view>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csc-DT-nOu">
-                        <rect key="frame" x="18" y="48" width="377" height="121"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <rect key="frame" x="18" y="48" width="377" height="154"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -69,7 +69,7 @@
                     <constraint firstAttribute="trailing" secondItem="mLX-Fo-VZT" secondAttribute="trailing" id="D0K-Z7-m0f"/>
                     <constraint firstItem="mLX-Fo-VZT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NDv-tH-Th3"/>
                     <constraint firstItem="csc-DT-nOu" firstAttribute="top" secondItem="mLX-Fo-VZT" secondAttribute="bottom" id="Om1-qU-Zeu"/>
-                    <constraint firstAttribute="bottom" secondItem="csc-DT-nOu" secondAttribute="bottom" id="cul-Ij-zVg"/>
+                    <constraint firstAttribute="bottom" secondItem="csc-DT-nOu" secondAttribute="bottom" constant="-33" id="cul-Ij-zVg"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
