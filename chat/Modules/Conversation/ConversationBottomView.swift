@@ -9,7 +9,7 @@
 import UIKit
 
 class ConversationBottomView: UIView {
-
+	
 	@IBOutlet weak var announcementButton: UIButton!
 	@IBOutlet weak var announcementContentLabel: UILabel!
 	@IBOutlet weak var announcementTimeLabel: UILabel!
@@ -17,18 +17,19 @@ class ConversationBottomView: UIView {
 	@IBOutlet weak var notificationContentLabel: UILabel!
 	@IBOutlet weak var notificationTimeLabel: UILabel!
 	/*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+	// Only override draw() if you perform custom drawing.
+	// An empty implementation adversely affects performance during animation.
+	override func draw(_ rect: CGRect) {
+	// Drawing code
+	}
+	*/
 	@IBAction func announcementButtonTaped(_ sender: Any) {
 		let vc = NotificationMessageVC()
 		UINavigationController.current().pushViewController(vc, animated: true)
 	}
 	@IBAction func notificationButtonTaped(_ sender: Any) {
-		
+		let vc = NotificationSystemMessageVC()
+		UINavigationController.current().pushViewController(vc, animated: true)
 	}
 	
 }

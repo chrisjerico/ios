@@ -29,39 +29,6 @@ class UGConversationVC: BaseVC {
 		let view = UINib(nibName: "ConversationBottomView", bundle: nil).instantiate(withOwner: self, options: nil).first as! ConversationBottomView
 		view.isHidden = true
 		self.notificationView = view
-		// TODO: 公告的点击事件
-		view.announcementButton.rx.tap.subscribe(onNext: { () in
-			
-			
-		}).disposed(by: self.disposeBag)
-		
-		// TODO: 站内信的点击事件
-		view.notificationButton.rx.tap.subscribe(onNext: { () in
-			
-		}).disposed(by: self.disposeBag)
-		
-		ChatAPI.rx.request(ChatTarget.platformAlert(type: 0, page: 1, pageSize: 5)).subscribe(onSuccess: { (response) in
-			logger.debug(try! response.mapString())
-		}) { (error) in
-			logger.debug(error.localizedDescription)
-		}.disposed(by: self.disposeBag)
-		
-		
-		//
-		//				CMNetwork.getNoticeList(withParams: [String: Any]()) { (result, error) in
-		//					CMResult<UGNoticeTypeModel>.process(withResult: result) {
-		//						view.isHidden = false
-		//						let noticeTypeModel: UGNoticeTypeModel = result?.data as! UGNoticeTypeModel
-		//						if let noticeModel = noticeTypeModel.popup.first as? UGNoticeModel {
-		//							view.announcementContentLabel.text = noticeModel.title
-		//							view.announcementTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
-		//						}
-		//						if let noticeModel = noticeTypeModel.scroll.first as? UGNoticeModel {
-		//							view.notificationContentLabel.text = noticeModel.title
-		//							view.notificationTimeLabel.text = noticeModel.addTime.components(separatedBy: " ").last
-		//						}
-		//					}
-		//				}
 		
 		containerView.addSubview(view)
 		view.snp.makeConstraints { (make) in

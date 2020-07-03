@@ -23,6 +23,10 @@
 		0315DC9424ACA86200D635E2 /* NotificationMessageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC9224ACA86200D635E2 /* NotificationMessageVC.xib */; };
 		0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC9524AD74A900D635E2 /* NotificationMessageCell.swift */; };
 		0315DC9824AD74A900D635E2 /* NotificationMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC9624AD74A900D635E2 /* NotificationMessageCell.xib */; };
+		0315DC9E24AEC46000D635E2 /* NotificationSystemMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DC9C24AEC46000D635E2 /* NotificationSystemMessageVC.swift */; };
+		0315DC9F24AEC46000D635E2 /* NotificationSystemMessageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC9D24AEC46000D635E2 /* NotificationSystemMessageVC.xib */; };
+		0315DCA324AEC6A700D635E2 /* NotificationSystemMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DCA124AEC6A700D635E2 /* NotificationSystemMessageCell.swift */; };
+		0315DCA424AEC6A700D635E2 /* NotificationSystemMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DCA224AEC6A700D635E2 /* NotificationSystemMessageCell.xib */; };
 		031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
 		031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
 		031A781F23D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */; };
@@ -2072,6 +2076,10 @@
 		0315DC9224ACA86200D635E2 /* NotificationMessageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationMessageVC.xib; sourceTree = "<group>"; };
 		0315DC9524AD74A900D635E2 /* NotificationMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessageCell.swift; sourceTree = "<group>"; };
 		0315DC9624AD74A900D635E2 /* NotificationMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationMessageCell.xib; sourceTree = "<group>"; };
+		0315DC9C24AEC46000D635E2 /* NotificationSystemMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSystemMessageVC.swift; sourceTree = "<group>"; };
+		0315DC9D24AEC46000D635E2 /* NotificationSystemMessageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSystemMessageVC.xib; sourceTree = "<group>"; };
+		0315DCA124AEC6A700D635E2 /* NotificationSystemMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSystemMessageCell.swift; sourceTree = "<group>"; };
+		0315DCA224AEC6A700D635E2 /* NotificationSystemMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSystemMessageCell.xib; sourceTree = "<group>"; };
 		031A781A23D35A9C00FF2FFA /* LotteryTrendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryTrendVC.h; sourceTree = "<group>"; };
 		031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryTrendVC.m; sourceTree = "<group>"; };
 		031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotteryTrendVC.xib; sourceTree = "<group>"; };
@@ -7381,8 +7389,12 @@
 				03E56F8B2480E68C00996099 /* ConversationBottomView.xib */,
 				0315DC9124ACA86200D635E2 /* NotificationMessageVC.swift */,
 				0315DC9224ACA86200D635E2 /* NotificationMessageVC.xib */,
+				0315DC9C24AEC46000D635E2 /* NotificationSystemMessageVC.swift */,
+				0315DC9D24AEC46000D635E2 /* NotificationSystemMessageVC.xib */,
 				0315DC9524AD74A900D635E2 /* NotificationMessageCell.swift */,
 				0315DC9624AD74A900D635E2 /* NotificationMessageCell.xib */,
+				0315DCA124AEC6A700D635E2 /* NotificationSystemMessageCell.swift */,
+				0315DCA224AEC6A700D635E2 /* NotificationSystemMessageCell.xib */,
 			);
 			path = Conversation;
 			sourceTree = "<group>";
@@ -8548,6 +8560,7 @@
 				031E1BD323BE812900B0F813 /* UGGDKL10LotteryController.storyboard in Resources */,
 				031EF59A23BE7B4D00B0F813 /* meiriqiandao.svg in Resources */,
 				031E1C3B23BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.xib in Resources */,
+				0315DCA424AEC6A700D635E2 /* NotificationSystemMessageCell.xib in Resources */,
 				031E1BF923BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
 				031EF58023BE7B4D00B0F813 /* zj_xinwen.svg in Resources */,
 				031E1B9323BE812900B0F813 /* UGGameListCollectionViewCell.xib in Resources */,
@@ -8560,6 +8573,7 @@
 				031EF5A723BE7B4D00B0F813 /* mima.svg in Resources */,
 				031E1A9F23BE812800B0F813 /* ZZCircleProgress.bundle in Resources */,
 				031EF56723BE7B4D00B0F813 /* 形状.svg in Resources */,
+				0315DC9F24AEC46000D635E2 /* NotificationSystemMessageVC.xib in Resources */,
 				031E1B8323BE812900B0F813 /* UGPlatformNoticeCell.xib in Resources */,
 				031E1C2923BE812900B0F813 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
 				031E1C8923BE812A00B0F813 /* UGFundsTransfer2View.xib in Resources */,
@@ -9522,6 +9536,7 @@
 				031EF53623BE7B4D00B0F813 /* Single+Codable.swift in Sources */,
 				031E1DB723BE812B00B0F813 /* UGModel.m in Sources */,
 				031E1DC123BE812B00B0F813 /* UGapplyWinLogDetail.m in Sources */,
+				0315DCA324AEC6A700D635E2 /* NotificationSystemMessageCell.swift in Sources */,
 				031EF53B23BE7B4D00B0F813 /* CommonParameters.swift in Sources */,
 				031E19C323BE812700B0F813 /* UIGestureRecognizer+Utils.m in Sources */,
 				031E19B523BE812700B0F813 /* NSArray+Safe.m in Sources */,
@@ -9755,6 +9770,7 @@
 				031E1E6323BE812C00B0F813 /* UGAvaterCollectionViewCell.m in Sources */,
 				031EF5F323BE7B4E00B0F813 /* ConversationModel.swift in Sources */,
 				031EF55023BE7B4D00B0F813 /* SocketManager.swift in Sources */,
+				0315DC9E24AEC46000D635E2 /* NotificationSystemMessageVC.swift in Sources */,
 				031E1A7F23BE812700B0F813 /* SLWebViewController.m in Sources */,
 				031EF40123BE7A9400B0F813 /* AppDelegate.swift in Sources */,
 				031EF5D223BE7B4E00B0F813 /* AttachFunctionMenusCell.swift in Sources */,
