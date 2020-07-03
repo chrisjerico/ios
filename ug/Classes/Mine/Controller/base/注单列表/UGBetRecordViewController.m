@@ -209,6 +209,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     self.controllerIndex = number;
     if ([[self.itemArray objectAtIndex:number] isEqualToString:@"注单统计"]) {
         _detailVC.loadData = YES;
+        _selectIndex =(int ) number;
     } else {
         UGBetRecordTableViewController *recordVC = self.controllersArray[number];
         recordVC.loadData = YES;

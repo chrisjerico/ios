@@ -107,19 +107,21 @@
             
             weakSelf.items = [NSMutableArray new];
             NSLog(@"model=%@",model);
-            NSDictionary *dicData =  model.data;
+//            NSDictionary *dicData =  model.data;
+//            
+//            for (NSArray *value in [dicData allValues]) {
+//                
+//                NSLog(@"value: %@", value);
+//                NSArray *array  = [UGBetsRecordModel arrayOfModelsFromDictionaries:value error:nil];
+//                
+//                UGBetsRecordModel *obj = [array objectAtIndex:0];
+//                
+//                NSLog(@"obj.title= %@",obj.title);
+//                
+//                [weakSelf.items addObject:obj];
+//            }
             
-            for (NSArray *value in [dicData allValues]) {
-                
-                NSLog(@"value: %@", value);
-                NSArray *array  = [UGBetsRecordModel arrayOfModelsFromDictionaries:value error:nil];
-                
-                UGBetsRecordModel *obj = [array objectAtIndex:0];
-                
-                NSLog(@"obj.title= %@",obj.title);
-                
-                [weakSelf.items addObject:obj];
-            }
+            weakSelf.items  = [UGBetsRecordModel arrayOfModelsFromDictionaries:model.data error:nil];
             [weakSelf.tableView reloadData];
             
         } failure:^(id msg) {
