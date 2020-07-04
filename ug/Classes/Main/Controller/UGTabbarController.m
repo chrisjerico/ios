@@ -515,40 +515,51 @@ static UGTabbarController *_tabBarVC = nil;
         return;
     }
     
-    NSArray *arrControllers = TabBarController1.viewControllers;
+//    typedef NS_ENUM(NSInteger, MobileMenuType) {
+//    MM_首页 = 1,
+//    MM_长龙助手,
+//    MM_购彩大厅_默认,
+//    MM_购彩大厅_亮黑,
+//    MM_开奖记录,
+//    MM_真人视讯,
+//    MM_棋牌电子,
+//    MM_彩票大厅,
+//
+//    MM_我的_六合,
+//    MM_我的_默认,
+//    MM_我的_亮黑,
+//    MM_我的_金沙,
+//    MM_我的_火山橙,
+//
+//
+//    MM_任务中心,
+//    MM_签到,
+//    MM_站内信,
+//    MM_优惠活动_默认,
+//    MM_优惠活动_亮黑,
+//    MM_聊天室,
+//    MM_推广收益,
+//    MM_申请代理,
+//
+//    MM_安全中心,
+//    MM_资金管理,
+//    MM_额度转换,
+//    MM_银行卡,
+//    MM_利息宝,
+//    MM_在线客服,
+//    MM_未结算,
+//    MM_优惠申请,
+//
+     NSArray<UGMobileMenu *> *mobileMenu = SysConf.mobileMenu;
     
-    for (int i = 0; i<arrControllers.count; i++) {
-        UIViewController * viewController  = [arrControllers objectAtIndex:i];
-        if([viewController isKindOfClass:[UINavigationController class]])
-        {
-            UINavigationController *navCtrl = (UINavigationController *)viewController;
-            
-            UIViewController * viewController  = navCtrl.firstVC;
-            if([viewController isKindOfClass:[MailBoxTableViewController class]])
-            {
-                //UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-                
-            }
-            NSLog(@"%@",navCtrl.viewControllers);
-            if ([navCtrl.tabBarItem.title isEqualToString:@"站内信"] ){//UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-            }
-        }
-        else
-        {
-            // view controller
-            if([viewController isKindOfClass:[MailBoxTableViewController class]])
-            {
-                //UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-                
-            }
-            
+    for (int i= 0; i<mobileMenu.count; i++) {
+        UGMobileMenu *menu =  [UGMobileMenu mj_objectWithKeyValues:[mobileMenu objectAtIndex:i]];
+   
+        if ([menu.path isEqualToString:@"/message"]||[menu.path isEqualToString:@"/user"]) {
+            [self setTabBadgeIndex:i];
         }
     }
-    
-    
+ 
     
 }
 
