@@ -19,6 +19,9 @@
     if ([NSUserName() isEqualToString:@"fish"]) {
         autoPackPlist = @"/Users/fish/Desktop/AutoPack.plist";
     }
+    else if ([NSUserName() isEqualToString:@"andrew"]) {
+         autoPackPlist = @"/Users/andrew/打包程序/AutoPack.plist";
+    }
     else{
          autoPackPlist = @"/Users/ug/Desktop/AutoPack.plist";
     }
@@ -35,7 +38,7 @@
             
             BOOL isPack = 1;  // 打包类型：0热更新，1原生iOS
             if (isPack) {
-                NSString *ids = @"c018";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+                NSString *ids = @"test60";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
                 NSString *branch = @"dev_master";// 分支名
                 BOOL willUpload = 1;        // 打包后是否上传审核
                 
@@ -45,7 +48,7 @@
             }
             else {
                 NSString *log = @"（无更新3）";    // 更新日志
-                NSString *environment = @"fish";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
+                NSString *environment = @"andrew1";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
                 NSString *branch = @"fish/dev1";    // 分支名：fish/dev1
                 
                 [RNPack checkEnvironment:environment log:log completion:^(NSString * _Nonnull environment, NSString * _Nonnull log) {
