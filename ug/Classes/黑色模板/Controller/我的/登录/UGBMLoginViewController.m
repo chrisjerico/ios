@@ -253,8 +253,11 @@
 
                 self.errorTimes += 1;
                 if (self.errorTimes == 4) {
-                    self.webBgView.hidden = NO;
-                    self.webBgViewHeightConstraint.constant = 120;
+                    if (![UGSystemConfigModel  currentConfig].loginVCode) {
+                        self.webBgView.hidden = NO;
+                        self.webBgViewHeightConstraint.constant = 120;
+                        [self webLoadURL];
+                    }
                 }
                 UGUserModel *user = (UGUserModel*) model.data;
 
@@ -454,6 +457,17 @@
             FastSubViewCode(self.view);
 //            [self.bottomLabel setText:title];
             subLabel(@"标识label").text = title;
+            
+            NSLog(@"登录增加了滑动验证码配置==%d",[UGSystemConfigModel  currentConfig].loginVCode);
+            
+            if ([UGSystemConfigModel  currentConfig].loginVCode) {
+                self.webBgView.hidden = NO;
+                self.webBgViewHeightConstraint.constant = 120;
+                [self webLoadURL];
+            } else {
+                self.webBgView.hidden = YES;
+                self.webBgViewHeightConstraint.constant = 0.1;
+            }
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             
@@ -461,5 +475,10 @@
     }];
 }
 
+-(void)webLoadURL{
+    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [self.webView loadRequest:request];
+}
 
 @end
