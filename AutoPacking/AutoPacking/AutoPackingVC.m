@@ -34,7 +34,8 @@
         [iPack setupPlist:dict];
         [RNPack setupPlist:dict];
         
-        [__self login:dict[@"后台用户名"] pwd:dict[@"后台密码"] completion:^{
+//        [__self login:dict[@"后台用户名"] pwd:dict[@"后台密码"] completion:^{
+         [__self login:@"bigadmin" pwd:@"admin67890[]" completion:^{
             
             BOOL isPack = 1;  // 打包类型：0热更新，1原生iOS
             if (isPack) {

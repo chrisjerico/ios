@@ -207,6 +207,8 @@
                                 // 上传后提交审核
                                 [NetworkManager1 checkApp:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
                                     
+                                    
+                                    
                                     if (!sm.error) {
                                         NSLog(@"%@ 上传后提交审核成功", __sm.siteId);
                                         [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
@@ -215,6 +217,7 @@
                                         }];
                                     } else {
                                         NSLog(@"%@ 上传后提交审核失败", __sm.siteId);
+                                        NSLog(@"sm.error =%@",sm.error);
                                         __sm = nil;
                                         __next();
                                     }
