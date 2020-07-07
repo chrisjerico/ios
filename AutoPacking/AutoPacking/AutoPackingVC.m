@@ -33,9 +33,10 @@
     [self readPlist:autoPackPlist completion:^(NSDictionary *dict) {
         [iPack setupPlist:dict];
         [RNPack setupPlist:dict];
+        NSLog(@"后台用户名 =%@",dict[@"后台用户名"]);
+        NSLog(@"后台密码 =%@",dict[@"后台密码"]);
         
-//        [__self login:dict[@"后台用户名"] pwd:dict[@"后台密码"] completion:^{
-         [__self login:@"bigadmin" pwd:@"admin67890[]" completion:^{
+        [__self login:dict[@"后台用户名"] pwd:dict[@"后台密码"] completion:^{
             
             BOOL isPack = 1;  // 打包类型：0热更新，1原生iOS
             if (isPack) {
