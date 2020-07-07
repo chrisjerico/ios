@@ -238,27 +238,6 @@
                     };
                 };
                 
-                if (checkStatus) {
-                    // 上传后提交审核
-                    [NetworkManager1 checkApp:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
-                        __sm.siteUrl = sm.responseObject[@"data"][@"site_url"];
-                        [NetworkManager1 editInfo:__sm plistPath:plistPath].completionBlock = ^(CCSessionModel *sm) {
-                            if (!sm.error) {
-                                NSLog(@"%@ 上传后提交审核成功", __sm.siteId);
-                                [okSites addObject:__sm];
-                                [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
-                                    __sm = nil;
-                                    __next();
-                                }];
-                            } else {
-                                NSLog(@"%@ 上传后提交审核失败", __sm.siteId);
-                                __sm = nil;
-                                __next();
-                            }
-                            
-                        };
-                    };
-                }
             } else {
                 NSLog(@"%@ plist文件上传失败", __sm.siteId);
                 __sm = nil;
