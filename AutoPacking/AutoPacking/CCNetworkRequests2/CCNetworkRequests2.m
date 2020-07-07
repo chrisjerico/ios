@@ -185,6 +185,16 @@
                     :true];
 }
 
+// 设置审核通过
+- (CCSessionModel *)checkApp:(NSString *)_id {
+    return [self req:@"api.php"
+                    :@{@"m":@"check_app",
+                       @"app_id":_id,   // 站点在上传后台的ID
+                       @"check_status":[[NSNumber alloc] initWithBool:YES],
+                    }
+                    :true];
+}
+
 // 修改APP信息
 - (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath {
     return [self req:@"api.php"

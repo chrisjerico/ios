@@ -116,7 +116,7 @@
 #pragma mark - 批量打包+上传
 
 // 批量打包
-- (void)startPackingWithIds:(NSString *)ids version:(NSString *)version willUpload:(BOOL)willUpload {
+- (void)startPackingWithIds:(NSString *)ids version:(NSString *)version willUpload:(BOOL)willUpload checkStatus:(BOOL)checkStatus{
     __weakSelf_(__self);
     // 检查站点配置
     [self checkSiteInfo:ids];
@@ -131,7 +131,7 @@
             [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
             
             // 上传打包日志
-            [self saveLog:okSites uploaded:false completion:^(BOOL ok) {
+            [self saveLog:okSites uploaded:false checkStatus:checkStatus completion:^(BOOL ok) {
                 [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", iPack.logFile]];
                 NSLog(@"只打包不上传，退出打包程序");
                 exit(0);
@@ -156,7 +156,7 @@
                 }
                 NSLog(@"-------");
                 // 上传打包日志
-                [self saveLog:ReSign uploaded:false completion:^(BOOL ok) {
+                [self saveLog:ReSign uploaded:false checkStatus:checkStatus completion:^(BOOL ok) {
                     if (!temp.count) {
                         [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", iPack.logFile]];
                         NSLog(@"无需上传，退出打包程序！");
@@ -171,7 +171,7 @@
         });
         
         // 批量上传
-        [__self upload:okSites completion:^(NSArray<SiteModel *> *okSites) {
+        [__self upload:okSites  checkStatus:checkStatus completion:^(NSArray<SiteModel *> *okSites) {
             NSLog(@"退出打包程序");
             exit(0);
         }];
@@ -179,7 +179,7 @@
 }
 
 // 批量上传审核
-- (void)upload:(NSArray <SiteModel *>*)_sites completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
+- (void)upload:(NSArray <SiteModel *>*)_sites   checkStatus:(BOOL)checkStatus  completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
     __weakSelf_(__self);
@@ -202,7 +202,7 @@
                         if (!sm.error) {
                             NSLog(@"%@ 提交审核成功", __sm.siteId);
                             [okSites addObject:__sm];
-                            [__self saveLog:@[__sm] uploaded:true completion:^(BOOL ok) {
+                            [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
                                 __sm = nil;
                                 __next();
                             }];
@@ -214,6 +214,28 @@
                         
                     };
                 };
+                
+                if (checkStatus) {
+                    // 上传后提交审核
+                    [NetworkManager1 checkApp:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
+                        __sm.siteUrl = sm.responseObject[@"data"][@"site_url"];
+                        [NetworkManager1 editInfo:__sm plistPath:plistPath].completionBlock = ^(CCSessionModel *sm) {
+                            if (!sm.error) {
+                                NSLog(@"%@ 上传后提交审核成功", __sm.siteId);
+                                [okSites addObject:__sm];
+                                [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
+                                    __sm = nil;
+                                    __next();
+                                }];
+                            } else {
+                                NSLog(@"%@ 上传后提交审核失败", __sm.siteId);
+                                __sm = nil;
+                                __next();
+                            }
+                            
+                        };
+                    };
+                }
             } else {
                 NSLog(@"%@ plist文件上传失败", __sm.siteId);
                 __sm = nil;
@@ -291,7 +313,7 @@
 }
 
 // 保存发包日志
-- (void)saveLog:(NSArray <SiteModel *>*)sms uploaded:(BOOL)uploaded completion:(void (^)(BOOL ok))completion {
+- (void)saveLog:(NSArray <SiteModel *>*)sms uploaded:(BOOL)uploaded checkStatus:(BOOL)checkStatus completion:(void (^)(BOOL ok))completion {
     // 从git拉取最新的发包日志
     NSLog(@"提交打包日志");
     [ShellHelper pullCode:iPack.logFile.stringByDeletingLastPathComponent branch:@"master" completion:^(GitModel * _Nonnull _) {
@@ -299,7 +321,12 @@
         [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
         
         for (SiteModel *sm in sms) {
-            NSString *downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核,审核后请关闭工单，通知客服)", sm.uploadId, sm.siteId);
+            NSString *downloadPath;
+            if (checkStatus) {
+                downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传并且已审核)", sm.uploadId, sm.siteId);
+            } else {
+                downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核,审核后请关闭工单，通知客服)", sm.uploadId, sm.siteId);
+            }
             if (!uploaded) {
                 downloadPath = _NSString(@"【%@ %@ 】https://baidujump.app/eipeyipeyi/jump-%@.html", sm.siteId, sm.type,sm.uploadId);
             }
