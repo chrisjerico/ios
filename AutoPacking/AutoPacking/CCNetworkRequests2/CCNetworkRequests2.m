@@ -119,6 +119,8 @@
         temp;
     });
     
+    NSLog(@"params = %@",params);
+    
     CCSessionModel *sm = [CCSessionModel new];
     sm.urlString = urlString;
     sm.params = params;
@@ -187,10 +189,11 @@
 
 // 设置审核通过
 - (CCSessionModel *)checkApp:(NSString *)_id {
+    NSLog(@"_id  = %@",_id);
     return [self req:@"api.php"
                     :@{@"m":@"check_app",
                        @"app_id":_id,   // 站点在上传后台的ID
-                       @"check_status":[[NSNumber alloc] initWithBool:YES],
+                       @"check_status":@"2",
                     }
                     :true];
 }

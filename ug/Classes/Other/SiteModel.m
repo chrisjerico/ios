@@ -41,7 +41,7 @@
             sm.uploadNum = uploadNum;
             return sm;
         };
-        // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
+        // 站点编号 /              上传编号      / 上传ID    / 签名方式                 / APP名                     / bundleID                  / 接口域名
         __dataArray = @[
             site(@"a002",        @"a002hy",     @"129",     @"com.UGGame.cp",           @"https://5049uuu.com",                         @"企业包",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123   改成非超级签名
             site(@"a002a",       @"",           @"",        @"io.fhpt.H52A8B80A",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
@@ -237,7 +237,7 @@
             
             site(@"hotUpdate",   @"hotUpdate",  @"260",     @"com.UGGame.cp",           @"http://test10.6yc.com",                       @"内测包",     @"热更新测试包"),
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
-            //            NSString *siteId, NSString *uploadNum, NSString *uploadId, NSString *appId, NSString *host, NSString *type, NSString *appName
+            //siteId, /uploadNum,/uploadId/appId, /host, /type, /appName
         ];
     });
     return __dataArray;
