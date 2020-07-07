@@ -202,10 +202,33 @@
                         if (!sm.error) {
                             NSLog(@"%@ 提交审核成功", __sm.siteId);
                             [okSites addObject:__sm];
-                            [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
-                                __sm = nil;
-                                __next();
-                            }];
+                            
+                            if (checkStatus) {
+                                // 上传后提交审核
+                                [NetworkManager1 checkApp:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
+                                    
+                                    if (!sm.error) {
+                                        NSLog(@"%@ 上传后提交审核成功", __sm.siteId);
+                                        [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
+                                            __sm = nil;
+                                            __next();
+                                        }];
+                                    } else {
+                                        NSLog(@"%@ 上传后提交审核失败", __sm.siteId);
+                                        __sm = nil;
+                                        __next();
+                                    }
+                                    
+                                };
+                            }
+                            else{
+                                [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
+                                    __sm = nil;
+                                    __next();
+                                }];
+                            }
+                            
+                            
                         } else {
                             NSLog(@"%@ 提交审核失败", __sm.siteId);
                             __sm = nil;
