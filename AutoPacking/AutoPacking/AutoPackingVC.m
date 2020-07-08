@@ -20,7 +20,7 @@
         autoPackPlist = @"/Users/fish/Desktop/AutoPack.plist";
     }
     else if ([NSUserName() isEqualToString:@"andrew"]) {
-         autoPackPlist = @"/Users/andrew/打包程序/AutoPack.plist";//andrew。a0ed3a17
+         autoPackPlist = @"/Users/andrew/打包程序/AutoPack.plist";//
     }
     else{
          autoPackPlist = @"/Users/ug/Desktop/AutoPack.plist";
@@ -45,7 +45,7 @@
                 NSString *ids = @"c053";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
                 NSString *branch = @"dev_master";// 分支名
                 BOOL willUpload = 1;        // 打包后是否上传审核
-                BOOL checkStatus = 0;      // 上传后是否审核 1 必须使用bigadmin
+                BOOL checkStatus = 0;      // 上传后是否审核 2 必须使用bigadmin
                 
                 [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
                     [iPack startPackingWithIds:ids version:version willUpload:willUpload  checkStatus:checkStatus];
