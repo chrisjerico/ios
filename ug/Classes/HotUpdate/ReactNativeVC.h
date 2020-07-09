@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary <NSString *, id>* _Nullable)params;  /**<   切换rn页面 */
 - (BOOL)isEqualRPM:(RnPageModel *)rpm;
+- (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params;
 @end
 
 NS_ASSUME_NONNULL_END

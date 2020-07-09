@@ -83,6 +83,8 @@ static RCTRootView *_rnView;
 #ifdef DEBUG
         if (TARGET_IPHONE_SIMULATOR) {
             bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+        } else if (APP.isFish) {
+            bundleURL = [NSURL URLWithString:@"http://192.168.1.145:8081/index.bundle?platform=ios"];
         }
 #endif
         //    NSLog(@"当前rn版本：%@", APP.)
@@ -111,7 +113,6 @@ static RCTRootView *_rnView;
     if (_rpm.fd_prefersNavigationBarHidden) {
         [self setStateViewHidden:true];
     }
-    _rnView.frame = self.view.bounds;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -121,9 +122,10 @@ static RCTRootView *_rnView;
     self.navigationController.navigationBarHidden = _navigationBarHidden;
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    _rnView.frame = self.view.bounds;
+- (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
+    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        [ReactNativeHelper selectVC:rpm.rnName params:params];
+    }];
 }
 
 - (void)setStateViewHidden:(BOOL)hidden {

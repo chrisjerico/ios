@@ -105,10 +105,22 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 去RN页面
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"vcName"];
     if (rpm) {
-        ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:rpm params:[viewController rn_keyValues]];
-        vc.hidesBottomBarWhenPushed = true;
-        // push权限判断
-        if (!self.viewControllers.count || [UGTabbarController canPushToViewController:vc]) {
+        // 判断push权限
+        UIViewController *vc = [UIViewController new];
+        vc.允许游客访问 = rpm.允许游客访问;
+        vc.允许未登录访问 = rpm.允许未登录访问;
+        if (![UGTabbarController canPushToViewController:vc]) {
+            return;
+        }
+        // RN內push
+        if ([self.viewControllers.lastObject isKindOfClass:ReactNativeVC.class]) {
+            [(ReactNativeVC *)self.viewControllers.lastObject push:rpm params:[viewController rn_keyValues]];
+            return ;
+        }
+        // push ReactNativeVC
+        if (!self.viewControllers.count) {
+            ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:rpm params:[viewController rn_keyValues]];
+            vc.hidesBottomBarWhenPushed = true;
             [super pushViewController:vc animated:animated];
         }
         return;

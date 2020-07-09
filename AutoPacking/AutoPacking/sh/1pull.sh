@@ -54,8 +54,8 @@ if [ "$__Result" == "Already up to date." ];then
     echo "当前 $__Branch 已是最新代码"
     
     # 删除依赖库
-    echo '删除 node_modules'
-    rm -rf node_modules
+    # echo '删除 node_modules'
+    # rm -rf node_modules
 
     # 重新安装rn依赖库
     echo '\n———————— 正在 yarn install... ————————\n'
