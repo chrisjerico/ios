@@ -90,6 +90,10 @@ PODS:
   - "NSObject+Rx (5.0.2)":
     - RxSwift (~> 5.0)
   - ObjectMapper (3.3.0)
+  - Picker (4.3.7):
+    - Picker/Core (= 4.3.7)
+  - Picker/Core (4.3.7):
+    - React
   - pop (1.0.12)
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
@@ -300,6 +304,8 @@ PODS:
   - RegExCategories (1.0)
   - RNCMaskedView (0.1.10):
     - React
+  - RNCPicker (1.6.3):
+    - React
   - RNFastImage (7.0.2):
     - React
     - SDWebImage (~> 5.0)
@@ -393,6 +399,7 @@ DEPENDENCIES:
   - Moya/RxSwift (~> 14.0.0-alpha.1)
   - "NSObject+Rx (~> 5.0.0)"
   - ObjectMapper (~> 3.3.0)
+  - Picker (from `../node_modules/react-native-picker`)
   - pop (~> 1.0.12)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -422,6 +429,7 @@ DEPENDENCIES:
   - "ReactNativeART (from `../node_modules/@react-native-community/art`)"
   - RegExCategories
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - "RNCPicker (from `../node_modules/@react-native-community/picker`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -532,6 +540,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   JSPatch:
     :path: JSPatch/JSPatch.podspec
+  Picker:
+    :path: "../node_modules/react-native-picker"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -580,6 +590,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/art"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNCPicker:
+    :path: "../node_modules/@react-native-community/picker"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
   RNGestureHandler:
@@ -635,6 +647,7 @@ SPEC CHECKSUMS:
   Moya: 2c16c3fe92eda302070213452281b59198f946d8
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
+  Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
@@ -661,6 +674,7 @@ SPEC CHECKSUMS:
   ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
+  RNCPicker: 1c63b084bcbcd33d159a83144543f3bda4cd1793
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
