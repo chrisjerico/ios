@@ -31,7 +31,7 @@
 }
 
 -(void)selectTextColor:(BOOL)selected{
-    self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:14] : [UIFont systemFontOfSize:14];
+    self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16];
     if (Skin1.isBlack||Skin1.is23) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
         if (APP.isSelectStyle) {

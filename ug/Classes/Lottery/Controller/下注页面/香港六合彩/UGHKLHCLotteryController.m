@@ -430,7 +430,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
-    CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+    CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
     self.headerCollectionView.x = 25 + size.width;
     [self.headerCollectionView reloadData];
 }
@@ -1705,7 +1705,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         for (int i=0; i<titles.count; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(i * w, 0, w, h);
-            btn.titleLabel.font = [UIFont systemFontOfSize:13];
+            btn.titleLabel.font = [UIFont systemFontOfSize:16];
             btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
             [btn setTitle:titles[i] forState:UIControlStateNormal];
             if (Skin1.isBlack||Skin1.is23) {
