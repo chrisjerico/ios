@@ -604,6 +604,10 @@ static UGTabbarController *_tabBarVC = nil;
     if ([vc isKindOfClass:ReactNativeVC.class] && [vc.className isEqualToString:mm.clsName]) {
         RnPageModel *rpm = [APP.rnPageInfos objectWithValue:mm.path keyPath:@"tabbarItemPath"];
         isDifferentRPM = ![((ReactNativeVC *)vc) isEqualRPM:rpm];
+        if (!isDifferentRPM) {
+            [(ReactNativeVC *)vc push:rpm params:[vc rn_keyValues]];
+            return true;
+        }
     }
     
     // 控制器需要重新加载

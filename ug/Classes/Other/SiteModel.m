@@ -88,7 +88,7 @@
             site(@"c150",        @"c150hy",     @"179",     @"io.fhpt.H5CDDC97E",       @"https://0187488.com",                         @"企业包",     @"0187彩票⽹"),
             site(@"c151",        @"c151hy",     @"144",     @"io.fhpt.H5ADDD837",       @"https://xpj501501401401.vip",                 @"企业包",     @"澳⻔新葡京"),//极光账号 账号：  yunanfu11@163.com   密码 ：  Aa556688
             site(@"c153",        @"c153hy",     @"145",     @"io.fhpt.H504175BD",       @"https://yb247.cn",                            @"企业包",     @"亚博环球"),
-            site(@"c153bhy",     @"c153bhy",    @"281",     @"io.fhpt.YSAC153b",        @"https://by3680.com",                          @"企业包",     @"博雅娱乐"),
+            site(@"c153bhy",     @"c153bhy",    @"281",     @"7月7日客户已停止续费",        @"7月7日客户已停止续费",                           @"企业包",     @"博雅娱乐"),
             site(@"c154",        @"",           @"",        @"io.fhpt.H5DFB9358",       @"",                                            @"企业包",     @"吉祥彩"),
             site(@"c155",        @"",           @"",        @"io.fhpt.H5B45C43F",       @"",                                            @"企业包",     @"405彩票"),
             site(@"c156",        @"",           @"",        @"io.fhpt.H5BEC1764",       @"",                                            @"企业包",     @"速8彩票"),
@@ -135,7 +135,7 @@
             site(@"c129",        @"c129hy",     @"141",     @"io.fhpt.H58AE4F87",       @"https://7803000.com",                         @"企业包",     @"万豪彩票"),
             site(@"c601",        @"",           @"",        @"io.fhpt.H5D5F880F",       @"",                                            @"企业包",     @"六合宝典"),
             site(@"h003",        @"",           @"",        @"io.fhpt.H591E28D0",       @"",                                            @"企业包",     @"华为彩票"),
-            site(@"h003b",       @"h003bhy",    @"295",     @"io.fhpt.H591E28D0",       @"https://betv5.com",                          @"企业包",     @"威尼斯人"),
+            site(@"h003b",       @"h003bhy",    @"295",     @"io.fhpt.H591E28D0",       @"https://betv5.com",                          @"企业包",     @"威尼斯人"),//账号：395348255@qq.com     密码： Lyj678678
             site(@"c139",        @"",           @"",        @"io.fhpt.H536040A9",       @"",                                            @"企业包",     @"68中彩⽹"),
             site(@"c186",        @"",           @"",        @"io.fhpt.H5B2B56F7",       @"",                                            @"企业包",     @"好彩⽹"),
             site(@"c192",        @"c192hy",     @"166",     @"io.fhpt.H56438C9F",       @"https://103079.com",                          @"企业包",     @"凤凰彩票"),
@@ -185,7 +185,7 @@
             site(@"c216",        @"c216hy",     @"250",     @"io.fhpt.YSAC216",         @"https://www.6510086.com/",                    @"企业包",     @"凤凰娱乐"),//
             site(@"c217",        @"c217hy",     @"255",     @"io.fhpt.YSFC217",         @"https://9999app-sa5g6erty9r8ujtk5oi9rtg2k6e55uer9999-app.com",   @"企业包",     @"贵宾厅集团"),//xingxin6888@gmail.com  密码QAZzxc12,.
             site(@"c211",        @"c211hy",     @"259",     @"io.fhpt.YSFC211",         @"https://310310app.com",                       @"企业包",     @"4484娱乐城"),
-            site(@"c230",       @"c230hy",     @"288",      @"io.fhpt.YSFC230",         @"https://www.jdapp588.com",                    @"企业包",     @"九鼎彩票"),
+            site(@"c230",       @"c230hy",     @"288",      @"io.fhpt.YSFC230",         @"https://www.jdapp588.com",                    @"企业包",     @"九鼎彩票"),// 账号: jiuding588@gmail.com 密码：QWE123qwe@@@@
             site(@"c233",       @"c233hy",     @"294",      @"io.fhpt.YSAC233",         @"https://9115111.com",                         @"企业包",     @"太阳城集团"),
             site(@"c235",       @"c235hy",     @"300",      @"io.fhpt.YSAC235",         @"https://p36005.com",                         @"企业包",     @"新葡京娱乐城"),
             

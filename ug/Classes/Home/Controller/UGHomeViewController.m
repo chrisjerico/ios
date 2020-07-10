@@ -781,7 +781,7 @@
     });
     dispatch_group_async(group, queue, ^{
           // 请求3
-           [self getNoticeList];   // 公告列表
+//           [self getNoticeList];   // 公告列表
 
     });
     dispatch_group_async(group, queue, ^{
@@ -1274,7 +1274,7 @@
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            
+            NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
             if (![Skin1.skitType isEqualToString:@"六合资料"]) {//六合资料
                 [self getCustomGameList];   // 自定义游戏列表
                 [self getAllNextIssueData]; // 彩票大厅数据
@@ -1284,6 +1284,8 @@
             [self getPromotionsType ];// 获取优惠图片分类信息
             
             [self gethomeAdsList];     // 首页广告图片
+            
+            [self getNoticeList];   // 公告列表
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
