@@ -293,6 +293,8 @@ static UGTabbarController *_tabBarVC = nil;
     
     [self chatgetToken];
     
+     [self getAllNextIssueData]; // 彩票大厅数据
+    
 }
 
 - (void)setTabbarStyle {
@@ -827,5 +829,21 @@ static UGTabbarController *_tabBarVC = nil;
         }];
         
     }
+}
+
+      
+
+// 彩票大厅数据
+- (void)getAllNextIssueData {
+    [SVProgressHUD showWithStatus: nil];
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [SVProgressHUD dismiss];
+         NSLog(@" model = %@",model);
+        [CMResult processWithResult:model success:^{
+            UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            
+            NSLog(@" UGAllNextIssueListModel.lotteryGamesArray = %@",UGAllNextIssueListModel.lotteryGamesArray);
+        } failure:nil];
+    }];
 }
 @end

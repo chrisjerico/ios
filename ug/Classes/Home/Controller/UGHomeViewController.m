@@ -781,7 +781,7 @@
     });
     dispatch_group_async(group, queue, ^{
           // 请求3
-//           [self getNoticeList];   // 公告列表
+           [self getAllNextIssueData]; // 彩票大厅数据 
 
     });
     dispatch_group_async(group, queue, ^{
@@ -1195,8 +1195,11 @@
     [SVProgressHUD showWithStatus: nil];
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD dismiss];
+        NSLog(@" model = %@",model);
         [CMResult processWithResult:model success:^{
             UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            
+            NSLog(@" UGAllNextIssueListModel.lotteryGamesArray = %@",UGAllNextIssueListModel.lotteryGamesArray);
         } failure:nil];
     }];
 }
@@ -1275,10 +1278,10 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
-            if (![Skin1.skitType isEqualToString:@"六合资料"]) {//六合资料
-                [self getCustomGameList];   // 自定义游戏列表
-                [self getAllNextIssueData]; // 彩票大厅数据
-            }
+           
+            [self getCustomGameList];   // 自定义游戏列表
+            
+            
             
             
             [self getPromotionsType ];// 获取优惠图片分类信息
