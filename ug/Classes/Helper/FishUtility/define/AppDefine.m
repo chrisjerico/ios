@@ -144,7 +144,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test10";
+            _SiteId = @"test20";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
