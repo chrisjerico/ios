@@ -998,7 +998,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
-    CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+    CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
     if (self.nextIssueModel.curIssue.length >=12) {
        self.headerCollectionView.x = 25 + size.width-18;
     }

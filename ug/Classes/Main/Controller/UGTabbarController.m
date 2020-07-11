@@ -293,6 +293,8 @@ static UGTabbarController *_tabBarVC = nil;
     
     [self chatgetToken];
     
+     [self getAllNextIssueData]; // 彩票大厅数据
+    
 }
 
 - (void)setTabbarStyle {
@@ -514,41 +516,17 @@ static UGTabbarController *_tabBarVC = nil;
     if (!APP.isTabMassageBadge) {
         return;
     }
+
+     NSArray<UGMobileMenu *> *mobileMenu = SysConf.mobileMenu;
     
-    NSArray *arrControllers = TabBarController1.viewControllers;
-    
-    for (int i = 0; i<arrControllers.count; i++) {
-        UIViewController * viewController  = [arrControllers objectAtIndex:i];
-        if([viewController isKindOfClass:[UINavigationController class]])
-        {
-            UINavigationController *navCtrl = (UINavigationController *)viewController;
-            
-            UIViewController * viewController  = navCtrl.firstVC;
-            if([viewController isKindOfClass:[MailBoxTableViewController class]])
-            {
-                //UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-                
-            }
-            NSLog(@"%@",navCtrl.viewControllers);
-            if ([navCtrl.tabBarItem.title isEqualToString:@"站内信"] ){//UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-            }
-        }
-        else
-        {
-            // view controller
-            if([viewController isKindOfClass:[MailBoxTableViewController class]])
-            {
-                //UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-                
-            }
-            
+    for (int i= 0; i<mobileMenu.count; i++) {
+        UGMobileMenu *menu =  [UGMobileMenu mj_objectWithKeyValues:[mobileMenu objectAtIndex:i]];
+   
+        if ([menu.path isEqualToString:@"/message"]||[menu.path isEqualToString:@"/user"]) {
+            [self setTabBadgeIndex:i];
         }
     }
-    
-    
+ 
     
 }
 
@@ -628,6 +606,10 @@ static UGTabbarController *_tabBarVC = nil;
     if ([vc isKindOfClass:ReactNativeVC.class] && [vc.className isEqualToString:mm.clsName]) {
         RnPageModel *rpm = [APP.rnPageInfos objectWithValue:mm.path keyPath:@"tabbarItemPath"];
         isDifferentRPM = ![((ReactNativeVC *)vc) isEqualRPM:rpm];
+        if (!isDifferentRPM) {
+            [(ReactNativeVC *)vc push:rpm params:[vc rn_keyValues]];
+            return true;
+        }
     }
     
     // 控制器需要重新加载
@@ -847,5 +829,21 @@ static UGTabbarController *_tabBarVC = nil;
         }];
         
     }
+}
+
+      
+
+// 彩票大厅数据
+- (void)getAllNextIssueData {
+    [SVProgressHUD showWithStatus: nil];
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [SVProgressHUD dismiss];
+         NSLog(@" model = %@",model);
+        [CMResult processWithResult:model success:^{
+            UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            
+            NSLog(@" UGAllNextIssueListModel.lotteryGamesArray = %@",UGAllNextIssueListModel.lotteryGamesArray);
+        } failure:nil];
+    }];
 }
 @end

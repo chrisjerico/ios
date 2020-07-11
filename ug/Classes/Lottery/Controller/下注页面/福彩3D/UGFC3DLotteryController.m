@@ -898,26 +898,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)updateHeaderViewData {
-	
-	
-	if (![CMCommon stringIsNull:self.nextIssueModel.preDisplayNumber]) {
-		self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preDisplayNumber];
-	} else {
-		self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
-	}
-	if (![CMCommon stringIsNull:self.nextIssueModel.displayNumber]) {
-		self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.displayNumber];
-	} else {
-		self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
-	}
-	
-	_currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;
-	_nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
-	[self updateCloseLabelText];
-	[self updateOpenLabelText];
-	CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
-	self.headerCollectionView.x = 30 + size.width;
-	[self.headerCollectionView reloadData];
+
+    
+    
+      if (![CMCommon stringIsNull:self.nextIssueModel.preDisplayNumber]) {
+         self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preDisplayNumber];
+    } else {
+        self.currentIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.preIssue];
+    }
+    if (![CMCommon stringIsNull:self.nextIssueModel.displayNumber]) {
+        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.displayNumber];
+    } else {
+        self.nextIssueLabel.text = [NSString stringWithFormat:@"%@期",self.nextIssueModel.curIssue];
+    }
+
+    _currentIssueLabel.hidden = !self.nextIssueModel.preIssue.length;
+    _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
+    [self updateCloseLabelText];
+    [self updateOpenLabelText];
+    CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+    self.headerCollectionView.x = 30 + size.width;
+    [self.headerCollectionView reloadData];
 }
 
 

@@ -89,9 +89,9 @@
             self.rightLabel.textColor = APP.AuxiliaryColor2;
         } else {
             if (APP.betBgIsWhite) {
-                self.rightLabel.textColor = APP.TextColor1;
+                self.rightLabel.textColor = Skin1.textColor1;
             } else {
-                self.rightLabel.textColor = item.select ? [UIColor whiteColor] : APP.TextColor1;
+                self.rightLabel.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;
             }
         }
     }
