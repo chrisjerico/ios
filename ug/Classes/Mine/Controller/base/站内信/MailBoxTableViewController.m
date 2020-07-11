@@ -58,6 +58,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
          make.left.equalTo(self.view.mas_left).with.offset(0);
          make.right.equalTo(self.view.mas_right).with.offset(0);
          make.top.equalTo(self.iphoneXBottomView.mas_top).offset(-36);
+//         make.top.equalTo(self.view.mas_bottom).offset(-36);
          make.height.mas_equalTo(96);
          
      }];
@@ -98,6 +99,11 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     
     [self.iphoneXBottomView setBackgroundColor:Skin1.bgColor];
     [self.view bringSubviewToFront:self.iphoneXBottomView];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSLog(@"111");
 }
 
 
