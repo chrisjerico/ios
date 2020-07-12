@@ -17,6 +17,19 @@ NS_ASSUME_NONNULL_BEGIN
 //得到线上配置的聊天室
 - (CCSessionModel *)chat_getToken;
 
+
+// 1.取得語言配置
+- (CCSessionModel *)language_getConfigs;
+
+// 2.取得完整語言包
+- (CCSessionModel *)language_getLanguagePackage:(NSString *)languageCode;
+
+// 3.依鍵值取得語言訊息
+- (CCSessionModel *)language_getLanguageMessageByKeys:(NSString *)languageCode keys:(NSArray <NSString *>*)keys;
+
+// 4.變更語言
+- (CCSessionModel *)language_changeTo:(NSString *)languageCode;
+
 @end
 
 NS_ASSUME_NONNULL_END
