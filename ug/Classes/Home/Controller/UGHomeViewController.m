@@ -1174,6 +1174,7 @@
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
             UGUserModel *oldUser = [UGUserModel currentUser];
+            NSLog(@"uid = %@",user.uid);
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;

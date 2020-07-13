@@ -69,6 +69,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
+@property (weak, nonatomic) IBOutlet UILabel *uidLabel;
 //===================================================
 @property (weak, nonatomic) IBOutlet UIView *headerLabelView;
 
@@ -697,6 +698,14 @@ BOOL isOk = NO;
     //进度条
     double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
     self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
+    
+    if (![CMCommon stringIsNull:user.uid]) {
+        self.uidLabel.text = [NSString stringWithFormat:@"UID:%@",user.uid];
+    }
+    else{
+        self.uidLabel.text = @"";
+    }
+  
 }
 
 

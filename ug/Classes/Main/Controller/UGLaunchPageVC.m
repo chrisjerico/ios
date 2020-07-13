@@ -58,31 +58,31 @@
     }
     
     // 显示超时提示
-    __weakSelf_(__self);
-    {
-        int timeout = 7; // ⌛️超时时间
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            __self.waitSysConf = false;
-            __self.waitReactNative = false;
-            
-            if (__self.waitLanguage) {
-                [SVProgressHUD showWithStatus:@"正在加载语言包..."];
-            }
-        });
-    }
-    
-    // 等待所有初始配置加载完毕才进入主页
+//    __weakSelf_(__self);
+//    {
+//        int timeout = 7; // ⌛️超时时间
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            __self.waitSysConf = false;
+//            __self.waitReactNative = false;
+//
+//            if (__self.waitLanguage) {
+//                [SVProgressHUD showWithStatus:@"正在加载语言包..."];
+//            }
+//        });
+//    }
+//
+//    // 等待所有初始配置加载完毕才进入主页
     int minSecs = 3;   // ⌛️最少等待3秒
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(minSecs * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        while (1) {
-            [NSThread sleepForTimeInterval:0.2];
-            if (__self.waitReactNative) continue;
-            if (__self.waitSysConf) continue;
-            if (__self.waitPic) continue;
-            if (__self.waitGif) continue;
-            if (__self.waitLanguage) continue;
-            break;
-        }
+//        while (1) {
+//            [NSThread sleepForTimeInterval:0.2];
+//            if (__self.waitReactNative) continue;
+//            if (__self.waitSysConf) continue;
+//            if (__self.waitPic) continue;
+//            if (__self.waitGif) continue;
+//            if (__self.waitLanguage) continue;
+//            break;
+//        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
             APP.Window.rootViewController = [[UGTabbarController alloc] init];
