@@ -1135,5 +1135,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
+- (NSUInteger)minSectionsCountForBet {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([model.name isEqualToString:@"1-5名"] || [model.name isEqualToString:@"6-10名"]) {
+		return 5;
+	}
+	return 1;
+}
+- (NSUInteger)minItemsCountForBetIn:(NSUInteger)section {
+	
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([model.name isEqualToString:@"官方玩法"]) {
+		return self.segmentIndex + 1;
+	}
+
+	return 1;
+}
+
 @end
 

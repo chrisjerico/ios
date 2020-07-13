@@ -12,14 +12,19 @@
 #import "MGSlider.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol hiddeHeader <NSObject>
-
+// 秒秒彩隐藏头部
+@protocol HiddeHeader <NSObject>
 -(void)hideHeader;
+@end
+// 机选计数规则
+@protocol BetRadomProtocal <NSObject>
+- (NSUInteger)minSectionsCountForBet;
+- (NSUInteger)minItemsCountForBetIn:(NSUInteger)section ;
 
 @end
 
 // 彩种下注页面的基类
-@interface UGCommonLotteryController : UGViewController<hiddeHeader>
+@interface UGCommonLotteryController : UGViewController<HiddeHeader, BetRadomProtocal>
 
 @property (nonatomic, assign) BOOL shoulHideHeader;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
@@ -39,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
+@property (nonatomic, strong) UIButton * radomNumberButton;
 
 //追号=======================================================
 @property (nonatomic, strong) UGNextIssueModel*zuiHaoIssueModel;/**<莫彩种的最近一期下注*/

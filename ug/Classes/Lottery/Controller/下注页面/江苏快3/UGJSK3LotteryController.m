@@ -832,6 +832,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _gameDataArray;
 }
 
+- (void)resetClick:(id)sender {
+    [self.amountTextF resignFirstResponder];
+    [self updateSelectLabelWithCount:0];
+    self.amountTextF.text = nil;
+    for (UGGameplayModel *model in self.gameDataArray) {
+        model.select = NO;
+        for (UGGameplaySectionModel *type in model.list) {
+            for (UGGameBetModel *game in type.list) {
+                game.select = NO;
+            }
+        }
+    }
+    [self.betCollectionView reloadData];
+    [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
 
 
 @end
