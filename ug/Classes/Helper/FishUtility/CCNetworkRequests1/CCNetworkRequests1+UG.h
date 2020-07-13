@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)language_getLanguagePackage:(NSString *)languageCode;
 
 // 3.依鍵值取得語言訊息
-- (CCSessionModel *)language_getLanguageMessageByKeys:(NSString *)languageCode keys:(NSArray <NSString *>*)keys;
+- (CCSessionModel *)language_getLanguageMessageByKeys:(NSArray <NSString *>*)keys languageCode:(NSString *)languageCode;
 
 // 4.變更語言
 - (CCSessionModel *)language_changeTo:(NSString *)languageCode;

@@ -1849,6 +1849,7 @@
 		CF5B5D1C23E30854007CBEE0 /* BetFormViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA21323D2F21800E4D921 /* BetFormViewModel.m */; };
 		CF5B5D1D23E3087A007CBEE0 /* RememberPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411923C86A6A0070D2B5 /* RememberPass.m */; };
 		CF5B5D1E23E30892007CBEE0 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
+		CF62001F24BBF2A700FD26AD /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF62001E24BBF2A700FD26AD /* LanguageHelper.m */; };
 		CF639D7A246E645B00A54CE7 /* MGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF8424555B1C0014A301 /* MGSlider.m */; };
 		CF85084F2466D4510025672F /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
 		CF8508512466D4E40025672F /* UGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E176823BE812500B0F813 /* UGTabbarController.m */; };
@@ -3741,6 +3742,8 @@
 		CF47587F239636D100966536 /* 38.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 38.gif; sourceTree = "<group>"; };
 		CF5B5D1F23E31B7B007CBEE0 /* ChatPCH.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPCH.pch; sourceTree = "<group>"; };
 		CF5D3D7D2396B8D000CC3D6B /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
+		CF62001D24BBF2A700FD26AD /* LanguageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
+		CF62001E24BBF2A700FD26AD /* LanguageHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageHelper.m; sourceTree = "<group>"; };
 		CF8E241023DDBFD80054BF0F /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		CF8E241123DDBFD80054BF0F /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		CF8E241223DDBFD80054BF0F /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -4221,6 +4224,7 @@
 				031E14D423BE812300B0F813 /* 刮刮乐 */,
 				D4ACC042247014AF005AB971 /* 加密解密 */,
 				D4ACC043247015E5005AB971 /* OpenUDID唯一识别码 */,
+				CF62002124BBF2AE00FD26AD /* LanguageHelper */,
 				031E14D723BE812300B0F813 /* WKProxy.m */,
 				031E157923BE812300B0F813 /* WKProxy.h */,
 				031E150823BE812300B0F813 /* QDAlertView.h */,
@@ -7789,6 +7793,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CF62002124BBF2AE00FD26AD /* LanguageHelper */ = {
+			isa = PBXGroup;
+			children = (
+				CF62001D24BBF2A700FD26AD /* LanguageHelper.h */,
+				CF62001E24BBF2A700FD26AD /* LanguageHelper.m */,
+			);
+			path = LanguageHelper;
+			sourceTree = "<group>";
+		};
 		CF8E240F23DDBFD80054BF0F /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -10359,6 +10372,7 @@
 				031E199C23BE812600B0F813 /* category.m in Sources */,
 				031E1CF823BE812A00B0F813 /* AFHTTPSessionManager.m in Sources */,
 				031E1D5C23BE812B00B0F813 /* UGLoginViewController.m in Sources */,
+				CF62001F24BBF2A700FD26AD /* LanguageHelper.m in Sources */,
 				031E1D7E23BE812B00B0F813 /* UGBetRecordViewController.m in Sources */,
 				031E1D2823BE812B00B0F813 /* UGIntegralConvertController.m in Sources */,
 				031E1DAA23BE812B00B0F813 /* UGMessageModel.m in Sources */,

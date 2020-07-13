@@ -33,9 +33,9 @@
 }
 
 // 3.依鍵值取得語言訊息
-- (CCSessionModel *)language_getLanguageMessageByKeys:(NSString *)languageCode keys:(NSArray <NSString *>*)keys {
+- (CCSessionModel *)language_getLanguageMessageByKeys:(NSArray <NSString *>*)keys languageCode:(NSString *)languageCode {
     return [self req:@"wjapp/api.php?c=language&a=getLanguageMessageByKeys"
-                    :@{@"languageCode":languageCode, @"keys":keys}
+                    :@{@"languageCode":languageCode, @"keys":[keys jsonStringEncoded]}
                     :true];
 }
 

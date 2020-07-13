@@ -67,4 +67,5 @@
 #import "Global.h"                  //全局数据
 #import "NSArray+Log.h"             //XCode状态栏打印Json格式数据
 #import "SGBrowserView.h"            //弹窗
+#import "LanguageHelper.h"
 #endif /* UGPCH_pch */
