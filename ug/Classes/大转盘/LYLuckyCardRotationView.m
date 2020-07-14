@@ -198,16 +198,17 @@
         subLabel(@"奖品").hidden = NO;
         [subLabel(@"奖品") setText:[data objectForKey:@"prizeName"] ];
         subImageView(@"奖品图").hidden = NO;
-        [subImageView(@"奖品图") sd_setImageWithURL:[NSURL URLWithString:[data objectForKey:@"prizeIcon"]]];
         subImageView(@"中奖文字").hidden = NO;
   
 
         NSNumber * prizeflag = [self->data objectForKey:@"prizeflag"];
         if ([prizeflag isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {//中奖
             subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_win"];
+            [subImageView(@"奖品图") sd_setImageWithURL:[NSURL URLWithString:[data objectForKey:@"prizeIcon"]]];
         }
         else{
              subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_failure"];
+             subImageView(@"奖品图").image = [UIImage imageNamed:@"dzp_cryFace"];
         }
   
 
