@@ -19,12 +19,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    if (APP.betSizeIsBig) {
-        self.titleLabel.font = APP.cellBigFont;
-        //        [CMLabelCommon setRichNumberWithLabel:self.titleLabel Color:self.titleLabel.textColor FontSize:APP.cellNormalFontSize];
-    } else {
-        self.titleLabel.font = APP.cellNormalFont;
-    }
+//    if (APP.betSizeIsBig) {
+//        self.titleLabel.font = APP.cellBigFont;
+//    } else {
+//        self.titleLabel.font = APP.cellNormalFont;
+//    }
 }
 
 
