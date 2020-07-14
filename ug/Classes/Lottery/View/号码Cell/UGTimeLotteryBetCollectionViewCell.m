@@ -19,11 +19,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-//    if (APP.betSizeIsBig) {
-//        self.titleLabel.font = APP.cellBigFont;
-//    } else {
-//        self.titleLabel.font = APP.cellNormalFont;
-//    }
+    if (APP.betSizeIsBig) {
+        self.titleLabel.font = APP.cellBigFont;
+    } else {
+        self.titleLabel.font = APP.cellNormalFont;
+    }
 }
 
 
