@@ -292,6 +292,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         else if (model.subId == 25) {
             cell.title = [NSString stringWithFormat:@"今日输赢(%@)",[UGUserModel currentUser].todayWinAmount];
         }
+        else if (model.subId == 27) {
+              cell.title = [NSString stringWithFormat:@"当前版本号(%@)", APP.Version] ;
+        }
         else{
             if ([CMCommon stringIsNull:model.name]) {
                 cell.title = model.title;
