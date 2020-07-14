@@ -396,7 +396,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 				[self.dwdGameData appendObject: oddsSubArray];
 			}
 			
-			self.segmentView.dataArray = titleArray;
+//			self.segmentView.dataArray = titleArray;
 			model.list = self.dwdGameData[self.segmentIndex];
 			
 		}
@@ -723,6 +723,24 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
 			UGGameplaySectionModel *type = model.list[indexPath.section];
 			headerView.titleLabel.text = type.name;
+			
+			
+			if ([@"定位胆" isEqualToString:model.name]) {
+				headerView.titleLabel.numberOfLines = 0;
+
+				if ([type.name isEqualToString:@"百定位"]) {
+					headerView.titleLabel.text = @"赔率：960\n\n第一球(百位)";
+				} else if ([type.name isEqualToString:@"十定位"]) {
+					headerView.titleLabel.text = @"第二球(十位)";
+				} else if ([type.name isEqualToString:@"个定位"]) {
+					headerView.titleLabel.text = @"第三球(个位)";
+				}else if ([type.name isEqualToString:@"二重号"]) {
+					headerView.titleLabel.text = @"赔率：250\n玩法提示：选一个二重号，一个单号组成一注。(单号号码不得与二重号重复)\n\n二重号";
+				}else if ([type.name isEqualToString:@"选号"]) {
+					headerView.titleLabel.text = @"赔率：134\n玩法提示：任选3个号码组成一注(号码不重复)\n\n选号";
+				}
+			}
+
 		}else {
 			
 			headerView.titleLabel.text = @"";
@@ -734,24 +752,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	return nil;
 	
 }
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-	UGGameplaySectionModel *type = model.list[indexPath.section];
-	if ([type.alias isEqualToString:@"组选6"]) {
-		NSInteger number = 0;
-		for (UGGameplaySectionModel *type in model.list) {
-			for (UGGameBetModel *game in type.list) {
-				if (game.select) {
-					number ++;
-				}
-			}
-		}
-		return number < 3;
-		
-	}
-	
-	return true;
-}
+
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	
@@ -768,7 +769,32 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			return;
 		}
 		
+		if ([type.alias isEqualToString:@"组选6"] && !game.select) {
+			NSInteger number = 0;
+			for (UGGameplaySectionModel *type in model.list) {
+				for (UGGameBetModel *game in type.list) {
+					if (game.select) {
+						number ++;
+						if (number >= 3) {
+							return;
+						}
+
+					}
+				}
+			}
+			
+		}
+		
+		if ([game.alias isEqualToString:@"复式"] || [game.alias isEqualToString:@"组选3"]) {
+			for (UGGameBetModel * bet in type.list) {
+				if (bet.select && bet != game) {
+					return;
+				}
+			}
+		}
+		
 		game.select = !game.select;
+
 		[self.betCollectionView reloadData];
 		
 		NSInteger number = 0;
@@ -797,8 +823,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		if ([game.alias isEqualToString:@"复式"] || [game.alias isEqualToString:@"组选3"]) {
 			NSMutableArray * array = [NSMutableArray array];
 			[self generateBetArrayWith: model.list bet: nil resultArray: &array index: 0];
-
 			count = array.count;
+			
 		} else if ([game.alias isEqualToString:@"组选6"]) {
 			count = count/3;
 		}
@@ -810,11 +836,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+	
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([@"定位胆" isEqualToString:model.name]) {
+		return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
+	}
 	return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
 	
 }
 /** 头视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+	
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([@"定位胆" isEqualToString:model.name] && section == 0) {
+		return CGSizeMake(UGScreenW /2, 100);
+	}
+
 	return CGSizeMake(UGScreenW / 4 * 3 - 1, 35);
 }
 
@@ -1041,7 +1078,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (UGSegmentView *)segmentView {
 	if (_segmentView == nil) {
-		_segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW /4 * 3, 50) titleArray:@[]];
+		_segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW /4 * 3, 50) titleArray:@[@"复式",@"组选三",@"组选六"]];
 	}
 	return _segmentView;
 	

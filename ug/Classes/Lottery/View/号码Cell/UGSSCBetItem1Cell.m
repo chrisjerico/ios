@@ -12,6 +12,7 @@
 @interface UGSSCBetItem1Cell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *oddsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameOnlyLabel;
 
 @end
 @implementation UGSSCBetItem1Cell
@@ -26,6 +27,16 @@
     } else {
         self.nameLabel.font = APP.cellNormalFont;
     }
+
+	self.nameOnlyLabel.layer.cornerRadius = 15;
+	self.nameOnlyLabel.layer.masksToBounds = YES;
+	self.nameOnlyLabel.layer.borderColor = [UGTextColor CGColor];
+	self.nameOnlyLabel.layer.borderWidth = 0.5;
+	self.nameOnlyLabel.backgroundColor = UGBlueColor;
+	
+	self.nameLabel.hidden = false;
+	self.oddsLabel.hidden = false;
+	self.nameOnlyLabel.hidden = true;
     
 }
 
@@ -39,7 +50,6 @@
     else {
         self.oddsLabel.text = @"--";
     }
-    
     self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes * 0.5;
     
     
@@ -79,6 +89,19 @@
             }
         }
     }
+	
+	if ([item.typeName isEqualToString:@"定位胆"]) {
+		self.nameLabel.hidden = true;
+		self.oddsLabel.hidden = true;
+		self.nameOnlyLabel.hidden = false;
+		self.nameOnlyLabel.text = item.name;
+		self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : 0.5;
+
+	} else {
+		self.nameLabel.hidden = false;
+		self.oddsLabel.hidden = false;
+		self.nameOnlyLabel.hidden = true;
+	}
 }
 
 - (void)setNameColor:(UIColor *)nameColor {
