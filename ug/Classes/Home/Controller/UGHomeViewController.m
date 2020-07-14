@@ -417,7 +417,7 @@
         // 登录成功
         SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
             __self.titleView.showLoginView = NO;
-            SysConf.popup_type = @"1";
+//            SysConf.popup_type = @"1";
             if ( [SysConf.popup_type isEqualToString:@"1"]) {
                 
                 BOOL isLogin = UGLoginIsAuthorized();
@@ -1826,7 +1826,7 @@
             BOOL isSubView = [self.notiveView isDescendantOfView:window];
             
             if (!isSubView) {
-                SysConf.popup_type = @"1";
+//                SysConf.popup_type = @"1";
                 if ( [SysConf.popup_type isEqualToString:@"0"]) {
                         [self->_notiveView show];
                 } else {
