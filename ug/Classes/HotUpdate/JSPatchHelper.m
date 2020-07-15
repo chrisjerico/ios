@@ -146,7 +146,30 @@
     findNewVersions(1);
 }
 
+
+static BOOL _isUpdateFinish = false;
+static NSMutableArray *_updateFinishBlocks = nil;
+
++ (void)waitUpdateFinish:(void (^)(void))finishBlock {
+    if (!finishBlock) return;
+    if (_isUpdateFinish) {
+        if (!_updateFinishBlocks) {
+            _updateFinishBlocks = @[].mutableCopy;
+        }
+        [_updateFinishBlocks addObject:finishBlock];
+    } else {
+        finishBlock();
+    }
+}
+
 + (void)updateVersion:(NSString *)rnVersion progress:(nonnull void (^)(CGFloat))progress completion:(nonnull void (^)(BOOL))completion {
+    for (void (^block)(void) in _updateFinishBlocks) {
+        block();
+    }
+    _updateFinishBlocks = nil;
+    _isUpdateFinish = true;
+    
+    
     [self checkUpdate:rnVersion completion:^(NSError *err, HotVersionModel *hvm) {
         if (err || !hvm) {
             // 已是最新版本

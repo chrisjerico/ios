@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)install;
 + (void)checkUpdate:(NSString *)rnVersion completion:(void (^)(NSError *err, HotVersionModel *hvm))completion;    /**<   查找新版本 */
 + (void)updateVersion:(NSString *)rnVersion progress:(void (^)(CGFloat progress))progress completion:(void (^)(BOOL ok))completion;  /**<   版本更新 */
-
++ (void)waitUpdateFinish:(void (^)(void))finishBlock;
 @end
 
 NS_ASSUME_NONNULL_END

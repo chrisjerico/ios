@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4B75E082278025E0007047C"
-               BuildableName = "UGAPP.app"
+               BuildableName = "UGBWApp_A.app"
                BlueprintName = "UGBWApp"
                ReferencedContainer = "container:UGBWApp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "UGAPP.app"
+            BuildableName = "UGBWApp_A.app"
             BlueprintName = "UGBWApp"
             ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4B75E082278025E0007047C"
-            BuildableName = "UGAPP.app"
+            BuildableName = "UGBWApp_A.app"
             BlueprintName = "UGBWApp"
             ReferencedContainer = "container:UGBWApp.xcodeproj">
          </BuildableReference>
