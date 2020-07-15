@@ -237,12 +237,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	self.segmentHeight.constant = 0;
-	[self.segmentView setHidden:true];
-	
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+		
+	if ([model.name isEqualToString:@"定位胆"]) {
+		self.segmentHeight.constant = 40;
+		[self.segmentView setHidden:false];
+
+	} else {
+		self.segmentHeight.constant = 0;
+		[self.segmentView setHidden:true];
+
+	}
 	[self.segmentView mas_remakeConstraints:^(MASConstraintMaker *make) {
 		make.edges.mas_equalTo(self.segeMentContainerView);
 	}];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -520,6 +529,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			
 			
 		}
+		
+		UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+		if ([model.name isEqualToString:@"定位胆"] && self.segmentIndex == 1) {
+			for (UGGameBetModel * bet in array) {
+				bet.betInfo = [NSString stringWithFormat:@"%@,%@",[bet.betInfo substringToIndex:1], bet.betInfo];
+			}
+		}
+		
 		NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
 		[self goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:self.nextIssueModel  gameType:self.nextIssueModel.gameId selCode:selCode];
 		
@@ -629,23 +646,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		
 		
 		UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+		
 		if ([model.name isEqualToString:@"定位胆"]) {
 			self.segmentHeight.constant = 40;
 			[self.segmentView setHidden:false];
-			
+
 		} else {
 			self.segmentHeight.constant = 0;
 			[self.segmentView setHidden:true];
-			
+
 		}
 		[self.segmentView mas_remakeConstraints:^(MASConstraintMaker *make) {
 			make.edges.mas_equalTo(self.segeMentContainerView);
 		}];
-		
-		//		[self.rightStackView setNeedsLayout];
-		//		[self.rightStackView layoutIfNeeded];
-		
-		
+
 	}
 	
 }
@@ -785,10 +799,25 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			
 		}
 		
-		if ([game.alias isEqualToString:@"复式"] || [game.alias isEqualToString:@"组选3"]) {
-			for (UGGameBetModel * bet in type.list) {
-				if (bet.select && bet != game) {
-					return;
+		if ([game.alias isEqualToString:@"组选3"]) {
+			NSString * selectedNumber;
+			for (UGGameplaySectionModel * section in model.list) {
+				for (UGGameBetModel * bet in section.list) {
+					if (!bet.select) {
+						continue;
+					}
+					selectedNumber = bet.name;
+
+					if (type == section) {
+						if (bet != game) {
+							return;
+						}
+					} else {
+						// 组选3单号号码不得与二重号重复
+						if ([selectedNumber isEqualToString:game.name]) {
+							return;
+						}
+					}
 				}
 			}
 		}
