@@ -1652,6 +1652,68 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     return _szgmentTitleArray;
     
 }
+#pragma mark - BetRadomProtocal
+- (NSUInteger)minSectionsCountForBet {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([@"两面" isEqualToString:model.name] || [@"1-5球" isEqualToString:model.name] ||  [@"龙虎斗" isEqualToString:model.name]) {
+		return [self numberOfSectionsInCollectionView:self.betCollectionView];
+	}
+	if ([@"二字定位" isEqualToString:model.name]) {
+		return 2;
+	}
+	if ([@"三字定位" isEqualToString:model.name]) {
+		return 3;
+	}
+	return 1;
+}
 
+- (NSUInteger)minItemsCountForBetIn:(NSUInteger)section {
+
+	return 1;
+}
+
+
+//重写机选方法
+-(void)randomNumber {
+	
+	[self resetClick:self.radomNumberButton];
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+
+	NSIndexPath * lastPath;
+	NSInteger sectionTotalCount = [self numberOfSectionsInCollectionView:self.betCollectionView];
+	NSUInteger sectionCount = [self minSectionsCountForBet];
+	NSMutableSet * sectionSet = [NSMutableSet setWithCapacity: sectionCount];
+	while (sectionSet.count < sectionCount) {
+		
+		NSInteger radomSection = arc4random()%sectionTotalCount;
+	if ([model.name isEqualToString:@"二字定位"] || [model.name isEqualToString:@"三字定位"]) {
+		radomSection = arc4random()%(sectionTotalCount-1) + 1;
+	}
+		[sectionSet addObject:[NSNumber numberWithInteger:radomSection]];
+	}
+	
+	
+	
+	for (NSNumber *sectionNumber in sectionSet) {
+		NSUInteger itemsCountInSection =  [self collectionView:self.betCollectionView numberOfItemsInSection:sectionNumber.integerValue];
+		NSUInteger minItemsCountInsection = [self minItemsCountForBetIn:sectionNumber.integerValue];
+		NSMutableSet * itemSet = [NSMutableSet setWithCapacity: sectionCount];
+		while (itemSet.count<minItemsCountInsection) {
+			NSInteger radomItemNumberInSection = arc4random()%itemsCountInSection;
+			[itemSet addObject:[NSNumber numberWithInteger:radomItemNumberInSection]];
+		}
+		for (NSNumber *itemNumber in itemSet) {
+			NSIndexPath * path = [NSIndexPath indexPathForItem:itemNumber.integerValue inSection:sectionNumber.integerValue];
+			[self collectionView:self.betCollectionView didSelectItemAtIndexPath: path];
+			lastPath = path;
+			
+		}
+	}
+	
+	[self.betCollectionView layoutIfNeeded];
+	[self.betCollectionView scrollToItemAtIndexPath:lastPath atScrollPosition:UICollectionViewScrollPositionTop animated:true];
+	
+	
+}
 
 @end

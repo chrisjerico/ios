@@ -198,6 +198,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) int activeReturnCoinRatio  ;                /**<  拉條最大值    拉條最小值固定為 0   */
 @property (nonatomic) int adSliderTimer  ;                /**<  首页腰部广告轮播时间间隔  */
 @property (nonatomic) BOOL chaseNumber;                /**<   追号开关  默认关 */
+@property (nonatomic) BOOL selectNumber;                /**<   机选开关  默认关 */
+
 @property (nonatomic) BOOL loginVCode;                /**<   登录增加了滑动验证码配置  默认开 */
 @property (nonatomic) BOOL announce_first;                /**<   手机公告是否展开第1条   */
 
