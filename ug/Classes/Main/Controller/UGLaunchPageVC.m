@@ -201,7 +201,7 @@
                 NSArray <NSDictionary *>*package = sm.responseObject[@"data"][@"package"];
                 NSMutableDictionary *kvs = @{}.mutableCopy;
                 for (NSDictionary *dict in package) {
-                    [kvs addEntriesFromDictionary:dict];
+                    kvs[dict[@"key"]] = dict[@"value"];
                 }
                 [[LanguageHelper shared] save:kvs lanCode:lanCode];
                 __self.waitLanguage = false;
