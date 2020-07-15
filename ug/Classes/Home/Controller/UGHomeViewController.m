@@ -417,6 +417,14 @@
         // 登录成功
         SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
             __self.titleView.showLoginView = NO;
+//            SysConf.popup_type = @"1";
+            if ( [SysConf.popup_type isEqualToString:@"1"]) {
+                
+                BOOL isLogin = UGLoginIsAuthorized();
+                 if (isLogin) {
+                     [self getNoticeList];
+                 }
+            }
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
@@ -1174,6 +1182,7 @@
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
             UGUserModel *oldUser = [UGUserModel currentUser];
+            NSLog(@"uid = %@",user.uid);
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
@@ -1349,7 +1358,7 @@
     }];
 }
 
-// 跑马灯数据
+// 公告
 - (void)getNoticeList {
     [CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
@@ -1817,9 +1826,17 @@
             BOOL isSubView = [self.notiveView isDescendantOfView:window];
             
             if (!isSubView) {
-                [self->_notiveView show];
+//                SysConf.popup_type = @"1";
+                if ( [SysConf.popup_type isEqualToString:@"0"]) {
+                        [self->_notiveView show];
+                } else {
+                    BOOL isLogin = UGLoginIsAuthorized();
+                    if (isLogin) {
+                        [self->_notiveView show];
+                    }
+                }
+     
             }
-
 
         });
         

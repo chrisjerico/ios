@@ -44,7 +44,15 @@
 #pragma mark - 配置segment
 -(void)buildSegment
 {
-    self.itemArray = @[@"申请彩金",@"申请反馈"];
+    
+    NSString *str = @"";
+    if ([@"c217" containsString:APP.SiteId]) {
+        str =@"审核进度";
+    } else {
+        str =@"申请反馈";
+    }
+    
+    self.itemArray = @[@"申请彩金",str];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;

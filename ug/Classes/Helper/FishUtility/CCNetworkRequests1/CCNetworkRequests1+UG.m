@@ -17,4 +17,33 @@
                     :@{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]]}
                     :true];
 }
+
+// 1.取得語言配置
+- (CCSessionModel *)language_getConfigs {
+    return [self req:@"wjapp/api.php?c=language&a=getConfigs"
+                    :nil
+                    :false];
+}
+
+// 2.取得完整語言包
+- (CCSessionModel *)language_getLanguagePackage:(NSString *)languageCode {
+    return [self req:@"wjapp/api.php?c=language&a=getLanguagePackage"
+                    :@{@"languageCode":languageCode}
+                    :false];
+}
+
+// 3.依鍵值取得語言訊息
+- (CCSessionModel *)language_getLanguageMessageByKeys:(NSArray <NSString *>*)keys languageCode:(NSString *)languageCode {
+    return [self req:@"wjapp/api.php?c=language&a=getLanguageMessageByKeys"
+                    :@{@"languageCode":languageCode, @"keys":[keys jsonStringEncoded]}
+                    :true];
+}
+
+// 4.變更語言
+- (CCSessionModel *)language_changeTo:(NSString *)languageCode {
+    return [self req:@"wjapp/api.php?c=language&a=changeTo"
+                    :@{@"languageCode":languageCode}
+                    :true];
+}
+
 @end

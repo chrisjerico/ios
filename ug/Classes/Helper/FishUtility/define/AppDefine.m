@@ -431,7 +431,7 @@
 }
 
 - (BOOL)betSizeIsBig {
-    return [@"c169,c205" containsString:_SiteId];
+    return [@"c169,c205,c211" containsString:_SiteId];
 }
 
 
