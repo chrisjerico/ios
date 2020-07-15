@@ -8,6 +8,10 @@
 
 #import "HotBranchView.h"
 
+#import <React/RCTRootView.h>
+#import "CodePush.h"
+#import "JSPatchHelper.h"
+
 @interface HotBranchView()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *currentBranchLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -61,14 +65,17 @@
 }
 
 - (IBAction)exit:(UIButton *)sender {
-    // 切换热更新并退出APP
+    // 切换热更新
     NSIndexPath *ip = _tableView.indexPathForSelectedRow;
     if (ip) {
         NSString *title = _dataArray[ip.section][ip.row];
         ReactNativeHelper.currentCodePushKey = ReactNativeHelper.allCodePushKey[title];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            exit(0);
-        });
+        
+        UIViewController *vc = [UIViewController new];
+        vc.view = [[RCTRootView alloc] initWithBundleURL:[CodePush bundleURL] moduleName:@"Main" initialProperties:nil launchOptions:nil];
+        [NavController1.topViewController presentViewController:vc animated:true completion:^{
+            [SVProgressHUD showWithStatus:@"请等待进度条走完后重启APP..."];
+        }];
     }
 }
 
