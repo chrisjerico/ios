@@ -49,7 +49,6 @@
 #import <UIKit/UINavigationController.h>
 #import <UIKit/UITouch.h>
 #import <UIKit/UIWindow.h>
-#import <UIKit/UIStackView.h>
 #import <UIKit/NSLayoutConstraint.h>
 #import <UIKit/UIStackView.h>
 #import <UIKit/UIAccessibility.h>
@@ -604,40 +603,20 @@ NSInteger const kIQPreviousNextButtonToolbarTag     =   -1005;
     }
     else
     {
-        static __weak UIWindow *cachedKeyWindow = nil;
+        static __weak UIWindow *_keyWindow = nil;
         
         /*  (Bug ID: #23, #25, #73)   */
-        UIWindow *originalKeyWindow = nil;
-
-        #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
-        if (@available(iOS 13.0, *)) {
-            NSSet<UIScene *> *connectedScenes = [UIApplication sharedApplication].connectedScenes;
-            for (UIScene *scene in connectedScenes) {
-                if (scene.activationState == UISceneActivationStateForegroundActive && [scene isKindOfClass:[UIWindowScene class]]) {
-                    UIWindowScene *windowScene = (UIWindowScene *)scene;
-                    for (UIWindow *window in windowScene.windows) {
-                        if (window.isKeyWindow) {
-                            originalKeyWindow = window;
-                            break;
-                        }
-                    }
-                }
-            }
-        } else
-        #endif
-        {
-        #if __IPHONE_OS_VERSION_MIN_REQUIRED < 130000
-            originalKeyWindow = [UIApplication sharedApplication].keyWindow;
-        #endif
-        }
-
+        UIWindow *originalKeyWindow = [[UIApplication sharedApplication] keyWindow];
+        
+        UIWindow *strongKeyWindow = _keyWindow;
+        
         //If original key window is not nil and the cached keywindow is also not original keywindow then changing keywindow.
-        if (originalKeyWindow)
+        if (originalKeyWindow && strongKeyWindow != originalKeyWindow)
         {
-            cachedKeyWindow = originalKeyWindow;
+            strongKeyWindow = _keyWindow = originalKeyWindow;
         }
         
-        return cachedKeyWindow;
+        return strongKeyWindow;
     }
 }
 
@@ -1070,20 +1049,16 @@ NSInteger const kIQPreviousNextButtonToolbarTag     =   -1005;
             }
             
             //Updating contentInset
-            if (strongLastScrollView.shouldIgnoreContentInsetAdjustment == false)
             {
                 CGRect lastScrollViewRect = [[strongLastScrollView superview] convertRect:strongLastScrollView.frame toView:keyWindow];
 
-                CGFloat bottomInset = (kbSize.height)-(CGRectGetHeight(keyWindow.frame)-CGRectGetMaxY(lastScrollViewRect));
-                CGFloat bottomScrollIndicatorInset = bottomInset - keyboardDistanceFromTextField;
+                CGFloat bottom = (kbSize.height-keyboardDistanceFromTextField)-(CGRectGetHeight(keyWindow.frame)-CGRectGetMaxY(lastScrollViewRect));
 
                 // Update the insets so that the scroll vew doesn't shift incorrectly when the offset is near the bottom of the scroll view.
-                bottomInset = MAX(_startingContentInsets.bottom, bottomInset);
-                bottomScrollIndicatorInset = MAX(_startingScrollIndicatorInsets.bottom, bottomScrollIndicatorInset);
+                CGFloat bottomInset = MAX(_startingContentInsets.bottom, bottom);
 
                 if (@available(iOS 11, *)) {
                     bottomInset -= strongLastScrollView.safeAreaInsets.bottom;
-                    bottomScrollIndicatorInset -= strongLastScrollView.safeAreaInsets.bottom;
                 }
 
                 UIEdgeInsets movedInsets = strongLastScrollView.contentInset;
@@ -1096,20 +1071,20 @@ NSInteger const kIQPreviousNextButtonToolbarTag     =   -1005;
                     [UIView animateWithDuration:_animationDuration delay:0 options:(_animationCurve|UIViewAnimationOptionBeginFromCurrentState) animations:^{
                         
                         strongLastScrollView.contentInset = movedInsets;
-                        UIEdgeInsets newScrollIndicatorInset;
+                        UIEdgeInsets newInset;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
                         if (@available(iOS 11.1, *)) {
-                            newScrollIndicatorInset = strongLastScrollView.verticalScrollIndicatorInsets;
+                            newInset = strongLastScrollView.verticalScrollIndicatorInsets;
                         } else
 #endif
                         {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 130000
-                            newScrollIndicatorInset = strongLastScrollView.scrollIndicatorInsets;
+                            newInset = strongLastScrollView.scrollIndicatorInsets;
 #endif
                         }
 
-                        newScrollIndicatorInset.bottom = bottomScrollIndicatorInset;
-                        strongLastScrollView.scrollIndicatorInsets = newScrollIndicatorInset;
+                        newInset.bottom = movedInsets.bottom;
+                        strongLastScrollView.scrollIndicatorInsets = newInset;
                         
                     } completion:NULL];
                 }

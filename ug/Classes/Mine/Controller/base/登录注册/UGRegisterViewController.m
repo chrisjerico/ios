@@ -411,6 +411,7 @@
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
 
+                 SANotificationEventPost(UGNotificationRegisterComplete, nil);
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 [self.view endEditing:YES];
                 UGUserModel *user = model.data;

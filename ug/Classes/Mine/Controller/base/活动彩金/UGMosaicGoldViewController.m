@@ -24,7 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"活动彩金";
+    if (!self.title) {
+           self.title = @"活动彩金";
+    }
+ 
     [self.view setBackgroundColor: [UIColor whiteColor]];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
@@ -41,7 +44,15 @@
 #pragma mark - 配置segment
 -(void)buildSegment
 {
-    self.itemArray = @[@"申请彩金",@"申请反馈"];
+    
+    NSString *str = @"";
+    if ([@"c217" containsString:APP.SiteId]) {
+        str =@"审核进度";
+    } else {
+        str =@"申请反馈";
+    }
+    
+    self.itemArray = @[@"申请彩金",str];
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;

@@ -21,7 +21,6 @@
 #import "GameCategoryDataModel.h"
 
 
-
 @interface UGPromotionsController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -38,7 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"优惠活动";
+    if (!self.title) {
+        self.title = @"优惠活动";
+    }
     self.view.backgroundColor = Skin1.bgColor;
     self.tableView.backgroundColor = Skin1.bgColor;
     
@@ -83,7 +84,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    if ([@"c190" containsString:APP.SiteId]) {
+    if (APP.isC190Cell) {
         cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
     }
     else{
@@ -91,8 +92,11 @@
     }
     UGPromoteModel *pm = tableView.dataArray[indexPath.row];
     FastSubViewCode(cell);
-    if ([@"c190" containsString:APP.SiteId]) {
+    if (APP.isC190Cell) {
         subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+//        if ([@"c012" containsString:APP.SiteId]) {
+//            subView(@"StackView").cc_constraints.top.constant = 12 ;
+//        }
         subView(@"StackView").cc_constraints.bottom.constant = 0;
     }
     if ([@"c199" containsString:APP.SiteId]) {
@@ -115,7 +119,7 @@
     NSURL *url = [NSURL URLWithString:pm.pic];
     UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
     if (image) {
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             CGFloat w = APP.Width;
             CGFloat h = image.height/image.width * w;
             imgView.cc_constraints.height.constant = h;

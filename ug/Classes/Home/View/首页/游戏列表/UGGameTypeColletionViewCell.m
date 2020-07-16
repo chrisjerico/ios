@@ -14,6 +14,7 @@
 @interface UGGameTypeColletionViewCell ()
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgView;      /**<   图片ImageView */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;        /**<   标题ImageView */
+@property (weak, nonatomic) IBOutlet UILabel *name2Label;        /**<   标题ImageView */
 @property (weak, nonatomic) IBOutlet UIImageView *hotImageView; /**<   热门ImageView */
 @property (nonatomic, strong) UIImageView *hasSubSign;          /**<   二级目录ImageView */
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *effImgView;/**<   烟花背景gif */
@@ -65,13 +66,13 @@
     }];
     
     
-    if (APP.isFireworks) {
-        [_effImgView setHidden:NO];
-        _effImgView.contentMode = UIViewContentModeScaleAspectFit;
-        _effImgView.userInteractionEnabled = true;
-        [_effImgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
-    }
-   
+//    if (APP.isFireworks) {
+//        [_effImgView setHidden:NO];
+//        _effImgView.contentMode = UIViewContentModeScaleAspectFit;
+//        _effImgView.userInteractionEnabled = true;
+//        [_effImgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
+//    }
+//
 
 
     
@@ -83,6 +84,7 @@
     _item = item;
    
 	self.nameLabel.text =  [CMCommon stringIsNull:item.name] ? item.title : item.name;
+    self.name2Label.text =  [CMCommon stringIsNull:item.subtitle] ? @"" : item.subtitle;
 	[self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
     
@@ -93,12 +95,31 @@
         }
     }];
     
+    [self.effImgView sd_setImageWithURL:[NSURL URLWithString:item.hotIcon] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (error) {
+            [__self.effImgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
+        }
+    }];
+    
     FastSubViewCode(self);
     BOOL isBlack = Skin1.isBlack;
-    _hotImageView.hidden = isBlack || !item.tipFlag;
+    
+    if (item.tipFlag==1 || item.tipFlag==2 ||item.tipFlag==3) {
+        if (isBlack) {
+               _hotImageView.hidden = YES;
+        } else {
+               _hotImageView.hidden = NO;
+        }
+    }
+    else{
+       _hotImageView.hidden = YES;
+    }
+
     subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
+
+    _effImgView.hidden = !(item.tipFlag==4);
 }
 
 

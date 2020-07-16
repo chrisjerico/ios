@@ -10,7 +10,8 @@
 
 
 
-#define __SiteID__ @"test61f"
+#define __SiteID__ @"c217"
+#define LocalRnVersion @"1.4.66"
 
 
 @interface UIStoryboard ()
@@ -84,6 +85,7 @@
                 sb(@"ContractedTemplate"),
                 sb(@"RedEnvelope"),
                 sb(@"LineConversion"),
+                sb(@"BetDetail"),
                 
                 
         ];
@@ -137,12 +139,12 @@
     if (self) {
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
-        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"];
+        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"] ? : LocalRnVersion;
 #ifdef APP_TEST
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test61f";
+            _SiteId = @"c217";
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
@@ -159,16 +161,22 @@
         
         [self setupSystem];
         [self setupColor];
-        
-        if (!_jspVersion.length) {
-            _jspVersion = _Version;
-        }
     }
     return self;
 }
 
 
 #pragma mark - Getter & Setter
+#pragma mark -rn模板出现问题，暂时清空
+//@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
+
+//#ifdef DEBUG
+// -(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
+//#else
+//  
+//#endif
+
+//
 
 - (CGRect)Bounds                    { return _Window.bounds; }
 - (CGSize)Size                      { return _Window.bounds.size; }
@@ -177,10 +185,23 @@
 - (UIFont *)cellBigFont             { return [UIFont boldSystemFontOfSize:17]; }
 - (UIFont *)cellNormalFont          { return [UIFont systemFontOfSize:14]; }
 - (float )cellNormalFontSize        { return 14.0; }
+- (NSString *)Version {
+    NSString *v1 = [_Version componentsSeparatedByString:@"."].firstObject;
+    NSString *v2 = [_Version componentsSeparatedByString:@"."][1];
+    NSString *v3 = [_jspVersion componentsSeparatedByString:@"."].lastObject;
+    return _NSString(@"%@.%@.%@", v1, v2, v3);
+}
+
 
 #pragma mark - 定制样式
 
+- (BOOL)isBgColorForMoneyVC {
+     return [@"c134,test29" containsString:_SiteId];
+}
 
+- (BOOL)isShowSalary {
+     return [@"c217,test29" containsString:_SiteId];
+}
 
 - (BOOL)isSectionWhite {
      return [@"a002" containsString:_SiteId];
@@ -202,7 +223,7 @@
 }
 
 - (BOOL)isTextWhite {
-     return [@"a002" containsString:_SiteId];
+     return [@"a002,c116" containsString:_SiteId];
 }
 
 - (BOOL)isTabMassageBadge {
@@ -211,12 +232,12 @@
 
 
 - (BOOL)isTabHot {
-    return [@"c208" containsString:_SiteId];
+    return [@"===" containsString:_SiteId];
 }
 
-- (BOOL)isFireworks {
-    return [@"c193" containsString:_SiteId];
-}
+//- (BOOL)isFireworks {
+//    return [@"000" containsString:_SiteId];
+//}
 
 - (BOOL)isParagraphSpacing {
     return [@"c134,c200,c213,a002" containsString:_SiteId];
@@ -241,7 +262,11 @@
 }
 
 - (BOOL)isNoBorder {
-    return [@"c200,c208,c213,a002" containsString:_SiteId];
+    return [@"c200,c208,a002,c134,c092" containsString:_SiteId];
+}
+
+- (BOOL)isWihiteBorder {
+    return [@"c213" containsString:_SiteId];
 }
 
 - (BOOL)isYHShowTitle {
@@ -272,27 +297,19 @@
     return [@"c134" containsString:_SiteId];
 }
 
-- (BOOL)isBall6 {
-    if (Skin1.isSLH) {
-        return YES;
-    } else {
-        return [@"c134,c200,c208,c213,a002" containsString:_SiteId];
-    }
-}
-
 - (BOOL)isYellow {
     
-    return [@"c085,c134,c200,c208,c213,c212,a002" containsString:_SiteId];
+    return [@"c085,c134,c200,c193,c116,c208,c213,c212,a002" containsString:_SiteId];
 }
 
 - (BOOL)isSelectStyle {
-    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c193,c116,c213,a002" containsString:_SiteId];
 }
 
 
 - (BOOL)isShowBorder {
     
-    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
+    return [@"c212,c208,c134,c200,c213,a002,c193,c116,c092" containsString:_SiteId];
     
 }
 
@@ -300,9 +317,6 @@
     return [@"l001,l002" containsString:_SiteId];
 }
 
-- (BOOL)isGrey {
-    return [@"c212,c208,c134,c200,c213,a002" containsString:_SiteId];
-}
 
 - (BOOL)isBorderNavBarBgColor {
     if (Skin1.isBlack) {
@@ -317,16 +331,31 @@
     if (Skin1.isSLH) {
         return YES;
     } else {
-        return [@"c212,c085,c208,c134,c200,c208,c213,a002" containsString:_SiteId];
+        return [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217" containsString:_SiteId];
     }
     
 }
+
+- (BOOL)isBall6 {
+    if (Skin1.isSLH) {
+        return YES;
+    } else {
+        return [@"c134,c200,c208,c213,a002,c193,c116" containsString:_SiteId];
+    }
+}
+
+- (BOOL)isBallParty {
+
+        return [@"c092" containsString:_SiteId];
+}
+
+
 
 - (BOOL)isWhite {
     if (Skin1.isBlack) {
         return NO;
     } else {
-        return [@"c213" containsString:_SiteId];
+        return [@"c213,c012" containsString:_SiteId];
     }
 }
 
@@ -334,9 +363,7 @@
     return [@"c200" containsString:_SiteId];
 }
 
-- (BOOL)isShowJinbei {
-    return [@"c085,c208,c212,c200,c213,a002" containsString:_SiteId];
-}
+
 
 - (BOOL)isShowWZ {
     return [@"c085" containsString:_SiteId];
@@ -379,14 +406,10 @@
 }
 
 
-
 - (BOOL)isBA {
-    return [@"c001,c085,c208,a002,c054,c212,c200,c213" containsString:_SiteId];
+    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
 }
 
-- (BOOL)addIcons {
-    return [@"c190,c134,a002" containsString:_SiteId];
-}
 
 - (BOOL)lotteryHallCustomImgS {
     return [@"c190" containsString:_SiteId];
@@ -398,13 +421,47 @@
 
 - (BOOL)betBgIsWhite {
     
-    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
     
 }
 
-- (BOOL)betSizeIsBig {
-    return [@"c169" containsString:_SiteId];
+- (BOOL)isGrey {
+    return [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
 }
+
+- (BOOL)betSizeIsBig {
+    return [@"c169,c205,c211" containsString:_SiteId];
+}
+
+
+- (BOOL)isShowOtherJinbei {
+    return [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
+}
+
+- (BOOL)isShowJinbei {
+    return [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
+}
+
+- (BOOL)addIcons {
+    return [@"c190,c134,c085,c193" containsString:_SiteId];
+}
+
+- (BOOL)isReplaceIcon {
+    return [@"c085,c193" containsString:_SiteId];
+}
+
+- (BOOL)isC190Cell {
+    return [@"c190,c012" containsString:_SiteId];
+}
+
+- (BOOL)isC217RWDT {
+    return [@"c217" containsString:_SiteId];
+}
+
+- (BOOL)isNoSubtitle {
+    return [@"c006" containsString:_SiteId];
+}
+
 
 
 #pragma mark - 热更新
@@ -458,7 +515,9 @@
 - (NSString *)chatHomeUrl {
     //        SysConf.chatLink = @"/chat";
     //    SysConf.chatLink = @"/chat/index.php";
+    
     NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
+    NSLog(@" SysConf.chatLink=%@", SysConf.chatLink);
     return [url stringByAppendingURLParams:@{
         @"from":@"app",
         @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
@@ -466,27 +525,20 @@
         @"back":@"hide",
         @"loginsessid":[UGUserModel currentUser].sessid,
         @"logintoken":[UGUserModel currentUser].token,
+        @"hideHead":[[NSNumber alloc] initWithBool:YES],
+        @"roomId":@"0",
     }];
 }
 
-
 - (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
-    NSMutableDictionary *dic = [NSMutableDictionary new];
+    NSMutableDictionary *dic = self.chatHomeUrl.urlParams.mutableCopy;
     [dic setValue:roomId forKey:@"roomId"];
     if (hideHead) {
         NSNumber * boolNum = [NSNumber numberWithBool:hideHead];
         [dic setValue:boolNum forKey:@"hideHead"];
     }
-    
-    NSString *s = [self.chatHomeUrl stringByAppendingURLParams:dic];
-    NSLog(@"s= %@",s);
-    return s;
-}
-
-
-
-- (NSString *)chatMainGameUr {
-    return [self.chatHomeUrl stringByAppendingURLParams:@{@"roomId":@"0"}];
+    NSString *url = _NSString(@"%@%@", _Host, SysConf.chatLink);
+    return [url stringByAppendingURLParams:dic];
 }
 
 
@@ -496,7 +548,7 @@
     NSDictionary *info = [NSBundle mainBundle].infoDictionary;
     _Name = info[@"CFBundleName"];
     _BundleId = info[@"CFBundleIdentifier"];
-    _Version = _jspVersion ? : info[@"CFBundleShortVersionString"];
+    _Version = info[@"CFBundleShortVersionString"];
     _Build = info[@"CFBundleVersion"];
 #ifdef DEBUG
     _DevUser = info[@"Dev1"];

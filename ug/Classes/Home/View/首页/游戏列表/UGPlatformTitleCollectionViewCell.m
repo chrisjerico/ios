@@ -35,7 +35,7 @@
     if (Skin1.isJY) {
         _title2Label.textColor = RGBA(117, 117, 117, 1);
         [self setBackgroundColor: [UIColor whiteColor]];
-        [_title2Label setFont:[UIFont systemFontOfSize:13]];
+        [_title2Label setFont:[UIFont boldSystemFontOfSize:14]];
 
     }
     if (Skin1.is23) {
@@ -47,7 +47,19 @@
     _item = item;
     self.titleLabel.text = item.name;
     self.title2Label.text = item.name;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]];
+    NSLog(@"item.logo = %@",item.logo);
+    
+//    - (void)sd_setImageWithURL:(nullable NSURL *)url placeholderImage:(nullable UIImage *)placeholder completed:(nullable SDExternalCompletionBlock)completedBlock {
+//        [self sd_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:completedBlock];
+//    }
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:item.logo] placeholderImage:[UIImage imageNamed:@"loading"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (Skin1.isJY) {
+            self.imageView.image  = [image qmui_imageWithTintColor:RGBA(117, 117, 117, 1)] ;
+
+        }
+      
+    }] ;
+
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -64,6 +76,7 @@
 	}
     if (Skin1.isJY) {
         _title2Label.textColor = selected ? RGBA(217, 157, 63, 1) : RGBA(117, 117, 117, 1);
+        self.imageView.image = selected ? [self.imageView.image qmui_imageWithTintColor:RGBA(217, 157, 63, 1)] :  [self.imageView.image qmui_imageWithTintColor:RGBA(117, 117, 117, 1)] ;
         if (selected) {
              [CMCommon setBorderWithView:self top:NO left:NO bottom:YES right:NO borderColor:RGBA(217, 157, 63, 1)  borderWidth:1];
         }

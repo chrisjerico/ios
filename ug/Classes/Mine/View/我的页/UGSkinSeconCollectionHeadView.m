@@ -9,7 +9,7 @@
 #import "UGSkinSeconCollectionHeadView.h"
 #import "SLWebViewController.h"
 #import "UGSystemConfigModel.h"
-#import "UINavigationController+UGExtension.h"
+#import "UINavigationController+Extension.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 

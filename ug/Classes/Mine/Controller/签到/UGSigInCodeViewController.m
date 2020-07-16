@@ -48,7 +48,10 @@
 }
 
 -(void)initView{
-    self.title = @"签到";
+
+    if (!self.title) {
+        self.title = @"签到";
+    }
     //    self.view.backgroundColor = UGRGBColor(89, 109, 191);
     self.view.backgroundColor = Skin1.bgColor;
     _collectionDataArray = [NSMutableArray new];
@@ -326,7 +329,7 @@
             
             [SVProgressHUD dismiss];
             weakSelf.checkinListModel = model.data;
-//            NSLog(@"checkinList = %@",weakSelf.checkinListModel);
+            NSLog(@"checkinList = %@",weakSelf.checkinListModel);
 //            NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
             
             if (weakSelf.checkinListModel.checkinSwitch) {

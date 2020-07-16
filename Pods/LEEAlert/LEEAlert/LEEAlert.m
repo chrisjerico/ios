@@ -13,7 +13,7 @@
  *
  *  @author LEE
  *  @copyright    Copyright © 2016 - 2019年 lee. All rights reserved.
- *  @version    V1.3.6
+ *  @version    V1.3.3
  */
 
 #import "LEEAlert.h"
@@ -1242,7 +1242,7 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
     
 }
 
-- (void)lee_alert_updateCornerRadii{
+- (void)updateCornerRadii{
     
     if (!CornerRadiiEqualTo([self lee_alert_cornerRadii], CornerRadiiNull())) {
         
@@ -1280,7 +1280,7 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
     
     [self lee_alert_layoutSubviews];
     
-    [self lee_alert_updateCornerRadii];
+    [self updateCornerRadii];
 }
 
 - (CornerRadii)lee_alert_cornerRadii{
@@ -1478,8 +1478,6 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
     
     if (action.attributedHighlight) [self setAttributedTitle:action.attributedHighlight forState:UIControlStateHighlighted];
     
-    if (action.numberOfLines) [self.titleLabel setNumberOfLines:action.numberOfLines];
-    
     if (action.font) [self.titleLabel setFont:action.font];
     
     if (action.titleColor) [self setTitleColor:action.titleColor forState:UIControlStateNormal];
@@ -1576,6 +1574,8 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
 - (void)layoutSubviews{
     
     [super layoutSubviews];
+    
+    [self updateCornerRadii];
     
     if (_topLayer) _topLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.borderWidth);
     
@@ -1836,6 +1836,8 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
 
 @property (nonatomic , assign ) LEEScreenOrientationType orientationType;
 
+@property (nonatomic , strong ) LEECustomView *customView;
+
 @property (nonatomic , assign ) BOOL isShowing;
 
 @property (nonatomic , assign ) BOOL isClosing;
@@ -1857,6 +1859,8 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
     _currentKeyWindow = nil;
     
     _backgroundVisualEffectView = nil;
+    
+    _customView = nil;
 }
 
 - (void)viewDidLoad{
@@ -2073,8 +2077,6 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
             alertViewFrame.size.width = alertViewMaxWidth;
             
             self.alertView.frame = alertViewFrame;
-            
-            [self.alertView layoutIfNeeded];
             
             CGRect containerFrame = self.containerView.frame;
             
@@ -2936,8 +2938,6 @@ CGPathRef _Nullable LEECGPathCreateWithRoundedRect(CGRect bounds, CornerRadii co
     actionSheetViewFrame.origin.x = (viewWidth - actionSheetViewMaxWidth) * 0.5f;
     
     self.actionSheetView.frame = actionSheetViewFrame;
-    
-    [self.actionSheetView layoutIfNeeded];
     
     if (self.actionSheetCancelAction) {
         

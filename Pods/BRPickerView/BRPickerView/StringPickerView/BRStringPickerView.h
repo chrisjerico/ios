@@ -10,8 +10,6 @@
 #import "BRBaseView.h"
 #import "BRResultModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
-
 /// 字符串选择器类型
 typedef NS_ENUM(NSInteger, BRStringPickerMode) {
     /** 单列字符串选择 */
@@ -20,9 +18,9 @@ typedef NS_ENUM(NSInteger, BRStringPickerMode) {
     BRStringPickerComponentMulti
 };
 
-typedef void(^BRStringResultModelBlock)(BRResultModel * _Nullable resultModel);
+typedef void(^BRStringResultModelBlock)(BRResultModel *resultModel);
 
-typedef void(^BRStringResultModelArrayBlock)(NSArray <BRResultModel *> * _Nullable resultModelArr);
+typedef void(^BRStringResultModelArrayBlock)(NSArray <BRResultModel *>*resultModelArr);
 
 @interface BRStringPickerView : BRBaseView
 
@@ -43,31 +41,31 @@ typedef void(^BRStringResultModelArrayBlock)(NSArray <BRResultModel *> * _Nullab
  *    两列：@[@[@"语文", @"数学", @"英语"], @[@"优秀", @"良好", @"及格"]]，或直接传模型数组
  *    多列：... ...
  */
-@property (nullable, nonatomic, copy) NSArray *dataSourceArr;
+@property (nonatomic, copy) NSArray *dataSourceArr;
 /**
  *  2.设置数据源
  *    直接传plist文件名：NSString类型（如：@"test.plist"），要带后缀名
  *    场景：可以将数据源数据（数组类型）放到plist文件中，直接传plist文件名更加简单
  */
-@property (nullable, nonatomic, copy) NSString *plistName;
+@property (nonatomic, copy) NSString *plistName;
 
 /** 设置默认选中的位置【单列】 */
 @property (nonatomic, assign) NSInteger selectIndex;
-@property (nullable, nonatomic, copy) NSString *selectValue BRPickerViewDeprecated("Use `selectIndex` instead");
+@property (nonatomic, copy) NSString *selectValue BRPickerViewDeprecated("推荐使用 selectIndex");
 
 /** 设置默认选中的位置【多列】 */
-@property (nullable, nonatomic, copy) NSArray <NSNumber *> *selectIndexs;
-@property (nullable, nonatomic, copy) NSArray <NSString *> *selectValues BRPickerViewDeprecated("Use `selectIndexs` instead");
+@property (nonatomic, copy) NSArray <NSNumber *>* selectIndexs;
+@property (nonatomic, copy) NSArray <NSString *>* selectValues BRPickerViewDeprecated("推荐使用 selectIndexs");
 
 /** 选择结果的回调【单列】 */
-@property (nullable, nonatomic, copy) BRStringResultModelBlock resultModelBlock;
+@property (nonatomic, copy) BRStringResultModelBlock resultModelBlock;
 /** 选择结果的回调【多列】 */
-@property (nullable, nonatomic, copy) BRStringResultModelArrayBlock resultModelArrayBlock;
+@property (nonatomic, copy) BRStringResultModelArrayBlock resultModelArrayBlock;
 
 /** 滚动选择时触发的回调【单列】 */
-@property (nullable, nonatomic, copy) BRStringResultModelBlock changeModelBlock;
+@property (nonatomic, copy) BRStringResultModelBlock changeModelBlock;
 /** 滚动选择时触发的回调【多列】 */
-@property (nullable, nonatomic, copy) BRStringResultModelArrayBlock changeModelArrayBlock;
+@property (nonatomic, copy) BRStringResultModelArrayBlock changeModelArrayBlock;
 
 /// 初始化字符串选择器
 /// @param pickerMode 字符串选择器显示类型
@@ -104,10 +102,10 @@ typedef void(^BRStringResultModelArrayBlock)(NSArray <BRResultModel *> * _Nullab
  *  @param resultBlock         选择后的回调
  *
  */
-+ (void)showPickerWithTitle:(nullable NSString *)title
-              dataSourceArr:(nullable NSArray *)dataSourceArr
++ (void)showPickerWithTitle:(NSString *)title
+              dataSourceArr:(NSArray *)dataSourceArr
                 selectIndex:(NSInteger)selectIndex
-                resultBlock:(nullable BRStringResultModelBlock)resultBlock;
+                resultBlock:(BRStringResultModelBlock)resultBlock;
 
 /**
  *  2.显示【单列】字符串选择器
@@ -119,11 +117,11 @@ typedef void(^BRStringResultModelArrayBlock)(NSArray <BRResultModel *> * _Nullab
  *  @param resultBlock         选择后的回调
  *
  */
-+ (void)showPickerWithTitle:(nullable NSString *)title
-              dataSourceArr:(nullable NSArray *)dataSourceArr
++ (void)showPickerWithTitle:(NSString *)title
+              dataSourceArr:(NSArray *)dataSourceArr
                 selectIndex:(NSInteger)selectIndex
                isAutoSelect:(BOOL)isAutoSelect
-                resultBlock:(nullable BRStringResultModelBlock)resultBlock;
+                resultBlock:(BRStringResultModelBlock)resultBlock;
 
 /**
  *  3.显示【多列】字符串选择器
@@ -134,10 +132,10 @@ typedef void(^BRStringResultModelArrayBlock)(NSArray <BRResultModel *> * _Nullab
  *  @param resultBlock         选择后的回调
  *
  */
-+ (void)showMultiPickerWithTitle:(nullable NSString *)title
-                   dataSourceArr:(nullable NSArray *)dataSourceArr
-                    selectIndexs:(nullable NSArray <NSNumber *> *)selectIndexs
-                     resultBlock:(nullable BRStringResultModelArrayBlock)resultBlock;
++ (void)showMultiPickerWithTitle:(NSString *)title
+                   dataSourceArr:(NSArray *)dataSourceArr
+                    selectIndexs:(NSArray <NSNumber *>*)selectIndexs
+                     resultBlock:(BRStringResultModelArrayBlock)resultBlock;
 
 /**
  *  4.显示【多列】字符串选择器
@@ -149,13 +147,10 @@ typedef void(^BRStringResultModelArrayBlock)(NSArray <BRResultModel *> * _Nullab
  *  @param resultBlock         选择后的回调
  *
  */
-+ (void)showMultiPickerWithTitle:(nullable NSString *)title
-                   dataSourceArr:(nullable NSArray *)dataSourceArr
-                    selectIndexs:(nullable NSArray <NSNumber *> *)selectIndexs
++ (void)showMultiPickerWithTitle:(NSString *)title
+                   dataSourceArr:(NSArray *)dataSourceArr
+                    selectIndexs:(NSArray <NSNumber *>*)selectIndexs
                     isAutoSelect:(BOOL)isAutoSelect
-                     resultBlock:(nullable BRStringResultModelArrayBlock)resultBlock;
-
+                     resultBlock:(BRStringResultModelArrayBlock)resultBlock;
 
 @end
-
-NS_ASSUME_NONNULL_END

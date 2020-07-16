@@ -20,6 +20,8 @@
 #import "UGYYPlatformGames.h"
 #import "UGhomeAdsModel.h"
 #import "RedBagLogModel.h"
+#import "UGNoticeTypeModel.h"
+#import "UGBetsRecordListModel.h"
 @implementation CMNetwork (Home)
 
 //获取系统配置
@@ -277,5 +279,68 @@
                                         completion:completionBlock];
        
        CMMETHOD_END;
+}
+
+
+//大转盘活动数据 {TEST_HOST}}?c=activity&a=turntableList&token=F9YhrIONRI8jrSbKFNiJrFBo
++ (void)activityTurntableListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock
+{
+    CMMETHOD_BEGIN;
+       
+       [self.manager requestInMainThreadWithMethod:[activityTurntableListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                            params:params
+                                             model:nil
+                                              post:NO
+                                        completion:completionBlock];
+       
+       CMMETHOD_END;
+}
+
+//获取大转盘该用户当天抽奖日志（最新10条） {TEST_HOST}}?c=activity&a=turntableLog&token=F9YhrIONRI8jrSbKFNiJrFBo&activityId=13
+//方式：GET
+//参数 token
+//     activityId 活动id
++ (void)activityTurntableLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock
+{
+    CMMETHOD_BEGIN;
+       
+       [self.manager requestInMainThreadWithMethod:[activityTurntableLogUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                            params:params
+                                             model:nil
+                                              post:NO
+                                        completion:completionBlock];
+       
+       CMMETHOD_END;
+}
+//抽奖接口： http://test28f.fhptcdn.com//wjapp/api.php?c=activity&a=turntableWin
+//方式：POST
+//参数 token
+//     activityId 活动id
++ (void)activityTurntableWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[activityTurntableWinUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+
+//下注明细：
+//方式：POST
+//参数 token + date UGBetsRecordModel
++ (void)userLotteryDayStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+     [self.manager requestInMainThreadWithMethod:[userLotteryDayStatUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                          params:params
+                                           model:nil
+                                            post:YES
+                                      completion:completionBlock];
+     
+     
+     CMMETHOD_END;
 }
 @end

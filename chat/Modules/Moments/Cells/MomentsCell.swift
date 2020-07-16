@@ -99,7 +99,8 @@ class MomentsCell: UITableViewCell {
 		browsCountLabel.text = "浏览\(item.view_num)次"
 		thumbsUpButton.isSelected = item.isLiked()
 		deleteButton.isHidden = !item.isSelf()
-		addFollowButton.isSelected = item.relation_id == "1" 
+//		addFollowButton.isSelected = item.relation_id == "1"
+		addFollowButton.isSelected = item.is_follow
 		
 		
 		commentBackDrop.isHidden = !(item.like_list.count + item.comment_list.count > 0)

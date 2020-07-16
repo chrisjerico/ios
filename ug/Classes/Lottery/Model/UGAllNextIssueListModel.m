@@ -23,6 +23,9 @@
     }
     return nil;
 }
+
+
+
 @end
 
 @implementation UGAllNextIssueListModel

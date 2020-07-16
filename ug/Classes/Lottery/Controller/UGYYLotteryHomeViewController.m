@@ -28,10 +28,18 @@
     [self getPlatformGamesWithParams];
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title =@"游戏大厅";
+    // 禁用侧滑返回
+//    self.fd_interactivePopDisabled = true;
+    
+
+    if (!self.title) {
+        self.title =@"游戏大厅";
+    }
     _dataArray = [NSMutableArray array];
     [self.view setBackgroundColor: Skin1.bgColor];
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,14 +18,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WTc-30-3RO">
-                        <rect key="frame" x="50" y="14" width="28" height="28"/>
+                        <rect key="frame" x="7" y="14" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="8aS-1N-byT"/>
                             <constraint firstAttribute="height" constant="28" id="VQ0-eY-Q4z"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="         " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9f-f4-gM5">
-                        <rect key="frame" x="48" y="14" width="28" height="28"/>
+                        <rect key="frame" x="5" y="14" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="Lls-RN-CN0"/>
                             <constraint firstAttribute="width" constant="28" id="zSX-lN-VXi"/>
@@ -35,8 +35,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZ5-cE-f3V">
-                        <rect key="frame" x="80" y="19.5" width="29.5" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="37" y="18.5" width="33.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -48,15 +48,14 @@
                 <constraint firstItem="c9f-f4-gM5" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="1gO-RH-HLh"/>
                 <constraint firstItem="dZ5-cE-f3V" firstAttribute="leading" secondItem="WTc-30-3RO" secondAttribute="trailing" constant="2" id="2So-WR-wkK"/>
                 <constraint firstItem="dZ5-cE-f3V" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Qvf-Wq-rm6"/>
-                <constraint firstItem="c9f-f4-gM5" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" constant="-15" id="jQM-4G-Xsd"/>
                 <constraint firstItem="WTc-30-3RO" firstAttribute="centerY" secondItem="c9f-f4-gM5" secondAttribute="centerY" id="qZ8-pd-1vw"/>
+                <constraint firstItem="c9f-f4-gM5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="tuy-Dh-HT3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="154" height="56"/>
             <connections>
                 <outlet property="ballImg" destination="WTc-30-3RO" id="gs5-v5-IHa"/>
                 <outlet property="leftLabel" destination="c9f-f4-gM5" id="4Al-Z2-cyM"/>
-                <outlet property="leftLabelCenterXConstraint" destination="jQM-4G-Xsd" id="MEA-Dd-Rzd"/>
                 <outlet property="rightLabel" destination="dZ5-cE-f3V" id="ULo-NV-IyQ"/>
             </connections>
             <point key="canvasLocation" x="213.04347826086959" y="154.6875"/>

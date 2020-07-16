@@ -292,43 +292,58 @@
         return;
     }
     
-    
+
     
     __weakSelf_(__self);
     
     [SVProgressHUD show];
     
     [CMNetwork oneKeyTransferOutWithParams:@{@"token":UserI.sessid} completion:^(CMResult<id> *model, NSError *err) {
+       
         
-        if (model.code == 0) {
+        [CMResult processWithResult:model success:^{
             
-            __block NSInteger __cnt = 0;
-            NSArray<UGPlatformGameModel *> * arry =   [UGPlatformGameModel arrayOfModelsFromDictionaries:[model.data objectForKey:@"games"] error:nil];
+                [SVProgressHUD showSuccessWithStatus:model.msg];
             
-            for (UGPlatformGameModel *pgm in arry) {
-                NSLog(@"pgm =%@",pgm.gameId);
-                // 快速转出游戏余额
-                [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
-                    
-                    //                   UGPlatformGameModel *obj = [__self.dataArray objectWithValue:pgm.gameId keyPath:@"gameId"];
-                    //                    obj.balance = @"0.00";
-                    
-                    __cnt++;
-                    if (__cnt == arry.count) {
-                        [SVProgressHUD showSuccessWithStatus:@"一键提取成功"];
-                        // 刷新余额并刷新UI
-                        SANotificationEventPost(UGNotificationGetUserInfo, nil);
-                        for (UGPlatformGameModel *pgm in __self.dataArray) {
-                            pgm.balance = @"￥*****";
+                  if (model.code == 0) {
+                
+                __block NSInteger __cnt = 0;
+                NSArray<UGPlatformGameModel *> * arry =   [UGPlatformGameModel arrayOfModelsFromDictionaries:[model.data objectForKey:@"games"] error:nil];
+                
+                for (UGPlatformGameModel *pgm in arry) {
+                    NSLog(@"pgm =%@",pgm.gameId);
+                    // 快速转出游戏余额
+                    [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
+                        
+                        //                   UGPlatformGameModel *obj = [__self.dataArray objectWithValue:pgm.gameId keyPath:@"gameId"];
+                        //                    obj.balance = @"0.00";
+                        
+                        __cnt++;
+                        if (__cnt == arry.count) {
+                            [SVProgressHUD showSuccessWithStatus:@"一键提取完成"];
+                            // 刷新余额并刷新UI
+                            SANotificationEventPost(UGNotificationGetUserInfo, nil);
+                            for (UGPlatformGameModel *pgm in __self.dataArray) {
+                                pgm.balance = @"￥*****";
+                            }
+                            __self.moneyLabel1.text = nil;
+                            __self.moneyLabel2.text = nil;
+                            __self.moneyTxt.text = nil;
+                            [__self.lineCollection reloadData];
                         }
-                        __self.moneyLabel1.text = nil;
-                        __self.moneyLabel2.text = nil;
-                        __self.moneyTxt.text = nil;
-                        [__self.lineCollection reloadData];
-                    }
-                }];
+                    }];
+                }
             }
-        }
+            else{
+                
+            }
+
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+
         
     }];
     
@@ -356,7 +371,7 @@
     if ([btn.tagString isEqualToString:@"5000Btn"]) {
         _moneyTxt.text = @"5000";
     }
-    if ([btn.tagString isEqualToString:@"1000Btn"]) {
+    if ([btn.tagString isEqualToString:@"10000Btn"]) {
         _moneyTxt.text = @"10000";
     }
 }

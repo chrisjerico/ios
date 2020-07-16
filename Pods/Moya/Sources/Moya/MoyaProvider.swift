@@ -88,8 +88,6 @@ open class MoyaProvider<Target: TargetType>: MoyaProviderType {
     /// Propagated to Alamofire as callback queue. If nil - the Alamofire default (as of their API in 2017 - the main queue) will be used.
     let callbackQueue: DispatchQueue?
 
-    let lock: NSRecursiveLock = NSRecursiveLock()
-
     /// Initializes a provider.
     public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,
                 requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,
@@ -158,7 +156,7 @@ open class MoyaProvider<Target: TargetType>: MoyaProviderType {
     // swiftlint:enable function_parameter_count
 }
 
-// MARK: Stubbing
+/// Mark: Stubbing
 
 /// Controls how stub responses are returned.
 public enum StubBehavior {

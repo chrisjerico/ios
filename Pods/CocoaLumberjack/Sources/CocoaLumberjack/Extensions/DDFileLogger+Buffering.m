@@ -1,6 +1,6 @@
 // Software License Agreement (BSD License)
 //
-// Copyright (c) 2010-2020, Deusty, LLC
+// Copyright (c) 2010-2019, Deusty, LLC
 // All rights reserved.
 //
 // Redistribution and use of this software in source and binary forms,
@@ -110,27 +110,23 @@ static NSUInteger DDGetDefaultBufferSizeBytes() {
 #pragma mark - Logging
 
 - (void)logMessage:(DDLogMessage *)logMessage {
-    // Don't need to check for isOnInternalLoggerQueue, -lt_dataForMessage: will do it for us.
     NSData *data = [_fileLogger lt_dataForMessage:logMessage];
-
-    if (data.length == 0) {
+    NSUInteger length = data.length;
+    if (length == 0) {
         return;
     }
 
-    [data enumerateByteRangesUsingBlock:^(const void * __nonnull bytes, NSRange byteRange, BOOL * __nonnull __unused stop) {
-        NSUInteger bytesLength = byteRange.length;
-#ifdef NS_BLOCK_ASSERTIONS
-        __unused
+#ifndef DEBUG
+    __unused
 #endif
-        NSInteger written = [_buffer write:bytes maxLength:bytesLength];
-        NSAssert(written > 0 && (NSUInteger)written == bytesLength, @"Failed to write to memory buffer.");
+    NSInteger written = [_buffer write:[data bytes] maxLength:length];
+    NSAssert(written == (NSInteger)length, @"Failed to write to memory buffer.");
 
-        _currentBufferSizeBytes += bytesLength;
+    _currentBufferSizeBytes += length;
 
-        if (_currentBufferSizeBytes >= _maxBufferSizeBytes) {
-            [self lt_sendBufferedDataToFileLogger];
-        }
-    }];
+    if (_currentBufferSizeBytes >= _maxBufferSizeBytes) {
+        [self lt_sendBufferedDataToFileLogger];
+    }
 }
 
 - (void)flush {

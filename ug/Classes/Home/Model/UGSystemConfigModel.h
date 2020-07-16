@@ -30,7 +30,8 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_长龙助手    = 16,
     UCI_全民竞猜    = 17,
     UCI_开奖走势    = 18,
-    UCI_QQ客服    = 19,
+    UCI_QQ客服     = 19,
+    UCI_开奖网     = 20,
 };
 
 // （TabbarController包含的）功能页面
@@ -67,6 +68,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_利息宝,
     MM_在线客服,
     MM_未结算,
+    MM_优惠申请,
 };
 
 
@@ -138,8 +140,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *mobile_logo;                /**<   首页navBar 图片 */
 @property (nonatomic, copy) NSString *agentRegbutton;             /**<   0=关闭；1=开启；  手机端注册页面显示“代理注册” */
 @property (nonatomic, copy) NSString *oftenLoginArea;             /**<   1=关闭；0=开启； 常用登录地 */
-@property (nonatomic, copy) NSString *mobileTemplateBackground;   /**<   配色方案  黑色模板*/
-@property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   模板号      9 简约 */
+@property (nonatomic, copy) NSString *mobileTemplateBackground;   /**<   配色方案  */
+@property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   模板号       */
 @property (nonatomic, copy) NSString *mobileTemplateLhcStyle;     /**<   六合配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateGpkStyle;     /**<   Gpk配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateStyle;     /**<   新年红 简约 配色方案      */
@@ -157,6 +159,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic) NSInteger hide_reco;          /**<   代理人 0不填，1选填，2必填 */
 
+@property (nonatomic, copy) NSString *popup_type;         /**<   公告  0直接弹窗，1登录后弹出 */
 @property (nonatomic) NSInteger reg_name;           /**<   真实姓名  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_fundpwd;        /**<   取款密码  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_qq;             /**<   QQ  0不填，1选填，2必填 */
@@ -190,6 +193,14 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString * chatLink;/**<   聊天的链接*/
 @property (nonatomic) BOOL switchAgentRecharge;                /**<   给下级会员充值开关 */
 @property (nonatomic) BOOL betAmountIsDecimal;          /**<   1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1 */
+
+@property (nonatomic) BOOL activeReturnCoinStatus ;                /**<   是否開啟拉條模式 */
+@property (nonatomic) int activeReturnCoinRatio  ;                /**<  拉條最大值    拉條最小值固定為 0   */
+@property (nonatomic) int adSliderTimer  ;                /**<  首页腰部广告轮播时间间隔  */
+@property (nonatomic) BOOL chaseNumber;                /**<   追号开关  默认关 */
+@property (nonatomic) BOOL loginVCode;                /**<   登录增加了滑动验证码配置  默认开 */
+@property (nonatomic) BOOL announce_first;                /**<   手机公告是否展开第1条   */
+
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;
@@ -199,7 +210,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, readonly) NSArray <NSString *>*qqs;
 
 @property (nonatomic,strong) NSMutableArray<UGChatRoomModel *> *chatRoomAry;                    /**<    在线配置的聊天室i*/
-@property (nonatomic,strong) NSMutableArray *typeIdAry;                    /**<    在线配置的聊天室id对应的游戏id */
+
+@property (nonatomic,strong) UGChatRoomModel *defaultChatRoom;                                  /**<    默认的聊天室（取列表的第1条数据）i*/
+@property (nonatomic) NSInteger chatRoomRedirect;           /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
 
 @property (nonatomic) BOOL hasShare;                /**<   是否可以下注分享*/
 //优惠图片分类信息

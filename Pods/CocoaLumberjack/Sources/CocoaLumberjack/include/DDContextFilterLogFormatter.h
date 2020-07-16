@@ -1,6 +1,6 @@
 // Software License Agreement (BSD License)
 //
-// Copyright (c) 2010-2020, Deusty, LLC
+// Copyright (c) 2010-2019, Deusty, LLC
 // All rights reserved.
 //
 // Redistribution and use of this software in source and binary forms,
@@ -21,8 +21,6 @@
 #endif
 
 #import <CocoaLumberjack/DDLog.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 /**
  * This class provides a log formatter that filters log statements from a logging context not on the whitelist.
@@ -67,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Return the whitelist
  */
-@property (nonatomic, readonly, copy) NSArray<NSNumber *> *whitelist;
+@property (readonly, copy) NSArray<NSNumber *> *whitelist;
 
 /**
  *  Check if a context is on the whitelist
@@ -117,5 +115,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isOnBlacklist:(NSInteger)loggingContext;
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -130,7 +130,7 @@
 					[__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 						NSLog(@"分享结果：%@----%@", result, error);
 						SysConf.hasShare = NO;
-						//                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
+//						                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
 						NSLog(@"分享结果：%@", __self.shareBetJson);
 						
 						
@@ -225,6 +225,7 @@
             [(UIButton *)item0.customView sizeToFit];
         } error:nil];
     }
+    
 }
 
 -(void)selectChatRoom {
@@ -252,11 +253,11 @@
                 RoomChatModel *dic =  [chatAry objectAtIndex:i];
                 [chatIdAry addObject:dic.roomId];
                 [chatTitleAry addObject:dic.roomName];
-                [typeIdAry addObject:dic.typeId];
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
             }
+            
+            [CMCommon removeLastRoomAction:chatIdAry];
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
-            SysConf.typeIdAry = typeIdAry;
             SysConf.chatRoomAry = chatRoomAry;
             NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
             //            SysConf.chatRoomAry = chatAry;

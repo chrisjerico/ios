@@ -12,12 +12,12 @@
 #import "UGLotteryRecordController.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGChangLongController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGFundsViewController.h"
 #import "UGYYRightMenuTableViewCell.h"
 #import "UGLotteryRulesView.h"
-#import "UINavigationController+UGExtension.h"
+#import "UINavigationController+Extension.h"
 #import "UGSkinViewController.h"
 #import "UGAppVersionManager.h"
 #import "SLWebViewController.h"
@@ -88,6 +88,16 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
     }
     
+    if ([@"c126" containsString:APP.SiteId]) {
+        NSArray *arrayTmp = @[@"开奖网"];
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(5, 1)];
+        [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
+        
+        NSArray *arrayImg = @[@"cb_kaijiang"];
+        [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+    }
+
     
     
 }
@@ -482,7 +492,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:[UGChangLongController new] animated:true];
     }
     else if ([title isEqualToString:@"站内信"]) {
-        [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
+        [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
     }
     else if ([title isEqualToString:@"利息宝"]) {
 //#if DEBUG
@@ -536,6 +546,10 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
         recordVC.type = 2;
         [NavController1 pushViewController:recordVC animated:true];
+    }
+    
+    else if ([title isEqualToString:@"开奖网"]) {
+        [CMCommon goSLWebUrl:lotteryUrl];
     }
     
 }

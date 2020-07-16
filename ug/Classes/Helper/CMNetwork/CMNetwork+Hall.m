@@ -95,19 +95,32 @@
     CMMETHOD_END;
 }
 
-//用户投注
+//用户投注  新增傳入字段 activeReturnCoinRatio   傳入格式 string    列 : 拉條值為 4.5% , 則傳入 4.5
 + (void)userBetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
     NSString *url = nil;
-	NSArray * gameIdArray = @[@"9", @"7", @"11"];
-
-    if ( [gameIdArray containsObject: [NSString stringWithFormat:@"%@", params[@"gameId"]]])  {
-        url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-    }else if([UGUserModel currentUser].isTest) {
-        url = [guestBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-	} else {
-		url = [userBetUrl stringToRestfulUrlWithFlag:RESTFUL];
-	}
+    
+    if([UGUserModel currentUser].isTest) {
+        
+        NSNumber *isInstant = params[@"isInstant"];
+        BOOL isInstantBool = [isInstant boolValue];
+        if (isInstantBool) {
+            url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        } else {
+            url = [guestBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        }
+        
+    } else {
+        
+        NSNumber *isInstant = params[@"isInstant"];
+        BOOL isInstantBool = [isInstant boolValue];
+        if (isInstantBool) {
+            url = [userinstantBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        } else {
+            url = [userBetUrl stringToRestfulUrlWithFlag:RESTFUL];
+        }
+        
+    }
     [self.manager requestInMainThreadWithMethod:url
                                          params:params
                                           model:CMResultClassMake([UGBetDetailModel class])
@@ -252,5 +265,17 @@
     CMMETHOD_END;
 }
     
-   
+// 获得最后一次莫彩种的下注信息  请求参数 ： id  必填（int）
++ (void)ticketgetLotteryFirstOrderWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[ticketgetLotteryFirstOrderUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultClassMake(UGNextIssueModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end

@@ -34,8 +34,9 @@
     self.nameLabel.text = item.name;
     
     if (item.enable && item.gameEnable) {
-        self.oddsLabel.text = [item.odds removeFloatAllZero];
-    } else {
+        self.oddsLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [item.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+    }
+    else {
         self.oddsLabel.text = @"--";
     }
     

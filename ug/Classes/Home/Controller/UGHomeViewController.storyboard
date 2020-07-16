@@ -121,7 +121,7 @@
                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfV-js-kSn">
                                                         <rect key="frame" x="0.0" y="580" width="414" height="101.5"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7L-nt-EpM">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7L-nt-EpM" userLabel=" 首页广告图片View">
                                                                 <rect key="frame" x="8" y="1" width="398" height="99.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -269,7 +269,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="366" height="132"/>
                                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                                             <subviews>
-                                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-fy-6kQ" customClass="IBView">
+                                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVa-fy-6kQ">
                                                                                                     <rect key="frame" x="10" y="10" width="346" height="112"/>
                                                                                                     <subviews>
                                                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lHV-hR-uPo">
@@ -373,7 +373,7 @@
                                                                                                 <constraint firstItem="TJa-Nh-fe2" firstAttribute="leading" secondItem="yJf-Fm-qq9" secondAttribute="leading" id="s3p-XA-tDM"/>
                                                                                             </constraints>
                                                                                         </tableViewCellContentView>
-                                                                                        <color key="backgroundColor" red="0.78829783200000003" green="0.21705946330000001" blue="0.16467148070000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     </tableViewCell>
                                                                                 </prototypes>
                                                                                 <connections>

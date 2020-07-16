@@ -17,7 +17,7 @@
 #import "UGLotteryRecordController.h"       // 开奖记录
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGSecurityCenterViewController.h"  // 安全中心
-#import "UGMailBoxTableViewController.h"    // 站内信
+#import "MailBoxTableViewController.h"    // 站内信
 #import "UGBankCardInfoController.h"        // 我的银行卡
 #import "UGBindCardViewController.h"        // 银行卡管理
 #import "UGYubaoViewController.h"           // 利息宝
@@ -43,6 +43,9 @@
 #import "FLAnimatedImageView.h"
 #import "UITabBar+CustomBadge.h"
 #import "UGUserModel.h"
+
+#import "CMTimeCommon.h"
+#import "RoomChatModel.h"
 
 
 @implementation UIViewController (CanPush)
@@ -126,6 +129,77 @@ static UGTabbarController *_tabBarVC = nil;
     [self beginMessageRequest];
     self.delegate = self;
     
+    // 注册成功
+    __weakSelf_(__self);
+    SANotificationEventSubscribe(UGNotificationRegisterComplete, self, ^(typeof (self) self, id obj) {
+        [self performSelector:@selector(loadMessageList) withObject:nil/*可传任意类型参数*/ afterDelay:5.0];
+    });
+    // 免费试玩
+    SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
+        [CMCommon clearWebCache];
+        [CMCommon deleteWebCache];
+        [CMCommon removeLastGengHao];
+        
+        NSDictionary *params = @{@"usr":@"46da83e1773338540e1e1c973f6c8a68",
+                                 @"pwd":@"46da83e1773338540e1e1c973f6c8a68"
+        };
+        [SVProgressHUD showWithStatus:nil];
+        [CMNetwork guestLoginWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                
+                [SVProgressHUD showSuccessWithStatus:model.msg];
+                UGUserModel *user = model.data;
+                UGUserModel.currentUser = user;
+                SANotificationEventPost(UGNotificationLoginComplete, nil);
+                
+            } failure:^(id msg) {
+                [SVProgressHUD showErrorWithStatus:msg];
+            }];
+        }];
+    });
+    // 去登录
+    [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+    }];
+    // 登录成功
+    SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
+        [CMCommon deleteWebCache];
+        [CMCommon clearWebCache];
+        [CMCommon removeLastGengHao];
+        [__self getUserInfo];
+    });
+    // 退出登陆
+    SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
+        [SVProgressHUD showSuccessWithStatus:@"退出成功"];
+        [UGUserModel setCurrentUser:nil];
+        
+        [NavController1 popToRootViewControllerAnimated:true];
+        [TabBarController1 setSelectedIndex:0];
+        
+        [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomName"];
+        [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomId"];
+        [CMCommon clearWebCache];
+        [CMCommon deleteWebCache];
+        [CMCommon removeLastGengHao];
+    });
+    // 登录超时
+    SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
+        // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
+        if (OBJOnceToken(UGUserModel.currentUser)) {
+            UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您的账号已经登录超时，请重新登录。" btnTitles:@[@"确定"]];
+            [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                UGUserModel.currentUser = nil;
+                [TabBarController1 setSelectedIndex:0];
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+            }];
+        }
+    });
+    // 获取用户信息
+    SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
+        [__self getUserInfo];
+    });
+    
+    
     
     [[UGSkinManagers skinWithSysConf] useSkin];
     
@@ -155,43 +229,6 @@ static UGTabbarController *_tabBarVC = nil;
             [self resetUpChildViewController:temp];
         }
     }
-    
-    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
-        }];
-        
-        if (OBJOnceToken(TabBarController1)) {
-            NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
-                return obj1.sort > obj2.sort;
-            }];
-            NSArray<UGMobileMenu *> *smallmenus;
-            if (menus.count > 5) {
-                smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
-            }
-            else{
-                smallmenus = menus;
-            }
-            NSLog(@"menus = %@",smallmenus);
-            if (smallmenus.count > 3) {
-                // 后台配置的页面
-                [TabBarController1 resetUpChildViewController:smallmenus];
-            } else {
-                // 默认加载的页面
-                NSMutableArray *temp = @[].mutableCopy;
-                for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                    if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-                        [temp addObject:mm];
-                    }
-                }
-                [TabBarController1 resetUpChildViewController:temp];
-            }
-            [[UGSkinManagers skinWithSysConf] useSkin];
-        }
-        
-
-        [self setHotImg];
-    });
     
     //    版本更新
     [[UGAppVersionManager shareInstance] updateVersionApi:false];
@@ -252,6 +289,12 @@ static UGTabbarController *_tabBarVC = nil;
             [TabBarController1 setTabbarHeight:black ? 53 : 50];
         }];
     }
+    
+    
+    [self chatgetToken];
+    
+     [self getAllNextIssueData]; // 彩票大厅数据
+    
 }
 
 - (void)setTabbarStyle {
@@ -331,6 +374,7 @@ static UGTabbarController *_tabBarVC = nil;
 - (void)resetUpChildViewController:(NSArray<UGMobileMenu *> *)menus {
     NSMutableArray <UIViewController *>*vcs = [NSMutableArray new];
     NSMutableArray *mms = @[].mutableCopy;
+    NSMutableArray *currentVCs = self.viewControllers.mutableCopy;
     for (UGMobileMenu *mm in menus) {
         if (![[UGMobileMenu allMenus] objectWithValue:mm.path keyPath:@"path"]) {
             continue;
@@ -343,10 +387,11 @@ static UGTabbarController *_tabBarVC = nil;
         
         // 已存在的控制器不需要重新初始化
         BOOL existed = false;
-        for (UINavigationController *nav in self.viewControllers) {
+        for (UINavigationController *nav in currentVCs) {
             if ([nav.viewControllers.firstObject isKindOfClass:NSClassFromString(mm.clsName)]) {
                 [vcs addObject:nav];
                 [mms addObject:mm];
+                [currentVCs removeObject:nav];
                 existed = true;
                 break;
             }
@@ -471,33 +516,17 @@ static UGTabbarController *_tabBarVC = nil;
     if (!APP.isTabMassageBadge) {
         return;
     }
+
+     NSArray<UGMobileMenu *> *mobileMenu = SysConf.mobileMenu;
     
-    NSArray *arrControllers = TabBarController1.viewControllers;
-    
-    for (int i = 0; i<arrControllers.count; i++) {
-        UIViewController * viewController  = [arrControllers objectAtIndex:i];
-        if([viewController isKindOfClass:[UINavigationController class]])
-        {
-            UINavigationController *navCtrl = (UINavigationController *)viewController;
-            NSLog(@"%@",navCtrl.viewControllers);
-            if ([navCtrl.tabBarItem.title isEqualToString:@"站内信"] ){//UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-            }
-        }
-        else
-        {
-            // view controller
-            if([viewController isKindOfClass:[UGMailBoxTableViewController class]])
-            {
-                //UGMailBoxTableViewController
-                [self setTabBadgeIndex:i];
-                
-            }
-            
+    for (int i= 0; i<mobileMenu.count; i++) {
+        UGMobileMenu *menu =  [UGMobileMenu mj_objectWithKeyValues:[mobileMenu objectAtIndex:i]];
+   
+        if ([menu.path isEqualToString:@"/message"]||[menu.path isEqualToString:@"/user"]) {
+            [self setTabBadgeIndex:i];
         }
     }
-    
-    
+ 
     
 }
 
@@ -535,6 +564,32 @@ static UGTabbarController *_tabBarVC = nil;
     }
 }
 
+#pragma mark -
+
+- (void)getUserInfo {
+    if (!UGLoginIsAuthorized()) {
+        return;
+    }
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+            SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
+        } failure:^(id msg) {
+            SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
+            if (model.msg.length) {
+                [SVProgressHUD showErrorWithStatus:model.msg];
+                return ;
+            }
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 
 #pragma mark - UITabBarControllerDelegate
 
@@ -547,8 +602,18 @@ static UGTabbarController *_tabBarVC = nil;
     UIViewController *vc = ((UINavigationController *)viewController).viewControllers.firstObject;
     NSLog(@"vc = %@",vc);
     
+    BOOL isDifferentRPM = false;
+    if ([vc isKindOfClass:ReactNativeVC.class] && [vc.className isEqualToString:mm.clsName]) {
+        RnPageModel *rpm = [APP.rnPageInfos objectWithValue:mm.path keyPath:@"tabbarItemPath"];
+        isDifferentRPM = ![((ReactNativeVC *)vc) isEqualRPM:rpm];
+        if (!isDifferentRPM) {
+            [(ReactNativeVC *)vc push:rpm params:[vc rn_keyValues]];
+            return true;
+        }
+    }
+    
     // 控制器需要重新加载
-    if (![vc.className isEqualToString:mm.clsName]) {
+    if (isDifferentRPM || ![vc.className isEqualToString:mm.clsName]) {
         [mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
             RnPageModel *rpm = [APP.rnPageInfos objectWithValue:vc.className keyPath:@"vcName"];
             if (rpm) {
@@ -612,6 +677,12 @@ static UGTabbarController *_tabBarVC = nil;
         [CMResult processWithResult:model success:^{
             NSDate *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"最新站内信的创建时间"];
             UGMessageListModel *mlm = model.data;
+            
+            NSLog(@"mlm.realTime.messageId =%@",mlm.realTime.messageId);
+            if ([CMCommon stringIsNull:mlm.realTime.messageId] || [mlm.realTime.messageId isEqualToString:@"0"]) {
+                return ;
+            }
+            
             NSArray <UGMessageModel *>*unreadArray = [mlm.list filteredArrayUsingPredicate: [NSPredicate predicateWithBlock:^BOOL(UGMessageModel *mm, NSDictionary<NSString *,id> * _Nullable bindings) {
                 NSDate *date = [mm.updateTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
                 if ([date isLaterThan:lastDate]) {
@@ -691,4 +762,88 @@ static UGTabbarController *_tabBarVC = nil;
     APP.messageRequestTimer = timer;
 }
 
+#pragma mark - 网络请求
+// 得到线上配置的聊天室
+- (void)chatgetToken {
+    
+    {//得到线上配置的聊天室
+        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
+                                 @"token":[UGUserModel currentUser].sessid
+        };
+        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
+        [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                NSLog(@"model.data = %@",model.data);
+                NSDictionary *data = (NSDictionary *)model.data;
+                NSMutableArray *chatIdAry = [NSMutableArray new];
+                NSMutableArray *typeIdAry = [NSMutableArray new];
+                NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+//                NSArray * chatAry = [data objectForKey:@"chatAry"];
+                
+                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+                
+                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                    return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+                }];
+                
+                for (int i = 0; i< chatAry.count; i++) {
+                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                    [chatIdAry addObject:dic.roomId];
+                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                    
+                }
+                [CMCommon removeLastRoomAction:chatIdAry];
+                
+                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+                SysConf.chatRoomRedirect = [number intValue];
+                SysConf.chatRoomAry = chatRoomAry;
+                
+                 NSLog(@"typeIdAry = %@",typeIdAry);
+                
+                if (![CMCommon arryIsNull:chatRoomAry]) {
+                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+            
+                }
+                else{
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
+                    obj.roomId = @"0";
+                    obj.roomName = @"聊天室";
+                    SysConf.defaultChatRoom = obj;
+                    
+                }
+                
+         
+                
+        
+                
+              
+                
+                
+            } failure:^(id msg) {
+                //            [self stopAnimation];
+            }];
+        }];
+        
+    }
+}
+
+      
+
+// 彩票大厅数据
+- (void)getAllNextIssueData {
+    [SVProgressHUD showWithStatus: nil];
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [SVProgressHUD dismiss];
+         NSLog(@" model = %@",model);
+        [CMResult processWithResult:model success:^{
+            UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            
+            NSLog(@" UGAllNextIssueListModel.lotteryGamesArray = %@",UGAllNextIssueListModel.lotteryGamesArray);
+        } failure:nil];
+    }];
+}
 @end

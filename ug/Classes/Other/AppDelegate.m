@@ -21,7 +21,7 @@
 #import "UGMissionCenterViewController.h"
 #import "UGSecurityCenterViewController.h"
 #import "UGFundsViewController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGBalanceConversionController.h"
 #import "UGBankCardInfoController.h"
 #import "UGYubaoViewController.h"
@@ -68,15 +68,33 @@
                            @"l001":@"704176e51cf8b2c37fe28834",
                            @"c151":@"a7b7100d34f78632cc7dfbbe",
                            @"l002":@"8b2a4bfdcf4665e11568ecc5",
+                           @"c213":@"2a5472a86daeef60423604fe",
+                           @"c116":@"7f2bd0c8a274309e5929e9c8",
+                           @"c092":@"f40ba329b3db2f53db929a63",
+                           @"c200":@"1ef3298b38418f7232668c37",
+                           @"c052":@"bc76977c162ffe40285b9dc7",
+                           @"c193":@"9cbb58d0eebcb5c1b421163e",
+                           @"c012":@"2772c653994de0f3faa0f4eb",
+                           @"c230":@"ac740711a824da1018ef0810",
+                           @"c085":@"c50224b5f533daabb09fbfc7",
+                           @"c002":@"216c64bd4631f22235cb8cc5",
+                           @"c175":@"e7d80ea4cf6ee9d2b39208f4",
+                           @"c217":@"854010b0c6c28834fe3f2c59",
+                           @"c205":@"5b3e0d686b6280279dd27046",
+                           @"c134":@"0a147cb4535e95735584df96",
+                           @"c073":@"152d1909dbdfc06852701573",
     };
+    
     NSLog(@"APP.SiteId = %@",APP.SiteId);
     NSLog(@"dict[APP.SiteId] = %@",dict[APP.SiteId]);
     NSString *appKey = dict[APP.SiteId] ? dict[APP.SiteId] : @"21d1b87f65b557d2946af463";
     
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"lotteryHormIsOpen"];//下注界面默认喇叭开启
+    
 #ifdef DEBUG
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
     [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
-    
+     [self initBugly];
  
 #else
     [self initBugly];

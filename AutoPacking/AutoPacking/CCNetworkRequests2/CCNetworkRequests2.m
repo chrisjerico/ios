@@ -119,6 +119,8 @@
         temp;
     });
     
+    NSLog(@"params = %@",params);
+    
     CCSessionModel *sm = [CCSessionModel new];
     sm.urlString = urlString;
     sm.params = params;
@@ -165,7 +167,7 @@
 // 上传文件
 - (CCSessionModel *)uploadWithId:(NSString *)_id sid:(NSString *)sid file:(NSString *)file {
     if (![[NSFileManager defaultManager] fileExistsAtPath:file]) {
-        @throw [NSException exceptionWithName:_NSString(@"上传的文件不存在。%@", file) reason:@"" userInfo:nil];
+        assert(!_NSString(@"上传的文件不存在。%@", file).length);
     }
     return [self req:@"api.php"
                     :@{@"m":@"upload_file",
@@ -181,6 +183,17 @@
     return [self req:@"api.php"
                     :@{@"m":@"get_app_detail",
                        @"app_id":_id,   // 站点在上传后台的ID
+                    }
+                    :true];
+}
+
+// 设置审核通过
+- (CCSessionModel *)checkApp:(NSString *)_id {
+    NSLog(@"_id  = %@",_id);
+    return [self req:@"api.php"
+                    :@{@"m":@"check_app",
+                       @"app_id":_id,   // 站点在上传后台的ID
+                       @"check_status":@"2",
                     }
                     :true];
 }

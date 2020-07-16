@@ -52,14 +52,6 @@ UIImage * _Nullable SDImageLoaderDecodeImageData(NSData * _Nonnull imageData, NS
     mutableCoderOptions[SDImageCoderWebImageContext] = context;
     SDImageCoderOptions *coderOptions = [mutableCoderOptions copy];
     
-    // Grab the image coder
-    id<SDImageCoder> imageCoder;
-    if ([context[SDWebImageContextImageCoder] conformsToProtocol:@protocol(SDImageCoder)]) {
-        imageCoder = context[SDWebImageContextImageCoder];
-    } else {
-        imageCoder = [SDImageCodersManager sharedManager];
-    }
-    
     if (!decodeFirstFrame) {
         // check whether we should use `SDAnimatedImage`
         Class animatedImageClass = context[SDWebImageContextAnimatedImageClass];
@@ -79,7 +71,7 @@ UIImage * _Nullable SDImageLoaderDecodeImageData(NSData * _Nonnull imageData, NS
         }
     }
     if (!image) {
-        image = [imageCoder decodedImageWithData:imageData options:coderOptions];
+        image = [[SDImageCodersManager sharedManager] decodedImageWithData:imageData options:coderOptions];
     }
     if (image) {
         BOOL shouldDecode = !SD_OPTIONS_CONTAINS(options, SDWebImageAvoidDecodeImage);
@@ -135,21 +127,14 @@ UIImage * _Nullable SDImageLoaderDecodeProgressiveImageData(NSData * _Nonnull im
     mutableCoderOptions[SDImageCoderWebImageContext] = context;
     SDImageCoderOptions *coderOptions = [mutableCoderOptions copy];
     
-    // Grab the progressive image coder
     id<SDProgressiveImageCoder> progressiveCoder = objc_getAssociatedObject(operation, SDImageLoaderProgressiveCoderKey);
     if (!progressiveCoder) {
-        id<SDProgressiveImageCoder> imageCoder = context[SDWebImageContextImageCoder];
-        // Check the progressive coder if provided
-        if ([imageCoder conformsToProtocol:@protocol(SDProgressiveImageCoder)]) {
-            progressiveCoder = [[[imageCoder class] alloc] initIncrementalWithOptions:coderOptions];
-        } else {
-            // We need to create a new instance for progressive decoding to avoid conflicts
-            for (id<SDImageCoder> coder in [SDImageCodersManager sharedManager].coders.reverseObjectEnumerator) {
-                if ([coder conformsToProtocol:@protocol(SDProgressiveImageCoder)] &&
-                    [((id<SDProgressiveImageCoder>)coder) canIncrementalDecodeFromData:imageData]) {
-                    progressiveCoder = [[[coder class] alloc] initIncrementalWithOptions:coderOptions];
-                    break;
-                }
+        // We need to create a new instance for progressive decoding to avoid conflicts
+        for (id<SDImageCoder>coder in [SDImageCodersManager sharedManager].coders.reverseObjectEnumerator) {
+            if ([coder conformsToProtocol:@protocol(SDProgressiveImageCoder)] &&
+                [((id<SDProgressiveImageCoder>)coder) canIncrementalDecodeFromData:imageData]) {
+                progressiveCoder = [[[coder class] alloc] initIncrementalWithOptions:coderOptions];
+                break;
             }
         }
         objc_setAssociatedObject(operation, SDImageLoaderProgressiveCoderKey, progressiveCoder, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

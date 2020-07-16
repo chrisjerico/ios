@@ -35,7 +35,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"资金管理";
+    
+    
+//    self.navigationItem.title = self.navigationController.tabBarItem.title ? self.navigationController.tabBarItem.title : @"资金管理";
+    
+    if (!self.title) {
+        self.title =  @"资金管理";
+    }
+    
     self.fd_prefersNavigationBarHidden = Skin1.isBlack;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];

@@ -78,6 +78,38 @@ class UGGroupChatVC: MessagesViewController {
 		
 		configMessageInputBar()
 		
+		
+		var isFirstReload = true
+			messagesCollectionView.mj_header.rx.refreshing.startWith(())
+				.flatMap { [weak self] _ in
+					ChatAPI.rx.request(ChatTarget.groupMessageRecord(roomId: "\(self!.room.roomId)", lastMessage: self?.messages.first?.messageId ?? ""))
+			}
+				.subscribe(onNext: { [weak self] (response) in
+					self?.messagesCollectionView.mj_header.endRefreshing()
+					guard
+						let json = try? response.mapJSON() as? [String: Any],
+						let messageJson = json["data"] as? [[String: Any]]
+					else {
+//						Alert.showTip("JSON解析出错")
+						return
+					}
+					
+					let messages = messageJson.map{ MessageModel(JSON: $0)!}
+					self?.messages.insert(contentsOf: messages, at: 0)
+					if isFirstReload {
+						self?.messagesCollectionView.reloadData()
+						self?.messagesCollectionView.scrollToBottom()
+					} else {
+						self?.messagesCollectionView.reloadDataAndKeepOffset()
+					}
+					isFirstReload = false
+					}, onError: { [weak self] (error) in
+						self?.messagesCollectionView.mj_header.endRefreshing()
+						Alert.showTip(error.localizedDescription)
+						
+				}).disposed(by: disposeBag)
+		
+		
 		MessageManager.shared.newMessage.filter { [weak self] message in
 			guard
 				let weakSelf = self,
@@ -116,7 +148,8 @@ class UGGroupChatVC: MessagesViewController {
 		messagesCollectionView.messagesDisplayDelegate = self
 		maintainPositionOnKeyboardFrameChanged = true
 		scrollsToBottomOnKeyboardBeginsEditing = true
-		
+		messagesCollectionView.mj_header = RefreshHeader()
+
 		
 	}
 	private func configMessageInputBar() {
@@ -332,11 +365,11 @@ class UGGroupChatVC: MessagesViewController {
 			
 		case 2:
 			
-			guard room.redpacketConfig.isRedBag else {
-				Alert.showTip("此房间未开启红包功能")
-				return
-			}
-			let produceView = RedPacketProduceView(packetConfig: room.redpacketConfig)
+//			guard room.redpacketConfig.isRedBag else {
+//				Alert.showTip("此房间未开启红包功能")
+//				return
+//			}
+			let produceView = UINib(nibName: "RedPacketProduceView", bundle: nil).instantiate(withOwner: self, options: nil).first as! RedPacketProduceView
 			produceView.delegate = self
 			App.widow.addSubview(produceView)
 			produceView.snp.makeConstraints { (make) in
@@ -345,17 +378,24 @@ class UGGroupChatVC: MessagesViewController {
 			self.resignFirstResponder()
 		case 3:
 			
-			guard room.minepacketConfig.isMine == 1 else {
-				Alert.showTip("此房间未开启扫雷红包功能")
-				return
-			}
-			let produceView = MinePacketProduceView(packetConfig: room.minepacketConfig)
-			produceView.delegate = self
-			App.widow.addSubview(produceView)
-			produceView.snp.makeConstraints { (make) in
-				make.edges.equalToSuperview()
-			}
-			self.resignFirstResponder()
+//			guard room.minepacketConfig.isMine == 1 else {
+//				Alert.showTip("此房间未开启扫雷红包功能")
+//				return
+//			}
+//			let produceView = MinePacketProduceView(packetConfig: room.minepacketConfig)
+//			let produceView = UINib(nibName: "MinePacketProduceView", bundle: nil).instantiate(withOwner: self, options: nil).first as! MinePacketProduceView
+//			produceView.delegate = self
+
+			let vc = MinePacketProduceVC()
+			vc.delegate = self
+			vc.modalPresentationStyle = .overFullScreen
+			present(vc, animated: false, completion: nil)
+//			App.widow.addSubview(produceView)
+//			produceView.snp.makeConstraints { (make) in
+//				make.edges.equalToSuperview()
+//			}
+//			self.resignFirstResponder()
+//			produceView.becomeFirstResponder()
 			
 		case 4:
 			let vc = BetListVC()
@@ -567,8 +607,10 @@ extension UGGroupChatVC: UITextViewDelegate {
 
 extension UGGroupChatVC: CheckRedpacketViewDelegate, RedPacketProduceViewDelegate, MinePacketProduceViewDelegate, BetFollowViewDelegate {
 	func produceMinePacket(mineNumber: Int, amount: Float, onCompletion: @escaping (Bool) -> Void) {
+		Alert.showLoading()
 		ChatAPI.rx.request(ChatTarget.creatMinePacket(amount: amount, roomId: room.roomId, mineNumber: mineNumber)).mapObject(RedPacketMessageModel.self)
 			.subscribe(onSuccess: { [weak self] (redpacket) in
+				Alert.hide()
 				guard let weakSelf = self else { return }
 				MessageManager.shared.send(redPacket: redpacket, to: weakSelf.room)
 				onCompletion(true)
@@ -579,8 +621,10 @@ extension UGGroupChatVC: CheckRedpacketViewDelegate, RedPacketProduceViewDelegat
 	}
 	
 	func produceRedpacket(quantity: Int, amount: Float, comment: String, onCompletion: @escaping (Bool) -> Void) {
+		Alert.showLoading()
 		ChatAPI.rx.request(ChatTarget.creatRedPacket(amount: amount, roomId: self.room.roomId, title: comment, quantity: quantity)).mapObject(RedPacketMessageModel.self)
 			.subscribe(onSuccess: { [weak self] (redpacket) in
+				Alert.hide()
 				guard let weakSelf = self else { return }
 				MessageManager.shared.send(redPacket: redpacket, to: weakSelf.room)
 				onCompletion(true)
@@ -602,7 +646,7 @@ extension UGGroupChatVC: CheckRedpacketViewDelegate, RedPacketProduceViewDelegat
 			guard let weakSelf = self else { return }
 			let vc = RedpacketGrabListVC()
 			vc.bind(sender: sender, item: redpacket)
-			weakSelf.present(BaseNav(rootViewController: vc), animated: true, completion: nil)
+			weakSelf.navigationController?.pushViewController(vc, animated: true)
 			
 		}) { (error) in
 			Alert.showTip(error.localizedDescription)

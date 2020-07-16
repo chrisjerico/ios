@@ -10,6 +10,7 @@
 #import "UUMarqueeView.h"
 #import "UGNoticeModel.h"
 #import "UGYYRightMenuView.h"
+#import "UGNoticeTypeModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGBMHeaderView : UIView

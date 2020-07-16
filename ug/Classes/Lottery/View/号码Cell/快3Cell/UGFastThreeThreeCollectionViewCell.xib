@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,35 +17,39 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wudian" translatesAutoresizingMaskIntoConstraints="NO" id="1MW-Ez-ct9">
-                        <rect key="frame" x="90" y="13.5" width="30" height="30"/>
+                        <rect key="frame" x="43" y="13.5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="VFp-IX-INC"/>
                             <constraint firstAttribute="height" constant="30" id="cLP-dJ-5EE"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfn-oc-gVw">
-                        <rect key="frame" x="130" y="20" width="9" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wudian" translatesAutoresizingMaskIntoConstraints="NO" id="SIA-7Y-Q1E">
-                        <rect key="frame" x="57" y="13.5" width="30" height="30"/>
+                        <rect key="frame" x="10" y="13.5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="5rg-PR-1GL"/>
                             <constraint firstAttribute="height" constant="30" id="kj0-ok-wXk"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfn-oc-gVw">
+                        <rect key="frame" x="83" y="8.5" width="112" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="3MH-SY-Dhj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="SIA-7Y-Q1E" firstAttribute="leading" secondItem="rCW-Ft-aQ1" secondAttribute="leading" constant="10" id="3w0-bd-oG2"/>
+                <constraint firstItem="nfn-oc-gVw" firstAttribute="leading" secondItem="1MW-Ez-ct9" secondAttribute="trailing" constant="10" id="9Yp-vy-5db"/>
                 <constraint firstItem="SIA-7Y-Q1E" firstAttribute="centerY" secondItem="rCW-Ft-aQ1" secondAttribute="centerY" id="ER7-rQ-zfX"/>
-                <constraint firstItem="1MW-Ez-ct9" firstAttribute="centerX" secondItem="rCW-Ft-aQ1" secondAttribute="centerX" constant="5" id="Gdu-5s-sde"/>
-                <constraint firstItem="nfn-oc-gVw" firstAttribute="centerY" secondItem="rCW-Ft-aQ1" secondAttribute="centerY" id="I37-yq-gMt"/>
+                <constraint firstItem="nfn-oc-gVw" firstAttribute="centerY" secondItem="rCW-Ft-aQ1" secondAttribute="centerY" id="TxS-4w-dLV"/>
                 <constraint firstItem="1MW-Ez-ct9" firstAttribute="leading" secondItem="SIA-7Y-Q1E" secondAttribute="trailing" constant="3" id="iXf-8v-e74"/>
                 <constraint firstItem="1MW-Ez-ct9" firstAttribute="centerY" secondItem="rCW-Ft-aQ1" secondAttribute="centerY" id="loe-aL-iJH"/>
-                <constraint firstItem="nfn-oc-gVw" firstAttribute="leading" secondItem="1MW-Ez-ct9" secondAttribute="trailing" constant="10" id="w1V-gQ-BY5"/>
+                <constraint firstAttribute="trailing" secondItem="nfn-oc-gVw" secondAttribute="trailing" constant="5" id="rBU-El-cWu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="KFV-Br-Sl8"/>
             <size key="customSize" width="200" height="57"/>

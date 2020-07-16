@@ -38,7 +38,7 @@ class CheckRedpacketView: UIView {
 	
 	lazy var nameLabel: UILabel = {
 		let label = UILabel()
-		label.textColor = UIColor(hex: "#f9d32f")
+		label.textColor = UIColor(hex: "#FFE2BF")
 		label.font = UIFont.boldSystemFont(ofSize: 18)
 		
 		return label
@@ -46,14 +46,14 @@ class CheckRedpacketView: UIView {
 	
 	lazy var desLabel: UILabel = {
 		let label = UILabel()
-		label.textColor = UIColor(hex: "#f9d32f")
+		label.textColor = UIColor(hex: "#FFE2BF")
 		label.font = UIFont.systemFont(ofSize: 16)
 		return label
 		
 	}()
 	lazy var amountLabel: UILabel = {
 		let label = UILabel()
-		label.textColor = UIColor(hex: "#f9d32f")
+		label.textColor = UIColor(hex: "#FFE2BF")
 		label.font = UIFont.boldSystemFont(ofSize: 18)
 		return label
 		
@@ -77,7 +77,7 @@ class CheckRedpacketView: UIView {
 	}()
 	lazy var checkButton: UIButton = {
 		let button = UIButton(type: .custom)
-		button.setAttributedTitle("看看大家的手气 〉".mutableAttributedString().x.color(UIColor(hex: "#f9d32f")).x.fontSize(14), for: .normal)
+		button.setAttributedTitle("看看大家的手气 〉".mutableAttributedString().x.color(UIColor(hex: "#FFE2BF")).x.fontSize(14), for: .normal)
 		button.rx.tap.subscribe(onNext: { [weak self] () in
 			guard let item = self?.item, let sender = self?.sender else { return }
 			self?.delegate?.checkRedpacketCheckButtonTaped(sender: sender, redpacketId: item.id)
@@ -98,6 +98,8 @@ class CheckRedpacketView: UIView {
 		addSubview(backDropView)
 		backDropView.snp.makeConstraints { (make) in
 			make.center.equalToSuperview()
+			make.width.equalTo(295)
+			make.height.equalTo(371)
 		}
 		
 		addSubview(avatarImageView)
@@ -129,6 +131,7 @@ class CheckRedpacketView: UIView {
 		grabButton.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
 			make.bottom.equalTo(backDropView).offset(-50)
+			make.width.height.equalTo(90)
 		}
 		grabButton_copy.snp.makeConstraints { (make) in
 			make.edges.equalTo(grabButton)
@@ -165,16 +168,16 @@ class CheckRedpacketView: UIView {
 		desLabel.text = "发了一个\(Int(item.genre) == 1 ? "普通": "扫雷" )红包"
 		
 		if item.is_grab == 1 {
-			amountLabel.attributedText = item.grab_amount.mutableAttributedString().x.font(UIFont.boldSystemFont(ofSize: 30)).x.color(UIColor(hex: "#f9d32f"))
-				+ "元".mutableAttributedString().x.fontSize(14).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = item.grab_amount.mutableAttributedString().x.font(UIFont.boldSystemFont(ofSize: 30)).x.color(UIColor(hex: "#FFE2BF"))
+				+ "元".mutableAttributedString().x.fontSize(14).x.color(UIColor(hex: "#FFE2BF"))
 		} else if item.status == 2 {
-			amountLabel.attributedText = "红包已抢完".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = "红包已抢完".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
 
 		} else if item.status == 3 {
-			amountLabel.attributedText = "红包已过期".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = "红包已过期".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
 
 		} else {
-			amountLabel.attributedText = item.title.mutableAttributedString().x.fontSize(18).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = item.title.mutableAttributedString().x.fontSize(18).x.color(UIColor(hex: "#FFE2BF"))
 		}
 
 		
@@ -187,16 +190,16 @@ class CheckRedpacketView: UIView {
 		self.item = item
 	
 		if item.is_grab == 1 {
-			amountLabel.attributedText = item.grab_amount.mutableAttributedString().x.font(UIFont.boldSystemFont(ofSize: 30)).x.color(UIColor(hex: "#f9d32f"))
-				+ "元".mutableAttributedString().x.fontSize(14).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = item.grab_amount.mutableAttributedString().x.font(UIFont.boldSystemFont(ofSize: 30)).x.color(UIColor(hex: "#FFE2BF"))
+				+ "元".mutableAttributedString().x.fontSize(14).x.color(UIColor(hex: "#FFE2BF"))
 		} else if item.status == 2 {
-			amountLabel.attributedText = "红包已抢完".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = "红包已抢完".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
 
 		} else if item.status == 3 {
-			amountLabel.attributedText = "红包已过期".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = "红包已过期".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
 
 		} else {
-			amountLabel.attributedText = item.title.mutableAttributedString().x.fontSize(18).x.color(UIColor(hex: "#f9d32f"))
+			amountLabel.attributedText = item.title.mutableAttributedString().x.fontSize(18).x.color(UIColor(hex: "#FFE2BF"))
 		}
 		
 		grabButton.isHidden = !(item.is_grab == 0 && item.status == 1)

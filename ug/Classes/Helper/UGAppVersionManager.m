@@ -43,6 +43,9 @@ static NSInteger versionNumber = 102;
 
 //处理升级
 - (void)upgradeHandel:(BOOL)flag {
+#ifdef APP_TEST
+    return;
+#endif
     BOOL isForce = false;      // 是否强制升级
     BOOL hasUpdate = false; // 是否存在新版本
     

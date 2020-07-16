@@ -26,7 +26,7 @@
 #import "UGSetupPayPwdController.h"
 #import "UGYubaoViewController.h"
 #import "UGSecurityCenterViewController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
 #import "UGUserInfoViewController.h"
@@ -42,6 +42,8 @@
 #import "UGYYRightMenuView.h"
 
 #import "JYMineCollectionViewCell.h"
+#import "UGSignInHistoryModel.h"
+#import "UGSalaryListView.h"
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
@@ -67,6 +69,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
+@property (weak, nonatomic) IBOutlet UILabel *uidLabel;
 //===================================================
 @property (weak, nonatomic) IBOutlet UIView *headerLabelView;
 
@@ -79,7 +82,9 @@
 //===================================================
 @property (nonatomic, strong) NSMutableArray <UGUserCenterItem *>*menuNameArray;        /**<   行数据 */
 @property (nonatomic, strong) NSMutableArray <UGMineSkinModel *> *menuSecondNameArray;  /**<   新年红模版时的数据 */
-
+//===================================================
+@property (weak, nonatomic) IBOutlet UIButton *salaryBtn; /**<   领取俸禄 */
+@property (nonatomic, strong) NSMutableArray <UGSignInHistoryModel *> *historyDataArray;
 @end
 
 @implementation UGMineSkinViewController
@@ -166,7 +171,10 @@
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
-    self.navigationItem.title = @"我的";
+
+    if (!self.title) {
+        self.title = @"我的";
+    }
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
@@ -220,8 +228,16 @@
         [__self.myCollectionView reloadData];
     });
     
+    [self.salaryBtn setHidden:!APP.isShowSalary];
     //初始化
     [self initCollectionView];
+    
+    
+    if (APP.isC217RWDT) {
+        [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
+    } else {
+        [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
+    }
 }
 
 - (void)addRightBtn {
@@ -653,7 +669,7 @@ BOOL isOk = NO;
         [self.taskButton setHidden:YES];
         [self.signButton setHidden:YES];
     }
-    
+
     if (flag) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
@@ -682,6 +698,14 @@ BOOL isOk = NO;
     //进度条
     double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
     self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
+    
+    if (![CMCommon stringIsNull:user.uid]) {
+        self.uidLabel.text = [NSString stringWithFormat:@"UID:%@",user.uid];
+    }
+    else{
+        self.uidLabel.text = @"";
+    }
+  
 }
 
 
@@ -739,6 +763,48 @@ BOOL isOk = NO;
 - (IBAction)conversionAction:(id)sender {
     //转换
     [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController") animated:YES];
+}
+
+// 领取俸禄
+- (IBAction)goSalary:(id)sender {
+ 
+    [self getMissionBonusList];
+}
+//获取俸禄列表数据
+- (void)getMissionBonusList {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+
+    [SVProgressHUD showWithStatus:nil];
+//    WeakSelf;
+    [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
+            NSLog(@"model.data = %@",model.data);
+            self.historyDataArray = model.data;
+            NSLog(@"_historyDataArray = %@",self.historyDataArray);
+            if (![CMCommon arryIsNull:self.historyDataArray]) {
+                [self showUGSignInHistoryView];
+            }
+
+
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+
+}
+
+#pragma mark -- 其他方法
+
+- (void)showUGSignInHistoryView {
+
+    UGSalaryListView *notiveView = [[UGSalaryListView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+    notiveView.dataArray = self.historyDataArray;
+    [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+
+    [notiveView show];
+    
 }
 
 @end

@@ -141,8 +141,8 @@ extension PublicMomentsVC: MomentsCellDelegate {
 			guard let weakSelf = self else { return }
 			weakSelf.momentsList.accept(weakSelf.momentsList.value.map({ (model)  in
 				var newModel = model
-				if model.mid == item.mid {
-					newModel.relation_id = "0"
+				if model.uid == item.uid {
+					newModel.is_follow = false
 				}
 				return newModel
 			}) )
@@ -158,8 +158,9 @@ extension PublicMomentsVC: MomentsCellDelegate {
 			guard let weakSelf = self else { return }
 			weakSelf.momentsList.accept(weakSelf.momentsList.value.map({ (model)  in
 				var newModel = model
-				if model.mid == item.mid {
-					newModel.relation_id = "1"
+				if model.uid == item.uid {
+					newModel.is_follow = true
+
 				}
 				return newModel
 			}) )

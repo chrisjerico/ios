@@ -10,6 +10,7 @@
 #import "UGNotificationEvent.h"
 
 NSString *UGNotificationLoginComplete = @"UGNotificationLoginComplete";
+NSString *UGNotificationRegisterComplete = @"UGNotificationRegisterComplete";
 NSString *UGNotificationloginCancel = @"UGNotificationloginCancel";
 NSString *UGNotificationloginTimeout = @"UGNotificationloginTimeout";
 NSString *UGNotificationUserLogout = @"UGNotificationUserLogout";

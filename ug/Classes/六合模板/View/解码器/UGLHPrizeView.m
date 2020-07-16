@@ -183,8 +183,20 @@
 
 ////六合开奖  当前开奖信息
 - (void)getLotteryNumberList {
+    
 
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    NSDictionary *params ;
+    
+    if ([CMCommon stringIsNull:self.gid]) {
+        params = @{
+            @"token":[UGUserModel currentUser].sessid,
+        };
+    } else {
+        params = @{
+            @"token":[UGUserModel currentUser].sessid,
+            @"gameId":self.gid
+        };
+    }
     [CMNetwork lotteryNumberWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             self.lhModel = nil;
@@ -495,5 +507,11 @@
         [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
         
     }
+}
+
+
+-(void)setGid:(NSString *)gid{
+    _gid = gid;
+    [self getLotteryNumberList];
 }
 @end

@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 获取APP信息
 - (CCSessionModel *)getInfo:(NSString *)_id;
 
+// 设置审核通过
+- (CCSessionModel *)checkApp:(NSString *)_id ;
+
 // 修改APP信息
 - (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath;
 

@@ -13,7 +13,7 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"noticeId"}];
 }
 @end
-
-@implementation UGNoticeTypeModel
-
-@end
+//
+//@implementation UGNoticeTypeModel
+//
+//@end

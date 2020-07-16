@@ -11,7 +11,7 @@
 #import "CMLabelCommon.h"
 @interface UGTimeLotteryBetCollectionViewCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 
 @end
 @implementation UGTimeLotteryBetCollectionViewCell
@@ -21,16 +21,12 @@
     
     if (APP.betSizeIsBig) {
         self.titleLabel.font = APP.cellBigFont;
-        //        [CMLabelCommon setRichNumberWithLabel:self.titleLabel Color:self.titleLabel.textColor FontSize:APP.cellNormalFontSize];
     } else {
         self.titleLabel.font = APP.cellNormalFont;
     }
 }
 
-- (void)setTitle:(NSString *)title {
-    _title = title;
-    self.titleLabel.text = title;
-}
+
 
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
@@ -38,23 +34,22 @@
     
     
     if (APP.betOddsIsRed) {
-        self.titleLabel.attributedText = ({
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString:_NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]) attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
-            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[item.odds removeFloatAllZero]];
-            mas;
-        });
+        self.titleLabel.textColor = Skin1.textColor1;
+        self.numberLB.textColor = APP.AuxiliaryColor2;
     } else {
         
         
         if (item.enable && item.gameEnable) {
-            self.titleLabel.text = _NSString(@"%@ %@",item.name, [item.odds removeFloatAllZero]);
+            
+            self.titleLabel.text = item.name;
+            self.numberLB.text = [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [item.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
         }
         else{
-            self.titleLabel.text = _NSString(@"%@ --",item.name);
+        
+            self.titleLabel.text = item.name;
+            self.numberLB.text = @" --";
         }
-        
-        
-        
+
     }
     
     self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes *  0.5;
@@ -71,6 +66,10 @@
             self.titleLabel.textColor = Skin1.textColor2;
             self.titleLabel.highlightedTextColor = [UIColor whiteColor];
             self.titleLabel.highlighted = item.select;
+            
+            self.numberLB.textColor = Skin1.textColor2;
+            self.numberLB.highlightedTextColor = [UIColor whiteColor];
+            self.numberLB.highlighted = item.select;
         }
     } else {
         self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
@@ -86,8 +85,10 @@
         if (!APP.betOddsIsRed) {
             if (APP.betBgIsWhite) {
                 self.titleLabel.textColor = Skin1.textColor1;
+                self.numberLB.textColor = Skin1.textColor1;
             } else {
                 self.titleLabel.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;
+                self.numberLB.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;
             }
         }
     }

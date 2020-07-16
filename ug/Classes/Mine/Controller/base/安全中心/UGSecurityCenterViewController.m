@@ -36,7 +36,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"安全中心";
+    if (!self.title) {
+        self.title = @"安全中心";
+    }
     self.view.backgroundColor = Skin1.bgColor;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];

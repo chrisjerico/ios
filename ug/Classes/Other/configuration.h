@@ -14,8 +14,6 @@
 //参数是否加密
 #define checkSign 1
 
-
-
 //路径转换为restful开关
 #define RESTFUL NO
 //获取开奖数据间隔
@@ -126,6 +124,10 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define feedbackUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=addFeedback"]
 
+#define deleteMsgAllUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=deleteMsgAll"]
+
+#define readMsgAllUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=readMsgAll"]
+
 #define getFeedbackListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=myFeedback"]
 
 #define getFeedbackDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=feedbackDetail"]
@@ -222,6 +224,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define teamAgentApplyUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=agentApply"]
 
+#define taskSendMissionBonusUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=sendMissionBonus"]
+
 #define activityRedBagDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=redBagDetail"]
 
 #define activityGetRedBagUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=getRedBag"]
@@ -252,16 +256,27 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define systemfloatAdsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=floatAds"]
 
+#define activityTurntableListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=turntableList"]
+
+#define  activityTurntableLogUrl   [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=turntableLog"]
+
+#define  activityTurntableWinUrl   [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=turntableWin"]
+
 #define ticketlotteryStatisticsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=lotteryStatistics"]
+
+#define ticketgetLotteryFirstOrderUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=getLotteryFirstOrder"]
 // 走势
 #define ownLotteryListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"/eapi/own_lottery_list?"]
 
 #define lotteryTrendUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"eapi/get_lottery_data?gameMark=jsxingyu"]
+
 #define officialLotteryTrendUrl [NSString stringWithFormat:@"%@/%@",@"https://www.fhptjk01.com",@"eapi/get_lottery_data?"]
 
+#define  userLotteryDayStatUrl   [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=lotteryDayStat"]
 //给下级会员充值接口
 #define teamRechargeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=recharge"]
-
+//1 获取俸禄列表接口
+#define getMissionBonusListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=task&a=getMissionBonusList"]
 //=============六合====================================================================================================
 #define lhlDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=lhcdoc&a=lhlDetail"]
 
@@ -280,23 +295,28 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define chatgetTokenUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=chat&a=getToken"]
 //=============开奖网url====================================================================================================
 #define lotteryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/index.mobile.html?navhidden=1"]
+
+#define lotteryByIdUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/history.mobile.html?navhidden=1&&id="]
 //=============直播url====================================================================================================
 //http://test12.6yc.com/open_prize/video.html?id=1&&gameType=cqssc
 #define liveUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/video.html?navhidden=1&&id="]
 
 
-#if DEBUG
 
-//#define NSLog(...) NSLog(__VA_ARGS__)
 
-#define NSLog(FORMAT, ...) fprintf(stderr,"[%s:%d行] %s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
+
+#ifdef DEBUG
+#define NSLog(format, ...) printf("\n%s HHLog %s(line%d) %s\n%s\n\n", __TIME__, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String])
+//NSLog输出日志不全的解决方法 https://www.jianshu.com/p/287ad5861ff4
+#define HJSonLog(...) printf("%f %s\n",[[NSDate date]timeIntervalSince1970],[[NSString stringWithFormat:__VA_ARGS__]UTF8String]);
 
 #else
-
-//#define NSLog(...) {}
-
+#define NSLog(format, ...)
+#define HJSonLog(format, ...)
 #endif
+
+
 
 #define CMMETHOD_BEGIN
 #define CMMETHOD_BEGIN_C(v)

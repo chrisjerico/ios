@@ -46,8 +46,8 @@ install_framework()
   fi
 
   # Use filter instead of exclude so missing patterns don't throw errors.
-  echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${destination}\""
-  rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${destination}"
+  echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${destination}\""
+  rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${destination}"
 
   local basename
   basename="$(basename -s .framework "$1")"
@@ -84,29 +84,27 @@ install_framework()
 # Copies and strips a vendored dSYM
 install_dsym() {
   local source="$1"
-  warn_missing_arch=${2:-true}
   if [ -r "$source" ]; then
-    # Copy the dSYM into the targets temp dir.
+    # Copy the dSYM into a the targets temp dir.
     echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${source}\" \"${DERIVED_FILES_DIR}\""
     rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${source}" "${DERIVED_FILES_DIR}"
 
     local basename
-    basename="$(basename -s .dSYM "$source")"
-    binary_name="$(ls "$source/Contents/Resources/DWARF")"
-    binary="${DERIVED_FILES_DIR}/${basename}.dSYM/Contents/Resources/DWARF/${binary_name}"
+    basename="$(basename -s .framework.dSYM "$source")"
+    binary="${DERIVED_FILES_DIR}/${basename}.framework.dSYM/Contents/Resources/DWARF/${basename}"
 
     # Strip invalid architectures so "fat" simulator / device frameworks work on device
     if [[ "$(file "$binary")" == *"Mach-O "*"dSYM companion"* ]]; then
-      strip_invalid_archs "$binary" "$warn_missing_arch"
+      strip_invalid_archs "$binary"
     fi
 
     if [[ $STRIP_BINARY_RETVAL == 1 ]]; then
       # Move the stripped file into its final destination.
-      echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${DERIVED_FILES_DIR}/${basename}.framework.dSYM\" \"${DWARF_DSYM_FOLDER_PATH}\""
-      rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --links --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${DERIVED_FILES_DIR}/${basename}.dSYM" "${DWARF_DSYM_FOLDER_PATH}"
+      echo "rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter \"- CVS/\" --filter \"- .svn/\" --filter \"- .git/\" --filter \"- .hg/\" --filter \"- Headers\" --filter \"- PrivateHeaders\" --filter \"- Modules\" \"${DERIVED_FILES_DIR}/${basename}.framework.dSYM\" \"${DWARF_DSYM_FOLDER_PATH}\""
+      rsync --delete -av "${RSYNC_PROTECT_TMP_FILES[@]}" --filter "- CVS/" --filter "- .svn/" --filter "- .git/" --filter "- .hg/" --filter "- Headers" --filter "- PrivateHeaders" --filter "- Modules" "${DERIVED_FILES_DIR}/${basename}.framework.dSYM" "${DWARF_DSYM_FOLDER_PATH}"
     else
       # The dSYM was not stripped at all, in this case touch a fake folder so the input/output paths from Xcode do not reexecute this script because the file is missing.
-      touch "${DWARF_DSYM_FOLDER_PATH}/${basename}.dSYM"
+      touch "${DWARF_DSYM_FOLDER_PATH}/${basename}.framework.dSYM"
     fi
   fi
 }
@@ -137,16 +135,13 @@ code_sign_if_enabled() {
 # Strip invalid architectures
 strip_invalid_archs() {
   binary="$1"
-  warn_missing_arch=${2:-true}
   # Get architectures for current target binary
   binary_archs="$(lipo -info "$binary" | rev | cut -d ':' -f1 | awk '{$1=$1;print}' | rev)"
   # Intersect them with the architectures we are building for
   intersected_archs="$(echo ${ARCHS[@]} ${binary_archs[@]} | tr ' ' '\n' | sort | uniq -d)"
   # If there are no archs supported by this binary then warn the user
   if [[ -z "$intersected_archs" ]]; then
-    if [[ "$warn_missing_arch" == "true" ]]; then
-      echo "warning: [CP] Vendored binary '$binary' contains architectures ($binary_archs) none of which match the current build architectures ($ARCHS)."
-    fi
+    echo "warning: [CP] Vendored binary '$binary' contains architectures ($binary_archs) none of which match the current build architectures ($ARCHS)."
     STRIP_BINARY_RETVAL=0
     return
   fi
@@ -164,60 +159,73 @@ strip_invalid_archs() {
   STRIP_BINARY_RETVAL=1
 }
 
-install_artifact() {
-  artifact="$1"
-  base="$(basename "$artifact")"
-  case $base in
-  *.framework)
-    install_framework "$artifact"
-    ;;
-  *.dSYM)
-    # Suppress arch warnings since XCFrameworks will include many dSYM files
-    install_dsym "$artifact" "false"
-    ;;
-  *.bcsymbolmap)
-    install_bcsymbolmap "$artifact"
-    ;;
-  *)
-    echo "error: Unrecognized artifact "$artifact""
-    ;;
-  esac
-}
-
-copy_artifacts() {
-  file_list="$1"
-  while read artifact; do
-    install_artifact "$artifact"
-  done <$file_list
-}
-
-ARTIFACT_LIST_FILE="${BUILT_PRODUCTS_DIR}/cocoapods-artifacts-${CONFIGURATION}.txt"
-if [ -r "${ARTIFACT_LIST_FILE}" ]; then
-  copy_artifacts "${ARTIFACT_LIST_FILE}"
-fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Base64/Base64.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CodePush/CodePush.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DLPickerView/DLPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DoubleConversion/DoubleConversion.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FBReactNativeSpec/FBReactNativeSpec.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Folly/folly.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JWT/JWT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Picker/Picker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNFastImage/RNFastImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNVectorIcons/RNVectorIcons.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-Core/React.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-CoreModules/CoreModules.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTActionSheet/RCTActionSheet.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTAnimation/RCTAnimation.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTBlob/RCTBlob.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTImage/RCTImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTLinking/RCTLinking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTNetwork/RCTNetwork.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTSettings/RCTSettings.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTText/RCTText.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTVibration/RCTVibration.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-cxxreact/cxxreact.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-jsi/jsi.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-jsiexecutor/jsireact.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-jsinspector/jsinspector.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactNativeART/ReactNativeART.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RegExCategories/RegExCategories.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SGBrowserView/SGBrowserView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/STPickerView/STPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Toast/Toast.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XYYSegmentControl/XYYSegmentControl.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYText/YYText.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/glog/glog.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-viewpager/react_native_viewpager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-webview/react_native_webview.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -253,24 +261,68 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Base64/Base64.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CodePush/CodePush.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DLPickerView/DLPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/DateTools/DateTools.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/DoubleConversion/DoubleConversion.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FBReactNativeSpec/FBReactNativeSpec.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Folly/folly.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/JWT/JWT.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Picker/Picker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNFastImage/RNFastImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/RNVectorIcons/RNVectorIcons.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-Core/React.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-CoreModules/CoreModules.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTActionSheet/RCTActionSheet.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTAnimation/RCTAnimation.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTBlob/RCTBlob.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTImage/RCTImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTLinking/RCTLinking.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTNetwork/RCTNetwork.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTSettings/RCTSettings.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTText/RCTText.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-RCTVibration/RCTVibration.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-cxxreact/cxxreact.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-jsi/jsi.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-jsiexecutor/jsireact.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/React-jsinspector/jsinspector.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactCommon/ReactCommon.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReactNativeART/ReactNativeART.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RegExCategories/RegExCategories.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImageWebPCoder/SDWebImageWebPCoder.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SGBrowserView/SGBrowserView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SGQRCode/SGQRCode.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/STPickerView/STPickerView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Toast/Toast.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/XYYSegmentControl/XYYSegmentControl.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYText/YYText.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/glog/glog.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-viewpager/react_native_viewpager.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/react-native-webview/react_native_webview.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Aspects/Aspects.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"

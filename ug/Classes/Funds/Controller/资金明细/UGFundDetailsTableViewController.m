@@ -9,7 +9,7 @@
 #import "UGFundDetailsTableViewController.h"
 #import "UGFundDetailsCell.h"
 #import "UGFundLogsModel.h"
-
+#import "BetDetailViewController.h"
 
 @interface UGFundDetailsTableViewController ()
 
@@ -179,6 +179,19 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     
     
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+       
+ 
+       
+    
+
+}
+
+
+
 
 - (NSMutableArray<UGFundLogsModel *> *)dataArray {
     if (_dataArray == nil) {

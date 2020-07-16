@@ -13,7 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UGTimeLotteryBetCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) NSString *title;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;//表头
+@property (weak, nonatomic) IBOutlet UILabel *numberLB;//数字
+
+
 @property (nonatomic, strong) UGGameBetModel *item;
 @end
 

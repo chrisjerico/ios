@@ -36,7 +36,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"银行卡管理";
+    if (!self.title) {
+        self.title =  @"银行卡管理";
+    }
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });

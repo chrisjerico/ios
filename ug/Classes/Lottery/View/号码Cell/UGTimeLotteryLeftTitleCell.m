@@ -27,6 +27,7 @@
     if (APP.isRedWhite) {
         self.bottomLine.backgroundColor = RGBA(231, 213, 231, 1.0);
     }
+
 }
 
 - (void)setItem:(UGGameplayModel *)item {
@@ -48,7 +49,7 @@
     [super setSelected:selected animated:animated];
     
     self.bottomLine.hidden = !selected;
-    self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:14];
+    self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16];
     self.layer.borderWidth = selected * APP.borderWidthTimes;
     
     if (Skin1.isBlack||Skin1.is23) {

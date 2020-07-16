@@ -54,6 +54,12 @@ class ConcernedMomentsVC: BaseVC {
 		tableView.register(UINib(nibName: "MomentsBetCell", bundle: nil), forCellReuseIdentifier: "MomentsBetCell")
 		tableView.register(UINib(nibName: "MomentsCell", bundle: nil), forCellReuseIdentifier: "MomentsCell")
 		tableView.tableHeaderView = headerView
+		headerView.backgroundColor = UIColor.red
+		headerView.snp.makeConstraints { (make) in
+			make.width.equalToSuperview()
+			make.height.equalTo(300)
+			make.top.leading.equalToSuperview()
+		}
 		tableView.tableFooterView = UIView()
 		headerView.bind(name: App.user.username, avatar: App.user.avatar)
 		tableView.mj_header = RefreshHeader()
@@ -148,8 +154,8 @@ extension ConcernedMomentsVC: MomentsCellDelegate {
 			guard let weakSelf = self else { return }
 			weakSelf.momentsList.accept(weakSelf.momentsList.value.map({ (model)  in
 				var newModel = model
-				if model.mid == item.mid {
-					newModel.relation_id = "0"
+				if model.uid == item.uid {
+					newModel.is_follow = false
 				}
 				return newModel
 			}) )
@@ -165,8 +171,9 @@ extension ConcernedMomentsVC: MomentsCellDelegate {
 			guard let weakSelf = self else { return }
 			weakSelf.momentsList.accept(weakSelf.momentsList.value.map({ (model)  in
 				var newModel = model
-				if model.mid == item.mid {
-					newModel.relation_id = "1"
+				if model.uid == item.uid {
+					newModel.is_follow = true
+
 				}
 				return newModel
 			}) )

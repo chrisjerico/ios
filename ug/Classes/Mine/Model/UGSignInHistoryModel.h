@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *integral;       /**<   积分 // "10.00" */
 @property (nonatomic, strong) NSString *remark;         /**<   备注 // "签到送积分" */
 
+//得到俸禄
+@property (nonatomic, strong) NSString *bonsId;         /**<  */
+@property (nonatomic, strong) NSString *levelName;       /**<   等级名称*/
+@property (nonatomic, strong) NSString *weekBons;         /**<    周俸禄*/
+@property (nonatomic, strong) NSString *MonthBons;         /**<   月俸禄 */
 @end
 
 NS_ASSUME_NONNULL_END

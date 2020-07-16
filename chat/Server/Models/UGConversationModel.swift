@@ -23,7 +23,7 @@ public struct UGConversationApiDataModel: Mappable {
 
 public struct UGConversationModel: Mappable {
 
-	var roomName = ""
+	var roomName = " "
 	var	roomId = 0
 	var	unreadCount = 0
 	var	memberCount = 0
@@ -32,6 +32,7 @@ public struct UGConversationModel: Mappable {
 	
 	
 	var uid = 0
+	var username = ""
 	var nickname = ""
 	var lastMessageInfo: MessageModel?
 	
@@ -52,7 +53,7 @@ public struct UGConversationModel: Mappable {
 		case 1:
 			return .room(roomid: "\(roomId)", roomName: roomName)
 		case 2, 3:
-			return .privat(uid: "\(uid)", userName: "\(nickname)")
+			return .privat(uid: "\(uid)", userName: "\(username)")
 		default:
 			fatalError("undefined type")
 		}
@@ -65,11 +66,12 @@ public struct UGConversationModel: Mappable {
 		
 		roomName 	<- map["roomName"]
 		roomId 		<- map["roomId"]
-		unreadCount <- map["unreadCount"]
+		unreadCount <- (map["unreadCount"],intTransform)
 		memberCount <- map["memberCount"]
 		type 		<- map["type"]
 		sort 		<- map["sort"]
 		uid 		<- map["uid"]
+		username 	<- map["username"]
 		nickname 	<- map["nickname"]
 		lastMessageInfo <- map["lastMessageInfo"]
 		chatRedBagSetting <- map["chatRedBagSetting"]

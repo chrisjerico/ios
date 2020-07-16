@@ -5,6 +5,9 @@
 #import <objc/runtime.h>
 #import <SafariServices/SafariServices.h>
 #import "SLWebViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import "UGMosaicGoldViewController.h"
+
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -96,6 +99,12 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 + (NSString *)getNowTimeWithEndTimeStr:(NSString *)aTimeString currentTimeStr:(NSString *)currentTime {
+    NSLog(@"curCloseTime =%@",aTimeString);
+    
+    NSLog(@"serverTime =%@",currentTime);
+    
+//    2020-04-15 16:23:13.868372+0800 UGBWApp[2076:128817] aTimeString =2020-04-15 21:30:00
+//    2020-04-15 16:23:13.868545+0800 UGBWApp[2076:128817] currentTime =2020-04-15 16:23:12
     // 截止时间date格式
     NSDate  *expireDate = [aTimeString dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     // 当前时间date格式
@@ -105,21 +114,26 @@ static NSString *uuidKey =@"uuidKey";
     // 时间不知道为什么快了一点点，这里手动加上，慢总比快好一点
     timeInterval += 0.2;
     
-//    int days = (int)(timeInterval/(3600*24));
+    int days = (int)(timeInterval/(3600*24));
     int hours = (int)((timeInterval)/3600);
     int minutes = (int)(timeInterval-hours*3600)/60;
     int seconds = timeInterval-hours*3600-minutes*60;
     
-//    NSString *dayStr;
+    NSString *dayStr;
 	NSString *hoursStr;NSString *minutesStr; NSString *secondsStr;
     //天
-//    dayStr = [NSString stringWithFormat:@"%d",days];
+    dayStr = [NSString stringWithFormat:@"%d",days];
     //小时
     if (hours < 10) {
           hoursStr = [NSString stringWithFormat:@"0%d",hours];
     }else {
     
-        hoursStr = [NSString stringWithFormat:@"%d",hours];
+        if (days) {
+             hoursStr = [NSString stringWithFormat:@"%d",hours - 24*days];
+        } else {
+             hoursStr = [NSString stringWithFormat:@"%d",hours];
+        }
+       
     }
     //分钟
     if(minutes<10)
@@ -131,13 +145,13 @@ static NSString *uuidKey =@"uuidKey";
         secondsStr = [NSString stringWithFormat:@"0%d", seconds];
     else
         secondsStr = [NSString stringWithFormat:@"%d",seconds];
-    if (hours<=0&&minutes<=0&&seconds<=0) {
+    if (days<=0&&hours<=0&&minutes<=0&&seconds<=0) {
         return nil;
     }
     
-//    if (days) {
-//        return [NSString stringWithFormat:@"%@天%@:%@:%@", dayStr,hoursStr, minutesStr,secondsStr];
-//    }
+    if (days) {
+        return [NSString stringWithFormat:@"%@天%@:%@:%@", dayStr,hoursStr, minutesStr,secondsStr];
+    }
     if (hours) {
         return [NSString stringWithFormat:@"%@:%@:%@",hoursStr , minutesStr,secondsStr];
     }
@@ -167,6 +181,28 @@ static NSString *uuidKey =@"uuidKey";
         return UGNumColor9;
     }else {
         return UGNumColor10;
+    }
+    
+}
+
++ (NSString *)getDLTColor:(NSInteger )num {
+    NSInteger preNum = num;
+    if (preNum == 1) {
+        return @"red";
+    }else if (preNum == 2) {
+        return @"red";
+    }else if (preNum == 3) {
+        return @"red";
+    }else if (preNum == 4) {
+        return @"red";
+    }else if (preNum == 5) {
+        return @"red";
+    }else if (preNum == 6) {
+        return @"blue";
+    }else if (preNum == 7) {
+        return @"blue";
+    }else {
+        return @"blue";
     }
     
 }
@@ -1234,4 +1270,278 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     NSLog(@"str = %@", string);
     return string;
 }
+
+/**
+ *  读取本地JSON文件
+ *
+ */
++ (NSDictionary *)readLocalFileWithName:(NSString *)name{
+    // 获取文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"json"];
+    // 将文件数据化
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    // 对数据进行JSON格式化并返回字典形式
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+}
+
+
+/**
+* 计算新的赔率，公式： 新賠率 = 原始賠率 - ( 原始賠率無條件進位至整數位 * 退水)，
+* 如 退水是 0.4% 就应该是 0.0004，公式就是：48.8 - （49 * 0.0004）= 新赔率
+*
+* ogOdds: 原始賠率
+* rebate: 退水
+ 
+ 小数向上取整，指小数部分直接进1：
+
+  x = 2.222，ceilf(x) = 3。
+
+ 小数向下取整，指直接去掉小数部分：
+
+  x = 2.222，floor(x) = 2。
+
+ 小数四舍五入，指>0.5向上加1 ，小于0.5去掉小数部分 ：
+
+ x = 2.222，round(x) = 2;
+
+ y = 2.555，round(y) = 3。
+
+*/
++(float )newOgOdds:(float)ogOdds rebate:(float)rebate{
+//    NSLog(@"ceilf(ogOdds) = %f",ceilf(ogOdds));
+//    NSLog(@"rebate = %f",rebate);
+//    NSLog(@"ogOdds- (ceilf(ogOdds) * rebate) = %f",ogOdds- (ceilf(ogOdds) * rebate));
+    
+  return   ogOdds- (ceilf(ogOdds) * rebate);
+}
+
+
+/**
+* 判断该彩种是否绑定聊天室没
+*
+*/
++(BOOL )getRoomMode:(NSString *)gameId{
+
+    UGChatRoomModel *obj  = [UGChatRoomModel new];
+    
+    for (UGChatRoomModel *object in SysConf.chatRoomAry) {
+        
+        NSLog(@"object.typeIds = %@",object.typeIds);
+        if ( [object.typeIds containsObject:gameId]) {
+            
+            obj.roomName = object.roomName;
+            obj.roomId  = object.roomId;
+    
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
+/**
+* 当传入nim 为空时，各个站点默认的彩种
+*
+*/
++(UGNextIssueModel * )getBetAndChatModel:(UGNextIssueModel *)nim{
+    if (!nim) {
+           
+           if ([@"c084" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"164";
+               oc.gameType = @"lhc";
+               oc.name = @"jslhc";
+               oc.title = @"分分六合彩";
+               nim = oc;
+           }
+           else if ([@"c208" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"78";
+               oc.gameType = @"lhc";
+               oc.name = @"lhc";
+               oc.title = @"一分六合彩";
+               nim = oc;
+           }
+           else if ([@"c217" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"98";
+               oc.gameType = @"pk10";
+               oc.name = @"pk10";
+               oc.title = @"极速赛车";
+               nim = oc;
+           }
+           else if ([@"c126" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"55";
+               oc.gameType = @"xyft";
+               oc.name = @"xyft";
+               oc.title = @"幸运飞艇";
+               nim = oc;
+           }
+           else {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"70";
+               oc.gameType = @"lhc";
+               oc.name = @"lhc";
+               oc.title = @"香港六合彩";
+               nim = oc;
+           }
+           
+       }
+    return nim;
+       
+}
+
+
+/**
+* webView 内部url 统一跳转
+*
+*/
++(void)goVCWithUrl:(NSString *)url{
+    
+    NSArray *params =[url componentsSeparatedByString:@"?"];
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+    for (NSString *paramStr in params) {
+        NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
+        if (dicArray.count > 1) {
+            NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [tempDic setObject:decodeValue forKey:dicArray[0]];
+        }
+    }
+    NSLog(@"tempDic:%@",tempDic);
+    NSString *app_params = [tempDic objectForKey:@"app_params"];
+    
+    if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
+        [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+    }
+    else if ([app_params isEqualToString:@"goto_coupon_list"]) {//优惠活动
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+    }
+    
+    
+}
+
+/**
+*删除本地保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoom{
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"roomName"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"roomId"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
+/**
+*本地保存的最后一次选择的房间
+*
+*/
+
++(NSDictionary *)LastRoom{
+    NSString *roomId = [[NSUserDefaults standardUserDefaults]objectForKey:@"roomId"];
+    NSString *roomName = [[NSUserDefaults standardUserDefaults]objectForKey:@"roomName"];
+    
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                          roomId,@"roomId",
+                          roomName,@"roomName",
+                          nil];
+    return dic;
+}
+/**
+*本地i是否保存的最后一次选择的房间
+*
+*/
++(BOOL )hasLastRoom{
+    
+    NSDictionary *dic = [self LastRoom];
+    if ([CMCommon stringIsNull:dic[@"roomId"]]) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+/**
+*  判断本地最后一次房间是否在网络房间列表中，没有删除保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoomAction:(NSMutableArray *)chatIdAry{
+    if ([CMCommon hasLastRoom]) {
+        NSDictionary *roomDic = [CMCommon LastRoom];
+        NSString *roomId  = [roomDic objectForKey:@"roomId"];
+        
+        BOOL isbool = [chatIdAry containsObject: roomId];
+        
+        if (!isbool) {
+            [CMCommon removeLastRoom];
+        }
+    }
+    
+}
+
+
+/**
+*删除本地保存的最后一次跟号信息
+*
+*/
++(void)removeLastGengHao{
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"gameId"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"selCode"];
+    [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"array"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
+/**
+*本地保存的最后一次跟号信息
+*
+*/
+
++(NSDictionary *)LastGengHao{
+    NSString *gameId = [[NSUserDefaults standardUserDefaults]objectForKey:@"gameId"];
+    NSString *selCode = [[NSUserDefaults standardUserDefaults]objectForKey:@"selCode"];
+    NSArray *array = [[NSUserDefaults standardUserDefaults]objectForKey:@"array"];
+    
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                          gameId,@"gameId",
+                          selCode,@"selCode",
+                          array,@"array",
+                          nil];
+    return dic;
+}
+
+/**
+*若之前未有投注，或上一注与当前计划投注的彩种不一致，则“追号”按钮为禁用状态。
+*
+*/
++(BOOL )hasGengHao:(NSString *)mgameId{
+    
+    NSDictionary *dic = [self LastGengHao];
+    NSString *gameId = dic[@"gameId"];
+    NSMutableArray  *array = dic[@"array"];
+    if ([CMCommon stringIsNull:gameId]) {
+        return NO;
+    }
+    if ([CMCommon arryIsNull:array]) {
+        return NO;
+    } else {
+        if ([gameId isEqualToString:mgameId]) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+}
+
+
+/**
+*保存本地保存的最后一次跟号信息
+*
+*/
++(void)saveLastGengHao:(NSArray *)array gameId:(NSString  *)gameId selCode:(NSString *)selCode{
+    [[NSUserDefaults standardUserDefaults]setObject:gameId forKey:@"gameId"];
+    [[NSUserDefaults standardUserDefaults]setObject:selCode forKey:@"selCode"];
+    [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"array"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+
+
 @end

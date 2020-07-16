@@ -14,9 +14,6 @@
 #import "SDAnimatedImageRep.h"
 #import "UIImage+ForceDecode.h"
 
-// Specify DPI for vector format in CGImageSource, like PDF
-static NSString * kSDCGImageSourceRasterizationDPI = @"kCGImageSourceRasterizationDPI";
-
 @interface SDImageIOCoderFrame : NSObject
 
 @property (nonatomic, assign) NSUInteger index; // Frame index (zero based)
@@ -161,33 +158,9 @@ static NSString * kSDCGImageSourceRasterizationDPI = @"kCGImageSourceRasterizati
         exifOrientation = kCGImagePropertyOrientationUp;
     }
     
-    CFStringRef uttype = CGImageSourceGetType(source);
-    // Check vector format
-    BOOL isVector = NO;
-    if ([NSData sd_imageFormatFromUTType:uttype] == SDImageFormatPDF) {
-        isVector = YES;
-    }
-    
     CGImageRef imageRef;
-    if (thumbnailSize.width == 0 || thumbnailSize.height == 0 || pixelWidth == 0 || pixelHeight == 0 || (pixelWidth <= thumbnailSize.width && pixelHeight <= thumbnailSize.height)) {
-        NSDictionary *options;
-        if (isVector) {
-            if (thumbnailSize.width == 0 || thumbnailSize.height == 0) {
-                // Provide the default pixel count for vector images, simply just use the screen size
-#if SD_WATCH
-                thumbnailSize = WKInterfaceDevice.currentDevice.screenBounds.size;
-#elif SD_UIKIT
-                thumbnailSize = UIScreen.mainScreen.bounds.size;
-#elif SD_MAC
-                thumbnailSize = NSScreen.mainScreen.frame.size;
-#endif
-            }
-            CGFloat maxPixelSize = MAX(thumbnailSize.width, thumbnailSize.height);
-            NSUInteger DPIPerPixel = 2;
-            NSUInteger rasterizationDPI = maxPixelSize * DPIPerPixel;
-            options = @{kSDCGImageSourceRasterizationDPI : @(rasterizationDPI)};
-        }
-        imageRef = CGImageSourceCreateImageAtIndex(source, index, (__bridge CFDictionaryRef)options);
+    if (thumbnailSize.width == 0 || thumbnailSize.height == 0 || (pixelWidth <= thumbnailSize.width && pixelHeight <= thumbnailSize.height)) {
+        imageRef = CGImageSourceCreateImageAtIndex(source, index, NULL);
     } else {
         NSMutableDictionary *thumbnailOptions = [NSMutableDictionary dictionary];
         thumbnailOptions[(__bridge NSString *)kCGImageSourceCreateThumbnailWithTransform] = @(preserveAspectRatio);
@@ -206,21 +179,20 @@ static NSString * kSDCGImageSourceRasterizationDPI = @"kCGImageSourceRasterizati
         thumbnailOptions[(__bridge NSString *)kCGImageSourceThumbnailMaxPixelSize] = @(maxPixelSize);
         thumbnailOptions[(__bridge NSString *)kCGImageSourceCreateThumbnailFromImageIfAbsent] = @(YES);
         imageRef = CGImageSourceCreateThumbnailAtIndex(source, index, (__bridge CFDictionaryRef)thumbnailOptions);
-    }
-    if (!imageRef) {
-        return nil;
-    }
-    
-    if (thumbnailSize.width > 0 && thumbnailSize.height > 0) {
         if (preserveAspectRatio) {
             // kCGImageSourceCreateThumbnailWithTransform will apply EXIF transform as well, we should not apply twice
             exifOrientation = kCGImagePropertyOrientationUp;
         } else {
             // `CGImageSourceCreateThumbnailAtIndex` take only pixel dimension, if not `preserveAspectRatio`, we should manual scale to the target size
-            CGImageRef scaledImageRef = [SDImageCoderHelper CGImageCreateScaled:imageRef size:thumbnailSize];
-            CGImageRelease(imageRef);
-            imageRef = scaledImageRef;
+            if (imageRef) {
+                CGImageRef scaledImageRef = [SDImageCoderHelper CGImageCreateScaled:imageRef size:thumbnailSize];
+                CGImageRelease(imageRef);
+                imageRef = scaledImageRef;
+            }
         }
+    }
+    if (!imageRef) {
+        return nil;
     }
     
 #if SD_UIKIT || SD_WATCH
@@ -391,7 +363,7 @@ static NSString * kSDCGImageSourceRasterizationDPI = @"kCGImageSourceRasterizati
         if (scaleFactor != nil) {
             scale = MAX([scaleFactor doubleValue], 1);
         }
-        image = [self.class createFrameAtIndex:0 source:_imageSource scale:scale preserveAspectRatio:_preserveAspectRatio thumbnailSize:_thumbnailSize];
+        image = [SDImageIOAnimatedCoder createFrameAtIndex:0 source:_imageSource scale:scale preserveAspectRatio:_preserveAspectRatio thumbnailSize:_thumbnailSize];
         if (image) {
             image.sd_imageFormat = self.class.imageFormat;
         }

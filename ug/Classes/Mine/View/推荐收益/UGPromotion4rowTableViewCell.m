@@ -18,6 +18,9 @@
     _secondLabel.textColor = Skin1.textColor1;
     _thirdLabel.textColor = Skin1.textColor1;
     _fourthLabel.textColor = Skin1.textColor1;
+
+    _fouthButton.layer.cornerRadius = 5;
+    _fouthButton.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -26,4 +29,10 @@
     // Configure the view for the selected state
 }
 
+
+- (IBAction)signInClick:(id)sender {
+    if (self.promotion4rowButtonBlock) {
+        self.promotion4rowButtonBlock();
+    }
+}
 @end

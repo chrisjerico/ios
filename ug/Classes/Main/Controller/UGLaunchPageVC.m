@@ -12,10 +12,8 @@
 
 #import <SafariServices/SafariServices.h>
 
-#ifdef isYSAPP  // 原生APP时才引用热更新文件
 #import "ReactNativeHelper.h"
 #import "JSPatchHelper.h"
-#endif
 
 
 @interface LaunchPageModel : UGModel
@@ -27,6 +25,16 @@
 
 
 
+
+@interface UGLaunchPageVC ()
+@property (nonatomic, assign) BOOL waitPic;         /**<   ⌛️等静态启动图播放完 */
+@property (nonatomic, assign) BOOL waitGif;         /**<   ⌛️等Git启动图播放完 */
+@property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
+@property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
+@property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
+@end
+
+
 @implementation UGLaunchPageVC
 
 - (void)viewDidLoad {
@@ -34,31 +42,86 @@
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
     
-#ifdef isYSAPP // 原生APP时才使用热更新
-//    if (APP.isFish) {
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        btn.backgroundColor = APP.NavigationBarColor;
-//        btn.frame = CGRectMake(100, 200, 200, 200);
-//        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//            RnPageModel *rpm = [RnPageModel new];
-//            rpm.vcName = @"UGPromotionsController";
-//            [self presentViewController:[ReactNativeVC reactNativeWithRPM:rpm params:nil] animated:true completion:nil];
-//        }];
-//        [self.view addSubview:btn];
-//        return;
-//    }
-    
-    
+
+    // 加载初始配置
     {
-        // 初始化jsp
-        [JSPatchHelper install];
-        // 初始化rn
-        ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
-        [self addChildViewController:vc];
-        [self.view addSubview:vc.view];
+        _waitLanguage = true;
+        _waitGif = false;
+        _waitPic = true;
+        _waitReactNative = true;
+        _waitSysConf = true;
+        
+        [self loadReactNative];
+        [self loadSysConf];
+        [self loadLaunchImage];
+        [self loadLanguage];
     }
-#endif
     
+    // 显示超时提示
+    __weakSelf_(__self);
+    {
+        int timeout = 7; // ⌛️超时时间
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            __self.waitSysConf = false;
+            __self.waitReactNative = false;
+            __self.waitLanguage = false;
+        });
+    }
+    
+    // 等待所有初始配置加载完毕才进入主页
+    int minSecs = 3;   // ⌛️最少等待3秒
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(minSecs * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (1) {
+            [NSThread sleepForTimeInterval:0.2];
+            if (__self.waitReactNative) continue;
+            if (__self.waitSysConf) continue;
+            if (__self.waitPic) continue;
+            if (__self.waitGif) continue;
+            if (__self.waitLanguage) continue;
+            break;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+            APP.Window.rootViewController = [[UGTabbarController alloc] init];
+        });
+    });
+}
+
+- (void)initNetwork {
+    // 这段话是为了加载<SafariServices/SafariServices.h>库，不然打包后会无法联网（DEBUG可以是因为LogVC里面加载了）
+    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+    sf.view.backgroundColor = APP.BackgroundColor;
+}
+
+
+#pragma mark - 加载初始配置
+
+- (void)loadSysConf {
+    // 获取APP配置信息
+    __weakSelf_(__self);
+    void (^getSysConf)(void) = nil;
+    void (^__block __getSysConf)(void) = getSysConf = ^{
+        [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                UGSystemConfigModel.currentConfig = model.data;
+                [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+                    [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
+                }];
+                SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+                __self.waitSysConf = false;
+            } failure:^(id msg) {
+                if (__self.waitSysConf) {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        __getSysConf();
+                    });
+                }
+            }];
+        }];
+    };
+    getSysConf();
+}
+
+- (void)loadLaunchImage {
     // 下载新的启动图
     [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
         if (!err) {
@@ -70,12 +133,8 @@
             }
         }
     }];
-//    各组根据行政提供的面试者实际要求的薪资情况，重新调整下台湾初中高级薪资标准
-    // 加载旧的启动图
-    CGFloat maxSecs = 7;    // ⌛️获取系统配置超时的等待时间
-    CGFloat minSecs = 3;    // ⌛️最少等3秒
-    __block BOOL __waitGif = false; // ⌛️等待gif播放完
-    __block CGFloat __waitSecs = maxSecs;
+    
+    __weakSelf_(__self);
     {
         SDAnimatedImageView *imageView = [SDAnimatedImageView new];
         imageView.backgroundColor = [UIColor whiteColor];
@@ -96,15 +155,20 @@
         
         // 加载图片
         __weak_Obj_(imageView, __imageView);
+        __block UIImage *__image = nil;
         void (^showPics)(void) = nil;
         void (^__block __nextPic)(void) = showPics = ^{
             NSString *pic = pics.firstObject;
             [pics removeObject:pic];
             [__imageView sd_setImageWithURL:[NSURL URLWithString:pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                __waitSecs = MAX(__waitSecs, pics.count ? 2 : 1);// 图片加载成功后最少显示1秒
-                __waitGif = image.sd_isAnimated;    // 等待gif播放完
+                __image = image;
+                __self.waitPic = true;
+                __self.waitGif = image.sd_isAnimated;    // 等待gif播放完
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(pics.count ? 2 : 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if (__image == image) __self.waitPic = false;
+                });
                 
-                if (pics.count && !__waitGif) {
+                if (pics.count && !__self.waitGif) {
                     // 如果是静态图则1秒后显示下一张图片
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         __nextPic();
@@ -116,7 +180,7 @@
         // 如果是gif图则播放完后显示下一张图片
         [__imageView xw_addObserverBlockForKeyPath:@"currentLoopCount" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             if ([newVal intValue] >= 1) {
-                __waitGif = false;
+                __self.waitGif = false;
                 if (pics.count) {
                     __nextPic();
                 }
@@ -124,54 +188,75 @@
         }];
         showPics();
     }
+}
+
+- (void)loadLanguage {
+    // 下载语言包
+    __weakSelf_(__self);
+    void (^getLanguagePackage)(NSString *lanCode) = nil;
+    void (^__block __getLanguagePackage)(NSString *lanCode) = getLanguagePackage = ^(NSString *lanCode) {
+        [NetworkManager1 language_getLanguagePackage:lanCode].completionBlock = ^(CCSessionModel *sm) {
+            sm.noShowErrorHUD = true;
+            if (!sm.error) {
+                NSArray <NSDictionary *>*package = sm.responseObject[@"data"][@"package"];
+                NSMutableDictionary *kvs = @{}.mutableCopy;
+                for (NSDictionary *dict in package) {
+                    kvs[dict[@"key"]] = dict[@"value"];
+                }
+                [[LanguageHelper shared] save:kvs lanCode:lanCode];
+                __self.waitLanguage = false;
+            } else if (__self.waitLanguage) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    __getLanguagePackage(lanCode);
+                });
+            }
+        };
+    };
     
-    // 检查是否强制更新
-    __block HotVersionModel *__forceUpdateVersion = nil; // 强制更新的版本
-    [JSPatchHelper checkUpdate:@"9999" completion:^(NSError *err, HotVersionModel *hvm) {
-        if (hvm.is_force_update) {
-            __forceUpdateVersion = hvm;
-        }
-        // 获取APP配置信息
-        [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-            [CMResult processWithResult:model success:^{
-                UGSystemConfigModel.currentConfig = model.data;
-                [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-                    [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
-                }];
-                SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
-            } failure:nil];
-           
-            // 如果很快拿到数据，就等足3秒就再去主页
-            __waitSecs -= MAX(maxSecs-minSecs, 0);
+    // 获取当前语言配置
+    void (^getConfigs)(void) = nil;
+    void (^__block __getConfigs)(void) = getConfigs = ^{
+        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
+            sm.noShowErrorHUD = true;
+            if (!sm.error) {
+                NSString *lanCode = [[LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]] getLanCode];
+                [[LanguageHelper shared] setLanCode:lanCode];
+                __self.waitLanguage = ![LanguageHelper shared].kvs.count;
+                
+                getLanguagePackage(lanCode);
+            } else if (__self.waitLanguage) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    __getConfigs();
+                });
+            }
+        };
+    };
+    getConfigs();
+}
+
+- (void)loadReactNative {
+    // 初始化jsp
+    [JSPatchHelper install];
+    // 初始化rn
+    ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+    
+    __weakSelf_(__self);
+    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        [JSPatchHelper waitUpdateFinish:^{
+            __self.waitReactNative = false;
         }];
     }];
     
-    // 等Gif启动图显示完毕，获取系统配置完毕后才进入主页
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        while (1) {
-            [NSThread sleepForTimeInterval:0.2];
-            __waitSecs -= 0.2;
-            if (__waitGif || __waitSecs > 0) {
-                continue;
-            }
-            break;
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // 若强制更新则去rn更新页面
-            if (__forceUpdateVersion) {
-                APP.Window.rootViewController = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:@{@"hvm":__forceUpdateVersion}];
-            } else {
-                APP.Window.rootViewController = [[UGTabbarController alloc] init];
-            }
-        });
-    });
-}
-
-- (void)initNetwork {
-    // 这段话是为了加载<SafariServices/SafariServices.h>库，不然打包后会无法联网（DEBUG可以是因为LogVC里面加载了）
-    SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
-    sf.view.backgroundColor = APP.BackgroundColor;
-    
+    // 检查是否强制更新
+//    __weakSelf_(__self);
+//    __block HotVersionModel *__forceUpdateVersion = nil; // 强制更新的版本
+//    [JSPatchHelper checkUpdate:@"9999" completion:^(NSError *err, HotVersionModel *hvm) {
+//        if (hvm.is_force_update) {
+//            __forceUpdateVersion = hvm;
+//        }
+//    }];
 }
 
 @end

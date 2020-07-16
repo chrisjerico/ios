@@ -43,9 +43,9 @@ class ContactsVC: BaseVC {
 		
 		let sortedItems = items.map { array in
 			return array.sorted { (arg0, arg1) -> Bool in
-				let thisHead = ((arg0.type == 1 ? arg0.roomName : arg0.nickname) as NSString).x.firstPinyinHead() as String
-				let thatHead = ((arg0.type == 1 ? arg0.roomName : arg0.nickname) as NSString).x.firstPinyinHead() as String
-				return thisHead.unicodeScalars.first!.value > thatHead.unicodeScalars.first!.value
+				let thisHead = ((arg0.type == 1 ? arg0.roomName : arg0.username) as NSString).x.firstPinyinHead() as String
+				let thatHead = ((arg1.type == 1 ? arg1.roomName : arg1.username) as NSString).x.firstPinyinHead() as String
+				return thisHead.unicodeScalars.first!.value < thatHead.unicodeScalars.first!.value
 			}
 		}
 		
@@ -63,9 +63,9 @@ class ContactsVC: BaseVC {
 				}
 				return true
 			}.reduce([SectionModel<String, UGConversationModel>]()) { (result, model) -> [SectionModel<String, UGConversationModel>] in
-				let thisHead = ((model.type == 1 ? model.roomName : model.nickname) as NSString).x.firstPinyinHead() as String
+				let thisHead = ((model.type == 1 ? model.roomName : model.username) as NSString).x.firstPinyinHead() as String
 				guard var previous = result.last, let previousModel = previous.items.last else { return [SectionModel(model: thisHead, items: [model])] }
-				let thatHead = ((previousModel.type == 1 ? previousModel.roomName : previousModel.nickname) as NSString).x.firstPinyinHead() as String
+				let thatHead = ((previousModel.type == 1 ? previousModel.roomName : previousModel.username) as NSString).x.firstPinyinHead() as String
 				var newResult = result
 				
 				if thisHead == thatHead {

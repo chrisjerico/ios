@@ -11,8 +11,7 @@
 #endif
 
 #import "BridgeJSCallInvoker.h"
-#import "CallInvoker.h"
-#import "MessageQueueThreadCallInvoker.h"
+#import "JSCallInvoker.h"
 #import "LongLivedObject.h"
 #import "TurboCxxModule.h"
 #import "TurboModule.h"

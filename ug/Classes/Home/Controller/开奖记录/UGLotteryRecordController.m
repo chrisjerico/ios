@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) YBPopupMenu *lotteryTypePopView;  /**<   彩种选择弹框 */
-@property (nonatomic, readonly) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;/**<   彩票大厅数据 */
 
 @property (nonatomic, strong) NSMutableArray <NSString *> *lowFrequencydateArray;   /**<   低频id数组 */
 
@@ -78,7 +78,10 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         [subLabel(@"期数label") setTextColor:[UIColor blackColor]];
     }
     
-    self.navigationItem.title = @"开奖记录";
+    if (!self.title) {
+        self.title = @"开奖记录";
+    }
+    
     [self.tableView setBackgroundColor:[UIColor clearColor]];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -102,7 +105,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
         void (^setupData)(void) = ^{
             for (UGAllNextIssueListModel *listModel in __self.lotteryGamesArray) {
                 for (UGNextIssueModel *model in listModel.list) {
-                    if ([@[@"7", @"11", @"9"] containsObject: model.gameId]) {
+                    if (model.isInstant) {
                         // bug fix: 52941 彩种：开奖记录中去掉秒秒彩类彩票。
                         continue;
                     }
@@ -168,7 +171,7 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
             self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
             [self.tableView reloadData];
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
     

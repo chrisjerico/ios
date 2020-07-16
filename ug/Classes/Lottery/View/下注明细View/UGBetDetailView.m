@@ -4,7 +4,7 @@
 //
 //  Created by ug on 2019/5/14.
 //  Copyright © 2019 ug. All rights reserved.
-//
+//  adfdadsf
 
 #import "UGBetDetailView.h"
 #import "UGBetDetailTableViewCell.h"
@@ -18,6 +18,7 @@
 #import "C001BetErrorCustomView.h"
 #import "CCNetworkRequests1+UG.h"
 #import "CMLabelCommon.h"
+#import "SGBrowserView.h"
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
     
     NSInteger count;  /**<   总注数*/
@@ -132,6 +133,15 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if (!self.dataArray.count) {
         [SVProgressHUD showInfoWithStatus:@"投注信息有误"];
     }
+    
+    if (SysConf.chaseNumber  == 1) {//追号开关  默认关
+        NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:self.betArray];
+        [CMCommon saveLastGengHao:dicArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
+        [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"resetGengHaoBtn" object:nil userInfo:nil]];
+    }
+
+    
+    
     float totalAmount = 0.0;
     NSInteger totalNum = 0;
     for (UGBetModel *model in self.betArray) {
@@ -183,6 +193,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+
     NSDictionary *dict = @{
         @"token":[UGUserModel currentUser].sessid,
         @"gameId":self.nextIssueModel.gameId,
@@ -198,14 +209,28 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         NSString *money = [NSString stringWithFormat:@"betBean[%d][money]",i];
         NSString *betInfo = [NSString stringWithFormat:@"betBean[%d][betInfo]",i];
         NSString *playIds = [NSString stringWithFormat:@"betBean[%d][playIds]",i];
+        NSString *odds = [NSString stringWithFormat:@"betBean[%d][odds]",i];
         UGBetModel *bet = self.betArray[i];
         [mutDict setValue:bet.playId forKey:playId];
         [mutDict setValue: [NSString stringWithFormat:@"%.2f", [bet.money floatValue]]  forKey:money];
         [mutDict setObject:bet.betInfo.length ? bet.betInfo : @"" forKey:betInfo];
         [mutDict setObject:bet.playIds.length ? bet.playIds : @"" forKey:playIds];
+//        [mutDict setObject:bet.money.length ? bet.money : @"" forKey:money];
+        [mutDict setObject:bet.odds.length ? bet.odds : @"" forKey:odds];
         
     }
     
+    if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
+        float f =  [[Global getInstanse] rebate] *100;//拉條值為 4.5% , 則傳入 4.5
+        NSLog(@"rebate = %f",f);
+        NSString *strValue=[NSString stringWithFormat:@"%0.2f", f];
+        
+        [mutDict setValue:strValue  forKey:@"activeReturnCoinRatio"];
+    }
+    
+    
+    [mutDict setValue:[NSNumber numberWithBool:self.nextIssueModel.isInstant]  forKey:@"isInstant"];
+      HJSonLog(@"mutDict = %@",mutDict);
     [self submitBet:mutDict];
     
 }
@@ -230,7 +255,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             
             
             // 秒秒彩系列（即时开奖无需等待）
-            if ([@[@"7", @"11", @"9"] containsObject:self.nextIssueModel.gameId]) {
+            if (self.nextIssueModel.isInstant) {
                 BOOL showSecondLine = [@[@"11"] containsObject:self.nextIssueModel.gameId]; // 六合秒秒彩
                 UGBetDetailModel *mod = (UGBetDetailModel *)model.data;
                 mod.gameId = self.nextIssueModel.gameId;
@@ -464,11 +489,14 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     {//其他数据
         NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+        betModel.displayNumber = self.nextIssueModel.displayNumber;
         betModel.gameName = self.nextIssueModel.title;
         betModel.gameId = self.nextIssueModel.gameId;
         betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
         betModel.totalMoney = amount;
         betModel.turnNum = self.nextIssueModel.curIssue;
+   
+       
         NSInteger timeInt =  [CMTimeCommon timeSwitchTimestamp:self.nextIssueModel.curCloseTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
         NSLog(@"time = %ld",(long)timeInt);
         betModel.ftime = [NSString stringWithFormat:@"%ld",(long)timeInt];
@@ -561,11 +589,20 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         bet.playId = model.playId;
         bet.title = model.title;
         bet.name = model.name;
-        bet.odds = model.odds;
+        
+        if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
+            bet.odds = [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [model.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+        } else {
+            bet.odds = model.odds;
+        }
+        
         bet.alias = model.alias;
         bet.typeName = model.typeName;
         bet.betInfo = model.betInfo;
         if ([@"自选不中" isEqualToString:model.title]) {
+            bet.betInfo = model.name;
+        }
+        if ([@"官方玩法" isEqualToString:model.title]) {
             bet.betInfo = model.name;
         }
         [array addObject:bet];
@@ -627,6 +664,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     for (int i = 0; i < array.count; i++) {
         UGBetModel *temp = array[i];
         if ([@"直选" isEqualToString:temp.typeName]) {
+            break;
+        }
+        if ([@"一字定位" isEqualToString:temp.typeName]||[@"二字定位" isEqualToString:temp.typeName]||[@"三字定位" isEqualToString:temp.typeName]) {
             break;
         }
         NSMutableString *str = [[NSMutableString alloc] init];
@@ -697,11 +737,16 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     }];
     
     [self updateTotalLabelText];
-    if ([@[@"7", @"11", @"9"] containsObject: self.nextIssueModel.gameId]) {
+    if (self.nextIssueModel.isInstant) {
         [self.closeTimeLabel setHidden:true] ;
         self.titleLabel.text = [NSString stringWithFormat:@"%@ 下注明细", nextIssueModel.title];
     } else {
-        self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
+        if (![CMCommon stringIsNull:nextIssueModel.displayNumber]) {
+            self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.displayNumber,nextIssueModel.title];
+        } else {
+            self.titleLabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
+        }
+        
     }
 }
 
@@ -852,6 +897,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
+//     [SGBrowserView hide];
 }
 
 - (UITableView *)tableView {

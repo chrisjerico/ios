@@ -10,6 +10,7 @@
 
 FOUNDATION_EXTERN NSString *UGNotificationTryPlay;                  // 免费试玩
 FOUNDATION_EXTERN NSString *UGNotificationLoginComplete;            // 登录成功
+FOUNDATION_EXTERN NSString *UGNotificationRegisterComplete;         // 注册成功
 FOUNDATION_EXTERN NSString *UGNotificationloginCancel;              // 取消登录
 FOUNDATION_EXTERN NSString *UGNotificationShowLoginView;            // 去登录
 FOUNDATION_EXTERN NSString *UGNotificationUserLogout;               // 退出登录

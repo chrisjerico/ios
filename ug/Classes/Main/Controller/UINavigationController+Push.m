@@ -27,7 +27,7 @@
 #import "UGPromotionsController.h"               // 模板优惠专区
 #import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
-#import "UGMailBoxTableViewController.h"         // 站内信
+#import "MailBoxTableViewController.h"         // 站内信
 #import "UGSigInCodeViewController.h"            // 每日签到
 #import "SLWebViewController.h"
 #import "UGSecurityCenterViewController.h"  // 安全中心
@@ -95,7 +95,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":[NSString stringWithFormat:@"%ld",(long)game.subId],
-                             @"game":game.gameCode
+//                             @"game":game.gameCode
                              };
     [SVProgressHUD showWithStatus:nil];
     [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -155,7 +155,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
 
     // 去彩票下注页、或第三方游戏页、或功能页
-    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId];
+    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:model.seriesId linkPosition:model.subId gameCode:model.gameCode];
     
     if (!ret) {
         // 去外部链接
@@ -173,6 +173,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
 - (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)model {
+    
+    
+    if (!model) {
+        model = [CMCommon getBetAndChatModel:model];
+    }
+    
     NSDictionary *dict = @{@"cqssc" :@"UGSSCLotteryController",     // 重庆时时彩
                            @"pk10"  :@"UGBJPK10LotteryController",  // pk10
                            @"xyft"  :@"UGBJPK10LotteryController",  // 幸运飞艇
@@ -186,6 +192,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                            @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
                            @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                            @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
+                           @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
     };
     
     NSString *vcName = dict[model.gameType];
@@ -193,67 +200,85 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         return false;
     }
     
-    // 去（彩票下注+聊天室）集合页
-    {
-        LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
+   
+//    if ([CMCommon getRoomMode:model.gameId]) {
+        return [self goLotteryBetAndChatVC:model];
+//    } else {
+//        return [self goUGCommonLotteryController:model vcName:vcName];
+//    }
+   
+}
 
-       
-        vc.nim = model;
-//        if (vc.navigationController.viewControllers.count > 1){
-                  // 隐藏底部条
-            vc.hidesBottomBarWhenPushed = YES;
-//        }
-//        else{
-//            vc.hidesBottomBarWhenPushed = NO;
-//        }
-        // Push
-        if ([UGTabbarController canPushToViewController:vc]) {
-            [NavController1 setViewControllers:({
-                NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
-                for (UIViewController *vc in NavController1.viewControllers) {
-                    if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
-                        [vcs removeObject:vc];
+ // 去（彩票下注+聊天室）集合页
+-(BOOL)goLotteryBetAndChatVC:(UGNextIssueModel *)model {
+     // 去（彩票下注+聊天室）集合页
+        {
+            LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
+
+           
+            vc.nim = model;
+    //        if (vc.navigationController.viewControllers.count > 1){
+                      // 隐藏底部条
+                vc.hidesBottomBarWhenPushed = YES;
+    //        }
+    //        else{
+    //            vc.hidesBottomBarWhenPushed = NO;
+    //        }
+            // Push
+            if ([UGTabbarController canPushToViewController:vc]) {
+                [NavController1 setViewControllers:({
+                    NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+                    for (UIViewController *vc in NavController1.viewControllers) {
+                        if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
+                            [vcs removeObject:vc];
+                        }
                     }
-                }
-                [vcs addObject:vc];
-                vcs;
-            }) animated:YES];
+                    [vcs addObject:vc];
+                    vcs;
+                }) animated:YES];
+            }
+            return true;
         }
-        return true;
-    }
-    
+}
+
+ // 去（彩票下注页
+-(BOOL )goUGCommonLotteryController:(UGNextIssueModel *)model vcName :(NSString *)vcName{
     // 去彩票下注页
-    {
-        UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
-        //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
-        if ([@[@"7", @"11", @"9"] containsObject:model.gameId]) {
-            vc.shoulHideHeader = true;
-        }
-        vc.nextIssueModel = model;
-        vc.gameId = model.gameId;
-        vc.gotoTabBlock = ^{
-            TabBarController1.selectedIndex = 0;
-        };
+       {
+           UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
+           //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+           if (model.isInstant) {
+               vc.shoulHideHeader = true;
+           }
+           vc.nextIssueModel = model;
+           vc.gameId = model.gameId;
+           vc.gotoTabBlock = ^{
+               TabBarController1.selectedIndex = 0;
+           };
 
 
-        // Push
-        if ([UGTabbarController canPushToViewController:vc]) {
-            [NavController1 setViewControllers:({
-                NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
-                for (UIViewController *vc in NavController1.viewControllers) {
-                    if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
-                        [vcs removeObject:vc];
-                    }
-                }
-                [vcs addObject:vc];
-                vcs;
-            }) animated:YES];
-        }
-        return true;
-    }
+           // Push
+           if ([UGTabbarController canPushToViewController:vc]) {
+               [NavController1 setViewControllers:({
+                   NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+                   for (UIViewController *vc in NavController1.viewControllers) {
+                       if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
+                           [vcs removeObject:vc];
+                       }
+                   }
+                   [vcs addObject:vc];
+                   vcs;
+               }) animated:YES];
+           }
+           return true;
+       }
 }
 
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
+    return [self pushViewControllerWithLinkCategory:linkCategory linkPosition:linkPosition gameCode:nil];
+}
+
+- (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition gameCode:(nullable NSString *)gameCode {
     if (!linkCategory) {
         return false;
     }
@@ -286,6 +311,64 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         // 去手机资料栏目
         
     }
+    if (linkCategory == 11) {
+        // 去注单信息
+        switch (linkPosition) {
+            case 1: {
+                // 彩票注单
+                [NavController1 pushViewController:[UGBetRecordViewController new] animated:YES];
+                break;
+            }
+            case 2: {
+                // 真人注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"real";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 3: {
+                // 棋牌注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"card";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 4: {
+                // 电子注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"game";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                
+                break;
+            }
+            case 5: {
+                // 体育注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"sport";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 6: {
+                // 体育注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"fish";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            case 7: {
+                // 电竞注单
+                UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+                betRecordVC.gameType = @"esport";
+                [NavController1 pushViewController:betRecordVC animated:YES];
+                break;
+            }
+            default: {
+                return false;
+            }
+        }
+        return true;
+    }
+
     
     if (linkCategory != 7) {
         // 去第三方游戏页面
@@ -293,7 +376,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
             return true;
         }
-        NSDictionary *params = @{@"token":UserI.sessid, @"id":@(linkPosition).stringValue};
+        NSDictionary *params = @{@"token":UserI.sessid,
+                                 @"id":@(linkPosition).stringValue,
+//                                 @"game":gameCode,
+        };
         [SVProgressHUD showWithStatus:nil];
         [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
@@ -331,7 +417,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 3: {
             // 聊天室
-            [NavController1 pushViewController:[UGChatViewController new] animated:YES];
+            UGChatViewController *vc = [[UGChatViewController alloc] init];
+            vc.showChangeRoomTitle = true;
+            vc.title = @"聊天室";
+            [NavController1 pushViewController:vc animated:YES];
             break;
         }
         case 4: {
@@ -466,7 +555,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 14: {
             // 站内信
-            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
+            [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
             break;
         }
         case 15: {
@@ -539,6 +628,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case UCI_开奖走势: {
             [HUDHelper showMsg:@"敬请期待"];
+            return true;
+        }
+        case UCI_开奖网: {
+            [CMCommon goSLWebUrl:lotteryUrl];
             return true;
         }
         case UCI_全民竞猜: {
@@ -617,7 +710,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_站内信: {
-            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+            [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:YES];
             return true;
         }
         case UCI_彩票注单记录: {

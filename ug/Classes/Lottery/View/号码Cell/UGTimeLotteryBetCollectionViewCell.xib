@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,8 +17,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="138" height="41"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总和大 1.995" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkb-Fx-aIw">
-                        <rect key="frame" x="28" y="12" width="82.5" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总和大 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkb-Fx-aIw" userLabel="表头">
+                        <rect key="frame" x="5" y="10.5" width="56" height="20"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.9999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78i-PI-oZ8" userLabel="数字">
+                        <rect key="frame" x="66" y="12" width="45" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -27,12 +33,15 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="78i-PI-oZ8" firstAttribute="leading" secondItem="gkb-Fx-aIw" secondAttribute="trailing" constant="5" id="0V3-ya-TwA"/>
                 <constraint firstItem="gkb-Fx-aIw" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="9dN-rL-V0Q"/>
-                <constraint firstItem="gkb-Fx-aIw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="gGb-Qn-JJ7"/>
+                <constraint firstItem="78i-PI-oZ8" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="R6w-66-inO"/>
+                <constraint firstItem="gkb-Fx-aIw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="vmh-cz-3Ov"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="138" height="41"/>
             <connections>
+                <outlet property="numberLB" destination="78i-PI-oZ8" id="LjC-6t-k0T"/>
                 <outlet property="titleLabel" destination="gkb-Fx-aIw" id="dwd-L2-616"/>
             </connections>
             <point key="canvasLocation" x="201.44927536231884" y="149.66517857142856"/>

@@ -213,7 +213,17 @@
         //        subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,CvB3zABB," containsString:pm.alias];
         
         [subLabel(@"标题Label") setHidden:isHidden];
+        
+        NSLog(@"pm.link =%@",pm.link);
+        
+
         [_lhPrizeView setHidden:NO];
+        if (![CMCommon stringIsNull:pm.link]) {
+           NSMutableDictionary*dic = [CMCommon yyUrlConversionParameter:pm.link];
+            NSLog(@"dic = %@",dic);
+            NSLog(@"id = %@",[dic objectForKey:@"id"]);
+            _lhPrizeView.gid = [dic objectForKey:@"id"];
+        }
         
         if (APP.isShowHornView) {
             [_lhHornView setHidden:NO];

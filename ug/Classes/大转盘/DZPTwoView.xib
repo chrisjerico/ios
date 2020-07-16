@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DZPTwoView">
+            <rect key="frame" x="0.0" y="0.0" width="314" height="262"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RmC-LH-TPM">
+                    <rect key="frame" x="0.0" y="0.0" width="314" height="262"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QOl-r2-R08">
+                            <rect key="frame" x="0.0" y="0.0" width="314" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="抽奖编号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EuP-aq-MCv">
+                                    <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="抽奖记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtC-tl-vXp">
+                                    <rect key="frame" x="157" y="0.0" width="157" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Joc-Pz-1si"/>
+                            </constraints>
+                        </stackView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3VU-Z9-Cpa">
+                            <rect key="frame" x="0.0" y="30" width="314" height="232"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="iTv-xt-qFb"/>
+                                <outlet property="delegate" destination="-1" id="8Fe-Me-ge2"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="3VU-Z9-Cpa" secondAttribute="trailing" id="B4z-e2-U9r"/>
+                        <constraint firstItem="3VU-Z9-Cpa" firstAttribute="top" secondItem="QOl-r2-R08" secondAttribute="bottom" id="TNi-cL-Wss"/>
+                        <constraint firstItem="QOl-r2-R08" firstAttribute="leading" secondItem="RmC-LH-TPM" secondAttribute="leading" id="lae-qr-w17"/>
+                        <constraint firstAttribute="bottom" secondItem="3VU-Z9-Cpa" secondAttribute="bottom" id="lre-0Y-Ygv"/>
+                        <constraint firstItem="QOl-r2-R08" firstAttribute="top" secondItem="RmC-LH-TPM" secondAttribute="top" id="pJk-En-CWg"/>
+                        <constraint firstAttribute="trailing" secondItem="QOl-r2-R08" secondAttribute="trailing" id="qRJ-xX-uPX"/>
+                        <constraint firstItem="3VU-Z9-Cpa" firstAttribute="leading" secondItem="RmC-LH-TPM" secondAttribute="leading" id="uNR-9W-pPO"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="RmC-LH-TPM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1JQ-DF-0Lt"/>
+                <constraint firstAttribute="bottom" secondItem="RmC-LH-TPM" secondAttribute="bottom" id="EaS-MU-joL"/>
+                <constraint firstItem="RmC-LH-TPM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="b2v-P2-cgP"/>
+                <constraint firstAttribute="trailing" secondItem="RmC-LH-TPM" secondAttribute="trailing" id="dHT-cW-Bl9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contentView" destination="RmC-LH-TPM" id="x9H-Df-3aq"/>
+                <outlet property="tableView" destination="3VU-Z9-Cpa" id="iDK-7j-5fX"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="106.47321428571428"/>
+        </view>
+    </objects>
+</document>

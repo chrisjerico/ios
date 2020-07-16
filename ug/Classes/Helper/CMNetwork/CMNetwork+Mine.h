@@ -60,6 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
 //写站内信
 + (void)writeMessageWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//刪除全部站內信
++ (void)deleteMsgAllWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
+
+//全部站內信全部已讀
++ (void)readMsgAllUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
+
 //反馈列表
 + (void)getFeedbackListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
@@ -235,6 +241,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //给下级会员充值接口-/team/recharge
 + (void)teamRechargeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//获取俸禄列表接口 c=task&a=getMissionBonusList
++ (void)getMissionBonusListUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//领取俸禄接口 c=task&a=sendMissionBonus   (参数bonsId 领取俸禄的id 前面列表会传过去)
++ (void)taskSendMissionBonusWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END

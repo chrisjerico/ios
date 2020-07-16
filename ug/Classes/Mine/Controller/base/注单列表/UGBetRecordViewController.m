@@ -45,7 +45,9 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"投注记录";
+    if (!self.title) {
+        self.title = @"投注记录";
+    }
     [self.view setBackgroundColor: Skin1.bgColor];
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         
@@ -207,6 +209,7 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     self.controllerIndex = number;
     if ([[self.itemArray objectAtIndex:number] isEqualToString:@"注单统计"]) {
         _detailVC.loadData = YES;
+        _selectIndex =(int ) number;
     } else {
         UGBetRecordTableViewController *recordVC = self.controllersArray[number];
         recordVC.loadData = YES;

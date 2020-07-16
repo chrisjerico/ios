@@ -20,9 +20,13 @@
 #import "MJExtension.h"
 #import "CCNetworkRequests2.h"
 #import "NSTask+Block.h"
+#import "NodeModulesFix.h"
+#import "ShellHelper.h"
 
 #import "SiteModel.h"
-#import "PathDefine.h"
+#import "GitModel.h"
+#import "ReactNativePack.h"
+#import "iOSPack.h"
 
 
 #endif /* PrefixHeader_pch */

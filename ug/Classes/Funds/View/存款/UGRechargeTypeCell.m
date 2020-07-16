@@ -20,53 +20,81 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [UIColor clearColor];
-    self.nameLabel.textColor = Skin1.textColor1;
+    if (APP.isBgColorForMoneyVC) {
+        self.backgroundColor  = Skin1.bgColor;
+        self.nameLabel.textColor = [UIColor whiteColor];
+    } else {
+//        self.backgroundColor = [UIColor clearColor];
+//        self.nameLabel.textColor = Skin1.textColor1;
+    }
+    
+    
 }
 
 - (void)setNameStr:(NSString *)nameStr {
     _nameStr = nameStr;
     self.nameLabel.text = nameStr;
-
-    self.nameLabel.attributedText = ({
-        NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[nameStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
-        // 替换文字颜色
-        NSAttributedString *as = [mas copy];
-        for (int i=0; i<as.length; i++) {
-            NSRange r = NSMakeRange(0, as.length);
-            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-            UIColor *c = dict[NSForegroundColorAttributeName];
-            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-                [mas addAttributes:dict range:NSMakeRange(i, 1)];
-            }
-        }
-        
-        NSLog(@"string = %@",mas.string);
-        
-        mas;
-    });
     
+     if (nameStr.isHtmlStr) {
+         self.nameLabel.attributedText = ({
+             NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[nameStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+             // 替换文字颜色
+             NSAttributedString *as = [mas copy];
+             for (int i=0; i<as.length; i++) {
+                 NSRange r = NSMakeRange(0, as.length);
+                 NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+                 UIColor *c = dict[NSForegroundColorAttributeName];
+                 if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                     if (APP.isBgColorForMoneyVC) {
+                         dict[NSForegroundColorAttributeName] = [UIColor whiteColor];
+                     } else {
+                         dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                     }
+                     
+                     [mas addAttributes:dict range:NSMakeRange(i, 1)];
+                 }
+             }
+             
+             NSLog(@"string = %@",mas.string);
+             
+             mas;
+         });
+     }
+     else{
+        [self.nameLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+     }
+
 }
 
 - (void)setTipStr:(NSString *)tipStr {
     
     _tipStr = tipStr;
-    self.tipLabel.attributedText = ({
-        NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[tipStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
-        // 替换文字颜色
-        NSAttributedString *as = [mas copy];
-        for (int i=0; i<as.length; i++) {
-            NSRange r = NSMakeRange(0, as.length);
-            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-            UIColor *c = dict[NSForegroundColorAttributeName];
-            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+    self.tipLabel.text = tipStr;
+    if (tipStr.isHtmlStr) {
+            self.tipLabel.attributedText = ({
+            NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[tipStr dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+            // 替换文字颜色
+            NSAttributedString *as = [mas copy];
+            for (int i=0; i<as.length; i++) {
+                NSRange r = NSMakeRange(0, as.length);
+                NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+                UIColor *c = dict[NSForegroundColorAttributeName];
+                if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                    if (APP.isBgColorForMoneyVC) {
+                        dict[NSForegroundColorAttributeName] = [UIColor whiteColor];
+                    } else {
+                        dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                    }
+                    [mas addAttributes:dict range:NSMakeRange(i, 1)];
+                }
             }
-        }
-        mas;
-    });
+            mas;
+        });
+        
+    } else {
+        [self.tipLabel setTextColor:RGBA(47, 156, 243, 1)];
+    }
+
 }
 
 - (void)setHeaderImageStr:(NSString *)headerImageStr {
@@ -104,6 +132,7 @@
         
         @"tenpay_online"            :@"yunshanfu",      // 云闪付在线支付
         @"yunshanfu_transfer"       :@"yunshanfu",      // 云闪付
+        @"ysf_transfer"            :@"yunshanfu",      // 云闪付在线支付
         
         @"qq_online"                :@"qq_online",      // QQ钱包在线支付
         @"qqpay_transfer"           :@"qq_online",      // QQ钱包转账

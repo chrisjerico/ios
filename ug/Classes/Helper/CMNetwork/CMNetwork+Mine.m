@@ -276,6 +276,38 @@
     
 }
 
+//刪除全部站內信
++ (void)deleteMsgAllWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[deleteMsgAllUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+    
+}
+
+//全部站內信全部已讀
++ (void)readMsgAllUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[readMsgAllUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+    
+}
+
+
+
 //反馈列表
 + (void)getFeedbackListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
@@ -1085,5 +1117,32 @@
 }
 
 
+//获取俸禄列表接口（不需要参数） c=task&a=getMissionBonusList
++ (void)getMissionBonusListUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[getMissionBonusListUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultArrayClassMake(UGSignInHistoryModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+
+//领取俸禄接口 c=task&a=sendMissionBonus   (参数bonsId 领取俸禄的id 前面列表会传过去)
++ (void)taskSendMissionBonusWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[taskSendMissionBonusUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
 

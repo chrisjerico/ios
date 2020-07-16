@@ -74,14 +74,13 @@ pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreac
 pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
 pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
 pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
-pod 'ReactCommon/callinvoker', :path => "../node_modules/react-native/ReactCommon"
+pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
 pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
 pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 
 pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
 pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
 pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
   use_native_modules!
 
 
@@ -115,6 +114,7 @@ pod 'BAWKWebView'  #web浏览器
 pod 'SGQRCode', '~> 3.0.1'  #二维码生成与扫描
 pod 'STPickerView', '2.4' # 一个多功能的选择器,有城市选择，日期选择和单数组源自定的功能
 pod 'BRPickerView'        #BRPickerView 封装的是iOS中常用的选择器组件，主要包括：日期选择器、时间选择器、地址选择器、自定义字符串选择器。高度封装，提供了两种使用方式，支持自定义主题样式，适配深色模式。
+pod 'XYYSegmentControl', '~> 1.4.0'
 
 
 # fish新增
@@ -160,6 +160,49 @@ pod 'SwiftGifOrigin', '~> 1.7.0'
 pod 'TZImagePickerController', '~> 3.2.8'
 pod 'RxOptional', '~> 4.1.0'
 pod 'SVGKit', '~> 3.0.0-beta3'
+
+
+
+# jspatch
+pod 'JSPatch', :path => "JSPatch/JSPatch.podspec"
+pod 'SSZipArchive'  # 加/解压缩
+
+
+# rn
+
+pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
+pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
+pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
+pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
+pod 'React', :path => '../node_modules/react-native/'
+pod 'React-Core', :path => '../node_modules/react-native/'
+pod 'React-CoreModules', :path => '../node_modules/react-native/React/CoreModules'
+pod 'React-Core/DevSupport', :path => '../node_modules/react-native/'
+pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
+pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
+pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
+pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
+pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
+pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
+pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
+pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
+
+pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
+pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
+pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
+pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
+pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
+pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
+pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+
+pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+  use_native_modules!
+
 end
 
 

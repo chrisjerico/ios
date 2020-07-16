@@ -39,6 +39,8 @@
 + (UIColor *)getPcddNumColor:(NSString *)num;
 
 + (UIColor *)getPreNumColor:(NSString *)num;
+//大乐透颜色，前5 红，后2蓝
++ (NSString *)getDLTColor:(NSInteger )num ;
 
 + (UIColor *)getHKLotteryNumColor:(NSString *)num;
 
@@ -363,4 +365,88 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(NSString * )switchNumber:(int )number;
+
+
+/**
+ *  读取本地JSON文件
+ *
+ */
++ (NSDictionary *)readLocalFileWithName:(NSString *)name;
+
+/**
+* 计算新的赔率，公式： 新賠率 = 原始賠率 - ( 原始賠率無條件進位至整數位 * 退水)，
+* 如 退水是 0.4% 就应该是 0.0004，公式就是：48.8 - （49 * 0.0004）= 新赔率
+*
+* ogOdds: 原始賠率
+* rebate: 退水
+*/
++(float )newOgOdds:(float)ogOdds rebate:(float)rebate;
+
+/**
+* 判断该彩种是否绑定聊天室没
+*
+*/
++(BOOL )getRoomMode:(NSString *)gameId;
+
+/**
+* 当传入nim 为空时，各个站点默认的彩种
+*
+*/
++(UGNextIssueModel * )getBetAndChatModel:(UGNextIssueModel *)nim;
+
+
+/**
+* webView 内部url 统一跳转
+*
+*/
++(void)goVCWithUrl:(NSString *)url;
+
+/**
+*删除本地保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoom;
+
+
+/**
+*本地保存的最后一次选择的房间
+*
+*/
+
++(NSDictionary *)LastRoom;
+/**
+*本地i是否保存的最后一次选择的房间
+*
+*/
++(BOOL )hasLastRoom;
+
+/**
+*  判断本地最后一次房间是否在网络房间列表中，没有删除保存的最后一次选择的房间
+*
+*/
++(void)removeLastRoomAction:(NSMutableArray *)chatIdAry;
+
+/**
+*删除本地保存的最后一次跟号信息
+*
+*/
++(void)removeLastGengHao;
+/**
+*本地保存的最后一次跟号信息
+*
+*/
+
++(NSDictionary *)LastGengHao;
+
+/**
+*若之前未有投注，或上一注与当前计划投注的彩种不一致，则“追号”按钮为禁用状态。
+*
+*/
++(BOOL )hasGengHao:(NSString *)mgameId;
+
+/**
+*保存本地保存的最后一次跟号信息
+*
+*/
++(void)saveLastGengHao:(NSMutableArray *)array gameId:(NSString  *)gameId selCode:(NSString *)selCode;
 @end

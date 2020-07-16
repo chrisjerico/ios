@@ -91,7 +91,7 @@ struct MomentsModel: Mappable {
 	var bet_info: BetModel?
 	var comment_list = [MomentsCommentModel]()
 	var like_list = [MomentsLikesModel]()
-
+	var is_follow = false
 	
 	init?(map: Map) {
 		
@@ -114,7 +114,7 @@ struct MomentsModel: Mappable {
 		view_num <- map["view_num"]
 		comment_list <- map["comment_list"]
 		like_list <- map["like_list"]
-
+		is_follow <- map["is_follow"]
 	}
 	func isLiked() -> Bool { like_list.map { $0.uid }.contains(Int(App.user.userId)) }
 	func isSelf() -> Bool { uid == App.user.userId }

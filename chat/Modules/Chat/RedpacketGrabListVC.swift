@@ -37,7 +37,7 @@ class RedpacketGrabListVC: BaseVC {
 		path.addLine(to: CGPoint(x: App.width, y: 0))
 		path.addLine(to: CGPoint(x: App.width, y: startY))
 		path.addArc(withCenter: CGPoint(x: App.width/2, y: startY - CGFloat(distanceY)), radius: CGFloat(radius), startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: true)
-		UIColor(hex: "#f7213a").setFill()
+		UIColor(hex: "#E16754").setFill()
 		path.fill()
 		
 		return UIImageView(image: UIGraphicsGetImageFromCurrentImageContext())
@@ -67,6 +67,7 @@ class RedpacketGrabListVC: BaseVC {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		view.backgroundColor = .white
 		let rightItem = UIBarButtonItem(image: UIImage(named: "close_white")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: nil)
 		navigationItem.rightBarButtonItem = rightItem
 		
@@ -76,7 +77,7 @@ class RedpacketGrabListVC: BaseVC {
 		
 		setupSubView()
 		
-		navigationController?.navigationBar.setBackgroundImage(UIImage(color: UIColor(hex: "#f7213a"), size: CGSize(width: 1, height: 1)), for: UIBarMetrics.default)
+		navigationController?.navigationBar.setBackgroundImage(UIImage(color: UIColor(hex: "#E16754"), size: CGSize(width: 1, height: 1)), for: UIBarMetrics.default)
 		navigationController?.navigationBar.shadowImage = UIImage()
 		let titleLabel = UILabel()
 		titleLabel.attributedText = "红包详情".mutableAttributedString().x.color(.white).x.font(.boldSystemFont(ofSize: 17))

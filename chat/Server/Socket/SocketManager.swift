@@ -22,7 +22,7 @@ public class SocketManager: NSObject {
 			return nil
 		}
 		let user = UGUserModel.currentUser()
-		let url: URL = URL(string: "ws://test03.6yc.com:811?loginsessid=\(user.sessid)&logintoken=\(user.token)&channel=2&isReload=\(isReload)&isSelectRoom=0")!
+		let url: URL = URL(string: "ws://154.83.23.68:811?loginsessid=\(user.sessid)&logintoken=\(user.token)&channel=2&isReload=\(isReload)&isSelectRoom=0")!
 		let socket: WebSocket = WebSocket(url: url)
 		return socket
 	}
@@ -129,6 +129,8 @@ extension SocketManager: WebSocketDelegate {
 			MessageManager.shared.newError.accept(dic)
 		case 1:
 			MessageManager.shared.newMessage.accept(dic)
+		case 0888:
+			MessageManager.shared.newLotteryWin.accept(dic)
 		default:
 			MessageManager.shared.newNotification.accept(dic)
 		}

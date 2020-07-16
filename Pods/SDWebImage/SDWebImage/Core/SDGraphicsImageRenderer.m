@@ -69,8 +69,6 @@
 #endif
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (SDGraphicsImageRendererFormatRange)preferredRange {
 #if SD_UIKIT
     if (@available(iOS 10.0, tvOS 10.10, *)) {
@@ -116,7 +114,6 @@
     _preferredRange = preferredRange;
 #endif
 }
-#pragma clang diagnostic pop
 
 - (instancetype)init {
     self = [super init];

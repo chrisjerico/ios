@@ -1,6 +1,6 @@
 // Software License Agreement (BSD License)
 //
-// Copyright (c) 2010-2020, Deusty, LLC
+// Copyright (c) 2010-2019, Deusty, LLC
 // All rights reserved.
 //
 // Redistribution and use of this software in source and binary forms,
@@ -62,10 +62,6 @@ static DDASLLogger *sharedInstance;
     return self;
 }
 
-- (DDLoggerName)loggerName {
-    return DDLoggerNameASL;
-}
-
 - (void)logMessage:(DDLogMessage *)logMessage {
     // Skip captured log messages
     if ([logMessage->_fileName isEqualToString:@"DDASLLogCapture"]) {
@@ -118,6 +114,10 @@ static DDASLLogger *sharedInstance;
         }
         //TODO handle asl_* failures non-silently?
     }
+}
+
+- (DDLoggerName)loggerName {
+    return DDLoggerNameASL;
 }
 
 @end

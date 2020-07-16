@@ -1,6 +1,6 @@
 // Software License Agreement (BSD License)
 //
-// Copyright (c) 2010-2020, Deusty, LLC
+// Copyright (c) 2010-2019, Deusty, LLC
 // All rights reserved.
 //
 // Redistribution and use of this software in source and binary forms,
@@ -21,8 +21,6 @@
 #endif
 
 #import <CocoaLumberjack/DDLog.h>
-
-NS_ASSUME_NONNULL_BEGIN
 
 // Custom key set on messages sent to ASL
 extern const char* const kDDASLKeyDDLog;
@@ -51,7 +49,7 @@ API_DEPRECATED("Use DDOSLogger instead", macosx(10.4,10.12), ios(2.0,10.0), watc
  *
  *  @return the shared instance
  */
-@property (nonatomic, class, readonly, strong) DDASLLogger *sharedInstance;
+@property (class, readonly, strong) DDASLLogger *sharedInstance;
 
 // Inherited from DDAbstractLogger
 
@@ -59,5 +57,3 @@ API_DEPRECATED("Use DDOSLogger instead", macosx(10.4,10.12), ios(2.0,10.0), watc
 // - (void)setLogFormatter:(id <DDLogFormatter>)formatter;
 
 @end
-
-NS_ASSUME_NONNULL_END

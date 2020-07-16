@@ -18,7 +18,7 @@
 #import "UGLotteryRecordController.h"       // 开奖记录
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGSecurityCenterViewController.h"  // 安全中心
-#import "UGMailBoxTableViewController.h"    // 站内信
+#import "MailBoxTableViewController.h"    // 站内信
 #import "UGBankCardInfoController.h"        // 我的银行卡
 #import "UGBindCardViewController.h"        // 银行卡管理
 #import "UGYubaoViewController.h"           // 利息宝
@@ -30,6 +30,8 @@
 #import "LotteryBetAndChatVC.h"             // 聊天室
 #import "OnlineServiceViewController.h"     // 在线客服
 #import "UGBetRecordViewController.h"       // 未结算
+#import "UGMosaicGoldViewController.h"      // 活动彩金
+
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -93,6 +95,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"menu-activity",          @"menu-activity",       @"menu-activity",           UCI_全民竞猜,      @"全民竞猜"),
             item(@"kj_trend",               @"kj_trend",            @"kj_trend",                UCI_开奖走势,      @"开奖走势"),
             item(@"usrCenter_qq",           @"usrCenter_qq",        @"usrCenter_qq",            UCI_QQ客服,        @"QQ客服"),
+            item(@"center_kaijiang",        @"center_kaijiang",     @"center_kaijiang",         UCI_开奖网,        @"开奖网"),
         ];
     });
     return _items;
@@ -151,7 +154,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,        @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,         @"任务中心"),
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,            @"签到"),
-            item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.className,         MM_站内信,           @"站内信"),
+            item(@"/message",           @"zhanneixin",                  MailBoxTableViewController.className,         MM_站内信,           @"站内信"),
             item(@"/activity",          @"youhui1",                     UGPromotionsController.className,               MM_优惠活动_默认,     @"优惠活动"),
             item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,           @"聊天室"),
             item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,         @"推广收益"),
@@ -161,6 +164,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,           @"利息宝"),
             item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,          MM_在线客服,          @"在线客服"),
             item(@"/notSettle",         @"tzjl",                        UGBetRecordViewController.className,            MM_未结算,            @"未结算"),
+            item(@"/winApply",         @"shenqing",                     UGMosaicGoldViewController.className,            MM_优惠申请,          @"优惠申请"),
         ].mutableCopy;
         
         UGMobileMenu * itemLine;
@@ -220,6 +224,10 @@ UGSystemConfigModel *currentConfig = nil;
     return _type;
 }
 - (NSString *)clsName {
+    RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
+    if (rpm) {
+        return ReactNativeVC.className;
+    }
     if (_status) {
         return @"LHStayTunedVC";
     }

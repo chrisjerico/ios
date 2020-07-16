@@ -12,6 +12,7 @@
 #import "UGContentMoneyCollectionViewCell.h"
 #import "OpenUDID.h"
 
+#import "UGMosaicGoldViewController.h"
 #define SCHorizontalMargin   5.0f
 #define SCVerticalMargin     5.0f
 
@@ -73,7 +74,7 @@
             [subTextField(@"验证码TextField") setTextColor:[UIColor whiteColor]];
             [subButton(@"关闭btn") setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
             subButton(@"关闭btn").layer.borderColor = [UIColor whiteColor].CGColor;
-
+            
         } else {
             [self setBackgroundColor:[UIColor whiteColor]];
             [subLabel(@"标题Label") setTextColor:[UIColor blackColor]];
@@ -84,7 +85,7 @@
             [subTextField(@"验证码TextField") setTextColor:[UIColor blackColor]];
             [subButton(@"关闭btn") setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             subButton(@"关闭btn").layer.borderColor = [UIColor blackColor].CGColor;
-
+            
         }
         [CMCommon textFieldSetPlaceholderLabelColor:RGBA(159, 166, 173, 1) TextField:subTextField(@"验证码TextField")];
         [CMCommon textFieldSetPlaceholderLabelColor:RGBA(159, 166, 173, 1) TextField:subTextField(@"金额TextField")];
@@ -128,6 +129,8 @@
 
 - (void)setItem:(UGMosaicGoldParamModel *)item {
     _item = item;
+    
+    NSLog(@"item=%@",item);
     _quickAmountArray = ({
         _quickAmountArray = [NSMutableArray new];
         for (int i = 1 ; i<=12; i++) {
@@ -141,11 +144,14 @@
     
     
     FastSubViewCode(self);
+    NSLog(@"item.showWinAmount=%d",item.showWinAmount);
     if (item.showWinAmount) {
+        subTextField(@"金额TextField").hidden = NO;
         subLabel(@"快捷金额Label").hidden = !_quickAmountArray.count;
         _collectionView.hidden = !_quickAmountArray.count;
     }
     else {
+        subTextField(@"金额TextField").hidden = YES;
         subLabel(@"快捷金额Label").hidden = true;
         _collectionView.hidden = true;
     }
@@ -157,28 +163,28 @@
     [self.webView loadHTMLString:[APP htmlStyleString:self.item.win_apply_content] baseURL:nil];
     
     
-//    NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, self.item.win_apply_content);
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
-//        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-//        ps.lineSpacing = 5;
-//        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
-//
-//        // 替换文字颜色
-//        NSAttributedString *as = [mas copy];
-//        for (int i=0; i<as.length; i++) {
-//            NSRange r = NSMakeRange(0, as.length);
-//            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-//            UIColor *c = dict[NSForegroundColorAttributeName];
-//            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-//                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-//                [mas addAttributes:dict range:NSMakeRange(i, 1)];
-//            }
-//        }
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.webView loadHTMLString:mas baseURL:nil];
-//        });
-//    });
+    //    NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, self.item.win_apply_content);
+    //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    //        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
+    //        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+    //        ps.lineSpacing = 5;
+    //        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+    //
+    //        // 替换文字颜色
+    //        NSAttributedString *as = [mas copy];
+    //        for (int i=0; i<as.length; i++) {
+    //            NSRange r = NSMakeRange(0, as.length);
+    //            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+    //            UIColor *c = dict[NSForegroundColorAttributeName];
+    //            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+    //                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+    //                [mas addAttributes:dict range:NSMakeRange(i, 1)];
+    //            }
+    //        }
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //            [self.webView loadHTMLString:mas baseURL:nil];
+    //        });
+    //    });
 }
 
 - (void)show {
@@ -196,21 +202,33 @@
 
 
 #pragma mark - IBAction
+- (void)hiddenSelf {
 
+//    UIView *view = self;
+//    self.superview.backgroundColor = [UIColor clearColor];
+//    [view.superview removeFromSuperview];
+//    [view removeFromSuperview];
+    [SGBrowserView hide];
+}
 - (IBAction)close:(id)sender {
-    UIView *view = self;
-    self.superview.backgroundColor = [UIColor clearColor];
-    [view.superview removeFromSuperview];
-    [view removeFromSuperview];
+
+        [self hiddenSelf];
 }
 
+
+
 - (IBAction)okButtonClicked:(id)sender {
+
     FastSubViewCode(self);
     // 得到领取连续签到奖励数据
-    if ([CMCommon stringIsNull:subTextField(@"金额TextField").text]) {
-        [self makeToast:@"申请金额不能为空"];
-        return;
+    
+    if (!subTextField(@"金额TextField").hidden) {
+        if ([CMCommon stringIsNull:subTextField(@"金额TextField").text]) {
+            [self makeToast:@"申请金额不能为空"];
+            return;
+        }
     }
+    
     if ([CMCommon stringIsNull:_textView.text]) {
         [self makeToast:@"申请说明不能为空"];
         return;
@@ -221,28 +239,39 @@
     }
     
     NSString *pid = self.item.mid;
+    
     NSString *amount = [subTextField(@"金额TextField").text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *userComment = [_textView.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *imgCode = [subTextField(@"验证码TextField").text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"id":pid,
-                              @"amount":amount,
-                              @"userComment":userComment,
-                              @"imgCode":imgCode
-                             };
+    NSDictionary *params;
+    if (_item.showWinAmount) {
+        params = @{@"token":[UGUserModel currentUser].sessid,
+                   @"id":pid,
+                   @"amount":amount,
+                   @"userComment":userComment,
+                   @"imgCode":imgCode
+        };
+    } else {
+        params = @{@"token":[UGUserModel currentUser].sessid,
+                   @"id":pid,
+                   @"userComment":userComment,
+                   @"imgCode":imgCode
+        };
+    }
+    
     
     [SVProgressHUD showWithStatus:nil];
     //    WeakSelf;
     [CMNetwork activityApplyWinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-              dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                  [SVProgressHUD showSuccessWithStatus:model.msg];
-                  [self close:nil];
+            dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [SVProgressHUD showSuccessWithStatus:model.msg];
+                [self close:nil];
             });
-          
+            
             
         } failure:^(id msg) {
             
@@ -253,23 +282,23 @@
 }
 
 - (IBAction)imageButtonClicked:(id)sender {
-     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
-         return;
-     }
-     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                              @"accessToken":[OpenUDID value]
-                              };
-     
-     [CMNetwork getImgVcodeWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-         if (!err) {
-             NSData *data = (NSData *)model;
-             NSString *imageStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             imageStr = [imageStr substringFromIndex:22];
-             NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:imageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
-             UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
-             self.validationImageView.image = decodedImage;
-         }
-     }];
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"accessToken":[OpenUDID value]
+    };
+    
+    [CMNetwork getImgVcodeWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        if (!err) {
+            NSData *data = (NSData *)model;
+            NSString *imageStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            imageStr = [imageStr substringFromIndex:22];
+            NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:imageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
+            self.validationImageView.image = decodedImage;
+        }
+    }];
 }
 
 
@@ -313,26 +342,42 @@
 
 
 #pragma mark -- 拦截webview用户触击了一个链接
- 
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     //判断是否是单击
-    if (navigationType == UIWebViewNavigationTypeLinkClicked)
-    {
-        NSString *url = [request.URL absoluteString];
+        if (navigationType == UIWebViewNavigationTypeLinkClicked) {
 
-        //拦截链接跳转到货源圈的动态详情
-        if ([url rangeOfString:@"http"].location != NSNotFound)
-        {
-            //跳转到你想跳转的页面
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = url;
-            [NavController1 pushViewController:webViewVC animated:YES];
-            [self close:nil];
-            return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+            NSString *url = [request.URL absoluteString];
+            
+            //拦截链接跳转到货源圈的动态详情
+            if ([url rangeOfString:@"http"].location != NSNotFound)
+            {
+                //跳转到你想跳转的页面
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                webViewVC.url = url;
+                [NavController1 pushViewController:webViewVC animated:YES];
+                
+                [self close:self];
+                return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+            }
+            else{
+                if ([url containsString:@"?"]) {
+                    
+                    NSLog(@"url = %@",url);
+                    
+                    [CMCommon goVCWithUrl:url];
+                    
+                    [self close:self];
+                    return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+                    
+                }
+                
+            }
+
+            return NO;
         }
-    }
-    return YES;
+        return YES;
 }
 
 @end

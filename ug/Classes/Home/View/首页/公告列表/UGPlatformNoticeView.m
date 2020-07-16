@@ -33,9 +33,10 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         self.frame = frame;
         self.backgroundColor = [UIColor whiteColor];
        
-        self.selectSection = 0;
-        if ([APP.SiteId isEqualToString:@"c085"]) {
-            // c085要求默认不展示第一条内容详情
+        NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
+        if (SysConf.announce_first) {
+            self.selectSection = 0;
+        } else {
             self.selectSection = -1;
         }
         
@@ -84,6 +85,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 
 
 - (void)show {
+    
+ 
     [self.bgView setBackgroundColor: Skin1.navBarBgColor];
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
@@ -103,6 +106,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     self.superview.backgroundColor = [UIColor clearColor];
     [view.superview removeFromSuperview];
     [view removeFromSuperview];
+
+
 }
 
 

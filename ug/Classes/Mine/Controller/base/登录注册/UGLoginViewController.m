@@ -48,6 +48,8 @@
     [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     [self.playButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    
+    
 }
 
 - (BOOL)允许未登录访问 { return true; }
@@ -116,9 +118,7 @@
     self.passwordTextF.delegate = self;
     self.navigationController.delegate = self;
     [self.webBgView addSubview:self.webView];
-    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [self.webView loadRequest:request];
+  
     self.webBgView.hidden = YES;
     self.webBgViewHeightConstraint.constant = 0.1;
     
@@ -142,8 +142,10 @@
          self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
     }
     
-    
+    [self getSystemConfig];
 }
+
+
 
 - (IBAction)loginClick:(id)sender {
     
@@ -234,8 +236,12 @@
 
                 self.errorTimes += 1;
                 if (self.errorTimes == 4) {
-                    self.webBgView.hidden = NO;
-                    self.webBgViewHeightConstraint.constant = 120;
+                    if (![UGSystemConfigModel  currentConfig].loginVCode) {
+                        self.webBgView.hidden = NO;
+                        self.webBgViewHeightConstraint.constant = 120;
+                        [self webLoadURL];
+                    }
+                   
                 }
                 
                 UGUserModel *user = (UGUserModel*) model.data;
@@ -265,6 +271,39 @@
     });
 }
 
+- (void)getSystemConfig {
+    
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            NSLog(@"登录增加了滑动验证码配置==%d",[UGSystemConfigModel  currentConfig].loginVCode);
+
+            if ([UGSystemConfigModel  currentConfig].loginVCode) {
+                self.webBgView.hidden = NO;
+                self.webBgViewHeightConstraint.constant = 120;
+                [self webLoadURL];
+            } else {
+                self.webBgView.hidden = YES;
+                self.webBgViewHeightConstraint.constant = 0.1;
+            }
+            
+            
+           
+            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
+
+-(void)webLoadURL{
+    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [self.webView loadRequest:request];
+}
 
 -(void)showLeeView{
     // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用

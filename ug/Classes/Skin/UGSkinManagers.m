@@ -1371,10 +1371,15 @@ static UGSkinManagers *__initSkin1 = nil;
 	}
 	__lastSkin1 = self;
 	[[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationWithSkinSuccess object:nil];
+    
+    // 通知RN
+    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        [ReactNativeHelper sendEvent:UGNotificationWithSkinSuccess params:__currentSkin1];
+    }];
 }
 
 - (BOOL)isBlack {
-	return [_skitType isEqualToString:@"黑色模板"];
+	return [@"黑色模板" containsString:_skitType];
 }
 
 - (BOOL)isLH {

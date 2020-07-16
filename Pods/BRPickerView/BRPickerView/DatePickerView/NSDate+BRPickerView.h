@@ -20,8 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSInteger br_minute;  // 分
 @property (readonly) NSInteger br_second;  // 秒
 @property (readonly) NSInteger br_weekday; // 星期
-/** 获取中文星期字符串 */
-@property (nonatomic, readonly, copy) NSString *br_weekdayString;
+@property (readonly) NSString *br_weekdayString;
 
 /** 创建 date */
 /** yyyy */

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditVC" customModule="chat" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditVC" customModule="聊天APP" customModuleProvider="target">
             <connections>
+                <outlet property="avatarButton" destination="euB-9z-GNF" id="FV1-YO-BTo"/>
+                <outlet property="genderButton" destination="S9s-bD-dnD" id="ubE-gd-dwZ"/>
+                <outlet property="nameButton" destination="Nkz-SO-qxH" id="BAy-Ho-1En"/>
+                <outlet property="signaturePlaceholderLabel" destination="H83-Vp-gUW" id="aJx-Vx-rlY"/>
+                <outlet property="signatureTextView" destination="sOo-8L-dr6" id="TNZ-Bx-f5z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,10 +43,20 @@
                                     </constraints>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euB-9z-GNF">
-                                    <rect key="frame" x="309" y="8.5" width="60" height="60"/>
+                                    <rect key="frame" x="329" y="18.5" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="duV-L7-v5m"/>
+                                        <constraint firstAttribute="width" constant="40" id="jR7-1U-hNi"/>
+                                    </constraints>
                                     <state key="normal" image="placeholder_avatar">
                                         <color key="titleColor" red="0.55294117647058827" green="0.56470588235294117" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="LayerMasksToBounds" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="LayerCornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Njh-EO-LA3">
                                     <rect key="frame" x="24" y="76" width="393" height="1"/>
@@ -198,8 +213,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9T-pZ-RDO">
                     <rect key="frame" x="0.0" y="420" width="414" height="183"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="头像" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TN-wH-mhE">
-                            <rect key="frame" x="24" y="16" width="29" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人签名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TN-wH-mhE">
+                            <rect key="frame" x="24" y="16" width="57.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.1843137255" green="0.18823529410000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -216,15 +231,23 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
                         </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="留下你的个人签名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H83-Vp-gUW">
+                            <rect key="frame" x="28" y="55" width="114.5" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.73725490196078436" green="0.75294117647058822" blue="0.80000000000000004" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="sOo-8L-dr6" secondAttribute="bottom" id="631-KM-PTg"/>
+                        <constraint firstItem="H83-Vp-gUW" firstAttribute="top" secondItem="sOo-8L-dr6" secondAttribute="top" constant="8" id="6ye-Qo-wRq"/>
                         <constraint firstItem="sOo-8L-dr6" firstAttribute="trailing" secondItem="dH0-cE-vrd" secondAttribute="trailing" id="HaQ-s5-3d8"/>
                         <constraint firstItem="sOo-8L-dr6" firstAttribute="top" secondItem="dH0-cE-vrd" secondAttribute="bottom" id="KdW-X2-ce3"/>
                         <constraint firstItem="8TN-wH-mhE" firstAttribute="leading" secondItem="V9T-pZ-RDO" secondAttribute="leading" constant="24" id="Mcs-4C-XVG"/>
+                        <constraint firstItem="H83-Vp-gUW" firstAttribute="leading" secondItem="sOo-8L-dr6" secondAttribute="leading" constant="4" id="Ql9-4d-GGT"/>
                         <constraint firstItem="dH0-cE-vrd" firstAttribute="leading" secondItem="V9T-pZ-RDO" secondAttribute="leading" constant="24" id="aRg-UZ-0yG"/>
                         <constraint firstItem="sOo-8L-dr6" firstAttribute="leading" secondItem="dH0-cE-vrd" secondAttribute="leading" id="bV9-K9-USO"/>
                         <constraint firstItem="dH0-cE-vrd" firstAttribute="top" secondItem="V9T-pZ-RDO" secondAttribute="top" constant="46" id="nlw-7u-aPj"/>

@@ -22,7 +22,7 @@
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
 #import "UGLotteryRecordController.h"
-#import "UGMailBoxTableViewController.h"
+#import "MailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGDocumentVC.h"
 #import "UGFundsViewController.h"
@@ -114,6 +114,9 @@
 #import "UIColor+RGBValues.h"
 #import "BetFormViewModel.h"
 #import "HSC_BetFormCell.h"
+//大转盘
+#import "DZPMainView.h"
+#import "DZPModel.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
@@ -170,8 +173,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *homeAdsBigBgView;           /**<   首页广告图片大背景View */
 @property (nonatomic, strong) NSArray <UGhomeAdsModel *> *homeAdsArray;   /**<   首页广告图片 */
-@property (weak, nonatomic) IBOutlet UIView *homeAdsBgView;                  /**<   首页广告图片背景View */
-@property (nonatomic, strong) SDCycleScrollView *homeAdsView;                /**<   首页广告图片View */
+@property (weak, nonatomic) IBOutlet UIView *homeAdsBgView;                  /**<   首页腰部广告图片背景View */
+@property (nonatomic, strong) SDCycleScrollView *homeAdsView;                /**<   首页腰部广告图片View */
 //-------------------------------------------
 //六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *LhPrize_FView;
@@ -199,7 +202,11 @@
 @property (nonatomic, strong)  UGredEnvelopeView *uUpperRightView;    /**<   手机端浮窗3  右上 */
 @property (nonatomic, strong)  UGredEnvelopeView *uLowerRightView;    /**<   手机端浮窗4  右下 */
 
-//优惠活动列表-------------------------------------------
+//-------------------------------------------
+//大转盘
+@property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
+
+
 
 @end
 
@@ -216,6 +223,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.tableView removeObserver:self forKeyPath:@"contentSize" context:@"tableContext"];
 }
+
+
 - (JS_TitleView *)js_titleView {
     if (!_js_titleView) {
         _js_titleView = [[UINib nibWithNibName:@"JS_TitleView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
@@ -373,6 +382,7 @@
     }
 
     self.navigationController.navigationBarHidden = [Skin1 isBlack];
+  
 
 }
 
@@ -404,45 +414,35 @@
         SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
             [__self skin];
         });
-        // 免费试玩
-        SANotificationEventSubscribe(UGNotificationTryPlay, self, ^(typeof (self) self, id obj) {
-            [CMCommon clearWebCache];
-            [CMCommon deleteWebCache];
-            [__self tryPlayClick];
-        });
-        // 去登录
-        [self xw_addNotificationForName:UGNotificationShowLoginView block:^(NSNotification * _Nonnull noti) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-        }];
         // 登录成功
         SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-            
-            [CMCommon deleteWebCache];
-            [CMCommon clearWebCache];
-            [__self getUserInfo];
             __self.titleView.showLoginView = NO;
-            
+//            SysConf.popup_type = @"1";
+            if ( [SysConf.popup_type isEqualToString:@"1"]) {
+                
+                BOOL isLogin = UGLoginIsAuthorized();
+                 if (isLogin) {
+                     [self getNoticeList];
+                 }
+            }
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-            [__self userLogout];
+            __self.titleView.showLoginView = YES;
+            [__self.bigWheelView setHidden:YES];
         });
         // 登录超时
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
             // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
             if (OBJOnceToken(UGUserModel.currentUser)) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您的账号已经登录超时，请重新登录。" btnTitles:@[@"确定"]];
-                [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
-                    __self.titleView.showLoginView = YES;
-                    UGUserModel.currentUser = nil;
-                    [__self.tabBarController setSelectedIndex:0];
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-                }];
+                __self.titleView.showLoginView = YES;
             }
         });
-        // 获取用户信息成功
         SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-            [__self getUserInfo];
+            [self.contentScrollView.mj_header endRefreshing];
+        });
+        SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+            self.titleView.userName = UserI.username;
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -460,8 +460,6 @@
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        
-        
         
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         if (Skin1.isJY) {
@@ -500,6 +498,13 @@
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
             
+            if ( [@"c012," containsString:APP.SiteId]) {
+                subView(@"优惠活动外View").layer.borderWidth = 1;
+                subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
+            }
+           
+            _promotionsStackView.cc_constraints.top.constant = 0;
+            _promotionsStackView.cc_constraints.left.constant = 0;
         }
         
         if (Skin1.isJY) {
@@ -593,6 +598,49 @@
         };
     }
     
+    {//大转盘 右上
+        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
+        [self.view addSubview:_bigWheelView];
+
+        [self.bigWheelView setHidden:YES];
+        
+        [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(__self.view.mas_right).with.offset(-10);
+            make.width.mas_equalTo(70.0);
+            make.height.mas_equalTo(70.0);
+            make.top.equalTo(__self.view.mas_top).offset(150+105);
+        }];
+        self.bigWheelView.cancelClickBlock = ^(void) {
+            [__self.bigWheelView setHidden:YES];
+        };
+        self.bigWheelView.redClickBlock = ^(void) {
+            
+            if (!UGLoginIsAuthorized()) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    UGLoginAuthorize(^(BOOL isFinish) {
+                        if (!isFinish)
+                            return ;
+                    });
+                }];
+                return;
+            }
+            if ([UGUserModel currentUser].isTest) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }];
+                return ;
+            }
+            
+            DZPModel *banner = (DZPModel*)__self.bigWheelView.itemData;
+            DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectMake(0, 0, APP.Width-60, APP.Height-60)];
+
+             CGPoint showCenter = CGPointMake(APP.Width/2,APP.Height/2);
+             [SGBrowserView showMoveView:recordVC moveToCenter:showCenter];
+            recordVC.item = banner;
+        };
+    }
     
     // 手机悬浮按钮
     {
@@ -604,7 +652,12 @@
                 make.left.equalTo(__self.view.mas_left).with.offset(10);
                 make.width.mas_equalTo(95.0);
                 make.height.mas_equalTo(95.0);
-                make.top.equalTo(__self.view.mas_top).offset(150+105);
+                if (self.bigWheelView.hidden) {
+                      make.top.equalTo(__self.view.mas_top).offset(150+105);
+                } else {
+                      make.top.equalTo(__self.bigWheelView.mas_bottom).offset(5);
+                }
+              
             }];
             self.uUpperLeftView.cancelClickBlock = ^(void) {
                 [__self.uUpperLeftView setHidden:YES];
@@ -641,7 +694,11 @@
                 make.right.equalTo(__self.view.mas_right).with.offset(-10);
                 make.width.mas_equalTo(95.0);
                 make.height.mas_equalTo(95.0);
-                make.top.equalTo(__self.view.mas_top).offset(150+105);
+                if (self.bigWheelView.hidden) {
+                      make.top.equalTo(__self.view.mas_top).offset(150+105);
+                } else {
+                      make.top.equalTo(__self.bigWheelView.mas_bottom).offset(5);
+                }
             }];
             self.uUpperRightView.cancelClickBlock = ^(void) {
                 [__self.uUpperRightView setHidden:YES];
@@ -669,9 +726,13 @@
                 BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
             };
         }
+        
+
+        
+        
     }
     // c200、c035站点定制需求
-    if ([APP.SiteId containsString:@"c200"] || [APP.SiteId containsString:@"c035"]) {
+    if ([APP.SiteId containsString:@"c035"]) {
         FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
         gifImageView.contentMode = UIViewContentModeScaleAspectFit;
         gifImageView.userInteractionEnabled = true;
@@ -684,31 +745,19 @@
     
     // 拉取数据
     _contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [__self getSystemConfig];     // APP配置信息
-        [__self getBannerList];       // Banner图
-        //        if (__self.notiveView == nil) {
-        [__self getNoticeList];   // 公告列表
-        //        }
-        [__self getUserInfo];         // 用户信息
-        [__self getCheckinListData];  // 红包数据
-        [__self systemOnlineCount];   // 在线人数
-        [__self getPromoteList];      // 优惠活动
-        [__self getRankList];         // 投注排行榜/中奖排行榜
-        [__self gethomeAdsList];      //首页广告图片
-        [__self chatgetToken] ;        //在线配置的聊天室
-        [__self getfloatAdsList];      //首页左右浮窗
-        
-        //        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-        [__self getCategoryList];     //栏目列表
-        [__self getPlatformGamesWithParams];//购彩大厅信息
-        [__self.lhPrizeView getLotteryNumberList];
-        //        }
-        
-        
+
+        [__self requestUrl];
+       
     }];
+    
+    
+    
+
     if (_contentScrollView.mj_header.refreshingBlock) {
         _contentScrollView.mj_header.refreshingBlock();
     }
+  
+   
     
     
     if (APP.isCornerRadius) {
@@ -720,6 +769,135 @@
     }
     
 }
+
+-(void)requestUrl{
+    // 创建信号量
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    // 创建全局并行
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求一
+          [self getSystemConfig];     // APP配置信息
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求二
+        [self getBannerList];       // Banner图
+    });
+    dispatch_group_async(group, queue, ^{
+          // 请求3
+           [self getAllNextIssueData]; // 彩票大厅数据 
+
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求4
+        [self getUserInfo];         // 用户信息
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求5 红包数据
+         [self getCheckinListData];  // 红包数据
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求6
+        [self systemOnlineCount];   // 在线人数
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+        // 请求7在线人数
+        [self getPromoteList];    // 优惠活动
+        
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求8
+           [self getRankList];     // 投注排行榜/中奖排行榜
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求9
+//           [self gethomeAdsList];     // 首页广告图片
+           
+    });
+       
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求10
+           [self chatgetToken];     // 在线配置的聊天室
+           
+    });
+       
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求11
+           [self getfloatAdsList];     // 首页左右浮窗
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求12
+           [self getCategoryList];     //栏目列表
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求13
+           [self getPlatformGamesWithParams];     //购彩大厅信息
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求14
+           [self.lhPrizeView  getLotteryNumberList];     //购彩大厅信息
+           
+    });
+    dispatch_group_async(group, queue, ^{
+           
+           // 请求15 在线人数
+           [self  getactivityTurntableList];     //大转盘
+           
+    });
+      
+       
+    
+    dispatch_group_notify(group, queue, ^{
+        
+        // 三个请求对应三次信号等待
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        //在这里 进行请求后的方法，回到主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+        });
+        
+        
+    });
+}
+
 
 - (BOOL)prefersStatusBarHidden {
     return NO;
@@ -1004,6 +1182,7 @@
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
             UGUserModel *oldUser = [UGUserModel currentUser];
+            NSLog(@"uid = %@",user.uid);
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
@@ -1025,8 +1204,11 @@
     [SVProgressHUD showWithStatus: nil];
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD dismiss];
+        NSLog(@" model = %@",model);
         [CMResult processWithResult:model success:^{
             UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            
+            NSLog(@" UGAllNextIssueListModel.lotteryGamesArray = %@",UGAllNextIssueListModel.lotteryGamesArray);
         } failure:nil];
     }];
 }
@@ -1100,18 +1282,22 @@
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
-            NSLog(@"model = %@",model);
+            HJSonLog(@"model = %@",model);
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
+            NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
+           
+            [self getCustomGameList];   // 自定义游戏列表
             
-            if (![Skin1.skitType isEqualToString:@"六合资料"]) {//六合资料
-                [self getCustomGameList];   // 自定义游戏列表
-                [self getAllNextIssueData]; // 彩票大厅数据
-            }
+            
             
             
             [self getPromotionsType ];// 获取优惠图片分类信息
+            
+            [self gethomeAdsList];     // 首页广告图片
+            
+            [self getNoticeList];   // 公告列表
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [self.bottomLabel setText:title];
@@ -1141,17 +1327,7 @@
     }];
 }
 
-
-- (void)userLogout {
-    [SVProgressHUD showSuccessWithStatus:@"退出成功"];
-    self.titleView.showLoginView = YES;
-    [NavController1 popToRootViewControllerAnimated:true];
-    [TabBarController1 setSelectedIndex:0];
-    [CMCommon clearWebCache];
-    [CMCommon deleteWebCache];
-}
-
-// 横幅广告
+//查询轮播图
 - (void)getBannerList {
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
@@ -1168,6 +1344,11 @@
                     self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
                     NSLog(@"轮播时间：%f",((UGBannerModel*)model.data).interval.floatValue);
                     self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                    if (mutArr.count>1) {
+                        self.bannerView.autoScroll = YES;
+                    } else {
+                         self.bannerView.autoScroll = NO;
+                    }
                 }
             });
             
@@ -1177,7 +1358,7 @@
     }];
 }
 
-// 跑马灯数据
+// 公告
 - (void)getNoticeList {
     [CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
@@ -1191,9 +1372,8 @@
                     [self.leftwardMarqueeViewData addObject:notice.title];
                 }
                 [self.leftwardMarqueeView reloadData];
-                if (self.popNoticeArray.count) {
-                    [self showPlatformNoticeView];
-                }
+   
+                [self showPlatformNoticeView];
             });
         } failure:nil];
     }];
@@ -1314,14 +1494,31 @@
                 for (int i = 0; i< chatAry.count; i++) {
                     RoomChatModel *dic =  [chatAry objectAtIndex:i];
                     [chatIdAry addObject:dic.roomId];
-                    [typeIdAry addObject:dic.typeId];
                     [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                     
                 }
-                NSLog(@"chatIdAry = %@",chatIdAry);
-                NSLog(@"chatRoomAry = %@",chatRoomAry);
-                SysConf.typeIdAry = typeIdAry;
+                
+                [CMCommon removeLastRoomAction:chatIdAry];
+
+                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+                SysConf.chatRoomRedirect = [number intValue];
                 SysConf.chatRoomAry = chatRoomAry;
+                
+                 NSLog(@"typeIdAry = %@",typeIdAry);
+                
+                if (![CMCommon arryIsNull:chatRoomAry]) {
+                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+            
+                }
+                else{
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
+                    obj.roomId = @"0";
+                    obj.roomName = @"聊天室";
+                    SysConf.defaultChatRoom = obj;
+                    
+                }
+              
                 
                 
             } failure:^(id msg) {
@@ -1374,11 +1571,17 @@
                 if (self.homeAdsArray.count) {
                     [self.homeAdsBigBgView setHidden:NO];
                     for (UGhomeAdsModel *banner in self.homeAdsArray) {
-                        [mutArr addObject:banner.image];
+                            [mutArr addObject:banner.image];
                     }
-                    NSLog(@"mutArr = %@",mutArr);
+
+                    NSLog(@"SysConf.adSliderTimer = %d",SysConf.adSliderTimer);
                     self.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
-                    //                    self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                    self.homeAdsView.autoScrollTimeInterval = SysConf.adSliderTimer;
+                    if (mutArr.count>1) {
+                        self.homeAdsView.autoScroll = YES;
+                    } else {
+                         self.homeAdsView.autoScroll = NO;
+                    }
                 }
                 else{
                     [self.homeAdsBigBgView setHidden:YES];
@@ -1418,6 +1621,14 @@
                         self.uUpperLeftView.itemSuspension = banner;
                         self.uUpperLeftView.hidden = NO;
                         
+                        if (!self.bigWheelView.hidden) {
+                            [self.uUpperLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
+                                make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                            }];
+    
+                        }
+
+                        
                     }
                     else{
                         self.uUpperLeftView.hidden = YES;
@@ -1455,6 +1666,7 @@
                     self.ulowerLefttView.hidden = YES;
                     self.uUpperRightView.hidden = YES;
                     self.uLowerRightView.hidden = YES;
+                    
                 }
                 
                 
@@ -1462,6 +1674,84 @@
             
         } failure:^(id msg) {
             
+        }];
+    }];
+}
+
+//大转盘
+- (void)getactivityTurntableList {
+
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             };
+    [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray <DZPModel *> *dzpArray = [NSArray new];
+                // 需要在主线程执行的代码
+                 dzpArray = model.data;
+                
+                NSLog(@"dzpArray = %@",dzpArray);
+
+                if (dzpArray.count) {
+
+                   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
+                    DZPModel *obj = [data objectAtIndex:0];
+                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        // 需要在主线程执行的代码
+                       self.bigWheelView.itemData = obj;
+                       self.bigWheelView.hidden = NO;
+                        [self.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                        
+                       [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(self.view.mas_left).with.offset(10);
+                              make.width.mas_equalTo(95.0);
+                              make.height.mas_equalTo(95.0);
+                              if (self.bigWheelView.hidden) {
+                                    make.top.equalTo(self.view.mas_top).offset(150+105);
+                              } else {
+                                    make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                              }
+                        }];
+                        
+                        [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.left.equalTo(self.view.mas_left).with.offset(10);
+                              make.width.mas_equalTo(95.0);
+                              make.height.mas_equalTo(95.0);
+                              make.top.equalTo(self.uUpperLeftView.mas_bottom).offset(5);
+                          }];
+                        
+                        [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                            make.right.equalTo(self.view.mas_right).with.offset(-10);
+                            make.width.mas_equalTo(95.0);
+                            make.height.mas_equalTo(95.0);
+                            if (self.bigWheelView.hidden) {
+                                  make.top.equalTo(self.view.mas_top).offset(150+105);
+                            } else {
+                                  make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                            }
+                        }];
+                        [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.right.equalTo(self.view.mas_right).with.offset(-10);
+                              make.width.mas_equalTo(95.0);
+                              make.height.mas_equalTo(95.0);
+                              make.top.equalTo(self.uUpperRightView.mas_bottom).offset(5);
+                          }];
+                        
+                    });
+    
+                }
+                else{
+                                 self.bigWheelView.hidden = YES;
+                }
+
+            });
+            
+        } failure:^(id msg) {
+//            [SVProgressHUD showErrorWithStatus:msg];
+             self.bigWheelView.hidden = YES;
+
         }];
     }];
 }
@@ -1524,19 +1814,34 @@
 
 
 - (void)showPlatformNoticeView {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (self.notiveView == nil) {
-        if (!appDelegate.notiveViewHasShow) {
+
+        //在这里 进行请求后的方法，回到主线程
+        dispatch_async(dispatch_get_main_queue(), ^{
+       
             self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
-            self.notiveView.dataArray = self.popNoticeArray;
-            [self.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+            [self->_notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+            self->_notiveView.dataArray = self.popNoticeArray;
             
-        }
+            UIWindow* window = UIApplication.sharedApplication.keyWindow;
+            BOOL isSubView = [self.notiveView isDescendantOfView:window];
+            
+            if (!isSubView) {
+//                SysConf.popup_type = @"1";
+                if ( [SysConf.popup_type isEqualToString:@"0"]) {
+                        [self->_notiveView show];
+                } else {
+                    BOOL isLogin = UGLoginIsAuthorized();
+                    if (isLogin) {
+                        [self->_notiveView show];
+                    }
+                }
+     
+            }
+
+        });
         
-    }
-    [self.notiveView show];
-    appDelegate.notiveViewHasShow = YES;
-    
+
+ 
     
 }
 
@@ -1631,7 +1936,14 @@
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
     if (marqueeView == self.leftwardMarqueeView) {
         UILabel *content = [itemView viewWithTag:1001];
-        content.textColor = Skin1.textColor1;
+        
+//        if (APP.isRollingTextBlack) {
+//            content.textColor = [UIColor blackColor];
+//        }
+//        else{
+             content.textColor = Skin1.textColor1;
+//        }
+       
         content.text = self.leftwardMarqueeViewData[index];
     } else {
         UGRankModel *rank = self.rankArray[index];
@@ -1697,25 +2009,6 @@
     [self.yymenuView show];
 }
 
-- (void)tryPlayClick {
-    NSDictionary *params = @{@"usr":@"46da83e1773338540e1e1c973f6c8a68",
-                             @"pwd":@"46da83e1773338540e1e1c973f6c8a68"
-    };
-    [SVProgressHUD showWithStatus:nil];
-    [CMNetwork guestLoginWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            
-            [SVProgressHUD showSuccessWithStatus:model.msg];
-            UGUserModel *user = model.data;
-            UGUserModel.currentUser = user;
-            SANotificationEventPost(UGNotificationLoginComplete, nil);
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-}
-
 - (void)showNoticeInfo {
     NSMutableString *str = [[NSMutableString alloc] init];
     for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
@@ -1744,7 +2037,7 @@
         [weakSelf rightBarBtnClick];
     };
     self.titleView.tryPlayClickBlock = ^{
-        [weakSelf tryPlayClick];
+        SANotificationEventPost(UGNotificationTryPlay, nil);
     };
     self.titleView.loginClickBlock = ^{
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
@@ -1787,7 +2080,7 @@
     self.bannerView.backgroundColor = [UIColor clearColor];
     self.bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     self.bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.bannerView.autoScrollTimeInterval = 2.0;
+    self.bannerView.autoScrollTimeInterval = 3.0;
     self.bannerView.delegate = self;
     self.bannerView.pageDotColor = RGBA(210, 210, 210, 0.4);
     [self.bannerBgView insertSubview:self.bannerView atIndex:0];
@@ -1798,7 +2091,14 @@
     self.homeAdsView.backgroundColor = [UIColor clearColor];
     self.homeAdsView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     self.homeAdsView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.homeAdsView.autoScrollTimeInterval = 3.0;
+    
+    if ([@"c018,c217" containsString:APP.SiteId]) {
+            self.homeAdsView.autoScrollTimeInterval = 5.0;
+    } else {
+            self.homeAdsView.autoScrollTimeInterval = 3.0;
+    }
+    
+
     self.homeAdsView.delegate = self;
     self.homeAdsView.pageDotColor = RGBA(210, 210, 210, 0.4);
     [self.homeAdsBgView insertSubview:self.homeAdsView atIndex:0];
@@ -1875,7 +2175,7 @@
     [TabBarController1 setSelectedIndex:4];
 }
 - (void)emailButtonTaped {
-    [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:true];
+    [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
 }
 
 #pragma mark - Table view data source
@@ -1970,7 +2270,7 @@
         return cell;
     } else {
         UITableViewCell *cell;
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
         }
         else{
@@ -1979,8 +2279,12 @@
      
         UGPromoteModel *pm = tableView.dataArray[indexPath.row];
         FastSubViewCode(cell);
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
             subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
+            
+//            if ([@"c012" containsString:APP.SiteId]) {
+//                subView(@"StackView").cc_constraints.top.constant = 12 ;
+//            }
             subView(@"StackView").cc_constraints.bottom.constant = 0;
         }
         if ([@"c199" containsString:APP.SiteId]) {
@@ -1993,6 +2297,15 @@
         else{
              subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         }
+        
+        
+        subView(@"cell背景View").layer.cornerRadius = 8;
+        subView(@"cell背景View").layer.masksToBounds = YES;
+        
+        if (APP.isWihiteBorder) {
+            subView(@"cell背景View").layer.borderWidth = 1;
+            subView(@"cell背景View").layer.borderColor = [[UIColor whiteColor] CGColor];
+        }
        
         subLabel(@"标题Label").textColor = Skin1.textColor1;
         subLabel(@"标题Label").text = pm.title;
@@ -2003,16 +2316,19 @@
         NSURL *url = [NSURL URLWithString:pm.pic];
         UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
         if (image) {
-            if ([@"c190" containsString:APP.SiteId]) {
-                CGFloat w = APP.Width-48;
+            if (APP.isC190Cell) {
+                CGFloat w;
+                if ([@"c012" containsString:APP.SiteId]) {
+                    w = APP.Width-48;
+                } else {
+                    w = APP.Width-88;
+                }
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
             } else {
-                CGFloat w = APP.Width - 88;
+                CGFloat w = APP.Width-88;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
-                
-                
             }
             [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
         } else {
@@ -2066,7 +2382,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([_style isEqualToString:@"slide"]) {
         UGPromoteModel *item = tableView.dataArray[section];
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
                return [UGCell190HeaderView heightWithModel:item];
           }
           else{
@@ -2086,7 +2402,7 @@
     UGCellHeaderView *headerView = [contentView viewWithTagString:@"headerView"];
     if (!headerView) {
         
-        if ([@"c190" containsString:APP.SiteId]) {
+        if (APP.isC190Cell) {
              headerView = _LoadView_from_nib_(@"UGCell190HeaderView");
          }
          else{
