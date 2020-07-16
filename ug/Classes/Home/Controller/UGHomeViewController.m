@@ -530,6 +530,7 @@
             if ([Skin1.skitType isEqualToString:@"六合资料"]) {
                 _lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
                 [self initLHCollectionView];
+                [self.lhPrizeView  setGid:@"222"];     //购彩大厅信息
             }
             
         }
@@ -856,8 +857,9 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求14
-           [self.lhPrizeView  getLotteryNumberList];     //购彩大厅信息
-           
+           if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+                 [self.lhPrizeView  setGid:@""];     //购彩大厅信息
+           }
     });
     dispatch_group_async(group, queue, ^{
            
