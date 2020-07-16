@@ -89,7 +89,7 @@
         [self.lotteryCollectionView setScrollEnabled:NO];
         [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
         [self.lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
-        //        [self getLotteryNumberList];
+       
     }
     return self;
 }
@@ -189,11 +189,11 @@
     
     if ([CMCommon stringIsNull:self.gid]) {
         params = @{
-            @"token":[UGUserModel currentUser].sessid,
+            
         };
     } else {
         params = @{
-            @"token":[UGUserModel currentUser].sessid,
+          
             @"gameId":self.gid
         };
     }

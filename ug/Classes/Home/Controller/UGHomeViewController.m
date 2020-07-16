@@ -530,7 +530,6 @@
             if ([Skin1.skitType isEqualToString:@"六合资料"]) {
                 _lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
                 [self initLHCollectionView];
-                [self.lhPrizeView  setGid:@"222"];     //购彩大厅信息
             }
             
         }

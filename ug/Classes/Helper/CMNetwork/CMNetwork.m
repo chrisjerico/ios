@@ -415,7 +415,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     }
     
     // 登录请求去掉token
-    if ([method containsString:@"a=login"]) {
+    if ([method containsString:@"a=login"]||[method containsString:@"a=lotteryNumber"]) {
         [params setValue:nil forKey:@"token"];
     }
     NSLog(@"请求method   =%@",method);
