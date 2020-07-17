@@ -439,15 +439,15 @@
 }
 
 - (BOOL)isShowJinbei {
-    return [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
+    return [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
 }
 
 - (BOOL)addIcons {
-    return [@"c190,c134,c085,c193" containsString:_SiteId];
+    return [@"c190,c134,c085,c193,a002" containsString:_SiteId];
 }
 
 - (BOOL)isReplaceIcon {
-    return [@"c085,c193" containsString:_SiteId];
+    return [@"c085,c193,a002" containsString:_SiteId];
 }
 
 - (BOOL)isC190Cell {
