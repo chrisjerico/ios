@@ -20,6 +20,11 @@
     _fifthLabel.textColor = Skin1.textColor1;
     _fourthLabel.textColor = Skin1.textColor1;
     _sixLabel.textColor = Skin1.textColor1;
+    
+    _pointView.layer.cornerRadius = 5;
+    _pointView.layer.masksToBounds = YES;
+    [_sixButton setBackgroundColor:Skin1.textColor4];
+    [_sixButton setTitleColor:[UIColor greenColor] forState:(UIControlStateNormal)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,4 +33,10 @@
     // Configure the view for the selected state
 }
 
+
+- (IBAction)signInClick:(id)sender {
+    if (self.promotion6rowButtonBlock) {
+        self.promotion6rowButtonBlock();
+    }
+}
 @end

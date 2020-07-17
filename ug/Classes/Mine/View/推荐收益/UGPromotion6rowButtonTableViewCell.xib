@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -65,6 +65,24 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IjH-Ds-hXl">
+                        <rect key="frame" x="271" y="8" width="45" height="27"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <color key="backgroundColor" red="1" green="0.99998801950000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="充值">
+                            <color key="titleColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="signInClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Tzi-Qz-PRI"/>
+                        </connections>
+                    </button>
+                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWK-hE-a37">
+                        <rect key="frame" x="301" y="8" width="10" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="c43-k3-bE6"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
@@ -72,7 +90,9 @@
                 <outlet property="fifthLabel" destination="bb6-en-bMw" id="IL1-hC-O9F"/>
                 <outlet property="firstLabel" destination="vcK-sA-kEC" id="Jai-Bk-rQ4"/>
                 <outlet property="fourthLabel" destination="1ky-Ty-GlI" id="M3W-MD-DuQ"/>
+                <outlet property="pointView" destination="aWK-hE-a37" id="FvK-ve-gcK"/>
                 <outlet property="secondLabel" destination="zbJ-iK-1al" id="1C8-fr-LoF"/>
+                <outlet property="sixButton" destination="IjH-Ds-hXl" id="rdc-EE-LAn"/>
                 <outlet property="sixLabel" destination="30l-Px-ujD" id="408-Qm-Sw4"/>
                 <outlet property="thirdLabel" destination="vCi-LY-5xP" id="5aE-Dj-u0q"/>
             </connections>

@@ -61,7 +61,7 @@
 //    self.view.backgroundColor = [UIColor redColor];
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
-            self.titleArray = @[@"分级",@"用户名",@"在线状态",@"注册时间",@"操作/状态"];//5 == 按钮
+            self.titleArray = @[@"分级",@"用户名",@"在线状态",@"注册时间",@"下线盈亏",@"操作/状态"];//5 == 按钮
             break;
         case PromotionTableTypeBettingReport://投注报表
             self.titleArray = @[@"分级",@"日期",@"投注金额",@"佣金"];//4
@@ -266,7 +266,7 @@
             titleLabel.text = self.titleArray[i];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.textColor = Skin1.textColor1;
-            titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+            titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightHeavy];
             [view addSubview:titleLabel];
             
             [_titleView addSubview:view];
@@ -294,13 +294,13 @@
     
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
-           //5 == 按钮
+           //6 == 按钮
         {
-            UGPromotion5rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion5rowButtonTableViewCell" forIndexPath:indexPath];
+            UGPromotion6rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion6rowButtonTableViewCell" forIndexPath:indexPath];
             UGinviteLisModel *model = (UGinviteLisModel *)self.dataArray[indexPath.row];
             cell.firstLabel.text = [NSString stringWithFormat:@"%@级下线",model.level];
             cell.secondLabel.text = model.username;
-            
+             cell.fifthLabel.text = model.sunyi;
         
             if (model.is_online == 1) {
                 cell.thirdLabel.text = @"在线";
@@ -313,16 +313,15 @@
                 cell.fourthLabel.text = model.regtime;
             }
         
-            [cell.fifthButton setHidden:NO];
-            [cell.fifthLabel setHidden:YES];
+            [cell.sixLabel setHidden:NO];
+            [cell.sixLabel setHidden:YES];
             
             if ([model.is_setting isEqualToString:@"1"]) {
                 //去充值
-//                [cell.fifthButton setHidden:NO];
-                 [cell.fifthButton setHidden:NO];
+                 [cell.sixButton setHidden:NO];
                 [cell.pointView setHidden:NO];
             } else {
-                [cell.fifthButton setHidden:YES];
+                [cell.sixButton setHidden:YES];
                  [cell.pointView setHidden:YES];
             }
             
@@ -334,7 +333,7 @@
                 [cell.pointView setBackgroundColor:[UIColor redColor]];
             }
             
-            cell.promotion5rowButtonBlock = ^{
+            cell.promotion6rowButtonBlock = ^{
                 
                
                 if ([model.is_setting isEqualToString:@"1"]) {
@@ -524,7 +523,7 @@
         }
             break;
         case PromotionTableTypeRealityRcord://真人记录
-            //5
+            //6
         {
             UGPromotion6rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion6rowButtonTableViewCell" forIndexPath:indexPath];
            
