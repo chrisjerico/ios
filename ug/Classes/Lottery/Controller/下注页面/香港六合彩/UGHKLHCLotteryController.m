@@ -315,7 +315,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             
-            NSLog(@"model.data = %@",model.data);
+        
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
             [self.rightStackView addSubview:self.zodiacScrollView];
