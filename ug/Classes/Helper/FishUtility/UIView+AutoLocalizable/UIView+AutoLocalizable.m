@@ -10,7 +10,9 @@
 #import <objc/runtime.h>
 #import "JRSwizzle.h"
 #import "RCTRawTextShadowView.h"
-
+#import "XYYSegmentControl.h"
+#import "STButton.h"
+#import "MOFSPickerView.h"
 
 @implementation UIView (AutoLocalizable)
 
@@ -46,28 +48,42 @@ static BOOL _EnableAutoLocalizable = false;
         [UITextView jr_swizzleMethod:@selector(cc_setText:) withMethod:@selector(setText:) error:nil];
         
         [UIButton jr_swizzleMethod:@selector(cc_setTitle:forState:) withMethod:@selector(setTitle:forState:) error:nil];
+//        [STButton jr_swizzleMethod:@selector(cc_setTitle:forState:) withMethod:@selector(setTitle:forState:) error:nil];
         
-        [UINavigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
+        
+        void (^block)(id) = ^(id<AspectInfo> ai) {
             if (_EnableAutoLocalizable) {
-                NSString *title = ai.arguments.lastObject;
+                NSString *title = ai.arguments.firstObject;
                 title = [[LanguageHelper shared] stringForCnString:title];
                 [ai.originalInvocation setArgument:&title atIndex:2];
             }
             [ai.originalInvocation invoke];
+        };
+        [UINavigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:block error:nil];
+        
+        
+        [MOFSPickerView cc_hookSelector:@selector(pickerView:titleForRow:forComponent:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            NSString *ret = nil;
+            [ai.originalInvocation invoke];
+            [ai.originalInvocation getReturnValue:&ret];
+            ret = [[LanguageHelper shared] stringForCnString:ret];
+            [ai.originalInvocation setReturnValue:&ret];
         } error:nil];
         
-        [UIViewController cc_hookSelector:@selector(viewDidLoad) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
-            UIViewController *vc = ai.instance;
-            if (vc.navigationItem.title.length)
-                vc.navigationItem.title = vc.navigationItem.title;
-        } error:nil];
-        
-        [RCTRawTextShadowView cc_hookSelector:@selector(setText:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo>  _Nonnull ai) {
-            NSString *text = ai.arguments.firstObject;
-            text = [[LanguageHelper shared] stringForCnString:text];
-            [ai.originalInvocation setArgument:&text atIndex:2];
+        [XYYSegmentControl cc_hookSelector:@selector(setChannelName:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            NSArray *a = ai.arguments.firstObject;
+            NSMutableArray *ret = @[].mutableCopy;
+            for (id obj in a) {
+                [ret addObject:[obj isKindOfClass:[NSString class]] ? [[LanguageHelper shared] stringForCnString:obj] : obj];
+            }
+            [ai.originalInvocation setArgument:&ret atIndex:2];
             [ai.originalInvocation invoke];
         } error:nil];
+        
+        
+        
+        // 自动替换RN文本
+        [RCTRawTextShadowView cc_hookSelector:@selector(setText:) withOptions:AspectPositionInstead usingBlock:block error:nil];
     });
 }
 

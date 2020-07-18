@@ -630,9 +630,9 @@ static UGTabbarController *_tabBarVC = nil;
             if (![UGTabbarController canPushToViewController:vc]) {
                 return ;
             }
-            vc.title = mm.name;
+            vc.title = [[LanguageHelper shared] stringForCnString:mm.name];
             UINavigationController *nav = (UINavigationController *)viewController;
-            nav.title = mm.name;
+            nav.title = [[LanguageHelper shared] stringForCnString:mm.name];
             nav.tabBarItem.title = mm.name;
             //
             NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]];

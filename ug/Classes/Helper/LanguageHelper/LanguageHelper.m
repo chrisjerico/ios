@@ -69,6 +69,14 @@ static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
 }
 
 - (void)save:(NSDictionary *)kvs lanCode:(NSString *)lanCode ver:(NSString *)ver {
+    NSMutableDictionary *temp = @{}.mutableCopy;
+    for (NSString *key in kvs.allKeys) {
+        NSString *value = kvs[key];
+        value = [value stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
+        value = [value stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        temp[key] = value;
+    }
+    kvs = [temp copy];
     [[NSUserDefaults standardUserDefaults] setObject:kvs forKey:_NSString(@"lan_%@", lanCode)];
     [[NSUserDefaults standardUserDefaults] setObject:ver forKey:@"lan_version"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -105,13 +113,10 @@ static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
         for (NSString *dv in __dynamicVs) {
             NSString *reg = dv;
             for (NSString *s in @"\\$()*+.[]{}?^|") {
-                reg = [reg stringByReplacingOccurrencesOfString:s withString:_NSString(@"\\\\%@", s)];
+                reg = [reg stringByReplacingOccurrencesOfString:s withString:_NSString(@"\\%@", s)];
             }
-            reg = _NSString(@"^%@$", [dv stringByReplacingOccurrencesOfString:@"%s" withString:@"([\\s\\S]*)"]);
+            reg = _NSString(@"^%@$", [reg stringByReplacingOccurrencesOfString:@"%s" withString:@"([\\s\\S]*)"]);
             if ([cnString isMatch:RX(reg)]) {
-                if ([cnString containsString:@"电脑版"]) {
-                    NSLog(@"cnString = %@", cnString);
-                }
                 NSMutableArray *subCnArray = [[[cnString firstMatchWithDetails:RX(reg)].groups valueForKey:@"value"] mutableCopy];// 把%s全部取出来再匹配
                 [subCnArray removeFirstObject];
                 
