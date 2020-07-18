@@ -1608,6 +1608,8 @@
 		038A585924AAD03D0099D659 /* NameEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585724AAD03D0099D659 /* NameEditVC.xib */; };
 		038A585B24AB185F0099D659 /* RedPacketProduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585A24AB185E0099D659 /* RedPacketProduceView.xib */; };
 		038A585D24AB25840099D659 /* MinePacketProduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585C24AB25840099D659 /* MinePacketProduceView.xib */; };
+		038A727C24C0266400AF1E43 /* BetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D434743924AB270100B0F598 /* BetDetail.storyboard */; };
+		038A727E24C026B600AF1E43 /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF62001E24BBF2A700FD26AD /* LanguageHelper.m */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -8706,6 +8708,7 @@
 				031E1E3B23BE812C00B0F813 /* UGPromotion4rowTableViewCell.xib in Resources */,
 				03D6927123C23B9D003D9C12 /* ContactsVC.xib in Resources */,
 				031E1DF123BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
+				038A727C24C0266400AF1E43 /* BetDetail.storyboard in Resources */,
 				031EF57C23BE7B4D00B0F813 /* pinglun.svg in Resources */,
 				031E194D23BE812600B0F813 /* UGLHC.storyboard in Resources */,
 				031E1D6123BE812B00B0F813 /* UGgoBindViewController.xib in Resources */,
@@ -10047,6 +10050,7 @@
 				038A585024A9DD340099D659 /* FollowListVC.swift in Sources */,
 				031E1D6323BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
 				031E1E2923BE812C00B0F813 /* UGMosaicGoldFinishView.m in Sources */,
+				038A727E24C026B600AF1E43 /* LanguageHelper.m in Sources */,
 				031E1C3D23BE812900B0F813 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,
 				031E1C6723BE812A00B0F813 /* UGDepositDetailsNoLineViewController.m in Sources */,
 				0315DC9324ACA86200D635E2 /* NotificationMessageVC.swift in Sources */,

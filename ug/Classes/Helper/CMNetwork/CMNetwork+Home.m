@@ -366,7 +366,6 @@
 //方式：GET
 //参数 token:
 //    activityId: 活动id
-
 + (void)activityGoldenEggLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock
 {
     CMMETHOD_BEGIN;
@@ -386,7 +385,6 @@
 //   token:
 //   必传 activityId
 //   选传 numId（局号id 如果会员再本局接着砸金蛋 需要传这个参数 此参数在这个接口 第一次砸 会回传）
-
 + (void)activityGoldenEggWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock
 {
     CMMETHOD_BEGIN;
