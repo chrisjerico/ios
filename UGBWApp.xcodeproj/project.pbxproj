@@ -1674,6 +1674,7 @@
 		CF166B3E24A495B000EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
 		CF166B4024A495CF00EF8835 /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
+		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -3568,6 +3569,8 @@
 		CF166B3024A47E8600EF8835 /* HotBranchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotBranchView.xib; sourceTree = "<group>"; };
 		CF166B3124A47E8700EF8835 /* HotBranchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotBranchView.h; sourceTree = "<group>"; };
 		CF166B3224A47E8700EF8835 /* HotBranchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotBranchView.m; sourceTree = "<group>"; };
+		CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLocalizable.h"; sourceTree = "<group>"; };
+		CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLocalizable.m"; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -4249,6 +4252,7 @@
 		031E142223BE812300B0F813 /* FishUtility */ = {
 			isa = PBXGroup;
 			children = (
+				CF3C073324C01ADF000E6700 /* UIView+AutoLocalizable */,
 				031E149E23BE812300B0F813 /* LogHelper */,
 				031E14A623BE812300B0F813 /* Aspects */,
 				031E14AD23BE812300B0F813 /* HUD and Alert */,
@@ -7606,6 +7610,15 @@
 			path = "切站点、切热更新";
 			sourceTree = "<group>";
 		};
+		CF3C073324C01ADF000E6700 /* UIView+AutoLocalizable */ = {
+			isa = PBXGroup;
+			children = (
+				CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */,
+				CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */,
+			);
+			path = "UIView+AutoLocalizable";
+			sourceTree = "<group>";
+		};
 		CF4757D3239636D100966536 /* 六合表情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -10167,6 +10180,7 @@
 				CFCF6DF723C9F51C0039588D /* RSA.m in Sources */,
 				031E1A0423BE812700B0F813 /* SlideSegmentView2.m in Sources */,
 				031E1E4423BE812C00B0F813 /* UGPormotionView.m in Sources */,
+				CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */,
 				031E198223BE812600B0F813 /* UGScratchMusicView.m in Sources */,
 				031E195E23BE812600B0F813 /* LHJournalDetailVC.m in Sources */,
 				D43DAF8624555B1C0014A301 /* MGSlider.m in Sources */,
