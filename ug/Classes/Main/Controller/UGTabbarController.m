@@ -607,8 +607,16 @@ static UGTabbarController *_tabBarVC = nil;
         RnPageModel *rpm = [APP.rnPageInfos objectWithValue:mm.path keyPath:@"tabbarItemPath"];
         isDifferentRPM = ![((ReactNativeVC *)vc) isEqualRPM:rpm];
         if (!isDifferentRPM) {
-            [(ReactNativeVC *)vc push:rpm params:[vc rn_keyValues]];
-            return true;
+            if ([UGTabbarController canPushToViewController:({
+                UIViewController *temp = [UIViewController new];
+                temp.允许游客访问 = rpm.允许游客访问;
+                temp.允许未登录访问 = rpm.允许未登录访问;
+                temp;
+            })]) {
+                [(ReactNativeVC *)vc push:rpm params:[vc rn_keyValues]];
+                return true;
+            }
+            return false;
         }
     }
     
