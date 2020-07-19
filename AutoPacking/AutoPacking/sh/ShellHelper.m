@@ -199,7 +199,7 @@
                                  arguments:@[projectPath, __sm.siteId, __sm.appName, version, __sm.appId, ]
                                 completion:^(OutputModel * _Nonnull om) {
             // 注释掉APP_TEST
-            if (![__sm.siteId isEqualToString:@"hotUpdate"]) {
+            if (![__sm.type isEqualToString:@"内测包"]) {
                 NSString *filePath = _NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", projectPath);
                 NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
                 [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
