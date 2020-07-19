@@ -12,7 +12,7 @@
 #import "UGLotteryRecordController.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGChangLongController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGFundsViewController.h"
 #import "UGYYRightMenuTableViewCell.h"
@@ -492,7 +492,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:[UGChangLongController new] animated:true];
     }
     else if ([title isEqualToString:@"站内信"]) {
-        [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
+        [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
     }
     else if ([title isEqualToString:@"利息宝"]) {
 //#if DEBUG

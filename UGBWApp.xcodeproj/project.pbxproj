@@ -1052,8 +1052,6 @@
 		031E1D5523BE812B00B0F813 /* UGModifyLoginPlaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E181B23BE812600B0F813 /* UGModifyLoginPlaceController.m */; };
 		031E1D5623BE812B00B0F813 /* UGModifyLoginPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E181C23BE812600B0F813 /* UGModifyLoginPwdController.m */; };
 		031E1D5723BE812B00B0F813 /* UGModifyLoginPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E181C23BE812600B0F813 /* UGModifyLoginPwdController.m */; };
-		031E1D5823BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E182023BE812600B0F813 /* UGMailBoxTableViewController.m */; };
-		031E1D5923BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E182023BE812600B0F813 /* UGMailBoxTableViewController.m */; };
 		031E1D5A23BE812B00B0F813 /* UGRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E182423BE812600B0F813 /* UGRegisterViewController.m */; };
 		031E1D5B23BE812B00B0F813 /* UGRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E182423BE812600B0F813 /* UGRegisterViewController.m */; };
 		031E1D5C23BE812B00B0F813 /* UGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E182523BE812600B0F813 /* UGLoginViewController.m */; };
@@ -1673,7 +1671,8 @@
 		CF166B3D24A495A900EF8835 /* HotBranchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3224A47E8700EF8835 /* HotBranchView.m */; };
 		CF166B3E24A495B000EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
-		CF166B4024A495CF00EF8835 /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
+		CF166B4024A495CF00EF8835 /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */; };
+		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -1987,8 +1986,8 @@
 		D442590323E949600067E981 /* LHHornView.m in Sources */ = {isa = PBXBuildFile; fileRef = D442590223E949600067E981 /* LHHornView.m */; };
 		D442590523E949F00067E981 /* LHHornView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442590423E949F00067E981 /* LHHornView.xib */; };
 		D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442695F249C83D10006878C /* MessageUnderMenuView.xib */; };
-		D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* MailBoxTableViewController.m */; };
-		D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4426964249CABEC0006878C /* MailBoxTableViewController.xib */; };
+		D4426965249CABEC0006878C /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */; };
+		D4426966249CABEC0006878C /* UGMailBoxTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4426964249CABEC0006878C /* UGMailBoxTableViewController.xib */; };
 		D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AAB824614D25002737CB /* DZPOneTableViewCell.m */; };
 		D444AABC24614D3B002737CB /* DZPOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */; };
 		D444AABF246161F6002737CB /* DZPTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D444AABE246161F6002737CB /* DZPTwoTableViewCell.m */; };
@@ -2994,8 +2993,6 @@
 		031E181B23BE812600B0F813 /* UGModifyLoginPlaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGModifyLoginPlaceController.m; sourceTree = "<group>"; };
 		031E181C23BE812600B0F813 /* UGModifyLoginPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGModifyLoginPwdController.m; sourceTree = "<group>"; };
 		031E181D23BE812600B0F813 /* UGSecurityCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSecurityCenterViewController.h; sourceTree = "<group>"; };
-		031E181F23BE812600B0F813 /* UGMailBoxTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMailBoxTableViewController.h; sourceTree = "<group>"; };
-		031E182023BE812600B0F813 /* UGMailBoxTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGMailBoxTableViewController.m; sourceTree = "<group>"; };
 		031E182123BE812600B0F813 /* UGMineSkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGMineSkinViewController.h; sourceTree = "<group>"; };
 		031E182323BE812600B0F813 /* UGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLoginViewController.h; sourceTree = "<group>"; };
 		031E182423BE812600B0F813 /* UGRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGRegisterViewController.m; sourceTree = "<group>"; };
@@ -3887,9 +3884,9 @@
 		D442590223E949600067E981 /* LHHornView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LHHornView.m; sourceTree = "<group>"; };
 		D442590423E949F00067E981 /* LHHornView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LHHornView.xib; sourceTree = "<group>"; };
 		D442695F249C83D10006878C /* MessageUnderMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageUnderMenuView.xib; sourceTree = "<group>"; };
-		D4426962249CABEC0006878C /* MailBoxTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailBoxTableViewController.h; sourceTree = "<group>"; };
-		D4426963249CABEC0006878C /* MailBoxTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailBoxTableViewController.m; sourceTree = "<group>"; };
-		D4426964249CABEC0006878C /* MailBoxTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailBoxTableViewController.xib; sourceTree = "<group>"; };
+		D4426962249CABEC0006878C /* UGMailBoxTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMailBoxTableViewController.h; sourceTree = "<group>"; };
+		D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMailBoxTableViewController.m; sourceTree = "<group>"; };
+		D4426964249CABEC0006878C /* UGMailBoxTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMailBoxTableViewController.xib; sourceTree = "<group>"; };
 		D444AAB724614D25002737CB /* DZPOneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneTableViewCell.h; sourceTree = "<group>"; };
 		D444AAB824614D25002737CB /* DZPOneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DZPOneTableViewCell.m; sourceTree = "<group>"; };
 		D444AABB24614D3B002737CB /* DZPOneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DZPOneTableViewCell.xib; sourceTree = "<group>"; };
@@ -6420,11 +6417,9 @@
 		031E181E23BE812600B0F813 /* 站内信 */ = {
 			isa = PBXGroup;
 			children = (
-				031E181F23BE812600B0F813 /* UGMailBoxTableViewController.h */,
-				031E182023BE812600B0F813 /* UGMailBoxTableViewController.m */,
-				D4426962249CABEC0006878C /* MailBoxTableViewController.h */,
-				D4426963249CABEC0006878C /* MailBoxTableViewController.m */,
-				D4426964249CABEC0006878C /* MailBoxTableViewController.xib */,
+				D4426962249CABEC0006878C /* UGMailBoxTableViewController.h */,
+				D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */,
+				D4426964249CABEC0006878C /* UGMailBoxTableViewController.xib */,
 			);
 			path = "站内信";
 			sourceTree = "<group>";
@@ -9038,7 +9033,7 @@
 				CF8E242923DDBFD80054BF0F /* FontAwesome5_Solid.ttf in Resources */,
 				030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */,
 				CF4758D4239636D200966536 /* 3.gif in Resources */,
-				D4426966249CABEC0006878C /* MailBoxTableViewController.xib in Resources */,
+				D4426966249CABEC0006878C /* UGMailBoxTableViewController.xib in Resources */,
 				CF475912239636D200966536 /* 100.gif in Resources */,
 				031E1BE023BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
 				031E1CAA23BE812A00B0F813 /* UGFundDetailsCell.xib in Resources */,
@@ -9719,7 +9714,7 @@
 				031E1AE923BE812800B0F813 /* LeeTagItemViewModel.m in Sources */,
 				031E1D1323BE812B00B0F813 /* JSONAPI.m in Sources */,
 				031E199523BE812600B0F813 /* LHPostVoteView.m in Sources */,
-				CF166B4024A495CF00EF8835 /* MailBoxTableViewController.m in Sources */,
+				CF166B4024A495CF00EF8835 /* UGMailBoxTableViewController.m in Sources */,
 				031E197523BE812600B0F813 /* UGLHPostModel.m in Sources */,
 				031E1A8323BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				031E1D0123BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
@@ -9968,7 +9963,6 @@
 				031EF56423BE7B4D00B0F813 /* TimeIntervalExtension+XFoundation.swift in Sources */,
 				036CA78223C75A02007BBD25 /* MyPromotionVC.m in Sources */,
 				031E1C3923BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
-				031E1D5923BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */,
 				038A584B24A9D8790099D659 /* UIView+XFoundation.swift in Sources */,
 				031E194323BE812600B0F813 /* UGSkinManagers.m in Sources */,
 				031EF5B723BE7B4D00B0F813 /* MomentsCellCommentTextView.swift in Sources */,
@@ -10525,7 +10519,7 @@
 				031E1CD423BE812A00B0F813 /* MJRefreshBackNormalFooter.m in Sources */,
 				031E196223BE812600B0F813 /* UGPostListVC.m in Sources */,
 				031E19E623BE812700B0F813 /* UIViewController+Log.m in Sources */,
-				D4426965249CABEC0006878C /* MailBoxTableViewController.m in Sources */,
+				D4426965249CABEC0006878C /* UGMailBoxTableViewController.m in Sources */,
 				031E1A6623BE812700B0F813 /* UIView+ST.m in Sources */,
 				031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
 				031E1B1823BE812800B0F813 /* UGDocumentVC.m in Sources */,
@@ -10631,7 +10625,6 @@
 				031E1A6E23BE812700B0F813 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				031E1E5E23BE812C00B0F813 /* UGConvertCollectionViewCell.m in Sources */,
 				031E1D9223BE812B00B0F813 /* UGYubaoConversionViewController.m in Sources */,
-				031E1D5823BE812B00B0F813 /* UGMailBoxTableViewController.m in Sources */,
 				D4346B5E24053DB100D8FE7C /* UGCellHeaderView.m in Sources */,
 				031E1DEE23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,
 				CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */,

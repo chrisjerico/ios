@@ -22,7 +22,7 @@
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
 #import "UGLotteryRecordController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGDocumentVC.h"
 #import "UGFundsViewController.h"
@@ -2176,7 +2176,7 @@
     [TabBarController1 setSelectedIndex:4];
 }
 - (void)emailButtonTaped {
-    [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
+    [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
 }
 
 #pragma mark - Table view data source

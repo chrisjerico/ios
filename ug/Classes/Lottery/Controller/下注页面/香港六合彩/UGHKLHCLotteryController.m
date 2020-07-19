@@ -24,7 +24,6 @@
 #import "UGLotteryRecordController.h"
 #import "WMNavTabBar.h"
 #import "SGSegmentedControl.h"
-#import "MailBoxTableViewController.h"
 #import "UGChangLongController.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"

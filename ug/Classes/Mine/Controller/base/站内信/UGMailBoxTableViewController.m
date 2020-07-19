@@ -1,9 +1,9 @@
 //
-//  UGMailBoxTableViewController.m
-//  ug
+//  MailBoxTableViewController.m
+//  UGBWApp
 //
-//  Created by ug on 2019/5/7.
-//  Copyright © 2019 ug. All rights reserved.
+//  Created by ug on 2020/6/19.
+//  Copyright © 2020 ug. All rights reserved.
 //
 
 #import "UGMailBoxTableViewController.h"
@@ -13,14 +13,16 @@
 #import "MJRefresh.h"
 #import "MessageUnderMenuView.h"
 
-@interface UGMailBoxTableViewController ()
+@interface UGMailBoxTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 
 @property (nonatomic, strong) NSMutableArray <UGMessageModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
 @property(nonatomic, assign) int pageNumber;
-
+@property (nonatomic, weak)IBOutlet UITableView *tableView;   /**<   列表TableView */
 @property (nonatomic, strong)MessageUnderMenuView *underMenu; /**<   下边栏 */
 @end
+
 //分页初始值
 static int page = 1;
 static int size = 20;
@@ -31,27 +33,60 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+
     
     if (!self.title) {
-        self.title = @"站内信";
-    }
-    self.pageSize = size;
-    self.pageNumber = page;
-    self.view.backgroundColor = Skin1.textColor4;
-    [self.tableView registerNib:[UINib nibWithNibName:@"UGMessageTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellid];
-    self.tableView.rowHeight = 44;
-    self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0;
+          self.title = @"站内信";
+      }
+      self.pageSize = size;
+      self.pageNumber = page;
+      self.view.backgroundColor = Skin1.textColor4;
+    
+    [self tableViewInit];
+    [self.view addSubview:self.tableView];
     [self setupRefreshView];
     [self loadMessageList];
-
-//
+    
+    
     
     self.underMenu = [[MessageUnderMenuView alloc] initView];
     [self.view addSubview:self.underMenu];
-    [self.underMenu bringSubviewToFront:self.tableView];
     
+    
+    [self.underMenu  mas_remakeConstraints:^(MASConstraintMaker *make) {
+         make.left.equalTo(self.view.mas_left).with.offset(0);
+         make.right.equalTo(self.view.mas_right).with.offset(0);
+         make.top.equalTo(self.iphoneXBottomView.mas_top).offset(-36);
+//         make.top.equalTo(self.view.mas_bottom).offset(-36);
+         make.height.mas_equalTo(96);
+         
+     }];
+
+    
+      
     WeakSelf
+    __block BOOL isok = YES;
+    [self.underMenu.showBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        if (OBJOnceToken(self)) {
+            self.underMenu.oldFrame = self.underMenu.frame;
+        }
+        if (isok) {
+            [UIView animateWithDuration:0.35 animations:^{
+                weakSelf.underMenu.y = weakSelf.underMenu.oldFrame.origin.y -(96-36);
+                self.underMenu.arrowImg.transform = CGAffineTransformMakeRotation(M_PI*2);//旋转
+            } completion:^(BOOL finished) {
+                isok = NO;
+            }];
+        } else {
+            [UIView animateWithDuration:0.35 animations:^{
+                weakSelf.underMenu.y =  weakSelf.underMenu.oldFrame.origin.y;
+                self.underMenu.arrowImg.transform = CGAffineTransformMakeRotation(M_PI*1);//旋转
+            } completion:^(BOOL finished) {
+                isok = YES;
+            }];
+        }
+    }];
     self.underMenu.delclickBllock = ^{
         weakSelf.pageNumber = 1;
         [weakSelf loadMessageList];
@@ -61,8 +96,32 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
         [weakSelf loadMessageList];
     };
     
+    
+    [self.iphoneXBottomView setBackgroundColor:Skin1.bgColor];
+    [self.view bringSubviewToFront:self.iphoneXBottomView];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSLog(@"111");
+}
+
+
+- (UITableView *)tableViewInit {
+
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [_tableView registerNib:[UINib nibWithNibName:@"UGMessageTableViewCell" bundle:nil] forCellReuseIdentifier:messageCellid];
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.rowHeight = 40;
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+        _tableView.badgeBgColor = [UIColor clearColor];
+
+     
+    return _tableView;
+}
 //添加上下拉刷新
 - (void)setupRefreshView
 {

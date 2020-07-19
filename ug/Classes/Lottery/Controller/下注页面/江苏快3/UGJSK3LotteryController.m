@@ -18,7 +18,6 @@
 #import "STBarButtonItem.h"
 #import "CountDown.h"
 #import "UGAllNextIssueListModel.h"
-#import "MailBoxTableViewController.h"
 #import "UGFastThreeOneCollectionViewCell.h"
 #import "UGFastThreeTwoCollectionViewCell.h"
 #import "UGFastThreeThreeCollectionViewCell.h"
