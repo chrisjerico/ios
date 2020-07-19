@@ -23,6 +23,7 @@
 }
 
 static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
+static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 
 + (instancetype)shared {
     static LanguageHelper *obj = nil;
@@ -32,22 +33,10 @@ static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
         obj.lanCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"lanCode"] ? : @"zh";
         obj.version = [[NSUserDefaults standardUserDefaults] stringForKey:@"lan_version"];
         obj.notFoundStrings = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"LanguageNotFoundStrings"]];
-//        obj.notFoundStrings = @{}.mutableCopy;
-//        [[obj.notFoundStrings.allKeys componentsJoinedByString:@"\n"] writeToFile:@"/Users/fish/Desktop/336.txt" atomically:true encoding:NSUTF8StringEncoding error:nil];
-        // 上传未翻译字段
-        if (obj.kvs.count) {
-            NSMutableDictionary *keys = @{}.mutableCopy;
-            for (NSString *key in obj.notFoundStrings.allKeys) {
-                if ([obj.notFoundStrings[key] boolValue])
-                    keys[key] = @0;
-            }
-            if (keys.count) {
-//                [NetworkManager1 uploadLog:[keys.allKeys componentsJoinedByString:@"\n"] title:_NSString(@"%@未翻译字段", obj.lanCode) tag:@"未翻译字段"];
-                [obj.notFoundStrings addEntriesFromDictionary:keys];
-            }
-        }
+        _temp = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"LanguageNotFoundStringsTemp"]];
+        
+        // 存本地
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillTerminateNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-            // 存本地
             [[NSUserDefaults standardUserDefaults] setObject:obj.notFoundStrings forKey:@"LanguageNotFoundStrings"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
@@ -89,8 +78,8 @@ static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
     if (!cnString.hasChinese) return cnString;
     
     static NSDictionary *__lastCnKvs = nil;
-    static NSMutableDictionary *__vks = nil;
-    static NSMutableArray *__dynamicVs = nil;
+    static NSMutableDictionary *__vks = nil;// 非动态文本
+    static NSMutableArray *__dynamicVs = nil;// 动态文本
     if (__lastCnKvs != _cnKvs) {
         __lastCnKvs = _cnKvs;
         __vks = @{}.mutableCopy;
@@ -143,17 +132,31 @@ static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
                 return fullString;
             }
         }
-        // 记录未匹配的文本，找机会上传
-        if (!_notFoundStrings[cnString])
-            _notFoundStrings[cnString] = @1;
-        return cnString;
+        return [self addNotFoundString:cnString];
     } else {
-        NSString *v = [self stringForKey:key];
-        if (!v && !_notFoundStrings[cnString]) {
-            _notFoundStrings[cnString] = @1;
-        }
-        return v ? : cnString;
+        return [self stringForKey:key] ? : [self addNotFoundString:cnString];
     }
+}
+
+- (NSString *)addNotFoundString:(NSString *)s {
+    // 记录未匹配的文本
+    if (s.length && !_temp[s]) {
+        self.notFoundStrings[s] = @1;
+        if (self.notFoundStrings.count >= 2000) {
+            // 上传
+            NSDictionary *dict = self.notFoundStrings.copy;
+            [NetworkManager1 uploadLog:[dict.allKeys componentsJoinedByString:@"\n"] title:@"未翻译字段" tag:@"未翻译字段"].completionBlock = ^(CCSessionModel *sm) {
+                if (!sm.error) {
+                    [self.notFoundStrings removeObjectsForKeys:dict.allKeys];
+                    [_temp addEntriesFromDictionary:dict];
+                    [[NSUserDefaults standardUserDefaults] setObject:self.notFoundStrings forKey:@"LanguageNotFoundStrings"];
+                    [[NSUserDefaults standardUserDefaults] setObject:_temp forKey:@"LanguageNotFoundStringsTemp"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                }
+            };
+        }
+    }
+    return s;
 }
 
 @end
