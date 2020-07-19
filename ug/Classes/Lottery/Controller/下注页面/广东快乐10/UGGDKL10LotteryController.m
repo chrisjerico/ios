@@ -569,7 +569,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         }
         UGGameBetModel *game = type.list[indexPath.row];
         if ([@"正码" isEqualToString:model.name]) {
-            game.name = [NSString stringWithFormat:@"%ld",indexPath.row + 1];
+            if (indexPath.section == 1) {
+                UGTimeLotteryBetCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lottryBetCellid forIndexPath:indexPath];
+                UGGameplaySectionModel *type = model.list[indexPath.section];
+                UGGameBetModel *obj = type.list[indexPath.row];
+                NSLog(@"game====%@,obj====%@",game,obj.name);
+                cell.item = game;
+                return cell;
+            }
+            else{
+                game.name = [NSString stringWithFormat:@"%ld",indexPath.row + 1];
+                UGSSCBetItem1Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
+                cell.item = game;
+                return cell;
+            }
         }
         if ([@"第一球" isEqualToString:model.name] ||
             [@"第二球" isEqualToString:model.name] ||
@@ -578,8 +591,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [@"第五球" isEqualToString:model.name] ||
             [@"第六球" isEqualToString:model.name] ||
             [@"第七球" isEqualToString:model.name] ||
-            [@"第八球" isEqualToString:model.name] ||
-            [@"正码" isEqualToString:model.name]) {
+            [@"第八球" isEqualToString:model.name] ){
             if (indexPath.row < 20) {
                 UGSSCBetItem1Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
                 cell.item = game;
@@ -774,6 +786,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGSize size2 = CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
+    CGSize size3 = CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
     UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
     if (([@"第五球" isEqualToString:model.name] ||
          [@"第六球" isEqualToString:model.name] ||
@@ -799,6 +813,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         }
         return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
     }
+
     // 两面
     return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
 }
