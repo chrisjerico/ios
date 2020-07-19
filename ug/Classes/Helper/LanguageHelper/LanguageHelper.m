@@ -40,6 +40,7 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
             [[NSUserDefaults standardUserDefaults] setObject:obj.notFoundStrings forKey:@"LanguageNotFoundStrings"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
+        [obj addNotFoundString:nil];// 上传
     });
     return obj;
 }
@@ -142,19 +143,33 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     // 记录未匹配的文本
     if (s.length && !_temp[s]) {
         self.notFoundStrings[s] = @1;
-        if (self.notFoundStrings.count >= 2000) {
-            // 上传
-            NSDictionary *dict = self.notFoundStrings.copy;
-            [NetworkManager1 uploadLog:[dict.allKeys componentsJoinedByString:@"\n"] title:@"未翻译字段" tag:@"未翻译字段"].completionBlock = ^(CCSessionModel *sm) {
-                if (!sm.error) {
-                    [self.notFoundStrings removeObjectsForKeys:dict.allKeys];
-                    [_temp addEntriesFromDictionary:dict];
-                    [[NSUserDefaults standardUserDefaults] setObject:self.notFoundStrings forKey:@"LanguageNotFoundStrings"];
-                    [[NSUserDefaults standardUserDefaults] setObject:_temp forKey:@"LanguageNotFoundStringsTemp"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                }
-            };
+    }
+    
+    BOOL upload = self.notFoundStrings.count >= 2000;
+    if (OBJOnceToken(self)) {
+        if ([[NSUserDefaults standardUserDefaults] containsKey:@"LanguageUpdateTime"]) {
+            NSDate *date = [[[NSUserDefaults standardUserDefaults] stringForKey:@"LanguageUpdateTime"] dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+            if (fabs([date timeIntervalSinceDate:[NSDate date]]) > 24 * 60 * 60) {
+                upload = true;
+            }
+        } else {
+            [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"] forKey:@"LanguageUpdateTime"];
         }
+    }
+    
+    // 上传
+    if (upload) {
+        NSDictionary *dict = self.notFoundStrings.copy;
+        [NetworkManager1 uploadLog:[dict.allKeys componentsJoinedByString:@"\n"] title:@"未翻译字段" tag:@"未翻译字段"].completionBlock = ^(CCSessionModel *sm) {
+            if (!sm.error) {
+                [self.notFoundStrings removeObjectsForKeys:dict.allKeys];
+                [_temp addEntriesFromDictionary:dict];
+                [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"] forKey:@"LanguageUpdateTime"];
+                [[NSUserDefaults standardUserDefaults] setObject:self.notFoundStrings forKey:@"LanguageNotFoundStrings"];
+                [[NSUserDefaults standardUserDefaults] setObject:_temp forKey:@"LanguageNotFoundStringsTemp"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
+        };
     }
     return s;
 }
