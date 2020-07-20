@@ -1665,8 +1665,6 @@
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953BF3F24C5B36300051D24 /* mYYLabel.m */; };
-		49579ECD24C5727600DD306C /* SinglePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49579ECC24C5727600DD306C /* SinglePopView.m */; };
-		49579ECF24C572C000DD306C /* SinglePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49579ECE24C572C000DD306C /* SinglePopView.xib */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
@@ -2042,6 +2040,8 @@
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
 		D4D920CE23CD8A9200F02C9D /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D920CD23CD8A9200F02C9D /* CYLTabBar.m */; };
 		D4DB5D4123FBB4DD001C6D8F /* UIView+JHViewCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DB5D4023FBB4DD001C6D8F /* UIView+JHViewCorner.m */; };
+		D4DE3F1324C5E8D500DD3A69 /* UGPopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DE3F1124C5E8D500DD3A69 /* UGPopViewController.m */; };
+		D4DE3F1424C5E8D500DD3A69 /* UGPopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DE3F1224C5E8D500DD3A69 /* UGPopViewController.xib */; };
 		D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
 		D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0410423C773170070D2B5 /* UGLHPrizeView.m */; };
@@ -3562,9 +3562,6 @@
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		4953BF3E24C5B36300051D24 /* mYYLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mYYLabel.h; sourceTree = "<group>"; };
 		4953BF3F24C5B36300051D24 /* mYYLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mYYLabel.m; sourceTree = "<group>"; };
-		49579ECB24C5727600DD306C /* SinglePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePopView.h; sourceTree = "<group>"; };
-		49579ECC24C5727600DD306C /* SinglePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePopView.m; sourceTree = "<group>"; };
-		49579ECE24C572C000DD306C /* SinglePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SinglePopView.xib; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
 		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
@@ -3971,6 +3968,9 @@
 		D4D920CD23CD8A9200F02C9D /* CYLTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYLTabBar.m; sourceTree = "<group>"; };
 		D4DB5D3F23FBB4DD001C6D8F /* UIView+JHViewCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHViewCorner.h"; sourceTree = "<group>"; };
 		D4DB5D4023FBB4DD001C6D8F /* UIView+JHViewCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHViewCorner.m"; sourceTree = "<group>"; };
+		D4DE3F1024C5E8D500DD3A69 /* UGPopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPopViewController.h; sourceTree = "<group>"; };
+		D4DE3F1124C5E8D500DD3A69 /* UGPopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPopViewController.m; sourceTree = "<group>"; };
+		D4DE3F1224C5E8D500DD3A69 /* UGPopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGPopViewController.xib; sourceTree = "<group>"; };
 		D4E6A61C23C4D33F003E18B6 /* UGChatRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGChatRoomModel.h; sourceTree = "<group>"; };
 		D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGChatRoomModel.m; sourceTree = "<group>"; };
 		D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UG.h"; sourceTree = "<group>"; };
@@ -7598,11 +7598,11 @@
 		49579EC924C571E500DD306C /* 1次弹出框 */ = {
 			isa = PBXGroup;
 			children = (
-				49579ECB24C5727600DD306C /* SinglePopView.h */,
-				49579ECC24C5727600DD306C /* SinglePopView.m */,
-				49579ECE24C572C000DD306C /* SinglePopView.xib */,
 				4953BF3E24C5B36300051D24 /* mYYLabel.h */,
 				4953BF3F24C5B36300051D24 /* mYYLabel.m */,
+				D4DE3F1024C5E8D500DD3A69 /* UGPopViewController.h */,
+				D4DE3F1124C5E8D500DD3A69 /* UGPopViewController.m */,
+				D4DE3F1224C5E8D500DD3A69 /* UGPopViewController.xib */,
 			);
 			path = "1次弹出框";
 			sourceTree = "<group>";
@@ -8912,6 +8912,7 @@
 				CF4758C0239636D200966536 /* 169.gif in Resources */,
 				031E19D823BE812700B0F813 /* BankCardList.plist in Resources */,
 				031E1BF023BE812900B0F813 /* UGQXCLotteryController.storyboard in Resources */,
+				D4DE3F1424C5E8D500DD3A69 /* UGPopViewController.xib in Resources */,
 				031E1E3423BE812C00B0F813 /* UGPromotion6rowButtonTableViewCell.xib in Resources */,
 				CF4758A3239636D200966536 /* 31.gif in Resources */,
 				CF4758CD239636D200966536 /* 87.gif in Resources */,
@@ -9226,7 +9227,6 @@
 				031E1D3C23BE812B00B0F813 /* UGUserInfoViewController.storyboard in Resources */,
 				CF4758B0239636D200966536 /* 80.gif in Resources */,
 				031E1D1623BE812B00B0F813 /* Promote.storyboard in Resources */,
-				49579ECF24C572C000DD306C /* SinglePopView.xib in Resources */,
 				CF4758CA239636D200966536 /* 151.gif in Resources */,
 				031E1E4823BE812C00B0F813 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				031E1B9223BE812900B0F813 /* UGGameListCollectionViewCell.xib in Resources */,
@@ -10242,7 +10242,6 @@
 				031E1BE423BE812900B0F813 /* UGPK10NNLotteryController.m in Sources */,
 				031E1AC623BE812800B0F813 /* WMTabControl.m in Sources */,
 				031E1DBE23BE812B00B0F813 /* UGLoginAddressModel.m in Sources */,
-				49579ECD24C5727600DD306C /* SinglePopView.m in Sources */,
 				D434744024AB2FFA00B0F598 /* BetDetailTableViewCell.m in Sources */,
 				031E19A223BE812600B0F813 /* IBView.m in Sources */,
 				031E193E23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,
@@ -10610,6 +10609,7 @@
 				031E1AC823BE812800B0F813 /* YLEdgeLabel.m in Sources */,
 				031E1DDA23BE812C00B0F813 /* UGBetsRecordListModel.m in Sources */,
 				036CA78123C75A02007BBD25 /* MyPromotionVC.m in Sources */,
+				D4DE3F1324C5E8D500DD3A69 /* UGPopViewController.m in Sources */,
 				031E197223BE812600B0F813 /* UGLHCategoryListModel.m in Sources */,
 				031E1BD823BE812900B0F813 /* UGCommonLotteryController.m in Sources */,
 				031E1C0823BE812900B0F813 /* UGBetDetailModel.m in Sources */,

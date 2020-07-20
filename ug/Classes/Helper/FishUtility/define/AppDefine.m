@@ -161,7 +161,7 @@
         
         [self setupSystem];
         [self setupColor];
-        [self setupSiteParams];
+//        [self setupSiteParams];
     }
     return self;
 }
@@ -201,7 +201,13 @@
     _isSectionWhite = [@"a002" containsString:_SiteId];
     _isTitleWhite = [@"a002" containsString:_SiteId];
     _isGPKDeposit = [@"c105b" containsString:_SiteId];
-    _isHideFoot = Skin1.isBlack ? [@"c105b" containsString:_SiteId] : false;
+    
+    if (Skin1.isBlack) {
+        _isHideFoot = [@"c105b" containsString:_SiteId];
+    } else {
+        _isHideFoot = NO;
+    }
+//    _isHideFoot = Skin1.isBlack ? [@"c105b" containsString:_SiteId] : false;
     _isTextWhite = [@"a002,c116" containsString:_SiteId];
     _isTabMassageBadge = YES;
     _isTabHot = false;

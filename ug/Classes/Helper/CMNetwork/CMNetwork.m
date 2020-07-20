@@ -18,7 +18,7 @@
 
 #import "UGEncryptUtil.h"
 #import "GLEncryptManager.h"
-
+#import "UGPopViewController.h"
 
 Class CMResultClassGetResultClass(CMResultClass cls);
 Class CMResultClassGetDataClass(CMResultClass cls);
@@ -514,9 +514,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                 return;
             }
         }
-        if (errResponse.statusCode == 503) {
-                 NSLog(@"statusCode================== %ld", (long)errResponse.statusCode);
-        }
+
 #ifdef APP_TEST
         [completion cc_userInfo][@"error"] = error;
 #endif
