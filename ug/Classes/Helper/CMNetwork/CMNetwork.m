@@ -469,7 +469,8 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         
  
 #ifdef DEBUG
-        
+         NSHTTPURLResponse *errResponse = task.response;
+        NSLog(@"statusCode= %ld", (long)errResponse.statusCode);
         HJSonLog(@"%@: 返回的json = %@",method,json);
 
 #endif
@@ -513,11 +514,17 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                 return;
             }
         }
+        if (errResponse.statusCode == 503) {
+                 NSLog(@"statusCode================== %ld", (long)errResponse.statusCode);
+        }
 #ifdef APP_TEST
         [completion cc_userInfo][@"error"] = error;
 #endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
+        result.statusCode = errResponse.statusCode;
         if (completion != nil) {
+            
+             NSLog(@"statusCode================== %ld,result.msg= %@", (long)errResponse.statusCode,result.msg);
             completion(result, error);
         }
     }];
@@ -604,7 +611,10 @@ completion:(CMNetworkBlock)completion {
         [completion cc_userInfo][@"error"] = error;
 #endif
         CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
+        result.statusCode = errResponse.statusCode;
         if (completion != nil) {
+            
+             NSLog(@"statusCode================== %ld,result.msg= %@", (long)errResponse.statusCode,result.msg);
             completion(result, error);
         }
     }];

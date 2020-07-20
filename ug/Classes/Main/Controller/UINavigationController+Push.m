@@ -163,7 +163,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 //            SLWebViewController *vc = [SLWebViewController new];
 //            vc.urlStr = model.url;
 //            [NavController1 pushViewController:vc animated:true];
-            [CMCommon goTGWebUrl: model.url title:nil];
+//            model.url = @"https://dsjh888.com/";
+            NSLog(@"model.url= %@",model.url);
+            [CMCommon goTGWebUrl:model.url title:@""];
             return true;
         }
     } else {

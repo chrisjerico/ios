@@ -973,10 +973,12 @@ static NSString *uuidKey =@"uuidKey";
 *
 */
 +(void)goTGWebUrl:(NSString *)url title :(NSString *)title{
+    
+    NSString* str = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
     webViewVC.允许未登录访问 = true;
     webViewVC.允许游客访问 = true;
-    webViewVC.url = url;
+    webViewVC.url = str;
     if (title) {
         webViewVC.webTitle = title;
     }
