@@ -1664,6 +1664,7 @@
 		22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */; };
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
+		4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953BF3F24C5B36300051D24 /* mYYLabel.m */; };
 		49579ECD24C5727600DD306C /* SinglePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49579ECC24C5727600DD306C /* SinglePopView.m */; };
 		49579ECF24C572C000DD306C /* SinglePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49579ECE24C572C000DD306C /* SinglePopView.xib */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
@@ -3559,6 +3560,8 @@
 		2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UGBWApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
+		4953BF3E24C5B36300051D24 /* mYYLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mYYLabel.h; sourceTree = "<group>"; };
+		4953BF3F24C5B36300051D24 /* mYYLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mYYLabel.m; sourceTree = "<group>"; };
 		49579ECB24C5727600DD306C /* SinglePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePopView.h; sourceTree = "<group>"; };
 		49579ECC24C5727600DD306C /* SinglePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePopView.m; sourceTree = "<group>"; };
 		49579ECE24C572C000DD306C /* SinglePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SinglePopView.xib; sourceTree = "<group>"; };
@@ -7598,6 +7601,8 @@
 				49579ECB24C5727600DD306C /* SinglePopView.h */,
 				49579ECC24C5727600DD306C /* SinglePopView.m */,
 				49579ECE24C572C000DD306C /* SinglePopView.xib */,
+				4953BF3E24C5B36300051D24 /* mYYLabel.h */,
+				4953BF3F24C5B36300051D24 /* mYYLabel.m */,
 			);
 			path = "1次弹出框";
 			sourceTree = "<group>";
@@ -10493,6 +10498,7 @@
 				031E1E2223BE812C00B0F813 /* UGMosaicGoldTableViewCell.m in Sources */,
 				031E1C3023BE812900B0F813 /* UGLotterySubResultCollectionViewCell.m in Sources */,
 				031E1E8623BE812D00B0F813 /* UGYUbaoTitleView.m in Sources */,
+				4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */,
 				03E3AAB223C8234C009A28C0 /* PromotionMemberRechargeVC.m in Sources */,
 				031E1AAA23BE812800B0F813 /* WMIconSegmentControl.m in Sources */,
 				031E1B7A23BE812900B0F813 /* UGGameNavigationView.m in Sources */,
