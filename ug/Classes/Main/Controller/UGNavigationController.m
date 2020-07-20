@@ -56,12 +56,18 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
 + (void)load {
     // 获取哪个类下的导航条,管理自己下导航条
-    UINavigationBar *bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[self]];
+
     // 设置背景图片
     //    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
+//     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[self]];
+//    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+
     
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+     
+   
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

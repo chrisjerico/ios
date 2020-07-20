@@ -301,9 +301,12 @@ static UGTabbarController *_tabBarVC = nil;
         [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
+        
         
         for (UGNavigationController *nav in TabBarController1.viewControllers) {
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+             [nav.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
         }
     };
     if (OBJOnceToken(self)) {
