@@ -56,7 +56,7 @@
         [self loadLanguage];
     }
 
-#ifdef isYSAPP // 原生APP时才使用热更新
+//#ifdef isYSAPP // 原生APP时才使用热更新
 //    if (APP.isFish) {
 //        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 //        btn.backgroundColor = APP.NavigationBarColor;

@@ -1664,6 +1664,8 @@
 		22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FAD04623D471630002EA1D /* LotteryTrendContentCell.xib */; };
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
+		49579ECD24C5727600DD306C /* SinglePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49579ECC24C5727600DD306C /* SinglePopView.m */; };
+		49579ECF24C572C000DD306C /* SinglePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49579ECE24C572C000DD306C /* SinglePopView.xib */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
@@ -1672,7 +1674,6 @@
 		CF166B3E24A495B000EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
 		CF166B4024A495CF00EF8835 /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */; };
-		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -3558,6 +3559,9 @@
 		2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UGBWApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30193B1626262AA87797C0E9 /* Pods_chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
+		49579ECB24C5727600DD306C /* SinglePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SinglePopView.h; sourceTree = "<group>"; };
+		49579ECC24C5727600DD306C /* SinglePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SinglePopView.m; sourceTree = "<group>"; };
+		49579ECE24C572C000DD306C /* SinglePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SinglePopView.xib; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
 		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
@@ -7588,6 +7592,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		49579EC924C571E500DD306C /* 1次弹出框 */ = {
+			isa = PBXGroup;
+			children = (
+				49579ECB24C5727600DD306C /* SinglePopView.h */,
+				49579ECC24C5727600DD306C /* SinglePopView.m */,
+				49579ECE24C572C000DD306C /* SinglePopView.xib */,
+			);
+			path = "1次弹出框";
+			sourceTree = "<group>";
+		};
 		CF166B3524A47E9C00EF8835 /* 切站点、切热更新 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8352,6 +8366,7 @@
 				031E176123BE812500B0F813 /* Main */,
 				031E17E623BE812600B0F813 /* Mine */,
 				031E17DC23BE812500B0F813 /* Promote */,
+				49579EC924C571E500DD306C /* 1次弹出框 */,
 				D4773AB923FC163500D38D60 /* 额度转换 */,
 				D4486C23241D07EE00E5CCEA /* 在线客服 */,
 				D43A784F23EFEB1A00F75B0C /* 红包扫雷 */,
@@ -9206,6 +9221,7 @@
 				031E1D3C23BE812B00B0F813 /* UGUserInfoViewController.storyboard in Resources */,
 				CF4758B0239636D200966536 /* 80.gif in Resources */,
 				031E1D1623BE812B00B0F813 /* Promote.storyboard in Resources */,
+				49579ECF24C572C000DD306C /* SinglePopView.xib in Resources */,
 				CF4758CA239636D200966536 /* 151.gif in Resources */,
 				031E1E4823BE812C00B0F813 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				031E1B9223BE812900B0F813 /* UGGameListCollectionViewCell.xib in Resources */,
@@ -10221,6 +10237,7 @@
 				031E1BE423BE812900B0F813 /* UGPK10NNLotteryController.m in Sources */,
 				031E1AC623BE812800B0F813 /* WMTabControl.m in Sources */,
 				031E1DBE23BE812B00B0F813 /* UGLoginAddressModel.m in Sources */,
+				49579ECD24C5727600DD306C /* SinglePopView.m in Sources */,
 				D434744024AB2FFA00B0F598 /* BetDetailTableViewCell.m in Sources */,
 				031E19A223BE812600B0F813 /* IBView.m in Sources */,
 				031E193E23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,

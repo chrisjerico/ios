@@ -161,6 +161,7 @@
         
         [self setupSystem];
         [self setupColor];
+        [self setupSiteParams];
     }
     return self;
 }
@@ -194,275 +195,57 @@
 
 
 #pragma mark - 定制样式
-
-- (BOOL)isBgColorForMoneyVC {
-     return [@"c134,test29" containsString:_SiteId];
-}
-
-- (BOOL)isShowSalary {
-     return [@"c217,test29" containsString:_SiteId];
-}
-
-- (BOOL)isSectionWhite {
-     return [@"a002" containsString:_SiteId];
-}
-
-- (BOOL)isTitleWhite {
-     return [@"a002" containsString:_SiteId];
-}
- 
-- (BOOL)isGPKDeposit {
-     return [@"c105b" containsString:_SiteId];
-}
-
-- (BOOL)isHideFoot {
-    if (Skin1.isBlack) {
-         return [@"c105b" containsString:_SiteId];
-    }
-    return false;
-}
-
-- (BOOL)isTextWhite {
-     return [@"a002,c116" containsString:_SiteId];
-}
-
-- (BOOL)isTabMassageBadge {
-    return YES;
-}
-
-
-- (BOOL)isTabHot {
-    return [@"===" containsString:_SiteId];
-}
-
-//- (BOOL)isFireworks {
-//    return [@"000" containsString:_SiteId];
-//}
-
-- (BOOL)isParagraphSpacing {
-    return [@"c134,c200,c213,a002" containsString:_SiteId];
-}
-
-- (BOOL)oldConversion {
-    return [@"c200,a002" containsString:_SiteId];
-}
-
-
-- (BOOL)isRedWhite {
-    if ( [@"新年红0" containsString:Skin1.skitType]) {
-        return [@"c184" containsString:_SiteId];
-    }
-    else{
-        return NO;
-    }
-}
-
-- (BOOL)isShow4 {
-    return [@"c200,c213,a002" containsString:_SiteId];
-}
-
-- (BOOL)isNoBorder {
-    return [@"c200,c208,a002,c134,c092" containsString:_SiteId];
-}
-
-- (BOOL)isWihiteBorder {
-    return [@"c213" containsString:_SiteId];
-}
-
-- (BOOL)isYHShowTitle {
-    return [@"c217" containsString:_SiteId];
-}
-
-- (float )borderWidthTimes          {
-    if ([@"a002,c085" containsString:_SiteId]) {
-        return  2.0;
-    } else {
-        return 1;
-    }
-}
-
-- (BOOL)isChatWhite {
-    if (!APP.betBgIsWhite) {
-        return YES ;
-    } else {
-        return NO;
-    }
-}
-
-- (BOOL)isHideChat {
-    return [@"c212,c208" containsString:_SiteId];
-}
-
-- (BOOL)isLight {
-    return [@"c134" containsString:_SiteId];
-}
-
-- (BOOL)isYellow {
+- (void)setupSiteParams {
+    _isBgColorForMoneyVC = [@"c134,test29" containsString:_SiteId];
+    _isShowSalary = [@"c217,test29" containsString:_SiteId];
+    _isSectionWhite = [@"a002" containsString:_SiteId];
+    _isTitleWhite = [@"a002" containsString:_SiteId];
+    _isGPKDeposit = [@"c105b" containsString:_SiteId];
+    _isHideFoot = Skin1.isBlack ? [@"c105b" containsString:_SiteId] : false;
+    _isTextWhite = [@"a002,c116" containsString:_SiteId];
+    _isTabMassageBadge = YES;
+    _isTabHot = false;
+    _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
+    _oldConversion = [@"c200,a002" containsString:_SiteId];
+    _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
+    _isShow4 = [@"c200,c213,a002" containsString:_SiteId];
+    _isNoBorder = [@"c200,c208,a002,c134,c092" containsString:_SiteId];
+    _isWihiteBorder = [@"c213" containsString:_SiteId];
+    _isYHShowTitle = [@"c217" containsString:_SiteId];
+    _borderWidthTimes = [@"a002,c085" containsString:_SiteId] ? 2.0 : 1.0;
+    _isChatWhite = !APP.betBgIsWhite ? YES : NO;
+    _isHideChat = [@"c212,c208" containsString:_SiteId];
+    _isLight = [@"c134" containsString:_SiteId];
+    _isYellow = [@"c085,c134,c200,c193,c116,c208,c213,c212,a002" containsString:_SiteId];
+    _isSelectStyle = [@"c212,c208,c134,c200,c193,c116,c213,a002" containsString:_SiteId];
+    _isShowBorder =  [@"c212,c208,c134,c200,c213,a002,c193,c116,c092" containsString:_SiteId];
+    _isShowHornView = [@"l001,l002" containsString:_SiteId];
+    _isBorderNavBarBgColor = Skin1.isBlack ? NO : [@"c085,c212,c208,c134" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
+    _isBall = Skin1.isSLH ? YES : [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217" containsString:_SiteId];
+    _isBall6 = Skin1.isSLH ? YES : [@"c134,c200,c208,c213,a002,c193,c116" containsString:_SiteId];
+    _isBallParty = [@"c092" containsString:_SiteId];
+    _isWhite = Skin1.isBlack ? NO : [@"c213,c012" containsString:_SiteId];
+    _isHideText = [@"c200" containsString:_SiteId];
+    _isShowWZ = [@"c085" containsString:_SiteId];
+    _isShowLogo = [@"黑色模板" containsString:Skin1.skitType] ? NO : [@"黑色模板" containsString:Skin1.skitType] ? YES : [@"c190" containsString:_SiteId];
+    _isShowArrow = [@"黑色模板" containsString:Skin1.skitType]||Skin1.isJY ? NO : [@"c190" containsString:_SiteId];
+    _isCornerRadius = YES;
+    _isFontSystemSize = NO;
+    _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
+    _lotteryHallCustomImgS = [@"c190" containsString:_SiteId];
+    _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
+    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
     
-    return [@"c085,c134,c200,c193,c116,c208,c213,c212,a002" containsString:_SiteId];
+    _betSizeIsBig = [@"c169,c205,c211" containsString:_SiteId];
+    _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
+    _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
+    _addIcons = [@"c190,c134,c085,c193,a002" containsString:_SiteId];
+    _isReplaceIcon = [@"c085,c193,a002" containsString:_SiteId];
+    _isC190Cell = [@"c190,c012" containsString:_SiteId];
+    _isC217RWDT = [@"c217" containsString:_SiteId];
+    _isNoSubtitle = [@"c006" containsString:_SiteId];
 }
-
-- (BOOL)isSelectStyle {
-    return [@"c212,c208,c134,c200,c193,c116,c213,a002" containsString:_SiteId];
-}
-
-
-- (BOOL)isShowBorder {
-    
-    return [@"c212,c208,c134,c200,c213,a002,c193,c116,c092" containsString:_SiteId];
-    
-}
-
-- (BOOL)isShowHornView {
-    return [@"l001,l002" containsString:_SiteId];
-}
-
-
-- (BOOL)isBorderNavBarBgColor {
-    if (Skin1.isBlack) {
-        return NO;
-    }
-    else {
-        return [@"c085,c212,c208,c134" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
-    }
-}
-
-- (BOOL)isBall {
-    if (Skin1.isSLH) {
-        return YES;
-    } else {
-        return [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217" containsString:_SiteId];
-    }
-    
-}
-
-- (BOOL)isBall6 {
-    if (Skin1.isSLH) {
-        return YES;
-    } else {
-        return [@"c134,c200,c208,c213,a002,c193,c116" containsString:_SiteId];
-    }
-}
-
-- (BOOL)isBallParty {
-
-        return [@"c092" containsString:_SiteId];
-}
-
-
-
-- (BOOL)isWhite {
-    if (Skin1.isBlack) {
-        return NO;
-    } else {
-        return [@"c213,c012" containsString:_SiteId];
-    }
-}
-
-- (BOOL)isHideText {
-    return [@"c200" containsString:_SiteId];
-}
-
-
-
-- (BOOL)isShowWZ {
-    return [@"c085" containsString:_SiteId];
-}
-
-- (BOOL)isShowLogo {
-    if ([@"黑色模板" containsString:Skin1.skitType]) {
-        return NO;
-    } else {
-        if (Skin1.isJY) {
-            return YES;
-        } else {
-            return [@"c190" containsString:_SiteId];
-        }
-        
-    }
-}
-
-- (BOOL)isShowArrow {
-    if ([@"黑色模板" containsString:Skin1.skitType]||Skin1.isJY) {
-        return NO;
-    } else {
-        return [@"c190" containsString:_SiteId];
-    }
-}
-
-
-- (BOOL)isCornerRadius {
-    return YES;
-//    return [@"c193" containsString:_SiteId];
-}
-
-- (BOOL)isFontSystemSize {
-    if (Skin1.isJY) {
-        return NO;
-    } else {
-        return NO;
-    }
-    
-}
-
-
-- (BOOL)isBA {
-    return [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
-}
-
-
-- (BOOL)lotteryHallCustomImgS {
-    return [@"c190" containsString:_SiteId];
-}
-
-- (BOOL)betOddsIsRed {
-    return [@"c194,c005" containsString:_SiteId];
-}
-
-- (BOOL)betBgIsWhite {
-    
-    return ![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
-    
-}
-
-- (BOOL)isGrey {
-    return [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
-}
-
-- (BOOL)betSizeIsBig {
-    return [@"c169,c205,c211" containsString:_SiteId];
-}
-
-
-- (BOOL)isShowOtherJinbei {
-    return [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
-}
-
-- (BOOL)isShowJinbei {
-    return [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
-}
-
-- (BOOL)addIcons {
-    return [@"c190,c134,c085,c193,a002" containsString:_SiteId];
-}
-
-- (BOOL)isReplaceIcon {
-    return [@"c085,c193,a002" containsString:_SiteId];
-}
-
-- (BOOL)isC190Cell {
-    return [@"c190,c012" containsString:_SiteId];
-}
-
-- (BOOL)isC217RWDT {
-    return [@"c217" containsString:_SiteId];
-}
-
-- (BOOL)isNoSubtitle {
-    return [@"c006" containsString:_SiteId];
-}
-
-
 
 #pragma mark - 热更新
 
