@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SinglePopView : UIView
-@property (weak, nonatomic) IBOutlet mYYLabel *yyLabel;
 
+@property (strong, nonatomic)  NSString *content;
 + (SinglePopView *) sharedInstance;
 @end
 
