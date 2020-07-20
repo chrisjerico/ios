@@ -141,10 +141,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *agentRegbutton;             /**<   0=关闭；1=开启；  手机端注册页面显示“代理注册” */
 @property (nonatomic, copy) NSString *oftenLoginArea;             /**<   1=关闭；0=开启； 常用登录地 */
 @property (nonatomic, copy) NSString *mobileTemplateBackground;   /**<   配色方案  */
-@property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   模板号       */
+@property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   经典 配色方案     */
 @property (nonatomic, copy) NSString *mobileTemplateLhcStyle;     /**<   六合配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateGpkStyle;     /**<   Gpk配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateStyle;     /**<   新年红 简约 配色方案      */
+@property (nonatomic, copy) NSString *mobileTemplateHBStyle;     /**<   红包模板 配色方案      */
 @property (nonatomic, copy) NSString *webName;                    /**<   首页底部文字   网址名称*/
 @property (nonatomic, copy) NSString *serviceQQ1;                    /**<   QQ客服q1*/
 @property (nonatomic, copy) NSString *serviceQQ2;                    /**<   QQ客服q2*/

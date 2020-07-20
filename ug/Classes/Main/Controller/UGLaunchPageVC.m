@@ -41,7 +41,6 @@
 	[super viewDidLoad];
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
-    
 
     // 加载初始配置
     {
@@ -56,6 +55,21 @@
         [self loadLaunchImage];
         [self loadLanguage];
     }
+
+#ifdef isYSAPP // 原生APP时才使用热更新
+//    if (APP.isFish) {
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.backgroundColor = APP.NavigationBarColor;
+//        btn.frame = CGRectMake(100, 200, 200, 200);
+//        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+//            RnPageModel *rpm = [RnPageModel new];
+//            rpm.vcName = @"UGPromotionsController";
+//            [self presentViewController:[ReactNativeVC reactNativeWithRPM:rpm params:nil] animated:true completion:nil];
+//        }];
+//        [self.view addSubview:btn];
+//        return;
+//    }
+
     
     // 显示超时提示
     __weakSelf_(__self);
