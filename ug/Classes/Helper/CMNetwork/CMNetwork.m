@@ -88,7 +88,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         if (result.code != 0) {
             id errMsg = result.msg ?: [NSString stringWithFormat:@"error code: %zd", result.code];
             err = [NSError errorWithDomain:@"XD" code:result.code userInfo:@{NSLocalizedDescriptionKey:errMsg}];
-//            return;
+            //            return;
         }
         if (data == nil) {
             //err = [JSONModelError errorInvalidDataWithMessage:@"data is empty"];
@@ -195,7 +195,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     else if(result->_error.code == 401){
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             // UI更新代码
-          
+            
         }];
     }
     
@@ -219,13 +219,13 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 @implementation CMNetwork
 
 +(instancetype)manager {
-
+    
     static CMNetwork* network = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         network = self.new;
         [JSONHTTPClient setRequestContentType: @"application/x-www-form-urlencoded"];
-
+        
     });
     return network;
 }
@@ -350,8 +350,8 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     else{
         return url;
     }
-
-  
+    
+    
 }
 
 /******************************************************************************
@@ -428,6 +428,100 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 }
 
 - (void)getWithMethod:(NSString*)method
+               params:(NSDictionary*)params
+                model:(CMResultClass)model
+           retryCount:(NSInteger)retryCount
+           completion:(CMNetworkBlock)completion {
+    
+    // 读取信息
+    id resultClass = CMResultClassGetResultClass(model);
+    id dataClass = CMResultClassGetDataClass(model);
+    
+    //    NSLog(@"url = %@",method);
+    //    NSLog(@"params = %@",params);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer.timeoutInterval = 30;
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //    [manager.requestSerializer setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    //    [manager.requestSerializer  setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    // 2.设置非校验证书模式
+    manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    [manager.securityPolicy setValidatesDomainName:NO];
+    //    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+    
+    NSMutableURLRequest *req = [manager.requestSerializer requestWithMethod:@"GET" URLString:method parameters:params error:nil];
+    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (!error) {
+            // 序列化数据
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                 options:0
+                                                                   error:nil];
+            
+#ifdef DEBUG
+            
+            HJSonLog(@"%@: 返回的json = %@",method,json);
+            
+#endif
+            NSError *error;
+            CMResult* result;
+            if (json) {
+                result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
+            }
+#ifdef APP_TEST
+            [completion cc_userInfo][@"responseObject"] = json;
+#endif
+            
+            if (completion != nil) {
+                completion(result, error);
+            }
+        } else {
+            
+            NSHTTPURLResponse *errResponse = response;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                 options:0
+                                                                   error:nil];
+            if (errResponse.statusCode == 401) {
+                [SVProgressHUD dismiss];
+                SANotificationEventPost(UGNotificationloginTimeout, nil);
+                return ;
+            }
+            if (errResponse.statusCode == 402) {
+                [SVProgressHUD dismiss];
+                [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                UGUserModel.currentUser = nil;
+                SANotificationEventPost(UGNotificationUserLogout, nil);
+                return ;
+            }
+            if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
+                NSError *err;
+                CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
+                if (completion != nil) {
+                    completion(result, err);
+                    return;
+                }
+            }
+#ifdef APP_TEST
+            [completion cc_userInfo][@"error"] = error;
+#endif
+            if (errResponse.statusCode == 503) {
+                [self alertViewFor503:   [json objectForKey:@"msg"]];
+                completion(nil, error);
+                return ;
+            }
+            CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
+            result.statusCode = errResponse.statusCode;
+            if (completion != nil) {
+                completion(result, error);
+            }
+        }
+    }] resume] ;
+}
+
+- (void)postWithMethod:(NSString*)method
                 params:(NSDictionary*)params
                  model:(CMResultClass)model
             retryCount:(NSInteger)retryCount
@@ -437,202 +531,89 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-//    NSLog(@"url = %@",method);
-//    NSLog(@"params = %@",params);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer.timeoutInterval = 30;
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30;
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    [manager.requestSerializer setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-//    [manager.requestSerializer  setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    //   [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //   [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    //
+    //    [manager.requestSerializer  setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
+    
     // 2.设置非校验证书模式
     manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     manager.securityPolicy.allowInvalidCertificates = YES;
     [manager.securityPolicy setValidatesDomainName:NO];
-//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
     
-    [manager GET:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
-        if ([method containsString:@"imgCaptcha"]) {
+    //    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
+    
+    NSMutableURLRequest *req = [manager.requestSerializer requestWithMethod:@"POST" URLString:method parameters:params error:nil];
+    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (!error) {
+            // 序列化数据
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                 options:0
+                                                                   error:nil];
+#ifdef DEBUG
+            
+            HJSonLog(@"%@: 返回的json = %@",method,json);
+            
+#endif
+            NSError *error;
+            CMResult* result;
+            if (json) {
+                result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
+            }
+#ifdef APP_TEST
+            [completion cc_userInfo][@"responseObject"] = json;
+#endif
+            
             if (completion != nil) {
-                completion(responseObject, nil);
+                completion(result, error);
+            }
+        } else {
+            NSHTTPURLResponse *errResponse = response;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                 options:0
+                                                                   error:nil];
+            if (errResponse.statusCode == 401) {
+                [SVProgressHUD dismiss];
+                SANotificationEventPost(UGNotificationloginTimeout, nil);
                 return ;
             }
-        }
-        
-        
-        // 序列化数据
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                             options:0
-                                                               error:nil];
-        
- 
-#ifdef DEBUG
-         NSHTTPURLResponse *errResponse = task.response;
-        NSLog(@"statusCode= %ld", (long)errResponse.statusCode);
-        HJSonLog(@"%@: 返回的json = %@",method,json);
-
-#endif
-
-        NSError *error;
-        CMResult* result;
-        if (json) {
-            result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
-        }
-#ifdef APP_TEST
-        [completion cc_userInfo][@"responseObject"] = json;
-#endif
-        if (completion != nil) {
-            completion(result, error);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        NSHTTPURLResponse *errResponse = task.response;
-        if (errResponse.statusCode == 401) {
-            [SVProgressHUD dismiss];
-            SANotificationEventPost(UGNotificationloginTimeout, nil);
-			completion(nil, error);
-
-            return ;
-        }
-        if (errResponse.statusCode == 402) {
-            [SVProgressHUD dismiss];
-            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
-            UGUserModel.currentUser = nil;
-            SANotificationEventPost(UGNotificationUserLogout, nil);
-			completion(nil, error);
-
-            return ;
-        }
-        if (errResponse.statusCode == 403) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
-            NSError *err;
-            CMResult* result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
-            if (completion != nil) {
-                completion(result, err);
-                return;
+            if (errResponse.statusCode == 402) {
+                [SVProgressHUD dismiss];
+                [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                UGUserModel.currentUser = nil;
+                SANotificationEventPost(UGNotificationUserLogout, nil);
+                return ;
             }
-        }
-
+            if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
+                NSError *err;
+                CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
+                if (completion != nil) {
+                    completion(result, err);
+                    return;
+                }
+            }
 #ifdef APP_TEST
-        [completion cc_userInfo][@"error"] = error;
+            [completion cc_userInfo][@"error"] = error;
 #endif
-        if (errResponse.statusCode == 503) {
+            if (errResponse.statusCode == 503) {
+                [self alertViewFor503:   [json objectForKey:@"msg"]];
+                completion(nil, error);
+                return ;
+            }
             CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
-            NSLog(@"statusCode================== %ld,result.msg= %@", (long)errResponse.statusCode,result.msg);
-            [self alertViewFor503:result.msg];
-            completion(nil, error);
-            return ;
-        }
-        
-        CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
-        result.statusCode = errResponse.statusCode;
-        if (completion != nil) {
-            
-             NSLog(@"statusCode================== %ld,result.msg= %@", (long)errResponse.statusCode,result.msg);
-            completion(result, error);
-        }
-    }];
-    
-}
-
-- (void)postWithMethod:(NSString*)method
-params:(NSDictionary*)params
-model:(CMResultClass)model
-retryCount:(NSInteger)retryCount
-completion:(CMNetworkBlock)completion {
-    
-    // 读取信息
-    id resultClass = CMResultClassGetResultClass(model);
-    id dataClass = CMResultClassGetDataClass(model);
-    
-    NSLog(@"url = %@",method);
-    NSLog(@"params = %@",params);
-
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-   manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.requestSerializer.timeoutInterval = 30;
-   manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//   [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//   [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//
-//    [manager.requestSerializer  setValue:@"XMLHttpRequest" forHTTPHeaderField:@"X-Requested-With"];
-    
-    // 2.设置非校验证书模式
-    manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-    manager.securityPolicy.allowInvalidCertificates = YES;
-    [manager.securityPolicy setValidatesDomainName:NO];
-    
-//    NSLog(@"header = %@",[manager.requestSerializer HTTPRequestHeaders]);
-    [manager POST:method parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        // 序列化数据
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                             options:0
-                                                               error:nil];
-        
-//        NSLog(@"%@: json = %@",method,json);
-        
-        #ifdef DEBUG
-                
-                HJSonLog(@"%@: 返回的json = %@",method,json);
-
-        #endif
-        NSError *error;
-        CMResult* result;
-        if (json) {
-            result  = [resultClass resultWithJSON:json dataClass:dataClass error:&error];
-        }
-#ifdef APP_TEST
-        [completion cc_userInfo][@"responseObject"] = json;
-#endif
-        if (completion != nil) {
-            completion(result, error);
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSHTTPURLResponse *errResponse = task.response;
-        if (errResponse.statusCode == 401) {
-            [SVProgressHUD dismiss];
-            SANotificationEventPost(UGNotificationloginTimeout, nil);
-            return ;
-        }
-        if (errResponse.statusCode == 402) {
-            [SVProgressHUD dismiss];
-            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
-            UGUserModel.currentUser = nil;
-            SANotificationEventPost(UGNotificationUserLogout, nil);
-            return ;
-        }
-        if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
-            NSError *err;
-            CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
+            result.statusCode = errResponse.statusCode;
             if (completion != nil) {
-                completion(result, err);
-                return;
+                completion(result, error);
             }
         }
-#ifdef APP_TEST
-        [completion cc_userInfo][@"error"] = error;
-#endif
-        if (errResponse.statusCode == 503) {
-                 CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
-                NSLog(@"statusCode================== %ld,result.msg= %@", (long)errResponse.statusCode,result.msg);
-                 [self alertViewFor503:result.msg];
-                 completion(nil, error);
-                 return ;
-        }
-        CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
-        result.statusCode = errResponse.statusCode;
-        if (completion != nil) {
-            
-             NSLog(@"statusCode================== %ld,result.msg= %@", (long)errResponse.statusCode,result.msg);
-            completion(result, error);
-        }
-    }];
+    }] resume] ;
     
-   
 }
 
 //下载文件
@@ -646,7 +627,7 @@ completion:(CMNetworkBlock)completion {
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         
         NSString *fullPath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:response.suggestedFilename];
-    
+        
         return [NSURL fileURLWithPath:fullPath];
         
     } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
@@ -675,7 +656,7 @@ completion:(CMNetworkBlock)completion {
     
     if(!content){
         //        return;
-//        content = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！https://tw.yahoo.com";
+        //        content = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！https://tw.yahoo.com";
         content = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！";
     }
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
