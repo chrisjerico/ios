@@ -40,7 +40,9 @@
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate,JPUSHRegisterDelegate>
-
+{
+    
+}
 @end
 
 @implementation AppDelegate
@@ -49,6 +51,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [UGLaunchPageVC new];
     [self.window makeKeyAndVisible];
+    
+    self.notiveViewHasShow = YES;
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
