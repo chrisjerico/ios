@@ -19,13 +19,13 @@
 #import "UGBetRecordViewController.h"
 #import "UGGameListViewController.h"
 #import "UGDocumentVC.h"
-#import "UGBMRegisterViewController.h"           // 黑色模板注册
-#import "UGBMLoginViewController.h"              // 黑色模板登录
+#import "UGBMRegisterViewController.h"           // GPK版注册
+#import "UGBMLoginViewController.h"              // GPK版登录
 #import "UGLoginViewController.h"                // 模板登录
 #import "UGRegisterViewController.h"             // 模板注册
-#import "UGBMpreferentialViewController.h"       // 黑色模板优惠专区
+#import "UGBMpreferentialViewController.h"       // GPK版优惠专区
 #import "UGPromotionsController.h"               // 模板优惠专区
-#import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
+#import "UGBMLotteryHomeViewController.h"        // GPK版购彩大厅
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
 #import "UGMailBoxTableViewController.h"         // 站内信
 #import "UGSigInCodeViewController.h"            // 每日签到

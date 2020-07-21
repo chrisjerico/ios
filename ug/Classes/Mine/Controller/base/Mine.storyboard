@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1732,7 +1732,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdH-aU-E9v">
-                                <rect key="frame" x="0.0" y="707" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="741" width="414" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总输赢金额：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGz-IZ-HPm">
                                         <rect key="frame" x="318" y="15" width="86" height="17"/>
@@ -1757,7 +1757,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FZ7-vZ-H3f">
-                                <rect key="frame" x="0.0" y="88" width="414" height="619"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="653"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="VTU-Re-jLn">
@@ -1858,15 +1858,17 @@
                             <constraint firstItem="fdH-aU-E9v" firstAttribute="top" secondItem="FZ7-vZ-H3f" secondAttribute="bottom" id="65j-ut-uxf"/>
                             <constraint firstItem="FVj-Hd-i9u" firstAttribute="leading" secondItem="QXx-gq-hJn" secondAttribute="leading" id="7ol-1m-pOX"/>
                             <constraint firstItem="FVj-Hd-i9u" firstAttribute="top" secondItem="htT-RS-X5i" secondAttribute="top" id="Le9-rY-WRL"/>
+                            <constraint firstAttribute="bottom" secondItem="fdH-aU-E9v" secondAttribute="bottom" constant="85" id="RCK-8c-kcM"/>
                             <constraint firstItem="FZ7-vZ-H3f" firstAttribute="top" secondItem="FVj-Hd-i9u" secondAttribute="bottom" id="cpi-pF-Ady"/>
                             <constraint firstItem="htT-RS-X5i" firstAttribute="trailing" secondItem="FVj-Hd-i9u" secondAttribute="trailing" id="vo4-Kd-9Q3"/>
-                            <constraint firstItem="fdH-aU-E9v" firstAttribute="bottom" secondItem="htT-RS-X5i" secondAttribute="bottom" constant="-85" id="xJ0-9g-yM8"/>
                             <constraint firstItem="fdH-aU-E9v" firstAttribute="leading" secondItem="htT-RS-X5i" secondAttribute="leading" id="zNx-Zc-AHf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="htT-RS-X5i"/>
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="fdH-aU-E9v" id="MyQ-gB-HlZ"/>
+                        <outlet property="bottomViewBottomConstraints" destination="RCK-8c-kcM" id="QEh-ZD-wgT"/>
+                        <outlet property="bottomViewHeightConstraints" destination="3DR-VA-FYw" id="xZI-x2-7c1"/>
                         <outlet property="tableView" destination="FZ7-vZ-H3f" id="uGh-bq-jSk"/>
                         <outlet property="totalBetAmountLabel" destination="SbV-dK-eYl" id="4z4-Qd-98N"/>
                         <outlet property="winAmountLabel" destination="BGz-IZ-HPm" id="CAH-42-Cuj"/>

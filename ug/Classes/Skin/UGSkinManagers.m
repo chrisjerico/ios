@@ -11,8 +11,12 @@
 #define SkinAlpha 0.99
 
 
-@implementation UGSkinManagers
+@interface UGSkinManagers ()
+@property (nonatomic, weak) UGSkinManagers *original;/**<   原来的模板 */
+@end
 
+
+@implementation UGSkinManagers
 
 static NSPointerArray *__viewPointers = nil;    // 保存需要换肤的对象
 static UGSkinManagers *__currentSkin1 = nil;    // 当前皮肤
@@ -217,6 +221,15 @@ static UGSkinManagers *__initSkin1 = nil;
 		}
 	});
 }
+
+- (id)copyWithZone:(nullable NSZone *)zone {
+    UGSkinManagers *skin = [UGSkinManagers new];
+    for (NSString *ivar in [UGSkinManagers ivarList]) {
+        [skin setValue:[self valueForKey:ivar] forKey:ivar];
+    }
+    return skin;
+}
+
 
 #pragma mark - 色值
 
@@ -780,7 +793,7 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.tabNoSelectColor         = color(@"999999");
                 sm.tabSelectedColor         = color(@"FFFFFF");
                 sm.progressBgColor          = color(@"d80000,fb5959");
-                sm.homeContentColor         = color(@"747474");
+                sm.homeContentColor         = color(@"606060");
                 sm.homeContentSubColor      = color(@"757575");
                 sm.cellBgColor              = color(@"181818");
                 sm.CLBgColor                = color(@"202122");
@@ -1143,12 +1156,11 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm;
 			}),
 			
-			
-			//黑色模板
-			@"黑色模板0":({
-				UGSkinManagers *sm = defaultSm();
-				sm.skitType                 = @"黑色模板";
-				sm.skitString               = @"黑色模板";
+			//GPK版
+			@"GPK版0":({
+				UGSkinManagers *sm = [UGSkinManagers new];
+				sm.skitType                 = @"GPK版";
+				sm.skitString               = @"GPK版";
 				sm.bgColor                  = color(@"171717");
 				sm.navBarBgColor            = color(@"333333");
 				sm.tabBarBgColor            = color(@"313131");
@@ -1169,10 +1181,10 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.moneyCellColor           = color(@"9BB8CB");
 				sm;
 			}),
-            @"黑色模板1":({
-                UGSkinManagers *sm = defaultSm();
-                sm.skitType                 = @"黑色模板";
-                sm.skitString               = @"黑色模板香槟金";
+            @"GPK版1":({
+                UGSkinManagers *sm = [UGSkinManagers new];
+                sm.skitType                 = @"GPK版";
+                sm.skitString               = @"GPK版香槟金";
                 sm.bgColor                  = color(@"5B4435");
                 sm.navBarBgColor            = color(@"9C745A");
                 sm.tabBarBgColor            = color(@"9B735A");
@@ -1324,8 +1336,40 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm;
             }),
 
-
+            @"夜间模式1":({
+                UGSkinManagers *sm = [UGSkinManagers new];
+                sm.skitType                 = @"夜间模式";
+                sm.skitString               = @"夜间模式 1亮黑";
+                sm.bgColor                  = color(@"171717");
+                sm.navBarBgColor            = color(@"333333");
+                sm.tabBarBgColor            = color(@"313131");
+                sm.tabNoSelectColor         = color(@"999999");
+                sm.tabSelectedColor         = color(@"FFFFFF");
+                sm.progressBgColor          = color(@"d80000,fb5959");
+                sm.homeContentColor         = color(@"343434");
+                sm.homeContentSubColor      = color(@"353535");
+                sm.cellBgColor              = color(@"181818");
+                sm.CLBgColor                = color(@"202122");
+                sm.menuHeadViewColor        = color(@"323232");
+                sm.textColor1               = color(@"FEFEFE");
+                sm.textColor2               = color(@"C1C1C1");
+                sm.textColor3               = color(@"555555");
+                sm.textColor4               = color(@"000000");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
+                sm;
+            }),
 		};
+        
+        for (UGSkinManagers *skin in __dict.allValues) {
+            skin.isGPK = [skin.skitType containsString:@"GPK版"];
+            skin.isLH = [skin.skitType containsString:@"六合资料"];
+            skin.isJY = [skin.skitType containsString:@"简约模板"];
+            skin.is23 = [skin.skitString containsString:@"经典 21黑色"];
+            skin.isSLH = [skin.skitType isEqualToString:@"石榴红"];
+            skin.isBlack = skin.isGPK || skin.is23;
+        }
 		
 		__currentSkin1 = __lastSkin1 = __initSkin1 = __dict[@"1"];
 	});
@@ -1342,7 +1386,7 @@ static UGSkinManagers *__initSkin1 = nil;
 						   @"2":[NSString stringWithFormat:@"新年红%@",SysConf.mobileTemplateStyle],
 						   @"3":@"石榴红",
 						   @"4":[NSString stringWithFormat:@"六合资料%@",SysConf.mobileTemplateLhcStyle],
-						   @"5":[NSString stringWithFormat:@"黑色模板%@",SysConf.mobileTemplateGpkStyle],
+						   @"5":[NSString stringWithFormat:@"GPK版%@",SysConf.mobileTemplateGpkStyle],
 						   @"6":@"金沙主题",
 						   @"7":@"火山橙",
                            @"8":@"香槟金",
@@ -1374,11 +1418,15 @@ static UGSkinManagers *__initSkin1 = nil;
 //	skitType = @"23";
 //        skitType = @"石榴红";
 //        skitType = @"简约模板1";
-//            skitType = @"黑色模板";
+    skitType = @"石榴红";
+    UGSkinManagers *sm = [[UGSkinManagers allSkin][skitType] getBlackSkin:true];
+    if (!sm) {
+        @throw [NSException exceptionWithName:_NSString(@"该模板不存在，请检查是否拼写错误：%@", skitType) reason:@"" userInfo:nil];
+    }
+    return sm;
 #endif
+    
 	return [UGSkinManagers allSkin][skitType];
-
-
 }
 
 
@@ -1413,25 +1461,34 @@ static UGSkinManagers *__initSkin1 = nil;
     
 }
 
-- (BOOL)isBlack {
-	return [@"黑色模板" containsString:_skitType];
+- (instancetype)getBlackSkin:(BOOL)blackOrOriginal {
+    if (blackOrOriginal == self.isBlack) {
+        return self;
+    }
+    if (blackOrOriginal) {
+        UGSkinManagers *black = [[UGSkinManagers allSkin][@"夜间模式1"] copy];
+        [black setValuesWithDictionary:[self rn_keyValues]];
+        black.isBlack = true;
+        black.original = self;
+        return black;
+    } else {
+        return self.original ? : self;
+    }
 }
 
-- (BOOL)isLH {
-	return [_skitType containsString:@"六合资料"];
++ (void)showMask:(BOOL)showMask {
+    static UIView *mask = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        mask = [[UIView alloc] initWithFrame:APP.Bounds];
+        mask.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+        mask.userInteractionEnabled = false;
+        [APP.Window addSubview:mask];
+    });
+    mask.hidden = !showMask;
 }
 
-- (BOOL)isJY{
-    return [_skitType containsString:@"简约模板"];
-}
 
-- (BOOL)is23 {
-    return [_skitString containsString:@"经典 21黑色"];
-}
-
-- (BOOL)isSLH {
-    return [_skitType isEqualToString:@"石榴红"];
-}
 + (UIColor *)randomThemeColor {
 #define UIColorTheme1 UGRGBColor(239, 83, 98) // Grapefruit
 #define UIColorTheme2 UGRGBColor(254, 109, 75) // Bittersweet

@@ -48,7 +48,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *withdrawLabel;      /**<   提现文字*/
 
 
-@property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   黑色模板去会员中心*/
+@property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   GPK版去会员中心*/
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;    /**<   头像*/
 
@@ -63,7 +63,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(void)initTitleAndImgs{
     
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self titleArrayAndimageNameArrayInit];
         
         NSArray *arrayTmp = @[@"提现", @"充值"];
@@ -252,7 +252,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(IBAction)showMMemberCenterView{
     NSLog(@"tap");
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self hiddenSelf];
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:YES];
     }
@@ -270,6 +270,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
+    if (!OBJOnceToken(event)) return view;
     if (CGRectContainsPoint(self.bounds, point)) {
         
     } else {

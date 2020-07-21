@@ -50,7 +50,7 @@
 #import "JS_TitleView.h"
 
 
-//测试--黑色模板
+//测试--GPK版
 #import "UGfinancialViewViewController.h"
 
 // View
@@ -124,7 +124,7 @@
 @property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
 @property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
 
-@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   黑色模板导航头 */
+@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   GPK版导航头 */
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
@@ -262,7 +262,7 @@
             [v removeFromSuperview];
         }
         NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
-                               @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
+                               @"GPK版":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
                                @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
                                @"火山橙":@[_bannerBgView, _rollingView, _homeAdsBigBgView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _betFormView, _bottomView],
                                
@@ -314,24 +314,24 @@
     }
     
     
-    // 黑色模板的UI调整
-    BOOL isBlack = Skin1.isBlack;
+    // GPK版的UI调整
+    BOOL isGPK = Skin1.isGPK;
     // c108站点定制需求
     if ([@"c108" containsString: APP.SiteId]) {
         _rankingView.backgroundColor = UIColor.whiteColor;
     } else {
-        _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
+        _rankingView.backgroundColor = isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
     }
     
 
 //    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
 //    if (Skin1.isJY) {
-        _gameTypeView.cc_constraints.top.constant = isBlack||Skin1.isJY ? 0 : 10;
+        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY ? 0 : 10;
 //    }
-    _headerView.hidden = !isBlack;
-    self.fd_prefersNavigationBarHidden = isBlack;
+    _headerView.hidden = !isGPK;
+    self.fd_prefersNavigationBarHidden = isGPK;
     if (NavController1.topViewController == self) {
-        self.navigationController.navigationBarHidden = isBlack;
+        self.navigationController.navigationBarHidden = isGPK;
     }
     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
         _rollingView.backgroundColor = UIColor.whiteColor;
@@ -381,7 +381,7 @@
         [_lhPrizeView.timer setFireDate:[NSDate date]];
     }
 
-    self.navigationController.navigationBarHidden = [Skin1 isBlack];
+    self.navigationController.navigationBarHidden = [Skin1 isGPK];
   
 
 }

@@ -36,7 +36,7 @@
     self.layer.borderWidth = item.select ? APP.borderWidthTimes *  1 : APP.borderWidthTimes *  0.5;
     
     if (Skin1.isBlack||Skin1.is23) {
-        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
             self.backgroundColor = item.select ? RGBA(72, 146, 209, 1):  Skin1.homeContentSubColor;
         } else {
             self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);

@@ -17,7 +17,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self setBackgroundColor: [UIColor whiteColor]];
+    [self setBackgroundColor: [UIColor clearColor]];
 }
 
 - (void)setItem:(UGCheckinListModel *)item {

@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *name; /**<   标题 */
 // 自定义参数
 @property (nonatomic, readonly) NSString *lhImgName;    /**<   六合模版使用的本地图标 */
-@property (nonatomic, readonly) NSString *bmImgName;    /**<   黑色模板使用的本地图标 */
+@property (nonatomic, readonly) NSString *bmImgName;    /**<   GPK版使用的本地图标 */
 @property (nonatomic, readonly) NSString *defaultImgName;   /**<   正常情况使用的本地图标 */
 + (NSArray <UGUserCenterItem *>*)allItems;
 @end
@@ -183,7 +183,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL chatFollowSwitch;                  /**<   是否允许聊天室跟注 */
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
-@property (nonatomic, copy) NSString *easyRememberDomain;    /**<   黑色模板易记的网址*/
+@property (nonatomic, copy) NSString *easyRememberDomain;    /**<   GPK版易记的网址*/
 
 @property (nonatomic, copy) NSArray <LHPriceModel *>*lhcPriceList;    /**<   六合发帖价格范围 */
 

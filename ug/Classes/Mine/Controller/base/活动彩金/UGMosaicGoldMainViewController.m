@@ -194,10 +194,10 @@
     self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 背景颜色(可选)
     UIColor *bg;
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         bg = Skin1.textColor4;
     }
-    else if(Skin1.is23){
+    else if(Skin1.isBlack){
          bg = RGBA(135 , 135 ,135, 1);
     }
     else {

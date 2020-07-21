@@ -123,7 +123,7 @@
     [self.view setBackgroundColor: Skin1.bgColor];
     
     
-    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+    if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
         _titleLineView.backgroundColor = Skin1.bgColor;
         _titleUpLineView.backgroundColor = Skin1.bgColor;
         _title2LineView.backgroundColor = Skin1.bgColor;

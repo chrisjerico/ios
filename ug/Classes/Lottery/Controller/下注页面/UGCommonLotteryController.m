@@ -108,7 +108,7 @@
     FastSubViewCode(self.view);
     {
         // 背景色
-        //        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        //        if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
         //             self.view.backgroundColor = Skin1.bgColor;
         //        } else {
         self.view.backgroundColor = Skin1.textColor4;

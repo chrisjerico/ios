@@ -197,7 +197,7 @@ UGSystemConfigModel *currentConfig = nil;
 }
 - (MobileMenuType)type {
     if (_type == MM_我的_默认) {
-		if (Skin1.isBlack) {
+		if (Skin1.isGPK) {
             return MM_我的_亮黑;
 
 		} else if ([Skin1.skitType containsString:@"六合"]) {
@@ -214,10 +214,10 @@ UGSystemConfigModel *currentConfig = nil;
     if (_type == MM_推广收益 && UGLoginIsAuthorized() && !UserI.isAgent) {
         return MM_申请代理;
     }
-    if (_type == MM_优惠活动_默认 && Skin1.isBlack) {
+    if (_type == MM_优惠活动_默认 && Skin1.isGPK) {
         return MM_优惠活动_亮黑;
     }
-    if (_type == MM_购彩大厅_默认 && Skin1.isBlack) {
+    if (_type == MM_购彩大厅_默认 && Skin1.isGPK) {
         return MM_购彩大厅_亮黑;
     }
 

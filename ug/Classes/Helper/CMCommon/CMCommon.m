@@ -685,10 +685,8 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 //ios 指定范围内的随机数
-+(int)getRandomNumber:(int)from to:(int)to
-{
-    return (int)(from + (arc4random() % (to - from + 1)));
-    
++ (int)getRandomNumber:(int)from to:(int)to {
+    return (int)(from + (arc4random() % MAX((to - from + 1), 1)));
 }
 
 /**

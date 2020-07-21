@@ -47,14 +47,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *moneyCellColor;           /**<    金额Cell*/
 
 - (void)useSkin;    /**<   应用此皮肤 */
-- (BOOL)isBlack;    /**<   是否是黑色模板 */
-- (BOOL)isLH;       /**<   是否是六合资料 */
-- (BOOL)isJY;       /**<   是否是简约模板 */
-- (BOOL)isSLH;       /**<   是否是石榴红模板 */
+- (instancetype)getBlackSkin:(BOOL)blackOrOriginal;  /**<   获取当前模板的黑色主题，或还原 */
++ (void)showMask:(BOOL)show; /**<   黑色半透明遮罩 */
 
-- (BOOL)is23;       /**<   是否是经典黑色 */
 
-//-(UIColor *)navBarBgColor;
+@property (nonatomic) BOOL isGPK;  /**<   GPK板 */
+@property (nonatomic) BOOL isLH;   /**<   六合资料 */
+@property (nonatomic) BOOL isJY;   /**<   简约模板 */
+@property (nonatomic) BOOL isSLH;  /**<   石榴红模板 */
+@property (nonatomic) BOOL is23;   /**<   经典黑色 */
+
+@property (nonatomic) BOOL isBlack;/**<   黑色模式 */
 
 
 

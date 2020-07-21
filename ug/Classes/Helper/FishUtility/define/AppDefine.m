@@ -232,8 +232,8 @@
     _isWhite = Skin1.isBlack ? NO : [@"c213,c012" containsString:_SiteId];
     _isHideText = [@"c200" containsString:_SiteId];
     _isShowWZ = [@"c085" containsString:_SiteId];
-    _isShowLogo = [@"黑色模板" containsString:Skin1.skitType] ? NO : [@"黑色模板" containsString:Skin1.skitType] ? YES : [@"c190" containsString:_SiteId];
-    _isShowArrow = [@"黑色模板" containsString:Skin1.skitType]||Skin1.isJY ? NO : [@"c190" containsString:_SiteId];
+    _isShowLogo = [@"GPK版" containsString:Skin1.skitType] ? NO : [@"GPK版" containsString:Skin1.skitType] ? YES : [@"c190" containsString:_SiteId];
+    _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY ? NO : [@"c190" containsString:_SiteId];
     _isCornerRadius = YES;
     _isFontSystemSize = NO;
     _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
