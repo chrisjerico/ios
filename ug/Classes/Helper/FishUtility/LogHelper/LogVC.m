@@ -222,31 +222,50 @@ static LogVC *_logVC = nil;
         [ac setActionAtTitle:@"弹窗" handler:^(UIAlertAction *aa) {
             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 // 需要在主线程执行的代码
-                NSString *text = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！<a href=\"https://tw.yahoo.com/\">https://tw.yahoo.com/</a>";
-                text = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！https://tw.yahoo.com";
-//                for (int i = 0; i<10; i++) {
-//                    SinglePopView *popView = [SinglePopView sharedInstance];
-//                    NSString *text = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！<a href=\"https://tw.yahoo.com/\">https://tw.yahoo.com/</a>";
-//                    popView.content = text;
-//                    [SGBrowserView showZoomView:popView];
+                NSString *content = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！<a href=\"https://tw.yahoo.com/\">https://tw.yahoo.com/</a>";
+                content = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！https://tw.yahoo.com";
+                for (int i = 0; i<10; i++) {
+                    YYLabel *remarkLbl = [[YYLabel alloc] initWithFrame:CGRectMake(0, 0, 230, 130)];
+                    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:content];
+                    text.yy_font = [UIFont systemFontOfSize:16];
+                    NSError *error;
+                    NSDataDetector *dataDetector=[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+                    NSArray *arrayOfAllMatches=[dataDetector matchesInString:content options:NSMatchingReportProgress range:NSMakeRange(0, content.length)];
                     
-//                    [LEEAlert alert].config
-//                         .LeeTitle(text)
-//                         .LeeCancelAction(@"关闭", nil)
-//                         .LeeShow();
+                    //动态计算remarkLbl 的高
+                    CGFloat height = [CMCommon getLabelWidthWithText:content stringFont:text.yy_font allowWidth:230];
+                    [CMCommon changeHeight:remarkLbl Height:height-20];
+                    //我们得到一个数组，这个数组中NSTextCheckingResult元素中包含我们要找的URL的range，当然可能找到多个URL，找到相应的URL的位置，用YYlabel的高亮点击事件处理跳转网页
+                    for (NSTextCheckingResult *match in arrayOfAllMatches)
+                    {
+                        //        NSLog(@"%@",NSStringFromRange(match.range));
+                        [text yy_setTextHighlightRange:match.range//设置点击的位置
+                                                 color:[UIColor orangeColor]
+                                       backgroundColor:[UIColor whiteColor]
+                                             tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                            NSLog(@"这里是点击事件");
+                            [self dismissViewControllerAnimated:NO completion:^{
+                                [CMCommon goUrl:[content substringWithRange:match.range]];
+                                [LEEAlert closeWithCompletionBlock:nil];
+                            }];
+                            
+                        }];
+                    }
+                    remarkLbl.attributedText = text;
+                    remarkLbl.numberOfLines = 0;
                     
-//                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:text preferredStyle:UIAlertControllerStyleAlert];
-//                        [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
-//                        // 弹出对话框
-//                        [self presentViewController:alert animated:true completion:nil];
-                    
-                    UGPopViewController *alertView = [[UGPopViewController alloc] init];
+                    [LEEAlert alert].config
+                    .LeeTitle(@"提示")
+                    .LeeAddCustomView(^(LEECustomView *custom) {
+                        custom.view = remarkLbl;
+                        custom.positionType = LEECustomViewPositionTypeCenter;
+                    })
+                    .LeeAction(@"确认", nil)
+                    .LeeCancelAction(@"取消", nil)
+                    .LeeShow();
 
-                    alertView.content = text;
-                    //    // it`s OK!
-                    [self presentViewController:alertView animated:true completion:nil];
                     
-//                }
+                }
                 
                 
             });

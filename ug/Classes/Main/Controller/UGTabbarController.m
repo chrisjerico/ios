@@ -292,7 +292,9 @@ static UGTabbarController *_tabBarVC = nil;
     
     [self chatgetToken];
     
-     [self getAllNextIssueData]; // 彩票大厅数据
+    [self getAllNextIssueData]; // 彩票大厅数据
+    
+    [self getSystemConfig];
     
 }
 
@@ -856,4 +858,22 @@ static UGTabbarController *_tabBarVC = nil;
         } failure:nil];
     }];
 }
+
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            HJSonLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 @end

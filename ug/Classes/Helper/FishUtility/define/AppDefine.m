@@ -161,7 +161,10 @@
         
         [self setupSystem];
         [self setupColor];
-//        [self setupSiteParams];
+    
+        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+            [[AppDefine shared] setupSiteAndSkinParams];
+        }];
     }
     return self;
 }
@@ -195,19 +198,15 @@
 
 
 #pragma mark - 定制样式
-- (void)setupSiteParams {
+- (void)setupSiteAndSkinParams {
     _isBgColorForMoneyVC = [@"c134,test29" containsString:_SiteId];
     _isShowSalary = [@"c217,test29" containsString:_SiteId];
     _isSectionWhite = [@"a002" containsString:_SiteId];
     _isTitleWhite = [@"a002" containsString:_SiteId];
     _isGPKDeposit = [@"c105b" containsString:_SiteId];
     
-    if (Skin1.isBlack) {
-        _isHideFoot = [@"c105b" containsString:_SiteId];
-    } else {
-        _isHideFoot = NO;
-    }
-//    _isHideFoot = Skin1.isBlack ? [@"c105b" containsString:_SiteId] : false;
+
+    _isHideFoot = Skin1.isBlack ? [@"c105b" containsString:_SiteId] : false;
     _isTextWhite = [@"a002,c116" containsString:_SiteId];
     _isTabMassageBadge = YES;
     _isTabHot = false;

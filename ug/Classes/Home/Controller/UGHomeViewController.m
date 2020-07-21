@@ -451,6 +451,8 @@
                 cnt += !v.hidden;
             }
             __self.promotionView.hidden = !SysConf.m_promote_pos || !cnt;
+            
+            [[AppDefine shared] setupSiteAndSkinParams];
         });
     }
     
