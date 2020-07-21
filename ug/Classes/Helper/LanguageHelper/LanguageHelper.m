@@ -75,6 +75,7 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 }
 
 - (NSString *)stringForCnString:(NSString *)cnString; {
+    if ([cnString containsString:@"龘"]) return [cnString stringByReplacingOccurrencesOfString:@"龘" withString:@""];
     if (_isCN) return cnString;
     if (!cnString.hasChinese) return cnString;
     
