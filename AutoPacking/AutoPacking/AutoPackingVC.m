@@ -54,8 +54,8 @@
             }
             else {
                 NSString *log = @"（无更新3）";    // 更新日志
-                NSString *environment = @"andrew1";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
-                NSString *branch = @"fish/dev1";    // 分支名：fish/dev1
+                NSString *environment = @"parker2";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
+                NSString *branch = @"Parker/多語言替換";    // 分支名：fish/dev1
                 
                 [RNPack checkEnvironment:environment log:log completion:^(NSString * _Nonnull environment, NSString * _Nonnull log) {
                     [RNPack getCurrentVersionWithEnvironment:environment completion:^(NSString * _Nonnull version) {
