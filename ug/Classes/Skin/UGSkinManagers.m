@@ -1358,6 +1358,7 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.conversionCellColor      = color(@"7BA2C2");
                 sm.intoViewColor            = color(@"7BA2C2");
                 sm.moneyCellColor           = color(@"9BB8CB");
+                sm.navBarTitleColor         = color(@"ffffff");
                 sm;
             }),
 		};
@@ -1418,8 +1419,9 @@ static UGSkinManagers *__initSkin1 = nil;
 //	skitType = @"23";
 //        skitType = @"石榴红";
 //        skitType = @"简约模板1";
-    skitType = @"石榴红";
-    UGSkinManagers *sm = [[UGSkinManagers allSkin][skitType] getBlackSkin:true];
+//    skitType = @"GPK版0";
+    UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
+//    [sm getBlackSkin:true];
     if (!sm) {
         @throw [NSException exceptionWithName:_NSString(@"该模板不存在，请检查是否拼写错误：%@", skitType) reason:@"" userInfo:nil];
     }
