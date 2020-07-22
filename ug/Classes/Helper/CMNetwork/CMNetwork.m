@@ -508,7 +508,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             [completion cc_userInfo][@"error"] = error;
 #endif
             if (errResponse.statusCode == 503) {
-                [self performSelector:@selector(alertViewFor503:) withObject:[json objectForKey:@"msg"] afterDelay:6.0];
+                [self performSelector:@selector(alertViewFor503:) withObject:[json objectForKey:@"msg"] afterDelay:4.0];
                 completion(nil, error);
                 return ;
             }
@@ -602,7 +602,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             [completion cc_userInfo][@"error"] = error;
 #endif
             if (errResponse.statusCode == 503) {
-                [self performSelector:@selector(alertViewFor503:) withObject:[json objectForKey:@"msg"] afterDelay:6.0];
+                [self performSelector:@selector(alertViewFor503:) withObject:[json objectForKey:@"msg"] afterDelay:4.0];
                 completion(nil, error);
                 return ;
             }
