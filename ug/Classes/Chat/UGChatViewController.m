@@ -14,6 +14,8 @@
 #import "WHC_ModelSqlite.h"
 #import "RoomChatModel.h"
 @interface UGChatViewController ()
+
+@property (nonatomic,retain)NSArray * myroomAry;
 @property (nonatomic) UIButton *closeBtn;
 @end
 
@@ -38,6 +40,8 @@
         [self setupTitleView];
     }
     
+    
+    [self chatRoomName];
 	// 设置URL
 	__weakSelf_(__self);
 	{
@@ -372,6 +376,32 @@
                         
                     }
                 }];
+            }
+            
+        }
+    };
+}
+
+
+-(void)chatRoomName {
+    __weakSelf_(__self);
+    //得到线上配置的聊天室
+    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+        if (!sm.error) {
+            NSLog(@"model.data = %@",sm.responseObject[@"data"]);
+            NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+            self.myroomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+            
+            if (![CMCommon stringIsNull:self.roomId]) {
+                
+                for (int i = 0; i<self.myroomAry.count; i++) {
+                    RoomChatModel *obj= [self.myroomAry objectAtIndex:i];
+                    
+                    if ([obj.roomId isEqualToString:self.roomId]) {
+                        [self setTitle:obj.roomName];
+                        break ;
+                    }
+                }
             }
             
         }
