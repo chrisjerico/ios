@@ -1665,6 +1665,8 @@
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953BF3F24C5B36300051D24 /* mYYLabel.m */; };
+		495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */; };
+		495CF4C424C8590800A4574D /* UGTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
@@ -3562,6 +3564,9 @@
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		4953BF3E24C5B36300051D24 /* mYYLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mYYLabel.h; sourceTree = "<group>"; };
 		4953BF3F24C5B36300051D24 /* mYYLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mYYLabel.m; sourceTree = "<group>"; };
+		495CF4C024C8590800A4574D /* UGTaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTaskTableViewCell.h; sourceTree = "<group>"; };
+		495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTaskTableViewCell.m; sourceTree = "<group>"; };
+		495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTaskTableViewCell.xib; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
 		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
@@ -6664,6 +6669,9 @@
 				D428E8BC2441EBFA000B8980 /* UGSalaryListView.h */,
 				D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */,
 				D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */,
+				495CF4C024C8590800A4574D /* UGTaskTableViewCell.h */,
+				495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */,
+				495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */,
 			);
 			path = "任务大厅";
 			sourceTree = "<group>";
@@ -9184,6 +9192,7 @@
 				031A781F23D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */,
 				031E1C1023BE812900B0F813 /* UGLotteryAdPopView.xib in Resources */,
 				031E1B4E23BE812800B0F813 /* UGYYRightMenuTableViewCell.xib in Resources */,
+				495CF4C424C8590800A4574D /* UGTaskTableViewCell.xib in Resources */,
 				031E1C5423BE812A00B0F813 /* UGBetDetailView.xib in Resources */,
 				CF8E242F23DDBFD80054BF0F /* MaterialIcons.ttf in Resources */,
 				CF4758F8239636D200966536 /* 170.gif in Resources */,
@@ -10458,6 +10467,7 @@
 				031E1D1823BE812B00B0F813 /* UGPromotionsController.m in Sources */,
 				031E199823BE812600B0F813 /* LHPostRewardView.m in Sources */,
 				031E1A2C23BE812700B0F813 /* CMNetwork+LH.m in Sources */,
+				495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */,
 				031E1AEC23BE812800B0F813 /* LeeTagView.m in Sources */,
 				031E1DC223BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
 				D4326F0E23F7B4F900BEEA1B /* RedBagLogModel.m in Sources */,

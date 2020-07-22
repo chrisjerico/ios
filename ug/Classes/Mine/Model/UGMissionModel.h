@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *sortName2;         /**<   二级分类"Name */
 //自定义参数
+@property (nonatomic, strong) NSArray<UGMissionModel *> *typeArray;    /**<   type分类数据数组 */
 @property (nonatomic, strong) NSArray<UGMissionModel *> *sortName2Array;    /**<   二级分类数据数组 */
 @property (nonatomic, assign) BOOL isShowCell;                               /**<   二级分类数据是否展示*/
 @end

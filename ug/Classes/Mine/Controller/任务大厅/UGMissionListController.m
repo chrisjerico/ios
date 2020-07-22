@@ -57,17 +57,20 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    UGMissionModel*obj = [self.dataArray objectAtIndex:section];
+//    UGMissionModel*obj = [self.dataArray objectAtIndex:section];
+//
+//    if ([CMCommon arryIsNull:obj.sortName2Array]) {
+//        return 0;
+//    } else {
+//        if (obj.isShowCell) {
+//            return obj.sortName2Array.count;
+//        } else {
+//            return 0;
+//        }
+//    }
+   
+    return  1;
     
-    if ([CMCommon arryIsNull:obj.sortName2Array]) {
-        return 0;
-    } else {
-        if (obj.isShowCell) {
-            return obj.sortName2Array.count;
-        } else {
-            return 0;
-        }
-    }
 }
 
 
@@ -180,11 +183,9 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
         
         UIView *line = [[UIView alloc] init];
         
-//        if (Skin1.isBlack||Skin1.is23) {
-//              [line setBackgroundColor:[UIColor whiteColor]];
-//        } else {
-            [line setBackgroundColor:Skin1.textColor3];
-//        }
+
+        [line setBackgroundColor:Skin1.textColor3];
+
       
          [view addSubview:line];
         
@@ -210,6 +211,10 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
         }];
         return view;
     }
+    
+     UIView *view = [[UIView alloc] init];
+    UIImageView *imgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
+//     button.frame = CGRectMake(0, 0, APP.Width, 40);
 }
 
 #pragma mark - 按钮的点击事件,将字符串添加到数组
@@ -235,22 +240,10 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     return 0.001f;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UGMissionModel*obj = [self.dataArray objectAtIndex:indexPath.section];
-//    UGMissionModel *model = obj.sortName2Array[indexPath.row];
-//    
-//    [LEEAlert alert].config
-//    .LeeTitle(@"任务详情")
-//    .LeeContent(model.missionDesc)
-//    .LeeAction(@"确认", ^{
-//        
-//        // 确认点击事件Block
-//    })
-//    .LeeShow(); // 设置完成后 别忘记调用Show来显示
-//}
 
 #pragma mark -- 网络请求
-
+//根据type 0，1，2 最高1级
+//之后再分
 
 //得到列表数据
 - (void)getCenterData {
@@ -289,45 +282,56 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             NSMutableArray <UGMissionModel *> *tempdataArray = [NSMutableArray new];
             tempdataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             
-            //            1:得到有2级名称的 放到一个数组
-            NSMutableArray <NSString *> *sortName2Array = [NSMutableArray new];
+            
+            //1 .根据type不同分给不同的数组。（最多3个）
+             NSMutableArray <NSString *> *typeNameArray = [NSMutableArray new];
             for (UGMissionModel*obj in tempdataArray) {
-                if (![CMCommon stringIsNull:obj.sortName2]) {
+                if (obj.type) {
                     
-                    if (![sortName2Array containsObject:obj.sortName2]) {
-                        [sortName2Array addObject:obj.sortName2];
+                    if (![typeNameArray containsObject:obj.type]) {
+                        [typeNameArray addObject:obj.sortName2];
+                    }
+                }
+            }
+            //            2:重新组织
+            for (NSString *s in typeNameArray) {
+                UGMissionModel *model = [UGMissionModel new];
+                model.type = s;
+                
+                NSArray<UGMissionModel *> *temps = [tempdataArray objectsWithValue:s keyPath:@"type"];
+                
+                model.typeArray = temps;
+                // 3 对每个type数据再处理
+                {
+                    //            1:得到有2级名称的 放到一个数组
+                    NSMutableArray <NSString *> *sortName2Array = [NSMutableArray new];
+                    for (UGMissionModel*obj in temps) {
+                        if (![CMCommon stringIsNull:obj.sortName2]) {
+                            
+                            if (![sortName2Array containsObject:obj.sortName2]) {
+                                [sortName2Array addObject:obj.sortName2];
+                            }
+                            
+                        }
+                    }
+                    //            2:重新组织
+                    for (NSString *s in sortName2Array) {
+                        UGMissionModel *model = [UGMissionModel new];
+                        model.sortName2 = s;
+                        
+                        NSArray<UGMissionModel *> *temps = [tempdataArray objectsWithValue:s keyPath:@"sortName2"];
+                        
+                        model.sortName2Array = temps;
                     }
                     
                 }
-            }
-            
-//            //查看数据
-//            for (NSString *s in sortName2Array) {
-//                NSLog(@"s = %@",s);
-//            }
-            
-            //            2:重新组织
-            for (NSString *s in sortName2Array) {
-                UGMissionModel *model = [UGMissionModel new];
-                model.sortName2 = s;
-                
-                NSArray<UGMissionModel *> *temps = [tempdataArray objectsWithValue:s keyPath:@"sortName2"];
-                
-                model.sortName2Array = temps;
                 
                 for (UGMissionModel *mod in temps) {
                     [tempdataArray removeObject:mod];
                 }
                 [tempdataArray addObject:model];
             }
-            
-            //查看数据
-//            for (UGMissionModel *mod in tempdataArray) {
-//                NSLog(@"mod = %@",mod);
-//            }
-            
             self.dataArray = tempdataArray;
-            //            self.dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             [self.tableView reloadData];
             
         } failure:^(id msg) {
