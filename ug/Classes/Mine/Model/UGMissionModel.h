@@ -45,7 +45,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<UGMissionModel *> *typeArray;    /**<   type分类数据数组 */
 @property (nonatomic, strong) NSArray<UGMissionModel *> *sortName2Array;    /**<   二级分类数据数组 */
 @property (nonatomic, assign) BOOL isShowCell;                               /**<   二级分类数据是否展示*/
-@property (nonatomic) BOOL isSection;                                        /**<   是section */
+//定义枚举类型
+typedef enum _CellType {
+    cellTypeTitle  = 0,
+    cellTypeOne,
+    cellTypeMore
+} CellType;
+@property (nonatomic,assign) CellType celltype;           /**<   类型 0 标题  1 单行数据  2 有子数据*/
 @property (nonatomic, strong) NSString *sectionTitle;                        /**<   section"Name */
 @end
 
