@@ -1667,6 +1667,8 @@
 		4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953BF3F24C5B36300051D24 /* mYYLabel.m */; };
 		495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */; };
 		495CF4C424C8590800A4574D /* UGTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */; };
+		495CF4CA24C9496400A4574D /* UGTaskSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CF4C824C9496400A4574D /* UGTaskSectionTableViewCell.m */; };
+		495CF4CB24C9496400A4574D /* UGTaskSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495CF4C924C9496400A4574D /* UGTaskSectionTableViewCell.xib */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
@@ -3567,6 +3569,9 @@
 		495CF4C024C8590800A4574D /* UGTaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTaskTableViewCell.h; sourceTree = "<group>"; };
 		495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTaskTableViewCell.m; sourceTree = "<group>"; };
 		495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTaskTableViewCell.xib; sourceTree = "<group>"; };
+		495CF4C724C9496400A4574D /* UGTaskSectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTaskSectionTableViewCell.h; sourceTree = "<group>"; };
+		495CF4C824C9496400A4574D /* UGTaskSectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTaskSectionTableViewCell.m; sourceTree = "<group>"; };
+		495CF4C924C9496400A4574D /* UGTaskSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTaskSectionTableViewCell.xib; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
 		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
@@ -6672,6 +6677,9 @@
 				495CF4C024C8590800A4574D /* UGTaskTableViewCell.h */,
 				495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */,
 				495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */,
+				495CF4C724C9496400A4574D /* UGTaskSectionTableViewCell.h */,
+				495CF4C824C9496400A4574D /* UGTaskSectionTableViewCell.m */,
+				495CF4C924C9496400A4574D /* UGTaskSectionTableViewCell.xib */,
 			);
 			path = "任务大厅";
 			sourceTree = "<group>";
@@ -9044,6 +9052,7 @@
 				031E1B5423BE812800B0F813 /* UGredEnvelopeView.xib in Resources */,
 				CF4758DD239636D200966536 /* 91.gif in Resources */,
 				CF475896239636D200966536 /* 127.gif in Resources */,
+				495CF4CB24C9496400A4574D /* UGTaskSectionTableViewCell.xib in Resources */,
 				CF4758A1239636D200966536 /* 130.gif in Resources */,
 				CF475901239636D200966536 /* 8.gif in Resources */,
 				031E1BC423BE812900B0F813 /* UGBMHeaderView.xib in Resources */,
@@ -10620,6 +10629,7 @@
 				031E1DDA23BE812C00B0F813 /* UGBetsRecordListModel.m in Sources */,
 				036CA78123C75A02007BBD25 /* MyPromotionVC.m in Sources */,
 				D4DE3F1324C5E8D500DD3A69 /* UGPopViewController.m in Sources */,
+				495CF4CA24C9496400A4574D /* UGTaskSectionTableViewCell.m in Sources */,
 				031E197223BE812600B0F813 /* UGLHCategoryListModel.m in Sources */,
 				031E1BD823BE812900B0F813 /* UGCommonLotteryController.m in Sources */,
 				031E1C0823BE812900B0F813 /* UGBetDetailModel.m in Sources */,

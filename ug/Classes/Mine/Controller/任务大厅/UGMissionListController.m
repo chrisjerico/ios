@@ -9,19 +9,30 @@
 #import "UGMissionListController.h"
 #import "UGMissionTableViewCell.h"
 #import "UGMissionModel.h"
+#import "UGTaskTableViewCell.h"
+#import "UGTaskSectionTableViewCell.h"
 
 @interface UGMissionListController ()
 
 @property (nonatomic, strong) NSMutableArray <UGMissionModel *> *dataArray;
-//@property(nonatomic, assign) int pageSize;
-//@property(nonatomic, assign) int pageNumber;
+
 
 @property (nonatomic, strong)UGMissionTableViewCell *selcell;
-
+@property (strong, nonatomic) UGTaskTableViewCell *nestCell;
 @end
 
 static NSString *missionCellid = @"UGMissionTableViewCell";
+static NSString *taskCellid = @"UGTaskTableViewCell";
 @implementation UGMissionListController
+
+- (UGTaskTableViewCell *)nestCell
+{
+    if (!_nestCell) {
+        _nestCell = [[NSBundle mainBundle] loadNibNamed:taskCellid owner:self options:nil].firstObject;
+    }
+    return _nestCell;
+}
+
 
 -(void)dataReLoad{
     [self getCenterData];
@@ -40,12 +51,16 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMissionTableViewCell" bundle:nil] forCellReuseIdentifier:missionCellid];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UGTaskTableViewCell" bundle:nil] forCellReuseIdentifier:taskCellid];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
     self.tableView.rowHeight = 80;
     [self.view setBackgroundColor:[UIColor clearColor]];
     
     //1:组织数据
     //    2：UI
+    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+         [self getCenterData];
+     }];
     
     
 }
@@ -57,164 +72,180 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    UGMissionModel*obj = [self.dataArray objectAtIndex:section];
-//
-//    if ([CMCommon arryIsNull:obj.sortName2Array]) {
-//        return 0;
-//    } else {
-//        if (obj.isShowCell) {
-//            return obj.sortName2Array.count;
-//        } else {
-//            return 0;
-//        }
-//    }
-   
-    return  1;
+
+    UGMissionModel*obj = [self.dataArray objectAtIndex:section];
+
+       if ([CMCommon arryIsNull:obj.sortName2Array]) {
+           return 0;
+       } else {
+           if (obj.isShowCell) {
+               return obj.sortName2Array.count;
+           } else {
+               return 0;
+           }
+       }
     
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     UGMissionModel*obj = [self.dataArray objectAtIndex:indexPath.section];
-    
-    UGMissionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:missionCellid forIndexPath:indexPath];
-    UGMissionModel *model = obj.sortName2Array[indexPath.row];
-    cell.item = model;
-    __weakSelf_(__self);
-    cell.receiveMissionBlock = ^(UGMissionTableViewCell *sender){
-        
-        
-        if ([model.status isEqualToString:@"3"]) {
-            //领奖励
-            [__self taskRewardDataWithType:model.missionId];
-        }
-        else if ([model.status isEqualToString:@"1"]) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
-        }
-        else if ([model.status isEqualToString:@"0"]) {
-            //领任务
-            [__self taskGetDataWithType:model.missionId cell:sender];
-            
-        } else if ([model.status isEqualToString:@"2"]) {
-            //已完成
-            //            [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
-        }
-    };
-    
-    cell.receiveBlock = ^(UGMissionTableViewCell *sender){
-             
-              UGMissionModel *model = sender.item;
-              
-              [LEEAlert alert].config
-              .LeeTitle(@"任务详情")
-              .LeeContent(model.missionDesc)
-              .LeeAction(@"确认", ^{
-                  
-                  // 确认点击事件Block
-              })
-              .LeeShow(); // 设置完成后 别忘记调用Show来显示
-          };
-    return cell;
+
+       UGMissionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:missionCellid forIndexPath:indexPath];
+       UGMissionModel *model = obj.sortName2Array[indexPath.row];
+       cell.item = model;
+       __weakSelf_(__self);
+       cell.receiveMissionBlock = ^(UGMissionTableViewCell *sender){
+
+
+           if ([model.status isEqualToString:@"3"]) {
+               //领奖励
+               [__self taskRewardDataWithType:model.missionId];
+           }
+           else if ([model.status isEqualToString:@"1"]) {
+               [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
+           }
+           else if ([model.status isEqualToString:@"0"]) {
+               //领任务
+               [__self taskGetDataWithType:model.missionId cell:sender];
+
+           } else if ([model.status isEqualToString:@"2"]) {
+               //已完成
+               //            [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
+           }
+       };
+
+       cell.receiveBlock = ^(UGMissionTableViewCell *sender){
+
+                 UGMissionModel *model = sender.item;
+
+                 [LEEAlert alert].config
+                 .LeeTitle(@"任务详情")
+                 .LeeContent(model.missionDesc)
+                 .LeeAction(@"确认", ^{
+
+                     // 确认点击事件Block
+                 })
+                 .LeeShow(); // 设置完成后 别忘记调用Show来显示
+             };
+       return cell;
+
 }
+
 
 #pragma mark - headerView
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
     UGMissionModel*obj = [self.dataArray objectAtIndex:section];
-    if ([CMCommon arryIsNull:obj.sortName2Array]) {
+    
+    if ([obj isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dict = (id)obj;
         UIView *view = [[UIView alloc] init];
-        UGMissionTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"UGMissionTableViewCell" owner:self options:nil] firstObject];
-        UGMissionModel *model = obj;
-        cell.item = model;
-        __weakSelf_(__self);
-        cell.receiveMissionBlock = ^(UGMissionTableViewCell *sender){
-            
-            
-            if ([model.status isEqualToString:@"3"]) {
-                //领奖励
-                [__self taskRewardDataWithType:model.missionId];
-            }
-            else if ([model.status isEqualToString:@"1"]) {
-                [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
-            }
-            else if ([model.status isEqualToString:@"0"]) {
-                //领任务
-                [__self taskGetDataWithType:model.missionId cell:sender];
-                
-            } else if ([model.status isEqualToString:@"2"]) {
-                //已完成
-                //            [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
-            }
-        };
-        
-        cell.receiveBlock = ^(UGMissionTableViewCell *sender){
-           
-            UGMissionModel *model = sender.item;
-            
-            [LEEAlert alert].config
-            .LeeTitle(@"任务详情")
-            .LeeContent(model.missionDesc)
-            .LeeAction(@"确认", ^{
-                
-                // 确认点击事件Block
-            })
-            .LeeShow(); // 设置完成后 别忘记调用Show来显示
-        };
+        UGTaskSectionTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"UGTaskSectionTableViewCell" owner:self options:nil] firstObject];
+        cell.titleLabel.text = dict[@"title"];
+        [cell.titleLabel setTextColor:Skin1.textColor1];
+        [cell.contentView setBackgroundColor:Skin1.bgColor];
         [view addSubview:cell];
-        [cell setFrame:CGRectMake(0, 0, APP.Width, 80)];
+        [cell setFrame:CGRectMake(0, 0, APP.Width, 44)];
         return view;
-        
     } else {
-        UIView *view = [[UIView alloc] init];
-        [view setBackgroundColor: [Skin1.navBarBgColor colorWithAlphaComponent:0.2]];
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5,APP.Width-32, 55)];
         
-        titleLabel.text = obj.sortName2;
-        [view addSubview:titleLabel];
-        
-        // 添加一个button用来监听展开的分组,实现分组的展开关闭
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 0, APP.Width, 40);
-        button.tag = 200 + section;
-        [button addTarget:self action:@selector(btnOpenList:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:button];
-        ;
-        UIImageView *imgv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jiantou2"]];
-        [view addSubview:imgv];
-        
-        UIView *line = [[UIView alloc] init];
-        
+        if ([CMCommon arryIsNull:obj.sortName2Array]) {
+            UIView *view = [[UIView alloc] init];
+            UGMissionTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"UGMissionTableViewCell" owner:self options:nil] firstObject];
+            UGMissionModel *model = obj;
+            cell.item = model;
+            __weakSelf_(__self);
+            cell.receiveMissionBlock = ^(UGMissionTableViewCell *sender){
 
-        [line setBackgroundColor:Skin1.textColor3];
 
-      
-         [view addSubview:line];
-        
-        [titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(view).offset(20);
-            make.right.equalTo(view).offset(-50);
-            make.top.equalTo(view).offset(0);
-            make.bottom.equalTo(view).offset(0);
-        }];
-        
-        [imgv mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(view).offset(-10);
-            make.centerY.equalTo(view).offset(0);
-            make.height.mas_equalTo(32);
-            make.width.mas_equalTo(32);
-        }];
-        
-        [line mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(view).offset(0);
-            make.bottom.equalTo(view).offset(0);
-            make.height.mas_equalTo(1);
-            make.width.mas_equalTo(APP.Width);
-        }];
-        return view;
+                if ([model.status isEqualToString:@"3"]) {
+                    //领奖励
+                    [__self taskRewardDataWithType:model.missionId];
+                }
+                else if ([model.status isEqualToString:@"1"]) {
+                    [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
+                }
+                else if ([model.status isEqualToString:@"0"]) {
+                    //领任务
+                    [__self taskGetDataWithType:model.missionId cell:sender];
+
+                } else if ([model.status isEqualToString:@"2"]) {
+                    //已完成
+                    //            [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
+                }
+            };
+
+            cell.receiveBlock = ^(UGMissionTableViewCell *sender){
+
+                UGMissionModel *model = sender.item;
+
+                [LEEAlert alert].config
+                .LeeTitle(@"任务详情")
+                .LeeContent(model.missionDesc)
+                .LeeAction(@"确认", ^{
+
+                    // 确认点击事件Block
+                })
+                .LeeShow(); // 设置完成后 别忘记调用Show来显示
+            };
+            [view addSubview:cell];
+            [cell setFrame:CGRectMake(0, 0, APP.Width, 80)];
+            return view;
+
+        } else {
+            UIView *view = [[UIView alloc] init];
+            [view setBackgroundColor: [Skin1.navBarBgColor colorWithAlphaComponent:0.2]];
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5,APP.Width-32, 55)];
+
+            titleLabel.text = obj.sortName2;
+            [view addSubview:titleLabel];
+
+            // 添加一个button用来监听展开的分组,实现分组的展开关闭
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button.frame = CGRectMake(0, 0, APP.Width, 40);
+            button.tag = 200 + section;
+            [button addTarget:self action:@selector(btnOpenList:) forControlEvents:UIControlEventTouchUpInside];
+            [view addSubview:button];
+            ;
+            UIImageView *imgv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jiantou2"]];
+            [view addSubview:imgv];
+
+            UIView *line = [[UIView alloc] init];
+
+
+            [line setBackgroundColor:Skin1.textColor3];
+
+
+             [view addSubview:line];
+
+            [titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(view).offset(20);
+                make.right.equalTo(view).offset(-50);
+                make.top.equalTo(view).offset(0);
+                make.bottom.equalTo(view).offset(0);
+            }];
+
+            [imgv mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(view).offset(-10);
+                make.centerY.equalTo(view).offset(0);
+                make.height.mas_equalTo(32);
+                make.width.mas_equalTo(32);
+            }];
+
+            [line mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(view).offset(0);
+                make.bottom.equalTo(view).offset(0);
+                make.height.mas_equalTo(1);
+                make.width.mas_equalTo(APP.Width);
+            }];
+            return view;
+        }
+
     }
     
-     UIView *view = [[UIView alloc] init];
-    UIImageView *imgV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
-//     button.frame = CGRectMake(0, 0, APP.Width, 40);
+
 }
 
 #pragma mark - 按钮的点击事件,将字符串添加到数组
@@ -229,11 +260,16 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     UGMissionModel*obj = [self.dataArray objectAtIndex:section];
-    if ([CMCommon arryIsNull:obj.sortName2Array]) {
-        return 80.0;
+    if (obj.isSection) {
+        return 44.0;
     } else {
-        return 55.0;
+        if ([CMCommon arryIsNull:obj.sortName2Array]) {
+            return 80.0;
+        } else {
+            return 55.0;
+        }
     }
+   
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -282,19 +318,29 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
             NSMutableArray <UGMissionModel *> *tempdataArray = [NSMutableArray new];
             tempdataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             
-            
+            NSMutableArray <UGMissionModel *> *enddataArray = [NSMutableArray new];
             //1 .根据type不同分给不同的数组。（最多3个）
-             NSMutableArray <NSString *> *typeNameArray = [NSMutableArray new];
+            
+            NSDictionary *titleDict = @{@"0":@"一次性任务", @"1":@"日常任务", @"5":@"限时任务"};
+            NSMutableDictionary *typeDict = @{}.mutableCopy;
             for (UGMissionModel*obj in tempdataArray) {
-                if (obj.type) {
-                    
-                    if (![typeNameArray containsObject:obj.type]) {
-                        [typeNameArray addObject:obj.sortName2];
-                    }
+                NSMutableArray *array = typeDict[obj.type];
+                if (!array) {
+                    array = @[].mutableCopy;
+                    [array addObject:@{@"title":titleDict[obj.type]}];
+                    typeDict[obj.type] = array;
+                } else {
+                    [array addObject:obj];
                 }
             }
             //            2:重新组织
-            for (NSString *s in typeNameArray) {
+            NSMutableArray *dataArray = @[].mutableCopy;
+            for (NSArray *arr in typeDict.allValues) {
+                [dataArray addObjectsFromArray:arr];
+            }
+            
+            
+            for (NSString *s in dataArray) {
                 UGMissionModel *model = [UGMissionModel new];
                 model.type = s;
                 
@@ -325,13 +371,12 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
                     }
                     
                 }
-                
-                for (UGMissionModel *mod in temps) {
-                    [tempdataArray removeObject:mod];
-                }
-                [tempdataArray addObject:model];
+
+                [enddataArray addObject:model];
             }
-            self.dataArray = tempdataArray;
+            
+
+            self.dataArray = enddataArray;
             [self.tableView reloadData];
             
         } failure:^(id msg) {

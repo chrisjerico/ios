@@ -1414,7 +1414,7 @@ static UGSkinManagers *__initSkin1 = nil;
     }
     
     
-#if DEBUG
+#ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
 //	skitType = @"23";
 //        skitType = @"石榴红";
