@@ -359,12 +359,12 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                         }
                         //            2:重新组织
                         for (NSString *s in sortName2Array) {
-                            UGMissionModel *model = [UGMissionModel new];
-                            model.sortName2 = s;
+                            UGMissionModel *md = [UGMissionModel new];
+                            md.sortName2 = s;
                             
                             NSArray<UGMissionModel *> *temps = [tempdataArray objectsWithValue:s keyPath:@"sortName2"];
                             
-                            model.sortName2Array = temps;
+                            md.sortName2Array = temps;
                         }
                         
                         [tempTypedataArray addObject:model];
@@ -398,20 +398,15 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                     [enddataArray addObject:model];
                 }
                 
-                {//单行数据
+                {
                     for (UGMissionModel *modl in mod.typeArray) {
-                        if (!modl.sortName2.length) {
+                        if ([CMCommon stringIsNull:modl.sortName2]) {//单行数据
                             modl.celltype = cellTypeOne;
                             [enddataArray addObject:modl];
                         }
-                    }
-                    
-                }
-                {//多行数据
-                    for (UGMissionModel *obj in mod.typeArray) {
-                        if (obj.sortName2.length) {
-                            obj.celltype = cellTypeOne;
-                            [enddataArray addObject:obj];
+                        else{//多行数据
+                            modl.celltype = cellTypeOne;
+                            [enddataArray addObject:modl];
                         }
                     }
                     
