@@ -1416,10 +1416,7 @@ static UGSkinManagers *__initSkin1 = nil;
     
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//	skitType = @"23";
-//        skitType = @"石榴红";
-//        skitType = @"简约模板1";
-//    skitType = @"GPK版0";
+    skitType = @"新年红1";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
     if (!sm) {
