@@ -92,10 +92,7 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UGMissionModel*obj = [self.dataArray objectAtIndex:indexPath.section];
-    
-    if (obj.celltype!=cellTypeOne) {
-        return nil;
-    }
+
     
     UGMissionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:missionCellid forIndexPath:indexPath];
     UGMissionModel *model = obj.sortName2Array[indexPath.row];
@@ -199,10 +196,12 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
         
     } else {
         UIView *view = [[UIView alloc] init];
-        [view setBackgroundColor: [Skin1.navBarBgColor colorWithAlphaComponent:0.2]];
+//        [view setBackgroundColor: [Skin1.navBarBgColor colorWithAlphaComponent:0.2]];
+        [view setBackgroundColor: RGBA(196, 194, 200, 1)];
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5,APP.Width-32, 55)];
         
         titleLabel.text = obj.sortName2;
+        titleLabel.textColor = [UIColor whiteColor];
         [view addSubview:titleLabel];
         
         // 添加一个button用来监听展开的分组,实现分组的展开关闭
@@ -211,16 +210,14 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
         button.tag = 200 + section;
         [button addTarget:self action:@selector(btnOpenList:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:button];
-        ;
-        UIImageView *imgv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"jiantou2"]];
+        
+        UIImage *afterImage;
+        afterImage = [[UIImage imageNamed:@"jiantou2"] qmui_imageWithTintColor:[UIColor whiteColor]];
+        UIImageView *imgv = [[UIImageView alloc] initWithImage:afterImage];;
         [view addSubview:imgv];
         
         UIView *line = [[UIView alloc] init];
-        
-        
-        [line setBackgroundColor:Skin1.textColor3];
-        
-        
+        [line setBackgroundColor:[UIColor whiteColor]];
         [view addSubview:line];
         
         [titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -322,7 +319,7 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
             NSMutableArray <UGMissionModel *> *tempdataArray = [NSMutableArray new];
             tempdataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             
-            NSMutableArray <UGMissionModel *> *tempTypedataArray = [NSMutableArray new];
+            NSMutableArray <UGMissionModel *> *tempTypedataArray = [NSMutableArray new];//最终的数据Type
             
             //1 .根据type不同分给不同的数组。（最多3个）
             NSMutableArray <NSString *> *typeNameArray = [NSMutableArray new];
@@ -340,13 +337,12 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                 {
                     UGMissionModel *model = [UGMissionModel new];
                     model.type = s;
-                    
-                    NSMutableArray <UGMissionModel *> *temps = [[NSMutableArray alloc] initWithArray: [tempdataArray objectsWithValue:s keyPath:@"type"]];
-                    
-                    model.typeArray = temps;
+                    NSMutableArray <UGMissionModel *> *datas =  [NSMutableArray new];//最终的数据
+                    NSMutableArray <UGMissionModel *> *temps = [[NSMutableArray alloc] initWithArray: [tempdataArray objectsWithValue:s keyPath:@"type"]];//待修改的数据
+                    datas = temps;
                     // 3 对每个type数据再处理
                     {
-                        //            1:得到有2级名称的 放到一个数组
+                        //            1:得到有2级名称的 放到一个数组 more
                         NSMutableArray <NSString *> *sortName2Array = [NSMutableArray new];
                         for (UGMissionModel*obj in temps) {
                             if (![CMCommon stringIsNull:obj.sortName2]) {
@@ -357,22 +353,22 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                                 
                             }
                         }
-                        //            2:重新组织
+                        //            2:重新组织 2级名称数据 more
                         for (int i = 0; i<  sortName2Array.count; i++) {
                             NSString *s = [sortName2Array objectAtIndex:i];
                             UGMissionModel *md = [UGMissionModel new];
                             md.sortName2 = s;
-                            
-                            NSArray<UGMissionModel *> *temp = [tempdataArray objectsWithValue:s keyPath:@"sortName2"];
-                            
+                            NSArray<UGMissionModel *> *temp = [temps objectsWithValue:s keyPath:@"sortName2"];
                             md.sortName2Array = temp;
-                            for (UGMissionModel *mod in temps) {
-                                [temps removeObject:mod];
+                            
+                            //
+                            for (UGMissionModel *mod in temp) {
+                                [datas removeObject:mod];
                             }
-                            [temps addObject:md];
+                            [datas addObject:md];
                         }
                         
-                        
+                        model.typeArray = datas;
                     }
                     [tempTypedataArray addObject:model];
                     
@@ -410,7 +406,7 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                             [enddataArray addObject:modl];
                         }
                         else{//多行数据
-                            modl.celltype = cellTypeOne;
+                            modl.celltype = cellTypeMore;
                             [enddataArray addObject:modl];
                         }
                     }
