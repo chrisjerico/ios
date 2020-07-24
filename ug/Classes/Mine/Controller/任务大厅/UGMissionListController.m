@@ -148,8 +148,8 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
         UIView *view = [[UIView alloc] init];
         UGTaskSectionTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"UGTaskSectionTableViewCell" owner:self options:nil] firstObject];
         cell.titleLabel.text = obj.sectionTitle;
-//        [cell.titleLabel setTextColor:];
-//        [cell.contentView setBackgroundColor:Skin1.bgColor];
+        //        [cell.titleLabel setTextColor:];
+        //        [cell.contentView setBackgroundColor:Skin1.bgColor];
         [view addSubview:cell];
         [cell setFrame:CGRectMake(0, 0, APP.Width, 55)];
         return view;
@@ -341,7 +341,7 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                     UGMissionModel *model = [UGMissionModel new];
                     model.type = s;
                     
-                    NSArray<UGMissionModel *> *temps = [tempdataArray objectsWithValue:s keyPath:@"type"];
+                    NSMutableArray <UGMissionModel *> *temps = [[NSMutableArray alloc] initWithArray: [tempdataArray objectsWithValue:s keyPath:@"type"]];
                     
                     model.typeArray = temps;
                     // 3 对每个type数据再处理
@@ -358,18 +358,23 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                             }
                         }
                         //            2:重新组织
-                        for (NSString *s in sortName2Array) {
+                        for (int i = 0; i<  sortName2Array.count; i++) {
+                            NSString *s = [sortName2Array objectAtIndex:i];
                             UGMissionModel *md = [UGMissionModel new];
                             md.sortName2 = s;
                             
-                            NSArray<UGMissionModel *> *temps = [tempdataArray objectsWithValue:s keyPath:@"sortName2"];
+                            NSArray<UGMissionModel *> *temp = [tempdataArray objectsWithValue:s keyPath:@"sortName2"];
                             
-                            md.sortName2Array = temps;
+                            md.sortName2Array = temp;
+                            for (UGMissionModel *mod in temps) {
+                                [temps removeObject:mod];
+                            }
+                            [temps addObject:md];
                         }
                         
-                        [tempTypedataArray addObject:model];
+                        
                     }
-                    
+                    [tempTypedataArray addObject:model];
                     
                 }
             }
