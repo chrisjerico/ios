@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+@interface NSString (UGLanguage)
+@property (nonatomic, assign) BOOL fromNetwork; /**<   从接口获取的文本显示原文，不进行翻译 */
+@end
+
 
 
 @interface LanguageModel : NSObject
@@ -41,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)stringForKey:(NSString *)key;
 - (void)save:(NSDictionary *)kvs lanCode:(NSString *)lanCode ver:(NSString *)ver;
 
-
++ (void)setNoTranslate:(id)obj; /**<   传入数据模型、字符串、数组、字典 */
 - (NSString *)stringForCnString:(NSString *)cnString; /**<   通过中文找key，再返回key对应的翻译文本 */
 @end
 

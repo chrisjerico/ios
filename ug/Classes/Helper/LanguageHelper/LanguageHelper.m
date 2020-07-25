@@ -8,6 +8,15 @@
 
 #import "LanguageHelper.h"
 #import "RegExCategories.h"
+#import "cc_runtime_property.h"
+
+
+@implementation NSString (UGLanguage)
+_CCRuntimeProperty_Assign(BOOL, fromNetwork, setFromNetwork)
+@end
+
+
+
 
 @implementation LanguageModel
 - (NSString *)getLanCode {
@@ -74,7 +83,26 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     if ([_lanCode isEqualToString:lanCode]) _kvs = kvs;
 }
 
++ (void)setNoTranslate:(id)obj {
+    if ([obj isKindOfClass:[NSString class]]) {
+        ((NSString *)obj).fromNetwork = true;
+    } else if ([obj isKindOfClass:[NSArray class]]) {
+        for (id sub in obj) {
+            [LanguageHelper setNoTranslate:sub];
+        }
+    } else if ([obj isKindOfClass:[NSDictionary class]]) {
+        for (id sub in [obj allValues]) {
+            [LanguageHelper setNoTranslate:sub];
+        }
+    } else if ([obj classIsCustom]) {
+        for (NSString *k in [[obj class] ivarList]) {
+            [LanguageHelper setNoTranslate:[obj valueForKey:k]];
+        }
+    }
+}
+
 - (NSString *)stringForCnString:(NSString *)cnString; {
+    if (cnString.fromNetwork) return cnString;
     if ([cnString containsString:@"龘"]) return [cnString stringByReplacingOccurrencesOfString:@"龘" withString:@""];
     if (_isCN) return cnString;
     if (!cnString.hasChinese) return cnString;

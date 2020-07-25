@@ -146,3 +146,18 @@ static BOOL _EnableAutoLocalizable = false;
 }
 
 @end
+
+
+@interface UIViewController (AutoLocalizable)
+@end
+@implementation UIViewController (AutoLocalizable)
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UIViewController jr_swizzleMethod:@selector(setTitle:) withMethod:@selector(cc_lan_setTitle:) error:nil];
+    });
+}
+- (void)cc_lan_setTitle:(NSString *)title {
+    [self cc_lan_setTitle:[[LanguageHelper shared] stringForCnString:title]];
+}
+@end
