@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *DZPid; /**<   大转盘id   全局使用" */
 
+@property (strong, nonatomic) NSString *LHgid; /**<  解码器游戏id*/
+
 +(Global *)getInstanse;
 
 @end

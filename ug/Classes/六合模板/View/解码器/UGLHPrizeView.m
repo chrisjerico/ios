@@ -33,7 +33,12 @@
 @property (nonatomic, strong) UGLHlotteryNumberModel *lhModel;
 
 @property (nonatomic)  BOOL hormIsOpen;                                                /**<  喇叭是否开启*/
-@property (nonatomic,strong)  CMAudioPlayer *player ;                                  /**<  播放器*/
+@property (nonatomic,strong)  CMAudioPlayer *player ;
+
+
+/**<  播放器*/
+
+@property (nonatomic,strong)  NSString *myGid;
 
 //--------------------------------------------
 @property (nonatomic,strong) UGLHlotteryNumberModel *lastLHModel;
@@ -261,6 +266,7 @@
                 
 //                [subLabel(@"倒计时Label")setHidden:NO];
 //                subLabel(@"倒计时Label").text = @"我进来了";
+
             }];
             
             
@@ -340,7 +346,9 @@
 //六合开去历史记录
 - (IBAction)historyAcion:(id)sender {
     UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
-    recordVC.gameId = self.lhModel.gameId;
+    NSLog(@"gid = 3%@",_gid);
+    NSLog(@"myGid =100 %@",[Global getInstanse].DZPid);
+    recordVC.gameId = [Global getInstanse].DZPid;
     [NavController1 pushViewController:recordVC animated:true];
     
 }
@@ -518,6 +526,13 @@
 
 -(void)setGid:(NSString *)gid{
     _gid = gid;
-    [self getLotteryNumberList];
+    NSLog(@"gid = 2%@",_gid);
+    [[Global getInstanse] setDZPid:gid];
+    // 3.GCD
+    dispatch_async(dispatch_get_main_queue(), ^{
+       // UI更新代码
+        [self getLotteryNumberList];
+    });
+  
 }
 @end
