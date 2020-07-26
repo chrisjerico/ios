@@ -1399,7 +1399,7 @@ static UGSkinManagers *__initSkin1 = nil;
     
         NSLog(@"============================SysConf.mobileTemplateCategory=%@",SysConf.mobileTemplateCategory);
     
-       NSLog(@"============================SysConf.mobileTemplateHBStyle=%@",SysConf.mobileTemplateHBStyle);
+       NSLog(@"============================SysConf.mobileTemplateLhcStyle=%@",SysConf.mobileTemplateHBStyle);
     
     
     
@@ -1416,7 +1416,7 @@ static UGSkinManagers *__initSkin1 = nil;
     
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-    skitType = @"新年红1";
+//    skitType = @"六合资料9";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
     if (!sm) {
