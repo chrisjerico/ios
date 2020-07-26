@@ -384,7 +384,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         
         {// 组装playNameArray
             UGplayNameModel *betList = [UGplayNameModel new];
-            [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.title,name]];
+            [betList setPlayName1:model.playName1 ? : [NSString stringWithFormat:@"%@-%@",model.title,name]];
             [betList setPlayName2:name];
             [playNameArray addObject:betList];
             [betModel setPlayNameArray:playNameArray];
