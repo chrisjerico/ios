@@ -40,23 +40,36 @@
                             <constraint firstAttribute="width" secondItem="wfu-Rp-s2o" secondAttribute="height" multiplier="11.99:2.82" id="hgh-ac-afu"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhh-Nj-6GD">
+                        <rect key="frame" x="0.0" y="54" width="320" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Uvd-Mt-QwA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.76945191619999997" green="0.7596744299" blue="0.78968524929999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="kjB-5E-4DI" firstAttribute="leading" secondItem="UbU-tt-0Bh" secondAttribute="trailing" constant="15" id="0nU-Sq-UPc"/>
                     <constraint firstItem="kjB-5E-4DI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="F0K-NL-ePK"/>
                     <constraint firstItem="wfu-Rp-s2o" firstAttribute="width" secondItem="wfu-Rp-s2o" secondAttribute="height" multiplier="11.99:2.82" id="Ib2-Vz-iUR"/>
+                    <constraint firstAttribute="trailing" secondItem="lhh-Nj-6GD" secondAttribute="trailing" id="OFY-ai-o4L"/>
                     <constraint firstItem="wfu-Rp-s2o" firstAttribute="leading" secondItem="kjB-5E-4DI" secondAttribute="trailing" constant="15" id="PQU-1H-V84"/>
+                    <constraint firstAttribute="bottom" secondItem="lhh-Nj-6GD" secondAttribute="bottom" id="PQh-S8-3q2"/>
                     <constraint firstItem="UbU-tt-0Bh" firstAttribute="centerY" secondItem="kjB-5E-4DI" secondAttribute="centerY" id="T4m-Sl-TPg"/>
                     <constraint firstItem="wfu-Rp-s2o" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dUy-Hx-UIh"/>
                     <constraint firstItem="kjB-5E-4DI" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="eBt-aP-5Dj"/>
+                    <constraint firstItem="lhh-Nj-6GD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xkv-b2-PZG"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="titleLabel" destination="kjB-5E-4DI" id="DSb-cK-Wfa"/>
             </connections>
-            <point key="canvasLocation" x="-207.24637681159422" y="-17.410714285714285"/>
+            <point key="canvasLocation" x="-207.24637681159422" y="-17.745535714285712"/>
         </tableViewCell>
     </objects>
     <resources>
