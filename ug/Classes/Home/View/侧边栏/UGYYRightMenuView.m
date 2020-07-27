@@ -280,7 +280,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
-    if (!OBJOnceToken(event)) return view;
+//    if (!OBJOnceToken(event)) return view;
     if (CGRectContainsPoint(self.bounds, point)) {
         
     } else {
