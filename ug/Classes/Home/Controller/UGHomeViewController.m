@@ -858,9 +858,19 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求14
-           if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-                 [self.lhPrizeView  setGid:@""];     //购彩大厅信息
-           }
+        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+            
+            if ([CMCommon stringIsNull:SysConf.appSelectType]) {
+                [self.lhPrizeView  setGid:@""];
+            } else {
+                if ( [SysConf.appSelectType isEqualToString:@"0"]) {
+                    [self.lhPrizeView  setGid:@""];
+                } else {
+                    [self.lhPrizeView  setGid:SysConf.appSelectType];
+                }
+            }
+            
+        }
     });
     dispatch_group_async(group, queue, ^{
            

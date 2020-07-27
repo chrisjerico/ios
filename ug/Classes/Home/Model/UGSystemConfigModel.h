@@ -190,6 +190,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSArray<UGUserCenterItem *> *userCenter;
 @property (nonatomic) BOOL lhcdocMiCard;                /**<   六合彩开奖咪牌(默认状态)开关 */
 @property (nonatomic, copy) NSString * lhcdocLotteryStr;/**<   六合彩预备开奖文字*/
+@property (nonatomic, copy) NSString * appSelectType;/**<   六合资料模版 首页解码器显示的彩种 0为默认 其他为彩种id*/
 
 @property (nonatomic, copy) NSString * chatLink;/**<   聊天的链接*/
 @property (nonatomic) BOOL switchAgentRecharge;                /**<   给下级会员充值开关 */
