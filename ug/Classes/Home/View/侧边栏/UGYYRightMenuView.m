@@ -97,6 +97,16 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         NSArray *arrayImg = @[@"cb_kaijiang"];
         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
     }
+    if ([@"c217" containsString:APP.SiteId]) {
+        NSArray *arrayTmp = @[@"红包记录",@"扫雷记录",@"任务中心"];
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(7, 3)];
+        [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
+        
+        NSArray *arrayImg = @[@"cbl_hongbao",@"cbl_saolei",@"lixibao"];
+        [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+    }
+
 
     
     
@@ -552,6 +562,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"开奖网"]) {
         [CMCommon goSLWebUrl:lotteryUrl];
     }
+    else if ([title isEqualToString:@"任务中心"]) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+     }
     
 }
 
