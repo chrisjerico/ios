@@ -46,7 +46,7 @@
 
     // 加载初始配置
     {
-        _waitLanguage = true;
+//        _waitLanguage = true;
         _waitGif = false;
         _waitPic = true;
         _waitReactNative = true;
@@ -55,7 +55,7 @@
         [self loadReactNative:false];
         [self loadSysConf];
         [self loadLaunchImage];
-        [self loadLanguage];
+//        [self loadLanguage];
         [self updateTips];
     }
     
@@ -98,6 +98,8 @@
 }
 
 - (void)updateTips {
+    _tipsLabel.superview.hidden = true;
+    
     NSString *tips = nil;
     if (_waitReactNative) {
 //        _tipsLabel.text = @"正在努力更新中...";
