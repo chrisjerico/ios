@@ -49,7 +49,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [UGLaunchPageVC new];
+    self.window.rootViewController = [AppDefine viewControllerWithNibName:@"UGLaunchPageVC"];
     [self.window makeKeyAndVisible];
     
     self.notiveViewHasShow = YES;

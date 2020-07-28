@@ -1419,9 +1419,6 @@ static UGSkinManagers *__initSkin1 = nil;
 //    skitType = @"六合资料9";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
-    if (!sm) {
-        @throw [NSException exceptionWithName:_NSString(@"该模板不存在，请检查是否拼写错误：%@", skitType) reason:@"" userInfo:nil];
-    }
     return sm;
 #endif
     

@@ -71,10 +71,9 @@
         NSString *title = _dataArray[ip.section][ip.row];
         ReactNativeHelper.currentCodePushKey = ReactNativeHelper.allCodePushKey[title];
         
-        UIViewController *vc = [UIViewController new];
-        vc.view = [[RCTRootView alloc] initWithBundleURL:[CodePush bundleURL] moduleName:@"Main" initialProperties:nil launchOptions:nil];
-        [NavController1.topViewController presentViewController:vc animated:true completion:^{
-            [SVProgressHUD showWithStatus:@"请等待进度条走完后重启APP..."];
+        UIAlertController *ac = [AlertHelper showAlertView:@"切换成功请重新启动APP" msg:nil btnTitles:@[@"确定"]];
+        [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+            exit(0);
         }];
     }
 }
