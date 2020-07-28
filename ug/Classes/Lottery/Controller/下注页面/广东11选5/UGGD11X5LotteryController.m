@@ -368,7 +368,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (IBAction)betClick:(id)sender {
 	[self.amountTextF resignFirstResponder];
 	ck_parameters(^{
-		ck_parameter_non_equal(self.selectLabel.text, @"已选中 0 注", @"请选择玩法");
+		 ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
 		ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
 	}, ^(id err) {
 		[SVProgressHUD showInfoWithStatus:err];

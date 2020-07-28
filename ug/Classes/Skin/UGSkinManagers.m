@@ -1419,7 +1419,12 @@ static UGSkinManagers *__initSkin1 = nil;
 //    skitType = @"六合资料9";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
-    return sm;
+    if (sm) {
+        return sm;
+    } else {
+        UGSkinManagers *sm = [UGSkinManagers allSkin][@"经典0"];
+    }
+    
 #endif
     
 	return [UGSkinManagers allSkin][skitType];
