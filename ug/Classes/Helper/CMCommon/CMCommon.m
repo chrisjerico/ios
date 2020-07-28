@@ -1345,7 +1345,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(UGNextIssueModel * )getBetAndChatModel:(UGNextIssueModel *)nim{
-    if (!nim) {
+    if (!nim) {//各个站点的彩种id 不一样，（自营）
            
            if ([@"c084" containsString:APP.SiteId]) {
                UGNextIssueModel * oc = [UGNextIssueModel new];
