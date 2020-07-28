@@ -82,6 +82,7 @@
                     label.text = str;
                     label.lineSpacing1 = 5;
                     label.textAlignment = NSTextAlignmentLeft;
+                    label.textColor = Skin1.textColor1;
                 })
                 .LeeAction(@"关闭", nil)
                 .LeeHeaderColor(Skin1.bgColor)

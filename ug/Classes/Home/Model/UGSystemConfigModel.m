@@ -226,7 +226,7 @@ UGSystemConfigModel *currentConfig = nil;
 - (NSString *)clsName {
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
     if (rpm) {
-        return ReactNativeVC.className;
+        return rpm.vcName2.length ? NSClassFromString(rpm.vcName2) : ReactNativeVC.className;
     }
     if (_status) {
         return @"LHStayTunedVC";

@@ -58,6 +58,28 @@
     float height =   self.lineCollection.collectionViewLayout.collectionViewContentSize.height;
     self.lineCollection.cc_constraints.height.constant = height + 5;
     
+    
+    if (Skin1.isBlack) {
+        _lineCollection.backgroundColor = Skin1.bgColor;
+        FastSubViewCode(self.view);
+        subLabel(@"转出Label").textColor = Skin1.textColor1;
+        subLabel(@"转入Label").textColor = Skin1.textColor1;
+        subLabel(@"转入金额Label").textColor = Skin1.textColor1;
+        subLabel(@"元Label").textColor = Skin1.textColor1;
+        subLabel(@"元Label").superview.backgroundColor = Skin1.bgColor;
+        [subButton(@"全部Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"100Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"500Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"1000Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"5000Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"10000Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        subButton(@"全部Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"100Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"500Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"1000Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"5000Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"10000Btn").backgroundColor = Skin1.bgColor;
+    }
 }
 
 -(void)setDataArray:(NSMutableArray<UGPlatformGameModel *> *)dataArray{
@@ -88,7 +110,7 @@
         UGPlatformGameModel *model = self.dataArray[indexPath.row];
         cell.item = model;
         [cell.nameLabel setTextColor:Skin1.textColor1];
-        [cell.contentView setBackgroundColor:Skin1.conversionCellColor];
+        [cell.contentView setBackgroundColor:Skin1.isBlack ? Skin1.bgColor : Skin1.conversionCellColor];
         cell.layer.borderWidth = 1;
         cell.layer.borderColor = [[UIColor whiteColor] CGColor];
         

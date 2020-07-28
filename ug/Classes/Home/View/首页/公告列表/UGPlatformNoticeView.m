@@ -233,6 +233,15 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         [weakSelf.tableView beginUpdates];
         [weakSelf.tableView endUpdates];
     };
+    UIView *line = [headerView viewWithTagString:@"第一行的下划线View"];
+    if (!line) {
+        line = [UIView new];
+        line.tagString = @"第一行的下划线View";
+        line.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
+        [headerView addSubview:line];
+    }
+    line.frame = CGRectMake(0, 44, headerView.width, 1);
+    line.hidden = section;
     return headerView;
 }
 

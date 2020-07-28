@@ -117,6 +117,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         if (self.viewControllers.count && ![UGTabbarController canPushToViewController:vc]) {
             return;
         }
+        if (rpm.vcName2.length) {
+            UIViewController *vc = [ReactNativeVC reactNativeWithRPM:rpm params:[viewController rn_keyValues]];
+            vc.hidesBottomBarWhenPushed = true;
+            [super pushViewController:vc animated:animated];
+            return;
+        }
         // RN內push
         if ([self.viewControllers.lastObject isKindOfClass:ReactNativeVC.class]) {
             [(ReactNativeVC *)self.viewControllers.lastObject push:rpm params:[viewController rn_keyValues]];
