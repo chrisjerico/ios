@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, assign) BOOL waitPic;         /**<   ⌛️等静态启动图播放完 */
-@property (nonatomic, assign) BOOL waitGif;         /**<   ⌛️等Git启动图播放完 */
+@property (nonatomic, assign) BOOL waitGif;         /**<   ⌛️等gif启动图播放完 */
 @property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
 @property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
 @property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
@@ -66,9 +66,11 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __self.waitSysConf = false;
             __self.waitLanguage = false;
+#ifndef APP_TEST
             if (__self.waitReactNative) {
                 [__self loadReactNative:true];
             }
+#endif
         });
     }
     
@@ -98,16 +100,17 @@
 }
 
 - (void)updateTips {
+#ifndef APP_TEST
     _tipsLabel.superview.hidden = true;
+#endif
     
     NSString *tips = nil;
     if (_waitReactNative) {
-//        _tipsLabel.text = @"正在努力更新中...";
-        tips = @"正在加载初始配置...";
+        tips = @"正在努力更新中...";
     } else if (_waitLanguage) {
-//        tips = @"正在加载语言包...";
+        tips = @"正在加载语言包...";
     }
-    _tipsLabel.text = tips ? : @"加载完毕，正在进入主页...";
+    _tipsLabel.text = tips ? : @"正在进入主页...";
 }
 
 
