@@ -52,35 +52,23 @@
         _waitReactNative = true;
         _waitSysConf = true;
         
-        [self loadReactNative];
+        [self loadReactNative:false];
         [self loadSysConf];
         [self loadLaunchImage];
         [self loadLanguage];
+        [self updateTips];
     }
-
-//#ifdef isYSAPP // 原生APP时才使用热更新
-//    if (APP.isFish) {
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        btn.backgroundColor = APP.NavigationBarColor;
-//        btn.frame = CGRectMake(100, 200, 200, 200);
-//        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//            RnPageModel *rpm = [RnPageModel new];
-//            rpm.vcName = @"UGPromotionsController";
-//            [self presentViewController:[ReactNativeVC reactNativeWithRPM:rpm params:nil] animated:true completion:nil];
-//        }];
-//        [self.view addSubview:btn];
-//        return;
-//    }
-
     
-    // 显示超时提示
+    // 超时处理
     __weakSelf_(__self);
     {
         int timeout = 7; // ⌛️超时时间
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __self.waitSysConf = false;
-            __self.waitReactNative = false;
             __self.waitLanguage = false;
+            if (__self.waitReactNative) {
+                [__self loadReactNative:true];
+            }
         });
     }
     
@@ -261,11 +249,11 @@
     getConfigs();
 }
 
-- (void)loadReactNative {
+- (void)loadReactNative:(BOOL)force {
     
     __weakSelf_(__self);
     BOOL notCheckUpdate = [[NSUserDefaults standardUserDefaults] boolForKey:@"NotDownloadNewestPackage"];
-    if (notCheckUpdate) {
+    if (force || notCheckUpdate) {
         _tipsLabel.superview.hidden = true;
 
         // 初始化jsp
@@ -273,12 +261,17 @@
         // 初始化rn
         ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
         [__self addChildViewController:vc];
-        [__self.view addSubview:vc.view];
+        if (notCheckUpdate) {
+            [__self.view addSubview:vc.view];
+        } else {
+            [__self.view insertSubview:vc.view atIndex:0];
+        }
         
         __weakSelf_(__self);
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             [JSPatchHelper waitUpdateFinish:^{
                 __self.waitReactNative = false;
+                [__self updateTips];
             }];
         }];
         return;
@@ -288,8 +281,6 @@
     [ReactNativeHelper downloadNewestPackage:^(double progress) {
         __self.progressView.progress = progress;
     } completion:^(BOOL ret) {
-        __self.waitReactNative = false;
-        [__self updateTips];
         [__self.progressView setProgress:1 animated:true];
         [JSPatchHelper install];
         
@@ -299,10 +290,11 @@
             ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:rpm params:nil];
             [__self addChildViewController:vc];
             [__self.view insertSubview:vc.view atIndex:0];
-            
+
             __weakSelf_(__self);
             [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
                 __self.waitReactNative = false;
+                [__self updateTips];
             }];
         }
     }];
