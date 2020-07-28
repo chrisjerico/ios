@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 
++ (void)downloadNewestPackage:(void (^)(double progress))progress completion:(void (^)(BOOL ret))completion;
+
 + (void)waitLaunchFinish:(void (^)(BOOL waited))finishBlock;   /**<   等待rn加载完毕才执行block */
 
 + (void)sendEvent:(NSString *)eventName params:(id)params;            /**<   向rn发送事件 */

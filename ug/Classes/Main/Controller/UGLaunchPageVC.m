@@ -27,6 +27,8 @@
 
 
 @interface UGLaunchPageVC ()
+@property (weak, nonatomic) IBOutlet UILabel *tipsLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, assign) BOOL waitPic;         /**<   ⌛️等静态启动图播放完 */
 @property (nonatomic, assign) BOOL waitGif;         /**<   ⌛️等Git启动图播放完 */
 @property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
@@ -107,6 +109,17 @@
     sf.view.backgroundColor = APP.BackgroundColor;
 }
 
+- (void)updateTips {
+    NSString *tips = nil;
+    if (_waitReactNative) {
+//        _tipsLabel.text = @"正在努力更新中...";
+        tips = @"正在加载初始配置...";
+    } else if (_waitLanguage) {
+//        tips = @"正在加载语言包...";
+    }
+    _tipsLabel.text = tips ? : @"加载完毕，正在进入主页...";
+}
+
 
 #pragma mark - 加载初始配置
 
@@ -155,7 +168,7 @@
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.shouldCustomLoopCount = true; // 是否自定义循环次数
         imageView.animationRepeatCount = 0;     // 不循环
-        [self.view addSubview:imageView];
+        [self.view insertSubview:imageView atIndex:0];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
         }];
@@ -249,18 +262,49 @@
 }
 
 - (void)loadReactNative {
-    // 初始化jsp
-    [JSPatchHelper install];
-    // 初始化rn
-    ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
     
     __weakSelf_(__self);
-    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-        [JSPatchHelper waitUpdateFinish:^{
-            __self.waitReactNative = false;
+    BOOL notCheckUpdate = [[NSUserDefaults standardUserDefaults] boolForKey:@"NotDownloadNewestPackage"];
+    if (notCheckUpdate) {
+        _tipsLabel.superview.hidden = true;
+
+        // 初始化jsp
+        [JSPatchHelper install];
+        // 初始化rn
+        ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
+        [__self addChildViewController:vc];
+        [__self.view addSubview:vc.view];
+        
+        __weakSelf_(__self);
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            [JSPatchHelper waitUpdateFinish:^{
+                __self.waitReactNative = false;
+            }];
         }];
+        return;
+    }
+    
+    // 检查RN更新
+    [ReactNativeHelper downloadNewestPackage:^(double progress) {
+        __self.progressView.progress = progress;
+    } completion:^(BOOL ret) {
+        __self.waitReactNative = false;
+        [__self updateTips];
+        [__self.progressView setProgress:1 animated:true];
+        [JSPatchHelper install];
+        
+        if (__self.waitReactNative) {
+            RnPageModel *rpm = [RnPageModel new];
+            rpm.rnName = @"null";
+            ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:rpm params:nil];
+            [__self addChildViewController:vc];
+            [__self.view insertSubview:vc.view atIndex:0];
+            
+            __weakSelf_(__self);
+            [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+                __self.waitReactNative = false;
+            }];
+        }
     }];
     
     // 检查是否强制更新

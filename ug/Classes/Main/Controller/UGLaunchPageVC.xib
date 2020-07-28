@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UGLaunchPageVC">
+            <connections>
+                <outlet property="progressView" destination="p5B-4l-az7" id="D1d-Ah-9Gi"/>
+                <outlet property="tipsLabel" destination="aK0-qN-xhg" id="ewm-Hx-Rvw"/>
+                <outlet property="view" destination="iN0-l3-epB" id="oIm-om-fZr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4I-VR-UVW" customClass="IBView">
+                    <rect key="frame" x="15" y="762" width="384" height="70"/>
+                    <subviews>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p5B-4l-az7">
+                            <rect key="frame" x="15" y="50" width="354" height="4"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="4" id="EuF-Oo-3VN"/>
+                            </constraints>
+                        </progressView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在努力更新中..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK0-qN-xhg">
+                            <rect key="frame" x="15" y="24" width="106.5" height="16"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="p5B-4l-az7" firstAttribute="centerX" secondItem="d4I-VR-UVW" secondAttribute="centerX" id="SeW-JP-W6G"/>
+                        <constraint firstItem="p5B-4l-az7" firstAttribute="leading" secondItem="d4I-VR-UVW" secondAttribute="leading" constant="15" id="fWR-yh-VWD"/>
+                        <constraint firstItem="p5B-4l-az7" firstAttribute="top" secondItem="aK0-qN-xhg" secondAttribute="bottom" constant="10" id="kVr-MV-4ux"/>
+                        <constraint firstItem="aK0-qN-xhg" firstAttribute="leading" secondItem="p5B-4l-az7" secondAttribute="leading" id="pya-dk-5jU"/>
+                        <constraint firstItem="aK0-qN-xhg" firstAttribute="top" secondItem="d4I-VR-UVW" secondAttribute="top" constant="24" id="sMO-a7-zaP"/>
+                        <constraint firstAttribute="height" constant="70" id="xLu-F3-hOu"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.95517511387260712" green="0.95056074134182167" blue="0.95978948640339268" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="d4I-VR-UVW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IDj-w3-K1W"/>
+                <constraint firstItem="d4I-VR-UVW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="15" id="gc2-Za-e4v"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="d4I-VR-UVW" secondAttribute="bottom" constant="30" id="gv5-gs-WEg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-143" y="178"/>
+        </view>
+    </objects>
+</document>
