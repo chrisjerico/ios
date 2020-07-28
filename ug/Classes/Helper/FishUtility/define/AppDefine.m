@@ -247,7 +247,7 @@
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
     _addIcons = [@"c190,c134,c085,c193,a002" containsString:_SiteId];
     _isReplaceIcon = [@"c085,c193,a002" containsString:_SiteId];
-    _isC190Cell = [@"c190,c012" containsString:_SiteId];
+    _isC190Cell = [@"c190" containsString:_SiteId];
     _isC217RWDT = [@"c217" containsString:_SiteId];
     _isNoSubtitle = [@"c006" containsString:_SiteId];
 }

@@ -509,6 +509,10 @@
             _promotionsStackView.cc_constraints.left.constant = 0;
         }
         
+        if ( [@"c012," containsString:APP.SiteId]) {//第3种样式：
+            subView(@"优惠活动外View").backgroundColor = Skin1.homeContentColor;
+        }
+        
         if (Skin1.isJY) {
             _promotionsStackView.cc_constraints.top.constant = 0;
             _promotionsStackView.cc_constraints.left.constant = 0;
@@ -2331,11 +2335,7 @@
         if (image) {
             if (APP.isC190Cell) {
                 CGFloat w;
-                if ([@"c012" containsString:APP.SiteId]) {
-                    w = APP.Width-48;
-                } else {
-                    w = APP.Width-88;
-                }
+                w = APP.Width-88;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
             } else {

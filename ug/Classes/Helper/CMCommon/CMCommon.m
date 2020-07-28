@@ -1355,7 +1355,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
                oc.title = @"分分六合彩";
                nim = oc;
            }
-           else if ([@"c208" containsString:APP.SiteId]) {
+           else if ([@"c208,c012" containsString:APP.SiteId]) {
                UGNextIssueModel * oc = [UGNextIssueModel new];
                oc.gameId = @"78";
                oc.gameType = @"lhc";
