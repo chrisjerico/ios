@@ -200,10 +200,11 @@
 - (void)setChangeRoomJson:(NSString *)changeRoomJson {
 	_changeRoomJson = changeRoomJson;
 	NSLog(@"changeRoomJson = %@", changeRoomJson);
-	
+	__weakSelf_(__self);
+    
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-		//需要在主线程执行的代码
-		[self goChangeRoomJS];
+            // 需要延迟执行的代码
+            [__self goChangeRoomJS];
 	}];
 }
 
@@ -220,7 +221,7 @@
 					[__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 						NSLog(@"分享结果：%@----%@", result, error);
 						SysConf.hasShare = NO;
-//						                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
+//                        [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
 						NSLog(@"分享结果：%@", __self.shareBetJson);
 						
 						
@@ -239,7 +240,7 @@
 }
 
 -(void)goChangeRoomJS{
-	// 每秒判断一下 window.canShare 参数为YES才进行分享
+	// 每秒判断一下 window.canShare 参数为YES才进行切房间
 	if (_changeRoomJson.length) {
 		__weakSelf_(__self);
 		__block NSTimer *__timer = nil;
@@ -251,15 +252,25 @@
 				if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
 					[__self.tgWebView evaluateJavaScript:__self.changeRoomJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 						NSLog(@"切换结果：%@----%@", result, error);
-//                        [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@   hasShare = %d ",__self.changeRoomJson,SysConf.hasShare]];
+                      
 						
-						//                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-						//需要在主线程执行的代码
-						
-						if (__self.shareBetJson && SysConf.hasShare) {
-							[__self goShareBetJson];
-						}
-						//                           }];
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            //需要在主线程执行的代码
+//                            [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@   hasShare = %d ",__self.changeRoomJson,SysConf.hasShare]];
+                            
+                            if (__self.shareBetJson && SysConf.hasShare) {
+                                    // 需要延迟执行的代码
+                                
+                                dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
+                                
+                                dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                                    // 需要延迟执行的代码
+                                       [__self goShareBetJson];
+                                });
+                                 
+                                
+                            }
+                        }];
 						
 					}];
 					[__timer invalidate];

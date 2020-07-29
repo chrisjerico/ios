@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL hideHead;            /**<   是否隐藏h5 头*/
 @property (nonatomic, assign) BOOL showChangeRoomTitle; /**<   显示标题栏，点击能切换房间 */
 
+
 @end
 
 NS_ASSUME_NONNULL_END
