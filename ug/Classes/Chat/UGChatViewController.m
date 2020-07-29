@@ -97,55 +97,47 @@
     [CMNetwork getGameDatasWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
-//            NSMutableArray *gameDataArray = play.playOdds.mutableCopy;
-            
-            for (UGGameplayModel *gm in play.playOdds) {
-                for (UGGameplaySectionModel *gsm in gm.list) {
-                    for (UGGameBetModel *gbm in gsm.lhcOddsArray){
-                        gbm.gameEnable = gsm.enable;
-                    }
-                    for (UGGameBetModel *gbm in gsm.list){
-                        gbm.gameEnable = gsm.enable;
-                    }
-                }
-            }
             
             // 第二步：遍历找到对应号码数据
-            NSMutableArray <UGGameBetModel *>*nums = @[].mutableCopy;
-            for (NSDictionary *dict in betInfo[@"betBean"]) {
-                NSMutableArray <UGGameplaySectionModel *>*temp = @[].mutableCopy;
-                for (UGGameplayModel *gm in play.playOdds) {
-                    [temp addObjectsFromArray:gm.list];
-                }
-                for (UGGameplaySectionModel *gsm in temp) {
-                    UGGameBetModel *gbm = nil;
-                    gbm = gbm ? : [gsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                    gbm = gbm ? : [gsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                    gbm = gbm ? : [gsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                    
-                    for (UGGameplaySectionModel *subGsm in gsm.ezdwlist) {
-                        gbm = gbm ? : [subGsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                        gbm = gbm ? : [subGsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                        gbm = gbm ? : [subGsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+            NSMutableArray <UGGameBetModel *>*nums = nil;
+            for (UGGameplayModel *gpm in play.playOdds) {
+                NSMutableArray <UGGameBetModel *>*gbms = @[].mutableCopy;
+                NSMutableArray *temp = [betInfo[@"betBean"] mutableCopy];
+                for (UGGameplaySectionModel *gsm in gpm.list) {
+                    // 若玩法paneCode有值，则只找对应玩法
+                    if (paneCode.length && ![paneCode isEqualToString:gsm.code]) {
+                        continue;
                     }
-                    if (gbm) {
-                        gbm.money = dict[@"money"];
-                        gbm.playName1 = betInfo[_NSString(@"playNameArray[%d][playName1]", (int)nums.count)];
-                        gbm.title = ({
-                            NSMutableArray *temp = [gbm.playName1 componentsSeparatedByString:@"-"].mutableCopy;
-                            if ([temp.lastObject isEqualToString:gbm.name]) {
-                                [temp removeLastObject];
-                            } else {
-                                temp[temp.count-1] = [temp.lastObject stringByReplacingOccurrencesOfString:gbm.name withString:@""];
-                            }
-                            [temp componentsJoinedByString:@"-"];
-                        });
+                    for (NSDictionary *dict in [temp copy]) {
+                        UGGameBetModel *gbm = nil;
+                        gbm = gbm ? : [gsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        gbm = gbm ? : [gsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        gbm = gbm ? : [gsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
                         
-                        [nums addObject:gbm];
-                        // 第三步：找到玩法paneCode
-                        paneCode = paneCode.length ? paneCode : gsm.code;
-                        break;
+                        for (UGGameplaySectionModel *subGsm in gsm.ezdwlist) {
+                            gbm = gbm ? : [subGsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                            gbm = gbm ? : [subGsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                            gbm = gbm ? : [subGsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        }
+                        if (gbm) {
+                            gbm.money = dict[@"money"];
+                            gbm.odds = dict[@"odds"];
+                            NSString *subName = gsm.alias.length ? gsm.alias : gsm.name;
+                            if ([subName hasPrefix:gpm.name]) {
+                                gbm.title = subName;
+                            } else {
+                                gbm.title = _NSString(@"%@-%@", gpm.name, subName);
+                            }
+                            
+                            [gbms addObject:gbm];
+                            [temp removeObject:dict];
+                            // 第三步：找到玩法paneCode
+                            paneCode = paneCode.length ? paneCode : gsm.code;
+                        }
                     }
+                }
+                if (nums.count < gbms.count) {
+                    nums = gbms;
                 }
             }
             

@@ -72,7 +72,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 自定义参数
 @property (nonatomic, assign) BOOL select;
 @property (nonatomic, strong) NSString *typeName2;
-@property (nonatomic, strong) NSString *playName1;
 @end
 
 @protocol UGGameplaySectionModel <NSObject>

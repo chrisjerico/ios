@@ -19,6 +19,7 @@
 #import "CCNetworkRequests1+UG.h"
 #import "CMLabelCommon.h"
 #import "SGBrowserView.h"
+#import "Global.h"
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
     
     NSInteger count;  /**<   总注数*/
@@ -384,7 +385,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         
         {// 组装playNameArray
             UGplayNameModel *betList = [UGplayNameModel new];
-            [betList setPlayName1:model.playName1 ? : [NSString stringWithFormat:@"%@-%@",model.title,name]];
+            [betList setPlayName1:[NSString stringWithFormat:@"%@-%@",model.title,name]];
             [betList setPlayName2:name];
             [playNameArray addObject:betList];
             [betModel setPlayNameArray:playNameArray];
@@ -495,7 +496,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
         betModel.totalMoney = amount;
         betModel.turnNum = self.nextIssueModel.curIssue;
-   
+        betModel.activeReturnCoinRatio = [AppDefine stringWithFloat:[Global getInstanse].rebate decimal:8];
        
         NSInteger timeInt =  [CMTimeCommon timeSwitchTimestamp:self.nextIssueModel.curCloseTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
         NSLog(@"time = %ld",(long)timeInt);
