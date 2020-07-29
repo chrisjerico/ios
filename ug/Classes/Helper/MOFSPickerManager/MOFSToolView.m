@@ -23,7 +23,7 @@
         
         _cancelBar = [UILabel new];
         _cancelBar.font = [UIFont systemFontOfSize:14];
-        _cancelBar.textColor = BAR_COLOR;
+        _cancelBar.textColor = Skin1.isBlack ? [UIColor whiteColor] : BAR_COLOR;
         _cancelBar.text = @"取消";
         _cancelBar.textAlignment = NSTextAlignmentLeft;
         _cancelBar.userInteractionEnabled = true;
@@ -43,7 +43,7 @@
         
         _commitBar = [UILabel new];
         _commitBar.font = [UIFont systemFontOfSize:14];
-        _commitBar.textColor = BAR_COLOR;
+        _commitBar.textColor = Skin1.isBlack ? [UIColor whiteColor] : BAR_COLOR;
         _commitBar.text = @"完成";
         _commitBar.textAlignment = NSTextAlignmentRight;
         _commitBar.userInteractionEnabled = true;

@@ -86,11 +86,11 @@
             subLabel(@"网址").text = SysConf.easyRememberDomain;
         }];
         [self getNoticeList];   // 公告列表
-        if (Skin1.isBlack) {
+        if (Skin1.isGPK) {
             [self.leftwardMarqueeView start];
         }
         [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
-            if (Skin1.isBlack) {
+            if (Skin1.isGPK) {
                 [__self.leftwardMarqueeView start];
             } else {
                 [__self.leftwardMarqueeView pause];

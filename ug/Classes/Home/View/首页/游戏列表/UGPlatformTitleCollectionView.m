@@ -19,7 +19,7 @@
     float btnwight;
 }
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic) BOOL isBlack;
+@property (nonatomic) BOOL isGPK;
 @property (nonatomic,strong) UIButton *leftBtn;
 @property (nonatomic,strong) UIButton *rightBtn;
 @end
@@ -31,12 +31,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _isBlack = Skin1.isBlack;
+        _isGPK = Skin1.isGPK;
         UICollectionViewFlowLayout *layout = ({
             layout = [[UICollectionViewFlowLayout alloc] init];
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
-            layout.sectionInset = _isBlack ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
+            layout.sectionInset = _isGPK ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
 			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 				layout.sectionInset = UIEdgeInsetsZero;
 			}
@@ -46,7 +46,7 @@
         
         UICollectionView *collectionView = ({
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CollectionViewW, 55) collectionViewLayout:layout];
-            collectionView.backgroundColor = _isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+            collectionView.backgroundColor = Skin1.isGPK ? Skin1.bgColor : Skin1.homeContentColor;
 
 			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 				collectionView.backgroundColor = UIColor.clearColor;
@@ -54,10 +54,10 @@
  
             collectionView.dataSource = self;
             collectionView.delegate = self;
-             collectionView.layer.cornerRadius = (_isBlack || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
+            collectionView.layer.cornerRadius = (_isGPK || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
             collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
-            [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"黑色模板Cell"];
+            [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"GPK版Cell"];
             [collectionView setShowsHorizontalScrollIndicator:NO];
             
             if (APP.isWhite) {
@@ -133,9 +133,9 @@
             [__self.collectionView.collectionViewLayout invalidateLayout];
         });
         [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
-            __self.isBlack = Skin1.isBlack;
+            __self.isGPK = Skin1.isGPK;
             [__self mas_updateConstraints:^(MASConstraintMaker *make) {
-                if (__self.isBlack) {
+                if (__self.isGPK) {
                     make.top.left.right.equalTo(self).offset(0);
                     make.height.equalTo(@140);
                 } else {
@@ -145,7 +145,7 @@
                     make.height.equalTo(@55);
                 }
             }];
-             __self.collectionView.layer.cornerRadius = __self.isBlack ? 0 : 10;
+             __self.collectionView.layer.cornerRadius = __self.isGPK ? 0 : 10;
             if (APP.isWhite) {
                 __self.collectionView.layer.borderWidth = 1;
                 __self.collectionView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -184,8 +184,8 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (_isBlack) {
-        UGPlatformTitleBlackCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"黑色模板Cell" forIndexPath:indexPath];
+    if (_isGPK) {
+        UGPlatformTitleBlackCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GPK版Cell" forIndexPath:indexPath];
         cell.gcm = _gameTypeArray[indexPath.row];
         return cell;
     }
@@ -234,7 +234,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (_isBlack) {
+    if (_isGPK) {
         return CGSizeMake(92, 140);
     }
     CGFloat w = 0;

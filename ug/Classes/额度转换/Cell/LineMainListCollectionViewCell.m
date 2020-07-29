@@ -34,7 +34,6 @@
         self.balanceLabel.text = @"加载失败";
         [_refreshButton setHidden:NO];
     }
-
 }
 
 - (IBAction)refreshClick:(id)sender {

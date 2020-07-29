@@ -24,7 +24,6 @@
 #import "UGLotteryRecordController.h"
 #import "WMNavTabBar.h"
 #import "SGSegmentedControl.h"
-#import "MailBoxTableViewController.h"
 #import "UGChangLongController.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
@@ -315,7 +314,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             
-            NSLog(@"model.data = %@",model.data);
+        
             UGPlayOddsModel *play = model.data;
             self.playOddsModel = play;
             [self.rightStackView addSubview:self.zodiacScrollView];
@@ -513,11 +512,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (IBAction)betClick:(id)sender {
     [self.amountTextF resignFirstResponder];
     ck_parameters(^{
-        ck_parameter_non_equal(self.selectLabel.text, @"已选中 0 注", @"请选择玩法");
+        ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
         ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
+
         NSString *selName = @"";
         NSString *selCode = @"";
         NSMutableArray *array = [NSMutableArray array];
@@ -567,6 +567,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 if ([@"合肖" isEqualToString:type.name]) {
                     NSMutableString *str = [[NSMutableString alloc] init];
                     NSInteger count = 0;
+                    
+                    if (type.list.count == 1 ) {
+                        [SVProgressHUD showInfoWithStatus:@"合肖必须选择2个"];
+                        return;
+                        
+                    }
                     for (UGGameBetModel *bet in type.list) {
                         if (bet.select) {
                             count += 1;
@@ -1032,17 +1038,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             } else {
                 type = model.list[indexPath.section ];
             }
-            //            if (self.segmentIndex) {//B
-            //                type = model.list[indexPath.section + 3];
-            //            } else {//B
-            //                type = model.list[indexPath.section];
-            //            }
+
         } else {
             type = model.list[indexPath.section];
         }
-        
-        
-        
+
         // 修改game.select
         {
             UGGameBetModel *game = type.list[indexPath.row];
@@ -1078,6 +1078,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     if (bet.select)
                         count ++;
                 }
+       
                 if (count == 11 && !game.select) {
                     [SVProgressHUD showInfoWithStatus:@"不允许超过11个选项"];
                 } else {

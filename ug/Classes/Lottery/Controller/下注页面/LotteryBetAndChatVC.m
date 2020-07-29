@@ -379,7 +379,7 @@
                 
             }
             
-            if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+            if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
                 label.textColor = [UIColor whiteColor];
             }
             

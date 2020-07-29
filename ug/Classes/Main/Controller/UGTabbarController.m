@@ -17,7 +17,6 @@
 #import "UGLotteryRecordController.h"       // 开奖记录
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGSecurityCenterViewController.h"  // 安全中心
-#import "MailBoxTableViewController.h"    // 站内信
 #import "UGBankCardInfoController.h"        // 我的银行卡
 #import "UGBindCardViewController.h"        // 银行卡管理
 #import "UGYubaoViewController.h"           // 利息宝
@@ -25,11 +24,11 @@
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
 #import "UGAgentViewController.h"           // 申请代理
-#import "UGBMMemberCenterViewController.h"  // 黑色模板会员中心
-#import "UGBMpreferentialViewController.h"  // 黑色模板优惠专区
-#import "UGBMLotteryHomeViewController.h"   // 黑色模板购彩大厅
+#import "UGBMMemberCenterViewController.h"  // GPK版会员中心
+#import "UGBMpreferentialViewController.h"  // GPK版优惠专区
+#import "UGBMLotteryHomeViewController.h"   // GPK版购彩大厅
 #import "UGYYLotteryHomeViewController.h"   // 购彩大厅
-#import "UGBMLoginViewController.h"         // 黑色模板登录页
+#import "UGBMLoginViewController.h"         // GPK版登录页
 #import "LotteryBetAndChatVC.h"             // 聊天室
 #import "UGBetRecordViewController.h"       // 投注记录
 //======================================================
@@ -234,7 +233,7 @@ static UGTabbarController *_tabBarVC = nil;
     [[UGAppVersionManager shareInstance] updateVersionApi:false];
     [self setTabbarStyle];
 
-    // 更新黑色模板状态栏
+    // 更新GPK版状态栏
     {
         UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
         if (!sv) {
@@ -277,23 +276,25 @@ static UGTabbarController *_tabBarVC = nil;
         } error:nil];
         [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
             
-            BOOL black = Skin1.isBlack;
-            sv.hidden = !black;
+            BOOL isGPK = Skin1.isGPK;
+            sv.hidden = !isGPK;
             for (UIView *v in sv.arrangedSubviews) {
                 v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
-                if (!Skin1.isBlack) {
+                if (!Skin1.isGPK) {
                     v.layer.borderWidth = 0;
                     sv.hidden = NO;
                 }
             }
-            [TabBarController1 setTabbarHeight:black ? 53 : 50];
+            [TabBarController1 setTabbarHeight:isGPK ? 53 : 50];
         }];
     }
     
     
     [self chatgetToken];
     
-     [self getAllNextIssueData]; // 彩票大厅数据
+    [self getAllNextIssueData]; // 彩票大厅数据
+    
+    [self getSystemConfig];
     
 }
 
@@ -302,9 +303,12 @@ static UGTabbarController *_tabBarVC = nil;
         [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
+        
         
         for (UGNavigationController *nav in TabBarController1.viewControllers) {
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+             [nav.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
         }
     };
     if (OBJOnceToken(self)) {
@@ -381,7 +385,7 @@ static UGTabbarController *_tabBarVC = nil;
         }
         
         // 判断优惠活动展示在首页还是内页（c001显示在内页）
-        if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isBlack)
+        if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isGPK)
             continue;
         
         
@@ -461,7 +465,7 @@ static UGTabbarController *_tabBarVC = nil;
         NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
         UIView *v = (UIView *)[sv viewWithTagString:tagStr];
         
-        if (!Skin1.isBlack) {
+        if (!Skin1.isGPK) {
             v.layer.borderWidth = 0;
         }
         
@@ -495,7 +499,7 @@ static UGTabbarController *_tabBarVC = nil;
         for (int i = 0; i<self.mms.count; i++) {
             NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
             UIView *v = (UIView *)[sv viewWithTagString:tagStr];
-            if (!Skin1.isBlack) {
+            if (!Skin1.isGPK) {
                 v.layer.borderWidth = 0;
             }
             UGMobileMenu *mm = [self.mms objectAtIndex:i];
@@ -854,4 +858,22 @@ static UGTabbarController *_tabBarVC = nil;
         } failure:nil];
     }];
 }
+
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            HJSonLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 @end

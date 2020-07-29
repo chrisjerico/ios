@@ -22,6 +22,8 @@
 /** 进度条颜色 */
 @property (nonatomic,strong) UIColor *progressColor;
 
+@property (nonatomic, strong) void (^didReceiveScriptMessage)(NSString *name, id body); /**<   收到js讯息 */
+
 @end
 
 

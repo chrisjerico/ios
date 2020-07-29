@@ -23,6 +23,7 @@ typedef id CMResultClass;
 ///
 @interface CMResult<Target> : JSONModel
 
+@property (nonatomic, assign) NSInteger statusCode;//网络错误码
 /// 状态
 @property (nonatomic, assign) NSInteger code;
 @property (nonatomic, strong) NSString *msg;

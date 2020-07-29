@@ -26,7 +26,7 @@
 #import "UGSetupPayPwdController.h"
 #import "UGYubaoViewController.h"
 #import "UGSecurityCenterViewController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
 #import "UGUserInfoViewController.h"
@@ -191,10 +191,10 @@
     self.progressView.layer.masksToBounds = YES;
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
     //    self.topupView.backgroundColor = Skin1.navBarBgColor;
-    //    FastSubViewCode(self.topupView);
-    //    subLabel(@"存款Label").textColor = Skin1.textColor1;
-    //    subLabel(@"提现Label").textColor = Skin1.textColor1;
-    //    subLabel(@"转换Label").textColor = Skin1.textColor1;
+    FastSubViewCode(self.topupView);
+    subLabel(@"存款Label").textColor = Skin1.textColor1;
+    subLabel(@"提现Label").textColor = Skin1.textColor1;
+    subLabel(@"转换Label").textColor = Skin1.textColor1;
     
     
     //设置皮肤
@@ -436,7 +436,7 @@ BOOL isOk = NO;
         cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = Skin1.isBlack ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        cell.layer.borderColor = Skin1.isGPK ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
         return cell;
     }
     return nil;

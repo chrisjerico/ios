@@ -162,7 +162,7 @@
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
     for (SiteModel *sm in sites) {
-        sm.retryCnt = 3;
+        sm.retryCnt = 1;
     };
     
     __block SiteModel *__sm = nil;

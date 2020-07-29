@@ -25,8 +25,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
+    self.backgroundColor = Skin1.isGPK ? Skin1.bgColor : Skin1.homeContentColor;
     self.nameLabel.textColor = Skin1.textColor1;
+    self.name2Label.textColor = Skin1.textColor2;
     self.hotImageView.hidden = YES;
     
     if (!Skin1.isJY) {
@@ -102,10 +103,10 @@
     }];
     
     FastSubViewCode(self);
-    BOOL isBlack = Skin1.isBlack;
+    BOOL isGPK = Skin1.isGPK;
     
     if (item.tipFlag==1 || item.tipFlag==2 ||item.tipFlag==3) {
-        if (isBlack) {
+        if (isGPK) {
                _hotImageView.hidden = YES;
         } else {
                _hotImageView.hidden = NO;
@@ -115,9 +116,9 @@
        _hotImageView.hidden = YES;
     }
 
-    subImageView(@"活动ImageView").hidden = !(isBlack && item.tipFlag==2);
-    subButton(@"热Button").superview.hidden = !(isBlack && item.tipFlag==1);
-    subButton(@"大奖Button").superview.hidden = !(isBlack && item.tipFlag==3);
+    subImageView(@"活动ImageView").hidden = !(isGPK && item.tipFlag==2);
+    subButton(@"热Button").superview.hidden = !(isGPK && item.tipFlag==1);
+    subButton(@"大奖Button").superview.hidden = !(isGPK && item.tipFlag==3);
 
     _effImgView.hidden = !(item.tipFlag==4);
 }

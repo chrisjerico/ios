@@ -22,7 +22,7 @@
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
 #import "UGLotteryRecordController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGDocumentVC.h"
 #import "UGFundsViewController.h"
@@ -50,7 +50,7 @@
 #import "JS_TitleView.h"
 
 
-//测试--黑色模板
+//测试--GPK版
 #import "UGfinancialViewViewController.h"
 
 // View
@@ -124,7 +124,7 @@
 @property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
 @property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
 
-@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   黑色模板导航头 */
+@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   GPK版导航头 */
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
@@ -262,7 +262,7 @@
             [v removeFromSuperview];
         }
         NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
-                               @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
+                               @"GPK版":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
                                @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
                                @"火山橙":@[_bannerBgView, _rollingView, _homeAdsBigBgView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _betFormView, _bottomView],
                                
@@ -314,24 +314,24 @@
     }
     
     
-    // 黑色模板的UI调整
-    BOOL isBlack = Skin1.isBlack;
+    // GPK版的UI调整
+    BOOL isGPK = Skin1.isGPK;
     // c108站点定制需求
     if ([@"c108" containsString: APP.SiteId]) {
         _rankingView.backgroundColor = UIColor.whiteColor;
     } else {
-        _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
+        _rankingView.backgroundColor = isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
     }
     
 
 //    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
 //    if (Skin1.isJY) {
-        _gameTypeView.cc_constraints.top.constant = isBlack||Skin1.isJY ? 0 : 10;
+        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY ? 0 : 10;
 //    }
-    _headerView.hidden = !isBlack;
-    self.fd_prefersNavigationBarHidden = isBlack;
+    _headerView.hidden = !isGPK;
+    self.fd_prefersNavigationBarHidden = isGPK;
     if (NavController1.topViewController == self) {
-        self.navigationController.navigationBarHidden = isBlack;
+        self.navigationController.navigationBarHidden = isGPK;
     }
     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
         _rollingView.backgroundColor = UIColor.whiteColor;
@@ -381,7 +381,7 @@
         [_lhPrizeView.timer setFireDate:[NSDate date]];
     }
 
-    self.navigationController.navigationBarHidden = [Skin1 isBlack];
+    self.navigationController.navigationBarHidden = [Skin1 isGPK];
   
 
 }
@@ -451,6 +451,8 @@
                 cnt += !v.hidden;
             }
             __self.promotionView.hidden = !SysConf.m_promote_pos || !cnt;
+            
+            [[AppDefine shared] setupSiteAndSkinParams];
         });
     }
     
@@ -505,6 +507,10 @@
            
             _promotionsStackView.cc_constraints.top.constant = 0;
             _promotionsStackView.cc_constraints.left.constant = 0;
+        }
+        
+        if ( [@"c012," containsString:APP.SiteId]) {//第3种样式：
+            subView(@"优惠活动外View").backgroundColor = Skin1.homeContentColor;
         }
         
         if (Skin1.isJY) {
@@ -856,9 +862,19 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求14
-           if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-                 [self.lhPrizeView  setGid:@""];     //购彩大厅信息
-           }
+        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+            
+            if ([CMCommon stringIsNull:SysConf.appSelectType]) {
+                [self.lhPrizeView  setGid:@""];
+            } else {
+                if ( [SysConf.appSelectType isEqualToString:@"0"]) {
+                    [self.lhPrizeView  setGid:@""];
+                } else {
+                    [self.lhPrizeView  setGid:SysConf.appSelectType];
+                }
+            }
+            
+        }
     });
     dispatch_group_async(group, queue, ^{
            
@@ -2176,7 +2192,7 @@
     [TabBarController1 setSelectedIndex:4];
 }
 - (void)emailButtonTaped {
-    [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
+    [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
 }
 
 #pragma mark - Table view data source
@@ -2319,11 +2335,7 @@
         if (image) {
             if (APP.isC190Cell) {
                 CGFloat w;
-                if ([@"c012" containsString:APP.SiteId]) {
-                    w = APP.Width-48;
-                } else {
-                    w = APP.Width-88;
-                }
+                w = APP.Width-88;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
             } else {

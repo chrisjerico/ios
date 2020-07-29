@@ -112,6 +112,81 @@ static id _instace;
     return obj;
 }
 
++ (void)downloadNewestPackage:(void (^)(double progress))progress completion:(void (^)(BOOL ret))completion {
+    static BOOL once = false;
+    if (once) return;
+    once = true;
+    
+    NSDictionary *curPackage = [CodePushPackage getCurrentPackage:nil];
+    {
+        // 安装已下载好的包
+        NSDictionary *dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"downloadedPackage"];
+        if (![curPackage[@"packageHash"] isEqualToString:dict[@"packageHash"]]) {
+            [CodePushPackage installPackage:dict removePendingUpdate:true error:nil];
+        }
+    }
+    
+    // 检查RN更新
+    __block int __delay = 1;
+    void (^getReactNativePackage)(void) = nil;
+    void (^__block __getReactNativePackage)(void) = getReactNativePackage = ^{
+        [NetworkManager1 getCodePushUpdate:ReactNativeHelper.currentCodePushKey].completionBlock = ^(CCSessionModel *sm) {
+            sm.noShowErrorHUD = true;
+            if (!sm.error) {
+                NSDictionary *dict = sm.responseObject[@"update_info"];
+                NSMutableDictionary *updatePackage = ({
+                    updatePackage = @{}.mutableCopy;
+                    for (NSString *key in [dict allKeys]) {
+                        updatePackage[[NSString convertToCamelCaseFromSnakeCase:key]] = dict[key];
+                    }
+                    updatePackage;
+                });
+                
+                if (![curPackage[@"packageHash"] isEqualToString:updatePackage[@"packageHash"]]) {
+                    NSString *expectedBundleFileName = @"main.jsbundle";
+                    NSString *publicKey = nil;
+                    [CodePushPackage downloadPackage:updatePackage expectedBundleFileName:expectedBundleFileName publicKey:publicKey operationQueue:dispatch_get_main_queue() progressCallback:^(long long expectedContentLength, long long receivedContentLength) {
+                        if (progress)
+                            progress(receivedContentLength/(double)expectedContentLength);
+                    } doneCallback:^{
+                        NSLog(@"RN下载成功");
+                        [CodePushPackage installPackage:updatePackage removePendingUpdate:true error:nil];
+                        [[NSUserDefaults standardUserDefaults] setObject:updatePackage forKey:@"downloadedPackage"];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        if (completion)
+                            completion(true);
+                    } failCallback:^(NSError *err) {
+                        // 获取ip信息
+                        [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM) {
+                            NSDictionary *ipAddress = ipSM.responseObject[@"data"] ? : @{};
+                            NSString *ipInfo = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:ipAddress options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+                            NSString *log = _NSString(@"ip地址：%@\n错误类型：%@", ipInfo, err);
+                            NSString *title = _NSString(@"%@%@", ipAddress[@"country"], ipAddress[@"region"]);
+                            // 上传日志
+                            [NetworkManager1 uploadLog:log title:title tag:@"rn更新包下载失败"];
+                        };
+                        
+#ifdef APP_TEST
+                        [AlertHelper showAlertView:@"热更新失败，请联系开发" msg:err.domain btnTitles:@[@"确定"]];
+#endif
+                        if (completion)
+                            completion(false);
+                    }];
+                } else {
+                    NSLog(@"当前已是最新版本！");
+                    if (completion)
+                        completion(true);
+                }
+            } else {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__delay++ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    __getReactNativePackage();
+                });
+            }
+        };
+    };
+    __getReactNativePackage();
+}
+
 + (void)waitLaunchFinish:(void (^)(BOOL))finishBlock {
     if (finishBlock) {
         if ([ReactNativeHelper shared].launchFinishBlocks) {

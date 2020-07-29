@@ -12,7 +12,7 @@
 #import "UGLotteryRecordController.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGChangLongController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGFundsViewController.h"
 #import "UGYYRightMenuTableViewCell.h"
@@ -48,7 +48,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *withdrawLabel;      /**<   提现文字*/
 
 
-@property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   黑色模板去会员中心*/
+@property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   GPK版去会员中心*/
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;    /**<   头像*/
 
@@ -63,7 +63,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(void)initTitleAndImgs{
     
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self titleArrayAndimageNameArrayInit];
         
         NSArray *arrayTmp = @[@"提现", @"充值"];
@@ -97,6 +97,16 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         NSArray *arrayImg = @[@"cb_kaijiang"];
         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
     }
+    if ([@"c217" containsString:APP.SiteId]) {
+        NSArray *arrayTmp = @[@"红包记录",@"扫雷记录",@"任务中心"];
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(7, 3)];
+        [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
+        
+        NSArray *arrayImg = @[@"cbl_hongbao",@"cbl_saolei",@"lixibao"];
+        [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+    }
+
 
     
     
@@ -252,7 +262,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(IBAction)showMMemberCenterView{
     NSLog(@"tap");
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self hiddenSelf];
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:YES];
     }
@@ -270,6 +280,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
+//    if (!OBJOnceToken(event)) return view;
     if (CGRectContainsPoint(self.bounds, point)) {
         
     } else {
@@ -492,7 +503,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:[UGChangLongController new] animated:true];
     }
     else if ([title isEqualToString:@"站内信"]) {
-        [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
+        [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
     }
     else if ([title isEqualToString:@"利息宝"]) {
 //#if DEBUG
@@ -551,6 +562,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"开奖网"]) {
         [CMCommon goSLWebUrl:lotteryUrl];
     }
+    else if ([title isEqualToString:@"任务中心"]) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+     }
     
 }
 

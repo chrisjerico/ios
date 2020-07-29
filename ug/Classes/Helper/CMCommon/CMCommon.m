@@ -685,10 +685,8 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 //ios 指定范围内的随机数
-+(int)getRandomNumber:(int)from to:(int)to
-{
-    return (int)(from + (arc4random() % (to - from + 1)));
-    
++ (int)getRandomNumber:(int)from to:(int)to {
+    return (int)(from + (arc4random() % MAX((to - from + 1), 1)));
 }
 
 /**
@@ -973,10 +971,12 @@ static NSString *uuidKey =@"uuidKey";
 *
 */
 +(void)goTGWebUrl:(NSString *)url title :(NSString *)title{
+    
+    NSString* str = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
     webViewVC.允许未登录访问 = true;
     webViewVC.允许游客访问 = true;
-    webViewVC.url = url;
+    webViewVC.url = str;
     if (title) {
         webViewVC.webTitle = title;
     }
@@ -1345,7 +1345,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(UGNextIssueModel * )getBetAndChatModel:(UGNextIssueModel *)nim{
-    if (!nim) {
+    if (!nim) {//各个站点的彩种id 不一样，（自营）
            
            if ([@"c084" containsString:APP.SiteId]) {
                UGNextIssueModel * oc = [UGNextIssueModel new];
@@ -1358,6 +1358,14 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
            else if ([@"c208" containsString:APP.SiteId]) {
                UGNextIssueModel * oc = [UGNextIssueModel new];
                oc.gameId = @"78";
+               oc.gameType = @"lhc";
+               oc.name = @"lhc";
+               oc.title = @"一分六合彩";
+               nim = oc;
+           }
+           else if ([@"c012" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"174";
                oc.gameType = @"lhc";
                oc.name = @"lhc";
                oc.title = @"一分六合彩";
@@ -1542,6 +1550,53 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     [[NSUserDefaults standardUserDefaults]setObject:array forKey:@"array"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
+//判断URL是否可用
++ (NSURL *)smartURLForString:(NSString *)str
+{
+    NSURL *     result;
+    NSString *  trimmedStr;
+    NSRange     schemeMarkerRange;
+    NSString *  scheme;
 
+    assert(str != nil);
 
+    result = nil;
+
+    trimmedStr = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ( (trimmedStr != nil) && (trimmedStr.length != 0) ) {
+        schemeMarkerRange = [trimmedStr rangeOfString:@"://"];
+
+        if (schemeMarkerRange.location == NSNotFound) {
+            result = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", trimmedStr]];
+        } else {
+            scheme = [trimmedStr substringWithRange:NSMakeRange(0, schemeMarkerRange.location)];
+            assert(scheme != nil);
+
+            if ( ([scheme compare:@"http"  options:NSCaseInsensitiveSearch] == NSOrderedSame)
+                || ([scheme compare:@"https" options:NSCaseInsensitiveSearch] == NSOrderedSame) ) {
+                result = [NSURL URLWithString:trimmedStr];
+            } else {
+                // It looks like this is some unsupported URL scheme.
+            }
+        }
+    }
+
+    return result;
+}
+
+//判断网址是否正确
++(void) validateUrl: (NSURL *) candidate {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:candidate];
+    [request setHTTPMethod:@"HEAD"];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        NSLog(@"error %@",error);
+        if (error) {
+            NSLog(@"不可用");
+        }else{
+            NSLog(@"可用");
+        }
+    }];
+    [task resume];
+}
 @end

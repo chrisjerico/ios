@@ -49,6 +49,16 @@ static RCTRootView *_rnView;
 }
 
 + (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
+    if (rpm.vcName2.length) {
+        UIViewController *vc = _LoadVC_from_storyboard_(rpm.vcName2);
+        if (!vc) {
+            vc = [NSClassFromString(rpm.vcName2) new];
+        }
+        vc.允许游客访问 = rpm.允许游客访问;
+        vc.允许未登录访问 = rpm.允许未登录访问;
+        [vc setValuesWithDictionary:params];
+        return (id)vc;
+    }
     if (!rpm.rnName.stringByTrim.length) {
         return nil;
     }
@@ -66,6 +76,19 @@ static RCTRootView *_rnView;
     */
     vc.params = [ReactNativeHelper addOnceBlocks:params key:rpm.vcName];
     return vc;
+}
+
++ (void)setTabbarHidden:(BOOL)hidden animated:(BOOL)animated {
+    if (![NavController1.firstVC isKindOfClass:[ReactNativeVC class]]) return;
+//    if (TabBarController1.tabBar.hidden == hidden) return;
+    
+    if (!animated) {
+        TabBarController1.tabBar.hidden = hidden;
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            TabBarController1.tabBar.by = hidden ? APP.Height+84 : APP.Height;
+        }];
+    }
 }
 
 - (void)viewDidLoad {

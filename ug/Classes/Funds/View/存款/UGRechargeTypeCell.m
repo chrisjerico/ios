@@ -23,9 +23,9 @@
     if (APP.isBgColorForMoneyVC) {
         self.backgroundColor  = Skin1.bgColor;
         self.nameLabel.textColor = [UIColor whiteColor];
-    } else {
-//        self.backgroundColor = [UIColor clearColor];
-//        self.nameLabel.textColor = Skin1.textColor1;
+    } else if (Skin1.isBlack) {
+        self.backgroundColor = Skin1.homeContentColor;
+        self.nameLabel.textColor = Skin1.textColor1;
     }
     
     

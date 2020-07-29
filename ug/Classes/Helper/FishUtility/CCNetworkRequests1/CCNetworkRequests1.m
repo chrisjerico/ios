@@ -225,6 +225,26 @@
     return sm;
 }
 
+- (CCSessionModel *)getCodePushUpdate:(NSString *)deploymentKey {
+    NSString *urlString = @"http://ec2-18-163-2-208.ap-east-1.compute.amazonaws.com:3000/v0.1/public/codepush/update_check";
+    NSDictionary *params = @{@"app_version":@"1.1.1", @"deployment_key":deploymentKey};
+    BOOL isPost = false;
+    
+    AFHTTPSessionManager *m = [AFHTTPSessionManager manager];
+    m.requestSerializer = [AFHTTPRequestSerializer serializer];
+    m.responseSerializer = [AFJSONResponseSerializer serializer];
+    m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    
+    CCSessionModel *sm = [CCSessionModel new];
+    sm.urlString = urlString;
+    sm.params = params;
+    sm.isPOST = isPost;
+    sm.reconnectCnt = 2;
+    NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:sm.isPOST ? @"POST":@"GET" URLString:sm.urlString parameters:sm.params error:nil];
+    [[sm dataTask:m request:req] resume];
+    return sm;
+}
+
 // 获取ip
 - (CCSessionModel *)getIp {
     NSString *urlString = @"http://ip.taobao.com/service/getIpInfo2.php";

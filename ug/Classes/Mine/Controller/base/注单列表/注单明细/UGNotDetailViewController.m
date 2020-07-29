@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UILabel *totalBetAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraints;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraints;
 
 @property (nonatomic, strong) NSMutableArray <UGBetsRecordModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
@@ -33,6 +35,14 @@
     self.tableView.rowHeight = 50.0;
     //    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 220, 0);
     self.bottomView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.6];
+    
+    if ([CMCommon isPhoneX]) {
+        self.bottomViewHeightConstraints.constant = 70;
+        self.bottomViewBottomConstraints.constant = 85;
+    } else {
+        self.bottomViewHeightConstraints.constant = 50;
+        self.bottomViewBottomConstraints.constant = 60;
+    }
     
     [self setupRefreshView];
     [self setupTotalAmountLabelTextColor];
@@ -121,13 +131,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    FastSubViewCode(cell.contentView);
+    if (OBJOnceToken(cell)) {
+        subLabel(@"时间Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"星期Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"笔数Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"中奖笔数Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"中奖金额Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"输赢Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+    }
     if (Skin1.isBlack) {
         cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : Skin1.bgColor;
     } else {
         cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : APP.BackgroundColor;
     }
     UGBetsRecordModel *pm = self.dataArray[indexPath.row];
-    FastSubViewCode(cell.contentView);
     subLabel(@"时间Label").text = pm.date;
     subLabel(@"星期Label").text = pm.dayOfWeek;
     subLabel(@"笔数Label").text = pm.betCount;

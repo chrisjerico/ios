@@ -66,8 +66,8 @@
     }
     self = [super initWithFrame:initialFrame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-       
+        self.backgroundColor = Skin1.isBlack ? UIColorHex(0x707070) : [UIColor whiteColor];
+        
         self.delegate = self;
         self.dataSource = self;
         
@@ -78,7 +78,7 @@
 
 - (void)initToolBar {
     self.toolBar = [[MOFSToolView alloc] initWithFrame:CGRectMake(0, 0, UISCREEN_WIDTH, 44)];
-    self.toolBar.backgroundColor = [UIColor whiteColor];
+    self.toolBar.backgroundColor = Skin1.isBlack ? Skin1.homeContentColor : [UIColor whiteColor];
 }
 
 - (void)initContainerView {
@@ -243,7 +243,7 @@
         pickerLabel = [[UILabel alloc] init];;
         pickerLabel.textAlignment = NSTextAlignmentCenter;
         pickerLabel.font = [UIFont systemFontOfSize:16];
-        pickerLabel.textColor = [UIColor colorWithRed:12.f/255.f green:14.f/255.f blue:14.f/255.f alpha:1];
+        pickerLabel.textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor colorWithRed:12.f/255.f green:14.f/255.f blue:14.f/255.f alpha:1];
     }
     
     NSString *text = [self pickerView:pickerView titleForRow:row forComponent:component];

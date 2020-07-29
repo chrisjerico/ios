@@ -19,8 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RnPageModel : NSObject
 
 // 替换oc页面
-@property (nonatomic, strong) NSString *vcName;     /**<   oc页面类名 */
+@property (nonatomic, strong) NSString *vcName;     /**<   要被替换的oc页面类名 */
 @property (nonatomic, strong) NSString *rnName;     /**<   rn页面类名 */
+@property (nonatomic, strong) NSString *vcName2;    /**<   要替换的oc页面类名 */
 @property (nonatomic, assign) BOOL fd_interactivePopDisabled;       /**<   是否禁用全屏滑动返回上一页 */
 @property (nonatomic, assign) BOOL fd_prefersNavigationBarHidden;   /**<   是否隐藏导航条 */
 @property (nonatomic, assign) BOOL 允许游客访问;
@@ -53,6 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary <NSString *, id>* _Nullable)params;  /**<   切换rn页面 */
 - (BOOL)isEqualRPM:(RnPageModel *)rpm;
 - (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params;
++ (void)setTabbarHidden:(BOOL)hidden animated:(BOOL)animated;
 @end
 
 NS_ASSUME_NONNULL_END

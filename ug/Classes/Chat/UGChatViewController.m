@@ -13,6 +13,9 @@
 #import "RememberPass.h"
 #import "WHC_ModelSqlite.h"
 #import "RoomChatModel.h"
+#import "UGGameplayModel.h"
+#import "UGBetDetailView.h"
+
 @interface UGChatViewController ()
 @property (nonatomic) UIButton *closeBtn;
 @end
@@ -62,7 +65,6 @@
 	
 	// 返回按钮
 	{
-		__weakSelf_(__self);
 		_closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		_closeBtn.frame = CGRectMake(APP.Width-80, APP.StatusBarHeight, 40, 45);
 		[_closeBtn setImage:[UIImage imageNamed:@"c_login_close_fff"] forState:UIControlStateNormal];
@@ -78,8 +80,96 @@
 	
 	[self goShareBetJson];
 	
-	
+    // 聊天室跟注功能
+    self.didReceiveScriptMessage = ^(NSString *name, NSDictionary *body) {
+        if (![body isKindOfClass:[NSDictionary class]]) return;
+        [__self followBet:body];
+    };
 }
+
+// 跟注
+- (void)followBet:(NSDictionary *)betInfo {
+    [SVProgressHUD show];
+    NSString *gameId = betInfo[@"gameId"];// 彩种
+    __block NSString *paneCode = betInfo[@"paneCode"]; // 玩法
+    
+    // 第一步：获取玩法赔率
+    [CMNetwork getGameDatasWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGPlayOddsModel *play = model.data;
+//            NSMutableArray *gameDataArray = play.playOdds.mutableCopy;
+            
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    for (UGGameBetModel *gbm in gsm.lhcOddsArray){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                    for (UGGameBetModel *gbm in gsm.list){
+                        gbm.gameEnable = gsm.enable;
+                    }
+                }
+            }
+            
+            // 第二步：遍历找到对应号码数据
+            NSMutableArray <UGGameBetModel *>*nums = @[].mutableCopy;
+            for (NSDictionary *dict in betInfo[@"betBean"]) {
+                NSMutableArray <UGGameplaySectionModel *>*temp = @[].mutableCopy;
+                for (UGGameplayModel *gm in play.playOdds) {
+                    [temp addObjectsFromArray:gm.list];
+                }
+                for (UGGameplaySectionModel *gsm in temp) {
+                    UGGameBetModel *gbm = nil;
+                    gbm = gbm ? : [gsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                    gbm = gbm ? : [gsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                    gbm = gbm ? : [gsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                    
+                    for (UGGameplaySectionModel *subGsm in gsm.ezdwlist) {
+                        gbm = gbm ? : [subGsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        gbm = gbm ? : [subGsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        gbm = gbm ? : [subGsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                    }
+                    if (gbm) {
+                        gbm.money = dict[@"money"];
+                        gbm.playName1 = betInfo[_NSString(@"playNameArray[%d][playName1]", (int)nums.count)];
+                        gbm.title = ({
+                            NSMutableArray *temp = [gbm.playName1 componentsSeparatedByString:@"-"].mutableCopy;
+                            if ([temp.lastObject isEqualToString:gbm.name]) {
+                                [temp removeLastObject];
+                            } else {
+                                temp[temp.count-1] = [temp.lastObject stringByReplacingOccurrencesOfString:gbm.name withString:@""];
+                            }
+                            [temp componentsJoinedByString:@"-"];
+                        });
+                        
+                        [nums addObject:gbm];
+                        // 第三步：找到玩法paneCode
+                        paneCode = paneCode.length ? paneCode : gsm.code;
+                        break;
+                    }
+                }
+            }
+            
+            // 第四步：获取当前期数信息
+            [CMNetwork getNextIssueWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    UGNextIssueModel *nextIssueModel = model.data;
+                    
+                    // 最后一步：弹框让用户跟注
+                    UGBetDetailView *bdv = [[UGBetDetailView alloc] init];
+                    bdv.dataArray = nums;
+                    bdv.nextIssueModel = nextIssueModel;
+                    bdv.code = paneCode;
+                    [bdv show];
+                    
+                } failure:nil];
+                [SVProgressHUD dismiss];
+            }];
+            
+        } failure:nil];
+        [SVProgressHUD dismiss];
+    }];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];

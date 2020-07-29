@@ -11,7 +11,7 @@
 #import "UGPromotionsController.h"
 #import "UGBMHeaderView.h"
 @interface PromoteMainViewController ()<XYYSegmentControlDelegate>{
-    UGBMHeaderView *headView;                /**<   黑色模板导航头 */
+    UGBMHeaderView *headView;                /**<   GPK版导航头 */
 }
 @property (nonatomic, strong)XYYSegmentControl *slideSwitchView;
 @property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;
@@ -65,7 +65,7 @@
 }
 - (void)buildSegment
 {
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self creatView];
         self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , headView.frame.size.height+headView.frame.origin.y, self.view.width, self.view.height) channelName:self.itemArray source:self];
         [self.view addSubview:self.slideSwitchView];

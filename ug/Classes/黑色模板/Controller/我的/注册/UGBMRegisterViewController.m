@@ -114,7 +114,7 @@
     NSLog(@"skitType= %@",Skin1.skitType);
     NSLog(@"skitString= %@",Skin1.skitString);
     
-    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+    if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
         _titleLineView.backgroundColor = Skin1.bgColor;
     }
         
@@ -684,7 +684,7 @@
     
     completionHandler(NSURLSessionAuthChallengePerformDefaultHandling, nil);
     
-    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+    if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
             [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#483428\"" completionHandler:nil];
     } else {
             [_webView evaluateJavaScript:@"document.body.style.backgroundColor=\"#171717\"" completionHandler:nil];

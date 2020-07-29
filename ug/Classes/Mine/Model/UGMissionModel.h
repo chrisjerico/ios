@@ -37,13 +37,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *sorts;
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString* status;         /**<   0 待领任务 1 待完成 3 待领取奖励 2 已完成 */
-@property (nonatomic, strong) NSString* type;           /**<   类型 0一次性任务 1日常任务 */
+@property (nonatomic, strong) NSString* type;           /**<   类型 0一次性任务 1日常任务  5 限时任务*/
 
 
 @property (nonatomic, strong) NSString *sortName2;         /**<   二级分类"Name */
 //自定义参数
+@property (nonatomic, strong) NSArray<UGMissionModel *> *typeArray;    /**<   type分类数据数组 */
 @property (nonatomic, strong) NSArray<UGMissionModel *> *sortName2Array;    /**<   二级分类数据数组 */
 @property (nonatomic, assign) BOOL isShowCell;                               /**<   二级分类数据是否展示*/
+//定义枚举类型
+typedef enum _CellType {
+    cellTypeTitle  = 0,
+    cellTypeOne,
+    cellTypeMore
+} CellType;
+@property (nonatomic,assign) CellType celltype;           /**<   类型 0 标题  1 单行数据  2 有子数据*/
+@property (nonatomic, strong) NSString *sectionTitle;                        /**<   section"Name */
 @end
 
 NS_ASSUME_NONNULL_END

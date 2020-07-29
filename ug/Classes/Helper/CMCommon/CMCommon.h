@@ -449,4 +449,10 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 +(void)saveLastGengHao:(NSMutableArray *)array gameId:(NSString  *)gameId selCode:(NSString *)selCode;
+
+//判断URL是否可用
++ (NSURL *)smartURLForString:(NSString *)str;
+
+//判断网址是否正确
+-(void) validateUrl: (NSURL *) candidate;
 @end

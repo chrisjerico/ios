@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIColor *bgColor;                 /**<    背景 渐变色 */
 @property (nonatomic, strong) UIColor *navBarBgColor;           /**<    导航条背景色 */
+@property (nonatomic, strong) UIColor *navBarTitleColor;        /**<    导航条标题色*/
 @property (nonatomic, strong) UIColor *tabBarBgColor;           /**<    Tabbar背景色 */
 @property (nonatomic, strong) UIColor *tabNoSelectColor;        /**<    Tabbar未选中颜色 */
 @property (nonatomic, strong) UIColor *tabSelectedColor;        /**<    Tabbar已选中颜色 */
@@ -37,21 +38,26 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *textColor2;              /**<    占位字颜色 深灰色 */
 @property (nonatomic, strong) UIColor *textColor3;              /**<    占位字颜色 淡灰色 */
 @property (nonatomic, strong) UIColor *textColor4;              /**<    反差字体 白色 */
+
 //新额度转换
 //@property (nonatomic, strong) UIColor *conversionHeaderColor;    /**<    头颜色*/
 //@property (nonatomic, strong) UIColor *middleSegmentColor;       /**<    中间切换*/
 @property (nonatomic, strong) UIColor *conversionCellColor;      /**<    内容Cell*/
 @property (nonatomic, strong) UIColor *intoViewColor;            /**<    转入View*/
 @property (nonatomic, strong) UIColor *moneyCellColor;           /**<    金额Cell*/
+
 - (void)useSkin;    /**<   应用此皮肤 */
-- (BOOL)isBlack;    /**<   是否是黑色模板 */
-- (BOOL)isLH;       /**<   是否是六合资料 */
-- (BOOL)isJY;       /**<   是否是简约模板 */
-- (BOOL)isSLH;       /**<   是否是石榴红模板 */
+- (instancetype)getBlackSkin:(BOOL)blackOrOriginal;  /**<   获取当前模板的黑色主题，或还原 */
++ (void)showMask:(BOOL)show; /**<   黑色半透明遮罩 */
 
-- (BOOL)is23;       /**<   是否是经典黑色 */
 
-//-(UIColor *)navBarBgColor;
+@property (nonatomic) BOOL isGPK;  /**<   GPK板 */
+@property (nonatomic) BOOL isLH;   /**<   六合资料 */
+@property (nonatomic) BOOL isJY;   /**<   简约模板 */
+@property (nonatomic) BOOL isSLH;  /**<   石榴红模板 */
+@property (nonatomic) BOOL is23;   /**<   经典黑色 */
+
+@property (nonatomic) BOOL isBlack;/**<   黑色模式 */
 
 
 

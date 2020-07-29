@@ -21,7 +21,6 @@
 #import "UGMissionCenterViewController.h"
 #import "UGSecurityCenterViewController.h"
 #import "UGFundsViewController.h"
-#import "MailBoxTableViewController.h"
 #import "UGBalanceConversionController.h"
 #import "UGBankCardInfoController.h"
 #import "UGYubaoViewController.h"
@@ -41,15 +40,19 @@
 
 
 @interface AppDelegate ()<UITabBarControllerDelegate,JPUSHRegisterDelegate>
-
+{
+    
+}
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [UGLaunchPageVC new];
+    self.window.rootViewController = [AppDefine viewControllerWithNibName:@"UGLaunchPageVC"];
     [self.window makeKeyAndVisible];
+    
+    self.notiveViewHasShow = YES;
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];

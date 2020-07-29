@@ -56,7 +56,7 @@
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
         self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
-        if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+        if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
             self.backgroundColor = selected ? RGBA(72, 146, 209, 1):  RGBA(102, 88, 78, 0.8);
         }
     } else {

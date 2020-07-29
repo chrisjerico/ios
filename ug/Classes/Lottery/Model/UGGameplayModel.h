@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *typeName;
 @property (nonatomic, strong) NSString *from_id;
 
+// 自定义参数
+@property (nonatomic, strong) NSString *playName1;
 @end
 
 @protocol UGGameBetModel <NSObject>
@@ -70,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 自定义参数
 @property (nonatomic, assign) BOOL select;
 @property (nonatomic, strong) NSString *typeName2;
-
+@property (nonatomic, strong) NSString *playName1;
 @end
 
 @protocol UGGameplaySectionModel <NSObject>

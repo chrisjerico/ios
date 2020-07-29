@@ -19,15 +19,15 @@
 #import "UGBetRecordViewController.h"
 #import "UGGameListViewController.h"
 #import "UGDocumentVC.h"
-#import "UGBMRegisterViewController.h"           // 黑色模板注册
-#import "UGBMLoginViewController.h"              // 黑色模板登录
+#import "UGBMRegisterViewController.h"           // GPK版注册
+#import "UGBMLoginViewController.h"              // GPK版登录
 #import "UGLoginViewController.h"                // 模板登录
 #import "UGRegisterViewController.h"             // 模板注册
-#import "UGBMpreferentialViewController.h"       // 黑色模板优惠专区
+#import "UGBMpreferentialViewController.h"       // GPK版优惠专区
 #import "UGPromotionsController.h"               // 模板优惠专区
-#import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
+#import "UGBMLotteryHomeViewController.h"        // GPK版购彩大厅
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
-#import "MailBoxTableViewController.h"         // 站内信
+#import "UGMailBoxTableViewController.h"         // 站内信
 #import "UGSigInCodeViewController.h"            // 每日签到
 #import "SLWebViewController.h"
 #import "UGSecurityCenterViewController.h"  // 安全中心
@@ -62,11 +62,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 + (void)load {
     // 获取哪个类下的导航条,管理自己下导航条
-    UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
-    // 设置背景图片
-//    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
-    
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    UINavigationBar *bar = [UINavigationBar appearanceWhenContainedIn:self, nil];
+//
+//    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 
@@ -163,7 +161,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 //            SLWebViewController *vc = [SLWebViewController new];
 //            vc.urlStr = model.url;
 //            [NavController1 pushViewController:vc animated:true];
-            [CMCommon goTGWebUrl: model.url title:nil];
+//            model.url = @"https://dsjh888.com/";
+            NSLog(@"model.url= %@",model.url);
+            [CMCommon goTGWebUrl:model.url title:@""];
             return true;
         }
     } else {
@@ -555,7 +555,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 14: {
             // 站内信
-            [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
+            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
             break;
         }
         case 15: {
@@ -710,7 +710,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_站内信: {
-            [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:YES];
+            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:YES];
             return true;
         }
         case UCI_彩票注单记录: {

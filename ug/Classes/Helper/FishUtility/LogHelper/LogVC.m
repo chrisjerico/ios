@@ -23,6 +23,7 @@
 #import "HotBranchView.h"
 #import "BetDetailViewController.h"
 #import "DZPModel.h"
+#import "UGPopViewController.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -152,22 +153,22 @@ static LogVC *_logVC = nil;
 
 //大转盘
 - (void)getactivityTurntableList {
- 
+    
     self.dzpArray = [NSArray new];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             };
+    };
     [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-
+        
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
-                 self.dzpArray = model.data;
-                 NSLog(@"dzpArray = %@",self.dzpArray);
-
+                self.dzpArray = model.data;
+                NSLog(@"dzpArray = %@",self.dzpArray);
+                
                 if (self.dzpArray.count) {
-
-                   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:self.dzpArray];
+                    
+                    NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:self.dzpArray];
                     
                     
                     DZPModel *obj = [data objectAtIndex:0];
@@ -182,51 +183,91 @@ static LogVC *_logVC = nil;
                             make.edges.equalTo(self.view);
                         }];
                         
-//                        recordVC.dataArray = [DZPprizeModel mj_objectArrayWithKeyValuesArray:obj.param.prizeArr];
+                        //                        recordVC.dataArray = [DZPprizeModel mj_objectArrayWithKeyValuesArray:obj.param.prizeArr];
                         recordVC.item = obj;
                     });
-    
+                    
                 }
-
+                
             });
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-
+            
         }];
     }];
 }
 // 重发
 - (IBAction)onRepeatBtnClick:(UIButton *)sender {
-    #define k_Height_NavContentBar 44.0f
-    #define k_Height_NavBar (IS_PhoneXAll ? 88.0 : 64.0)//导航栏
-    #define k_Height_StatusBar (IS_PhoneXAll? 44.0 : 20.0)//状态栏
-    #define k_Height_TabBar (IS_PhoneXAll ? 83.0 : 49.0)//标签栏的高度
-    #define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
-    #define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
+#define k_Height_NavContentBar 44.0f
+#define k_Height_NavBar (IS_PhoneXAll ? 88.0 : 64.0)//导航栏
+#define k_Height_StatusBar (IS_PhoneXAll? 44.0 : 20.0)//状态栏
+#define k_Height_TabBar (IS_PhoneXAll ? 83.0 : 49.0)//标签栏的高度
+#define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
+#define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
     
     
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"聊天室"];
+        [titles addObject:@"弹窗"];
         [titles addObject:@"下注明细"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
-
+        
         [ac setActionAtTitle:@"下注明细" handler:^(UIAlertAction *aa) {
             BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
             [NavController1 pushViewController:recordVC animated:true];
-
+            
         }];
-
-        [ac setActionAtTitle:@"聊天室" handler:^(UIAlertAction *aa) {
+        
+        [ac setActionAtTitle:@"弹窗" handler:^(UIAlertAction *aa) {
             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 // 需要在主线程执行的代码
+                NSString *content = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！<a href=\"https://tw.yahoo.com/\">https://tw.yahoo.com/</a>";
+                content = @"尊敬的会员您好，接上级通知，我司因全站系统升级临时进行维护，系统维护期间无法进入网站正常游戏，给您带来不便敬请谅解，如有问题请联系在线客服。谢谢！https://tw.yahoo.com";
+                for (int i = 0; i<10; i++) {
+                    YYLabel *remarkLbl = [[YYLabel alloc] initWithFrame:CGRectMake(0, 0, 230, 130)];
+                    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:content];
+                    text.yy_font = [UIFont systemFontOfSize:16];
+                    NSError *error;
+                    NSDataDetector *dataDetector=[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+                    NSArray *arrayOfAllMatches=[dataDetector matchesInString:content options:NSMatchingReportProgress range:NSMakeRange(0, content.length)];
+                    
+                    //动态计算remarkLbl 的高
+                    CGFloat height = [CMCommon getLabelWidthWithText:content stringFont:text.yy_font allowWidth:230];
+                    [CMCommon changeHeight:remarkLbl Height:height-20];
+                    //我们得到一个数组，这个数组中NSTextCheckingResult元素中包含我们要找的URL的range，当然可能找到多个URL，找到相应的URL的位置，用YYlabel的高亮点击事件处理跳转网页
+                    for (NSTextCheckingResult *match in arrayOfAllMatches)
+                    {
+                        //        NSLog(@"%@",NSStringFromRange(match.range));
+                        [text yy_setTextHighlightRange:match.range//设置点击的位置
+                                                 color:[UIColor orangeColor]
+                                       backgroundColor:[UIColor whiteColor]
+                                             tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
+                            NSLog(@"这里是点击事件");
+                            [self dismissViewControllerAnimated:NO completion:^{
+                                [CMCommon goUrl:[content substringWithRange:match.range]];
+                                [LEEAlert closeWithCompletionBlock:nil];
+                            }];
+                            
+                        }];
+                    }
+                    remarkLbl.attributedText = text;
+                    remarkLbl.numberOfLines = 0;
+                    
+                    [LEEAlert alert].config
+                    .LeeTitle(@"提示")
+                    .LeeAddCustomView(^(LEECustomView *custom) {
+                        custom.view = remarkLbl;
+                        custom.positionType = LEECustomViewPositionTypeCenter;
+                    })
+                    .LeeAction(@"确认", nil)
+                    .LeeCancelAction(@"取消", nil)
+                    .LeeShow();
+
+                    
+                }
                 
-                UGChatViewController *webViewVC = [[UGChatViewController alloc] init];
-                webViewVC.允许未登录访问 = true;
-                webViewVC.允许游客访问 = true;
-                webViewVC.url = @"http://rwmenpc200yzvjjmx.ptplayyy.com/h5chat/#/chatRoom?roomId=1&roomName=%E6%89%AB%E9%9B%B710%E5%8C%851%E7%82%B91%E5%80%8D&password&isChatBan=false&isShareBet=false&typeId=0&sortId=1&chatRedBagSetting=%5Bobject%20Object%5D&isMine=1&minAmount=10.00&maxAmount=1000.00&oddsRate=1.10&quantity=10" ;
-                [NavController1 pushViewController:webViewVC animated:YES];
+                
             });
         }];
         
