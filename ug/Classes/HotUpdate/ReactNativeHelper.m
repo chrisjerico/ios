@@ -166,6 +166,9 @@ static id _instace;
                             [NetworkManager1 uploadLog:log title:title tag:@"rn更新包下载失败"];
                         };
                         
+#ifdef APP_TEST
+                        [AlertHelper showAlertView:@"热更新失败，请联系开发" msg:err.domain btnTitles:@[@"确定"]];
+#endif
                         if (completion)
                             completion(false);
                     }];

@@ -178,7 +178,7 @@
             site(@"test30",       @"",           @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),    // (原生APP组)
             site(@"test28f",      @"",           @"",        @"com.UGGame.cp",           @"http://test28f.fhptcdn.com",                  @"内测包",     @"test28f"),
             site(@"test58",       @"",           @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),
-            site(@"testadaf",     @"testadaf",   @"285",     @"com.UGGame.cp",            @"http://testadaf.fhptcdn.com",                @"内测包",     @"testadaf"),    // (ada)
+            site(@"testadaf",     @"testadaf",   @"285",     @"com.UGGame.cp",            @"http://testadaf.fhptcdn.com",                @"内测包",     @"testadaf"),    // (ada)t059
             site(@"test62",       @"test62",     @"289",     @"com.UGGame.cp",            @"http://test62f.ccpt.site",                   @"内测包",     @"test62"),
             site(@"test09",       @"test09",     @"",        @"com.UGGame.cp",            @"http://test09.6yc.com",                      @"内测包",     @"test09"),
             site(@"test61b",      @"test61bhy",  @"302",     @"com.UGGame.cp",            @"http://test61a.fhptcdn.com",                 @"内测包",     @"test61b"),
