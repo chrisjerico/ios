@@ -114,6 +114,10 @@
     [self xyySegmentView];
     
      [self getUserInfo];
+    
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self setupUserInfo];
+    });
 }
 
 #pragma mark - XYYSegmentControlDelegate

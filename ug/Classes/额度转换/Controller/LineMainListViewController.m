@@ -324,52 +324,34 @@
        
         
         [CMResult processWithResult:model success:^{
+            if (model.code != 0) return;
             
-                [SVProgressHUD showSuccessWithStatus:model.msg];
+            __block NSInteger __cnt = 0;
+            NSArray <UGPlatformGameModel *>*arry = [UGPlatformGameModel arrayOfModelsFromDictionaries:[model.data objectForKey:@"games"] error:nil];
             
-                  if (model.code == 0) {
-                
-                __block NSInteger __cnt = 0;
-                NSArray<UGPlatformGameModel *> * arry =   [UGPlatformGameModel arrayOfModelsFromDictionaries:[model.data objectForKey:@"games"] error:nil];
-                
-                for (UGPlatformGameModel *pgm in arry) {
-                    NSLog(@"pgm =%@",pgm.gameId);
-                    // 快速转出游戏余额
-                    [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
-                        
-                        //                   UGPlatformGameModel *obj = [__self.dataArray objectWithValue:pgm.gameId keyPath:@"gameId"];
-                        //                    obj.balance = @"0.00";
-                        
-                        __cnt++;
-                        if (__cnt == arry.count) {
-                            [SVProgressHUD showSuccessWithStatus:@"一键提取完成"];
-                            // 刷新余额并刷新UI
-                            SANotificationEventPost(UGNotificationGetUserInfo, nil);
-                            for (UGPlatformGameModel *pgm in __self.dataArray) {
-                                pgm.balance = @"￥*****";
-                            }
-                            __self.moneyLabel1.text = nil;
-                            __self.moneyLabel2.text = nil;
-                            __self.moneyTxt.text = nil;
-                            [__self.lineCollection reloadData];
+            for (UGPlatformGameModel *pgm in arry) {
+                NSLog(@"pgm =%@",pgm.gameId);
+                // 快速转出游戏余额
+                [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
+                    __cnt++;
+                    if (__cnt == arry.count) {
+                        [SVProgressHUD showSuccessWithStatus:@"一键提取完成"];
+                        // 刷新余额并刷新UI
+                        SANotificationEventPost(UGNotificationGetUserInfo, nil);
+                        for (UGPlatformGameModel *pgm in __self.dataArray) {
+                            pgm.balance = @"0.00";
                         }
-                    }];
-                }
+                        __self.moneyLabel1.text = nil;
+                        __self.moneyLabel2.text = nil;
+                        __self.moneyTxt.text = nil;
+                        [__self.lineCollection reloadData];
+                    }
+                }];
             }
-            else{
-                
-            }
-
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
-
-        
     }];
-    
-    
 }
 
 - (IBAction)btnAction:(id)sender {
