@@ -263,10 +263,14 @@
         if (!err) {
             NSData *data = (NSData *)model;
             NSString *imageStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            imageStr = [imageStr substringFromIndex:22];
-            NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:imageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
-            UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
-            self.imgVcodeImageView.image = decodedImage;
+            if (imageStr.length>23) {
+                imageStr = [imageStr substringFromIndex:22];
+                NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:imageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
+                self.imgVcodeImageView.image = decodedImage;
+            }
+            
+   
         } else {
             
         }
