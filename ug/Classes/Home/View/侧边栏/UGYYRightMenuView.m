@@ -30,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, assign) CGRect oldFrame;
 
 @property (nonatomic, assign) BOOL refreshing;
 
@@ -211,11 +210,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:APP.Bounds];
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGYYRightMenuView" owner:self options:nil].firstObject;
-        self.frame = frame;
-        self.oldFrame = frame;
         self.rechargeView.layer.cornerRadius = 5;
         self.rechargeView.layer.masksToBounds = YES;
         self.withdrawlView.layer.cornerRadius = 5;
@@ -276,17 +273,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     [self initTitleAndImgs ];
     
     [self.tableView reloadData];
-}
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    UIView *view = [super hitTest:point withEvent:event];
-//    if (!OBJOnceToken(event)) return view;
-    if (CGRectContainsPoint(self.bounds, point)) {
-        
-    } else {
-        [self hiddenSelf];
-    }
-    return view;
 }
 
 - (IBAction)refreshBalance:(id)sender {
@@ -424,7 +410,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.bgViewHeightConstraint.constant = 180;
     }
     
-    self.backgroundColor = Skin1.textColor4;
+    self.bgView.superview.superview.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     
     if (Skin1.isJY) {
@@ -434,20 +420,13 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
     }
     
-    UIWindow* window = UIApplication.sharedApplication.keyWindow;
-    UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
-    UIView* view = self;
-    view.hidden = NO;
-    
-    maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    
-    view.x = UGScreenW;
-    [maskView addSubview:view];
-    [window addSubview:maskView];
-    
+    self.frame = APP.Bounds;
+    [APP.Window addSubview:self];
+    self.bgView.superview.superview.cc_constraints.right.constant = -APP.Width;
+    [self layoutIfNeeded];
     [UIView animateWithDuration:0.35 animations:^{
-        view.x = self.oldFrame.origin.x;
+        self.bgView.superview.superview.cc_constraints.right.constant = 0;
+        [self layoutIfNeeded];
     } completion:^(BOOL finished) {
         
     }];
@@ -456,15 +435,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     [self refreshBalance:nil];
 }
 
-- (void)hiddenSelf {
-    UIView* view = self;
-    self.superview.backgroundColor = [UIColor clearColor];
+- (IBAction)hiddenSelf {
     [UIView animateWithDuration:0.35 animations:^{
-        //        view.x = UGScreenW;
-        self.superview.x = UGScreenW - self.oldFrame.size.width;
+        self.bgView.superview.superview.cc_constraints.right.constant = -APP.Width;
+        [self layoutIfNeeded];
     } completion:^(BOOL finished) {
-        [view.superview removeFromSuperview];
-        [view removeFromSuperview];
+        [self removeFromSuperview];
     }];
 }
 
