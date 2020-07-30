@@ -269,6 +269,9 @@
                 UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
                 self.imgVcodeImageView.image = decodedImage;
             }
+            else {
+                NSLog(@"图片验证码接口图片没有返回");
+            }
             
    
         } else {
