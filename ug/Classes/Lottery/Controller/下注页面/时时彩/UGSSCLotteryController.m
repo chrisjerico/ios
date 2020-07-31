@@ -1664,6 +1664,10 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 	if ([@"三字定位" isEqualToString:model.name]) {
 		return 3;
 	}
+	if ([@"前中后" isEqualToString:model.name]) {
+		return 3;
+	}
+	
 	return 1;
 }
 

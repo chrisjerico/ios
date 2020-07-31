@@ -1643,6 +1643,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 #pragma mark - BetRadomProtocal
 - (NSUInteger)minSectionsCountForBet {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([@"头/尾数" isEqualToString:model.name]) {
+		return 2;
+	}
+
+	
 	return 1;
 }
 - (NSUInteger)minItemsCountForBetIn:(NSUInteger)section {
