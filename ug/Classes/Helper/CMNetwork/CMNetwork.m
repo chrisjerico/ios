@@ -454,6 +454,14 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     
     NSMutableURLRequest *req = [manager.requestSerializer requestWithMethod:@"GET" URLString:method parameters:params error:nil];
     [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+       
+        if ([method containsString:@"imgCaptcha"]) {
+            if (completion != nil) {
+                completion(responseObject, nil);
+                return ;
+            }
+        }
+        
         if (!error) {
             // 序列化数据
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
