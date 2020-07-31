@@ -47,7 +47,7 @@
 
     // 加载初始配置
     {
-//        _waitLanguage = true;
+        _waitLanguage = true;
         _waitGif = false;
         _waitPic = true;
         _waitReactNative = true;
@@ -56,7 +56,7 @@
         [self loadReactNative:false];
         [self loadSysConf];
         [self loadLaunchImage];
-//        [self loadLanguage];
+        [self loadLanguage];
         [self updateTips];
     }
     
@@ -263,9 +263,9 @@
             sm.noShowErrorHUD = true;
             if (!sm.error) {
                 LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
-//#ifdef DEBUG
-//                lm.currentLanguageCode = @"vi";
-//#endif
+#ifdef DEBUG
+                lm.currentLanguageCode = @"vi";
+#endif
                 [[LanguageHelper shared] setLanCode:[lm getLanCode]];
                 __self.waitLanguage = ![LanguageHelper shared].kvs.count;
                 

@@ -1676,8 +1676,8 @@
 		CF166B3D24A495A900EF8835 /* HotBranchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B3224A47E8700EF8835 /* HotBranchView.m */; };
 		CF166B3E24A495B000EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
-		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
 		CF166B4024A495CF00EF8835 /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */; };
+		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
 		CF3CD29A24BEE44C0021FEEA /* UGLaunchPageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3CD29924BEE44C0021FEEA /* UGLaunchPageVC.xib */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
@@ -1856,6 +1856,8 @@
 		CF5B5D1E23E30892007CBEE0 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
 		CF62001F24BBF2A700FD26AD /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF62001E24BBF2A700FD26AD /* LanguageHelper.m */; };
 		CF639D7A246E645B00A54CE7 /* MGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF8424555B1C0014A301 /* MGSlider.m */; };
+		CF76AA0124D41B23001E4AF6 /* ztlight2-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */; };
+		CF76AA0224D41B23001E4AF6 /* ztlight-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */; };
 		CF85084F2466D4510025672F /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
 		CF8508512466D4E40025672F /* UGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E176823BE812500B0F813 /* UGTabbarController.m */; };
 		CF8508522466D5000025672F /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DF423C9F51C0039588D /* RSA.m */; };
@@ -3760,6 +3762,8 @@
 		CF5D3D7D2396B8D000CC3D6B /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
 		CF62001D24BBF2A700FD26AD /* LanguageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
 		CF62001E24BBF2A700FD26AD /* LanguageHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageHelper.m; sourceTree = "<group>"; };
+		CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight2-yn.gif"; sourceTree = "<group>"; };
+		CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight-yn.gif"; sourceTree = "<group>"; };
 		CF8E241023DDBFD80054BF0F /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		CF8E241123DDBFD80054BF0F /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		CF8E241223DDBFD80054BF0F /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -8177,6 +8181,8 @@
 		D44258FB23E948C50067E981 /* git */ = {
 			isa = PBXGroup;
 			children = (
+				CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */,
+				CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */,
 				D43DAF622453283A0014A301 /* ztlight.gif */,
 				D4FBD67A24767E0F008CD488 /* ztlight2.gif */,
 				D458ED7D240F9EF100575C3F /* hot_act.gif */,
@@ -8934,6 +8940,7 @@
 				CF475921239636D200966536 /* 13.gif in Resources */,
 				030A872423C4E5C90001EF82 /* JS_Sidebar.xib in Resources */,
 				CF475926239636D200966536 /* 138.gif in Resources */,
+				CF76AA0124D41B23001E4AF6 /* ztlight2-yn.gif in Resources */,
 				CF4758A0239636D200966536 /* 118.gif in Resources */,
 				CF47589C239636D200966536 /* 30.gif in Resources */,
 				031E19FA23BE812700B0F813 /* MediaViewer.xib in Resources */,
@@ -8965,6 +8972,7 @@
 				031E1B1223BE812800B0F813 /* UGLotteryRecordController.storyboard in Resources */,
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
 				CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */,
+				CF76AA0224D41B23001E4AF6 /* ztlight-yn.gif in Resources */,
 				CF4758AA239636D200966536 /* 95.gif in Resources */,
 				031E1CF423BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
 				D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */,

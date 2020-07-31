@@ -17,9 +17,7 @@
 @interface UGBetRecordTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraints;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraints;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIStackView *bottomStackView;
 @property (weak, nonatomic) IBOutlet UILabel *totalBetAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
 
@@ -48,14 +46,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     self.tableView.estimatedSectionFooterHeight = 44;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 220, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"UGLotteryRecordCell" bundle:nil] forCellReuseIdentifier:betRecordCellid];
-    if ([CMCommon isPhoneX]) {
-        self.bottomViewHeightConstraints.constant = 70;
-        self.bottomViewBottomConstraints.constant = 85;
-    }else {
-        self.bottomViewHeightConstraints.constant = 50;
-        self.bottomViewBottomConstraints.constant = 60;
-    }
-    self.bottomView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.6];
     UIView *footerVC = [[UIView alloc] init];
     footerVC.backgroundColor = [UIColor whiteColor];
     footerVC.size = CGSizeMake(UGScreenW, 44);
@@ -69,9 +59,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     self.countDown = [[CountDown alloc] init];
     
     [self setupRefreshView];
-    [self setupTotalAmountLabelTextColor];
-    [self setupWinAmountLabelTextColor];
-    
+    _bottomStackView.axis = [LanguageHelper shared].isCN ? UILayoutConstraintAxisHorizontal : UILayoutConstraintAxisVertical;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -145,10 +133,8 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
             }
             UGBetsRecordListModel *listModel = model.data;
             NSArray *array = listModel.list;
-            self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总下注金额：%@",listModel.totalBetAmount];
-            self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
-            [self setupTotalAmountLabelTextColor];
-            [self setupWinAmountLabelTextColor];
+            self.totalBetAmountLabel.text = listModel.totalBetAmount;
+            self.winAmountLabel.text = listModel.totalWinAmount;
             if (self.pageNumber == 1 ) {
                 
                 [self.dataArray removeAllObjects];
@@ -255,18 +241,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)setupTotalAmountLabelTextColor {
-    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.totalBetAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(240, 211, 88) range:NSMakeRange(6, self.totalBetAmountLabel.text.length - 6)];
-    self.totalBetAmountLabel.attributedText = abStr;
-}
-
-- (void)setupWinAmountLabelTextColor {
-    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.winAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(202, 81, 66) range:NSMakeRange(6, self.winAmountLabel.text.length - 6)];
-    self.winAmountLabel.attributedText = abStr;
 }
 
 - (NSMutableArray<UGBetsRecordModel *> *)dataArray {

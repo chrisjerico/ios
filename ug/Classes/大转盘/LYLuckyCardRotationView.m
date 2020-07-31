@@ -203,7 +203,7 @@
 
         NSNumber * prizeflag = [self->data objectForKey:@"prizeflag"];
         if ([prizeflag isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {//中奖
-            subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_win"];
+            subImageView(@"中奖文字").image = [UIImage imageNamed:[LanguageHelper shared].isYN ? @"win-yn" : @"dzp_win"];
             [subImageView(@"奖品图") sd_setImageWithURL:[NSURL URLWithString:[data objectForKey:@"prizeIcon"]]];
         }
         else{

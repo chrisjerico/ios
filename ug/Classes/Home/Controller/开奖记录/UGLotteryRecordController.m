@@ -216,17 +216,6 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGLotteryHistoryModel *model = self.dataArray.firstObject;
-    if ([@"bjkl8" isEqualToString:model.gameType] ||
-        [@"pk10nn" isEqualToString:model.gameType] ||
-        [@"jsk3" isEqualToString:model.gameType]
-        ) {
-        return 100;
-    }
-    return 80;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.001f;
 }

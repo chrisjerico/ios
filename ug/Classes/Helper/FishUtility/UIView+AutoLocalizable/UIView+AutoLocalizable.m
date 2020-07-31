@@ -13,6 +13,39 @@
 #import "XYYSegmentControl.h"
 #import "STButton.h"
 #import "MOFSPickerView.h"
+#import "HMSegmentedControl.h"
+
+@interface HMSegmentedControl (UGLanguage)
+
+@end
+@implementation HMSegmentedControl (UGLanguage)
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [HMSegmentedControl jr_swizzleMethod:@selector(measureTitleAtIndex:) withMethod:@selector(cc_measureTitleAtIndex:) error:nil];
+    });
+}
+
+- (CGSize)cc_measureTitleAtIndex:(NSUInteger)index {
+    CGSize size = [self cc_measureTitleAtIndex:index];
+    NSLog(@"lan.size = %@", NSStringFromCGSize(size));
+    return size;
+}
+
+@end
+
+
+
+
+
+
+
+
+
+
+
+
 
 @implementation UIView (AutoLocalizable)
 

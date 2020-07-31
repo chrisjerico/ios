@@ -78,7 +78,8 @@
         
 
         _imgGif.contentMode = UIViewContentModeScaleAspectFit;
-        [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"ztlight" withExtension:@"gif"]];
+        NSString *gifName = [LanguageHelper shared].isYN ? @"ztlight-yn" : @"ztlight";
+        [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:gifName withExtension:@"gif"]];
         _oneView = [[DZPOneView alloc] initWithFrame:CGRectZero];
         _twoView = [[DZPTwoView alloc] initWithFrame:CGRectZero];
         [_contentView addSubview:_oneView];
@@ -208,15 +209,13 @@
     [self activityTurntableLog:[Global getInstanse].DZPid];
  }
 
--(void)setDZPStar:(NSNotification *)notification
-{
-    [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"ztlight2" withExtension:@"gif"]];
-    
+-(void)setDZPStar:(NSNotification *)notification {
+    NSString *gifName = [LanguageHelper shared].isYN ? @"ztlight2-yn" : @"ztlight2";
+    [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:gifName withExtension:@"gif"]];
 }
--(void)setDZPEnd:(NSNotification *)notification
-{
-    [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"ztlight" withExtension:@"gif"]];
-    
+-(void)setDZPEnd:(NSNotification *)notification {
+    NSString *gifName = [LanguageHelper shared].isYN ? @"ztlight-yn" : @"ztlight";
+    [_imgGif sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:gifName withExtension:@"gif"]];
 }
 
 -(void)dealloc{

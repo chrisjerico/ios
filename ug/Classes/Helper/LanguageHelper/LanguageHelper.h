@@ -11,6 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+@interface UIStackView (UGLanguage)
+@property (nonatomic) IBInspectable BOOL 国际版竖或横轴;
+@end
+
+
+
 @interface NSString (UGLanguage)
 @property (nonatomic, assign) BOOL fromNetwork; /**<   从接口获取的文本显示原文，不进行翻译 */
 @end
@@ -40,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *lanCode;
 @property (nonatomic, readonly) NSDictionary <NSString *, NSString *>*kvs;
 @property (nonatomic, strong) NSMutableDictionary *notFoundStrings;
+@property (nonatomic, assign) BOOL isCN;
+@property (nonatomic, assign) BOOL isYN;
 
 + (instancetype)shared;
 - (NSString *)stringForKey:(NSString *)key;

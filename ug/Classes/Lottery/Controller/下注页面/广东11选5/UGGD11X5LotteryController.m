@@ -557,23 +557,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([tableView isEqual:self.tableView]) {
-        return  40.0;
-    } else {
-        UGLotteryHistoryModel *model = self.dataArray.firstObject;
-        if ([@"bjkl8" isEqualToString:model.gameType] ||
-            [@"pk10nn" isEqualToString:model.gameType] ||
-            [@"jsk3" isEqualToString:model.gameType]
-            ) {
-            return 100;
-        }
-        return 80;
-    }
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	
 	return 0.001;
@@ -1245,7 +1228,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		collectionView;
 		
 	});
-	
+	if (![LanguageHelper shared].isCN) {
+        collectionView.height = 50;
+        collectionView.centerY = self.headerOneView.height/2 + 2;
+    }
 	self.headerCollectionView = collectionView;
 	    [self.headerOneView addSubview:collectionView];
     [self.headerOneView bringSubviewToFront:self.historyBtn];

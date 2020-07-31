@@ -11,6 +11,17 @@
 #import "cc_runtime_property.h"
 
 
+
+@implementation UIStackView (UGLanguage)
+- (BOOL)国际版竖或横轴 { return false; }
+- (void)set国际版竖或横轴:(BOOL)国际版竖或横轴 {
+    if (![LanguageHelper shared].isCN) {
+        self.axis = 国际版竖或横轴 ? UILayoutConstraintAxisVertical : UILayoutConstraintAxisHorizontal;
+    }
+}
+@end
+
+
 @implementation NSString (UGLanguage)
 _CCRuntimeProperty_Assign(BOOL, fromNetwork, setFromNetwork)
 @end
@@ -27,9 +38,7 @@ _CCRuntimeProperty_Assign(BOOL, fromNetwork, setFromNetwork)
 
 
 
-@implementation LanguageHelper {
-    BOOL _isCN;
-}
+@implementation LanguageHelper 
 
 static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
 static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
@@ -63,6 +72,7 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     _kvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", lanCode)];
     _cnKvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", @"zh")];
     _isCN = [lanCode isEqualToString:@"zh"];
+    _isYN = [lanCode isEqualToString:@"vi"];
     [[NSUserDefaults standardUserDefaults] setObject:lanCode forKey:@"lanCode"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

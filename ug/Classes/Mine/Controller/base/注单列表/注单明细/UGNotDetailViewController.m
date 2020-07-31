@@ -12,11 +12,9 @@
 
 @interface UGNotDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *bottomView;
+@property (weak, nonatomic) IBOutlet UIStackView *bottomStackView;
 @property (weak, nonatomic) IBOutlet UILabel *totalBetAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraints;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraints;
 
 @property (nonatomic, strong) NSMutableArray <UGBetsRecordModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
@@ -34,19 +32,8 @@
 
     self.tableView.rowHeight = 50.0;
     //    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 220, 0);
-    self.bottomView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.6];
-    
-    if ([CMCommon isPhoneX]) {
-        self.bottomViewHeightConstraints.constant = 70;
-        self.bottomViewBottomConstraints.constant = 85;
-    } else {
-        self.bottomViewHeightConstraints.constant = 50;
-        self.bottomViewBottomConstraints.constant = 60;
-    }
-    
     [self setupRefreshView];
-    [self setupTotalAmountLabelTextColor];
-    [self setupWinAmountLabelTextColor];
+    _bottomStackView.axis = [LanguageHelper shared].isCN ? UILayoutConstraintAxisHorizontal : UILayoutConstraintAxisVertical;
 }
 
 - (void)setupRefreshView
@@ -99,10 +86,8 @@
             }
             UGBetsRecordListModel *listModel = model.data;
             NSArray *array = listModel.tickets;
-            self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总笔数：%@",listModel.totalBetCount];
-            self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
-            [self setupTotalAmountLabelTextColor];
-            [self setupWinAmountLabelTextColor];
+            self.totalBetAmountLabel.text = listModel.totalBetCount;
+            self.winAmountLabel.text = listModel.totalWinAmount;
             [self.dataArray removeAllObjects];
             [self.dataArray addObjectsFromArray:array];
             [self.tableView reloadData];
@@ -173,18 +158,6 @@
         [NavController1 pushViewController:recordVC animated:true];
 
     }
-}
-
-- (void)setupTotalAmountLabelTextColor {
-    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.totalBetAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(240, 211, 88) range:NSMakeRange(4, self.totalBetAmountLabel.text.length - 4)];
-    self.totalBetAmountLabel.attributedText = abStr;
-}
-
-- (void)setupWinAmountLabelTextColor {
-    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.winAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(202, 81, 66) range:NSMakeRange(6, self.winAmountLabel.text.length - 6)];
-    self.winAmountLabel.attributedText = abStr;
 }
 
 - (NSMutableArray<UGBetsRecordModel *> *)dataArray {
