@@ -42,18 +42,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LanguageHelper : NSObject
 
+@property (nonatomic, strong) NSDictionary *supportedLanguages;
 @property (nonatomic, copy) NSString *version;
 @property (nonatomic, copy) NSString *lanCode;
-@property (nonatomic, readonly) NSDictionary <NSString *, NSString *>*kvs;
-@property (nonatomic, strong) NSMutableDictionary *notFoundStrings;
-@property (nonatomic, assign) BOOL isCN;
-@property (nonatomic, assign) BOOL isYN;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) BOOL hasKeys;
+@property (nonatomic, readonly) BOOL isCN;
+@property (nonatomic, readonly) BOOL isYN;
 
 + (instancetype)shared;
-- (NSString *)stringForKey:(NSString *)key;
-- (void)save:(NSDictionary *)kvs lanCode:(NSString *)lanCode ver:(NSString *)ver;
-
++ (void)save:(NSDictionary *)kvs lanCode:(NSString *)lanCode ver:(NSString *)ver;
 + (void)setNoTranslate:(id)obj; /**<   传入数据模型、字符串、数组、字典 */
++ (void)changeLanguageAndRestartApp:(NSString *)lanCode;
+
+- (NSString *)stringForKey:(NSString *)key;
 - (NSString *)stringForCnString:(NSString *)cnString; /**<   通过中文找key，再返回key对应的翻译文本 */
 @end
 

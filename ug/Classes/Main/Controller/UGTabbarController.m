@@ -166,6 +166,14 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon removeLastGengHao];
         [__self getUserInfo];
+        
+        // 切换语言
+        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
+            LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+            if (![[lm getLanCode] isEqualToString:[LanguageHelper shared].lanCode]) {
+                [LanguageHelper changeLanguageAndRestartApp:[lm getLanCode]];
+            }
+        };
     });
     // 退出登陆
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
@@ -180,6 +188,14 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon deleteWebCache];
         [CMCommon removeLastGengHao];
+        
+        // 切换语言
+        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
+            LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+            if (![[lm getLanCode] isEqualToString:[LanguageHelper shared].lanCode]) {
+                [LanguageHelper changeLanguageAndRestartApp:[lm getLanCode]];
+            }
+        };
     });
     // 登录超时
     SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
@@ -761,14 +777,16 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 - (void)beginMessageRequest {
-    WeakSelf;
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 90 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(timer, ^{
-        [weakSelf loadMessageList];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0));
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 90 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+        dispatch_source_set_event_handler(timer, ^{
+            [TabBarController1 loadMessageList];
+        });
+        dispatch_resume(timer);
+        APP.messageRequestTimer = timer;
     });
-    dispatch_resume(timer);
-    APP.messageRequestTimer = timer;
 }
 
 #pragma mark - 网络请求

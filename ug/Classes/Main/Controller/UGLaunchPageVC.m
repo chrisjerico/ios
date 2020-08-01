@@ -215,7 +215,7 @@
     // 开启自动本地化
     [UIView enableAutoLocalizable];
     
-    NSString *zhLanCode = @"zh";
+    NSString *zhLanCode = @"zh-cn";
     
     __weakSelf_(__self);
     // 下载中文语言包
@@ -227,7 +227,7 @@
             if (!sm.error) {
                 NSString *ver = sm.responseObject[@"data"][@"version"];
                 NSDictionary *package = sm.responseObject[@"data"][@"package"];
-                [[LanguageHelper shared] save:package lanCode:zhLanCode ver:ver];
+                [LanguageHelper save:package lanCode:zhLanCode ver:ver];
             } else {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__i++ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     __getZhPackage();
@@ -246,7 +246,7 @@
             if (!sm.error) {
                 NSString *ver = sm.responseObject[@"data"][@"version"];
                 NSDictionary *package = sm.responseObject[@"data"][@"package"];
-                [[LanguageHelper shared] save:package lanCode:lanCode ver:ver];
+                [LanguageHelper save:package lanCode:lanCode ver:ver];
                 __self.waitLanguage = false;
             } else if (__self.waitLanguage) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__j++ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -263,13 +263,13 @@
             sm.noShowErrorHUD = true;
             if (!sm.error) {
                 LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
-#ifdef DEBUG
-                lm.currentLanguageCode = @"vi";
-#endif
+//#ifdef DEBUG
+//                lm.currentLanguageCode = @"vi";
+//#endif
                 [[LanguageHelper shared] setLanCode:[lm getLanCode]];
-                __self.waitLanguage = ![LanguageHelper shared].kvs.count;
+                __self.waitLanguage = ![LanguageHelper shared].hasKeys;
                 
-                if (![lm.currentLanguageCode isEqualToString:@"zh"]) {
+                if (![lm.currentLanguageCode isEqualToString:@"zh-cn"]) {
                     getLanguagePackage([lm getLanCode]);
                 }
             } else if (__self.waitLanguage) {

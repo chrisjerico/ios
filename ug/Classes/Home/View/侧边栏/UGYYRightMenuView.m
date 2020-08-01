@@ -24,7 +24,9 @@
 #import "LotteryTrendVC.h"
 #import "RedEnvelopeVCViewController.h"
 
-@interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource>
+#import "YBPopupMenu.h"
+
+@interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource, YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
@@ -227,8 +229,25 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]];
         self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
         self.headImageView.layer.masksToBounds = YES;
-        
-        
+        if (UserI.isTest) {
+            [[self viewWithTagString:@"切换语言Button"] removeFromSuperview];
+        } else {
+            UIButton *lanBtn = [self viewWithTagString:@"切换语言Button"];
+            self.tableView.tableFooterView = ({
+                UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 70)];
+                [lanBtn setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+                [lanBtn setTitle:_NSString(@"%@ ▼", [LanguageHelper shared].title) forState:UIControlStateNormal];
+                [v addSubview:lanBtn];
+                UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 0.5)];
+                line.backgroundColor = Skin1.textColor3;
+                [v addSubview:line];
+                v;
+            });
+            [lanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(10);
+                make.centerX.equalTo(self.tableView.tableFooterView);
+            }];
+        }
         
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
             [self.refreshButton.layer removeAllAnimations];
@@ -256,6 +275,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     return self;
     
 }
+
+
+#pragma mark - IBAction
 
 -(IBAction)showMMemberCenterView{
     NSLog(@"tap");
@@ -326,6 +348,15 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     [self didSelectCellWithTitle:@"提现"];
 }
 
+- (IBAction)onLanguageBtnClick:(UIButton *)sender {
+    NSArray *titles = @[@"简体中文", @"繁體中文", @"English", @"Tiếng Việt"];
+    [LanguageHelper setNoTranslate:titles];
+    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:titles icons:nil menuWidth:CGSizeMake(150, 150) delegate:self];
+    popView.fontSize = 15;
+    popView.type = YBPopupMenuTypeDefault;
+    [popView showRelyOnView:sender];
+}
+
 
 //刷新余额动画
 - (void)startAnimation {
@@ -335,6 +366,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     ReFreshAnimation.repeatCount = HUGE_VALF;
     [self.refreshButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
 }
+
+
+#pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -378,6 +412,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     [self hiddenSelf];
     [self didSelectCellWithTitle:[self.titleArray objectAtIndex:indexPath.row]];
 }
+
+#pragma mark - show
 
 - (void)show {
     if (Skin1.isBlack||Skin1.is23) {
@@ -541,8 +577,18 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"任务中心"]) {
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
      }
-    
 }
+
+#pragma mark - YBPopupMenuDelegate
+
+- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
+    if (index < 0) return;
+    NSString *lanCode = @[@"zh-cn", @"zh-tw", @"en", @"vi"][index];
+    if (!lanCode.length) return;
+    
+    [LanguageHelper changeLanguageAndRestartApp:lanCode];
+}
+
 
 @end
 

@@ -31,12 +31,18 @@ _CCRuntimeProperty_Assign(BOOL, fromNetwork, setFromNetwork)
 
 @implementation LanguageModel
 - (NSString *)getLanCode {
+    if (_currentLanguageCodeAppend.length)
+        return [NSString stringWithFormat:@"%@-%@", _currentLanguageCode, _currentLanguageCodeAppend];
     return _currentLanguageCode;
-    return [NSString stringWithFormat:@"%@-%@", _currentLanguageCode, _currentLanguageCodeAppend];
 }
 @end
 
 
+
+@interface LanguageHelper ()
+@property (nonatomic, strong) NSMutableDictionary *notFoundStrings;
+@property (nonatomic, strong) NSDictionary <NSString *, NSString *>*kvs;
+@end
 
 @implementation LanguageHelper 
 
@@ -48,10 +54,15 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         obj = [[self class] new];
-        obj.lanCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"lanCode"] ? : @"zh";
+        obj.lanCode = [[NSUserDefaults standardUserDefaults] stringForKey:@"lanCode"] ? : @"zh-cn";
         obj.version = [[NSUserDefaults standardUserDefaults] stringForKey:@"lan_version"];
         obj.notFoundStrings = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"LanguageNotFoundStrings"]];
         _temp = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"LanguageNotFoundStringsTemp"]];
+        obj.supportedLanguages = @{@"zh-cn":@"简体中文",
+                                   @"zh-tw":@"繁體中文",
+                                   @"en":@"English",
+                                   @"vi":@"Tiếng Việt",};
+        [LanguageHelper setNoTranslate:obj.supportedLanguages];
         
         // 存本地
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillTerminateNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
@@ -63,21 +74,8 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     return obj;
 }
 
-- (NSString *)stringForKey:(NSString *)key {
-    return _kvs[key];
-}
 
-- (void)setLanCode:(NSString *)lanCode {
-    _lanCode = lanCode;
-    _kvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", lanCode)];
-    _cnKvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", @"zh")];
-    _isCN = [lanCode isEqualToString:@"zh"];
-    _isYN = [lanCode isEqualToString:@"vi"];
-    [[NSUserDefaults standardUserDefaults] setObject:lanCode forKey:@"lanCode"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)save:(NSDictionary *)kvs lanCode:(NSString *)lanCode ver:(NSString *)ver {
++ (void)save:(NSDictionary *)kvs lanCode:(NSString *)lanCode ver:(NSString *)ver {
     NSMutableDictionary *temp = @{}.mutableCopy;
     for (NSString *key in kvs.allKeys) {
         NSString *value = kvs[key];
@@ -89,8 +87,8 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     [[NSUserDefaults standardUserDefaults] setObject:kvs forKey:_NSString(@"lan_%@", lanCode)];
     [[NSUserDefaults standardUserDefaults] setObject:ver forKey:@"lan_version"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    if ([@"zh" isEqualToString:lanCode]) _cnKvs = kvs;
-    if ([_lanCode isEqualToString:lanCode]) _kvs = kvs;
+    if ([@"zh-cn" isEqualToString:lanCode]) _cnKvs = kvs;
+    if ([[LanguageHelper shared].lanCode isEqualToString:lanCode]) [LanguageHelper shared].kvs = kvs;
 }
 
 + (void)setNoTranslate:(id)obj {
@@ -109,6 +107,80 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
             [LanguageHelper setNoTranslate:[obj valueForKey:k]];
         }
     }
+}
+
++ (void)changeLanguageAndRestartApp:(NSString *)lanCode {
+    [SVProgressHUD showWithStatus:@"正在切换语言..."];
+    [NetworkManager1 language_getLanguagePackage:lanCode].successBlock = ^(id responseObject) {
+        NSString *ver = responseObject[@"data"][@"version"];
+        NSDictionary *package = responseObject[@"data"][@"package"];
+        [LanguageHelper save:package lanCode:lanCode ver:ver];
+        
+        void (^restartApp)(void) = ^{
+            // 获取APP配置信息
+            __block int __waitSysConf = 3;
+            void (^getSysConf)(void) = nil;
+            void (^__block __getSysConf)(void) = getSysConf = ^{
+                [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+                    __waitSysConf--;
+                    [CMResult processWithResult:model success:^{
+                        UGSystemConfigModel.currentConfig = model.data;
+                        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+                            [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
+                        }];
+                        SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"切换成功"];
+                        [LanguageHelper shared].lanCode = lanCode;
+                        APP.Window.rootViewController = [[UGTabbarController alloc] init];
+                    } failure:^(id msg) {
+                        if (__waitSysConf) {
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                __getSysConf();
+                            });
+                        }
+                    }];
+                }];
+            };
+            getSysConf();
+        };
+        if (UGLoginIsAuthorized()) {
+            [NetworkManager1 language_changeTo:lanCode].successBlock = ^(id responseObject) {
+                restartApp();
+            };
+        } else {
+            restartApp();
+        }
+    };
+}
+
+- (BOOL)hasKeys {
+    return _kvs.count;
+}
+
+- (NSString *)title {
+    for (NSString *key in _supportedLanguages.allKeys) {
+        if ([key containsString:_lanCode])
+            return _supportedLanguages[key];
+    }
+    return nil;
+}
+
+- (void)setLanCode:(NSString *)lanCode {
+    _lanCode = lanCode;
+    _kvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", lanCode)];
+    _cnKvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", @"zh-cn")];
+    _isCN = [lanCode isEqualToString:@"zh-cn"];
+    _isYN = [lanCode isEqualToString:@"vi"];
+    [[NSUserDefaults standardUserDefaults] setObject:lanCode forKey:@"lanCode"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+#pragma mark - 获取翻译
+
+- (NSString *)stringForKey:(NSString *)key {
+    return _kvs[key];
 }
 
 - (NSString *)stringForCnString:(NSString *)cnString; {
