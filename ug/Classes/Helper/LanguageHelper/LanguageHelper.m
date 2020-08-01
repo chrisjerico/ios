@@ -191,16 +191,20 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     
     static NSDictionary *__lastCnKvs = nil;
     static NSMutableDictionary *__vks = nil;// 非动态文本
-    static NSMutableArray *__dynamicVs = nil;// 动态文本
+    static NSMutableArray *__dynamicVs = nil;// %s动态文本
+    static NSMutableArray *__regs = nil;// 正则动态文本
     if (__lastCnKvs != _cnKvs) {
         __lastCnKvs = _cnKvs;
         __vks = @{}.mutableCopy;
         __dynamicVs = @[].mutableCopy;
+        __regs = @[].mutableCopy;
         
         for (NSString *k in _cnKvs.allKeys) {
             NSString *v = _cnKvs[k];
             __vks[v] = k;
-            if ([v containsString:@"%s"]) {
+            if ([v hasPrefix:@"/"] && [v hasSuffix:@"/g"]) {
+                [__regs addObject:v];
+            } else if ([v containsString:@"%s"]) {
                 [__dynamicVs addObject:v];
             }
         }
@@ -209,14 +213,19 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     
     NSString *key = __vks[cnString];
     if (!key.length) {
-        // %s 子串取出来递归匹配，匹配成功则组合后返回。
-        // ** 符合多个key挑哪个？都试一次，挑能完整翻译成功的 ** //
-        for (NSString *dv in __dynamicVs) {
-            NSString *reg = dv;
-            for (NSString *s in @"\\$()*+.[]{}?^|") {
-                reg = [reg stringByReplacingOccurrencesOfString:s withString:_NSString(@"\\%@", s)];
+        for (NSString *dv in [__dynamicVs arrayByAddingObjectsFromArray:__regs]) {
+            NSString *reg = nil;
+            if ([__regs containsObject:dv]) {
+                // 拿到正则直接匹配
+                reg = [dv substringWithRange:NSMakeRange(1, dv.length-3)];
+            } else {
+                // 匹配%s（%s取出来递归匹配，匹配成功则组合后返回。）
+                reg = dv;
+                for (NSString *s in @"\\$()*+.[]{}?^|") {
+                    reg = [reg stringByReplacingOccurrencesOfString:s withString:_NSString(@"\\%@", s)];
+                }
+                reg = _NSString(@"^%@$", [reg stringByReplacingOccurrencesOfString:@"%s" withString:@"([\\s\\S]*)"]);
             }
-            reg = _NSString(@"^%@$", [reg stringByReplacingOccurrencesOfString:@"%s" withString:@"([\\s\\S]*)"]);
             if ([cnString isMatch:RX(reg)]) {
                 NSMutableArray *subCnArray = [[[cnString firstMatchWithDetails:RX(reg)].groups valueForKey:@"value"] mutableCopy];// 把%s全部取出来再匹配
                 [subCnArray removeFirstObject];
@@ -227,7 +236,8 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
                     if (!s.hasChinese) {
                         retString = s;
                     } else if ((retString = [self stringForCnString:s]).hasChinese) {
-                        break;
+                        if (![__regs containsObject:dv])
+                            break;
                     }
                     [subRetArray addObject:retString];
                 }
