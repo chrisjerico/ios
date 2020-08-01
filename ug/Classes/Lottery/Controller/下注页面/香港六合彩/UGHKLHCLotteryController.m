@@ -1648,6 +1648,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		return 2;
 	}
 
+	if ([@"正码1-6" isEqualToString:model.name]) {
+		
+		return 6;
+	}
 	
 	return 1;
 }

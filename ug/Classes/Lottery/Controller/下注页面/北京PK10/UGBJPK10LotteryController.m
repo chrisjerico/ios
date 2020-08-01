@@ -1142,7 +1142,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		return 5;
 	}
 	if ([@"两面" isEqualToString:model.name]) {
-		return 10;
+		return 11;
 	}
 	return 1;
 }
@@ -1152,7 +1152,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	if ([model.name isEqualToString:@"官方玩法"]) {
 		return self.segmentIndex + 1;
 	}
-
+	if ([@"两面" isEqualToString:model.name] && section == 0) {
+		return 0;
+	}
 	return 1;
 }
 

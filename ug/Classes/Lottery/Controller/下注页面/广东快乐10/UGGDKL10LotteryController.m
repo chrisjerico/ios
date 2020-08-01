@@ -1067,6 +1067,38 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     return _segmentTitleArray;
 }
 
+#pragma mark - BetRadomProtocal
+- (NSUInteger)minSectionsCountForBet {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	
+	if ([@"两面" isEqualToString:model.name]) {
+		return 9;
+	}
+	return 1;
+}
+- (NSUInteger)minItemsCountForBetIn:(NSUInteger)section {
+	
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	
+	if ([@"两面" isEqualToString:model.name] && section == 0) {
+		return 0;
+	}
+	
+	if ([@"连码" isEqualToString:model.name]) {
+		NSString *title = self.segmentTitleArray[self.segmentIndex];
+		if ([@"任选二" isEqualToString:title] || [@"选二连组" isEqualToString:title] || [@"任选二组" isEqualToString:title]) {
+			return 2;
+		}else if ([@"任选三" isEqualToString:title] || [@"选三前组" isEqualToString:title]) {
+			return 3;
+			
+		}else if ([@"任选四" isEqualToString:title]) {
+			return 4;
+		}else if ([@"任选五" isEqualToString:title]) {
+			return 5;
+		}
+	}
+	return 1;
+}
 
 @end
 
