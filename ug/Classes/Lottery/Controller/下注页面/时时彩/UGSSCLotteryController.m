@@ -1719,9 +1719,10 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 		}
 	}
 	
-	[self.betCollectionView layoutIfNeeded];
-	[self.betCollectionView scrollToItemAtIndexPath:lastPath atScrollPosition:UICollectionViewScrollPositionTop animated:true];
-	
+	if (self.betCollectionView.contentSize.height > self.betCollectionView.bounds.size.height) {
+		[self.betCollectionView layoutIfNeeded];
+		[self.betCollectionView scrollToItemAtIndexPath:lastPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:true];
+	}
 	
 }
 
