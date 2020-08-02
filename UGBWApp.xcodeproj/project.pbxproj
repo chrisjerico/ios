@@ -7431,6 +7431,13 @@
 			path = "火山橙";
 			sourceTree = "<group>";
 		};
+		03638F4B24D57B6900AAFAD3 /* 砸金蛋 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "砸金蛋";
+			sourceTree = "<group>";
+		};
 		036CA77B23C759BF007BBD25 /* 我的推广 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8364,6 +8371,7 @@
 				D43A784F23EFEB1A00F75B0C /* 红包扫雷 */,
 				D434743424AB264900B0F598 /* 下注明细 */,
 				D43DAF6524532A320014A301 /* 大转盘 */,
+				03638F4B24D57B6900AAFAD3 /* 砸金蛋 */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
