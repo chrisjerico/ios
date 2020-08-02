@@ -118,6 +118,13 @@
     self.passwordTextF.delegate = self;
     self.navigationController.delegate = self;
     [self.webBgView addSubview:self.webView];
+    [self.webView  mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.left.equalTo(self.view.mas_left).with.offset(20);
+         make.right.equalTo(self.view.mas_right).with.offset(-20);
+         make.top.equalTo(self.webBgView.mas_top);
+         make.height.mas_equalTo(120);
+    }];
+    
   
     self.webBgView.hidden = YES;
     self.webBgViewHeightConstraint.constant = 0.1;
