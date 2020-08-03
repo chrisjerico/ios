@@ -207,6 +207,15 @@
 @property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
 
 
+//--推荐按钮-----------------------------------------
+@property (weak, nonatomic) IBOutlet UIView *upRecommendedView;                  /**<   推荐上View */
+@property (weak, nonatomic) IBOutlet UIView *downRecommendedView;                  /**<   推荐下View */
+
+@property (weak, nonatomic) IBOutlet UIView *upWithinView;                  /**<   上内View */
+@property (weak, nonatomic) IBOutlet UIView *downWithinView;                  /**<   下内View */
+
+@property (weak, nonatomic) IBOutlet UILabel *upTitleLabel;                   /**<   下文字View */
+@property (weak, nonatomic) IBOutlet UILabel *downTitleLabel;                /**<   下文字View */
 
 @end
 
@@ -273,24 +282,8 @@
             [_contentStackView addArrangedSubviews:views];
         } else {
             // 默认展示内容
-            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView, _gameNavigationView.superview,_homeAdsBigBgView, _gameTypeView.superview, _promotionView, _rankingView, _bottomView]];
+            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _homeAdsBigBgView, _gameTypeView.superview, _promotionView, _rankingView, _bottomView,]];
             
-            // c134在导航栏下添加一张动图
-            //			if ([APP.SiteId containsString:@"c134"]) {
-            //				UIView *v = [UIView new];
-            //				v.backgroundColor = [UIColor clearColor];
-            //				CGFloat h = (APP.Width-20)/1194.0 * 247;
-            //				[v addSubview:({
-            //					FLAnimatedImageView *imgView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(10, 10, APP.Width-20, h)];
-            //					[imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"cplts_看图王" withExtension:@"gif"]];
-            //					imgView;
-            //				})];
-            //				[_contentStackView insertArrangedSubview:v atIndex:3];
-            //				[v mas_makeConstraints:^(MASConstraintMaker *make) {
-            //					make.width.mas_equalTo(APP.Width);
-            //					make.height.mas_equalTo(h+10);
-            //				}];
-            //			}
         }
     }
     // l001站点定制需求
@@ -410,6 +403,7 @@
     __weakSelf_(__self);
     // 配置通知事件
     {
+
         // 换肤
         SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
             [__self skin];
@@ -451,6 +445,27 @@
                 cnt += !v.hidden;
             }
             __self.promotionView.hidden = !SysConf.m_promote_pos || !cnt;
+            
+            
+            // 3.GCD
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                if ([SysConf.switchShowFriendReferral isEqualToString:@"1"]) {
+
+                    if ([SysConf.showNavigationBar isEqualToString:@"1"]) {
+                        [__self.upRecommendedView setHidden:NO];
+                        [__self.downRecommendedView setHidden:YES];
+                    } else {
+                        [__self.upRecommendedView setHidden:YES];
+                        [__self.downRecommendedView setHidden:NO];
+                    }
+                }
+                else{
+                    [__self.upRecommendedView setHidden:YES];
+                    [__self.downRecommendedView setHidden:YES];
+                }
+            });
+
             
             [[AppDefine shared] setupSiteAndSkinParams];
         });
@@ -527,11 +542,27 @@
         //         [self.gameNavigationView setBackgroundColor:[UIColor redColor]];
         [self.gameTypeView setBackgroundColor:Skin1.bgColor];
         [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
+        [self.upRecommendedView setBackgroundColor:Skin1.bgColor];
+        [self.downRecommendedView setBackgroundColor:Skin1.bgColor];
         
         [self setupSubView];
         
         [self skin];
         
+        [self.upRecommendedView setHidden:YES];
+        [self.downRecommendedView setHidden:YES];
+        
+        self.upWithinView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        self.upWithinView.layer.masksToBounds = YES;//设为NO时，边框外的画面依然会被显示出来
+        
+        self.downWithinView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        self.downWithinView.layer.masksToBounds = YES;//设为NO时，边框外的画面依然会被显示出来
+        
+        [self.upWithinView setBackgroundColor:Skin1.homeContentColor];
+        [self.downWithinView setBackgroundColor:Skin1.homeContentColor];
+        
+        self.upTitleLabel.textColor = Skin1.textColor1;
+        self.downTitleLabel.textColor = Skin1.textColor1;
         {//六合
             if ([Skin1.skitType isEqualToString:@"六合资料"]) {
                 _lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
@@ -1304,12 +1335,11 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
+            
+           
            
             [self getCustomGameList];   // 自定义游戏列表
-            
-            
-            
-            
+
             [self getPromotionsType ];// 获取优惠图片分类信息
             
             [self gethomeAdsList];     // 首页广告图片
@@ -2462,6 +2492,36 @@
     });
 }
 
+- (IBAction)goRecommendedAction:(id)sender {
+    //推荐
+    if (UserI.isTest) {
+        [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+    } else {
+        [SVProgressHUD showWithStatus:nil];
+        [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                [SVProgressHUD dismiss];
+                UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                int intStatus = obj.reviewStatus.intValue;
+                
+                //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                if (intStatus == 2) {
+                    [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                } else {
+                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                        [HUDHelper showMsg:@"在线注册代理已关闭"];
+                        return ;
+                    }
+                    UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                    vc.item = obj;
+                    [NavController1 pushViewController:vc animated:YES];
+                }
+            } failure:^(id msg) {
+                [SVProgressHUD showErrorWithStatus:msg];
+            }];
+        }];
+    }
+}
 
 @end
 

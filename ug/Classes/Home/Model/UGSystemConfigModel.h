@@ -203,6 +203,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL loginVCode;                /**<   登录增加了滑动验证码配置  默认开 */
 @property (nonatomic) BOOL announce_first;                /**<   手机公告是否展开第1条   */
 
+@property (nonatomic, copy) NSString * switchShowFriendReferral;/**<   //是否显示 首页推荐好友显示 1 显示
+*/
+@property (nonatomic, copy) NSString * showNavigationBar;/**<   //显示在前还是后 1 前 0 后
+*/
+
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;
