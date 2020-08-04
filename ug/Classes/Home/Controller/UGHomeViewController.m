@@ -2493,6 +2493,17 @@
 }
 
 - (IBAction)goRecommendedAction:(id)sender {
+    
+    UGUserModel *user = [UGUserModel currentUser];
+    BOOL isLogin = UGLoginIsAuthorized();
+    
+    // 未登录禁止访问
+    if (!isLogin) {
+        NSLog(@"未登录禁止访问");
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+        return ;
+    }
+    
     //推荐
     if (UserI.isTest) {
         [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
