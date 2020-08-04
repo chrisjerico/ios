@@ -59,6 +59,11 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     
     self.tableView.startTip = YES;
     self.tableView.tipTitle = @"暂无更多数据";
+    
+    // 刷新额度转换记录
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self getTransferLogs];
+    });
 }
 
 //添加上下拉刷新
