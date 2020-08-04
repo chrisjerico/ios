@@ -102,11 +102,6 @@
 }
 
 - (IBAction)beginAction:(id)sender {
-    [self beignRotaion];
-}
-
-//开启动画方法
-- (void)beignRotaion {
     [self animationPart1];
 }
 
@@ -303,6 +298,10 @@
 #pragma mark -网络请求  抽奖接口
 
 - (void)activityTurntableWin {
+    static NSDate *lastDate = nil;
+    if (lastDate && [[NSDate date] timeIntervalSinceDate:lastDate] < 1) return;
+    lastDate = [NSDate date];
+    
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
