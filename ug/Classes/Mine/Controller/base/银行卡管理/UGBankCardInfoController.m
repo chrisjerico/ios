@@ -42,14 +42,14 @@
 }
 
 - (void)getCardInfo {
-	
+    __weakSelf_(__self);
 	[SVProgressHUD showWithStatus:nil];
 	[CMNetwork getBankCardInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD showSuccessWithStatus:model.msg];
-			self.cardInfoModel = model.data;
+			__self.cardInfoModel = model.data;
 			[UGCardInfoModel setCurrentBankCardInfo:model.data];
-			[self setCardInfo:self.cardInfoModel];
+			[__self setCardInfo:__self.cardInfoModel];
 			
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];

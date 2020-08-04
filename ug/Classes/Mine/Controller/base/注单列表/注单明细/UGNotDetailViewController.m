@@ -67,9 +67,10 @@
     _loadData = loadData;
     if (loadData && self.startDate) {
         // 马上进入刷新状态
+        __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
             // UI更新代码
-            [self.tableView.mj_header beginRefreshing];
+            [__self.tableView.mj_header beginRefreshing];
         });
         
     }
@@ -87,31 +88,32 @@
         @"token":[UGUserModel currentUser].sessid,
     };
     NSLog(@"params= %@",params);
+    __weakSelf_(__self);
     [CMNetwork ticketlotteryStatisticsUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         
         NSLog(@"data= %@",model.data);
         [CMResult processWithResult:model success:^{
             
             if (!model.data) {
-                [self.dataArray removeAllObjects];
-                [self.tableView reloadData];
+                [__self.dataArray removeAllObjects];
+                [__self.tableView reloadData];
                 return ;
             }
             UGBetsRecordListModel *listModel = model.data;
             NSArray *array = listModel.tickets;
-            self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总笔数：%@",listModel.totalBetCount];
-            self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
-            [self setupTotalAmountLabelTextColor];
-            [self setupWinAmountLabelTextColor];
-            [self.dataArray removeAllObjects];
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
+            __self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总笔数：%@",listModel.totalBetCount];
+            __self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
+            [__self setupTotalAmountLabelTextColor];
+            [__self setupWinAmountLabelTextColor];
+            [__self.dataArray removeAllObjects];
+            [__self.dataArray addObjectsFromArray:array];
+            [__self.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([__self.tableView.mj_header isRefreshing]) {
+            [__self.tableView.mj_header endRefreshing];
         }
         
 

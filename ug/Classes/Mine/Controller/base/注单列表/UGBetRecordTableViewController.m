@@ -111,9 +111,10 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     _loadData = loadData;
     if (loadData && self.status && self.startDate && self.gameType) {
          // 马上进入刷新状态
+        __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
            // UI更新代码
-           [self.tableView.mj_header beginRefreshing];
+           [__self.tableView.mj_header beginRefreshing];
         });
         
     }
@@ -126,6 +127,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    __weakSelf_(__self);
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"category":self.gameType,
                              @"status":self.status,
@@ -139,42 +141,41 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
         [CMResult processWithResult:model success:^{
             
             if (!model.data) {
-                [self.dataArray removeAllObjects];
-                [self.tableView reloadData];
+                [__self.dataArray removeAllObjects];
+                [__self.tableView reloadData];
                 return ;
             }
             UGBetsRecordListModel *listModel = model.data;
             NSArray *array = listModel.list;
-            self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总下注金额：%@",listModel.totalBetAmount];
-            self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
-            [self setupTotalAmountLabelTextColor];
-            [self setupWinAmountLabelTextColor];
-            if (self.pageNumber == 1 ) {
-                
-                [self.dataArray removeAllObjects];
+            __self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总下注金额：%@",listModel.totalBetAmount];
+            __self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
+            [__self setupTotalAmountLabelTextColor];
+            [__self setupWinAmountLabelTextColor];
+            if (__self.pageNumber == 1 ) {
+                [__self.dataArray removeAllObjects];
             }
             
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
+            [__self.dataArray addObjectsFromArray:array];
+            [__self.tableView reloadData];
             
-            if (array.count < self.pageSize) {
-                [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                [self.tableView.mj_footer setHidden:YES];
+            if (array.count < __self.pageSize) {
+                [__self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [__self.tableView.mj_footer setHidden:YES];
             }else{
-                self.pageNumber ++;
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                __self.pageNumber ++;
+                [__self.tableView.mj_footer setState:MJRefreshStateIdle];
+                [__self.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([__self.tableView.mj_header isRefreshing]) {
+            [__self.tableView.mj_header endRefreshing];
         }
         
-        if ([self.tableView.mj_footer isRefreshing]) {
-            [self.tableView.mj_footer endRefreshing];
+        if ([__self.tableView.mj_footer isRefreshing]) {
+            [__self.tableView.mj_footer endRefreshing];
         }
     }];
     
@@ -184,6 +185,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
+    __weakSelf_(__self);
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"orderId":model.betId
                              };
@@ -191,9 +193,9 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     [CMNetwork cancelBetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
-            [self.dataArray removeObject:model];
-            [self.tableView reloadData];
-            [self getBetsList];
+            [__self.dataArray removeObject:model];
+            [__self.tableView reloadData];
+            [__self getBetsList];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

@@ -121,43 +121,44 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
                              @"startDate":self.startDate,
                              @"endDate":self.startDate,
                              };
+    __weakSelf_(__self);
     [CMNetwork getBetsListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             if (!model.data) {
-                [self.dataArray removeAllObjects];
-                [self.tableView reloadData];
+                [__self.dataArray removeAllObjects];
+                [__self.tableView reloadData];
                 return ;
             }
             UGBetsRecordListModel *listModel = model.data;
             NSArray *array = listModel.list;
-            self.betAmountLabel.text = [NSString stringWithFormat:@"总下注金额：%@",listModel.totalBetAmount];
-            self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
-            [self setupTotalAmountLabelTextColor];
-            [self setupWinAmountLabelTextColor];
-            if (self.pageNumber == 1 ) {
-                [self.dataArray removeAllObjects];
+            __self.betAmountLabel.text = [NSString stringWithFormat:@"总下注金额：%@",listModel.totalBetAmount];
+            __self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
+            [__self setupTotalAmountLabelTextColor];
+            [__self setupWinAmountLabelTextColor];
+            if (__self.pageNumber == 1 ) {
+                [__self.dataArray removeAllObjects];
             }
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
+            [__self.dataArray addObjectsFromArray:array];
+            [__self.tableView reloadData];
             
-            if (array.count < self.pageSize) {
-                [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                [self.tableView.mj_footer setHidden:YES];
+            if (array.count < __self.pageSize) {
+                [__self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [__self.tableView.mj_footer setHidden:YES];
             } else {
-                self.pageNumber ++;
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                __self.pageNumber ++;
+                [__self.tableView.mj_footer setState:MJRefreshStateIdle];
+                [__self.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
             NSLog(@"错误信息：%@",msg);
         }];
         
-        if ([self.tableView.mj_header isRefreshing])
-            [self.tableView.mj_header endRefreshing];
+        if ([__self.tableView.mj_header isRefreshing])
+            [__self.tableView.mj_header endRefreshing];
             
-        if ([self.tableView.mj_footer isRefreshing])
-            [self.tableView.mj_footer endRefreshing];
+        if ([__self.tableView.mj_footer isRefreshing])
+            [__self.tableView.mj_footer endRefreshing];
     }];
     
 }
@@ -250,14 +251,15 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     model5.gameType = @"esport";
     
     //自行创建实例方法
+    __weakSelf_(__self);
     MOFSPickerView *p = [MOFSPickerView new];
     p.attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:16], NSForegroundColorAttributeName : [UIColor blackColor]};
     [p showMOFSPickerViewWithCustomDataArray:@[model0, model1, model2, model3, model4, model5] keyMapper:@"gameName" commitBlock:^(id model) {
         Model *item = (Model *)model;
-        if (![self.gameType isEqualToString:item.gameType]) {
-            self.gameType = item.gameType;
-            [self.titleView setTitle:item.gameName forState:UIControlStateNormal];
-            [self getBetsList];
+        if (![__self.gameType isEqualToString:item.gameType]) {
+            __self.gameType = item.gameType;
+            [__self.titleView setTitle:item.gameName forState:UIControlStateNormal];
+            [__self getBetsList];
         }
     } cancelBlock:^{}];
 }
