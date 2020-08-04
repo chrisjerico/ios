@@ -46,14 +46,15 @@
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             NSLog(@"model = %@",model);
-            FastSubViewCode(self.view);
+            FastSubViewCode(weakSelf.view);
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            [self reSetUrlStr];
+            [weakSelf reSetUrlStr];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

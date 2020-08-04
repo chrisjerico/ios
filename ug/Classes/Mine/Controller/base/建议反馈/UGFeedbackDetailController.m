@@ -45,13 +45,14 @@
     NSDictionary *dict = @{@"token":[UGUserModel currentUser].sessid,
                            @"pid":self.item.messageId
                            };
+    WeakSelf;
     [CMNetwork getFeedbackDetailWithParams:dict completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGMessageListModel *listModel = model.data;
-            [self.dataArray removeAllObjects];
-            [self.dataArray addObject:self.item];
-            [self.dataArray addObjectsFromArray:listModel.list];
-            [self.tableView reloadData];
+            [weakSelf.dataArray removeAllObjects];
+            [weakSelf.dataArray addObject:self.item];
+            [weakSelf.dataArray addObjectsFromArray:listModel.list];
+            [weakSelf.tableView reloadData];
             
         } failure:^(id msg) {
             
@@ -75,12 +76,13 @@
                                  @"content":self.contentTextView.text
                                  };
         [SVProgressHUD showWithStatus:nil];
+        WeakSelf;
         [CMNetwork writeMessageWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                self.contentTextView.text = nil;
-                [self.contentTextView resignFirstResponder];
-                [self getFeedbackDetail];
+                weakSelf.contentTextView.text = nil;
+                [weakSelf.contentTextView resignFirstResponder];
+                [weakSelf getFeedbackDetail];
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
             }];

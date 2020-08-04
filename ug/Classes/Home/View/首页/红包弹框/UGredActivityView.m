@@ -101,7 +101,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+    WeakSelf;
     [CMNetwork activityGetRedBagWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
              [SVProgressHUD dismiss];
@@ -119,7 +119,7 @@
                 .LeeAction(@"确定", ^{
                     
                     // 确认点击事件Block
-                    [self hiddenSelf];
+                    [weakSelf hiddenSelf];
                 })
                 .LeeShow(); // 设置完成后 别忘记调用Show来显示
             }
@@ -134,7 +134,7 @@
             [SVProgressHUD dismiss];
             [SVProgressHUD showErrorWithStatus:msg];
             
-                [self hiddenSelf];
+                [weakSelf hiddenSelf];
         }];
     }];
 }

@@ -57,6 +57,7 @@
 }
 
 - (IBAction)submit:(id)sender {
+    WeakSelf;
     ck_parameters(^{
         ck_parameter_non_empty(self.loginPwdTextF.text, @"请输入旧密码");
         if (self.loginPwdTextF.text.length != 4) {
@@ -77,13 +78,14 @@
                                  @"token":[UGUserModel currentUser].sessid
                                  };
         [SVProgressHUD showWithStatus:nil];
+ 
         [CMNetwork modifyPayPwdWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                [self.view endEditing:YES];
-                self.loginPwdTextF.text = nil;
-                self.payPwdTextF.text = nil;
-                self.checkPayPwdTextF.text = nil;
+                [weakSelf.view endEditing:YES];
+                weakSelf.loginPwdTextF.text = nil;
+                weakSelf.payPwdTextF.text = nil;
+                weakSelf.checkPayPwdTextF.text = nil;
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
             }];

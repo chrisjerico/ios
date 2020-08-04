@@ -149,7 +149,7 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork taskCreditsLogWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -158,27 +158,27 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                              
-                 [self.tableDataArray removeAllObjects];
+                 [weakSelf.tableDataArray removeAllObjects];
              }
             
             //            //字典转模型
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             //数组转模型数组
              NSArray *array = [UGCreditsLogModel arrayOfModelsFromDictionaries:list error:nil];
-             [self.tableDataArray addObjectsFromArray:array];
+             [weakSelf.tableDataArray addObjectsFromArray:array];
 
             
             NSLog(@"tableDataArray = %@",self.tableDataArray);
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                        [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                        [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
                
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
@@ -187,12 +187,12 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
             
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-             [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+             [weakSelf.tableView.mj_header endRefreshing];
          }
          
-         if ([self.tableView.mj_footer isRefreshing]) {
-             [self.tableView.mj_footer endRefreshing];
+         if ([weakSelf.tableView.mj_footer isRefreshing]) {
+             [weakSelf.tableView.mj_footer endRefreshing];
          }
     }];
 }

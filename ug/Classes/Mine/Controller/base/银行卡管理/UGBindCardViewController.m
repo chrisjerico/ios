@@ -92,12 +92,13 @@
 
 - (void)getBankList {
     [SVProgressHUD showWithStatus:@"获取银行列表..."];
+    WeakSelf;
     [CMNetwork getBankListWithParams:@{@"status":@"0"} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
-            self.bankListArray = model.data;
+            weakSelf.bankListArray = model.data;
             for (UGbankModel *bank in self.bankListArray) {
-                [self.titlesArray addObject:bank.name];
+                [weakSelf.titlesArray addObject:bank.name];
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -137,11 +138,12 @@
                                  @"token":[UGUserModel currentUser].sessid
                                  };
         [SVProgressHUD showWithStatus:nil];
+        WeakSelf;
         [CMNetwork bindCardWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 [UGUserModel currentUser].hasBankCard = YES;
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
                 

@@ -1224,9 +1224,10 @@
     if (!UGLoginIsAuthorized()) {
         return;
     }
+    WeakSelf;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
             UGUserModel *oldUser = [UGUserModel currentUser];
@@ -1234,7 +1235,7 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            self.titleView.userName = user.username;
+            weakSelf.titleView.userName = user.username;
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
         } failure:^(id msg) {
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
@@ -1326,6 +1327,7 @@
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
@@ -1338,17 +1340,17 @@
             
            
            
-            [self getCustomGameList];   // 自定义游戏列表
+            [weakSelf getCustomGameList];   // 自定义游戏列表
 
-            [self getPromotionsType ];// 获取优惠图片分类信息
+            [weakSelf getPromotionsType ];// 获取优惠图片分类信息
             
-            [self gethomeAdsList];     // 首页广告图片
+            [weakSelf gethomeAdsList];     // 首页广告图片
             
-            [self getNoticeList];   // 公告列表
+            [weakSelf getNoticeList];   // 公告列表
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
-            [self.bottomLabel setText:title];
-            [self.titleView setImgName:config.mobile_logo];
+            [weakSelf.bottomLabel setText:title];
+            [weakSelf.titleView setImgName:config.mobile_logo];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -1376,25 +1378,26 @@
 
 //查询轮播图
 - (void)getBannerList {
+    WeakSelf;
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
-                self.bannerArray = ((UGBannerModel*)model.data).list;
+                weakSelf.bannerArray = ((UGBannerModel*)model.data).list;
                 NSMutableArray *mutArr = [NSMutableArray array];
-                if (self.bannerArray.count) {
+                if (weakSelf.bannerArray.count) {
                     for (UGBannerCellModel *banner in self.bannerArray) {
                         [mutArr addObject:banner.pic];
                     }
-                    self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
+                    weakSelf.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
                     NSLog(@"轮播时间：%f",((UGBannerModel*)model.data).interval.floatValue);
-                    self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                    weakSelf.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
                     if (mutArr.count>1) {
-                        self.bannerView.autoScroll = YES;
+                        weakSelf.bannerView.autoScroll = YES;
                     } else {
-                         self.bannerView.autoScroll = NO;
+                         weakSelf.bannerView.autoScroll = NO;
                     }
                 }
             });
@@ -1407,20 +1410,21 @@
 
 // 公告
 - (void)getNoticeList {
+    WeakSelf;
     [CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 UGNoticeTypeModel *type = model.data;
-                self.noticeTypeModel = model.data;
-                self.popNoticeArray = type.popup.mutableCopy;
+                weakSelf.noticeTypeModel = model.data;
+                weakSelf.popNoticeArray = type.popup.mutableCopy;
                 for (UGNoticeModel *notice in type.scroll) {
                     //                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-                    [self.leftwardMarqueeViewData addObject:notice.title];
+                    [weakSelf.leftwardMarqueeViewData addObject:notice.title];
                 }
-                [self.leftwardMarqueeView reloadData];
+                [weakSelf.leftwardMarqueeView reloadData];
    
-                [self showPlatformNoticeView];
+                [weakSelf showPlatformNoticeView];
             });
         } failure:nil];
     }];
@@ -1428,15 +1432,16 @@
 
 // 中奖排行榜、投注排行榜
 - (void)getRankList {
+    WeakSelf;
     [CMNetwork getRankListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 UGRankListModel *rank = model.data;
-                self.rankListModel = rank;
-                self.rankArray = ({
+                weakSelf.rankListModel = rank;
+                weakSelf.rankArray = ({
                     // 填充5条空数据，看起来就有一段空白形成翻页效果
                     NSMutableArray *temp = rank.list.mutableCopy;
                     for (int i=0; i<5; i++) {
@@ -1450,15 +1455,15 @@
                 UGSystemConfigModel * config = UGSystemConfigModel.currentConfig;
                 if (config.rankingListSwitch == 0) {
                 } else if (config.rankingListSwitch == 1) {
-                    self.rankLabel.text = @"中奖排行榜";
+                    weakSelf.rankLabel.text = @"中奖排行榜";
                 } else if (config.rankingListSwitch == 2) {
-                    self.rankLabel.text = @"投注排行榜";
+                    weakSelf.rankLabel.text = @"投注排行榜";
                 }
-                self.rankingView.hidden = !config.rankingListSwitch;
-                self.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
-                self.rankLabel.textColor = Skin1.textColor1;
-                [self.view layoutIfNeeded];
-                [self.upwardMultiMarqueeView reloadData];
+                weakSelf.rankingView.hidden = !config.rankingListSwitch;
+                weakSelf.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
+                weakSelf.rankLabel.textColor = Skin1.textColor1;
+                [weakSelf.view layoutIfNeeded];
+                [weakSelf.upwardMultiMarqueeView reloadData];
             });
             
         } failure:^(id msg) {
@@ -1471,14 +1476,15 @@
 - (void)getCheckinListData {
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
-            self.uGredEnvelopeView.item = rem;
-            self.uGredEnvelopeView.hidden = !rem;
+            weakSelf.uGredEnvelopeView.item = rem;
+            weakSelf.uGredEnvelopeView.hidden = !rem;
         } failure:^(id msg) {
-            self.uGredEnvelopeView.hidden = true;
+            weakSelf.uGredEnvelopeView.hidden = true;
             [SVProgressHUD dismiss];
         }];
     }];
@@ -1486,22 +1492,23 @@
 
 // APP在线人数
 - (void)systemOnlineCount {
+    WeakSelf;
     [CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 
-                self.mUGonlineCount = model.data;
+                weakSelf.mUGonlineCount = model.data;
                 
-                int intOnlineSwitch = [self.mUGonlineCount.onlineSwitch intValue];
+                int intOnlineSwitch = [weakSelf.mUGonlineCount.onlineSwitch intValue];
                 
                 if (intOnlineSwitch == 1) {
-                    [self.nolineLabel setHidden:NO];
-                    [self.nolineLabel setText:[NSString stringWithFormat:@"当前在线人数：%@",self.mUGonlineCount.onlineUserCount]];
+                    [weakSelf.nolineLabel setHidden:NO];
+                    [weakSelf.nolineLabel setText:[NSString stringWithFormat:@"当前在线人数：%@",self.mUGonlineCount.onlineUserCount]];
                 } else {
-                    [self.nolineLabel setHidden:YES];
+                    [weakSelf.nolineLabel setHidden:YES];
                 }
                 
             });
@@ -1605,6 +1612,7 @@
 //首页广告图片
 - (void)gethomeAdsList {
     [SVProgressHUD showWithStatus: nil];
+    WeakSelf;
     [CMNetwork systemhomeAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
@@ -1612,47 +1620,47 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 [SVProgressHUD dismiss];
-                self.homeAdsArray = model.data;
+                weakSelf.homeAdsArray = model.data;
                 
                 NSMutableArray *mutArr = [NSMutableArray array];
-                if (self.homeAdsArray.count) {
-                    [self.homeAdsBigBgView setHidden:NO];
+                if (weakSelf.homeAdsArray.count) {
+                    [weakSelf.homeAdsBigBgView setHidden:NO];
                     for (UGhomeAdsModel *banner in self.homeAdsArray) {
                             [mutArr addObject:banner.image];
                     }
 
                     NSLog(@"SysConf.adSliderTimer = %d",SysConf.adSliderTimer);
-                    self.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
-                    self.homeAdsView.autoScrollTimeInterval = SysConf.adSliderTimer;
+                    weakSelf.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
+                    weakSelf.homeAdsView.autoScrollTimeInterval = SysConf.adSliderTimer;
                     if (mutArr.count>1) {
-                        self.homeAdsView.autoScroll = YES;
+                        weakSelf.homeAdsView.autoScroll = YES;
                     } else {
-                         self.homeAdsView.autoScroll = NO;
+                         weakSelf.homeAdsView.autoScroll = NO;
                     }
                 }
                 else{
-                    [self.homeAdsBigBgView setHidden:YES];
+                    [weakSelf.homeAdsBigBgView setHidden:YES];
                 }
             });
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-            [self.homeAdsBigBgView setHidden:YES];
+            [weakSelf.homeAdsBigBgView setHidden:YES];
         }];
     }];
 }
 
 //手机浮窗
 - (void)getfloatAdsList {
-    
+    WeakSelf;
     [CMNetwork systemfloatAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 [SVProgressHUD dismiss];
-                //                self.homeAdsArray = model.data;
+                
                 NSLog(@"数据=%@",model.data);
                 NSMutableArray *mutArr = model.data;
                 if (mutArr.count) {
@@ -1665,11 +1673,11 @@
                     
                     if ([posArr containsObject: @"1"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"1" keyPath:@"position"];
-                        self.uUpperLeftView.itemSuspension = banner;
-                        self.uUpperLeftView.hidden = NO;
+                        weakSelf.uUpperLeftView.itemSuspension = banner;
+                        weakSelf.uUpperLeftView.hidden = NO;
                         
-                        if (!self.bigWheelView.hidden) {
-                            [self.uUpperLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
+                        if (!weakSelf.bigWheelView.hidden) {
+                            [weakSelf.uUpperLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
                                 make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
                             }];
     
@@ -1678,41 +1686,41 @@
                         
                     }
                     else{
-                        self.uUpperLeftView.hidden = YES;
+                        weakSelf.uUpperLeftView.hidden = YES;
                     }
                     if ([posArr containsObject: @"2"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"2" keyPath:@"position"];
-                        self.ulowerLefttView.itemSuspension = banner;
-                        self.ulowerLefttView.hidden = NO;
+                        weakSelf.ulowerLefttView.itemSuspension = banner;
+                        weakSelf.ulowerLefttView.hidden = NO;
                     }
                     else{
-                        self.ulowerLefttView.hidden = YES;
+                        weakSelf.ulowerLefttView.hidden = YES;
                     }
                     if ([posArr containsObject: @"3"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"3" keyPath:@"position"];
-                        self.uUpperRightView.itemSuspension = banner;
-                        self.uUpperRightView.hidden = NO;
+                        weakSelf.uUpperRightView.itemSuspension = banner;
+                        weakSelf.uUpperRightView.hidden = NO;
                     }
                     else{
-                        self.uUpperRightView.hidden = YES;
+                        weakSelf.uUpperRightView.hidden = YES;
                     }
                     if ([posArr containsObject: @"4"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"4" keyPath:@"position"];
-                        self.uLowerRightView.itemSuspension = banner;
-                        self.uLowerRightView.hidden = NO;
+                        weakSelf.uLowerRightView.itemSuspension = banner;
+                        weakSelf.uLowerRightView.hidden = NO;
                     }
                     else{
-                        self.uLowerRightView.hidden = YES;
+                        weakSelf.uLowerRightView.hidden = YES;
                     }
                     
                     
                     NSLog(@"mutArr = %@",mutArr);
                 }
                 else {
-                    self.uUpperLeftView.hidden = YES;
-                    self.ulowerLefttView.hidden = YES;
-                    self.uUpperRightView.hidden = YES;
-                    self.uLowerRightView.hidden = YES;
+                    weakSelf.uUpperLeftView.hidden = YES;
+                    weakSelf.ulowerLefttView.hidden = YES;
+                    weakSelf.uUpperRightView.hidden = YES;
+                    weakSelf.uLowerRightView.hidden = YES;
                     
                 }
                 
@@ -1727,7 +1735,7 @@
 
 //大转盘
 - (void)getactivityTurntableList {
-
+    WeakSelf;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              };
     [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -1747,57 +1755,57 @@
                     DZPModel *obj = [data objectAtIndex:0];
                     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         // 需要在主线程执行的代码
-                       self.bigWheelView.itemData = obj;
-                       self.bigWheelView.hidden = NO;
-                        [self.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                       weakSelf.bigWheelView.itemData = obj;
+                       weakSelf.bigWheelView.hidden = NO;
+                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
                         
-                       [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        [weakSelf.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.left.equalTo(self.view.mas_left).with.offset(10);
-                              make.width.mas_equalTo(95.0);
-                              make.height.mas_equalTo(95.0);
-                              if (self.bigWheelView.hidden) {
-                                    make.top.equalTo(self.view.mas_top).offset(150+105);
+                            make.width.mas_equalTo(95.0);
+                            make.height.mas_equalTo(95.0);
+                            if (weakSelf.bigWheelView.hidden) {
+                                    make.top.equalTo(weakSelf.view.mas_top).offset(150+105);
                               } else {
-                                    make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                                    make.top.equalTo(weakSelf.bigWheelView.mas_bottom).offset(5);
                               }
                         }];
                         
-                        [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                              make.left.equalTo(self.view.mas_left).with.offset(10);
+                        [weakSelf.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.left.equalTo(weakSelf.view.mas_left).with.offset(10);
                               make.width.mas_equalTo(95.0);
                               make.height.mas_equalTo(95.0);
-                              make.top.equalTo(self.uUpperLeftView.mas_bottom).offset(5);
+                              make.top.equalTo(weakSelf.uUpperLeftView.mas_bottom).offset(5);
                           }];
                         
                         [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.right.equalTo(self.view.mas_right).with.offset(-10);
+                            make.right.equalTo(weakSelf.view.mas_right).with.offset(-10);
                             make.width.mas_equalTo(95.0);
                             make.height.mas_equalTo(95.0);
                             if (self.bigWheelView.hidden) {
-                                  make.top.equalTo(self.view.mas_top).offset(150+105);
+                                  make.top.equalTo(weakSelf.view.mas_top).offset(150+105);
                             } else {
-                                  make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                                  make.top.equalTo(weakSelf.bigWheelView.mas_bottom).offset(5);
                             }
                         }];
-                        [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                              make.right.equalTo(self.view.mas_right).with.offset(-10);
+                        [weakSelf.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.right.equalTo(weakSelf.view.mas_right).with.offset(-10);
                               make.width.mas_equalTo(95.0);
                               make.height.mas_equalTo(95.0);
-                              make.top.equalTo(self.uUpperRightView.mas_bottom).offset(5);
+                              make.top.equalTo(weakSelf.uUpperRightView.mas_bottom).offset(5);
                           }];
                         
                     });
     
                 }
                 else{
-                                 self.bigWheelView.hidden = YES;
+                                 weakSelf.bigWheelView.hidden = YES;
                 }
 
             });
             
         } failure:^(id msg) {
 //            [SVProgressHUD showErrorWithStatus:msg];
-             self.bigWheelView.hidden = YES;
+             weakSelf.bigWheelView.hidden = YES;
 
         }];
     }];
@@ -1806,16 +1814,16 @@
 // 栏目列表
 - (void)getCategoryList {
     
-    
+    WeakSelf;
     [CMNetwork categoryListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self->_lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
+            weakSelf.lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
             NSLog(@"model= %@",model.data);
             NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
             
             if (modelArr.count==0) {
-                self.heightLayoutConstraint.constant = 0.0;
+                weakSelf.heightLayoutConstraint.constant = 0.0;
                 return ;
             }
             
@@ -1823,21 +1831,21 @@
                 for (int i = 0 ;i<modelArr.count;i++) {
                     UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
                     
-                    [self->_lHCategoryList addObject:obj];
+                    [weakSelf.lHCategoryList addObject:obj];
                     NSLog(@"obj= %@",obj);
                 }
             }
             //数组转模型数组
-            NSLog(@"self->_lHCategoryList= %@",self->_lHCategoryList);
+            
             FastSubViewCode(self.view)
             //            subView(@"开奖结果").hidden = NO;
             //            subView(@"六合论坛").hidden = NO;
             // 需要在主线程执行的代码
-            [self.contentCollectionView reloadData];
-            if (self->_lHCategoryList.count%2==0) {
-                self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*80+1;
+            [weakSelf.contentCollectionView reloadData];
+            if (weakSelf.lHCategoryList.count%2==0) {
+                weakSelf.heightLayoutConstraint.constant = weakSelf.lHCategoryList.count/2*80+1;
             } else {
-                self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*80+80+1;
+                weakSelf.heightLayoutConstraint.constant = weakSelf.lHCategoryList.count/2*80+80+1;
             }
             
             
@@ -1862,24 +1870,25 @@
 
 - (void)showPlatformNoticeView {
 
+        WeakSelf;
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
        
-            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
-            [self->_notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-            self->_notiveView.dataArray = self.popNoticeArray;
+            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+            [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+            weakSelf.notiveView.dataArray = self.popNoticeArray;
             
             UIWindow* window = UIApplication.sharedApplication.keyWindow;
-            BOOL isSubView = [self.notiveView isDescendantOfView:window];
+            BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
             
             if (!isSubView) {
 //                SysConf.popup_type = @"1";
                 if ( [SysConf.popup_type isEqualToString:@"0"]) {
-                        [self->_notiveView show];
+                    [weakSelf.notiveView show];
                 } else {
                     BOOL isLogin = UGLoginIsAuthorized();
                     if (isLogin) {
-                        [self->_notiveView show];
+                        [weakSelf.notiveView show];
                     }
                 }
      

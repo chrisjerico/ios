@@ -453,11 +453,12 @@
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             NSLog(@"model = %@",model);
-            FastSubViewCode(self.view);
+            FastSubViewCode(weakSelf.view);
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
@@ -473,7 +474,7 @@
              }
             
             
-            [self showSliderAction];
+            [weakSelf showSliderAction];
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -612,13 +613,14 @@
     NSDictionary *params = @{@"id":self.nextIssueModel.gameId,
                              @"date":dataStr ,
                              };
+    WeakSelf;
     [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
-            if (self.dataArray.count>1) {
-                [self.dataArray removeFirstObject];
-                 [self.headerTabView reloadData];
+            weakSelf.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
+            if (weakSelf.dataArray.count>1) {
+                [weakSelf.dataArray removeFirstObject];
+                 [weakSelf.headerTabView reloadData];
             }
            
         } failure:^(id msg) {
@@ -634,6 +636,7 @@
     NSDictionary *params = @{@"id":self.gameId,
                              };
     NSLog(@"self.gameId=%@",self.gameId);
+    WeakSelf;
     [CMNetwork ticketgetLotteryFirstOrderWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         
         
@@ -641,7 +644,7 @@
         
         [CMResult processWithResult:model success:^{
            
-            self.zuiHaoIssueModel = (UGNextIssueModel *)model.data;
+            weakSelf.zuiHaoIssueModel = (UGNextIssueModel *)model.data;
             
             NSLog(@"zuiHaoIssueModel = %@",self.zuiHaoIssueModel);
              

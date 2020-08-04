@@ -311,6 +311,7 @@ static NSString *__title = nil;
 
 - (void)getUserInfo {
     [self startAnimation];
+    WeakSelf;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
@@ -319,10 +320,10 @@ static NSString *__title = nil;
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            [self setupUserInfo];
-            [self stopAnimation];
+            [weakSelf setupUserInfo];
+            [weakSelf stopAnimation];
         } failure:^(id msg) {
-            [self stopAnimation];
+            [weakSelf stopAnimation];
         }];
     }];
 }
@@ -372,15 +373,15 @@ static NSString *__title = nil;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
 
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             NSLog(@"model.data = %@",model.data);
-            self.historyDataArray = model.data;
+            weakSelf.historyDataArray = model.data;
             NSLog(@"_historyDataArray = %@",self.historyDataArray);
-            if (![CMCommon arryIsNull:self.historyDataArray]) {
-                [self showUGSignInHistoryView];
+            if (![CMCommon arryIsNull:weakSelf.historyDataArray]) {
+                [weakSelf showUGSignInHistoryView];
             }
 
 

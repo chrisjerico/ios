@@ -96,6 +96,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 //                             @"game":game.gameCode
                              };
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
@@ -104,7 +105,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             NSLog(@"网络链接：model.data = %@",model.data);
             qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
             qdwebVC.enterGame = YES;
-            [self.navigationController pushViewController:qdwebVC  animated:YES];
+            [weakSelf.navigationController pushViewController:qdwebVC  animated:YES];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -381,6 +382,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 //                                 @"game":gameCode,
         };
         [SVProgressHUD showWithStatus:nil];
+      
         [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD dismiss];
@@ -445,6 +447,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                     return true;
                 }
                 [SVProgressHUD showWithStatus:nil];
+            
                 [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
                     [CMResult processWithResult:model success:^{
                         [SVProgressHUD dismiss];

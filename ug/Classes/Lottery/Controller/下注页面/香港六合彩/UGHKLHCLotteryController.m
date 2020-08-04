@@ -286,20 +286,21 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 // 获取下期信息
 - (void)getNextIssueData {
     NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.nextIssueModel = model.data;
+            weakSelf.nextIssueModel = model.data;
             
             NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
-            if (self.nextIssueModel) {
-                if (OBJOnceToken(self)) {
-                    [self getLotteryHistory ];
+            if (weakSelf.nextIssueModel) {
+                if (OBJOnceToken(weakSelf)) {
+                    [weakSelf getLotteryHistory ];
                 }
             }
 
             
-            [self showAdPoppuView:model.data];
-            [self updateHeaderViewData];
+            [weakSelf showAdPoppuView:model.data];
+            [weakSelf updateHeaderViewData];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
@@ -310,19 +311,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             
         
             UGPlayOddsModel *play = model.data;
-            self.playOddsModel = play;
-            [self.rightStackView addSubview:self.zodiacScrollView];
+            weakSelf.playOddsModel = play;
+            [weakSelf.rightStackView addSubview:self.zodiacScrollView];
           
             
-            [self initBetCollectionView];
+            [weakSelf initBetCollectionView];
             
-            self.gameDataArray = [play.playOdds mutableCopy];
+            weakSelf.gameDataArray = [play.playOdds mutableCopy];
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     
@@ -349,27 +351,27 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     if (!gsm.enable)
-                        [self.gameDataArray removeObject:gm];
+                        [weakSelf.gameDataArray removeObject:gm];
                 }
             }
-            [self handleData];
+            [weakSelf handleData];
             
-            if ([self.gameDataArray.firstObject.name isEqualToString:@"特码"]) {
-                if (self.segmentView.hidden) {
-                    self.betCollectionView.y += self.segmentView.height;
-                    self.betCollectionView.height -= self.segmentView.height;
+            if ([weakSelf.gameDataArray.firstObject.name isEqualToString:@"特码"]) {
+                if (weakSelf.segmentView.hidden) {
+                    weakSelf.betCollectionView.y += weakSelf.segmentView.height;
+                    weakSelf.betCollectionView.height -= weakSelf.segmentView.height;
                 }
-                if (self.zodiacScrollView.hidden) {
-                    self.betCollectionView.y += self.zodiacScrollView.height;
-                    self.betCollectionView.height -= self.zodiacScrollView.height;
+                if (weakSelf.zodiacScrollView.hidden) {
+                    weakSelf.betCollectionView.y += weakSelf.zodiacScrollView.height;
+                    weakSelf.betCollectionView.height -= weakSelf.zodiacScrollView.height;
                 }
-                self.zodiacScrollView.hidden = false;
-                self.segmentView.hidden = NO;
+                weakSelf.zodiacScrollView.hidden = false;
+                weakSelf.segmentView.hidden = NO;
             }
-            self.segmentView.dataArray = self.tmTitleArray;
-            [self.tableView reloadData];
-            [self.betCollectionView reloadData];
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            weakSelf.segmentView.dataArray = self.tmTitleArray;
+            [weakSelf.tableView reloadData];
+            [weakSelf.betCollectionView reloadData];
+            [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         } failure:^(id msg) {
              [SVProgressHUD dismiss];
         }];

@@ -264,19 +264,19 @@
     
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+    WeakSelf;
     [CMNetwork activityApplyWinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                [self close:nil];
+                [weakSelf close:nil];
             });
             
             
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
-            [self close:nil];
+            [weakSelf close:nil];
         }];
     }];
 }

@@ -36,11 +36,12 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 
 - (void)getGameList {
     
+    WeakSelf;
     NSDictionary *params = @{@"id":self.game.gameId};
     [CMNetwork getGameListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.dataArray = model.data;
-            [self.collectionView reloadData];
+            weakSelf.dataArray = model.data;
+            [weakSelf.collectionView reloadData];
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -59,6 +60,7 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
                              @"game":game.code
                              };
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
@@ -67,7 +69,7 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
             NSLog(@"网络链接：model.data = %@",model.data);
             qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
             qdwebVC.enterGame = YES;
-            [self.navigationController pushViewController:qdwebVC  animated:YES];
+            [weakSelf.navigationController pushViewController:qdwebVC  animated:YES];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

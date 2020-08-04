@@ -104,9 +104,8 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
     [CMNetwork taskLevelsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self.dataArray = model.data;
-            NSLog(@"self.dataArray = %@",self.dataArray);
-            [self.tableView reloadData];
+            weakSelf.dataArray = model.data;
+            [weakSelf.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

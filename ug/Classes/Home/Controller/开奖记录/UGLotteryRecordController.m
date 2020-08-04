@@ -93,9 +93,9 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButonItemClick)];
     self.dateLabel.text = self.dateArray.firstObject;
     
-    
+    WeakSelf
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self getLotteryHistory];
+        [weakSelf getLotteryHistory];
     }];
     
     // 初始化彩种列表数据
@@ -165,11 +165,12 @@ static NSString *lotteryRecordCellid = @"UGLotteryRecordTableViewCell";
     NSDictionary *params = @{@"id":model.gameId,
                              @"date":lessDataType ? nil : self.dateLabel.text,
                              };
+    WeakSelf;
     [CMNetwork getLotteryHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
-            [self.tableView reloadData];
+            weakSelf.dataArray = [((UGLotteryHistoryListModel *)model.data).list mutableCopy];
+            [weakSelf.tableView reloadData];
         } failure:^(id msg) {
 //            [SVProgressHUD showErrorWithStatus:msg];
         }];

@@ -51,6 +51,7 @@
        
        [subView(@"底部面板") setBackgroundColor:RGBA(60, 136, 247, 1)];
      
+        WeakSelf;
         [subButton(@"已读btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
                 return;
@@ -62,8 +63,8 @@
                 [CMResult processWithResult:model success:^{
                     [SVProgressHUD showSuccessWithStatus:model.msg];
 
-                    if (self.readedclickBllock) {
-                        self.readedclickBllock();
+                    if (weakSelf.readedclickBllock) {
+                        weakSelf.readedclickBllock();
                     }
 
                 } failure:^(id msg) {
@@ -86,8 +87,8 @@
                 [CMResult processWithResult:model success:^{
                     [SVProgressHUD showSuccessWithStatus:model.msg];
 
-                    if (self.delclickBllock) {
-                        self.delclickBllock();
+                    if (weakSelf.delclickBllock) {
+                        weakSelf.delclickBllock();
                     }
 
                 } failure:^(id msg) {

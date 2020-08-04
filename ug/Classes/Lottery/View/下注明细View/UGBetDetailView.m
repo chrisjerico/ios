@@ -23,7 +23,7 @@
 @interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
     
     NSInteger count;  /**<   总注数*/
-    NSString *amount; /**<   总金额*/
+    
     
     UIScrollView* maskView;
 }
@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *plTitleLab;       /**<  批量修改abel */
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;       /**<  合计Label */
 
+@property (nonatomic, strong) NSString *amount; /**<   总金额*/
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) CountDown *countDown;
@@ -104,11 +105,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             NSLog(@"model = %@",model);
-            FastSubViewCode(self);
+            FastSubViewCode(weakSelf);
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
@@ -250,27 +252,29 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
 - (void)submitBet:(NSDictionary *)params {
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    __weakSelf_(__self);
     [CMNetwork userBetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             
             
             // 秒秒彩系列（即时开奖无需等待）
-            if (self.nextIssueModel.isInstant) {
-                BOOL showSecondLine = [@[@"11"] containsObject:self.nextIssueModel.gameId]; // 六合秒秒彩
+            if (weakSelf.nextIssueModel.isInstant) {
+                BOOL showSecondLine = [@[@"11"] containsObject:weakSelf.nextIssueModel.gameId]; // 六合秒秒彩
                 UGBetDetailModel *mod = (UGBetDetailModel *)model.data;
                 mod.gameId = self.nextIssueModel.gameId;
                 
                 UGBetResultView *bet = [[UGBetResultView alloc] initWithShowSecondLine:showSecondLine];
                 
                 [bet showWith:mod showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
-                    [self submitBet:params];
+                    [weakSelf submitBet:params];
                 }];
             } else {
                 
-                [self hiddenSelf];
+                [weakSelf hiddenSelf];
                 
-                float amountfloat = [self->amount floatValue];
+                float amountfloat = [__self.amount floatValue];
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
                 
                 if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
@@ -287,7 +291,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                         })
                         .LeeAction(@"取消", nil)
                         .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                            [self selectChatRoom];
+                            [weakSelf selectChatRoom];
                         })
                         .LeeHeaderColor(Skin1.bgColor)
                         .LeeShow();
@@ -298,7 +302,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                         .LeeContent(@"是否分享到聊天室")
                         .LeeAction(@"取消", nil)
                         .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                            [self selectChatRoom];
+                            [weakSelf selectChatRoom];
                         })
                         
                         .LeeShow();
@@ -310,11 +314,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             }
             
             SANotificationEventPost(UGNotificationGetUserInfo, nil);
-            if (self.betClickBlock) {
-                self.betClickBlock();
-                [self hiddenSelf];
+            if (weakSelf.betClickBlock) {
+                weakSelf.betClickBlock();
+                [weakSelf hiddenSelf];
             }
-            [self hiddenSelf];
+            [weakSelf hiddenSelf];
             
             
         } failure:^(id msg) {
@@ -325,9 +329,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             
             NSString *msgStr = (NSString *)msg;
             if ([msgStr containsString:@"已封盘"]) {
-                if (self.betClickBlock) {
-                    self.betClickBlock();
-                    [self hiddenSelf];
+                if (weakSelf.betClickBlock) {
+                    weakSelf.betClickBlock();
+                    [weakSelf hiddenSelf];
                 }
             }
         }];
@@ -494,7 +498,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         betModel.gameName = self.nextIssueModel.title;
         betModel.gameId = self.nextIssueModel.gameId;
         betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
-        betModel.totalMoney = amount;
+        betModel.totalMoney = _amount;
         betModel.turnNum = self.nextIssueModel.curIssue;
         betModel.activeReturnCoinRatio = [AppDefine stringWithFloat:[Global getInstanse].rebate decimal:8];
        
@@ -838,12 +842,12 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     } else {
         count = self.betArray.count;
     }
-    amount = [NSString stringWithFormat:@"%.2lf",totalAmount];
-    self.totalAmountLabel.text = [NSString stringWithFormat:@"合计注数：%ld，总金额：¥%@",count,amount];
+    _amount = [NSString stringWithFormat:@"%.2lf",totalAmount];
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"合计注数：%ld，总金额：¥%@",count,_amount];
     
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.totalAmountLabel.text];
     [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5, [NSString stringWithFormat:@"%ld",count].length)];
-    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5 + 5 + [NSString stringWithFormat:@"%ld",count].length, amount.length + 1)];
+    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5 + 5 + [NSString stringWithFormat:@"%ld",count].length, _amount.length + 1)];
     
     self.totalAmountLabel.attributedText = abStr;
 }

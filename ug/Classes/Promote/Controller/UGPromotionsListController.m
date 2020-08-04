@@ -86,16 +86,16 @@
             NSNumber * number = dic[@"typeIsShow"];
             
             if ([number intValue] == 1) {
-                [self.collectionView setHidden:NO];
+                [__self.collectionView setHidden:NO];
             }
             else{
-                [self.collectionView setHidden:YES];
+                [__self.collectionView setHidden:YES];
                 
             }
             
 
         } failure:^(id msg) {
-            [self.collectionView setHidden:YES];
+            [__self.collectionView setHidden:YES];
             [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];

@@ -232,6 +232,7 @@
     
     
     NSDictionary *params = @{@"uid":uid};
+    WeakSelf;
     [CMNetwork lhcdocgetUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             LHUserModel*user = model.data;
@@ -239,7 +240,7 @@
             if (user) {
                 UGUserModel *oldUser = [UGUserModel currentUser];
                 oldUser.isLhcdocVip = user.isLhcdocVip;
-                FastSubViewCode(self.userInfoView)
+                FastSubViewCode(weakSelf.userInfoView)
                 oldUser.lhnickname = user.nickname;
                 UGUserModel.currentUser = oldUser;
                 NSLog(@"是否是六合文档的VIP==%d",user.isLhcdocVip);
@@ -255,6 +256,7 @@
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    WeakSelf;
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
@@ -263,26 +265,26 @@
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
             NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
-            [self getLHUserInfo:user.userId];
-            [self getSystemConfig];
+            [weakSelf getLHUserInfo:user.userId];
+            [weakSelf getSystemConfig];
             //初始化数据
 //            [self tableCelldataSource];
 //            [self.tableView reloadData];
         } failure:^(id msg) {
-            [self stopAnimation];
+            [weakSelf stopAnimation];
         }];
     }];
 }
 
 - (void)getSystemConfig {
-    
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"签到==%@",[UGSystemConfigModel  currentConfig].checkinSwitch);
-            [self setupUserInfo:YES];
-            [self stopAnimation];
+            [weakSelf setupUserInfo:YES];
+            [weakSelf stopAnimation];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD dismiss];

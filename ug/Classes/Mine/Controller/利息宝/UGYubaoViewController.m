@@ -193,11 +193,11 @@
 }
 
 - (void)getYuebaoInfo {
-	
+    WeakSelf;
 	[CMNetwork getYuebaoInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
-			self.infoModel = model.data;
-			[self setupInfo];
+			weakSelf.infoModel = model.data;
+			[weakSelf setupInfo];
 		} failure:^(id msg) {
 			[SVProgressHUD dismiss];
 		}];

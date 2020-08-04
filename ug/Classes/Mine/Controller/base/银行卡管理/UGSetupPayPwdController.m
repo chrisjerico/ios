@@ -82,16 +82,17 @@
                                  @"fund_pwd":[UGEncryptUtil md5:self.fundPwdTextF.text],
                                  };
         [SVProgressHUD showWithStatus:nil];
+        WeakSelf;
         [CMNetwork addFundPwdWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 UGUserModel *user = [UGUserModel currentUser];
                 user.hasFundPwd = YES;
                 if (user.hasBankCard) {
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                 }else {
                     UGBindCardViewController *bindCardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGBindCardViewController"];
-                    [self.navigationController pushViewController:bindCardVC animated:YES];
+                    [weakSelf.navigationController pushViewController:bindCardVC animated:YES];
                 }
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];

@@ -116,6 +116,7 @@
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid
                              
                              };
+    WeakSelf;
     [CMNetwork activityApplyWinLogWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -126,16 +127,16 @@
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             
             //数组转模型数组
-            self.dataArray = [UGActivityGoldModel arrayOfModelsFromDictionaries:list error:nil];
+            weakSelf.dataArray = [UGActivityGoldModel arrayOfModelsFromDictionaries:list error:nil];
             
             NSLog(@"self.dataArray = %@",self.dataArray);
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
         }
         
       

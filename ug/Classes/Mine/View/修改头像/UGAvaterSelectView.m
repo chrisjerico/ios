@@ -64,16 +64,17 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 
 - (void)getAvatarList {
     [SVProgressHUD showWithStatus: nil];
+    WeakSelf;
     [CMNetwork getAvatarListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self.dataArray = model.data;
-            if (!self.dataArray.count) {
+            weakSelf.dataArray = model.data;
+            if (!weakSelf.dataArray.count) {
                 return ;
             }
             UGAvatarModel *avatar = self.dataArray.firstObject;
-            [self.collectionView reloadData];
-            [self.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
+            [weakSelf.collectionView reloadData];
+            [weakSelf.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];
@@ -90,13 +91,14 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
                              @"filename":avatar.filename
                              };
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork changeAvatarWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
             UGUserModel *user = [UGUserModel currentUser];
             user.avatar = avatar.url;
             SANotificationEventPost(UGNotificationUserAvatarChanged, nil);
-            [self hiddenSelf];
+            [weakSelf hiddenSelf];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

@@ -125,12 +125,13 @@
 #pragma mark 网络请求
 
 - (void)getPlatformGamesWithParams {
+    WeakSelf;
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
            [Global getInstanse].lotterydataArray = self.dataArray = model.data;
-            [self.collectionView reloadData];
+            [weakSelf.collectionView reloadData];
         } failure:^(id msg) {
         }];
     }];

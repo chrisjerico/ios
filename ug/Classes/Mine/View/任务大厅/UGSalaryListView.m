@@ -55,12 +55,12 @@
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             NSLog(@"model.data = %@",model.data);
-            self.dataArray = model.data;
+            weakSelf.dataArray = model.data;
             NSLog(@"dataArray = %@",self.dataArray);
 
         } failure:^(id msg) {
@@ -114,20 +114,20 @@
                                     };
            
            [SVProgressHUD showWithStatus:nil];
-           //    WeakSelf;
+               WeakSelf;
            [CMNetwork taskSendMissionBonusWithParams:params completion:^(CMResult<id> *model, NSError *err) {
                [CMResult processWithResult:model success:^{
                      dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                          [SVProgressHUD showSuccessWithStatus:model.msg];
                            NSLog(@"model.data = %@",model.data);
-                         [self close:nil];
+                         [weakSelf close:nil];
                     });
                  
                    
                } failure:^(id msg) {
                    
                    [SVProgressHUD showErrorWithStatus:msg];
-                    [self close:nil];
+                    [weakSelf close:nil];
                   
                }];
            }];
