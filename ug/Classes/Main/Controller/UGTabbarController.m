@@ -199,40 +199,6 @@ static UGTabbarController *_tabBarVC = nil;
     });
     
     
-    
-    [[UGSkinManagers skinWithSysConf] useSkin];
-    
-    {
-        NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
-            return obj1.sort > obj2.sort;
-        }];
-        NSArray<UGMobileMenu *> *smallmenus;
-        if (menus.count > 5) {
-            smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
-        }
-        else{
-            smallmenus = menus;
-        }
-        //		NSLog(@"menus = %@",smallmenus);
-        if (smallmenus.count > 3) {
-            // 后台配置的页面
-            [self resetUpChildViewController:smallmenus];
-        } else {
-            // 默认加载的页面
-            NSMutableArray *temp = @[].mutableCopy;
-            for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-                    [temp addObject:mm];
-                }
-            }
-            [self resetUpChildViewController:temp];
-        }
-    }
-    
-    //    版本更新
-    [[UGAppVersionManager shareInstance] updateVersionApi:false];
-    [self setTabbarStyle];
-
     // 更新GPK版状态栏
     {
         UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
@@ -289,6 +255,40 @@ static UGTabbarController *_tabBarVC = nil;
         }];
     }
     
+    
+    [[UGSkinManagers skinWithSysConf] useSkin];
+    
+    {
+        NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
+            return obj1.sort > obj2.sort;
+        }];
+        NSArray<UGMobileMenu *> *smallmenus;
+        if (menus.count > 5) {
+            smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
+        }
+        else{
+            smallmenus = menus;
+        }
+        //		NSLog(@"menus = %@",smallmenus);
+        if (smallmenus.count > 3) {
+            // 后台配置的页面
+            [self resetUpChildViewController:smallmenus];
+        } else {
+            // 默认加载的页面
+            NSMutableArray *temp = @[].mutableCopy;
+            for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+                    [temp addObject:mm];
+                }
+            }
+            [self resetUpChildViewController:temp];
+        }
+    }
+    
+    //    版本更新
+    [[UGAppVersionManager shareInstance] updateVersionApi:false];
+    [self setTabbarStyle];
+
     
     [self chatgetToken];
     
@@ -477,8 +477,7 @@ static UGTabbarController *_tabBarVC = nil;
             if (mm.isHot == 1) {
                 [imgView setHidden:NO];
                 if (mm.icon_hot.length) {
-                    NSURL *url = [NSURL URLWithString:mm.icon_hot];
-                    [imgView sd_setImageWithURL:url placeholderImage:nil completed:nil];
+                    [imgView sd_setImageWithURL:[NSURL URLWithString:mm.icon_hot] placeholderImage:nil completed:nil];
                 }
                 else{
                      [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
