@@ -118,10 +118,10 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     [CMNetwork rechargeCashierWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self.mUGdepositModel = model.data;
+            weakSelf.mUGdepositModel = model.data;
 //            NSLog(@"odel.data = %@",model.data);
             
-            NSLog(@"转账提示 = %@",self.mUGdepositModel.depositPrompt);
+            NSLog(@"转账提示 = %@",weakSelf.mUGdepositModel.depositPrompt);
 //            self.tableViewDataArray = self.mUGdepositModel.payment;
             NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
             [waitQueue addOperationWithBlock:^{
@@ -137,7 +137,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
                 }
                 // 同步到主线程
                  dispatch_async(dispatch_get_main_queue(), ^{
-                     [self.tableView reloadData];
+                     [weakSelf.tableView reloadData];
                 });
             }];
         } failure:^(id msg) {
