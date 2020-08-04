@@ -137,7 +137,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
         }
         
         if ([weakSelf.tableView.mj_footer isRefreshing]) {
-            [weakSelfweakSelf.tableView.mj_footer endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
         }
     }];
     

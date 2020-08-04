@@ -157,16 +157,17 @@ static LogVC *_logVC = nil;
     self.dzpArray = [NSArray new];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
     };
+    WeakSelf;
     [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
-                self.dzpArray = model.data;
+                weakSelf.dzpArray = model.data;
                 NSLog(@"dzpArray = %@",self.dzpArray);
                 
-                if (self.dzpArray.count) {
+                if (weakSelf.dzpArray.count) {
                     
                     NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:self.dzpArray];
                     
@@ -178,7 +179,7 @@ static LogVC *_logVC = nil;
                         // 需要在主线程执行的代码
                         
                         DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
-                        [self.view addSubview:recordVC];
+                        [weakSelf.view addSubview:recordVC];
                         [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
                             make.edges.equalTo(self.view);
                         }];

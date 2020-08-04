@@ -220,13 +220,13 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork taskCreditsExchangeWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
 //            [SVProgressHUD showSuccessWithStatus:model.msg];
             [SVProgressHUD showSuccessWithStatus:@"兑换成功"];
-            self.inputTextF.text = @"";
-            self.amountLabel.text = @"";
+            weakSelf.inputTextF.text = @"";
+            weakSelf.amountLabel.text = @"";
             [UGUserModel currentUser].balance = _FloatString4([UGUserModel currentUser].balance.doubleValue + money.doubleValue);
             [UGUserModel currentUser].taskReward = _FloatString4([UGUserModel currentUser].taskReward.doubleValue - money.doubleValue);
             [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreditsExchangeData object:nil];
@@ -237,7 +237,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
 }
 
 - (void)getSystemConfig {
-    
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
        
         [CMResult processWithResult:model success:^{
@@ -250,35 +250,35 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
            
             if (Skin1.isBlack) {
                 if ([config.isIntToMoney isEqualToString:@"0"]) {
-                    [self.submitButton setEnabled:NO];
-                    self.submitButton.alpha = 0.4;
-                    [self.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
-                    [self.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
+                    [weakSelf.submitButton setEnabled:NO];
+                    weakSelf.submitButton.alpha = 0.4;
+                    [weakSelf.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
+                    [weakSelf.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
                 } else {
-                    [self.submitButton setEnabled:YES];
-                    self.submitButton.alpha = 1;
-                    [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
-                    [self.submitButton setBackgroundColor:[UIColor whiteColor]];
+                    [weakSelf.submitButton setEnabled:YES];
+                    weakSelf.submitButton.alpha = 1;
+                    [weakSelf.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
+                    [weakSelf.submitButton setBackgroundColor:[UIColor whiteColor]];
                 }
                 
             } else {
                 if ([config.isIntToMoney isEqualToString:@"0"]) {
-                    [self.submitButton setEnabled:NO];
-                    self.submitButton.alpha = 0.4;
-                    [self.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
-                    [self.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
+                    [weakSelf.submitButton setEnabled:NO];
+                    weakSelf.submitButton.alpha = 0.4;
+                    [weakSelf.submitButton setTitle:@"暂未开启" forState:UIControlStateNormal];
+                    [weakSelf.submitButton setBackgroundColor:UGRGBColor(210, 210, 214)];
                 } else {
-                    [self.submitButton setEnabled:YES];
-                    self.submitButton.alpha = 1;
-                    [self.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
-                    [self.submitButton setBackgroundColor:Skin1.navBarBgColor];
+                    [weakSelf.submitButton setEnabled:YES];
+                    weakSelf.submitButton.alpha = 1;
+                    [weakSelf.submitButton setTitle:@"确认兑换" forState:UIControlStateNormal];
+                    [weakSelf.submitButton setBackgroundColor:Skin1.navBarBgColor];
                 }
             }
 
             
             NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币", config.missionBili ? : @"?", config.missionName];
-            self.titleLabel.text = str1;
-            self.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
+            weakSelf.titleLabel.text = str1;
+            weakSelf.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD dismiss];

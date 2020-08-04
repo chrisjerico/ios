@@ -251,16 +251,17 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 - (void)getNextIssueData {
     NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.nextIssueModel = model.data;
-            if (self.nextIssueModel) {
-                if (OBJOnceToken(self)) {
+            weakSelf.nextIssueModel = model.data;
+            if (weakSelf.nextIssueModel) {
+                if (OBJOnceToken(weakSelf)) {
                     [self getLotteryHistory ];
                 }
             }
-            [self showAdPoppuView:model.data];
-            [self updateHeaderViewData];
+            [weakSelf showAdPoppuView:model.data];
+            [weakSelf updateHeaderViewData];
         } failure:^(id msg) {
             
             
@@ -270,27 +271,28 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
      [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             HJSonLog(@" 返回的json = %@",model);
             
             UGPlayOddsModel *play = model.data;
             NSLog(@"model.data = %@",model.data);
-            self.gameDataArray = play.playOdds.mutableCopy;
+            weakSelf.gameDataArray = play.playOdds.mutableCopy;
             for (UGGameplayModel *model in self.gameDataArray) {
                 if ([@"一字定位" isEqualToString:model.name]) {
                     for (UGGameplaySectionModel *type in model.list) {
-                        [self.yzgmentTitleArray addObject:type.alias];
+                        [weakSelf.yzgmentTitleArray addObject:type.alias];
                     }
                 }
                 if ([@"二字定位" isEqualToString:model.name]) {
                        for (UGGameplaySectionModel *type in model.list) {
-                           [self.rzgmentTitleArray addObject:type.alias];
+                           [weakSelf.rzgmentTitleArray addObject:type.alias];
                        }
                    }
                 if ([@"三字定位" isEqualToString:model.name]) {
                        for (UGGameplaySectionModel *type in model.list) {
-                           [self.szgmentTitleArray addObject:type.alias];
+                           [weakSelf.szgmentTitleArray addObject:type.alias];
                        }
                    }
             }
@@ -311,14 +313,14 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     if (!gsm.enable)
-                        [self.gameDataArray removeObject:gm];
+                        [weakSelf.gameDataArray removeObject:gm];
                 }
             }
-            [self handleData];
-            self.segmentView.dataArray = self.yzgmentTitleArray;
-            [self.tableView reloadData];
-            [self.betCollectionView reloadData];
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [weakSelf handleData];
+            weakSelf.segmentView.dataArray = self.yzgmentTitleArray;
+            [weakSelf.tableView reloadData];
+            [weakSelf.betCollectionView reloadData];
+            [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

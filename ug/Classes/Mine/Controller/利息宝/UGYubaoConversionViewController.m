@@ -169,11 +169,11 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 }
 
 - (void)getYuebaoInfo {
-	
+    WeakSelf;
 	[CMNetwork getYuebaoInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
-			self.infoModel = model.data;
-			[self setupInfo];
+			weakSelf.infoModel = model.data;
+			[weakSelf setupInfo];
 		} failure:^(id msg) {
 			[SVProgressHUD dismiss];
 		}];
@@ -232,14 +232,15 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 	};
 	[SVProgressHUD showWithStatus:nil];
 	[self.inputTextF resignFirstResponder];
+    WeakSelf;
 	[CMNetwork yuebaoTransferWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-		self.inputFundPwd = nil;
+		weakSelf.inputFundPwd = nil;
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD showSuccessWithStatus:model.msg];
 			SANotificationEventPost(UGNotificationGetUserInfo, nil);
-			self.inputTextF.text = nil;
-			[self.collectionView reloadData];
-			[self getYuebaoInfo];
+			weakSelf.inputTextF.text = nil;
+			[weakSelf.collectionView reloadData];
+			[weakSelf getYuebaoInfo];
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];
 		}];

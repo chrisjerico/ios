@@ -68,10 +68,11 @@
                                  @"content":self.contentTextView.text
                                  };
         [SVProgressHUD showWithStatus:nil];
+        WeakSelf;
         [CMNetwork writeMessageWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                [self.navigationController popViewControllerAnimated:YES];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
             }];

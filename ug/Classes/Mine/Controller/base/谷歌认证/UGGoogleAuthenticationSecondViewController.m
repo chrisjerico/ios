@@ -84,9 +84,9 @@
                 // 3.创建Request
                 NSURLRequest *request =[NSURLRequest requestWithURL:remoteURL];
                    // 4.加载网页
-                [self->_myWebView loadRequest:request];
+                [weakSelf.myWebView loadRequest:request];
 
-                self.numberLabel.text = obj.secret;
+                weakSelf.numberLabel.text = obj.secret;
                 
             });
  

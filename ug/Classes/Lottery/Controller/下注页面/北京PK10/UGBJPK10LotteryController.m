@@ -241,16 +241,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)getNextIssueData {
     NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.nextIssueModel = model.data;
-            if (self.nextIssueModel) {
-                if (OBJOnceToken(self)) {
-                    [self getLotteryHistory ];
+            weakSelf.nextIssueModel = model.data;
+            if (weakSelf.nextIssueModel) {
+                if (OBJOnceToken(weakSelf)) {
+                    [weakSelf getLotteryHistory ];
                 }
             }
-            [self showAdPoppuView:model.data];
-            [self updateHeaderViewData];
+            [weakSelf showAdPoppuView:model.data];
+            [weakSelf updateHeaderViewData];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
@@ -259,13 +260,14 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             
             NSLog(@"model.data= %@",model.data);
             UGPlayOddsModel *play = model.data;
-            self.gameDataArray = play.playOdds.mutableCopy;
+            weakSelf.gameDataArray = play.playOdds.mutableCopy;
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     for (UGGameBetModel *gbm in gsm.lhcOddsArray){
@@ -281,7 +283,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     if (!gsm.enable)
-                        [self.gameDataArray removeObject:gm];
+                        [weakSelf.gameDataArray removeObject:gm];
                 }
             }
             
@@ -291,17 +293,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     NSLog(@"model.list= %@",model.list);
                     for (UGGameplaySectionModel *type in model.list) {
                         NSLog(@"type.alias= %@",type.alias);
-                        [self.lmgmentTitleArray addObject:type.alias];
+                        [weakSelf.lmgmentTitleArray addObject:type.alias];
                         
                     }
                 }
             }
-            [self handleData];
-            self.segmentView.dataArray = self.lmgmentTitleArray;
+            [weakSelf handleData];
+            weakSelf.segmentView.dataArray = weakSelf.lmgmentTitleArray;
             
-            [self.tableView reloadData];
-            [self.betCollectionView reloadData];
-            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [weakSelf.tableView reloadData];
+            [weakSelf.betCollectionView reloadData];
+            [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
             
         } failure:^(id msg) {
             [SVProgressHUD dismiss];

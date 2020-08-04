@@ -197,15 +197,16 @@
 
 // 公告列表
 - (void)getNoticeList {
+    WeakSelf;
     [CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 UGNoticeTypeModel *type = model.data;
-                self.noticeTypeModel = model.data;
+                weakSelf.noticeTypeModel = model.data;
                 for (UGNoticeModel *notice in type.scroll) {
-                    [self.leftwardMarqueeViewData addObject:notice.title];
+                    [weakSelf.leftwardMarqueeViewData addObject:notice.title];
                 }
-                [self.leftwardMarqueeView reloadData];
+                [weakSelf.leftwardMarqueeView reloadData];
             });
         } failure:nil];
     }];

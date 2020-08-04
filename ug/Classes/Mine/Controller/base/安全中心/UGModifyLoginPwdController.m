@@ -100,13 +100,14 @@
                                  @"token":[UGUserModel currentUser].sessid
                                  };
         [SVProgressHUD showWithStatus:nil];
+        WeakSelf;
         [CMNetwork modifyLoginPwdWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                [self.view endEditing:YES];
-                self.oldLoginPwdTextF.text = nil;
-                self.loginPwdTextF.text = nil;
-                self.checkLoginPwdTextF.text = nil;
+                [weakSelf.view endEditing:YES];
+                weakSelf.oldLoginPwdTextF.text = nil;
+                weakSelf.loginPwdTextF.text = nil;
+                weakSelf.checkLoginPwdTextF.text = nil;
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
             }];

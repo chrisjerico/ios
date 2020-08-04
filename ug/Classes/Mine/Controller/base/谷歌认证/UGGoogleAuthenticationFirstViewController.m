@@ -36,6 +36,7 @@
 - (void)getUserInfo {
 
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    WeakSelf;
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         
         [CMResult processWithResult:model success:^{
@@ -44,7 +45,7 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-           [self initView];
+           [weakSelf initView];
         } failure:^(id msg) {
         
         }];
@@ -130,14 +131,14 @@
                                           };
                  
                  [SVProgressHUD showWithStatus:nil];
-                 
+                  WeakSelf;
                  [CMNetwork secureGaCaptchaWithParams:params completion:^(CMResult<id> *model, NSError *err) {
                      [CMResult processWithResult:model success:^{
 
                          dispatch_async(dispatch_get_main_queue(), ^{
                              
                           [SVProgressHUD showSuccessWithStatus:model.msg];
-                          [self.navigationController popToRootViewControllerAnimated:YES];
+                          [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                          });
               
                          

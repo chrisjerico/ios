@@ -66,11 +66,12 @@
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             NSLog(@"model = %@",model);
-            FastSubViewCode(self.view);
+            FastSubViewCode(weakSelf.view);
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1

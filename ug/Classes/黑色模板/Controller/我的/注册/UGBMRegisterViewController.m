@@ -229,19 +229,21 @@
         
         [SVProgressHUD showWithStatus:@"发送中..."];
         [self.smsVcodeButton setTitle:@"发送中..." forState:UIControlStateNormal];
+        WeakSelf;
         [CMNetwork getSmsVcodeWithParams:@{@"phone":self.phoneTextF.text} completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                [self setVcodeRequestTime:NSDate.new.timeIntervalSince1970];
+                [weakSelf setVcodeRequestTime:NSDate.new.timeIntervalSince1970];
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
-                [self.smsVcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [weakSelf.smsVcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
             }];
         }];
     });
 }
 
 - (IBAction)getImgVcode:(id)sender {
+    WeakSelf;
     [CMNetwork getImgVcodeWithParams:@{@"accessToken":[OpenUDID value]} completion:^(CMResult<id> *model, NSError *err) {
         if (!err) {
             NSData *data = (NSData *)model;
@@ -249,7 +251,7 @@
             imageStr = [imageStr substringFromIndex:22];
             NSData *decodedImageData = [[NSData alloc] initWithBase64EncodedString:imageStr options:NSDataBase64DecodingIgnoreUnknownCharacters];
             UIImage *decodedImage = [UIImage imageWithData:decodedImageData];
-            self.imgVcodeImageView.image = decodedImage;
+            weakSelf.imgVcodeImageView.image = decodedImage;
         } else {
             
         }
@@ -389,29 +391,30 @@
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
         }
         [SVProgressHUD showWithStatus:@"正在注册..."];
+        WeakSelf;
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                [self.view endEditing:YES];
+                [weakSelf.view endEditing:YES];
                 UGUserModel *user = model.data;
                 if (user.autoLogin) {
                     
-                    [self login];
+                    [weakSelf login];
                 } else {
-                    self.inviterTextF.text = nil;
-                    self.userNameTextF.text = nil;
-                    self.passwordTextF.text = nil;
-                    self.checkPasswordTextF.text = nil;
-                    self.realNameTextF.text = nil;
-                    self.fundPwdTextF.text = nil;
-                    self.QQTextF.text = nil;
-                    self.wechatTextF.text = nil;
-                    self.phoneTextF.text = nil;
-                    self.emailTextF.text = nil;
-                    self.smsVcodeTextF.text = nil;
-                    self.imgVcodeTextF.text = nil;
-                    [self showLogin:nil];
+                    weakSelf.inviterTextF.text = nil;
+                    weakSelf.userNameTextF.text = nil;
+                    weakSelf.passwordTextF.text = nil;
+                    weakSelf.checkPasswordTextF.text = nil;
+                    weakSelf.realNameTextF.text = nil;
+                    weakSelf.fundPwdTextF.text = nil;
+                    weakSelf.QQTextF.text = nil;
+                    weakSelf.wechatTextF.text = nil;
+                    weakSelf.phoneTextF.text = nil;
+                    weakSelf.emailTextF.text = nil;
+                    weakSelf.smsVcodeTextF.text = nil;
+                    weakSelf.imgVcodeTextF.text = nil;
+                    [weakSelf showLogin:nil];
                 }
                 
             } failure:^(id msg) {
@@ -428,6 +431,7 @@
                              };
     
     [SVProgressHUD showWithStatus:@"正在登录..."];
+    WeakSelf;
     [CMNetwork userLoginWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -435,7 +439,7 @@
             UGUserModel *user = model.data;
             UGUserModel.currentUser = user;
             SANotificationEventPost(UGNotificationLoginComplete, nil);
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         } failure:^(id msg) {
             
             [SVProgressHUD showErrorWithStatus:msg];

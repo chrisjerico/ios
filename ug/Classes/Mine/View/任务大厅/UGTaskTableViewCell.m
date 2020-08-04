@@ -247,12 +247,11 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+
     [CMNetwork taskGetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [QDAlertView showWithTitle:@"温馨提示" message:@"领取任务成功"];
             SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
-//            [self getCenterData];
             SANotificationEventPost(@"UGNotificationGetCenterData", nil);
             
         } failure:^(id msg) {
@@ -271,12 +270,11 @@ static NSString *missionCellid = @"UGMissionTableViewCell";
     };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+
     [CMNetwork taskRewardWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [QDAlertView showWithTitle:@"温馨提示" message:@"领取奖励成功"];
             SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
-//            [self getCenterData];
             SANotificationEventPost(@"UGNotificationGetCenterData", nil);
             
         } failure:^(id msg) {

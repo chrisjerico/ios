@@ -81,7 +81,7 @@
                 
                 
             }
-            [self buildSegment];
+            [__self buildSegment];
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];

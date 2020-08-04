@@ -154,6 +154,7 @@
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    WeakSelf;
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
@@ -161,8 +162,8 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            [self stopAnimation];
-            [self setupUserInfo];
+            [weakSelf stopAnimation];
+            [weakSelf setupUserInfo];
         } failure:^(id msg) {
             [self stopAnimation];
         }];

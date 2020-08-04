@@ -186,12 +186,13 @@
 }
 
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
            
-           [self buildSegment];
+           [weakSelf buildSegment];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:nil];
     }];

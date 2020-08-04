@@ -103,12 +103,13 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
 }
 
 - (void)getAddressList {
+    WeakSelf;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [CMNetwork getLoginAddressWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
     
-            self.loginAddressArray = model.data;
-            [self.collectionView reloadData];
+            weakSelf.loginAddressArray = model.data;
+            [weakSelf.collectionView reloadData];
             
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
@@ -151,12 +152,13 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
     }
     
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork modifyLoginAddressWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
             
             if (![UGUserModel currentUser].isTest) {
-               [self getAddressList];
+               [weakSelf getAddressList];
             }
             
             
@@ -175,11 +177,12 @@ static NSString *addressCellId = @"UGAddressCollectionViewCell";
                              @"id":item.addressId
                              };
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork delLoginAddressWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
-            [self.loginAddressArray removeObject:item];
-            [self.collectionView reloadData];
+            [weakSelf.loginAddressArray removeObject:item];
+            [weakSelf.collectionView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
             

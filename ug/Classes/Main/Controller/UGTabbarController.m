@@ -143,6 +143,7 @@ static UGTabbarController *_tabBarVC = nil;
                                  @"pwd":@"46da83e1773338540e1e1c973f6c8a68"
         };
         [SVProgressHUD showWithStatus:nil];
+   
         [CMNetwork guestLoginWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 

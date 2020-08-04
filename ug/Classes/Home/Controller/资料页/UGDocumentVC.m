@@ -221,6 +221,7 @@
 	
 	[SVProgressHUD showWithStatus:nil];
 	DocumentModel * document = self.documentListData[indexPath.row];
+    WeakSelf;
 	[CMNetwork getDocumnetDetailWithParams:@{@"id": document.articleID, @"token": token} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			[SVProgressHUD dismiss];
@@ -260,7 +261,7 @@
                     [alert addAction:[UIAlertAction actionWithTitle:@"确认" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         
                     }]];
-                    [self presentViewController:alert animated:true completion:nil];
+                    [weakSelf presentViewController:alert animated:true completion:nil];
                 }
 				
 			} else if (!documentDetailModel.hasPay) {
@@ -340,10 +341,10 @@
                                 [SVProgressHUD showInfoWithStatus:model.msg];
                             }];
                         }]];
-                        [self presentViewController:alert animated:true completion:nil];
+                        [weakSelf presentViewController:alert animated:true completion:nil];
                     }]];
                     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-                    [self presentViewController:alert animated:true completion:nil];
+                    [weakSelf presentViewController:alert animated:true completion:nil];
                 }
 			}
 		}];

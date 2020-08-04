@@ -165,6 +165,7 @@
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"activityId":pzdid,
     };
+    WeakSelf;
     [CMNetwork activityTurntableLogWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 
         [CMResult processWithResult:model success:^{
@@ -179,7 +180,7 @@
 
                     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         // 需要在主线程执行的代码
-                         self.twoView.dataArray =  data;
+                         weakSelf.twoView.dataArray =  data;
                     });
     
                 }

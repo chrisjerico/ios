@@ -243,14 +243,14 @@
                                  @"money":amount,
                                  @"token":[UGUserModel currentUser].sessid,
         };
-        
+        WeakSelf;
         [CMNetwork manualTransferWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 SANotificationEventPost(UGNotificationGetUserInfo, nil);
-                self.moneyLabel1.text = nil;
-                self.moneyLabel2.text = nil;
-                self.moneyTxt.text = nil;
+                weakSelf.moneyLabel1.text = nil;
+                weakSelf.moneyLabel2.text = nil;
+                weakSelf.moneyTxt.text = nil;
                 
                 if (!outModel || !intModel)
                     SANotificationEventPost(UGNotificationGetUserInfo, nil);
@@ -258,7 +258,7 @@
                 // 刷新ui
                 intModel.balance = [AppDefine stringWithFloat:(intModel.balance.doubleValue + amount.doubleValue) decimal:4];
                 outModel.balance = [AppDefine stringWithFloat:(outModel.balance.doubleValue - amount.doubleValue) decimal:4];
-                [self.lineCollection reloadData];
+                [weakSelf.lineCollection reloadData];
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
             }];
@@ -277,6 +277,7 @@
         // UI更新代码
         [cell animationFunction ];
     });
+    WeakSelf;
     [CMNetwork checkRealBalanceWithParams:parmas completion:^(CMResult<id> *model, NSError *err) {
         
         [CMResult processWithResult:model success:^{
@@ -289,7 +290,7 @@
                 [cell animationFunction ];
                 NSMutableArray *indexPaths = [NSMutableArray array];
                 [indexPaths addObject:index];
-                [self.lineCollection reloadItemsAtIndexPaths:indexPaths];
+                [weakSelf.lineCollection reloadItemsAtIndexPaths:indexPaths];
             });
             
             
@@ -301,7 +302,7 @@
                 [cell animationFunction ];
                 NSMutableArray *indexPaths = [NSMutableArray array];
                 [indexPaths addObject:index];
-                [self.lineCollection reloadItemsAtIndexPaths:indexPaths];
+                [weakSelf.lineCollection reloadItemsAtIndexPaths:indexPaths];
             });
         }];
         

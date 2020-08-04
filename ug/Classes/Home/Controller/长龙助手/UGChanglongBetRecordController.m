@@ -68,11 +68,12 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
                              @"gameId":@"",
 							 @"tag":@"1"
                              };
+    WeakSelf;
     [CMNetwork getChanglongBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = model.data;
-            [self.tableView reloadData];
+            weakSelf.dataArray = model.data;
+            [weakSelf.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

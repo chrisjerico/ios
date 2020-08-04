@@ -313,7 +313,7 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             if (weakSelf.typeid) {
-                [self.dataArray removeAllObjects];
+                [weakSelf.dataArray removeAllObjects];
             }
             
             NSMutableArray <UGMissionModel *> *tempdataArray = [NSMutableArray new];
@@ -415,8 +415,8 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                 
             }
             
-            self.dataArray = enddataArray;
-            [self.tableView reloadData];
+            weakSelf.dataArray = enddataArray;
+            [weakSelf.tableView reloadData];
             
         } failure:^(id msg) {
             
@@ -437,12 +437,12 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
     };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork taskGetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [QDAlertView showWithTitle:@"温馨提示" message:@"领取任务成功"];
             SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
-            [self getCenterData];
+            [weakSelf getCenterData];
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -460,12 +460,12 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
     };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork taskRewardWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [QDAlertView showWithTitle:@"温馨提示" message:@"领取奖励成功"];
             SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
-            [self getCenterData];
+            [weakSelf getCenterData];
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];

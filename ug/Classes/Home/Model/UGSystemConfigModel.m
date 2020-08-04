@@ -296,6 +296,7 @@ UGSystemConfigModel *currentConfig = nil;
     }
     else if (self.type == MM_真人视讯 || self.type == MM_棋牌电子) {
         [SVProgressHUD showWithStatus:nil];
+        WeakSelf;
         [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD dismiss];
@@ -308,10 +309,10 @@ UGSystemConfigModel *currentConfig = nil;
                     temp;
                 });
                 UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-                vc.title = self.name;
-                if (self.type == MM_真人视讯) {
+                vc.title = weakSelf.name;
+                if (weakSelf.type == MM_真人视讯) {
                     vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"real" keyPath:@"category"].games error:nil];    // 真人
-                } else if (self.type == MM_棋牌电子) {
+                } else if (weakSelf.type == MM_棋牌电子) {
                     NSMutableArray *temp = @[].mutableCopy;
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"card" keyPath:@"category"].games error:nil]];    // 棋牌
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"game" keyPath:@"category"].games error:nil]];    // 电子

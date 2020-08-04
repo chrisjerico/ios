@@ -336,7 +336,7 @@
 //            NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
             
             if (weakSelf.checkinListModel.checkinSwitch) {
-                [self createUI];
+                [weakSelf createUI];
                 //
             }
         } failure:^(id msg) {
@@ -355,12 +355,12 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork checkinBonusWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             [AlertHelper showAlertView:@"温馨提示" msg:model.msg btnTitles:@[@"确认"]];
-            [self getCheckinListData];
+            [weakSelf getCheckinListData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -380,12 +380,12 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork checkinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             [AlertHelper showAlertView:@"温馨提示" msg:model.msg btnTitles:@[@"确认"]];
-            [self getCheckinListData];
+            [weakSelf getCheckinListData];
             
             SANotificationEventPost(UGNotificationGetUserInfo, nil);
         } failure:^(id msg) {
@@ -400,14 +400,12 @@
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork checkinHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self.historyDataArray = model.data;
-            NSLog(@"_historyDataArray = %@",self.historyDataArray);
-            NSLog(@"model.data = %@",model.data);
-            [self showUGSignInHistoryView];
+            weakSelf.historyDataArray = model.data;
+            [weakSelf showUGSignInHistoryView];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

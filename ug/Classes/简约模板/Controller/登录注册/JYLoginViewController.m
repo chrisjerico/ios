@@ -33,6 +33,7 @@
 @property (nonatomic, strong) WKWebView *webView;                                   /**<   加载阿里的web条*/
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;                       /**<  验证码 */
 @property (nonatomic, assign) NSInteger errorTimes;                                 /**<   */
+@property (nonatomic, strong) NSString *gCheckUserName;
 
 @end
 
@@ -141,7 +142,7 @@
             
         }
         [SVProgressHUD showWithStatus:@"正在登录..."];
-    
+        WeakSelf;
         [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
             
             
@@ -175,7 +176,7 @@
                 
                 for (int i= 0; i<simplePwds.count; i++) {
                     NSString *str = [simplePwds objectAtIndex:i];
-                    if ([self.passwordTextF.text isEqualToString:str]) {
+                    if ([weakSelf.passwordTextF.text isEqualToString:str]) {
  
                         isGoRoot = NO;
                         break;
@@ -183,12 +184,12 @@
                 }
               
                 if (isGoRoot) {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                 } else {
                     [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
                     UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
                     vc.fromVC = @"fromLoginViewController";
-                    [self.navigationController pushViewController:vc animated:YES];
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
                
             } failure:^(id msg) {
@@ -196,10 +197,10 @@
               
                 
             
-                self.errorTimes += 1;
-                if (self.errorTimes == 4) {
-                    self.webBgView.hidden = NO;
-                    self.webBgViewHeightConstraint.constant = 120;
+                weakSelf.errorTimes += 1;
+                if (weakSelf.errorTimes == 4) {
+                    weakSelf.webBgView.hidden = NO;
+                    weakSelf.webBgViewHeightConstraint.constant = 120;
                 }
                 
                 UGUserModel *user = (UGUserModel*) model.data;
@@ -208,18 +209,18 @@
                 
                 if (intGgCheck == 1) {
                     
-                    self->gCheckUserName = self.userNameTextF.text;
-                   [self showLeeView];
+                    weakSelf.gCheckUserName = self.userNameTextF.text;
+                   [weakSelf showLeeView];
                 }
-                if ([self.userNameTextF.text isEqualToString:self->gCheckUserName]) {
+                if ([weakSelf.userNameTextF.text isEqualToString:weakSelf.gCheckUserName]) {
                     
-                    [self showLeeView];
+                    [weakSelf showLeeView];
                     
                 }
                
-                if (self.webBgView.hidden == NO) {
-                    [self.webView reload];
-                    self.imgVcodeModel = nil;
+                if (weakSelf.webBgView.hidden == NO) {
+                    [weakSelf.webView reload];
+                    weakSelf.imgVcodeModel = nil;
                 }
                 
                 [SVProgressHUD showErrorWithStatus:msg];
