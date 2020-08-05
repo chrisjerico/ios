@@ -167,6 +167,10 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon removeLastGengHao];
         [__self getUserInfo];
+        // 通知RN
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            [ReactNativeHelper sendEvent:UGNotificationLoginComplete params:UserI];
+        }];
     });
     // 退出登陆
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
@@ -181,6 +185,10 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon deleteWebCache];
         [CMCommon removeLastGengHao];
+        // 通知RN
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            [ReactNativeHelper sendEvent:UGNotificationUserLogout params:UserI];
+        }];
     });
     // 登录超时
     SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
