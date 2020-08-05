@@ -510,7 +510,17 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         if (self.gameDataArray.count) {
              UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
             if ([@"DWD" isEqualToString:model.code]) {
-                 return 4;
+                UGGameplaySectionModel *group = [model.list objectAtIndex:self.segmentIndex];
+                if ([group.alias isEqualToString:@"复式"]) {
+                    return 4;
+                }
+                else if ([group.alias isEqualToString:@"组选3"]) {
+                    return 3;
+                }
+                else{
+                    return 2;
+                }
+                 
             } else {
                  return model.list.count;
             }
@@ -526,6 +536,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     if (collectionView == self.betCollectionView) {
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = model.list[section];
+        
+        if ([@"三字定位" isEqualToString:model.name] && section == 0) {
+            return 0;
+        }
         return type.list.count;
     }else {
         if (section == 0) {
