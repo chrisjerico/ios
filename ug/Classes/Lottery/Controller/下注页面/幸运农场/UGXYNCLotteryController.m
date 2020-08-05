@@ -228,9 +228,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     WeakSelf;
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.nextIssueModel = model.data;
+            weakSelf.nextIssueModel = model.data;
             if (weakSelf.nextIssueModel) {
-                if (OBJOnceToken(self)) {
+                if (OBJOnceToken(weakSelf)) {
                     [weakSelf getLotteryHistory ];
                 }
             }
@@ -249,7 +249,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
-            self.gameDataArray = play.playOdds.mutableCopy;
+            weakSelf.gameDataArray = play.playOdds.mutableCopy;
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     for (UGGameBetModel *gbm in gsm.lhcOddsArray){
@@ -269,7 +269,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
             }
             //连码
-            for (UGGameplayModel *model in self.gameDataArray) {
+            for (UGGameplayModel *model in weakSelf.gameDataArray) {
                 if ([@"连码" isEqualToString:model.name]) {
                     for (UGGameplaySectionModel *type in model.list) {
 //                        if ([type.alias  hasPrefix:@"任选"]) {
@@ -280,7 +280,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
             }
             [weakSelf handleData];
-            weakSelf.segmentView.dataArray = self.lmgmentTitleArray;
+            weakSelf.segmentView.dataArray = weakSelf.lmgmentTitleArray;
             
             [weakSelf.tableView reloadData];
             [weakSelf.betCollectionView reloadData];
@@ -328,10 +328,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [self.amountTextF resignFirstResponder];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
+            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:weakSelf.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
             popView.fontSize = 14;
             popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
+            [popView showRelyOnView:weakSelf.chipButton];
         });
     }else {
         YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];

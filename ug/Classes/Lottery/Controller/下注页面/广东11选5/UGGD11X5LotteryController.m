@@ -259,7 +259,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			weakSelf.gameDataArray = play.playOdds.mutableCopy;
             weakSelf.lmgmentTitleArray  = [NSMutableArray new];
             weakSelf.zxgmentTitleArray  = [NSMutableArray new];
-			for (UGGameplayModel *model in self.gameDataArray) {
+			for (UGGameplayModel *model in weakSelf.gameDataArray) {
 				if ([@"连码" isEqualToString:model.name]) {
 					for (UGGameplaySectionModel *type in model.list) {
 						[weakSelf.lmgmentTitleArray addObject:type.alias];
@@ -281,11 +281,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     if (!gsm.enable)
-                        [self.gameDataArray removeObject:gm];
+                        [weakSelf.gameDataArray removeObject:gm];
                 }
             }
 			[weakSelf handleData];
-			weakSelf.segmentView.dataArray = self.lmgmentTitleArray;
+			weakSelf.segmentView.dataArray = weakSelf.lmgmentTitleArray;
 			[weakSelf.tableView reloadData];
 			[weakSelf.betCollectionView reloadData];
 			[weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];

@@ -291,7 +291,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             weakSelf.nextIssueModel = model.data;
             
-            NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+            NSLog(@"self.nextIssueModel = %@",weakSelf.nextIssueModel);
             if (weakSelf.nextIssueModel) {
                 if (OBJOnceToken(weakSelf)) {
                     [weakSelf getLotteryHistory ];
@@ -319,7 +319,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         
             UGPlayOddsModel *play = model.data;
             weakSelf.playOddsModel = play;
-            [weakSelf.rightStackView addSubview:self.zodiacScrollView];
+            [weakSelf.rightStackView addSubview:weakSelf.zodiacScrollView];
           
             
             [weakSelf initBetCollectionView];
@@ -368,7 +368,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 weakSelf.zodiacScrollView.hidden = false;
                 weakSelf.segmentView.hidden = NO;
             }
-            weakSelf.segmentView.dataArray = self.tmTitleArray;
+            weakSelf.segmentView.dataArray = weakSelf.tmTitleArray;
             [weakSelf.tableView reloadData];
             [weakSelf.betCollectionView reloadData];
             [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -1725,9 +1725,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 BOOL selected = sender.selected = !sender.selected;
                 NSInteger cnt = 0;
                 
-                NSArray<UGZodiacModel> *array =  self.playOddsModel.setting.zodiacNums;
+                NSArray<UGZodiacModel> *array =  __self.playOddsModel.setting.zodiacNums;
                 
-                NSLog(@"self.playOddsModel= %@",self.playOddsModel);
+                NSLog(@"self.playOddsModel= %@",__self.playOddsModel);
                 NSMutableArray *nums = [NSMutableArray new];
                 for (UGZodiacModel *ob in array) {
                     if ([ob.name isEqualToString:titles[i]]) {
@@ -1739,11 +1739,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
                 
                 UGGameplayModel *gm = __self.gameDataArray[__self.typeIndexPath.row];
-                NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
+                NSString *tl =  [__self.tmTitleArray objectAtIndex:__self.segmentIndex];
                 UGGameplaySectionModel *gsm = [gm.list objectWithValue:tl keyPath:@"name"];
                 for (UGGameBetModel *gbm in gsm.list) {
                     //                    if ([gbm.name isInteger] && (gbm.name.intValue-1)%12 == 12-1-i)
-                    NSString *rs = [self conversionInt:gbm.name];
+                    NSString *rs = [__self conversionInt:gbm.name];
                     if ([gbm.name isInteger] && [nums containsObject:rs])
                         gbm.select = selected;
                     if (gbm.select)
@@ -1764,7 +1764,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 for (UIButton *btn in btns) {
                     btn.selected = true;
                 }
-                NSString *tl =  [self.tmTitleArray objectAtIndex:self.segmentIndex];
+                NSString *tl =  [__self.tmTitleArray objectAtIndex:__self.segmentIndex];
                 UGGameplaySectionModel *gsm = [gm.list objectWithValue:tl keyPath:@"name"];
                 for (UGGameBetModel *gbm in gsm.list) {
                     if (!gbm.select) {

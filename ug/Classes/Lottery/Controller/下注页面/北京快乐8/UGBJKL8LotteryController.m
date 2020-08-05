@@ -219,7 +219,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     WeakSelf;
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.nextIssueModel = model.data;
+            weakSelf.nextIssueModel = model.data;
             if (weakSelf.nextIssueModel) {
                 if (OBJOnceToken(weakSelf)) {
                     [weakSelf getLotteryHistory ];
@@ -239,7 +239,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
-            self.gameDataArray = play.playOdds.mutableCopy;
+            weakSelf.gameDataArray = play.playOdds.mutableCopy;
             for (UGGameplayModel *gm in play.playOdds) {
                 for (UGGameplaySectionModel *gsm in gm.list) {
                     for (UGGameBetModel *gbm in gsm.lhcOddsArray){

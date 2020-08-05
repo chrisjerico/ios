@@ -288,7 +288,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
             
             //连码
-            for (UGGameplayModel *model in self.gameDataArray) {
+            for (UGGameplayModel *model in weakSelf.gameDataArray) {
                 if ([@"官方玩法" isEqualToString:model.name]) {
                     NSLog(@"model.list= %@",model.list);
                     for (UGGameplaySectionModel *type in model.list) {

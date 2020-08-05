@@ -104,7 +104,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGengHaoBtn) name:@"resetGengHaoBtn"object:nil];
 
-
+    __weakSelf_(__self);
     FastSubViewCode(self.view);
     {
         // 背景色
@@ -292,10 +292,10 @@
         subButton(@"追号btn").layer.masksToBounds = YES;
         
         [subButton(@"追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
+            if ([CMCommon hasGengHao:__self.nextIssueModel.gameId]) {
                 NSDictionary *lastGengHao = [CMCommon LastGengHao];
                 NSMutableArray *objArray = [UGGameBetModel mj_objectArrayWithKeyValuesArray:lastGengHao[@"array"]];
-                [self goUGBetDetailViewObjArray:objArray dicArray:lastGengHao[@"array"] issueModel:self.nextIssueModel gameType:lastGengHao[@"gameId"] selCode:lastGengHao[@"selCode"]];
+                [__self goUGBetDetailViewObjArray:objArray dicArray:lastGengHao[@"array"] issueModel:__self.nextIssueModel gameType:lastGengHao[@"gameId"] selCode:lastGengHao[@"selCode"]];
             }
             
         }];
@@ -312,7 +312,7 @@
 //拖动条
 - (void )sliderViewInit {
     
-    
+    __weakSelf_(__self);
     self.slider = [[MGSlider alloc] initWithFrame:CGRectMake(150, 5,150 , 50)];
 //    self.slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
     self.slider.thumbSize = CGSizeMake(40, 40);//锚点的大小
@@ -327,7 +327,7 @@
     [self.bottomView addSubview:self.slider];
     [self.slider changeValue:^(CGFloat value) {
         NSLog(@">>>>>>>>>>>>>>>>>>>>>拖动==== %f", value);
-        [self setRebateAndSliderLB:value];
+        [__self setRebateAndSliderLB:value];
         
     } endValue:^(CGFloat value) {
 
@@ -646,7 +646,7 @@
            
             weakSelf.zuiHaoIssueModel = (UGNextIssueModel *)model.data;
             
-            NSLog(@"zuiHaoIssueModel = %@",self.zuiHaoIssueModel);
+            NSLog(@"zuiHaoIssueModel = %@",weakSelf.zuiHaoIssueModel);
              
            
         } failure:^(id msg) {

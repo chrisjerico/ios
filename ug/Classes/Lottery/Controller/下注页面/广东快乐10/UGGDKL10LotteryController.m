@@ -255,7 +255,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             weakSelf.nextIssueModel = model.data;
             if (weakSelf.nextIssueModel) {
-                if (OBJOnceToken(self)) {
+                if (OBJOnceToken(weakSelf)) {
                     [weakSelf getLotteryHistory ];
                 }
             }
@@ -274,7 +274,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [CMResult processWithResult:model success:^{
             UGPlayOddsModel *play = model.data;
             weakSelf.gameDataArray = play.playOdds.mutableCopy;
-            for (UGGameplayModel *model in self.gameDataArray) {
+            for (UGGameplayModel *model in weakSelf.gameDataArray) {
                 if ([@"连码" isEqualToString:model.name]) {
                     for (UGGameplaySectionModel *type in model.list) {
                         [weakSelf.segmentTitleArray addObject:type.alias];
@@ -350,12 +350,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (IBAction)chipClick:(id)sender {
     if (self.amountTextF.isFirstResponder) {
         [self.amountTextF resignFirstResponder];
+        __weakSelf_(__self);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
+            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
             popView.fontSize = 14;
             popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
+            [popView showRelyOnView:__self.chipButton];
         });
     }else {
         YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
