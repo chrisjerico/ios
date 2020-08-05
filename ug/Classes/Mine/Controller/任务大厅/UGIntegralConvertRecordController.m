@@ -170,7 +170,7 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
              [weakSelf.tableDataArray addObjectsFromArray:array];
 
             
-            NSLog(@"tableDataArray = %@",self.tableDataArray);
+            NSLog(@"tableDataArray = %@",weakSelf.tableDataArray);
             [weakSelf.tableView reloadData];
             if (array.count < weakSelf.pageSize) {
                         [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];

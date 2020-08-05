@@ -105,7 +105,7 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
             
             [weakSelf.dataArray addObjectsFromArray:array];
             [weakSelf.tableView reloadData];
-            if (array.count < self.pageSize) {
+            if (array.count < weakSelf.pageSize) {
                 [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
                 [weakSelf.tableView.mj_footer setHidden:YES];
             }else{

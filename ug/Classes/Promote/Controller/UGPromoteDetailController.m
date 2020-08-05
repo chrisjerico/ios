@@ -15,18 +15,17 @@
 #import "UGMosaicGoldViewController.h"
 
 @interface UGPromoteDetailController ()<UIWebViewDelegate>
-{
-    
-    CGFloat labelH;
-    CGFloat ImgH ;
-    CGFloat webH ;
-}
-@property (strong, nonatomic) UILabel *titleLabel;
 
-@property (strong, nonatomic) UIScrollView *mUIScrollView;
+@property (nonatomic, assign) CGFloat labelH;
+@property (nonatomic, assign) CGFloat ImgH;
+@property (nonatomic, assign) CGFloat webH;
 
-@property (strong, nonatomic) UITextView *contentTextView;
-@property (strong, nonatomic) UIWebView *myWebView;
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) UIScrollView *mUIScrollView;
+
+@property (nonatomic, strong) UITextView *contentTextView;
+@property (nonatomic, strong) UIWebView *myWebView;
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
 @property (nonatomic, strong) FLAnimatedImageView *mimgView;
 
@@ -48,9 +47,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    labelH = 1;
-    ImgH = 1;
-    webH = 1500;
+    _labelH = 1;
+    _ImgH = 1;
+    _webH = 1500;
     //-滚动面版======================================
     if (_mUIScrollView == nil) {
         UIScrollView *mUIScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0,0, UGScreenW , UGScerrnH -IPHONE_SAFEBOTTOMAREA_HEIGHT-k_Height_NavBar)];
@@ -124,16 +123,16 @@
     }
     
     
-    
+    __weakSelf_(__self);
     [self.activity startAnimating];
     NSString *str = _NSString(@"<head><style>body{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", self.item.content);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.activity stopAnimating];
-            //            self.contentTextView.attributedText = mas;
+            [__self.activity stopAnimating];
+            //            __self.contentTextView.attributedText = mas;
             // 加载本地HTML字符串
-            [self.myWebView loadHTMLString:str baseURL:[[NSBundle mainBundle] bundleURL]];
+            [__self.myWebView loadHTMLString:str baseURL:[[NSBundle mainBundle] bundleURL]];
             
             
         });
@@ -180,7 +179,7 @@
                make.top.equalTo(self.view.mas_top).offset(labelY);
            }];
            
-           labelH = [_titleLabel.text heightForFont:[UIFont systemFontOfSize:17] width:labelW] + 16;
+           _labelH = [_titleLabel.text heightForFont:[UIFont systemFontOfSize:17] width:labelW] + 16;
            
        }
        
@@ -206,7 +205,7 @@
                    make.height.mas_equalTo(h);
                }];
                
-               ImgH = h+8;
+               _ImgH = h+8;
                
            }
        }
@@ -265,20 +264,20 @@
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    
+    __weakSelf_(__self);
     if ([keyPath isEqualToString:@"contentSize"]) {
         NSLog(@"得到监听");
         dispatch_async(dispatch_get_main_queue(), ^{
-            CGFloat contentHeight  = self->_myWebView.scrollView.contentSize.height;
-//            self.myWebView.cc_constraints.height.constant = contentHeight;
-//            self->webH = contentHeight =3000;
-//            self.myWebView.scrollView.scrollEnabled = NO;
-            self.mUIScrollView.contentSize = CGSizeMake(APP.Width, self->labelH + self->ImgH + contentHeight +110);
-            self.mUIScrollView.scrollEnabled = YES;
+            CGFloat contentHeight  = __self.myWebView.scrollView.contentSize.height;
+//            __self.myWebView.cc_constraints.height.constant = contentHeight;
+//            __self.webH = contentHeight =3000;
+//            __self.myWebView.scrollView.scrollEnabled = NO;
+            __self.mUIScrollView.contentSize = CGSizeMake(APP.Width, __self.labelH + __self.ImgH + contentHeight +110);
+            __self.mUIScrollView.scrollEnabled = YES;
             NSLog(@"WebcontentHeight= %f",contentHeight);
-            NSLog(@"web.fromH = %f",self->_myWebView.frame.size.height);
-            NSLog(@"self.mUIScrollView.contentSize = %f",self.mUIScrollView.contentSize.height);
-              NSLog(@"self.mUIScrollView.fromH = %f",self.mUIScrollView.frame.size.height);
+            NSLog(@"web.fromH = %f",__self.myWebView.frame.size.height);
+            NSLog(@"self.mUIScrollView.contentSize = %f",__self.mUIScrollView.contentSize.height);
+              NSLog(@"self.mUIScrollView.fromH = %f",__self.mUIScrollView.frame.size.height);
 
         });
 

@@ -257,7 +257,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             weakSelf.nextIssueModel = model.data;
             if (weakSelf.nextIssueModel) {
                 if (OBJOnceToken(weakSelf)) {
-                    [self getLotteryHistory ];
+                    [weakSelf getLotteryHistory ];
                 }
             }
             [weakSelf showAdPoppuView:model.data];
@@ -279,7 +279,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             UGPlayOddsModel *play = model.data;
             NSLog(@"model.data = %@",model.data);
             weakSelf.gameDataArray = play.playOdds.mutableCopy;
-            for (UGGameplayModel *model in self.gameDataArray) {
+            for (UGGameplayModel *model in weakSelf.gameDataArray) {
                 if ([@"一字定位" isEqualToString:model.name]) {
                     for (UGGameplaySectionModel *type in model.list) {
                         [weakSelf.yzgmentTitleArray addObject:type.alias];
@@ -317,7 +317,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
             }
             [weakSelf handleData];
-            weakSelf.segmentView.dataArray = self.yzgmentTitleArray;
+            weakSelf.segmentView.dataArray = weakSelf.yzgmentTitleArray;
             [weakSelf.tableView reloadData];
             [weakSelf.betCollectionView reloadData];
             [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -367,14 +367,15 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 
 - (IBAction)chipClick:(id)sender {
+    __weakSelf_(__self);
     if (self.amountTextF.isFirstResponder) {
         [self.amountTextF resignFirstResponder];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
+            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
             popView.fontSize = 14;
             popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
+            [popView showRelyOnView:__self.chipButton];
         });
     }else {
         YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
@@ -703,10 +704,10 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
           self.segmentView.hidden = YES;
           
       }
-        
+        __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.betCollectionView reloadData];
-            [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
+            [__self.betCollectionView reloadData];
+            [__self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
         });
 
 

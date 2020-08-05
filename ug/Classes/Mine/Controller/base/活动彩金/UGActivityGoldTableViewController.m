@@ -129,7 +129,7 @@
             //数组转模型数组
             weakSelf.dataArray = [UGActivityGoldModel arrayOfModelsFromDictionaries:list error:nil];
             
-            NSLog(@"self.dataArray = %@",self.dataArray);
+            NSLog(@"self.dataArray = %@",weakSelf.dataArray);
             [weakSelf.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];

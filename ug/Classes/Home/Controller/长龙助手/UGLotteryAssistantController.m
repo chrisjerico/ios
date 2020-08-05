@@ -129,7 +129,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 - (void)getChanglong {
     __weakSelf_(__self);
     [CMNetwork getChanglongWithParams:@{@"id":@"60"} completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
+        [__self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             if (model.data) {
                 __self.dataArray = model.data;

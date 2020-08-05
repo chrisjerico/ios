@@ -127,10 +127,10 @@
 - (void)getPlatformGamesWithParams {
     WeakSelf;
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
-           [Global getInstanse].lotterydataArray = self.dataArray = model.data;
+           [Global getInstanse].lotterydataArray = weakSelf.dataArray = model.data;
             [weakSelf.collectionView reloadData];
         } failure:^(id msg) {
         }];

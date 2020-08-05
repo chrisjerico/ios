@@ -245,9 +245,9 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 			[SVProgressHUD dismiss];
 			__self.dataArray = model.data;
 			[__self.transferArray addObject:@"我的钱包"];
-			for (UGPlatformGameModel *game in self.dataArray) {
+			for (UGPlatformGameModel *game in __self.dataArray) {
 				[__self.transferArray addObject:game.title];
-				//                [self checkRealBalance:game];
+				//                [__self checkRealBalance:game];
 			}
 			[__self.tableView reloadData];
 		} failure:^(id msg) {
@@ -260,6 +260,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 	NSDictionary *parmas = @{@"id":game.gameId,
 							 @"token":[UGUserModel currentUser].sessid
 	};
+    __weakSelf_(__self);
 	[CMNetwork checkRealBalanceWithParams:parmas completion:^(CMResult<id> *model, NSError *err) {
 		
 		[CMResult processWithResult:model success:^{
@@ -270,7 +271,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 			[SVProgressHUD dismiss];
 		}];
 		game.refreshing = NO;
-		[self.tableView reloadData];
+		[__self.tableView reloadData];
 	}];
 	
 }

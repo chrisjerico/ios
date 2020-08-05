@@ -68,20 +68,20 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     WeakSelf
     __block BOOL isok = YES;
     [self.underMenu.showBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        if (OBJOnceToken(self)) {
-            self.underMenu.oldFrame = self.underMenu.frame;
+        if (OBJOnceToken(weakSelf)) {
+            weakSelf.underMenu.oldFrame = weakSelf.underMenu.frame;
         }
         if (isok) {
             [UIView animateWithDuration:0.35 animations:^{
                 weakSelf.underMenu.y = weakSelf.underMenu.oldFrame.origin.y -(96-36);
-                self.underMenu.arrowImg.transform = CGAffineTransformMakeRotation(M_PI*2);//旋转
+                weakSelf.underMenu.arrowImg.transform = CGAffineTransformMakeRotation(M_PI*2);//旋转
             } completion:^(BOOL finished) {
                 isok = NO;
             }];
         } else {
             [UIView animateWithDuration:0.35 animations:^{
                 weakSelf.underMenu.y =  weakSelf.underMenu.oldFrame.origin.y;
-                self.underMenu.arrowImg.transform = CGAffineTransformMakeRotation(M_PI*1);//旋转
+                weakSelf.underMenu.arrowImg.transform = CGAffineTransformMakeRotation(M_PI*1);//旋转
             } completion:^(BOOL finished) {
                 isok = YES;
             }];
@@ -160,7 +160,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
             
             [weakSelf.dataArray addObjectsFromArray:array];
             [weakSelf.tableView reloadData];
-            if (array.count < self.pageSize) {
+            if (array.count < weakSelf.pageSize) {
                 [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
                 [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
@@ -237,7 +237,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     UGMessageModel *model = self.dataArray[indexPath.row];
     //    [QDAlertView showWithTitle:model.title message:model.content];
     
-    
+    __weakSelf_(__self);
     if (Skin1.isBlack) {
         [LEEAlert alert].config
         .LeeAddTitle(^(UILabel *label) {
@@ -270,7 +270,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
         })
         .LeeHeaderColor(Skin1.bgColor)
         .LeeAction(@"确定", ^{//站内信已读
-            [self readMsg:model.messageId];
+            [__self readMsg:model.messageId];
         })
         .LeeShow(); // 设置完成后 别忘记调用Show来显示
     } else {
@@ -282,7 +282,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
         })
         .LeeAction(@"确定", ^{//站内信已读
             
-            [self readMsg:model.messageId];
+            [__self readMsg:model.messageId];
         })
         .LeeShow(); // 设置完成后 别忘记调用Show来显示
     }

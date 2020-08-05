@@ -291,7 +291,7 @@
 }
 //每个单元格的e内容
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    __weakSelf_(__self);
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
            //6 == 按钮
@@ -338,7 +338,7 @@
                
                 if ([model.is_setting isEqualToString:@"1"]) {
                     //去充值
-                    [self showUGPormotionUserInfoViewWithModel:model];
+                    [__self showUGPormotionUserInfoViewWithModel:model];
                     
                 } else {
 
@@ -984,7 +984,7 @@
             NSArray *array = [UGdepositListModel arrayOfModelsFromDictionaries:list error:nil];
             [weakSelf.dataArray addObjectsFromArray:array];
             [weakSelf.tableView reloadData];
-            if (array.count < self.pageSize) {
+            if (array.count < weakSelf.pageSize) {
               [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
               [weakSelf.tableView.mj_footer setHidden:YES];
             } else {

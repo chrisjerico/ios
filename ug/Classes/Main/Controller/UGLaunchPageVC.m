@@ -272,7 +272,6 @@
             [__self.view insertSubview:vc.view atIndex:0];
         }
         
-        __weakSelf_(__self);
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             [JSPatchHelper waitUpdateFinish:^{
                 __self.waitReactNative = false;
@@ -296,7 +295,6 @@
             [__self addChildViewController:vc];
             [__self.view insertSubview:vc.view atIndex:0];
 
-            __weakSelf_(__self);
             [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
                 __self.waitReactNative = false;
                 [__self updateTips];

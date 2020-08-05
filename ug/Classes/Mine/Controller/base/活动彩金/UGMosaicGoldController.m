@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
+    __weakSelf_(__self);
     self.tableView.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) :Skin1.textColor4;
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -32,7 +32,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 120, 0);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self activityWinApplyList];
+        [__self activityWinApplyList];
     }];
     [self activityWinApplyList];
 }
@@ -56,7 +56,7 @@
        }
     WeakSelf;
     [CMNetwork activityWinApplyListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
@@ -67,7 +67,7 @@
             //数组转模型数组
             weakSelf.dataArray = [UGMosaicGoldModel arrayOfModelsFromDictionaries:list error:nil];
             
-            NSLog(@"self.dataArray = %@",self.dataArray);
+            NSLog(@"self.dataArray = %@",weakSelf.dataArray);
             [weakSelf.tableView reloadData];
         } failure:^(id msg) {
              [SVProgressHUD showErrorWithStatus:msg];

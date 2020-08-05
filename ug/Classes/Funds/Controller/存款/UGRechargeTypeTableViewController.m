@@ -122,17 +122,17 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 //            NSLog(@"odel.data = %@",model.data);
             
             NSLog(@"转账提示 = %@",weakSelf.mUGdepositModel.depositPrompt);
-//            self.tableViewDataArray = self.mUGdepositModel.payment;
+//            weakSelf.tableViewDataArray = weakSelf.mUGdepositModel.payment;
             NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
             [waitQueue addOperationWithBlock:^{
-                for (int i = 0; i<self.mUGdepositModel.payment.count; i++) {
+                for (int i = 0; i<weakSelf.mUGdepositModel.payment.count; i++) {
                     
-                    UGpaymentModel *uGpaymentModel =  (UGpaymentModel*)[self.mUGdepositModel.payment objectAtIndex:i];
+                    UGpaymentModel *uGpaymentModel =  (UGpaymentModel*)[weakSelf.mUGdepositModel.payment objectAtIndex:i];
                     if(![CMCommon arryIsNull:uGpaymentModel.channel]){
-                        [self.tableViewDataArray addObject:uGpaymentModel];
-                        uGpaymentModel.quickAmount = self.mUGdepositModel.quickAmount;
-                        uGpaymentModel.transferPrompt = self.mUGdepositModel.transferPrompt;
-                        uGpaymentModel.depositPrompt = self.mUGdepositModel.depositPrompt;
+                        [weakSelf.tableViewDataArray addObject:uGpaymentModel];
+                        uGpaymentModel.quickAmount = weakSelf.mUGdepositModel.quickAmount;
+                        uGpaymentModel.transferPrompt = weakSelf.mUGdepositModel.transferPrompt;
+                        uGpaymentModel.depositPrompt = weakSelf.mUGdepositModel.depositPrompt;
                     }
                 }
                 // 同步到主线程
