@@ -277,7 +277,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 float amountfloat = [__self.amount floatValue];
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
                 
-                if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
+                if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat) && ![__self isSpecialRule]) {
                     
                     if (Skin1.isBlack||Skin1.is23) {
                         [LEEAlert alert].config
@@ -336,6 +336,26 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             }
         }];
     }];
+}
+
+// 是否特殊玩法（特殊玩法不能分享）
+- (BOOL)isSpecialRule {
+    // 特殊玩法
+    NSDictionary *dict = @{
+        @"连码":@1,
+        @"连肖连尾":@1,
+        @"连肖":@1,
+        @"连尾":@1,
+        @"官方玩法":@1,
+        @"合肖":@1,
+        @"直选":@1,
+        @"自选不中":@1,
+        @"一字定位":@1,
+        @"二字定位":@1,
+        @"三字定位":@1,
+        @"定位胆":@1,
+    };
+    return  dict[self.dataArray.firstObject.typeName];
 }
 
 -(NSMutableDictionary *)shareBettingData{

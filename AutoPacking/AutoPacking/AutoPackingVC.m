@@ -111,25 +111,16 @@
 // 登录
 - (void)login:(NSString *)username pwd:(NSString *)pwd completion:(void (^)(void))completion {
     if (!completion) return;
-    
-    [NetworkManager1 getInfo:@"123"].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 login:username pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
         if (!sm.error) {
-            NSLog(@"username = %@",username);
-            [NetworkManager1 login:username pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
-                if (!sm.error) {
-                    NSLog(@"登录成功，%@", sm.responseObject);
+            NSLog(@"登录成功，%@", sm.responseObject);
 
-                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
-                    [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    completion();
-                } else {
-                    NSLog(@"登录失败，%@", sm.error);
-                }
-            };
-        }
-        else {
+            [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
+            [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             completion();
+        } else {
+            NSLog(@"登录失败，%@", sm.error);
         }
     };
 }
