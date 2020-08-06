@@ -97,6 +97,9 @@
 
 @property (nonatomic, strong) NSMutableArray <NSString *> *fsgmentTitleArray; /**<   复式   组选三 组选六*/
 @property (nonatomic, assign) NSInteger segmentIndex;
+@property (nonatomic, strong) NSString *erchonghao;//2重号
+@property (nonatomic, strong) NSString *danhao;//单号
+
 
 
 @end
@@ -146,6 +149,9 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.danhao = @"";
+    self.erchonghao = @"";
     
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
@@ -920,6 +926,19 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     return mode.name;
 }
 
+-(void)setDanErCong:(NSIndexPath *)indexPath model:(UGGameBetModel *)game{
+    if (indexPath.section == 2) {//2重号
+        if (game.select) {
+            self.erchonghao = game.name;
+        }
+    }
+    if (indexPath.section == 3) {//单号
+        if (game.select) {
+            self.danhao = game.name;
+        }
+    }
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (collectionView == self.betCollectionView) {
@@ -951,38 +970,34 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 int count = [self hasSelected:type.list];
                 if (count == 0) {
                     //单号，不能与2重号重复
-   
-                     game.select = !game.select;
+                    if (indexPath.section == 3) {//单号
+                        if ([game.name isEqualToString:self.erchonghao] ) {
+                            return;
+                        }
+                    }
 
+                    game.select = !game.select;
+                    [self setDanErCong:indexPath model:game];
+                    
+                    NSLog(@"2重号= %@,单号=%@",self.erchonghao,self.danhao);
                 }
                 else if(count == 1) {
-                    
                     if (game.select) {
+                        
+                        
                         game.select = !game.select;
+                        [self setDanErCong:indexPath model:game];
+                        
+                         NSLog(@"2重号= %@,单号=%@",self.erchonghao,self.danhao);
                     }
                     else{
                         return;
                     }
-                    
                 }
                 else {
                     return;
                 }
-               
-                
-//                if (indexPath.section == 2) {//2重号
-//                    UGGameplaySectionModel *type = obj.ezdwlist[3];
-//                    NSString *name = [self modelSelected:type.list];
-//                    if ([name isEqualToString:@"-1"]) {
-//                        return;
-//                    } else {
-//                       
-//                    }
-//                } else {
-//                    <#statements#>
-//                }
-                
-                
+    
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
                 
