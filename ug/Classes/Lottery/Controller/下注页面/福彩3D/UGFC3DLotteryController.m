@@ -894,7 +894,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     return nil;
     
 }
-//选了1个或者没选，返回yes。
+//选了1个或者没选，
 -(int )hasSelected:(NSArray *)list{
     int count = 0;
     for (UGGameBetModel *game in list) {
@@ -903,6 +903,21 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         }
     }
     return count ;
+}
+
+//
+-(NSString * )modelSelected:(NSArray *)list{
+
+    UGGameBetModel *mode  =  [UGGameBetModel new];
+    mode.name = @"-1";
+    
+    for (UGGameBetModel *game in list) {
+        if (game.select) {
+            mode.name  = game.name;
+        }
+    }
+    
+    return mode.name;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -932,9 +947,13 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 if (!(game.gameEnable && game.enable)) {
                     return;
                 }
+                //10个里面只能选择1个操作
                 int count = [self hasSelected:type.list];
                 if (count == 0) {
+                    //单号，不能与2重号重复
+   
                      game.select = !game.select;
+
                 }
                 else if(count == 1) {
                     
@@ -947,9 +966,22 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                     
                 }
                 else {
-                        
                     return;
                 }
+               
+                
+//                if (indexPath.section == 2) {//2重号
+//                    UGGameplaySectionModel *type = obj.ezdwlist[3];
+//                    NSString *name = [self modelSelected:type.list];
+//                    if ([name isEqualToString:@"-1"]) {
+//                        return;
+//                    } else {
+//                       
+//                    }
+//                } else {
+//                    <#statements#>
+//                }
+                
                 
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
