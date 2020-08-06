@@ -100,7 +100,8 @@
 @property (nonatomic, strong) NSString *erchonghao;//2重号
 @property (nonatomic, strong) NSString *danhao;//单号
 
-
+@property (nonatomic, strong) UGGameBetModel *erchonghaoModel;//2重号
+@property (nonatomic, strong) UGGameBetModel *danhaoModel;//单号
 
 @end
 
@@ -152,6 +153,8 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     
     self.danhao = @"";
     self.erchonghao = @"";
+    self.danhaoModel = [UGGameBetModel new];
+    self.erchonghaoModel = [UGGameBetModel new];
     
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
@@ -429,9 +432,64 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXS"]) {
                 
+                if (self.erchonghao.length && self.danhao.length) {
+                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                    [bet setValuesForKeysWithDictionary:self.erchonghaoModel.mj_keyValues];
+                    NSMutableString *name = [[NSMutableString alloc] init];
+                    [name appendString:self.erchonghaoModel.name];
+                    [name appendString:@","];
+                    [name appendString:self.erchonghaoModel.name];
+                    [name appendString:@","];
+                    [name appendString:self.danhaoModel.name];
+                    bet.name = name;
+                    bet.money = self.amountTextF.text;
+                    bet.title = bet.alias;
+                    bet.betInfo = name;
+                    [array addObject:bet];
+                }
+                else{
+                    [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
+                    return;
+                }
+
+                
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
                 
+                 if (type.ezdwlist.count) {
+                      NSMutableArray *mutArr1 = [NSMutableArray array];
+                     
+                     UGGameplaySectionModel *model1 = type.ezdwlist[2];
+    
+                     for (UGGameplayModel *bet in model1.list) {
+                         if (bet.select) {
+                             [mutArr1 addObject:bet];
+                         }
+                     }
+                     
+                     if (mutArr1.count< 3) {
+                         [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
+                         return;
+                     }
+                     
+                     UGGameBetModel *beti = mutArr1[0];
+                     UGGameBetModel *bety = mutArr1[1];
+                     UGGameBetModel *betz = mutArr1[2];
+                     UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                     [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+                     NSMutableString *name = [[NSMutableString alloc] init];
+                     [name appendString:beti.name];
+                     [name appendString:@","];
+                     [name appendString:bety.name];
+                     [name appendString:@","];
+                     [name appendString:betz.name];
+                     bet.name = name;
+                     bet.money = self.amountTextF.text;
+                     bet.title = bet.alias;
+                     bet.betInfo = name;
+                     [array addObject:bet];
+                 }
+
             }
             
         } else {
@@ -930,11 +988,13 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     if (indexPath.section == 2) {//2重号
         if (game.select) {
             self.erchonghao = game.name;
+            self.erchonghaoModel = game;
         }
     }
     if (indexPath.section == 3) {//单号
         if (game.select) {
             self.danhao = game.name;
+            self.danhaoModel = game;
         }
     }
 }
@@ -975,20 +1035,21 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                             return;
                         }
                     }
+                    //单号，不能与2重号重复
+                    if (indexPath.section == 2) {//二重号
+                        if ([game.name isEqualToString:self.danhao] ) {
+                            return;
+                        }
+                    }
 
                     game.select = !game.select;
                     [self setDanErCong:indexPath model:game];
                     
-                    NSLog(@"2重号= %@,单号=%@",self.erchonghao,self.danhao);
                 }
                 else if(count == 1) {
                     if (game.select) {
-                        
-                        
                         game.select = !game.select;
                         [self setDanErCong:indexPath model:game];
-                        
-                         NSLog(@"2重号= %@,单号=%@",self.erchonghao,self.danhao);
                     }
                     else{
                         return;
@@ -1000,7 +1061,26 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
+                UGGameplaySectionModel *obj = model.list[self.segmentIndex];
+                UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
+                UGGameBetModel *game = type.list[indexPath.row];
+                if (!(game.gameEnable && game.enable)) {
+                    return;
+                }
                 
+                NSInteger count = 0;
+                for (UGGameBetModel *bet in type.list) {
+                    if (bet.select) {
+                        count ++;
+                    }
+                }
+                
+                if (count == 3 && !game.select) {
+                    [SVProgressHUD showInfoWithStatus:@"不允许超过3个选项"];
+                }else {
+                    game.select = !game.select;
+                }
+
             }
             
         } else {
@@ -1036,10 +1116,27 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                  [self szdwActionModel:model count:count];
              }
              else if([type.ezdwcode isEqualToString:@"DWDZXS"]) {
-                 
+                 if (self.erchonghao.length && self.danhao.length) {
+                     count += 1;
+                     [self updateSelectLabelWithCount:count];
+                 }
              }
              else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
+                 UGGameplaySectionModel *obj = model.list[self.segmentIndex];
+                 UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
+                 NSInteger num = 0;
+                 for (UGGameBetModel *bet in type.list) {
+                     if (bet.select) {
+                         num ++;
+                     }
+                 }
+               
+                 if (num >= 3) {
+                     count += 1;
+                 }
                  
+                  [self updateSelectLabelWithCount:count];
+                              
              }
              
          } else {
