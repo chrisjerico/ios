@@ -196,12 +196,12 @@
         }];
         [subButton(@"直播btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"直播btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            NSString *url = [NSString stringWithFormat:@"%@%@&&gameType=%@",liveUrl,self.gameId,self.nextIssueModel.gameType];
+            NSString *url = [NSString stringWithFormat:@"%@%@&&gameType=%@",liveUrl,__self.gameId,__self.nextIssueModel.gameType];
             [CMCommon goSLWebUrl:url];
         }];
         [subButton(@"开奖btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"开奖btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,__self.gameId];
             [CMCommon goSLWebUrl:url];
         }];
         
@@ -221,14 +221,14 @@
         [subButton(@"金杯btn") setHidden:!APP.isShowJinbei];
         [subButton(@"金杯btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"金杯btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,__self.gameId];
             [CMCommon goSLWebUrl:url];
         }];
         
         [subButton(@"金杯2btn") setHidden:!APP.isShowOtherJinbei];
         [subButton(@"金杯2btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"金杯2btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,__self.gameId];
             [CMCommon goSLWebUrl:url];
         }];
         
@@ -258,11 +258,11 @@
             // 切换按钮的状态
             sender.selected = !sender.selected;
             if (sender.selected) { // 按下去了就是明文
-                self.headerMidView.hidden = NO;
+                __self.headerMidView.hidden = NO;
             } else { // 暗文
-                self.headerMidView.hidden = YES;
+                __self.headerMidView.hidden = YES;
             }
-            [self getLotteryHistory];
+            [__self getLotteryHistory];
             
         }];
         

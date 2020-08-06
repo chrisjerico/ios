@@ -1855,6 +1855,7 @@
 		CF5B5D1E23E30892007CBEE0 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
 		CF62001F24BBF2A700FD26AD /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF62001E24BBF2A700FD26AD /* LanguageHelper.m */; };
 		CF639D7A246E645B00A54CE7 /* MGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF8424555B1C0014A301 /* MGSlider.m */; };
+		CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */; };
 		CF85084F2466D4510025672F /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
 		CF8508512466D4E40025672F /* UGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E176823BE812500B0F813 /* UGTabbarController.m */; };
 		CF8508522466D5000025672F /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DF423C9F51C0039588D /* RSA.m */; };
@@ -3757,6 +3758,8 @@
 		CF5D3D7D2396B8D000CC3D6B /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
 		CF62001D24BBF2A700FD26AD /* LanguageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
 		CF62001E24BBF2A700FD26AD /* LanguageHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LanguageHelper.m; sourceTree = "<group>"; };
+		CF80DE0924DBDABB005234D8 /* WKUserContentController+MemoryLeak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKUserContentController+MemoryLeak.h"; sourceTree = "<group>"; };
+		CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKUserContentController+MemoryLeak.m"; sourceTree = "<group>"; };
 		CF8E241023DDBFD80054BF0F /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		CF8E241123DDBFD80054BF0F /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		CF8E241223DDBFD80054BF0F /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -4374,6 +4377,8 @@
 				031E144523BE812300B0F813 /* NSNumber+Safe.m */,
 				031E144023BE812300B0F813 /* NSArray+Safe.h */,
 				031E144723BE812300B0F813 /* NSArray+Safe.m */,
+				CF80DE0924DBDABB005234D8 /* WKUserContentController+MemoryLeak.h */,
+				CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */,
 			);
 			path = Safe;
 			sourceTree = "<group>";
@@ -10584,6 +10589,7 @@
 				D451A46623F538B000CD0E36 /* JYGameCollectionViewCell.m in Sources */,
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
 				03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */,
+				CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */,
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
 				D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */,
 				031E1ADE23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,

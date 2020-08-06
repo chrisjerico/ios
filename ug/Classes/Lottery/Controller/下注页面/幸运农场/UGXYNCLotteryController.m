@@ -328,10 +328,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [self.amountTextF resignFirstResponder];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:weakSelf.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
+            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
             popView.fontSize = 14;
             popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:weakSelf.chipButton];
+            [popView showRelyOnView:self.chipButton];
         });
     }else {
         YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
