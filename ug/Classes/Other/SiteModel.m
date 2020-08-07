@@ -138,7 +138,7 @@
             site(@"c230",       @"c230hy",     @"288",      @"io.fhpt.YSFC230",         @"https://www.jdapp588.com",                    @"企业包",     @"九鼎彩票"),// 账号: jiuding588@gmail.com 密码：QWE123qwe@@@@
             site(@"c233",       @"c233hy",     @"294",      @"io.fhpt.YSAC233",         @"https://9115111.com",                         @"企业包",     @"太阳城集团"),
             site(@"c235",       @"c235hy",     @"300",      @"io.fhpt.YSAC235",         @"https://p36005.com",                         @"企业包",     @"新葡京娱乐城"),
-            
+            site(@"c237",       @"c237hy",     @"313",      @"io.fhpt.YSAC237",         @"http://app13478.com",                         @"企业包",     @"太阳城集团"),
             
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
