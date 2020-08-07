@@ -50,7 +50,6 @@
 //                                      button.accessibilityHint = NSStringFromSelector(action);
 //                                  }
 //                              } error:NULL];
-//           
 //        [UIControl cc_hookSelector:@selector(beginTrackingWithTouch:withEvent:)
 //                              withOptions:AspectPositionAfter
 //                               usingBlock:^(id<AspectInfo> aspectInfo, UITouch *touch, UIEvent *event) {
@@ -75,8 +74,9 @@
 - (void)cc_viewWillAppear:(BOOL)animated {
     if (self.classIsCustom) {
         NSLog(@"——————————————控制器出现： %@，title=%@", [self class], self.title);
+        NSString *className = self.className;
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            [ReactNativeHelper sendEvent:@"viewWillAppear" params:self.className];
+            [ReactNativeHelper sendEvent:@"viewWillAppear" params:className];
         }];
     }
     [self cc_viewWillAppear:animated];
@@ -84,8 +84,9 @@
 
 - (void)cc_viewWillDisappear:(BOOL)animated {
     if (self.classIsCustom) {
+        NSString *className = self.className;
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            [ReactNativeHelper sendEvent:@"viewWillDisappear" params:self.className];
+            [ReactNativeHelper sendEvent:@"viewWillDisappear" params:className];
         }];
     }
     [self cc_viewWillDisappear:animated];

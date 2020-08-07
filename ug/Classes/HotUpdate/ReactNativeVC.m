@@ -120,9 +120,9 @@ static RCTRootView *_rnView;
     [super viewWillAppear:animated];
     _navigationBarHidden = self.navigationController.navigationBarHidden;
     self.navigationController.navigationBarHidden = _rpm.fd_prefersNavigationBarHidden;
-    {
+    
+    if (_rnView.superview != self.view) {
         [self.view addSubview:_rnView];
-        
         __weakSelf_(__self);
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];

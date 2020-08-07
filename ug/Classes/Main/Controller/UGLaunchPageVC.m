@@ -273,10 +273,9 @@
         }
         
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            [JSPatchHelper waitUpdateFinish:^{
-                __self.waitReactNative = false;
-                [__self updateTips];
-            }];
+            __self.waitReactNative = false;
+            [__self updateTips];
+            [JSPatchHelper waitUpdateFinish:^{}];
         }];
         return;
     }

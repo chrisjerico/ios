@@ -161,30 +161,9 @@
     NSLog(@"self.item.win_apply_content = %@", self.item.win_apply_content);
     
     [self.webView loadHTMLString:[APP htmlStyleString:self.item.win_apply_content] baseURL:nil];
-    
-    
-    //    NSString *str = _NSString(@"<head><style>img{width:auto !important;max-width:%f;height:auto}</style></head>%@", self.width-30, self.item.win_apply_content);
-    //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-    //        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,} documentAttributes:nil error:nil];
-    //        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-    //        ps.lineSpacing = 5;
-    //        [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
-    //
-    //        // 替换文字颜色
-    //        NSAttributedString *as = [mas copy];
-    //        for (int i=0; i<as.length; i++) {
-    //            NSRange r = NSMakeRange(0, as.length);
-    //            NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-    //            UIColor *c = dict[NSForegroundColorAttributeName];
-    //            if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-    //                dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-    //                [mas addAttributes:dict range:NSMakeRange(i, 1)];
-    //            }
-    //        }
-    //        dispatch_async(dispatch_get_main_queue(), ^{
-    //            [self.webView loadHTMLString:mas baseURL:nil];
-    //        });
-    //    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.backgroundColor=\"#222\";document.body.style.color='#fff'"];
+    });
 }
 
 - (void)show {
