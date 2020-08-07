@@ -413,6 +413,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 
 - (IBAction)betClick:(id)sender {
+    WeakSelf;
     [self.amountTextF resignFirstResponder];
     ck_parameters(^{
         ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
@@ -424,17 +425,17 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         NSString *selName = @"";
         NSMutableArray *array = [NSMutableArray array];
         
-        UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+        UGGameplayModel *model = weakSelf.gameDataArray[weakSelf.typeIndexPath.row];
         if ([model.code isEqualToString:@"DWD"]) {
-            UGGameplaySectionModel *type = model.list[self.segmentIndex];
+            UGGameplaySectionModel *type = model.list[weakSelf.segmentIndex];
             if ([type.ezdwcode isEqualToString:@"DWDFS"]) {
-                [self szdwBetActionMode:model array:&array selCode:&selCode];
+                [weakSelf szdwBetActionMode:model array:&array selCode:&selCode];
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXS"]) {
                 
-                if (self.erchonghao.length && self.danhao.length) {
+                if (weakSelf.erchonghao.length && weakSelf.danhao.length) {
                     UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                    [bet setValuesForKeysWithDictionary:self.erchonghaoModel.mj_keyValues];
+                    [bet setValuesForKeysWithDictionary:weakSelf.erchonghaoModel.mj_keyValues];
                     NSMutableString *name = [[NSMutableString alloc] init];
                     [name appendString:self.erchonghaoModel.name];
                     [name appendString:@","];
@@ -442,7 +443,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                     [name appendString:@","];
                     [name appendString:self.danhaoModel.name];
                     bet.name = name;
-                    bet.money = self.amountTextF.text;
+                    bet.money = weakSelf.amountTextF.text;
                     bet.title = bet.alias;
                     bet.betInfo = name;
                     [array addObject:bet];
@@ -493,7 +494,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             }
             
         } else {
-           for (UGGameplayModel *model in self.gameDataArray) {
+           for (UGGameplayModel *model in weakSelf.gameDataArray) {
                if (!model.select) {
                    continue;
                }
@@ -502,7 +503,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                for (UGGameplaySectionModel *type in model.list) {
                    for (UGGameBetModel *game in type.list) {
                        if (game.select) {
-                           game.money = self.amountTextF.text;
+                           game.money = weakSelf.amountTextF.text;
                            game.title = type.name;
                            [array addObject:game];
                        }
@@ -515,7 +516,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         
         
         NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
-        [self goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:self.nextIssueModel  gameType:self.nextIssueModel.gameId selCode:selCode];
+        [weakSelf goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:weakSelf.nextIssueModel  gameType:weakSelf.nextIssueModel.gameId selCode:selCode];
         
     });
 }
