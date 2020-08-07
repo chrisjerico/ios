@@ -104,10 +104,6 @@
                 NSMutableArray <UGGameBetModel *>*gbms = @[].mutableCopy;
                 NSMutableArray *temp = [betInfo[@"betBean"] mutableCopy];
                 for (UGGameplaySectionModel *gsm in gpm.list) {
-                    // 若玩法paneCode有值，则只找对应玩法
-                    if (paneCode.length && ![paneCode isEqualToString:gsm.code]) {
-                        continue;
-                    }
                     for (NSDictionary *dict in [temp copy]) {
                         UGGameBetModel *gbm = nil;
                         gbm = gbm ? : [gsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
