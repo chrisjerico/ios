@@ -1157,6 +1157,24 @@
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
             NSLog(@"任务中心");
         }
+        else if ([model.alias isEqualToString:@"0cxus0FI"]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"澳门美女六肖");
+        }
+        else if ([model.alias isEqualToString:@"8XIl8q5S"]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"澳门高手心水");
+        }
+        else if ([model.alias isEqualToString:@"IKHMV2V0"]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"澳门精华帖子");
+        }
         else {
             if (model.contentId.length) {
                 // 获取帖子详情
