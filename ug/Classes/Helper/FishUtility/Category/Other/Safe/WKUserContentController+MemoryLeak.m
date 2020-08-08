@@ -30,11 +30,15 @@
 }
 
 - (void)cc_addScriptMessageHandler:(id <WKScriptMessageHandler>)scriptMessageHandler name:(NSString *)name {
-    WKWebVConfModel *obj = [WKWebVConfModel new];
-    obj.obj = scriptMessageHandler;
-    if ([scriptMessageHandler respondsToSelector:@selector(cc_userInfo)]) {
-        [(NSObject *)scriptMessageHandler cc_userInfo][@"scriptMessageHandler"] = obj;
+    if ([scriptMessageHandler isKindOfClass:[UIViewController class]]) {
+        WKWebVConfModel *obj = [WKWebVConfModel new];
+        obj.obj = scriptMessageHandler;
+        if ([scriptMessageHandler respondsToSelector:@selector(cc_userInfo)]) {
+            [(NSObject *)scriptMessageHandler cc_userInfo][@"scriptMessageHandler"] = obj;
+        }
+        [self cc_addScriptMessageHandler:obj name:name];
+    } else {
+        [self cc_addScriptMessageHandler:scriptMessageHandler name:name];
     }
-    [self cc_addScriptMessageHandler:obj name:name];
 }
 @end
