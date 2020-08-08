@@ -51,9 +51,10 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (!_gameType.length) {
+        _gameType = @"real";
+    }
     self.view.backgroundColor = Skin1.bgColor;
-    
-
 
     self.navigationItem.titleView = self.titleView;
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"riqi" target:self action:@selector(rightBarButtonItemClick)];
@@ -259,7 +260,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
         if (![__self.gameType isEqualToString:item.gameType]) {
             __self.gameType = item.gameType;
             [__self.titleView setTitle:item.gameName forState:UIControlStateNormal];
-            [__self getBetsList];
+            [__self.tableView.mj_header beginRefreshing];
         }
     } cancelBlock:^{}];
 }
