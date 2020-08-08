@@ -81,6 +81,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     self.tableView.rowHeight = 50;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGRealBetRecordCell" bundle:nil] forCellReuseIdentifier:realBetRecordCellId];
     
     if ([CMCommon isPhoneX]) {
