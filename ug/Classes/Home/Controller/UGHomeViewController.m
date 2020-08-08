@@ -317,10 +317,9 @@
     }
     
 
-//    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
-//    if (Skin1.isJY) {
-        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY ? 0 : 10;
-//    }
+
+        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY||Skin1.isTKL? 0 : 10;
+
     _headerView.hidden = !isGPK;
     self.fd_prefersNavigationBarHidden = isGPK;
     if (NavController1.topViewController == self) {
@@ -353,7 +352,7 @@
 //        Selector
 //        IMP
     }
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
         _rollingView.backgroundColor = RGBA(249, 249, 249, 1);
         [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
         
@@ -479,7 +478,7 @@
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-        if (Skin1.isJY) {
+        if (Skin1.isJY||Skin1.isTKL) {
             subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@"JY_gg"] ;
         }
         else{
@@ -528,7 +527,7 @@
             subView(@"优惠活动外View").backgroundColor = Skin1.homeContentColor;
         }
         
-        if (Skin1.isJY) {
+        if (Skin1.isJY||Skin1.isTKL) {
             _promotionsStackView.cc_constraints.top.constant = 0;
             _promotionsStackView.cc_constraints.left.constant = 0;
         }
@@ -1289,7 +1288,7 @@
                         /**
                          #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
                          */
-                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| [Skin1 isJY]) {
+                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| [Skin1 isJY]||Skin1.isTKL) {
                             weakSelf.gameNavigationViewHeight.constant = 60;
                             weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
                         } else {
@@ -2347,7 +2346,7 @@
             subView(@"StackView").cc_constraints.top.constant = 0;
             subView(@"StackView").cc_constraints.left.constant = 0;
         }
-        if (Skin1.isJY) {
+        if (Skin1.isJY||Skin1.isTKL) {
              subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor :  RGBA(242, 242, 242, 1);
         }
         else{

@@ -239,7 +239,7 @@
     }
     CGFloat w = 0;
     
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
         if (self.gameTypeArray.count >=7) {
             w = CollectionViewW/7;
         }

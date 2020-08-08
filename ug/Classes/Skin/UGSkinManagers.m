@@ -1335,6 +1335,32 @@ static UGSkinManagers *__initSkin1 = nil;
 
                 sm;
             }),
+            @"天空蓝":({
+                UGSkinManagers *sm = defaultSm();
+                sm.skitType                 = @"天空蓝";
+                sm.skitString               = @"天空蓝";
+                sm.bgColor                  = color(@"FFFFFF");
+                sm.navBarBgColor            = color(@"3278EE,819EFF");
+                sm.tabBarBgColor            = color(@"F4F4F4");
+                sm.tabNoSelectColor         = color(@"525252");
+                sm.tabSelectedColor         = color(@"010101");
+                sm.progressBgColor          = color(@"FEC434,FE8A23");
+                sm.homeContentColor         = color(@"FFFFFF");
+                sm.homeContentSubColor      = color(@"D3D3D3");
+                sm.cellBgColor              = color(@"FFFFFF");
+                sm.CLBgColor                = color(@"E6E6E6");
+                sm.menuHeadViewColor        = color(@"fa7dc5,f5c3e0");
+                sm.textColor1               = color(@"111111");
+                sm.textColor2               = color(@"555555");
+                sm.textColor3               = color(@"C1C1C1");
+                sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
+                //                sm.navBarTitleColor         = color(@"111111");
+                
+                sm;
+            }),
 
             @"夜间模式1":({
                 UGSkinManagers *sm = [UGSkinManagers new];
@@ -1370,6 +1396,7 @@ static UGSkinManagers *__initSkin1 = nil;
             skin.is23 = [skin.skitString containsString:@"经典 21黑色"];
             skin.isSLH = [skin.skitType isEqualToString:@"石榴红"];
             skin.isBlack = skin.isGPK || skin.is23;
+            skin.isTKL = [skin.skitType containsString:@"天空蓝"];
         }
 		
 		__currentSkin1 = __lastSkin1 = __initSkin1 = __dict[@"1"];
@@ -1392,6 +1419,7 @@ static UGSkinManagers *__initSkin1 = nil;
 						   @"7":@"火山橙",
                            @"8":@"香槟金",
                            @"9":[NSString stringWithFormat:@"简约模板%@",SysConf.mobileTemplateStyle],
+                           @"25":@"天空蓝",
 
 	};
 	
@@ -1416,13 +1444,13 @@ static UGSkinManagers *__initSkin1 = nil;
     
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//    skitType = @"六合资料9";
+    skitType = @"天空蓝";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
     if (sm) {
         return sm;
     } else {
-        UGSkinManagers *sm = [UGSkinManagers allSkin][@"经典0"];
+        UGSkinManagers *sm = [UGSkinManagers allSkin][@"天空蓝"];
     }
     
 #endif

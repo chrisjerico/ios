@@ -47,7 +47,7 @@
 {
     UICollectionViewFlowLayout *layout = ({
         layout = [[UICollectionViewFlowLayout alloc] init];
-        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) || [Skin1 isJY]) {
+        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) || [Skin1 isJY]||Skin1.isTKL) {
             
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
             
@@ -58,7 +58,7 @@
         layout;
     });
     self = [super initWithFrame:frame collectionViewLayout:layout];
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
     }
@@ -87,7 +87,7 @@
     maskLayer.path = maskPath.CGPath;
     _scrollRightButton.layer.mask = maskLayer;
     
-    if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] &&[@"c190" containsString:APP.SiteId]) || [Skin1 isJY]) {
+    if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] &&[@"c190" containsString:APP.SiteId]) || [Skin1 isJY]||Skin1.isTKL) {
         
         [self.scrollRightButton setHidden:false];
     } else {
@@ -131,7 +131,7 @@
         oneLineCnt = 4;
     }
     
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
          oneLineCnt = 5;
     }
     

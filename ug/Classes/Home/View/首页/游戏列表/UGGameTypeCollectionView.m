@@ -139,7 +139,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     UGPlatformCollectionView *pcv = _contentStackView.arrangedSubviews[idx];
     CGFloat h ;
 
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
         GameCategoryModel *ob =  [self.gameTypeArray objectAtIndex:idx];
         if ([ob.iid isEqualToString:@"1"]){
             h = pcv.contentSize.height + _titleView.height + 5 +40;

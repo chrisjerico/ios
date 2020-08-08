@@ -50,7 +50,7 @@
     NSInteger unreadMsg;
 }
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
-@property (weak, nonatomic) IBOutlet UIView *topupView;
+@property (weak, nonatomic) IBOutlet UIView *topupView;  /**<   头视图 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topupViewNSLayoutConstraintHight;
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 //===================================================
@@ -73,9 +73,9 @@
 //===================================================
 @property (weak, nonatomic) IBOutlet UIView *headerLabelView;
 
-@property (weak, nonatomic) IBOutlet UIButton *topupButton;
-@property (weak, nonatomic) IBOutlet UIButton *withdrawalsButton;
-@property (weak, nonatomic) IBOutlet UIButton *conversionButton;
+@property (weak, nonatomic) IBOutlet UIButton *topupButton;  /**<  视图按钮1 */
+@property (weak, nonatomic) IBOutlet UIButton *withdrawalsButton;/**<  视图按钮2 */
+@property (weak, nonatomic) IBOutlet UIButton *conversionButton;/**<  视图按钮3 */
 
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
@@ -102,17 +102,41 @@
     
     
     skitType = Skin1.skitType;
-    if ([skitType isEqualToString:@"经典"]||Skin1.isJY) {
+    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]|| Skin1.isJY) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        self.topupView.hidden = YES;
-        self.topupViewNSLayoutConstraintHight.constant = 0.1;
+    else if(Skin1.isTKL) {
+        self.topupView.hidden = NO;
+        self.topupViewNSLayoutConstraintHight.constant = 80;
     }
     else {
         self.topupView.hidden = NO;
         self.topupViewNSLayoutConstraintHight.constant = 63;
+        [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
+    }
+    FastSubViewCode(self.topupView);
+//    subLabel(@"二维码Label").textColor = Skin1.textColor1;
+    if (Skin1.isTKL) {
+        subView(@"视图4View").hidden = NO;
+        subImageView(@"视图1imag").image = [UIImage imageNamed:@"mine_zjmx"] ;
+        subImageView(@"视图2imag").image = [UIImage imageNamed:@"mine_xzjl"] ;
+        subImageView(@"视图3imag").image = [UIImage imageNamed:@"mine_wdxx"] ;
+        subLabel(@"存款Label").text = @"资金明细";
+        subLabel(@"提现Label").text = @"下注记录";
+        subLabel(@"转换Label").text = @"在线客服";
+        [subButton(@"视图4button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+        }];
+        
+    } else {
+        subView(@"视图4View").hidden = YES;
+        subImageView(@"视图1imag").image = [UIImage imageNamed:@"huoqicunkuan"] ;
+        subImageView(@"视图2imag").image = [UIImage imageNamed:@"qukuan"] ;
+        subImageView(@"视图3imag").image = [UIImage imageNamed:@"Artboard"] ;
+        subLabel(@"存款Label").text = @"存款";
+        subLabel(@"提现Label").text = @"提现";
+        subLabel(@"转换Label").text = @"转换";
     }
     [self.myCollectionView reloadData];
 }
@@ -155,6 +179,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self skin];
     //注册通知
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
@@ -204,15 +229,7 @@
     
     skitType = Skin1.skitType;
     
-    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]|| Skin1.isJY) {
-        self.topupView.hidden = YES;
-        self.topupViewNSLayoutConstraintHight.constant = 0.1;
-    }
-    else {
-        self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 63;
-        [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
-    }
+
     
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     
@@ -436,7 +453,13 @@ BOOL isOk = NO;
         cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = Skin1.isGPK ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        
+        if (Skin1.isTKL) {
+            cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
+        } else {
+            cell.layer.borderColor = Skin1.isGPK ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        }
+   
         return cell;
     }
     return nil;
@@ -750,20 +773,39 @@ BOOL isOk = NO;
 }
 
 - (IBAction)depositAction:(id)sender {
-    //存款
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-    fundsVC.selectIndex = 0;
-    [self.navigationController pushViewController:fundsVC animated:YES];
+    
+    if (Skin1.isTKL) {
+        //资金明细
+    } else {
+            //存款
+        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        fundsVC.selectIndex = 0;
+        [self.navigationController pushViewController:fundsVC animated:YES];
+    }
+
 }
 - (IBAction)withdrawalActon:(id)sender {
-    //提现
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
-    fundsVC.selectIndex = 1;
-    [self.navigationController pushViewController:fundsVC animated:YES];
+    if (Skin1.isTKL) {
+        //下注记录
+        [NavController1 pushViewController:[UGBetRecordViewController new] animated:true];
+    } else {
+        //提现
+        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        fundsVC.selectIndex = 1;
+        [self.navigationController pushViewController:fundsVC animated:YES];
+    }
+    
+    
 }
 - (IBAction)conversionAction:(id)sender {
-    //转换
-    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController") animated:YES];
+    if (Skin1.isTKL) {
+        //在线客服
+        [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+    } else {
+        //转换
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController") animated:YES];
+    }
+    
 }
 
 // 领取俸禄

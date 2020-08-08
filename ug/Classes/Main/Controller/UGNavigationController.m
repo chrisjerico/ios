@@ -157,7 +157,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[UGRegisterViewController class]]
             ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
             
-            if (!Skin1.isGPK && !Skin1.isJY){
+            if (!Skin1.isGPK && !Skin1.isJY&& !Skin1.isTKL){
                 if (![viewController isKindOfClass:[UGRegisterViewController class]]) {
                     viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
                 }
@@ -169,7 +169,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 }
                 
             }
-            if (Skin1.isJY){//简约模板  注册
+            if (Skin1.isJY||Skin1.isTKL){//简约模板  注册
                 if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
                 }
@@ -193,7 +193,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 }
                 
             }
-            if (Skin1.isJY){//简约模板  登录
+            if (Skin1.isJY||Skin1.isTKL){//简约模板  登录
                 if (![viewController isKindOfClass:[JYLoginViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"JYLoginViewController");
                 }

@@ -93,7 +93,7 @@ static NSString *const footerId = @"footerId";
         } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
             self.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
         }
-        else if (Skin1.isJY) {
+        else if (Skin1.isJY||Skin1.isTKL) {
             self.backgroundColor = UIColor.whiteColor;
         }
         else {
@@ -107,7 +107,7 @@ static NSString *const footerId = @"footerId";
 -(void)setStyle:(NSString *)style{
     _style  = style;
  
-        if (Skin1.isJY) {
+        if (Skin1.isJY||Skin1.isTKL) {
 
              if (self.style.intValue == 0) {
                  UICollectionViewFlowLayout *layout = ({
@@ -189,7 +189,7 @@ static NSString *const footerId = @"footerId";
         }
         
     }
-    else if (Skin1.isJY) {
+    else if (Skin1.isJY||Skin1.isTKL) {
 
         if(self.style.intValue == 0){
             for (int i=0; i<dataArray.count; i++) {
@@ -264,8 +264,8 @@ static NSString *const footerId = @"footerId";
         
         return cell;
     }
-    else if (Skin1.isJY) {
-        if (self.style.intValue == 0) {
+    else if (Skin1.isJY||Skin1.isTKL) {
+        if (self.style.intValue == 0 ) {
             UGGameTypeColletionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:gameCellid forIndexPath:indexPath];
             {
                 cell.item = ((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row];
@@ -337,7 +337,7 @@ static NSString *const footerId = @"footerId";
     }else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return CGSizeMake((UGScreenW - 7)/2, 90);
     }
-    else if (Skin1.isJY) {
+    else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
               CGFloat itemW = (UGScreenW -6)/3.0;
               return CGSizeMake(itemW, 110);
@@ -364,7 +364,7 @@ static NSString *const footerId = @"footerId";
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return UIEdgeInsetsZero;
     }
-    else if (Skin1.isJY) {
+    else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0) {
              return UIEdgeInsetsMake(0, 0, 0, 0);
         } else {
@@ -384,7 +384,7 @@ static NSString *const footerId = @"footerId";
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
     }
-    else if (Skin1.isJY) {
+    else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
             return 0.f;
         } else {
@@ -403,7 +403,7 @@ static NSString *const footerId = @"footerId";
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
     }
-    else if (Skin1.isJY) {
+    else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0) {
             return 0.f;
         } else {

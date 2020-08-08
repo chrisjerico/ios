@@ -427,7 +427,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     self.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
         self.bgViewHeightConstraint.constant = k_Height_StatusBar;
         [self.jybgView setBackgroundColor:Skin1.navBarBgColor];
         [self.jybgView setHidden:NO];

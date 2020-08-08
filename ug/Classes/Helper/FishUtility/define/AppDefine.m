@@ -233,13 +233,13 @@
     _isHideText = [@"c200" containsString:_SiteId];
     _isShowWZ = [@"c085" containsString:_SiteId];
     _isShowLogo = [@"GPK版" containsString:Skin1.skitType] ? NO : [@"GPK版" containsString:Skin1.skitType] ? YES : [@"c190" containsString:_SiteId];
-    _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY ? NO : [@"c190" containsString:_SiteId];
+    _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL ? NO : [@"c190" containsString:_SiteId];
     _isCornerRadius = YES;
     _isFontSystemSize = NO;
     _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
     _lotteryHallCustomImgS = [@"c190" containsString:_SiteId];
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
-    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
     
     _betSizeIsBig = [@"c169,c205,c211" containsString:_SiteId];
