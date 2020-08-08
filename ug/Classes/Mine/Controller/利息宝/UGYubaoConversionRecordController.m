@@ -43,6 +43,7 @@ static int size = 20;
     self.tableView.rowHeight = 50;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];

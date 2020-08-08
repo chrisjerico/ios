@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -92,11 +92,22 @@
                             <action selector="cellButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="b9K-sR-SSV"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcH-U1-rYi">
+                        <rect key="frame" x="0.0" y="87.5" width="424" height="0.5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="7H4-eW-k8y"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="分割线View"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="B63-UJ-lDq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="28I-0H-jET"/>
                     <constraint firstItem="fSL-QD-siQ" firstAttribute="leading" secondItem="ujG-h0-8te" secondAttribute="trailing" constant="25" id="6Lz-58-cDd"/>
+                    <constraint firstAttribute="trailing" secondItem="hcH-U1-rYi" secondAttribute="trailing" id="934-oG-cnt"/>
                     <constraint firstAttribute="bottom" secondItem="B63-UJ-lDq" secondAttribute="bottom" id="9lC-4t-UOI"/>
                     <constraint firstItem="ujG-h0-8te" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ET6-cP-Cac"/>
                     <constraint firstItem="78R-vh-vR2" firstAttribute="leading" secondItem="fSL-QD-siQ" secondAttribute="leading" constant="-25" id="F1z-yk-3pz"/>
@@ -106,10 +117,12 @@
                     <constraint firstItem="KHb-8y-GjC" firstAttribute="leading" secondItem="78R-vh-vR2" secondAttribute="trailing" constant="5" id="Prw-4r-UH8"/>
                     <constraint firstItem="ck2-Pt-mi4" firstAttribute="leading" secondItem="KHb-8y-GjC" secondAttribute="trailing" constant="10" id="Qq8-c2-plH"/>
                     <constraint firstItem="xGW-ov-Sxf" firstAttribute="centerY" secondItem="fSL-QD-siQ" secondAttribute="centerY" id="R3Y-S2-mGp"/>
+                    <constraint firstItem="hcH-U1-rYi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YTt-gs-7Eo"/>
                     <constraint firstAttribute="trailing" secondItem="Sdf-XI-AAw" secondAttribute="trailing" constant="10" id="ZnJ-7D-n0k"/>
                     <constraint firstItem="Sdf-XI-AAw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cC4-0P-ezP"/>
                     <constraint firstItem="fSL-QD-siQ" firstAttribute="top" secondItem="DCG-WX-51f" secondAttribute="bottom" id="gpf-TM-GMa"/>
                     <constraint firstItem="ck2-Pt-mi4" firstAttribute="top" secondItem="fSL-QD-siQ" secondAttribute="bottom" constant="20.5" id="hfL-ZG-PWz"/>
+                    <constraint firstAttribute="bottom" secondItem="hcH-U1-rYi" secondAttribute="bottom" id="i3C-dN-bOb"/>
                     <constraint firstItem="Sdf-XI-AAw" firstAttribute="leading" secondItem="B63-UJ-lDq" secondAttribute="trailing" id="i3G-NM-bW9"/>
                     <constraint firstItem="B63-UJ-lDq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kvB-nC-CBH"/>
                     <constraint firstItem="xGW-ov-Sxf" firstAttribute="leading" secondItem="fSL-QD-siQ" secondAttribute="trailing" constant="8" id="nMA-gD-kXY"/>
@@ -129,6 +142,7 @@
                 <outlet property="leftImageView" destination="ujG-h0-8te" id="NTA-s9-cLw"/>
                 <outlet property="overTimeLabel" destination="ck2-Pt-mi4" id="fYq-j0-gau"/>
                 <outlet property="rightImageView" destination="78R-vh-vR2" id="MHn-Ky-y9Q"/>
+                <outlet property="separatorLineView" destination="hcH-U1-rYi" id="cRq-EV-Jhh"/>
                 <outlet property="titleLabel" destination="fSL-QD-siQ" id="tjg-mj-Uwy"/>
                 <outlet property="typeLabel" destination="xGW-ov-Sxf" id="nV1-6v-OyD"/>
             </connections>

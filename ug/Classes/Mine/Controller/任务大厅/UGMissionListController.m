@@ -197,7 +197,7 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
     } else {
         UIView *view = [[UIView alloc] init];
 //        [view setBackgroundColor: [Skin1.navBarBgColor colorWithAlphaComponent:0.2]];
-        [view setBackgroundColor: RGBA(196, 194, 200, 1)];
+        [view setBackgroundColor:Skin1.isBlack ? [UIColor systemGrayColor] : RGBA(196, 194, 200, 1)];
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 5,APP.Width-32, 55)];
         
         titleLabel.text = obj.sortName2;

@@ -118,7 +118,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
         _tableView.rowHeight = 40;
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
         _tableView.badgeBgColor = [UIColor clearColor];
-
+        _tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
      
     return _tableView;
 }

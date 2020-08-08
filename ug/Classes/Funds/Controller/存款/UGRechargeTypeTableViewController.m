@@ -47,6 +47,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
     self.tableViewDataArray = [NSMutableArray new];
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

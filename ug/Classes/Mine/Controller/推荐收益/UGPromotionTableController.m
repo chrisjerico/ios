@@ -107,6 +107,7 @@
         self.tableView.estimatedRowHeight = 0;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
+        self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion4rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion4rowTableViewCell"];
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion5rowButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion5rowButtonTableViewCell"];
          [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion2rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion2rowTableViewCell"];

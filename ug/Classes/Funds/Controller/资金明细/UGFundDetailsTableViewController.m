@@ -39,6 +39,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"UGFundDetailsCell" bundle:nil] forCellReuseIdentifier:fundDetailsCellid];
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSDate *currentDate = [NSDate date];
