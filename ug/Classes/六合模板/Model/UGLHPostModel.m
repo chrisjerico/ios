@@ -61,6 +61,12 @@
     return _allEmoji;
 }
 
+- (NSString *)categoryType {
+    NSString *alias = [[_link componentsSeparatedByString:@"?"].firstObject componentsSeparatedByString:@"/"].lastObject;
+    alias = alias.length ? alias : _alias;
+    return alias;
+}
+
 // 这4个方法不写MJExtension无法正常赋值
 - (void)setTopAdPc:(LHPostAdModel *)topAdPc { _topAdPc = topAdPc;}
 - (void)setBottomAdPc:(LHPostAdModel *)bottomAdPc { _bottomAdPc = bottomAdPc; }

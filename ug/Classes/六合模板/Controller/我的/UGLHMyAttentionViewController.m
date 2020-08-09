@@ -150,7 +150,7 @@
     } else {
         UGLHPostModel *pm = tableView.dataArray[indexPath.row];
         
-        if ([@"sixpic,humorGuess,rundog,fourUnlike" containsString:pm.alias]) {
+        if ([@"sixpic,humorGuess,rundog,fourUnlike" containsString:pm.categoryType]) {
             // 去期刊详情页
             LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
             vc.clm = ({

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-// 《栏目列表》
+// 《首页栏目列表》
 // c=lhcdoc&a=categoryList
 @interface UGLHCategoryListModel : UGModel
 @property (copy, nonatomic) NSString *icon;/**<   展示图" */
@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger appLinkCode;/**<   1存取款 2APP下载 3聊天室 4在线客服 5长龙助手 6推广收益 7开奖网 8利息宝 9优惠活动 10游戏记录 11QQ客服 13任务大厅 14站内信 15站内信 16投诉中心 */
 
 @property (copy, nonatomic) NSString *thread_type;/**<  thread_type =2 为多期" */
+
+// 自定义参数
+@property (nonatomic, readonly) NSString *categoryType; /**<   类型 */
 @end
 
 NS_ASSUME_NONNULL_END
