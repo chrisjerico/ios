@@ -429,7 +429,7 @@
                     [self.timer invalidate];
                     self.timer = nil;
                     [self.countDownForLabel destoryTimer];
-                    [self getLotteryNumberList ];
+                    [self getLotteryNumberList];
 
                     
                 }

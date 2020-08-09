@@ -310,14 +310,8 @@
             return [NetworkManager1 lhdoc_contentReplyList:pm.cid replyPid:nil page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
 
-            if (![CMCommon stringIsNull:pm.link]) {
-                  NSMutableDictionary*dic = [CMCommon yyUrlConversionParameter:pm.link];
-                   NSLog(@"id ============= %@",[dic objectForKey:@"id"]);
-                    NSString * gid = [dic objectForKey:@"id"];
-                   [__self.lhPrizeView setGid:gid];
-                   
-               }
-               
+            NSString *gid = pm.link.urlParams[@"id"] ? : SysConf.appSelectType;
+            [__self.lhPrizeView setGid:gid];
             
             NSArray *array = sm.responseObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
