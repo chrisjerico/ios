@@ -91,6 +91,12 @@ static RCTRootView *_rnView;
     }
 }
 
+static NSString *__lastRnPage = nil;
++ (void)showLastRnPage {
+    if (__lastRnPage)
+        [ReactNativeHelper selectVC:__lastRnPage params:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -125,6 +131,7 @@ static RCTRootView *_rnView;
         [self.view addSubview:_rnView];
         __weakSelf_(__self);
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            __lastRnPage = __self.rpm.rnName;
             [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
         }];
     }
@@ -147,6 +154,7 @@ static RCTRootView *_rnView;
 
 - (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        __lastRnPage = rpm.rnName;
         [ReactNativeHelper selectVC:rpm.rnName params:params];
     }];
 }
