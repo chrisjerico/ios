@@ -103,6 +103,8 @@
 @property (nonatomic, strong) UGGameBetModel *erchonghaoModel;//2重号
 @property (nonatomic, strong) UGGameBetModel *danhaoModel;//单号
 
+@property (nonatomic, strong) NSMutableArray *selArray ;                            /**<  组选6选中的 */
+
 @end
 
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
@@ -178,7 +180,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         [weakSelf.betCollectionView reloadData];
         [weakSelf resetClick:nil];
     };
-    
+    self.selArray = [NSMutableArray new];
     
     self.typeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.itemIndexPath = nil;
@@ -370,6 +372,17 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     
 }
 
+//按选择顺序
+-(void)selArryAddGame:(UGGameBetModel *)game{
+    if (game.select) {
+        [_selArray addObject:game];
+    } else {
+        if ([_selArray containsObject:game]) {
+            [_selArray removeObject:game];
+        }
+    }
+}
+
 
 - (IBAction)chipClick:(id)sender {
     if (self.amountTextF.isFirstResponder) {
@@ -407,6 +420,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         }
 
     }
+    [self.selArray removeAllObjects];
     [self.betCollectionView reloadData];
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -457,25 +471,16 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
                 
-                 if (type.ezdwlist.count) {
-                      NSMutableArray *mutArr1 = [NSMutableArray array];
-                     
-                     UGGameplaySectionModel *model1 = type.ezdwlist[2];
-    
-                     for (UGGameplayModel *bet in model1.list) {
-                         if (bet.select) {
-                             [mutArr1 addObject:bet];
-                         }
-                     }
-                     
-                     if (mutArr1.count< 3) {
+                 if (self.selArray.count) {
+
+                     if (self.selArray.count != 3) {
                          [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
                          return;
                      }
-                     
-                     UGGameBetModel *beti = mutArr1[0];
-                     UGGameBetModel *bety = mutArr1[1];
-                     UGGameBetModel *betz = mutArr1[2];
+
+                     UGGameBetModel *beti = self.selArray[0];
+                     UGGameBetModel *bety = self.selArray[1];
+                     UGGameBetModel *betz = self.selArray[2];
                      UGGameBetModel *bet = [[UGGameBetModel alloc] init];
                      [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
                      NSMutableString *name = [[NSMutableString alloc] init];
@@ -1080,6 +1085,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                     [SVProgressHUD showInfoWithStatus:@"不允许超过3个选项"];
                 }else {
                     game.select = !game.select;
+                    [self selArryAddGame:game];
                 }
 
             }
