@@ -251,6 +251,7 @@
     _isC217RWDT = [@"c217" containsString:_SiteId];
     _isNoSubtitle = [@"c006" containsString:_SiteId];
     _isNoLeftButton = [@"c217" containsString:_SiteId];
+    _isSecondUrl = [@"c213" containsString:_SiteId];
 }
 
 #pragma mark - 热更新

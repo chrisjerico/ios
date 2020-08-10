@@ -89,6 +89,7 @@
 @property (nonatomic,assign) BOOL isC217RWDT;                                /**<  我的把任务中心4个字换成任务大厅*/
 @property (nonatomic) BOOL isNoSubtitle;                               /**<  首页游戏cell没有副标题的高度*/
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
+@property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

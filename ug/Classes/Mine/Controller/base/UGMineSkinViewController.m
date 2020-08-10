@@ -553,7 +553,31 @@ BOOL isOk = NO;
         [NavController1 pushVCWithUserCenterItemType:uci.code];
     } else  {
         UGUserCenterItem *uci = self.menuNameArray[indexPath.row];
-        [NavController1 pushVCWithUserCenterItemType:uci.code];
+        
+        if (uci.code ==  UCI_在线客服) {
+            if (APP.isSecondUrl) {
+                NSString *urlStr = [SysConf.zxkfUrl2 stringByTrim];
+                if (!urlStr.length) {
+                    [CMCommon showTitle:@"请在后台配置在线客服链接->客服链接2"];
+                    return;
+                }
+                SLWebViewController *webViewVC = [SLWebViewController new];
+                NSURL *url = [NSURL URLWithString:urlStr];
+                if (!url.host.length) {
+                    urlStr = _NSString(@"%@%@", APP.Host, SysConf.zxkfUrl2);
+                }
+                else if (!url.scheme.length) {
+                    urlStr = _NSString(@"http://%@", SysConf.zxkfUrl2);
+                }
+                webViewVC.isCustomerService = YES;
+                webViewVC.urlStr = urlStr;
+                [NavController1 pushViewController:webViewVC animated:YES];
+            } else {
+                 [NavController1 pushVCWithUserCenterItemType:uci.code];
+            }
+        } else {
+             [NavController1 pushVCWithUserCenterItemType:uci.code];
+        }
     }
 }
 
