@@ -621,6 +621,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             else if (!url.scheme.length) {
                 urlStr = _NSString(@"http://%@", SysConf.zxkfUrl);
             }
+            webViewVC.isCustomerService = YES;
             webViewVC.urlStr = urlStr;
             [NavController1 pushViewController:webViewVC animated:YES];
             return true;

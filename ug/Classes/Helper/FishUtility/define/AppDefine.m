@@ -250,6 +250,7 @@
     _isC190Cell = [@"c190" containsString:_SiteId];
     _isC217RWDT = [@"c217" containsString:_SiteId];
     _isNoSubtitle = [@"c006" containsString:_SiteId];
+    _isNoLeftButton = [@"c217" containsString:_SiteId];
 }
 
 #pragma mark - 热更新
