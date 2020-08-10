@@ -17,7 +17,7 @@
 @implementation RnPageModel
 + (instancetype)updateVersionPage {
     RnPageModel *rpm = [RnPageModel new];
-    rpm.vcName = @"UpdateVersionVC";
+    rpm.vcName = @"UpdateVersionPage";
     rpm.fd_prefersNavigationBarHidden = true;
     rpm.允许游客访问 = true;
     rpm.允许未登录访问 = true;

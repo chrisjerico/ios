@@ -27,8 +27,6 @@
 
 
 @interface UGLaunchPageVC ()
-@property (weak, nonatomic) IBOutlet UILabel *tipsLabel;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, assign) BOOL waitPic;         /**<   ⌛️等静态启动图播放完 */
 @property (nonatomic, assign) BOOL waitGif;         /**<   ⌛️等gif启动图播放完 */
 @property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
@@ -52,11 +50,10 @@
         _waitReactNative = true;
         _waitSysConf = true;
         
+        [self loadLaunchImage];
         [self loadReactNative];
         [self loadSysConf];
-        [self loadLaunchImage];
 //        [self loadLanguage];
-        [self updateTips];
     }
     
     // 超时处理
@@ -92,20 +89,6 @@
     // 这段话是为了加载<SafariServices/SafariServices.h>库，不然打包后会无法联网（DEBUG可以是因为LogVC里面加载了）
     SFSafariViewController *sf = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     sf.view.backgroundColor = APP.BackgroundColor;
-}
-
-- (void)updateTips {
-#ifndef APP_TEST
-    _tipsLabel.superview.hidden = true;
-#endif
-    
-    NSString *tips = nil;
-    if (_waitReactNative) {
-        tips = @"正在努力更新中...";
-    } else if (_waitLanguage) {
-        tips = @"正在加载语言包...";
-    }
-    _tipsLabel.text = tips ? : @"正在进入主页...";
 }
 
 
@@ -156,7 +139,7 @@
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.shouldCustomLoopCount = true; // 是否自定义循环次数
         imageView.animationRepeatCount = 0;     // 不循环
-        [self.view insertSubview:imageView atIndex:0];
+        [self.view addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
         }];
@@ -255,18 +238,14 @@
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         NSLog(@"RN初始化完毕");
         __self.waitReactNative = false;
-        [__self updateTips];
     }];
     
     ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
     [__self addChildViewController:vc];
+    [__self.view insertSubview:vc.view atIndex:0];
 #ifdef APP_TEST
     [__self.view addSubview:vc.view];
-#else
-    [__self.view insertSubview:vc.view atIndex:0];
 #endif
-
-    
 }
 
 @end
