@@ -122,6 +122,12 @@
             return ;
 
         }
+        if ([UGSystemConfigModel  currentConfig].loginVCode) {
+            if (!self.imgVcodeModel) {
+                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
+                return ;
+            }
+        }
         
         
         
