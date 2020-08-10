@@ -121,9 +121,9 @@ static id _instace;
     {
         // 安装已下载好的包
         NSDictionary *dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"downloadedPackage"];
-        if (![curPackage[@"packageHash"] isEqualToString:dict[@"packageHash"]]) {
-            [CodePushPackage installPackage:dict removePendingUpdate:true error:nil];
-        }
+        [CodePushPackage installPackage:dict removePendingUpdate:false error:nil];
+//        NSLog(@"已下载的安装包：%@", dict);
+//        NSLog(@"当前安装包：%@", curPackage);
     }
     
     // 检查RN更新
@@ -142,6 +142,7 @@ static id _instace;
                     updatePackage;
                 });
                 
+//                NSLog(@"最新安装包：%@", updatePackage);
                 if (![curPackage[@"packageHash"] isEqualToString:updatePackage[@"packageHash"]]) {
                     NSString *expectedBundleFileName = @"main.jsbundle";
                     NSString *publicKey = nil;
@@ -150,7 +151,12 @@ static id _instace;
                             progress(receivedContentLength/(double)expectedContentLength);
                     } doneCallback:^{
                         NSLog(@"RN下载成功");
-                        [CodePushPackage installPackage:updatePackage removePendingUpdate:true error:nil];
+                        NSError *err = nil;
+                        [CodePushPackage installPackage:updatePackage removePendingUpdate:false error:&err];
+#ifdef APP_TEST
+                        if (err) [AlertHelper showAlertView:@"热更新失败，请联系开发" msg:err.domain btnTitles:@[@"确定"]];
+#endif
+                        NSLog(@"安装成功，当前安装包：%@", [CodePushPackage getCurrentPackage:nil]);
                         [[NSUserDefaults standardUserDefaults] setObject:updatePackage forKey:@"downloadedPackage"];
                         [[NSUserDefaults standardUserDefaults] synchronize];
                         if (completion)

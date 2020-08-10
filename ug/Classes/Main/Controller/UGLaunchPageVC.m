@@ -52,7 +52,7 @@
         _waitReactNative = true;
         _waitSysConf = true;
         
-        [self loadReactNative:false];
+        [self loadReactNative];
         [self loadSysConf];
         [self loadLaunchImage];
 //        [self loadLanguage];
@@ -66,11 +66,6 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             __self.waitSysConf = false;
             __self.waitLanguage = false;
-#ifndef APP_TEST
-            if (__self.waitReactNative) {
-                [__self loadReactNative:true];
-            }
-#endif
         });
     }
     
@@ -254,61 +249,24 @@
     getConfigs();
 }
 
-- (void)loadReactNative:(BOOL)force {
-    
+- (void)loadReactNative {
+    [JSPatchHelper install];
     __weakSelf_(__self);
-    BOOL notCheckUpdate = [[NSUserDefaults standardUserDefaults] boolForKey:@"NotDownloadNewestPackage"];
-    if (force || notCheckUpdate) {
-        _tipsLabel.superview.hidden = true;
-
-        // 初始化jsp
-        [JSPatchHelper install];
-        // 初始化rn
-        ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
-        [__self addChildViewController:vc];
-        if (notCheckUpdate) {
-            [__self.view addSubview:vc.view];
-        } else {
-            [__self.view insertSubview:vc.view atIndex:0];
-        }
-        
-        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            __self.waitReactNative = false;
-            [__self updateTips];
-            [JSPatchHelper waitUpdateFinish:^{}];
-        }];
-        return;
-    }
-    
-    // 检查RN更新
-    [ReactNativeHelper downloadNewestPackage:^(double progress) {
-        __self.progressView.progress = progress;
-    } completion:^(BOOL ret) {
-        [__self.progressView setProgress:1 animated:true];
-        [JSPatchHelper install];
-        
-        if (__self.waitReactNative) {
-            RnPageModel *rpm = [RnPageModel new];
-            rpm.rnName = @"null";
-            ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:rpm params:nil];
-            [__self addChildViewController:vc];
-            [__self.view insertSubview:vc.view atIndex:0];
-
-            [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-                __self.waitReactNative = false;
-                [__self updateTips];
-            }];
-        }
+    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        NSLog(@"RN初始化完毕");
+        __self.waitReactNative = false;
+        [__self updateTips];
     }];
     
-    // 检查是否强制更新
-//    __weakSelf_(__self);
-//    __block HotVersionModel *__forceUpdateVersion = nil; // 强制更新的版本
-//    [JSPatchHelper checkUpdate:@"9999" completion:^(NSError *err, HotVersionModel *hvm) {
-//        if (hvm.is_force_update) {
-//            __forceUpdateVersion = hvm;
-//        }
-//    }];
+    ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
+    [__self addChildViewController:vc];
+#ifdef APP_TEST
+    [__self.view addSubview:vc.view];
+#else
+    [__self.view insertSubview:vc.view atIndex:0];
+#endif
+
+    
 }
 
 @end
