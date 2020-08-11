@@ -42,47 +42,159 @@
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
 
-    // 加载初始配置
-    {
-//        _waitLanguage = true;
-        _waitGif = false;
-        _waitPic = true;
-        _waitReactNative = true;
-        _waitSysConf = true;
-        
-        [self loadLaunchImage];
-        [self loadReactNative];
-        [self loadSysConf];
-//        [self loadLanguage];
-    }
-    
-    // 超时处理
-    __weakSelf_(__self);
-    {
-        int timeout = 7; // ⌛️超时时间
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            __self.waitSysConf = false;
-            __self.waitLanguage = false;
-        });
-    }
-    
-    // 等待所有初始配置加载完毕才进入主页
-    int minSecs = 3;   // ⌛️最少等待3秒
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(minSecs * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        while (1) {
-            [NSThread sleepForTimeInterval:0.2];
-            if (__self.waitReactNative) continue;
-            if (__self.waitSysConf) continue;
-            if (__self.waitPic) continue;
-            if (__self.waitGif) continue;
-            if (__self.waitLanguage) continue;
-            break;
+     // 加载初始配置域名
+        {
+            [self getSystemConfig];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-            APP.Window.rootViewController = [[UGTabbarController alloc] init];
+    //
+    
+
+}
+
+// 获取系统配置
+- (void)getSystemConfig {
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            HJSonLog(@"model = %@",model);
+            
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            NSLog(@"App.host = %@",APP.Host);
+            NSLog(@"config.easyRememberDomain = %@",config.easyRememberDomain);
+            
+            if (config.easyRememberDomain.length) {
+                //和本地保存的进行比对，是否一样，不一样往下走
+                //是否是正确的域名
+                //保存到本地
+                //App.host
+                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                NSString *localStr = [userDefault stringForKey:@"easyRememberDomain" ];
+                
+                if ([localStr isEqualToString:config.easyRememberDomain]) {
+                    //不保存
+                    [APP setHost:UGSystemConfigModel.currentConfig.easyRememberDomain];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // UI更新代码
+                        [self initMyLaunchPageVC];
+                    });
+                         
+                    return;
+                }
+                
+                NSURL *result = [CMCommon smartURLForString:config.easyRememberDomain];
+                
+                if (result) {
+                   NSString *url =  [NSString stringWithFormat:@"%@/%@",[result absoluteString],@"wjapp/api.php?c=system&a=onlineCount"];
+                    
+                    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+                    [request setHTTPMethod:@"HEAD"];
+                    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                        NSLog(@"error %@",error);
+                        if (error) {
+                            NSLog(@"不可用");
+                            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                            NSString *localStr = [userDefault stringForKey:@"easyRememberDomain" ];
+                             
+                            if (localStr.length) {
+                                  [APP setHost:localStr];
+                            } else {
+                                  APP.Host = [APP.allSites objectWithValue:APP.SiteId.lowercaseString keyPath:@"siteId"].host;
+                            }
+      
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                // UI更新代码
+                                [self initMyLaunchPageVC];
+                            });
+                                 
+                        }else{
+                            NSLog(@"可用");
+                            
+                            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                            [userDefault setObject:UGSystemConfigModel.currentConfig.easyRememberDomain forKey:@"easyRememberDomain"];
+                            [userDefault synchronize];
+                            [APP setHost:UGSystemConfigModel.currentConfig.easyRememberDomain];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                // UI更新代码
+                                [self initMyLaunchPageVC];
+                            });
+                                 
+                                        
+                        }
+                    }];
+                    [task resume];
+                }
+                
+                
+                
+            }
+            else{
+                //删除本地的数据
+                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                [userDefault setObject:nil forKey:@"easyRememberDomain"];
+                [userDefault synchronize];
+                APP.Host = [APP.allSites objectWithValue:APP.SiteId.lowercaseString keyPath:@"siteId"].host;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   // UI更新代码
+                  [self initMyLaunchPageVC];
+                });
+                
+            }
+            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
+
+
+-(void)initMyLaunchPageVC{
+    
+    NSLog(@"App.host = %@",APP.Host);
+        // 加载初始配置
+        {
+    //        _waitLanguage = true;
+            _waitGif = false;
+            _waitPic = true;
+            _waitReactNative = true;
+            _waitSysConf = true;
+            
+            [self loadLaunchImage];
+            [self loadReactNative];
+            [self loadSysConf];
+    //        [self loadLanguage];
+        }
+        
+        // 超时处理
+        __weakSelf_(__self);
+        {
+            int timeout = 7; // ⌛️超时时间
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __self.waitSysConf = false;
+                __self.waitLanguage = false;
+            });
+        }
+        
+        // 等待所有初始配置加载完毕才进入主页
+        int minSecs = 3;   // ⌛️最少等待3秒
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(minSecs * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            while (1) {
+                [NSThread sleepForTimeInterval:0.2];
+                if (__self.waitReactNative) continue;
+                if (__self.waitSysConf) continue;
+                if (__self.waitPic) continue;
+                if (__self.waitGif) continue;
+                if (__self.waitLanguage) continue;
+                break;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+                APP.Window.rootViewController = [[UGTabbarController alloc] init];
+            });
         });
-    });
 }
 
 - (void)initNetwork {
