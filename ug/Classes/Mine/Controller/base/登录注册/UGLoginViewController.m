@@ -14,6 +14,9 @@
 #import "UGImgVcodeModel.h"
 #import "UGSecurityCenterViewController.h"
 #import "SLWebViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "SUCache.h"
 
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
@@ -27,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *rigesterButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *FSloginButton;
 
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
@@ -49,7 +53,7 @@
     [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     [self.playButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     [self.goHomeButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
-    
+    [self.FSloginButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
 }
 
@@ -99,9 +103,14 @@
     self.loginButton.layer.masksToBounds = YES;
     [self.loginButton setBackgroundColor:Skin1.navBarBgColor];
     
+    self.FSloginButton.layer.cornerRadius = 5;
+    self.FSloginButton.layer.masksToBounds = YES;
+    [self.FSloginButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    self.FSloginButton.permissions = @[@"public_profile", @"email"];
+    
     self.rigesterButton.layer.cornerRadius = 5;
     self.rigesterButton.layer.masksToBounds = YES;
-     [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
+    [self.rigesterButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
     self.playButton.layer.cornerRadius = 5;
     self.playButton.layer.masksToBounds = YES;
@@ -151,6 +160,20 @@
     }
     
     [self getSystemConfig];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_updateContent:)
+                                                 name:FBSDKProfileDidChangeNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_accessTokenChanged:)
+                                                 name:FBSDKAccessTokenDidChangeNotification
+                                               object:nil];
+    
+    //测试当前facebook 用户信息数据
+    SUCacheItem *item = [SUCache itemForSlot:0];
+    [self labelDisplayWithProfile:item.profile];
 }
 
 
@@ -171,12 +194,12 @@
 
         }
         
-        if ([UGSystemConfigModel  currentConfig].loginVCode) {
-            if (!self.imgVcodeModel) {
-                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
-                return ;
-            }
-        }
+//        if ([UGSystemConfigModel  currentConfig].loginVCode) {
+//            if (!self.imgVcodeModel) {
+//                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
+//                return ;
+//            }
+//        }
        
         
         
@@ -195,8 +218,8 @@
             [mutDict setValue:self.imgVcodeModel.nc_csessionid forKey:sid];
             [mutDict setValue:self.imgVcodeModel.nc_token forKey:token];
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
-            
         }
+        
         [SVProgressHUD showWithStatus:@"正在登录..."];
         WeakSelf;
         [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
@@ -286,6 +309,96 @@
         }];
     });
 }
+#pragma mark - facebook 登录相关
+- (IBAction)faceBookLoginAction:(id)sender {
+    NSInteger slot = 0;
+    FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+     if (token) { // User is logged in, do
+         [self autoLoginWithToken:token];
+     }
+     else{
+         [self newLogin];
+     }
+}
+//facebook退出登录
+- (void)autoLoginWithToken:(FBSDKAccessToken *)token {
+    [FBSDKAccessToken setCurrentAccessToken:token];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        //token过期，删除存储的token和profile
+        if (error) {
+            NSLog(@"用户令牌不再有效.");
+            NSInteger slot = 0;
+            [SUCache deleteItemInSlot:slot];
+            [FBSDKAccessToken setCurrentAccessToken:nil];
+            [FBSDKProfile setCurrentProfile:nil];
+        }
+        //做登录完成的操作
+        else {
+            
+        }
+    }];
+}
+
+- (void)newLogin {
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    
+    [login logInWithPermissions:@[@"public_profile"]
+             fromViewController:self
+                        handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        NSLog(@"facebook登录result.grantedPermissions = %@,error = %@",result.grantedPermissions,error);
+        if (error) {
+            NSLog(@"流程错误");
+        } else if (result.isCancelled) {
+            NSLog(@"取消了");
+        } else {
+            NSLog(@"登录");
+        }
+    }];
+
+}
+
+#pragma mark - Notification
+
+- (void)_updateContent:(NSNotification *)notification {
+    FBSDKProfile *profile = notification.userInfo[FBSDKProfileChangeNewKey];
+    [self labelDisplayWithProfile:profile];
+}
+
+- (void)_accessTokenChanged:(NSNotification *)notification
+{
+    FBSDKAccessToken *token = notification.userInfo[FBSDKAccessTokenChangeNewKey];
+    if (!token) {
+        [FBSDKAccessToken setCurrentAccessToken:nil];
+        [FBSDKProfile setCurrentProfile:nil];
+    } else {
+        NSInteger slot = 0;
+        SUCacheItem *item = [SUCache itemForSlot:slot] ?: [[SUCacheItem alloc] init];
+        if (![item.token isEqualToAccessToken:token]) {
+            item.token = token;
+            [SUCache saveItem:item slot:slot];
+        }
+    }
+}
+
+- (void)labelDisplayWithProfile:(FBSDKProfile *)profile{
+    NSInteger slot = 0;
+    if (profile) {
+        SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
+        cacheItem.profile = profile;
+        [SUCache saveItem:cacheItem slot:slot];
+        NSLog(@"登录成功后的信息profile = %@",profile);
+        NSString *ss = [NSString stringWithFormat:@"名称 = %@,userID = %@",cacheItem.profile.name,cacheItem.profile.userID];
+ 
+      
+       NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
+//        [self.pictureView setImageByUrl:[NSString stringWithFormat:@"%@",imgURL]];
+        NSLog(@"faceBook 登录信息：%@",ss);
+        NSLog(@"faceBook 登录头像信息：%@",imgURL);
+        
+    }
+}
+
 
 - (void)getSystemConfig {
     WeakSelf;

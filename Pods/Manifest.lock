@@ -42,6 +42,16 @@ PODS:
     - React-Core (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/turbomodule/core (= 0.61.5)
+  - FBSDKCoreKit (7.1.1):
+    - FBSDKCoreKit/Basics (= 7.1.1)
+    - FBSDKCoreKit/Core (= 7.1.1)
+  - FBSDKCoreKit/Basics (7.1.1)
+  - FBSDKCoreKit/Core (7.1.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (7.1.1):
+    - FBSDKLoginKit/Login (= 7.1.1)
+  - FBSDKLoginKit/Login (7.1.1):
+    - FBSDKCoreKit (~> 7.1.1)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
@@ -381,6 +391,7 @@ DEPENDENCIES:
   - ESTabBarController-swift (~> 2.7)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
+  - FBSDKLoginKit
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - FSCalendar
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -475,6 +486,8 @@ SPEC REPOS:
     - Differentiator
     - DLPickerView
     - ESTabBarController-swift
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - FSCalendar
     - InputBarAccessoryView
     - IQKeyboardManager
@@ -625,6 +638,8 @@ SPEC CHECKSUMS:
   ESTabBarController-swift: 4fb52ad03d94d0717ef97bc9eb09a5abfdded0a2
   FBLazyVector: aaeaf388755e4f29cd74acbc9e3b8da6d807c37f
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
+  FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
+  FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
@@ -708,6 +723,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: bd0ef4badd1250aa1c91499da01ec27da27753a4
+PODFILE CHECKSUM: a7a6ff224847ed89674b8083e5dd116201ede812
 
 COCOAPODS: 1.9.3
