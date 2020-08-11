@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,11 +33,21 @@
                                     <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePi-h2-RAq">
+                                    <rect key="frame" x="20" y="0.0" width="394" height="25"/>
+                                    <connections>
+                                        <action selector="buttonClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="hjV-kQ-KcJ"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
+                                <constraint firstItem="ePi-h2-RAq" firstAttribute="top" secondItem="p9N-KG-M8R" secondAttribute="top" id="3HD-Yj-zYl"/>
                                 <constraint firstItem="kMl-10-FUQ" firstAttribute="centerY" secondItem="p9N-KG-M8R" secondAttribute="centerY" id="IdQ-lr-kxU"/>
                                 <constraint firstItem="MS3-iR-62D" firstAttribute="centerY" secondItem="p9N-KG-M8R" secondAttribute="centerY" id="JOY-rT-s0Y"/>
+                                <constraint firstAttribute="trailing" secondItem="ePi-h2-RAq" secondAttribute="trailing" id="Oen-Mr-YKr"/>
+                                <constraint firstItem="ePi-h2-RAq" firstAttribute="leading" secondItem="kMl-10-FUQ" secondAttribute="trailing" id="PQg-9d-Iaq"/>
+                                <constraint firstAttribute="bottom" secondItem="ePi-h2-RAq" secondAttribute="bottom" id="eyX-yg-jxF"/>
                                 <constraint firstItem="MS3-iR-62D" firstAttribute="leading" secondItem="kMl-10-FUQ" secondAttribute="trailing" id="ks2-W7-RUj"/>
                                 <constraint firstItem="kMl-10-FUQ" firstAttribute="leading" secondItem="p9N-KG-M8R" secondAttribute="leading" constant="5" id="oUY-6m-wdO"/>
                                 <constraint firstAttribute="height" constant="25" id="zxi-DA-8Sx"/>
