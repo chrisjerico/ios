@@ -221,9 +221,17 @@
     _isChatWhite = !APP.betBgIsWhite ? YES : NO;
     _isHideChat = [@"c212,c208" containsString:_SiteId];
     _isLight = [@"c134" containsString:_SiteId];
-    _isYellow = [@"c085,c134,c200,c193,c116,c208,c213,c212,a002" containsString:_SiteId];
-    _isSelectStyle = [@"c212,c208,c134,c200,c193,c116,c213,a002" containsString:_SiteId];
-    _isShowBorder =  [@"c212,c208,c134,c200,c213,a002,c193,c116,c092" containsString:_SiteId];
+    
+    
+    _isYellow = [@"c085,c134,c200,c193,c116,c208,c213,c212,a002,c158" containsString:_SiteId];
+    _isSelectStyle = [@"c212,c208,c134,c200,c193,c116,c213,a002,c158" containsString:_SiteId];
+    _isShowBorder =  [@"c212,c208,c134,c200,c213,a002,c193,c116,c092,c158" containsString:_SiteId];
+    //背景是白色
+    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    //下注页tab 为深色
+    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
+    
+    
     _isShowHornView = [@"l001,l002" containsString:_SiteId];
     _isBorderNavBarBgColor = Skin1.isBlack ? NO : [@"c085,c212,c208,c134" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
     _isBall = Skin1.isSLH ? YES : [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217" containsString:_SiteId];
@@ -239,8 +247,7 @@
     _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
     _lotteryHallCustomImgS = [@"c190" containsString:_SiteId];
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
-    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
-    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
+
     
     _betSizeIsBig = [@"c169,c205,c211" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
