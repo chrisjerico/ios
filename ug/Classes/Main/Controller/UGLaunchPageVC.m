@@ -46,7 +46,8 @@
         {
 #ifdef DEBUG
             // UI更新代码
-            [self initMyLaunchPageVC];
+//            [self initMyLaunchPageVC];
+            [self getSystemConfig];
 #else
             [self getSystemConfig];
 #endif
@@ -66,10 +67,19 @@
             UGSystemConfigModel.currentConfig = config;
 
             if (config.easyRememberDomain.length) {
-                //和本地保存的进行比对，是否一样，不一样往下走
                 //是否是正确的域名
+                //和本地保存的进行比对，是否一样，不一样往下走
                 //保存到本地
                 //App.host
+                
+                if (!config.easyRememberDomain.isURL) {
+                   
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // UI更新代码
+                        [self initMyLaunchPageVC];
+                    });
+                    return;
+                }
                 NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
                 NSString *localStr = [userDefault stringForKey:@"easyRememberDomain" ];
                 
@@ -84,7 +94,8 @@
                     return;
                 }
                 
-                NSURL *result = [CMCommon smartURLForString:config.easyRememberDomain];
+               
+                NSURL *result = [NSURL URLWithString:config.easyRememberDomain];
                 
                 if (result) {
                    NSString *url =  [NSString stringWithFormat:@"%@/%@",[result absoluteString],@"wjapp/api.php?c=system&a=onlineCount"];
