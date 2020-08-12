@@ -46,8 +46,8 @@
         {
 #ifdef DEBUG
             // UI更新代码
-//            [self initMyLaunchPageVC];
-            [self getSystemConfig];
+            [self initMyLaunchPageVC];
+//            [self getSystemConfig];
 #else
             [self getSystemConfig];
 #endif
