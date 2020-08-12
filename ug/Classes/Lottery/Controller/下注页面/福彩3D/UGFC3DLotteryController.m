@@ -435,7 +435,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
             }
         }
-
+        
     }
     [self.selArray removeAllObjects];
     [self.betCollectionView reloadData];
@@ -483,36 +483,36 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                     [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
                     return;
                 }
-
+                
                 
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
                 
-                 if (self.selArray.count) {
-
-                     if (self.selArray.count != 3) {
-                         [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
-                         return;
-                     }
-
-                     UGGameBetModel *beti = self.selArray[0];
-                     UGGameBetModel *bety = self.selArray[1];
-                     UGGameBetModel *betz = self.selArray[2];
-                     UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                     [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
-                     NSMutableString *name = [[NSMutableString alloc] init];
-                     [name appendString:beti.name];
-                     [name appendString:@","];
-                     [name appendString:bety.name];
-                     [name appendString:@","];
-                     [name appendString:betz.name];
-                     bet.name = name;
-                     bet.money = self.amountTextF.text;
-                     bet.title = bet.alias;
-                     bet.betInfo = name;
-                     [array addObject:bet];
-                 }
-
+                if (self.selArray.count) {
+                    
+                    if (self.selArray.count != 3) {
+                        [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
+                        return;
+                    }
+                    
+                    UGGameBetModel *beti = self.selArray[0];
+                    UGGameBetModel *bety = self.selArray[1];
+                    UGGameBetModel *betz = self.selArray[2];
+                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                    [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+                    NSMutableString *name = [[NSMutableString alloc] init];
+                    [name appendString:beti.name];
+                    [name appendString:@","];
+                    [name appendString:bety.name];
+                    [name appendString:@","];
+                    [name appendString:betz.name];
+                    bet.name = name;
+                    bet.money = self.amountTextF.text;
+                    bet.title = bet.alias;
+                    bet.betInfo = name;
+                    [array addObject:bet];
+                }
+                
             }
             
         }
@@ -521,23 +521,23 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             [self ezdwBetActionMode:model array:&array selCode:&selCode];
         }
         else {
-           for (UGGameplayModel *model in weakSelf.gameDataArray) {
-               if (!model.select) {
-                   continue;
-               }
-               NSLog(@"model.code ======================== %@",model.code);
-               selCode = model.code;
-               for (UGGameplaySectionModel *type in model.list) {
-                   for (UGGameBetModel *game in type.list) {
-                       if (game.select) {
-                           game.money = weakSelf.amountTextF.text;
-                           game.title = type.name;
-                           [array addObject:game];
-                       }
-                       
-                   }
-               }
-           }
+            for (UGGameplayModel *model in weakSelf.gameDataArray) {
+                if (!model.select) {
+                    continue;
+                }
+                NSLog(@"model.code ======================== %@",model.code);
+                selCode = model.code;
+                for (UGGameplaySectionModel *type in model.list) {
+                    for (UGGameBetModel *game in type.list) {
+                        if (game.select) {
+                            game.money = weakSelf.amountTextF.text;
+                            game.title = type.name;
+                            [array addObject:game];
+                        }
+                        
+                    }
+                }
+            }
         }
         
         
@@ -598,11 +598,11 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             
         }
     }
-   
+    
 }
 //复式下注方法
 -(void)szdwBetActionMode:(UGGameplayModel *)type array :(NSMutableArray *__strong *) array selCode :(NSString *__strong *)selCode{
-
+    
     *selCode = type.code;
     if (type.list.count) {
         UGGameplaySectionModel *play = type.list[self.segmentIndex];
@@ -661,7 +661,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             
         }
     }
-   
+    
 }
 #pragma mark - YBPopupMenuDelegate
 
@@ -854,7 +854,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             UGGameplaySectionModel *type = model.list[section];
             return type.list.count;
         }
-
+        
     }else {
         if (section == 0) {
             return self.preNumArray.count;
@@ -902,7 +902,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             return cell;
         }
         if ([@"EZ" isEqualToString:model.code]) {
-
+            
             UGLinkNumCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:linkNumCellId forIndexPath:indexPath];
             cell.item = game;
             return cell;
@@ -1062,48 +1062,48 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 
             }
             else if ([@"EZ" isEqualToString:model.code]) {
-                          
-                          
-                          if (!model.list.count) {
-                              headerView.titleLabel.text = @"";
-                              return headerView;
-                          }
-                          if (indexPath.section == 0) {
-                              [headerView.xxtitleLabel setHidden:YES];
-                              [headerView.titleLabel setHidden:NO];
-                              type = model.list[self.segmentIndex];
-                              UGGameBetModel *bet = type.list.firstObject;
-                              NSLog(@"bet.odds =%@",bet.odds);
-                              if (bet == nil) {
-                                  bet = [UGGameBetModel new];
-                                  bet.odds = @"87.46";
-                              }
-                              if (APP.betOddsIsRed) {
-                                  headerView.titleLabel.attributedText = ({
-                                      NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString: [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero] attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
-                                      [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
-                                      mas;
-                                  });
-                              } else {
-                                  
-                                  headerView.titleLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
-                              }
-                          }
-                          else if (indexPath.section == 1){
-                              [headerView.xxtitleLabel setHidden:YES];
-                              [headerView.titleLabel setHidden:NO];
-                              type = model.list[self.segmentIndex ];
-                              UGGameplaySectionModel *obj = type.ezdwlist[indexPath.section];
-                              headerView.titleLabel.text = obj.name;
-                          }
-                          else if (indexPath.section == 2){
-                              [headerView.xxtitleLabel setHidden:YES];
-                              [headerView.titleLabel setHidden:NO];
-                              type = model.list[self.segmentIndex ];
-                              UGGameplaySectionModel *obj = type.ezdwlist[indexPath.section];
-                              headerView.titleLabel.text = obj.name;
-                          }
-                      }
+                
+                
+                if (!model.list.count) {
+                    headerView.titleLabel.text = @"";
+                    return headerView;
+                }
+                if (indexPath.section == 0) {
+                    [headerView.xxtitleLabel setHidden:YES];
+                    [headerView.titleLabel setHidden:NO];
+                    type = model.list[self.segmentIndex];
+                    UGGameBetModel *bet = type.list.firstObject;
+                    NSLog(@"bet.odds =%@",bet.odds);
+                    if (bet == nil) {
+                        bet = [UGGameBetModel new];
+                        bet.odds = @"87.46";
+                    }
+                    if (APP.betOddsIsRed) {
+                        headerView.titleLabel.attributedText = ({
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithString: [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero] attributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+                            [mas addAttributes:@{NSForegroundColorAttributeName:APP.AuxiliaryColor2} withString:[bet.odds removeFloatAllZero]];
+                            mas;
+                        });
+                    } else {
+                        
+                        headerView.titleLabel.text =  [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [bet.odds  floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
+                    }
+                }
+                else if (indexPath.section == 1){
+                    [headerView.xxtitleLabel setHidden:YES];
+                    [headerView.titleLabel setHidden:NO];
+                    type = model.list[self.segmentIndex ];
+                    UGGameplaySectionModel *obj = type.ezdwlist[indexPath.section];
+                    headerView.titleLabel.text = obj.name;
+                }
+                else if (indexPath.section == 2){
+                    [headerView.xxtitleLabel setHidden:YES];
+                    [headerView.titleLabel setHidden:NO];
+                    type = model.list[self.segmentIndex ];
+                    UGGameplaySectionModel *obj = type.ezdwlist[indexPath.section];
+                    headerView.titleLabel.text = obj.name;
+                }
+            }
             else {
                 [headerView.xxtitleLabel setHidden:YES];
                 [headerView.titleLabel setHidden:NO];
@@ -1135,7 +1135,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 //
 -(NSString * )modelSelected:(NSArray *)list{
-
+    
     UGGameBetModel *mode  =  [UGGameBetModel new];
     mode.name = @"-1";
     
@@ -1173,7 +1173,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         
         if ([model.code isEqualToString:@"DWD"]) {
-             UGGameplaySectionModel *type = model.list[self.segmentIndex];
+            UGGameplaySectionModel *type = model.list[self.segmentIndex];
             if ([type.ezdwcode isEqualToString:@"DWDFS"]) {
                 UGGameplaySectionModel *obj = model.list[self.segmentIndex];
                 UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
@@ -1205,7 +1205,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                             return;
                         }
                     }
-
+                    
                     game.select = !game.select;
                     [self setDanErCong:indexPath model:game];
                     
@@ -1222,7 +1222,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 else {
                     return;
                 }
-    
+                
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
                 UGGameplaySectionModel *obj = model.list[self.segmentIndex];
@@ -1245,7 +1245,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                     game.select = !game.select;
                     [self selArryAddGame:game];
                 }
-
+                
             }
             
         }
@@ -1269,7 +1269,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             game.select = !game.select;
         }
         
-
+        
         [self.betCollectionView reloadData];
         
         NSInteger number = 0;
@@ -1284,39 +1284,39 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
-         //        计算选中的注数
+        //        计算选中的注数
         NSInteger count = 0;
         
         if ([model.code isEqualToString:@"DWD"]) {
-              UGGameplaySectionModel *type = model.list[self.segmentIndex];
-             if ([type.ezdwcode isEqualToString:@"DWDFS"]) {
-                 [self szdwActionModel:model count:count];
-             }
-             else if([type.ezdwcode isEqualToString:@"DWDZXS"]) {
-                 if (self.erchonghao.length && self.danhao.length) {
-                     count += 1;
-                     [self updateSelectLabelWithCount:count];
-                 }
-             }
-             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
-                 UGGameplaySectionModel *obj = model.list[self.segmentIndex];
-                 UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
-                 NSInteger num = 0;
-                 for (UGGameBetModel *bet in type.list) {
-                     if (bet.select) {
-                         num ++;
-                     }
-                 }
-               
-                 if (num >= 3) {
-                     count += 1;
-                 }
-                 
-                  [self updateSelectLabelWithCount:count];
-                              
-             }
-             
-         }
+            UGGameplaySectionModel *type = model.list[self.segmentIndex];
+            if ([type.ezdwcode isEqualToString:@"DWDFS"]) {
+                [self szdwActionModel:model count:count];
+            }
+            else if([type.ezdwcode isEqualToString:@"DWDZXS"]) {
+                if (self.erchonghao.length && self.danhao.length) {
+                    count += 1;
+                    [self updateSelectLabelWithCount:count];
+                }
+            }
+            else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
+                UGGameplaySectionModel *obj = model.list[self.segmentIndex];
+                UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
+                NSInteger num = 0;
+                for (UGGameBetModel *bet in type.list) {
+                    if (bet.select) {
+                        num ++;
+                    }
+                }
+                
+                if (num >= 3) {
+                    count += 1;
+                }
+                
+                [self updateSelectLabelWithCount:count];
+                
+            }
+            
+        }
         if ([@"EZ" isEqualToString:model.code]) {
             [self ezdwActionModel:model count:count];
         }
@@ -1331,8 +1331,8 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
             }
             [self updateSelectLabelWithCount:count];
-         }
-
+        }
+        
     }
     
 }
@@ -1341,146 +1341,146 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 //二字 计算选中的注数
 -(void)ezdwActionModel:(UGGameplayModel *)model count:(NSInteger)count{
     
-      NSMutableArray *array = [NSMutableArray array];
-      UGGameplaySectionModel *play = model.list[self.segmentIndex];
-      if (play.ezdwlist.count) {
-          NSMutableArray *mutArr1 = [NSMutableArray array];
-          NSMutableArray *mutArr2 = [NSMutableArray array];
-          
-          UGGameplaySectionModel *model1 = play.ezdwlist[1];
-          for (UGGameplayModel *bet in model1.list) {
-              if (bet.select) {
-                  [mutArr1 addObject:bet];
-              }
-          }
-          UGGameplaySectionModel *model2 = play.ezdwlist[2];
-          for (UGGameplayModel *bet in model2.list) {
-              if (bet.select) {
-                  [mutArr2 addObject:bet];
-              }
-          }
-          if (mutArr1.count == 0 || mutArr2.count == 0) {
-              count = 0;
-              [self updateSelectLabelWithCount:count];
-              return;
-          }
-          
-          for (int i = 0; i < mutArr1.count; i++) {
-              
-              for (int y = 0; y < mutArr2.count; y++) {
-                  
-                  UGGameBetModel *beti = mutArr1[i];
-                  UGGameBetModel *bety = mutArr2[y];
-                  UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                  [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
-                  NSMutableString *name = [[NSMutableString alloc] init];
-                  [name appendString:beti.name];
-                  [name appendString:@","];
-                  [name appendString:bety.name];
-                  bet.name = name;
-                  bet.money = self.amountTextF.text;
-                  bet.title = bet.alias;
-                  bet.betInfo = name;
-                  [array addObject:bet];
-                  
-              }
-          }
-          
-          if (mutArr1.count == 0 || mutArr2.count == 0) {
-              count = 0;
-              [self updateSelectLabelWithCount:count];
+    NSMutableArray *array = [NSMutableArray array];
+    UGGameplaySectionModel *play = model.list[self.segmentIndex];
+    if (play.ezdwlist.count) {
+        NSMutableArray *mutArr1 = [NSMutableArray array];
+        NSMutableArray *mutArr2 = [NSMutableArray array];
+        
+        UGGameplaySectionModel *model1 = play.ezdwlist[1];
+        for (UGGameplayModel *bet in model1.list) {
+            if (bet.select) {
+                [mutArr1 addObject:bet];
+            }
+        }
+        UGGameplaySectionModel *model2 = play.ezdwlist[2];
+        for (UGGameplayModel *bet in model2.list) {
+            if (bet.select) {
+                [mutArr2 addObject:bet];
+            }
+        }
+        if (mutArr1.count == 0 || mutArr2.count == 0) {
+            count = 0;
+            [self updateSelectLabelWithCount:count];
+            return;
+        }
+        
+        for (int i = 0; i < mutArr1.count; i++) {
             
-          } else {
-              count = array.count;
-              NSLog(@"count = %ld",(long)count);
-              [self updateSelectLabelWithCount:count];
-          }
-      }
+            for (int y = 0; y < mutArr2.count; y++) {
+                
+                UGGameBetModel *beti = mutArr1[i];
+                UGGameBetModel *bety = mutArr2[y];
+                UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+                NSMutableString *name = [[NSMutableString alloc] init];
+                [name appendString:beti.name];
+                [name appendString:@","];
+                [name appendString:bety.name];
+                bet.name = name;
+                bet.money = self.amountTextF.text;
+                bet.title = bet.alias;
+                bet.betInfo = name;
+                [array addObject:bet];
+                
+            }
+        }
+        
+        if (mutArr1.count == 0 || mutArr2.count == 0) {
+            count = 0;
+            [self updateSelectLabelWithCount:count];
+            
+        } else {
+            count = array.count;
+            NSLog(@"count = %ld",(long)count);
+            [self updateSelectLabelWithCount:count];
+        }
+    }
 }
 
 //复式 计算选中的注数
 -(void)szdwActionModel:(UGGameplayModel *)model count:(NSInteger)count{
     
-      NSMutableArray *array = [NSMutableArray array];
-      UGGameplaySectionModel *play = model.list[self.segmentIndex];
-      if (play.ezdwlist.count) {
-          NSMutableArray *mutArr1 = [NSMutableArray array];
-          NSMutableArray *mutArr2 = [NSMutableArray array];
-          NSMutableArray *mutArr3 = [NSMutableArray array];
-          
-          UGGameplaySectionModel *model1 = play.ezdwlist[1];
-          for (UGGameplayModel *bet in model1.list) {
-              if (bet.select) {
-                  [mutArr1 addObject:bet];
-              }
-          }
-          UGGameplaySectionModel *model2 = play.ezdwlist[2];
-          for (UGGameplayModel *bet in model2.list) {
-              if (bet.select) {
-                  [mutArr2 addObject:bet];
-              }
-          }
-          UGGameplaySectionModel *model3 = play.ezdwlist[3];
-          for (UGGameplayModel *bet in model3.list) {
-              if (bet.select) {
-                  [mutArr3 addObject:bet];
-              }
-          }
-          if (mutArr1.count == 0 || mutArr2.count == 0|| mutArr3.count == 0) {
-              count = 0;
-              [self updateSelectLabelWithCount:count];
-              return;
-          }
-          
-          
-          for (int i = 0; i < mutArr1.count; i++) {
-              
-              for (int y = 0; y < mutArr2.count; y++) {
-                  
-                  for (int z = 0; z < mutArr3.count; z++) {
-                      UGGameBetModel *beti = mutArr1[i];
-                      UGGameBetModel *bety = mutArr2[y];
-                      UGGameBetModel *betz = mutArr3[z];
-                      UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                      [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
-                      NSMutableString *name = [[NSMutableString alloc] init];
-                      [name appendString:beti.name];
-                      [name appendString:@","];
-                      [name appendString:bety.name];
-                      [name appendString:@","];
-                      [name appendString:betz.name];
-                      bet.name = name;
-                      bet.money = self.amountTextF.text;
-                      bet.title = bet.alias;
-                      bet.betInfo = name;
-                      [array addObject:bet];
-                  }
-              }
-          }
-          
-          if (mutArr1.count == 0 || mutArr2.count == 0|| mutArr3.count == 0) {
-              count = 0;
-              [self updateSelectLabelWithCount:count];
+    NSMutableArray *array = [NSMutableArray array];
+    UGGameplaySectionModel *play = model.list[self.segmentIndex];
+    if (play.ezdwlist.count) {
+        NSMutableArray *mutArr1 = [NSMutableArray array];
+        NSMutableArray *mutArr2 = [NSMutableArray array];
+        NSMutableArray *mutArr3 = [NSMutableArray array];
+        
+        UGGameplaySectionModel *model1 = play.ezdwlist[1];
+        for (UGGameplayModel *bet in model1.list) {
+            if (bet.select) {
+                [mutArr1 addObject:bet];
+            }
+        }
+        UGGameplaySectionModel *model2 = play.ezdwlist[2];
+        for (UGGameplayModel *bet in model2.list) {
+            if (bet.select) {
+                [mutArr2 addObject:bet];
+            }
+        }
+        UGGameplaySectionModel *model3 = play.ezdwlist[3];
+        for (UGGameplayModel *bet in model3.list) {
+            if (bet.select) {
+                [mutArr3 addObject:bet];
+            }
+        }
+        if (mutArr1.count == 0 || mutArr2.count == 0|| mutArr3.count == 0) {
+            count = 0;
+            [self updateSelectLabelWithCount:count];
+            return;
+        }
+        
+        
+        for (int i = 0; i < mutArr1.count; i++) {
             
-          } else {
-              count = array.count;
-              NSLog(@"count = %ld",(long)count);
-              [self updateSelectLabelWithCount:count];
-          }
-      }
+            for (int y = 0; y < mutArr2.count; y++) {
+                
+                for (int z = 0; z < mutArr3.count; z++) {
+                    UGGameBetModel *beti = mutArr1[i];
+                    UGGameBetModel *bety = mutArr2[y];
+                    UGGameBetModel *betz = mutArr3[z];
+                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                    [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+                    NSMutableString *name = [[NSMutableString alloc] init];
+                    [name appendString:beti.name];
+                    [name appendString:@","];
+                    [name appendString:bety.name];
+                    [name appendString:@","];
+                    [name appendString:betz.name];
+                    bet.name = name;
+                    bet.money = self.amountTextF.text;
+                    bet.title = bet.alias;
+                    bet.betInfo = name;
+                    [array addObject:bet];
+                }
+            }
+        }
+        
+        if (mutArr1.count == 0 || mutArr2.count == 0|| mutArr3.count == 0) {
+            count = 0;
+            [self updateSelectLabelWithCount:count];
+            
+        } else {
+            count = array.count;
+            NSLog(@"count = %ld",(long)count);
+            [self updateSelectLabelWithCount:count];
+        }
+    }
 }
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-     UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-       if ([@"EZ" isEqualToString:model.code]) {
-           if (indexPath.row < 9) {
-               return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
-           }
-           return CGSizeMake((UGScreenW / 4 * 3 - 4) / 1, 40);
-           
-       }
-       return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
+    UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    if ([@"EZ" isEqualToString:model.code]) {
+        if (indexPath.row < 9) {
+            return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
+        }
+        return CGSizeMake((UGScreenW / 4 * 3 - 4) / 1, 40);
+        
+    }
+    return CGSizeMake((UGScreenW / 4 * 3 - 4) / 2, 40);
     
 }
 /** 头视图Size */
@@ -1674,168 +1674,172 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 //一字定位玩法数据处理
 - (void)handleData {
     for (UGGameplayModel *model in self.gameDataArray) {
+        
+        NSLog(@"model=%@",model);
         if ([@"DWD" isEqualToString:model.code]) {
             
-            if (!model.list.count) {
-                return;
-            }
-            
-            int lenth = (int )model.list.count;
-            
-            for (int i = 0; i < lenth; i++) {
-                UGGameplaySectionModel *group = [model.list objectAtIndex:i];
-                
-                if (group.list.count) {
-                    UGGameBetModel *play = [group.list objectAtIndex:0];
+            if (model.list.count) {
+                int lenth = (int )model.list.count;
+                for (int i = 0; i < lenth; i++) {
+                    UGGameplaySectionModel *group = [model.list objectAtIndex:i];
                     
-                    if ([play.code isEqualToString:@"DWDFS"]) {
-                        NSMutableArray *sectionArray = [NSMutableArray array];
-                        for (int i = 0; i< 4; i++) {
-                            UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
-                            if (i == 0 ) {
-                                sectionModel.name = play.odds;
+                    if (group.list.count) {
+                        UGGameBetModel *play = [group.list objectAtIndex:0];
+                        
+                        if ([play.code isEqualToString:@"DWDFS"]) {
+                            NSMutableArray *sectionArray = [NSMutableArray array];
+                            for (int i = 0; i< 4; i++) {
+                                UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
+                                if (i == 0 ) {
+                                    sectionModel.name = play.odds;
+                                }
+                                else if (i == 1 ) {
+                                    sectionModel.name = @"第一球(百位)";
+                                }
+                                else if (i == 2 ) {
+                                    sectionModel.name = @"第二球(十位)";
+                                }
+                                else if (i == 3 ) {
+                                    sectionModel.name = @"第三球(个位)";
+                                }
+                                [sectionArray addObject:sectionModel];
                             }
-                            else if (i == 1 ) {
-                                sectionModel.name = @"第一球(百位)";
+                            for (UGGameplaySectionModel *sectionModel in sectionArray) {
+                                NSMutableArray *array = [NSMutableArray array];
+                                for (int i = 0; i < 10; i++) {
+                                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                                    [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                                    bet.alias = bet.name;
+                                    bet.typeName = group.name;
+                                    bet.name = [NSString stringWithFormat:@"%d",i ];
+                                    [array addObject:bet];
+                                }
+                                sectionModel.list = array.copy;
                             }
-                            else if (i == 2 ) {
-                                sectionModel.name = @"第二球(十位)";
-                            }
-                            else if (i == 3 ) {
-                                sectionModel.name = @"第三球(个位)";
-                            }
-                            [sectionArray addObject:sectionModel];
+                            group.ezdwlist = sectionArray.copy;
+                            group.ezdwcode = @"DWDFS";
                         }
-                        for (UGGameplaySectionModel *sectionModel in sectionArray) {
-                            NSMutableArray *array = [NSMutableArray array];
-                            for (int i = 0; i < 10; i++) {
-                                UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                                [bet setValuesForKeysWithDictionary:play.mj_keyValues];
-                                bet.alias = bet.name;
-                                bet.typeName = group.name;
-                                bet.name = [NSString stringWithFormat:@"%d",i ];
-                                [array addObject:bet];
+                        else if([play.code isEqualToString:@"DWDZXS"]){
+                            NSMutableArray *sectionArray = [NSMutableArray array];
+                            for (int i = 0; i< 4; i++) {
+                                UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
+                                if (i == 0 ) {
+                                    sectionModel.name = play.odds;
+                                }
+                                else if (i == 1 ) {
+                                    sectionModel.name = @"玩法提示：选一个二重号，一个单号组成一注。(单号号码不得与二重号重复)";
+                                }
+                                else if (i == 2 ) {
+                                    sectionModel.name = @"二重号";
+                                }
+                                else if (i == 3 ) {
+                                    sectionModel.name = @"单号";
+                                }
+                                [sectionArray addObject:sectionModel];
                             }
-                            sectionModel.list = array.copy;
+                            for (UGGameplaySectionModel *sectionModel in sectionArray) {
+                                NSMutableArray *array = [NSMutableArray array];
+                                for (int i = 0; i < 10; i++) {
+                                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                                    [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                                    bet.alias = bet.name;
+                                    bet.typeName = group.name;
+                                    bet.name = [NSString stringWithFormat:@"%d",i ];
+                                    [array addObject:bet];
+                                }
+                                sectionModel.list = array.copy;
+                            }
+                            group.ezdwlist = sectionArray.copy;
+                            group.ezdwcode = @"DWDZXS";
                         }
-                        group.ezdwlist = sectionArray.copy;
-                        group.ezdwcode = @"DWDFS";
-                    }
-                    else if([play.code isEqualToString:@"DWDZXS"]){
-                        NSMutableArray *sectionArray = [NSMutableArray array];
-                        for (int i = 0; i< 4; i++) {
-                            UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
-                            if (i == 0 ) {
-                                sectionModel.name = play.odds;
-                            }
-                            else if (i == 1 ) {
-                                sectionModel.name = @"玩法提示：选一个二重号，一个单号组成一注。(单号号码不得与二重号重复)";
-                            }
-                            else if (i == 2 ) {
-                                sectionModel.name = @"二重号";
-                            }
-                            else if (i == 3 ) {
-                                sectionModel.name = @"单号";
-                            }
-                            [sectionArray addObject:sectionModel];
-                        }
-                        for (UGGameplaySectionModel *sectionModel in sectionArray) {
-                            NSMutableArray *array = [NSMutableArray array];
-                            for (int i = 0; i < 10; i++) {
-                                UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                                [bet setValuesForKeysWithDictionary:play.mj_keyValues];
-                                bet.alias = bet.name;
-                                bet.typeName = group.name;
-                                bet.name = [NSString stringWithFormat:@"%d",i ];
-                                [array addObject:bet];
-                            }
-                            sectionModel.list = array.copy;
-                        }
-                        group.ezdwlist = sectionArray.copy;
-                        group.ezdwcode = @"DWDZXS";
-                    }
-                    else if([play.code isEqualToString:@"DWDZXL"]){
-                        NSMutableArray *sectionArray = [NSMutableArray array];
-                        for (int i = 0; i< 3; i++) {
-                            UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
-                            if (i == 0 ) {
-                                sectionModel.name = play.odds;
+                        else if([play.code isEqualToString:@"DWDZXL"]){
+                            NSMutableArray *sectionArray = [NSMutableArray array];
+                            for (int i = 0; i< 3; i++) {
+                                UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
+                                if (i == 0 ) {
+                                    sectionModel.name = play.odds;
+                                    
+                                }
+                                else if (i == 1 ) {
+                                    sectionModel.name = @"玩法提示：任选3个号码组成一注(号码不重复)";
+                                }
+                                else if (i == 2 ) {
+                                    sectionModel.name = @"选号";
+                                }
                                 
+                                [sectionArray addObject:sectionModel];
                             }
-                            else if (i == 1 ) {
-                                sectionModel.name = @"玩法提示：任选3个号码组成一注(号码不重复)";
+                            for (UGGameplaySectionModel *sectionModel in sectionArray) {
+                                NSMutableArray *array = [NSMutableArray array];
+                                for (int i = 0; i < 10; i++) {
+                                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                                    [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                                    bet.alias = bet.name;
+                                    bet.typeName = group.name;
+                                    bet.name = [NSString stringWithFormat:@"%d",i ];
+                                    [array addObject:bet];
+                                }
+                                sectionModel.list = array.copy;
                             }
-                            else if (i == 2 ) {
-                                sectionModel.name = @"选号";
-                            }
-                            
-                            [sectionArray addObject:sectionModel];
+                            group.ezdwlist = sectionArray.copy;
+                            group.ezdwcode = @"DWDZXL";
                         }
-                        for (UGGameplaySectionModel *sectionModel in sectionArray) {
-                            NSMutableArray *array = [NSMutableArray array];
-                            for (int i = 0; i < 10; i++) {
-                                UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                                [bet setValuesForKeysWithDictionary:play.mj_keyValues];
-                                bet.alias = bet.name;
-                                bet.typeName = group.name;
-                                bet.name = [NSString stringWithFormat:@"%d",i ];
-                                [array addObject:bet];
-                            }
-                            sectionModel.list = array.copy;
-                        }
-                        group.ezdwlist = sectionArray.copy;
-                        group.ezdwcode = @"DWDZXL";
+                        
                     }
-                    
                 }
             }
             
         }
         
-        if ([@"EZ" isEqualToString:model.code]) {
-                   if (!model.list.count) {
-                       return;
-                   }
-                   
-                   int lenth = (int )model.list.count;
-                   
-                   for (int i = 0; i < lenth; i++) {
-                       UGGameplaySectionModel *group = [model.list objectAtIndex:i];
-                       
-                       if (group.list.count) {
-                           UGGameBetModel *play = group.list.firstObject;
-                           NSMutableArray *sectionArray = [NSMutableArray array];
-                           NSLog(@"group.alias =%@",group.alias);
-                           for (int i = 0; i< 3; i++) {
-                               UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
-                               if (i == 0 ) {
-                                   sectionModel.name = play.odds;
-                               }else if (i == 1 ) {
-                                   sectionModel.name = [NSString stringWithFormat:@"%@定位", [group.alias substringToIndex:1]] ;
-                               }
-                               else if (i == 2 ) {
-                                   sectionModel.name = [NSString stringWithFormat:@"%@定位", [group.alias substringFromIndex:group.alias.length-1] ];
-                               }
-                               [sectionArray addObject:sectionModel];
-                           }
-                           
-                           for (UGGameplaySectionModel *sectionModel in sectionArray) {
-                               NSMutableArray *array = [NSMutableArray array];
-                               for (int i = 0; i < 10; i++) {
-                                   UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                                   [bet setValuesForKeysWithDictionary:play.mj_keyValues];
-                                   bet.alias = bet.name;
-                                   bet.typeName = group.name;
-                                   bet.name = [NSString stringWithFormat:@"%d",i ];
-                                   [array addObject:bet];
-                               }
-                               sectionModel.list = array.copy;
-                           }
-                           group.ezdwlist = sectionArray.copy;
-                       }
-                   }
-                   
-               }
+        
+        
+        else  if ([@"EZ" isEqualToString:model.code]) {
+            
+            NSLog(@"model=%@",model);
+            
+            if (model.list.count) {
+                int lenth = (int )model.list.count;
+                
+                for (int i = 0; i < lenth; i++) {
+                    UGGameplaySectionModel *group = [model.list objectAtIndex:i];
+                    
+                    if (group.list.count) {
+                        UGGameBetModel *play = group.list.firstObject;
+                        NSMutableArray *sectionArray = [NSMutableArray array];
+                        NSLog(@"group.alias =%@",group.alias);
+                        for (int i = 0; i< 3; i++) {
+                            UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
+                            if (i == 0 ) {
+                                sectionModel.name = play.odds;
+                            }else if (i == 1 ) {
+                                sectionModel.name = [NSString stringWithFormat:@"%@定位", [group.alias substringToIndex:1]] ;
+                            }
+                            else if (i == 2 ) {
+                                sectionModel.name = [NSString stringWithFormat:@"%@定位", [group.alias substringFromIndex:group.alias.length-1] ];
+                            }
+                            [sectionArray addObject:sectionModel];
+                        }
+                        
+                        for (UGGameplaySectionModel *sectionModel in sectionArray) {
+                            NSMutableArray *array = [NSMutableArray array];
+                            for (int i = 0; i < 10; i++) {
+                                UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                                [bet setValuesForKeysWithDictionary:play.mj_keyValues];
+                                bet.alias = bet.name;
+                                bet.typeName = group.name;
+                                bet.name = [NSString stringWithFormat:@"%d",i ];
+                                [array addObject:bet];
+                            }
+                            sectionModel.list = array.copy;
+                        }
+                        group.ezdwlist = sectionArray.copy;
+                    }
+                }
+            }
+            
+            
+            
+        }
     }
     
 }
