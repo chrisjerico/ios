@@ -145,6 +145,8 @@
         @"dshb_transfer"            :@"duosan",         // 多闪红包
         @"xlsm_transfer"            :@"xlsm",           // 闲聊扫码
         @"yxsm_transfer"            :@"yxsm_transfer_icon",           // 易信扫码
+        @"huobi_online"             :@"huobi_online",    // 火币
+        @"aliyin_transfer"          :@"aliyin_transfer",    // 支付宝银联
     }.mutableCopy;
     
     [self setHeaderImageStr:imgDict[item.pid]];

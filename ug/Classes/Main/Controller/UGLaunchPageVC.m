@@ -44,7 +44,13 @@
 
      // 加载初始配置域名
         {
+#ifdef DEBUG
+            // UI更新代码
+            [self initMyLaunchPageVC];
+#else
             [self getSystemConfig];
+#endif
+     
         }
     //
     
@@ -55,14 +61,10 @@
 - (void)getSystemConfig {
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            
-            HJSonLog(@"model = %@",model);
-            
+
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            NSLog(@"App.host = %@",APP.Host);
-            NSLog(@"config.easyRememberDomain = %@",config.easyRememberDomain);
-            
+
             if (config.easyRememberDomain.length) {
                 //和本地保存的进行比对，是否一样，不一样往下走
                 //是否是正确的域名

@@ -151,6 +151,7 @@
             site(@"test06",      @"",           @"",        @"com.UGGame.cp",         @"http://test06.6yc.com",                       @"内测包",     @"test06"),    // (army)
             site(@"test07",      @"test07",     @"279",     @"com.UGGame.cp",         @"http://test07.6yc.com",                       @"内测包",     @"test07"),    // (army)
             site(@"test20",      @"test20",     @"263",     @"com.UGGame.cp",           @"http://test20.6yc.com",                       @"内测包",     @"test20"),    // (朗朗)
+            site(@"test21",      @"test21",     @"263",     @"com.UGGame.cp",           @"http://test21.6yc.com",                       @"内测包",     @"test21"),    // ()
             site(@"test29",      @"test29",     @"245",     @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
             site(@"test29b",      @"test29b",    @"291",     @"com.UGGame.cp",           @"http://t029bz.fhptcdn.com",                  @"内测包",     @"test29b"),// (fly)
             site(@"test30f",     @"",           @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",                  @"内测包",     @"test30"),
