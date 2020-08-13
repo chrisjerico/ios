@@ -85,6 +85,7 @@ static NSString *const footerId = @"footerId";
         [self registerNib:[UINib nibWithNibName:@"JS_HomeGameColletionCell_1" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameColletionCell_1"];
         [self registerNib:[UINib nibWithNibName:@"HSC_HomeGameCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"HSC_HomeGameCollectionCell"];
         [self registerNib:[UINib nibWithNibName:@"JYGameCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"JYGameCollectionViewCell"];
+        [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
         [self registerClass:[CollectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
         self.delegate = self;
         self.dataSource = self;
