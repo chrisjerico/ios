@@ -270,7 +270,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 [bet showWith:mod showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
                     [weakSelf submitBet:params];
                 }];
-            } else {
+            }
+            else {
                 
                 [weakSelf hiddenSelf];
                 

@@ -527,11 +527,13 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
                 NSLog(@"model.code ======================== %@",model.code);
                 selCode = model.code;
+                selName = model.name;
                 for (UGGameplaySectionModel *type in model.list) {
                     for (UGGameBetModel *game in type.list) {
                         if (game.select) {
                             game.money = weakSelf.amountTextF.text;
                             game.title = type.name;
+//                            game.betInfo = type.name;
                             [array addObject:game];
                         }
                         
@@ -888,12 +890,18 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             [@"第二球" isEqualToString:model.name] ||
             [@"第三球" isEqualToString:model.name] ||
             [@"跨度" isEqualToString:model.name] ||
-            [@"独胆" isEqualToString:model.name]) {
+            [@"独胆" isEqualToString:model.name] ||
+            [@"HSWS" isEqualToString:model.code]) {
             if (indexPath.row < 10) {
                 UGSSCBetItem1Cell *Cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
                 Cell.item = game;
                 return Cell;
             }
+        }
+        if ([@"HS" isEqualToString:model.code] ) {
+            UGSSCBetItem1Cell *Cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
+            Cell.item = game;
+            return Cell;
         }
         if ([@"DWD" isEqualToString:model.code] ) {
             
