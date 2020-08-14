@@ -1808,8 +1808,8 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             if (model.list.count) {
                 int lenth = (int )model.list.count;
                 
-                for (int i = 0; i < lenth; i++) {
-                    UGGameplaySectionModel *group = [model.list objectAtIndex:i];
+                for (int k = 0; k < lenth; k++) {
+                    UGGameplaySectionModel *group = [model.list objectAtIndex:k];
                     
                     if (group.list.count) {
                         UGGameBetModel *play = group.list.firstObject;
@@ -1820,10 +1820,28 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                             if (i == 0 ) {
                                 sectionModel.name = play.odds;
                             }else if (i == 1 ) {
-                                sectionModel.name = [NSString stringWithFormat:@"第一球（%@位）", [group.alias substringToIndex:1]] ;
+                                if (k == 0) {
+                                    sectionModel.name = @"第一球（百位）";
+                                }
+                                else if(k == 1){
+                                     sectionModel.name = @"第一球（百位）";
+                                }
+                                else if(k == 2){
+                                     sectionModel.name = @"第二球（十位）";
+                                }
+                         
                             }
                             else if (i == 2 ) {
-                                sectionModel.name = [NSString stringWithFormat:@"第二球（%@位）", [group.alias substringFromIndex:group.alias.length-1] ];
+                     
+                                if (k == 0) {
+                                     sectionModel.name = @"第二球（十位）";
+                                }
+                                else if(k == 1){
+                                    sectionModel.name = @"第三球（个位）";
+                                }
+                                else if(k == 2){
+                                    sectionModel.name = @"第三球（个位）";
+                                }
                             }
                             [sectionArray addObject:sectionModel];
                         }
