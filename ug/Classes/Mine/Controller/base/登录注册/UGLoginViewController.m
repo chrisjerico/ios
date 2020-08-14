@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *rigesterButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet FBSDKLoginButton *FSloginButton;
+@property (weak, nonatomic) IBOutlet UIButton *FSloginButton;
 
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
@@ -106,7 +106,6 @@
     self.FSloginButton.layer.cornerRadius = 5;
     self.FSloginButton.layer.masksToBounds = YES;
     [self.FSloginButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
-    self.FSloginButton.permissions = @[@"public_profile", @"email"];
     
     self.rigesterButton.layer.cornerRadius = 5;
     self.rigesterButton.layer.masksToBounds = YES;
@@ -313,7 +312,7 @@
 - (IBAction)faceBookLoginAction:(id)sender {
     NSInteger slot = 0;
     FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
-     if (token) { // User is logged in, do
+     if (token) { // 用户已经登录，（）
          [self autoLoginWithToken:token];
      }
      else{
@@ -328,6 +327,7 @@
         //token过期，删除存储的token和profile
         if (error) {
             NSLog(@"用户令牌不再有效.");
+            //显示（FB登录）
             NSInteger slot = 0;
             [SUCache deleteItemInSlot:slot];
             [FBSDKAccessToken setCurrentAccessToken:nil];
@@ -335,7 +335,7 @@
         }
         //做登录完成的操作
         else {
-            
+            //去登录后续操作
         }
     }];
 }
@@ -343,9 +343,10 @@
 - (void)newLogin {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     
-    [login logInWithPermissions:@[@"public_profile"]
-             fromViewController:self
-                        handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    [login
+        logInWithReadPermissions: @[@"public_profile"]
+        fromViewController:self
+        handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         NSLog(@"facebook登录result.grantedPermissions = %@,error = %@",result.grantedPermissions,error);
         if (error) {
             NSLog(@"流程错误");

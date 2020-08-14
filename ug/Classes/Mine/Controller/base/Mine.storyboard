@@ -230,7 +230,7 @@
                                     <action selector="goHomeAction:" destination="vK4-I7-tMd" eventType="touchUpInside" id="8NY-eU-eeo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttl-Va-2Ph" userLabel="使用Facebook登录" customClass="FBSDKLoginButton">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttl-Va-2Ph" userLabel="使用Facebook登录">
                                 <rect key="frame" x="30" y="467" width="354" height="44"/>
                                 <color key="backgroundColor" red="0.91850808269999995" green="0.92244025620000003" blue="0.93423677699999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -1909,7 +1909,7 @@
         <image name="shuaxindef" width="32" height="32"/>
         <image name="tuijianren" width="24" height="24"/>
         <image name="weixinhao" width="24" height="24"/>
-        <image name="wode" width="33.5" height="33.5"/>
+        <image name="wode" width="24" height="24"/>
         <image name="youxiang" width="100" height="100"/>
     </resources>
 </document>
