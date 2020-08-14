@@ -1820,10 +1820,10 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                             if (i == 0 ) {
                                 sectionModel.name = play.odds;
                             }else if (i == 1 ) {
-                                sectionModel.name = [NSString stringWithFormat:@"%@定位", [group.alias substringToIndex:1]] ;
+                                sectionModel.name = [NSString stringWithFormat:@"第一球（%@位）", [group.alias substringToIndex:1]] ;
                             }
                             else if (i == 2 ) {
-                                sectionModel.name = [NSString stringWithFormat:@"%@定位", [group.alias substringFromIndex:group.alias.length-1] ];
+                                sectionModel.name = [NSString stringWithFormat:@"第二球（%@位）", [group.alias substringFromIndex:group.alias.length-1] ];
                             }
                             [sectionArray addObject:sectionModel];
                         }
