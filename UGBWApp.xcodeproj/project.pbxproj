@@ -1948,6 +1948,18 @@
 		D42B958323F3E3270030C653 /* JYLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */; };
 		D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */; };
 		D42B958923F3EAD00030C653 /* JYLotteryTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */; };
+		D42C8FD924E819D2008CB519 /* YNInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42C8FC624E819D2008CB519 /* YNInputView.xib */; };
+		D42C8FDA24E819D2008CB519 /* YNInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42C8FC724E819D2008CB519 /* YNInputView.m */; };
+		D42C8FDB24E819D2008CB519 /* YNSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42C8FCB24E819D2008CB519 /* YNSegmentView.m */; };
+		D42C8FDC24E819D2008CB519 /* YNQuickListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42C8FCE24E819D2008CB519 /* YNQuickListCollectionViewCell.xib */; };
+		D42C8FDD24E819D2008CB519 /* YNQuickListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42C8FD024E819D2008CB519 /* YNQuickListCollectionViewCell.m */; };
+		D42C8FDE24E819D2008CB519 /* YNQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42C8FD124E819D2008CB519 /* YNQuickSelectView.m */; };
+		D42C8FDF24E819D2008CB519 /* YNQuickSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42C8FD224E819D2008CB519 /* YNQuickSelectView.xib */; };
+		D42C8FE024E819D2008CB519 /* YNQuickListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42C8FD424E819D2008CB519 /* YNQuickListView.m */; };
+		D42C8FE124E819D2008CB519 /* YNCollectionFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42C8FD724E819D2008CB519 /* YNCollectionFootView.xib */; };
+		D42C8FE224E819D2008CB519 /* YNCollectionFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42C8FD824E819D2008CB519 /* YNCollectionFootView.m */; };
+		D42C8FE724E81A13008CB519 /* UGYNLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42C8FE424E81A13008CB519 /* UGYNLotteryController.storyboard */; };
+		D42C8FE824E81A13008CB519 /* UGYNLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42C8FE624E81A13008CB519 /* UGYNLotteryController.m */; };
 		D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */; };
 		D4326F0623F6D45200BEEA1B /* BetImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4326F0523F6D45200BEEA1B /* BetImgView.m */; };
 		D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4326F0823F6D46900BEEA1B /* BetImgView.xib */; };
@@ -3840,6 +3852,25 @@
 		D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		D42B958723F3EAD00030C653 /* JYLotteryTitleCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLotteryTitleCollectionView.h; sourceTree = "<group>"; };
 		D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLotteryTitleCollectionView.m; sourceTree = "<group>"; };
+		D42C8FC524E819D2008CB519 /* YNInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNInputView.h; sourceTree = "<group>"; };
+		D42C8FC624E819D2008CB519 /* YNInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNInputView.xib; sourceTree = "<group>"; };
+		D42C8FC724E819D2008CB519 /* YNInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNInputView.m; sourceTree = "<group>"; };
+		D42C8FCA24E819D2008CB519 /* YNSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNSegmentView.h; sourceTree = "<group>"; };
+		D42C8FCB24E819D2008CB519 /* YNSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNSegmentView.m; sourceTree = "<group>"; };
+		D42C8FCD24E819D2008CB519 /* YNQuickSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickSelectView.h; sourceTree = "<group>"; };
+		D42C8FCE24E819D2008CB519 /* YNQuickListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNQuickListCollectionViewCell.xib; sourceTree = "<group>"; };
+		D42C8FCF24E819D2008CB519 /* YNQuickListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickListView.h; sourceTree = "<group>"; };
+		D42C8FD024E819D2008CB519 /* YNQuickListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNQuickListCollectionViewCell.m; sourceTree = "<group>"; };
+		D42C8FD124E819D2008CB519 /* YNQuickSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNQuickSelectView.m; sourceTree = "<group>"; };
+		D42C8FD224E819D2008CB519 /* YNQuickSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNQuickSelectView.xib; sourceTree = "<group>"; };
+		D42C8FD324E819D2008CB519 /* YNQuickListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickListCollectionViewCell.h; sourceTree = "<group>"; };
+		D42C8FD424E819D2008CB519 /* YNQuickListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNQuickListView.m; sourceTree = "<group>"; };
+		D42C8FD624E819D2008CB519 /* YNCollectionFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNCollectionFootView.h; sourceTree = "<group>"; };
+		D42C8FD724E819D2008CB519 /* YNCollectionFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNCollectionFootView.xib; sourceTree = "<group>"; };
+		D42C8FD824E819D2008CB519 /* YNCollectionFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNCollectionFootView.m; sourceTree = "<group>"; };
+		D42C8FE424E81A13008CB519 /* UGYNLotteryController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UGYNLotteryController.storyboard; sourceTree = "<group>"; };
+		D42C8FE524E81A13008CB519 /* UGYNLotteryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGYNLotteryController.h; sourceTree = "<group>"; };
+		D42C8FE624E81A13008CB519 /* UGYNLotteryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGYNLotteryController.m; sourceTree = "<group>"; };
 		D42E14F123E06CE900F53407 /* PromotionDepositListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionDepositListVC.h; sourceTree = "<group>"; };
 		D42E14F223E06CE900F53407 /* PromotionDepositListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionDepositListVC.m; sourceTree = "<group>"; };
 		D4326F0423F6D45200BEEA1B /* BetImgView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BetImgView.h; sourceTree = "<group>"; };
@@ -5547,6 +5578,7 @@
 		031E168823BE812400B0F813 /* 下注页面 */ = {
 			isa = PBXGroup;
 			children = (
+				D42C8FE324E81A13008CB519 /* 越南彩 */,
 				031E168923BE812400B0F813 /* 福彩3D */,
 				031E168D23BE812400B0F813 /* 幸运农场 */,
 				031E169123BE812400B0F813 /* 广东快乐10 */,
@@ -5711,6 +5743,10 @@
 		031E16D023BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D42C8FC924E819D2008CB519 /* 越南分段View */,
+				D42C8FCC24E819D2008CB519 /* 越南快速选择 */,
+				D42C8FC424E819D2008CB519 /* 越南输入号码 */,
+				D42C8FD524E819D2008CB519 /* 越南Foot */,
 				031E16D123BE812400B0F813 /* 广告View */,
 				031E16D523BE812400B0F813 /* 号码Cell */,
 				031E170323BE812400B0F813 /* 滑块View（选择子玩法） */,
@@ -7982,6 +8018,60 @@
 			path = "登录注册";
 			sourceTree = "<group>";
 		};
+		D42C8FC424E819D2008CB519 /* 越南输入号码 */ = {
+			isa = PBXGroup;
+			children = (
+				D42C8FC524E819D2008CB519 /* YNInputView.h */,
+				D42C8FC624E819D2008CB519 /* YNInputView.xib */,
+				D42C8FC724E819D2008CB519 /* YNInputView.m */,
+			);
+			path = "越南输入号码";
+			sourceTree = "<group>";
+		};
+		D42C8FC924E819D2008CB519 /* 越南分段View */ = {
+			isa = PBXGroup;
+			children = (
+				D42C8FCA24E819D2008CB519 /* YNSegmentView.h */,
+				D42C8FCB24E819D2008CB519 /* YNSegmentView.m */,
+			);
+			path = "越南分段View";
+			sourceTree = "<group>";
+		};
+		D42C8FCC24E819D2008CB519 /* 越南快速选择 */ = {
+			isa = PBXGroup;
+			children = (
+				D42C8FCD24E819D2008CB519 /* YNQuickSelectView.h */,
+				D42C8FCE24E819D2008CB519 /* YNQuickListCollectionViewCell.xib */,
+				D42C8FCF24E819D2008CB519 /* YNQuickListView.h */,
+				D42C8FD024E819D2008CB519 /* YNQuickListCollectionViewCell.m */,
+				D42C8FD124E819D2008CB519 /* YNQuickSelectView.m */,
+				D42C8FD224E819D2008CB519 /* YNQuickSelectView.xib */,
+				D42C8FD324E819D2008CB519 /* YNQuickListCollectionViewCell.h */,
+				D42C8FD424E819D2008CB519 /* YNQuickListView.m */,
+			);
+			path = "越南快速选择";
+			sourceTree = "<group>";
+		};
+		D42C8FD524E819D2008CB519 /* 越南Foot */ = {
+			isa = PBXGroup;
+			children = (
+				D42C8FD624E819D2008CB519 /* YNCollectionFootView.h */,
+				D42C8FD724E819D2008CB519 /* YNCollectionFootView.xib */,
+				D42C8FD824E819D2008CB519 /* YNCollectionFootView.m */,
+			);
+			path = "越南Foot";
+			sourceTree = "<group>";
+		};
+		D42C8FE324E81A13008CB519 /* 越南彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D42C8FE424E81A13008CB519 /* UGYNLotteryController.storyboard */,
+				D42C8FE524E81A13008CB519 /* UGYNLotteryController.h */,
+				D42C8FE624E81A13008CB519 /* UGYNLotteryController.m */,
+			);
+			path = "越南彩";
+			sourceTree = "<group>";
+		};
 		D4326F1023F7BEF900BEEA1B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -8897,6 +8987,7 @@
 				031E1E5223BE812C00B0F813 /* UGMenuTableViewCell.xib in Resources */,
 				032412BB23CC5D3F00FABD51 /* PromotionRecordCell2.xib in Resources */,
 				CF4758C5239636D200966536 /* 54.gif in Resources */,
+				D42C8FE724E81A13008CB519 /* UGYNLotteryController.storyboard in Resources */,
 				03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */,
 				031E1E7823BE812C00B0F813 /* UGCalenderAlertView.xib in Resources */,
 				CF475889239636D200966536 /* 20.gif in Resources */,
@@ -8932,6 +9023,7 @@
 				CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */,
 				031E1A0A23BE812700B0F813 /* TextFieldAlertView.xib in Resources */,
 				CF4758B5239636D200966536 /* 55.gif in Resources */,
+				D42C8FE124E819D2008CB519 /* YNCollectionFootView.xib in Resources */,
 				031E196A23BE812600B0F813 /* UGLHH.storyboard in Resources */,
 				031E198E23BE812600B0F813 /* LHPostVoteView.xib in Resources */,
 				CF4758C9239636D200966536 /* 44.gif in Resources */,
@@ -8947,6 +9039,7 @@
 				031E1BA023BE812900B0F813 /* BMpreferential.storyboard in Resources */,
 				031E1AB223BE812800B0F813 /* icon_arrow_up@2x.png in Resources */,
 				031E1ABA23BE812800B0F813 /* Shade_left@2x.png in Resources */,
+				D42C8FD924E819D2008CB519 /* YNInputView.xib in Resources */,
 				031E1E7223BE812C00B0F813 /* UGRealBetRecordCell.xib in Resources */,
 				CF4758F7239636D200966536 /* 65.gif in Resources */,
 				CF4758AE239636D200966536 /* 142.gif in Resources */,
@@ -9146,6 +9239,7 @@
 				031E1C8023BE812A00B0F813 /* UGDepositDetailsTableViewCell.xib in Resources */,
 				CF8E242523DDBFD80054BF0F /* MaterialCommunityIcons.ttf in Resources */,
 				D444AAC12461620E002737CB /* DZPTwoTableViewCell.xib in Resources */,
+				D42C8FDC24E819D2008CB519 /* YNQuickListCollectionViewCell.xib in Resources */,
 				CF4758C2239636D200966536 /* 68.gif in Resources */,
 				CF4758EF239636D200966536 /* 161.gif in Resources */,
 				031E1E2023BE812C00B0F813 /* UGMosaicGoldTableViewCell.xib in Resources */,
@@ -9272,6 +9366,7 @@
 				CF4758B8239636D200966536 /* 168.gif in Resources */,
 				031E1D7623BE812B00B0F813 /* UGFeedBackController.storyboard in Resources */,
 				CF4758DC239636D200966536 /* 90.gif in Resources */,
+				D42C8FDF24E819D2008CB519 /* YNQuickSelectView.xib in Resources */,
 				CF47589B239636D200966536 /* 24.gif in Resources */,
 				031E1C8823BE812A00B0F813 /* UGFundsTransfer2View.xib in Resources */,
 				CF475927239636D200966536 /* 139.gif in Resources */,
@@ -10305,6 +10400,7 @@
 				031E1D5E23BE812B00B0F813 /* UGBindCardViewController.m in Sources */,
 				031E1DCC23BE812C00B0F813 /* UGCreditsLogModel.m in Sources */,
 				031E19BA23BE812700B0F813 /* UIView+Frame.m in Sources */,
+				D42C8FDD24E819D2008CB519 /* YNQuickListCollectionViewCell.m in Sources */,
 				031E1E2A23BE812C00B0F813 /* UGContentMoneyCollectionViewCell.m in Sources */,
 				CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */,
 				031E1A1E23BE812700B0F813 /* AlertHelper.m in Sources */,
@@ -10371,6 +10467,7 @@
 				D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */,
 				031E1C5E23BE812A00B0F813 /* UGLotteryGameCollectionViewCell.m in Sources */,
 				D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */,
+				D42C8FE824E81A13008CB519 /* UGYNLotteryController.m in Sources */,
 				031E1D9A23BE812B00B0F813 /* UGYubaoInComeController.m in Sources */,
 				D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */,
 				031E1E7023BE812C00B0F813 /* UGBetRecorddHeaderView.m in Sources */,
@@ -10426,6 +10523,7 @@
 				031E1A7C23BE812700B0F813 /* QDWebViewController.m in Sources */,
 				031E1DFE23BE812C00B0F813 /* UGSignInHeaderView.m in Sources */,
 				031E1BFC23BE812900B0F813 /* UGLotteryHomeController.m in Sources */,
+				D42C8FDE24E819D2008CB519 /* YNQuickSelectView.m in Sources */,
 				031E1C9C23BE812A00B0F813 /* UGFundsTransferView.m in Sources */,
 				031E1B7E23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
 				031E198A23BE812600B0F813 /* LHPostCommentInputView.m in Sources */,
@@ -10538,6 +10636,7 @@
 				03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */,
 				031E1AC423BE812800B0F813 /* WMDropDownView.m in Sources */,
 				031E1BBE23BE812900B0F813 /* UGfinancialView.m in Sources */,
+				D42C8FDA24E819D2008CB519 /* YNInputView.m in Sources */,
 				031E196E23BE812600B0F813 /* UGLHGalleryModel.m in Sources */,
 				031E1D0223BE812A00B0F813 /* NSArray+JSONModel.m in Sources */,
 				031E1DB223BE812B00B0F813 /* UGYuebaoInfoModel.m in Sources */,
@@ -10576,6 +10675,7 @@
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
 				031E1A4E23BE812700B0F813 /* CMCommonHook.m in Sources */,
 				031E1B2423BE812800B0F813 /* UGChangLongController.m in Sources */,
+				D42C8FDB24E819D2008CB519 /* YNSegmentView.m in Sources */,
 				CFF11A34241E776600C7E3A3 /* DocumentTypeList.m in Sources */,
 				031E197823BE812600B0F813 /* UGLHFocusUserModel.m in Sources */,
 				D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */,
@@ -10625,6 +10725,7 @@
 				031E1C0823BE812900B0F813 /* UGBetDetailModel.m in Sources */,
 				031E1A8C23BE812700B0F813 /* SAROPSessionConfiguration.m in Sources */,
 				031E1C0423BE812900B0F813 /* UGHallLotteryModel.m in Sources */,
+				D42C8FE224E819D2008CB519 /* YNCollectionFootView.m in Sources */,
 				031E198C23BE812600B0F813 /* LHPostPayView.m in Sources */,
 				031E1C8223BE812A00B0F813 /* UGDepositDetailsTableViewCell.m in Sources */,
 				031E1D4023BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.m in Sources */,
@@ -10681,6 +10782,7 @@
 				031E1A0023BE812700B0F813 /* MediaViewer.m in Sources */,
 				D43DAF7924545B270014A301 /* LYLuckyCardCellView.m in Sources */,
 				031E1B6A23BE812800B0F813 /* UGPlatformCollectionView.m in Sources */,
+				D42C8FE024E819D2008CB519 /* YNQuickListView.m in Sources */,
 				031E1CA823BE812A00B0F813 /* UGFundRecordDetailView.m in Sources */,
 				031E194223BE812600B0F813 /* UGSkinManagers.m in Sources */,
 				031E1A5E23BE812700B0F813 /* STButton.m in Sources */,
