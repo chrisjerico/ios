@@ -46,8 +46,8 @@
         {
 #ifdef DEBUG
             // UI更新代码
-            [self initMyLaunchPageVC];
-//            [self getSystemConfig];
+//            [self initMyLaunchPageVC];
+            [self getSystemConfig];
 #else
             [self getSystemConfig];
 #endif
@@ -158,6 +158,10 @@
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
+            dispatch_async(dispatch_get_main_queue(), ^{
+               // UI更新代码
+              [self initMyLaunchPageVC];
+            });
         }];
     }];
 }
