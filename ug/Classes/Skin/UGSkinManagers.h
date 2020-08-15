@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *textColor2;              /**<    占位字颜色 深灰色 */
 @property (nonatomic, strong) UIColor *textColor3;              /**<    占位字颜色 淡灰色 */
 @property (nonatomic, strong) UIColor *textColor4;              /**<    反差字体 白色 */
+@property (nonatomic, strong) UIColor *yubaoBgColor;            /**<   利息宝页波浪背景色 */
 
 //新额度转换
 //@property (nonatomic, strong) UIColor *conversionHeaderColor;    /**<    头颜色*/
