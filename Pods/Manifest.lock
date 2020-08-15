@@ -53,6 +53,7 @@ PODS:
     - glog
   - FSCalendar (2.8.0)
   - glog (0.3.5)
+  - HMSegmentedControl (1.5.6)
   - InputBarAccessoryView (4.2.2)
   - IQKeyboardManager (6.5.4)
   - IQKeyboardManagerSwift (6.3.0)
@@ -304,7 +305,7 @@ PODS:
   - RegExCategories (1.0)
   - RNCMaskedView (0.1.10):
     - React
-  - RNCPicker (1.6.3):
+  - RNCPicker (1.6.5):
     - React
   - RNFastImage (7.0.2):
     - React
@@ -384,6 +385,7 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - FSCalendar
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - HMSegmentedControl
   - IQKeyboardManager
   - IQKeyboardManagerSwift (~> 6.3.0)
   - JPush (= 3.2.2-noidfa)
@@ -476,6 +478,7 @@ SPEC REPOS:
     - DLPickerView
     - ESTabBarController-swift
     - FSCalendar
+    - HMSegmentedControl
     - InputBarAccessoryView
     - IQKeyboardManager
     - IQKeyboardManagerSwift
@@ -615,7 +618,7 @@ SPEC CHECKSUMS:
   BRPickerView: c51b8d27cd053baf282e75a19d7dfcefbbaf42c2
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
-  CodePush: 3968d9e97ed70a1c8b029266dd5b6aa69cee4b0a
+  CodePush: 4b21ce24113167513a6fd1602718b22e322069b2
   CryptoSwift: 6b6e488df0598b3e9fa49254ed1a65e8c1b1e10b
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DeviceKit: da103891aa928d89f64ea8dd8aca738c5f3d8ac0
@@ -628,6 +631,7 @@ SPEC CHECKSUMS:
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   FSCalendar: 3a5ed3636e2ba1b83ebebfcf0c2603105a6f5efe
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   IQKeyboardManager: 72b359cd7e777e3a984cedbe05f8da45320cbb63
   IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
@@ -647,7 +651,7 @@ SPEC CHECKSUMS:
   Moya: 2c16c3fe92eda302070213452281b59198f946d8
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
+  Picker: 4f1722c94059567cabd80e53d0ef72ca290d2b93
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
@@ -658,9 +662,9 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
-  react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
-  react-native-webview: cf5527893252b3b036eea024a1da6996f7344c74
+  react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
+  react-native-viewpager: 118e65d8c65c56fe48d12a35cdcf1fe7e027a366
+  react-native-webview: 0e2881d2e3e72ad52a82445c1a116c43205fd471
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -671,10 +675,10 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
+  ReactNativeART: f003b07dfa7098aa419ed95b69560923440b1eee
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
-  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNCPicker: 1c63b084bcbcd33d159a83144543f3bda4cd1793
+  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
+  RNCPicker: 55b9b4240d0a9eba8733d02616775d4040de2e7d
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
@@ -708,6 +712,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: bd0ef4badd1250aa1c91499da01ec27da27753a4
+PODFILE CHECKSUM: aa1fe93b9f4e6cfc354e607f113aab62c8f09216
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.8.4

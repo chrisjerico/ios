@@ -772,8 +772,8 @@ static NSString *footViewID = @"YNCollectionFootView";
                 
             }
             
-            [group.list removeAllObjects];
-            group.list = datalist;
+            [group setList:datalist.copy];
+
             
         }
         

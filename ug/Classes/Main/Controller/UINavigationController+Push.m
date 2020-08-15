@@ -195,6 +195,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                            @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                            @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
                            @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
+                           @"ofclvn_hochiminhvip"   :@"UGYNLotteryController",  // 越南
     };
     
     NSString *vcName = dict[model.gameType];
