@@ -1820,8 +1820,8 @@
         WeakSelf;
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
-       
-            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
             [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
             weakSelf.notiveView.dataArray = self.popNoticeArray;
             
@@ -1838,14 +1838,8 @@
                         [weakSelf.notiveView show];
                     }
                 }
-     
             }
-
         });
-        
-
- 
-    
 }
 
 #pragma mark - SDCycleScrollViewDelegate
