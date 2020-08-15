@@ -346,15 +346,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
   
             }
-            
-            // 删除enable为NO的数据（不显示出来）
-            for (UGGameplayModel *gm in play.playOdds) {
-                for (UGGameplaySectionModel *gsm in gm.list) {
-                    if (!gsm.enable)
-                        [weakSelf.gameDataArray removeObject:gm];
-                }
-            }
+
             [weakSelf handleData];
+
             
             if ([weakSelf.gameDataArray.firstObject.name isEqualToString:@"特码"]) {
                 if (weakSelf.segmentView.hidden) {

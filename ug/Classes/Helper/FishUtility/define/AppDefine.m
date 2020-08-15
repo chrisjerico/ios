@@ -171,16 +171,6 @@
 
 
 #pragma mark - Getter & Setter
-#pragma mark -rn模板出现问题，暂时清空
-//@property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
-
-//#ifdef DEBUG
-// -(NSArray <RnPageModel *>*)rnPageInfos  {return  nil;};//rn模板出现问题，暂时清空
-//#else
-//  
-//#endif
-
-//
 
 - (CGRect)Bounds                    { return _Window.bounds; }
 - (CGSize)Size                      { return _Window.bounds.size; }
@@ -204,8 +194,6 @@
     _isSectionWhite = [@"a002" containsString:_SiteId];
     _isTitleWhite = [@"a002" containsString:_SiteId];
     _isGPKDeposit = [@"c105b" containsString:_SiteId];
-    
-
     _isHideFoot = Skin1.isBlack ? [@"c105b" containsString:_SiteId] : false;
     _isTextWhite = [@"a002,c116" containsString:_SiteId];
     _isTabMassageBadge = YES;
@@ -259,6 +247,8 @@
     _isNoSubtitle = [@"c006" containsString:_SiteId];
     _isNoLeftButton = [@"c217" containsString:_SiteId];
     _isSecondUrl = [@"c213" containsString:_SiteId];
+    _isWebRightMenu = NO;
+
 }
 
 #pragma mark - 热更新

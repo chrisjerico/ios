@@ -76,11 +76,16 @@ NS_ASSUME_NONNULL_BEGIN
 //     activityId 活动id
 + (void)activityTurntableWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+
 //抽奖接口： http://test28f.fhptcdn.com//wjapp/api.php?c=activity&a=turntableWin
 //方式：POST
 //参数 token + date
 //     activityId 活动id
 + (void)userLotteryDayStatWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//侧边栏数据 {TEST_HOST}}?c=system&a=mobileRight
++ (void)systemMobileRightWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
+
 NS_ASSUME_NONNULL_END
