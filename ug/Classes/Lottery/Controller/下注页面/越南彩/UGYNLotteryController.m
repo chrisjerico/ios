@@ -1569,6 +1569,10 @@ static NSString *footViewID = @"YNCollectionFootView";
         self.defaultGold = 17000.0;
         self.defaultAdds = 960;
     }
+    else  if ([code isEqualToString:@"PIHAO4"]) {//批号4
+        self.defaultGold = 16000.0;
+        self.defaultAdds = 8880;
+    }
     else  if ([code isEqualToString:@"PIANXIE2"]) {//偏斜2
         self.defaultGold = 1000.0;
         self.defaultAdds = 28;
@@ -1613,9 +1617,21 @@ static NSString *footViewID = @"YNCollectionFootView";
         self.defaultGold = 2000.0;
         self.defaultAdds = 960;
     }
-    else  if ([code isEqualToString:@"3WBDJT"]) {//3尾巴
-        self.defaultGold = 2000.0;
-        self.defaultAdds = 960;
+    else  if ([code isEqualToString:@"4GTEBIE"]) {//4更特别
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 8880;
+    }
+    else  if ([code isEqualToString:@"CHUANSHAO4"]) {//串烧4
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 1.8;
+    }
+    else  if ([code isEqualToString:@"CHUANSHAO8"]) {//串烧8
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 3.3;
+    }
+    else  if ([code isEqualToString:@"CHUANSHAO10"]) {//串烧10
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 4.3;
     }
 
 }
