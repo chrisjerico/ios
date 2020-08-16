@@ -60,9 +60,13 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *amountTextF;/**<底部  下注倍数 */
 @property (weak, nonatomic) IBOutlet UILabel *selectLabel;/**<底部  已选中  */
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;/**<底部  金额越南盾  */
+@property (weak, nonatomic) IBOutlet UILabel *oddsLabel;/**<底部  赔率  */
 //@property (weak, nonatomic) IBOutlet UIButton *chipButton;/**<底部  筹码  */
 @property (weak, nonatomic) IBOutlet UIButton *betButton; /**<底部  下注  */
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;/**<底部  重置  */
+
+
 @property (weak, nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
 
 @property (weak, nonatomic) IBOutlet UIView *headerOneView;/**<头 上*/
@@ -106,7 +110,9 @@
 @property (strong, nonatomic)  YNInputView *inputView;/**<   分栏segment下面的输入界面*/
 @property (strong, nonatomic)  YNQuickSelectView *qsView;/**<   分栏segment下面的快速选择界面*/
 
-
+//===============================================
+@property (nonatomic, assign) float  defaultGold;  //默认金额 18000.0
+@property (nonatomic, assign) float  defaultAdds;  //默认赔率。
 
 
 
@@ -1544,6 +1550,67 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
+// 设置默认
+- (void)setDefaultData :(NSString *)code {
+    
+    if ([code isEqualToString:@"PIHAO2"]) {//批号2
+        self.defaultGold = 18000.0;
+        self.defaultAdds = 99;
+    }
+    else  if ([code isEqualToString:@"DIDUAN2"]) {//地段21k号
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 5.445;
+    }
+    else  if ([code isEqualToString:@"PIHAO3"]) {//批号3
+        self.defaultGold = 17000.0;
+        self.defaultAdds = 960;
+    }
+    else  if ([code isEqualToString:@"PIHAO3"]) {//批号3
+        self.defaultGold = 17000.0;
+        self.defaultAdds = 960;
+    }
+    else  if ([code isEqualToString:@"PIANXIE2"]) {//偏斜2
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 28;
+    }
+    else  if ([code isEqualToString:@"PIANXIE3"]) {//偏斜3
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 150;
+    }
+    else  if ([code isEqualToString:@"PIANXIE4"]) {//偏斜4
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 750;
+    }
+    else  if ([code isEqualToString:@"BIAOTI"]) {//标题
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 98;
+    }
+    else  if ([code isEqualToString:@"ZHUANTI"]) {//专题
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 98;
+    }
+    else  if ([code isEqualToString:@"BIAOTIWB"]) {//标题尾巴
+        self.defaultGold = 2000.0;
+        self.defaultAdds = 98;
+    }
+    else  if ([code isEqualToString:@"TOU"]) {//头
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 9.8;
+    }
+    else  if ([code isEqualToString:@"WEI"]) {//尾
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 9.8;
+    }
+    else  if ([code isEqualToString:@"3YINJIE"]) {//3个音阶
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 960;
+    }
+    else  if ([code isEqualToString:@"3GTEBIE"]) {//3更特别
+        self.defaultGold = 1000.0;
+        self.defaultAdds = 960;
+    }
+
+}
 
 
 @end
