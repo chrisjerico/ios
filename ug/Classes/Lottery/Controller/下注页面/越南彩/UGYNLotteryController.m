@@ -1609,6 +1609,14 @@ static NSString *footViewID = @"YNCollectionFootView";
         self.defaultGold = 1000.0;
         self.defaultAdds = 960;
     }
+    else  if ([code isEqualToString:@"3WBDJT"]) {//3尾巴
+        self.defaultGold = 2000.0;
+        self.defaultAdds = 960;
+    }
+    else  if ([code isEqualToString:@"3WBDJT"]) {//3尾巴
+        self.defaultGold = 2000.0;
+        self.defaultAdds = 960;
+    }
 
 }
 
