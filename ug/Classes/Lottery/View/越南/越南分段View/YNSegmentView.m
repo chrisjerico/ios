@@ -19,7 +19,9 @@
 - (instancetype)initWithFrame:(CGRect)frame titleArray:(nonnull NSArray<NSString *> *)array {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
+       
+       
+       
         
         self.button = [UIButton buttonWithType:UIButtonTypeCustom];
         _button.frame = CGRectMake(5, 10, 30, 30);
@@ -29,10 +31,15 @@
         
         //初始化UISegmentedControl
         self.segment = [[HMSegmentedControl alloc]initWithSectionTitles:array];
+        
+         self.segment.backgroundColor = [UIColor redColor];
         //设置frame
         _segment.frame = CGRectMake(10, 10, self.frame.size.width-60, 30);
         //添加到视图
         [self addSubview:_segment];
+        
+        [self setBGColor:self];
+        [self setBGColor:_segment];
         
         [_button  mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).with.offset(5);
@@ -49,6 +56,23 @@
 
     }
     return self;
+}
+
+
+-(void)setBGColor:(UIView *)view{
+    view.backgroundColor = Skin1.textColor4;
+    if (APP.betBgIsWhite) {
+        view.backgroundColor =  [UIColor whiteColor];
+    } else {
+        if (APP.isLight) {
+            view.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+            
+        }
+        else{
+            view.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+            
+        }
+    }
 }
 
 @end

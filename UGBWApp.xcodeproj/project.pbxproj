@@ -1995,6 +1995,8 @@
 		D43DAF7F245479F30014A301 /* LYLuckyCardRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF7B245479F20014A301 /* LYLuckyCardRotationView.m */; };
 		D43DAF80245479F30014A301 /* LYLuckyCardRotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43DAF7D245479F20014A301 /* LYLuckyCardRotationView.xib */; };
 		D43DAF8624555B1C0014A301 /* MGSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D43DAF8424555B1C0014A301 /* MGSlider.m */; };
+		D4400D2F24E9739100EF3902 /* YNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4400D2D24E9739100EF3902 /* YNCollectionViewCell.m */; };
+		D4400D3024E9739100EF3902 /* YNCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4400D2E24E9739100EF3902 /* YNCollectionViewCell.xib */; };
 		D44258462413BAE800601D70 /* UGMosaicGoldMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */; };
 		D44258FD23E948D80067E981 /* LH_laba.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FC23E948D80067E981 /* LH_laba.gif */; };
 		D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */ = {isa = PBXBuildFile; fileRef = D44258FE23E948DF0067E981 /* LH_l001jt.gif */; };
@@ -3920,6 +3922,9 @@
 		D43DAF7E245479F30014A301 /* LYLuckyCardRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLuckyCardRotationView.h; sourceTree = "<group>"; };
 		D43DAF8324555B1C0014A301 /* MGSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGSlider.h; sourceTree = "<group>"; };
 		D43DAF8424555B1C0014A301 /* MGSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGSlider.m; sourceTree = "<group>"; };
+		D4400D2C24E9739100EF3902 /* YNCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNCollectionViewCell.h; sourceTree = "<group>"; };
+		D4400D2D24E9739100EF3902 /* YNCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNCollectionViewCell.m; sourceTree = "<group>"; };
+		D4400D2E24E9739100EF3902 /* YNCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YNCollectionViewCell.xib; sourceTree = "<group>"; };
 		D44258442413BAE800601D70 /* UGMosaicGoldMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMosaicGoldMainViewController.h; sourceTree = "<group>"; };
 		D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMosaicGoldMainViewController.m; sourceTree = "<group>"; };
 		D44258FC23E948D80067E981 /* LH_laba.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LH_laba.gif; sourceTree = "<group>"; };
@@ -5743,10 +5748,7 @@
 		031E16D023BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D42C8FC924E819D2008CB519 /* 越南分段View */,
-				D42C8FCC24E819D2008CB519 /* 越南快速选择 */,
-				D42C8FC424E819D2008CB519 /* 越南输入号码 */,
-				D42C8FD524E819D2008CB519 /* 越南Foot */,
+				D4400D2A24E9733200EF3902 /* 越南 */,
 				031E16D123BE812400B0F813 /* 广告View */,
 				031E16D523BE812400B0F813 /* 号码Cell */,
 				031E170323BE812400B0F813 /* 滑块View（选择子玩法） */,
@@ -8056,8 +8058,8 @@
 			isa = PBXGroup;
 			children = (
 				D42C8FD624E819D2008CB519 /* YNCollectionFootView.h */,
-				D42C8FD724E819D2008CB519 /* YNCollectionFootView.xib */,
 				D42C8FD824E819D2008CB519 /* YNCollectionFootView.m */,
+				D42C8FD724E819D2008CB519 /* YNCollectionFootView.xib */,
 			);
 			path = "越南Foot";
 			sourceTree = "<group>";
@@ -8065,9 +8067,9 @@
 		D42C8FE324E81A13008CB519 /* 越南彩 */ = {
 			isa = PBXGroup;
 			children = (
-				D42C8FE424E81A13008CB519 /* UGYNLotteryController.storyboard */,
 				D42C8FE524E81A13008CB519 /* UGYNLotteryController.h */,
 				D42C8FE624E81A13008CB519 /* UGYNLotteryController.m */,
+				D42C8FE424E81A13008CB519 /* UGYNLotteryController.storyboard */,
 			);
 			path = "越南彩";
 			sourceTree = "<group>";
@@ -8237,6 +8239,28 @@
 				D43DAF8424555B1C0014A301 /* MGSlider.m */,
 			);
 			path = "自定义拖动条";
+			sourceTree = "<group>";
+		};
+		D4400D2A24E9733200EF3902 /* 越南 */ = {
+			isa = PBXGroup;
+			children = (
+				D4400D2B24E9736400EF3902 /* 越南cell */,
+				D42C8FC924E819D2008CB519 /* 越南分段View */,
+				D42C8FCC24E819D2008CB519 /* 越南快速选择 */,
+				D42C8FC424E819D2008CB519 /* 越南输入号码 */,
+				D42C8FD524E819D2008CB519 /* 越南Foot */,
+			);
+			path = "越南";
+			sourceTree = "<group>";
+		};
+		D4400D2B24E9736400EF3902 /* 越南cell */ = {
+			isa = PBXGroup;
+			children = (
+				D4400D2C24E9739100EF3902 /* YNCollectionViewCell.h */,
+				D4400D2D24E9739100EF3902 /* YNCollectionViewCell.m */,
+				D4400D2E24E9739100EF3902 /* YNCollectionViewCell.xib */,
+			);
+			path = "越南cell";
 			sourceTree = "<group>";
 		};
 		D44258FB23E948C50067E981 /* git */ = {
@@ -9152,6 +9176,7 @@
 				CF4758D8239636D200966536 /* 53.gif in Resources */,
 				D424D621240931F300339D89 /* redbag_act.gif in Resources */,
 				031E1E4C23BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.xib in Resources */,
+				D4400D3024E9739100EF3902 /* YNCollectionViewCell.xib in Resources */,
 				CF8E242923DDBFD80054BF0F /* FontAwesome5_Solid.ttf in Resources */,
 				030A874423C5C2C00001EF82 /* JS_Mine.storyboard in Resources */,
 				CF4758D4239636D200966536 /* 3.gif in Resources */,
@@ -10438,6 +10463,7 @@
 				031E1A0223BE812700B0F813 /* SlideSegmentView1.m in Sources */,
 				031E19DC23BE812700B0F813 /* NSArray+Utils.m in Sources */,
 				D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */,
+				D4400D2F24E9739100EF3902 /* YNCollectionViewCell.m in Sources */,
 				03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */,
 				031E19B623BE812700B0F813 /* NSMutableDictionary+KVO.m in Sources */,
 				D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */,

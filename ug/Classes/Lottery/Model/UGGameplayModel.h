@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *groupNum;
 @property (nonatomic, strong) NSString *groupColor;
 @property (nonatomic, strong) NSString *rule;            /**<   玩法规则（越南彩） */
-
+@property (nonatomic, strong) NSString *betMultiple;            /**<  倍数（越南彩） */
 
 
 // 自定义参数
