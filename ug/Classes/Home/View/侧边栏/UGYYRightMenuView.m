@@ -351,11 +351,11 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 -(void)setBalanceLabel{
-    CGFloat floatValues = [[UGUserModel currentUser].balance floatValue];
+//    CGFloat floatValues = [[UGUserModel currentUser].balance floatValue];
+//
+//    NSString *str = [NSString stringWithFormat:@"%.2f",floatValues];
 
-    NSString *str = [NSString stringWithFormat:@"%.2f",floatValues];
-
-     self.balanceLabel.text  = [NSString stringWithFormat:@"¥%@",str];
+     self.balanceLabel.text  = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
