@@ -18,7 +18,7 @@
     [super awakeFromNib];
     // Initialization code
  
-    [self.allButton setBackgroundColor:Skin1.homeContentColor];
+    [self.allButton setBackgroundColor:[UIColor redColor]];
     [self.bigButton setBackgroundColor:Skin1.homeContentColor];
     [self.smallButton setBackgroundColor:Skin1.homeContentColor];
     [self.pButton setBackgroundColor:Skin1.homeContentColor];
