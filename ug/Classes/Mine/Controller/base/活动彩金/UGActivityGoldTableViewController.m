@@ -25,6 +25,7 @@
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGActivityGoldTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGActivityGoldTableViewCell"];
     
     [self setupRefreshView];

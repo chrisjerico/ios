@@ -161,9 +161,11 @@
     NSLog(@"self.item.win_apply_content = %@", self.item.win_apply_content);
     
     [self.webView loadHTMLString:[APP htmlStyleString:self.item.win_apply_content] baseURL:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.backgroundColor=\"#222\";document.body.style.color='#fff'"];
-    });
+    if (Skin1.isBlack) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.backgroundColor=\"#222\";document.body.style.color='#fff'"];
+        });
+    }
 }
 
 - (void)show {

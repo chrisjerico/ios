@@ -84,6 +84,8 @@
                 }
             }
             
+            sortArray = [sortArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+            
             for (NSString *sortStr in sortArray) {
                 NSMutableDictionary *dic = [NSMutableDictionary new];
                 [dic setValue:sortStr forKey:@"sortId"];

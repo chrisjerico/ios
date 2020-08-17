@@ -13,6 +13,12 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"cid"}];
 }
 
+- (NSString *)categoryType {
+    NSString *alias = [[_link componentsSeparatedByString:@"?"].firstObject componentsSeparatedByString:@"/"].lastObject;
+    alias = alias.length ? alias : _alias;
+    return alias;
+}
+
 - (void)setContentId:(NSString *)contentId {
     if (![contentId isEqualToString:@"0"]) {
         _contentId = contentId;

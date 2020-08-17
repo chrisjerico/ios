@@ -38,6 +38,7 @@ static NSString *levelCellid = @"UGMissionLevelTableViewCell";
     self.tableView.estimatedSectionFooterHeight = 0;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGMissionLevelTableViewCell" bundle:nil] forCellReuseIdentifier:levelCellid];
     self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 120, 0);
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
 }
 
 

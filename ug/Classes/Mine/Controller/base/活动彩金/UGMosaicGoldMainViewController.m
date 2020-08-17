@@ -38,20 +38,17 @@
 }
 
 - (void)rootLoadData {
+    // 是否显示分类
     if (SysConf.switchShowActivityCategory) {
-             [self getCenterData];
-         }
-         else{
-             UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped];
-             [self.view addSubview:realView.view];
-             [realView.view  mas_remakeConstraints:^(MASConstraintMaker *make)
-              {
-                 make.left.equalTo(self.view.mas_left).with.offset(0);
-                 make.right.equalTo(self.view.mas_right).with.offset(0);
-                 make.top.equalTo(self.view.mas_top).offset(0);
-                 make.bottom.equalTo(self.view.mas_bottom).offset(0);
-             }];
-         }
+        [self getCenterData];
+    } else {
+        UGMosaicGoldController *realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self addChildViewController:realView];
+        [self.view addSubview:realView.view];
+        [realView.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+    }
 }
 
 // 获取系统配置

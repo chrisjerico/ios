@@ -519,8 +519,6 @@
 		031E1B3D23BE812800B0F813 /* UGhomeAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15F123BE812400B0F813 /* UGhomeAdsModel.m */; };
 		031E1B3E23BE812800B0F813 /* UGPlatformNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15F223BE812400B0F813 /* UGPlatformNoticeModel.m */; };
 		031E1B3F23BE812800B0F813 /* UGPlatformNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15F223BE812400B0F813 /* UGPlatformNoticeModel.m */; };
-		031E1B4023BE812800B0F813 /* UGPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15F623BE812400B0F813 /* UGPostModel.m */; };
-		031E1B4123BE812800B0F813 /* UGPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15F623BE812400B0F813 /* UGPostModel.m */; };
 		031E1B4223BE812800B0F813 /* UGRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15FA23BE812400B0F813 /* UGRankModel.m */; };
 		031E1B4323BE812800B0F813 /* UGRankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15FA23BE812400B0F813 /* UGRankModel.m */; };
 		031E1B4423BE812800B0F813 /* UGAPPVersionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15FD23BE812400B0F813 /* UGAPPVersionModel.m */; };
@@ -1677,7 +1675,6 @@
 		CF166B3E24A495B000EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B3F24A495C000EF8835 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
 		CF166B4024A495CF00EF8835 /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */; };
-		CF3CD29A24BEE44C0021FEEA /* UGLaunchPageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3CD29924BEE44C0021FEEA /* UGLaunchPageVC.xib */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -2545,8 +2542,6 @@
 		031E15F223BE812400B0F813 /* UGPlatformNoticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPlatformNoticeModel.m; sourceTree = "<group>"; };
 		031E15F323BE812400B0F813 /* UGLotteryHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLotteryHistoryModel.h; sourceTree = "<group>"; };
 		031E15F423BE812400B0F813 /* UGNoticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGNoticeModel.h; sourceTree = "<group>"; };
-		031E15F623BE812400B0F813 /* UGPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGPostModel.m; sourceTree = "<group>"; };
-		031E15F723BE812400B0F813 /* UGPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPostModel.h; sourceTree = "<group>"; };
 		031E15F823BE812400B0F813 /* UGBetItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGBetItemModel.h; sourceTree = "<group>"; };
 		031E15F923BE812400B0F813 /* UGChanglongaideModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGChanglongaideModel.h; sourceTree = "<group>"; };
 		031E15FA23BE812400B0F813 /* UGRankModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGRankModel.m; sourceTree = "<group>"; };
@@ -3581,7 +3576,6 @@
 		CF166B3024A47E8600EF8835 /* HotBranchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotBranchView.xib; sourceTree = "<group>"; };
 		CF166B3124A47E8700EF8835 /* HotBranchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotBranchView.h; sourceTree = "<group>"; };
 		CF166B3224A47E8700EF8835 /* HotBranchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotBranchView.m; sourceTree = "<group>"; };
-		CF3CD29924BEE44C0021FEEA /* UGLaunchPageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLaunchPageVC.xib; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -5172,7 +5166,6 @@
 		031E15E323BE812400B0F813 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				031E15F523BE812400B0F813 /* 六合板块 */,
 				031E15E423BE812400B0F813 /* UGRankModel.h */,
 				031E15FA23BE812400B0F813 /* UGRankModel.m */,
 				031E15FB23BE812400B0F813 /* UGRedEnvelopeModel.h */,
@@ -5209,15 +5202,6 @@
 				03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		031E15F523BE812400B0F813 /* 六合板块 */ = {
-			isa = PBXGroup;
-			children = (
-				031E15F723BE812400B0F813 /* UGPostModel.h */,
-				031E15F623BE812400B0F813 /* UGPostModel.m */,
-			);
-			path = "六合板块";
 			sourceTree = "<group>";
 		};
 		031E160723BE812400B0F813 /* View */ = {
@@ -6020,7 +6004,6 @@
 				031E176423BE812500B0F813 /* 客服AlertView.xib */,
 				031E176323BE812500B0F813 /* UGLaunchPageVC.h */,
 				031E176723BE812500B0F813 /* UGLaunchPageVC.m */,
-				CF3CD29924BEE44C0021FEEA /* UGLaunchPageVC.xib */,
 				031E176923BE812500B0F813 /* UGNavigationController.h */,
 				031E176523BE812500B0F813 /* UGNavigationController.m */,
 				03D6926723C22C9B003D9C12 /* UINavigationController+Push.h */,
@@ -9009,7 +8992,6 @@
 				CFFAB58D23755569009593AF /* lxb.gif in Resources */,
 				031E1B9023BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
 				031E1BF423BE812900B0F813 /* UGGD11X5LotteryController.storyboard in Resources */,
-				CF3CD29A24BEE44C0021FEEA /* UGLaunchPageVC.xib in Resources */,
 				CF47591F239636D200966536 /* 106.gif in Resources */,
 				CF4758F0239636D200966536 /* 160.gif in Resources */,
 				031E1C1C23BE812900B0F813 /* UGSSCBetItem1Cell.xib in Resources */,
@@ -9741,7 +9723,6 @@
 				031E1B6B23BE812800B0F813 /* UGPlatformCollectionView.m in Sources */,
 				031E1A6323BE812700B0F813 /* NSString+ST.m in Sources */,
 				031E1AA123BE812800B0F813 /* ZZCountingLabel.m in Sources */,
-				031E1B4123BE812800B0F813 /* UGPostModel.m in Sources */,
 				CF85084F2466D4510025672F /* JSPatchHelper.m in Sources */,
 				031E1AC123BE812800B0F813 /* WMMenuHead.m in Sources */,
 				031E1C0323BE812900B0F813 /* UGLotterySettingModel.m in Sources */,
@@ -10263,7 +10244,6 @@
 				031E1C6C23BE812A00B0F813 /* UGRechargeRecordTableViewController.m in Sources */,
 				031E1E7C23BE812D00B0F813 /* UGPlatformBalanceTableViewCell.m in Sources */,
 				031E1A9223BE812700B0F813 /* MOFSDatePicker.m in Sources */,
-				031E1B4023BE812800B0F813 /* UGPostModel.m in Sources */,
 				031E1D2623BE812B00B0F813 /* UGMissionLevelController.m in Sources */,
 				031E1D7C23BE812B00B0F813 /* UGRealBetRecordViewController.m in Sources */,
 				031E1BE423BE812900B0F813 /* UGPK10NNLotteryController.m in Sources */,

@@ -1442,6 +1442,7 @@ static UGSkinManagers *__initSkin1 = nil;
     }
     
     
+
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
     skitType = @"天空蓝";

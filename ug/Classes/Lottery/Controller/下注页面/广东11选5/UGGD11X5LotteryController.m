@@ -276,19 +276,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     }
                 }
             }
-            
-            // 删除enable为NO的数据（不显示出来）
-            for (UGGameplayModel *gm in play.playOdds) {
-                for (UGGameplaySectionModel *gsm in gm.list) {
-                    if (!gsm.enable)
-                        [weakSelf.gameDataArray removeObject:gm];
-                }
-            }
-			[weakSelf handleData];
-			weakSelf.segmentView.dataArray = weakSelf.lmgmentTitleArray;
-			[weakSelf.tableView reloadData];
-			[weakSelf.betCollectionView reloadData];
-			[weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+
+			[self handleData];
+			self.segmentView.dataArray = self.lmgmentTitleArray;
+			[self.tableView reloadData];
+			[self.betCollectionView reloadData];
+			[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+
 		} failure:^(id msg) {
 			
 		}];

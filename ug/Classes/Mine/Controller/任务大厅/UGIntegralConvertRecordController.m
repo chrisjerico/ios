@@ -57,6 +57,7 @@ static NSString *convertRecordCellid = @"UGIntegarlConvertRecordCell";
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     self.dateArray = @[@"全部日期",@"最近一天",@"最近七天",@"最近一个月"];
     self.tableDataArray = [NSMutableArray new];
     //

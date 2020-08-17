@@ -183,6 +183,12 @@
             return ;
 
         }
+//        if ([UGSystemConfigModel  currentConfig].loginVCode) {
+//            if (!self.imgVcodeModel) {
+//                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
+//                return ;
+//            }
+//        }
 
         NSDictionary *params = @{@"usr":subTextField(@"账号txt").text,
                                  @"pwd":[UGEncryptUtil md5:subTextField(@"密码txt").text],

@@ -175,6 +175,12 @@
         
         // 批量上传
         [__self upload:okSites  checkStatus:checkStatus completion:^(NSArray<SiteModel *> *okSites) {
+            NSMutableArray *fails = [SiteModel sites:ids].mutableCopy;
+            [fails removeObjectsInArray:okSites];
+            if (fails.count) {
+//                assert(!_NSString(@"部分站点打包或上传失败：%@，请重新打包", [fails valueForKey:@"siteId"]).length);
+                NSLog(@"部分站点打包或上传失败：");
+            }
             NSLog(@"退出打包程序");
             exit(0);
         }];

@@ -92,6 +92,7 @@ static int size = 20;
     self.tableView.rowHeight = 60;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     [self.tableView setBackgroundColor:Skin1.textColor4];
     self.stateArray = @[@"全部",@"已回复",@"待回复"].mutableCopy;
     self.typeArray = @[@"全部",@"建议反馈",@"投诉建议"].mutableCopy;

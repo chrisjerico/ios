@@ -183,7 +183,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL chatFollowSwitch;                  /**<   是否允许聊天室跟注 */
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
-@property (nonatomic, copy) NSString *easyRememberDomain;    /**<   GPK版易记的网址*/
+@property (nonatomic, copy) NSString *easyRememberDomain;    /**<   GPK版易记的网址  动态域名  */
 
 @property (nonatomic, copy) NSArray <LHPriceModel *>*lhcPriceList;    /**<   六合发帖价格范围 */
 

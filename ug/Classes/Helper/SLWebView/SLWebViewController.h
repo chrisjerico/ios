@@ -9,6 +9,6 @@
 @interface  SLWebViewController:UGViewController
 
 @property (nonatomic, strong) NSString *urlStr;
-
+@property (nonatomic) BOOL isCustomerService;
 @end
 

@@ -17,7 +17,7 @@
 @implementation RnPageModel
 + (instancetype)updateVersionPage {
     RnPageModel *rpm = [RnPageModel new];
-    rpm.vcName = @"UpdateVersionVC";
+    rpm.vcName = @"UpdateVersionPage";
     rpm.fd_prefersNavigationBarHidden = true;
     rpm.允许游客访问 = true;
     rpm.允许未登录访问 = true;
@@ -91,6 +91,12 @@ static RCTRootView *_rnView;
     }
 }
 
+static NSString *__lastRnPage = nil;
++ (void)showLastRnPage {
+    if (__lastRnPage)
+        [ReactNativeHelper selectVC:__lastRnPage params:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -107,7 +113,7 @@ static RCTRootView *_rnView;
         if (TARGET_IPHONE_SIMULATOR) {
             bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
         } else if (APP.isFish) {
-            bundleURL = [NSURL URLWithString:@"http://192.168.1.145:8081/index.bundle?platform=ios"];
+            bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
         }
 #endif
         //    NSLog(@"当前rn版本：%@", APP.)
@@ -125,6 +131,7 @@ static RCTRootView *_rnView;
         [self.view addSubview:_rnView];
         __weakSelf_(__self);
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            __lastRnPage = __self.rpm.rnName;
             [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
         }];
     }
@@ -147,6 +154,7 @@ static RCTRootView *_rnView;
 
 - (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        __lastRnPage = rpm.rnName;
         [ReactNativeHelper selectVC:rpm.rnName params:params];
     }];
 }

@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    if (Skin1.isBlack) {
+        self.contentView.backgroundColor = [UIColor systemGrayColor];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

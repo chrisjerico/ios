@@ -587,7 +587,7 @@
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
             make.width.mas_equalTo(95.0);
             make.height.mas_equalTo(95.0);
-            make.top.equalTo(__self.view.mas_top).offset(150);
+            make.top.equalTo(__self.view.mas_top).offset(135);
         }];
         self.uGredEnvelopeView.cancelClickBlock = ^(void) {
             [__self.uGredEnvelopeView setHidden:YES];
@@ -1072,141 +1072,88 @@
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"多期");
+            return;
+        }
+        else if (model.contentId.length) {
+            // 获取帖子详情
+            [SVProgressHUD showWithStatus:nil];
+            NSLog(@"");
+            NSLog(@"model.contentId = %@",model.contentId);
+            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
+                [SVProgressHUD dismiss];
+                if (!sm.error) {
+                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                    pm.link = model.link;
+                    NSLog(@"获取帖子详情 = %@",pm.content);
+                    void (^push)(void) = ^{
+                        
+                        self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+                        self.postvc.pm = pm;
+                        self.postvc.title = model.name;
+                        [NavController1 pushViewController:self.postvc animated:true];
+                    };
+                    if (!pm.hasPay && pm.price > 0.000001) {
+                        LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
+                        ppv.pm = pm;
+                        ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
+                            if (!UGLoginIsAuthorized()) {
+                                [ppv hide:nil];
+                                SANotificationEventPost(UGNotificationShowLoginView, nil);
+                                return;
+                            }
+                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+                                if (!sm.error) {
+                                    pm.hasPay = true;
+                                    [ppv hide:nil];
+                                    UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
+                                    [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                                        push();
+                                    }];
+                                }
+                            };
+                        };
+                        [ppv show];
+                    } else {
+                        push();
+                    }
+                }
+            };
             return;
         }
         
-        if ([model.alias isEqualToString:@"forum"]) {
+        if ([@"forum,gourmet" containsString:model.categoryType]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"高手论坛");
+            NSLog(@"高手论坛,极品专贴");
         }
-        else if([model.alias isEqualToString:@"gourmet"]) {
-            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"极品专贴");
-        }
-        else if([model.alias isEqualToString:@"mystery"]) {
+        else if([@"mystery,rule" containsString:model.categoryType]) {
             UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"每期资料");
+            NSLog(@"每期资料,公式规律");
         }
-        else if([model.alias isEqualToString:@"rule"]) {
-            UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+        else if([@"humorGuess,rundog,fourUnlike" containsString:model.categoryType]) {
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"公式规律");
+            NSLog(@"幽默猜测,跑狗玄机,四不像");
         }
-        else if([model.alias isEqualToString:@"sixpic"]) {
+        else if([@"sixpic" containsString:model.categoryType]) {
             LHGalleryListVC2 *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC2");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"六合图库");
         }
-        else if([model.alias isEqualToString:@"humorGuess"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"幽默猜测");
-        }
-        else if([model.alias isEqualToString:@"rundog"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"跑狗玄机");
-        }
-        else if([model.alias isEqualToString:@"fourUnlike"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"四不像");
-        }
-        else if([model.alias isEqualToString:@"yellowCale"]) {
-            NSLog(@"老黃历");
+        else if([@"yellowCale" containsString:model.categoryType]) {
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+            NSLog(@"老黃历");
         }
-        else if([model.alias isEqualToString:@"CvB3zABB"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"香港挂牌");
-        }
-        else if([model.alias isEqualToString:@"E9biHXEx"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"美女六肖");
-        }
-        else if([model.alias isEqualToString:@"n0v3azC0"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"香港挂牌");
-        }
-        else if([model.alias isEqualToString:@"mT303M99"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"看图找肖");
-        }
-        else if([model.alias isEqualToString:@"rwzx"]) {
+        else if([@"rwzx" containsString:model.categoryType]) {
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
             NSLog(@"任务中心");
         }
         else {
-            if (model.contentId.length) {
-                // 获取帖子详情
-                [SVProgressHUD showWithStatus:nil];
-                NSLog(@"");
-                NSLog(@"model.contentId = %@",model.contentId);
-                [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
-                    [SVProgressHUD dismiss];
-                    if (!sm.error) {
-                        
-                        //                        NSLog(@"获取帖子详情data = %@",sm.responseObject[@"data"]);
-                        
-                        
-                        UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
-                        pm.link = model.link;
-                        NSLog(@"获取帖子详情 = %@",pm.content);
-                        void (^push)(void) = ^{
-                            
-                            self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-                            self.postvc.pm = pm;
-                            self.postvc.title = model.name;
-                            [NavController1 pushViewController:self.postvc animated:true];
-                        };
-                        if (!pm.hasPay && pm.price > 0.000001) {
-                            LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
-                            ppv.pm = pm;
-                            ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
-                                if (!UGLoginIsAuthorized()) {
-                                    [ppv hide:nil];
-                                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                                    return;
-                                }
-                                [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
-                                    if (!sm.error) {
-                                        pm.hasPay = true;
-                                        [ppv hide:nil];
-                                        UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
-                                        [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
-                                            push();
-                                        }];
-                                    }
-                                };
-                            };
-                            [ppv show];
-                        } else {
-                            push();
-                        }
-                    }
-                };
-                return;
-            }
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
             if (!ret && model.appLink.length) {
                 TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
@@ -1872,8 +1819,8 @@
         WeakSelf;
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
-       
-            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
             [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
             weakSelf.notiveView.dataArray = self.popNoticeArray;
             
@@ -1890,14 +1837,8 @@
                         [weakSelf.notiveView show];
                     }
                 }
-     
             }
-
         });
-        
-
- 
-    
 }
 
 #pragma mark - SDCycleScrollViewDelegate

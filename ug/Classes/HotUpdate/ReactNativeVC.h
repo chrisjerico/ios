@@ -55,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)isEqualRPM:(RnPageModel *)rpm;
 - (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params;
 + (void)setTabbarHidden:(BOOL)hidden animated:(BOOL)animated;
++ (void)showLastRnPage;
 @end
 
 NS_ASSUME_NONNULL_END
