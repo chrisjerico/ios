@@ -692,6 +692,7 @@ static UGTabbarController *_tabBarVC = nil;
             } failure:^(id msg) {}];
         }];
     };
+    NSLog(@"APP.messageRequestTimer= %@",APP.messageRequestTimer);
     dispatch_suspend(APP.messageRequestTimer);
     [CMNetwork getMessageListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{

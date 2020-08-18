@@ -800,6 +800,7 @@ BOOL isOk = NO;
     
     if (Skin1.isTKL) {
         //资金明细
+        [NavController1 pushViewController:[UGFundsViewController new] animated:true];
     } else {
             //存款
         UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];

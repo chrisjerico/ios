@@ -569,7 +569,7 @@
             }
             
         }
-        
+        //游戏列表点击事件
         self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
             [NavController1 pushViewControllerWithGameModel:game];
         };
