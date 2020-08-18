@@ -1823,6 +1823,7 @@
             weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
             [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
             weakSelf.notiveView.dataArray = self.popNoticeArray;
+            weakSelf.notiveView.supVC = weakSelf;
             
             UIWindow* window = UIApplication.sharedApplication.keyWindow;
             BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
