@@ -2,9 +2,7 @@
   "name": "Picker",
   "version": "4.3.7",
   "summary": "A Native Picker with high performance.",
-  "authors": {
-    "name": "zooble"
-  },
+  "authors": "zooble",
   "license": "MIT",
   "homepage": "https://github.com/beefe/react-native-picker",
   "source": {
