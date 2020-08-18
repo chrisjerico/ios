@@ -10,8 +10,9 @@
 #import "UGPlatformNoticeCell.h"
 #import "UGNoticeHeaderView.h"
 #import "UGNoticeModel.h"
+#import "SLWebViewController.h"
 
-@interface UGPlatformNoticeView ()<UITableViewDelegate,UITableViewDataSource>
+@interface UGPlatformNoticeView ()<UITableViewDelegate,UITableViewDataSource, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -142,6 +143,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
             wv = [UIWebView new];
             wv.backgroundColor = [UIColor clearColor];
             wv.tagString = @"WebView";
+            // UI代理
+            wv.delegate = self;
             [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
                 NSLog(@"newH === %f",[newVal CGSizeValue].height);
                 NSLog(@"oldH === %f",[oldVal CGSizeValue].height);
@@ -250,4 +253,26 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     [headerView.backgroundView setBackgroundColor:[UIColor whiteColor]];
 }
 
+
+- (BOOL)webView:(UIWebView*)webView
+shouldStartLoadWithRequest:(NSURLRequest*)request
+ navigationType:(UIWebViewNavigationType)navigationType {
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {//跳转别的应用如系统浏览器
+        NSString *urlString = [[request URL] absoluteString];
+        NSLog(@"urlString = %@",urlString);
+        if (urlString.isURL) {
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+             webViewVC.url = urlString;
+            [_supVC presentViewController:webViewVC animated:YES completion:^{
+                [self.tableView reloadData];
+            }];
+            
+      
+        }
+   
+        return YES;
+    }
+    return YES;
+}
 @end
