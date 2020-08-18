@@ -19,7 +19,7 @@
     self.backgroundColor = RGBA(246, 246, 246, 1);
 }
 
-- (void)setItem:(GameModel *)item {
+- (void)setItem:(GameCategoryModel *)item {
     _item = item;
     self.titleLabel.text = item.name;
 }

@@ -119,6 +119,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
         pcv.style = gcm.style;
 		pcv.typeIndex = i;
 		pcv.dataArray = gcm.list;
+        pcv.subType = gcm.subType;
         [pcv xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             [__self refreshHeight];
         }];
@@ -141,7 +142,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 
     if (Skin1.isJY||Skin1.isTKL) {
         GameCategoryModel *ob =  [self.gameTypeArray objectAtIndex:idx];
-        if ([ob.iid isEqualToString:@"1"]){
+        if (ob.subType.count){
             h = pcv.contentSize.height + _titleView.height + 5 +40;
             _contentScrollView.cc_constraints.height.constant = h;
         } else {

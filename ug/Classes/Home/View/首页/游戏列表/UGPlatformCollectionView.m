@@ -34,16 +34,9 @@ static NSString *const footerId = @"footerId";
 
 #pragma mark - 设置表头方式一
 
-- (void)contentInsetHeaderView :(NSArray <GameModel *> *)  arry{
-    
-    NSMutableArray <GameModel *> * headArray = [NSMutableArray new];
-    
-    for (GameModel *model in arry) {
-        if (model.subType.count) {
-            [headArray addObject:model];
-        }
-    }
-    
+- (void)contentInsetHeaderView :(NSArray<GameCategoryModel *> *)  headArray{
+
+
     if (headArray.count) {
         CGFloat header_y = 40;
         // CGFloat top, left, bottom, right;
@@ -232,6 +225,20 @@ static NSString *const footerId = @"footerId";
     [DocumentTypeList setAllGames:documentArray];
 }
 
+
+-(void)setSubType:(NSArray<GameCategoryModel> *)subType{
+    _subType = subType;
+    
+    if (subType.count <= 0) {
+        return;
+    }
+    WeakSelf;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // UI更新代码
+        [weakSelf contentInsetHeaderView :weakSelf.subType];
+    });
+    
+}
 
 #pragma mark - UICollectionViewDelegate
 
