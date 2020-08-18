@@ -1,0 +1,25 @@
+{
+  "name": "RNReactNativeModalPatch",
+  "version": "1.0.0",
+  "summary": "RNReactNativeModalPatch",
+  "description": "RNReactNativeModalPatch",
+  "homepage": "https://github.com/HarvestProfit/react-native-modal-patch",
+  "license": "MIT",
+  "authors": {
+    "author": "jake@harvestprofit.com"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source": {
+    "git": "https://github.com/HarvestProfit/react-native-modal-patch.git",
+    "tag": "master"
+  },
+  "source_files": "ios/*.{h,m}",
+  "requires_arc": true,
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}
