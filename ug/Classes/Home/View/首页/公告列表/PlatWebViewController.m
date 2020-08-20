@@ -1,30 +1,27 @@
 //
-//  TGWebViewController.m
-//  TGWebViewController
+//  PlatWebViewController.m
+//  UGBWApp
 //
-//  Created by 赵群涛 on 2017/9/15.
-//  Copyright © 2017年 QR. All rights reserved.
+//  Created by ug on 2020/8/20.
+//  Copyright © 2020 ug. All rights reserved.
 //
 
-#import "TGWebViewController.h"
-#import "SLWebViewController.h"
+#import "PlatWebViewController.h"
 #import <WebKit/WebKit.h>
-
-@interface TGWebViewController ()<WKNavigationDelegate, WKScriptMessageHandler>
-
-//@property (nonatomic) WKWebView *tgWebView;
-@property (nonatomic, assign) BOOL willReloadURL;   // 是否需要重新加载URL
-
+#import "TGWebProgressLayer.h"
+#import "SLWebViewController.h"
+@interface PlatWebViewController ()<WKNavigationDelegate, WKScriptMessageHandler>
+@property (nonatomic,strong) TGWebProgressLayer *webProgressLayer;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @end
 
-@implementation TGWebViewController
-
-- (BOOL)允许未登录访问 { return true; }
-- (BOOL)允许游客访问 { return true; }
+@implementation PlatWebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    // Do any additional setup after loading the view from its nib.
+    
+    [self.bgView setBackgroundColor: Skin1.navBarBgColor];
     
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     {
@@ -43,35 +40,21 @@
         // 我们可以在WKScriptMessageHandler代理中接收到
         [config.userContentController addScriptMessageHandler:self name:@"postSwiperData"];
     }
-    self.tgWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) configuration:config];
-    self.tgWebView.navigationDelegate = self;
-    [self.view addSubview:self.tgWebView];
+   
+    self.mWKView.navigationDelegate = self;
     if (_url.length) {
         self.url = _url;
     }
-    
-    [self.tgWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
     [self setUpUI];
     
-
-}
-
-- (void)cancel {
-    [self.navigationController dismissViewControllerAnimated:true completion:nil];
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.backgroundColor = Skin1.navBarBgColor;
+    UIButton * rightItem = [UIButton buttonWithType:UIButtonTypeSystem];
+    [rightItem setTitle:@"取消" forState:UIControlStateNormal];
+    [rightItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightItem addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
     
-    if (OBJOnceToken(self)) {
-        [self.tgWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view).offset(self.parentViewController ? 0 : APP.StatusBarHeight);
-            make.left.right.bottom.equalTo(self.view);
-        }];
-    }
-
-
+    
 }
 
 - (void)setUpUI {
@@ -80,6 +63,7 @@
     self.webProgressLayer.strokeColor = self.progressColor.CGColor;
     [self.navigationController.navigationBar.layer addSublayer:self.webProgressLayer];
 }
+
 
 - (void)setWebTitle:(NSString *)webTitle{
     _webTitle = webTitle;
@@ -97,14 +81,17 @@
 //    [CMCommon showSystemTitle:[NSString stringWithFormat:@"我发送的url = %@",url]];
     
 
-    [self.tgWebView loadRequest:request];
+    [self.mWKView loadRequest:request];
 }
 
+- (IBAction)closeAction:(id)sender {
+    [_supVC dismissViewControllerAnimated:true completion:nil];
+}
 
 #pragma mark - UIWebViewDelegate
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-//    [HUDHelper showLoadingViewWithSuperview:self.view];
+
       [SVProgressHUD showWithStatus:nil];
     [self.webProgressLayer tg_startLoad];
 }
@@ -116,7 +103,7 @@
     
 //    [CMCommon showToastTitle:[NSString stringWithFormat:@"url = %@",self.tgWebView.URL]];
     
-    NSLog(@"self.tgWebView.URL = %@",self.tgWebView.URL);
+    NSLog(@"self.mWKView.URL = %@",self.mWKView.URL);
 //      [CMCommon showTitle:[NSString stringWithFormat:@"didFinishNavigation 返回的url = %@",self.tgWebView.URL.absoluteString]];
 }
 
@@ -174,9 +161,9 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
      if ([keyPath isEqualToString:@"title"]) {
-        if (object == self.tgWebView) {
+        if (object == self.mWKView) {
             if ([CMCommon stringIsNull:_webTitle]) {
-                 self.title = self.tgWebView.title;
+                 self.title = self.mWKView.title;
             }
         } else{
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -191,3 +178,4 @@
 }
 
 @end
+
