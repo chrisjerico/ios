@@ -22,7 +22,7 @@
 
 - (CCSessionModel *)getHotUpdateVersionList:(NSInteger)page;   /**<   获取热更新版本列表 */
 - (CCSessionModel *)downloadFile:(NSString *)url;
-
+- (CCSessionModel *)getCodePushUpdate:(NSString *)deploymentKey;
 
 // 获取ip
 - (CCSessionModel *)getIp;

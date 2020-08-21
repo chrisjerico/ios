@@ -51,6 +51,7 @@ if [ "$__Result" == "Already up to date." ];then
     git rev-parse --short HEAD > $__OutputFile1
     git shortlog -1 > $__OutputFile2
     echo `git rev-list HEAD|wc -l` > $__OutputFile3
+    echo `git log --oneline -1`
     echo "当前 $__Branch 已是最新代码"
     
     # 删除依赖库

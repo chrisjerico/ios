@@ -44,7 +44,7 @@
     self.navigationItem.title = @"购彩大厅";
     self.fd_prefersNavigationBarHidden = YES;
     [self.view setBackgroundColor: Skin1.bgColor];
-    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+    if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
         _titleLineView.backgroundColor = Skin1.bgColor;
         _titleUpLineView.backgroundColor = Skin1.bgColor;
        
@@ -133,11 +133,12 @@
 #pragma mark 网络请求
 
 - (void)getPlatformGamesWithParams {
+    WeakSelf;
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.myCollectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.dataArray = model.data;
-            [self.myCollectionView reloadData];
+            weakSelf.dataArray = model.data;
+            [weakSelf.myCollectionView reloadData];
         } failure:^(id msg) {
         }];
     }];

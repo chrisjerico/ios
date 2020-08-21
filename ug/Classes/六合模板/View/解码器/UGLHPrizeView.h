@@ -15,8 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic)  CountDown *countDownForLabel;                            /**<   倒计时工具*/
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) NSString *gid; /**<   游戏id*/
-////六合开奖  当前开奖信息
-- (void)getLotteryNumberList;
+
 @end
 
 NS_ASSUME_NONNULL_END

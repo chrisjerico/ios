@@ -26,7 +26,7 @@
 #import "UGSetupPayPwdController.h"
 #import "UGYubaoViewController.h"
 #import "UGSecurityCenterViewController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
 #import "UGUserInfoViewController.h"
@@ -191,10 +191,10 @@
     self.progressView.layer.masksToBounds = YES;
     self.progressView.backgroundColor = UGRGBColor(213, 224, 237);
     //    self.topupView.backgroundColor = Skin1.navBarBgColor;
-    //    FastSubViewCode(self.topupView);
-    //    subLabel(@"存款Label").textColor = Skin1.textColor1;
-    //    subLabel(@"提现Label").textColor = Skin1.textColor1;
-    //    subLabel(@"转换Label").textColor = Skin1.textColor1;
+    FastSubViewCode(self.topupView);
+    subLabel(@"存款Label").textColor = Skin1.textColor1;
+    subLabel(@"提现Label").textColor = Skin1.textColor1;
+    subLabel(@"转换Label").textColor = Skin1.textColor1;
     
     
     //设置皮肤
@@ -436,7 +436,7 @@ BOOL isOk = NO;
         cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = Skin1.isBlack ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        cell.layer.borderColor = Skin1.isGPK ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
         return cell;
     }
     return nil;
@@ -553,7 +553,31 @@ BOOL isOk = NO;
         [NavController1 pushVCWithUserCenterItemType:uci.code];
     } else  {
         UGUserCenterItem *uci = self.menuNameArray[indexPath.row];
-        [NavController1 pushVCWithUserCenterItemType:uci.code];
+        
+        if (uci.code ==  UCI_在线客服) {
+            if (APP.isSecondUrl) {
+                NSString *urlStr = [SysConf.zxkfUrl2 stringByTrim];
+                if (!urlStr.length) {
+                    [CMCommon showTitle:@"请在后台配置在线客服链接->客服链接2"];
+                    return;
+                }
+                SLWebViewController *webViewVC = [SLWebViewController new];
+                NSURL *url = [NSURL URLWithString:urlStr];
+                if (!url.host.length) {
+                    urlStr = _NSString(@"%@%@", APP.Host, SysConf.zxkfUrl2);
+                }
+                else if (!url.scheme.length) {
+                    urlStr = _NSString(@"http://%@", SysConf.zxkfUrl2);
+                }
+                webViewVC.isCustomerService = YES;
+                webViewVC.urlStr = urlStr;
+                [NavController1 pushViewController:webViewVC animated:YES];
+            } else {
+                 [NavController1 pushVCWithUserCenterItemType:uci.code];
+            }
+        } else {
+             [NavController1 pushVCWithUserCenterItemType:uci.code];
+        }
     }
 }
 
@@ -714,6 +738,7 @@ BOOL isOk = NO;
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    WeakSelf;
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
@@ -723,24 +748,24 @@ BOOL isOk = NO;
             UGUserModel.currentUser = user;
             NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
             
-            [self getSystemConfig];
+            [weakSelf getSystemConfig];
             //            //初始化数据
             //            [self getDateSource];
         } failure:^(id msg) {
-            [self stopAnimation];
+            [weakSelf stopAnimation];
         }];
     }];
 }
 
 - (void)getSystemConfig {
-    
+     WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
-            [self setupUserInfo:YES];
-            [self stopAnimation];
+            [weakSelf setupUserInfo:YES];
+            [weakSelf stopAnimation];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
@@ -776,15 +801,15 @@ BOOL isOk = NO;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
 
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             NSLog(@"model.data = %@",model.data);
-            self.historyDataArray = model.data;
+            weakSelf.historyDataArray = model.data;
             NSLog(@"_historyDataArray = %@",self.historyDataArray);
             if (![CMCommon arryIsNull:self.historyDataArray]) {
-                [self showUGSignInHistoryView];
+                [weakSelf showUGSignInHistoryView];
             }
 
 

@@ -215,6 +215,7 @@
 
 -(void)getChatRoomData{
       //得到线上配置的聊天室
+    __weakSelf_(__self);
     [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
         if (!sm.error) {
             NSLog(@"model.data = %@",sm.responseObject[@"data"]);
@@ -255,26 +256,26 @@
             }
             
             if (SysConf.chatRoomRedirect == 1) { /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
-                if (self.nim.gameId ) {
-                    UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
-                    self.vc2.roomId = roomModel.roomId;
-                    self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
-                    self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
+                if (__self.nim.gameId ) {
+                    UGChatRoomModel *roomModel =  [__self getRoomMode:__self.nim.gameId];
+                    __self.vc2.roomId = roomModel.roomId;
+                    __self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                    __self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
                 }
             } else {
-                if ([self hasLastRoom]) {
-                    NSDictionary *dic = [self LastRoom];
-                    self.vc2.roomId = dic[@"roomId"];
-                    self.vc2.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
-                    self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
+                if ([__self hasLastRoom]) {
+                    NSDictionary *dic = [__self LastRoom];
+                    __self.vc2.roomId = dic[@"roomId"];
+                    __self.vc2.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
+                    __self.mLabel.text = [NSString stringWithFormat:@"%@▼",dic[@"roomName"]];
                 }
                 
                 else{
                     
-                    UGChatRoomModel *roomModel =  [self getRoomMode:self.nim.gameId];
-                     self.vc2.roomId = roomModel.roomId;
-                     self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
-                     self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
+                    UGChatRoomModel *roomModel =  [__self getRoomMode:__self.nim.gameId];
+                     __self.vc2.roomId = roomModel.roomId;
+                     __self.vc2.url = [APP chatGameUrl:roomModel.roomId hide:YES];
+                     __self.mLabel.text = [NSString stringWithFormat:@"%@▼",roomModel.roomName];
                     
                 }
             }
@@ -379,7 +380,7 @@
                 
             }
             
-            if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+            if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
                 label.textColor = [UIColor whiteColor];
             }
             
@@ -391,7 +392,7 @@
                 [__self.downBtn setHidden:NO];
                 //得到线上配置的聊天室
                 if (OBJOnceToken(__self)) {
-                    [self performSelector:@selector(getChatRoomData) afterDelay:0.2];
+                    [__self performSelector:@selector(getChatRoomData) afterDelay:0.2];
                 }
             }
             else {
@@ -460,188 +461,190 @@
             SysConf.defaultChatRoom  = obj;
         }
         
-        
+        __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
            // UI更新代码
+            [__self alertViewChatTitleAry:chatTitleAry chat2Ary:chat2Ary];
           
         });
         
-        UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];
-        for (NSString *key in chatTitleAry) {
-            [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
-                
-                NSDictionary *dic = [chat2Ary objectWithValue:key keyPath:@"roomName"];
-                NSString *pass =  [dic objectForKey:@"password"];
-                NSString *chatId = [dic objectForKey:@"roomId"];
-                if ([CMCommon stringIsNull:chatId]) {
-                    NSLog(@"房间id 为空：%@",chatId);
-                    return ;
-                }
-                
-                //取数据
-                NSArray * rpArray = [WHCSqlite query:[RememberPass class] where:[NSString stringWithFormat:@"roomId = '%@'",chatId]];
-                RememberPass *rp = (RememberPass *)[rpArray objectAtIndex:0];
-                
-                BOOL isPass = NO;
-                if (![CMCommon stringIsNull:rp.password]) {
-                    isPass = YES;
-                } else {
-                    isPass =[CMCommon stringIsNull:pass];
-                }
-                
-                if (isPass) {
-                    //                                         if (![vc2.roomId isEqualToString:chatId]) {
-                    self.vc2.roomId = chatId;
-                    NSLog(@"房间dic：%@",dic);
-                    UGChatRoomModel *obj = [UGChatRoomModel mj_objectWithKeyValues:dic];
-                    NSLog(@"房间obj：%@",obj);
-                    if (!obj) {
-                        NSLog(@"房间 为空：%@",obj);
-                        return ;
-                    }
-                    
-                    if (self.jsDic) {
-                        UGbetModel *betModel = [self.jsDic objectForKey:@"betModel"];
-                        betModel.roomId = chatId;
-                        NSMutableArray *list = [self.jsDic objectForKey:@"list"];
-                        NSString* paramsjsonString = [betModel toJSONString];
-                        NSLog(@"paramsjsonString = %@",paramsjsonString);
-                        NSString *listjsonString;
-                        {
-                            NSError *error;
-                            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];
-                            listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                            
-                        }
-                        NSLog(@"listjsonString = %@",listjsonString);
-                        
-                        if ([CMCommon arryIsNull:list]) {
-                            NSString *jsonStr = [self.jsDic objectForKey:@"jsonStr"];
-                            NSLog(@"jsonStr = %@",jsonStr);
-                            self.vc2.shareBetJson = jsonStr;
-                        } else {
-                            NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
-                            NSLog(@"jsonStr = %@",jsonStr);
-                            self.vc2.shareBetJson = jsonStr;
-                        }
-             
-                    }
-                    
-                    
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        //需要在主线程执行的代码
-                        // 模型转字符串
-                        NSString* string = [obj toJSONString];
-                        //                                            NSLog(@"string = %@",string);
-                        NSString *js = [NSString stringWithFormat:@"changeRoom(%@)",string];
-                        //                                            NSLog(@"js = %@",js);
-                        [self saveRoomName:obj.roomName RoomId:obj.roomId];
-                        [self.vc2 setChangeRoomJson:js];
-                        NSLog(@"__self.vc2 = %@",self.vc2);
-                        self.mLabel.text = [NSString stringWithFormat:@"%@▼",key];
-                    }];
-                    
-                    //                                         }
-                    
-                    
-                } else {
-                    // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
-                    __block UITextField *tf = nil;
-                    
-                    [LEEAlert alert].config
-                    .LeeTitle(@"请输入房间密码")
-                    .LeeAddTextField(^(UITextField *textField) {
-                        textField.placeholder = @"请输入房间密码";
-                        textField.textColor = [UIColor darkGrayColor];
-                        tf = textField; //赋值
-                    })
-                    
-                    .LeeAction(@"确定", ^{
-                        //                                            NSLog(@"tf.text = %@",tf.text);
-                        if ([pass isEqualToString:tf.text]) {
-                            //                                                 if (![vc2.roomId isEqualToString:chatId]) {
-                            self.vc2.roomId = chatId;
-                            NSLog(@"房间dic：%@",dic);
-                            UGChatRoomModel *obj = [UGChatRoomModel mj_objectWithKeyValues:dic];
-                            NSLog(@"房间obj：%@",obj);
-                            if (!obj) {
-                                NSLog(@"房间 为空：%@",obj);
-                                return ;
-                            }
-                            
-                            //保存密码
-                            RememberPass *rp = [RememberPass new];
-                            rp.roomId = chatId;
-                            rp.roomName = obj.roomName;
-                            rp.password = pass;
-                            [WHCSqlite insert:rp];
-                            
-                            if (self.jsDic) {
-                                UGbetModel *betModel = [self.jsDic objectForKey:@"betModel"];
-                                betModel.roomId = chatId;
-                                NSMutableArray *list = [self.jsDic objectForKey:@"list"];
-                                NSString* paramsjsonString = [betModel toJSONString];
-                                NSLog(@"paramsjsonString = %@",paramsjsonString);
-                                NSString *listjsonString;
-                                {
-                                    NSError *error;
-                                    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];
-                                    listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                                    
-                                }
-                                if ([CMCommon arryIsNull:list]) {
-                                    NSString *jsonStr = [self.jsDic objectForKey:@"jsonStr"];
-                                    NSLog(@"jsonStr = %@",jsonStr);
-                                    self.vc2.shareBetJson = jsonStr;
-                                } else {
-                                    NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
-                                    NSLog(@"jsonStr = %@",jsonStr);
-                                    self.vc2.shareBetJson = jsonStr;
-                                }
-                            }
-                            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                //需要在主线程执行的代码
-                                // 模型转字符串
-                                NSString* string = [obj toJSONString];
-                                //                                                    NSLog(@"string = %@",string);
-                                NSString *js = [NSString stringWithFormat:@"changeRoom(%@)",string];
-                                //                                                    NSLog(@"js = %@",js);
-                                
-                                [self saveRoomName:obj.roomName RoomId:obj.roomId];
-                                [self.vc2 setChangeRoomJson:js];
-                                self.mLabel.text = [NSString stringWithFormat:@"%@▼",key];
-                            }];
-                            
-                            //                                                 }
-                        } else {
-                            [CMCommon showToastTitle:@"房间密码错误"];
-                        }
-                    })
-                    .leeShouldActionClickClose(^(NSInteger index){
-                        // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
-                        // 这里演示了与输入框非空校验结合的例子
-                        BOOL result = ![tf.text isEqualToString:@""];
-                        result = index == 0 ? result : YES;
-                        return result;
-                    })
-                    .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
-                    .LeeShow();
-                    
-                }
-            }];
-        }
+
         
     }
 }
 
--(void)selectChatRoom {
-    if (_ssv1.selectedIndex == 0) {
-        _ssv1.selectedIndex = 1;
+-(void)alertViewChatTitleAry:(NSArray *)chatTitleAry  chat2Ary:(NSArray *)chat2Ary{
+    __weakSelf_(__self);
+    UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];
+    for (NSString *key in chatTitleAry) {
+        [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
+            
+            NSDictionary *dic = [chat2Ary objectWithValue:key keyPath:@"roomName"];
+            NSString *pass =  [dic objectForKey:@"password"];
+            NSString *chatId = [dic objectForKey:@"roomId"];
+            if ([CMCommon stringIsNull:chatId]) {
+                NSLog(@"房间id 为空：%@",chatId);
+                return ;
+            }
+            
+            //取数据
+            NSArray * rpArray = [WHCSqlite query:[RememberPass class] where:[NSString stringWithFormat:@"roomId = '%@'",chatId]];
+            RememberPass *rp = (RememberPass *)[rpArray objectAtIndex:0];
+            
+            BOOL isPass = NO;
+            if (![CMCommon stringIsNull:rp.password]) {
+                isPass = YES;
+            } else {
+                isPass =[CMCommon stringIsNull:pass];
+            }
+            
+            if (isPass) {
+                //                                         if (![vc2.roomId isEqualToString:chatId]) {
+                __self.vc2.roomId = chatId;
+                UGChatRoomModel *obj = [UGChatRoomModel mj_objectWithKeyValues:dic];
+                if (!obj) {
+                    return ;
+                }
+                
+                if (__self.jsDic) {
+                    UGbetModel *betModel = [__self.jsDic objectForKey:@"betModel"];
+                    betModel.roomId = chatId;
+                    NSMutableArray *list = [__self.jsDic objectForKey:@"list"];
+                    NSString* paramsjsonString = [betModel toJSONString];
+                    NSLog(@"paramsjsonString = %@",paramsjsonString);
+                    NSString *listjsonString;
+                    {
+                        NSError *error;
+                        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];
+                        listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                        
+                    }
+                    NSLog(@"listjsonString = %@",listjsonString);
+                    
+                    if ([CMCommon arryIsNull:list]) {
+                        NSString *jsonStr = [__self.jsDic objectForKey:@"jsonStr"];
+                        NSLog(@"jsonStr = %@",jsonStr);
+                        __self.vc2.shareBetJson = jsonStr;
+                    } else {
+                        NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
+                        NSLog(@"jsonStr = %@",jsonStr);
+                        __self.vc2.shareBetJson = jsonStr;
+                    }
+         
+                }
+                
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // UI更新代码
+                    NSString* string = [obj toJSONString];
+                    //                                            NSLog(@"string = %@",string);
+                    NSString *js = [NSString stringWithFormat:@"changeRoom(%@)",string];
+                    //                                            NSLog(@"js = %@",js);
+                    [__self saveRoomName:obj.roomName RoomId:obj.roomId];
+                    [__self.vc2 setChangeRoomJson:js];
+                    NSLog(@"__self.vc2 = %@",__self.vc2);
+                    __self.mLabel.text = [NSString stringWithFormat:@"%@▼",key];
+                    
+                });
+   
+            } else {
+                // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
+                __block UITextField *tf = nil;
+                
+                [LEEAlert alert].config
+                .LeeTitle(@"请输入房间密码")
+                .LeeAddTextField(^(UITextField *textField) {
+                    textField.placeholder = @"请输入房间密码";
+                    textField.textColor = [UIColor darkGrayColor];
+                    tf = textField; //赋值
+                })
+                
+                .LeeAction(@"确定", ^{
+                    //                                            NSLog(@"tf.text = %@",tf.text);
+                    if ([pass isEqualToString:tf.text]) {
+                        //                                                 if (![vc2.roomId isEqualToString:chatId]) {
+                        __self.vc2.roomId = chatId;
+                        NSLog(@"房间dic：%@",dic);
+                        UGChatRoomModel *obj = [UGChatRoomModel mj_objectWithKeyValues:dic];
+                        NSLog(@"房间obj：%@",obj);
+                        if (!obj) {
+                            NSLog(@"房间 为空：%@",obj);
+                            return ;
+                        }
+                        
+                        //保存密码
+                        RememberPass *rp = [RememberPass new];
+                        rp.roomId = chatId;
+                        rp.roomName = obj.roomName;
+                        rp.password = pass;
+                        [WHCSqlite insert:rp];
+                        
+                        if (__self.jsDic) {
+                            UGbetModel *betModel = [__self.jsDic objectForKey:@"betModel"];
+                            betModel.roomId = chatId;
+                            NSMutableArray *list = [__self.jsDic objectForKey:@"list"];
+                            NSString* paramsjsonString = [betModel toJSONString];
+                            NSLog(@"paramsjsonString = %@",paramsjsonString);
+                            NSString *listjsonString;
+                            {
+                                NSError *error;
+                                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:list options:NSJSONWritingPrettyPrinted error:&error];
+                                listjsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                                
+                            }
+                            if ([CMCommon arryIsNull:list]) {
+                                NSString *jsonStr = [__self.jsDic objectForKey:@"jsonStr"];
+                                NSLog(@"jsonStr = %@",jsonStr);
+                                __self.vc2.shareBetJson = jsonStr;
+                            } else {
+                                NSString *jsonStr = [NSString stringWithFormat:@"shareBet(%@, %@)",listjsonString,paramsjsonString];
+                                NSLog(@"jsonStr = %@",jsonStr);
+                                __self.vc2.shareBetJson = jsonStr;
+                            }
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                                // UI更新代码
+                                NSString* string = [obj toJSONString];
+                                NSString *js = [NSString stringWithFormat:@"changeRoom(%@)",string];
+                                [__self saveRoomName:obj.roomName RoomId:obj.roomId];
+                                [__self.vc2 setChangeRoomJson:js];
+                                __self.mLabel.text = [NSString stringWithFormat:@"%@▼",key];
+                                
+                        });
+                        
+                        //                                                 }
+                    } else {
+                        [CMCommon showToastTitle:@"房间密码错误"];
+                    }
+                })
+                .leeShouldActionClickClose(^(NSInteger index){
+                    // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+                    // 这里演示了与输入框非空校验结合的例子
+                    BOOL result = ![tf.text isEqualToString:@""];
+                    result = index == 0 ? result : YES;
+                    return result;
+                })
+                .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+                .LeeShow();
+                
+            }
+        }];
     }
-//    __weakSelf_(__self);
+}
+
+-(void)selectChatRoom {
+    __weakSelf_(__self);
+    if (_ssv1.selectedIndex == 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // UI更新代码
+            __self.ssv1.selectedIndex = 1;
+         });
+       
+    }
     //得到线上配置的聊天室
     [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
-        [self getChatgetTokenData:sm];
+        [__self getChatgetTokenData:sm];
     };
 }
 

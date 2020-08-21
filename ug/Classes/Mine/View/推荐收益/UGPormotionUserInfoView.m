@@ -56,7 +56,6 @@
             [_nameLabel setTextColor:[UIColor whiteColor]];
             [_regtimeLabel setTextColor:[UIColor whiteColor]];
             [_superiorLabel setTextColor:[UIColor whiteColor]];
-            [_moneyTextField setTextColor:[UIColor whiteColor]];
         } else {
             [self setBackgroundColor: [UIColor whiteColor]];
             [self.titleLabel setTextColor:[UIColor blackColor]];
@@ -70,10 +69,7 @@
             [_nameLabel setTextColor:[UIColor blackColor]];
             [_regtimeLabel setTextColor:[UIColor blackColor]];
             [_superiorLabel setTextColor:[UIColor blackColor]];
-            [_moneyTextField setTextColor:[UIColor blackColor]];
         }
-         [CMCommon textFieldSetPlaceholderLabelColor:Skin1.textColor3 TextField:_moneyTextField];
-
     }
     return self;
     

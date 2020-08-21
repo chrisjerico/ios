@@ -19,17 +19,16 @@
 #import "UGBetRecordViewController.h"
 #import "UGGameListViewController.h"
 #import "UGDocumentVC.h"
-#import "JYRegisterViewController.h"            // 黑色模板注册
+#import "JYRegisterViewController.h"            // GPK版注册
 #import "JYLoginViewController.h"                // 简约模板登录
-#import "UGBMRegisterViewController.h"           // 黑色模板注册
-#import "UGBMLoginViewController.h"              // 黑色模板登录
+#import "UGBMRegisterViewController.h"           // GPK版注册
+#import "UGBMLoginViewController.h"              // GPK版登录
 #import "UGLoginViewController.h"                // 模板登录
 #import "UGRegisterViewController.h"             // 模板注册
-#import "UGBMpreferentialViewController.h"       // 黑色模板优惠专区
+#import "UGBMpreferentialViewController.h"       // GPK版优惠专区
 #import "UGPromotionsController.h"               // 模板优惠专区
-#import "UGBMLotteryHomeViewController.h"        // 黑色模板购彩大厅
+#import "UGBMLotteryHomeViewController.h"        // GPK版购彩大厅
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
-#import "MailBoxTableViewController.h"         // 站内信
 #import "UGSigInCodeViewController.h"            // 每日签到
 #import "SLWebViewController.h"
 #import "UGSecurityCenterViewController.h"  // 安全中心
@@ -57,12 +56,18 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
 + (void)load {
     // 获取哪个类下的导航条,管理自己下导航条
-    UINavigationBar *bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[self]];
+
     // 设置背景图片
     //    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
+//     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[self]];
+//    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
+
     
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+     
+   
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -112,6 +117,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         if (self.viewControllers.count && ![UGTabbarController canPushToViewController:vc]) {
             return;
         }
+        if (rpm.vcName2.length) {
+            UIViewController *vc = [ReactNativeVC reactNativeWithRPM:rpm params:[viewController rn_keyValues]];
+            vc.hidesBottomBarWhenPushed = true;
+            [super pushViewController:vc animated:animated];
+            return;
+        }
         // RN內push
         if ([self.viewControllers.lastObject isKindOfClass:ReactNativeVC.class]) {
             [(ReactNativeVC *)self.viewControllers.lastObject push:rpm params:[viewController rn_keyValues]];
@@ -146,13 +157,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[UGRegisterViewController class]]
             ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
             
-            if (!Skin1.isBlack && !Skin1.isJY){
+            if (!Skin1.isGPK && !Skin1.isJY){
                 if (![viewController isKindOfClass:[UGRegisterViewController class]]) {
                     viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
                 }
                 
             }
-            if (Skin1.isBlack){//黑色模板  注册
+            if (Skin1.isGPK){//GPK版  注册
                 if (![viewController isKindOfClass:[UGBMRegisterViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
                 }
@@ -170,13 +181,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[UGLoginViewController class]]
             ||[viewController isKindOfClass:[JYLoginViewController class]] ) {
             
-            if (!Skin1.isBlack && !Skin1.isJY){
+            if (!Skin1.isGPK && !Skin1.isJY){
                 if (![viewController isKindOfClass:[UGLoginViewController class]]) {
                     viewController =  _LoadVC_from_storyboard_(@"UGLoginViewController");
                 }
                 
             }
-            if (Skin1.isBlack){//黑色模板  登录
+            if (Skin1.isGPK){//GPK版  登录
                 if (![viewController isKindOfClass:[UGBMLoginViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
                 }
@@ -193,7 +204,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         if ([viewController isKindOfClass:[UGBMpreferentialViewController class]]
             || [viewController isKindOfClass:[UGPromotionsController class]]) {
             
-            if (Skin1.isBlack ){
+            if (Skin1.isGPK ){
                 if (![viewController isKindOfClass:[UGBMpreferentialViewController class]]) {
                     viewController =  _LoadVC_from_storyboard_(@"UGBMpreferentialViewController");
                 }
@@ -209,7 +220,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         if ([viewController isKindOfClass:[UGBMLotteryHomeViewController class]]
             || [viewController isKindOfClass:[UGYYLotteryHomeViewController class]]) {
             
-            if (Skin1.isBlack ){
+            if (Skin1.isGPK ){
                 if (![viewController isKindOfClass:[UGBMLotteryHomeViewController class]]) {
                     viewController =  _LoadVC_from_storyboard_(@"UGBMLotteryHomeViewController");
                 }
@@ -237,7 +248,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 }
                 viewController =  _LoadVC_from_storyboard_(@"UGLHMineViewController");
             }
-            else if (Skin1.isBlack){
+            else if (Skin1.isGPK){
                 UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMMemberCenterViewController.class keyPath:@"class"];
                 if (vc) {
                     [NavController1 popToViewController:vc animated:false];

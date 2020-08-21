@@ -59,6 +59,11 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     
     self.tableView.startTip = YES;
     self.tableView.tipTitle = @"暂无更多数据";
+    
+    // 刷新额度转换记录
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self getTransferLogs];
+    });
 }
 
 //添加上下拉刷新
@@ -87,37 +92,37 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
                              @"startTime":self.startTime,
                              @"endTime":@""
     };
-    
+    WeakSelf;
     [CMNetwork transferLogsWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             UGBalanceTransferLogsListModel *listModel = model.data;
             NSArray *array = listModel.list;
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                 
-                [self.dataArray removeAllObjects];
+                [weakSelf.dataArray removeAllObjects];
             }
             
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-                self.pageNumber ++;
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                weakSelf.pageNumber ++;
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
         }
         
-        if ([self.tableView.mj_footer isRefreshing]) {
-            [self.tableView.mj_footer endRefreshing];
+        if ([weakSelf.tableView.mj_footer isRefreshing]) {
+            [weakSelf.tableView.mj_footer endRefreshing];
         }
     }];
     

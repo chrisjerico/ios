@@ -14,7 +14,7 @@
 #import "UGFundDetailsTableViewController.h"
 #import "UGBMHeaderView.h"
 @interface UGFundsViewController ()<XYYSegmentControlDelegate>{
-         UGBMHeaderView *headView;                /**<   黑色模板导航头 */
+         UGBMHeaderView *headView;                /**<   GPK版导航头 */
 }
 
 @property (nonatomic, strong)UGRechargeRecordTableViewController *rechargeRecordVC;
@@ -51,7 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self.navigationController setNavigationBarHidden:YES];//强制隐藏NavBar
         [headView.leftwardMarqueeView start];
         [self.view setBackgroundColor:Skin1.navBarBgColor];
@@ -95,7 +95,7 @@
 
     
     self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
          [self creatView];
          self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , headView.frame.size.height+headView.frame.origin.y, self.view.width, self.view.height) channelName:self.itemArray source:self];
         [self.view addSubview:self.slideSwitchView];

@@ -58,6 +58,28 @@
     float height =   self.lineCollection.collectionViewLayout.collectionViewContentSize.height;
     self.lineCollection.cc_constraints.height.constant = height + 5;
     
+    
+    if (Skin1.isBlack) {
+        _lineCollection.backgroundColor = Skin1.bgColor;
+        FastSubViewCode(self.view);
+        subLabel(@"转出Label").textColor = Skin1.textColor1;
+        subLabel(@"转入Label").textColor = Skin1.textColor1;
+        subLabel(@"转入金额Label").textColor = Skin1.textColor1;
+        subLabel(@"元Label").textColor = Skin1.textColor1;
+        subLabel(@"元Label").superview.backgroundColor = Skin1.bgColor;
+        [subButton(@"全部Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"100Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"500Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"1000Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"5000Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        [subButton(@"10000Btn") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+        subButton(@"全部Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"100Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"500Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"1000Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"5000Btn").backgroundColor = Skin1.bgColor;
+        subButton(@"10000Btn").backgroundColor = Skin1.bgColor;
+    }
 }
 
 -(void)setDataArray:(NSMutableArray<UGPlatformGameModel *> *)dataArray{
@@ -88,7 +110,7 @@
         UGPlatformGameModel *model = self.dataArray[indexPath.row];
         cell.item = model;
         [cell.nameLabel setTextColor:Skin1.textColor1];
-        [cell.contentView setBackgroundColor:Skin1.conversionCellColor];
+        [cell.contentView setBackgroundColor:Skin1.isBlack ? Skin1.bgColor : Skin1.conversionCellColor];
         cell.layer.borderWidth = 1;
         cell.layer.borderColor = [[UIColor whiteColor] CGColor];
         
@@ -221,14 +243,14 @@
                                  @"money":amount,
                                  @"token":[UGUserModel currentUser].sessid,
         };
-        
+        WeakSelf;
         [CMNetwork manualTransferWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
                 SANotificationEventPost(UGNotificationGetUserInfo, nil);
-                self.moneyLabel1.text = nil;
-                self.moneyLabel2.text = nil;
-                self.moneyTxt.text = nil;
+                weakSelf.moneyLabel1.text = nil;
+                weakSelf.moneyLabel2.text = nil;
+                weakSelf.moneyTxt.text = nil;
                 
                 if (!outModel || !intModel)
                     SANotificationEventPost(UGNotificationGetUserInfo, nil);
@@ -236,7 +258,7 @@
                 // 刷新ui
                 intModel.balance = [AppDefine stringWithFloat:(intModel.balance.doubleValue + amount.doubleValue) decimal:4];
                 outModel.balance = [AppDefine stringWithFloat:(outModel.balance.doubleValue - amount.doubleValue) decimal:4];
-                [self.lineCollection reloadData];
+                [weakSelf.lineCollection reloadData];
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];
             }];
@@ -255,6 +277,7 @@
         // UI更新代码
         [cell animationFunction ];
     });
+    WeakSelf;
     [CMNetwork checkRealBalanceWithParams:parmas completion:^(CMResult<id> *model, NSError *err) {
         
         [CMResult processWithResult:model success:^{
@@ -267,7 +290,7 @@
                 [cell animationFunction ];
                 NSMutableArray *indexPaths = [NSMutableArray array];
                 [indexPaths addObject:index];
-                [self.lineCollection reloadItemsAtIndexPaths:indexPaths];
+                [weakSelf.lineCollection reloadItemsAtIndexPaths:indexPaths];
             });
             
             
@@ -279,7 +302,7 @@
                 [cell animationFunction ];
                 NSMutableArray *indexPaths = [NSMutableArray array];
                 [indexPaths addObject:index];
-                [self.lineCollection reloadItemsAtIndexPaths:indexPaths];
+                [weakSelf.lineCollection reloadItemsAtIndexPaths:indexPaths];
             });
         }];
         
@@ -302,52 +325,34 @@
        
         
         [CMResult processWithResult:model success:^{
+            if (model.code != 0) return;
             
-                [SVProgressHUD showSuccessWithStatus:model.msg];
+            __block NSInteger __cnt = 0;
+            NSArray <UGPlatformGameModel *>*arry = [UGPlatformGameModel arrayOfModelsFromDictionaries:[model.data objectForKey:@"games"] error:nil];
             
-                  if (model.code == 0) {
-                
-                __block NSInteger __cnt = 0;
-                NSArray<UGPlatformGameModel *> * arry =   [UGPlatformGameModel arrayOfModelsFromDictionaries:[model.data objectForKey:@"games"] error:nil];
-                
-                for (UGPlatformGameModel *pgm in arry) {
-                    NSLog(@"pgm =%@",pgm.gameId);
-                    // 快速转出游戏余额
-                    [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
-                        
-                        //                   UGPlatformGameModel *obj = [__self.dataArray objectWithValue:pgm.gameId keyPath:@"gameId"];
-                        //                    obj.balance = @"0.00";
-                        
-                        __cnt++;
-                        if (__cnt == arry.count) {
-                            [SVProgressHUD showSuccessWithStatus:@"一键提取完成"];
-                            // 刷新余额并刷新UI
-                            SANotificationEventPost(UGNotificationGetUserInfo, nil);
-                            for (UGPlatformGameModel *pgm in __self.dataArray) {
-                                pgm.balance = @"￥*****";
-                            }
-                            __self.moneyLabel1.text = nil;
-                            __self.moneyLabel2.text = nil;
-                            __self.moneyTxt.text = nil;
-                            [__self.lineCollection reloadData];
+            for (UGPlatformGameModel *pgm in arry) {
+                NSLog(@"pgm =%@",pgm.gameId);
+                // 快速转出游戏余额
+                [CMNetwork quickTransferOutWithParams:@{@"token":UserI.sessid, @"id":pgm.gameId} completion:^(CMResult<id> *model, NSError *err) {
+                    __cnt++;
+                    if (__cnt == arry.count) {
+                        [SVProgressHUD showSuccessWithStatus:@"一键提取完成"];
+                        // 刷新余额并刷新UI
+                        SANotificationEventPost(UGNotificationGetUserInfo, nil);
+                        for (UGPlatformGameModel *pgm in __self.dataArray) {
+                            pgm.balance = @"0.00";
                         }
-                    }];
-                }
+                        __self.moneyLabel1.text = nil;
+                        __self.moneyLabel2.text = nil;
+                        __self.moneyTxt.text = nil;
+                        [__self.lineCollection reloadData];
+                    }
+                }];
             }
-            else{
-                
-            }
-
         } failure:^(id msg) {
-            
             [SVProgressHUD showErrorWithStatus:msg];
-            
         }];
-
-        
     }];
-    
-    
 }
 
 - (IBAction)btnAction:(id)sender {

@@ -27,7 +27,6 @@
 #import "UGSetupPayPwdController.h"
 #import "UGYubaoViewController.h"
 #import "UGSecurityCenterViewController.h"
-#import "MailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
 #import "UGUserInfoViewController.h"
@@ -124,7 +123,7 @@
     [self.view setBackgroundColor: Skin1.bgColor];
     
     
-    if ([Skin1.skitString isEqualToString:@"黑色模板香槟金"]) {
+    if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
         _titleLineView.backgroundColor = Skin1.bgColor;
         _titleUpLineView.backgroundColor = Skin1.bgColor;
         _title2LineView.backgroundColor = Skin1.bgColor;
@@ -255,6 +254,7 @@
 - (void)getUserInfo {
     [self startAnimation];
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    WeakSelf;
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
@@ -262,11 +262,11 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            [self setupUserInfo:YES];
-            [self stopAnimation];
-            [self getSystemConfig];
+            [weakSelf setupUserInfo:YES];
+            [weakSelf stopAnimation];
+            [weakSelf getSystemConfig];
         } failure:^(id msg) {
-            [self stopAnimation];
+            [weakSelf stopAnimation];
         }];
     }];
 }

@@ -10,7 +10,7 @@
 #import "SLWebViewController.h"
 #import <WebKit/WebKit.h>
 
-@interface TGWebViewController ()<WKNavigationDelegate>
+@interface TGWebViewController ()<WKNavigationDelegate, WKScriptMessageHandler>
 
 //@property (nonatomic) WKWebView *tgWebView;
 @property (nonatomic, assign) BOOL willReloadURL;   // 是否需要重新加载URL
@@ -25,7 +25,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tgWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    
+    WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+    {
+        // 设置偏好设置
+        config.preferences = [[WKPreferences alloc] init];
+        // 默认为0
+        config.preferences.minimumFontSize = 10;
+        // 默认认为YES
+        config.preferences.javaScriptEnabled = YES;
+        // 在iOS上默认为NO，表示不能自动通过窗口打开
+        config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+        // web内容处理池
+        config.processPool = [[WKProcessPool alloc] init];
+        // 通过JS与webview内容交互
+        config.userContentController = [[WKUserContentController alloc] init];
+        // 我们可以在WKScriptMessageHandler代理中接收到
+        [config.userContentController addScriptMessageHandler:self name:@"postSwiperData"];
+    }
+    self.tgWebView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) configuration:config];
     self.tgWebView.navigationDelegate = self;
     [self.view addSubview:self.tgWebView];
     if (_url.length) {
@@ -34,16 +52,26 @@
     
     [self.tgWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
     [self setUpUI];
+    
+
 }
+
+- (void)cancel {
+    [self.navigationController dismissViewControllerAnimated:true completion:nil];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     if (OBJOnceToken(self)) {
         [self.tgWebView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(self.parentViewController ? 0 : APP.StatusBarHeight);
             make.left.right.bottom.equalTo(self.view);
         }];
     }
+
+
 }
 
 - (void)setUpUI {
@@ -132,6 +160,16 @@
 //    }
 //    decisionHandler(actionPolicy);
 //}
+
+
+#pragma mark - WKScriptMessageHandler
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    if (_didReceiveScriptMessage) {
+        _didReceiveScriptMessage(message.name, message.body);
+    }
+}
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

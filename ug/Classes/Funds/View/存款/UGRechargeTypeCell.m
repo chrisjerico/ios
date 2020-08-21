@@ -23,9 +23,9 @@
     if (APP.isBgColorForMoneyVC) {
         self.backgroundColor  = Skin1.bgColor;
         self.nameLabel.textColor = [UIColor whiteColor];
-    } else {
-//        self.backgroundColor = [UIColor clearColor];
-//        self.nameLabel.textColor = Skin1.textColor1;
+    } else if (Skin1.isBlack) {
+        self.backgroundColor = Skin1.homeContentColor;
+        self.nameLabel.textColor = Skin1.textColor1;
     }
     
     
@@ -145,6 +145,8 @@
         @"dshb_transfer"            :@"duosan",         // 多闪红包
         @"xlsm_transfer"            :@"xlsm",           // 闲聊扫码
         @"yxsm_transfer"            :@"yxsm_transfer_icon",           // 易信扫码
+        @"huobi_online"             :@"huobi_online",    // 火币
+        @"aliyin_transfer"          :@"aliyin_transfer",    // 支付宝银联
     }.mutableCopy;
     
     [self setHeaderImageStr:imgDict[item.pid]];

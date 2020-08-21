@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *typeName;
 @property (nonatomic, strong) NSString *from_id;
 
+// 自定义参数
+@property (nonatomic, strong) NSString *playName1;
 @end
 
 @protocol UGGameBetModel <NSObject>
@@ -70,7 +72,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 自定义参数
 @property (nonatomic, assign) BOOL select;
 @property (nonatomic, strong) NSString *typeName2;
-
 @end
 
 @protocol UGGameplaySectionModel <NSObject>
@@ -79,6 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGGameplaySectionModel : UGModel<UGGameplaySectionModel>
 @property (nonatomic, strong) NSString *groupId;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *playRule;/**<   玩法规则 本地 */
+@property (nonatomic, strong) NSString *rule; /**<   玩法规则 网 */
 @property (nonatomic, strong) NSString *typeName;
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, assign) BOOL isShow;
@@ -88,7 +91,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<UGGameBetModel> *lhcOddsArray;            /**<   六合彩合肖玩法赔率 */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *list;    /**<   号码ModelList */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *zxbzlist;            /**<  自选不中下注的数组 */
-@property (nonatomic, strong) NSMutableArray <UGGameplaySectionModel *>*ezdwlist;            /**<  时时彩二字定位 三字定位下注的数组 */
+@property (nonatomic, strong) NSMutableArray <UGGameplaySectionModel *>*ezdwlist;            /**<  时时彩二字定位 三字定位下注的数组  福彩3D 定位胆*/
+@property (nonatomic, strong) NSString *ezdwcode;/**<  定位胆 code */
 @end
 
 @protocol UGGameplayModel <NSObject>
@@ -99,6 +103,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray<UGGameplaySectionModel> *list;
 @property (nonatomic, assign) BOOL select;
+@property (nonatomic, assign) BOOL isShow;
+@property (nonatomic, assign) BOOL isBan;
+@property (nonatomic, assign) BOOL enable;                      /**<   是否启用，0否，1是 */
 
 @end
 

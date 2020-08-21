@@ -52,6 +52,7 @@
 
 - (void)getLotteryRule {
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork getLotteryRuleWithParams:@{@"id":self.gameId} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -79,7 +80,7 @@
 
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [SVProgressHUD dismiss];
-                        self.contentTextView.attributedText = mas;
+                        weakSelf.contentTextView.attributedText = mas;
                     });
                 });
             } else {

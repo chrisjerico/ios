@@ -15,7 +15,7 @@
 
 @interface LYLuckyCardRotationView () <CAAnimationDelegate>
 {
-    NSDictionary *data;//抽奖接口
+    
 }
 @property (nonatomic, assign)  float angle;//奖品的角度
 @property (strong, nonatomic) IBOutlet UIView *contentView;//转盘
@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIView *winView;//可旋转的中奖View
 @property (weak, nonatomic) IBOutlet UIImageView *dzpBgImgV;//背景图
 @property (strong, nonatomic)  PieView *pieView;//阴影
+@property (strong, nonatomic)NSDictionary *data;//抽奖接口
 @end
 
 @implementation LYLuckyCardRotationView
@@ -102,11 +103,6 @@
 }
 
 - (IBAction)beginAction:(id)sender {
-    [self beignRotaion];
-}
-
-//开启动画方法
-- (void)beignRotaion {
     [self animationPart1];
 }
 
@@ -196,15 +192,15 @@
         FastSubViewCode(self);
         subView(@"半透明背景").hidden = NO;
         subLabel(@"奖品").hidden = NO;
-        [subLabel(@"奖品") setText:[data objectForKey:@"prizeName"] ];
+        [subLabel(@"奖品") setText:[_data objectForKey:@"prizeName"] ];
         subImageView(@"奖品图").hidden = NO;
         subImageView(@"中奖文字").hidden = NO;
   
 
-        NSNumber * prizeflag = [self->data objectForKey:@"prizeflag"];
+        NSNumber * prizeflag = [_data objectForKey:@"prizeflag"];
         if ([prizeflag isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {//中奖
             subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_win"];
-            [subImageView(@"奖品图") sd_setImageWithURL:[NSURL URLWithString:[data objectForKey:@"prizeIcon"]]];
+            [subImageView(@"奖品图") sd_setImageWithURL:[NSURL URLWithString:[_data objectForKey:@"prizeIcon"]]];
         }
         else{
              subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_failure"];
@@ -218,10 +214,10 @@
     
     NSLog(@"animationDidStop%@",self.winView.layer.animationKeys);
     if ([self.canRotationView.layer.animationKeys[0] isEqualToString:@"animationPart"] && flag) {
-        NSNumber * prizeId = [data objectForKey:@"prizeId"];
+        NSNumber * prizeId = [_data objectForKey:@"prizeId"];
         NSLog(@"奖品id = %@", prizeId );
-        NSLog(@"prizeName= %@", [data objectForKey:@"prizeName"] );
-        NSLog(@"prizeIcon= %@", [data objectForKey:@"prizeIcon"] );
+        NSLog(@"prizeName= %@", [_data objectForKey:@"prizeName"] );
+        NSLog(@"prizeIcon= %@", [_data objectForKey:@"prizeIcon"] );
   
         if (self.angle != -1) {
              [self animationWinning];
@@ -280,7 +276,7 @@
 
 -(void)fireNotification{
     //发送通知
-    NSNumber * integral = [data objectForKey:@"integral"];
+    NSNumber * integral = [_data objectForKey:@"integral"];
     NSDictionary *dict = @{@"MoenyNumber":integral};
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"setMoenyNumber" object:nil userInfo:dict]];
   
@@ -303,6 +299,10 @@
 #pragma mark -网络请求  抽奖接口
 
 - (void)activityTurntableWin {
+    static NSDate *lastDate = nil;
+    if (lastDate && [[NSDate date] timeIntervalSinceDate:lastDate] < 1) return;
+    lastDate = [NSDate date];
+    
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
@@ -315,17 +315,17 @@
     _myBtn.enabled = NO;
     [CMNetwork activityTurntableWinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.angle = -1;
+            weakSelf.angle = -1;
             NSInteger code  = model.code;
-            self->data =  model.data;
+            weakSelf.data =  model.data;
             
             if (code == 0) {
-                NSNumber * prizeflag = [self->data objectForKey:@"prizeflag"];
+                NSNumber * prizeflag = [weakSelf.data objectForKey:@"prizeflag"];
                 if ([prizeflag isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {//中奖
-                    NSNumber * prizeId = [self->data objectForKey:@"prizeId"];
+                    NSNumber * prizeId = [weakSelf.data objectForKey:@"prizeId"];
                     
                     //计算角度，开启动画
-                    for (int i = 0; i < self->_dataArray.count; i++) {
+                    for (int i = 0; i < weakSelf.dataArray.count; i++) {
                         DZPprizeModel *model = [weakSelf.dataArray objectAtIndex:i];
                         if ([model.prizeId isEqualToNumber:prizeId ]) {
                             
@@ -333,19 +333,19 @@
                             float fi = fcount - i*10/10;
                             float angle = fi/fcount;
                             //角度要如此计算：（count - i）/count
-                            self.angle = angle;
+                            weakSelf.angle = angle;
                             break;
                         }
                     }
                 } else  {//没中奖
   
                     NSLog(@"没中奖");
-                    [self animationWinning];
+                    [weakSelf animationWinning];
                 }
             }
             else{
                 
-                [self removeAnimations];
+                [weakSelf removeAnimations];
             }
            
             
@@ -355,7 +355,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                           NSLog(@" 网络出错");
                [SVProgressHUD showErrorWithStatus:msg];
-               [self removeAnimations];
+               [weakSelf removeAnimations];
             });
 
 

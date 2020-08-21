@@ -26,7 +26,6 @@
 #import "UGSetupPayPwdController.h"
 #import "UGYubaoViewController.h"
 #import "UGSecurityCenterViewController.h"
-#import "MailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
 #import "UGUserInfoViewController.h"
@@ -314,6 +313,7 @@
 - (void)getUserInfo {
 	[self startAnimation];
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    WeakSelf;
 	[CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			UGUserModel *user = model.data;
@@ -323,24 +323,23 @@
 			UGUserModel.currentUser = user;
 			NSLog(@"签到==%d",[UGUserModel currentUser].checkinSwitch);
 			
-			[self getSystemConfig];
+			[weakSelf getSystemConfig];
 			//            //初始化数据
 			//            [self getDateSource];
 		} failure:^(id msg) {
-			[self stopAnimation];
+			[weakSelf stopAnimation];
 		}];
 	}];
 }
 
 - (void)getSystemConfig {
-	
+    WeakSelf;
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			UGSystemConfigModel *config = model.data;
 			UGSystemConfigModel.currentConfig = config;
-			NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
-			[self setupUserInfo:YES];
-			[self stopAnimation];
+			[weakSelf setupUserInfo:YES];
+			[weakSelf stopAnimation];
 			SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
 		} failure:^(id msg) {
 			[SVProgressHUD dismiss];

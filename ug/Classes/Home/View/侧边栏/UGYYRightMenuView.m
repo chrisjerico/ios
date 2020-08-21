@@ -12,7 +12,7 @@
 #import "UGLotteryRecordController.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGChangLongController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGFundsViewController.h"
 #import "UGYYRightMenuTableViewCell.h"
@@ -23,6 +23,8 @@
 #import "SLWebViewController.h"
 #import "LotteryTrendVC.h"
 #import "RedEnvelopeVCViewController.h"
+
+#import "GameCategoryDataModel.h"
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -48,13 +50,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *withdrawLabel;      /**<   提现文字*/
 
 
-@property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   黑色模板去会员中心*/
+@property (weak, nonatomic) IBOutlet UIButton *myButton;            /**<   GPK版去会员中心*/
 
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;    /**<   头像*/
 
 
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;
+
+@property (nonatomic, strong) NSMutableArray <GameModel *> *tableArray;
 @end
 
 static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
@@ -63,7 +67,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(void)initTitleAndImgs{
     
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self titleArrayAndimageNameArrayInit];
         
         NSArray *arrayTmp = @[@"提现", @"充值"];
@@ -97,9 +101,17 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         NSArray *arrayImg = @[@"cb_kaijiang"];
         [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
     }
+    if ([@"c217" containsString:APP.SiteId]) {
+        NSArray *arrayTmp = @[@"红包记录",@"扫雷记录",@"任务中心"];
+        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(7, 3)];
+        [_titleArray insertObjects:arrayTmp atIndexes:indexSet];
+        
+        NSArray *arrayImg = @[@"cbl_hongbao",@"cbl_saolei",@"lixibao"];
+        [_imageNameArray insertObjects:arrayImg atIndexes:indexSet];
+    }
 
-    
-    
+
 }
 
 
@@ -217,22 +229,21 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
         self.userNameLabel.text = [UGUserModel currentUser].username;
-        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]];
+       
+        [self setBalanceLabel];
         self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
         self.headImageView.layer.masksToBounds = YES;
         
+        self.tableArray = [NSMutableArray new];
         
-        
+        WeakSelf;
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-            [self.refreshButton.layer removeAllAnimations];
-            self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
+            [weakSelf.refreshButton.layer removeAllAnimations];
+            [weakSelf setBalanceLabel];
+
             
-            NSLog(@"todayWinAmount = %@",[UGUserModel currentUser].todayWinAmount);
-            NSLog(@"unsettleAmount = %@",[UGUserModel currentUser].unsettleAmount);
-            
-            [self initTitleAndImgs ];
-            
-            [self.tableView reloadData];
+            [self getTableData];
+
         });
         
         SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
@@ -243,16 +254,90 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             [self hiddenSelf];
         });
         
-        [self initTitleAndImgs ];
+        [self getTableData];
         
     }
     return self;
     
 }
 
+-(void)getTableData{
+    if (APP.isWebRightMenu) {
+        [self tableDataAction ];
+    } else {
+        [self initTitleAndImgs ];
+        [self.tableView reloadData];
+    }
+    
+}
+
+-(void)tableDataAction{
+    
+        NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                                 };
+        [CMNetwork systemMobileRightWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+
+            [CMResult processWithResult:model success:^{
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"=====");
+                    
+                    NSMutableArray <GameModel *> *tempArry = model.data;
+                    
+                    // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
+                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
+                    // 排序结果
+                    self.tableArray = [NSMutableArray new];
+                    self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+                    
+                    // 需要在主线程执行的代码
+                     self.tableArray = model.data;
+                     NSLog(@"tableArray = %@",self.tableArray);
+                    [self.tableView reloadData];
+                    
+                });
+                
+            } failure:^(id msg) {
+                [SVProgressHUD showErrorWithStatus:msg];
+
+            }];
+        }];
+}
+
+- (void)getUserInfo {
+    if (!UGLoginIsAuthorized()) {
+        [self.refreshButton.layer removeAllAnimations];
+        return;
+    }
+    WeakSelf;
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+       
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            
+          ;
+     
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+            
+            
+            NSLog(@"unsettleAmount=%@",  [UGUserModel currentUser].unsettleAmount);
+            [weakSelf.refreshButton.layer removeAllAnimations];
+            [weakSelf setBalanceLabel];
+            [weakSelf tableDataAction ];
+        } failure:^(id msg) {
+            [self.refreshButton.layer removeAllAnimations];
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 -(IBAction)showMMemberCenterView{
     NSLog(@"tap");
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         [self hiddenSelf];
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMMemberCenterViewController") animated:YES];
     }
@@ -260,16 +345,22 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (void)setTitleType:(NSString *)titleType {
     _titleType = titleType;
+    [self setBalanceLabel];
     
-    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
-    
-    [self initTitleAndImgs ];
-    
-    [self.tableView reloadData];
+    [self getTableData];
+}
+
+-(void)setBalanceLabel{
+//    CGFloat floatValues = [[UGUserModel currentUser].balance floatValue];
+//
+//    NSString *str = [NSString stringWithFormat:@"%.2f",floatValues];
+
+     self.balanceLabel.text  = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
+
     if (CGRectContainsPoint(self.bounds, point)) {
         
     } else {
@@ -315,17 +406,11 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (IBAction)rechregeClick:(id)sender {
     [self hiddenSelf];
-    //    if (self.menuSelectBlock) {
-    //        self.menuSelectBlock(100);
-    //    }
     [self didSelectCellWithTitle:@"充值"];
 }
 
 - (IBAction)withdraw:(id)sender {
     [self hiddenSelf];
-    //    if (self.menuSelectBlock) {
-    //        self.menuSelectBlock(101);
-    //    }
     [self didSelectCellWithTitle:@"提现"];
 }
 
@@ -344,25 +429,74 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.titleArray.count;
+    if (APP.isWebRightMenu) {
+        return self.tableArray.count;
+    } else {
+        return self.titleArray.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGYYRightMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellid forIndexPath:indexPath];
-    cell.title = self.titleArray[indexPath.row];
-    cell.imageName = self.imageNameArray[indexPath.row];
     
-    NSString *title = [self.titleArray objectAtIndex:indexPath.row];
-    if ([title isEqualToString:@"长龙助手"]) {
-        [cell letArrowHidden];
+    if (APP.isWebRightMenu) {
+        GameModel *model = [self.tableArray objectAtIndex:indexPath.row];
+           UGYYRightMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellid forIndexPath:indexPath];
+          
+           cell.imageName = model.icon;
+           
+           if (UGLoginIsAuthorized()) {//已经登录
+               if (model.subId == 24) {
+                   
+                   NSLog(@"[UGUserModel currentUser].unsettleAmount =%@",[UGUserModel currentUser].unsettleAmount);
+                   cell.title = [NSString stringWithFormat:@"即时注单(%@)",[UGUserModel currentUser].unsettleAmount];
+               }
+               else if (model.subId == 25) {
+                   cell.title = [NSString stringWithFormat:@"今日输赢(%@)",[UGUserModel currentUser].todayWinAmount];
+               }
+               else if (model.subId == 27) {
+                     cell.title = [NSString stringWithFormat:@"当前版本号(%@)", APP.Version] ;
+               }
+               else{
+                   if ([CMCommon stringIsNull:model.name]) {
+                       cell.title = model.title;
+                   } else {
+                       cell.title = model.name;
+                   }
+                
+               }
+           }
+           else{
+               if (model.subId == 27) {
+                   cell.title = [NSString stringWithFormat:@"当前版本号(%@)", APP.Version] ;
+               }
+               else{
+                   if ([CMCommon stringIsNull:model.name]) {
+                       cell.title = model.title;
+                   } else {
+                       cell.title = model.name;
+                   }
+               }
+           }
+
+           return cell;
+    } else {
+        UGYYRightMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellid forIndexPath:indexPath];
+        cell.title = self.titleArray[indexPath.row];
+        cell.imageName = self.imageNameArray[indexPath.row];
+        
+        NSString *title = [self.titleArray objectAtIndex:indexPath.row];
+        if ([title isEqualToString:@"长龙助手"]) {
+            [cell letArrowHidden];
+        }
+        else if([title isEqualToString:@"利息宝"]) {
+            [cell letArrowHidden];
+        }
+        else{
+            [cell letIconHidden];
+        }
+        return cell;
     }
-    else if([title isEqualToString:@"利息宝"]) {
-        [cell letArrowHidden];
-    }
-    else{
-        [cell letIconHidden];
-    }
-    return cell;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -375,11 +509,15 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    if (self.menuSelectBlock) {
-    //        self.menuSelectBlock(indexPath.row);
-    //    }
     [self hiddenSelf];
-    [self didSelectCellWithTitle:[self.titleArray objectAtIndex:indexPath.row]];
+    if (APP.isWebRightMenu) {
+          GameModel *model = [self.tableArray objectAtIndex:indexPath.row];
+          model.realGameId = self.gameId;
+          [self didSelectCellWitModel:model];
+    } else {
+          [self didSelectCellWithTitle:[self.titleArray objectAtIndex:indexPath.row]];
+    }
+  
 }
 
 - (void)show {
@@ -409,7 +547,11 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_headImageView setHidden:YES];
         [_myButton setHidden:YES];
         [_welComeLabel setHidden:NO];
-        [_bg2View setHidden:NO];
+        if (APP.isWebRightMenu) {
+            [_bg2View setHidden:YES];
+        } else {
+            [_bg2View setHidden:NO];
+        }
         self.bgViewHeightConstraint.constant = 180;
     }
     
@@ -468,7 +610,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"彩种规则"]) {
         UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];
         rulesView.gameId = self.gameId;
-        rulesView.gameName = self.gameName;
         [rulesView show];
     }
     else if ([title containsString:@"即时注单"]) {
@@ -492,18 +633,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:[UGChangLongController new] animated:true];
     }
     else if ([title isEqualToString:@"站内信"]) {
-        [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
+        [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
     }
     else if ([title isEqualToString:@"利息宝"]) {
-//#if DEBUG
-//        if (self.gameName) {
-//            LotteryTrendVC * vc = [LotteryTrendVC new];
-//            vc.lotteryAlias = self.gameName;
-//            [[UINavigationController current] pushViewController:vc animated:true];
-//            return;
-//        }
-//        
-//#endif
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
     }
     else if ([title isEqualToString:@"充值"]) {
@@ -551,7 +683,24 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"开奖网"]) {
         [CMCommon goSLWebUrl:lotteryUrl];
     }
+    else if ([title isEqualToString:@"任务中心"]) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+     }
     
+}
+
+- (void)didSelectCellWitModel:(GameModel *)modle {
+    
+    if (modle.subId == 30 ) {
+      if (self.backToHomeBlock)
+                 self.backToHomeBlock();
+    }
+    else{
+        if (modle.list) {
+            modle.subId = modle.list.subId;
+        }
+        [NavController1 pushViewControllerWithGameModel:modle];
+    }
 }
 
 @end

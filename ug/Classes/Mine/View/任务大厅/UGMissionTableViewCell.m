@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *overTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerImageViewLeading;
+@property (weak, nonatomic) IBOutlet UIView *separatorLineView;
 
 @end
 
@@ -39,7 +40,7 @@
         [_titleLabel setTextColor:[UIColor blackColor]];
         [_overTimeLabel setTextColor:[UIColor blackColor]];
     }
-
+    _separatorLineView.backgroundColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
 }
 
 - (IBAction)goButtonClick:(id)sender {

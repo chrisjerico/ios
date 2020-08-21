@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *name; /**<   标题 */
 // 自定义参数
 @property (nonatomic, readonly) NSString *lhImgName;    /**<   六合模版使用的本地图标 */
-@property (nonatomic, readonly) NSString *bmImgName;    /**<   黑色模板使用的本地图标 */
+@property (nonatomic, readonly) NSString *bmImgName;    /**<   GPK版使用的本地图标 */
 @property (nonatomic, readonly) NSString *defaultImgName;   /**<   正常情况使用的本地图标 */
 + (NSArray <UGUserCenterItem *>*)allItems;
 @end
@@ -141,10 +141,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *agentRegbutton;             /**<   0=关闭；1=开启；  手机端注册页面显示“代理注册” */
 @property (nonatomic, copy) NSString *oftenLoginArea;             /**<   1=关闭；0=开启； 常用登录地 */
 @property (nonatomic, copy) NSString *mobileTemplateBackground;   /**<   配色方案  */
-@property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   模板号       */
+@property (nonatomic, copy) NSString *mobileTemplateCategory;     /**<   经典 配色方案     */
 @property (nonatomic, copy) NSString *mobileTemplateLhcStyle;     /**<   六合配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateGpkStyle;     /**<   Gpk配色方案 */
 @property (nonatomic, copy) NSString *mobileTemplateStyle;     /**<   新年红 简约 配色方案      */
+@property (nonatomic, copy) NSString *mobileTemplateHBStyle;     /**<   红包模板 配色方案      */
 @property (nonatomic, copy) NSString *webName;                    /**<   首页底部文字   网址名称*/
 @property (nonatomic, copy) NSString *serviceQQ1;                    /**<   QQ客服q1*/
 @property (nonatomic, copy) NSString *serviceQQ2;                    /**<   QQ客服q2*/
@@ -182,13 +183,14 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL chatFollowSwitch;                  /**<   是否允许聊天室跟注 */
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
-@property (nonatomic, copy) NSString *easyRememberDomain;    /**<   黑色模板易记的网址*/
+@property (nonatomic, copy) NSString *easyRememberDomain;    /**<   GPK版易记的网址  动态域名  */
 
 @property (nonatomic, copy) NSArray <LHPriceModel *>*lhcPriceList;    /**<   六合发帖价格范围 */
 
 @property (nonatomic, copy) NSArray<UGUserCenterItem *> *userCenter;
 @property (nonatomic) BOOL lhcdocMiCard;                /**<   六合彩开奖咪牌(默认状态)开关 */
 @property (nonatomic, copy) NSString * lhcdocLotteryStr;/**<   六合彩预备开奖文字*/
+@property (nonatomic, copy) NSString * appSelectType;/**<   六合资料模版 首页解码器显示的彩种 0为默认 其他为彩种id*/
 
 @property (nonatomic, copy) NSString * chatLink;/**<   聊天的链接*/
 @property (nonatomic) BOOL switchAgentRecharge;                /**<   给下级会员充值开关 */
@@ -202,6 +204,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic) BOOL loginVCode;                /**<   登录增加了滑动验证码配置  默认开 */
 @property (nonatomic) BOOL announce_first;                /**<   手机公告是否展开第1条   */
+
+@property (nonatomic, copy) NSString * switchShowFriendReferral;/**<   //是否显示 首页推荐好友显示 1 显示
+*/
+@property (nonatomic, copy) NSString * showNavigationBar;/**<   //显示在前还是后 1 前 0 后
+*/
 
 + (instancetype)currentConfig;
 

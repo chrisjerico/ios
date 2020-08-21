@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
+    __weakSelf_(__self);
     self.tableView.backgroundColor = Skin1.is23 ? RGBA(135 , 135 ,135, 1) :Skin1.textColor4;
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -32,7 +32,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(5, 0, 120, 0);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self activityWinApplyList];
+        [__self activityWinApplyList];
     }];
     [self activityWinApplyList];
 }
@@ -54,9 +54,9 @@
        else{
            params = @{@"token":[UGUserModel currentUser].sessid};
        }
-    
+    WeakSelf;
     [CMNetwork activityWinApplyListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
@@ -65,17 +65,17 @@
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             
             //数组转模型数组
-            self.dataArray = [UGMosaicGoldModel arrayOfModelsFromDictionaries:list error:nil];
+            weakSelf.dataArray = [UGMosaicGoldModel arrayOfModelsFromDictionaries:list error:nil];
             
-            NSLog(@"self.dataArray = %@",self.dataArray);
-            [self.tableView reloadData];
+            NSLog(@"self.dataArray = %@",weakSelf.dataArray);
+            [weakSelf.tableView reloadData];
         } failure:^(id msg) {
              [SVProgressHUD showErrorWithStatus:msg];
             
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
         }
         
     }];

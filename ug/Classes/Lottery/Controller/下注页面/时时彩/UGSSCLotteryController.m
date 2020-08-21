@@ -25,7 +25,6 @@
 #import "UGLotteryRulesView.h"
 #import "UGLotteryRecordController.h"
 #import "WSLWaterFlowLayout.h"
-#import "MailBoxTableViewController.h"
 #import "UGSSCBetItem1Cell.h"
 #import "UGLotteryAdPopView.h"
 
@@ -244,7 +243,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 
 - (void)setupBarButtonItems {
-    STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]] target:self action:@selector(refreshBalance)];
+       STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance ] target:self action:@selector(refreshBalance)];
     self.rightItem1 = item0;
     STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(showRightMenueView)];
     self.navigationItem.rightBarButtonItems = @[item1,item0];
@@ -252,16 +251,17 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 - (void)getNextIssueData {
     NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.nextIssueModel = model.data;
-            if (self.nextIssueModel) {
-                if (OBJOnceToken(self)) {
-                    [self getLotteryHistory ];
+            weakSelf.nextIssueModel = model.data;
+            if (weakSelf.nextIssueModel) {
+                if (OBJOnceToken(weakSelf)) {
+                    [weakSelf getLotteryHistory ];
                 }
             }
-            [self showAdPoppuView:model.data];
-            [self updateHeaderViewData];
+            [weakSelf showAdPoppuView:model.data];
+            [weakSelf updateHeaderViewData];
         } failure:^(id msg) {
             
             
@@ -271,27 +271,28 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
      [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             HJSonLog(@" 返回的json = %@",model);
             
             UGPlayOddsModel *play = model.data;
             NSLog(@"model.data = %@",model.data);
-            self.gameDataArray = play.playOdds.mutableCopy;
-            for (UGGameplayModel *model in self.gameDataArray) {
+            weakSelf.gameDataArray = play.playOdds.mutableCopy;
+            for (UGGameplayModel *model in weakSelf.gameDataArray) {
                 if ([@"一字定位" isEqualToString:model.name]) {
                     for (UGGameplaySectionModel *type in model.list) {
-                        [self.yzgmentTitleArray addObject:type.alias];
+                        [weakSelf.yzgmentTitleArray addObject:type.alias];
                     }
                 }
                 if ([@"二字定位" isEqualToString:model.name]) {
                        for (UGGameplaySectionModel *type in model.list) {
-                           [self.rzgmentTitleArray addObject:type.alias];
+                           [weakSelf.rzgmentTitleArray addObject:type.alias];
                        }
                    }
                 if ([@"三字定位" isEqualToString:model.name]) {
                        for (UGGameplaySectionModel *type in model.list) {
-                           [self.szgmentTitleArray addObject:type.alias];
+                           [weakSelf.szgmentTitleArray addObject:type.alias];
                        }
                    }
             }
@@ -308,18 +309,14 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
             }
             
-            // 删除enable为NO的数据（不显示出来）
-            for (UGGameplayModel *gm in play.playOdds) {
-                for (UGGameplaySectionModel *gsm in gm.list) {
-                    if (!gsm.enable)
-                        [self.gameDataArray removeObject:gm];
-                }
-            }
+
+
             [self handleData];
             self.segmentView.dataArray = self.yzgmentTitleArray;
             [self.tableView reloadData];
             [self.betCollectionView reloadData];
             [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
@@ -366,14 +363,15 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 
 - (IBAction)chipClick:(id)sender {
+    __weakSelf_(__self);
     if (self.amountTextF.isFirstResponder) {
         [self.amountTextF resignFirstResponder];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
+            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
             popView.fontSize = 14;
             popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
+            [popView showRelyOnView:__self.chipButton];
         });
     }else {
         YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
@@ -527,7 +525,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 - (IBAction)betClick:(id)sender {
     [self.amountTextF resignFirstResponder];
     ck_parameters(^{
-        ck_parameter_non_equal(self.selectLabel.text, @"已选中 0 注", @"请选择玩法");
+         ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
         ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
@@ -702,10 +700,10 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
           self.segmentView.hidden = YES;
           
       }
-        
+        __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.betCollectionView reloadData];
-            [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
+            [__self.betCollectionView reloadData];
+            [__self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
         });
 
 

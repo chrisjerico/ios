@@ -564,7 +564,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+//        WeakSelf;
     [CMNetwork rechargeOnlinePayWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             if ([CMCommon stringIsNull:model.data]) {

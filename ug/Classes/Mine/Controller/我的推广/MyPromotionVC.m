@@ -160,7 +160,7 @@
         [CMResult processWithResult:model success:^{
             
             [SVProgressHUD dismiss];
-            self.mUGinviteInfoModel = model.data;
+            weakSelf.mUGinviteInfoModel = model.data;
             NSLog(@"rid = %@",self.mUGinviteInfoModel.rid);
            
             [weakSelf setUIDate];

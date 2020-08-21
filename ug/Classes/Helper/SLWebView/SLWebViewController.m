@@ -365,14 +365,25 @@
     
     if ([self.webView canGoBack]) {
         
-        self.navigationItem.leftBarButtonItems = @[self.backBtn,self.closeBtn];
+        if (APP.isNoLeftButton && self.isCustomerService) {
+             self.navigationItem.leftBarButtonItems = @[self.closeBtn];
+        } else {
+             self.navigationItem.leftBarButtonItems = @[self.backBtn,self.closeBtn];
+        }
+       
         self.navigationItem.rightBarButtonItem = self.homeBtn;
     }else {
         if ([self isKindOfClass:[OnlineServiceViewController class]]) {
             self.navigationItem.leftBarButtonItems = nil;
         }
         else{
-            self.navigationItem.leftBarButtonItems = @[self.backBtn];
+            if (APP.isNoLeftButton && self.isCustomerService) {
+                  self.navigationItem.leftBarButtonItems = @[self.closeBtn];
+             } else {
+                  self.navigationItem.leftBarButtonItems = @[self.backBtn];
+             }
+            
+            
         }
         self.navigationItem.rightBarButtonItem = nil;
         
@@ -403,14 +414,14 @@
     
     NSLog(@"%@",navigationAction.request.URL.absoluteString);
     NSString* reqUrl = navigationAction.request.URL.absoluteString;
-//    if ([reqUrl hasPrefix:@"alipay"]) {
+    if ([reqUrl hasPrefix:@"alipay"]) {
         [[UIApplication sharedApplication] openURL:navigationAction.request.URL];
-        //bSucc是否成功调起支付宝
-//    }
-//    if ([reqUrl hasPrefix:@"weixin"]) {
-//        [[UIApplication sharedApplication]openURL:navigationAction.request.URL];
-//        //bSucc是否成功调起微信
-//    }
+
+    }
+    if ([reqUrl hasPrefix:@"weixin"]) {
+        [[UIApplication sharedApplication]openURL:navigationAction.request.URL];
+        //bSucc是否成功调起微信
+    }
 
     decisionHandler(WKNavigationActionPolicyAllow);
     
@@ -531,7 +542,14 @@
 
 - (STBarButtonItem *)closeBtn {
     if (_closeBtn == nil) {
-        _closeBtn = [STBarButtonItem barButtonItemWithImageName:@"c_login_close" target:self action:@selector(closeAction:)];
+        
+        if (APP.isNoLeftButton) {
+            _closeBtn = [STBarButtonItem barButtonItemWithImageName:@"c_login_close_fff" target:self action:@selector(closeAction:)];
+        } else {
+            _closeBtn = [STBarButtonItem barButtonItemWithImageName:@"c_login_close" target:self action:@selector(closeAction:)];
+        }
+        
+ 
     }
     
     return _closeBtn;

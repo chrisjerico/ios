@@ -38,27 +38,22 @@
 }
 
 - (void)rootLoadData {
-
-    NSLog(@"switchShowActivityCategory =%d",SysConf.switchShowActivityCategory);
-    SysConf.switchShowActivityCategory = 1;
+    // 是否显示分类
     if (SysConf.switchShowActivityCategory) {
-             [self getCenterData];
-         }
-         else{
-             UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped];
-             [self.view addSubview:realView.view];
-             [realView.view  mas_remakeConstraints:^(MASConstraintMaker *make)
-              {
-                 make.left.equalTo(self.view.mas_left).with.offset(0);
-                 make.right.equalTo(self.view.mas_right).with.offset(0);
-                 make.top.equalTo(self.view.mas_top).offset(0);
-                 make.bottom.equalTo(self.view.mas_bottom).offset(0);
-             }];
-         }
+        [self getCenterData];
+    } else {
+        UGMosaicGoldController *realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped];
+        [self addChildViewController:realView];
+        [self.view addSubview:realView.view];
+        [realView.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+    }
 }
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -66,7 +61,7 @@
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            [self rootLoadData];
+            [weakSelf rootLoadData];
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -94,9 +89,9 @@
     [CMNetwork activityWinApplyListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
-            [self.itemArray removeAllObjects];
-            [self.viewsArray removeAllObjects];
-            [self.disArray removeAllObjects];
+            [weakSelf.itemArray removeAllObjects];
+            [weakSelf.viewsArray removeAllObjects];
+            [weakSelf.disArray removeAllObjects];
             
             [SVProgressHUD dismiss];
             NSDictionary *data =  model.data;
@@ -194,10 +189,10 @@
     self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
     //设置tab 背景颜色(可选)
     UIColor *bg;
-    if (Skin1.isBlack) {
+    if (Skin1.isGPK) {
         bg = Skin1.textColor4;
     }
-    else if(Skin1.is23){
+    else if(Skin1.isBlack){
          bg = RGBA(135 , 135 ,135, 1);
     }
     else {

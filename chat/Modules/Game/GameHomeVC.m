@@ -286,11 +286,12 @@
 }
 
 - (void)getPlatformGamesWithParams {
+    WeakSelf;
 	[CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[self.collectionView.mj_header endRefreshing];
 		[CMResult processWithResult:model success:^{
-			self.dataArray = model.data;
-			[self.collectionView reloadData];
+			weakSelf.dataArray = model.data;
+			[weakSelf.collectionView reloadData];
 		} failure:^(id msg) {
 		}];
 	}];

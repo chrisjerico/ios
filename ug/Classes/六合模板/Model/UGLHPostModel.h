@@ -153,6 +153,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 自定义参数
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
+@property (nonatomic, readonly) NSString *categoryType; /**<   类型 */
 
 + (NSString *)keyWithImage:(__kindof UIImage *)image;
 + (YYImage *)imageWithKey:(NSString *)key;

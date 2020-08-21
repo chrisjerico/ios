@@ -80,11 +80,12 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 }
 
 - (void)getAllNextIssueData {
+    WeakSelf;
     [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
-            [self.collectionView reloadData];
+            weakSelf.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            [weakSelf.collectionView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

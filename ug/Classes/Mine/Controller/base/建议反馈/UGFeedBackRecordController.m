@@ -92,6 +92,7 @@ static int size = 20;
     self.tableView.rowHeight = 60;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     [self.tableView setBackgroundColor:Skin1.textColor4];
     self.stateArray = @[@"全部",@"已回复",@"待回复"].mutableCopy;
     self.typeArray = @[@"全部",@"建议反馈",@"投诉建议"].mutableCopy;
@@ -164,42 +165,42 @@ static int size = 20;
                              @"date":self.dateLabel.text,
                              @"isReply":@(self.selectStatus)
                              };
-    
+    WeakSelf;
     [CMNetwork getFeedbackListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             if (!model.data) {
-                [self.dataArray removeAllObjects];
-                [self.tableView reloadData];
+                [weakSelf.dataArray removeAllObjects];
+                [weakSelf.tableView reloadData];
                 return ;
             }
             UGMessageListModel *message = model.data;
             NSArray *array = message.list;
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                 
-                [self.dataArray removeAllObjects];
+                [weakSelf.dataArray removeAllObjects];
             }
             
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-                self.pageNumber ++;
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                weakSelf.pageNumber ++;
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
         }
         
-        if ([self.tableView.mj_footer isRefreshing]) {
-            [self.tableView.mj_footer endRefreshing];
+        if ([weakSelf.tableView.mj_footer isRefreshing]) {
+            [weakSelf.tableView.mj_footer endRefreshing];
         }
     }];
     

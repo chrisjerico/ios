@@ -716,7 +716,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+    WeakSelf;
     [CMNetwork rechargeTransferWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -724,7 +724,7 @@
             
             //返回上个界面
             //发送通知到存款记录
-            [self.navigationController popViewControllerAnimated:YES]; 
+            [weakSelf.navigationController popViewControllerAnimated:YES];
             
              SANotificationEventPost(UGNotificationDepositSuccessfully, nil);
             

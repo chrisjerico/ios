@@ -61,7 +61,7 @@
 //    self.view.backgroundColor = [UIColor redColor];
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
-            self.titleArray = @[@"分级",@"用户名",@"在线状态",@"注册时间",@"操作/状态"];//5 == 按钮
+            self.titleArray = @[@"分级",@"用户名",@"在线状态",@"注册时间",@"下线盈亏",@"操作/状态"];//5 == 按钮
             break;
         case PromotionTableTypeBettingReport://投注报表
             self.titleArray = @[@"分级",@"日期",@"投注金额",@"佣金"];//4
@@ -107,6 +107,7 @@
         self.tableView.estimatedRowHeight = 0;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
+        self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion4rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion4rowTableViewCell"];
         [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion5rowButtonTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion5rowButtonTableViewCell"];
          [self.tableView registerNib:[UINib nibWithNibName:@"UGPromotion2rowTableViewCell" bundle:nil] forCellReuseIdentifier:@"UGPromotion2rowTableViewCell"];
@@ -266,7 +267,7 @@
             titleLabel.text = self.titleArray[i];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.textColor = Skin1.textColor1;
-            titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightHeavy];
+            titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightHeavy];
             [view addSubview:titleLabel];
             
             [_titleView addSubview:view];
@@ -291,16 +292,16 @@
 }
 //每个单元格的e内容
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    __weakSelf_(__self);
     switch (self.tableType) {
         case PromotionTableTypeMember://会员管理
-           //5 == 按钮
+           //6 == 按钮
         {
-            UGPromotion5rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion5rowButtonTableViewCell" forIndexPath:indexPath];
+            UGPromotion6rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion6rowButtonTableViewCell" forIndexPath:indexPath];
             UGinviteLisModel *model = (UGinviteLisModel *)self.dataArray[indexPath.row];
             cell.firstLabel.text = [NSString stringWithFormat:@"%@级下线",model.level];
             cell.secondLabel.text = model.username;
-            
+             cell.fifthLabel.text = model.sunyi;
         
             if (model.is_online == 1) {
                 cell.thirdLabel.text = @"在线";
@@ -313,16 +314,15 @@
                 cell.fourthLabel.text = model.regtime;
             }
         
-            [cell.fifthButton setHidden:NO];
-            [cell.fifthLabel setHidden:YES];
+            [cell.sixLabel setHidden:NO];
+            [cell.sixLabel setHidden:YES];
             
             if ([model.is_setting isEqualToString:@"1"]) {
                 //去充值
-//                [cell.fifthButton setHidden:NO];
-                 [cell.fifthButton setHidden:NO];
+                 [cell.sixButton setHidden:NO];
                 [cell.pointView setHidden:NO];
             } else {
-                [cell.fifthButton setHidden:YES];
+                [cell.sixButton setHidden:YES];
                  [cell.pointView setHidden:YES];
             }
             
@@ -334,12 +334,12 @@
                 [cell.pointView setBackgroundColor:[UIColor redColor]];
             }
             
-            cell.promotion5rowButtonBlock = ^{
+            cell.promotion6rowButtonBlock = ^{
                 
                
                 if ([model.is_setting isEqualToString:@"1"]) {
                     //去充值
-                    [self showUGPormotionUserInfoViewWithModel:model];
+                    [__self showUGPormotionUserInfoViewWithModel:model];
                     
                 } else {
 
@@ -524,7 +524,7 @@
         }
             break;
         case PromotionTableTypeRealityRcord://真人记录
-            //5
+            //6
         {
             UGPromotion6rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion6rowButtonTableViewCell" forIndexPath:indexPath];
            
@@ -688,7 +688,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork teamInviteListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -697,22 +697,22 @@
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                 
-                [self.dataArray removeAllObjects];
+                [weakSelf.dataArray removeAllObjects];
             }
             //数组转模型数组
             NSArray *array =  [UGinviteLisModel arrayOfModelsFromDictionaries:list error:nil];
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
 
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
                
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
         } failure:^(id msg) {
             
@@ -720,12 +720,12 @@
             
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-              [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+              [weakSelf.tableView.mj_header endRefreshing];
           }
           
-          if ([self.tableView.mj_footer isRefreshing]) {
-              [self.tableView.mj_footer endRefreshing];
+          if ([weakSelf.tableView.mj_footer isRefreshing]) {
+              [weakSelf.tableView.mj_footer endRefreshing];
           }
 }];
 }
@@ -745,7 +745,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork teamBetStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -754,22 +754,22 @@
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             
-             if (self.pageNumber == 1 ) {
+             if (weakSelf.pageNumber == 1 ) {
                           
-                  [self.dataArray removeAllObjects];
+                  [weakSelf.dataArray removeAllObjects];
               }
                       
             //数组转模型数组
             NSArray *array  = [UGbetStatModel arrayOfModelsFromDictionaries:list error:nil];
-             [self.dataArray addObjectsFromArray:array];
-             [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                       [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                       [self.tableView.mj_footer setHidden:YES];
-           }else{
-              
-               [self.tableView.mj_footer setState:MJRefreshStateIdle];
-               [self.tableView.mj_footer setHidden:NO];
+             [weakSelf.dataArray addObjectsFromArray:array];
+             [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
+            }else{
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
            }
             
         } failure:^(id msg) {
@@ -777,12 +777,12 @@
             [SVProgressHUD showErrorWithStatus:msg];
             
         }];
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
         }
         
-        if ([self.tableView.mj_footer isRefreshing]) {
-            [self.tableView.mj_footer endRefreshing];
+        if ([weakSelf.tableView.mj_footer isRefreshing]) {
+            [weakSelf.tableView.mj_footer endRefreshing];
         }
     }];
 }
@@ -802,7 +802,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork teamBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -811,23 +811,23 @@
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
             
-             if (self.pageNumber == 1 ) {
+             if (weakSelf.pageNumber == 1 ) {
                          
-                 [self.dataArray removeAllObjects];
+                 [weakSelf.dataArray removeAllObjects];
              }
                                  
             
             //数组转模型数组
             NSArray *array = [UGBetListModel arrayOfModelsFromDictionaries:list error:nil];
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-               
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
@@ -835,12 +835,12 @@
      
             
         }];
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
         }
         
-        if ([self.tableView.mj_footer isRefreshing]) {
-            [self.tableView.mj_footer endRefreshing];
+        if ([weakSelf.tableView.mj_footer isRefreshing]) {
+            [weakSelf.tableView.mj_footer endRefreshing];
         }
     }];
 }
@@ -859,7 +859,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork teamInviteDomainWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -867,33 +867,33 @@
             
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                 
-                [self.dataArray removeAllObjects];
+                [weakSelf.dataArray removeAllObjects];
             }
             //数组转模型数组
             NSArray *array =[UGinviteDomainModel arrayOfModelsFromDictionaries:list error:nil];
-             [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+             [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-               
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
 
             
         }];
-        if ([self.tableView.mj_header isRefreshing]) {
-           [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+           [weakSelf.tableView.mj_header endRefreshing];
        }
        
-       if ([self.tableView.mj_footer isRefreshing]) {
-           [self.tableView.mj_footer endRefreshing];
+       if ([weakSelf.tableView.mj_footer isRefreshing]) {
+           [weakSelf.tableView.mj_footer endRefreshing];
        }
     }];
 }
@@ -913,7 +913,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork teamDepositStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -921,24 +921,24 @@
             
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                            
-               [self.dataArray removeAllObjects];
+               [weakSelf.dataArray removeAllObjects];
            }
             //            //字典转模型
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             
             //数组转模型数组
             NSArray *array = [UGdepositStatModel arrayOfModelsFromDictionaries:list error:nil];
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
                
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
@@ -946,12 +946,12 @@
     
             
         }];
-        if ([self.tableView.mj_header isRefreshing]) {
-           [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+           [weakSelf.tableView.mj_header endRefreshing];
        }
        
-       if ([self.tableView.mj_footer isRefreshing]) {
-           [self.tableView.mj_footer endRefreshing];
+       if ([weakSelf.tableView.mj_footer isRefreshing]) {
+           [weakSelf.tableView.mj_footer endRefreshing];
        }
     }];
 }
@@ -968,14 +968,14 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork teamDepositListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
-                [self.dataArray removeAllObjects];
+            if (weakSelf.pageNumber == 1 ) {
+                [weakSelf.dataArray removeAllObjects];
             }
                              
             //            //字典转模型
@@ -983,22 +983,22 @@
 
             //数组转模型数组
             NSArray *array = [UGdepositListModel arrayOfModelsFromDictionaries:list error:nil];
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-              [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-              [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+              [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+              [weakSelf.tableView.mj_footer setHidden:YES];
             } else {
-              [self.tableView.mj_footer setState:MJRefreshStateIdle];
-              [self.tableView.mj_footer setHidden:NO];
+              [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+              [weakSelf.tableView.mj_footer setHidden:NO];
             }
                  
         } failure:nil];
         
-        if ([self.tableView.mj_header isRefreshing])
-            [self.tableView.mj_header endRefreshing];
-        if ([self.tableView.mj_footer isRefreshing])
-            [self.tableView.mj_footer endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing])
+            [weakSelf.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_footer isRefreshing])
+            [weakSelf.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -1018,7 +1018,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork teamWithdrawStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -1026,9 +1026,9 @@
             
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                            
-               [self.dataArray removeAllObjects];
+               [weakSelf.dataArray removeAllObjects];
            }
                        
             //            //字典转模型
@@ -1036,15 +1036,15 @@
             
             //数组转模型数组
             NSArray *array = [UGwithdrawStatModel arrayOfModelsFromDictionaries:list error:nil];
-             [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-               
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
@@ -1052,12 +1052,12 @@
    
             
         }];
-        if ([self.tableView.mj_header isRefreshing]) {
-           [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+           [weakSelf.tableView.mj_header endRefreshing];
        }
        
-       if ([self.tableView.mj_footer isRefreshing]) {
-           [self.tableView.mj_footer endRefreshing];
+       if ([weakSelf.tableView.mj_footer isRefreshing]) {
+           [weakSelf.tableView.mj_footer endRefreshing];
        }
     }];
 }
@@ -1077,7 +1077,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork teamWithdrawListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -1085,24 +1085,24 @@
             
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                 
-                [self.dataArray removeAllObjects];
+                [weakSelf.dataArray removeAllObjects];
             }
             //            //字典转模型
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             
             //数组转模型数组
             NSArray *array =[UGwithdrawListModel arrayOfModelsFromDictionaries:list error:nil];
-           [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-               
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
@@ -1110,12 +1110,12 @@
      
             
         }];
-        if ([self.tableView.mj_header isRefreshing]) {
-           [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+           [weakSelf.tableView.mj_header endRefreshing];
        }
        
-       if ([self.tableView.mj_footer isRefreshing]) {
-           [self.tableView.mj_footer endRefreshing];
+       if ([weakSelf.tableView.mj_footer isRefreshing]) {
+           [weakSelf.tableView.mj_footer endRefreshing];
        }
     }];
 }
@@ -1135,7 +1135,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork teamRealBetStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -1143,9 +1143,9 @@
             
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                           
-              [self.dataArray removeAllObjects];
+              [weakSelf.dataArray removeAllObjects];
           }
                       
             //            //字典转模型
@@ -1153,15 +1153,15 @@
             
             //数组转模型数组
             NSArray *array =  [UGrealBetStatModel arrayOfModelsFromDictionaries:list error:nil];
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-               
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
@@ -1170,12 +1170,12 @@
             
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
         }
         
-        if ([self.tableView.mj_footer isRefreshing]) {
-            [self.tableView.mj_footer endRefreshing];
+        if ([weakSelf.tableView.mj_footer isRefreshing]) {
+            [weakSelf.tableView.mj_footer endRefreshing];
         }
     }];
 }
@@ -1196,7 +1196,7 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork teamRealBetListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
@@ -1204,38 +1204,38 @@
             
             NSDictionary *data =  model.data;
             NSArray *list = [data objectForKey:@"list"];
-            if (self.pageNumber == 1 ) {
+            if (weakSelf.pageNumber == 1 ) {
                          
-                 [self.dataArray removeAllObjects];
+                 [weakSelf.dataArray removeAllObjects];
              }
             //            //字典转模型
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]
             
             //数组转模型数组
             NSArray *array = [UGrealBetListModel arrayOfModelsFromDictionaries:list error:nil];
-             [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-            if (array.count < self.pageSize) {
-                        [self.tableView.mj_footer setState:MJRefreshStateNoMoreData];
-                        [self.tableView.mj_footer setHidden:YES];
+            [weakSelf.dataArray addObjectsFromArray:array];
+            [weakSelf.tableView reloadData];
+            if (array.count < weakSelf.pageSize) {
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateNoMoreData];
+                [weakSelf.tableView.mj_footer setHidden:YES];
             }else{
-               
-                [self.tableView.mj_footer setState:MJRefreshStateIdle];
-                [self.tableView.mj_footer setHidden:NO];
+                
+                [weakSelf.tableView.mj_footer setState:MJRefreshStateIdle];
+                [weakSelf.tableView.mj_footer setHidden:NO];
             }
             
         } failure:^(id msg) {
             
-
+            
             
         }];
-        if ([self.tableView.mj_header isRefreshing]) {
-              [self.tableView.mj_header endRefreshing];
-          }
-          
-          if ([self.tableView.mj_footer isRefreshing]) {
-              [self.tableView.mj_footer endRefreshing];
-          }
+        if ([weakSelf.tableView.mj_header isRefreshing]) {
+            [weakSelf.tableView.mj_header endRefreshing];
+        }
+        
+        if ([weakSelf.tableView.mj_footer isRefreshing]) {
+            [weakSelf.tableView.mj_footer endRefreshing];
+        }
     }];
 }
 #pragma mark -- 其他方法

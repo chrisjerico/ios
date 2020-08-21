@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlatWebViewController">
+            <connections>
+                <outlet property="bgView" destination="RtI-Tg-bZg" id="Qp5-4m-M7h"/>
+                <outlet property="mWKView" destination="pWK-WA-gRc" id="wwN-tH-tJQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RtI-Tg-bZg">
+                    <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="平台公告" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwO-Hs-Z9Q">
+                            <rect key="frame" x="168.5" y="18.5" width="77.5" height="23"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53w-3Z-DQu">
+                            <rect key="frame" x="364" y="10" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="dh5-ce-y9D"/>
+                                <constraint firstAttribute="height" constant="40" id="uW0-kz-Bhf"/>
+                            </constraints>
+                            <state key="normal" image="guanbi">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="Cl9-bG-qSR"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="ZwO-Hs-Z9Q" firstAttribute="centerX" secondItem="RtI-Tg-bZg" secondAttribute="centerX" id="FrR-Hy-wTA"/>
+                        <constraint firstItem="53w-3Z-DQu" firstAttribute="centerY" secondItem="RtI-Tg-bZg" secondAttribute="centerY" id="Jrm-3g-5PY"/>
+                        <constraint firstItem="ZwO-Hs-Z9Q" firstAttribute="centerY" secondItem="RtI-Tg-bZg" secondAttribute="centerY" id="N6E-jG-1YD"/>
+                        <constraint firstAttribute="height" constant="60" id="SrJ-et-BQ5"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="X2R-Li-kC6"/>
+                        <constraint firstAttribute="trailing" secondItem="53w-3Z-DQu" secondAttribute="trailing" constant="10" id="x6c-1x-OIB"/>
+                    </constraints>
+                </view>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWK-WA-gRc">
+                    <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="RtI-Tg-bZg" secondAttribute="trailing" id="642-RU-hmg"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="pWK-WA-gRc" secondAttribute="bottom" id="Dws-o5-NIR"/>
+                <constraint firstItem="RtI-Tg-bZg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EZQ-yP-FJj"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="pWK-WA-gRc" secondAttribute="trailing" id="MA3-xf-qC9"/>
+                <constraint firstItem="pWK-WA-gRc" firstAttribute="top" secondItem="RtI-Tg-bZg" secondAttribute="bottom" id="it1-vj-uTn"/>
+                <constraint firstItem="pWK-WA-gRc" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="oJ2-ks-iDy"/>
+                <constraint firstItem="RtI-Tg-bZg" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="pal-og-eEc"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="139" y="133"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="guanbi" width="24" height="24"/>
+    </resources>
+</document>

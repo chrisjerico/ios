@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
+// 热门图库
 @interface UGLHHotModel : NSObject
 @property (nonatomic, copy) NSString *gid;           /**<   图库ID */
 @property (nonatomic, copy) NSString *name;         /**<   名称 */

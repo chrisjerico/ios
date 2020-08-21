@@ -22,7 +22,7 @@
 #import "UGFC3DLotteryController.h"
 #import "UGPK10NNLotteryController.h"
 #import "UGLotteryRecordController.h"
-#import "MailBoxTableViewController.h"
+#import "UGMailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
 #import "UGDocumentVC.h"
 #import "UGFundsViewController.h"
@@ -50,7 +50,7 @@
 #import "JS_TitleView.h"
 
 
-//测试--黑色模板
+//测试--GPK版
 #import "UGfinancialViewViewController.h"
 
 // View
@@ -124,7 +124,7 @@
 @property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
 @property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
 
-@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   黑色模板导航头 */
+@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   GPK版导航头 */
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
@@ -207,6 +207,15 @@
 @property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
 
 
+//--推荐按钮-----------------------------------------
+@property (weak, nonatomic) IBOutlet UIView *upRecommendedView;                  /**<   推荐上View */
+@property (weak, nonatomic) IBOutlet UIView *downRecommendedView;                  /**<   推荐下View */
+
+@property (weak, nonatomic) IBOutlet UIView *upWithinView;                  /**<   上内View */
+@property (weak, nonatomic) IBOutlet UIView *downWithinView;                  /**<   下内View */
+
+@property (weak, nonatomic) IBOutlet UILabel *upTitleLabel;                   /**<   下文字View */
+@property (weak, nonatomic) IBOutlet UILabel *downTitleLabel;                /**<   下文字View */
 
 @end
 
@@ -262,7 +271,7 @@
             [v removeFromSuperview];
         }
         NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
-                               @"黑色模板":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
+                               @"GPK版":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
                                @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
                                @"火山橙":@[_bannerBgView, _rollingView, _homeAdsBigBgView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _betFormView, _bottomView],
                                
@@ -273,24 +282,8 @@
             [_contentStackView addArrangedSubviews:views];
         } else {
             // 默认展示内容
-            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView, _gameNavigationView.superview,_homeAdsBigBgView, _gameTypeView.superview, _promotionView, _rankingView, _bottomView]];
+            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _homeAdsBigBgView, _gameTypeView.superview, _promotionView, _rankingView, _bottomView,]];
             
-            // c134在导航栏下添加一张动图
-            //			if ([APP.SiteId containsString:@"c134"]) {
-            //				UIView *v = [UIView new];
-            //				v.backgroundColor = [UIColor clearColor];
-            //				CGFloat h = (APP.Width-20)/1194.0 * 247;
-            //				[v addSubview:({
-            //					FLAnimatedImageView *imgView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(10, 10, APP.Width-20, h)];
-            //					[imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"cplts_看图王" withExtension:@"gif"]];
-            //					imgView;
-            //				})];
-            //				[_contentStackView insertArrangedSubview:v atIndex:3];
-            //				[v mas_makeConstraints:^(MASConstraintMaker *make) {
-            //					make.width.mas_equalTo(APP.Width);
-            //					make.height.mas_equalTo(h+10);
-            //				}];
-            //			}
         }
     }
     // l001站点定制需求
@@ -314,24 +307,24 @@
     }
     
     
-    // 黑色模板的UI调整
-    BOOL isBlack = Skin1.isBlack;
+    // GPK版的UI调整
+    BOOL isGPK = Skin1.isGPK;
     // c108站点定制需求
     if ([@"c108" containsString: APP.SiteId]) {
         _rankingView.backgroundColor = UIColor.whiteColor;
     } else {
-        _rankingView.backgroundColor = isBlack ? Skin1.bgColor : Skin1.navBarBgColor;
+        _rankingView.backgroundColor = isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
     }
     
 
 //    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
 //    if (Skin1.isJY) {
-        _gameTypeView.cc_constraints.top.constant = isBlack||Skin1.isJY ? 0 : 10;
+        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY ? 0 : 10;
 //    }
-    _headerView.hidden = !isBlack;
-    self.fd_prefersNavigationBarHidden = isBlack;
+    _headerView.hidden = !isGPK;
+    self.fd_prefersNavigationBarHidden = isGPK;
     if (NavController1.topViewController == self) {
-        self.navigationController.navigationBarHidden = isBlack;
+        self.navigationController.navigationBarHidden = isGPK;
     }
     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
         _rollingView.backgroundColor = UIColor.whiteColor;
@@ -381,7 +374,7 @@
         [_lhPrizeView.timer setFireDate:[NSDate date]];
     }
 
-    self.navigationController.navigationBarHidden = [Skin1 isBlack];
+    self.navigationController.navigationBarHidden = [Skin1 isGPK];
   
 
 }
@@ -410,6 +403,7 @@
     __weakSelf_(__self);
     // 配置通知事件
     {
+
         // 换肤
         SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
             [__self skin];
@@ -451,6 +445,29 @@
                 cnt += !v.hidden;
             }
             __self.promotionView.hidden = !SysConf.m_promote_pos || !cnt;
+            
+            
+            // 3.GCD
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                if ([SysConf.switchShowFriendReferral isEqualToString:@"1"]) {
+
+                    if ([SysConf.showNavigationBar isEqualToString:@"1"]) {
+                        [__self.upRecommendedView setHidden:NO];
+                        [__self.downRecommendedView setHidden:YES];
+                    } else {
+                        [__self.upRecommendedView setHidden:YES];
+                        [__self.downRecommendedView setHidden:NO];
+                    }
+                }
+                else{
+                    [__self.upRecommendedView setHidden:YES];
+                    [__self.downRecommendedView setHidden:YES];
+                }
+            });
+
+            
+            [[AppDefine shared] setupSiteAndSkinParams];
         });
     }
     
@@ -507,6 +524,10 @@
             _promotionsStackView.cc_constraints.left.constant = 0;
         }
         
+        if ( [@"c012," containsString:APP.SiteId]) {//第3种样式：
+            subView(@"优惠活动外View").backgroundColor = Skin1.homeContentColor;
+        }
+        
         if (Skin1.isJY) {
             _promotionsStackView.cc_constraints.top.constant = 0;
             _promotionsStackView.cc_constraints.left.constant = 0;
@@ -521,11 +542,27 @@
         //         [self.gameNavigationView setBackgroundColor:[UIColor redColor]];
         [self.gameTypeView setBackgroundColor:Skin1.bgColor];
         [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
+        [self.upRecommendedView setBackgroundColor:Skin1.bgColor];
+        [self.downRecommendedView setBackgroundColor:Skin1.bgColor];
         
         [self setupSubView];
         
         [self skin];
         
+        [self.upRecommendedView setHidden:YES];
+        [self.downRecommendedView setHidden:YES];
+        
+        self.upWithinView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        self.upWithinView.layer.masksToBounds = YES;//设为NO时，边框外的画面依然会被显示出来
+        
+        self.downWithinView.layer.cornerRadius = 5;//设置那个圆角的有多圆
+        self.downWithinView.layer.masksToBounds = YES;//设为NO时，边框外的画面依然会被显示出来
+        
+        [self.upWithinView setBackgroundColor:Skin1.homeContentColor];
+        [self.downWithinView setBackgroundColor:Skin1.homeContentColor];
+        
+        self.upTitleLabel.textColor = Skin1.textColor1;
+        self.downTitleLabel.textColor = Skin1.textColor1;
         {//六合
             if ([Skin1.skitType isEqualToString:@"六合资料"]) {
                 _lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
@@ -551,7 +588,7 @@
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
             make.width.mas_equalTo(95.0);
             make.height.mas_equalTo(95.0);
-            make.top.equalTo(__self.view.mas_top).offset(150);
+            make.top.equalTo(__self.view.mas_top).offset(135);
         }];
         self.uGredEnvelopeView.cancelClickBlock = ^(void) {
             [__self.uGredEnvelopeView setHidden:YES];
@@ -856,8 +893,19 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求14
-           [self.lhPrizeView  getLotteryNumberList];     //购彩大厅信息
-           
+        if ([Skin1.skitType isEqualToString:@"六合资料"]) {
+            
+            if ([CMCommon stringIsNull:SysConf.appSelectType]) {
+                [self.lhPrizeView  setGid:@""];
+            } else {
+                if ( [SysConf.appSelectType isEqualToString:@"0"]) {
+                    [self.lhPrizeView  setGid:@""];
+                } else {
+                    [self.lhPrizeView  setGid:SysConf.appSelectType];
+                }
+            }
+            
+        }
     });
     dispatch_group_async(group, queue, ^{
            
@@ -1025,141 +1073,88 @@
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"多期");
+            return;
+        }
+        else if (model.contentId.length) {
+            // 获取帖子详情
+            [SVProgressHUD showWithStatus:nil];
+            NSLog(@"");
+            NSLog(@"model.contentId = %@",model.contentId);
+            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
+                [SVProgressHUD dismiss];
+                if (!sm.error) {
+                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                    pm.link = model.link;
+                    NSLog(@"获取帖子详情 = %@",pm.content);
+                    void (^push)(void) = ^{
+                        
+                        self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+                        self.postvc.pm = pm;
+                        self.postvc.title = model.name;
+                        [NavController1 pushViewController:self.postvc animated:true];
+                    };
+                    if (!pm.hasPay && pm.price > 0.000001) {
+                        LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
+                        ppv.pm = pm;
+                        ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
+                            if (!UGLoginIsAuthorized()) {
+                                [ppv hide:nil];
+                                SANotificationEventPost(UGNotificationShowLoginView, nil);
+                                return;
+                            }
+                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+                                if (!sm.error) {
+                                    pm.hasPay = true;
+                                    [ppv hide:nil];
+                                    UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
+                                    [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                                        push();
+                                    }];
+                                }
+                            };
+                        };
+                        [ppv show];
+                    } else {
+                        push();
+                    }
+                }
+            };
             return;
         }
         
-        if ([model.alias isEqualToString:@"forum"]) {
+        if ([@"forum,gourmet" containsString:model.categoryType]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"高手论坛");
+            NSLog(@"高手论坛,极品专贴");
         }
-        else if([model.alias isEqualToString:@"gourmet"]) {
-            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"极品专贴");
-        }
-        else if([model.alias isEqualToString:@"mystery"]) {
+        else if([@"mystery,rule" containsString:model.categoryType]) {
             UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"每期资料");
+            NSLog(@"每期资料,公式规律");
         }
-        else if([model.alias isEqualToString:@"rule"]) {
-            UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+        else if([@"humorGuess,rundog,fourUnlike" containsString:model.categoryType]) {
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
-            NSLog(@"公式规律");
+            NSLog(@"幽默猜测,跑狗玄机,四不像");
         }
-        else if([model.alias isEqualToString:@"sixpic"]) {
+        else if([@"sixpic" containsString:model.categoryType]) {
             LHGalleryListVC2 *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC2");
             vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"六合图库");
         }
-        else if([model.alias isEqualToString:@"humorGuess"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"幽默猜测");
-        }
-        else if([model.alias isEqualToString:@"rundog"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"跑狗玄机");
-        }
-        else if([model.alias isEqualToString:@"fourUnlike"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"四不像");
-        }
-        else if([model.alias isEqualToString:@"yellowCale"]) {
-            NSLog(@"老黃历");
+        else if([@"yellowCale" containsString:model.categoryType]) {
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+            NSLog(@"老黃历");
         }
-        else if([model.alias isEqualToString:@"CvB3zABB"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"香港挂牌");
-        }
-        else if([model.alias isEqualToString:@"E9biHXEx"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"美女六肖");
-        }
-        else if([model.alias isEqualToString:@"n0v3azC0"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"香港挂牌");
-        }
-        else if([model.alias isEqualToString:@"mT303M99"]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"看图找肖");
-        }
-        else if([model.alias isEqualToString:@"rwzx"]) {
+        else if([@"rwzx" containsString:model.categoryType]) {
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
             NSLog(@"任务中心");
         }
         else {
-            if (model.contentId.length) {
-                // 获取帖子详情
-                [SVProgressHUD showWithStatus:nil];
-                NSLog(@"");
-                NSLog(@"model.contentId = %@",model.contentId);
-                [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
-                    [SVProgressHUD dismiss];
-                    if (!sm.error) {
-                        
-                        //                        NSLog(@"获取帖子详情data = %@",sm.responseObject[@"data"]);
-                        
-                        
-                        UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
-                        pm.link = model.link;
-                        NSLog(@"获取帖子详情 = %@",pm.content);
-                        void (^push)(void) = ^{
-                            
-                            self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-                            self.postvc.pm = pm;
-                            self.postvc.title = model.name;
-                            [NavController1 pushViewController:self.postvc animated:true];
-                        };
-                        if (!pm.hasPay && pm.price > 0.000001) {
-                            LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
-                            ppv.pm = pm;
-                            ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
-                                if (!UGLoginIsAuthorized()) {
-                                    [ppv hide:nil];
-                                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                                    return;
-                                }
-                                [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
-                                    if (!sm.error) {
-                                        pm.hasPay = true;
-                                        [ppv hide:nil];
-                                        UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
-                                        [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
-                                            push();
-                                        }];
-                                    }
-                                };
-                            };
-                            [ppv show];
-                        } else {
-                            push();
-                        }
-                    }
-                };
-                return;
-            }
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
             if (!ret && model.appLink.length) {
                 TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
@@ -1176,9 +1171,10 @@
     if (!UGLoginIsAuthorized()) {
         return;
     }
+    WeakSelf;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             UGUserModel *user = model.data;
             UGUserModel *oldUser = [UGUserModel currentUser];
@@ -1186,7 +1182,7 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            self.titleView.userName = user.username;
+            weakSelf.titleView.userName = user.username;
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
         } failure:^(id msg) {
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
@@ -1278,6 +1274,7 @@
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
@@ -1287,21 +1284,20 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
+            
            
-            [self getCustomGameList];   // 自定义游戏列表
+           
+            [weakSelf getCustomGameList];   // 自定义游戏列表
+
+            [weakSelf getPromotionsType ];// 获取优惠图片分类信息
             
+            [weakSelf gethomeAdsList];     // 首页广告图片
             
-            
-            
-            [self getPromotionsType ];// 获取优惠图片分类信息
-            
-            [self gethomeAdsList];     // 首页广告图片
-            
-            [self getNoticeList];   // 公告列表
+            [weakSelf getNoticeList];   // 公告列表
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
-            [self.bottomLabel setText:title];
-            [self.titleView setImgName:config.mobile_logo];
+            [weakSelf.bottomLabel setText:title];
+            [weakSelf.titleView setImgName:config.mobile_logo];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -1329,25 +1325,26 @@
 
 //查询轮播图
 - (void)getBannerList {
+    WeakSelf;
     [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
-                self.bannerArray = ((UGBannerModel*)model.data).list;
+                weakSelf.bannerArray = ((UGBannerModel*)model.data).list;
                 NSMutableArray *mutArr = [NSMutableArray array];
-                if (self.bannerArray.count) {
+                if (weakSelf.bannerArray.count) {
                     for (UGBannerCellModel *banner in self.bannerArray) {
                         [mutArr addObject:banner.pic];
                     }
-                    self.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
+                    weakSelf.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
                     NSLog(@"轮播时间：%f",((UGBannerModel*)model.data).interval.floatValue);
-                    self.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
+                    weakSelf.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
                     if (mutArr.count>1) {
-                        self.bannerView.autoScroll = YES;
+                        weakSelf.bannerView.autoScroll = YES;
                     } else {
-                         self.bannerView.autoScroll = NO;
+                         weakSelf.bannerView.autoScroll = NO;
                     }
                 }
             });
@@ -1360,20 +1357,21 @@
 
 // 公告
 - (void)getNoticeList {
+    WeakSelf;
     [CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 UGNoticeTypeModel *type = model.data;
-                self.noticeTypeModel = model.data;
-                self.popNoticeArray = type.popup.mutableCopy;
+                weakSelf.noticeTypeModel = model.data;
+                weakSelf.popNoticeArray = type.popup.mutableCopy;
                 for (UGNoticeModel *notice in type.scroll) {
                     //                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-                    [self.leftwardMarqueeViewData addObject:notice.title];
+                    [weakSelf.leftwardMarqueeViewData addObject:notice.title];
                 }
-                [self.leftwardMarqueeView reloadData];
+                [weakSelf.leftwardMarqueeView reloadData];
    
-                [self showPlatformNoticeView];
+                [weakSelf showPlatformNoticeView];
             });
         } failure:nil];
     }];
@@ -1381,15 +1379,16 @@
 
 // 中奖排行榜、投注排行榜
 - (void)getRankList {
+    WeakSelf;
     [CMNetwork getRankListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 UGRankListModel *rank = model.data;
-                self.rankListModel = rank;
-                self.rankArray = ({
+                weakSelf.rankListModel = rank;
+                weakSelf.rankArray = ({
                     // 填充5条空数据，看起来就有一段空白形成翻页效果
                     NSMutableArray *temp = rank.list.mutableCopy;
                     for (int i=0; i<5; i++) {
@@ -1403,15 +1402,15 @@
                 UGSystemConfigModel * config = UGSystemConfigModel.currentConfig;
                 if (config.rankingListSwitch == 0) {
                 } else if (config.rankingListSwitch == 1) {
-                    self.rankLabel.text = @"中奖排行榜";
+                    weakSelf.rankLabel.text = @"中奖排行榜";
                 } else if (config.rankingListSwitch == 2) {
-                    self.rankLabel.text = @"投注排行榜";
+                    weakSelf.rankLabel.text = @"投注排行榜";
                 }
-                self.rankingView.hidden = !config.rankingListSwitch;
-                self.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
-                self.rankLabel.textColor = Skin1.textColor1;
-                [self.view layoutIfNeeded];
-                [self.upwardMultiMarqueeView reloadData];
+                weakSelf.rankingView.hidden = !config.rankingListSwitch;
+                weakSelf.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
+                weakSelf.rankLabel.textColor = Skin1.textColor1;
+                [weakSelf.view layoutIfNeeded];
+                [weakSelf.upwardMultiMarqueeView reloadData];
             });
             
         } failure:^(id msg) {
@@ -1424,14 +1423,15 @@
 - (void)getCheckinListData {
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
-            self.uGredEnvelopeView.item = rem;
-            self.uGredEnvelopeView.hidden = !rem;
+            weakSelf.uGredEnvelopeView.item = rem;
+            weakSelf.uGredEnvelopeView.hidden = !rem;
         } failure:^(id msg) {
-            self.uGredEnvelopeView.hidden = true;
+            weakSelf.uGredEnvelopeView.hidden = true;
             [SVProgressHUD dismiss];
         }];
     }];
@@ -1439,22 +1439,23 @@
 
 // APP在线人数
 - (void)systemOnlineCount {
+    WeakSelf;
     [CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 
-                self.mUGonlineCount = model.data;
+                weakSelf.mUGonlineCount = model.data;
                 
-                int intOnlineSwitch = [self.mUGonlineCount.onlineSwitch intValue];
+                int intOnlineSwitch = [weakSelf.mUGonlineCount.onlineSwitch intValue];
                 
                 if (intOnlineSwitch == 1) {
-                    [self.nolineLabel setHidden:NO];
-                    [self.nolineLabel setText:[NSString stringWithFormat:@"当前在线人数：%@",self.mUGonlineCount.onlineUserCount]];
+                    [weakSelf.nolineLabel setHidden:NO];
+                    [weakSelf.nolineLabel setText:[NSString stringWithFormat:@"当前在线人数：%@",self.mUGonlineCount.onlineUserCount]];
                 } else {
-                    [self.nolineLabel setHidden:YES];
+                    [weakSelf.nolineLabel setHidden:YES];
                 }
                 
             });
@@ -1558,6 +1559,7 @@
 //首页广告图片
 - (void)gethomeAdsList {
     [SVProgressHUD showWithStatus: nil];
+    WeakSelf;
     [CMNetwork systemhomeAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [self.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
@@ -1565,47 +1567,47 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 [SVProgressHUD dismiss];
-                self.homeAdsArray = model.data;
+                weakSelf.homeAdsArray = model.data;
                 
                 NSMutableArray *mutArr = [NSMutableArray array];
-                if (self.homeAdsArray.count) {
-                    [self.homeAdsBigBgView setHidden:NO];
+                if (weakSelf.homeAdsArray.count) {
+                    [weakSelf.homeAdsBigBgView setHidden:NO];
                     for (UGhomeAdsModel *banner in self.homeAdsArray) {
                             [mutArr addObject:banner.image];
                     }
 
                     NSLog(@"SysConf.adSliderTimer = %d",SysConf.adSliderTimer);
-                    self.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
-                    self.homeAdsView.autoScrollTimeInterval = SysConf.adSliderTimer;
+                    weakSelf.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
+                    weakSelf.homeAdsView.autoScrollTimeInterval = SysConf.adSliderTimer;
                     if (mutArr.count>1) {
-                        self.homeAdsView.autoScroll = YES;
+                        weakSelf.homeAdsView.autoScroll = YES;
                     } else {
-                         self.homeAdsView.autoScroll = NO;
+                         weakSelf.homeAdsView.autoScroll = NO;
                     }
                 }
                 else{
-                    [self.homeAdsBigBgView setHidden:YES];
+                    [weakSelf.homeAdsBigBgView setHidden:YES];
                 }
             });
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-            [self.homeAdsBigBgView setHidden:YES];
+            [weakSelf.homeAdsBigBgView setHidden:YES];
         }];
     }];
 }
 
 //手机浮窗
 - (void)getfloatAdsList {
-    
+    WeakSelf;
     [CMNetwork systemfloatAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
                 [SVProgressHUD dismiss];
-                //                self.homeAdsArray = model.data;
+                
                 NSLog(@"数据=%@",model.data);
                 NSMutableArray *mutArr = model.data;
                 if (mutArr.count) {
@@ -1618,11 +1620,11 @@
                     
                     if ([posArr containsObject: @"1"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"1" keyPath:@"position"];
-                        self.uUpperLeftView.itemSuspension = banner;
-                        self.uUpperLeftView.hidden = NO;
+                        weakSelf.uUpperLeftView.itemSuspension = banner;
+                        weakSelf.uUpperLeftView.hidden = NO;
                         
-                        if (!self.bigWheelView.hidden) {
-                            [self.uUpperLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
+                        if (!weakSelf.bigWheelView.hidden) {
+                            [weakSelf.uUpperLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
                                 make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
                             }];
     
@@ -1631,41 +1633,41 @@
                         
                     }
                     else{
-                        self.uUpperLeftView.hidden = YES;
+                        weakSelf.uUpperLeftView.hidden = YES;
                     }
                     if ([posArr containsObject: @"2"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"2" keyPath:@"position"];
-                        self.ulowerLefttView.itemSuspension = banner;
-                        self.ulowerLefttView.hidden = NO;
+                        weakSelf.ulowerLefttView.itemSuspension = banner;
+                        weakSelf.ulowerLefttView.hidden = NO;
                     }
                     else{
-                        self.ulowerLefttView.hidden = YES;
+                        weakSelf.ulowerLefttView.hidden = YES;
                     }
                     if ([posArr containsObject: @"3"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"3" keyPath:@"position"];
-                        self.uUpperRightView.itemSuspension = banner;
-                        self.uUpperRightView.hidden = NO;
+                        weakSelf.uUpperRightView.itemSuspension = banner;
+                        weakSelf.uUpperRightView.hidden = NO;
                     }
                     else{
-                        self.uUpperRightView.hidden = YES;
+                        weakSelf.uUpperRightView.hidden = YES;
                     }
                     if ([posArr containsObject: @"4"]) {
                         UGhomeAdsModel *banner = [mutArr objectWithValue:@"4" keyPath:@"position"];
-                        self.uLowerRightView.itemSuspension = banner;
-                        self.uLowerRightView.hidden = NO;
+                        weakSelf.uLowerRightView.itemSuspension = banner;
+                        weakSelf.uLowerRightView.hidden = NO;
                     }
                     else{
-                        self.uLowerRightView.hidden = YES;
+                        weakSelf.uLowerRightView.hidden = YES;
                     }
                     
                     
                     NSLog(@"mutArr = %@",mutArr);
                 }
                 else {
-                    self.uUpperLeftView.hidden = YES;
-                    self.ulowerLefttView.hidden = YES;
-                    self.uUpperRightView.hidden = YES;
-                    self.uLowerRightView.hidden = YES;
+                    weakSelf.uUpperLeftView.hidden = YES;
+                    weakSelf.ulowerLefttView.hidden = YES;
+                    weakSelf.uUpperRightView.hidden = YES;
+                    weakSelf.uLowerRightView.hidden = YES;
                     
                 }
                 
@@ -1680,7 +1682,7 @@
 
 //大转盘
 - (void)getactivityTurntableList {
-
+    WeakSelf;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              };
     [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -1700,57 +1702,57 @@
                     DZPModel *obj = [data objectAtIndex:0];
                     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         // 需要在主线程执行的代码
-                       self.bigWheelView.itemData = obj;
-                       self.bigWheelView.hidden = NO;
-                        [self.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                       weakSelf.bigWheelView.itemData = obj;
+                       weakSelf.bigWheelView.hidden = NO;
+                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
                         
-                       [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        [weakSelf.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.left.equalTo(self.view.mas_left).with.offset(10);
-                              make.width.mas_equalTo(95.0);
-                              make.height.mas_equalTo(95.0);
-                              if (self.bigWheelView.hidden) {
-                                    make.top.equalTo(self.view.mas_top).offset(150+105);
+                            make.width.mas_equalTo(95.0);
+                            make.height.mas_equalTo(95.0);
+                            if (weakSelf.bigWheelView.hidden) {
+                                    make.top.equalTo(weakSelf.view.mas_top).offset(150+105);
                               } else {
-                                    make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                                    make.top.equalTo(weakSelf.bigWheelView.mas_bottom).offset(5);
                               }
                         }];
                         
-                        [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                              make.left.equalTo(self.view.mas_left).with.offset(10);
+                        [weakSelf.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.left.equalTo(weakSelf.view.mas_left).with.offset(10);
                               make.width.mas_equalTo(95.0);
                               make.height.mas_equalTo(95.0);
-                              make.top.equalTo(self.uUpperLeftView.mas_bottom).offset(5);
+                              make.top.equalTo(weakSelf.uUpperLeftView.mas_bottom).offset(5);
                           }];
                         
                         [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.right.equalTo(self.view.mas_right).with.offset(-10);
+                            make.right.equalTo(weakSelf.view.mas_right).with.offset(-10);
                             make.width.mas_equalTo(95.0);
                             make.height.mas_equalTo(95.0);
                             if (self.bigWheelView.hidden) {
-                                  make.top.equalTo(self.view.mas_top).offset(150+105);
+                                  make.top.equalTo(weakSelf.view.mas_top).offset(150+105);
                             } else {
-                                  make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+                                  make.top.equalTo(weakSelf.bigWheelView.mas_bottom).offset(5);
                             }
                         }];
-                        [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                              make.right.equalTo(self.view.mas_right).with.offset(-10);
+                        [weakSelf.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                              make.right.equalTo(weakSelf.view.mas_right).with.offset(-10);
                               make.width.mas_equalTo(95.0);
                               make.height.mas_equalTo(95.0);
-                              make.top.equalTo(self.uUpperRightView.mas_bottom).offset(5);
+                              make.top.equalTo(weakSelf.uUpperRightView.mas_bottom).offset(5);
                           }];
                         
                     });
     
                 }
                 else{
-                                 self.bigWheelView.hidden = YES;
+                                 weakSelf.bigWheelView.hidden = YES;
                 }
 
             });
             
         } failure:^(id msg) {
 //            [SVProgressHUD showErrorWithStatus:msg];
-             self.bigWheelView.hidden = YES;
+             weakSelf.bigWheelView.hidden = YES;
 
         }];
     }];
@@ -1759,16 +1761,16 @@
 // 栏目列表
 - (void)getCategoryList {
     
-    
+    WeakSelf;
     [CMNetwork categoryListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
+        [weakSelf.contentScrollView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
-            self->_lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
+            weakSelf.lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
             NSLog(@"model= %@",model.data);
             NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
             
             if (modelArr.count==0) {
-                self.heightLayoutConstraint.constant = 0.0;
+                weakSelf.heightLayoutConstraint.constant = 0.0;
                 return ;
             }
             
@@ -1776,21 +1778,21 @@
                 for (int i = 0 ;i<modelArr.count;i++) {
                     UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
                     
-                    [self->_lHCategoryList addObject:obj];
+                    [weakSelf.lHCategoryList addObject:obj];
                     NSLog(@"obj= %@",obj);
                 }
             }
             //数组转模型数组
-            NSLog(@"self->_lHCategoryList= %@",self->_lHCategoryList);
+            
             FastSubViewCode(self.view)
             //            subView(@"开奖结果").hidden = NO;
             //            subView(@"六合论坛").hidden = NO;
             // 需要在主线程执行的代码
-            [self.contentCollectionView reloadData];
-            if (self->_lHCategoryList.count%2==0) {
-                self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*80+1;
+            [weakSelf.contentCollectionView reloadData];
+            if (weakSelf.lHCategoryList.count%2==0) {
+                weakSelf.heightLayoutConstraint.constant = weakSelf.lHCategoryList.count/2*80+1;
             } else {
-                self->_heightLayoutConstraint.constant = self->_lHCategoryList.count/2*80+80+1;
+                weakSelf.heightLayoutConstraint.constant = weakSelf.lHCategoryList.count/2*80+80+1;
             }
             
             
@@ -1815,34 +1817,30 @@
 
 - (void)showPlatformNoticeView {
 
+        WeakSelf;
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
-       
-            self.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
-            [self->_notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-            self->_notiveView.dataArray = self.popNoticeArray;
+            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
+            [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+            weakSelf.notiveView.dataArray = self.popNoticeArray;
+            weakSelf.notiveView.supVC = weakSelf;
             
             UIWindow* window = UIApplication.sharedApplication.keyWindow;
-            BOOL isSubView = [self.notiveView isDescendantOfView:window];
+            BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
             
             if (!isSubView) {
 //                SysConf.popup_type = @"1";
                 if ( [SysConf.popup_type isEqualToString:@"0"]) {
-                        [self->_notiveView show];
+                    [weakSelf.notiveView show];
                 } else {
                     BOOL isLogin = UGLoginIsAuthorized();
                     if (isLogin) {
-                        [self->_notiveView show];
+                        [weakSelf.notiveView show];
                     }
                 }
-     
             }
-
         });
-        
-
- 
-    
 }
 
 #pragma mark - SDCycleScrollViewDelegate
@@ -2175,7 +2173,7 @@
     [TabBarController1 setSelectedIndex:4];
 }
 - (void)emailButtonTaped {
-    [NavController1 pushViewController:[[MailBoxTableViewController alloc] init] animated:true];
+    [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
 }
 
 #pragma mark - Table view data source
@@ -2318,11 +2316,7 @@
         if (image) {
             if (APP.isC190Cell) {
                 CGFloat w;
-                if ([@"c012" containsString:APP.SiteId]) {
-                    w = APP.Width-48;
-                } else {
-                    w = APP.Width-88;
-                }
+                w = APP.Width-88;
                 CGFloat h = image.height/image.width * w;
                 imgView.cc_constraints.height.constant = h;
             } else {
@@ -2449,6 +2443,47 @@
     });
 }
 
+- (IBAction)goRecommendedAction:(id)sender {
+    
+    UGUserModel *user = [UGUserModel currentUser];
+    BOOL isLogin = UGLoginIsAuthorized();
+    
+    // 未登录禁止访问
+    if (!isLogin) {
+        NSLog(@"未登录禁止访问");
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+        return ;
+    }
+    
+    //推荐
+    if (UserI.isTest) {
+        [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+    } else {
+        [SVProgressHUD showWithStatus:nil];
+        [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                [SVProgressHUD dismiss];
+                UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                int intStatus = obj.reviewStatus.intValue;
+                
+                //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                if (intStatus == 2) {
+                    [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                } else {
+                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+                        [HUDHelper showMsg:@"在线注册代理已关闭"];
+                        return ;
+                    }
+                    UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                    vc.item = obj;
+                    [NavController1 pushViewController:vc animated:YES];
+                }
+            } failure:^(id msg) {
+                [SVProgressHUD showErrorWithStatus:msg];
+            }];
+        }];
+    }
+}
 
 @end
 

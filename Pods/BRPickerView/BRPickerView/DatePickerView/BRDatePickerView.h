@@ -10,10 +10,12 @@
 #import "BRBaseView.h"
 #import "NSDate+BRPickerView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /// 日期选择器格式
 typedef NS_ENUM(NSInteger, BRDatePickerMode) {
-    // ----- 以下4种是系统自带的样式 -----
-    /** 【yyyy-MM-dd】UIDatePickerModeDate（默认） */
+    // ----- 以下4种是系统样式（兼容国际化日期格式） -----
+    /** 【yyyy-MM-dd】UIDatePickerModeDate（美式日期：MM-dd-yyyy；英式日期：dd-MM-yyyy）*/
     BRDatePickerModeDate,
     /** 【yyyy-MM-dd HH:mm】 UIDatePickerModeDateAndTime */
     BRDatePickerModeDateAndTime,
@@ -31,9 +33,9 @@ typedef NS_ENUM(NSInteger, BRDatePickerMode) {
     BRDatePickerModeYMDH,
     /** 【MM-dd HH:mm】月日时分 */
     BRDatePickerModeMDHM,
-    /** 【yyyy-MM-dd】年月日 */
+    /** 【yyyy-MM-dd】年月日（兼容国际化日期：dd-MM-yyyy）*/
     BRDatePickerModeYMD,
-    /** 【yyyy-MM】年月 */
+    /** 【yyyy-MM】年月（兼容国际化日期：MM-yyyy）*/
     BRDatePickerModeYM,
     /** 【yyyy】年 */
     BRDatePickerModeY,
@@ -49,15 +51,25 @@ typedef NS_ENUM(NSInteger, BRDatePickerMode) {
 
 /// 日期单位显示的位置
 typedef NS_ENUM(NSInteger, BRShowUnitType) {
-    /** 日期单位显示全部行（默认） */
+    /** 日期单位显示全部行（默认）*/
     BRShowUnitTypeAll,
-    /** 日期单位只显示一行，默认在选择器的中间行 */
-    BRShowUnitTypeSingleRow,
-    /** 日期单位不显示 */
+    /** 日期单位仅显示中间行 */
+    BRShowUnitTypeOnlyCenter,
+    /** 日期单位不显示（隐藏日期单位）*/
     BRShowUnitTypeNone
 };
 
-typedef void (^BRDateResultBlock)(NSDate *selectDate, NSString *selectValue);
+/// 月份名称类型
+typedef NS_ENUM(NSInteger, BRMonthNameType) {
+    /** 月份英文全称 */
+    BRMonthNameTypeFullName,
+    /** 月份英文简称 */
+    BRMonthNameTypeShortName,
+    /** 月份数字 */
+    BRMonthNameTypeNumber
+};
+
+typedef void (^BRDateResultBlock)(NSDate * _Nullable selectDate, NSString * _Nullable selectValue);
 
 @interface BRDatePickerView : BRBaseView
 
@@ -72,41 +84,50 @@ typedef void (^BRDateResultBlock)(NSDate *selectDate, NSString *selectValue);
 /** 日期选择器显示类型 */
 @property (nonatomic, assign) BRDatePickerMode pickerMode;
 
-/** 设置选中的时间（selectDate 优先级高于 selectValue，推荐使用 selectDate）*/
-@property (nonatomic, strong) NSDate *selectDate;
-@property (nonatomic, copy) NSString *selectValue;
+/** 设置选中的时间（推荐使用 selectDate） */
+@property (nullable, nonatomic, strong) NSDate *selectDate;
+@property (nullable, nonatomic, copy) NSString *selectValue;
 
 /** 最小时间（可使用 NSDate+BRPickerView 分类中对应的方法进行创建）*/
-@property (nonatomic, strong) NSDate *minDate;
+@property (nullable, nonatomic, strong) NSDate *minDate;
 /** 最大时间（可使用 NSDate+BRPickerView 分类中对应的方法进行创建）*/
-@property (nonatomic, strong) NSDate *maxDate;
+@property (nullable, nonatomic, strong) NSDate *maxDate;
 
 /** 选择结果的回调 */
-@property (nonatomic, copy) BRDateResultBlock resultBlock;
+@property (nullable, nonatomic, copy) BRDateResultBlock resultBlock;
 
 /** 滚动选择时触发的回调 */
-@property (nonatomic, copy) BRDateResultBlock changeBlock;
+@property (nullable, nonatomic, copy) BRDateResultBlock changeBlock;
 
 /** 日期单位显示类型 */
 @property (nonatomic, assign) BRShowUnitType showUnitType;
 
-/** 隐藏日期单位，默认为NO */
-@property (nonatomic, assign) BOOL hiddenDateUnit BRPickerViewDeprecated("请使用 showUnitType");
-
-/** 是否显示【星期】，默认为 NO  */
+/** 是否显示【星期】，默认为 NO */
 @property (nonatomic, assign, getter=isShowWeek) BOOL showWeek;
 
-/** 是否显示【今天】，默认为 NO  */
+/** 是否显示【今天】，默认为 NO */
 @property (nonatomic, assign, getter=isShowToday) BOOL showToday;
 
 /** 是否添加【至今】，默认为 NO */
 @property (nonatomic, assign, getter=isAddToNow) BOOL addToNow;
 
-/** 设置分的时间间隔，默认为1 */
+/** 时间列表排序是否降序，默认为 NO（升序）*/
+@property (nonatomic, assign, getter=isDescending) BOOL descending;
+
+/** 选择器上日期/时间数字显示全称（即显示带前导零的数字，如：2020-01-01），默认为 NO */
+@property (nonatomic, assign, getter=isNumberFullName) BOOL numberFullName;
+
+/** 设置分的时间间隔，默认为1（范围：1 ~ 30）*/
 @property (nonatomic, assign) NSInteger minuteInterval;
 
-/** 设置秒的时间间隔，默认为1 */
+/** 设置秒的时间间隔，默认为1（范围：1 ~ 30）*/
 @property (nonatomic, assign) NSInteger secondInterval;
+
+/** 设置倒计时的时长，默认为0（范围：0 ~ 24*60*60-1，单位为秒） for `BRDatePickerModeCountDownTimer`, ignored otherwise. */
+@property (nonatomic, assign) NSTimeInterval countDownDuration;
+
+/** for `BRDatePickerModeYMD` or `BRDatePickerModeYM`, ignored otherwise. */
+@property (nonatomic, assign) BRMonthNameType monthNameType;
 
 /// 初始化时间选择器
 /// @param pickerMode  日期选择器显示类型
@@ -144,9 +165,9 @@ typedef void (^BRDateResultBlock)(NSDate *selectDate, NSString *selectValue);
  *
  */
 + (void)showDatePickerWithMode:(BRDatePickerMode)mode
-                         title:(NSString *)title
-                   selectValue:(NSString *)selectValue
-                   resultBlock:(BRDateResultBlock)resultBlock;
+                         title:(nullable NSString *)title
+                   selectValue:(nullable NSString *)selectValue
+                   resultBlock:(nullable BRDateResultBlock)resultBlock;
 
 /**
  *  2.显示时间选择器
@@ -159,10 +180,10 @@ typedef void (^BRDateResultBlock)(NSDate *selectDate, NSString *selectValue);
  *
  */
 + (void)showDatePickerWithMode:(BRDatePickerMode)mode
-                         title:(NSString *)title
-                   selectValue:(NSString *)selectValue
+                         title:(nullable NSString *)title
+                   selectValue:(nullable NSString *)selectValue
                   isAutoSelect:(BOOL)isAutoSelect
-                   resultBlock:(BRDateResultBlock)resultBlock;
+                   resultBlock:(nullable BRDateResultBlock)resultBlock;
 
 /**
  *  3.显示时间选择器
@@ -177,11 +198,14 @@ typedef void (^BRDateResultBlock)(NSDate *selectDate, NSString *selectValue);
  *
  */
 + (void)showDatePickerWithMode:(BRDatePickerMode)mode
-                         title:(NSString *)title
-                   selectValue:(NSString *)selectValue
-                       minDate:(NSDate *)minDate
-                       maxDate:(NSDate *)maxDate
+                         title:(nullable NSString *)title
+                   selectValue:(nullable NSString *)selectValue
+                       minDate:(nullable NSDate *)minDate
+                       maxDate:(nullable NSDate *)maxDate
                   isAutoSelect:(BOOL)isAutoSelect
-                   resultBlock:(BRDateResultBlock)resultBlock;
+                   resultBlock:(nullable BRDateResultBlock)resultBlock;
+
 
 @end
+
+NS_ASSUME_NONNULL_END

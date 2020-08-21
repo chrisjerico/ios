@@ -130,11 +130,11 @@
         float collectionViewH = 400;
         
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 95+15, UGScreenW - 10, collectionViewH) collectionViewLayout:layout];
-        collectionView.backgroundColor = [UIColor whiteColor];
+        collectionView.backgroundColor = Skin1.isBlack ? Skin1.homeContentColor : [UIColor whiteColor];
         collectionView.layer.cornerRadius = 4;
         collectionView.layer.masksToBounds = YES;
         collectionView.layer.borderWidth = 4;
-        collectionView.layer.borderColor = [[UIColor colorWithRed:237.0/255.0 green:250.0/255.0 blue:254.0/255.0 alpha:1] CGColor];
+        collectionView.layer.borderColor = Skin1.isBlack ? Skin1.homeContentSubColor.CGColor : [[UIColor colorWithRed:237.0/255.0 green:250.0/255.0 blue:254.0/255.0 alpha:1] CGColor];
  
         collectionView.dataSource = self;
         collectionView.delegate = self;
@@ -182,6 +182,7 @@
     if (mUGSignInScrFootView == nil) {
         mUGSignInScrFootView = [[UGSignInScrFootView alloc] initView];
         [mUGSignInScrFootView setFrame:CGRectMake(0, 530,UGScreenW, 175.0)];
+        mUGSignInScrFootView.backgroundColor = Skin1.homeContentColor;
         WeakSelf;
         mUGSignInScrFootView.signInScrFootFiveBlock = ^{
             //5天领取
@@ -230,8 +231,10 @@
         [mUGSignInScrFootView setSevenStr:[NSString stringWithFormat:@"7天礼包(%@)",checkinBonusModel2.BonusInt]];
         
         void (^setupButton)(UIButton *, UGcheckinBonusModel *) = ^(UIButton *btn, UGcheckinBonusModel *cbm) {
-            btn.userInteractionEnabled = !cbm.isComplete && cbm.isCheckin;
-            btn.backgroundColor = !cbm.isComplete && cbm.isCheckin ? UGRGBColor(114, 108, 227) : UGRGBColor(244, 246, 254);
+            BOOL enable = !cbm.isComplete && cbm.isCheckin;
+            btn.userInteractionEnabled = enable;
+            btn.backgroundColor = enable ? UGRGBColor(114, 108, 227) : [UIColor colorWithWhite:0.8 alpha:1];
+            btn.alpha = enable ? 1 : 0.5;
             [btn setTitle:cbm.isComplete ? @"已领取" : @"领取" forState:UIControlStateNormal];
         };
         setupButton(mUGSignInScrFootView.fiveButton, checkinBonusModel1);
@@ -333,7 +336,7 @@
 //            NSLog(@"serverTime = %@",weakSelf.checkinListModel.serverTime);
             
             if (weakSelf.checkinListModel.checkinSwitch) {
-                [self createUI];
+                [weakSelf createUI];
                 //
             }
         } failure:^(id msg) {
@@ -352,12 +355,12 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork checkinBonusWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             [AlertHelper showAlertView:@"温馨提示" msg:model.msg btnTitles:@[@"确认"]];
-            [self getCheckinListData];
+            [weakSelf getCheckinListData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -377,12 +380,12 @@
                              };
     
     [SVProgressHUD showWithStatus:nil];
-    //    WeakSelf;
+        WeakSelf;
     [CMNetwork checkinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             [AlertHelper showAlertView:@"温馨提示" msg:model.msg btnTitles:@[@"确认"]];
-            [self getCheckinListData];
+            [weakSelf getCheckinListData];
             
             SANotificationEventPost(UGNotificationGetUserInfo, nil);
         } failure:^(id msg) {
@@ -397,14 +400,12 @@
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     
     [SVProgressHUD showWithStatus:nil];
-//    WeakSelf;
+    WeakSelf;
     [CMNetwork checkinHistoryWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self.historyDataArray = model.data;
-            NSLog(@"_historyDataArray = %@",self.historyDataArray);
-            NSLog(@"model.data = %@",model.data);
-            [self showUGSignInHistoryView];
+            weakSelf.historyDataArray = model.data;
+            [weakSelf showUGSignInHistoryView];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

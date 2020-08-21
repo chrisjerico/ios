@@ -47,6 +47,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 20, 0);
     
     self.tableViewDataArray = [NSMutableArray new];
+    self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -118,26 +119,26 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     [CMNetwork rechargeCashierWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            self.mUGdepositModel = model.data;
+            weakSelf.mUGdepositModel = model.data;
 //            NSLog(@"odel.data = %@",model.data);
             
-            NSLog(@"转账提示 = %@",self.mUGdepositModel.depositPrompt);
-//            self.tableViewDataArray = self.mUGdepositModel.payment;
+            NSLog(@"转账提示 = %@",weakSelf.mUGdepositModel.depositPrompt);
+//            weakSelf.tableViewDataArray = weakSelf.mUGdepositModel.payment;
             NSOperationQueue *waitQueue = [[NSOperationQueue alloc] init];
             [waitQueue addOperationWithBlock:^{
-                for (int i = 0; i<self.mUGdepositModel.payment.count; i++) {
+                for (int i = 0; i<weakSelf.mUGdepositModel.payment.count; i++) {
                     
-                    UGpaymentModel *uGpaymentModel =  (UGpaymentModel*)[self.mUGdepositModel.payment objectAtIndex:i];
+                    UGpaymentModel *uGpaymentModel =  (UGpaymentModel*)[weakSelf.mUGdepositModel.payment objectAtIndex:i];
                     if(![CMCommon arryIsNull:uGpaymentModel.channel]){
-                        [self.tableViewDataArray addObject:uGpaymentModel];
-                        uGpaymentModel.quickAmount = self.mUGdepositModel.quickAmount;
-                        uGpaymentModel.transferPrompt = self.mUGdepositModel.transferPrompt;
-                        uGpaymentModel.depositPrompt = self.mUGdepositModel.depositPrompt;
+                        [weakSelf.tableViewDataArray addObject:uGpaymentModel];
+                        uGpaymentModel.quickAmount = weakSelf.mUGdepositModel.quickAmount;
+                        uGpaymentModel.transferPrompt = weakSelf.mUGdepositModel.transferPrompt;
+                        uGpaymentModel.depositPrompt = weakSelf.mUGdepositModel.depositPrompt;
                     }
                 }
                 // 同步到主线程
                  dispatch_async(dispatch_get_main_queue(), ^{
-                     [self.tableView reloadData];
+                     [weakSelf.tableView reloadData];
                 });
             }];
         } failure:^(id msg) {

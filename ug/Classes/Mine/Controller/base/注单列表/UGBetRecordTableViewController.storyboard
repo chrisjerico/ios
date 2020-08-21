@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="blc-lx-l7V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="blc-lx-l7V">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,8 +60,8 @@
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="kE3-pk-oBz" id="jsB-fL-eib"/>
-                        <outlet property="bottomViewBottomConstraints" destination="7Js-Vk-kff" id="d3d-gq-ghZ"/>
-                        <outlet property="bottomViewHeightConstraints" destination="5tb-V3-mBS" id="yhh-js-FIJ"/>
+                        <outlet property="bottomViewBottomConstraints" destination="7Js-Vk-kff" id="jZ9-vB-J3z"/>
+                        <outlet property="bottomViewHeightConstraints" destination="5tb-V3-mBS" id="wf4-XY-NXu"/>
                         <outlet property="tableView" destination="ohQ-vQ-52s" id="Ok6-Fy-K28"/>
                         <outlet property="totalBetAmountLabel" destination="5dh-m4-NI5" id="WmM-H0-r5h"/>
                         <outlet property="winAmountLabel" destination="0t5-w7-fyt" id="6m9-mf-H3g"/>

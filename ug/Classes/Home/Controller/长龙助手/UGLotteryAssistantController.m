@@ -129,7 +129,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 - (void)getChanglong {
     __weakSelf_(__self);
     [CMNetwork getChanglongWithParams:@{@"id":@"60"} completion:^(CMResult<id> *model, NSError *err) {
-        [self.tableView.mj_header endRefreshing];
+        [__self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             if (model.data) {
                 __self.dataArray = model.data;
@@ -262,6 +262,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     
     __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork userBetWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
@@ -287,7 +288,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 //                        UGChatViewController *vc = [[UGChatViewController alloc] init];
 //                        vc.shareBetJson = __self.shareJsonStr;
 //                        [NavController1 pushViewController:vc animated:YES];
-                        [self goLotteryBetAndChatVC];
+                        [weakSelf goLotteryBetAndChatVC];
                     })
                     .LeeHeaderColor(Skin1.bgColor)
                     .LeeShow();
@@ -302,7 +303,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 //                        UGChatViewController *vc = [[UGChatViewController alloc] init];
 //                        vc.shareBetJson = __self.shareJsonStr;
 //                        [NavController1 pushViewController:vc animated:YES];
-                         [self goLotteryBetAndChatVC];
+                         [weakSelf goLotteryBetAndChatVC];
                     })
                     
                     .LeeShow();

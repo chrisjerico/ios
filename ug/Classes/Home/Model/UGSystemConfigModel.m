@@ -18,7 +18,7 @@
 #import "UGLotteryRecordController.h"       // 开奖记录
 #import "UGMissionCenterViewController.h"   // 任务中心
 #import "UGSecurityCenterViewController.h"  // 安全中心
-#import "MailBoxTableViewController.h"    // 站内信
+#import "UGMailBoxTableViewController.h"    // 站内信
 #import "UGBankCardInfoController.h"        // 我的银行卡
 #import "UGBindCardViewController.h"        // 银行卡管理
 #import "UGYubaoViewController.h"           // 利息宝
@@ -154,7 +154,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,        @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,         @"任务中心"),
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,            @"签到"),
-            item(@"/message",           @"zhanneixin",                  MailBoxTableViewController.className,         MM_站内信,           @"站内信"),
+            item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.className,         MM_站内信,           @"站内信"),
             item(@"/activity",          @"youhui1",                     UGPromotionsController.className,               MM_优惠活动_默认,     @"优惠活动"),
             item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,           @"聊天室"),
             item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,         @"推广收益"),
@@ -197,7 +197,7 @@ UGSystemConfigModel *currentConfig = nil;
 }
 - (MobileMenuType)type {
     if (_type == MM_我的_默认) {
-		if (Skin1.isBlack) {
+		if (Skin1.isGPK) {
             return MM_我的_亮黑;
 
 		} else if ([Skin1.skitType containsString:@"六合"]) {
@@ -214,10 +214,10 @@ UGSystemConfigModel *currentConfig = nil;
     if (_type == MM_推广收益 && UGLoginIsAuthorized() && !UserI.isAgent) {
         return MM_申请代理;
     }
-    if (_type == MM_优惠活动_默认 && Skin1.isBlack) {
+    if (_type == MM_优惠活动_默认 && Skin1.isGPK) {
         return MM_优惠活动_亮黑;
     }
-    if (_type == MM_购彩大厅_默认 && Skin1.isBlack) {
+    if (_type == MM_购彩大厅_默认 && Skin1.isGPK) {
         return MM_购彩大厅_亮黑;
     }
 
@@ -226,7 +226,7 @@ UGSystemConfigModel *currentConfig = nil;
 - (NSString *)clsName {
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
     if (rpm) {
-        return ReactNativeVC.className;
+        return rpm.vcName2.length ? NSClassFromString(rpm.vcName2) : ReactNativeVC.className;
     }
     if (_status) {
         return @"LHStayTunedVC";
@@ -296,6 +296,7 @@ UGSystemConfigModel *currentConfig = nil;
     }
     else if (self.type == MM_真人视讯 || self.type == MM_棋牌电子) {
         [SVProgressHUD showWithStatus:nil];
+        WeakSelf;
         [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD dismiss];
@@ -308,10 +309,10 @@ UGSystemConfigModel *currentConfig = nil;
                     temp;
                 });
                 UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
-                vc.title = self.name;
-                if (self.type == MM_真人视讯) {
+                vc.title = weakSelf.name;
+                if (weakSelf.type == MM_真人视讯) {
                     vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"real" keyPath:@"category"].games error:nil];    // 真人
-                } else if (self.type == MM_棋牌电子) {
+                } else if (weakSelf.type == MM_棋牌电子) {
                     NSMutableArray *temp = @[].mutableCopy;
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"card" keyPath:@"category"].games error:nil]];    // 棋牌
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"game" keyPath:@"category"].games error:nil]];    // 电子

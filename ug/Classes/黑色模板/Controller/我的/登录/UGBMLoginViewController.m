@@ -17,7 +17,7 @@
 @interface UGBMLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
     NSString *ggCode;
-    NSString *gCheckUserName;
+    
 }
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webBgViewHeightConstraint;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UGImgVcodeModel *imgVcodeModel;
 @property (nonatomic, assign) NSInteger errorTimes;
+@property (nonatomic, strong)NSString *gCheckUserName;
 @end
 
 @implementation UGBMLoginViewController
@@ -182,6 +183,12 @@
             return ;
 
         }
+//        if ([UGSystemConfigModel  currentConfig].loginVCode) {
+//            if (!self.imgVcodeModel) {
+//                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
+//                return ;
+//            }
+//        }
 
         NSDictionary *params = @{@"usr":subTextField(@"账号txt").text,
                                  @"pwd":[UGEncryptUtil md5:subTextField(@"密码txt").text],
@@ -199,7 +206,7 @@
             
         }
         [SVProgressHUD showWithStatus:@"正在登录..."];
-    
+        WeakSelf;
         [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
             
             
@@ -241,22 +248,22 @@
                 }
               
                 if (isGoRoot) {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                 } else {
-                    [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
+                    [weakSelf.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
                     UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
                     vc.fromVC = @"fromLoginViewController";
-                    [self.navigationController pushViewController:vc animated:YES];
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
                
             } failure:^(id msg) {
 
-                self.errorTimes += 1;
-                if (self.errorTimes == 4) {
+                weakSelf.errorTimes += 1;
+                if (weakSelf.errorTimes == 4) {
                     if (![UGSystemConfigModel  currentConfig].loginVCode) {
-                        self.webBgView.hidden = NO;
-                        self.webBgViewHeightConstraint.constant = 120;
-                        [self webLoadURL];
+                        weakSelf.webBgView.hidden = NO;
+                        weakSelf.webBgViewHeightConstraint.constant = 120;
+                        [weakSelf webLoadURL];
                     }
                 }
                 UGUserModel *user = (UGUserModel*) model.data;
@@ -265,18 +272,18 @@
                 
                 if (intGgCheck == 1) {
                     
-                    self->gCheckUserName = subTextField(@"账号txt").text;
-                   [self showLeeView];
+                    weakSelf.gCheckUserName = subTextField(@"账号txt").text;
+                   [weakSelf showLeeView];
                 }
-                if ([subTextField(@"账号txt").text isEqualToString:self->gCheckUserName]) {
+                if ([subTextField(@"账号txt").text isEqualToString:weakSelf.gCheckUserName]) {
                     
-                    [self showLeeView];
+                    [weakSelf showLeeView];
                     
                 }
                
-                if (self.webBgView.hidden == NO) {
-                    [self.webView reload];
-                    self.imgVcodeModel = nil;
+                if (weakSelf.webBgView.hidden == NO) {
+                    [weakSelf.webView reload];
+                    weakSelf.imgVcodeModel = nil;
                 }
                 
                 [SVProgressHUD showErrorWithStatus:msg];
@@ -444,29 +451,29 @@
 
 // 获取系统配置
 - (void)getSystemConfig {
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
        
         [CMResult processWithResult:model success:^{
-            
-            NSLog(@"model = %@",model);
+
             
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
 
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
-            FastSubViewCode(self.view);
+            FastSubViewCode(weakSelf.view);
 //            [self.bottomLabel setText:title];
             subLabel(@"标识label").text = title;
             
             NSLog(@"登录增加了滑动验证码配置==%d",[UGSystemConfigModel  currentConfig].loginVCode);
             
             if ([UGSystemConfigModel  currentConfig].loginVCode) {
-                self.webBgView.hidden = NO;
-                self.webBgViewHeightConstraint.constant = 120;
-                [self webLoadURL];
+                weakSelf.webBgView.hidden = NO;
+                weakSelf.webBgViewHeightConstraint.constant = 120;
+                [weakSelf webLoadURL];
             } else {
-                self.webBgView.hidden = YES;
-                self.webBgViewHeightConstraint.constant = 0.1;
+                weakSelf.webBgView.hidden = YES;
+                weakSelf.webBgViewHeightConstraint.constant = 0.1;
             }
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {

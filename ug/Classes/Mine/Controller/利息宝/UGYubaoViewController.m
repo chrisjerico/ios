@@ -114,9 +114,9 @@
         self.waveView.realWaveColor = RGBA(135 , 135 ,135, 1);
     }
     else {
-		[_yyBgView setBackgroundColor:Skin1.bgColor];
-		self.waveBotomView.backgroundColor =  Skin1.bgColor;
-		self.waveView.realWaveColor =  Skin1.bgColor;
+        [_yyBgView setBackgroundColor:Skin1.yubaoBgColor ? : Skin1.bgColor];
+		self.waveBotomView.backgroundColor = Skin1.yubaoBgColor ? : Skin1.bgColor;
+		self.waveView.realWaveColor = Skin1.yubaoBgColor ? : Skin1.bgColor;
 	}
 }
 - (void)viewDidLoad {
@@ -193,11 +193,11 @@
 }
 
 - (void)getYuebaoInfo {
-	
+    WeakSelf;
 	[CMNetwork getYuebaoInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
-			self.infoModel = model.data;
-			[self setupInfo];
+			weakSelf.infoModel = model.data;
+			[weakSelf setupInfo];
 		} failure:^(id msg) {
 			[SVProgressHUD dismiss];
 		}];

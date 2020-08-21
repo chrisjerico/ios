@@ -136,13 +136,13 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 		[CMResult processWithResult:model success:^{
 			
 			[SVProgressHUD dismiss];
-			 self.originalArr =[NSMutableArray new];
+			 weakSelf.originalArr =[NSMutableArray new];
 			NSDictionary *data =  model.data;
 			NSArray *list = [data objectForKey:@"list"];
 			weakSelf.originalArr =  [UGinviteLisModel arrayOfModelsFromDictionaries:list error:nil];
 			[weakSelf bind:weakSelf.originalArr];
 			
-			[self.rootScrollView.mj_header endRefreshing];
+			[weakSelf.rootScrollView.mj_header endRefreshing];
 			
 		} failure:^(id msg) {
 			[SVProgressHUD showErrorWithStatus:msg];

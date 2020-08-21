@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UILabel *totalBetAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraints;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraints;
 
 @property (nonatomic, strong) NSMutableArray <UGBetsRecordModel *> *dataArray;
 @property(nonatomic, assign) int pageSize;
@@ -33,6 +35,14 @@
     self.tableView.rowHeight = 50.0;
     //    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 220, 0);
     self.bottomView.backgroundColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.6];
+    
+    if ([CMCommon isPhoneX]) {
+        self.bottomViewHeightConstraints.constant = 70;
+        self.bottomViewBottomConstraints.constant = 85;
+    } else {
+        self.bottomViewHeightConstraints.constant = 50;
+        self.bottomViewBottomConstraints.constant = 60;
+    }
     
     [self setupRefreshView];
     [self setupTotalAmountLabelTextColor];
@@ -57,9 +67,10 @@
     _loadData = loadData;
     if (loadData && self.startDate) {
         // 马上进入刷新状态
+        __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
             // UI更新代码
-            [self.tableView.mj_header beginRefreshing];
+            [__self.tableView.mj_header beginRefreshing];
         });
         
     }
@@ -77,31 +88,32 @@
         @"token":[UGUserModel currentUser].sessid,
     };
     NSLog(@"params= %@",params);
+    __weakSelf_(__self);
     [CMNetwork ticketlotteryStatisticsUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         
         NSLog(@"data= %@",model.data);
         [CMResult processWithResult:model success:^{
             
             if (!model.data) {
-                [self.dataArray removeAllObjects];
-                [self.tableView reloadData];
+                [__self.dataArray removeAllObjects];
+                [__self.tableView reloadData];
                 return ;
             }
             UGBetsRecordListModel *listModel = model.data;
             NSArray *array = listModel.tickets;
-            self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总笔数：%@",listModel.totalBetCount];
-            self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
-            [self setupTotalAmountLabelTextColor];
-            [self setupWinAmountLabelTextColor];
-            [self.dataArray removeAllObjects];
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
+            __self.totalBetAmountLabel.text = [NSString stringWithFormat:@"总笔数：%@",listModel.totalBetCount];
+            __self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
+            [__self setupTotalAmountLabelTextColor];
+            [__self setupWinAmountLabelTextColor];
+            [__self.dataArray removeAllObjects];
+            [__self.dataArray addObjectsFromArray:array];
+            [__self.tableView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
         
-        if ([self.tableView.mj_header isRefreshing]) {
-            [self.tableView.mj_header endRefreshing];
+        if ([__self.tableView.mj_header isRefreshing]) {
+            [__self.tableView.mj_header endRefreshing];
         }
         
 
@@ -121,13 +133,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    FastSubViewCode(cell.contentView);
+    if (OBJOnceToken(cell)) {
+        subLabel(@"时间Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"星期Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"笔数Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"中奖笔数Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"中奖金额Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+        subLabel(@"输赢Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : [UIColor blackColor];
+    }
     if (Skin1.isBlack) {
         cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : Skin1.bgColor;
     } else {
         cell.backgroundColor = indexPath.row%2 ? Skin1.textColor4 : APP.BackgroundColor;
     }
     UGBetsRecordModel *pm = self.dataArray[indexPath.row];
-    FastSubViewCode(cell.contentView);
     subLabel(@"时间Label").text = pm.date;
     subLabel(@"星期Label").text = pm.dayOfWeek;
     subLabel(@"笔数Label").text = pm.betCount;

@@ -105,12 +105,13 @@
 - (void)getCardInfo {
     
     [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
     [CMNetwork getBankCardInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD showSuccessWithStatus:model.msg];
             [UGCardInfoModel setCurrentBankCardInfo:model.data];
             UGCardInfoModel *card = model.data;
-            self.cardInfoLabel.text = [NSString stringWithFormat:@"%@,尾号%@，%@",card.bankName,[card.bankCard substringFromIndex:card.bankCard.length - 4],card.ownerName];
+            weakSelf.cardInfoLabel.text = [NSString stringWithFormat:@"%@,尾号%@，%@",card.bankName,[card.bankCard substringFromIndex:card.bankCard.length - 4],card.ownerName];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
@@ -131,17 +132,18 @@
 }
 
 - (IBAction)withdrawalClick:(id)sender {
+    WeakSelf;
     ck_parameters(^{
-        ck_parameter_non_empty(self.amountTextF.text, @"请输入取款金额");
-        ck_parameter_non_empty(self.pwdTextF.text, @"请输入取款密码");
+        ck_parameter_non_empty(weakSelf.amountTextF.text, @"请输入取款金额");
+        ck_parameter_non_empty(weakSelf.pwdTextF.text, @"请输入取款密码");
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
         [self.view endEditing:YES];
         
         UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        if (self.amountTextF.text.floatValue < config.minWithdrawMoney.floatValue ||
-            self.amountTextF.text.floatValue > config.maxWithdrawMoney.floatValue) {
+        if (weakSelf.amountTextF.text.floatValue < config.minWithdrawMoney.floatValue ||
+            weakSelf.amountTextF.text.floatValue > config.maxWithdrawMoney.floatValue) {
             [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"单笔取款金额范围：%@-%@",[config.minWithdrawMoney removeFloatAllZero],[config.maxWithdrawMoney removeFloatAllZero]]];
             return ;
         }
@@ -156,13 +158,13 @@
         [CMNetwork withdrawApplytWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD showSuccessWithStatus:model.msg];
-                self.amountTextF.text = nil;
-                self.pwdTextF.text = nil;
+                weakSelf.amountTextF.text = nil;
+                weakSelf.pwdTextF.text = nil;
                 //发送通知给取款记录
                 SANotificationEventPost(UGNotificationWithdrawalsSuccess, nil);
                 
-                if (self.withdrawSuccessBlock) {
-                    self.withdrawSuccessBlock();
+                if (weakSelf.withdrawSuccessBlock) {
+                    weakSelf.withdrawSuccessBlock();
                 }
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];

@@ -1,17 +1,16 @@
 //
-//  UGMailBoxTableViewController.h
-//  ug
+//  MailBoxTableViewController.h
+//  UGBWApp
 //
-//  Created by ug on 2019/5/7.
-//  Copyright © 2019 ug. All rights reserved.
-//  
+//  Created by ug on 2020/6/19.
+//  Copyright © 2020 ug. All rights reserved.
+//
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGMailBoxTableViewController : UGTableViewController
-
+@interface UGMailBoxTableViewController : UIViewController
 
 @end
 

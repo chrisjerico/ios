@@ -148,14 +148,14 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 								 @"money":amount,
 								 @"token":[UGUserModel currentUser].sessid,
 		};
-		
+        WeakSelf;
 		[CMNetwork manualTransferWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 			[CMResult processWithResult:model success:^{
 				[SVProgressHUD showSuccessWithStatus:model.msg];
 				SANotificationEventPost(UGNotificationGetUserInfo, nil);
-				self.transferOutLabel.text = nil;
-				self.transferInLabel.text = nil;
-				self.amountTextF.text = nil;
+				weakSelf.transferOutLabel.text = nil;
+				weakSelf.transferInLabel.text = nil;
+				weakSelf.amountTextF.text = nil;
 				
 				if (!outModel || !intModel)
 					SANotificationEventPost(UGNotificationGetUserInfo, nil);
@@ -163,7 +163,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 				// 刷新ui
 				intModel.balance = [AppDefine stringWithFloat:(intModel.balance.doubleValue + amount.doubleValue) decimal:4];
 				outModel.balance = [AppDefine stringWithFloat:(outModel.balance.doubleValue - amount.doubleValue) decimal:4];
-				[self.tableView reloadData];
+				[weakSelf.tableView reloadData];
 			} failure:^(id msg) {
 				[SVProgressHUD showErrorWithStatus:msg];
 			}];
@@ -245,9 +245,9 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 			[SVProgressHUD dismiss];
 			__self.dataArray = model.data;
 			[__self.transferArray addObject:@"我的钱包"];
-			for (UGPlatformGameModel *game in self.dataArray) {
+			for (UGPlatformGameModel *game in __self.dataArray) {
 				[__self.transferArray addObject:game.title];
-				//                [self checkRealBalance:game];
+				//                [__self checkRealBalance:game];
 			}
 			[__self.tableView reloadData];
 		} failure:^(id msg) {
@@ -260,6 +260,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 	NSDictionary *parmas = @{@"id":game.gameId,
 							 @"token":[UGUserModel currentUser].sessid
 	};
+    __weakSelf_(__self);
 	[CMNetwork checkRealBalanceWithParams:parmas completion:^(CMResult<id> *model, NSError *err) {
 		
 		[CMResult processWithResult:model success:^{
@@ -270,7 +271,7 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 			[SVProgressHUD dismiss];
 		}];
 		game.refreshing = NO;
-		[self.tableView reloadData];
+		[__self.tableView reloadData];
 	}];
 	
 }

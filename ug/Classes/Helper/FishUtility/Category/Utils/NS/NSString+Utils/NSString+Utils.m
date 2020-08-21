@@ -363,6 +363,18 @@
     return count;
 }
 
++ (NSString *)convertToCamelCaseFromSnakeCase:(NSString *)key {
+    NSMutableString *str = [NSMutableString stringWithString:key];
+    while ([str containsString:@"_"]) {
+        NSRange range = [str rangeOfString:@"_"];
+        if (range.location + 1 < [str length]) {
+            char c = [str characterAtIndex:range.location+1];
+            [str replaceCharactersInRange:NSMakeRange(range.location, range.length+1) withString:[[NSString stringWithFormat:@"%c",c] uppercaseString]];
+        }
+    }
+    return str;
+}
+
 @end
 
 

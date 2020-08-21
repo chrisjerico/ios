@@ -13,7 +13,12 @@
 #import "RememberPass.h"
 #import "WHC_ModelSqlite.h"
 #import "RoomChatModel.h"
+#import "UGGameplayModel.h"
+#import "UGBetDetailView.h"
+
 @interface UGChatViewController ()
+
+@property (nonatomic,retain)NSArray * myroomAry;
 @property (nonatomic) UIButton *closeBtn;
 @end
 
@@ -38,6 +43,8 @@
         [self setupTitleView];
     }
     
+    
+    [self chatRoomName];
 	// 设置URL
 	__weakSelf_(__self);
 	{
@@ -62,7 +69,6 @@
 	
 	// 返回按钮
 	{
-		__weakSelf_(__self);
 		_closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 		_closeBtn.frame = CGRectMake(APP.Width-80, APP.StatusBarHeight, 40, 45);
 		[_closeBtn setImage:[UIImage imageNamed:@"c_login_close_fff"] forState:UIControlStateNormal];
@@ -78,8 +84,84 @@
 	
 	[self goShareBetJson];
 	
-	
+    // 聊天室跟注功能
+    self.didReceiveScriptMessage = ^(NSString *name, NSDictionary *body) {
+        if (![body isKindOfClass:[NSDictionary class]]) return;
+        [__self followBet:body];
+    };
 }
+
+// 跟注
+- (void)followBet:(NSDictionary *)betInfo {
+    [SVProgressHUD show];
+    NSString *gameId = betInfo[@"gameId"];// 彩种
+    __block NSString *paneCode = betInfo[@"paneCode"]; // 玩法
+    
+    // 第一步：获取玩法赔率
+    [CMNetwork getGameDatasWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGPlayOddsModel *play = model.data;
+            
+            // 第二步：遍历找到对应号码数据
+            NSMutableArray <UGGameBetModel *>*nums = nil;
+            for (UGGameplayModel *gpm in play.playOdds) {
+                NSMutableArray <UGGameBetModel *>*gbms = @[].mutableCopy;
+                NSMutableArray *temp = [betInfo[@"betBean"] mutableCopy];
+                for (UGGameplaySectionModel *gsm in gpm.list) {
+                    for (NSDictionary *dict in [temp copy]) {
+                        UGGameBetModel *gbm = nil;
+                        gbm = gbm ? : [gsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        gbm = gbm ? : [gsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        gbm = gbm ? : [gsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        
+                        for (UGGameplaySectionModel *subGsm in gsm.ezdwlist) {
+                            gbm = gbm ? : [subGsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                            gbm = gbm ? : [subGsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                            gbm = gbm ? : [subGsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                        }
+                        if (gbm) {
+                            gbm.money = dict[@"money"];
+                            gbm.odds = dict[@"odds"];
+                            NSString *subName = gsm.alias.length ? gsm.alias : gsm.name;
+                            if ([subName hasPrefix:gpm.name]) {
+                                gbm.title = subName;
+                            } else {
+                                gbm.title = _NSString(@"%@-%@", gpm.name, subName);
+                            }
+                            
+                            [gbms addObject:gbm];
+                            [temp removeObject:dict];
+                            // 第三步：找到玩法paneCode
+                            paneCode = paneCode.length ? paneCode : gsm.code;
+                        }
+                    }
+                }
+                if (nums.count < gbms.count) {
+                    nums = gbms;
+                }
+            }
+            
+            // 第四步：获取当前期数信息
+            [CMNetwork getNextIssueWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    UGNextIssueModel *nextIssueModel = model.data;
+                    
+                    // 最后一步：弹框让用户跟注
+                    UGBetDetailView *bdv = [[UGBetDetailView alloc] init];
+                    bdv.dataArray = nums;
+                    bdv.nextIssueModel = nextIssueModel;
+                    bdv.code = paneCode;
+                    [bdv show];
+                    
+                } failure:nil];
+                [SVProgressHUD dismiss];
+            }];
+            
+        } failure:nil];
+        [SVProgressHUD dismiss];
+    }];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
@@ -110,10 +192,11 @@
 - (void)setChangeRoomJson:(NSString *)changeRoomJson {
 	_changeRoomJson = changeRoomJson;
 	NSLog(@"changeRoomJson = %@", changeRoomJson);
-	
+	__weakSelf_(__self);
+    
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-		//需要在主线程执行的代码
-		[self goChangeRoomJS];
+            // 需要延迟执行的代码
+            [__self goChangeRoomJS];
 	}];
 }
 
@@ -130,7 +213,7 @@
 					[__self.tgWebView evaluateJavaScript:__self.shareBetJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 						NSLog(@"分享结果：%@----%@", result, error);
 						SysConf.hasShare = NO;
-//						                           [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
+//                        [CMCommon showTitle:[NSString stringWithFormat:@"分享结果成功！%@,hasShare =%d",__self.shareBetJson,SysConf.hasShare]];
 						NSLog(@"分享结果：%@", __self.shareBetJson);
 						
 						
@@ -149,7 +232,7 @@
 }
 
 -(void)goChangeRoomJS{
-	// 每秒判断一下 window.canShare 参数为YES才进行分享
+	// 每秒判断一下 window.canShare 参数为YES才进行切房间
 	if (_changeRoomJson.length) {
 		__weakSelf_(__self);
 		__block NSTimer *__timer = nil;
@@ -161,15 +244,25 @@
 				if ([obj isKindOfClass:[NSNumber class]] && [obj boolValue]) {
 					[__self.tgWebView evaluateJavaScript:__self.changeRoomJson completionHandler:^(id _Nullable result, NSError * _Nullable error) {
 						NSLog(@"切换结果：%@----%@", result, error);
-//                        [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@   hasShare = %d ",__self.changeRoomJson,SysConf.hasShare]];
+                      
 						
-						//                           [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-						//需要在主线程执行的代码
-						
-						if (__self.shareBetJson && SysConf.hasShare) {
-							[__self goShareBetJson];
-						}
-						//                           }];
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            //需要在主线程执行的代码
+//                            [CMCommon showSystemTitle:[NSString stringWithFormat:@"切换成功！%@   hasShare = %d ",__self.changeRoomJson,SysConf.hasShare]];
+                            
+                            if (__self.shareBetJson && SysConf.hasShare) {
+                                    // 需要延迟执行的代码
+                                
+                                dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0/*延迟执行时间*/ * NSEC_PER_SEC));
+                                
+                                dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                                    // 需要延迟执行的代码
+                                       [__self goShareBetJson];
+                                });
+                                 
+                                
+                            }
+                        }];
 						
 					}];
 					[__timer invalidate];
@@ -372,6 +465,32 @@
                         
                     }
                 }];
+            }
+            
+        }
+    };
+}
+
+
+-(void)chatRoomName {
+    __weakSelf_(__self);
+    //得到线上配置的聊天室
+    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+        if (!sm.error) {
+            NSLog(@"model.data = %@",sm.responseObject[@"data"]);
+            NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+            self.myroomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+            
+            if (![CMCommon stringIsNull:self.roomId]) {
+                
+                for (int i = 0; i<self.myroomAry.count; i++) {
+                    RoomChatModel *obj= [self.myroomAry objectAtIndex:i];
+                    
+                    if ([obj.roomId isEqualToString:self.roomId]) {
+                        [self setTitle:obj.roomName];
+                        break ;
+                    }
+                }
             }
             
         }

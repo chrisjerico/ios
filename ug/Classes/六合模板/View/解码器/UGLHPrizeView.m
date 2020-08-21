@@ -20,6 +20,7 @@
 @interface UGLHPrizeView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
     
 }
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 //六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *liuheResultContentView;                    /**<   六合开奖View*/
 @property (weak, nonatomic) IBOutlet UILabel *lotteryTitleLabel;                        /**<   XX期开奖结果*/
@@ -33,7 +34,12 @@
 @property (nonatomic, strong) UGLHlotteryNumberModel *lhModel;
 
 @property (nonatomic)  BOOL hormIsOpen;                                                /**<  喇叭是否开启*/
-@property (nonatomic,strong)  CMAudioPlayer *player ;                                  /**<  播放器*/
+@property (nonatomic,strong)  CMAudioPlayer *player ;
+
+
+/**<  播放器*/
+
+@property (nonatomic,strong)  NSString *myGid;
 
 //--------------------------------------------
 @property (nonatomic,strong) UGLHlotteryNumberModel *lastLHModel;
@@ -54,7 +60,7 @@
 
 - (instancetype)UGLHPrizeView {
     NSBundle *bundle=[NSBundle mainBundle];
-    NSArray *objs=[bundle loadNibNamed:@"UGLHPrizeView" owner:nil options:nil];
+    NSArray *objs=[bundle loadNibNamed:@"UGLHPrizeView" owner:self options:nil];
     return [objs firstObject];
 }
 
@@ -63,37 +69,44 @@
 {
     self = [super initWithCoder:coder];
     if (!self.subviews.count) {
-        UGLHPrizeView *v = [[UGLHPrizeView alloc] initView];
-        [self addSubview:v];
-        [v mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+//        UGLHPrizeView *v = [[UGLHPrizeView alloc] initView];
+//        [self addSubview:v];
+
+        self.contentView = [self UGLHPrizeView];
+        CGRect frame = CGRectMake(0, 0, APP.Width*0.9, 160);
+        self.frame = frame;
+        self.contentView.frame = frame;
+        [self addSubview:self.contentView];
+        [self initSubView];
     }
     return self;
 }
 
 - (instancetype)initView {
     if (self = [super init]) {
-        self = [self UGLHPrizeView];
-        //六合开奖
-        
-        _hormIsOpen = YES;
-        [_lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
-        _countDownForLabel = [[CountDown alloc] init];
-        _player = [[CMAudioPlayer alloc] init];
-        self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
-        self.lotteryCollectionView.dataSource = self;
-        self.lotteryCollectionView.delegate = self;
-        self.lotteryCollectionView.tagString= @"六合开奖";
-        [self.lotteryCollectionView setBounces:NO];
-        [self.lotteryCollectionView setScrollEnabled:NO];
-        [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
-        [self.lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
-        [self getLotteryNumberList];
+        self.contentView = [self UGLHPrizeView];
+        [self addSubview:self.contentView];
+        [self initSubView];
+       
     }
     return self;
 }
 
+-(void)initSubView{
+    //六合开奖
+    _hormIsOpen = YES;
+    [_lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
+    _countDownForLabel = [[CountDown alloc] init];
+    _player = [[CMAudioPlayer alloc] init];
+    self.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
+    self.lotteryCollectionView.dataSource = self;
+    self.lotteryCollectionView.delegate = self;
+    self.lotteryCollectionView.tagString= @"六合开奖";
+    [self.lotteryCollectionView setBounces:NO];
+    [self.lotteryCollectionView setScrollEnabled:NO];
+    [self.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
+    [self.lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
+}
 #pragma mark UICollectionView datasource
 ////组个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -102,7 +115,7 @@
 //组内成员个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     int rows = 0;
-   
+    
     if (_lhModel.numbersArrary.count<5) {
         rows = (int)_lhModel.numbersArrary.count;
     } else {
@@ -114,7 +127,7 @@
 
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-     {
+    {
         //六合开奖
         UGLHLotteryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell" forIndexPath:indexPath];
         FastSubViewCode(cell);
@@ -129,7 +142,7 @@
             [subImageView(@"球图") setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon_%@", [_lhModel.numColorArrary objectAtIndex:indexPath.row-1]]]];
         }
         
-
+        
         if (indexPath.row == 6) {
             subImageView(@"球图").hidden = YES;
             subLabel(@"球内字").hidden = YES;
@@ -166,8 +179,8 @@
 
 ////cell size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-        CGSize size = {40, 70};
-        return size;
+    CGSize size = {40, 70};
+    return size;
 }
 ////item偏移
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -184,73 +197,88 @@
 ////六合开奖  当前开奖信息
 - (void)getLotteryNumberList {
     
-
+    
     NSDictionary *params ;
     
     if ([CMCommon stringIsNull:self.gid]) {
         params = @{
-            @"token":[UGUserModel currentUser].sessid,
+            
         };
     } else {
         params = @{
-            @"token":[UGUserModel currentUser].sessid,
+          
             @"gameId":self.gid
         };
     }
+    WeakSelf;
     [CMNetwork lotteryNumberWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            self.lhModel = nil;
-            NSLog(@"model= %@",model.data);
-            self.lhModel = (UGLHlotteryNumberModel *)model.data;
-            self.lhModel.numSxArrary = [self->_lhModel.numSx componentsSeparatedByString:@","];
-            self.lhModel.numbersArrary = [self->_lhModel.numbers componentsSeparatedByString:@","];
-            self.lhModel.numColorArrary = [self->_lhModel.numColor componentsSeparatedByString:@","];
-            NSLog(@"count = %lu",(unsigned long)self->_lhModel.numbersArrary.count);
             
-            
-            NSLog(@"lotteryStr = %@",self.lhModel.lotteryStr);
-            
-            if ([CMCommon stringIsNull:self.lhModel.lotteryStr]) {
-                if (self.lhModel.numbersArrary.count) {
-                    [self.lottyLabel setHidden:YES];
-                    [self.lotteryCollectionView reloadData];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                // UI更新代码
+                FastSubViewCode(weakSelf);
+                if (!weakSelf.lotteryCollectionView) {
+                    weakSelf.hormIsOpen = YES;
+                    weakSelf.lotteryUISwitch = (UISwitch *)[self viewWithTag:10];
+                    [weakSelf.lotteryUISwitch setOn:SysConf.lhcdocMiCard] ;
+                    weakSelf.lotteryCollectionView = (UICollectionView *)[self viewWithTag:11];
+                    weakSelf.lotteryCollectionView.backgroundColor = [UIColor whiteColor];
+                    weakSelf.lotteryCollectionView.dataSource = self;
+                    weakSelf.lotteryCollectionView.delegate = self;
+                    weakSelf.lotteryCollectionView.tagString= @"六合开奖";
+                    [weakSelf.lotteryCollectionView setBounces:NO];
+                    [weakSelf.lotteryCollectionView setScrollEnabled:NO];
+                    [weakSelf.lotteryCollectionView registerNib:[UINib nibWithNibName:@"UGLHLotteryCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGLHLotteryCollectionViewCell"];
+                    weakSelf.player = [[CMAudioPlayer alloc] init];
                 }
-            }
-            else{
-                if (self.lhModel.numbersArrary.count) {
-                    [self.lottyLabel setHidden:YES];
-                    [self.lotteryCollectionView reloadData];
+                
+              
+                
+                weakSelf.lhModel = nil;
+                NSLog(@"model= %@",model.data);
+                weakSelf.lhModel = (UGLHlotteryNumberModel *)model.data;
+                weakSelf.lhModel.numSxArrary = [weakSelf.lhModel.numSx componentsSeparatedByString:@","];
+                weakSelf.lhModel.numbersArrary = [weakSelf.lhModel.numbers componentsSeparatedByString:@","];
+                weakSelf.lhModel.numColorArrary = [weakSelf.lhModel.numColor componentsSeparatedByString:@","];
+                
+                if ([CMCommon stringIsNull:weakSelf.lhModel.lotteryStr]) {
+                    if (weakSelf.lhModel.numbersArrary.count) {
+                        [subLabel(@"准备开奖Label") setHidden:YES];
+                        [weakSelf.lotteryCollectionView reloadData];
+                    }
                 }
                 else{
-                    self.lottyLabel.text = self.lhModel.lotteryStr;
-                    [self.lottyLabel setHidden:NO];
+                    if (weakSelf.lhModel.numbersArrary.count) {
+                        [subLabel(@"准备开奖Label") setHidden:YES];
+                        [weakSelf.lotteryCollectionView reloadData];
+                    }
+                    else{
+                        subLabel(@"准备开奖Label").text = weakSelf.lhModel.lotteryStr;
+                        [subLabel(@"准备开奖Label") setHidden:NO];
+                    }
                 }
-
+            
+                NSString *nper = [self.lhModel.issue  substringFromIndex:4];
+                if ([CMCommon stringIsNull:self.lhModel.lhcdocLotteryNo]) {
+                    subLabel(@"开奖结果Label").text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+                } else {
+                    subLabel(@"开奖结果Label").text = [NSString stringWithFormat:@"第%@期开奖结果",self.lhModel.lhcdocLotteryNo];
+                }
                 
-            }
+                [CMLabelCommon setRichNumberWithLabel:subLabel(@"开奖结果Label") Color:[UIColor redColor] FontSize:17.0];
+                NSArray *endTimeArray = [weakSelf.lhModel.endtime componentsSeparatedByString:@" "];
+                subLabel(@"下期开奖日期Label").text = [endTimeArray objectAtIndex:0];
+                
+                long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+                long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
+                [weakSelf startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
+                
+//                [subLabel(@"倒计时Label")setHidden:NO];
+//                subLabel(@"倒计时Label").text = @"我进来了";
 
-#ifdef DEBUG
-//            [self testKaiJiang];
-//            return ;
-#endif
+            }];
             
-            NSString *nper = [self.lhModel.issue  substringFromIndex:4];
-            if ([CMCommon stringIsNull:self.lhModel.lhcdocLotteryNo]) {
-                self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
-            } else {
-                self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",self.lhModel.lhcdocLotteryNo];
-            }
             
-            [CMLabelCommon setRichNumberWithLabel:self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
-            NSArray *endTimeArray = [self->_lhModel.endtime componentsSeparatedByString:@" "];
-            self.timeLabel.text = [endTimeArray objectAtIndex:0];
-
-            NSLog(@"self.lhModel.serverTime = %@",self.lhModel.serverTime);
-            NSLog(@"self.lhModel.endtime = %@",self.lhModel.endtime);
-            long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-            long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-            [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
-//            countkkk ++;
         } failure:^(id msg) {
             
         }];
@@ -262,30 +290,30 @@
 -(void)startLongLongStartStamp:(long long)strtLL longlongFinishStamp:(long long)finishLL{
     __weak __typeof(self) weakSelf= self;
     
-    if (_countDownForLabel) {
-        [_countDownForLabel destoryTimer];
-    }
-    
-    [_countDownForLabel countDownWithStratTimeStamp:strtLL finishTimeStamp:finishLL completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
 
-         [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
-    }];
+        [_countDownForLabel countDownWithStratTimeStamp:strtLL finishTimeStamp:finishLL completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
+                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                      [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
+                 }];
+           
+        }];
+
 }
 //六合开奖
 ///此方法用两个时间做参数进行倒计时
--(void)startDate:(NSDate *)startDate finishDate:(NSDate *)finishDate{
-    __weak __typeof(self) weakSelf= self;
-    if (_countDownForLabel) {
-        [_countDownForLabel destoryTimer];
-    }
-    [_countDownForLabel countDownWithStratDate:startDate finishDate:finishDate  completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
-
-        [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
-    }];
-}
+//-(void)startDate:(NSDate *)startDate finishDate:(NSDate *)finishDate{
+//    __weak __typeof(self) weakSelf= self;
+//    if (_countDownForLabel) {
+//        [_countDownForLabel destoryTimer];
+//    }
+//    [_countDownForLabel countDownWithStratDate:startDate finishDate:finishDate  completeBlock:^(NSInteger day, NSInteger hour, NSInteger minute, NSInteger second) {
+//
+//        [weakSelf refreshUIDay:day hour:hour minute:minute second:second];
+//    }];
+//}
 //六合开奖
 -(void)refreshUIDay:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second{
-
+    
     NSString *hourStr = @"";
     NSString *minuStr = @"";
     NSString *secondStr = @"";
@@ -296,8 +324,8 @@
             hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
         }
     }else{
-            hour = hour + 24*day;
-            hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
+        hour = hour + 24*day;
+        hourStr = [NSString stringWithFormat:@"%ld",(long)hour];
     }
     if (minute<10) {
         minuStr = [NSString stringWithFormat:@"0%ld",(long)minute];
@@ -309,10 +337,11 @@
     }else{
         secondStr = [NSString stringWithFormat:@"%ld",(long)second];
     }
+    FastSubViewCode(self);
     
-    self.countdownLabel.text = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minuStr,secondStr];
+    subLabel(@"倒计时Label").text = [NSString stringWithFormat:@"%@:%@:%@",hourStr,minuStr,secondStr];
     
-    if ([self.countdownLabel.text  isEqualToString:@"00:00:00"]) {
+    if ([subLabel(@"倒计时Label").text  isEqualToString:@"00:00:00"]) {
         
         [self lotterTimeAction ];
     }
@@ -320,7 +349,9 @@
 //六合开去历史记录
 - (IBAction)historyAcion:(id)sender {
     UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
-    recordVC.gameId = self.lhModel.gameId;
+    NSLog(@"gid = 3%@",_gid);
+    NSLog(@"myGid =100 %@",[Global getInstanse].DZPid);
+    recordVC.gameId = [Global getInstanse].DZPid;
     [NavController1 pushViewController:recordVC animated:true];
     
 }
@@ -329,6 +360,10 @@
 - (IBAction)voiceAction:(UIButton*)sender {
     // 前提:在xib中设置按钮的默认与选中状态的背景图
     // 切换按钮的状态
+    
+    if (!_player) {
+        _player = [[CMAudioPlayer alloc] init];
+    }
     sender.selected = !sender.selected;
     
     if (sender.selected) { // 按下去了就不开启
@@ -354,17 +389,13 @@
     sessionModel.completionBlock = ^(CCSessionModel *sm) {
         NSNumber *cn = (NSNumber *)sm.responseObject[@"code"];
         if (!sm.error  && [cn intValue] == 0) {
-            NSLog(@"model= %@",sm.responseObject[@"code"]);
-            NSLog(@"获取开奖信息成功");
-            NSLog(@"model= %@",sm.responseObject[@"data"]);
             self.lhModel = nil;
-            
             UGLHlotteryNumberModel *model = (UGLHlotteryNumberModel *)[UGLHlotteryNumberModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
             model.numSxArrary = [model.numSx componentsSeparatedByString:@","];
             model.numbersArrary = [model.numbers componentsSeparatedByString:@","];
             model.numColorArrary = [model.numColor componentsSeparatedByString:@","];
             model.isOpen = self.lotteryUISwitch.isOn;
-            NSLog(@"model = %@",model);
+     
             self.lhModel = model;
             if (!model) {
                 return ;
@@ -375,43 +406,31 @@
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 需要在主线程执行的代码
-                
-                [self.lottyLabel setHidden:YES];
+                FastSubViewCode(self);
+                [subLabel(@"准备开奖Label") setHidden:YES];
                 [self.lotteryCollectionView reloadData];
                 if (self.lhModel.issue.length>4) {
                     NSString *nper = [self.lhModel.issue  substringFromIndex:4];
                     if ([CMCommon stringIsNull:model.lhcdocLotteryNo]) {
-                        self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
+                        subLabel(@"开奖结果Label").text = [NSString stringWithFormat:@"第%@期开奖结果",nper];
                     } else {
-                        self.lotteryTitleLabel.text = [NSString stringWithFormat:@"第%@期开奖结果",model.lhcdocLotteryNo];
+                        subLabel(@"开奖结果Label").text = [NSString stringWithFormat:@"第%@期开奖结果",model.lhcdocLotteryNo];
                     }
                     
                 }
                 
                 
-                [CMLabelCommon setRichNumberWithLabel:self.lotteryTitleLabel Color:[UIColor redColor] FontSize:17.0];
-#ifdef DEBUG
-                //                    if (count < 7) {
-                //                        model.isFinish = 0;
-                //                    }
-                //                    else{
-                //                        model.isFinish = 1;
-                //                    }
-#endif
+                [CMLabelCommon setRichNumberWithLabel:subLabel(@"开奖结果Label") Color:[UIColor redColor] FontSize:17.0];
+
                 if (model.isFinish == 1) {
-                    NSArray *endTimeArray = [self.lhModel.endtime componentsSeparatedByString:@" "];
-                    self.timeLabel.text = [endTimeArray objectAtIndex:0];
-                    long long startLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.serverTime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-                    long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:self.lhModel.endtime andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-                    [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
-                    
                     
                     self.lastLHModel = nil;
                     self.count = 0;
                     [self.timer invalidate];
                     self.timer = nil;
                     [self.countDownForLabel destoryTimer];
-                    [self getLotteryNumberList ];
+                    [self getLotteryNumberList];
+
                     
                 }
                 else
@@ -466,52 +485,36 @@
 -(void)lotterTimeAction{
     [self.timer invalidate];
     self.timer = nil;
-    
-    
-    [_lottyLabel setHidden:NO];
-    _timeLabel.text = @"开奖中";
-//    [_timeLabel setTextColor:[UIColor blackColor]];
-    _countdownLabel.text = @"开奖中";
-//    [_countdownLabel setTextColor:[UIColor blackColor]];
+    FastSubViewCode(self);
+    [subLabel(@"准备开奖Label") setHidden:NO];
+    subLabel(@"下期开奖日期Label").text = @"开奖中";
+    subLabel(@"倒计时Label").text = @"开奖中";
     [self setLhModel:nil];
+
     
-//    __weakSelf_(__self);
-//    __block UGLHlotteryNumberModel *lastLHModel = nil;
-//    __block int count = 0;
-    
-      self.lastLHModel = nil;
-       self.count = 0;
+    self.lastLHModel = nil;
+    self.count = 0;
     
     [self lhLotter];
-    
     if (!_timer) {
-          _timer = [NSTimer scheduledTimerWithInterval:6 repeats:true block:^(NSTimer *timer) {
-              [self lhLotter];
-            }];
-         
+        _timer = [NSTimer scheduledTimerWithInterval:6 repeats:true block:^(NSTimer *timer) {
+            [self lhLotter];
+        }];
+        
     }
     
-}
-//六合开奖 测试
--(void)testKaiJiang{
-    {//test
-        NSDate *currentDate = [NSDate date];//获取当前时间，日期
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSString *timeString = [dateFormatter stringFromDate:currentDate];
-        
-        NSDate *pastDate= [currentDate dateByAddingTimeInterval:3]; // 半小时前是-1800   1小时后是3600   1小时前是-3600
-        NSString *pastTimeString = [dateFormatter stringFromDate:pastDate];
-        long long startLongLong = [CMTimeCommon timeSwitchTimestamp:timeString andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-        long long finishLongLong = [CMTimeCommon timeSwitchTimestamp:pastTimeString andFormatter:@"YYYY-MM-dd HH:mm:ss"];
-        [self startLongLongStartStamp:startLongLong*1000 longlongFinishStamp:finishLongLong*1000];
-        
-    }
 }
 
 
 -(void)setGid:(NSString *)gid{
     _gid = gid;
-    [self getLotteryNumberList];
+    NSLog(@"gid = 2%@",_gid);
+    [[Global getInstanse] setDZPid:gid];
+    // 3.GCD
+    dispatch_async(dispatch_get_main_queue(), ^{
+       // UI更新代码
+        [self getLotteryNumberList];
+    });
+  
 }
 @end

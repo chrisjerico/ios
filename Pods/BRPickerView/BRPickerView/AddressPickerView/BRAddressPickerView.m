@@ -153,6 +153,8 @@
             self.provinceIndex = (provinceIndex > 0 && provinceIndex < self.provinceModelArr.count) ? provinceIndex : 0;
             self.selectProvinceModel = self.provinceModelArr.count > self.provinceIndex ? self.provinceModelArr[self.provinceIndex] : nil;
         } else {
+            self.provinceIndex = 0;
+            self.selectProvinceModel = self.provinceModelArr.count > 0 ? self.provinceModelArr[0] : nil;
             @weakify(self)
             [self.provinceModelArr enumerateObjectsUsingBlock:^(BRProvinceModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
                 @strongify(self)
@@ -160,10 +162,6 @@
                     self.provinceIndex = idx;
                     self.selectProvinceModel = model;
                     *stop = YES;
-                }
-                if (idx == self.provinceModelArr.count - 1) {
-                    self.provinceIndex = 0;
-                    self.selectProvinceModel = self.provinceModelArr.count > 0 ? self.provinceModelArr[0] : nil;
                 }
             }];
         }
@@ -176,6 +174,8 @@
             self.cityIndex = (cityIndex > 0 && cityIndex < self.cityModelArr.count) ? cityIndex : 0;
             self.selectCityModel = self.cityModelArr.count > self.cityIndex ? self.cityModelArr[self.cityIndex] : nil;
         } else {
+            self.cityIndex = 0;
+            self.selectCityModel = self.cityModelArr.count > 0 ? self.cityModelArr[0] : nil;
             @weakify(self)
             [self.cityModelArr enumerateObjectsUsingBlock:^(BRCityModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
                 @strongify(self)
@@ -183,10 +183,6 @@
                     self.cityIndex = idx;
                     self.selectCityModel = model;
                     *stop = YES;
-                }
-                if (idx == self.cityModelArr.count - 1) {
-                    self.cityIndex = 0;
-                    self.selectCityModel = self.cityModelArr.count > 0 ? self.cityModelArr[0] : nil;
                 }
             }];
         }
@@ -199,6 +195,8 @@
             self.areaIndex = (areaIndex > 0 && areaIndex < self.areaModelArr.count) ? areaIndex : 0;
             self.selectAreaModel = self.areaModelArr.count > self.areaIndex ? self.areaModelArr[self.areaIndex] : nil;
         } else {
+            self.areaIndex = 0;
+            self.selectAreaModel = self.areaModelArr.count > 0 ? self.areaModelArr[0] : nil;
             @weakify(self)
             [self.areaModelArr enumerateObjectsUsingBlock:^(BRAreaModel *  _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
                 @strongify(self)
@@ -207,27 +205,8 @@
                     self.selectAreaModel = model;
                     *stop = YES;
                 }
-                if (idx == self.areaModelArr.count - 1) {
-                    self.areaIndex = 0;
-                    self.selectAreaModel = self.areaModelArr.count > 0 ? self.areaModelArr[0] : nil;
-                }
             }];
         }
-    }
-    
-    // 注意必须先刷新UI，再设置默认滚动
-    [self.pickerView reloadAllComponents];
-    
-    // 滚动到指定行
-    if (self.pickerMode == BRAddressPickerModeProvince) {
-        [self.pickerView selectRow:self.provinceIndex inComponent:0 animated:YES];
-    } else if (self.pickerMode == BRAddressPickerModeCity) {
-        [self.pickerView selectRow:self.provinceIndex inComponent:0 animated:YES];
-        [self.pickerView selectRow:self.cityIndex inComponent:1 animated:YES];
-    } else if (self.pickerMode == BRAddressPickerModeArea) {
-        [self.pickerView selectRow:self.provinceIndex inComponent:0 animated:YES];
-        [self.pickerView selectRow:self.cityIndex inComponent:1 animated:YES];
-        [self.pickerView selectRow:self.areaIndex inComponent:2 animated:YES];
     }
 }
 
@@ -253,19 +232,18 @@
 #pragma mark - 地址选择器
 - (UIPickerView *)pickerView {
     if (!_pickerView) {
-        _pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, self.pickerStyle.titleBarHeight, SCREEN_WIDTH, self.pickerStyle.pickerHeight)];
+        CGFloat pickerHeaderViewHeight = self.pickerHeaderView ? self.pickerHeaderView.bounds.size.height : 0;
+        _pickerView = [[UIPickerView alloc]initWithFrame:CGRectMake(0, self.pickerStyle.titleBarHeight + pickerHeaderViewHeight, SCREEN_WIDTH, self.pickerStyle.pickerHeight)];
         _pickerView.backgroundColor = self.pickerStyle.pickerColor;
         _pickerView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
         _pickerView.dataSource = self;
         _pickerView.delegate = self;
-        _pickerView.showsSelectionIndicator = YES;
     }
     return _pickerView;
 }
 
-
 #pragma mark - UIPickerViewDataSource
-// 1.指定pickerview有几个表盘(几列)
+// 1.设置 pickerView 的列数
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     switch (self.pickerMode) {
         case BRAddressPickerModeProvince:
@@ -283,7 +261,7 @@
     }
 }
 
-// 2.指定每个表盘上有几行数据
+// 2.设置 pickerView 每列的行数
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (component == 0) {
         // 返回省个数
@@ -298,20 +276,12 @@
         return self.areaModelArr.count;
     }
     return 0;
-    
 }
 
 #pragma mark - UIPickerViewDelegate
-// 3.设置 pickerView 的 显示内容
+// 3.设置 pickerView 的显示内容
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view {
-    
-    // 设置分割线的颜色
-    for (UIView *subView in pickerView.subviews) {
-        if (subView && [subView isKindOfClass:[UIView class]] && subView.frame.size.height <= 1) {
-            subView.backgroundColor = self.pickerStyle.separatorColor;
-        }
-    }
-    
+    // 1.自定义 row 的内容视图
     UILabel *label = (UILabel *)view;
     if (!label) {
         label = [[UILabel alloc]init];
@@ -335,10 +305,83 @@
         label.text = model.name;
     }
     
+    // 2.设置选择器中间选中行的样式
+    [self setPickerSelectRowStyle:pickerView titleForRow:row forComponent:component];
+    
     return label;
 }
 
-// 4.选中时回调的委托方法，在此方法中实现省份和城市间的联动
+#pragma mark - 设置选择器中间选中行的样式
+- (void)setPickerSelectRowStyle:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    // 1.设置分割线的颜色
+    for (UIView *subView in pickerView.subviews) {
+        if (subView && [subView isKindOfClass:[UIView class]] && subView.frame.size.height <= 1) {
+            subView.backgroundColor = self.pickerStyle.separatorColor;
+        }
+    }
+    
+    // 2.设置选择器中间选中行的背景颜色
+    if (self.pickerStyle.selectRowColor) {
+        UIView *contentView = nil;
+        NSArray *subviews = pickerView.subviews;
+        if (subviews.count > 0) {
+            id obj = subviews.firstObject;
+            if (obj && [obj isKindOfClass:[UIView class]]) {
+                contentView = (UIView *)obj;
+            }
+        }
+        UIView *columnView = nil;
+        if (contentView) {
+            id obj = [contentView valueForKey:@"subviewCache"];
+            if (obj && [obj isKindOfClass:[NSArray class]]) {
+                NSArray *columnViews = (NSArray *)obj;
+                if (columnViews.count > 0) {
+                    id columnObj = columnViews.firstObject;
+                    if (columnObj && [columnObj isKindOfClass:[UIView class]]) {
+                        columnView = (UIView *)columnObj;
+                    }
+                }
+            }
+        }
+        if (columnView) {
+            id obj = [columnView valueForKey:@"middleContainerView"];
+            if (obj && [obj isKindOfClass:[UIView class]]) {
+                UIView *selectRowView = (UIView *)obj;
+                selectRowView.backgroundColor = self.pickerStyle.selectRowColor;
+            }
+        }
+    }
+    
+    // 3.设置选择器中间选中行的字体颜色/字体大小
+    if (self.pickerStyle.selectRowTextColor || self.pickerStyle.selectRowTextFont) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 当前选中的 label
+            UILabel *selectLabel = (UILabel *)[pickerView viewForRow:row forComponent:component];
+            if (selectLabel) {
+                if (self.pickerStyle.selectRowTextColor) {
+                    selectLabel.textColor = self.pickerStyle.selectRowTextColor;
+                }
+                if (self.pickerStyle.selectRowTextFont) {
+                    selectLabel.font = self.pickerStyle.selectRowTextFont;
+                }
+                // 上一个选中的 label
+                UILabel *lastLabel = (UILabel *)[pickerView viewForRow:row - 1 forComponent:component];
+                if (lastLabel) {
+                    lastLabel.textColor = self.pickerStyle.pickerTextColor;
+                    lastLabel.font = self.pickerStyle.pickerTextFont;
+                }
+                // 下一个选中的 label
+                UILabel *nextLabel = (UILabel*)[pickerView viewForRow:row + 1 forComponent:component];
+                if (nextLabel) {
+                    nextLabel.textColor = self.pickerStyle.pickerTextColor;
+                    nextLabel.font = self.pickerStyle.pickerTextFont;
+                }
+            }
+        });
+    }
+}
+
+// 4.滚动 pickerView 执行的回调方法
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (component == 0) { // 选择省
         // 保存选择的省份的索引
@@ -428,21 +471,42 @@
 }
 
 #pragma mark - 重写父类方法
+- (void)reloadData {
+    // 1.处理数据源
+    [self handlerPickerData];
+    // 2.刷新选择器
+    [self.pickerView reloadAllComponents];
+    // 3.滚动到选择的地区
+    if (self.pickerMode == BRAddressPickerModeProvince) {
+        [self.pickerView selectRow:self.provinceIndex inComponent:0 animated:YES];
+    } else if (self.pickerMode == BRAddressPickerModeCity) {
+        [self.pickerView selectRow:self.provinceIndex inComponent:0 animated:YES];
+        [self.pickerView selectRow:self.cityIndex inComponent:1 animated:YES];
+    } else if (self.pickerMode == BRAddressPickerModeArea) {
+        [self.pickerView selectRow:self.provinceIndex inComponent:0 animated:YES];
+        [self.pickerView selectRow:self.cityIndex inComponent:1 animated:YES];
+        [self.pickerView selectRow:self.areaIndex inComponent:2 animated:YES];
+    }
+}
+
 - (void)addPickerToView:(UIView *)view {
-    // 添加地址选择器
+    // 1.添加地址选择器
     if (view) {
         // 立即刷新容器视图 view 的布局（防止 view 使用自动布局时，选择器视图无法正常显示）
         [view setNeedsLayout];
         [view layoutIfNeeded];
         
         self.frame = view.bounds;
-        self.pickerView.frame = view.bounds;
+        CGFloat pickerHeaderViewHeight = self.pickerHeaderView ? self.pickerHeaderView.bounds.size.height : 0;
+        CGFloat pickerFooterViewHeight = self.pickerFooterView ? self.pickerFooterView.bounds.size.height : 0;
+        self.pickerView.frame = CGRectMake(0, pickerHeaderViewHeight, view.bounds.size.width, view.bounds.size.height - pickerHeaderViewHeight - pickerFooterViewHeight);
         [self addSubview:self.pickerView];
     } else {
         [self.alertView addSubview:self.pickerView];
     }
     
-    [self handlerPickerData];
+    // 2.绑定数据
+    [self reloadData];
     
     __weak typeof(self) weakSelf = self;
     self.doneBlock = ^{
@@ -473,13 +537,6 @@
 }
 
 #pragma mark - setter方法
-- (void)setPickerMode:(BRAddressPickerMode)pickerMode {
-    _pickerMode = pickerMode;
-    if (_pickerView) {
-        [self handlerDefaultSelectValue];
-    }
-}
-
 - (void)setSelectValues:(NSArray<NSString *> *)selectValues {
     self.mSelectValues = selectValues;
 }

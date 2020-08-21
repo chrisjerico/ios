@@ -75,6 +75,8 @@
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained _Nullable [_Nonnull])buffer count:(NSUInteger)len;
+
++ (NSString *)convertToCamelCaseFromSnakeCase:(NSString *)key;  /**<   下划线命名转驼峰命名 */
 @end
 
 

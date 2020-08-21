@@ -53,24 +53,25 @@
     [self imgVButtonInteractionNoEnabled];
     //    NSLog(@"currentSelDataStr= %@",currentSelDataStr);
     NSDictionary *params = @{@"date":dataStr};
+    WeakSelf;
     [CMNetwork lhlDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGLHLhlModel *obj =   ((UGLHLhlModel*)model.data);
             //               NSLog(@"obj = %@",obj);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SVProgressHUD dismiss];
-                [self imgVButtonInteractionEnabled];
+                [weakSelf imgVButtonInteractionEnabled];
                 if (obj) {
-                    [self setLHLDate:obj];
+                    [weakSelf setLHLDate:obj];
                 }
                 else{
-                   [self setLHLNillDate];
+                   [weakSelf setLHLNillDate];
                 }
             });
             
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-            [self imgVButtonInteractionEnabled];
+            [weakSelf imgVButtonInteractionEnabled];
             
         }];
     }];
