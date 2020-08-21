@@ -228,7 +228,7 @@
     _isWhite = Skin1.isBlack ? NO : [@"c213,c012" containsString:_SiteId];
     _isHideText = [@"c200" containsString:_SiteId];
     _isShowWZ = [@"c085" containsString:_SiteId];
-    _isShowLogo = [@"GPK版" containsString:Skin1.skitType] ? NO : [@"GPK版" containsString:Skin1.skitType] ? YES : [@"c190" containsString:_SiteId];
+    _isShowLogo = [self showLogo];
     _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL ? NO : [@"c190" containsString:_SiteId];
     _isCornerRadius = YES;
     _isFontSystemSize = NO;
@@ -252,6 +252,19 @@
     _isSecondUrl = [@"c213" containsString:_SiteId];
     _isWebRightMenu = NO;
 
+}
+
+-(BOOL)showLogo{
+    if ([@"GPK版" containsString:Skin1.skitType]) {
+        return NO;
+    } else {
+        if (Skin1.isJY||Skin1.isTKL) {
+            return YES;
+        } else {
+            return [@"c190" containsString:_SiteId];
+        }
+        
+    }
 }
 
 #pragma mark - 热更新
