@@ -203,7 +203,7 @@
                 if (__self.waitReactNative) continue;
                 if (__self.waitSysConf) continue;
                 if (__self.waitPic) continue;
-                if (__self.waitGif) continue;
+//                if (__self.waitGif) continue;
                 if (__self.waitLanguage) continue;
                 break;
             }
