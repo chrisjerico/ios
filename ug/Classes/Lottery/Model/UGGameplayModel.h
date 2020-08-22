@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<UGGameBetModel> *lhcOddsArray;            /**<   六合彩合肖玩法赔率 */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *list;    /**<   号码ModelList */
 @property (nonatomic, strong) NSArray<UGGameBetModel> *zxbzlist;            /**<  自选不中下注的数组 */
-@property (nonatomic, strong) NSMutableArray <UGGameplaySectionModel *>*ezdwlist;            /**<  时时彩二字定位 三字定位下注的数组  福彩3D 定位胆*/
+@property (nonatomic, strong) NSMutableArray <UGGameplaySectionModel *>*ezdwlist;            /**<  时时彩二字定位 三字定位下注的数组  福彩3D 定位胆 不定位*/
 @property (nonatomic, strong) NSString *ezdwcode;/**<  定位胆 code */
 @end
 
