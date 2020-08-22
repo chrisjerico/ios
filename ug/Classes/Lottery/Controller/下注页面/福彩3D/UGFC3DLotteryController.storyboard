@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8X6-Ey-2lP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8X6-Ey-2lP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -254,15 +254,8 @@
                                                     <outlet property="delegate" destination="8X6-Ey-2lP" id="9ue-zk-GMO"/>
                                                 </connections>
                                             </tableView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4O-Nb-SVc">
-                                                <rect key="frame" x="110" y="0.0" width="304" height="40"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="D0S-Ep-e2P"/>
-                                                </constraints>
-                                            </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Oev-4V-Fuh" userLabel="右边内容">
-                                                <rect key="frame" x="110" y="40" width="304" height="602"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Oev-4V-Fuh" userLabel="右边内容">
+                                                <rect key="frame" x="110" y="0.0" width="304" height="642"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                         </subviews>
@@ -270,14 +263,11 @@
                                         <constraints>
                                             <constraint firstItem="Ajh-LP-vQh" firstAttribute="top" secondItem="e1G-YI-v3k" secondAttribute="top" id="9VI-Y7-4lT"/>
                                             <constraint firstAttribute="bottom" secondItem="Ajh-LP-vQh" secondAttribute="bottom" id="G3I-np-YoD"/>
-                                            <constraint firstItem="O4O-Nb-SVc" firstAttribute="trailing" secondItem="Oev-4V-Fuh" secondAttribute="trailing" id="Sbi-Hx-Qti"/>
-                                            <constraint firstItem="O4O-Nb-SVc" firstAttribute="top" secondItem="e1G-YI-v3k" secondAttribute="top" id="VlR-Dl-UgO"/>
                                             <constraint firstItem="Oev-4V-Fuh" firstAttribute="leading" secondItem="Ajh-LP-vQh" secondAttribute="trailing" id="abB-Gi-dh3"/>
                                             <constraint firstAttribute="trailing" secondItem="Oev-4V-Fuh" secondAttribute="trailing" id="dW3-K8-a8N"/>
                                             <constraint firstItem="Ajh-LP-vQh" firstAttribute="leading" secondItem="e1G-YI-v3k" secondAttribute="leading" id="ngq-cM-xUX"/>
-                                            <constraint firstItem="Oev-4V-Fuh" firstAttribute="top" secondItem="O4O-Nb-SVc" secondAttribute="bottom" id="qeh-qf-Sbw"/>
+                                            <constraint firstItem="Oev-4V-Fuh" firstAttribute="top" secondItem="e1G-YI-v3k" secondAttribute="top" id="v2B-7c-Qhv"/>
                                             <constraint firstAttribute="bottom" secondItem="Oev-4V-Fuh" secondAttribute="bottom" id="v2G-L5-shr"/>
-                                            <constraint firstItem="O4O-Nb-SVc" firstAttribute="leading" secondItem="Oev-4V-Fuh" secondAttribute="leading" id="zeG-uQ-ugA"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -297,7 +287,7 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUr-XZ-twr">
                                         <rect key="frame" x="10" y="15" width="74" height="30"/>
-                                        <color key="backgroundColor" red="0.22745098039215686" green="0.24313725490196078" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.22706577180000001" green="0.2430337071" blue="0.25098091360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="74" id="XkW-5c-1oW"/>
                                             <constraint firstAttribute="height" constant="30" id="mVw-uF-4hz"/>
@@ -493,9 +483,7 @@
                         <outlet property="openTimeLabel" destination="bWe-yS-UcH" id="wbn-hv-wXt"/>
                         <outlet property="resetButton" destination="Jhg-JM-Zi6" id="Zsr-JR-cD4"/>
                         <outlet property="rightStackView" destination="Oev-4V-Fuh" id="RNW-I4-evL"/>
-                        <outlet property="segeMentContainerView" destination="O4O-Nb-SVc" id="hFC-qB-hUh"/>
-                        <outlet property="segmentHeight" destination="D0S-Ep-e2P" id="SBB-UT-hU2"/>
-                        <outlet property="selectLabel" destination="LrJ-Md-g2a" id="X1Z-pT-m8W"/>
+                        <outlet property="selectLabel" destination="LrJ-Md-g2a" id="sZP-sT-jRU"/>
                         <outlet property="tableView" destination="Ajh-LP-vQh" id="4tt-yA-pVf"/>
                     </connections>
                 </viewController>
