@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1896,6 +1896,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t3m-5l-M1V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4128.985507246377" y="192.85714285714286"/>
+        </scene>
+        <!--Middle View Controller-->
+        <scene sceneID="igD-jG-Xgf">
+            <objects>
+                <viewController id="o8z-ZI-gM1" customClass="FBMiddleViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bdp-20-kfC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX尚未绑定账号，你可以" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w45-GP-UO0">
+                                <rect key="frame" x="109" y="104" width="196" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBs-jU-THb">
+                                <rect key="frame" x="168.5" y="160" width="77" height="30"/>
+                                <state key="normal" title="注册新账号"/>
+                                <connections>
+                                    <action selector="registeredAction:" destination="o8z-ZI-gM1" eventType="touchUpInside" id="QFC-DP-Xr8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5Z-iY-RvH">
+                                <rect key="frame" x="161" y="225" width="92" height="30"/>
+                                <state key="normal" title="绑定已有账号"/>
+                                <connections>
+                                    <action selector="bindingAction:" destination="o8z-ZI-gM1" eventType="touchUpInside" id="nMH-1W-NMb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="w45-GP-UO0" firstAttribute="centerX" secondItem="Bdp-20-kfC" secondAttribute="centerX" id="3Zv-9s-Qhd"/>
+                            <constraint firstItem="E5Z-iY-RvH" firstAttribute="centerX" secondItem="Bdp-20-kfC" secondAttribute="centerX" id="Uqd-BL-Wz5"/>
+                            <constraint firstItem="w45-GP-UO0" firstAttribute="top" secondItem="Bxg-5a-n3D" secondAttribute="top" constant="60" id="Y9C-3r-RTs"/>
+                            <constraint firstItem="PBs-jU-THb" firstAttribute="centerX" secondItem="Bdp-20-kfC" secondAttribute="centerX" id="YHd-qJ-l4V"/>
+                            <constraint firstItem="E5Z-iY-RvH" firstAttribute="top" secondItem="PBs-jU-THb" secondAttribute="bottom" constant="35" id="gJt-It-3FR"/>
+                            <constraint firstItem="PBs-jU-THb" firstAttribute="top" secondItem="w45-GP-UO0" secondAttribute="bottom" constant="35" id="zoj-1E-6cs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bxg-5a-n3D"/>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="w45-GP-UO0" id="g72-Ev-oNs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V3x-os-xGN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5175" y="193"/>
         </scene>
     </scenes>
     <resources>

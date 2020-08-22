@@ -1951,6 +1951,7 @@
 		D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
 		D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */; };
 		D428E8C02441EC3C000B8980 /* UGSalaryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */; };
+		D42ACA0424F0D8A10088455D /* FBMiddleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42ACA0324F0D8A10088455D /* FBMiddleViewController.m */; };
 		D42B958323F3E3270030C653 /* JYLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */; };
 		D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */; };
 		D42B958923F3EAD00030C653 /* JYLotteryTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */; };
@@ -3853,6 +3854,8 @@
 		D428E8BC2441EBFA000B8980 /* UGSalaryListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSalaryListView.h; sourceTree = "<group>"; };
 		D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSalaryListView.m; sourceTree = "<group>"; };
 		D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSalaryListView.xib; sourceTree = "<group>"; };
+		D42ACA0224F0D8A10088455D /* FBMiddleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBMiddleViewController.h; sourceTree = "<group>"; };
+		D42ACA0324F0D8A10088455D /* FBMiddleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBMiddleViewController.m; sourceTree = "<group>"; };
 		D42B958123F3E3270030C653 /* JYLotteryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLotteryCollectionViewCell.h; sourceTree = "<group>"; };
 		D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -6462,6 +6465,8 @@
 				031E182523BE812600B0F813 /* UGLoginViewController.m */,
 				031E182623BE812600B0F813 /* UGRegisterViewController.h */,
 				031E182423BE812600B0F813 /* UGRegisterViewController.m */,
+				D42ACA0224F0D8A10088455D /* FBMiddleViewController.h */,
+				D42ACA0324F0D8A10088455D /* FBMiddleViewController.m */,
 			);
 			path = "登录注册";
 			sourceTree = "<group>";
@@ -10741,6 +10746,7 @@
 				031E1BFA23BE812900B0F813 /* UGBJPK10LotteryController.m in Sources */,
 				D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */,
 				031E1C8E23BE812A00B0F813 /* UGOneTitleTableViewCell.m in Sources */,
+				D42ACA0424F0D8A10088455D /* FBMiddleViewController.m in Sources */,
 				D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */,
 				031E1C9E23BE812A00B0F813 /* UGRechargeRecordCell.m in Sources */,
 				031E196023BE812600B0F813 /* UGStuffViewController.m in Sources */,
