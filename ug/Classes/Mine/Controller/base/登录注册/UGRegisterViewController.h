@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGRegisterViewController :UGViewController
-
+@property (nonatomic ,retain) NSArray *fbArrary;
 @end
 
 NS_ASSUME_NONNULL_END

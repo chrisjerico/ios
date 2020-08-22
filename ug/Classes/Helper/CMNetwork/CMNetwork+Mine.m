@@ -1144,5 +1144,59 @@
     
     CMMETHOD_END;
 }
+
+//FB是否绑定  c=oauth&a=hasBind
++ (void)oauthHasBindWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[oauthHasBindUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:NO
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
+
+//绑定旧账号：  c=oauth&a=bindAccount
++ (void)oauthBindAccountWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[oauthBindAccountUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+    
+}
+
+//访问无密码登录接口：  c=oauth&a=login
++ (void)oauthLoginUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[oauthLoginUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+    
+}
+
+//解除三方绑定：oauth/unbind，
++ (void)oauthUnbindUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    [self.manager requestInMainThreadWithMethod:[oauthUnbindUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:nil
+                                           post:YES
+                                     completion:completionBlock];
+    
+    
+    CMMETHOD_END;
+}
 @end
 

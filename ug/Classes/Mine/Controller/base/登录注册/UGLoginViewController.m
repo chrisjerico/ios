@@ -17,7 +17,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "SUCache.h"
-
+#import "FBMiddleViewController.h"
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
     NSString *ggCode;
@@ -170,9 +170,11 @@
                                                  name:FBSDKAccessTokenDidChangeNotification
                                                object:nil];
     
-    //测试当前facebook 用户信息数据
-    SUCacheItem *item = [SUCache itemForSlot:0];
-    [self labelDisplayWithProfile:item.profile];
+
+    [self.FSloginButton setHidden:self.isfromFB];
+
+    
+
 }
 
 
@@ -310,37 +312,138 @@
 }
 #pragma mark - facebook 登录相关
 - (IBAction)faceBookLoginAction:(id)sender {
+    
+    
+    //判断是否已经帮定过
     NSInteger slot = 0;
     FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
      if (token) { // 用户已经登录，（）
          [self autoLoginWithToken:token];
      }
      else{
-         [self newLogin];
+         [self FBnewLogin];
      }
 }
-//facebook退出登录
+
+
+- (void)oauthHasBindAction {//FB是否绑定
+    NSInteger slot = 0;
+    NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
+
+        
+        NSDictionary *params = @{@"uuid":uuid,
+                                 @"platform":@"facebook",
+                               
+                                 };
+
+
+        WeakSelf;
+        [CMNetwork oauthHasBindWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            
+            
+            [CMResult processWithResult:model success:^{
+                
+//                model.data;
+                
+                NSLog(@"model.data = %@",model.data);
+                
+  
+                
+                if (1) {
+                        
+                        FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+                         
+                         if (token.tokenString) {
+                                  [weakSelf  oauthLoginUrlAction];
+                         } else {
+                             //类似登录成功后的代码
+                         }
+
+                } else {
+                    //提示失败
+//                       [SVProgressHUD showErrorWithStatus:msg];
+                }
+
+            } failure:^(id msg) {
+
+                [SVProgressHUD showErrorWithStatus:msg];
+                
+            }];
+        }];
+
+}
+//facebook自动登录
 - (void)autoLoginWithToken:(FBSDKAccessToken *)token {
     [FBSDKAccessToken setCurrentAccessToken:token];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+     WeakSelf;
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         //token过期，删除存储的token和profile
         if (error) {
             NSLog(@"用户令牌不再有效.");
+//            提示FB 登录失败
             //显示（FB登录）
-            NSInteger slot = 0;
-            [SUCache deleteItemInSlot:slot];
-            [FBSDKAccessToken setCurrentAccessToken:nil];
-            [FBSDKProfile setCurrentProfile:nil];
+//            NSInteger slot = 0;
+//            [SUCache deleteItemInSlot:slot];
+//            [FBSDKAccessToken setCurrentAccessToken:nil];
+//            [FBSDKProfile setCurrentProfile:nil];
+            
+            [weakSelf FBnewLogin];
         }
         //做登录完成的操作
         else {
-            //去登录后续操作
+            //                    是否绑定
+            
+            [weakSelf oauthHasBindAction];
+  
         }
     }];
 }
+- (void)oauthLoginUrlAction {//访问无密码登录接口
+    NSInteger slot = 0;
+    NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
+    NSString *name =  [SUCache itemForSlot:slot].profile.name;
+    FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
 
-- (void)newLogin {
+    NSArray *arry = [[NSArray alloc] initWithObjects:@{@"uuid":uuid},@{@"name": @"oiuoiuo"},@{@"platform":@"facebook"}, nil];
+        
+        NSDictionary *params = @{@"oauth_token":token.tokenString,
+                                 @"oauth":arry,
+                               
+                                 };
+
+
+        WeakSelf;
+        [CMNetwork oauthLoginUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            
+            
+            [CMResult processWithResult:model success:^{
+
+                NSLog(@"model.data = %@",model.data);
+                
+                if (1) {
+                    //已经绑定过
+//                    FB 登录
+                    NSInteger slot = 0;
+                    FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+                     [self autoLoginWithToken:token];
+
+                } else {
+//                    没有绑定
+//                    FB 登录
+                    
+                }
+
+            } failure:^(id msg) {
+
+ 
+                
+            }];
+        }];
+
+}
+
+- (void)FBnewLogin {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     
     [login
@@ -353,7 +456,14 @@
         } else if (result.isCancelled) {
             NSLog(@"取消了");
         } else {
-            NSLog(@"登录");
+            NSLog(@"登录成功");
+            //
+            //测试当前facebook 用户信息数据
+            SUCacheItem *item = [SUCache itemForSlot:0];
+            [self labelDisplayWithProfile:item.profile];
+            //去中间界面
+            FBMiddleViewController *fbVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FBMiddleViewController"];
+            [self.navigationController pushViewController:fbVC animated:YES];
         }
     }];
 
@@ -390,12 +500,11 @@
         [SUCache saveItem:cacheItem slot:slot];
         NSLog(@"登录成功后的信息profile = %@",profile);
         NSString *ss = [NSString stringWithFormat:@"名称 = %@,userID = %@",cacheItem.profile.name,cacheItem.profile.userID];
- 
-      
        NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
-//        [self.pictureView setImageByUrl:[NSString stringWithFormat:@"%@",imgURL]];
         NSLog(@"faceBook 登录信息：%@",ss);
         NSLog(@"faceBook 登录头像信息：%@",imgURL);
+        
+       
         
     }
 }

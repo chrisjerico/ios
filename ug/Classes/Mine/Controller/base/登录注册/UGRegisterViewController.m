@@ -413,6 +413,10 @@
             [mutDict setValue:self.imgVcodeModel.nc_token forKey:token];
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
         }
+        
+        if (self.fbArrary.count) {
+            [mutDict setValue:self.fbArrary forKey:@"oauth"];
+        }
         [SVProgressHUD showWithStatus:@"正在注册..."];
         NSLog(@"参数：%@ ",mutDict);
         __weakSelf_(__self);

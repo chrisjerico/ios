@@ -1900,7 +1900,7 @@
         <!--Middle View Controller-->
         <scene sceneID="igD-jG-Xgf">
             <objects>
-                <viewController id="o8z-ZI-gM1" customClass="FBMiddleViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FBMiddleViewController" id="o8z-ZI-gM1" customClass="FBMiddleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bdp-20-kfC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
