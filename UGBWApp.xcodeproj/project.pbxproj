@@ -1951,7 +1951,6 @@
 		D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
 		D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */; };
 		D428E8C02441EC3C000B8980 /* UGSalaryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */; };
-		D42ACA0424F0D8A10088455D /* FBMiddleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42ACA0324F0D8A10088455D /* FBMiddleViewController.m */; };
 		D42B958323F3E3270030C653 /* JYLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */; };
 		D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */; };
 		D42B958923F3EAD00030C653 /* JYLotteryTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */; };
@@ -1981,6 +1980,7 @@
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D435F90823CEF996008648CE /* AudioToolbox.framework */; };
+		D439D12724F227D300B719DA /* FBTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D439D12624F227D300B719DA /* FBTransitionViewController.m */; };
 		D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */; };
 		D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B77EB242E2B5400913BE1 /* UIViewController+vcTabName.m */; };
 		D43DAF642453283A0014A301 /* ztlight.gif in Resources */ = {isa = PBXBuildFile; fileRef = D43DAF622453283A0014A301 /* ztlight.gif */; };
@@ -3854,8 +3854,6 @@
 		D428E8BC2441EBFA000B8980 /* UGSalaryListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSalaryListView.h; sourceTree = "<group>"; };
 		D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSalaryListView.m; sourceTree = "<group>"; };
 		D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSalaryListView.xib; sourceTree = "<group>"; };
-		D42ACA0224F0D8A10088455D /* FBMiddleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBMiddleViewController.h; sourceTree = "<group>"; };
-		D42ACA0324F0D8A10088455D /* FBMiddleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBMiddleViewController.m; sourceTree = "<group>"; };
 		D42B958123F3E3270030C653 /* JYLotteryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLotteryCollectionViewCell.h; sourceTree = "<group>"; };
 		D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -3896,6 +3894,8 @@
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
 		D435F90823CEF996008648CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D439D12524F227D300B719DA /* FBTransitionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBTransitionViewController.h; sourceTree = "<group>"; };
+		D439D12624F227D300B719DA /* FBTransitionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBTransitionViewController.m; sourceTree = "<group>"; };
 		D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RedEnvelope.storyboard; sourceTree = "<group>"; };
 		D43B77EA242E2B5400913BE1 /* UIViewController+vcTabName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+vcTabName.h"; sourceTree = "<group>"; };
 		D43B77EB242E2B5400913BE1 /* UIViewController+vcTabName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+vcTabName.m"; sourceTree = "<group>"; };
@@ -6465,8 +6465,8 @@
 				031E182523BE812600B0F813 /* UGLoginViewController.m */,
 				031E182623BE812600B0F813 /* UGRegisterViewController.h */,
 				031E182423BE812600B0F813 /* UGRegisterViewController.m */,
-				D42ACA0224F0D8A10088455D /* FBMiddleViewController.h */,
-				D42ACA0324F0D8A10088455D /* FBMiddleViewController.m */,
+				D439D12524F227D300B719DA /* FBTransitionViewController.h */,
+				D439D12624F227D300B719DA /* FBTransitionViewController.m */,
 			);
 			path = "登录注册";
 			sourceTree = "<group>";
@@ -10287,6 +10287,7 @@
 				031E1A2023BE812700B0F813 /* CCNetworkRequests1+UGLiuHe.m in Sources */,
 				031E195423BE812600B0F813 /* UGPostDetailVC.m in Sources */,
 				031E1C7C23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
+				D439D12724F227D300B719DA /* FBTransitionViewController.m in Sources */,
 				031E1C8423BE812A00B0F813 /* UGFunds2microcodeView.m in Sources */,
 				031E1B2C23BE812800B0F813 /* UGChanglongaideModel.m in Sources */,
 				031E1E3223BE812C00B0F813 /* UGPromotion6rowButtonTableViewCell.m in Sources */,
@@ -10746,7 +10747,6 @@
 				031E1BFA23BE812900B0F813 /* UGBJPK10LotteryController.m in Sources */,
 				D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */,
 				031E1C8E23BE812A00B0F813 /* UGOneTitleTableViewCell.m in Sources */,
-				D42ACA0424F0D8A10088455D /* FBMiddleViewController.m in Sources */,
 				D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */,
 				031E1C9E23BE812A00B0F813 /* UGRechargeRecordCell.m in Sources */,
 				031E196023BE812600B0F813 /* UGStuffViewController.m in Sources */,

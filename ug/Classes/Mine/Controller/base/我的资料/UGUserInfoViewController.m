@@ -146,23 +146,23 @@
         self.bgImgeView.image = [UIImage imageNamed:@"wuye"];
     }
     
-    
-    NSArray *oauth = user.oauth;
-    
-    if (oauth.count) {
-        [self.FBbtn setBackgroundColor:RGBA(75, 154, 208, 1)];
-        [self.FBbtn setTitle:@"FB已绑定" forState:(UIControlStateNormal)];
-         WeakSelf;
-        [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-           
-           [weakSelf oauthUnbind];
-        }];
-    }
-    else{
-        [self.FBbtn setBackgroundColor:RGBA(170, 170, 170, 1)];
-        [self.FBbtn setTitle:@"未绑定FB" forState:(UIControlStateNormal)];
-        [self.FBbtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    }
+//    
+//    NSArray *oauth = user.oauth;
+//    
+//    if (oauth.count) {
+//        [self.FBbtn setBackgroundColor:RGBA(75, 154, 208, 1)];
+//        [self.FBbtn setTitle:@"FB已绑定" forState:(UIControlStateNormal)];
+//         WeakSelf;
+//        [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+//           
+//           [weakSelf oauthUnbind];
+//        }];
+//    }
+//    else{
+//        [self.FBbtn setBackgroundColor:RGBA(170, 170, 170, 1)];
+//        [self.FBbtn setTitle:@"未绑定FB" forState:(UIControlStateNormal)];
+//        [self.FBbtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+//    }
     
 }
 

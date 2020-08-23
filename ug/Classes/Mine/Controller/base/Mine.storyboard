@@ -1897,10 +1897,10 @@
             </objects>
             <point key="canvasLocation" x="4128.985507246377" y="192.85714285714286"/>
         </scene>
-        <!--Middle View Controller-->
+        <!--Transition View Controller-->
         <scene sceneID="igD-jG-Xgf">
             <objects>
-                <viewController storyboardIdentifier="FBMiddleViewController" id="o8z-ZI-gM1" customClass="FBMiddleViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FBTransitionViewController" id="o8z-ZI-gM1" customClass="FBTransitionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bdp-20-kfC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1915,14 +1915,14 @@
                                 <rect key="frame" x="168.5" y="160" width="77" height="30"/>
                                 <state key="normal" title="注册新账号"/>
                                 <connections>
-                                    <action selector="registeredAction:" destination="o8z-ZI-gM1" eventType="touchUpInside" id="QFC-DP-Xr8"/>
+                                    <action selector="registeredAction:" destination="o8z-ZI-gM1" eventType="touchUpInside" id="ugG-7r-2rY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E5Z-iY-RvH">
                                 <rect key="frame" x="161" y="225" width="92" height="30"/>
                                 <state key="normal" title="绑定已有账号"/>
                                 <connections>
-                                    <action selector="bindingAction:" destination="o8z-ZI-gM1" eventType="touchUpInside" id="nMH-1W-NMb"/>
+                                    <action selector="bindingAction:" destination="o8z-ZI-gM1" eventType="touchUpInside" id="LVk-IM-zWi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1938,7 +1938,7 @@
                         <viewLayoutGuide key="safeArea" id="Bxg-5a-n3D"/>
                     </view>
                     <connections>
-                        <outlet property="titleLabel" destination="w45-GP-UO0" id="g72-Ev-oNs"/>
+                        <outlet property="titleLabel" destination="w45-GP-UO0" id="zdx-zK-rlG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3x-os-xGN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1957,7 +1957,7 @@
         <image name="shuaxindef" width="32" height="32"/>
         <image name="tuijianren" width="24" height="24"/>
         <image name="weixinhao" width="24" height="24"/>
-        <image name="wode" width="24" height="24"/>
+        <image name="wode" width="33.5" height="33.5"/>
         <image name="youxiang" width="100" height="100"/>
     </resources>
 </document>

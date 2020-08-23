@@ -46,7 +46,9 @@
 #import "CMTimeCommon.h"
 #import "RoomChatModel.h"
 
-
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "SUCache.h"
 @implementation UIViewController (CanPush)
 
 _CCRuntimeProperty_Assign(BOOL, 允许未登录访问, set允许未登录访问)
@@ -185,6 +187,12 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon deleteWebCache];
         [CMCommon removeLastGengHao];
+        
+        // 清楚FB
+        NSInteger slot = 0;
+        [SUCache deleteItemInSlot:slot];
+        [FBSDKAccessToken setCurrentAccessToken:nil];
+        [FBSDKProfile setCurrentProfile:nil];
         // 通知RN
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             [ReactNativeHelper sendEvent:UGNotificationUserLogout params:UserI];

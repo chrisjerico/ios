@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger ggCheck;    /**<   1 要google验证 */
 
 @property (nonatomic, assign) BOOL isBindGoogleVerifier;   /**<   判断会员是否绑定谷歌验证码： */
-@property (nonatomic, strong) NSArray * oauth;   /**<   fb 数组   （['facebook_id'=123,'facebook_name'=xxx]）： */
+//@property (nonatomic, strong) NSArray * oauth;   /**<   fb 数组   （['facebook_id'=123,'facebook_name'=xxx]）： */
 //积分
 @property (nonatomic, strong) NSString *curLevelTitle;
 @property (nonatomic, strong) NSString *nextLevelTitle;

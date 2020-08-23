@@ -17,7 +17,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "SUCache.h"
-#import "FBMiddleViewController.h"
+#import "FBTransitionViewController.h"
+
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
     NSString *ggCode;
@@ -221,6 +222,20 @@
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
         }
         
+        if (self.isfromFB) {
+            NSInteger slot = 0;
+            NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
+            NSString *name =  [SUCache itemForSlot:slot].profile.name;
+            FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+            
+            [mutDict setValue:token.tokenString forKey:@"oauth[accessToken]"];
+            [mutDict setValue:uuid forKey:@"oauth[uuid]"];
+            [mutDict setObject:name forKey:@"oauth[name]"];
+            [mutDict setObject:@"facebook" forKey:@"oauth[platform]"];
+        }
+        
+ 
+        
         [SVProgressHUD showWithStatus:@"正在登录..."];
         WeakSelf;
         [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
@@ -312,8 +327,7 @@
 }
 #pragma mark - facebook 登录相关
 - (IBAction)faceBookLoginAction:(id)sender {
-    
-    
+
     //判断是否已经帮定过
     NSInteger slot = 0;
     FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
@@ -342,27 +356,41 @@
             
             
             [CMResult processWithResult:model success:^{
-                
-//                model.data;
-                
-                NSLog(@"model.data = %@",model.data);
-                
-  
-                
-                if (1) {
-                        
-                        FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
-                         
-                         if (token.tokenString) {
-                                  [weakSelf  oauthLoginUrlAction];
-                         } else {
-                             //类似登录成功后的代码
-                         }
 
-                } else {
-                    //提示失败
-//                       [SVProgressHUD showErrorWithStatus:msg];
+                NSArray * dataParameterArray = model.data;
+                NSLog(@"model.data = %@",model.data);
+                FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+                if ([dataParameterArray isKindOfClass:[NSNull class]] || [dataParameterArray isEqual:[NSNull null]])
+                {
+                     //没有绑定
+                    NSLog(@"222");
+                    if (token.tokenString) {
+                       //去中间界面
+                        dispatch_async(dispatch_get_main_queue(), ^{
+
+                            SUCacheItem *item = [SUCache itemForSlot:0];
+                            FBTransitionViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FBTransitionViewController"];
+                            registerVC.name = item.profile.name;
+                            [self.navigationController pushViewController:registerVC animated:YES];
+
+                        });
+       
+                    } else {
+                                            
+                         [weakSelf FBnewLogin];
+                    }
+
+                 }
+                else{
+                    //已经有绑定
+                   
+                    if (token.tokenString) {
+                        [weakSelf  oauthLoginUrlAction];
+                    } else {
+                        //类似登录成功后的代码
+                    }
                 }
+               
 
             } failure:^(id msg) {
 
@@ -381,19 +409,11 @@
         //token过期，删除存储的token和profile
         if (error) {
             NSLog(@"用户令牌不再有效.");
-//            提示FB 登录失败
-            //显示（FB登录）
-//            NSInteger slot = 0;
-//            [SUCache deleteItemInSlot:slot];
-//            [FBSDKAccessToken setCurrentAccessToken:nil];
-//            [FBSDKProfile setCurrentProfile:nil];
-            
             [weakSelf FBnewLogin];
         }
         //做登录完成的操作
         else {
             //                    是否绑定
-            
             [weakSelf oauthHasBindAction];
   
         }
@@ -405,12 +425,13 @@
     NSString *name =  [SUCache itemForSlot:slot].profile.name;
     FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
 
-    NSArray *arry = [[NSArray alloc] initWithObjects:@{@"uuid":uuid},@{@"name": @"oiuoiuo"},@{@"platform":@"facebook"}, nil];
-        
-        NSDictionary *params = @{@"oauth_token":token.tokenString,
-                                 @"oauth":arry,
-                               
-                                 };
+    
+    NSDictionary *params = @{@"oauth_token":token.tokenString,
+                             @"oauth[uuid]":uuid,
+                             @"oauth[name]":name,
+                             @"oauth[platform]":@"facebook",
+                             
+    };
 
 
         WeakSelf;
@@ -462,8 +483,11 @@
             SUCacheItem *item = [SUCache itemForSlot:0];
             [self labelDisplayWithProfile:item.profile];
             //去中间界面
-            FBMiddleViewController *fbVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FBMiddleViewController"];
-            [self.navigationController pushViewController:fbVC animated:YES];
+
+            
+            FBTransitionViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FBTransitionViewController"];
+            registerVC.name = item.profile.name;
+            [self.navigationController pushViewController:registerVC animated:YES];
         }
     }];
 
@@ -588,6 +612,8 @@
     }
     UGRegisterViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGRegisterViewController"];
     [self.navigationController pushViewController:registerVC animated:YES];
+    
+
     
 }
 
