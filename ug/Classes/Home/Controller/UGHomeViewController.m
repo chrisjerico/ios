@@ -1244,7 +1244,12 @@
                             
                         }
                         [weakSelf.view layoutIfNeeded];
-                    }
+					}
+					
+					if (sourceData.count == 1) {
+						weakSelf.gameNavigationViewHeight.constant = 0;
+                        [weakSelf.view layoutIfNeeded];
+					}
                     // 游戏列表
                     self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
                     
