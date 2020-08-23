@@ -1895,6 +1895,10 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 		return 3;
 	}
 	
+	if ([@"不定位" isEqualToString:model.name]) {
+		return [self numberOfSectionsInCollectionView:self.betCollectionView];
+	}
+	
 	return 1;
 }
 
@@ -1902,6 +1906,9 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
 	if ([@"两面" isEqualToString:model.name] && section == 0) {
+		return 0;
+	}
+	if ([@"不定位" isEqualToString:model.name] && section == 0) {
 		return 0;
 	}
 	
