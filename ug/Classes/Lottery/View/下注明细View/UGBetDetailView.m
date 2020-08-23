@@ -270,7 +270,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 [bet showWith:mod showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
                     [weakSelf submitBet:params];
                 }];
-            } else {
+            }
+            else {
                 
                 [weakSelf hiddenSelf];
                 
@@ -691,7 +692,10 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         if ([@"直选" isEqualToString:temp.typeName]) {
             break;
         }
-        if ([@"一字定位" isEqualToString:temp.typeName]||[@"二字定位" isEqualToString:temp.typeName]||[@"三字定位" isEqualToString:temp.typeName]) {
+        if ([@"一字定位" isEqualToString:temp.typeName]||[@"不定位" isEqualToString:temp.typeName]||[@"二字定位" isEqualToString:temp.typeName]||[@"三字定位" isEqualToString:temp.typeName]||[@"二字" isEqualToString:temp.typeName]) {
+            break;
+        }
+        if ([@"定位胆" isEqualToString:temp.typeName]) {
             break;
         }
         NSMutableString *str = [[NSMutableString alloc] init];

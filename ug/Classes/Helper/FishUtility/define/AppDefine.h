@@ -22,7 +22,7 @@
 
 @interface AppDefine : NSObject
 
-@property (nonatomic, readonly) NSString *Host;         /**<    服务器地址 */
+@property (nonatomic, strong) NSString *Host;         /**<    服务器地址 */
 @property (nonatomic, readonly) NSString *SiteId;       /**<   当前站点ID */
 @property (nonatomic, readonly) NSArray <SiteModel *> *allSites;  /**<   所有站点 */
 
@@ -88,8 +88,11 @@
 @property (nonatomic,assign) BOOL isC190Cell;                                /**<  首页中优惠活动列表c190，c012 图片贴边 */
 @property (nonatomic,assign) BOOL isC217RWDT;                                /**<  我的把任务中心4个字换成任务大厅*/
 @property (nonatomic) BOOL isNoSubtitle;                               /**<  首页游戏cell没有副标题的高度*/
+
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
+@property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
+
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

@@ -69,5 +69,14 @@
     }
     return self;
 }
+- (IBAction)buttonClicked:(id)sender {
+    if ([APP.SiteId isEqualToString:@"l001"]) {
+        [CMCommon goSLWebUrl:@"https://baidujump.app/eipeyipeyi/jump-218.html"];
+        
+    } else if([APP.SiteId isEqualToString:@"l002"]) {
+        [CMCommon goSLWebUrl:@"https://baidujump.app/eipeyipeyi/jump-239.html"];
+    }
+            
+}
 
 @end

@@ -689,41 +689,33 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    //如果是跳转一个新页面
-    if (navigationAction.targetFrame.request != nil) {
-        NSString *selectedImgURL = navigationAction.request.URL.absoluteString;
-        NSLog(@"selectedImgURL = %@",selectedImgURL);
-        NSMutableArray <NSString *>* urlArray = @[].mutableCopy;
-        for (MediaModel *mm in self.image_list) {
-            [urlArray addObject:[mm.imgUrl absoluteString]];
-        }
-        if ([urlArray containsObject:selectedImgURL]) {
-            NSUInteger index = [urlArray indexOfObject:selectedImgURL];
-            [self showMediaView:self.image_list index:index];
-        }
-        else{
-            if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
-                //跳转别的应用如系统浏览器
-                // 对于跨域，需要手动跳转
-                SLWebViewController *vc = [SLWebViewController new];
-                vc.urlStr = navigationAction.request.URL.absoluteString;
-                [NavController1 pushViewController:vc animated:true];
-                // 不允许web内跳转
-                decisionHandler(WKNavigationActionPolicyCancel);
-                
-            } else {
-                //应用的web内跳转
-                decisionHandler (WKNavigationActionPolicyAllow);
-                
-            }
-        }
-        
-        decisionHandler(WKNavigationActionPolicyCancel);
-    }else{
-        decisionHandler(WKNavigationActionPolicyAllow);
-    }
     
-    return ;//不添加会崩溃
+        if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {//跳转别的应用如系统浏览器
+            NSString *selectedImgURL = navigationAction.request.URL.absoluteString;
+                  NSLog(@"selectedImgURL = %@",selectedImgURL);
+                  NSMutableArray <NSString *>* urlArray = @[].mutableCopy;
+                  for (MediaModel *mm in self.image_list) {
+                      [urlArray addObject:[mm.imgUrl absoluteString]];
+                  }
+                  if ([urlArray containsObject:selectedImgURL]) {
+                      NSUInteger index = [urlArray indexOfObject:selectedImgURL];
+                      [self showMediaView:self.image_list index:index];
+                  }
+                  else{
+                          //跳转别的应用如系统浏览器
+                          // 对于跨域，需要手动跳转
+                          SLWebViewController *vc = [SLWebViewController new];
+                          vc.urlStr = navigationAction.request.URL.absoluteString;
+                          [NavController1 pushViewController:vc animated:true];
+                          // 不允许web内跳转
+                          decisionHandler(WKNavigationActionPolicyCancel);
+
+                  }
+        } else {//应用的web内跳转
+            decisionHandler (WKNavigationActionPolicyAllow);
+        }
+        return ;//不添加会崩溃
+
     
 }
 

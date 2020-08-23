@@ -464,7 +464,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         
         if (!error) {
             // 序列化数据
-            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject ? : [NSData data]
                                                                  options:0
                                                                    error:nil];
             
@@ -488,7 +488,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         } else {
             
             NSHTTPURLResponse *errResponse = response;
-            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject ? : [NSData data]
                                                                  options:0
                                                                    error:nil];
             if (errResponse.statusCode == 401) {
@@ -504,7 +504,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                 return ;
             }
             if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"]  ? : [NSData data] options:0 error:nil];
                 NSError *err;
                 CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
                 if (completion != nil) {
@@ -560,7 +560,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
             // 序列化数据
-            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject ? : [NSData data]
                                                                  options:0
                                                                    error:nil];
 #ifdef DEBUG
@@ -582,7 +582,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             }
         } else {
             NSHTTPURLResponse *errResponse = response;
-            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseObject ? : [NSData data]
                                                                  options:0
                                                                    error:nil];
             if (errResponse.statusCode == 401) {
@@ -598,7 +598,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                 return ;
             }
             if (errResponse.statusCode == 403 || errResponse.statusCode == 404) {
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] options:0 error:nil];
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] ? : [NSData data] options:0 error:nil];
                 NSError *err;
                 CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
                 if (completion != nil) {

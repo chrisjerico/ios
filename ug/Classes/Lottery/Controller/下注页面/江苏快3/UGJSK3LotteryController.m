@@ -211,7 +211,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (void)setupBarButtonItems {
-    STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]] target:self action:@selector(refreshBalance)];
+       STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance ] target:self action:@selector(refreshBalance)];
     self.rightItem1 = item0;
     STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(showRightMenueView)];
     self.navigationItem.rightBarButtonItems = @[item1,item0];
@@ -255,16 +255,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
             }
             
-            // 删除enable为NO的数据（不显示出来）
-            for (UGGameplayModel *gm in play.playOdds) {
-                for (UGGameplaySectionModel *gsm in gm.list) {
-                    if (!gsm.enable)
-                        [weakSelf.gameDataArray removeObject:gm];
-                }
-            }
-            [weakSelf.tableView reloadData];
-            [weakSelf.betCollectionView reloadData];
-            [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+
+
+            [self.tableView reloadData];
+            [self.betCollectionView reloadData];
+            [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];

@@ -60,7 +60,7 @@
             site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"超级签名",      @"凤凰彩票"),//用户15687374617  密码   qaz123123  超级苹果签
             site(@"l001",        @"l001hy",     @"218",     @"io.fhpt.YSFL001",         @"https://wap4988.com/",                        @"超级签名",    @"六合宝典"),//激光账号，qazttcp@gmail.com 密码 ttcp2075ZXCs  ISO 超级签 18759487805    ZXC4988tianji  现在密码：123456
             site(@"c228",        @"c228hy",     @"249",     @"io.fhpt.YSAC228",         @"https://app77787.co",                         @"超级签名",    @"太陽城集團"),//https://app77787.co/  https://app77787.com/ https://77787app.co/  https://77787app.com/，超级签名：15346561706 / aa362600
-            site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://204421.com",                          @"超级签名",     @"2044彩票"),// 超级签，13085780849   666666zq
+            site(@"c018",        @"c018hy",     @"174",     @"io.fhpt.H51E9BFB6",       @"https://204421.com",                          @"企业包",     @"2044彩票"),// 超级签，13085780849   666666zq   超级签名
             
             
             site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://7033301.com",                         @"企业包",     @"王中王"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码
@@ -71,6 +71,7 @@
             site(@"c074",        @"c074hy",     @"154",     @"io.fhpt.H5016B05F",       @"",                                            @"企业包",     @"5360彩票"),
             site(@"c080",        @"",           @"",        @"io.fhpt.H5C82F72A",       @"",                                            @"企业包",     @"007彩票"),
             site(@"c085",        @"c085hy",     @"165",     @"io.fhpt.H53F348DC",       @"https://x558.cc",                             @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
+            site(@"c085yw",        @"c085ywhy",     @"316", @"io.fhpt.YSAC085YW",       @"https://x558.cc",                             @"企业包",     @"10000.AG"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
             site(@"c085a",       @"",           @"",        @"",                        @"https://c10000ll.com",                        @"企业包",     @"彩壹万"),
             site(@"c117",        @"",           @"",        @"io.fhpt.H5AAB211E",       @"",                                            @"企业包",     @"50.CC彩票⽹"),
             site(@"c131",        @"",           @"",        @"io.fhpt.H51B87207",       @"",                                            @"企业包",     @"5000万娱乐城"),
@@ -132,7 +133,7 @@
             site(@"c205",        @"c205hy",     @"308",     @"io.fhpt.YSFC205",         @"https://494.cyou",                            @"企业包",     @"494集团"),//
             site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771aa771.com",                        @"企业包",     @"威尼斯人"),//
             site(@"c212",        @"c212hy",     @"247",     @"io.fhpt.YSAC212",         @"https://00852030.com",                        @"企业包",     @"新葡京"),//
-            site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450vip10.com",                           @"企业包",     @"450集团"),//
+            site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450vip12.com",                           @"企业包",     @"450集团"),//
             site(@"c217",        @"c217hy",     @"255",     @"io.fhpt.YSFC217",         @"https://9999app-sa5g6erty9r8ujtk5oi9rtg2k6e55uer9999-app.com",   @"企业包",     @"贵宾厅集团"),//xingxin6888@gmail.com  密码QAZzxc12,.
             site(@"c211",        @"c211hy",     @"259",     @"io.fhpt.YSFC211",         @"https://310310app.com",                       @"企业包",     @"4484娱乐城"),
             site(@"c230",       @"c230hy",     @"288",      @"io.fhpt.YSFC230",         @"https://www.jdapp588.com",                    @"企业包",     @"九鼎彩票"),// 账号: jiuding588@gmail.com 密码：QWE123qwe@@@@
@@ -151,6 +152,7 @@
             site(@"test06",      @"",           @"",        @"com.UGGame.cp",         @"http://test06.6yc.com",                       @"内测包",     @"test06"),    // (army)
             site(@"test07",      @"test07",     @"279",     @"com.UGGame.cp",         @"http://test07.6yc.com",                       @"内测包",     @"test07"),    // (army)
             site(@"test20",      @"test20",     @"263",     @"com.UGGame.cp",           @"http://test20.6yc.com",                       @"内测包",     @"test20"),    // (朗朗)
+            site(@"test21",      @"test21",     @"263",     @"com.UGGame.cp",           @"http://test21.6yc.com",                       @"内测包",     @"test21"),    // ()
             site(@"test29",      @"test29",     @"245",     @"com.UGGame.cp",           @"http://test29f.fhptcdn.com",                  @"内测包",     @"test29"),// (小东)
             site(@"test29b",      @"test29b",    @"291",     @"com.UGGame.cp",           @"http://t029bz.fhptcdn.com",                  @"内测包",     @"test29b"),// (fly)
             site(@"test30f",     @"",           @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",                  @"内测包",     @"test30"),

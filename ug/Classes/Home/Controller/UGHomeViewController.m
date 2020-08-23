@@ -588,7 +588,7 @@
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
             make.width.mas_equalTo(95.0);
             make.height.mas_equalTo(95.0);
-            make.top.equalTo(__self.view.mas_top).offset(150);
+            make.top.equalTo(__self.view.mas_top).offset(135);
         }];
         self.uGredEnvelopeView.cancelClickBlock = ^(void) {
             [__self.uGredEnvelopeView setHidden:YES];
@@ -1820,10 +1820,11 @@
         WeakSelf;
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
-       
-            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
             [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
             weakSelf.notiveView.dataArray = self.popNoticeArray;
+            weakSelf.notiveView.supVC = weakSelf;
             
             UIWindow* window = UIApplication.sharedApplication.keyWindow;
             BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
@@ -1838,14 +1839,8 @@
                         [weakSelf.notiveView show];
                     }
                 }
-     
             }
-
         });
-        
-
- 
-    
 }
 
 #pragma mark - SDCycleScrollViewDelegate
