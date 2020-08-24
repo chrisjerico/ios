@@ -2055,6 +2055,8 @@
 		D4BF9D1B23C1D0060047D89C /* UIColor+YYUI.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BF9D1A23C1D0060047D89C /* UIColor+YYUI.m */; };
 		D4C0A12723913A6C00B39358 /* Global.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C0A12623913A6C00B39358 /* Global.m */; };
 		D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4C0A12D239156FB00B39358 /* hot_01.gif */; };
+		D4CD204724F37D62001DC0CF /* YNBetDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CD204624F37D62001DC0CF /* YNBetDetailView.m */; };
+		D4CD204924F37DCD001DC0CF /* YNBetDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CD204824F37DCD001DC0CF /* YNBetDetailView.xib */; };
 		D4D920CE23CD8A9200F02C9D /* CYLTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D920CD23CD8A9200F02C9D /* CYLTabBar.m */; };
 		D4DB5D4123FBB4DD001C6D8F /* UIView+JHViewCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DB5D4023FBB4DD001C6D8F /* UIView+JHViewCorner.m */; };
 		D4DE3F1324C5E8D500DD3A69 /* UGPopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DE3F1124C5E8D500DD3A69 /* UGPopViewController.m */; };
@@ -4009,6 +4011,9 @@
 		D4C0A12523913A6C00B39358 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		D4C0A12623913A6C00B39358 /* Global.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Global.m; sourceTree = "<group>"; };
 		D4C0A12D239156FB00B39358 /* hot_01.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hot_01.gif; sourceTree = "<group>"; };
+		D4CD204524F37D62001DC0CF /* YNBetDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNBetDetailView.h; sourceTree = "<group>"; };
+		D4CD204624F37D62001DC0CF /* YNBetDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNBetDetailView.m; sourceTree = "<group>"; };
+		D4CD204824F37DCD001DC0CF /* YNBetDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YNBetDetailView.xib; sourceTree = "<group>"; };
 		D4D920CC23CD8A9200F02C9D /* CYLTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYLTabBar.h; sourceTree = "<group>"; };
 		D4D920CD23CD8A9200F02C9D /* CYLTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYLTabBar.m; sourceTree = "<group>"; };
 		D4DB5D3F23FBB4DD001C6D8F /* UIView+JHViewCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JHViewCorner.h"; sourceTree = "<group>"; };
@@ -8244,6 +8249,7 @@
 		D4400D2A24E9733200EF3902 /* 越南 */ = {
 			isa = PBXGroup;
 			children = (
+				D4CD204324F37CA6001DC0CF /* 越南下注明细View */,
 				D4400D2B24E9736400EF3902 /* 越南cell */,
 				D42C8FC924E819D2008CB519 /* 越南分段View */,
 				D42C8FCC24E819D2008CB519 /* 越南快速选择 */,
@@ -8528,6 +8534,16 @@
 				D4C0A12623913A6C00B39358 /* Global.m */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		D4CD204324F37CA6001DC0CF /* 越南下注明细View */ = {
+			isa = PBXGroup;
+			children = (
+				D4CD204524F37D62001DC0CF /* YNBetDetailView.h */,
+				D4CD204624F37D62001DC0CF /* YNBetDetailView.m */,
+				D4CD204824F37DCD001DC0CF /* YNBetDetailView.xib */,
+			);
+			path = "越南下注明细View";
 			sourceTree = "<group>";
 		};
 		D4DB5D3E23FBB48D001C6D8F /* 可以画心的UIView分类 */ = {
@@ -9147,6 +9163,7 @@
 				031E1C7E23BE812A00B0F813 /* UGDepositDetailsCollectionViewCell.xib in Resources */,
 				CF47588D239636D200966536 /* 123.gif in Resources */,
 				CF4758F9239636D200966536 /* 164.gif in Resources */,
+				D4CD204924F37DCD001DC0CF /* YNBetDetailView.xib in Resources */,
 				CF4758E9239636D200966536 /* 76.gif in Resources */,
 				031E19F623BE812700B0F813 /* LoadingStateView.xib in Resources */,
 				031E1D4223BE812B00B0F813 /* UGGoogleAuthenticationThirdViewController.xib in Resources */,
@@ -10490,6 +10507,7 @@
 				031E1C7623BE812A00B0F813 /* UGRechargeLogsModel.m in Sources */,
 				031E1B2A23BE812800B0F813 /* UGRedEnvelopeModel.m in Sources */,
 				031E1CEC23BE812A00B0F813 /* SVRadialGradientLayer.m in Sources */,
+				D4CD204724F37D62001DC0CF /* YNBetDetailView.m in Sources */,
 				D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */,
 				031E1C5E23BE812A00B0F813 /* UGLotteryGameCollectionViewCell.m in Sources */,
 				D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */,
