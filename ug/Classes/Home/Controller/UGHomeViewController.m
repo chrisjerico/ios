@@ -205,6 +205,8 @@
 //-------------------------------------------
 //大转盘
 @property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
+//砸金蛋
+@property (nonatomic, strong)  UGredEnvelopeView *goldEggView;    /**<   砸金蛋 */
 
 
 //--推荐按钮-----------------------------------------
@@ -678,6 +680,49 @@
             recordVC.item = banner;
         };
     }
+	{//砸金蛋 右上
+		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
+		  [self.view addSubview:_goldEggView];
+
+		  [self.goldEggView setHidden:YES];
+		  
+		  [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
+			  make.right.equalTo(__self.view.mas_right).with.offset(-10);
+			  make.width.mas_equalTo(70.0);
+			  make.height.mas_equalTo(70.0);
+			  make.top.equalTo(__self.view.mas_top).offset(150+105+105);
+		  }];
+		  self.goldEggView.cancelClickBlock = ^(void) {
+			  [__self.goldEggView setHidden:YES];
+		  };
+		  self.goldEggView.redClickBlock = ^(void) {
+			  
+			  if (!UGLoginIsAuthorized()) {
+				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+					  UGLoginAuthorize(^(BOOL isFinish) {
+						  if (!isFinish)
+							  return ;
+					  });
+				  }];
+				  return;
+			  }
+			  if ([UGUserModel currentUser].isTest) {
+				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+					  SANotificationEventPost(UGNotificationShowLoginView, nil);
+				  }];
+				  return ;
+			  }
+			  
+//			  DZPModel *banner = (DZPModel*)__self.bigWheelView.itemData;
+//			  DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectMake(0, 0, APP.Width-60, APP.Height-60)];
+//
+//			   CGPoint showCenter = CGPointMake(APP.Width/2,APP.Height/2);
+//			   [SGBrowserView showMoveView:recordVC moveToCenter:showCenter];
+//			  recordVC.item = banner;
+		  };
+	  }
     
     // 手机悬浮按钮
     {
@@ -913,6 +958,10 @@
            [self  getactivityTurntableList];     //大转盘
            
     });
+	
+	dispatch_group_async(group, queue, ^{
+		[self getactivityGoldenEggList]; //砸金蛋
+	});
       
        
     
@@ -936,7 +985,8 @@
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
 
@@ -1762,6 +1812,97 @@
         }];
     }];
 }
+// 砸金蛋
+-(void)getactivityGoldenEggList {
+	 NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+								 };
+	
+	[CMNetwork activityGoldenEggListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+		[CMResult processWithResult:model success:^{
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				
+			});
+			
+		} failure:^(id msg) {
+			self.goldEggView.hidden = YES;
+
+		}];
+	}];
+//		[CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+//
+//			[CMResult processWithResult:model success:^{
+//
+//				dispatch_async(dispatch_get_main_queue(), ^{
+//					NSArray <DZPModel *> *dzpArray = [NSArray new];
+//					// 需要在主线程执行的代码
+//					 dzpArray = model.data;
+//
+//					NSLog(@"dzpArray = %@",dzpArray);
+//
+//					if (dzpArray.count) {
+//
+//					   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
+//						DZPModel *obj = [data objectAtIndex:0];
+//						dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//							// 需要在主线程执行的代码
+//						   self.bigWheelView.itemData = obj;
+//						   self.bigWheelView.hidden = NO;
+//							[self.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+//
+//						   [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//								make.left.equalTo(self.view.mas_left).with.offset(10);
+//								  make.width.mas_equalTo(95.0);
+//								  make.height.mas_equalTo(95.0);
+//								  if (self.bigWheelView.hidden) {
+//										make.top.equalTo(self.view.mas_top).offset(150+105);
+//								  } else {
+//										make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+//								  }
+//							}];
+//
+//							[self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//								  make.left.equalTo(self.view.mas_left).with.offset(10);
+//								  make.width.mas_equalTo(95.0);
+//								  make.height.mas_equalTo(95.0);
+//								  make.top.equalTo(self.uUpperLeftView.mas_bottom).offset(5);
+//							  }];
+//
+//							[self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//								make.right.equalTo(self.view.mas_right).with.offset(-10);
+//								make.width.mas_equalTo(95.0);
+//								make.height.mas_equalTo(95.0);
+//								if (self.bigWheelView.hidden) {
+//									  make.top.equalTo(self.view.mas_top).offset(150+105);
+//								} else {
+//									  make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
+//								}
+//							}];
+//							[self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//								  make.right.equalTo(self.view.mas_right).with.offset(-10);
+//								  make.width.mas_equalTo(95.0);
+//								  make.height.mas_equalTo(95.0);
+//								  make.top.equalTo(self.uUpperRightView.mas_bottom).offset(5);
+//							  }];
+//
+//						});
+//
+//					}
+//					else{
+//									 self.bigWheelView.hidden = YES;
+//					}
+//
+//				});
+//
+//			} failure:^(id msg) {
+//	//            [SVProgressHUD showErrorWithStatus:msg];
+//				 self.bigWheelView.hidden = YES;
+//
+//			}];
+//		}];
+	
+}
+
 #pragma mark ------------六合------------------------------------------------------
 // 栏目列表
 - (void)getCategoryList {

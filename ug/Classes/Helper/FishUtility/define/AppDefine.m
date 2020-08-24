@@ -11,6 +11,7 @@
 
 
 #define __SiteID__ @"test61f"
+
 #define LocalRnVersion @"1.4.66"
 
 
@@ -145,6 +146,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
             _SiteId = @"test61b";
+
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
