@@ -22,11 +22,11 @@ PODS:
   - CocoaLumberjack (3.6.0):
     - CocoaLumberjack/Core (= 3.6.0)
   - CocoaLumberjack/Core (3.6.0)
-  - CodePush (6.3.0):
+  - CodePush (6.2.1):
     - Base64 (~> 1.1)
-    - JWT (~> 3.0.0-beta.12)
+    - JWT (~> 3.0.0-beta.7)
     - React
-    - SSZipArchive (~> 2.2.2)
+    - SSZipArchive (~> 2.1)
   - CryptoSwift (1.1.3)
   - DateTools (2.0.0)
   - DeviceKit (2.3.0)
@@ -263,7 +263,7 @@ PODS:
     - React-RCTImage
   - react-native-safe-area-context (0.7.3):
     - React
-  - react-native-viewpager (3.3.1):
+  - react-native-viewpager (3.3.0):
     - React
   - react-native-webview (9.4.0):
     - React
@@ -307,19 +307,19 @@ PODS:
   - RegExCategories (1.0)
   - RNCMaskedView (0.1.10):
     - React
-  - RNCPicker (1.6.6):
+  - RNCPicker (1.6.5):
     - React
   - RNFastImage (7.0.2):
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
-  - RNGestureHandler (1.7.0):
+  - RNGestureHandler (1.6.1):
     - React
   - RNReactNativeModalPatch (1.0.0):
     - React
-  - RNReanimated (1.13.0):
+  - RNReanimated (1.9.0):
     - React
-  - RNScreens (2.10.1):
+  - RNScreens (2.8.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -626,7 +626,7 @@ SPEC CHECKSUMS:
   BRPickerView: c51b8d27cd053baf282e75a19d7dfcefbbaf42c2
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaLumberjack: 78b0c238666f4f58db069738ec176f4519557516
-  CodePush: 69186fd1143f7e5e5c6f65383cf14f4927e28213
+  CodePush: 4b21ce24113167513a6fd1602718b22e322069b2
   CryptoSwift: 6b6e488df0598b3e9fa49254ed1a65e8c1b1e10b
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
   DeviceKit: da103891aa928d89f64ea8dd8aca738c5f3d8ac0
@@ -658,7 +658,7 @@ SPEC CHECKSUMS:
   Moya: 2c16c3fe92eda302070213452281b59198f946d8
   "NSObject+Rx": 2eb2cf51fd1c554118449a7fbc36e4cd620b9e94
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
+  Picker: 4f1722c94059567cabd80e53d0ef72ca290d2b93
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
@@ -669,10 +669,10 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-image-editor: 9361a215c3991cafbe5e7f28cbbad6e72c9c2705
-  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
-  react-native-viewpager: f730c1d175a2c1ae789464855d4a2c14247d3109
-  react-native-webview: cf5527893252b3b036eea024a1da6996f7344c74
+  react-native-image-editor: bd67912f38a8e7a895bf6eb8f445acdcefd8fd0c
+  react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
+  react-native-viewpager: 118e65d8c65c56fe48d12a35cdcf1fe7e027a366
+  react-native-webview: 0e2881d2e3e72ad52a82445c1a116c43205fd471
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -683,15 +683,15 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
+  ReactNativeART: f003b07dfa7098aa419ed95b69560923440b1eee
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
-  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNCPicker: 494015f2b7ec4bee5484b6f235aa19691426dcdb
+  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
+  RNCPicker: 55b9b4240d0a9eba8733d02616775d4040de2e7d
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
-  RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReactNativeModalPatch: fc3c9f788dfa44e1914edd380ade65f3eb2236fd
-  RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
-  RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
+  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
+  RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RxAlertController: ef75925a2a002f0f1fd03378ddeceaa9c1c5558f
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
@@ -723,4 +723,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 25a141c6fa1836288e9647536483d78d8c4159d7
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.8.4
