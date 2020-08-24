@@ -22,8 +22,11 @@
 @interface UGLoginViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
     NSString *ggCode;
-   
+    
+    
 }
+@property (nonatomic)  BOOL isFBLoginOK;
+
 @property (nonatomic, strong)  NSString *gCheckUserName;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
@@ -62,7 +65,7 @@
 - (BOOL)允许游客访问 { return true; }
 
 -(void)viewWillAppear:(BOOL)animated{
-//    [self viewWillAppear:animated];
+    //    [self viewWillAppear:animated];
     
     if ([@"c049,c008" containsString:APP.SiteId]) {
         [self.goHomeButton setTitle:@"在线客服" forState:(UIControlStateNormal)];
@@ -80,15 +83,15 @@
     if([userDefault boolForKey:@"isRememberPsd"])
     {
         [userDefault setBool:YES forKey:@"isRememberPsd"];
-         self.gouImageView.image = [UIImage imageNamed:@"dagou"];
-         self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
-         self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
-       
+        self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+        self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
+        self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
+        
     }
     else if(![userDefault boolForKey:@"isRememberPsd"])
     {
-         [userDefault setBool:NO forKey:@"isRememberPsd"];
-         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+        [userDefault setBool:NO forKey:@"isRememberPsd"];
+        self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
     }
 }
 
@@ -129,13 +132,13 @@
     self.navigationController.delegate = self;
     [self.webBgView addSubview:self.webView];
     [self.webView  mas_makeConstraints:^(MASConstraintMaker *make) {
-         make.left.equalTo(self.view.mas_left).with.offset(20);
-         make.right.equalTo(self.view.mas_right).with.offset(-20);
-         make.top.equalTo(self.webBgView.mas_top);
-         make.height.mas_equalTo(120);
+        make.left.equalTo(self.view.mas_left).with.offset(20);
+        make.right.equalTo(self.view.mas_right).with.offset(-20);
+        make.top.equalTo(self.webBgView.mas_top);
+        make.height.mas_equalTo(120);
     }];
     
-  
+    
     self.webBgView.hidden = YES;
     self.webBgViewHeightConstraint.constant = 0.1;
     
@@ -148,15 +151,15 @@
     if([userDefault boolForKey:@"isRememberPsd"])
     {
         [userDefault setBool:YES forKey:@"isRememberPsd"];
-         self.gouImageView.image = [UIImage imageNamed:@"dagou"];
-         self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
-         self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
-       
+        self.gouImageView.image = [UIImage imageNamed:@"dagou"];
+        self.userNameTextF.text = [userDefault stringForKey:@"userName" ];
+        self.passwordTextF.text = [userDefault stringForKey:@"userPsw" ];
+        
     }
     else if(![userDefault boolForKey:@"isRememberPsd"])
     {
-         [userDefault setBool:NO forKey:@"isRememberPsd"];
-         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
+        [userDefault setBool:NO forKey:@"isRememberPsd"];
+        self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
     }
     
     [self getSystemConfig];
@@ -171,11 +174,11 @@
                                                  name:FBSDKAccessTokenDidChangeNotification
                                                object:nil];
     
-
-    [self.FSloginButton setHidden:self.isfromFB];
-
     
-
+    [self.FSloginButton setHidden:self.isfromFB];
+    
+    self.isFBLoginOK = NO;
+    
 }
 
 
@@ -193,16 +196,16 @@
         if (self.errorTimes >= 4 && !self.imgVcodeModel) {
             [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
             return ;
-
+            
         }
         
-//        if ([UGSystemConfigModel  currentConfig].loginVCode) {
-//            if (!self.imgVcodeModel) {
-//                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
-//                return ;
-//            }
-//        }
-       
+        //        if ([UGSystemConfigModel  currentConfig].loginVCode) {
+        //            if (!self.imgVcodeModel) {
+        //                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
+        //                return ;
+        //            }
+        //        }
+        
         
         
         
@@ -210,8 +213,8 @@
                                  @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
                                  @"ggCode":self->ggCode.length ? self->ggCode : @"",
                                  @"device":@"3",    // 0未知，1PC，2原生安卓，3原生iOS，4安卓H5，5iOS_H5，6豪华安卓，7豪华iOS，8混合安卓，9混合iOS，10聊天安卓，11聊天iOS
-                                 };
-      
+        };
+        
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
         if (self.imgVcodeModel) {
             NSString *sid = @"slideCode[nc_sid]";
@@ -234,7 +237,7 @@
             [mutDict setObject:@"facebook" forKey:@"oauth[platform]"];
         }
         
- 
+        
         
         [SVProgressHUD showWithStatus:@"正在登录..."];
         WeakSelf;
@@ -251,7 +254,8 @@
                     UGUserModel.currentUser = nil;
                     SANotificationEventPost(UGNotificationUserLogout, nil);
                 }
-               
+                
+                NSLog(@"model.data = %@",model.data);
                 
                 UGUserModel *user = model.data;
                 UGUserModel.currentUser = user;
@@ -272,12 +276,12 @@
                 for (int i= 0; i<simplePwds.count; i++) {
                     NSString *str = [simplePwds objectAtIndex:i];
                     if ([weakSelf.passwordTextF.text isEqualToString:str]) {
- 
+                        
                         isGoRoot = NO;
                         break;
                     }
                 }
-              
+                
                 if (isGoRoot) {
                     [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                 } else {
@@ -286,9 +290,9 @@
                     vc.fromVC = @"fromLoginViewController";
                     [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
-               
+                
             } failure:^(id msg) {
-
+                
                 weakSelf.errorTimes += 1;
                 if (weakSelf.errorTimes == 4) {
                     if (![UGSystemConfigModel  currentConfig].loginVCode) {
@@ -296,7 +300,7 @@
                         weakSelf.webBgViewHeightConstraint.constant = 120;
                         [weakSelf webLoadURL];
                     }
-                   
+                    
                 }
                 
                 UGUserModel *user = (UGUserModel*) model.data;
@@ -306,14 +310,14 @@
                 if (intGgCheck == 1) {
                     
                     weakSelf.gCheckUserName = self.userNameTextF.text;
-                   [weakSelf showLeeView];
+                    [weakSelf showLeeView];
                 }
                 if ([weakSelf.userNameTextF.text isEqualToString:weakSelf.gCheckUserName]) {
                     
                     [weakSelf showLeeView];
                     
                 }
-               
+                
                 if (weakSelf.webBgView.hidden == NO) {
                     [weakSelf.webView reload];
                     weakSelf.imgVcodeModel = nil;
@@ -327,78 +331,25 @@
 }
 #pragma mark - facebook 登录相关
 - (IBAction)faceBookLoginAction:(id)sender {
-
+    
     //判断是否已经帮定过
     NSInteger slot = 0;
     FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
-     if (token) { // 用户已经登录，（）
-         [self autoLoginWithToken:token];
-     }
-     else{
-         [self FBnewLogin];
-     }
+    if (token) { // FB用户曾经已经登录
+        [self fbautoLoginWithToken:token];
+    }
+    else{
+        [self FBnewLogin];
+    }
 }
 
 
-- (void)oauthHasBindAction {//FB是否绑定
-    NSInteger slot = 0;
-    NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
 
-        
-        NSDictionary *params = @{@"uuid":uuid,
-                                 @"platform":@"facebook",
-                               
-                                 };
-
-        WeakSelf;
-        [CMNetwork oauthHasBindWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-            
-            
-            [CMResult processWithResult:model success:^{
-
-                NSArray * dataParameterArray = model.data;
-                NSLog(@"model.data = %@",model.data);
-                FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
-                if ([dataParameterArray isKindOfClass:[NSNull class]] || [dataParameterArray isEqual:[NSNull null]])
-                {
-                     //没有绑定
-                    NSLog(@"222");
-                    if (token.tokenString) {
-                       //去中间界面
-                        dispatch_async(dispatch_get_main_queue(), ^{
-
-                            SUCacheItem *item = [SUCache itemForSlot:0];
-                            FBTransitionViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FBTransitionViewController"];
-                            registerVC.name = item.profile.name;
-                            [self.navigationController pushViewController:registerVC animated:YES];
-
-                        });
-       
-                    }
-
-                 }
-                else{
-                    //已经有绑定
-                   
-                    if (token.tokenString) {
-                        [weakSelf  oauthLoginUrlAction];
-                    }
-                }
-               
-
-            } failure:^(id msg) {
-
-                [SVProgressHUD showErrorWithStatus:msg];
-                
-            }];
-        }];
-
-}
 //facebook自动登录
-- (void)autoLoginWithToken:(FBSDKAccessToken *)token {
+- (void)fbautoLoginWithToken:(FBSDKAccessToken *)token {
     [FBSDKAccessToken setCurrentAccessToken:token];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-     WeakSelf;
+    WeakSelf;
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         //token过期，删除存储的token和profile
         if (error) {
@@ -408,82 +359,128 @@
         //做登录完成的操作
         else {
             //                    是否绑定
-            [weakSelf oauthHasBindAction];
-  
+            [weakSelf fboauthHasBindAction];
+            
         }
     }];
 }
-- (void)oauthLoginUrlAction {//访问无密码登录接口
+
+- (void)fboauthHasBindAction {//FB是否绑定
+    NSInteger slot = 0;
+    NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
+    NSDictionary *params = @{@"uuid":uuid,
+                             @"platform":@"facebook",
+    };
+    
+    WeakSelf;
+    [CMNetwork oauthHasBindWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        
+        
+        [CMResult processWithResult:model success:^{
+            
+            NSDictionary * disData = model.data;
+            //                "uid" : "133",
+            //                "facebook_id" : "120134393077235",
+            //                "facebook_name" : "尹天奇",
+            //                "usr" : "082405"
+            
+            NSLog(@"model.data = %@",model.data);
+            FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+            if ([CMCommon stringIsNull:[disData objectForKey:@"facebook_id"]])
+            {
+                //没有绑定
+                if (token.tokenString) {
+                    //去中间界面
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        SUCacheItem *item = [SUCache itemForSlot:0];
+                        FBTransitionViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FBTransitionViewController"];
+                        registerVC.name = item.profile.name;
+                        [self.navigationController pushViewController:registerVC animated:YES];
+                        
+                    });
+                    
+                }
+            }
+            else{
+                //已经有绑定
+                if (token.tokenString) {
+                    [weakSelf  fboauthLoginUrlAction];
+                }
+            }
+            weakSelf.isFBLoginOK = NO;
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            weakSelf.isFBLoginOK = NO;
+            
+        }];
+    }];
+    
+}
+- (void)fboauthLoginUrlAction {//访问无密码登录接口
     NSInteger slot = 0;
     NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
     NSString *name =  [SUCache itemForSlot:slot].profile.name;
-    FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
-
-    
-    NSDictionary *params = @{@"oauth_token":token.tokenString,
+    NSDictionary *params = @{
                              @"oauth[uuid]":uuid,
                              @"oauth[name]":name,
                              @"oauth[platform]":@"facebook",
                              
     };
+    [SVProgressHUD showWithStatus:@"正在登录..."];
+    WeakSelf;
+    [CMNetwork oauthLoginUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 
-
-        WeakSelf;
-        [CMNetwork oauthLoginUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
             
+            [SVProgressHUD showSuccessWithStatus:model.msg];
+            NSLog(@"model.data = %@",model.data);
+            // 退出登录上一个账号
+            if (UGUserModel.currentUser) {
+                [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                UGUserModel.currentUser = nil;
+                SANotificationEventPost(UGNotificationUserLogout, nil);
+            }
             
-            [CMResult processWithResult:model success:^{
-
-                NSLog(@"model.data = %@",model.data);
-                
-                if (1) {
-                    //已经绑定过
-//                    FB 登录
-                    NSInteger slot = 0;
-                    FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
-                     [self autoLoginWithToken:token];
-
-                } else {
-//                    没有绑定
-//                    FB 登录
-                    
-                }
-
-            } failure:^(id msg) {
-
- 
-                
-            }];
+            UGUserModel *user = model.data;
+            UGUserModel.currentUser = user;
+            
+             SANotificationEventPost(UGNotificationLoginComplete, nil);
+            
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
         }];
-
+    }];
+    
 }
 
 - (void)FBnewLogin {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     
-
+    
     WeakSelf;
     [login
-        logInWithReadPermissions: @[@"public_profile"]
-        fromViewController:self
-        handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+     logInWithReadPermissions: @[@"public_profile"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
         NSLog(@"facebook登录result.grantedPermissions = %@,error = %@",result.grantedPermissions,error);
         if (error) {
             NSLog(@"流程错误");
+            weakSelf.isFBLoginOK = NO;
         } else if (result.isCancelled) {
             NSLog(@"取消了");
+            weakSelf.isFBLoginOK = NO;
         } else {
             NSLog(@"登录成功");
-            //
-            //测试当前facebook 用户信息数据
-            SUCacheItem *item = [SUCache itemForSlot:0];
-            [weakSelf labelDisplayWithProfile:item.profile];
-            //                    是否绑定
-            [weakSelf oauthHasBindAction];
-
+            weakSelf.isFBLoginOK = YES;
         }
     }];
-
+    
 }
 
 #pragma mark - Notification
@@ -491,6 +488,12 @@
 - (void)_updateContent:(NSNotification *)notification {
     FBSDKProfile *profile = notification.userInfo[FBSDKProfileChangeNewKey];
     [self labelDisplayWithProfile:profile];
+    
+    //                    是否绑定
+    if (self.isFBLoginOK) {
+         [self  fboauthHasBindAction];
+    }
+   
 }
 
 - (void)_accessTokenChanged:(NSNotification *)notification
@@ -517,11 +520,10 @@
         [SUCache saveItem:cacheItem slot:slot];
         NSLog(@"登录成功后的信息profile = %@",profile);
         NSString *ss = [NSString stringWithFormat:@"名称 = %@,userID = %@",cacheItem.profile.name,cacheItem.profile.userID];
-       NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
-        NSLog(@"faceBook 登录信息：%@",ss);
-        NSLog(@"faceBook 登录头像信息：%@",imgURL);
+        NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
+
         
-       
+        
         
     }
 }
@@ -534,7 +536,7 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"登录增加了滑动验证码配置==%d",[UGSystemConfigModel  currentConfig].loginVCode);
-
+            
             if ([UGSystemConfigModel  currentConfig].loginVCode) {
                 weakSelf.webBgView.hidden = NO;
                 weakSelf.webBgViewHeightConstraint.constant = 120;
@@ -545,7 +547,7 @@
             }
             
             
-           
+            
             
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
@@ -606,7 +608,7 @@
     UGRegisterViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGRegisterViewController"];
     [self.navigationController pushViewController:registerVC animated:YES];
     
-
+    
     
 }
 
@@ -625,7 +627,7 @@
     if ([@"c049,c008" containsString:APP.SiteId]) {
         //在线客服
         [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
-
+        
     } else {
         //去首页
         [self.navigationController popToRootViewControllerAnimated:YES];
@@ -634,8 +636,8 @@
 
 - (IBAction)recoredBtnClick:(id)sender {
     
-     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-     if([userDefault boolForKey:@"isRememberPsd"])
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    if([userDefault boolForKey:@"isRememberPsd"])
     {
         [userDefault setBool:NO forKey:@"isRememberPsd"];
         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
@@ -646,7 +648,7 @@
         [userDefault setBool:YES forKey:@"isRememberPsd"];
     }
     [userDefault synchronize];
-   
+    
 }
 
 
@@ -674,7 +676,7 @@
     
     if (!UGLoginIsAuthorized() && ![viewController isKindOfClass:self.class] && ![viewController isKindOfClass:[UGRegisterViewController class]]) {
         SANotificationEventPost(UGNotificationloginCancel, nil);
-
+        
     }
 }
 
@@ -721,12 +723,12 @@
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
-
+    
     
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
-
+    
 }
 
 - (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler {
@@ -757,9 +759,9 @@
         config.userContentController = [[WKUserContentController alloc] init];
         // 我们可以在WKScriptMessageHandler代理中接收到
         [config.userContentController addScriptMessageHandler:self name:@"postSwiperData"];
-       
+        
         _webView = [[WKWebView alloc] initWithFrame:self.webBgView.bounds
-                                            configuration:config];
+                                      configuration:config];
         _webView.navigationDelegate = self;
     }
     return _webView;

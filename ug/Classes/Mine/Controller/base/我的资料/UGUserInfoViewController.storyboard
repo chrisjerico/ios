@@ -242,9 +242,12 @@
                                                             <constraint firstAttribute="height" constant="3" id="pHd-1g-GHu"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ay-G5-pRb">
-                                                        <rect key="frame" x="275" y="8" width="64" height="30"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ay-G5-pRb">
+                                                        <rect key="frame" x="259" y="7" width="80" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="hP1-AY-4NM"/>
+                                                            <constraint firstAttribute="height" constant="30" id="lB7-Gr-0af"/>
+                                                        </constraints>
                                                         <state key="normal" title="未绑定FB">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
@@ -258,6 +261,8 @@
                                                     <constraint firstItem="xJ0-gZ-GfF" firstAttribute="top" secondItem="MXg-cZ-hTR" secondAttribute="bottom" constant="8.5" id="b3O-0j-TvS"/>
                                                     <constraint firstItem="xJ0-gZ-GfF" firstAttribute="leading" secondItem="BeZ-ly-dgS" secondAttribute="leading" id="bwy-9k-ECu"/>
                                                     <constraint firstItem="MXg-cZ-hTR" firstAttribute="leading" secondItem="BeZ-ly-dgS" secondAttribute="leading" constant="10" id="cAY-Ph-zz4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1Ay-G5-pRb" secondAttribute="trailing" constant="15" id="lXU-sp-13W"/>
+                                                    <constraint firstItem="1Ay-G5-pRb" firstAttribute="centerY" secondItem="MXg-cZ-hTR" secondAttribute="centerY" id="pcn-AV-jUL"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbn-KT-jMo">

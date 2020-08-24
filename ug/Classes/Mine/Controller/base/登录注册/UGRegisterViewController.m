@@ -463,6 +463,17 @@
                     [__self showLogin:nil];
                 }
                 
+                
+                 if (self.isfromFB) {
+                     for (UIViewController *vc in self.navigationController.childViewControllers) {
+                         if ([vc isKindOfClass:UGLoginViewController.class]) {
+                             [self.navigationController popViewControllerAnimated:YES];
+                             return;
+                         }
+                     }
+                     UGLoginViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGLoginViewController"];
+                     [self.navigationController pushViewController:registerVC animated:YES];
+                  }
             } failure:^(id msg) {
                 
                 [SVProgressHUD showErrorWithStatus:msg];

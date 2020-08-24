@@ -1177,7 +1177,7 @@
     CMMETHOD_BEGIN;
     [self.manager requestInMainThreadWithMethod:[oauthLoginUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
-                                          model:nil
+                                          model:CMResultClassMake(UGUserModel.class)
                                            post:YES
                                      completion:completionBlock];
     

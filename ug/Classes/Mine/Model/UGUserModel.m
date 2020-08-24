@@ -14,6 +14,11 @@
 
 UGUserModel * g_currentUser = nil;
 
+
+@implementation FBoauth
+
+@end
+
 @implementation UGUserModel
 
 + (JSONKeyMapper *)keyMapper {

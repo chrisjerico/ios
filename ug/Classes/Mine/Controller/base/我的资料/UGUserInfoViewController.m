@@ -146,28 +146,27 @@
         self.bgImgeView.image = [UIImage imageNamed:@"wuye"];
     }
     
-//    
-//    NSArray *oauth = user.oauth;
-//    
-//    if (oauth.count) {
-//        [self.FBbtn setBackgroundColor:RGBA(75, 154, 208, 1)];
-//        [self.FBbtn setTitle:@"FB已绑定" forState:(UIControlStateNormal)];
-//         WeakSelf;
-//        [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-//           
-//           [weakSelf oauthUnbind];
-//        }];
-//    }
-//    else{
-//        [self.FBbtn setBackgroundColor:RGBA(170, 170, 170, 1)];
-//        [self.FBbtn setTitle:@"未绑定FB" forState:(UIControlStateNormal)];
-//        [self.FBbtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-//    }
+
+    if (![CMCommon stringIsNull:user.oauth.facebook_id] && ![user.oauth.facebook_id isEqualToString:@"0"]) {
+
+            [self.FBbtn setBackgroundColor:RGBA(75, 154, 208, 1)];
+            [self.FBbtn setTitle:@"FB已绑定" forState:(UIControlStateNormal)];
+            WeakSelf;
+            [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                
+                [weakSelf fboauthUnbind];
+            }];
+    }
+    else{
+        [self.FBbtn setBackgroundColor:RGBA(170, 170, 170, 1)];
+        [self.FBbtn setTitle:@"未绑定FB" forState:(UIControlStateNormal)];
+        [self.FBbtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+    }
     
 }
 
 
-- (void)oauthUnbind {
+- (void)fboauthUnbind {
     NSDictionary *params = @{
         @"token":[UGUserModel currentUser].sessid,
         @"platform":@"facebook",
@@ -176,13 +175,18 @@
     WeakSelf;
     [CMNetwork oauthUnbindUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-                
-           
-            NSLog(@"model.data= %@",model.data);
-           [weakSelf getUserInfo];
+            
+            if (model.code == 0) {//成功
+                [weakSelf getUserInfo];
+                [SVProgressHUD showSuccessWithStatus:model.msg];
+            }
+            else{
+                [SVProgressHUD showErrorWithStatus:model.msg];
+            }
+            
         } failure:^(id msg) {
             
-            
+            [SVProgressHUD showErrorWithStatus:model.msg];
         }];
     }];
 }

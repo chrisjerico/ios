@@ -14,17 +14,26 @@ NS_ASSUME_NONNULL_BEGIN
 #define UserI [UGUserModel currentUser]
 
 
-//data =     {
-//
-//    curLevelTitle = "新手",
-//    nextLevelTitle = "初行者",
-//    curLevelGrade = "VIP1",
-//    nextLevelInt = "0.0000",
-//    taskRewardTitle = "积分",
-//    taskRewardTotal = "0.0000",
-//    curLevelInt = "0",
-//    nextLevelGrade = "无",
+//"oauth" : {
+//  "facebook_id" : "120134393077235",
+//  "uid" : "133",
+//  "twitter_name" : "",
+//  "google_name" : "",
+//  "google_id" : "",
+//  "twitter_id" : "",
+//  "facebook_name" : "尹天奇"
 //},
+
+@interface FBoauth : UGModel
+
+@property (nonatomic, strong) NSString *facebook_id;
+@property (nonatomic, strong) NSString *uid;
+@property (nonatomic, strong) NSString *twitter_name;
+@property (nonatomic, strong) NSString *google_name;
+@property (nonatomic, strong) NSString *twitter_id;
+@property (nonatomic, strong) NSString *facebook_name;
+
+@end
 
 @interface UGUserModel : UGModel
 //guest
@@ -93,6 +102,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *uid;
 @property (nonatomic,strong) NSMutableArray *hasPassWordAry;                    /**<   已经输入过密码*/
+
+
+@property (nonatomic, strong) FBoauth *oauth;
 + (instancetype)currentUser;
 
 + (void)setCurrentUser:(nullable UGUserModel *)user;
