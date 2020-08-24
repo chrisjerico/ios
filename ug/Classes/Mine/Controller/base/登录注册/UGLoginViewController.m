@@ -350,7 +350,6 @@
                                
                                  };
 
-
         WeakSelf;
         [CMNetwork oauthHasBindWithParams:params completion:^(CMResult<id> *model, NSError *err) {
             
@@ -375,9 +374,6 @@
 
                         });
        
-                    } else {
-                                            
-                         [weakSelf FBnewLogin];
                     }
 
                  }
@@ -386,8 +382,6 @@
                    
                     if (token.tokenString) {
                         [weakSelf  oauthLoginUrlAction];
-                    } else {
-                        //类似登录成功后的代码
                     }
                 }
                
@@ -467,6 +461,8 @@
 - (void)FBnewLogin {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     
+
+    WeakSelf;
     [login
         logInWithReadPermissions: @[@"public_profile"]
         fromViewController:self
@@ -481,13 +477,10 @@
             //
             //测试当前facebook 用户信息数据
             SUCacheItem *item = [SUCache itemForSlot:0];
-            [self labelDisplayWithProfile:item.profile];
-            //去中间界面
+            [weakSelf labelDisplayWithProfile:item.profile];
+            //                    是否绑定
+            [weakSelf oauthHasBindAction];
 
-            
-            FBTransitionViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"FBTransitionViewController"];
-            registerVC.name = item.profile.name;
-            [self.navigationController pushViewController:registerVC animated:YES];
         }
     }];
 
