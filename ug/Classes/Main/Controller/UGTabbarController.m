@@ -271,17 +271,9 @@ static UGTabbarController *_tabBarVC = nil;
         NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
             return obj1.sort > obj2.sort;
         }];
-        NSArray<UGMobileMenu *> *smallmenus;
-        if (menus.count > 5) {
-            smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
-        }
-        else{
-            smallmenus = menus;
-        }
-        //		NSLog(@"menus = %@",smallmenus);
-        if (smallmenus.count > 3) {
+        if (menus.count > 3) {
             // 后台配置的页面
-            [self resetUpChildViewController:smallmenus];
+            [self resetUpChildViewController:menus];
         } else {
             // 默认加载的页面
             NSMutableArray *temp = @[].mutableCopy;
@@ -397,7 +389,6 @@ static UGTabbarController *_tabBarVC = nil;
         if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isGPK)
             continue;
         
-        
         // 已存在的控制器不需要重新初始化
         BOOL existed = false;
         for (UINavigationController *nav in currentVCs) {
@@ -409,10 +400,8 @@ static UGTabbarController *_tabBarVC = nil;
                 break;
             }
         }
-        if (existed)
-            continue;
-        
-        
+        if (existed) continue;
+        if (mms.count >= 5) break;
         
         // 初始化控制器
         // （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
@@ -446,23 +435,6 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 -(void)setHotImg{
-    
-    NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
-         return obj1.sort > obj2.sort;
-     }];
-     NSArray<UGMobileMenu *> *smallmenus;
-     if (menus.count > 5) {
-         smallmenus =  [menus subarrayWithRange:NSMakeRange(0, 5)];
-     }
-     else{
-         smallmenus = menus;
-     }
-     NSLog(@"smallmenus = %@",smallmenus );
-     if (smallmenus.count > 3) {
-         // 后台配置的页面
-         self.mms = [[NSMutableArray alloc] initWithArray:smallmenus];
-     }
-    
     if (self.mms.count <= 2) {
         return;
     }
