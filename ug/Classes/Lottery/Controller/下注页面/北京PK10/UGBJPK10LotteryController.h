@@ -10,7 +10,7 @@
 #import "UGCommonLotteryController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+//飞艇系列
 @interface UGBJPK10LotteryController : UGCommonLotteryController
 
 @end

@@ -1,4 +1,4 @@
-//
+////
 //  UGWelfareLotteryController.m
 //  ug
 //
@@ -1910,8 +1910,57 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 
 
+#pragma mark - BetRadomProtocal
+- (NSUInteger)minSectionsCountForBet {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([model.name isEqualToString:@"定位胆"] ){
+		if (self.segmentIndex == 0 ){
+			return 4;
+		} else if (self.segmentIndex == 1) {
+			return 4;
+		} else if (self.segmentIndex == 2) {
+			return 3;
+		}
+	} else if ([model.name isEqualToString:@"二字"] ){
+		
+		return 3;
+		
+	}
+	return 1;
+}
 
-
+- (NSUInteger)minItemsCountForBetIn:(NSUInteger)section {
+	
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([model.name isEqualToString:@"定位胆"]){
+		if (self.segmentIndex == 0 ){
+			if (section == 0) {
+				return 0;
+			} else {
+				return 1;
+			}
+		} else if (self.segmentIndex == 1) {
+			if (section == 0 || section == 1) {
+				return 0;
+			} else {
+				return 1;
+			}
+		} else if (self.segmentIndex == 2) {
+			if (section == 0 || section == 1) {
+				return 0;
+			} else {
+				return 3;
+			}
+		}
+	} else if ([model.name isEqualToString:@"二字"] ) {
+		if (section == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	return 1;
+}
 
 @end
 

@@ -120,11 +120,19 @@
 #pragma mark - 弹框视图
 - (UIView *)alertView {
     if (!_alertView) {
-        _alertView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - self.pickerStyle.titleBarHeight - self.pickerStyle.pickerHeight - BR_BOTTOM_MARGIN, SCREEN_WIDTH, self.pickerStyle.titleBarHeight + self.pickerStyle.pickerHeight + BR_BOTTOM_MARGIN)];
-        _alertView.backgroundColor = self.pickerStyle.alertViewColor;
+        CGFloat accessoryViewHeight = 0;
+        if (self.pickerHeaderView) {
+            accessoryViewHeight += self.pickerHeaderView.bounds.size.height;
+        }
+        if (self.pickerFooterView) {
+            accessoryViewHeight += self.pickerFooterView.bounds.size.height;
+        }
+        CGFloat height = self.pickerStyle.titleBarHeight + self.pickerStyle.pickerHeight + BR_BOTTOM_MARGIN + accessoryViewHeight;
+        _alertView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - height, SCREEN_WIDTH, height)];
+        _alertView.backgroundColor = self.pickerStyle.alertViewColor ? self.pickerStyle.alertViewColor : self.pickerStyle.pickerColor;
         if (!self.pickerStyle.topCornerRadius && !self.pickerStyle.hiddenShadowLine) {
             // 设置弹框视图顶部边框线
-            UIView *shadowLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _alertView.frame.size.width, 1.0f)];
+            UIView *shadowLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _alertView.frame.size.width, self.pickerStyle.shadowLineHeight)];
             shadowLineView.backgroundColor = self.pickerStyle.shadowLineColor;
             shadowLineView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             [_alertView addSubview:shadowLineView];
@@ -169,12 +177,12 @@
         [_cancelBtn addTarget:self action:@selector(clickCancelBtn) forControlEvents:UIControlEventTouchUpInside];
         // 设置按钮圆角或边框
         if (self.pickerStyle.cancelBorderStyle == BRBorderStyleSolid) {
-            _cancelBtn.layer.cornerRadius = 6.0f;
+            _cancelBtn.layer.cornerRadius = self.pickerStyle.cancelCornerRadius > 0 ? self.pickerStyle.cancelCornerRadius : 6.0f;
             _cancelBtn.layer.borderColor = self.pickerStyle.cancelTextColor.CGColor;
-            _cancelBtn.layer.borderWidth = 1.0f;
+            _cancelBtn.layer.borderWidth = self.pickerStyle.cancelBorderWidth > 0 ? self.pickerStyle.cancelBorderWidth : 1.0f;
             _cancelBtn.layer.masksToBounds = YES;
         } else if (self.pickerStyle.cancelBorderStyle == BRBorderStyleFill) {
-            _cancelBtn.layer.cornerRadius = 6.0f;
+            _cancelBtn.layer.cornerRadius = self.pickerStyle.cancelCornerRadius > 0 ? self.pickerStyle.cancelCornerRadius : 6.0f;
             _cancelBtn.layer.masksToBounds = YES;
         }
     }
@@ -199,12 +207,12 @@
         [_doneBtn addTarget:self action:@selector(clickDoneBtn) forControlEvents:UIControlEventTouchUpInside];
         // 设置按钮圆角或边框
         if (self.pickerStyle.doneBorderStyle == BRBorderStyleSolid) {
-            _doneBtn.layer.cornerRadius = 6.0f;
+            _doneBtn.layer.cornerRadius = self.pickerStyle.doneCornerRadius > 0 ? self.pickerStyle.doneCornerRadius : 6.0f;
             _doneBtn.layer.borderColor = self.pickerStyle.doneTextColor.CGColor;
-            _doneBtn.layer.borderWidth = 1.0f;
+            _doneBtn.layer.borderWidth = self.pickerStyle.doneBorderWidth > 0 ? self.pickerStyle.doneBorderWidth : 1.0f;
             _doneBtn.layer.masksToBounds = YES;
         } else if (self.pickerStyle.doneBorderStyle == BRBorderStyleFill) {
-            _doneBtn.layer.cornerRadius = 6.0f;
+            _doneBtn.layer.cornerRadius = self.pickerStyle.doneCornerRadius > 0 ? self.pickerStyle.doneCornerRadius : 6.0f;
             _doneBtn.layer.masksToBounds = YES;
         }
     }
@@ -253,9 +261,42 @@
     if (view) {
         self.frame = view.bounds;
         self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        CGFloat accessoryViewHeight = 0;
+        if (self.pickerHeaderView) {
+            CGRect rect = self.pickerHeaderView.frame;
+            self.pickerHeaderView.frame = CGRectMake(0, 0, view.bounds.size.width, rect.size.height);
+            self.pickerHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [self addSubview:self.pickerHeaderView];
+            
+            accessoryViewHeight += self.pickerHeaderView.bounds.size.height;
+        }
+        if (self.pickerFooterView) {
+            CGRect rect = self.pickerFooterView.frame;
+            self.pickerFooterView.frame = CGRectMake(0, view.bounds.size.height - rect.size.height, view.bounds.size.width, rect.size.height);
+            self.pickerFooterView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [self addSubview:self.pickerFooterView];
+            
+            accessoryViewHeight += self.pickerFooterView.bounds.size.height;
+        }
+        
         [view addSubview:self];
     } else {
         [self initUI];
+        
+        if (self.pickerHeaderView) {
+            CGRect rect = self.pickerHeaderView.frame;
+            CGFloat titleBarHeight = self.pickerStyle.hiddenTitleBarView ? 0 : self.pickerStyle.titleBarHeight;
+            self.pickerHeaderView.frame = CGRectMake(0, titleBarHeight, self.alertView.bounds.size.width, rect.size.height);
+            self.pickerHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [self.alertView addSubview:self.pickerHeaderView];
+        }
+        if (self.pickerFooterView) {
+            CGRect rect = self.pickerFooterView.frame;
+            self.pickerFooterView.frame = CGRectMake(0, self.alertView.bounds.size.height - BR_BOTTOM_MARGIN - rect.size.height, self.alertView.bounds.size.width, rect.size.height);
+            self.pickerFooterView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [self.alertView addSubview:self.pickerFooterView];
+        }
     
         UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
         [keyWindow addSubview:self];
@@ -271,8 +312,9 @@
             if (!self.pickerStyle.hiddenMaskView) {
                 self.maskView.alpha = 1;
             }
+            CGFloat alertViewHeight = self.alertView.bounds.size.height;
             CGRect rect = self.alertView.frame;
-            rect.origin.y -= self.pickerStyle.pickerHeight + self.pickerStyle.titleBarHeight + BR_BOTTOM_MARGIN;
+            rect.origin.y -= alertViewHeight;
             self.alertView.frame = rect;
         }];
     }
@@ -285,8 +327,9 @@
     } else {
         // 关闭动画
         [UIView animateWithDuration:0.2 animations:^{
+            CGFloat alertViewHeight = self.alertView.bounds.size.height;
             CGRect rect = self.alertView.frame;
-            rect.origin.y += self.pickerStyle.pickerHeight + self.pickerStyle.titleBarHeight + BR_BOTTOM_MARGIN;
+            rect.origin.y += alertViewHeight;
             self.alertView.frame = rect;
             if (!self.pickerStyle.hiddenMaskView) {
                 self.maskView.alpha = 0;
@@ -295,6 +338,11 @@
             [self removeFromSuperview];
         }];
     }
+}
+
+#pragma mark - 刷新选择器数据
+- (void)reloadData {
+    
 }
 
 #pragma mark - 添加自定义视图到选择器（picker）上

@@ -11,13 +11,7 @@
 #import "NSBundle+BRPickerView.h"
 
 // 标题颜色
-#ifndef kDefaultTextColor
-#define kDefaultTextColor BR_RGB_HEX(0x333333, 1.0f)
-#endif
-#ifndef kBorderColor
-// 边框颜色
-#define kBorderColor BR_RGB_HEX(0xe2e2e3, 1.0f)
-#endif
+#define kBRDefaultTextColor BR_RGB_HEX(0x333333, 1.0f)
 
 @implementation BRPickerStyle
 
@@ -30,28 +24,30 @@
     return _maskColor;
 }
 
-- (UIColor *)alertViewColor {
-    if (!_alertViewColor) {
-        _alertViewColor = self.pickerColor;
-    }
-    return _alertViewColor;
-}
-
 - (UIColor *)shadowLineColor {
     if (!_shadowLineColor) {
         if (@available(iOS 13.0, *)) {
+            // 边框线颜色，有透明度
             _shadowLineColor = [UIColor separatorColor];
         } else {
-            _shadowLineColor = kBorderColor;
+            _shadowLineColor = BR_RGB_HEX(0xc6c6c8, 1.0f);
         }
     }
     return _shadowLineColor;
 }
 
+- (CGFloat)shadowLineHeight {
+    if (_shadowLineHeight <= 0 || _shadowLineHeight > 5.0f) {
+        _shadowLineHeight = 0.5f;
+    }
+    return _shadowLineHeight;
+}
+
 - (UIColor *)titleBarColor {
     if (!_titleBarColor) {
         if (@available(iOS 13.0, *)) {
-            _titleBarColor = [self br_customDynamicColor:[UIColor whiteColor] darkColor:[UIColor secondarySystemBackgroundColor]];
+            // #ffffff(正常)、#1c1c1e(深色)
+            _titleBarColor = [UIColor secondarySystemGroupedBackgroundColor];
         } else {
             _titleBarColor = [UIColor whiteColor];
         }
@@ -72,11 +68,7 @@
 
 - (UIColor *)titleLineColor {
     if (!_titleLineColor) {
-        if (@available(iOS 13.0, *)) {
-            _titleLineColor = [UIColor quaternaryLabelColor];
-        } else {
-            _titleLineColor = BR_RGB_HEX(0xededee, 1.0f);
-        }
+        _titleLineColor = [self br_colorWithLightColor:BR_RGB_HEX(0xededee, 1.0f) darkColor:BR_RGB_HEX(0x18181c, 1.0f)];
     }
     return _titleLineColor;
 }
@@ -93,7 +85,7 @@
         if (@available(iOS 13.0, *)) {
             _cancelTextColor = [UIColor labelColor];
         } else {
-            _cancelTextColor = kDefaultTextColor;
+            _cancelTextColor = kBRDefaultTextColor;
         }
     }
     return _cancelTextColor;
@@ -164,7 +156,7 @@
         if (@available(iOS 13.0, *)) {
             _doneTextColor = [UIColor labelColor];
         } else {
-            _doneTextColor = kDefaultTextColor;
+            _doneTextColor = kBRDefaultTextColor;
         }
     }
     return _doneTextColor;
@@ -194,7 +186,8 @@
 - (UIColor *)pickerColor {
     if (!_pickerColor) {
         if (@available(iOS 13.0, *)) {
-            _pickerColor = [self br_customDynamicColor:[UIColor whiteColor] darkColor:[UIColor secondarySystemBackgroundColor]];
+            // #ffffff(正常)、#1c1c1e(深色)
+            _pickerColor = [UIColor secondarySystemGroupedBackgroundColor];
         } else {
             _pickerColor = [UIColor whiteColor];
         }
@@ -205,9 +198,10 @@
 - (UIColor *)separatorColor {
     if (!_separatorColor) {
         if (@available(iOS 13.0, *)) {
-            _separatorColor = [UIColor separatorColor];
+            // 分割线颜色，无透明度
+            _separatorColor = [UIColor opaqueSeparatorColor];
         } else {
-            _separatorColor = [UIColor colorWithRed:195/255.0 green:195/255.0 blue:195/255.0 alpha:1.0];
+            _separatorColor = BR_RGB_HEX(0xc6c6c8, 1.0f);
         }
     }
     return _separatorColor;
@@ -218,7 +212,7 @@
         if (@available(iOS 13.0, *)) {
             _pickerTextColor = [UIColor labelColor];
         } else {
-            _pickerTextColor = kDefaultTextColor;
+            _pickerTextColor = kBRDefaultTextColor;
         }
     }
     return _pickerTextColor;
@@ -248,6 +242,8 @@
 - (NSString *)language {
     if (!_language) {
         // 跟随系统的首选语言自动改变
+        // zh-Hans-CN(简体中文)、zh-Hant-CN(繁体中文)、en-CN(美式英语)、en-GB(英式英语)
+        // 其中`CN`是iOS9以后新增的地区代码，如：CN 代表中国，US 代表美国
         _language = [NSLocale preferredLanguages].firstObject;
     }
     return _language;
@@ -258,7 +254,7 @@
         if (@available(iOS 13.0, *)) {
             _dateUnitTextColor = [UIColor labelColor];
         } else {
-            _dateUnitTextColor = kDefaultTextColor;
+            _dateUnitTextColor = kBRDefaultTextColor;
         }
     }
     return _dateUnitTextColor;
@@ -272,7 +268,7 @@
 }
 
 #pragma mark - 创建自定义动态颜色（适配深色模式）
-- (UIColor *)br_customDynamicColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
+- (UIColor *)br_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
     if (@available(iOS 13.0, *)) {
         UIColor *dyColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
             if ([traitCollection userInterfaceStyle] == UIUserInterfaceStyleLight) {
@@ -287,7 +283,7 @@
     }
 }
 
-#pragma mark - 模板样式1 - 取消/确定按钮圆角样式
+#pragma mark - 弹框模板样式1 - 取消/确定按钮圆角样式
 + (instancetype)pickerStyleWithThemeColor:(UIColor *)themeColor {
     BRPickerStyle *customStyle = [[self alloc]init];
     if (themeColor) {
@@ -300,9 +296,9 @@
     return customStyle;
 }
 
-#pragma mark - 模板样式2 - 顶部圆角样式 + 完成按钮
+#pragma mark - 弹框模板样式2 - 顶部圆角样式 + 完成按钮
 + (instancetype)pickerStyleWithDoneTextColor:(UIColor *)doneTextColor {
-    BRPickerStyle *customStyle = [[BRPickerStyle alloc]init];
+    BRPickerStyle *customStyle = [[self alloc]init];
     if (doneTextColor) {
         customStyle.topCornerRadius = 16.0f;
         customStyle.hiddenCancelBtn = YES;
@@ -316,9 +312,9 @@
     return customStyle;
 }
 
-#pragma mark - 模板样式3 - 顶部圆角样式 + 图标按钮
+#pragma mark - 弹框模板样式3 - 顶部圆角样式 + 图标按钮
 + (instancetype)pickerStyleWithDoneBtnImage:(UIImage *)doneBtnImage {
-    BRPickerStyle *customStyle = [[BRPickerStyle alloc]init];
+    BRPickerStyle *customStyle = [[self alloc]init];
     if (doneBtnImage) {
         customStyle.topCornerRadius = 16.0f;
         customStyle.hiddenTitleLine = YES;
@@ -327,16 +323,6 @@
         customStyle.doneBtnImage = doneBtnImage;
         customStyle.doneBtnFrame = CGRectMake(SCREEN_WIDTH - 44, 4, 40, 40);
     }
-    return customStyle;
-}
-
-#pragma mark - 模板样式4 - 日期选择器单位顶部显示
-+ (instancetype)pickerStyleWithDateUnitOnTop {
-    BRPickerStyle *customStyle = [[self alloc]init];
-    customStyle.titleBarHeight += customStyle.rowHeight + 10;
-    customStyle.horizontalCenter = YES;
-    customStyle.dateUnitOffsetY = -(customStyle.pickerHeight / 2 + customStyle.rowHeight / 2);
-    
     return customStyle;
 }
 

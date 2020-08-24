@@ -1638,6 +1638,61 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }
 }
 
+#pragma mark - BetRadomProtocal
+- (NSUInteger)minSectionsCountForBet {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	if ([@"头/尾数" isEqualToString:model.name]) {
+		return 2;
+	}
+
+	if ([@"正码1-6" isEqualToString:model.name]) {
+		
+		return 6;
+	}
+	
+	return 1;
+}
+- (NSUInteger)minItemsCountForBetIn:(NSUInteger)section {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+   if ([@"自选不中" isEqualToString:model.name]) {
+	   return 5;
+   }
+   if ([@"合肖" isEqualToString:model.name]) {
+	  return 2;
+   }
+   
+   if ([@"连尾" isEqualToString:model.name] ||
+	   [@"连肖" isEqualToString:model.name]) {
+  
+	   if (self.segmentIndex == 0) {
+		  return 2;
+	   } else if (self.segmentIndex == 1){
+		  return 3;
+	   } else if (self.segmentIndex == 2){
+		   return 4;;
+	   } else {
+		  return 5;
+	   }
+	   
+   }
+   if ([@"连码" isEqualToString:model.name]) {
+	  
+	   NSString *title = self.lmTitleArray[self.segmentIndex];
+	   if ([@"三中二" isEqualToString:title] ||
+		   [@"三全中" isEqualToString:title]) {
+		   return 3;
+	   } else if ([@"二全中" isEqualToString:title] ||
+				  [@"二中特" isEqualToString:title] ||
+				  [@"特串" isEqualToString:title]) {
+		  return 2;
+	   } else if ([@"四全中" isEqualToString:title]) {
+		  return 4;
+	   }
+   }
+	return 1;
+}
+
+
 #pragma mark - getting
 
 
