@@ -657,7 +657,11 @@
 }
 
 - (void)updateSelectLabelWithCount:(NSInteger)count {
-    self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
+    dispatch_async(dispatch_get_main_queue(), ^{
+       // UI更新代码
+        self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
+    });
+   
    
 }
 

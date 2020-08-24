@@ -148,6 +148,8 @@
         if (!_SiteId.length) {
             _SiteId = @"test61f";
         }
+		_SiteId = @"test20";
+
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;

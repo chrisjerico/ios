@@ -1,6 +1,6 @@
 {
   "name": "react-native-viewpager",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "summary": "React Native ViewPager native view",
   "license": "MIT",
   "authors": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/react-native-community/react-native-viewpager.git",
-    "tag": "v3.3.0"
+    "tag": "v3.3.1"
   },
   "source_files": "ios/**/*.{h,m}",
   "requires_arc": true,

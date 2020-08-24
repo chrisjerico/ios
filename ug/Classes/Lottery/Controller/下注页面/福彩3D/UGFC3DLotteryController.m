@@ -267,7 +267,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 
 - (void)setupBarButtonItems {
-    STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]] target:self action:@selector(refreshBalance)];
+    STBarButtonItem *item0 = [STBarButtonItem barButtonItemLeftWithImageName:@"shuaxin" title:[NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance ] target:self action:@selector(refreshBalance)];
     self.rightItem1 = item0;
     STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(showRightMenueView)];
     self.navigationItem.rightBarButtonItems = @[item1,item0];
@@ -286,6 +286,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             }
             [weakSelf showAdPoppuView:model.data];
             [weakSelf updateHeaderViewData];
+             [SVProgressHUD dismiss];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
@@ -297,6 +298,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     WeakSelf;
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
+            
             UGPlayOddsModel *play = model.data;
             weakSelf.gameDataArray = play.playOdds.mutableCopy;
             if (weakSelf.fsgmentTitleArray.count) {
@@ -338,7 +340,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             [weakSelf.betCollectionView reloadData];
             [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 
-            
+            [SVProgressHUD dismiss];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
@@ -1293,11 +1295,13 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
             UGGameplaySectionModel *type = model.list[self.segmentIndex];
             if ([type.ezdwcode isEqualToString:@"DWDFS"]) {
                 [self szdwActionModel:model count:count];
+                return;
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXS"]) {
                 if (self.erchonghao.length && self.danhao.length) {
                     count += 1;
                     [self updateSelectLabelWithCount:count];
+                     return;
                 }
             }
             else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
@@ -1315,12 +1319,14 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
                 
                 [self updateSelectLabelWithCount:count];
+                 return;
                 
             }
             
         }
         if ([@"EZ" isEqualToString:model.code]) {
             [self ezdwActionModel:model count:count];
+             return;
         }
         else {
             for (UGGameplayModel *model in self.gameDataArray) {
@@ -1333,6 +1339,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
             }
             [self updateSelectLabelWithCount:count];
+             return;
         }
         
     }

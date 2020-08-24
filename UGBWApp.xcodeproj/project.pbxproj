@@ -1945,6 +1945,8 @@
 		D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42752DE23F128BA001E27A0 /* ContractedTemplate.storyboard */; };
 		D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */; };
 		D428E8C02441EC3C000B8980 /* UGSalaryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */; };
+		D42AC9F624EE4D3E0088455D /* PlatWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D42AC9F424EE4D3E0088455D /* PlatWebViewController.m */; };
+		D42AC9F724EE4D3E0088455D /* PlatWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42AC9F524EE4D3E0088455D /* PlatWebViewController.xib */; };
 		D42B958323F3E3270030C653 /* JYLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */; };
 		D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */; };
 		D42B958923F3EAD00030C653 /* JYLotteryTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */; };
@@ -3851,6 +3853,9 @@
 		D428E8BC2441EBFA000B8980 /* UGSalaryListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSalaryListView.h; sourceTree = "<group>"; };
 		D428E8BD2441EBFA000B8980 /* UGSalaryListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSalaryListView.m; sourceTree = "<group>"; };
 		D428E8BF2441EC3C000B8980 /* UGSalaryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSalaryListView.xib; sourceTree = "<group>"; };
+		D42AC9F324EE4D3E0088455D /* PlatWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlatWebViewController.h; sourceTree = "<group>"; };
+		D42AC9F424EE4D3E0088455D /* PlatWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlatWebViewController.m; sourceTree = "<group>"; };
+		D42AC9F524EE4D3E0088455D /* PlatWebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlatWebViewController.xib; sourceTree = "<group>"; };
 		D42B958123F3E3270030C653 /* JYLotteryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYLotteryCollectionViewCell.h; sourceTree = "<group>"; };
 		D42B958223F3E3270030C653 /* JYLotteryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		D42B958523F3E59C0030C653 /* JYLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -5249,7 +5254,6 @@
 			isa = PBXGroup;
 			children = (
 				CFF11A2D241E768700C7E3A3 /* 资料页 */,
-				03314FD623CDE0B10070CB54 /* 火山橙 */,
 				03A5D37F23BFA4480055A998 /* 金沙主题 */,
 				031E164723BE812400B0F813 /* 六合板块 */,
 				031E164D23BE812400B0F813 /* 彩种规则 */,
@@ -5369,6 +5373,9 @@
 				031E163C23BE812400B0F813 /* UGPlatformNoticeCell.h */,
 				031E163923BE812400B0F813 /* UGPlatformNoticeCell.m */,
 				031E163D23BE812400B0F813 /* UGPlatformNoticeCell.xib */,
+				D42AC9F324EE4D3E0088455D /* PlatWebViewController.h */,
+				D42AC9F424EE4D3E0088455D /* PlatWebViewController.m */,
+				D42AC9F524EE4D3E0088455D /* PlatWebViewController.xib */,
 			);
 			path = "公告列表";
 			sourceTree = "<group>";
@@ -7937,6 +7944,7 @@
 		CFF11A2D241E768700C7E3A3 /* 资料页 */ = {
 			isa = PBXGroup;
 			children = (
+				03314FD623CDE0B10070CB54 /* 火山橙 */,
 				031E161D23BE812400B0F813 /* UGDocumentView.h */,
 				031E161C23BE812400B0F813 /* UGDocumentView.m */,
 				CFF11A2F241E76AF00C7E3A3 /* IssueView.h */,
@@ -9082,6 +9090,7 @@
 				D42C8FD924E819D2008CB519 /* YNInputView.xib in Resources */,
 				031E1E7223BE812C00B0F813 /* UGRealBetRecordCell.xib in Resources */,
 				CF4758F7239636D200966536 /* 65.gif in Resources */,
+				D42AC9F724EE4D3E0088455D /* PlatWebViewController.xib in Resources */,
 				CF4758AE239636D200966536 /* 142.gif in Resources */,
 				031E1CAE23BE812A00B0F813 /* 客服AlertView.xib in Resources */,
 				CF475911239636D200966536 /* 114.gif in Resources */,
@@ -10395,6 +10404,7 @@
 				031E1BAE23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1C0A23BE812900B0F813 /* UGbetModel.m in Sources */,
 				031E1A6823BE812700B0F813 /* UGAppVersionManager.m in Sources */,
+				D42AC9F624EE4D3E0088455D /* PlatWebViewController.m in Sources */,
 				031E1D0E23BE812B00B0F813 /* JSONModelClassProperty.m in Sources */,
 				03314FCF23CDA04D0070CB54 /* HSC_MineVC.m in Sources */,
 				CFD85F0D23F577AB000898CC /* ReactNativeVC.m in Sources */,

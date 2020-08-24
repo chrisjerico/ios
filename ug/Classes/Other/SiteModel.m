@@ -71,6 +71,7 @@
             site(@"c074",        @"c074hy",     @"154",     @"io.fhpt.H5016B05F",       @"",                                            @"企业包",     @"5360彩票"),
             site(@"c080",        @"",           @"",        @"io.fhpt.H5C82F72A",       @"",                                            @"企业包",     @"007彩票"),
             site(@"c085",        @"c085hy",     @"165",     @"io.fhpt.H53F348DC",       @"https://x558.cc",                             @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
+            site(@"c085yw",        @"c085ywhy",     @"316", @"io.fhpt.YSAC085YW",       @"https://x558.cc",                             @"企业包",     @"10000.AG"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
             site(@"c085a",       @"",           @"",        @"",                        @"https://c10000ll.com",                        @"企业包",     @"彩壹万"),
             site(@"c117",        @"",           @"",        @"io.fhpt.H5AAB211E",       @"",                                            @"企业包",     @"50.CC彩票⽹"),
             site(@"c131",        @"",           @"",        @"io.fhpt.H51B87207",       @"",                                            @"企业包",     @"5000万娱乐城"),
@@ -132,7 +133,7 @@
             site(@"c205",        @"c205hy",     @"308",     @"io.fhpt.YSFC205",         @"https://494.cyou",                            @"企业包",     @"494集团"),//
             site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771aa771.com",                        @"企业包",     @"威尼斯人"),//
             site(@"c212",        @"c212hy",     @"247",     @"io.fhpt.YSAC212",         @"https://00852030.com",                        @"企业包",     @"新葡京"),//
-            site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450vip10.com",                           @"企业包",     @"450集团"),//
+            site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450vip12.com",                           @"企业包",     @"450集团"),//
             site(@"c217",        @"c217hy",     @"255",     @"io.fhpt.YSFC217",         @"https://9999app-sa5g6erty9r8ujtk5oi9rtg2k6e55uer9999-app.com",   @"企业包",     @"贵宾厅集团"),//xingxin6888@gmail.com  密码QAZzxc12,.
             site(@"c211",        @"c211hy",     @"259",     @"io.fhpt.YSFC211",         @"https://310310app.com",                       @"企业包",     @"4484娱乐城"),
             site(@"c230",       @"c230hy",     @"288",      @"io.fhpt.YSFC230",         @"https://www.jdapp588.com",                    @"企业包",     @"九鼎彩票"),// 账号: jiuding588@gmail.com 密码：QWE123qwe@@@@

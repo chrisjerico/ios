@@ -229,15 +229,17 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
         self.userNameLabel.text = [UGUserModel currentUser].username;
-        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[[UGUserModel currentUser].balance removeFloatAllZero]];
+       
+        [self setBalanceLabel];
         self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
         self.headImageView.layer.masksToBounds = YES;
         
         self.tableArray = [NSMutableArray new];
         
+        WeakSelf;
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-            [self.refreshButton.layer removeAllAnimations];
-            self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
+            [weakSelf.refreshButton.layer removeAllAnimations];
+            [weakSelf setBalanceLabel];
 
             
             [self getTableData];
@@ -307,6 +309,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [self.refreshButton.layer removeAllAnimations];
         return;
     }
+    WeakSelf;
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
        
@@ -322,9 +325,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             
             
             NSLog(@"unsettleAmount=%@",  [UGUserModel currentUser].unsettleAmount);
-            [self.refreshButton.layer removeAllAnimations];
-             self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
-             [self tableDataAction ];
+            [weakSelf.refreshButton.layer removeAllAnimations];
+            [weakSelf setBalanceLabel];
+            [weakSelf tableDataAction ];
         } failure:^(id msg) {
             [self.refreshButton.layer removeAllAnimations];
             [SVProgressHUD showErrorWithStatus:msg];
@@ -342,9 +345,17 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (void)setTitleType:(NSString *)titleType {
     _titleType = titleType;
-    self.balanceLabel.text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
+    [self setBalanceLabel];
     
     [self getTableData];
+}
+
+-(void)setBalanceLabel{
+//    CGFloat floatValues = [[UGUserModel currentUser].balance floatValue];
+//
+//    NSString *str = [NSString stringWithFormat:@"%.2f",floatValues];
+
+     self.balanceLabel.text  = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {

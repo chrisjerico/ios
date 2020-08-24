@@ -4,7 +4,7 @@
 //
 //  Created by fish on 2019/11/1.
 //  Copyright © 2019 fish. All rights reserved.
-//
+// 11
 
 #import "UGSkinManagers.h"
 
@@ -1107,6 +1107,30 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm;
 			}),
 			//新年红
+            @"新年红":({
+                UGSkinManagers *sm = defaultSm();
+                sm.skitType                 = @"新年红";
+                sm.skitString               = @"新年红 0默认风格";
+                sm.bgColor                  = color(@"F5F5F5");
+                sm.navBarBgColor            = color(@"DE1C27");
+                sm.tabBarBgColor            = color(@"DE1C27");
+                sm.tabNoSelectColor         = color(@"FFFFFF");
+                sm.tabSelectedColor         = color(@"F1B709");
+                sm.progressBgColor          = color(@"FEC434,FE8A23");
+                sm.homeContentColor         = color(@"FFFFFF");
+                sm.homeContentSubColor      = color(@"F4C9CD");
+                sm.cellBgColor              = color(@"FFFFFF");
+                sm.CLBgColor                = color(@"E6E6E6");
+                sm.menuHeadViewColor        = color(@"e63534,f99695");
+                sm.textColor1               = color(@"111111");
+                sm.textColor2               = color(@"555555");
+                sm.textColor3               = color(@"C1C1C1");
+                sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
+                sm;
+            }),
 			@"新年红0":({
 				UGSkinManagers *sm = defaultSm();
 				sm.skitType                 = @"新年红";

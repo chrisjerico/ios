@@ -1244,7 +1244,12 @@
                             
                         }
                         [weakSelf.view layoutIfNeeded];
-                    }
+					}
+					
+					if (sourceData.count == 1) {
+						weakSelf.gameNavigationViewHeight.constant = 0;
+                        [weakSelf.view layoutIfNeeded];
+					}
                     // 游戏列表
                     self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
                     
@@ -1824,6 +1829,7 @@
             weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
             [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
             weakSelf.notiveView.dataArray = self.popNoticeArray;
+            weakSelf.notiveView.supVC = weakSelf;
             
             UIWindow* window = UIApplication.sharedApplication.keyWindow;
             BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
