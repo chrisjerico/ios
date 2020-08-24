@@ -7,7 +7,7 @@
 //
 
 #import "YNQuickSelectView.h"
-
+#import "HMSegmentedControl.h"
 #import "YNQuickListView.h"
 @interface YNQuickSelectView()
 
@@ -85,7 +85,7 @@
         self.segmentedControl.frame = CGRectMake(0, 1, self.width, 40);
         self.segmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
         self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
-        self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationBottom;
+        self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
         self.segmentedControl.verticalDividerEnabled = YES;
         self.segmentedControl.verticalDividerColor = [UIColor blackColor];
         self.segmentedControl.verticalDividerWidth = 1.0f;

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@import HMSegmentedControl;
+#import "HMSegmentedControl.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -1,6 +1,6 @@
 {
   "name": "CodePush",
-  "version": "6.3.0",
+  "version": "6.2.1",
   "summary": "React Native plugin for the CodePush service",
   "authors": {
     "name": "Microsoft Corporation"
@@ -8,8 +8,8 @@
   "license": "MIT",
   "homepage": "https://microsoft.github.io/code-push",
   "source": {
-    "git": "https://github.com/microsoft/react-native-code-push.git",
-    "tag": "v6.3.0"
+    "git": "https://github.com/Microsoft/react-native-code-push.git",
+    "tag": "v6.2.1"
   },
   "platforms": {
     "ios": "7.0",
@@ -26,10 +26,10 @@
 
     ],
     "SSZipArchive": [
-      "~> 2.2.2"
+      "~> 2.1"
     ],
     "JWT": [
-      "~> 3.0.0-beta.12"
+      "~> 3.0.0-beta.7"
     ],
     "Base64": [
       "~> 1.1"

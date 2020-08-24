@@ -162,7 +162,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     }];
 
     self.ynsegmentView.segment.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    self.ynsegmentView.segment.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationBottom;
+    self.ynsegmentView.segment.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     [self.ynsegmentView  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.rightStackView.mas_left).with.offset(0);
         make.right.equalTo(self.rightStackView.mas_right).with.offset(0);
