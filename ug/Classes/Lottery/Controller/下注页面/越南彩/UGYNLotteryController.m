@@ -1176,7 +1176,10 @@ static NSString *footViewID = @"YNCollectionFootView";
         {
             YNCollectionFootView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footViewID forIndexPath:indexPath];
             if (collectionView == self.betCollectionView) {
-                [footerView.allButton setBackgroundColor:[UIColor redColor]];
+                
+                [footerView.allButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                    NSLog(@"indexPath = %@",indexPath);
+                }];
                 return footerView;
             }else {
                 

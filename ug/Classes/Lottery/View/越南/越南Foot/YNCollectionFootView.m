@@ -18,12 +18,12 @@
     [super awakeFromNib];
     // Initialization code
  
-    [self.allButton setBackgroundColor:[UIColor redColor]];
-    [self.bigButton setBackgroundColor:Skin1.homeContentColor];
-    [self.smallButton setBackgroundColor:Skin1.homeContentColor];
-    [self.pButton setBackgroundColor:Skin1.homeContentColor];
-    [self.accidButton setBackgroundColor:Skin1.homeContentColor];
-    [self.removeButton setBackgroundColor:Skin1.homeContentColor];
+    [self.allButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.bigButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.smallButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.pButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.accidButton setBackgroundColor:Skin1.navBarBgColor];
+    [self.removeButton setBackgroundColor:Skin1.navBarBgColor];
 }
 
 @end
