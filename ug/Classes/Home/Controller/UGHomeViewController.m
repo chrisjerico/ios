@@ -1434,7 +1434,7 @@
         [CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
             weakSelf.uGredEnvelopeView.item = rem;
-            weakSelf.uGredEnvelopeView.hidden = !rem;
+//            weakSelf.uGredEnvelopeView.hidden = !rem;
         } failure:^(id msg) {
             weakSelf.uGredEnvelopeView.hidden = true;
             [SVProgressHUD dismiss];
