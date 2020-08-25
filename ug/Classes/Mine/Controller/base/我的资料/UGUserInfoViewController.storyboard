@@ -230,8 +230,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeZ-ly-dgS" userLabel="FB">
                                                 <rect key="frame" x="30" y="525.5" width="354" height="44"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXg-cZ-hTR">
-                                                        <rect key="frame" x="10" y="11.5" width="79" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Facebook:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXg-cZ-hTR">
+                                                        <rect key="frame" x="10" y="11.5" width="84" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -352,6 +352,7 @@
                         <outlet property="avaterImageView" destination="tie-Vi-yEw" id="BBm-H1-JR2"/>
                         <outlet property="bgImgeView" destination="y6p-ED-g9R" id="4Sb-kz-ETh"/>
                         <outlet property="emailLabel" destination="4yj-Vp-osv" id="92W-xG-SQe"/>
+                        <outlet property="fbLabel" destination="MXg-cZ-hTR" id="Cf7-U5-rD2"/>
                         <outlet property="fullNameLabel" destination="3Qt-SO-mxI" id="gy2-Sr-r9w"/>
                         <outlet property="moneyType" destination="Xhl-Ua-7kE" id="6Gp-Jy-46i"/>
                         <outlet property="phoneLabel" destination="WFN-Ma-st5" id="n0m-sq-qEw"/>

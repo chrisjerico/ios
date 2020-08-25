@@ -95,6 +95,10 @@
     }
 }
 
+-(void)dealloc{
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.fd_interactivePopDisabled = true;
@@ -178,6 +182,19 @@
     [self.FSloginButton setHidden:self.isfromFB];
     
     self.isFBLoginOK = NO;
+    
+    if (self.isfromFB) {
+        
+        if (![CMCommon stringIsNull:UGUserModel.currentUser.username]) {
+            self.userNameTextF.text =  UGUserModel.currentUser.username;
+        }
+        
+        
+        
+        [self.loginButton setTitle:@"绑定" forState:(UIControlStateNormal)];
+    } else {
+        [self.loginButton setTitle:@"登录" forState:(UIControlStateNormal)];
+    }
     
 }
 
@@ -407,7 +424,11 @@
             else{
                 //已经有绑定
                 if (token.tokenString) {
-                    [weakSelf  fboauthLoginUrlAction];
+                    if (weakSelf.isNOfboauthLogin) {
+                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                    } else {
+                        [weakSelf fboauthLoginUrlAction];
+                    }
                 }
             }
             weakSelf.isFBLoginOK = NO;
@@ -421,6 +442,9 @@
     
 }
 - (void)fboauthLoginUrlAction {//访问无密码登录接口
+    
+    
+    
     NSInteger slot = 0;
     NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
     NSString *name =  [SUCache itemForSlot:slot].profile.name;
@@ -481,7 +505,12 @@
             
             [SVProgressHUD showSuccessWithStatus:model.msg];
             if (model.code == 0) {//成功
-                [weakSelf fboauthLoginUrlAction];
+                if (weakSelf.isNOfboauthLogin) {
+                     [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                } else {
+                     [weakSelf fboauthLoginUrlAction];
+                }
+               
             }
             
         } failure:^(id msg) {
@@ -495,7 +524,6 @@
 
 - (void)FBnewLogin {
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    
     
     WeakSelf;
     [login
@@ -552,13 +580,9 @@
         SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
         cacheItem.profile = profile;
         [SUCache saveItem:cacheItem slot:slot];
-        NSLog(@"登录成功后的信息profile = %@",profile);
-        NSString *ss = [NSString stringWithFormat:@"名称 = %@,userID = %@",cacheItem.profile.name,cacheItem.profile.userID];
-        NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
-
-        
-        
-        
+//        NSString *ss = [NSString stringWithFormat:@"名称 = %@,userID = %@",cacheItem.profile.name,cacheItem.profile.userID];
+//        NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
+  
     }
 }
 

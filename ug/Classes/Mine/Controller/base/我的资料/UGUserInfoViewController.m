@@ -7,6 +7,11 @@
 //
 
 #import "UGUserInfoViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "SUCache.h"
+
+#import "UGLoginViewController.h"
 
 @interface UGUserInfoViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *avaterImageView;
@@ -24,10 +29,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *time2Label;
 @property (weak, nonatomic) IBOutlet UIButton *FBbtn;
-
+@property (weak, nonatomic) IBOutlet UILabel *fbLabel;
+@property (nonatomic)  BOOL isFBLoginOK;
 @end
 
 @implementation UGUserInfoViewController
+
+-(void)dealloc{
+     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (BOOL)允许游客访问 { return true; }
 
@@ -44,6 +54,7 @@
         self.phoneLabel.textColor = Skin1.textColor1;
         self.emailLabel.textColor = Skin1.textColor1;
         self.moneyType.textColor = Skin1.textColor1;
+        self.fbLabel.textColor = Skin1.textColor1;
         ((UILabel *)[self.view viewWithTagString:@"我的资料Label"]).textColor = Skin1.textColor1;
         
         _avaterImageView.layer.masksToBounds = YES;
@@ -100,6 +111,16 @@
     if (__timer.block) {
         __timer.block(nil);
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_updateContent:)
+                                                 name:FBSDKProfileDidChangeNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_accessTokenChanged:)
+                                                 name:FBSDKAccessTokenDidChangeNotification
+                                               object:nil];
 }
 
 
@@ -148,23 +169,147 @@
     
 
     if (![CMCommon stringIsNull:user.oauth.facebook_id] && ![user.oauth.facebook_id isEqualToString:@"0"]) {
-
-            [self.FBbtn setBackgroundColor:RGBA(75, 154, 208, 1)];
-            [self.FBbtn setTitle:@"FB已绑定" forState:(UIControlStateNormal)];
-            WeakSelf;
-            [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                
-                [weakSelf fboauthUnbind];
-            }];
+        
+        [self.FBbtn setBackgroundColor:RGBA(75, 154, 208, 1)];
+        [self.FBbtn setTitle:@"FB已绑定" forState:(UIControlStateNormal)];
+        NSInteger slot = 0;
+        SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
+        self.fbLabel.text = [NSString stringWithFormat:@"Facebook:%@",cacheItem.profile.name];
+        [self.FBbtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        WeakSelf;
+        [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            
+            [weakSelf fboauthUnbind];
+        }];
     }
     else{
         [self.FBbtn setBackgroundColor:RGBA(170, 170, 170, 1)];
         [self.FBbtn setTitle:@"未绑定FB" forState:(UIControlStateNormal)];
         [self.FBbtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        WeakSelf;
+        [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+//            可点击按键进行绑定
+            [weakSelf fbBind];
+        }];
     }
     
 }
 
+#pragma mark -  FB方法
+
+//去绑定
+- (void)fbBind {
+    //判断是否已经帮定过
+      NSInteger slot = 0;
+      FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+      if (token) { // FB用户曾经已经登录
+          [self fbautoLoginWithToken:token];
+      }
+      else{
+          [self FBnewLogin];
+      }
+}
+
+
+- (void)FBnewLogin {
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    
+    WeakSelf;
+    [login
+     logInWithReadPermissions: @[@"public_profile"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+        NSLog(@"facebook登录result.grantedPermissions = %@,error = %@",result.grantedPermissions,error);
+        if (error) {
+            NSLog(@"流程错误");
+            weakSelf.isFBLoginOK = NO;
+        } else if (result.isCancelled) {
+            NSLog(@"取消了");
+            weakSelf.isFBLoginOK = NO;
+        } else {
+            NSLog(@"登录成功");
+            weakSelf.isFBLoginOK = YES;
+        }
+    }];
+    
+}
+
+- (void)labelDisplayWithProfile:(FBSDKProfile *)profile{
+    NSInteger slot = 0;
+    if (profile) {
+        SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
+        cacheItem.profile = profile;
+        [SUCache saveItem:cacheItem slot:slot];
+        self.fbLabel.text = [NSString stringWithFormat:@"Facebook:%@",cacheItem.profile.name];
+//        NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
+  
+    }
+}
+
+#pragma mark - Notification
+
+- (void)_updateContent:(NSNotification *)notification {
+    FBSDKProfile *profile = notification.userInfo[FBSDKProfileChangeNewKey];
+    [self labelDisplayWithProfile:profile];
+    
+    //                    是否绑定
+    if (self.isFBLoginOK) {
+        NSInteger slot = 0;
+            SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
+            self.fbLabel.text = [NSString stringWithFormat:@"Facebook:%@",cacheItem.profile.name];
+               // 去绑定
+            [self gobingVC];
+            self.isFBLoginOK = NO;
+    }
+   
+}
+
+- (void)_accessTokenChanged:(NSNotification *)notification
+{
+    FBSDKAccessToken *token = notification.userInfo[FBSDKAccessTokenChangeNewKey];
+    if (!token) {
+        [FBSDKAccessToken setCurrentAccessToken:nil];
+        [FBSDKProfile setCurrentProfile:nil];
+    } else {
+        NSInteger slot = 0;
+        SUCacheItem *item = [SUCache itemForSlot:slot] ?: [[SUCacheItem alloc] init];
+        if (![item.token isEqualToAccessToken:token]) {
+            item.token = token;
+            [SUCache saveItem:item slot:slot];
+        }
+    }
+}
+
+
+//facebook自动登录
+- (void)fbautoLoginWithToken:(FBSDKAccessToken *)token {
+    [FBSDKAccessToken setCurrentAccessToken:token];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    WeakSelf;
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        //token过期，删除存储的token和profile
+        if (error) {
+            NSLog(@"用户令牌不再有效.");
+            [weakSelf FBnewLogin];
+        }
+        //做登录完成的操作
+        else {
+            // 去绑定
+            [weakSelf gobingVC];
+           
+        }
+    }];
+}
+
+-(void)gobingVC{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // UI更新代码
+        UGLoginViewController *loginVC = _LoadVC_from_storyboard_(@"UGLoginViewController") ;
+        loginVC.isfromFB = YES;
+        loginVC.isNOfboauthLogin = YES;
+        [self.navigationController pushViewController:loginVC animated:YES];
+    });
+}
 
 - (void)fboauthUnbind {
     NSDictionary *params = @{
