@@ -1186,166 +1186,68 @@ static NSString *footViewID = @"YNCollectionFootView";
             [footerView.pButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [footerView.accidButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [footerView.removeButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            
             [footerView.allButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 
-                UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-                UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-                if (group.list.count) {
-                    UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-                    UGGameplaySectionModel * sectionModel = bet.ynList[indexPath.section];
-                    for (int i = 0; i< sectionModel.list.count; i++) {
-                        UGGameBetModel *game =  sectionModel.list[i];
-                        if (!game.enable) {
-                            return;
-                        }
-                        game.select = YES;
-                    }
-                    //刷新Section
-                    [UIView performWithoutAnimation:^{
-                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                        [weakSelf.betCollectionView reloadSections:indexSet];
-                    }];
-                    
-                    
-                    [self calculate:bet];
-                    
-                }
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@"所有"];
+                //刷新Section
+                [UIView performWithoutAnimation:^{
+                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                    [weakSelf.betCollectionView reloadSections:indexSet];
+                }];
             }];//所有
             
             [footerView.bigButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                
-                [weakSelf removeAllCellsAtIndexPath:indexPath];
-                
-                UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-                UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-                if (group.list.count) {
-                    UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-                    UGGameplaySectionModel * sectionModel = bet.ynList[indexPath.section];
-                    for (int i = 0; i< sectionModel.list.count; i++) {
-                        UGGameBetModel *game =  sectionModel.list[i];
-                        if (!game.enable) {
-                            return;
-                        }
-                        if (game.name.intValue >= 5) {
-                            game.select = YES;
-                        }
-                        
-                    }
-                    
-                    //刷新Section
-                    [UIView performWithoutAnimation:^{
-                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                        [weakSelf.betCollectionView reloadSections:indexSet];
-                    }];
-                    
-                    [self calculate:bet];
-                    
-                }
-            }];//大数
-            
-            [footerView.smallButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                
-                [weakSelf removeAllCellsAtIndexPath:indexPath];
-                
-                UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-                UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-                if (group.list.count) {
-                    UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-                    UGGameplaySectionModel * sectionModel = bet.ynList[indexPath.section];
-                    for (int i = 0; i< sectionModel.list.count; i++) {
-                        UGGameBetModel *game =  sectionModel.list[i];
-                        if (!game.enable) {
-                            return;
-                        }
-                        if (game.name.intValue < 5) {
-                            game.select = YES;
-                        }
-                        
-                    }
-                    
-                    [UIView performWithoutAnimation:^{
-                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                        [weakSelf.betCollectionView reloadSections:indexSet];
-                    }];
-                    
-                    [self calculate:bet];
-                    
-                }
-            }];//小数
-            
-            [footerView.pButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                
-                [weakSelf removeAllCellsAtIndexPath:indexPath];
-                
-                UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-                UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-                if (group.list.count) {
-                    UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-                    UGGameplaySectionModel * sectionModel = bet.ynList[indexPath.section];
-                    for (int i = 0; i< sectionModel.list.count; i++) {
-                        UGGameBetModel *game =  sectionModel.list[i];
-                        if (!game.enable) {
-                            return;
-                        }
-                        if (game.name.intValue %2 != 0) {
-                            game.select = YES;
-                        }
-                        
-                    }
-                    
-                    [UIView performWithoutAnimation:^{
-                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                        [weakSelf.betCollectionView reloadSections:indexSet];
-                    }];
-                    
-                    [self calculate:bet];
-                }
-            }];//奇数
-            
-            [footerView.accidButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                
-                [weakSelf removeAllCellsAtIndexPath:indexPath];
-                
-                UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-                UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-                if (group.list.count) {
-                    UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-                    UGGameplaySectionModel * sectionModel = bet.ynList[indexPath.section];
-                    for (int i = 0; i< sectionModel.list.count; i++) {
-                        UGGameBetModel *game =  sectionModel.list[i];
-                        if (!game.enable) {
-                            return;
-                        }
-                        if (game.name.intValue %2 == 0) {
-                            game.select = YES;
-                        }
-                        
-                    }
-                    
-                    [UIView performWithoutAnimation:^{
-                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                        [weakSelf.betCollectionView reloadSections:indexSet];
-                    }];
-                    
-                    [self calculate:bet];
-                }
-            }];//偶数
-            
-            [footerView.removeButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                
-                [weakSelf removeAllCellsAtIndexPath:indexPath];
-                
+
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@""];
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@"大数"];
+                //刷新Section
                 [UIView performWithoutAnimation:^{
                     NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
                     [weakSelf.betCollectionView reloadSections:indexSet];
                 }];
                 
-                UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-                UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-                if (group.list.count) {
-                    UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-                    [self calculate:bet];
-                }
+            }];//大数
+            
+            [footerView.smallButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@""];
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@"小数"];
+                [UIView performWithoutAnimation:^{
+                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                    [weakSelf.betCollectionView reloadSections:indexSet];
+                }];
+
+            }];//小数
+            
+            [footerView.pButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@""];
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@"奇数"];
+                [UIView performWithoutAnimation:^{
+                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                    [weakSelf.betCollectionView reloadSections:indexSet];
+                }];
+            }];//奇数
+            
+            [footerView.accidButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                
+                    [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@""];
+                    [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@"偶数"];
+                    [UIView performWithoutAnimation:^{
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                        [weakSelf.betCollectionView reloadSections:indexSet];
+                    }];
+
+            }];//偶数
+            
+            [footerView.removeButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                
+                [weakSelf operationAllCellsAtIndexPath:indexPath parameter:@""];
+                [UIView performWithoutAnimation:^{
+                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                    [weakSelf.betCollectionView reloadSections:indexSet];
+                }];
                 
             }];//移除
             
@@ -1363,7 +1265,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 }
 
 //取消全部的选中
--(void)removeAllCellsAtIndexPath:(NSIndexPath *)indexPath {
+-(void)operationAllCellsAtIndexPath:(NSIndexPath *)indexPath parameter:(NSString *)para{
     UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
     UGGameplaySectionModel *group = [model.list objectAtIndex:0];
     if (group.list.count) {
@@ -1374,11 +1276,37 @@ static NSString *footViewID = @"YNCollectionFootView";
             if (!game.enable) {
                 return;
             }
-            
-            game.select = NO;
-            
-            
+
+            if ([para isEqualToString:@"所有"]) {
+                game.select = YES;
+            }
+            else if ([para isEqualToString:@"大数"]) {
+                if (game.name.intValue >= 5) {
+                    game.select = YES;
+                }
+            }
+            else if ([para isEqualToString:@"小数"]) {
+                if (game.name.intValue < 5) {
+                    game.select = YES;
+                }
+            }
+            else if ([para isEqualToString:@"奇数"]) {
+                if (game.name.intValue %2 != 0) {
+                    game.select = YES;
+                }
+            }
+            else if ([para isEqualToString:@"偶数"]) {
+                if (game.name.intValue %2 == 0) {
+                    game.select = YES;
+                }
+            }
+            else{
+               game.select = NO;//移除
+            }
+ 
         }
+        
+        [self calculate:bet];
     }
 }
 
