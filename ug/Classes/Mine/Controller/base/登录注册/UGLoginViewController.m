@@ -184,7 +184,7 @@
 
 
 - (IBAction)loginClick:(id)sender {
-    
+    WeakSelf;
     ck_parameters(^{
         ck_parameter_non_empty(self.userNameTextF.text, @"请输入用户名");
         ck_parameter_non_empty(self.passwordTextF.text, @"请输入密码");
@@ -226,107 +226,109 @@
         }
         
         if (self.isfromFB) {
-            NSInteger slot = 0;
-            NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
-            NSString *name =  [SUCache itemForSlot:slot].profile.name;
-            FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+            //==>绑定旧账号 ==》成功后无密码登录
+            [weakSelf fbauthBindAccounAction];
             
-            [mutDict setValue:token.tokenString forKey:@"oauth[accessToken]"];
-            [mutDict setValue:uuid forKey:@"oauth[uuid]"];
-            [mutDict setObject:name forKey:@"oauth[name]"];
-            [mutDict setObject:@"facebook" forKey:@"oauth[platform]"];
+            
+        }
+        else{
+            [SVProgressHUD showWithStatus:@"正在登录..."];
+               
+                [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
+                    
+                    
+                    [CMResult processWithResult:model success:^{
+                        
+                        [SVProgressHUD showSuccessWithStatus:model.msg];
+                        
+                        // 退出登录上一个账号
+                        if (UGUserModel.currentUser) {
+                            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                            UGUserModel.currentUser = nil;
+                            SANotificationEventPost(UGNotificationUserLogout, nil);
+                        }
+                        
+                        NSLog(@"model.data = %@",model.data);
+                        
+                        UGUserModel *user = model.data;
+                        UGUserModel.currentUser = user;
+                        
+                        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+                        if([userDefault boolForKey:@"isRememberPsd"])
+                        {
+                            [userDefault setObject:weakSelf.userNameTextF.text forKey:@"userName"];
+                            [userDefault setObject:weakSelf.passwordTextF.text forKey:@"userPsw"];
+                        }
+                        
+                        SANotificationEventPost(UGNotificationLoginComplete, nil);
+                        
+                        if (self.isfromFB) {
+                            //去绑定旧账号
+                        }
+                        
+                        NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
+                        
+                        BOOL isGoRoot = YES;
+                        
+                        for (int i= 0; i<simplePwds.count; i++) {
+                            NSString *str = [simplePwds objectAtIndex:i];
+                            if ([weakSelf.passwordTextF.text isEqualToString:str]) {
+                                
+                                isGoRoot = NO;
+                                break;
+                            }
+                        }
+                        
+                        if (isGoRoot) {
+                            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                        } else {
+                            [weakSelf.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
+                            UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
+                            vc.fromVC = @"fromLoginViewController";
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        }
+                        
+                    } failure:^(id msg) {
+                        
+                        weakSelf.errorTimes += 1;
+                        if (weakSelf.errorTimes == 4) {
+                            if (![UGSystemConfigModel  currentConfig].loginVCode) {
+                                weakSelf.webBgView.hidden = NO;
+                                weakSelf.webBgViewHeightConstraint.constant = 120;
+                                [weakSelf webLoadURL];
+                            }
+                            
+                        }
+                        
+                        UGUserModel *user = (UGUserModel*) model.data;
+                        
+                        NSInteger intGgCheck =  user.ggCheck;
+                        
+                        if (intGgCheck == 1) {
+                            
+                            weakSelf.gCheckUserName = self.userNameTextF.text;
+                            [weakSelf showLeeView];
+                        }
+                        if ([weakSelf.userNameTextF.text isEqualToString:weakSelf.gCheckUserName]) {
+                            
+                            [weakSelf showLeeView];
+                            
+                        }
+                        
+                        if (weakSelf.webBgView.hidden == NO) {
+                            [weakSelf.webView reload];
+                            weakSelf.imgVcodeModel = nil;
+                        }
+                        
+                        [SVProgressHUD showErrorWithStatus:msg];
+                        
+                    }];
+                }];
         }
         
         
         
-        [SVProgressHUD showWithStatus:@"正在登录..."];
-        WeakSelf;
-        [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
-            
-            
-            [CMResult processWithResult:model success:^{
-                
-                [SVProgressHUD showSuccessWithStatus:model.msg];
-                
-                // 退出登录上一个账号
-                if (UGUserModel.currentUser) {
-                    [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
-                    UGUserModel.currentUser = nil;
-                    SANotificationEventPost(UGNotificationUserLogout, nil);
-                }
-                
-                NSLog(@"model.data = %@",model.data);
-                
-                UGUserModel *user = model.data;
-                UGUserModel.currentUser = user;
-                
-                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                if([userDefault boolForKey:@"isRememberPsd"])
-                {
-                    [userDefault setObject:weakSelf.userNameTextF.text forKey:@"userName"];
-                    [userDefault setObject:weakSelf.passwordTextF.text forKey:@"userPsw"];
-                }
-                
-                SANotificationEventPost(UGNotificationLoginComplete, nil);
-                
-                NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
-                
-                BOOL isGoRoot = YES;
-                
-                for (int i= 0; i<simplePwds.count; i++) {
-                    NSString *str = [simplePwds objectAtIndex:i];
-                    if ([weakSelf.passwordTextF.text isEqualToString:str]) {
-                        
-                        isGoRoot = NO;
-                        break;
-                    }
-                }
-                
-                if (isGoRoot) {
-                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                } else {
-                    [weakSelf.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
-                    UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
-                    vc.fromVC = @"fromLoginViewController";
-                    [weakSelf.navigationController pushViewController:vc animated:YES];
-                }
-                
-            } failure:^(id msg) {
-                
-                weakSelf.errorTimes += 1;
-                if (weakSelf.errorTimes == 4) {
-                    if (![UGSystemConfigModel  currentConfig].loginVCode) {
-                        weakSelf.webBgView.hidden = NO;
-                        weakSelf.webBgViewHeightConstraint.constant = 120;
-                        [weakSelf webLoadURL];
-                    }
-                    
-                }
-                
-                UGUserModel *user = (UGUserModel*) model.data;
-                
-                NSInteger intGgCheck =  user.ggCheck;
-                
-                if (intGgCheck == 1) {
-                    
-                    weakSelf.gCheckUserName = self.userNameTextF.text;
-                    [weakSelf showLeeView];
-                }
-                if ([weakSelf.userNameTextF.text isEqualToString:weakSelf.gCheckUserName]) {
-                    
-                    [weakSelf showLeeView];
-                    
-                }
-                
-                if (weakSelf.webBgView.hidden == NO) {
-                    [weakSelf.webView reload];
-                    weakSelf.imgVcodeModel = nil;
-                }
-                
-                [SVProgressHUD showErrorWithStatus:msg];
-                
-            }];
-        }];
+      
     });
 }
 #pragma mark - facebook 登录相关
@@ -449,6 +451,38 @@
              SANotificationEventPost(UGNotificationLoginComplete, nil);
             
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+    
+}
+
+- (void)fbauthBindAccounAction {//绑定旧账号
+    NSInteger slot = 0;
+    NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
+    NSString *name =  [SUCache itemForSlot:slot].profile.name;
+    NSDictionary *params = @{
+        @"usr":self.userNameTextF.text,
+        @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
+        @"uuid":uuid,
+        @"name":name,
+        @"platform":@"facebook",
+        
+    };
+    [SVProgressHUD showWithStatus:@"正在绑定..."];
+    WeakSelf;
+    [CMNetwork oauthBindAccountWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+
+        [CMResult processWithResult:model success:^{
+            
+            [SVProgressHUD showSuccessWithStatus:model.msg];
+            if (model.code == 0) {//成功
+                [weakSelf fboauthLoginUrlAction];
+            }
             
         } failure:^(id msg) {
             
