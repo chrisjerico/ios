@@ -68,7 +68,6 @@
     
    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"resetGengHaoBtn" object:self];
         [self.nextIssueCountDown destoryTimer];
-    NSLog(@"%s dealloc", object_getClassName(self));
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -326,7 +325,6 @@
     [[Global getInstanse] setRebate:0.0];//进入界面，初始退水为0
     [self.bottomView addSubview:self.slider];
     [self.slider changeValue:^(CGFloat value) {
-        NSLog(@">>>>>>>>>>>>>>>>>>>>>拖动==== %f", value);
         [__self setRebateAndSliderLB:value];
         
     } endValue:^(CGFloat value) {
@@ -444,7 +442,6 @@
                 frame.origin.x = 90.0;
                 self.slider.valveIV.frame = frame;
             }
-            NSLog(@"x= %f",frame.origin.x);
         }
       
     }
@@ -635,18 +632,15 @@
  
     NSDictionary *params = @{@"id":self.gameId,
                              };
-    NSLog(@"self.gameId=%@",self.gameId);
+
     WeakSelf;
     [CMNetwork ticketgetLotteryFirstOrderWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        
-        
-        NSLog(@"model= %@",model);
+
         
         [CMResult processWithResult:model success:^{
            
             weakSelf.zuiHaoIssueModel = (UGNextIssueModel *)model.data;
-            
-            NSLog(@"zuiHaoIssueModel = %@",weakSelf.zuiHaoIssueModel);
+
              
            
         } failure:^(id msg) {

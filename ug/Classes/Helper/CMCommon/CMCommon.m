@@ -99,9 +99,7 @@ static NSString *uuidKey =@"uuidKey";
 }
 
 + (NSString *)getNowTimeWithEndTimeStr:(NSString *)aTimeString currentTimeStr:(NSString *)currentTime {
-    NSLog(@"curCloseTime =%@",aTimeString);
-    
-    NSLog(@"serverTime =%@",currentTime);
+
     
 //    2020-04-15 16:23:13.868372+0800 UGBWApp[2076:128817] aTimeString =2020-04-15 21:30:00
 //    2020-04-15 16:23:13.868545+0800 UGBWApp[2076:128817] currentTime =2020-04-15 16:23:12
