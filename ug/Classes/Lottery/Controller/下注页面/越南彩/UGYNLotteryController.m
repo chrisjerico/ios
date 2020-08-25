@@ -419,6 +419,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.itemIndexPath = nil;
     
     [self updateSelectLabelWithCount:0];
+    [self setAmountLableCount :0];
     [self setupBarButtonItems];
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         STButton *button = (STButton *)self.rightItem1.customView;
@@ -1184,12 +1185,9 @@ static NSString *footViewID = @"YNCollectionFootView";
             [footerView.smallButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [footerView.pButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [footerView.accidButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-            
+            [footerView.removeButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [footerView.allButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 
-                [SVProgressHUD showWithStatus:nil];
-                [footerView.allButton setEnabled:NO];
-                NSLog(@"indexPath.section = %ld",(long)indexPath.section);
                 UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
                 UGGameplaySectionModel *group = [model.list objectAtIndex:0];
                 if (group.list.count) {
@@ -1202,22 +1200,20 @@ static NSString *footViewID = @"YNCollectionFootView";
                         }
                         game.select = YES;
                     }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //刷新Section
-                        [UIView performWithoutAnimation:^{
-                            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                            [weakSelf.betCollectionView reloadSections:indexSet];
-                        }];
-                        [footerView.allButton setEnabled:YES];
-                        [SVProgressHUD dismiss];
-                    });
+                    //刷新Section
+                    [UIView performWithoutAnimation:^{
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                        [weakSelf.betCollectionView reloadSections:indexSet];
+                    }];
+                    
+                    
+                    [self calculate:bet];
+                    
                 }
             }];//所有
             
             [footerView.bigButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 
-                [SVProgressHUD showWithStatus:nil];
-                [footerView.bigButton setEnabled:NO];
                 [weakSelf removeAllCellsAtIndexPath:indexPath];
                 
                 UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
@@ -1235,21 +1231,20 @@ static NSString *footViewID = @"YNCollectionFootView";
                         }
                         
                     }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //刷新Section
-                        [UIView performWithoutAnimation:^{
-                            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                            [weakSelf.betCollectionView reloadSections:indexSet];
-                        }];
-                        [footerView.bigButton setEnabled:YES];
-                        [SVProgressHUD dismiss];
-                    });
+                    
+                    //刷新Section
+                    [UIView performWithoutAnimation:^{
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                        [weakSelf.betCollectionView reloadSections:indexSet];
+                    }];
+                    
+                    [self calculate:bet];
+                    
                 }
             }];//大数
             
             [footerView.smallButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [SVProgressHUD showWithStatus:nil];
-                [footerView.smallButton setEnabled:NO];
+                
                 [weakSelf removeAllCellsAtIndexPath:indexPath];
                 
                 UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
@@ -1267,21 +1262,19 @@ static NSString *footViewID = @"YNCollectionFootView";
                         }
                         
                     }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [UIView performWithoutAnimation:^{
-                            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                            [weakSelf.betCollectionView reloadSections:indexSet];
-                        }];
-                        [footerView.smallButton setEnabled:YES];
-                        [SVProgressHUD dismiss];
-                    });
+                    
+                    [UIView performWithoutAnimation:^{
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                        [weakSelf.betCollectionView reloadSections:indexSet];
+                    }];
+                    
+                    [self calculate:bet];
+                    
                 }
             }];//小数
             
             [footerView.pButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 
-                [SVProgressHUD showWithStatus:nil];
-                [footerView.pButton setEnabled:NO];
                 [weakSelf removeAllCellsAtIndexPath:indexPath];
                 
                 UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
@@ -1299,20 +1292,18 @@ static NSString *footViewID = @"YNCollectionFootView";
                         }
                         
                     }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [UIView performWithoutAnimation:^{
-                            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                            [weakSelf.betCollectionView reloadSections:indexSet];
-                        }];
-                        [footerView.pButton setEnabled:YES];
-                        [SVProgressHUD dismiss];
-                    });
+                    
+                    [UIView performWithoutAnimation:^{
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                        [weakSelf.betCollectionView reloadSections:indexSet];
+                    }];
+                    
+                    [self calculate:bet];
                 }
             }];//奇数
             
             [footerView.accidButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [SVProgressHUD showWithStatus:nil];
-                [footerView.accidButton setEnabled:NO];
+                
                 [weakSelf removeAllCellsAtIndexPath:indexPath];
                 
                 UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
@@ -1330,30 +1321,31 @@ static NSString *footViewID = @"YNCollectionFootView";
                         }
                         
                     }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [UIView performWithoutAnimation:^{
-                            NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                            [weakSelf.betCollectionView reloadSections:indexSet];
-                        }];
-                        [footerView.accidButton setEnabled:YES];
-                        [SVProgressHUD dismiss];
-                    });
-                }
-            }];//偶数
-            
-            [footerView.removeButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [SVProgressHUD showWithStatus:nil];
-                [footerView.removeButton setEnabled:NO];
-                [weakSelf removeAllCellsAtIndexPath:indexPath];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
+                    
                     [UIView performWithoutAnimation:^{
                         NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
                         [weakSelf.betCollectionView reloadSections:indexSet];
                     }];
-                    [footerView.removeButton setEnabled:YES];
-                    [SVProgressHUD dismiss];
-                });
+                    
+                    [self calculate:bet];
+                }
+            }];//偶数
+            
+            [footerView.removeButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                
+                [weakSelf removeAllCellsAtIndexPath:indexPath];
+                
+                [UIView performWithoutAnimation:^{
+                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                    [weakSelf.betCollectionView reloadSections:indexSet];
+                }];
+                
+                UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+                UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+                if (group.list.count) {
+                    UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
+                    [self calculate:bet];
+                }
                 
             }];//移除
             
@@ -1373,21 +1365,21 @@ static NSString *footViewID = @"YNCollectionFootView";
 //取消全部的选中
 -(void)removeAllCellsAtIndexPath:(NSIndexPath *)indexPath {
     UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-     UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-     if (group.list.count) {
-         UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-         UGGameplaySectionModel * sectionModel = bet.ynList[indexPath.section];
-         for (int i = 0; i< sectionModel.list.count; i++) {
-             UGGameBetModel *game =  sectionModel.list[i];
-             if (!game.enable) {
-                 return;
-             }
-             
-             game.select = NO;
-             
-             
-         }
-     }
+    UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+    if (group.list.count) {
+        UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
+        UGGameplaySectionModel * sectionModel = bet.ynList[indexPath.section];
+        for (int i = 0; i< sectionModel.list.count; i++) {
+            UGGameBetModel *game =  sectionModel.list[i];
+            if (!game.enable) {
+                return;
+            }
+            
+            game.select = NO;
+            
+            
+        }
+    }
 }
 
 
@@ -1455,8 +1447,6 @@ static NSString *footViewID = @"YNCollectionFootView";
         [self.betCollectionView reloadData];
         
         NSInteger number = 0;
-        
-        
         for (UGGameBetModel *type in obj.list) {
             for (UGGameplaySectionModel *type1 in type.ynList) {
                 for (UGGameBetModel *game in type1.list) {
@@ -1471,33 +1461,39 @@ static NSString *footViewID = @"YNCollectionFootView";
         [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
-        //        计算选中的注数
-        NSInteger count = 0;
-        
-        //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
-        if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
-            ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
-            ||[bet.code isEqualToString:@"BIAOTIWB"]) {
-            
-            [self ezdwActionModel:bet count:count];
-        }
-        //头 尾 // 加  十
-        else  if ([bet.code isEqualToString:@"TOU"]||[bet.code isEqualToString:@"WEI"]) {
-            [self yzdwActionModel:bet count:count];
-        }
-        //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
-        else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
-                 ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
-            [self szdwActionModel:bet count:count];
-            
-        }
-        //4更特别 // 加  千 百 十 个
-        else if([bet.code isEqualToString:@"PIHAO4"]||[bet.code isEqualToString:@"4GTEBIE"]) {
-            [self sszdwActionModel:bet count:count];
-        }
-        
+        [self calculate:bet];
     }
     
+}
+
+
+-(void)calculate:(UGGameBetModel *)bet{
+    
+    
+    //        计算选中的注数
+    NSInteger count = 0;
+    
+    //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
+    if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
+        ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+        ||[bet.code isEqualToString:@"BIAOTIWB"]) {
+        
+        [self ezdwActionModel:bet count:count];
+    }
+    //头 尾 // 加  十
+    else  if ([bet.code isEqualToString:@"TOU"]||[bet.code isEqualToString:@"WEI"]) {
+        [self yzdwActionModel:bet count:count];
+    }
+    //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
+    else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
+             ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+        [self szdwActionModel:bet count:count];
+        
+    }
+    //4更特别 // 加  千 百 十 个
+    else if([bet.code isEqualToString:@"PIHAO4"]||[bet.code isEqualToString:@"4GTEBIE"]) {
+        [self sszdwActionModel:bet count:count];
+    }
     
 }
 //一字定位 计算选中的注数  十个
@@ -1767,18 +1763,19 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
 }
 #pragma mark - 显示金额
+
 //显示金额
 -(void)setAmountLableCount:(int)count{
     int amount = count * self.defaultGold;
     NSString *amountStr;
     if ([UGSystemConfigModel.currentConfig.currency isEqualToString:@"VND"]) {
-        amountStr = [NSString stringWithFormat:@"金额：%d 越南盾",amount];
+        amountStr = [NSString stringWithFormat:@"金额:%d 越南盾",amount];
     }
     else {
-        amountStr = [NSString stringWithFormat:@"金额：%d 元",amount];
+        amountStr = [NSString stringWithFormat:@"金额:%d 元",amount];
     }
     self.amountLabel.text = amountStr;
-    [CMLabelCommon setRichNumberWithLabel:self.amountLabel Color:[UIColor redColor] FontSize:16];
+    [CMLabelCommon setRichNumberWithLabel:self.amountLabel Color:RGBA(247, 211, 72, 1) FontSize:16];
 }
 
 -(void)setLabelDataCount:(int  )count{
@@ -1791,17 +1788,17 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 //显示赔率
 -(void)setOuntoddsLabelLable{
-    
-    
-    NSString *amountStr = [NSString stringWithFormat:@"赔率：1：%@",[self.defaultAdds removeFloatAllZero]];
+    NSString *amountStr = [NSString stringWithFormat:@"赔率:1:%@",[self.defaultAdds removeFloatAllZero]];
     self.oddsLabel.text = amountStr;
 }
 
 //显示选中的
 - (void)updateSelectLabelWithCount:(NSInteger)count {
-    NSString *amountStr = [NSString stringWithFormat:@"已选择：%ld 个",(long)count];
+    NSString *amountStr = [NSString stringWithFormat:@"已选择:%ld 个",(long)count];
     self.selectLabel.text = amountStr;
-    [CMLabelCommon setRichNumberWithLabel:self.selectLabel Color:[UIColor redColor] FontSize:16];
+    [self.selectLabel setTextColor:[UIColor whiteColor]];
+    [CMLabelCommon setRichNumberWithLabel:self.selectLabel Color:RGBA(247, 211, 72, 1) FontSize:16];
+
 }
 
 #pragma mark - WSLWaterFlowLayoutDelegate
@@ -1809,10 +1806,6 @@ static NSString *footViewID = @"YNCollectionFootView";
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake((UGScreenW / 4 * 3 - 11) / 5, (UGScreenW / 4 * 3 - 11) / 5);
-    //    if (indexPath.row < 9) {
-    //        return CGSizeMake((UGScreenW / 4 * 3 - 4) / 3, 40);
-    //    }
-    //    return CGSizeMake((UGScreenW / 4 * 3 - 4) / 1, 40);
     
 }
 
