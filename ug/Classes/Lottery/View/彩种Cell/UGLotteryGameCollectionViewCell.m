@@ -46,7 +46,7 @@
     if (time) {
         self.timeLabel.text = time;
     } else {
-        self.timeLabel.text = @"获取下一期...";
+        self.timeLabel.text = @"获取下一期";
     }
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:item.pic] placeholderImage:[UIImage imageNamed:@"loading"]];
 	[self.timeLabel setHidden:item.isInstant];
