@@ -167,17 +167,24 @@
         self.bgImgeView.image = [UIImage imageNamed:@"wuye"];
     }
     
+    
+
+    [self.FBbtn setHidden:user.isTest];
 
     if (![CMCommon stringIsNull:user.oauth.facebook_id] && ![user.oauth.facebook_id isEqualToString:@"0"]) {
         
         [self.FBbtn setBackgroundColor:RGBA(75, 154, 208, 1)];
         [self.FBbtn setTitle:@"FB已绑定" forState:(UIControlStateNormal)];
-        NSInteger slot = 0;
-        SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
-        self.fbLabel.text = [NSString stringWithFormat:@"Facebook:%@",cacheItem.profile.name];
+       
+        NSString *fsname = @"";
+        if (![CMCommon stringIsNull:user.oauth.facebook_name]) {
+            fsname = user.oauth.facebook_name;
+        }
+        self.fbLabel.text = [NSString stringWithFormat:@"Facebook:%@",fsname];
         [self.FBbtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         WeakSelf;
         [self.FBbtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            
             
             [weakSelf fboauthUnbind];
         }];
@@ -240,7 +247,6 @@
         SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
         cacheItem.profile = profile;
         [SUCache saveItem:cacheItem slot:slot];
-        self.fbLabel.text = [NSString stringWithFormat:@"Facebook:%@",cacheItem.profile.name];
 //        NSURL *imgURL = [profile imageURLForPictureMode:FBSDKProfilePictureModeNormal size:CGSizeMake(50, 50)];
   
     }
@@ -256,7 +262,6 @@
     if (self.isFBLoginOK) {
         NSInteger slot = 0;
             SUCacheItem *cacheItem = [SUCache itemForSlot:slot];
-            self.fbLabel.text = [NSString stringWithFormat:@"Facebook:%@",cacheItem.profile.name];
                // 去绑定
             [self gobingVC];
             self.isFBLoginOK = NO;

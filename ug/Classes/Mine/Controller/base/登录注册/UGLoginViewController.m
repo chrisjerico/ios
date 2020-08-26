@@ -180,6 +180,8 @@
     
     
     [self.FSloginButton setHidden:self.isfromFB];
+    [self.rigesterButton setHidden:self.isfromFB];
+    [self.playButton setHidden:self.isfromFB];
     
     self.isFBLoginOK = NO;
     
@@ -188,13 +190,14 @@
         if (![CMCommon stringIsNull:UGUserModel.currentUser.username]) {
             self.userNameTextF.text =  UGUserModel.currentUser.username;
         }
-        
-        
-        
         [self.loginButton setTitle:@"绑定" forState:(UIControlStateNormal)];
     } else {
         [self.loginButton setTitle:@"登录" forState:(UIControlStateNormal)];
     }
+    
+ 
+    [self.userNameTextF setEnabled:!self.isNOfboauthLogin];
+    
     
 }
 
