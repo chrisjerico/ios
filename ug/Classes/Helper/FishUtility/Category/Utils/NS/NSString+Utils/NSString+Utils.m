@@ -301,7 +301,7 @@
     return [string copy];
 }
 
-- (NSString *)substringWithSize:(CGSize)size font:(UIFont *)font {
+- (NSString *)substringWithFrameSize:(CGSize)size font:(UIFont *)font {
     CGFloat h = [self boundingRectWithSize:CGSizeMake(size.width, MAXFLOAT)
                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                 attributes:@{NSFontAttributeName:font}
@@ -331,6 +331,36 @@
         temp = [self substringToIndex:temp.length + (h > size.height ? -len : len)];
     }
     return nil;
+}
+
+- (UIFont *)fontWithFrameSize:(CGSize)size maxFont:(UIFont *)maxFont {
+    CGFloat current = 999;
+    UIFont *ret = nil;
+    CGFloat step = current;
+    NSInteger correct = 2;
+    
+    NSMutableParagraphStyle *ps = [[NSMutableParagraphStyle alloc] init];
+    ps.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    while (true) {
+        UIFont *font = maxFont ? [maxFont fontWithSize:current] : [UIFont systemFontOfSize:current];
+        CGFloat h = [self boundingRectWithSize:CGSizeMake(size.width, MAXFLOAT)
+                                       options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                    attributes:@{NSFontAttributeName:font, NSParagraphStyleAttributeName:ps}
+                                       context:nil].size.height;
+        if (h <= size.height) {
+            ret = font;
+        }
+        
+        step /= 2;
+        if (step < 0.3) {
+            if (correct--)
+                step = 0.3;
+            else
+                return ret.pointSize > maxFont.pointSize ? maxFont : ret;
+        }
+        current += h > size.height ? -step : step;
+    }
 }
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0) {

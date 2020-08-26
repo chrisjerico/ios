@@ -156,7 +156,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 /// @param success 成功回调
 ///
 + (void)processWithResult:(CMResult*)result success:(void(^)(void))success failure:(void(^)(id msg))failure {
-    id msg = nil;
+    NSString *msg = nil;
     id title = nil;
     if (!result) {
         if (failure != nil) {
@@ -187,10 +187,12 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         // ROP错误
         title = @"未知错误，稍后再试";
         msg = result->_error.localizedDescription ?: result->_error.ROPReason;
+        [LanguageHelper setNoTranslate:msg];
     } else if (result->_error != nil) {
         // 未知错误
         title = @"未知错误，稍后再试";
         msg = result->_error.localizedDescription; //@"发生未知错误, 请稍后再试或者和我们联系.";
+        [LanguageHelper setNoTranslate:msg];
     }
     else if(result->_error.code == 401){
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -201,6 +203,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     
     
     if (msg == nil) {
+        [LanguageHelper setNoTranslate:result];
         if (success != nil) {
             success();
         }

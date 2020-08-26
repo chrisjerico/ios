@@ -266,10 +266,10 @@
             UILabel *titleLabel = [[UILabel alloc] initWithFrame:view.bounds];
             titleLabel.text = self.titleArray[i];
             titleLabel.textAlignment = NSTextAlignmentCenter;
+            titleLabel.numberOfLines = 0;
             titleLabel.textColor = Skin1.textColor1;
-            titleLabel.font = [UIFont systemFontOfSize:13 weight:UIFontWeightHeavy];
+            titleLabel.font = [titleLabel.text fontWithFrameSize:CGSizeOffset(view.size, CGSizeMake(-10, 0)) maxFont:[UIFont systemFontOfSize:12 weight:UIFontWeightHeavy]];
             [view addSubview:titleLabel];
-            
             [_titleView addSubview:view];
         }
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0,_titleView.height - 0.6, _titleView.width, 0.6)];

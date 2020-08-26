@@ -346,9 +346,18 @@ UITableViewDataSource
         cell = [[YBPopupMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.textColor = _textColor;
-    cell.textLabel.font = [UIFont systemFontOfSize:_fontSize];
-    cell.textLabel.text = [NSString stringWithFormat:@"     %@",_titles[indexPath.row]];
+    
+    UILabel *lb = [cell viewWithTagString:@"标题Label"];
+    if (!lb) {
+        lb = [UILabel new];
+        lb.textColor = _textColor;
+        lb.font = [UIFont systemFontOfSize:_fontSize];
+        lb.tagString = @"标题Label";
+        [cell.contentView addSubview:lb];
+    }
+    lb.frame = cell.bounds;
+    lb.x = 30;
+    lb.text = _titles[indexPath.row];
     
 //    cell.titleLabel.textColor = _textColor;
 //    cell.titleLabel.font = [UIFont systemFontOfSize:_fontSize];

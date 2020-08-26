@@ -23,12 +23,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *playCateNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UILabel *playNameLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *oddsLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *playNameLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *oddsLabel2;
 
+@property (nonatomic, assign) unsigned long nexttime;
 @end
 @implementation UGLotteryAssistantTableViewCell
 
@@ -57,8 +59,7 @@
     _oddsLabel1.textColor = Skin1.textColor1;
     _playNameLabel2.textColor = Skin1.textColor1;
     _oddsLabel2.textColor = Skin1.textColor1;
-    
-    
+    _nexttime = 8;
 }
 
 - (void)setItem:(UGChanglongaideModel *)item {
@@ -123,8 +124,20 @@
         }
     }
     
-   
-    
+    UIScrollView *sv = _scrollView;
+    if (sv.isTracking) {
+        return;
+    }
+    if (_nexttime%10 == 0) {
+        if (sv.width < sv.contentSize.width) {
+            [UIView animateWithDuration:2 animations:^{
+                sv.contentOffset = CGPointMake(sv.contentOffset.x ? 0 : sv.contentSize.width - sv.width, 0);
+            }];
+        } else {
+            sv.contentOffset = CGPointZero;
+        }
+    }
+    _nexttime++;
 }
 - (IBAction)betItem0Click:(id)sender {
     if (self.betItemSelectBlock) {

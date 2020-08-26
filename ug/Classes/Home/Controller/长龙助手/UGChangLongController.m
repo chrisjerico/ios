@@ -42,6 +42,14 @@
     
     [self getSystemConfig];     // APP配置信息
     
+    self.navigationItem.titleView = ({
+        UILabel *lb = [UILabel new];
+        lb.text = self.title;
+        lb.textColor = Skin1.navBarTitleColor;
+        lb.numberOfLines = 0;
+        lb.font = [UIFont boldSystemFontOfSize:15];
+        lb;
+    });
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         STButton *button = (STButton *)self.rightItem1.customView;
         [button.imageView.layer removeAllAnimations];
@@ -51,7 +59,6 @@
         self.rightItem1 = item0;
         STBarButtonItem *item1 = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(showRightMenueView)];
         self.navigationItem.rightBarButtonItems = @[item1,item0];
-        
     });
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
