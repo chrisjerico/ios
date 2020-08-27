@@ -20,6 +20,7 @@
 #import "UIButton+touch.h"
 
 #import "UGBetDetailView.h"
+#import "YNBetDetailView.h"
 
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
@@ -669,6 +670,33 @@
     
     
     UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
+    betDetailView.dataArray = objArray;
+    betDetailView.nextIssueModel = self.nextIssueModel;
+    betDetailView.code = selCode;
+    WeakSelf
+    betDetailView.betClickBlock = ^{
+        [weakSelf handleData];
+        [weakSelf resetClick:nil];
+    };
+    betDetailView.cancelBlock = ^{
+        [weakSelf handleData];
+        [weakSelf resetClick:nil];
+    };
+    [betDetailView show];
+
+}
+
+
+//调用越南彩下注界面
+-(void)goYNBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode{
+    
+    if ([CMCommon arryIsNull:objArray]) {
+        [self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
+        return ;
+    }
+    
+    
+    YNBetDetailView *betDetailView = [[YNBetDetailView alloc] init];
     betDetailView.dataArray = objArray;
     betDetailView.nextIssueModel = self.nextIssueModel;
     betDetailView.code = selCode;

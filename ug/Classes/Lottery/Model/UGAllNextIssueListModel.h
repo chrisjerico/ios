@@ -74,6 +74,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isAllowCancel;            /**<    */
 @property (nonatomic, assign) int status;                  /**<    */
 
+//越南彩
+@property (strong, nonatomic)  NSString *multipleStr;     /**<  倍数*/
+@property (strong, nonatomic)  NSString *totalAmountStr; /**<   总金额Label */
+@property (nonatomic, strong) NSString *  defaultAdds;  //默认赔率。
 
 
 + (instancetype)modelWithGameId:(NSString *)gameId;

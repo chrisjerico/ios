@@ -794,10 +794,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         return;
     }
     if (self.closeTimeLabel.text.length) {
-        
-        //        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
-        //        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
-        //        self.closeTimeLabel.attributedText = abStr;
+
         
         [CMLabelCommon setRichNumberWithLabel:self.closeTimeLabel Color:[UIColor redColor] FontSize:15.0];
     }

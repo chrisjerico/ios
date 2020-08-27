@@ -114,7 +114,7 @@
 
 //===============================================
 @property (nonatomic, assign) int  defaultGold;  //默认金额 18000.0
-@property (nonatomic, assign) NSString *  defaultAdds;  //默认赔率。
+@property (nonatomic, strong) NSString *  defaultAdds;  //默认赔率。
 
 
 
@@ -848,25 +848,36 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 
 - (IBAction)resetClick:(id)sender {
-    [self.amountTextF resignFirstResponder];
-    [self updateSelectLabelWithCount:0];
-    self.amountTextF.text = nil;
+
     for (UGGameplayModel *model in self.gameDataArray) {
         model.select = NO;
-        for (UGGameplaySectionModel *type in model.list) {
-            for (UGGameBetModel *game in type.list) {
-                game.select = NO;
-                
+        UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+        for (UGGameBetModel *bet in group.list) {
+            for (UGGameplaySectionModel *type2 in bet.ynList) {
+                for (UGGameBetModel *game in type2.list) {
+                    game.select = NO;
+                }
             }
         }
+        
     }
     [self.selArray removeAllObjects];
-    [self.betCollectionView reloadData];
-    [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // UI更新代码
+        [self.amountTextF resignFirstResponder];
+        [self updateSelectLabelWithCount:0];
+        self.amountTextF.text = nil;
+        
+        [self.betCollectionView reloadData];
+        [self.tableView reloadData];
+        [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    });
+    
+
 }
 
 - (IBAction)betClick:(id)sender {
+     WeakSelf;
     [self.amountTextF resignFirstResponder];
     ck_parameters(^{
         ck_parameter_non_equal(self.selectLabel.text, @"已选中 0 注", @"请选择玩法");
@@ -877,7 +888,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSString *selCode = @"";
         NSString *selName = @"";
         NSMutableArray *array = [NSMutableArray array];
-        UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+        UGGameplayModel *model = weakSelf.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *group = [model.list objectAtIndex:0];
         selCode = model.code;
         if (group.list.count) {
@@ -886,23 +897,28 @@ static NSString *footViewID = @"YNCollectionFootView";
             //   十
             if ([bet.code isEqualToString:@"TOU"]||[bet.code isEqualToString:@"WEI"]) {
                 
-                [self yzdwBetActionMode:bet  array:&array] ;
+                [weakSelf yzdwBetActionMode:bet  array:&array] ;
             }// 十 个
             else  if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
                 ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
                 ||[bet.code isEqualToString:@"BIAOTIWB"]) {
                 
-               [self ezdwBetActionMode:bet  array:&array] ;
+               [weakSelf ezdwBetActionMode:bet  array:&array] ;
             }//  百 十 个
             else   if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
                        ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
                 
-               [self szdwBetActionMode:bet  array:&array] ;
+               [weakSelf szdwBetActionMode:bet  array:&array] ;
             }//千 百 十 个
             else  if ([bet.code isEqualToString:@"PIHAO4"]||[bet.code isEqualToString:@"4GTEBIE"]) {
-                [self qzdwBetActionMode:bet  array:&array] ;
+                [weakSelf qzdwBetActionMode:bet  array:&array] ;
             }
         }
+        weakSelf.nextIssueModel.defaultAdds = weakSelf.defaultAdds;
+        weakSelf.nextIssueModel.multipleStr = weakSelf.amountTextF.text;
+        
+        NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
+        [weakSelf goYNBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:weakSelf.nextIssueModel  gameType:weakSelf.nextIssueModel.gameId selCode:selCode];
     });
 }
 //个下注方法
@@ -2324,6 +2340,8 @@ static NSString *footViewID = @"YNCollectionFootView";
     });
     
 }
+
+
 
 
 @end

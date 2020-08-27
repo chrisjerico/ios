@@ -62,7 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //调用下注界面   objArray:模型数组  dicArray 字典数组
 -(void)goUGBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode;
-
+//调用越南彩下注界面
+-(void)goYNBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode;
 @end
 
 NS_ASSUME_NONNULL_END
