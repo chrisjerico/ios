@@ -895,7 +895,7 @@
     });
     dispatch_group_async(group, queue, ^{
         
-        // 请求7在线人数
+        // 请求7
         [self getPromoteList];    // 优惠活动
         
     });
@@ -1341,12 +1341,8 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
-            
-           
            
             [weakSelf getCustomGameList];   // 自定义游戏列表
-
-            [weakSelf getPromotionsType ];// 获取优惠图片分类信息
             
             [weakSelf gethomeAdsList];     // 首页广告图片
             
@@ -1358,24 +1354,6 @@
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-}
-
-// 获取优惠图片分类信息
-- (void)getPromotionsType {
-//    return;
-    [CMNetwork getPromotionsTypeWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        
-        [CMResult processWithResult:model success:^{
-            NSLog(@"model = %@",model);
-            NSDictionary *dic = model.data;
-            [UGSystemConfigModel.currentConfig setTypyArr:dic[@"typeArr"]];
-            NSNumber * number = dic[@"typeIsShow"];
-            [UGSystemConfigModel.currentConfig setTypeIsShow:[number intValue]];
-            
-        } failure:^(id msg) {
-            //            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
 }
