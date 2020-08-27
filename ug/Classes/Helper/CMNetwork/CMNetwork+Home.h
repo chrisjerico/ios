@@ -38,9 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 //查询优惠活动列表
 + (void)getPromoteListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
-//查询优惠图片分类信息
-+ (void)getPromotionsTypeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock ;
-
 //检查app版本
 + (void)checkVersionWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 

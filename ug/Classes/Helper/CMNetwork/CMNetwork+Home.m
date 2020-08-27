@@ -158,21 +158,6 @@
     
 }
 
-//查询优惠图片分类信息
-+ (void)getPromotionsTypeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
-    CMMETHOD_BEGIN;
-    
-    [self.manager requestInMainThreadWithMethod:[getPromotionsTypeUrl stringToRestfulUrlWithFlag:RESTFUL]
-                                         params:params
-                                          model:nil
-                                           post:NO
-                                     completion:completionBlock];
-    
-    
-    CMMETHOD_END;
-    
-}
-
 //检查app版本
 + (void)checkVersionWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;

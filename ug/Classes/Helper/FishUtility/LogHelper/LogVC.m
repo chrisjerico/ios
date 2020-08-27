@@ -14,7 +14,6 @@
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
-#import "UGPromotionsListController.h"
 
 // View
 #import "TextFieldAlertView.h"
