@@ -24,6 +24,19 @@
     [self.pButton setBackgroundColor:Skin1.navBarBgColor];
     [self.accidButton setBackgroundColor:Skin1.navBarBgColor];
     [self.removeButton setBackgroundColor:Skin1.navBarBgColor];
+    
+    
+    [self setBigButton:self.allButton];
+    [self setBigButton:self.bigButton];
+    [self setBigButton:self.smallButton];
+    [self setBigButton:self.pButton];
+    [self setBigButton:self.accidButton];
+    [self setBigButton:self.removeButton];
+}
+
+-(void)setBtnradius:(UIButton *)btn{
+    btn.layer.cornerRadius = 3;
+    btn.layer.masksToBounds = YES;
 }
 
 @end

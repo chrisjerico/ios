@@ -783,12 +783,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
     if (timeStr == nil) {
         timeStr = @"已封盘";
-        //		NSLog(@"betDetailView time nil ++++++++++++++++++++++++++++++++++++++++++++++++++")
-        //		if (self.betClickBlock) {
-        //
-        //			self.betClickBlock();
-        //			[self hiddenSelf];
-        //		}
         [self hiddenSelf];
     }
     self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘时间：%@",timeStr];

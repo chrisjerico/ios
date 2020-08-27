@@ -295,7 +295,14 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="137.68115942028987" y="150.66964285714286"/>
+            <connections>
+                <outlet property="BatchNumberLabel" destination="wRR-ds-ImH" id="oJt-aa-wPX"/>
+                <outlet property="collectionView" destination="vms-Tl-Vwn" id="izS-y0-eDf"/>
+                <outlet property="multipleTF" destination="qlp-da-Xlr" id="Q0Y-yk-ngU"/>
+                <outlet property="numberLabel" destination="b5C-aD-l3b" id="NaW-Pc-o1g"/>
+                <outlet property="totalAmountLabel" destination="IRg-dm-hMK" id="jdy-ek-hHm"/>
+            </connections>
+            <point key="canvasLocation" x="-399" y="68"/>
         </view>
     </objects>
 </document>

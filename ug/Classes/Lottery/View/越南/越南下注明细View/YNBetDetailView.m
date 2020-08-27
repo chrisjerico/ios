@@ -7,15 +7,31 @@
 //
 
 #import "YNBetDetailView.h"
+#import "CountDown.h"
+#import "Global.h"
+
+@interface YNBetDetailView (){
+    
+    NSInteger count;  /**<   总注数*/
+    UIScrollView* maskView;
+}
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) CountDown *countDown;
+@property (nonatomic, strong) NSMutableArray <UGBetModel *> *betArray;
+
+@property (weak, nonatomic) IBOutlet UILabel *BatchNumberLabel;   /**<   批号*/
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;        /**<  组合数*/
+@property (weak, nonatomic) IBOutlet UITextField *multipleTF;     /**<  倍数*/
+@property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel; /**<   总金额Label */
+
+
+
+@end
+
+
 
 @implementation YNBetDetailView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
 
 @end
