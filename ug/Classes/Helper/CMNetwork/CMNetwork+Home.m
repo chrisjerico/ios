@@ -403,7 +403,7 @@
    [self.manager requestInMainThreadWithMethod:[activityGoldenEggWinUrl stringToRestfulUrlWithFlag:RESTFUL]
 										params:params
 										 model:nil
-										  post:NO
+										  post:YES
 									completion:completionBlock];
    
    CMMETHOD_END;

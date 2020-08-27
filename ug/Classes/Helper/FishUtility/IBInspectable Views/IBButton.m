@@ -21,6 +21,7 @@
     [super layoutSubviews];
     [IBView refreshIBEffect:self];
     [self refreshIBEffect];
+	
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -94,7 +95,19 @@
             self.gradientLayer.endPoint = CGPointMake(1.f, .6);
             self.gradientLayer.frame = self.bounds;
             [self.layer insertSublayer:self.gradientLayer atIndex:0];
-        }
+        }else if (self.渐变开始色 && self.渐变结束色) {
+			if (!self.gradientLayer) {
+				CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+				self.gradientLayer = gradientLayer;
+			}
+			self.gradientLayer.colors = @[(__bridge id)self.渐变开始色.CGColor, (__bridge id)self.渐变结束色.CGColor];
+			self.gradientLayer.locations = @[@0.0, @1.0];
+			self.gradientLayer.type = kCAGradientLayerAxial;
+			self.gradientLayer.startPoint = CGPointMake(0, .5);
+			self.gradientLayer.endPoint = CGPointMake(1.f, .6);
+			self.gradientLayer.frame = self.bounds;
+			[self.layer insertSublayer:self.gradientLayer atIndex:0];
+		}
     }
     
     

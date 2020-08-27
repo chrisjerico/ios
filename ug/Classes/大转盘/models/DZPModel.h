@@ -107,6 +107,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取转盘活动抽奖日志
 @property (nonatomic, strong) NSString *prize_name; /**i奖品名字*/
+@property (nonatomic, strong) NSString *prizeId; /**i抽奖编号*/
+
+@property (nonatomic, strong) NSString *prizeName; /**i奖品名字*/
+
 @property (nonatomic, strong) NSString *update_time;   /**< 抽奖时间戳  */
 @property (nonatomic, strong) NSString *codeNum;  /**<   抽奖编号*/
 

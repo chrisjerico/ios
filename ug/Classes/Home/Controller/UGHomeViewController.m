@@ -118,6 +118,9 @@
 #import "DZPMainView.h"
 #import "DZPModel.h"
 
+//砸金蛋
+#import "EggFrenzyViewController.h"
+
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
@@ -680,6 +683,7 @@
             recordVC.item = banner;
         };
     }
+#pragma mark 砸金蛋+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	{//砸金蛋 右上
 		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
 		  [self.view addSubview:_goldEggView];
@@ -714,13 +718,11 @@
 				  }];
 				  return ;
 			  }
-			  
-//			  DZPModel *banner = (DZPModel*)__self.bigWheelView.itemData;
-//			  DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectMake(0, 0, APP.Width-60, APP.Height-60)];
-//
-//			   CGPoint showCenter = CGPointMake(APP.Width/2,APP.Height/2);
-//			   [SGBrowserView showMoveView:recordVC moveToCenter:showCenter];
-//			  recordVC.item = banner;
+			  EggFrenzyViewController * vc = [[EggFrenzyViewController alloc] init];
+			  vc.item = (DZPModel*)__self.goldEggView.itemData;
+			  vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+			  [[UINavigationController current] presentViewController:vc animated:true completion:nil];
+
 		  };
 	  }
     
@@ -1800,7 +1802,7 @@
     
                 }
                 else{
-                                 weakSelf.bigWheelView.hidden = YES;
+					weakSelf.bigWheelView.hidden = YES;
                 }
 
             });
@@ -1812,95 +1814,32 @@
         }];
     }];
 }
-// 砸金蛋
+
+#pragma mark +++++++++++++++++砸金蛋数据
+
 -(void)getactivityGoldenEggList {
-	 NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-								 };
-	
+	 NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+	WeakSelf
 	[CMNetwork activityGoldenEggListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
-			
 			dispatch_async(dispatch_get_main_queue(), ^{
-				
+                NSArray <DZPModel *> *dzpArray = [NSArray new];
+				dzpArray = model.data;
+				if (!dzpArray.count) {
+					return;
+				}
+				NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
+			    DZPModel *obj = [data objectAtIndex:0];
+				weakSelf.goldEggView.itemData = obj;
+				[weakSelf.goldEggView.imgView setImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
+				self.goldEggView.hidden = NO;
 			});
-			
 		} failure:^(id msg) {
 			self.goldEggView.hidden = YES;
 
 		}];
 	}];
-//		[CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-//
-//			[CMResult processWithResult:model success:^{
-//
-//				dispatch_async(dispatch_get_main_queue(), ^{
-//					NSArray <DZPModel *> *dzpArray = [NSArray new];
-//					// 需要在主线程执行的代码
-//					 dzpArray = model.data;
-//
-//					NSLog(@"dzpArray = %@",dzpArray);
-//
-//					if (dzpArray.count) {
-//
-//					   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
-//						DZPModel *obj = [data objectAtIndex:0];
-//						dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//							// 需要在主线程执行的代码
-//						   self.bigWheelView.itemData = obj;
-//						   self.bigWheelView.hidden = NO;
-//							[self.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
-//
-//						   [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//								make.left.equalTo(self.view.mas_left).with.offset(10);
-//								  make.width.mas_equalTo(95.0);
-//								  make.height.mas_equalTo(95.0);
-//								  if (self.bigWheelView.hidden) {
-//										make.top.equalTo(self.view.mas_top).offset(150+105);
-//								  } else {
-//										make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
-//								  }
-//							}];
-//
-//							[self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//								  make.left.equalTo(self.view.mas_left).with.offset(10);
-//								  make.width.mas_equalTo(95.0);
-//								  make.height.mas_equalTo(95.0);
-//								  make.top.equalTo(self.uUpperLeftView.mas_bottom).offset(5);
-//							  }];
-//
-//							[self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//								make.right.equalTo(self.view.mas_right).with.offset(-10);
-//								make.width.mas_equalTo(95.0);
-//								make.height.mas_equalTo(95.0);
-//								if (self.bigWheelView.hidden) {
-//									  make.top.equalTo(self.view.mas_top).offset(150+105);
-//								} else {
-//									  make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
-//								}
-//							}];
-//							[self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//								  make.right.equalTo(self.view.mas_right).with.offset(-10);
-//								  make.width.mas_equalTo(95.0);
-//								  make.height.mas_equalTo(95.0);
-//								  make.top.equalTo(self.uUpperRightView.mas_bottom).offset(5);
-//							  }];
-//
-//						});
-//
-//					}
-//					else{
-//									 self.bigWheelView.hidden = YES;
-//					}
-//
-//				});
-//
-//			} failure:^(id msg) {
-//	//            [SVProgressHUD showErrorWithStatus:msg];
-//				 self.bigWheelView.hidden = YES;
-//
-//			}];
-//		}];
-	
+
 }
 
 #pragma mark ------------六合------------------------------------------------------

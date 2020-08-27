@@ -131,7 +131,6 @@
 		031E19A023BE812600B0F813 /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142823BE812300B0F813 /* IBButton.m */; };
 		031E19A123BE812600B0F813 /* IBButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142823BE812300B0F813 /* IBButton.m */; };
 		031E19A223BE812600B0F813 /* IBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142A23BE812300B0F813 /* IBView.m */; };
-		031E19A323BE812600B0F813 /* IBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142A23BE812300B0F813 /* IBView.m */; };
 		031E19A423BE812600B0F813 /* SDWebImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142E23BE812300B0F813 /* SDWebImageHelper.m */; };
 		031E19A523BE812600B0F813 /* SDWebImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142E23BE812300B0F813 /* SDWebImageHelper.m */; };
 		031E19A623BE812600B0F813 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E143123BE812300B0F813 /* JRSwizzle.m */; };
@@ -1577,6 +1576,10 @@
 		03314FD523CDA0900070CB54 /* HSC_Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */; };
 		03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FD823CDE2150070CB54 /* HSC_TitleView.m */; };
 		03314FDA23CDE2150070CB54 /* HSC_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03314FD823CDE2150070CB54 /* HSC_TitleView.m */; };
+		033372F524F593F400048EC1 /* EggFrenzyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033372F324F593F400048EC1 /* EggFrenzyViewController.m */; };
+		033372F624F593F400048EC1 /* EggFrenzyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033372F424F593F400048EC1 /* EggFrenzyViewController.xib */; };
+		033372F924F59C7E00048EC1 /* 砸金蛋标题.gif in Resources */ = {isa = PBXBuildFile; fileRef = 033372F824F59C7E00048EC1 /* 砸金蛋标题.gif */; };
+		033372FB24F62FDA00048EC1 /* 金蛋_打开@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 033372FA24F62FD900048EC1 /* 金蛋_打开@3x.gif */; };
 		036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
@@ -1606,6 +1609,11 @@
 		038A585D24AB25840099D659 /* MinePacketProduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585C24AB25840099D659 /* MinePacketProduceView.xib */; };
 		038A727C24C0266400AF1E43 /* BetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D434743924AB270100B0F598 /* BetDetail.storyboard */; };
 		038A727E24C026B600AF1E43 /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF62001E24BBF2A700FD26AD /* LanguageHelper.m */; };
+		0393C8A624F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0393C8A424F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m */; };
+		0393C8A724F7429600F6DFDB /* EggGrenzyAwardCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0393C8A524F7429600F6DFDB /* EggGrenzyAwardCollectionCell.xib */; };
+		0393C8AC24F74C1500F6DFDB /* EggGrenzyRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0393C8AA24F74C1500F6DFDB /* EggGrenzyRecordTableCell.m */; };
+		0393C8AD24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0393C8AB24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib */; };
+		0393C8B024F7809300F6DFDB /* GoldEggLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0393C8AF24F7809300F6DFDB /* GoldEggLogModel.m */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -3483,6 +3491,11 @@
 		03314FD323CDA0900070CB54 /* HSC_Mine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HSC_Mine.storyboard; sourceTree = "<group>"; };
 		03314FD723CDE2150070CB54 /* HSC_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_TitleView.h; sourceTree = "<group>"; };
 		03314FD823CDE2150070CB54 /* HSC_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HSC_TitleView.m; sourceTree = "<group>"; };
+		033372F224F593F400048EC1 /* EggFrenzyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EggFrenzyViewController.h; sourceTree = "<group>"; };
+		033372F324F593F400048EC1 /* EggFrenzyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EggFrenzyViewController.m; sourceTree = "<group>"; };
+		033372F424F593F400048EC1 /* EggFrenzyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EggFrenzyViewController.xib; sourceTree = "<group>"; };
+		033372F824F59C7E00048EC1 /* 砸金蛋标题.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "砸金蛋标题.gif"; sourceTree = "<group>"; };
+		033372FA24F62FD900048EC1 /* 金蛋_打开@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "金蛋_打开@3x.gif"; sourceTree = "<group>"; };
 		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
 		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
 		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
@@ -3507,6 +3520,14 @@
 		038A585724AAD03D0099D659 /* NameEditVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameEditVC.xib; sourceTree = "<group>"; };
 		038A585A24AB185E0099D659 /* RedPacketProduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedPacketProduceView.xib; sourceTree = "<group>"; };
 		038A585C24AB25840099D659 /* MinePacketProduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePacketProduceView.xib; sourceTree = "<group>"; };
+		0393C8A324F7429600F6DFDB /* EggGrenzyAwardCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EggGrenzyAwardCollectionCell.h; sourceTree = "<group>"; };
+		0393C8A424F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EggGrenzyAwardCollectionCell.m; sourceTree = "<group>"; };
+		0393C8A524F7429600F6DFDB /* EggGrenzyAwardCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EggGrenzyAwardCollectionCell.xib; sourceTree = "<group>"; };
+		0393C8A924F74C1500F6DFDB /* EggGrenzyRecordTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EggGrenzyRecordTableCell.h; sourceTree = "<group>"; };
+		0393C8AA24F74C1500F6DFDB /* EggGrenzyRecordTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EggGrenzyRecordTableCell.m; sourceTree = "<group>"; };
+		0393C8AB24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EggGrenzyRecordTableCell.xib; sourceTree = "<group>"; };
+		0393C8AE24F7809300F6DFDB /* GoldEggLogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoldEggLogModel.h; sourceTree = "<group>"; };
+		0393C8AF24F7809300F6DFDB /* GoldEggLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoldEggLogModel.m; sourceTree = "<group>"; };
 		03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameCollectionCell.h; sourceTree = "<group>"; };
 		03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameCollectionCell.m; sourceTree = "<group>"; };
 		03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
@@ -7450,6 +7471,17 @@
 		03638F4B24D57B6900AAFAD3 /* 砸金蛋 */ = {
 			isa = PBXGroup;
 			children = (
+				033372F224F593F400048EC1 /* EggFrenzyViewController.h */,
+				033372F324F593F400048EC1 /* EggFrenzyViewController.m */,
+				033372F424F593F400048EC1 /* EggFrenzyViewController.xib */,
+				0393C8A324F7429600F6DFDB /* EggGrenzyAwardCollectionCell.h */,
+				0393C8A424F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m */,
+				0393C8A524F7429600F6DFDB /* EggGrenzyAwardCollectionCell.xib */,
+				0393C8A924F74C1500F6DFDB /* EggGrenzyRecordTableCell.h */,
+				0393C8AA24F74C1500F6DFDB /* EggGrenzyRecordTableCell.m */,
+				0393C8AB24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib */,
+				0393C8AE24F7809300F6DFDB /* GoldEggLogModel.h */,
+				0393C8AF24F7809300F6DFDB /* GoldEggLogModel.m */,
 			);
 			path = "砸金蛋";
 			sourceTree = "<group>";
@@ -7946,6 +7978,8 @@
 				CFF1254C239FD5290000B731 /* 点击查看更多.gif */,
 				CFFAB58C23755569009593AF /* lxb.gif */,
 				CFCADE44237D281C00680F62 /* cplts_看图王.gif */,
+				033372F824F59C7E00048EC1 /* 砸金蛋标题.gif */,
+				033372FA24F62FD900048EC1 /* 金蛋_打开@3x.gif */,
 				D4B75E17227802600007047C /* LaunchScreen.storyboard */,
 				D422D67E22D9A764008E7065 /* address.json */,
 			);
@@ -8910,6 +8944,7 @@
 				031E19EC23BE812700B0F813 /* water01.png in Resources */,
 				CF4758F3239636D200966536 /* 61.gif in Resources */,
 				031E198623BE812600B0F813 /* UGScratchMusicView.xib in Resources */,
+				033372F924F59C7E00048EC1 /* 砸金蛋标题.gif in Resources */,
 				CF475906239636D200966536 /* 172.gif in Resources */,
 				031E1C1823BE812900B0F813 /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
 				CF47588E239636D200966536 /* 122.gif in Resources */,
@@ -8921,6 +8956,7 @@
 				CF475889239636D200966536 /* 20.gif in Resources */,
 				CFFAB58B237315C2009593AF /* event.gif in Resources */,
 				031E1C2A23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.xib in Resources */,
+				0393C8A724F7429600F6DFDB /* EggGrenzyAwardCollectionCell.xib in Resources */,
 				D442590523E949F00067E981 /* LHHornView.xib in Resources */,
 				031E1C2023BE812900B0F813 /* UGFastThreeThreeCollectionViewCell.xib in Resources */,
 				031E1A9023BE812700B0F813 /* province_data.xml in Resources */,
@@ -8952,6 +8988,7 @@
 				031E1A0A23BE812700B0F813 /* TextFieldAlertView.xib in Resources */,
 				CF4758B5239636D200966536 /* 55.gif in Resources */,
 				031E196A23BE812600B0F813 /* UGLHH.storyboard in Resources */,
+				0393C8AD24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib in Resources */,
 				031E198E23BE812600B0F813 /* LHPostVoteView.xib in Resources */,
 				CF4758C9239636D200966536 /* 44.gif in Resources */,
 				031E1D8223BE812B00B0F813 /* UGRealBetRecordViewController.storyboard in Resources */,
@@ -9022,6 +9059,7 @@
 				CF475900239636D200966536 /* 58.gif in Resources */,
 				CF8E242B23DDBFD80054BF0F /* FontAwesome.ttf in Resources */,
 				031E1B8823BE812900B0F813 /* UGNoticePopView.xib in Resources */,
+				033372F624F593F400048EC1 /* EggFrenzyViewController.xib in Resources */,
 				CF4758C4239636D200966536 /* 6.gif in Resources */,
 				CF475928239636D200966536 /* 111.gif in Resources */,
 				031E1B5623BE812800B0F813 /* UGredActivityView.xib in Resources */,
@@ -9252,6 +9290,7 @@
 				031E1CA623BE812A00B0F813 /* UGRechargeRecordCell.xib in Resources */,
 				CF47590B239636D200966536 /* 9.gif in Resources */,
 				031E194C23BE812600B0F813 /* UGLHC.storyboard in Resources */,
+				033372FB24F62FDA00048EC1 /* 金蛋_打开@3x.gif in Resources */,
 				CF4758E0239636D200966536 /* 147.gif in Resources */,
 				031E1D3C23BE812B00B0F813 /* UGUserInfoViewController.storyboard in Resources */,
 				CF4758B0239636D200966536 /* 80.gif in Resources */,
@@ -9514,7 +9553,6 @@
 				031E1E2B23BE812C00B0F813 /* UGContentMoneyCollectionViewCell.m in Sources */,
 				031E1A0123BE812700B0F813 /* MediaViewer.m in Sources */,
 				031E1A5523BE812700B0F813 /* CountDown.m in Sources */,
-				031E19A323BE812600B0F813 /* IBView.m in Sources */,
 				031EF53223BE7B4D00B0F813 /* APIResult.swift in Sources */,
 				031E1D0323BE812A00B0F813 /* NSArray+JSONModel.m in Sources */,
 				031E1DAF23BE812B00B0F813 /* UGwithdrawStatModel.m in Sources */,
@@ -10343,6 +10381,7 @@
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
 				22FAD04723D471630002EA1D /* LotteryTrendContentCell.m in Sources */,
 				031E1D6E23BE812B00B0F813 /* UGMosaicGoldViewController.m in Sources */,
+				0393C8B024F7809300F6DFDB /* GoldEggLogModel.m in Sources */,
 				031E1D2A23BE812B00B0F813 /* UGIntegralConvertRecordController.m in Sources */,
 				03D6927723C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */,
 				031E1C7423BE812A00B0F813 /* UGFundDetailsTableViewController.m in Sources */,
@@ -10365,6 +10404,7 @@
 				031E19DC23BE812700B0F813 /* NSArray+Utils.m in Sources */,
 				D42E14F323E06CE900F53407 /* PromotionDepositListVC.m in Sources */,
 				03E41B2C23C0903C004AB7C6 /* JS_HomePromoteView.m in Sources */,
+				0393C8AC24F74C1500F6DFDB /* EggGrenzyRecordTableCell.m in Sources */,
 				031E19B623BE812700B0F813 /* NSMutableDictionary+KVO.m in Sources */,
 				D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */,
 				031E1AF423BE812800B0F813 /* UIButton+touch.m in Sources */,
@@ -10386,6 +10426,7 @@
 				031E1C4223BE812900B0F813 /* UGPK10SubResultCollectionViewCell.m in Sources */,
 				031E1A5023BE812700B0F813 /* CMLabelCommon.m in Sources */,
 				031E1D0A23BE812A00B0F813 /* JSONModelError.m in Sources */,
+				033372F524F593F400048EC1 /* EggFrenzyViewController.m in Sources */,
 				031E195023BE812600B0F813 /* UGSearchPostVC.m in Sources */,
 				031E1C7623BE812A00B0F813 /* UGRechargeLogsModel.m in Sources */,
 				031E1B2A23BE812800B0F813 /* UGRedEnvelopeModel.m in Sources */,
@@ -10490,6 +10531,7 @@
 				495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */,
 				031E1AEC23BE812800B0F813 /* LeeTagView.m in Sources */,
 				031E1DC223BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
+				0393C8A624F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m in Sources */,
 				D4326F0E23F7B4F900BEEA1B /* RedBagLogModel.m in Sources */,
 				031E1E5C23BE812C00B0F813 /* UGFeedbackDetailCell.m in Sources */,
 				031E1DAE23BE812B00B0F813 /* UGwithdrawStatModel.m in Sources */,
