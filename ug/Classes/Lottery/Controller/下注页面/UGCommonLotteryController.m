@@ -305,14 +305,13 @@
 		   UIButton * reBetButton = subButton(@"追号btn");
 		   UIView * superView = reBetButton.superview;
 		   [superView addSubview:self.radomNumberButton];
-		   [self.radomNumberButton mas_makeConstraints:^(MASConstraintMaker *make) {
-			   make.width.equalTo(@74);
-			   make.height.equalTo(@30);
-			   make.centerY.equalTo(reBetButton);
-			   make.left.equalTo(reBetButton.mas_right).offset(10);
-		   }];
-
-		   
+           self.radomNumberButton.numberOfLines = 0;
+           [self.radomNumberButton mas_makeConstraints:^(MASConstraintMaker *make) {
+               make.width.equalTo(@70);
+               make.height.equalTo(@35);
+               make.centerY.equalTo(reBetButton);
+               make.left.equalTo(reBetButton.mas_right).offset(6);
+           }];
 	   }
 
 	 if (OBJOnceToken(self)) {
@@ -397,7 +396,7 @@
 	}];
 	
 	[self.sliderLB mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-		make.right.equalTo(self.reductionBtn.mas_left).offset(-20);
+		make.right.equalTo(self.reductionBtn.mas_left).offset(-6);
 		make.height.equalTo([NSNumber numberWithFloat:20]);
 		make.top.equalTo([NSNumber numberWithFloat:18]);
 	}];

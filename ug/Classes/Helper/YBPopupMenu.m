@@ -355,8 +355,8 @@ UITableViewDataSource
         lb.tagString = @"标题Label";
         [cell.contentView addSubview:lb];
     }
-    lb.frame = cell.bounds;
-    lb.x = 30;
+    lb.frame = CGRectMake(20, -2, self.width-30, cell.height+4);
+    lb.numberOfLines = 0;
     lb.text = _titles[indexPath.row];
     
 //    cell.titleLabel.textColor = _textColor;
