@@ -2029,7 +2029,6 @@
 		D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */; };
 		D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */; };
 		D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */; };
-		D476E5EF2401686300BA0EA9 /* UGPromotionsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5EE2401686300BA0EA9 /* UGPromotionsListController.m */; };
 		D4773ABF23FC16B100D38D60 /* LineConversion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */; };
 		D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */; };
 		D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
@@ -3951,8 +3950,6 @@
 		D476E5E82401671000BA0EA9 /* PromoteTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteTitleCollectionViewCell.h; sourceTree = "<group>"; };
 		D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromoteTitleCollectionViewCell.m; sourceTree = "<group>"; };
 		D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromoteTitleCollectionViewCell.xib; sourceTree = "<group>"; };
-		D476E5ED2401686300BA0EA9 /* UGPromotionsListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPromotionsListController.h; sourceTree = "<group>"; };
-		D476E5EE2401686300BA0EA9 /* UGPromotionsListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGPromotionsListController.m; sourceTree = "<group>"; };
 		D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LineConversion.storyboard; sourceTree = "<group>"; };
 		D4773AC023FC1F7F00D38D60 /* LineConversionHeaderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineConversionHeaderVC.h; sourceTree = "<group>"; };
 		D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineConversionHeaderVC.m; sourceTree = "<group>"; };
@@ -6280,8 +6277,6 @@
 				031E17E023BE812500B0F813 /* UGPromotionsController.m */,
 				D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */,
 				D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */,
-				D476E5ED2401686300BA0EA9 /* UGPromotionsListController.h */,
-				D476E5EE2401686300BA0EA9 /* UGPromotionsListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -10214,7 +10209,6 @@
 				D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */,
 				031E1E6623BE812C00B0F813 /* UGAvaterSelectView.m in Sources */,
 				031E1CB423BE812A00B0F813 /* UGTabbarController.m in Sources */,
-				D476E5EF2401686300BA0EA9 /* UGPromotionsListController.m in Sources */,
 				031E1CFA23BE812A00B0F813 /* AFURLSessionManager.m in Sources */,
 				031E1D0C23BE812A00B0F813 /* JSONModelArray.m in Sources */,
 				031E1E5A23BE812C00B0F813 /* UGFeedbackTableViewCell.m in Sources */,
