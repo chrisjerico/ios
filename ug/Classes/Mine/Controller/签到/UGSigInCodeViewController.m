@@ -105,6 +105,31 @@
         [mUGSignInScrHeaderView.title1Label setTextColor:Skin1.textColor1];
         [mUGSignInScrHeaderView.title2Label setTextColor:Skin1.textColor1];
         [mUIScrollView addSubview:mUGSignInScrHeaderView];
+        
+        FastSubViewCode(mUGSignInScrHeaderView);
+        subLabel(@"签到领积分Label").layer.shadowColor = [UIColor grayColor].CGColor;
+        subLabel(@"签到领积分Label").layer.shadowOffset = CGSizeMake(0, 1);
+        subLabel(@"签到领积分Label").layer.shadowRadius = 2;
+        subLabel(@"签到领积分Label").layer.shadowOpacity = 0.5;
+        subLabel(@"签到领积分Label").font = [subLabel(@"签到领积分Label").text fontWithFrameSize:CGSizeMake((APP.Width-30)*0.56, 55) maxFont:[UIFont systemFontOfSize:41 weight:UIFontWeightHeavy]];
+        subLabel(@"积分兑换Label").layer.shadowColor = [UIColor grayColor].CGColor;
+        subLabel(@"积分兑换Label").layer.shadowOffset = CGSizeMake(0, 1);
+        subLabel(@"积分兑换Label").layer.shadowRadius = 2;
+        subLabel(@"积分兑换Label").layer.shadowOpacity = 0.5;
+        subLabel(@"积分兑换Label").font = [subLabel(@"积分兑换Label").text fontWithFrameSize:CGSizeMake((APP.Width-60)*0.44, 55) maxFont:[UIFont boldSystemFontOfSize:13]];
+        [subView(@"积分兑换背景View").layer addSublayer:({
+            CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+            gradientLayer.frame = CGRectMake(0, 0, (APP.Width-60)*0.44, 100);
+            gradientLayer.colors = @[(__bridge id)UIColorRGB(255, 170, 47).CGColor,
+                                     (__bridge id)UIColorRGB(255, 199, 70).CGColor,
+                                     (__bridge id)UIColorRGB(255, 170, 47).CGColor, ];
+            //  设置渐变颜色方向，左上点为(0,0), 右下点为(1,1)
+            gradientLayer.startPoint = CGPointMake(0, 0);
+            gradientLayer.endPoint = CGPointMake(1, 0);
+            //  设置颜色变化点，取值范围 0.0~1.0
+            gradientLayer.locations = @[@0,@1];
+            gradientLayer;
+        })];
     }
     
 
