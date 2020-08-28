@@ -174,6 +174,7 @@ static UGTabbarController *_tabBarVC = nil;
         // 切换语言
         [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
             LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+            [LanguageHelper shared].supportLanguagesMap = lm.supportLanguagesMap;
             if (![[lm getLanCode] isEqualToString:[LanguageHelper shared].lanCode]) {
                 [LanguageHelper changeLanguageAndRestartApp:[lm getLanCode]];
             }
@@ -199,6 +200,7 @@ static UGTabbarController *_tabBarVC = nil;
         // 切换语言
         [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
             LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+            [LanguageHelper shared].supportLanguagesMap = lm.supportLanguagesMap;
             if (![[lm getLanCode] isEqualToString:[LanguageHelper shared].lanCode]) {
                 [LanguageHelper changeLanguageAndRestartApp:[lm getLanCode]];
             }

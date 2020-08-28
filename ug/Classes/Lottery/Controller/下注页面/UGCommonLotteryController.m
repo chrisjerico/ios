@@ -327,7 +327,7 @@
 	self.slider = [[MGSlider alloc] initWithFrame:CGRectMake(150, 5,150 , 50)];
 //    self.slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
 	self.slider.thumbSize = CGSizeMake(40, 40);//锚点的大小
-	self.slider.thumbImage = [UIImage imageNamed:@"icon_activity_ticket_details_rebate"];//锚点的图片
+    self.slider.thumbImage = [UIImage imageNamed:[LanguageHelper shared].isCN ? @"icon_activity_ticket_details_rebate" : @"RadioButton-Selected"];//锚点的图片
 	self.slider.thumbColor = [UIColor clearColor];//锚点的背景色
 	self.slider.trackColor = [UIColor colorWithRed:0.29 green:0.42 blue:0.86 alpha:1.00];//进度条的颜色+
 	self.slider.untrackColor = [UIColor grayColor];//进度条的颜色-

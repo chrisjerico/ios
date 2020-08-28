@@ -27,9 +27,13 @@ _CCRuntimeProperty_Assign(BOOL, fromNetwork, setFromNetwork)
 @end
 
 
-
+@implementation LanguageMap
+@end
 
 @implementation LanguageModel
++ (NSArray *)mj_objectClassInArray {
+    return @{@"supportLanguagesMap":@"LanguageMap"};
+}
 - (NSString *)getLanCode {
     if (_currentLanguageCodeAppend.length)
         return [NSString stringWithFormat:@"%@-%@", _currentLanguageCode, _currentLanguageCodeAppend];
@@ -58,11 +62,6 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
         obj.version = [[NSUserDefaults standardUserDefaults] stringForKey:@"lan_version"];
         obj.notFoundStrings = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"LanguageNotFoundStrings"]];
         _temp = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"LanguageNotFoundStringsTemp"]];
-        obj.supportedLanguages = @{@"zh-cn":@"简体中文",
-                                   @"zh-tw":@"繁體中文",
-                                   @"en":@"English",
-                                   @"vi":@"Tiếng Việt",};
-        [LanguageHelper setNoTranslate:obj.supportedLanguages];
         
         // 存本地
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillTerminateNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
@@ -159,9 +158,9 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 }
 
 - (NSString *)title {
-    for (NSString *key in _supportedLanguages.allKeys) {
-        if ([key containsString:_lanCode])
-            return _supportedLanguages[key];
+    for (LanguageMap *lm in _supportLanguagesMap) {
+        if ([lm.code containsString:_lanCode])
+            return lm.name;
     }
     return nil;
 }

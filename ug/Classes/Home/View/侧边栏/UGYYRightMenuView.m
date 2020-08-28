@@ -387,8 +387,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (IBAction)onLanguageBtnClick:(UIButton *)sender {
-    NSArray *titles = @[@"简体中文", @"繁體中文", @"English", @"Tiếng Việt"];
-    [LanguageHelper setNoTranslate:titles];
+    NSArray *titles = [[LanguageHelper shared].supportLanguagesMap valuesWithKeyPath:@"name"];
     YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:titles icons:nil menuWidth:CGSizeMake(150, 150) delegate:self];
     popView.fontSize = 15;
     popView.type = YBPopupMenuTypeDefault;
@@ -683,7 +682,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
     if (index < 0) return;
-    NSString *lanCode = @[@"zh-cn", @"zh-tw", @"en", @"vi"][index];
+    NSString *lanCode = [[LanguageHelper shared].supportLanguagesMap valuesWithKeyPath:@"code"][index];
     if (!lanCode.length) return;
     
     [LanguageHelper changeLanguageAndRestartApp:lanCode];

@@ -21,12 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL fromNetwork; /**<   从接口获取的文本显示原文，不进行翻译 */
 @end
 
-
+@interface LanguageMap : NSObject
+@property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSString *name;
+@end
 
 @interface LanguageModel : NSObject
 @property (nonatomic, copy) NSString *packageLastVersion;           /**<   语言包版本号 */
 @property (nonatomic, copy) NSString *currentLanguageCode;          /**<   当前语言 */
 @property (nonatomic, copy) NSString *currentLanguageCodeAppend;    /**<   当前语言 */
+@property (nonatomic, strong) NSArray <LanguageMap *>*supportLanguagesMap;
 
 @property (nonatomic, copy) NSDictionary <NSString *, id> *config;
 @property (nonatomic, copy) NSDictionary <NSString *, NSArray <NSString *>*>*supportLanguageAppends;
@@ -42,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LanguageHelper : NSObject
 
-@property (nonatomic, strong) NSDictionary *supportedLanguages;
+@property (nonatomic, strong) NSArray <LanguageMap *>*supportLanguagesMap;
 @property (nonatomic, copy) NSString *version;
 @property (nonatomic, copy) NSString *lanCode;
 @property (nonatomic, readonly) NSString *title;

@@ -368,6 +368,7 @@
 //#ifdef DEBUG
 //                lm.currentLanguageCode = @"vi";
 //#endif
+                [LanguageHelper shared].supportLanguagesMap = lm.supportLanguagesMap;
                 [[LanguageHelper shared] setLanCode:[lm getLanCode]];
                 __self.waitLanguage = ![LanguageHelper shared].hasKeys;
                 
