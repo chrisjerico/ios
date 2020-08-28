@@ -37,8 +37,8 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-       [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+//       [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 
 }
 
@@ -48,13 +48,8 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         self = [[NSBundle mainBundle] loadNibNamed:@"YNBetDetailView" owner:self options:0].firstObject;
         
         float h = 0;
-        if (self.dataArray.count < 3) {
-            h = 400;
-        } else if (self.dataArray.count > 7) {
-            h = 550;
-        } else {
-            h = 230 + 44 * self.dataArray.count;
-        }
+        h = UGScerrnH - 300;
+ 
         self.size = CGSizeMake(UGScreenW - 50, h);
         self.center = CGPointMake(UGScreenW / 2 , UGScerrnH / 2);
         self.submitButton.layer.cornerRadius = 3;
@@ -88,10 +83,10 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
        
         
 #pragma mark -键盘弹出添加监听事件
-        // 键盘出现的通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-        // 键盘消失的通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
+//        // 键盘出现的通知
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+//        // 键盘消失的通知
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -179,14 +174,7 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
      self.betArray = array.mutableCopy;
     [_collectionView reloadData];
     
-    float h = 0;
-    if (self.dataArray.count < 5) {
-        h = 400;
-    } else {
-        h = 440 + 40 * self.dataArray.count/5;
-    }
-    self.size = CGSizeMake(UGScreenW - 50, h);
-    self.center = CGPointMake(UGScreenW / 2 , UGScerrnH / 2);
+
 
 }
 
