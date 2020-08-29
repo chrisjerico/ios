@@ -78,8 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic)  NSString *multipleStr;     /**<  倍数*/
 @property (strong, nonatomic)  NSString *totalAmountStr; /**<   总金额Label */
 @property (nonatomic, strong) NSString *  defaultAdds;  //默认赔率。
-
-
+@property (nonatomic, strong) NSString *  defname;  //越南彩当前选中的彩种名
+@property (nonatomic, strong) NSString *  defnameStr;  //越南彩当前选中的彩种名 选中内容
 + (instancetype)modelWithGameId:(NSString *)gameId;
 @end
 

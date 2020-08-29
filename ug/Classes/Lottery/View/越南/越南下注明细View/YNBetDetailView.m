@@ -21,10 +21,12 @@
 @property (nonatomic, strong) CountDown *countDown;
 @property (nonatomic, strong) NSMutableArray <UGBetModel *> *betArray;
 
+@property (nonatomic)int singleNote;/**<  总金/ 注数*/
+
 @property (weak, nonatomic) IBOutlet UILabel *titellabel;           /**<   标题*/
 @property (weak, nonatomic) IBOutlet UILabel *BatchNumberLabel;   /**<   批号*/
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;        /**<  组合数*/
-@property (weak, nonatomic) IBOutlet UITextField *multipleTF;     /**<  倍数*/
+@property (weak, nonatomic) IBOutlet UITextField *multipleTF;     /**<  倍、注数*/
 @property (weak, nonatomic) IBOutlet UILabel *totalAmountLabel; /**<   总金额Label */
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
@@ -37,8 +39,8 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 
 - (void)dealloc
 {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-//       [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 
 }
 
@@ -81,12 +83,12 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         });
         
        
-        
+        [self.multipleTF addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
 #pragma mark -键盘弹出添加监听事件
-//        // 键盘出现的通知
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-//        // 键盘消失的通知
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
+        // 键盘出现的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+        // 键盘消失的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
     }
     return self;
 }
@@ -144,10 +146,11 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 }
 
 - (IBAction)cancelClick:(id)sender {
+    
+    [self hiddenSelf];
     if (self.cancelBlock) {
         self.cancelBlock();
     }
-    [self hiddenSelf];
 }
 
 - (IBAction)submitClick:(id)sender {
@@ -157,7 +160,7 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 - (void)setDataArray:(NSArray<UGGameBetModel *> *)dataArray {
     _dataArray = dataArray;
     NSMutableArray *array = [NSMutableArray array];
-    
+   
     for (UGGameBetModel *model in dataArray) {
         UGBetModel *bet = [[UGBetModel alloc] init];
         bet.money = model.money;
@@ -169,12 +172,14 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         bet.typeName = model.typeName;
         bet.betInfo = model.betInfo;
         [array addObject:bet];
+       
     }
     
      self.betArray = array.mutableCopy;
     [_collectionView reloadData];
-    
 
+    self.numberLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)array.count];
+    
 
 }
 
@@ -191,6 +196,33 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
             self.titellabel.text = [NSString stringWithFormat:@"第%@期 %@ 下注明细",nextIssueModel.curIssue,nextIssueModel.title];
         }
     }
+    
+    self.multipleTF.text = self.nextIssueModel.multipleStr;
+    self.totalAmountLabel.text = self.nextIssueModel.totalAmountStr;
+    int multip = self.nextIssueModel.multipleStr.intValue;
+    int totalAmount = self.nextIssueModel.totalAmountStr.intValue;
+    
+    self.BatchNumberLabel.text = self.nextIssueModel.defnameStr;
+    
+    FastSubViewCode(self);
+    [subLabel(@"批号lable") setText:self.nextIssueModel.defname];
+    
+    self.singleNote =  totalAmount  /  multip;
+ 
+}
+
+#pragma mark -textfield添加事件，只要值改变就调用此函数
+-(void)changedTextField:(UITextField *)textField
+{
+    NSLog(@"值是---%@",textField.text);
+    
+    if (textField.text.length == 0) {
+        textField.text = @"1";
+    }
+    
+    int multip = textField.text.intValue;
+    int totalAmount = multip * self.singleNote;
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"%d",totalAmount];
 }
 
 - (NSMutableArray<UGBetModel *> *)betArray {

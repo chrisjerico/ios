@@ -706,7 +706,7 @@
         [weakSelf resetClick:nil];
     };
     betDetailView.cancelBlock = ^{
-        [weakSelf handleData];
+   
         [weakSelf resetClick:nil];
     };
     [betDetailView show];
