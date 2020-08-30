@@ -120,6 +120,9 @@
 
 //砸金蛋
 #import "EggFrenzyViewController.h"
+// 刮刮乐
+#import "ScratchController.h"
+#import "ScratchDataModel.h"
 
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
@@ -210,6 +213,8 @@
 @property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
 //砸金蛋
 @property (nonatomic, strong)  UGredEnvelopeView *goldEggView;    /**<   砸金蛋 */
+//刮刮乐
+@property (nonatomic, strong)  UGredEnvelopeView *scratchView;    /**<   刮刮乐 */
 
 
 //--推荐按钮-----------------------------------------
@@ -725,6 +730,50 @@
 
 		  };
 	  }
+	
+#pragma mark 刮刮乐+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	{
+		self.scratchView = [[UGredEnvelopeView alloc] initWithFrame:CGRectZero];
+		[self.view addSubview:_scratchView];
+//		[self.scratchView setHidden:YES];
+		
+		[self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.left.equalTo(__self.view.mas_left).with.offset(10);
+			make.width.mas_equalTo(70.0);
+			make.height.mas_equalTo(70.0);
+			make.top.equalTo(__self.view.mas_top).offset(150+105+105);
+		}];
+		self.scratchView.cancelClickBlock = ^(void) {
+			[__self.scratchView setHidden:YES];
+		};
+		self.scratchView.redClickBlock = ^(void) {
+			
+			if (!UGLoginIsAuthorized()) {
+				UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+				[ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+					UGLoginAuthorize(^(BOOL isFinish) {
+						if (!isFinish)
+							return ;
+					});
+				}];
+				return;
+			}
+			if ([UGUserModel currentUser].isTest) {
+				UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+				[ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+					SANotificationEventPost(UGNotificationShowLoginView, nil);
+				}];
+				return ;
+			}
+			ScratchController * vc = [[ScratchController alloc] init];
+			vc.item = (DZPModel*)__self.scratchView.itemData;
+			vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+			[[UINavigationController current] presentViewController:vc animated:true completion:nil];
+
+		};
+		
+	}
     
     // 手机悬浮按钮
     {
@@ -966,6 +1015,9 @@
 	});
       
        
+	dispatch_group_async(group, queue, ^{
+		[self getactivityCratchList];
+	});
     
     dispatch_group_notify(group, queue, ^{
         
@@ -984,6 +1036,7 @@
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -1836,6 +1889,31 @@
 			});
 		} failure:^(id msg) {
 			self.goldEggView.hidden = YES;
+
+		}];
+	}];
+
+}
+#pragma mark +++++++++++++++++刮刮乐数据
+
+-(void)getactivityCratchList {
+	 NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+	WeakSelf
+	[CMNetwork activityScratchListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+		[CMResult processWithResult:model success:^{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				ScratchDataModel * scratchData = [[ScratchDataModel alloc] initWithDictionary:model.data error:nil];
+				if (!scratchData.scratchList.count) {
+					return;
+				}
+//				ScratchModel * scratchModel = [scratchData.scratchList objectAtIndex:0];
+//				scratchModel.aviliableCount = scratchData.scratchWinList.count;
+				weakSelf.scratchView.itemData = scratchData;
+				[weakSelf.scratchView.imgView setImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
+				self.scratchView.hidden = NO;
+			});
+		} failure:^(id msg) {
+			self.scratchView.hidden = YES;
 
 		}];
 	}];

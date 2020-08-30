@@ -96,16 +96,16 @@
 	
 	[self.frenzyAnimationImageView setHidden:false];
 	WeakSelf
-	self.group = dispatch_group_create();
-	dispatch_group_enter(self.group);
+	dispatch_group_t group = dispatch_group_create();
+	dispatch_group_enter(group);
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		dispatch_group_wait(weakSelf.group, DISPATCH_TIME_NOW + 5);
+		dispatch_group_wait(group, DISPATCH_TIME_NOW + 30);
 		weakSelf.frenzyAnimationImageView.image = nil;
 		[weakSelf.frenzyAnimationImageView setHidden:true];
 		[weakSelf.frenzyAnimationView setHidden:false];
 	});
 	[self frenzy:^{
-		dispatch_group_leave(weakSelf.group);
+		dispatch_group_leave(group);
 		SANotificationEventPost(UGNotificationGetUserInfo, weakSelf);
 	}];
 	[self refrehRecord];
@@ -113,7 +113,6 @@
 }
 // 砸
 - (void)frenzy: (void (^)(void)) completionHandle {
-	
 	
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
 							 @"activityId":self.item.DZPid};
@@ -135,16 +134,16 @@
 				else{
 					[SVProgressHUD showErrorWithStatus:model.msg];
 				}
-				completionHandle();
 			});
 			
 		} failure:^(id msg) {
-			completionHandle();
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[SVProgressHUD showErrorWithStatus:msg];
 			});
 			
 		}];
+		completionHandle();
+
 	}];
 	//	activityGoldenEggWinWithParams
 }

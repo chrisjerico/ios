@@ -19,6 +19,12 @@
 	self.numberLabel.text = [NSString stringWithFormat:@"%@", model.prize_param[0][@"prizeId"]];
 	self.describLabel.text = model.prize_param[0][@"prizeName"];
 }
+
+- (void)bindScratchLog: (ScratchLogModel*)model {
+	self.numberLabel.text = [NSString stringWithFormat:@"%@-%@", model.update_date, model.logID];
+	self.describLabel.text = [NSString stringWithFormat:@"%@彩金",  model.amount];
+	
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

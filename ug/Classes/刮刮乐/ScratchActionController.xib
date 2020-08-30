@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScratchActionController">
+            <connections>
+                <outlet property="confirmButton" destination="fK9-Di-QTr" id="Or6-S8-RBg"/>
+                <outlet property="coverImage" destination="fZZ-VY-cfV" id="V8v-Dd-EcE"/>
+                <outlet property="describLabel" destination="YSK-tS-xjC" id="TnN-eB-Qrn"/>
+                <outlet property="numberLabel" destination="OSI-pc-s8b" id="PB6-MF-7D4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="刮刮乐_刮奖区_背景" translatesAutoresizingMaskIntoConstraints="NO" id="Y4X-CC-dvV">
+                    <rect key="frame" x="37.5" y="272" width="339" height="362"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSK-tS-xjC">
+                    <rect key="frame" x="69.5" y="332" width="275" height="168"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                    <color key="textColor" red="0.86274509803921573" green="0.36078431372549019" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fK9-Di-QTr">
+                    <rect key="frame" x="132" y="566" width="150" height="44"/>
+                    <color key="backgroundColor" red="0.92549019607843142" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="bYn-ca-vhj"/>
+                        <constraint firstAttribute="height" constant="44" id="nss-gR-yAh"/>
+                    </constraints>
+                    <state key="normal" title="关闭">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <state key="selected" title="确定"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="confirmButtonAction:" destination="-1" eventType="touchUpInside" id="jPC-kg-bpf"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="刮刮乐_刮奖区" translatesAutoresizingMaskIntoConstraints="NO" id="fZZ-VY-cfV">
+                    <rect key="frame" x="69.5" y="332" width="275" height="168"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSI-pc-s8b">
+                    <rect key="frame" x="61.5" y="286" width="0.0" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.95686274509803915" green="0.25882352941176467" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Y4X-CC-dvV" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="15a-T2-hUd"/>
+                <constraint firstItem="fZZ-VY-cfV" firstAttribute="centerX" secondItem="Y4X-CC-dvV" secondAttribute="centerX" id="8HQ-ZG-hlK"/>
+                <constraint firstItem="YSK-tS-xjC" firstAttribute="leading" secondItem="fZZ-VY-cfV" secondAttribute="leading" id="IpS-oP-3d6"/>
+                <constraint firstItem="OSI-pc-s8b" firstAttribute="top" secondItem="Y4X-CC-dvV" secondAttribute="top" constant="14" id="N8K-6I-hHb"/>
+                <constraint firstItem="YSK-tS-xjC" firstAttribute="top" secondItem="fZZ-VY-cfV" secondAttribute="top" id="OCd-6g-OD0"/>
+                <constraint firstItem="fZZ-VY-cfV" firstAttribute="top" secondItem="Y4X-CC-dvV" secondAttribute="top" constant="60" id="Omn-l2-nhj"/>
+                <constraint firstItem="fK9-Di-QTr" firstAttribute="bottom" secondItem="Y4X-CC-dvV" secondAttribute="bottom" constant="-24" id="StQ-eo-p5L"/>
+                <constraint firstItem="YSK-tS-xjC" firstAttribute="trailing" secondItem="fZZ-VY-cfV" secondAttribute="trailing" id="Uwu-9h-YiL"/>
+                <constraint firstItem="YSK-tS-xjC" firstAttribute="bottom" secondItem="fZZ-VY-cfV" secondAttribute="bottom" id="WHq-he-8L1"/>
+                <constraint firstItem="OSI-pc-s8b" firstAttribute="leading" secondItem="Y4X-CC-dvV" secondAttribute="leading" constant="24" id="f7c-oi-bIE"/>
+                <constraint firstItem="fK9-Di-QTr" firstAttribute="centerX" secondItem="Q5M-cg-NOt" secondAttribute="centerX" id="iGk-ka-GSX"/>
+                <constraint firstItem="Y4X-CC-dvV" firstAttribute="centerY" secondItem="Q5M-cg-NOt" secondAttribute="centerY" id="vZj-bv-vl3"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="132" y="153"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="刮刮乐_刮奖区" width="275" height="168"/>
+        <image name="刮刮乐_刮奖区_背景" width="339" height="362"/>
+    </resources>
+</document>

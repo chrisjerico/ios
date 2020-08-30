@@ -1622,6 +1622,10 @@
 		03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */; };
 		03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */; };
 		03AFD93D23CEFC27003914A6 /* HSC_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */; };
+		03B1252924F7E035007A0858 /* ScratchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B1252724F7E035007A0858 /* ScratchController.m */; };
+		03B1252A24F7E035007A0858 /* ScratchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B1252824F7E035007A0858 /* ScratchController.xib */; };
+		03B1252E24F7FE10007A0858 /* ScratchActionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B1252C24F7FE10007A0858 /* ScratchActionController.m */; };
+		03B1252F24F7FE10007A0858 /* ScratchActionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B1252D24F7FE10007A0858 /* ScratchActionController.xib */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -1660,6 +1664,9 @@
 		03F8A516247FA0BB00466124 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
 		03F935BC24A1057C001D8A59 /* FansListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F935BA24A1057C001D8A59 /* FansListCell.swift */; };
 		03F935BD24A1057C001D8A59 /* FansListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F935BB24A1057C001D8A59 /* FansListCell.xib */; };
+		03FD07EC24FB06D900F83D92 /* ScratchDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07EB24FB06D900F83D92 /* ScratchDataModel.m */; };
+		03FD07F024FB1CA000F83D92 /* ScratchLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07EF24FB1CA000F83D92 /* ScratchLogModel.m */; };
+		03FD07F324FB35A700F83D92 /* ScratchParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07F224FB35A700F83D92 /* ScratchParamModel.m */; };
 		21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */; };
 		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
 		226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */; };
@@ -3535,6 +3542,12 @@
 		03A5D38923C051DB0055A998 /* JS_HomeGameColletionCell_1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameColletionCell_1.m; sourceTree = "<group>"; };
 		03A5D38A23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameColletionCell_1.xib; sourceTree = "<group>"; };
 		03AFD93B23CEFC27003914A6 /* HSC_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HSC_TitleView.xib; sourceTree = "<group>"; };
+		03B1252624F7E035007A0858 /* ScratchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScratchController.h; sourceTree = "<group>"; };
+		03B1252724F7E035007A0858 /* ScratchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchController.m; sourceTree = "<group>"; };
+		03B1252824F7E035007A0858 /* ScratchController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScratchController.xib; sourceTree = "<group>"; };
+		03B1252B24F7FE10007A0858 /* ScratchActionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScratchActionController.h; sourceTree = "<group>"; };
+		03B1252C24F7FE10007A0858 /* ScratchActionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchActionController.m; sourceTree = "<group>"; };
+		03B1252D24F7FE10007A0858 /* ScratchActionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScratchActionController.xib; sourceTree = "<group>"; };
 		03CF9B5E23C8D6C800CDE142 /* PromotionAdvertisementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionAdvertisementVC.h; sourceTree = "<group>"; };
 		03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionAdvertisementVC.m; sourceTree = "<group>"; };
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
@@ -3567,6 +3580,12 @@
 		03E56F9F2482C30F00996099 /* FansListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FansListVC.storyboard; sourceTree = "<group>"; };
 		03F935BA24A1057C001D8A59 /* FansListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FansListCell.swift; sourceTree = "<group>"; };
 		03F935BB24A1057C001D8A59 /* FansListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FansListCell.xib; sourceTree = "<group>"; };
+		03FD07EA24FB06D900F83D92 /* ScratchDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScratchDataModel.h; sourceTree = "<group>"; };
+		03FD07EB24FB06D900F83D92 /* ScratchDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchDataModel.m; sourceTree = "<group>"; };
+		03FD07EE24FB1CA000F83D92 /* ScratchLogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScratchLogModel.h; sourceTree = "<group>"; };
+		03FD07EF24FB1CA000F83D92 /* ScratchLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchLogModel.m; sourceTree = "<group>"; };
+		03FD07F124FB35A700F83D92 /* ScratchParamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScratchParamModel.h; sourceTree = "<group>"; };
+		03FD07F224FB35A700F83D92 /* ScratchParamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchParamModel.m; sourceTree = "<group>"; };
 		073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.debug.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.debug.xcconfig"; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_BetFormCell.h; sourceTree = "<group>"; };
@@ -7556,6 +7575,25 @@
 			path = "金沙主题";
 			sourceTree = "<group>";
 		};
+		03B1252424F7DFE5007A0858 /* 刮刮乐 */ = {
+			isa = PBXGroup;
+			children = (
+				03B1252624F7E035007A0858 /* ScratchController.h */,
+				03B1252724F7E035007A0858 /* ScratchController.m */,
+				03B1252824F7E035007A0858 /* ScratchController.xib */,
+				03B1252B24F7FE10007A0858 /* ScratchActionController.h */,
+				03B1252C24F7FE10007A0858 /* ScratchActionController.m */,
+				03B1252D24F7FE10007A0858 /* ScratchActionController.xib */,
+				03FD07EA24FB06D900F83D92 /* ScratchDataModel.h */,
+				03FD07EB24FB06D900F83D92 /* ScratchDataModel.m */,
+				03FD07F124FB35A700F83D92 /* ScratchParamModel.h */,
+				03FD07F224FB35A700F83D92 /* ScratchParamModel.m */,
+				03FD07EE24FB1CA000F83D92 /* ScratchLogModel.h */,
+				03FD07EF24FB1CA000F83D92 /* ScratchLogModel.m */,
+			);
+			path = "刮刮乐";
+			sourceTree = "<group>";
+		};
 		03E56F912482BC6500996099 /* FollowList */ = {
 			isa = PBXGroup;
 			children = (
@@ -8435,6 +8473,7 @@
 				D43A784F23EFEB1A00F75B0C /* 红包扫雷 */,
 				D434743424AB264900B0F598 /* 下注明细 */,
 				D43DAF6524532A320014A301 /* 大转盘 */,
+				03B1252424F7DFE5007A0858 /* 刮刮乐 */,
 				03638F4B24D57B6900AAFAD3 /* 砸金蛋 */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
@@ -9020,6 +9059,7 @@
 				CF475913239636D200966536 /* 128.gif in Resources */,
 				031E1BE623BE812900B0F813 /* UGPK10NNLotteryController.storyboard in Resources */,
 				031E1D4823BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
+				03B1252A24F7E035007A0858 /* ScratchController.xib in Resources */,
 				D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */,
 				03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */,
 				031E1BC823BE812900B0F813 /* UGFC3DLotteryController.storyboard in Resources */,
@@ -9139,6 +9179,7 @@
 				031E19FE23BE812700B0F813 /* black_bg.png in Resources */,
 				031E1E6023BE812C00B0F813 /* UGAvaterCollectionViewCell.xib in Resources */,
 				031E1B8023BE812900B0F813 /* UGPlatformNoticeView.xib in Resources */,
+				03B1252F24F7FE10007A0858 /* ScratchActionController.xib in Resources */,
 				CF4758E2239636D200966536 /* 46.gif in Resources */,
 				031E1D3023BE812B00B0F813 /* UGPromotionInfoController.storyboard in Resources */,
 				CF47589A239636D200966536 /* 18.gif in Resources */,
@@ -10144,6 +10185,7 @@
 				031E1CD823BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */,
 				031E1AE623BE812800B0F813 /* TAAbstractDotView.m in Sources */,
 				031E1A3C23BE812700B0F813 /* OttoScratchView.m in Sources */,
+				03FD07F324FB35A700F83D92 /* ScratchParamModel.m in Sources */,
 				031E1A1623BE812700B0F813 /* Aspects.m in Sources */,
 				036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */,
 				031E1B4A23BE812800B0F813 /* UGLotteryHistoryModel.m in Sources */,
@@ -10209,6 +10251,7 @@
 				031E1A4223BE812700B0F813 /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				031E1D1A23BE812B00B0F813 /* UGPromoteDetailController.m in Sources */,
 				031E1BAC23BE812900B0F813 /* UGBMMemberCenterViewController.m in Sources */,
+				03B1252E24F7FE10007A0858 /* ScratchActionController.m in Sources */,
 				031E1D3223BE812B00B0F813 /* UGPromotionInfoController.m in Sources */,
 				031E1D4623BE812B00B0F813 /* UGGoogleAuthenticationFirstViewController.m in Sources */,
 				031E1B3823BE812800B0F813 /* UGonlineCount.m in Sources */,
@@ -10475,6 +10518,7 @@
 				031E19D223BE812700B0F813 /* NSObject+Utils.m in Sources */,
 				031E1AC223BE812800B0F813 /* WMDropDown2View.m in Sources */,
 				031E1DD823BE812C00B0F813 /* UGAddressListModel.m in Sources */,
+				03B1252924F7E035007A0858 /* ScratchController.m in Sources */,
 				031E1B8C23BE812900B0F813 /* UGLotteryRecordTableViewCell.m in Sources */,
 				D4ACC04724701F6F005AB971 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D434743D24AB2B8100B0F598 /* BetDetailViewController.m in Sources */,
@@ -10524,6 +10568,7 @@
 				031E1A4023BE812700B0F813 /* UINavigationController+Extension.m in Sources */,
 				031E1AD623BE812800B0F813 /* WSLWaterFlowLayout.m in Sources */,
 				031E19DA23BE812700B0F813 /* NSString+Utils.m in Sources */,
+				03FD07EC24FB06D900F83D92 /* ScratchDataModel.m in Sources */,
 				031E1C4023BE812900B0F813 /* UGLinkNumCollectionViewCell.m in Sources */,
 				031E1D1823BE812B00B0F813 /* UGPromotionsController.m in Sources */,
 				031E199823BE812600B0F813 /* LHPostRewardView.m in Sources */,
@@ -10585,6 +10630,7 @@
 				031E19F823BE812700B0F813 /* ChineseSortHelper.m in Sources */,
 				031E1AF023BE812800B0F813 /* WavesView.m in Sources */,
 				031E1D1223BE812B00B0F813 /* JSONAPI.m in Sources */,
+				03FD07F024FB1CA000F83D92 /* ScratchLogModel.m in Sources */,
 				031E1B8E23BE812900B0F813 /* UGPostCell.m in Sources */,
 				031E194623BE812600B0F813 /* UGLHMineViewController.m in Sources */,
 				03E3AAB823C84BCF009A28C0 /* PromotionBetReportVC.m in Sources */,

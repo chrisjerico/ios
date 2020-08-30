@@ -269,6 +269,12 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define  activityGoldenEggLogUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=goldenEggLog"]
 // 砸金蛋
 #define  activityGoldenEggWinUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=goldenEggWin"]
+// 刮刮乐数据
+#define  activityScratchListUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=scratchList"]
+// 刮刮乐日志
+#define  activityScratchLogUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=scratchLog"]
+// 刮
+#define  activityScratchWinUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=scratchWin"]
 
 #define ticketlotteryStatisticsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=lotteryStatistics"]
 
