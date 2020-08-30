@@ -2048,6 +2048,8 @@
 		D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */; };
 		D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
 		D48075D4249C777500E1E5F5 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
+		D4A15A7C24FBCD38005F40F4 /* YNBetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A15A7A24FBCD38005F40F4 /* YNBetCollectionViewCell.m */; };
+		D4A15A7D24FBCD38005F40F4 /* YNBetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4A15A7B24FBCD38005F40F4 /* YNBetCollectionViewCell.xib */; };
 		D4ACBF5D246C25C3005AB971 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */; };
 		D4ACC04724701F6F005AB971 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */; };
 		D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE1C0922C0FCC300C142FE /* AppDelegate.m */; };
@@ -3998,6 +4000,9 @@
 		D4773ACD23FD628800D38D60 /* LineMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainViewController.m; sourceTree = "<group>"; };
 		D48075D2249C777500E1E5F5 /* MessageUnderMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageUnderMenuView.h; sourceTree = "<group>"; };
 		D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageUnderMenuView.m; sourceTree = "<group>"; };
+		D4A15A7924FBCD38005F40F4 /* YNBetCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNBetCollectionViewCell.h; sourceTree = "<group>"; };
+		D4A15A7A24FBCD38005F40F4 /* YNBetCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNBetCollectionViewCell.m; sourceTree = "<group>"; };
+		D4A15A7B24FBCD38005F40F4 /* YNBetCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YNBetCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4ACBF5B246C25C3005AB971 /* NSArray+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
 		D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
 		D4ACC04524701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+FDFullscreenPopGesture.h"; sourceTree = "<group>"; };
@@ -8550,6 +8555,9 @@
 				D4CD204524F37D62001DC0CF /* YNBetDetailView.h */,
 				D4CD204624F37D62001DC0CF /* YNBetDetailView.m */,
 				D4CD204824F37DCD001DC0CF /* YNBetDetailView.xib */,
+				D4A15A7924FBCD38005F40F4 /* YNBetCollectionViewCell.h */,
+				D4A15A7A24FBCD38005F40F4 /* YNBetCollectionViewCell.m */,
+				D4A15A7B24FBCD38005F40F4 /* YNBetCollectionViewCell.xib */,
 			);
 			path = "越南下注明细View";
 			sourceTree = "<group>";
@@ -9068,6 +9076,7 @@
 				CF475887239636D200966536 /* 109.gif in Resources */,
 				031E1BEA23BE812900B0F813 /* UGSSCLotteryController.storyboard in Resources */,
 				031E1D4423BE812B00B0F813 /* UGGoogleAuthenticationFirstViewController.xib in Resources */,
+				D4A15A7D24FBCD38005F40F4 /* YNBetCollectionViewCell.xib in Resources */,
 				CFF1254D239FD5290000B731 /* 点击查看更多.gif in Resources */,
 				031E1A0A23BE812700B0F813 /* TextFieldAlertView.xib in Resources */,
 				CF4758B5239636D200966536 /* 55.gif in Resources */,
@@ -10267,6 +10276,7 @@
 				031E1A3023BE812700B0F813 /* CMNetwork+Mine.m in Sources */,
 				031E1DB023BE812B00B0F813 /* UGUserModel.m in Sources */,
 				031E1B1E23BE812800B0F813 /* UGChanglongBetRecordController.m in Sources */,
+				D4A15A7C24FBCD38005F40F4 /* YNBetCollectionViewCell.m in Sources */,
 				031E1BC623BE812900B0F813 /* UGBMHeaderView.m in Sources */,
 				031E1BF623BE812900B0F813 /* UGGD11X5LotteryController.m in Sources */,
 				03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */,

@@ -233,7 +233,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="161" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3x-o3-efV" customClass="IBButton">
-                                    <rect key="frame" x="10" y="10" width="141" height="30"/>
+                                    <rect key="frame" x="15" y="5" width="131" height="40"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="取消">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -258,19 +258,19 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="D3x-o3-efV" firstAttribute="top" secondItem="222-iA-gvZ" secondAttribute="top" constant="10" id="8HL-FM-XBN"/>
                                 <constraint firstItem="D3x-o3-efV" firstAttribute="centerX" secondItem="222-iA-gvZ" secondAttribute="centerX" id="KKx-sw-Myt"/>
-                                <constraint firstAttribute="bottom" secondItem="D3x-o3-efV" secondAttribute="bottom" constant="10" id="RyV-SD-cuk"/>
-                                <constraint firstAttribute="trailing" secondItem="D3x-o3-efV" secondAttribute="trailing" constant="10" id="UYF-IM-dJQ"/>
                                 <constraint firstItem="D3x-o3-efV" firstAttribute="centerY" secondItem="222-iA-gvZ" secondAttribute="centerY" id="YWy-K3-KqS"/>
-                                <constraint firstItem="D3x-o3-efV" firstAttribute="leading" secondItem="222-iA-gvZ" secondAttribute="leading" constant="10" id="h1Q-Jb-Hsv"/>
+                                <constraint firstItem="D3x-o3-efV" firstAttribute="top" secondItem="222-iA-gvZ" secondAttribute="top" constant="5" id="eXX-SJ-Dgl"/>
+                                <constraint firstAttribute="trailing" secondItem="D3x-o3-efV" secondAttribute="trailing" constant="15" id="iNl-o2-yQy"/>
+                                <constraint firstItem="D3x-o3-efV" firstAttribute="leading" secondItem="222-iA-gvZ" secondAttribute="leading" constant="15" id="lPw-4W-Wdo"/>
+                                <constraint firstAttribute="bottom" secondItem="D3x-o3-efV" secondAttribute="bottom" constant="5" id="q1Z-9G-Fv0"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ych-Pj-A9s">
                             <rect key="frame" x="161" y="0.0" width="161" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsu-Cj-Nvi" customClass="IBButton">
-                                    <rect key="frame" x="10" y="10" width="141" height="30"/>
+                                    <rect key="frame" x="15" y="5" width="131" height="40"/>
                                     <color key="backgroundColor" red="0.88285148140000003" green="0.32290697099999999" blue="0.2548756003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <state key="normal" title="确认下注">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -290,11 +290,11 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Hsu-Cj-Nvi" firstAttribute="centerY" secondItem="ych-Pj-A9s" secondAttribute="centerY" id="3Ad-wV-lsI"/>
-                                <constraint firstItem="Hsu-Cj-Nvi" firstAttribute="top" secondItem="ych-Pj-A9s" secondAttribute="top" constant="10" id="4kg-5F-L6V"/>
+                                <constraint firstItem="Hsu-Cj-Nvi" firstAttribute="top" secondItem="ych-Pj-A9s" secondAttribute="top" constant="5" id="4kg-5F-L6V"/>
                                 <constraint firstItem="Hsu-Cj-Nvi" firstAttribute="centerX" secondItem="ych-Pj-A9s" secondAttribute="centerX" id="BfS-ar-uUI"/>
-                                <constraint firstAttribute="bottom" secondItem="Hsu-Cj-Nvi" secondAttribute="bottom" constant="10" id="DQt-le-Hws"/>
-                                <constraint firstAttribute="trailing" secondItem="Hsu-Cj-Nvi" secondAttribute="trailing" constant="10" id="aF6-u2-11H"/>
-                                <constraint firstItem="Hsu-Cj-Nvi" firstAttribute="leading" secondItem="ych-Pj-A9s" secondAttribute="leading" constant="10" id="tPa-86-hu0"/>
+                                <constraint firstAttribute="bottom" secondItem="Hsu-Cj-Nvi" secondAttribute="bottom" constant="5" id="DQt-le-Hws"/>
+                                <constraint firstAttribute="trailing" secondItem="Hsu-Cj-Nvi" secondAttribute="trailing" constant="15" id="aF6-u2-11H"/>
+                                <constraint firstItem="Hsu-Cj-Nvi" firstAttribute="leading" secondItem="ych-Pj-A9s" secondAttribute="leading" constant="15" id="tPa-86-hu0"/>
                             </constraints>
                         </view>
                     </subviews>

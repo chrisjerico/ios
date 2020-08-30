@@ -25,7 +25,13 @@
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
     self.nameLabel.text = item.name;
-    self.nameLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
+    
+    if (APP.betBgIsWhite) {
+        self.nameLabel.backgroundColor = item.select ? UGBlueColor : Skin1.bgColor;
+    } else {
+        self.nameLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
+    }
+    
     self.nameLabel.textColor =  item.select ? [UIColor whiteColor] : [UIColor blackColor];
 }
 

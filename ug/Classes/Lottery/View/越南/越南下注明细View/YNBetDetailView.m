@@ -9,7 +9,9 @@
 #import "YNBetDetailView.h"
 #import "CountDown.h"
 #import "Global.h"
-#import "YNQuickListCollectionViewCell.h"
+#import "UGBetResultView.h" /**<   金杯的视图 */
+#import "UGBetDetailModel.h"
+#import "YNBetCollectionViewCell.h"
 
 @interface YNBetDetailView ()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>{
     
@@ -31,10 +33,12 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;    /**<   取消Button */
+
+@property (nonatomic) float amount; /**<   总金额*/
 @end
 
 
-static NSString *ID=@"YNQuickListCollectionViewCell";
+static NSString *ID=@"YNBetCollectionViewCell";
 @implementation YNBetDetailView
 
 - (void)dealloc
@@ -71,11 +75,10 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         self.flow.delegate = self;
         self.flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
         [self.collectionView setCollectionViewLayout:self.flow];
-        [self.collectionView registerNib:[UINib nibWithNibName:@"YNQuickListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:ID];
+        [self.collectionView registerNib:[UINib nibWithNibName:@"YNBetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:ID];
         self.collectionView.delegate = self;
         self.collectionView.dataSource = self;
-        
-   
+
         
         self.countDown = [[CountDown alloc] init];
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
@@ -136,27 +139,6 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     
 }
 
-
-- (void)hiddenSelf {
-    
-    UIView* view = self;
-    self.superview.backgroundColor = [UIColor clearColor];
-    [view.superview removeFromSuperview];
-    [view removeFromSuperview];
-}
-
-- (IBAction)cancelClick:(id)sender {
-    
-    [self hiddenSelf];
-    if (self.cancelBlock) {
-        self.cancelBlock();
-    }
-}
-
-- (IBAction)submitClick:(id)sender {
-    
-}
-
 - (void)setDataArray:(NSArray<UGGameBetModel *> *)dataArray {
     _dataArray = dataArray;
     NSMutableArray *array = [NSMutableArray array];
@@ -197,13 +179,13 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         }
     }
     
-    self.multipleTF.text = self.nextIssueModel.multipleStr;
-    self.totalAmountLabel.text = self.nextIssueModel.totalAmountStr;
-    int multip = self.nextIssueModel.multipleStr.intValue;
-    int totalAmount = self.nextIssueModel.totalAmountStr.intValue;
-    
+
+    int multip = self.nextIssueModel.multipleStr.intValue;//倍数
+    int totalAmount = self.nextIssueModel.totalAmountStr.intValue;//金额
+    self.amount = totalAmount  * multip * 1.0 ;
     self.BatchNumberLabel.text = self.nextIssueModel.defnameStr;
-    
+    self.multipleTF.text = self.nextIssueModel.multipleStr;
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"%.2f",self.amount ];
     FastSubViewCode(self);
     [subLabel(@"批号lable") setText:self.nextIssueModel.defname];
     
@@ -211,19 +193,139 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
  
 }
 
-#pragma mark -textfield添加事件，只要值改变就调用此函数
--(void)changedTextField:(UITextField *)textField
-{
-    NSLog(@"值是---%@",textField.text);
+
+
+- (void)hiddenSelf {
     
-    if (textField.text.length == 0) {
-        textField.text = @"1";
+    UIView* view = self;
+    self.superview.backgroundColor = [UIColor clearColor];
+    [view.superview removeFromSuperview];
+    [view removeFromSuperview];
+}
+
+- (IBAction)cancelClick:(id)sender {
+    
+    [self hiddenSelf];
+    if (self.cancelBlock) {
+        self.cancelBlock();
+    }
+}
+
+- (IBAction)submitClick:(id)sender {
+    if (!self.dataArray.count) {
+        [SVProgressHUD showInfoWithStatus:@"投注信息有误"];
+        return;
+    }
+    if (!self.multipleTF.text.length) {
+        [SVProgressHUD showInfoWithStatus:@"倍数不能为空或者0"];
+        return;
+    }
+    int multip = self.multipleTF.text.intValue;
+    if (multip == 0) {
+        [SVProgressHUD showInfoWithStatus:@"倍数不能为空或者0"];
+        return;
+    }
+
+    NSInteger totalNum = 0;
+    totalNum = self.betArray.count;
+    
+    NSString *amount = [NSString stringWithFormat:@"%.2f",self.amount ];
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
     }
     
-    int multip = textField.text.intValue;
-    int totalAmount = multip * self.singleNote;
-    self.totalAmountLabel.text = [NSString stringWithFormat:@"%d",totalAmount];
+    NSDictionary *dict = @{
+        @"token":[UGUserModel currentUser].sessid,
+        @"gameId":self.nextIssueModel.gameId,
+        @"betIssue":self.nextIssueModel.curIssue,
+        @"endTime":[self.nextIssueModel.curCloseTime timeStrToTimeInterval],
+        @"totalNum":[NSString stringWithFormat:@"%ld",totalNum],
+        @"totalMoney":amount,
+        @"betMultiple":self.multipleTF.text,
+        @"turnNum":self.nextIssueModel.curIssue,
+        @"betSrc":@"0",
+    };
+    
+    NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
+    NSString *str = [self.nextIssueModel.defnameStr stringByReplacingOccurrencesOfString:@"【" withString:@""];
+    NSString *str2 = [str stringByReplacingOccurrencesOfString:@"】" withString:@""];
+    
+    for (int i = 0; i < 1; i++) {
+        NSString *playId = [NSString stringWithFormat:@"betBean[%d][playId]",i];
+        NSString *money = [NSString stringWithFormat:@"betBean[%d][money]",i];
+        NSString *betInfo = [NSString stringWithFormat:@"betBean[%d][betInfo]",i];
+        NSString *name = [NSString stringWithFormat:@"betBean[%d][name]",i];
+        NSString *odds = [NSString stringWithFormat:@"betBean[%d][odds]",i];
+        NSString *rebate = [NSString stringWithFormat:@"betBean[%d][rebate]",i];
+        UGBetModel *bet = self.betArray[i];
+        [mutDict setValue:bet.playId forKey:playId];
+        [mutDict setObject:str2 forKey:betInfo];
+        [mutDict setObject:str2 forKey:name];
+        [mutDict setValue:@"0" forKey:rebate];
+        NSString *moneyStr = [NSString stringWithFormat:@"%.2f",bet.money.floatValue];
+        [mutDict setObject:bet.money.length ? moneyStr : @"" forKey:money];
+        [mutDict setObject:bet.odds.length ? bet.odds : @"" forKey:odds];
+        
+    }
+
+      HJSonLog(@"mutDict = %@",mutDict);
+    [self submitBet:mutDict];
+        
 }
+
+- (void)submitBet:(NSDictionary *)params {
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork userBetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
+
+            // 秒秒彩系列（即时开奖无需等待）
+            if (weakSelf.nextIssueModel.isInstant) {
+                BOOL showSecondLine = [@[@"11"] containsObject:weakSelf.nextIssueModel.gameId]; // 六合秒秒彩
+                UGBetDetailModel *mod = (UGBetDetailModel *)model.data;
+                mod.gameId = self.nextIssueModel.gameId;
+                
+                UGBetResultView *bet = [[UGBetResultView alloc] initWithShowSecondLine:showSecondLine];
+                
+                [bet showWith:mod showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
+                    [weakSelf submitBet:params];
+                }];
+            }
+            else {
+                
+                [weakSelf hiddenSelf];
+                 [SVProgressHUD showSuccessWithStatus:model.msg];
+            }
+            
+            SANotificationEventPost(UGNotificationGetUserInfo, nil);
+            if (weakSelf.betClickBlock) {
+                weakSelf.betClickBlock();
+                [weakSelf hiddenSelf];
+            }
+            [weakSelf hiddenSelf];
+            
+            
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+            
+            UIAlertController * alert = [UIAlertController alertWithTitle:@"投注失败" msg:msg btnTitles:@[@"确定"]];
+            [NavController1 presentViewController:alert animated:true completion:nil];
+            
+            NSString *msgStr = (NSString *)msg;
+            if ([msgStr containsString:@"已封盘"]) {
+                if (weakSelf.betClickBlock) {
+                    weakSelf.betClickBlock();
+                    [weakSelf hiddenSelf];
+                }
+            }
+        }];
+    }];
+}
+
+
+
+
 
 - (NSMutableArray<UGBetModel *> *)betArray {
     if (_betArray == nil) {
@@ -243,7 +345,7 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    YNQuickListCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
+    YNBetCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     UGGameBetModel *model = [_dataArray objectAtIndex:indexPath.row];
     cell.item = model;
     return cell;
@@ -266,12 +368,12 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 /** 列间距*/
 -(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
 
-    return 5;
+    return 6;
 }
 /** 行间距*/
 -(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
 
-    return 5;
+    return 6;
 }
 /** 边缘之间的间距*/
 -(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
@@ -288,5 +390,25 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 {
     maskView.frame = CGRectMake(0, 0, APP.Width, APP.Height);
 }
+#pragma mark -textfield添加事件，只要值改变就调用此函数
+-(void)changedTextField:(UITextField *)textField
+{
 
+    int multip = textField.text.intValue;
+    
+    if (multip > 0) {
+         float totalAmount = 0.0;
+         for (UGBetModel *model in self.betArray) {
+             
+             NSLog(@"model.money = %.2f",model.money.floatValue);
+             totalAmount += model.money.floatValue;
+         }
+        NSLog(@"multip值是---%d",multip);
+        NSLog(@"值是---%.2f",totalAmount);
+         self.amount = totalAmount * multip;
+        NSLog(@"值是---%.2f",self.amount);
+        self.totalAmountLabel.text = [NSString stringWithFormat:@"%.2lf",self.amount];
+     }
+
+}
 @end

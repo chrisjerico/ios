@@ -271,15 +271,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12c-Ge-M6J" userLabel="底部">
                                 <rect key="frame" x="0.0" y="800" width="414" height="96"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="倍数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FkX-Gx-0Wx">
-                                        <rect key="frame" x="55" y="50" width="33" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="Vta-E8-VKp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赔率 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGn-ts-ZgI">
                                         <rect key="frame" x="10" y="50" width="35" height="21"/>
                                         <constraints>
@@ -291,7 +282,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入倍数" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXf-jf-UeE" userLabel="下注倍数">
-                                        <rect key="frame" x="98" y="50" width="166" height="36"/>
+                                        <rect key="frame" x="55" y="50" width="149" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="dVG-w8-8zF"/>
                                         </constraints>
@@ -305,8 +296,28 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tch-E1-wNY" userLabel="筹码" customClass="IBButton">
+                                        <rect key="frame" x="214" y="50" width="60" height="36"/>
+                                        <color key="backgroundColor" red="0.40180855989999997" green="0.67699187989999998" blue="0.35686457160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="TEK-yg-x1M"/>
+                                            <constraint firstAttribute="height" constant="36" id="cEi-Lc-tEw"/>
+                                        </constraints>
+                                        <state key="normal" title="筹码">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="chipClick:" destination="kNh-vD-evs" eventType="touchUpInside" id="BFm-mp-4dl"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Hx-aU-qWv" userLabel="下注" customClass="IBButton">
-                                        <rect key="frame" x="274" y="50" width="60" height="36"/>
+                                        <rect key="frame" x="279" y="50" width="60" height="36"/>
                                         <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="1Mp-E7-f1J"/>
@@ -386,23 +397,23 @@
                                     <constraint firstAttribute="height" constant="96" id="1kR-aR-8k0"/>
                                     <constraint firstItem="ZGn-ts-ZgI" firstAttribute="top" secondItem="2ki-e4-NGc" secondAttribute="bottom" constant="14" id="2Qv-o5-L1Q"/>
                                     <constraint firstAttribute="trailing" secondItem="av5-sB-Nav" secondAttribute="trailing" constant="10" id="9id-Ol-UzW"/>
-                                    <constraint firstAttribute="bottom" secondItem="FkX-Gx-0Wx" secondAttribute="bottom" constant="25" id="DOT-zx-HbK"/>
                                     <constraint firstItem="7X4-na-Ch9" firstAttribute="top" secondItem="5SH-Xq-ptU" secondAttribute="top" constant="15" id="FFr-lL-ntf"/>
+                                    <constraint firstItem="3Hx-aU-qWv" firstAttribute="leading" secondItem="tch-E1-wNY" secondAttribute="trailing" constant="5" id="Jdc-Vf-2Hg"/>
                                     <constraint firstItem="7X4-na-Ch9" firstAttribute="leading" secondItem="2ki-e4-NGc" secondAttribute="trailing" constant="10" id="KtO-cD-7np"/>
+                                    <constraint firstItem="tch-E1-wNY" firstAttribute="centerY" secondItem="3Hx-aU-qWv" secondAttribute="centerY" id="LTU-As-GMh"/>
                                     <constraint firstItem="ZGn-ts-ZgI" firstAttribute="leading" secondItem="5SH-Xq-ptU" secondAttribute="leading" constant="10" id="Mjy-SN-eAE"/>
                                     <constraint firstItem="2ki-e4-NGc" firstAttribute="top" secondItem="5SH-Xq-ptU" secondAttribute="top" constant="15" id="OiS-lB-Wyk"/>
                                     <constraint firstItem="3Hx-aU-qWv" firstAttribute="centerY" secondItem="fXf-jf-UeE" secondAttribute="centerY" id="P8o-no-vkD"/>
                                     <constraint firstItem="ZGn-ts-ZgI" firstAttribute="leading" secondItem="2ki-e4-NGc" secondAttribute="leading" id="RiU-b2-66U"/>
                                     <constraint firstItem="Z5H-t1-Oce" firstAttribute="leading" secondItem="12c-Ge-M6J" secondAttribute="leading" id="SgP-3i-oGy"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="96" id="bUh-MH-IWb"/>
-                                    <constraint firstItem="av5-sB-Nav" firstAttribute="leading" secondItem="3Hx-aU-qWv" secondAttribute="trailing" constant="10" id="gEl-82-J1r"/>
+                                    <constraint firstItem="av5-sB-Nav" firstAttribute="leading" secondItem="3Hx-aU-qWv" secondAttribute="trailing" constant="5" id="gEl-82-J1r"/>
                                     <constraint firstItem="av5-sB-Nav" firstAttribute="centerY" secondItem="3Hx-aU-qWv" secondAttribute="centerY" id="h7m-nm-Viu"/>
                                     <constraint firstItem="Z5H-t1-Oce" firstAttribute="top" secondItem="12c-Ge-M6J" secondAttribute="top" id="hk9-Zn-kps"/>
-                                    <constraint firstItem="3Hx-aU-qWv" firstAttribute="leading" secondItem="fXf-jf-UeE" secondAttribute="trailing" constant="10" id="iin-UI-0cv"/>
-                                    <constraint firstItem="fXf-jf-UeE" firstAttribute="leading" secondItem="FkX-Gx-0Wx" secondAttribute="trailing" constant="10" id="l9k-xl-f62"/>
+                                    <constraint firstItem="fXf-jf-UeE" firstAttribute="leading" secondItem="ZGn-ts-ZgI" secondAttribute="trailing" constant="10" id="kZb-aq-Gzj"/>
+                                    <constraint firstItem="tch-E1-wNY" firstAttribute="leading" secondItem="fXf-jf-UeE" secondAttribute="trailing" constant="10" id="rHd-3s-E4o"/>
                                     <constraint firstAttribute="bottom" secondItem="Z5H-t1-Oce" secondAttribute="bottom" id="spx-uf-qdM"/>
                                     <constraint firstItem="2ki-e4-NGc" firstAttribute="leading" secondItem="5SH-Xq-ptU" secondAttribute="leading" constant="10" id="tHS-6b-reN"/>
-                                    <constraint firstItem="FkX-Gx-0Wx" firstAttribute="leading" secondItem="ZGn-ts-ZgI" secondAttribute="trailing" constant="10" id="uT3-j6-bDj"/>
                                     <constraint firstAttribute="trailing" secondItem="Z5H-t1-Oce" secondAttribute="trailing" id="x9k-eT-HAL"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="5SH-Xq-ptU"/>
@@ -436,6 +447,7 @@
                         <outlet property="betButton" destination="3Hx-aU-qWv" id="7mq-nH-TNQ"/>
                         <outlet property="bottomCloseView" destination="Z5H-t1-Oce" id="Clf-H3-gm6"/>
                         <outlet property="bottomView" destination="12c-Ge-M6J" id="V7A-QT-uVM"/>
+                        <outlet property="chipButton" destination="tch-E1-wNY" id="zBl-Oz-L5B"/>
                         <outlet property="closeTimeLabel" destination="iWs-wK-mhI" id="CbZ-WT-mOg"/>
                         <outlet property="contentView" destination="ZFY-Wv-Isx" id="kjz-B4-87e"/>
                         <outlet property="currentIssueLabel" destination="yac-CP-SR7" id="GiV-6B-5gr"/>

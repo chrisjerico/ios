@@ -43,8 +43,23 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     } else {
         [_issueLabel setTextColor:[UIColor blackColor]];
     }
+    [ self.tiemLabel setTextColor:Skin1.textColor2];
     
-    [self setBackgroundColor:Skin1.bgColor];
+//    [self setBackgroundColor:Skin1.bgColor];
+    
+    self.backgroundColor = Skin1.textColor4;
+    if (APP.betBgIsWhite) {
+        self.backgroundColor =  [UIColor whiteColor];
+    } else {
+        if (APP.isLight) {
+            self.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+            
+        }
+        else{
+            self.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+            
+        }
+    }
 
 }
 
@@ -79,6 +94,9 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     } else {
         if ([@"lhc" isEqualToString:self.item.gameType]) {
             return self.resultArray.count + 1;
+        }
+        else if([@"ofclvn_hochiminhvip" isEqualToString:self.item.gameType]){
+            return 0;
         }
         return self.resultArray.count;
     }

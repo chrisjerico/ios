@@ -64,7 +64,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectLabel;/**<底部  已选中  */
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;/**<底部  金额越南盾  */
 @property (weak, nonatomic) IBOutlet UILabel *oddsLabel;/**<底部  赔率  */
-//@property (weak, nonatomic) IBOutlet UIButton *chipButton;/**<底部  筹码  */
+@property (weak, nonatomic) IBOutlet UIButton *chipButton;/**<底部  筹码  */
 @property (weak, nonatomic) IBOutlet UIButton *betButton; /**<底部  下注  */
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;/**<底部  重置  */
 
@@ -89,6 +89,7 @@
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 @property (nonatomic, strong) NSArray <NSString *> *preNumArray;
 @property (nonatomic, strong) NSArray <NSString *> *preNumSxArray;
+@property (nonatomic, strong) NSArray <NSString *> *chipArray;
 
 @property (strong, nonatomic) CountDown *countDown;
 
@@ -327,6 +328,8 @@ static NSString *footViewID = @"YNCollectionFootView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.chipButton.layer.cornerRadius = 5;
+    self.chipButton.layer.masksToBounds = YES;
     self.betButton.layer.cornerRadius = 5;
     self.resetButton.layer.cornerRadius = 5;
     self.resetButton.layer.masksToBounds = YES;
@@ -352,7 +355,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         make.top.right.bottom.equalTo(self.contentView).offset(0);
     }];
     
-    
+    self.chipArray = @[@"10",@"100",@"1000",@"10000",@"清除"];
     //开奖数据
     [self initHeaderCollectionView];
     //第一个分段
@@ -377,7 +380,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self  setDefaultData:@"PIHAO2"];
     WeakSelf
     self.segmentIndex = 0;
-    void (^segmentViewActon)(NSInteger) = ^(NSInteger row) {
+    self.segmentView.segmentIndexBlock = ^(NSInteger row) {
         weakSelf.segmentIndex = row;
         NSString * code =  [weakSelf.lmgmentCodeArray objectAtIndex:row];
         
@@ -406,12 +409,12 @@ static NSString *footViewID = @"YNCollectionFootView";
             //头 尾
             weakSelf.ynsegmentView.hidden = YES;
         }
+        
+        
         [weakSelf setDefaultData:code];
         
         [weakSelf.betCollectionView reloadData];
-        
     };
-    self.segmentView.segmentIndexBlock = segmentViewActon;
     self.lmgmentTitleArray = [NSMutableArray new];
     self.lmgmentCodeArray = [NSMutableArray new];
     self.selArray = [NSMutableArray new];
@@ -847,6 +850,38 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
+- (IBAction)chipClick:(id)sender {
+    if (self.amountTextF.isFirstResponder) {
+        [self.amountTextF resignFirstResponder];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
+            popView.fontSize = 14;
+            popView.type = YBPopupMenuTypeDefault;
+            [popView showRelyOnView:self.chipButton];
+        });
+    }else {
+        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
+        popView.fontSize = 14;
+        popView.type = YBPopupMenuTypeDefault;
+        [popView showRelyOnView:self.chipButton];
+    }
+}
+#pragma mark - YBPopupMenuDelegate
+
+- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
+    if (index >= 0 ) {
+        if (index < self.chipArray.count - 1) {
+            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
+            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
+            float sum = n1 + n2;
+            self.amountTextF.text = [NSString stringWithFormat:@"%.0f",sum];
+        }else {
+            self.amountTextF.text = nil;
+        }
+    }
+    
+}
 
 
 - (IBAction)resetClick:(id)sender {
@@ -931,6 +966,8 @@ static NSString *footViewID = @"YNCollectionFootView";
 //个下注方法
 -(void)yzdwBetActionMode:(UGGameBetModel *)bet   array :(NSMutableArray *__strong *) array {
     
+    [self setDefaultData:bet.code];
+    
     if (bet.ynList.count) {
         NSMutableArray *mutArr1 = [NSMutableArray array];
         
@@ -955,9 +992,9 @@ static NSString *footViewID = @"YNCollectionFootView";
             NSMutableString *name = [[NSMutableString alloc] init];
             [name appendString:beti.name];
             bet.name = name;
-            bet.money = self.amountTextF.text;
             bet.title = bet.alias;
             bet.betInfo = name;
+            bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
             [*array addObject:bet];
             
             [nameStr appendString:bet.name];
@@ -977,6 +1014,8 @@ static NSString *footViewID = @"YNCollectionFootView";
 //十 个下注方法
 -(void)ezdwBetActionMode:(UGGameBetModel *)bet   array :(NSMutableArray *__strong *) array {
     
+    
+    [self setDefaultData:bet.code];
     if (bet.ynList.count) {
         NSMutableArray *mutArr1 = [NSMutableArray array];
         NSMutableArray *mutArr2 = [NSMutableArray array];
@@ -1010,10 +1049,11 @@ static NSString *footViewID = @"YNCollectionFootView";
                 [name appendString:beti.name];
                 [name appendString:@","];
                 [name appendString:bety.name];
+                
                 bet.name = name;
-                bet.money = self.amountTextF.text;
                 bet.title = bet.alias;
                 bet.betInfo = name;
+                bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
                 [*array addObject:bet];
                 
             }
@@ -1049,6 +1089,8 @@ static NSString *footViewID = @"YNCollectionFootView";
 }
 //百 十 个下注方法
 -(void)szdwBetActionMode:(UGGameBetModel *)bet   array :(NSMutableArray *__strong *) array {
+    
+    [self setDefaultData:bet.code];
     
     if (bet.ynList.count) {
         NSMutableArray *mutArr1 = [NSMutableArray array];
@@ -1095,9 +1137,9 @@ static NSString *footViewID = @"YNCollectionFootView";
                     [name appendString:@","];
                     [name appendString:betz.name];
                     bet.name = name;
-                    bet.money = self.amountTextF.text;
                     bet.title = bet.alias;
                     bet.betInfo = name;
+                    bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
                     [*array addObject:bet];
                 }
                 
@@ -1147,6 +1189,8 @@ static NSString *footViewID = @"YNCollectionFootView";
 }
 //千  百 十 个下注方法
 -(void)qzdwBetActionMode:(UGGameBetModel *)bet   array :(NSMutableArray *__strong *) array {
+    
+    [self setDefaultData:bet.code];
     
     if (bet.ynList.count) {
         NSMutableArray *mutArr1 = [NSMutableArray array];
@@ -1207,9 +1251,9 @@ static NSString *footViewID = @"YNCollectionFootView";
                         [name appendString:@","];
                         [name appendString:betk.name];
                         bet.name = name;
-                        bet.money = self.amountTextF.text;
                         bet.title = bet.alias;
                         bet.betInfo = name;
+                        bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
                         [*array addObject:bet];
                     }
                 }
@@ -1335,6 +1379,8 @@ static NSString *footViewID = @"YNCollectionFootView";
         self.segmentIndex = 0;
         [self segmentViewTitleAndCode:model];
         
+        NSString * code =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+        [self setDefaultData:code];
         //判断ynsegmentView 标题 和 隐藏
         [self determineYnsegmentViewTitle:model.code];
     }
@@ -1765,6 +1811,8 @@ static NSString *footViewID = @"YNCollectionFootView";
 //一字定位 计算选中的注数  十个
 -(void)yzdwActionModel:(UGGameBetModel *)model count:(NSInteger)count{
     
+    [self setDefaultData:model.code];
+    
     NSMutableArray *array = [NSMutableArray array];
     if (model.ynList.count) {
         NSMutableArray *mutArr1 = [NSMutableArray array];
@@ -1793,7 +1841,9 @@ static NSString *footViewID = @"YNCollectionFootView";
             bet.betInfo = name;
             bet.title = bet.alias;
             bet.betMultiple = self.amountTextF.text;
-            bet.money = [NSString stringWithFormat:@"%f",self.defaultGold] ;
+            bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
+            NSLog(@"self.defaultGold = %d",self.defaultGold);
+            NSLog(@"money = %@",bet.money);
             [array addObject:bet];
             
         }
@@ -1812,7 +1862,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 //二字定位 计算选中的注数  十个
 -(void)ezdwActionModel:(UGGameBetModel *)model count:(NSInteger)count{
-    
+    [self setDefaultData:model.code];
     NSMutableArray *array = [NSMutableArray array];
     if (model.ynList.count) {
         NSMutableArray *mutArr1 = [NSMutableArray array];
@@ -1852,7 +1902,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 bet.betInfo = name;
                 bet.title = bet.alias;
                 bet.betMultiple = self.amountTextF.text;
-                bet.money = [NSString stringWithFormat:@"%f",self.defaultGold] ;
+                bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
                 [array addObject:bet];
                 
             }
@@ -1872,7 +1922,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 //三字定位 计算选中的注数  百 十 个
 -(void)szdwActionModel:(UGGameBetModel *)model count:(NSInteger)count{
-    
+    [self setDefaultData:model.code];
     NSMutableArray *array = [NSMutableArray array];
     
     if (model.ynList.count) {
@@ -1945,7 +1995,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 //四字定位 计算选中的注数   千 百 十 个
 -(void)sszdwActionModel:(UGGameBetModel *)model count:(NSInteger)count{
-    
+    [self setDefaultData:model.code];
     NSMutableArray *array = [NSMutableArray array];
     
     if (model.ynList.count) {
@@ -2032,6 +2082,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 //显示金额
 -(void)setAmountLableCount:(int)count{
+    NSLog(@"self.gold= %d", self.defaultGold);
     int amount = count * self.defaultGold;
     NSString *amountStr;
     if ([UGSystemConfigModel.currentConfig.currency isEqualToString:@"VND"]) {
@@ -2148,12 +2199,8 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self updateCloseLabelText];
     [self updateOpenLabelText];
     CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
-    if (self.nextIssueModel.curIssue.length >=12) {
-        self.headerCollectionView.x = 25 + size.width-18;
-    }
-    else {
-        self.headerCollectionView.x = 25 + size.width;
-    }
+    self.headerCollectionView.x = 25 + size.width;
+    
     
     [self.headerCollectionView reloadData];
 }
@@ -2297,8 +2344,8 @@ static NSString *footViewID = @"YNCollectionFootView";
     return _segmentView;
     
 }
-
-// 设置默认
+#pragma mark - 设置默认
+//
 - (void)setDefaultData :(NSString *)code {
     
     if ([code isEqualToString:@"PIHAO2"]) {//批号2

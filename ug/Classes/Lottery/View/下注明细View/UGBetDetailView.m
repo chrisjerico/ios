@@ -187,7 +187,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 totalNum = 1;
             }
             totalAmount = model.money.floatValue * totalNum;
-        } else {
+        }
+        else {
             totalNum = self.betArray.count;
             totalAmount += model.money.floatValue;
         }
