@@ -1667,6 +1667,8 @@
 		03FD07EC24FB06D900F83D92 /* ScratchDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07EB24FB06D900F83D92 /* ScratchDataModel.m */; };
 		03FD07F024FB1CA000F83D92 /* ScratchLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07EF24FB1CA000F83D92 /* ScratchLogModel.m */; };
 		03FD07F324FB35A700F83D92 /* ScratchParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07F224FB35A700F83D92 /* ScratchParamModel.m */; };
+		03FD07F624FB6F7D00F83D92 /* GoldEggLogTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07F524FB6F7D00F83D92 /* GoldEggLogTableHeaderView.m */; };
+		03FD07F824FB6F9500F83D92 /* GoleEggLogTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FD07F724FB6F9500F83D92 /* GoleEggLogTableHeaderView.xib */; };
 		21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E79CE20D619A7BDF62E7B77 /* Pods_UGBWApp.framework */; };
 		226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA20D23D2E37400E4D921 /* HSC_BetFormCell.m */; };
 		226CA21023D2E37400E4D921 /* HSC_BetFormCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 226CA20E23D2E37400E4D921 /* HSC_BetFormCell.xib */; };
@@ -3586,6 +3588,9 @@
 		03FD07EF24FB1CA000F83D92 /* ScratchLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchLogModel.m; sourceTree = "<group>"; };
 		03FD07F124FB35A700F83D92 /* ScratchParamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScratchParamModel.h; sourceTree = "<group>"; };
 		03FD07F224FB35A700F83D92 /* ScratchParamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchParamModel.m; sourceTree = "<group>"; };
+		03FD07F424FB6F7D00F83D92 /* GoldEggLogTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoldEggLogTableHeaderView.h; sourceTree = "<group>"; };
+		03FD07F524FB6F7D00F83D92 /* GoldEggLogTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoldEggLogTableHeaderView.m; sourceTree = "<group>"; };
+		03FD07F724FB6F9500F83D92 /* GoleEggLogTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoleEggLogTableHeaderView.xib; sourceTree = "<group>"; };
 		073F062821635829AF986F13 /* Pods-UGBWApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UGBWApp.debug.xcconfig"; path = "Target Support Files/Pods-UGBWApp/Pods-UGBWApp.debug.xcconfig"; sourceTree = "<group>"; };
 		09180447B2D6D470EA76AFD9 /* Pods-chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.release.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.release.xcconfig"; sourceTree = "<group>"; };
 		226CA20C23D2E37400E4D921 /* HSC_BetFormCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSC_BetFormCell.h; sourceTree = "<group>"; };
@@ -7501,6 +7506,9 @@
 				0393C8AB24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib */,
 				0393C8AE24F7809300F6DFDB /* GoldEggLogModel.h */,
 				0393C8AF24F7809300F6DFDB /* GoldEggLogModel.m */,
+				03FD07F424FB6F7D00F83D92 /* GoldEggLogTableHeaderView.h */,
+				03FD07F524FB6F7D00F83D92 /* GoldEggLogTableHeaderView.m */,
+				03FD07F724FB6F9500F83D92 /* GoleEggLogTableHeaderView.xib */,
 			);
 			path = "砸金蛋";
 			sourceTree = "<group>";
@@ -9027,6 +9035,7 @@
 				031E1A0A23BE812700B0F813 /* TextFieldAlertView.xib in Resources */,
 				CF4758B5239636D200966536 /* 55.gif in Resources */,
 				031E196A23BE812600B0F813 /* UGLHH.storyboard in Resources */,
+				03FD07F824FB6F9500F83D92 /* GoleEggLogTableHeaderView.xib in Resources */,
 				0393C8AD24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib in Resources */,
 				031E198E23BE812600B0F813 /* LHPostVoteView.xib in Resources */,
 				CF4758C9239636D200966536 /* 44.gif in Resources */,
@@ -10313,6 +10322,7 @@
 				031E1E5A23BE812C00B0F813 /* UGFeedbackTableViewCell.m in Sources */,
 				031E1BEC23BE812900B0F813 /* UGJSK3LotteryController.m in Sources */,
 				031E1DDE23BE812C00B0F813 /* UGinviteDomainModel.m in Sources */,
+				03FD07F624FB6F7D00F83D92 /* GoldEggLogTableHeaderView.m in Sources */,
 				D4486C27241D082E00E5CCEA /* OnlineServiceViewController.m in Sources */,
 				031E1B6423BE812800B0F813 /* UGHomeTitleView.m in Sources */,
 				031E1A2023BE812700B0F813 /* CCNetworkRequests1+UGLiuHe.m in Sources */,

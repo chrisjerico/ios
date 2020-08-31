@@ -182,7 +182,10 @@
                  
                  
              }];
-            [self.label setText:self.item.prompt];
+			 [self.label setText:self.item.prompt];
+			 if ([@"c006,testadaf" containsString:APP.SiteId]) { // order: 117033
+				 [self.label setText: channelModel.fcomment.length > 0? channelModel.fcomment: self.item.prompt];
+			 }
             [self.label sizeToFit];
             NSLog(@"%@",NSStringFromCGRect(self.label.frame));
             
@@ -470,7 +473,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UGDepositDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGDepositDetailsTableViewCell" forIndexPath:indexPath];
     UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
-    cell.nameStr = channelModel.payeeName;
+	cell.nameStr = channelModel.payeeName;
     NSInteger row = [indexPath row];
     NSInteger oldRow = [lastPath row];
     

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EggGrenzyRecordTableCell : UITableViewCell
 - (void)bind: (GoldEggLogModel*)model;
-- (void)bindScratchLog: (ScratchLogModel*)model;
+- (void)bindScratchLog: (ScratchLogModel*)model type: (NSString *)logType;
 @end
 
 NS_ASSUME_NONNULL_END

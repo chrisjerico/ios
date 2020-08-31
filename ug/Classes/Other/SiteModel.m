@@ -189,6 +189,9 @@
             site(@"test12",       @"test12hy",   @"",        @"com.UGGame.cp",            @"http://test12.6yc.com",                      @"内测包",     @"ttest12"),
             site(@"test58",  	  @"test58",     @"",        @"com.UGGame.cp",            @"http://test58f.ccpt.site",                   @"内测包",     @"test58"),
             site(@"hotUpdate",    @"hotUpdate",  @"260",     @"com.abcc4",                @"http://test10.6yc.com",                      @"内测包",     @"热更新测试包"),
+			
+            site(@"test08",  	  @"test08",     @"",        @"com.UGGame.cp",           @"http://test08.6yc.com",                   @"内测包",     @"test08"),
+
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
             //siteId, /uploadNum,/uploadId/appId, /host, /type, /appName
         ];

@@ -173,7 +173,7 @@
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgj-8c-Dm1">
                             <rect key="frame" x="77" y="542.5" width="294" height="123"/>
                             <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WrA-lZ-1ur">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WrA-lZ-1ur">
                                     <rect key="frame" x="0.0" y="0.0" width="294" height="123"/>
                                     <color key="backgroundColor" red="0.35686274509803922" green="0.050980392156862744" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
@@ -592,7 +592,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nl6-mO-Pp6">
-                    <rect key="frame" x="350" y="136" width="26" height="26"/>
+                    <rect key="frame" x="358" y="136" width="26" height="26"/>
                     <state key="normal" image="刮刮乐_关闭按钮"/>
                     <connections>
                         <action selector="closeButtonAction:" destination="-1" eventType="touchUpInside" id="ldl-OI-rZg"/>
@@ -601,7 +601,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Nl6-mO-Pp6" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="350" id="44h-cu-Rtw"/>
+                <constraint firstItem="Nl6-mO-Pp6" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" constant="-30" id="44h-cu-Rtw"/>
                 <constraint firstItem="v7d-oa-cxd" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" constant="-16" id="4Td-lm-Nah"/>
                 <constraint firstItem="1Ei-Vk-Sny" firstAttribute="top" secondItem="ZR4-4u-bxD" secondAttribute="top" constant="170" id="8OC-bx-cCM"/>
                 <constraint firstItem="v7d-oa-cxd" firstAttribute="trailing" secondItem="ZR4-4u-bxD" secondAttribute="trailing" constant="-9" id="DZR-dS-A2H"/>

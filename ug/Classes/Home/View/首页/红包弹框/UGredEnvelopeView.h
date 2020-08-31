@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UGRedEnvelopeModel.h"
 #import "UGhomeAdsModel.h"
+#import "ScratchDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^RedEnvelopeCancelBlock)(void);
@@ -24,6 +25,8 @@ typedef void(^RedEnvelopeRedBlock)(void);
 @property (nonatomic, strong) UGhomeAdsModel *itemSuspension;
 
 @property (nonatomic, strong) id itemData;
+
+@property (nonatomic, strong) ScratchDataModel * scratchDataModel;
 @end
 
 NS_ASSUME_NONNULL_END

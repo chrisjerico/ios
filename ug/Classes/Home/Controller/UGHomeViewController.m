@@ -766,8 +766,9 @@
 				}];
 				return ;
 			}
+			
 			ScratchController * vc = [[ScratchController alloc] init];
-			vc.item = (DZPModel*)__self.scratchView.itemData;
+			vc.item = __self.scratchView.scratchDataModel;
 			vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
 			[[UINavigationController current] presentViewController:vc animated:true completion:nil];
 
@@ -1015,7 +1016,7 @@
 	});
       
        
-	dispatch_group_async(group, queue, ^{
+	dispatch_group_async(group, queue, ^{ //刮刮乐
 		[self getactivityCratchList];
 	});
     
@@ -1906,9 +1907,7 @@
 				if (!scratchData.scratchList.count) {
 					return;
 				}
-//				ScratchModel * scratchModel = [scratchData.scratchList objectAtIndex:0];
-//				scratchModel.aviliableCount = scratchData.scratchWinList.count;
-				weakSelf.scratchView.itemData = scratchData;
+				weakSelf.scratchView.scratchDataModel = scratchData;
 				[weakSelf.scratchView.imgView setImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
 				self.scratchView.hidden = NO;
 			});
