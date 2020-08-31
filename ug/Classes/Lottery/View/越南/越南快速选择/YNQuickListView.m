@@ -69,7 +69,13 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
+    if (self.collectIndexBlock) {
+        self.collectIndexBlock(collectionView,indexPath);
+    }
+    
+}
 
 #pragma mark - WSLWaterFlowLayoutDelegate
 

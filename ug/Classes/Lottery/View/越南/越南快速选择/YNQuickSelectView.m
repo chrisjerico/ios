@@ -13,9 +13,10 @@
 
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 
-@property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;
-@property (nonatomic, strong) YNQuickListView *ynQuickListView;
+@property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;//标题数组
+@property (nonatomic,strong)  NSMutableArray <YNQuickListView *> *itemViewArray;//views 数组
 
+@property (nonatomic, assign) NSInteger selectedSegmentIndex;//当前选中的索引
 @end
 
 @implementation YNQuickSelectView
@@ -52,7 +53,10 @@
 -(void)myInit{
     _itemArray = [NSMutableArray new];
     [self segmentedControlInit:self.itemArray];
-    [self ynQuickListViewInit:[NSMutableArray new]];
+    
+    _itemViewArray =  [NSMutableArray new];
+    self.segmentedControl.selectedSegmentIndex = 0;
+
 }
 
 -(void)setBet:(UGGameBetModel *)bet{
@@ -60,17 +64,40 @@
     _bet = bet;
     if (![CMCommon arryIsNull:bet.ynFastList]) {
         [self.itemArray removeAllObjects];
+        [self.itemViewArray removeAllObjects];
+        
         for (UGGameplaySectionModel *dd in bet.ynFastList) {
             if (dd.name) {
                 [self.itemArray addObject:dd.name] ;
             }
         }
+        
+        for (int i = 0; i<bet.ynFastList.count ; i++) {
+            UGGameplaySectionModel *dd  = [bet.ynFastList objectAtIndex:i];
+            
+            YNQuickListView *ynQuickListView = [[YNQuickListView alloc] initWithFrame:CGRectZero];
+            [self.contentView addSubview:ynQuickListView];
+            [ynQuickListView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.equalTo(self);
+                make.top.equalTo(self.segmentedControl.mas_bottom);
+            }];
+            ynQuickListView.dataArry = dd.list;
+            
+            WeakSelf;
+            ynQuickListView.collectIndexBlock = ^(UICollectionView *collectionView,NSIndexPath* indexPath) {
+                
+                if (self.ynCollectIndexBlock) {
+                    self.ynCollectIndexBlock(collectionView,indexPath,weakSelf.selectedSegmentIndex);
+                }
+            };
+            [_itemViewArray addObject:ynQuickListView];
+            
+        }
+        WeakSelf;
         dispatch_async(dispatch_get_main_queue(), ^{
             // UI更新代码
-            [self segmentedControlInit:self.itemArray];
-            UGGameplaySectionModel *firstModel = [bet.ynFastList objectAtIndex:0];
-            [self ynQuickListViewInit:firstModel.list];
-            
+            [weakSelf segmentedControlInit:self.itemArray];
+            [weakSelf reload];
         });
     }
 }
@@ -111,33 +138,20 @@
     }
 }
 
--(void)ynQuickListViewInit:(NSMutableArray<UGGameBetModel *> *)arry{
-    
-    if (!self.ynQuickListView) {
-        self.ynQuickListView = [[YNQuickListView alloc] initWithFrame:CGRectZero];
-        [self.contentView addSubview:self.ynQuickListView];
-        [self.ynQuickListView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self);
-            make.top.equalTo(self.segmentedControl.mas_bottom);
-        }];
-       
-    }
-    if (![CMCommon arryIsNull:arry]) {
-         self.ynQuickListView.dataArry = arry;
 
-    }
-    
-    
-}
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %tu (via UIControlEventValueChanged)", segmentedControl.selectedSegmentIndex);
-    UGGameplaySectionModel *dd = [_bet.ynFastList objectAtIndex:segmentedControl.selectedSegmentIndex];
-    self.ynQuickListView.dataArry = dd.list;
+    self.selectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+    [self reload];
 }
 
 
-
+-(void)reload{
+    YNQuickListView *ynQuickListView  = [self.itemViewArray objectAtIndex:self.selectedSegmentIndex];
+    [self.contentView bringSubviewToFront:ynQuickListView ];
+    [ynQuickListView reloadData];
+}
 
 
 @end

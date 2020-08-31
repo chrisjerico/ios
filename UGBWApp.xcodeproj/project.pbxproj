@@ -8065,8 +8065,8 @@
 				D42C8FCD24E819D2008CB519 /* YNQuickSelectView.h */,
 				D42C8FD124E819D2008CB519 /* YNQuickSelectView.m */,
 				D42C8FD224E819D2008CB519 /* YNQuickSelectView.xib */,
-				D42C8FD024E819D2008CB519 /* YNQuickListCollectionViewCell.m */,
 				D42C8FD324E819D2008CB519 /* YNQuickListCollectionViewCell.h */,
+				D42C8FD024E819D2008CB519 /* YNQuickListCollectionViewCell.m */,
 				D42C8FCE24E819D2008CB519 /* YNQuickListCollectionViewCell.xib */,
 			);
 			path = "越南快速选择";

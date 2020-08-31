@@ -112,7 +112,7 @@
 @property (nonatomic, strong) UICollectionView *betCollectionView;/**<   分栏segment下面的选择号码界面*/
 @property (strong, nonatomic)  YNInputView *inputView;/**<   分栏segment下面的输入界面*/
 @property (strong, nonatomic)  YNQuickSelectView *qsView;/**<   分栏segment下面的快速选择界面*/
-
+@property (nonatomic, strong) NSString *ynSelectStr;                           /**<   分栏segment选中的*/
 //===============================================
 @property (nonatomic, assign) int  defaultGold;  //默认金额 18000.0
 @property (nonatomic, strong) NSString *  defaultAdds;  //默认赔率。
@@ -193,23 +193,187 @@ static NSString *footViewID = @"YNCollectionFootView";
     if ([title isEqualToString:@"选择号码"]) {
         [self resetClick:nil];
         [self.yncontentView bringSubviewToFront:self.betCollectionView];
-        
-    } else if([title isEqualToString:@"输入号码"]){
-        
+        self.ynSelectStr = @"选择号码";
+    }
+    else if([title isEqualToString:@"输入号码"]){
+        [self resetClick:nil];
         [self.yncontentView bringSubviewToFront:self.inputView];
+        self.ynSelectStr = @"输入号码";
     }
     else if([title isEqualToString:@"快速选择"]){
+        [self resetClick:nil];
+         [self.yncontentView bringSubviewToFront:self.qsView];
+          self.ynSelectStr = @"快速选择";
         //得到选中行，选中的segment。 self.segmentIndex self.typeIndexPath
-        UGGameplayModel *model = [self.gameDataArray objectAtIndex:self.typeIndexPath.row];
-        UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-        if (group.list.count) {
-            UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
-            self.qsView.bet = bet;
+        [self qsViewSetReloadData];
+       
+        WeakSelf;
+        self.qsView.ynCollectIndexBlock = ^(UICollectionView *collectionView,NSIndexPath* indexPath,NSInteger selectedSegmentIndex) {
+            NSLog(@"collectionView = %@  ,indexPath = %@",collectionView,indexPath);
+            
+            if (weakSelf.bottomCloseView.hidden == NO) {
+                [SVProgressHUD showInfoWithStatus:@"封盘中"];
+                return;
+            }
+            
+            UGGameplayModel *model = weakSelf.gameDataArray[weakSelf.typeIndexPath.row];
+            UGGameplaySectionModel *obj = [model.list objectAtIndex:0];
+            UGGameBetModel *bet = [obj.list objectAtIndex:weakSelf.segmentIndex];
+            
+            //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
+            if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
+                ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                ||[bet.code isEqualToString:@"BIAOTIWB"]) {
+                
+                UGGameplaySectionModel *type = bet.ynFastList[0];
+                UGGameBetModel *game = type.list[indexPath.row];
+                if (!game.enable) {
+                    return;
+                }
+                game.select = !game.select;
+            }
+            //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
+            else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
+                     ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+                UGGameplaySectionModel *type = bet.ynFastList[selectedSegmentIndex];
+                UGGameBetModel *game = type.list[indexPath.row];
+                if (!game.enable) {
+                    return;
+                }
+                game.select = !game.select;
+            }
+            
+            [weakSelf.qsView reload];
+
+            [weakSelf ynFastCalculate:bet];
+        };
+    }
+    
+    [self setLabelDataCount:0];
+}
+
+-(void)ynFastCalculate:(UGGameBetModel *)bet{
+    //        计算选中的注数
+      NSInteger count = 0;
+      
+      //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
+      if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
+          ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+          ||[bet.code isEqualToString:@"BIAOTIWB"]) {
+          
+          [self fastEzdwActionModel:bet count:count];
+      }
+     
+      //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
+      else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
+               ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+          [self fastSzdwActionModel:bet count:count];
+          
+      }
+    
+}
+
+//二字定位 计算选中的注数  十个
+-(void)fastEzdwActionModel:(UGGameBetModel *)model count:(NSInteger)count{
+    
+    [self setDefaultData:model.code];
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    if (model.ynFastList.count) {
+        
+        NSMutableArray *mutArr1 = [NSMutableArray array];
+        
+        UGGameplaySectionModel *model1 = model.ynFastList[0];
+        for (UGGameplayModel *bet in model1.list) {
+            if (bet.select) {
+                [mutArr1 addObject:bet];
+            }
         }
-        self.qsView.segmentedControl.selectedSegmentIndex = 0;
-        [self.yncontentView bringSubviewToFront:self.qsView];
+        
+        if (mutArr1.count == 0 ) {
+            count = 0;
+            [self  setLabelDataCount:count];
+            return;
+        }
+        
+        for (int i = 0; i < mutArr1.count; i++) {
+            
+            
+            UGGameBetModel *beti = mutArr1[i];
+            UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+            [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+            bet.betInfo = bet.name;
+            bet.title = bet.alias;
+            bet.betMultiple = self.amountTextF.text;
+            bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
+            [array addObject:bet];
+            
+        }
+        
+        if (mutArr1.count == 0 ) {
+            count = 0;
+            [self  setLabelDataCount:count];
+            
+        } else {
+            count = array.count;
+            NSLog(@"count = %ld",(long)count);
+            [self  setLabelDataCount:count];
+        }
     }
 }
+
+//三字定位 计算选中的注数 百十个
+-(void)fastSzdwActionModel:(UGGameBetModel *)model count:(NSInteger)count{
+    
+    [self setDefaultData:model.code];
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    if (model.ynFastList.count) {
+        
+        NSMutableArray *mutArr1 = [NSMutableArray array];
+        
+        
+        for (int i = 0; i< model.ynFastList.count; i++) {
+            UGGameplaySectionModel *model1 = model.ynFastList[i];
+            for (UGGameplayModel *bet in model1.list) {
+                if (bet.select) {
+                    [mutArr1 addObject:bet];
+                }
+            }
+        }
+     
+        
+        if (mutArr1.count == 0 ) {
+            count = 0;
+            [self  setLabelDataCount:count];
+            return;
+        }
+        
+        for (int i = 0; i < mutArr1.count; i++) {
+            UGGameBetModel *beti = mutArr1[i];
+            UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+            [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+            bet.betInfo = bet.name;
+            bet.title = bet.alias;
+            bet.betMultiple = self.amountTextF.text;
+            bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
+            [array addObject:bet];
+        }
+        
+        if (mutArr1.count == 0 ) {
+            count = 0;
+            [self  setLabelDataCount:count];
+            
+        } else {
+            count = array.count;
+            NSLog(@"count = %ld",(long)count);
+            [self  setLabelDataCount:count];
+        }
+    }
+}
+
 
 
 - (void)initBetCollectionView {
@@ -323,6 +487,19 @@ static NSString *footViewID = @"YNCollectionFootView";
     [_qsView  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.yncontentView);
     }];
+
+}
+
+
+-(void)qsViewSetReloadData{
+    //得到选中行，选中的segment。 self.segmentIndex self.typeIndexPath
+    UGGameplayModel *model = [self.gameDataArray objectAtIndex:self.typeIndexPath.row];
+    UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+    self.qsView.segmentedControl.selectedSegmentIndex = 0;
+    if (group.list.count) {
+        UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
+        self.qsView.bet = bet;
+    }
 }
 
 - (void)viewDidLoad {
@@ -372,7 +549,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self qsViewInit];
     //选择号码放到最前面
     [self.yncontentView bringSubviewToFront:self.betCollectionView];
-    
+    self.ynSelectStr = @"选择号码";
     [self getGameDatas];
     [self getNextIssueData];
     
@@ -392,11 +569,14 @@ static NSString *footViewID = @"YNCollectionFootView";
             //批号2 地段2 1K 批号3 标题 专题 标题尾巴 3个音阶 3更特别 3尾巴的尽头
             weakSelf.ynsegmentView.hidden = NO;
             [weakSelf.ynsegmentView.segment setSectionTitles:@[@"选择号码",@"输入号码",@"快速选择"]];
+    
         }
         else if ([code isEqualToString:@"PIHAO4"]||[code isEqualToString:@"4GTEBIE"]){
             //批号4 4更特别
             weakSelf.ynsegmentView.hidden = NO;
             [weakSelf.ynsegmentView.segment setSectionTitles:@[@"选择号码",@"输入号码"]];
+            [weakSelf.yncontentView bringSubviewToFront:weakSelf.betCollectionView];
+
         }
         else if ([code isEqualToString:@"PIANXIE2"]||[code isEqualToString:@"PIANXIE3"]
                  ||[code isEqualToString:@"PIANXIE4"]||[code isEqualToString:@"CHUANSHAO4"]
@@ -404,16 +584,17 @@ static NSString *footViewID = @"YNCollectionFootView";
             //偏斜2 偏斜3 偏斜4 串烧4 串烧8 串烧10
             weakSelf.ynsegmentView.hidden = NO;
             [weakSelf.ynsegmentView.segment setSectionTitles:@[@"输入号码",@"快速选择"]];
+  
+
         }
         else if ([code isEqualToString:@"TOU"]||[code isEqualToString:@"WEI"]){
             //头 尾
             weakSelf.ynsegmentView.hidden = YES;
         }
         
-        
         [weakSelf setDefaultData:code];
-        
         [weakSelf.betCollectionView reloadData];
+
     };
     self.lmgmentTitleArray = [NSMutableArray new];
     self.lmgmentCodeArray = [NSMutableArray new];
@@ -478,7 +659,6 @@ static NSString *footViewID = @"YNCollectionFootView";
     
     
 }
-
 
 
 
@@ -883,22 +1063,49 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
-
+//重置
 - (IBAction)resetClick:(id)sender {
     
-    for (UGGameplayModel *model in self.gameDataArray) {
-        model.select = NO;
-        UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-        for (UGGameBetModel *bet in group.list) {
-            for (UGGameplaySectionModel *type2 in bet.ynList) {
-                for (UGGameBetModel *game in type2.list) {
-                    game.select = NO;
+    
+    {
+        //选择号码
+        for (UGGameplayModel *model in self.gameDataArray) {
+            model.select = NO;
+            UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+            for (UGGameBetModel *bet in group.list) {
+                for (UGGameplaySectionModel *type2 in bet.ynList) {
+                    for (UGGameBetModel *game in type2.list) {
+                        game.select = NO;
+                    }
                 }
             }
+            
+        }
+        [self.selArray removeAllObjects];//选择号码
+    }
+    
+    {
+        //输入号码
+    }
+    {
+        //快速选择
+        for (UGGameplayModel *model in self.gameDataArray) {
+            model.select = NO;
+            UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+            for (UGGameBetModel *bet in group.list) {
+                for (UGGameplaySectionModel *type2 in bet.ynFastList) {
+                    for (UGGameBetModel *game in type2.list) {
+                        game.select = NO;
+                    }
+                }
+            }
+            
         }
         
     }
-    [self.selArray removeAllObjects];
+   
+    
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         // UI更新代码
         [self.amountTextF resignFirstResponder];
@@ -1410,6 +1617,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         [self resetClick:nil];
         [self.yncontentView bringSubviewToFront:self.betCollectionView];
+        self.ynSelectStr = @"选择号码";
         self.ynsegmentView.hidden = YES;
         
         if (self.ynsegmentView.hidden) {
@@ -1438,16 +1646,20 @@ static NSString *footViewID = @"YNCollectionFootView";
             [self.ynsegmentView.segment setSectionTitles:@[@"选择号码",@"输入号码"]];
             [self resetClick:nil];
             [self.yncontentView bringSubviewToFront:self.betCollectionView];
+            self.ynSelectStr = @"选择号码";
         }
         else if([code isEqualToString:@"BL"]||[code isEqualToString:@"LBXC"]
                 ||[code isEqualToString:@"3GD"]){
             [self.ynsegmentView.segment setSectionTitles:@[@"选择号码",@"输入号码",@"快速选择"]];
             [self resetClick:nil];
             [self.yncontentView bringSubviewToFront:self.betCollectionView];
+            self.ynSelectStr = @"选择号码";
         }
         else if([code isEqualToString:@"DDQX"]||[code isEqualToString:@"CQ"]){
             [self.ynsegmentView.segment setSectionTitles:@[@"输入号码",@"快速选择"]];
             [self.yncontentView bringSubviewToFront:self.inputView];
+             self.ynSelectStr = @"输入号码";
+            [self resetClick:nil];
         }
     }
     

@@ -10,10 +10,14 @@
 #import "UGGameplayModel.h"
 #import "HMSegmentedControl.h"
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^YNQuickListBlock)(UICollectionView *collectionView,NSIndexPath* indexPath,NSInteger selectedSegmentIndex);
 @interface YNQuickSelectView : UIView
 @property (nonatomic, strong )UGGameBetModel *bet;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+
+@property (nonatomic, copy) YNQuickListBlock ynCollectIndexBlock;
+
+-(void)reload;
 @end
 
 NS_ASSUME_NONNULL_END
