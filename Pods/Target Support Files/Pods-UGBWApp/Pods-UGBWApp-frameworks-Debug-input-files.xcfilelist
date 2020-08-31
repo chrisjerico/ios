@@ -17,11 +17,15 @@ ${BUILT_PRODUCTS_DIR}/JWT/JWT.framework
 ${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/Picker/Picker.framework
 ${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework
 ${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework
+${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework
 ${BUILT_PRODUCTS_DIR}/RNFastImage/RNFastImage.framework
 ${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework
+${BUILT_PRODUCTS_DIR}/RNReactNativeModalPatch/RNReactNativeModalPatch.framework
 ${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework
+${BUILT_PRODUCTS_DIR}/RNSVG/RNSVG.framework
 ${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework
 ${BUILT_PRODUCTS_DIR}/RNVectorIcons/RNVectorIcons.framework
 ${BUILT_PRODUCTS_DIR}/React-Core/React.framework
@@ -59,6 +63,7 @@ ${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework
 ${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework
 ${BUILT_PRODUCTS_DIR}/glog/glog.framework
 ${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework
+${BUILT_PRODUCTS_DIR}/react-native-image-editor/react_native_image_editor.framework
 ${BUILT_PRODUCTS_DIR}/react-native-safe-area-context/react_native_safe_area_context.framework
 ${BUILT_PRODUCTS_DIR}/react-native-viewpager/react_native_viewpager.framework
 ${BUILT_PRODUCTS_DIR}/react-native-webview/react_native_webview.framework

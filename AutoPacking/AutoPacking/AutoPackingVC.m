@@ -59,7 +59,7 @@
 
             }
             else {
-                NSString *log = @"trendView-06";    // 更新日志
+                NSString *log = @"trendView-07";    // 更新日志
                 NSString *environment = @"ezer3";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
                 NSString *branch = @"Ezer/trendView";    // 分支名：fish/dev1
                 
