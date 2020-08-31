@@ -263,7 +263,7 @@ PODS:
     - React-RCTImage
   - react-native-safe-area-context (0.7.3):
     - React
-  - react-native-viewpager (3.3.1):
+  - react-native-viewpager (3.3.0):
     - React
   - react-native-webview (9.4.0):
     - React
@@ -307,19 +307,21 @@ PODS:
   - RegExCategories (1.0)
   - RNCMaskedView (0.1.10):
     - React
-  - RNCPicker (1.6.6):
+  - RNCPicker (1.6.5):
     - React
   - RNFastImage (7.0.2):
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
-  - RNGestureHandler (1.7.0):
+  - RNGestureHandler (1.6.1):
     - React
   - RNReactNativeModalPatch (1.0.0):
     - React
-  - RNReanimated (1.13.0):
+  - RNReanimated (1.9.0):
     - React
-  - RNScreens (2.10.1):
+  - RNScreens (2.9.0):
+    - React
+  - RNSVG (12.1.0):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -441,6 +443,7 @@ DEPENDENCIES:
   - RNReactNativeModalPatch (from `../node_modules/react-native-modal-patch`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RxAlertController (~> 5.0.0)
   - RxCocoa (~> 5.0.0)
@@ -611,6 +614,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -671,7 +676,7 @@ SPEC CHECKSUMS:
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-image-editor: 9361a215c3991cafbe5e7f28cbbad6e72c9c2705
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
-  react-native-viewpager: f730c1d175a2c1ae789464855d4a2c14247d3109
+  react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
   react-native-webview: cf5527893252b3b036eea024a1da6996f7344c74
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
@@ -686,12 +691,13 @@ SPEC CHECKSUMS:
   ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNCPicker: 494015f2b7ec4bee5484b6f235aa19691426dcdb
+  RNCPicker: 55b9b4240d0a9eba8733d02616775d4040de2e7d
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
-  RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReactNativeModalPatch: fc3c9f788dfa44e1914edd380ade65f3eb2236fd
-  RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
-  RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
+  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
+  RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RxAlertController: ef75925a2a002f0f1fd03378ddeceaa9c1c5558f
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
@@ -721,6 +727,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: bd0ef4badd1250aa1c91499da01ec27da27753a4
+PODFILE CHECKSUM: b864271d00fea18ea00f7ba9c05e3a2bad79d60b
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
