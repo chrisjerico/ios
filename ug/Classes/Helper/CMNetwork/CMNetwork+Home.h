@@ -100,6 +100,27 @@ NS_ASSUME_NONNULL_BEGIN
 //   必传 activityId
 //   选传 numId（局号id 如果会员再本局接着砸金蛋 需要传这个参数 此参数在这个接口 第一次砸 会回传）
 + (void)activityGoldenEggWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//	刮刮乐数据
+//	方式：GET
+//	参数 token
+//     activityId 活动id
++ (void)activityScratchListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//	刮刮乐日志
+//	方式：GET
+//	参数 token:
+//    activityId: 活动id
++ (void)activityScratchLogWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//   刮
+//   方式: POST
+//   参数:
+//   token:
+//   必传 activityId
+//   选传 numId（局号id 如果会员再本局接着砸金蛋 需要传这个参数 此参数在这个接口 第一次砸 会回传）
++ (void)activityScratchWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

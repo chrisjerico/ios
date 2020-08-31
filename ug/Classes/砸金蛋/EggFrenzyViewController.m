@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self.titleImageView sd_setImageWithURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"砸金蛋标题" ofType:@"gif"] isDirectory:false]];
-	self.surplusAmountLabel.text = [NSString stringWithFormat:@"该局还可以砸4个金蛋"];
+	self.surplusAmountLabel.text = [NSString stringWithFormat:@"该局还可以砸%ld个金蛋", self.item.param.golden_egg_times];
 	
 	self.scoreDescribLabel.text = [NSString stringWithFormat:@"我的积分：%d\n砸蛋所需积分:%@", [UGUserModel currentUser].taskReward.intValue, self.item.param.buy_amount];
 	self.rulesTextView.text = nil;
@@ -56,6 +56,9 @@
 	self.awardsCollectionView.dataSource = self;
 	
 	[self.recordTableView registerNib:[UINib nibWithNibName:@"EggGrenzyRecordTableCell" bundle:nil] forCellReuseIdentifier:@"EggGrenzyRecordTableCell"];
+	UIView * headerView = [[[NSBundle mainBundle] loadNibNamed:@"GoleEggLogTableHeaderView" owner:self options:nil] lastObject];
+	headerView.autoresizingMask = UIViewAutoresizingNone;
+	self.recordTableView.tableHeaderView = headerView;
 	self.recordTableView.delegate = self;
 	self.recordTableView.dataSource = self;
 	[self refrehRecord];
@@ -78,7 +81,7 @@
 	
 }
 - (IBAction)eggButtonTaped:(UIButton *)sender {
-	NSUInteger count = 4;
+	NSUInteger count = self.item.param.golden_egg_times;
 	for (UIButton *item in self.eggItems) {
 		if (!item.isEnabled) {
 			count --;
@@ -96,24 +99,24 @@
 	
 	[self.frenzyAnimationImageView setHidden:false];
 	WeakSelf
-	self.group = dispatch_group_create();
-	dispatch_group_enter(self.group);
+	dispatch_group_t group = dispatch_group_create();
+	dispatch_group_enter(group);
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		dispatch_group_wait(weakSelf.group, DISPATCH_TIME_NOW + 5);
+		dispatch_group_wait(group, DISPATCH_TIME_NOW + 30);
 		weakSelf.frenzyAnimationImageView.image = nil;
 		[weakSelf.frenzyAnimationImageView setHidden:true];
 		[weakSelf.frenzyAnimationView setHidden:false];
 	});
 	[self frenzy:^{
-		dispatch_group_leave(weakSelf.group);
+		dispatch_group_leave(group);
 		SANotificationEventPost(UGNotificationGetUserInfo, weakSelf);
+		[weakSelf refrehRecord];
+
 	}];
-	[self refrehRecord];
 	
 }
 // 砸
 - (void)frenzy: (void (^)(void)) completionHandle {
-	
 	
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
 							 @"activityId":self.item.DZPid};
@@ -135,16 +138,16 @@
 				else{
 					[SVProgressHUD showErrorWithStatus:model.msg];
 				}
-				completionHandle();
 			});
 			
 		} failure:^(id msg) {
-			completionHandle();
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[SVProgressHUD showErrorWithStatus:msg];
 			});
 			
 		}];
+		completionHandle();
+
 	}];
 	//	activityGoldenEggWinWithParams
 }

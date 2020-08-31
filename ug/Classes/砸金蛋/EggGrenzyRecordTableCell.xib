@@ -18,25 +18,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6w2-qZ-hUE">
-                        <rect key="frame" x="40" y="14.5" width="31" height="15"/>
+                        <rect key="frame" x="20" y="14.5" width="31" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrS-X8-hkN">
-                        <rect key="frame" x="160" y="14.5" width="31" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrS-X8-hkN">
+                        <rect key="frame" x="160" y="14.5" width="150" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="BrS-X8-hkN" secondAttribute="trailing" constant="10" id="dGk-bC-tX6"/>
+                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="BrS-X8-hkN" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="centerX" id="FgX-WR-6Cc"/>
                 <constraint firstItem="6w2-qZ-hUE" firstAttribute="centerY" secondItem="aW0-zy-SZf" secondAttribute="centerY" id="One-hm-bSB"/>
                 <constraint firstItem="BrS-X8-hkN" firstAttribute="centerY" secondItem="aW0-zy-SZf" secondAttribute="centerY" id="v0T-DC-Y3w"/>
-                <constraint firstItem="6w2-qZ-hUE" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" constant="40" id="xiP-Rc-qnN"/>
+                <constraint firstItem="6w2-qZ-hUE" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" constant="20" id="xiP-Rc-qnN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>

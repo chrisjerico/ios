@@ -9,5 +9,11 @@
 #import "GoldEggLogModel.h"
 
 @implementation GoldEggLogModel
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"logID"}];
+}
 
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"logID":@"id"};
+}
 @end
