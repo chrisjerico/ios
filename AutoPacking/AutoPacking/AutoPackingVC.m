@@ -22,6 +22,9 @@
     else if ([NSUserName() isEqualToString:@"andrew"]) {
          autoPackPlist = @"/Users/andrew/打包程序/AutoPack.plist";//
     }
+    else if ([NSUserName() isEqualToString:@"ezer"]) {
+        autoPackPlist = @"/Users/ezer/打包程序/AutoPack.plist";
+    }
     else{
          autoPackPlist = @"/Users/ug/Desktop/AutoPack.plist";
     }
@@ -38,7 +41,7 @@
         
         [__self login:dict[@"后台用户名"] pwd:dict[@"后台密码"] completion:^{
             
-            BOOL isPack = 1;  // 打包类型：0热更新，1原生iOS
+            BOOL isPack = 0;  // 打包类型：0热更新，1原生iOS
             if (isPack) {
 
 //                NSString *ids = @"a002,c001,c005,c105b,c190,c201,c048,l001,c228,c018,l002,c053,c085,c134,c137,c141,c150,c151,c158,c163,c165,c169,c173,c175,c002,c091,c084,c049,c011,c012,c073,c092,c116,c126,h003b,c184,c035,c035b,c035c,c052,c054,c108,c193,c200,c120,c006,c198,c008,c203,c205,c208,c212,c213,c217,c211,c230,c233,c235,c237";    // 站点编号(可以批量打包用','号隔开)  注意别删，打全站用
@@ -56,9 +59,9 @@
 
             }
             else {
-                NSString *log = @"（无更新3）";    // 更新日志
-                NSString *environment = @"parker2";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
-                NSString *branch = @"Parker/多語言替換";    // 分支名：fish/dev1
+                NSString *log = @"trendView-05";    // 更新日志
+                NSString *environment = @"ezer3";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
+                NSString *branch = @"Ezer/trendView";    // 分支名：fish/dev1
                 
                 [RNPack checkEnvironment:environment log:log completion:^(NSString * _Nonnull environment, NSString * _Nonnull log) {
                     [RNPack getCurrentVersionWithEnvironment:environment completion:^(NSString * _Nonnull version) {

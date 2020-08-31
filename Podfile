@@ -77,6 +77,7 @@ pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsin
 pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
 pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
 pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
 pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
 pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
