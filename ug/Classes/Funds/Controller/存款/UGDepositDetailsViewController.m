@@ -182,10 +182,9 @@
                  
                  
              }];
-			 [self.label setText:self.item.prompt];
-			 if ([@"c006,testadaf" containsString:APP.SiteId]) { // order: 117033
-				 [self.label setText: channelModel.fcomment.length > 0? channelModel.fcomment: self.item.prompt];
-			 }
+			 [self.label setText: channelModel.fcomment.length > 0? channelModel.fcomment: self.item.prompt];
+//			 if ([@"c006,testadaf" containsString:APP.SiteId]) { // order: 117033
+//			 }
             [self.label sizeToFit];
             NSLog(@"%@",NSStringFromCGRect(self.label.frame));
             
