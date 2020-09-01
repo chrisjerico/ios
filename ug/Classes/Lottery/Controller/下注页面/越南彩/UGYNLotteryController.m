@@ -186,6 +186,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
+#pragma mark - 2级选择栏点击事件
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     
     NSString * title = [segmentedControl.sectionTitles objectAtIndex:segmentedControl.selectedSegmentIndex];
@@ -547,16 +548,18 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self inputViewInit];
     //快速选择
     [self qsViewInit];
-    //选择号码放到最前面
-    [self.yncontentView bringSubviewToFront:self.betCollectionView];
-    self.ynSelectStr = @"选择号码";
+
     [self getGameDatas];
     [self getNextIssueData];
     
-    
+    #pragma mark - 进入时默认
     [self  setDefaultData:@"PIHAO2"];
-    WeakSelf
     self.segmentIndex = 0;
+    //选择号码放到最前面
+    [self.yncontentView bringSubviewToFront:self.betCollectionView];
+    self.ynSelectStr = @"选择号码";
+    #pragma mark - 1级选择栏点击事件
+    WeakSelf;
     self.segmentView.segmentIndexBlock = ^(NSInteger row) {
         weakSelf.segmentIndex = row;
         NSString * code =  [weakSelf.lmgmentCodeArray objectAtIndex:row];
@@ -575,7 +578,9 @@ static NSString *footViewID = @"YNCollectionFootView";
             //批号4 4更特别
             weakSelf.ynsegmentView.hidden = NO;
             [weakSelf.ynsegmentView.segment setSectionTitles:@[@"选择号码",@"输入号码"]];
+            //当2级选择选中第3个时，这时候2级没有3个，必须强行处理下
             [weakSelf.yncontentView bringSubviewToFront:weakSelf.betCollectionView];
+            [self.ynsegmentView.segment setSelectedSegmentIndex:0];
 
         }
         else if ([code isEqualToString:@"PIANXIE2"]||[code isEqualToString:@"PIANXIE3"]
