@@ -389,44 +389,11 @@ static NSString *footViewID = @"YNCollectionFootView";
 
     WeakSelf;
     self.qsView.ynCollectIndexBlock = ^(UICollectionView *collectionView,NSIndexPath* indexPath,NSInteger selectedSegmentIndex) {
-   
-        
-        
+
         if (weakSelf.bottomCloseView.hidden == NO) {
             [SVProgressHUD showInfoWithStatus:@"封盘中"];
             return;
         }
-        
-//        UGGameplayModel *model = weakSelf.gameDataArray[weakSelf.typeIndexPath.row];
-//        UGGameplaySectionModel *obj = [model.list objectAtIndex:0];
-//        UGGameBetModel *bet = [obj.list objectAtIndex:weakSelf.segmentIndex];
-        
-        
-//        UGGameBetModel *bet = weakSelf.qsView.bet;
-//        //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
-//        if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
-//            ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
-//            ||[bet.code isEqualToString:@"BIAOTIWB"]) {
-//
-//            UGGameplaySectionModel *type = bet.ynFastList[0];
-//            UGGameBetModel *game = type.list[indexPath.row];
-//            if (!game.enable) {
-//                return;
-//            }
-//            game.select = !game.select;
-//        }
-//        //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
-//        else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
-//                 ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
-//            UGGameplaySectionModel *type = bet.ynFastList[selectedSegmentIndex];
-//            UGGameBetModel *game = type.list[indexPath.row];
-//            if (!game.enable) {
-//                return;
-//            }
-//            game.select = !game.select;
-//        }
-        
-//        [weakSelf.qsView reload];
         UGGameBetModel *bet = weakSelf.qsView.bet;
         [weakSelf ynFastCalculate:bet];
     };
