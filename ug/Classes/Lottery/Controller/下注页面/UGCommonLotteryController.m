@@ -688,7 +688,7 @@
 
 
 //调用越南彩下注界面
--(void)goYNBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode{
+-(void)goYNBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode  isHide:(BOOL )isHide{
     
     if ([CMCommon arryIsNull:objArray]) {
         [self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
@@ -697,9 +697,11 @@
     
     
     YNBetDetailView *betDetailView = [[YNBetDetailView alloc] init];
+    betDetailView.isHide = isHide;
     betDetailView.dataArray = objArray;
     betDetailView.nextIssueModel = self.nextIssueModel;
     betDetailView.code = selCode;
+
     WeakSelf
     betDetailView.betClickBlock = ^{
         [weakSelf handleData];

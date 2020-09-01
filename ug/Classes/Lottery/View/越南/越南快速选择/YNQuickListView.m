@@ -72,6 +72,17 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     if (self.collectIndexBlock) {
+      
+
+        UGGameBetModel *game = [_dataArry objectAtIndex:indexPath.row];
+        if (!game.enable) {
+            return;
+        }
+        game.select = !game.select;
+
+
+        [self reloadData];
+        
         self.collectIndexBlock(collectionView,indexPath);
     }
     

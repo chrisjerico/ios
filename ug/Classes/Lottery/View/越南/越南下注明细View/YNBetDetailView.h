@@ -21,6 +21,7 @@ typedef void(^YNBetDetailViewCancelBlock)(void);
 @property (nonatomic, copy) NSArray <UGGameBetModel *> *dataArray;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, copy) NSString *code;
+@property (nonatomic) BOOL isHide;
 - (void)show;
 @end
 

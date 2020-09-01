@@ -125,7 +125,7 @@ static NSString *ID=@"YNBetCollectionViewCell";
         [subLabel(@"总金额label")setTextColor:[UIColor blackColor]];
         [self.cancelButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     }
-    
+
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
     if (!maskView) {
@@ -136,6 +136,8 @@ static NSString *ID=@"YNBetCollectionViewCell";
     }
     
     view.hidden = NO;
+    
+    
     
 }
 
@@ -157,9 +159,10 @@ static NSString *ID=@"YNBetCollectionViewCell";
        
     }
     
-     self.betArray = array.mutableCopy;
-    [_collectionView reloadData];
-
+    self.betArray = array.mutableCopy;
+//    if (!self.isHide) {
+        [_collectionView reloadData];
+//    }
     self.numberLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)array.count];
     
 
@@ -187,7 +190,7 @@ static NSString *ID=@"YNBetCollectionViewCell";
     self.multipleTF.text = self.nextIssueModel.multipleStr;
     self.totalAmountLabel.text = [NSString stringWithFormat:@"%.2f",self.amount ];
     FastSubViewCode(self);
-    [subLabel(@"批号lable") setText:self.nextIssueModel.defname];
+    [subLabel(@"批号lable") setText:[NSString stringWithFormat:@"%@:",self.nextIssueModel.defname]];
     
     self.singleNote =  totalAmount  /  multip;
  

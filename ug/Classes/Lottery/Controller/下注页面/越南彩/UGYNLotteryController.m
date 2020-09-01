@@ -389,42 +389,45 @@ static NSString *footViewID = @"YNCollectionFootView";
 
     WeakSelf;
     self.qsView.ynCollectIndexBlock = ^(UICollectionView *collectionView,NSIndexPath* indexPath,NSInteger selectedSegmentIndex) {
-        NSLog(@"collectionView = %@  ,indexPath = %@",collectionView,indexPath);
+   
+        
         
         if (weakSelf.bottomCloseView.hidden == NO) {
             [SVProgressHUD showInfoWithStatus:@"封盘中"];
             return;
         }
         
-        UGGameplayModel *model = weakSelf.gameDataArray[weakSelf.typeIndexPath.row];
-        UGGameplaySectionModel *obj = [model.list objectAtIndex:0];
-        UGGameBetModel *bet = [obj.list objectAtIndex:weakSelf.segmentIndex];
+//        UGGameplayModel *model = weakSelf.gameDataArray[weakSelf.typeIndexPath.row];
+//        UGGameplaySectionModel *obj = [model.list objectAtIndex:0];
+//        UGGameBetModel *bet = [obj.list objectAtIndex:weakSelf.segmentIndex];
         
-        //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
-        if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
-            ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
-            ||[bet.code isEqualToString:@"BIAOTIWB"]) {
-            
-            UGGameplaySectionModel *type = bet.ynFastList[0];
-            UGGameBetModel *game = type.list[indexPath.row];
-            if (!game.enable) {
-                return;
-            }
-            game.select = !game.select;
-        }
-        //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
-        else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
-                 ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
-            UGGameplaySectionModel *type = bet.ynFastList[selectedSegmentIndex];
-            UGGameBetModel *game = type.list[indexPath.row];
-            if (!game.enable) {
-                return;
-            }
-            game.select = !game.select;
-        }
         
-        [weakSelf.qsView reload];
+//        UGGameBetModel *bet = weakSelf.qsView.bet;
+//        //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
+//        if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
+//            ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+//            ||[bet.code isEqualToString:@"BIAOTIWB"]) {
+//
+//            UGGameplaySectionModel *type = bet.ynFastList[0];
+//            UGGameBetModel *game = type.list[indexPath.row];
+//            if (!game.enable) {
+//                return;
+//            }
+//            game.select = !game.select;
+//        }
+//        //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
+//        else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
+//                 ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+//            UGGameplaySectionModel *type = bet.ynFastList[selectedSegmentIndex];
+//            UGGameBetModel *game = type.list[indexPath.row];
+//            if (!game.enable) {
+//                return;
+//            }
+//            game.select = !game.select;
+//        }
         
+//        [weakSelf.qsView reload];
+        UGGameBetModel *bet = weakSelf.qsView.bet;
         [weakSelf ynFastCalculate:bet];
     };
     
@@ -522,7 +525,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             //批号2 地段2 1K 批号3 标题 专题 标题尾巴 3个音阶 3更特别 3尾巴的尽头
             weakSelf.ynsegmentView.hidden = NO;
             [weakSelf.ynsegmentView.segment setSectionTitles:@[@"选择号码",@"输入号码",@"快速选择"]];
-    
+            [self qsViewSetReloadData ];
         }
         else if ([code isEqualToString:@"PIHAO4"]||[code isEqualToString:@"4GTEBIE"]){
             //批号4 4更特别
@@ -539,7 +542,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             //偏斜2 偏斜3 偏斜4 串烧4 串烧8 串烧10
             weakSelf.ynsegmentView.hidden = NO;
             [weakSelf.ynsegmentView.segment setSectionTitles:@[@"输入号码",@"快速选择"]];
-  
+            [self qsViewSetReloadData ];
 
         }
         else if ([code isEqualToString:@"TOU"]||[code isEqualToString:@"WEI"]){
@@ -714,9 +717,16 @@ static NSString *footViewID = @"YNCollectionFootView";
             
         }
         
+        UGGameBetModel *fbet = self.qsView.bet;
+        
+        for (UGGameplaySectionModel *type2 in fbet.ynFastList) {
+            for (UGGameBetModel *game in type2.list) {
+                game.select = NO;
+            }
+        }
+        
     }
-   
-    
+
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // UI更新代码
@@ -749,29 +759,52 @@ static NSString *footViewID = @"YNCollectionFootView";
         UGGameplaySectionModel *group = [model.list objectAtIndex:0];
         selCode = model.code;
         UGGameBetModel *bet ;
+        BOOL isHide = NO;
         if (group.list.count) {
             
             bet = [group.list objectAtIndex:self.segmentIndex];
-            NSLog(@"bet.title =%@",bet.title);
-            //   十
-            if ([bet.code isEqualToString:@"TOU"]||[bet.code isEqualToString:@"WEI"]) {
+
+            
+            if ([self.ynSelectStr isEqualToString: @"选择号码"]) {
+                //   十
+                if ([bet.code isEqualToString:@"TOU"]||[bet.code isEqualToString:@"WEI"]) {
+                    
+                    [weakSelf yzdwBetActionMode:bet  array:&array] ;
+                }// 十 个
+                else  if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
+                          ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                          ||[bet.code isEqualToString:@"BIAOTIWB"]) {
+                    
+                    [weakSelf ezdwBetActionMode:bet  array:&array] ;
+                }//  百 十 个
+                else   if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
+                           ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+                    
+                    [weakSelf szdwBetActionMode:bet  array:&array] ;
+                }//千 百 十 个
+                else  if ([bet.code isEqualToString:@"PIHAO4"]||[bet.code isEqualToString:@"4GTEBIE"]) {
+                    [weakSelf qzdwBetActionMode:bet  array:&array] ;
+                }
                 
-                [weakSelf yzdwBetActionMode:bet  array:&array] ;
-            }// 十 个
-            else  if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
-                      ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
-                      ||[bet.code isEqualToString:@"BIAOTIWB"]) {
-                
-                [weakSelf ezdwBetActionMode:bet  array:&array] ;
-            }//  百 十 个
-            else   if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
-                       ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
-                
-                [weakSelf szdwBetActionMode:bet  array:&array] ;
-            }//千 百 十 个
-            else  if ([bet.code isEqualToString:@"PIHAO4"]||[bet.code isEqualToString:@"4GTEBIE"]) {
-                [weakSelf qzdwBetActionMode:bet  array:&array] ;
+                isHide = NO;
             }
+            else  if ([self.ynSelectStr isEqualToString: @"快速选择"]) {
+                //批号2 地段21K号 标题 专题 标题尾巴  串烧4 串烧8 串烧10// 加 00-99
+                if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
+                    ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                    ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"CHUANSHAO4"]
+                    ||[bet.code isEqualToString:@"CHUANSHAO8"]||[bet.code isEqualToString:@"CHUANSHAO10"]) {
+                    
+                    [weakSelf fastezdwBetActionMode:bet  array:&array] ;
+                } //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 000-999
+                else  if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
+                          ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+                    
+                    [weakSelf fastszdwBetActionMode:bet  array:&array] ;
+                }
+                isHide = YES;
+            }
+           
         }
         weakSelf.nextIssueModel.defaultAdds = weakSelf.defaultAdds;
         weakSelf.nextIssueModel.multipleStr = weakSelf.amountTextF.text;
@@ -779,7 +812,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         weakSelf.nextIssueModel.defname = bet.name;
         
         NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
-        [weakSelf goYNBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:weakSelf.nextIssueModel  gameType:weakSelf.nextIssueModel.gameId selCode:selCode];
+        [weakSelf goYNBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:weakSelf.nextIssueModel  gameType:weakSelf.nextIssueModel.gameId selCode:selCode isHide:isHide ];
     });
 }
 
@@ -1432,17 +1465,22 @@ static NSString *footViewID = @"YNCollectionFootView";
     //        计算选中的注数
       NSInteger count = 0;
       
-      //批号2 地段21K号 标题 专题 标题尾巴// 加 十 个
+       //批号2 地段21K号 标题 专题 标题尾巴  串烧4 串烧8 串烧10// 加 00-99
       if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
           ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
-          ||[bet.code isEqualToString:@"BIAOTIWB"]) {
+          ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"CHUANSHAO4"]
+          ||[bet.code isEqualToString:@"CHUANSHAO8"]||[bet.code isEqualToString:@"CHUANSHAO10"]
+          ||[bet.code isEqualToString:@"PIANXIE2"]||[bet.code isEqualToString:@"PIANXIE3"]
+          ||[bet.code isEqualToString:@"PIANXIE4"]) {
           
           [self fastEzdwActionModel:bet count:count];
       }
      
-      //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 百 十 个
-      else if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
-               ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+                   //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 000-999
+      if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
+          ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {
+
+
           [self fastSzdwActionModel:bet count:count];
           
       }
@@ -1546,6 +1584,104 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
 }
 
+#pragma mark - 快速选择下注方法
+//2 位下注方法
+-(void)fastezdwBetActionMode:(UGGameBetModel *)bet   array :(NSMutableArray *__strong *) array {
+    
+    if (bet.ynFastList.count) {
+        NSMutableArray *mutArr1 = [NSMutableArray array];
+        
+        UGGameplaySectionModel *model1 = bet.ynFastList[0];
+        for (UGGameplayModel *bet in model1.list) {
+            if (bet.select) {
+                [mutArr1 addObject:bet];
+            }
+        }
+        
+        if (mutArr1.count == 0 ) {
+            [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
+            return;
+        }
+        NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
+        for (int i = 0; i < mutArr1.count; i++) {
+            
+            
+            UGGameBetModel *beti = mutArr1[i];
+            UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+            [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+            NSMutableString *name = [[NSMutableString alloc] init];
+            [name appendString:beti.name];
+            bet.name = name;
+            bet.title = bet.alias;
+            bet.betInfo = name;
+            bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
+            [*array addObject:bet];
+            
+            [nameStr appendString:bet.name];
+            if (i< mutArr1.count-1) {
+                [nameStr appendString:@","];
+            } else {
+                [nameStr appendString:@"】"];
+            }
+            
+        }
+        
+        self.nextIssueModel.defnameStr = nameStr;
+        
+    }
+    
+}
+
+//3 位下注方法
+-(void)fastszdwBetActionMode:(UGGameBetModel *)bet   array :(NSMutableArray *__strong *) array {
+    
+    if (bet.ynFastList.count) {
+        NSMutableArray *mutArr1 = [NSMutableArray array];
+        
+        
+        for (int i = 0; i< bet.ynFastList.count; i++) {
+            UGGameplaySectionModel *model1 = bet.ynFastList[i];
+            for (UGGameplayModel *bet in model1.list) {
+                if (bet.select) {
+                    [mutArr1 addObject:bet];
+                }
+            }
+        }
+        
+        if (mutArr1.count == 0 ) {
+            [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
+            return;
+        }
+        NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
+        for (int i = 0; i < mutArr1.count; i++) {
+            
+            
+            UGGameBetModel *beti = mutArr1[i];
+            UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+            [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+            NSMutableString *name = [[NSMutableString alloc] init];
+            [name appendString:beti.name];
+            bet.name = name;
+            bet.title = bet.alias;
+            bet.betInfo = name;
+            bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
+            [*array addObject:bet];
+            
+            [nameStr appendString:bet.name];
+            if (i< mutArr1.count-1) {
+                [nameStr appendString:@","];
+            } else {
+                [nameStr appendString:@"】"];
+            }
+            
+        }
+        
+        self.nextIssueModel.defnameStr = nameStr;
+        
+    }
+    
+}
+
 #pragma mark - 网络数据
 - (void)getNextIssueData {
     NSDictionary *params = @{@"id":self.gameId};
@@ -1606,6 +1742,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                     weakSelf.segmentView.dataArray = self.lmgmentTitleArray;
                     [weakSelf.tableView reloadData];
                     [weakSelf.betCollectionView reloadData];
+                    [weakSelf qsViewSetReloadData ];
                     [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
                     [SVProgressHUD dismiss];
                 });
@@ -1763,11 +1900,15 @@ static NSString *footViewID = @"YNCollectionFootView";
                     bet.ynList = sectionArray.copy;
                 }
                 //                        ==========快速选择数组================================================================
-                //批号2 地段21K号 标题 专题 标题尾巴  串烧4 串烧8 串烧10// 加 00-99
+                
+    
+                //批号2 地段21K号 标题 专题 标题尾巴  串烧4 串烧8 串烧10  偏斜2 偏斜3 偏斜4// 加 00-99
                 if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
                     ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
                     ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"CHUANSHAO4"]
-                    ||[bet.code isEqualToString:@"CHUANSHAO8"]||[bet.code isEqualToString:@"CHUANSHAO10"]) {
+                    ||[bet.code isEqualToString:@"CHUANSHAO8"]||[bet.code isEqualToString:@"CHUANSHAO10"]
+                    ||[bet.code isEqualToString:@"PIANXIE2"]||[bet.code isEqualToString:@"PIANXIE3"]
+                    ||[bet.code isEqualToString:@"PIANXIE4"]) {
                     NSMutableArray *sectionArray = [NSMutableArray array];
                     for (int i = 0; i< 1; i++) {
                         UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
@@ -1798,6 +1939,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                     
                     bet.ynFastList = sectionArray.copy;
                 }
+    
                 //批号3 3个音阶 3更特别 3尾巴的尽头 // 加 000-999
                 if ([bet.code isEqualToString:@"PIHAO3"]||[bet.code isEqualToString:@"3YINJIE"]
                     ||[bet.code isEqualToString:@"3GTEBIE"]||[bet.code isEqualToString:@"3WBDJT"]) {

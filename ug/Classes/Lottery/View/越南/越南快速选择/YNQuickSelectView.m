@@ -82,12 +82,12 @@
                 make.top.equalTo(self.segmentedControl.mas_bottom);
             }];
             ynQuickListView.dataArry = dd.list;
-            
+            ynQuickListView.code = bet.code;
             WeakSelf;
             ynQuickListView.collectIndexBlock = ^(UICollectionView *collectionView,NSIndexPath* indexPath) {
                 
-                if (self.ynCollectIndexBlock) {
-                    self.ynCollectIndexBlock(collectionView,indexPath,weakSelf.selectedSegmentIndex);
+                if (weakSelf.ynCollectIndexBlock) {
+                    weakSelf.ynCollectIndexBlock(collectionView,indexPath,weakSelf.selectedSegmentIndex);
                 }
             };
             [_itemViewArray addObject:ynQuickListView];
@@ -96,6 +96,7 @@
         WeakSelf;
         dispatch_async(dispatch_get_main_queue(), ^{
             // UI更新代码
+            weakSelf.segmentedControl.selectedSegmentIndex = 0;
             [weakSelf segmentedControlInit:self.itemArray];
             [weakSelf reload];
         });

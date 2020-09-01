@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^QuickListBlock)(UICollectionView *collectionView,NSIndexPath* indexPath);
 @interface YNQuickListView : UICollectionView
-@property (nonatomic, strong)NSString *type;//类型
+@property (nonatomic, strong)NSString *code;//类型
 @property (nonatomic, strong)NSMutableArray<UGGameBetModel *> *dataArry;//数据
 
 @property (nonatomic, copy) QuickListBlock collectIndexBlock;
