@@ -22,7 +22,7 @@
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="u7S-eM-65g">
                     <rect key="frame" x="20" y="15" width="374" height="465"/>
                     <color key="backgroundColor" red="0.38551568980000001" green="0.50599318739999999" blue="0.57121890779999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="textColor" red="0.99949592350000005" green="1" blue="0.33331555130000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <userDefinedRuntimeAttributes>

@@ -46,13 +46,27 @@
 
 
 - (void)inputViewInit{
-    NSString *s = @" 怎么玩：\n 在每个下注需要之间用分号“;”分隔\n 例如：01;15;99";
-    NSString *msg;
-    msg = [NSString stringWithFormat:@"%@",
-    [s stringByReplacingOccurrencesOfString:@"\\n" withString:@" \r\n" ]];
-    [_inputTextView setPlaceholderWithText:msg Color:Skin1.textColor1];
+   
+//    msg = [NSString stringWithFormat:@"%@",
+//    [s stringByReplacingOccurrencesOfString:@"\\n" withString:@" \r\n" ]];
     _inputTextView.backgroundColor = Skin1.homeContentColor;
     self.contentView.backgroundColor = Skin1.bgColor;
+    _inputTextView.textColor = Skin1.textColor1;
+}
+
+-(void)setCode:(TipsType)code{
+    NSString *str = @"";
+    if (code == Tip_千) {
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：0001;0015;0099";
+    }
+    else  if(code == Tip_百) {
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：001;015;099";
+    }
+    else  if(code == Tip_十) {
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;15;99";
+    }
+    
+    [self.inputTextView setPlaceholderWithText:str Color:Skin1.textColor1];
 }
 
 @end

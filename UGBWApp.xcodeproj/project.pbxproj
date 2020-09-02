@@ -8042,8 +8042,8 @@
 			isa = PBXGroup;
 			children = (
 				D42C8FC524E819D2008CB519 /* YNInputView.h */,
-				D42C8FC624E819D2008CB519 /* YNInputView.xib */,
 				D42C8FC724E819D2008CB519 /* YNInputView.m */,
+				D42C8FC624E819D2008CB519 /* YNInputView.xib */,
 			);
 			path = "越南输入号码";
 			sourceTree = "<group>";

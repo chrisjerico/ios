@@ -21,27 +21,41 @@
     
     // 交换方法的实现
     method_exchangeImplementations(setFontMethod, was_setFontMethod);
+    
+  
 }
 
 - (void)setPlaceholderWithText:(NSString *)text Color:(UIColor *)color{
-    //多余 强指针换了指向以后label自动销毁
-    //防止重复设置 cell复用等问题
-//    for (UIView *view in self.subviews) {
-//        if ([view isKindOfClass:[UILabel class]]) {
-//            [view removeFromSuperview];
-//        }
-//    }
 
-    //设置占位label
-    UILabel *label = [[UILabel alloc] init];
-    label.text = text;
-    label.font = self.font;
-    label.textColor = color;
     
-    [self addSubview:label];
-    [self setValue:label forKey:@"_placeholderLabel"];
-
+    UILabel *label = [self valueForKey:@"_placeholderLabel"];
+    if (label == nil) {
+        UILabel *label = [[UILabel alloc] init];
+        label.numberOfLines = 0;
+        [label sizeToFit];
+        
+        [self addSubview:label];
+        [self setValue:label forKey:@"_placeholderLabel"];
+        
+        [label  mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(self).with.offset(5);
+            make.height.mas_equalTo(60);
+        }];
+        label.text = text;
+        label.font = self.font;
+        label.textColor = color;
+    }
+    else{
+        label.text = text;
+        label.font = self.font;
+        label.textColor = color;
+    }
+        
 }
+
+
+
+   
 
 - (void)was_setFont:(UIFont *)font{
     //调用原方法 setFont:

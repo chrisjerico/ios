@@ -53,7 +53,7 @@
 #import "YNCollectionFootView.h"
 #import "YNCollectionViewCell.h"
 #import "CMLabelCommon.h"
-@interface UGYNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate>
+@interface UGYNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
 @property (weak, nonatomic) IBOutlet UILabel *nextIssueLabel;/**<头 下 下期开奖  */
@@ -117,8 +117,9 @@
 @property (nonatomic, assign) int  defaultGold;  //默认金额 18000.0
 @property (nonatomic, strong) NSString *  defaultAdds;  //默认赔率。
 @property (nonatomic, assign) int  amount;//总金额。
-
-
+//===============================================输入号码
+@property (nonatomic, strong) NSString *  inputStr;  //输入字符。
+@property (nonatomic, strong) NSMutableArray  * mintArray;//输入字符 数组
 
 
 @end
@@ -340,7 +341,8 @@ static NSString *footViewID = @"YNCollectionFootView";
     [_inputView  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.yncontentView);
     }];
-    
+    _inputView.inputTextView.delegate = self;
+   
 }
 
 #pragma mark - 2级选择栏点击事件
@@ -473,6 +475,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self getNextIssueData];
     
     #pragma mark - 进入时默认
+    self.inputView.code = Tip_十;
     [self  setDefaultData:@"PIHAO2"];
     self.segmentIndex = 0;
     //选择号码放到最前面
@@ -517,6 +520,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             weakSelf.ynsegmentView.hidden = YES;
         }
         
+        [weakSelf handleTipStrForCode:code];
         [weakSelf resetClick:nil];
         [weakSelf setDefaultData:code];
         
@@ -769,8 +773,14 @@ static NSString *footViewID = @"YNCollectionFootView";
                     
                     [weakSelf fastszdwBetActionMode:bet  array:&array] ;
                 }
-                isHide = YES;
+                isHide = NO;
             }
+            else  if ([self.ynSelectStr isEqualToString: @"输入号码"]) {
+                
+                [weakSelf judgeInputBetDateArray:&array];
+            }
+            
+            
            
         }
         weakSelf.nextIssueModel.defaultAdds = weakSelf.defaultAdds;
@@ -782,7 +792,89 @@ static NSString *footViewID = @"YNCollectionFootView";
         [weakSelf goYNBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:weakSelf.nextIssueModel  gameType:weakSelf.nextIssueModel.gameId selCode:selCode isHide:isHide ];
     });
 }
+#pragma mark - 输入号码下注方法
+-(void)judgeInputBetDateArray:(NSMutableArray *__strong *) array {
+    NSArray  *arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+    if (arr.count == 0 ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
 
+    [self inputBetActionModel :arr type:self.inputView.code   array : array ];
+     
+}
+
+-(void)inputBetActionModel:(NSArray  *)arr   type:(TipsType )code  array :(NSMutableArray *__strong *) marray {
+    
+    int count;
+    NSMutableArray* intArray = [NSMutableArray new];
+    if (arr.count) {
+        for (NSString *obj in arr) {
+            NSLog(@"obj = %@",obj);
+            int objInt = [obj intValue];
+            
+            if (objInt < 0) {
+                break;
+            }
+            
+            if (code == Tip_千 ) {
+                //范围在0---9999
+                if (objInt > 9999) {
+                    break;
+                }
+            }
+            else  if (code == Tip_百) {
+                //范围在0---999
+                if (objInt > 999) {
+                    break;
+                }
+            }
+            else  if (code == Tip_十) {
+                //范围在0---99
+                if (objInt > 99) {
+                    break;
+                }
+            }
+           
+            [intArray addObject: [NSNumber numberWithInt:objInt]];
+        }
+    }
+    
+    if (intArray.count == 0 ) {
+        [SVProgressHUD showInfoWithStatus:@"下注内容不正确，请重新下注"];
+        return;
+    }
+
+     NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
+    
+    UGGameplayModel *model = [self.gameDataArray objectAtIndex:self.typeIndexPath.row];
+    UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+    self.qsView.segmentedControl.selectedSegmentIndex = 0;
+    UGGameBetModel *betM = [group.list objectAtIndex:self.segmentIndex];
+    
+    
+    for (int i = 0; i < intArray.count; i++) {
+        
+        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+        [bet setValuesForKeysWithDictionary:betM.mj_keyValues];
+        bet.name = [NSString stringWithFormat:@"%@",[intArray objectAtIndex:i]];
+        bet.betInfo = bet.name;
+        bet.title = bet.alias;
+        bet.betMultiple = self.amountTextF.text;
+        bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
+        bet.odds = self.defaultAdds;
+        [*marray addObject:bet];
+        
+        [nameStr appendString:bet.name];
+        if (i< intArray.count-1) {
+            [nameStr appendString:@","];
+        } else {
+            [nameStr appendString:@"】"];
+        }
+    }
+    
+    self.nextIssueModel.defnameStr = nameStr;
+}
 
 #pragma mark - 选择下注方法
 //个下注方法
@@ -1972,6 +2064,123 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
+-(void)handleTipStrForCode:(NSString *)code{
+    //批号2   地段21k号 标题 专题  标题尾巴  串烧4 串烧8  串烧10 偏斜2   偏斜3 偏斜4
+    if ([code isEqualToString:@"PIHAO2"]||[code isEqualToString:@"DIDUAN2"]
+        ||[code isEqualToString:@"BIAOTI"]||[code isEqualToString:@"ZHUANTI"]
+        ||[code isEqualToString:@"BIAOTIWB"]||[code isEqualToString:@"CHUANSHAO4"]
+        ||[code isEqualToString:@"CHUANSHAO8"]||[code isEqualToString:@"CHUANSHAO10"]
+        ||[code isEqualToString:@"PIANXIE2"]||[code isEqualToString:@"PIANXIE3"]
+        ||[code isEqualToString:@"PIANXIE4"]) {
+        self.inputView.code = Tip_十;
+    }
+    //批号3 3个音阶  3更特别  3尾巴
+    else  if ([code isEqualToString:@"PIHAO3"]||[code isEqualToString:@"3YINJIE"]
+              ||[code isEqualToString:@"3GTEBIE"]||[code isEqualToString:@"3WBDJT"]) {
+        self.inputView.code = Tip_百;
+    }
+    //批号4  4更特别
+    else   if ([code isEqualToString:@"PIHAO4"]||[code isEqualToString:@"4GTEBIE"]) {
+        self.inputView.code = Tip_千;
+    }
+    
+}
+
+
+#pragma mark - textView delegate
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.markedTextRange == nil) {
+        self.inputStr  = textView.text;
+        [self judgeInputDate:textView.text];
+        
+    }
+}
+#pragma mark - 输入下注
+-(void)judgeInputDate:(NSString *)str{
+    NSArray  *arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+    if (arr.count == 0 ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
+
+    [self inputActionModel :arr type:self.inputView.code ];
+     
+}
+
+-(void)inputActionModel:(NSArray  *)arr   type:(TipsType )code{
+    
+    int count;
+    NSMutableArray* intArray = [NSMutableArray new];
+    if (arr.count) {
+        for (NSString *obj in arr) {
+            NSLog(@"obj = %@",obj);
+            int objInt = [obj intValue];
+            
+            if (objInt < 0) {
+                break;
+            }
+            
+            if (code == Tip_千 ) {
+                //范围在0---9999
+                if (objInt > 9999) {
+                    break;
+                }
+            }
+            else  if (code == Tip_百) {
+                //范围在0---999
+                if (objInt > 999) {
+                    break;
+                }
+            }
+            else  if (code == Tip_十) {
+                //范围在0---99
+                if (objInt > 99) {
+                    break;
+                }
+            }
+           
+            [intArray addObject: [NSNumber numberWithInt:objInt]];
+        }
+    }
+    
+    if (intArray.count == 0 ) {
+        count = 0;
+        [self  setLabelDataCount:count];
+        return;
+    }
+    
+    UGGameplayModel *model = [self.gameDataArray objectAtIndex:self.typeIndexPath.row];
+    UGGameplaySectionModel *group = [model.list objectAtIndex:0];
+    self.qsView.segmentedControl.selectedSegmentIndex = 0;
+    UGGameBetModel *betM = [group.list objectAtIndex:self.segmentIndex];
+    
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (int i = 0; i < intArray.count; i++) {
+        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+        [bet setValuesForKeysWithDictionary:betM.mj_keyValues];
+        bet.name = [NSString stringWithFormat:@"%@",[intArray objectAtIndex:i]];
+        bet.betInfo = bet.name;
+        bet.title = bet.alias;
+        bet.betMultiple = self.amountTextF.text;
+        bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
+        bet.odds = self.defaultAdds;
+        [array addObject:bet];
+        
+    }
+    
+    if (intArray.count == 0 ) {
+        count = 0;
+        [self  setLabelDataCount:count];
+        
+    } else {
+        count = array.count;
+        NSLog(@"count = %ld",(long)count);
+        [self  setLabelDataCount:count];
+    }
+}
+
 #pragma mark - textField delegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -2124,6 +2333,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             [self resetClick:nil];
             [self.yncontentView bringSubviewToFront:self.betCollectionView];
             self.ynSelectStr = @"选择号码";
+            self.inputView.code = Tip_千;
         }
         else if([code isEqualToString:@"BL"]||[code isEqualToString:@"LBXC"]
                 ||[code isEqualToString:@"3GD"]){
@@ -2131,12 +2341,15 @@ static NSString *footViewID = @"YNCollectionFootView";
             [self resetClick:nil];
             [self.yncontentView bringSubviewToFront:self.betCollectionView];
             self.ynSelectStr = @"选择号码";
+            self.inputView.code = Tip_百;
         }
         else if([code isEqualToString:@"DDQX"]||[code isEqualToString:@"CQ"]){
             [self.ynsegmentView.segment setSectionTitles:@[@"输入号码",@"快速选择"]];
             [self.yncontentView bringSubviewToFront:self.inputView];
-             self.ynSelectStr = @"输入号码";
+            self.ynSelectStr = @"输入号码";
+            self.inputView.code = Tip_十;
             [self resetClick:nil];
+            
         }
     }
     
