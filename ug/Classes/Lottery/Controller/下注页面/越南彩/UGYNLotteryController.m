@@ -53,6 +53,7 @@
 #import "YNCollectionFootView.h"
 #import "YNCollectionViewCell.h"
 #import "CMLabelCommon.h"
+#import "YNHLPrizeDetailView.h"
 @interface UGYNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */

@@ -16,7 +16,7 @@ typedef void(^YNHLPrizeDetailViewCancelBlock)(void);
 @interface YNHLPrizeDetailView : UIView
 @property (nonatomic, copy) YNHLPrizeDetailViewBetBlock betClickBlock;
 @property (nonatomic, copy) YNHLPrizeDetailViewCancelBlock cancelBlock;
-
+@property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 - (void)show;
 @end
 

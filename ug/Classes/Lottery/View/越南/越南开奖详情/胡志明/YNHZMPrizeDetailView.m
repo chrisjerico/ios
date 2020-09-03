@@ -1,13 +1,13 @@
 //
-//  YNHLPrizeDetailView.m
+//  YNHZMPrizeDetailView.m
 //  UGBWApp
 //
 //  Created by ug on 2020/9/3.
 //  Copyright © 2020 ug. All rights reserved.
 //
 
-#import "YNHLPrizeDetailView.h"
-@interface YNHLPrizeDetailView (){
+#import "YNHZMPrizeDetailView.h"
+@interface YNHZMPrizeDetailView (){
      UIScrollView* maskView;
 }
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
@@ -15,12 +15,12 @@
 
 @property (nonatomic) float amount; /**<   总金额*/
 @end
-@implementation YNHLPrizeDetailView
+@implementation YNHZMPrizeDetailView
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self = [[NSBundle mainBundle] loadNibNamed:@"YNHLPrizeDetailView" owner:self options:0].firstObject;
+        self = [[NSBundle mainBundle] loadNibNamed:@"YNHZMPrizeDetailView" owner:self options:0].firstObject;
         
         float h = 0;
         h = UGScerrnH - 300;
@@ -57,6 +57,7 @@
         [subLabel(@"五等奖label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"六等奖label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"七等奖label")setTextColor:[UIColor whiteColor]];
+        [subLabel(@"八等奖label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"尾巴label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"t0label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"t1label")setTextColor:[UIColor whiteColor]];
@@ -82,6 +83,7 @@
         [subLabel(@"五等奖label")setTextColor:[UIColor blackColor]];
         [subLabel(@"六等奖label")setTextColor:[UIColor blackColor]];
         [subLabel(@"七等奖label")setTextColor:[UIColor blackColor]];
+        [subLabel(@"八等奖label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"尾巴label")setTextColor:[UIColor blackColor]];
         [subLabel(@"t0label")setTextColor:[UIColor blackColor]];
         [subLabel(@"t1label")setTextColor:[UIColor blackColor]];
@@ -144,6 +146,7 @@
     [subLabel(@"五等奖label")setText:[_nextIssueModel.d5 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"六等奖label")setText:[_nextIssueModel.d6 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"七等奖label")setText:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
+    [subLabel(@"八等奖label")setText:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"t0label")setText:_nextIssueModel.t0];
     [subLabel(@"t1label")setText:_nextIssueModel.t1];
     [subLabel(@"t2label")setText:_nextIssueModel.t2];

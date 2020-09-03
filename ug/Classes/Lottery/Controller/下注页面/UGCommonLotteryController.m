@@ -21,7 +21,8 @@
 
 #import "UGBetDetailView.h"
 #import "YNBetDetailView.h"
-
+#import "YNHLPrizeDetailView.h"
+#import "YNHZMPrizeDetailView.h"
 @interface UGCommonLotteryController (CC)
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *bottomView;
@@ -108,11 +109,8 @@
     FastSubViewCode(self.view);
     {
         // 背景色
-        //        if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
-        //             self.view.backgroundColor = Skin1.bgColor;
-        //        } else {
+
         self.view.backgroundColor = Skin1.textColor4;
-        //        }
         
         if (!APP.betBgIsWhite) {
             [self.view insertSubview:({
@@ -257,12 +255,24 @@
         [subButton(@"历史记录按钮") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
             // 切换按钮的状态
             sender.selected = !sender.selected;
-            if (sender.selected) { // 按下去了就是明文
-                __self.headerMidView.hidden = NO;
-            } else { // 暗文
-                __self.headerMidView.hidden = YES;
+            
+            if ([__self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
+                //去下注详细
+                [__self getNextIssueDataForYN];
             }
-            [__self getLotteryHistory];
+            else if ([__self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//河内
+                //去下注详细
+                [__self getNextIssueDataForYN];
+            }
+            else {
+                if (sender.selected) { // 按下去了就是明文
+                    __self.headerMidView.hidden = NO;
+                } else { // 暗文
+                    __self.headerMidView.hidden = YES;
+                }
+                [__self getLotteryHistory];
+            }
+           
             
         }];
         
@@ -307,7 +317,6 @@
         [self sliderViewInit ];
   };
 
-    
 }
 //拖动条
 - (void )sliderViewInit {
@@ -658,6 +667,33 @@
     });
    
    
+}
+
+//去开奖详情
+- (void)getNextIssueDataForYN {
+    NSDictionary *params = @{@"id":self.gameId};
+    WeakSelf;
+    [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGNextIssueModel *nextIssueModel = model.data;
+            
+            if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
+                YNHZMPrizeDetailView*betDetailView = [[YNHZMPrizeDetailView alloc] init];
+                betDetailView.nextIssueModel = nextIssueModel;
+                [betDetailView show];
+            }
+            else if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//河内
+              
+                YNHLPrizeDetailView *betDetailView = [[YNHLPrizeDetailView alloc] init];
+                betDetailView.nextIssueModel = nextIssueModel;
+                [betDetailView show];
+            }
+            
+          
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
 }
 
 //调用下注界面

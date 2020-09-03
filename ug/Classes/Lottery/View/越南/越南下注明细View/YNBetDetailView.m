@@ -136,9 +136,7 @@ static NSString *ID=@"YNBetCollectionViewCell";
     }
     
     view.hidden = NO;
-    
-    
-    
+  
 }
 
 - (void)setDataArray:(NSArray<UGGameBetModel *> *)dataArray {
@@ -302,11 +300,11 @@ static NSString *ID=@"YNBetCollectionViewCell";
             }
             
             SANotificationEventPost(UGNotificationGetUserInfo, nil);
+            [weakSelf hiddenSelf];
             if (weakSelf.betClickBlock) {
                 weakSelf.betClickBlock();
-                [weakSelf hiddenSelf];
             }
-            [weakSelf hiddenSelf];
+          
             
             
         } failure:^(id msg) {
@@ -317,9 +315,10 @@ static NSString *ID=@"YNBetCollectionViewCell";
             
             NSString *msgStr = (NSString *)msg;
             if ([msgStr containsString:@"已封盘"]) {
+                [weakSelf hiddenSelf];
                 if (weakSelf.betClickBlock) {
                     weakSelf.betClickBlock();
-                    [weakSelf hiddenSelf];
+                
                 }
             }
         }];
