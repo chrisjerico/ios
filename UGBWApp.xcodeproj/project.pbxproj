@@ -2037,6 +2037,8 @@
 		D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0523FFA6C1008396BE /* LineMainListViewController.m */; };
 		D4593B0B23FFB646008396BE /* LineMainListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */; };
 		D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */; };
+		D464FB772500C36D00B54981 /* YNHLPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D464FB762500C36D00B54981 /* YNHLPrizeDetailView.m */; };
+		D464FB792500C41100B54981 /* YNHLPrizeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D464FB782500C41100B54981 /* YNHLPrizeDetailView.xib */; };
 		D466533A24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D466533B24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D46653412430CD38000D5377 /* otherLotter.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533F2430CD38000D5377 /* otherLotter.wav */; };
@@ -3984,6 +3986,9 @@
 		D4593B0823FFB646008396BE /* LineMainListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainListCollectionViewCell.h; sourceTree = "<group>"; };
 		D4593B0923FFB646008396BE /* LineMainListCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainListCollectionViewCell.m; sourceTree = "<group>"; };
 		D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineMainListCollectionViewCell.xib; sourceTree = "<group>"; };
+		D464FB752500C36D00B54981 /* YNHLPrizeDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNHLPrizeDetailView.h; sourceTree = "<group>"; };
+		D464FB762500C36D00B54981 /* YNHLPrizeDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNHLPrizeDetailView.m; sourceTree = "<group>"; };
+		D464FB782500C41100B54981 /* YNHLPrizeDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YNHLPrizeDetailView.xib; sourceTree = "<group>"; };
 		D466533924305FAE000D5377 /* lottery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lottery.wav; sourceTree = "<group>"; };
 		D466533F2430CD38000D5377 /* otherLotter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = otherLotter.wav; sourceTree = "<group>"; };
 		D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteMainViewController.h; sourceTree = "<group>"; };
@@ -8262,6 +8267,7 @@
 		D4400D2A24E9733200EF3902 /* 越南 */ = {
 			isa = PBXGroup;
 			children = (
+				D464FB712500C2A100B54981 /* 越南开奖详情 */,
 				D4CD204324F37CA6001DC0CF /* 越南下注明细View */,
 				D4400D2B24E9736400EF3902 /* 越南cell */,
 				D42C8FC924E819D2008CB519 /* 越南分段View */,
@@ -8340,6 +8346,32 @@
 				D458ED8D2412417A00575C3F /* UITabBar+CustomBadge.m */,
 			);
 			path = "给tab加badge分类";
+			sourceTree = "<group>";
+		};
+		D464FB712500C2A100B54981 /* 越南开奖详情 */ = {
+			isa = PBXGroup;
+			children = (
+				D464FB742500C2CE00B54981 /* 胡志明 */,
+				D464FB732500C2C400B54981 /* 河内 */,
+			);
+			path = "越南开奖详情";
+			sourceTree = "<group>";
+		};
+		D464FB732500C2C400B54981 /* 河内 */ = {
+			isa = PBXGroup;
+			children = (
+				D464FB752500C36D00B54981 /* YNHLPrizeDetailView.h */,
+				D464FB762500C36D00B54981 /* YNHLPrizeDetailView.m */,
+				D464FB782500C41100B54981 /* YNHLPrizeDetailView.xib */,
+			);
+			path = "河内";
+			sourceTree = "<group>";
+		};
+		D464FB742500C2CE00B54981 /* 胡志明 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "胡志明";
 			sourceTree = "<group>";
 		};
 		D476E5E7240166C600BA0EA9 /* Cell */ = {
@@ -9170,6 +9202,7 @@
 				CF47588F239636D200966536 /* 136.gif in Resources */,
 				CF4758CB239636D200966536 /* 145.gif in Resources */,
 				CF4758FD239636D200966536 /* 171.gif in Resources */,
+				D464FB792500C41100B54981 /* YNHLPrizeDetailView.xib in Resources */,
 				D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */,
 				CF4758B9239636D200966536 /* 96.gif in Resources */,
 				031E1E7E23BE812D00B0F813 /* UGBalanceTransferLogsCell.xib in Resources */,
@@ -10406,6 +10439,7 @@
 				031E1AC623BE812800B0F813 /* WMTabControl.m in Sources */,
 				031E1DBE23BE812B00B0F813 /* UGLoginAddressModel.m in Sources */,
 				D434744024AB2FFA00B0F598 /* BetDetailTableViewCell.m in Sources */,
+				D464FB772500C36D00B54981 /* YNHLPrizeDetailView.m in Sources */,
 				031E19A223BE812600B0F813 /* IBView.m in Sources */,
 				031E193E23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,
 				031E1DA623BE812B00B0F813 /* UGwithdrawListModel.m in Sources */,
