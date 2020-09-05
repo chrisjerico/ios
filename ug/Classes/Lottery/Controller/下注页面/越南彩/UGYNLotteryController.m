@@ -378,7 +378,10 @@ static NSString *footViewID = @"YNCollectionFootView";
     if (group.list.count) {
         UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
         
-        [CMCommon showTitle:bet.rule];
+        if (bet.rule.length) {
+               [CMCommon showTitle:bet.rule];
+        }
+     
     }
 }
 
