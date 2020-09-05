@@ -278,8 +278,8 @@
 			   [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
 		   }
            
-           
-           if (APP.isHideTV) {
+           NSLog(@"gameId = %@,gameName = %@",self.nextIssueModel.gameId,self.nextIssueModel.gameName);//239  c085的澳门六合彩
+           if (APP.isHideTV &&  [self.nextIssueModel.gameId isEqualToString:@"239"] ) {
                [subButton(@"直播btn") setBackgroundImage: nil  forState:(UIControlStateNormal)];
                [subButton(@"直播btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
            }
