@@ -20,6 +20,13 @@
 @property (nonatomic, strong)UGRechargeRecordTableViewController *rechargeRecordVC;
 @property (nonatomic, strong)XYYSegmentControl *slideSwitchView;
 @property (nonatomic,strong)  NSArray <NSString *> *itemArray;
+//===================================================
+@property (weak, nonatomic) IBOutlet UIView *mheadView; /**<    头 */
+@property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;    /**<    刷新按钮 */
+@property (weak, nonatomic) IBOutlet UIImageView *headImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;/**<    昵称 */
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;   /**<    余额 */
+@property (weak, nonatomic) IBOutlet UILabel *realNameLabel;/**<    真实名 */
 
 @end
 
@@ -47,6 +54,16 @@
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });
+    
+    [_mheadView setBackgroundColor:Skin1.navBarBgColor];
+    self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
+    self.headImageView.layer.masksToBounds = YES;
+    
+    [self getUserInfo];
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+         [self setupUserInfo];
+     });
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -58,6 +75,7 @@
     } else {
         [self.navigationController setNavigationBarHidden:NO];//不NavBar
     }
+    
     
     if (OBJOnceToken(self)) {
         [self buildSegment];
@@ -97,17 +115,39 @@
     self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
     if (Skin1.isGPK) {
          [self creatView];
+        
+        [self.mheadView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(headView.mas_bottom);
+            make.left.equalTo(self.view.mas_left).offset(0);
+            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+              make.height.mas_equalTo(130);
+        }];
+        
          self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , headView.frame.size.height+headView.frame.origin.y, self.view.width, self.view.height) channelName:self.itemArray source:self];
         [self.view addSubview:self.slideSwitchView];
         [self.slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.top.equalTo(headView.mas_bottom);
-                  make.left.equalTo(self.view.mas_left).offset(0);
-                  make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
-                  make.bottom.equalTo(self.view.mas_bottom);
+            make.top.equalTo(self.mheadView.mas_bottom);
+            make.left.equalTo(self.view.mas_left).offset(0);
+            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+            make.bottom.equalTo(self.view.mas_bottom);
         }];
     } else {
+        
+        [self.mheadView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.equalTo(self.view);
+            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+            make.height.mas_equalTo(130);
+        }];
+        
         self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
         [self.view addSubview:self.slideSwitchView];
+        
+        [self.slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mheadView.mas_bottom);
+            make.left.equalTo(self.view.mas_left).offset(0);
+            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+            make.bottom.equalTo(self.view.mas_bottom);
+        }];
     }
   
     [self.slideSwitchView setUserInteractionEnabled:YES];
@@ -180,4 +220,65 @@
     
 }
 
+#pragma mark -- 网络请求
+// 刷新余额
+- (IBAction)refreshBalance:(id)sender {
+    [self getUserInfo];
+}
+- (void)getUserInfo {
+    [self startAnimation];
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    WeakSelf;
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+            [weakSelf stopAnimation];
+            [weakSelf setupUserInfo];
+        } failure:^(id msg) {
+            [self stopAnimation];
+        }];
+    }];
+}
+
+//刷新余额动画
+- (void)startAnimation {
+    CABasicAnimation *ReFreshAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
+    ReFreshAnimation.duration = 1;
+    ReFreshAnimation.repeatCount = HUGE_VALF;
+    [self.refreshFirstButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
+}
+
+//刷新余额动画
+- (void)stopAnimation {
+    [self.refreshFirstButton.layer removeAllAnimations];
+}
+
+#pragma mark - UIS
+- (void)setupUserInfo {
+    
+    UGUserModel *user = [UGUserModel currentUser];
+    NSLog(@"user.avatar = %@",user.avatar);
+
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+    self.userNameLabel.text = user.username;
+
+    double floatString = [user.balance doubleValue];
+    self.moneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+    if (![CMCommon stringIsNull:user.fullName]) {
+        self.realNameLabel.text = user.fullName;
+    }
+    else{
+        self.realNameLabel.text = @"";
+    }
+    
+
+}
+
+
 @end
+

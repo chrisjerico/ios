@@ -87,6 +87,7 @@
                 sb(@"RedEnvelope"),
                 sb(@"LineConversion"),
                 sb(@"BetDetail"),
+                sb(@"Funds"),
                 
                 
         ];

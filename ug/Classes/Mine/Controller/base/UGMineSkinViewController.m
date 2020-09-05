@@ -775,13 +775,13 @@ BOOL isOk = NO;
 
 - (IBAction)depositAction:(id)sender {
     //存款
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 0;
     [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withdrawalActon:(id)sender {
     //提现
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 1;
     [self.navigationController pushViewController:fundsVC animated:YES];
 }
