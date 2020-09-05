@@ -25,6 +25,7 @@ ${BUILT_PRODUCTS_DIR}/RNFastImage/RNFastImage.framework
 ${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework
 ${BUILT_PRODUCTS_DIR}/RNReactNativeModalPatch/RNReactNativeModalPatch.framework
 ${BUILT_PRODUCTS_DIR}/RNReanimated/RNReanimated.framework
+${BUILT_PRODUCTS_DIR}/RNSVG/RNSVG.framework
 ${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework
 ${BUILT_PRODUCTS_DIR}/RNVectorIcons/RNVectorIcons.framework
 ${BUILT_PRODUCTS_DIR}/React-Core/React.framework

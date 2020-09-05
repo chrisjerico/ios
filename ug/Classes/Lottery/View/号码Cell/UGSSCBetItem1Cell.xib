@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,19 +33,45 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooJ-Sc-0cA">
+                        <rect key="frame" x="62" y="13" width="30" height="30"/>
+                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="AW3-Ko-LW9"/>
+                            <constraint firstAttribute="width" constant="30" id="DGq-Ky-5ym"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="LayerMasksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="LayerCornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="LayerBorderColor">
+                                <color key="value" red="0.10980392160000001" green="0.63529411759999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="LayerBorderWidth">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="4qR-op-ast" firstAttribute="centerY" secondItem="jf2-zr-Qsu" secondAttribute="centerY" id="4fa-2Q-Tcd"/>
                 <constraint firstItem="VO1-pl-p7v" firstAttribute="centerY" secondItem="jf2-zr-Qsu" secondAttribute="centerY" id="6AX-Pn-l8f"/>
+                <constraint firstItem="ooJ-Sc-0cA" firstAttribute="centerY" secondItem="jf2-zr-Qsu" secondAttribute="centerY" id="D4z-9V-q9S"/>
                 <constraint firstItem="4qR-op-ast" firstAttribute="leading" secondItem="jf2-zr-Qsu" secondAttribute="leading" constant="10" id="HoI-9U-Mvy"/>
+                <constraint firstItem="ooJ-Sc-0cA" firstAttribute="centerX" secondItem="jf2-zr-Qsu" secondAttribute="centerX" id="h4v-MA-iOX"/>
                 <constraint firstItem="VO1-pl-p7v" firstAttribute="leading" secondItem="4qR-op-ast" secondAttribute="trailing" constant="4" id="l7t-iY-TCy"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q09-oz-Fdd"/>
             <size key="customSize" width="154" height="56"/>
             <connections>
                 <outlet property="nameLabel" destination="4qR-op-ast" id="boR-NX-hm0"/>
+                <outlet property="nameOnlyLabel" destination="ooJ-Sc-0cA" id="M0e-DS-5IB"/>
                 <outlet property="oddsLabel" destination="VO1-pl-p7v" id="z5q-x8-yAT"/>
             </connections>
             <point key="canvasLocation" x="213.04347826086959" y="154.6875"/>

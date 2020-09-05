@@ -52,16 +52,26 @@
     
     [self.tgWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
     [self setUpUI];
+    
+
 }
+
+- (void)cancel {
+    [self.navigationController dismissViewControllerAnimated:true completion:nil];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     if (OBJOnceToken(self)) {
         [self.tgWebView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(self.parentViewController ? 0 : APP.StatusBarHeight);
             make.left.right.bottom.equalTo(self.view);
         }];
     }
+
+
 }
 
 - (void)setUpUI {

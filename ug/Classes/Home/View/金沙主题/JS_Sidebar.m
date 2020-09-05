@@ -68,14 +68,14 @@
 	switch (index) {
 		case 0:
 		{
-			UGFundsViewController * vc = [UGFundsViewController new];
+			UGFundsViewController * vc = _LoadVC_from_storyboard_(@"UGFundsViewController");
 			vc.selectIndex = 0;
 			[NavController1 pushViewController:vc animated:true];
 		}
 			break;
 		case 1:
 		{
-			UGFundsViewController * vc = [UGFundsViewController new];
+			UGFundsViewController * vc = _LoadVC_from_storyboard_(@"UGFundsViewController");;
 			vc.selectIndex = 1;
 			[NavController1 pushViewController:vc animated:true];
 		}			break;
@@ -98,7 +98,7 @@
 			break;
 		case 6:
 		{
-			UGFundsViewController * vc = [UGFundsViewController new];
+			UGFundsViewController * vc = _LoadVC_from_storyboard_(@"UGFundsViewController");;
 			vc.selectIndex = 4;
 			[NavController1 pushViewController:vc animated:true];
 		}

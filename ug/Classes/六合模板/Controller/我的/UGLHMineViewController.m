@@ -419,13 +419,13 @@
 
 - (IBAction)depositAction:(id)sender {
     NSLog(@"我的存款");
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 0;
     [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withdrawalsAction:(id)sender {
     NSLog(@"我的取款");
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 1;
     [self.navigationController pushViewController:fundsVC animated:YES];
 }
@@ -439,13 +439,13 @@
 }
 - (IBAction)recordAction:(id)sender {
     NSLog(@"充值记录");
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 3;
     [self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withdrawalRecordAction:(id)sender {
     NSLog(@"提现记录");
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 4;
     [self.navigationController pushViewController:fundsVC animated:YES];
 }

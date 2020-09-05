@@ -92,7 +92,8 @@
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
-
+@property (nonatomic) BOOL isHideTV;                                    /**<  去除澳门六合彩显示的小电视*/
+@property (nonatomic) BOOL isBottom;                                    /**<  首页二级分类图标显示的位置比照一样放右下角*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

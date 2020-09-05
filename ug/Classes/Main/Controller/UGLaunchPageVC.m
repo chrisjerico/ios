@@ -27,8 +27,7 @@
 
 
 @interface UGLaunchPageVC ()
-@property (nonatomic, assign) BOOL waitPic;         /**<   ⌛️等静态启动图播放完 */
-@property (nonatomic, assign) BOOL waitGif;         /**<   ⌛️等gif启动图播放完 */
+@property (nonatomic, assign) BOOL waitPic;         /**<   ⌛️等启动图播放完 */
 @property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
 @property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
 @property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
@@ -174,7 +173,6 @@
         // 加载初始配置
         {
     //        _waitLanguage = true;
-            _waitGif = false;
             _waitPic = true;
             _waitReactNative = true;
             _waitSysConf = true;
@@ -203,7 +201,7 @@
                 if (__self.waitReactNative) continue;
                 if (__self.waitSysConf) continue;
                 if (__self.waitPic) continue;
-                if (__self.waitGif) continue;
+//                if (__self.waitGif) continue;
                 if (__self.waitLanguage) continue;
                 break;
             }
@@ -249,72 +247,69 @@
 }
 
 - (void)loadLaunchImage {
+    // 取出上一次的启动图并播放，以防上次没下载完，这里继续下载（会缓存到本地）
+    NSMutableArray *lastPics = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"LaunchPics"]];
+    for (NSString *pic in lastPics) {
+        [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:pic] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {}];
+    }
+    
+    
+    SDAnimatedImageView *imageView = [SDAnimatedImageView new];
+    imageView.backgroundColor = [UIColor whiteColor];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.shouldCustomLoopCount = true; // 是否自定义循环次数
+    imageView.animationRepeatCount = 0;     // 不循环
+    [self.view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    // 加载图片
+    __weakSelf_(__self);
+    __weak_Obj_(imageView, __imageView);
+    __block UIImage *__image = nil;
+    void (^showPics)(void) = nil;
+    void (^__block __nextPic)(void) = showPics = ^{
+        NSString *pic = lastPics.firstObject;
+        [lastPics removeObject:pic];
+
+        // 加载图片超两秒钟就不等了
+        __image = nil;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (!__image) {
+                __self.waitPic = false;
+            }
+        });
+        if (!pic) return;
+        
+        [__imageView sd_setImageWithURL:[NSURL URLWithString:pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            __image = image;
+            __self.waitPic = true;
+            
+            // 如果是静态图则1秒后显示下一张图片
+            CGFloat showTime = MAX(image.images.count / 25.0, 1.2);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(showTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __nextPic();
+            });
+        }];
+    };
+    showPics();
+    
     // 下载新的启动图
     [CMNetwork.manager requestWithMethod:[[NSString stringWithFormat:@"%@/wjapp/api.php?c=system&a=launchImages", APP.Host] stringToRestfulUrlWithFlag:RESTFUL] params:nil model:CMResultArrayClassMake(LaunchPageModel.class) post:NO completion:^(CMResult<id> *model, NSError *err) {
         if (!err) {
             NSArray <LaunchPageModel *> *launchPics = model.data;
-            NSArray *pics = [launchPics valuesWithKeyPath:@"pic"];
-            [[NSUserDefaults standardUserDefaults] setObject:pics forKey:@"LaunchPics"];
-            for (NSString *pic in pics) {
+            NSArray *newPics = [launchPics valuesWithKeyPath:@"pic"];
+            if (![[NSUserDefaults standardUserDefaults] arrayForKey:@"LaunchPics"].count) {
+                [lastPics setArray:newPics];
+                showPics();
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:newPics forKey:@"LaunchPics"];
+            for (NSString *pic in newPics) {
                 [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:pic] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {}];
             }
         }
     }];
-    
-    __weakSelf_(__self);
-    {
-        SDAnimatedImageView *imageView = [SDAnimatedImageView new];
-        imageView.backgroundColor = [UIColor whiteColor];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.shouldCustomLoopCount = true; // 是否自定义循环次数
-        imageView.animationRepeatCount = 0;     // 不循环
-        [self.view addSubview:imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        
-        
-        NSMutableArray *pics = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] arrayForKey:@"LaunchPics"]];
-        // 以防上次没下载完，这里继续下载（会缓存到本地）
-        for (NSString *pic in pics) {
-            [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:pic] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {}];
-        }
-        
-        // 加载图片
-        __weak_Obj_(imageView, __imageView);
-        __block UIImage *__image = nil;
-        void (^showPics)(void) = nil;
-        void (^__block __nextPic)(void) = showPics = ^{
-            NSString *pic = pics.firstObject;
-            [pics removeObject:pic];
-            [__imageView sd_setImageWithURL:[NSURL URLWithString:pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                __image = image;
-                __self.waitPic = true;
-                __self.waitGif = image.sd_isAnimated;    // 等待gif播放完
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(pics.count ? 2 : 1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    if (__image == image) __self.waitPic = false;
-                });
-                
-                if (pics.count && !__self.waitGif) {
-                    // 如果是静态图则1秒后显示下一张图片
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        __nextPic();
-                    });
-                }
-            }];
-        };
-        
-        // 如果是gif图则播放完后显示下一张图片
-        [__imageView xw_addObserverBlockForKeyPath:@"currentLoopCount" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-            if ([newVal intValue] >= 1) {
-                __self.waitGif = false;
-                if (pics.count) {
-                    __nextPic();
-                }
-            }
-        }];
-        showPics();
-    }
 }
 
 - (void)loadLanguage {

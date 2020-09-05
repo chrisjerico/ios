@@ -1514,6 +1514,51 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	return _zxgmentTitleArray;
 }
 
-
+#pragma mark - BetRadomProtocal
+- (NSUInteger)minSectionsCountForBet {
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	
+	if ([@"两面" isEqualToString:model.name]) {
+		return 6;
+	}
+	if ([@"直选" isEqualToString:model.name]) {
+		NSInteger count = [self numberOfSectionsInCollectionView:self.betCollectionView];
+		return count;
+	}
+	return 1;
+}
+- (NSUInteger)minItemsCountForBetIn:(NSUInteger)section {
+	
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	
+	if ([@"两面" isEqualToString:model.name] && section == 0) {
+		return 0;
+	}
+	
+	if ([@"连码" isEqualToString:model.name]) {
+		NSString *title = self.lmgmentTitleArray[self.segmentIndex];
+		if ([@"二中二" isEqualToString:title] || [@"前二组选" isEqualToString:title]) {
+			return 2;
+		}else if ([@"三中三" isEqualToString:title] || [@"前三组选" isEqualToString:title]) {
+			return 3;
+			
+		}else if ([@"四中四" isEqualToString:title]) {
+			return 4;
+		}else if ([@"五中五" isEqualToString:title]) {
+			return 5;
+		}else if ([@"六中五" isEqualToString:title]) {
+			return 6;
+		}else if ([@"七中五" isEqualToString:title]) {
+			return 7;
+		}else if ([@"八中五" isEqualToString:title]) {
+			return 8;
+		}
+		
+	}
+	if ([@"直选" isEqualToString:model.name] && section == 0) {
+		return 0;
+	}
+	return 1;
+}
 @end
 

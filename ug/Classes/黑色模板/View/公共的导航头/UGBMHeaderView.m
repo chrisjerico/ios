@@ -134,7 +134,7 @@
                 if (vc) {
                     [NavController1 popToViewController:vc animated:false];
                 } else {
-                    [NavController1 pushViewController:[UGFundsViewController new] animated:false];
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFundsViewController") animated:false];
                 }
             } else {
                 //最近浏览

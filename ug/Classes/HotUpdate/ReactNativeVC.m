@@ -87,6 +87,8 @@ static RCTRootView *_rnView;
     } else {
         [UIView animateWithDuration:0.25 animations:^{
             TabBarController1.tabBar.by = hidden ? APP.Height+84 : APP.Height;
+        } completion:^(BOOL finished) {
+            NavController1.topView.frame = APP.Bounds;
         }];
     }
 }
@@ -113,7 +115,7 @@ static NSString *__lastRnPage = nil;
         if (TARGET_IPHONE_SIMULATOR) {
             bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
         } else if (APP.isFish) {
-            bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
+            bundleURL = [NSURL URLWithString:@"http://192.168.1.143:8081/index.bundle?platform=ios"];
         }
 #endif
         //    NSLog(@"当前rn版本：%@", APP.)

@@ -92,6 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *buy;   /**<   消耗抽奖的货币类型 1为积分 2为彩金*/
 @property (nonatomic, strong) NSNumber *buy_amount;   /**<  消耗的金额 */
+@property (nonatomic, assign) NSInteger golden_egg_times;
 @property (nonatomic, strong) NSString *check_in_user_levels;   /**< 可以参与的层级 没有则是全部  */
 @property (nonatomic, strong) NSArray<NSString*>  *content_turntable;   /**<  活动藐视 每个逗号前代表一行 */
 @property (nonatomic, strong) NSString *chassis_img;   /*网络大转盘背景图 chassis_img*/
@@ -107,6 +108,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取转盘活动抽奖日志
 @property (nonatomic, strong) NSString *prize_name; /**i奖品名字*/
+@property (nonatomic, strong) NSString *prizeId; /**i抽奖编号*/
+
+@property (nonatomic, strong) NSString *prizeName; /**i奖品名字*/
+
 @property (nonatomic, strong) NSString *update_time;   /**< 抽奖时间戳  */
 @property (nonatomic, strong) NSString *codeNum;  /**<   抽奖编号*/
 

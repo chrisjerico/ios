@@ -56,6 +56,14 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
                     make.top.left.right.equalTo(self);
                     make.height.equalTo(@140);
                 }
+				else if (self.gameTypeArray.count == 1) {
+					/**
+					 117167
+					 "修改分类排序" 新增逻辑"当分类仅开启一个时，前台默认不显示分类标签" 【普通】
+					 */
+					 make.top.left.right.equalTo(self);
+					 make.height.equalTo(@0);
+				}
                 else {
                     make.top.equalTo(self);
 					if ([@"金沙主题" containsString:Skin1.skitType]) {

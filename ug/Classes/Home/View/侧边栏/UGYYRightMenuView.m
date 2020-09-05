@@ -639,12 +639,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
     }
     else if ([title isEqualToString:@"充值"]) {
-        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
         fundsVC.selectIndex = 0;
         [NavController1 pushViewController:fundsVC animated:true];
     }
     else if ([title isEqualToString:@"提现"]) {
-        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
         fundsVC.selectIndex = 1;
         [NavController1 pushViewController:fundsVC animated:true];
     }

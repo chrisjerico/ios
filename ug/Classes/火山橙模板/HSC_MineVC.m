@@ -124,31 +124,31 @@
 }
 - (IBAction)withDrawButtonTaped:(id)sender {
 	//  提现
-	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
 	fundsVC.selectIndex = 1;
 	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)rechargeButtonTaped:(id)sender {
 	//  存款
-	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
 	fundsVC.selectIndex = 0;
 	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)accountDetailButtonTaped:(id)sender {
 	//  存款
-	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
 	fundsVC.selectIndex = 4;
 	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)rechargeRecordButtonTaped:(id)sender {
 	//  存款记录
-	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
 	fundsVC.selectIndex = 2;
 	[self.navigationController pushViewController:fundsVC animated:YES];
 }
 - (IBAction)withDrawRecordButtonTaped:(id)sender {
 	// 取款记录
-	UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+	UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
 	fundsVC.selectIndex = 3;
 	[self.navigationController pushViewController:fundsVC animated:YES];
 }

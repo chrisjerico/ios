@@ -120,8 +120,6 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 
 #define getPromoteListUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=promotions"]
 
-#define getPromotionsTypeUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=getPromotionsType"]
-
 #define feedbackUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=addFeedback"]
 
 #define deleteMsgAllUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php/?c=user&a=deleteMsgAll"]
@@ -263,6 +261,18 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define  activityTurntableWinUrl   [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=turntableWin"]
 
 #define  systemMobileRightUrl   [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=system&a=mobileRight"]
+// 砸金蛋数据
+#define  activityGoldenEggListUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=goldenEggList"]
+// 砸金蛋日志
+#define  activityGoldenEggLogUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=goldenEggLog"]
+// 砸金蛋
+#define  activityGoldenEggWinUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=goldenEggWin"]
+// 刮刮乐数据
+#define  activityScratchListUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=scratchList"]
+// 刮刮乐日志
+#define  activityScratchLogUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=scratchLog"]
+// 刮
+#define  activityScratchWinUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=scratchWin"]
 
 #define ticketlotteryStatisticsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=lotteryStatistics"]
 

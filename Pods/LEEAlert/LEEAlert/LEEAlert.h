@@ -13,7 +13,7 @@
  *
  *  @author LEE
  *  @copyright    Copyright © 2016 - 2019年 lee. All rights reserved.
- *  @version    V1.3.3
+ *  @version    V1.4.0
  */
 
 #import <Foundation/Foundation.h>
@@ -341,8 +341,20 @@ NS_ASSUME_NONNULL_BEGIN
 /** action高亮标题(attributed) */
 @property (nonatomic , strong ) NSAttributedString *attributedHighlight;
 
+/** action标题行数 默认为: 1 */
+@property (nonatomic , assign ) NSInteger numberOfLines;
+
+/** action标题对齐方式 默认为: NSTextAlignmentLeft */
+@property (nonatomic , assign ) NSTextAlignment textAlignment;
+
 /** action字体 */
 @property (nonatomic , strong ) UIFont *font;
+
+/** action字体大小随宽度变化 默认为: NO */
+@property (nonatomic , assign ) BOOL adjustsFontSizeToFitWidth;
+
+/** action断行模式 默认为: NSLineBreakByTruncatingMiddle */
+@property (nonatomic , assign ) NSLineBreakMode lineBreakMode;
 
 /** action标题颜色 */
 @property (nonatomic , strong ) UIColor *titleColor;

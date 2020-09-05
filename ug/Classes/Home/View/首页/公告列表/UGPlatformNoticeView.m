@@ -11,6 +11,7 @@
 #import "UGNoticeHeaderView.h"
 #import "UGNoticeModel.h"
 #import "SLWebViewController.h"
+#import "PlatWebViewController.h"
 
 @interface UGPlatformNoticeView ()<UITableViewDelegate,UITableViewDataSource, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
@@ -262,8 +263,10 @@ shouldStartLoadWithRequest:(NSURLRequest*)request
         NSString *urlString = [[request URL] absoluteString];
         NSLog(@"urlString = %@",urlString);
         if (urlString.isURL) {
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-             webViewVC.url = urlString;
+            PlatWebViewController *webViewVC = [[PlatWebViewController alloc] init];
+            webViewVC.url = urlString;
+            webViewVC.supVC = _supVC;
+
             [_supVC presentViewController:webViewVC animated:YES completion:^{
                 [self.tableView reloadData];
             }];

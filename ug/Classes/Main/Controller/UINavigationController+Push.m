@@ -418,7 +418,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     switch (linkPosition) {
         case 1: {
             // 资金管理
-            [NavController1 pushViewController:[UGFundsViewController new] animated:true];
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFundsViewController") animated:true];
             break;
         }
         case 2: {
@@ -604,14 +604,14 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 21: {
             //21' => '充值',
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 0;
             [NavController1 pushViewController:fundsVC animated:true];
             break;
         }
         case 22: {
             //22' => '提现',
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 1;
             [NavController1 pushViewController:fundsVC animated:true];
             break;
@@ -656,7 +656,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 28: {
             //21' => '资金明细',
 //            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 4;
             [NavController1 pushViewController:fundsVC animated:YES];
             return true;
@@ -770,13 +770,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_存款: {
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 0;
             [NavController1 pushViewController:fundsVC animated:YES];
             return true;
         }
         case UCI_取款: {
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 1;
             [NavController1 pushViewController:fundsVC animated:YES];
             return true;
@@ -803,9 +803,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case UCI_推荐收益: {
 			
 # if DEBUG
-//			MyPromotionVC *vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateInitialViewController];
-//			[[UINavigationController current] pushViewController:vc animated:true];
-//			return true;
+			MyPromotionVC *vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateInitialViewController];
+			[[UINavigationController current] pushViewController:vc animated:true];
+			return true;
 # endif
             if (UserI.isTest) {
                 [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];

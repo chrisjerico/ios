@@ -11,6 +11,7 @@
 
 
 #define __SiteID__ @"test61f"
+
 #define LocalRnVersion @"1.4.66"
 
 
@@ -86,6 +87,7 @@
                 sb(@"RedEnvelope"),
                 sb(@"LineConversion"),
                 sb(@"BetDetail"),
+                sb(@"Funds"),
                 
                 
         ];
@@ -144,7 +146,8 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-            _SiteId = @"test61f";
+			_SiteId = @"test61f";
+
         }
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
@@ -251,7 +254,8 @@
     _isNoLeftButton = [@"c217" containsString:_SiteId];
     _isSecondUrl = [@"c213" containsString:_SiteId];
     _isWebRightMenu = NO;
-
+    _isHideTV = [@"c085" containsString:_SiteId];
+    _isBottom = [@"c186" containsString:_SiteId];
 }
 
 -(BOOL)showLogo{

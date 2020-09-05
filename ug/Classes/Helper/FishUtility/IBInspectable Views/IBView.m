@@ -10,11 +10,17 @@
 #import "NSMutableAttributedString+Utils.h"
 #import "cc_runtime_property.h"
 
+@interface IBView()
+@property (nonatomic, weak) CAGradientLayer *gradientLayer;//用于渐变色
+
+@end
+
 @implementation IBView
 - (void)layoutSubviews {
     [super layoutSubviews];
     [IBView refreshIBEffect:self];
 }
+
 + (void)refreshIBEffect:(UIView *)view {
     if ([view valueForKey:@"圆角倍数"] || [view valueForKey:@"圆角偏移量"]) {
         CGPoint cornerRadiusRatio = [[view valueForKey:@"圆角倍数"] CGPointValue];
@@ -27,6 +33,22 @@
         view.layer.borderColor   = [[view valueForKey:@"borderColor"] CGColor];
     if ([view valueForKey:@"borderWidth"])
         view.layer.borderWidth   = [[view valueForKey:@"borderWidth"] doubleValue];
+	
+//	IBView * ibView = (IBView*)view;
+//	if (ibView.渐变开始色 && ibView.渐变结束色) {
+//		if (!ibView.gradientLayer) {
+//			CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+//			ibView.gradientLayer = gradientLayer;
+//		}
+//		ibView.gradientLayer.colors = @[(__bridge id)ibView.渐变开始色.CGColor, (__bridge id)ibView.渐变结束色.CGColor];
+//		ibView.gradientLayer.locations = @[@0.0, @1.0];
+//		ibView.gradientLayer.type = kCAGradientLayerAxial;
+//		ibView.gradientLayer.startPoint = CGPointMake(0, .5);
+//		ibView.gradientLayer.endPoint = CGPointMake(1.f, .6);
+//		ibView.gradientLayer.frame = ibView.bounds;
+//		[ibView.layer addSublayer:ibView.gradientLayer];
+////		[ibView.layer insertSublayer:ibView.gradientLayer atIndex:0];
+//	}
 }
 @end
 

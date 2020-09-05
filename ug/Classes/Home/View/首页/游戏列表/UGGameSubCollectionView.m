@@ -85,7 +85,7 @@
 		[self addSubview:imageView];
 		[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.center.equalTo(self);
-			make.width.equalTo(self).with.multipliedBy(0.8);
+			make.width.equalTo(self).with.multipliedBy(0.9);
 			make.height.equalTo(self.mas_width).with.multipliedBy(14/43.6 * 0.8);
 		}];
 		
@@ -107,7 +107,7 @@
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] init];
 		_titleLabel.textColor = UIColor.whiteColor;
-		_titleLabel.font = [UIFont systemFontOfSize:10];
+		_titleLabel.font = [UIFont boldSystemFontOfSize:13];
 		_titleLabel.textAlignment = NSTextAlignmentCenter;
 	}
 	return _titleLabel;

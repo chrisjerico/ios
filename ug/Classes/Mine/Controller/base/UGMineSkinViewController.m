@@ -803,7 +803,7 @@ BOOL isOk = NO;
         [NavController1 pushViewController:[UGFundsViewController new] animated:true];
     } else {
             //存款
-        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
         fundsVC.selectIndex = 0;
         [self.navigationController pushViewController:fundsVC animated:YES];
     }
@@ -815,13 +815,12 @@ BOOL isOk = NO;
         [NavController1 pushViewController:[UGBetRecordViewController new] animated:true];
     } else {
         //提现
-        UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+        UGFundsViewController *fundsVC =  _LoadVC_from_storyboard_(@"UGFundsViewController");
         fundsVC.selectIndex = 1;
         [self.navigationController pushViewController:fundsVC animated:YES];
     }
-    
-    
 }
+
 - (IBAction)conversionAction:(id)sender {
     if (Skin1.isTKL) {
         //在线客服
