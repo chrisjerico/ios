@@ -1950,6 +1950,8 @@
 		D40A295423E16C0200F07146 /* PromotionDepositRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */; };
 		D40A295823E173A900F07146 /* PromotionWithdrawalsRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */; };
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
+		D4122CB72503AC160009E602 /* UGTKLHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */; };
+		D4122CBA2503AC290009E602 /* UGTKLHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4122CB92503AC290009E602 /* UGTKLHomeTitleView.xib */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D420722D2456A8DB008D0749 /* DZPOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = D420722C2456A8DB008D0749 /* DZPOneView.m */; };
 		D42072302456A8E9008D0749 /* DZPOneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D420722F2456A8E9008D0749 /* DZPOneView.xib */; };
@@ -3863,6 +3865,9 @@
 		D40A295623E173A900F07146 /* PromotionWithdrawalsRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionWithdrawalsRecordVC.h; sourceTree = "<group>"; };
 		D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionWithdrawalsRecordVC.m; sourceTree = "<group>"; };
 		D40FA8BE229910EE003E596F /* yuebaoMone.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yuebaoMone.gif; sourceTree = "<group>"; };
+		D4122CB52503AC160009E602 /* UGTKLHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTKLHomeTitleView.h; sourceTree = "<group>"; };
+		D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTKLHomeTitleView.m; sourceTree = "<group>"; };
+		D4122CB92503AC290009E602 /* UGTKLHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTKLHomeTitleView.xib; sourceTree = "<group>"; };
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D420722B2456A8DB008D0749 /* DZPOneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneView.h; sourceTree = "<group>"; };
@@ -5332,6 +5337,9 @@
 				031E162023BE812400B0F813 /* UGHomeTitleView.h */,
 				031E162123BE812400B0F813 /* UGHomeTitleView.m */,
 				031E161F23BE812400B0F813 /* UGHomeTitleView.xib */,
+				D4122CB52503AC160009E602 /* UGTKLHomeTitleView.h */,
+				D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */,
+				D4122CB92503AC290009E602 /* UGTKLHomeTitleView.xib */,
 			);
 			path = "定制导航栏";
 			sourceTree = "<group>";
@@ -9071,6 +9079,7 @@
 				D4B75E19227802600007047C /* LaunchScreen.storyboard in Resources */,
 				03E41B2F23C09055004AB7C6 /* JS_HomePromoteView.xib in Resources */,
 				031E1BC823BE812900B0F813 /* UGFC3DLotteryController.storyboard in Resources */,
+				D4122CBA2503AC290009E602 /* UGTKLHomeTitleView.xib in Resources */,
 				D451A47F23F6669C00CD0E36 /* JYMineCollectionViewCell.xib in Resources */,
 				CF4758D1239636D200966536 /* 150.gif in Resources */,
 				CF475897239636D200966536 /* 133.gif in Resources */,
@@ -10328,6 +10337,7 @@
 				031E1C7C23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
 				031E1C8423BE812A00B0F813 /* UGFunds2microcodeView.m in Sources */,
 				031E1B2C23BE812800B0F813 /* UGChanglongaideModel.m in Sources */,
+				D4122CB72503AC160009E602 /* UGTKLHomeTitleView.m in Sources */,
 				031E1E3223BE812C00B0F813 /* UGPromotion6rowButtonTableViewCell.m in Sources */,
 				031E1AD023BE812800B0F813 /* NSTimer+addition.m in Sources */,
 				031E1B6823BE812800B0F813 /* UGGameSubCollectionView.m in Sources */,

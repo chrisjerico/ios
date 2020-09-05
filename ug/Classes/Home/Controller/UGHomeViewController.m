@@ -64,6 +64,7 @@
 #import "GameCategoryDataModel.h"
 #import "UGNoticePopView.h"
 #import "UGHomeTitleView.h"
+#import "UGTKLHomeTitleView.h"
 #import "UGLotteryRulesView.h"
 #import "STButton.h"
 #import "UGPlatformNoticeView.h"
@@ -127,6 +128,8 @@
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
+@property (nonatomic, strong) UGTKLHomeTitleView *tkltitleView;       /**<   自定义导航条 */
+
 @property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
 @property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
 
@@ -378,7 +381,12 @@
     [self.leftwardMarqueeView start];
     [self.upwardMultiMarqueeView start];
     
-    self.titleView.imgName = SysConf.mobile_logo;
+    if (Skin1.isTKL) {
+          self.tkltitleView.imgName = SysConf.mobile_logo;
+    } else {
+          self.titleView.imgName = SysConf.mobile_logo;
+    }
+  
     if (_lhPrizeView.timer) {
         [_lhPrizeView.timer setFireDate:[NSDate date]];
     }
@@ -419,8 +427,13 @@
         });
         // 登录成功
         SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-            __self.titleView.showLoginView = NO;
-//            SysConf.popup_type = @"1";
+            
+            if (Skin1.isTKL) {
+                 __self.tkltitleView.showLoginView = NO;
+            } else {
+                 __self.titleView.showLoginView = NO;
+            }
+           
             if ( [SysConf.popup_type isEqualToString:@"1"]) {
                 
                 BOOL isLogin = UGLoginIsAuthorized();
@@ -431,21 +444,36 @@
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-            __self.titleView.showLoginView = YES;
+            if (Skin1.isTKL) {
+                __self.tkltitleView.showLoginView = YES;
+            } else {
+                __self.titleView.showLoginView = YES;
+            }
+            
             [__self.bigWheelView setHidden:YES];
         });
         // 登录超时
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
             // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
             if (OBJOnceToken(UGUserModel.currentUser)) {
-                __self.titleView.showLoginView = YES;
+                if (Skin1.isTKL) {
+                     __self.tkltitleView.showLoginView = YES;
+                } else {
+                     __self.titleView.showLoginView = YES;
+                }
+               
             }
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
             [self.contentScrollView.mj_header endRefreshing];
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-            self.titleView.userName = UserI.username;
+            if (Skin1.isTKL) {
+                  __self.tkltitleView.userName = UserI.username;
+            } else {
+                  __self.titleView.userName = UserI.username;
+            }
+          
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -1287,7 +1315,13 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            weakSelf.titleView.userName = user.username;
+            
+            if (Skin1.isTKL) {
+                 weakSelf.tkltitleView.userName = user.username;
+            } else {
+                 weakSelf.titleView.userName = user.username;
+            }
+           
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
         } failure:^(id msg) {
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
@@ -1403,7 +1437,12 @@
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [weakSelf.bottomLabel setText:title];
-            [weakSelf.titleView setImgName:config.mobile_logo];
+            if (Skin1.isTKL) {
+                [weakSelf.tkltitleView setImgName:config.mobile_logo];
+            } else {
+                [weakSelf.titleView setImgName:config.mobile_logo];
+            }
+            
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -2166,30 +2205,67 @@
 
 - (void)setupSubView {
     
-    UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-    self.navigationItem.titleView = titleView;
-    self.titleView = titleView;
-    WeakSelf
-    self.titleView.moreClickBlock = ^{
-        [weakSelf rightBarBtnClick];
-    };
-    self.titleView.tryPlayClickBlock = ^{
-        SANotificationEventPost(UGNotificationTryPlay, nil);
-    };
-    self.titleView.loginClickBlock = ^{
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-    };
-    self.titleView.registerClickBlock = ^{
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
-    };
-    self.titleView.userNameTouchedBlock = ^{
-        [weakSelf.tabBarController setSelectedIndex:4];
-    };
     
-    if (UGLoginIsAuthorized()) {
-        self.titleView.showLoginView = NO;
-        self.titleView.userName = UserI.username;
+    if (Skin1.isTKL) {
+        
+         UGTKLHomeTitleView *titleView = [[UGTKLHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
+         self.navigationItem.titleView = titleView;
+         self.tkltitleView = titleView;
+         WeakSelf
+         self.tkltitleView.moreClickBlock = ^{
+             [weakSelf rightBarBtnClick];
+         };
+         self.tkltitleView.tryPlayClickBlock = ^{
+             SANotificationEventPost(UGNotificationTryPlay, nil);
+         };
+         self.tkltitleView.loginClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+         };
+         self.tkltitleView.registerClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+         };
+         self.tkltitleView.userNameTouchedBlock = ^{
+             [weakSelf.tabBarController setSelectedIndex:4];
+         };
+         
+         
+         
+         
+         if (UGLoginIsAuthorized()) {
+             self.tkltitleView.showLoginView = NO;
+             self.tkltitleView.userName = UserI.username;
+         }
+    } else {
+        
+         UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
+         self.navigationItem.titleView = titleView;
+         self.titleView = titleView;
+         WeakSelf
+         self.titleView.moreClickBlock = ^{
+             [weakSelf rightBarBtnClick];
+         };
+         self.titleView.tryPlayClickBlock = ^{
+             SANotificationEventPost(UGNotificationTryPlay, nil);
+         };
+         self.titleView.loginClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+         };
+         self.titleView.registerClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+         };
+         self.titleView.userNameTouchedBlock = ^{
+             [weakSelf.tabBarController setSelectedIndex:4];
+         };
+         
+         
+         
+         
+         if (UGLoginIsAuthorized()) {
+             self.titleView.showLoginView = NO;
+             self.titleView.userName = UserI.username;
+         }
     }
+ 
     //    self.bannerBgViewHeightConstraint.constant = UGScreenW * 0.5;
     //	self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
     //	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
