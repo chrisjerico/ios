@@ -277,6 +277,12 @@
 			   [subButton(@"直播btn") setBackgroundImage: [UIImage imageNamed:@"kjw_tv"]  forState:(UIControlStateNormal)];
 			   [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
 		   }
+           
+           
+           if (APP.isHideTV) {
+               [subButton(@"直播btn") setBackgroundImage: nil  forState:(UIControlStateNormal)];
+               [subButton(@"直播btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+           }
 		   
 		   if (Skin1.isBlack||Skin1.is23) {
 			   [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];

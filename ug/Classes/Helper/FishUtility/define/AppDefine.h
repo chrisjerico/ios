@@ -92,7 +92,7 @@
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
-
+@property (nonatomic) BOOL isHideTV;                                    /**<  去除显示的小电视*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
