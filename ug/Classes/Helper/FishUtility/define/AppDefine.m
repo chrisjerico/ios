@@ -252,7 +252,7 @@
     _isSecondUrl = [@"c213" containsString:_SiteId];
     _isWebRightMenu = NO;
     _isHideTV = [@"c085" containsString:_SiteId];
-
+    _isBottom = [@"c186" containsString:_SiteId];
 }
 
 #pragma mark - 热更新
