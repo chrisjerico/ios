@@ -48,7 +48,7 @@
 #import "LHJournalDetailVC.h"   // 期刊详情
 #import "UGPostDetailVC.h"      // 帖子详情
 #import "JS_TitleView.h"
-
+#import "TKLPlatformNotiveView.h"
 
 //测试--GPK版
 #import "UGfinancialViewViewController.h"
@@ -165,6 +165,7 @@
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;                   /**<   点击跑马灯弹出的数据 */
 
 @property (nonatomic, strong) UGPlatformNoticeView *notiveView;                     /**<   平台公告View */
+@property (nonatomic, strong) TKLPlatformNotiveView *tklnotiveView;                  /**<   天空蓝平台公告View */
 @property (nonatomic, strong) NSMutableArray <UGNoticeModel *> *popNoticeArray;     /**<   公告数据 */
 
 @property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
@@ -1998,26 +1999,52 @@
         WeakSelf;
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
-            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
-            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
-            [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-            weakSelf.notiveView.dataArray = self.popNoticeArray;
-            weakSelf.notiveView.supVC = weakSelf;
             
-            UIWindow* window = UIApplication.sharedApplication.keyWindow;
-            BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
             
-            if (!isSubView) {
-//                SysConf.popup_type = @"1";
-                if ( [SysConf.popup_type isEqualToString:@"0"]) {
-                    [weakSelf.notiveView show];
-                } else {
-                    BOOL isLogin = UGLoginIsAuthorized();
-                    if (isLogin) {
+            if (Skin1.isTKL) {
+                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+                weakSelf.tklnotiveView = [[TKLPlatformNotiveView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
+                weakSelf.tklnotiveView.dataArray = self.popNoticeArray;
+  
+                
+                UIWindow* window = UIApplication.sharedApplication.keyWindow;
+                BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
+                
+                if (!isSubView) {
+                    //                SysConf.popup_type = @"1";
+                    if ( [SysConf.popup_type isEqualToString:@"0"]) {
+                        [weakSelf.tklnotiveView show];
+                    } else {
+                        BOOL isLogin = UGLoginIsAuthorized();
+                        if (isLogin) {
+                            [weakSelf.tklnotiveView show];
+                        }
+                    }
+                }
+            } else {
+                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+                weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
+                [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+                weakSelf.notiveView.dataArray = self.popNoticeArray;
+                weakSelf.notiveView.supVC = weakSelf;
+                
+                UIWindow* window = UIApplication.sharedApplication.keyWindow;
+                BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
+                
+                if (!isSubView) {
+                    //                SysConf.popup_type = @"1";
+                    if ( [SysConf.popup_type isEqualToString:@"0"]) {
                         [weakSelf.notiveView show];
+                    } else {
+                        BOOL isLogin = UGLoginIsAuthorized();
+                        if (isLogin) {
+                            [weakSelf.notiveView show];
+                        }
                     }
                 }
             }
+            
+            
         });
 }
 

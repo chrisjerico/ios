@@ -35,7 +35,8 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     if (OBJOnceToken(self)) {
         // _titleView
         {
-            BOOL isGPK = Skin1.isGPK;
+            BOOL isGPK = Skin1.isGPK ;
+            BOOL isTKL = Skin1.isTKL;
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
             _titleView.backgroundColor = [UIColor clearColor];
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
@@ -55,6 +56,10 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
                 else if (isGPK) {
                     make.top.left.right.equalTo(self);
                     make.height.equalTo(@140);
+                }
+                else if (isTKL) {
+                    make.top.left.right.equalTo(self);
+                    make.height.equalTo(@90);
                 }
 				else if (self.gameTypeArray.count == 1) {
 					/**
@@ -124,6 +129,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 	NSInteger i = 0;
     for (GameCategoryModel *gcm in gameTypeArray) {
         UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
+ 
         pcv.style = gcm.style;
 		pcv.typeIndex = i;
 		pcv.dataArray = gcm.list;

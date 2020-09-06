@@ -108,6 +108,8 @@
         CGPointMake(x, 0);
     }) animated:true];
     
+    
+    
     GameCategoryModel *model = [_list objectAtIndex:indexPath.row];
     if (self.jygameTypeSelectBlock)
         self.jygameTypeSelectBlock( model.list);

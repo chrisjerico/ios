@@ -1952,6 +1952,10 @@
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
 		D4122CB72503AC160009E602 /* UGTKLHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */; };
 		D4122CBA2503AC290009E602 /* UGTKLHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4122CB92503AC290009E602 /* UGTKLHomeTitleView.xib */; };
+		D4122CC12504B4830009E602 /* TKLPlatformNotiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4122CC02504B4830009E602 /* TKLPlatformNotiveView.m */; };
+		D4122CC32504B4930009E602 /* TKLPlatformNotiveView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4122CC22504B4930009E602 /* TKLPlatformNotiveView.xib */; };
+		D4122CC72504B8240009E602 /* TKLPlatformNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4122CC52504B8240009E602 /* TKLPlatformNoticeCell.m */; };
+		D4122CC82504B8240009E602 /* TKLPlatformNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4122CC62504B8240009E602 /* TKLPlatformNoticeCell.xib */; };
 		D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */ = {isa = PBXBuildFile; fileRef = D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */; };
 		D420722D2456A8DB008D0749 /* DZPOneView.m in Sources */ = {isa = PBXBuildFile; fileRef = D420722C2456A8DB008D0749 /* DZPOneView.m */; };
 		D42072302456A8E9008D0749 /* DZPOneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D420722F2456A8E9008D0749 /* DZPOneView.xib */; };
@@ -3868,6 +3872,12 @@
 		D4122CB52503AC160009E602 /* UGTKLHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTKLHomeTitleView.h; sourceTree = "<group>"; };
 		D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTKLHomeTitleView.m; sourceTree = "<group>"; };
 		D4122CB92503AC290009E602 /* UGTKLHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTKLHomeTitleView.xib; sourceTree = "<group>"; };
+		D4122CBF2504B4830009E602 /* TKLPlatformNotiveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLPlatformNotiveView.h; sourceTree = "<group>"; };
+		D4122CC02504B4830009E602 /* TKLPlatformNotiveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLPlatformNotiveView.m; sourceTree = "<group>"; };
+		D4122CC22504B4930009E602 /* TKLPlatformNotiveView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKLPlatformNotiveView.xib; sourceTree = "<group>"; };
+		D4122CC42504B8240009E602 /* TKLPlatformNoticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLPlatformNoticeCell.h; sourceTree = "<group>"; };
+		D4122CC52504B8240009E602 /* TKLPlatformNoticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLPlatformNoticeCell.m; sourceTree = "<group>"; };
+		D4122CC62504B8240009E602 /* TKLPlatformNoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKLPlatformNoticeCell.xib; sourceTree = "<group>"; };
 		D417EFD92330D24C0024F634 /* AppDelegate+HgBugly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HgBugly.h"; sourceTree = "<group>"; };
 		D417EFDA2330D24C0024F634 /* AppDelegate+HgBugly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HgBugly.m"; sourceTree = "<group>"; };
 		D420722B2456A8DB008D0749 /* DZPOneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DZPOneView.h; sourceTree = "<group>"; };
@@ -5380,6 +5390,7 @@
 		031E163723BE812400B0F813 /* 公告列表 */ = {
 			isa = PBXGroup;
 			children = (
+				D4122CBE2504B4010009E602 /* 天空蓝 */,
 				031E163A23BE812400B0F813 /* UGPlatformNoticeView.h */,
 				031E163823BE812400B0F813 /* UGPlatformNoticeView.m */,
 				031E163B23BE812400B0F813 /* UGPlatformNoticeView.xib */,
@@ -8014,6 +8025,19 @@
 			path = "AppDelegate+";
 			sourceTree = "<group>";
 		};
+		D4122CBE2504B4010009E602 /* 天空蓝 */ = {
+			isa = PBXGroup;
+			children = (
+				D4122CBF2504B4830009E602 /* TKLPlatformNotiveView.h */,
+				D4122CC02504B4830009E602 /* TKLPlatformNotiveView.m */,
+				D4122CC22504B4930009E602 /* TKLPlatformNotiveView.xib */,
+				D4122CC42504B8240009E602 /* TKLPlatformNoticeCell.h */,
+				D4122CC52504B8240009E602 /* TKLPlatformNoticeCell.m */,
+				D4122CC62504B8240009E602 /* TKLPlatformNoticeCell.xib */,
+			);
+			path = "天空蓝";
+			sourceTree = "<group>";
+		};
 		D424785C22DDF5860062A6D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -9147,6 +9171,7 @@
 				CF4758F9239636D200966536 /* 164.gif in Resources */,
 				CF4758E9239636D200966536 /* 76.gif in Resources */,
 				031E19F623BE812700B0F813 /* LoadingStateView.xib in Resources */,
+				D4122CC82504B8240009E602 /* TKLPlatformNoticeCell.xib in Resources */,
 				031E1D4223BE812B00B0F813 /* UGGoogleAuthenticationThirdViewController.xib in Resources */,
 				031E1B1C23BE812800B0F813 /* UGHomeViewController.storyboard in Resources */,
 				CF8E242E23DDBFD80054BF0F /* SimpleLineIcons.ttf in Resources */,
@@ -9357,6 +9382,7 @@
 				031E1E4823BE812C00B0F813 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				031E1B9223BE812900B0F813 /* UGGameListCollectionViewCell.xib in Resources */,
 				CF47588C239636D200966536 /* 137.gif in Resources */,
+				D4122CC32504B4930009E602 /* TKLPlatformNotiveView.xib in Resources */,
 				CF4758F6239636D200966536 /* 71.gif in Resources */,
 				031E1E4623BE812C00B0F813 /* UGSkinSeconCollectionHeadView.xib in Resources */,
 				031E1B7023BE812800B0F813 /* UGPlatformTitleBlackCell.xib in Resources */,
@@ -10349,6 +10375,7 @@
 				CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */,
 				031E1C7823BE812A00B0F813 /* UGdepositModel.m in Sources */,
 				031E1DD423BE812C00B0F813 /* UGrealBetListModel.m in Sources */,
+				D4122CC12504B4830009E602 /* TKLPlatformNotiveView.m in Sources */,
 				031E1C9223BE812A00B0F813 /* UGRechargeTypeCell.m in Sources */,
 				226CA21423D2F21800E4D921 /* BetFormViewModel.m in Sources */,
 				031E1B3C23BE812800B0F813 /* UGhomeAdsModel.m in Sources */,
@@ -10666,6 +10693,7 @@
 				03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */,
 				031E1AC423BE812800B0F813 /* WMDropDownView.m in Sources */,
 				031E1BBE23BE812900B0F813 /* UGfinancialView.m in Sources */,
+				D4122CC72504B8240009E602 /* TKLPlatformNoticeCell.m in Sources */,
 				031E196E23BE812600B0F813 /* UGLHGalleryModel.m in Sources */,
 				031E1D0223BE812A00B0F813 /* NSArray+JSONModel.m in Sources */,
 				031E1DB223BE812B00B0F813 /* UGYuebaoInfoModel.m in Sources */,

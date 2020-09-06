@@ -142,7 +142,7 @@ static NSString *const footerId = @"footerId";
     if (dataArray.count) {
         for (int i=0; i<dataArray.count; i++) {
             [tempArray addObject:dataArray[i]];
-            if (((i + 1) % 4 == 0) || (i == dataArray.count - 1)) {
+            if (((i + 1) % 3 == 0) || (i == dataArray.count - 1)) {
                 [self.sectionedDataArray addObject: [tempArray mutableCopy]];
                 [tempArray removeAllObjects];
             }
@@ -243,16 +243,14 @@ static NSString *const footerId = @"footerId";
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    NSLog(@"numberOfSections = %lu",(unsigned long)self.sectionedDataArray.count);
-    NSLog(@"self.sectionedDataArray = %@",self.sectionedDataArray);
+    NSLog(@"section 数量= %lu",(unsigned long)self.sectionedDataArray.count);
         return self.sectionedDataArray.count;
  
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    NSLog(@"count = %lu",(unsigned long)((NSArray *)self.sectionedDataArray[section]).count);
-     NSLog(@"self.sectionedDataArray[section] = %@",self.sectionedDataArray[section]);
+    NSLog(@"行数 = %lu",(unsigned long)((NSArray *)self.sectionedDataArray[section]).count);
         return ((NSArray *)self.sectionedDataArray[section]).count;
 
 }

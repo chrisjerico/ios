@@ -25,7 +25,7 @@
 }
 
 - (void)setSelected:(BOOL)selected {
-    if (Skin1.isJY) {
+    if (Skin1.isJY || Skin1.isTKL) {
         _titleLabel.textColor = selected ? RGBA(217, 157, 63, 1) : RGBA(117, 117, 117, 1);
         if (selected) {
              [CMCommon setBorderWithView:self top:NO left:NO bottom:YES right:NO borderColor:RGBA(217, 157, 63, 1)  borderWidth:1];
