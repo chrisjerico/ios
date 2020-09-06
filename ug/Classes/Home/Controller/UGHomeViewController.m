@@ -1793,7 +1793,11 @@
                         // 需要在主线程执行的代码
                        weakSelf.bigWheelView.itemData = obj;
                        weakSelf.bigWheelView.hidden = NO;
-                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                        //设成网络图片
+//                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                        [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                               
+                           }] ;
                         
                         [weakSelf.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.left.equalTo(self.view.mas_left).with.offset(10);

@@ -10,12 +10,13 @@
 #import "UGRedEnvelopeModel.h"
 #import "UGhomeAdsModel.h"
 #import "ScratchDataModel.h"
-
+#import "FLAnimatedImageView.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^RedEnvelopeCancelBlock)(void);
 typedef void(^RedEnvelopeRedBlock)(void);
 @interface UGredEnvelopeView : UIView
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgView;
 
 @property (nonatomic, copy) RedEnvelopeCancelBlock cancelClickBlock;
 @property (nonatomic, copy) RedEnvelopeRedBlock redClickBlock;

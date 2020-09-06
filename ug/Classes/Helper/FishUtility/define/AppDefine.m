@@ -240,7 +240,7 @@
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
 
     
-    _betSizeIsBig = [@"c169,c205,c211" containsString:_SiteId];
+    _betSizeIsBig = [@"c169,c205,c211,c048" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
     _addIcons = [@"c190,c134,c085,c193,a002,c006" containsString:_SiteId];
