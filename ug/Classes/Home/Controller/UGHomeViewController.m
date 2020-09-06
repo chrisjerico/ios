@@ -231,6 +231,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *upTitleLabel;                   /**<   下文字View */
 @property (weak, nonatomic) IBOutlet UILabel *downTitleLabel;                /**<   下文字View */
 
+
 @end
 
 @implementation UGHomeViewController
@@ -324,8 +325,9 @@
     // GPK版的UI调整
     BOOL isGPK = Skin1.isGPK;
     // c108站点定制需求
-    if ([@"c108" containsString: APP.SiteId]) {
+    if ([@"c108" containsString: APP.SiteId]||Skin1.isTKL) {
         _rankingView.backgroundColor = UIColor.whiteColor;
+ 
     } else {
         _rankingView.backgroundColor = isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
     }
@@ -1535,10 +1537,17 @@
                     weakSelf.rankLabel.text = @"投注排行榜";
                 }
                 weakSelf.rankingView.hidden = !config.rankingListSwitch;
-                weakSelf.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
+           
                 weakSelf.rankLabel.textColor = Skin1.textColor1;
                 [weakSelf.view layoutIfNeeded];
                 [weakSelf.upwardMultiMarqueeView reloadData];
+                
+                if (Skin1.isTKL) {
+                    weakSelf.bottomView.backgroundColor = [UIColor whiteColor];
+                } else {
+                    weakSelf.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
+                }
+                
             });
             
         } failure:^(id msg) {

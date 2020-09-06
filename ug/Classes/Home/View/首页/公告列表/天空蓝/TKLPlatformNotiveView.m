@@ -52,6 +52,12 @@
     } else {
         [self.mWebView loadHTMLString:[APP htmlStyleString:nm.content] baseURL:nil];
     }
+    
+    if(_dataArray.count>0)
+    {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];//设置选中第一行
+        [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];//实现点击第一行所调用的方法
+    }
 }
 
 

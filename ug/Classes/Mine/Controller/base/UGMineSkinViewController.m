@@ -65,8 +65,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *fristVipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondVipLabel;
 @property (weak, nonatomic) IBOutlet UIView *progressView;  /**<   进度条 */
-@property (weak, nonatomic) IBOutlet UIButton *taskButton;
-@property (weak, nonatomic) IBOutlet UIButton *signButton;
+@property (weak, nonatomic) IBOutlet UIButton *taskButton;  /**<   任务中心 | 转换额度*/
+@property (weak, nonatomic) IBOutlet UIButton *signButton;   /**<   每日签到 | 退出登录*/
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
 @property (weak, nonatomic) IBOutlet UILabel *uidLabel;
@@ -90,9 +90,9 @@
 @implementation UGMineSkinViewController
 
 - (void)skin {
-   
+    
     [self.userInfoView setBackgroundColor:  Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor];
-   
+    
     
     [self.view setBackgroundColor: Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor];
     
@@ -116,7 +116,7 @@
         [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
     }
     FastSubViewCode(self.topupView);
-//    subLabel(@"二维码Label").textColor = Skin1.textColor1;
+    //    subLabel(@"二维码Label").textColor = Skin1.textColor1;
     if (Skin1.isTKL) {
         subView(@"视图4View").hidden = NO;
         subImageView(@"视图1imag").image = [UIImage imageNamed:@"mine_zjmx"] ;
@@ -196,20 +196,20 @@
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
-
+    
     if (!self.title) {
         self.title = @"我的";
     }
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
-//    [self.headImageView addGestureRecognizer:tap];
+    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
+    //    [self.headImageView addGestureRecognizer:tap];
     
     if ([@"c134" containsString:APP.SiteId]) {
         [_headerLabelView setHidden:NO];
     }
-
+    
     
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
@@ -229,7 +229,7 @@
     
     skitType = Skin1.skitType;
     
-
+    
     
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     
@@ -250,11 +250,19 @@
     [self initCollectionView];
     
     
-    if (APP.isC217RWDT) {
-        [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
-    } else {
-        [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
+    if (Skin1.isTKL) {
+        [self.taskButton setImage:[UIImage imageNamed:@"tkl_edzh"] forState:(UIControlStateNormal)];
+        [self.signButton setImage:[UIImage imageNamed:@"tkl_tcdl"] forState:(UIControlStateNormal)];
     }
+    else{
+        if (APP.isC217RWDT) {
+            [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
+        } else {
+            [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
+        }
+    }
+    
+    
 }
 
 - (void)addRightBtn {
@@ -371,7 +379,7 @@ BOOL isOk = NO;
         layout;
         
     });
- 
+    
     self.myCollectionView.backgroundColor =    Skin1.is23 ? RGBA(135, 135, 135, 1) : Skin1.bgColor;
     self.myCollectionView.dataSource = self;
     self.myCollectionView.delegate = self;
@@ -459,7 +467,7 @@ BOOL isOk = NO;
         } else {
             cell.layer.borderColor = Skin1.isGPK ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
         }
-   
+        
         return cell;
     }
     return nil;
@@ -546,7 +554,7 @@ BOOL isOk = NO;
         return size;
     }
     else if(Skin1.isJY){
-         CGSize size = {APP.Width, 50};
+        CGSize size = {APP.Width, 50};
         return size;
     }
     else {
@@ -596,10 +604,10 @@ BOOL isOk = NO;
                 webViewVC.urlStr = urlStr;
                 [NavController1 pushViewController:webViewVC animated:YES];
             } else {
-                 [NavController1 pushVCWithUserCenterItemType:uci.code];
+                [NavController1 pushVCWithUserCenterItemType:uci.code];
             }
         } else {
-             [NavController1 pushVCWithUserCenterItemType:uci.code];
+            [NavController1 pushVCWithUserCenterItemType:uci.code];
         }
     }
 }
@@ -609,18 +617,40 @@ BOOL isOk = NO;
 
 // 任务中心
 - (IBAction)showMissionVC:(id)sender {
-    // 任务中心
-    UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
-    if (vc) {
-        [NavController1 popToViewController:vc animated:false];
+    
+    if (Skin1.isTKL) {
+        //额度转换
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
+        
     } else {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+        // 任务中心
+        UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
+        if (vc) {
+            [NavController1 popToViewController:vc animated:false];
+        } else {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+        }
     }
+    
 }
 
 // 每日签到
 - (IBAction)showSign:(id)sender {
-    [self.navigationController pushViewController:[UGSigInCodeViewController new] animated:YES];
+    
+    if (Skin1.isTKL) {
+        [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                    UGUserModel.currentUser = nil;
+                    SANotificationEventPost(UGNotificationUserLogout, nil);
+                });
+            }
+        }];
+    } else {
+        [self.navigationController pushViewController:[UGSigInCodeViewController new] animated:YES];
+    }
+    
 }
 
 // 刷新余额
@@ -705,18 +735,21 @@ BOOL isOk = NO;
     UGUserModel *user = [UGUserModel currentUser];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     
-    if ([config.missionSwitch isEqualToString:@"0"]) {
-        [self.taskButton setHidden:NO];
-        if ([config.checkinSwitch isEqualToString:@"0"]) {
-            [self.signButton setHidden:YES];
+    
+    if (!Skin1.isTKL) {
+        if ([config.missionSwitch isEqualToString:@"0"]) {
+            [self.taskButton setHidden:NO];
+            if ([config.checkinSwitch isEqualToString:@"0"]) {
+                [self.signButton setHidden:YES];
+            } else {
+                [self.signButton setHidden:NO];
+            }
         } else {
-            [self.signButton setHidden:NO];
+            [self.taskButton setHidden:YES];
+            [self.signButton setHidden:YES];
         }
-    } else {
-        [self.taskButton setHidden:YES];
-        [self.signButton setHidden:YES];
     }
-
+    
     if (flag) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
@@ -752,7 +785,7 @@ BOOL isOk = NO;
     else{
         self.uidLabel.text = @"";
     }
-  
+    
 }
 
 
@@ -781,7 +814,7 @@ BOOL isOk = NO;
 }
 
 - (void)getSystemConfig {
-     WeakSelf;
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
@@ -798,16 +831,12 @@ BOOL isOk = NO;
 
 - (IBAction)depositAction:(id)sender {
     
-    if (Skin1.isTKL) {
-        //资金明细
-        [NavController1 pushViewController:[UGFundsViewController new] animated:true];
-    } else {
-            //存款
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 0;
-        [self.navigationController pushViewController:fundsVC animated:YES];
-    }
-
+    //存款
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+    fundsVC.selectIndex = 0;
+    [self.navigationController pushViewController:fundsVC animated:YES];
+    
+    
 }
 - (IBAction)withdrawalActon:(id)sender {
     if (Skin1.isTKL) {
@@ -834,14 +863,14 @@ BOOL isOk = NO;
 
 // 领取俸禄
 - (IBAction)goSalary:(id)sender {
- 
+    
     [self getMissionBonusList];
 }
 //获取俸禄列表数据
 - (void)getMissionBonusList {
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-
+    
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -853,23 +882,23 @@ BOOL isOk = NO;
             if (![CMCommon arryIsNull:self.historyDataArray]) {
                 [weakSelf showUGSignInHistoryView];
             }
-
-
+            
+            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
-
+    
 }
 
 #pragma mark -- 其他方法
 
 - (void)showUGSignInHistoryView {
-
+    
     UGSalaryListView *notiveView = [[UGSalaryListView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
     notiveView.dataArray = self.historyDataArray;
     [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-
+    
     [notiveView show];
     
 }

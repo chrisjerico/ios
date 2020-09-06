@@ -79,6 +79,9 @@
 			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 				collectionView.backgroundColor = UIColor.clearColor;
 			}
+            if (_isTKL) {
+               collectionView.backgroundColor = RGBA(246, 246, 246, 1);
+            }
  
             collectionView.dataSource = self;
             collectionView.delegate = self;
@@ -92,6 +95,8 @@
                  collectionView.layer.borderWidth = 1;
                  collectionView.layer.borderColor = [UIColor whiteColor].CGColor;
              }
+    
+           
             collectionView;
             
   

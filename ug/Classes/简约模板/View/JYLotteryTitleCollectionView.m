@@ -76,8 +76,6 @@
 
     for (GameCategoryModel *model in _list) {
        NSLog(@"model.game_id = %@===========名字：%@ ",model.iid,model.name);
-      
-
     }
     [self.collectionView reloadData];
 }
@@ -123,5 +121,11 @@
     return CGSizeMake(MAX(APP.Width/_list.count, w),40);
 }
 
+
+-(void)setListDateforRow:(int)row{
+    GameCategoryModel *model = [_list objectAtIndex:row];
+    if (self.jygameTypeSelectBlock)
+        self.jygameTypeSelectBlock( model.list);
+}
 @end
 

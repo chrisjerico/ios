@@ -20,6 +20,7 @@ typedef void(^JYgameTypeSelectBlock)(NSArray *subType);
 @property (nonatomic) NSInteger selectIndex;
 @property (nonatomic, strong)  NSArray <GameCategoryModel *> * list;
 
+-(void)setListDateforRow:(int)row;
 @end
 
 NS_ASSUME_NONNULL_END

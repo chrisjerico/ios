@@ -46,12 +46,18 @@ static NSString *const footerId = @"footerId";
             _tvHeaderView.frame = CGRectMake(0, -header_y, [UIScreen mainScreen].bounds.size.width, header_y);
             _tvHeaderView.list = headArray;
             [self addSubview:_tvHeaderView];
+            
+            if (Skin1.isTKL) {
+                [CMCommon setBorderWithView:_tvHeaderView top:YES left:NO bottom:NO right:NO borderColor:[UIColor whiteColor] borderWidth:2];
+            }
         }
         __weakSelf_(__self);
         _tvHeaderView.jygameTypeSelectBlock = ^(NSArray* subType) {
             [__self jyLoadData: subType];
         };
         [self setContentOffset:CGPointMake(0, -header_y)];
+        
+        [_tvHeaderView setListDateforRow:0];
     }
 }
 
