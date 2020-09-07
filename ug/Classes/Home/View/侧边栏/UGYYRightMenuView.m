@@ -594,7 +594,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_welComeLabel setHidden:YES];
         [_bg2View setHidden:YES];
         self.bgViewHeightConstraint.constant = 244;
-    } else {
+    }
+    else {
         [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
         [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
         [self.bg2View setBackgroundColor:[UIColor whiteColor]];
