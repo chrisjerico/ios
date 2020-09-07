@@ -10,7 +10,8 @@
 
 @interface UGLotteryRulesView ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *sureButton;
+
+
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 
 
@@ -24,10 +25,7 @@
         self.frame = frame;
         self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
-        self.sureButton.layer.cornerRadius = 6;
-        self.sureButton.layer.masksToBounds = YES;
-        
-        [self.sureButton setBackgroundColor:Skin1.navBarBgColor];
+
         self.contentTextView.editable = NO;
 
     }
