@@ -26,6 +26,13 @@
          self.titleLabel.textColor = [UIColor whiteColor];
     }
     
+    [self.allBtn setBackgroundColor:UGBlueColor];
+    [self.bigBtn setBackgroundColor:UGBlueColor];
+    [self.smallBtn setBackgroundColor:UGBlueColor];
+    [self.jiBtn setBackgroundColor:UGBlueColor];
+    [self.ouBtn setBackgroundColor:UGBlueColor];
+    [self.removeBtn setBackgroundColor:UGBlueColor];
+
 
 }
 
