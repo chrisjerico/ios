@@ -1292,10 +1292,11 @@
 //
         }
         else if([@"appdl" containsString:model.categoryType]) {
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
-            webViewVC.webTitle = model.name;
-            [NavController1 pushViewController:webViewVC animated:YES];
+//            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+//            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
+//            webViewVC.webTitle = model.name;
+//            [NavController1 pushViewController:webViewVC animated:YES];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true];
             NSLog(@"APP下载");
         }
    
