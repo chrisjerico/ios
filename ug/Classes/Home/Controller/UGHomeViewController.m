@@ -49,7 +49,7 @@
 #import "UGPostDetailVC.h"      // 帖子详情
 #import "JS_TitleView.h"
 
-
+#import "UGAllNextIssueListModel.h"
 //测试--GPK版
 #import "UGfinancialViewViewController.h"
 
@@ -1262,9 +1262,25 @@
         }
         else if([@"222" containsString:model.categoryType]) {
             UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = @"澳门六合彩";
+            vc.nextIssueModel = m;
             vc.gameId = @"222";
             [NavController1 pushViewController:vc  animated:YES];
+            [[Global getInstanse] setHideTabBar:YES];
             NSLog(@"澳门六合彩");
+        }
+        else if([@"185" containsString:model.categoryType]) {
+            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = @"一分六合彩";
+            vc.nextIssueModel = m;
+            vc.gameId = @"185";
+            [NavController1 pushViewController:vc  animated:YES];
+            [[Global getInstanse] setHideTabBar:YES];
+            NSLog(@"一分六合彩");
+            
+//            https://baidujump.app/eipeyipeyi/jump-239.html 
         }
         else {
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];

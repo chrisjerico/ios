@@ -202,12 +202,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         return false;
     }
     
+   //聊天室数据有
    
-//    if ([CMCommon getRoomMode:model.gameId]) {
+    if ([CMCommon getRoomMode:model.gameId] &&  SysConf.chatRoomAry.count) {
         return [self goLotteryBetAndChatVC:model];
-//    } else {
-//        return [self goUGCommonLotteryController:model vcName:vcName];
-//    }
+    } else {
+        return [self goUGCommonLotteryController:model vcName:vcName];
+    }
    
 }
 
@@ -257,8 +258,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            vc.gotoTabBlock = ^{
                TabBarController1.selectedIndex = 0;
            };
+  
+           vc.hidesBottomBarWhenPushed = [Global getInstanse].hideTabBar;
 
-
+           
            // Push
            if ([UGTabbarController canPushToViewController:vc]) {
                [NavController1 setViewControllers:({
@@ -272,6 +275,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                    vcs;
                }) animated:YES];
            }
+           
+           dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
+
+           dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+               [[Global getInstanse] setHideTabBar:NO];
+           });
+           
            return true;
        }
 }

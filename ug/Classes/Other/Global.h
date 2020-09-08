@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) NSString *LHgid; /**<  解码器游戏id*/
 
+@property (nonatomic) BOOL hideTabBar; /**<  l002 首页跳转彩种隐藏tabbar*/
+
 +(Global *)getInstanse;
 
 @end
