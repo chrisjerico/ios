@@ -459,6 +459,7 @@
             SysConf.defaultChatRoom  = obj;
         }
         
+        [UGSystemConfigModel setCurrentConfig:SysConf];
         __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
            // UI更新代码

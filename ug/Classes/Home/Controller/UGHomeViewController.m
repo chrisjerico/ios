@@ -1228,6 +1228,15 @@
             return;
         }
         
+        else if([@"zxkf" containsString:model.alias]) {
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = model.link;
+            webViewVC.webTitle = model.name;
+            [NavController1 pushViewController:webViewVC animated:YES];
+            NSLog(@"在线客服");
+            return;
+        }
+        
         if ([@"forum,gourmet" containsString:model.categoryType]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
@@ -1267,7 +1276,7 @@
             vc.nextIssueModel = m;
             vc.gameId = @"222";
             [NavController1 pushViewController:vc  animated:YES];
-            [[Global getInstanse] setHideTabBar:YES];
+//            [[Global getInstanse] setHideTabBar:YES];
             NSLog(@"澳门六合彩");
         }
         else if([@"185" containsString:model.categoryType]) {
@@ -1277,11 +1286,19 @@
             vc.nextIssueModel = m;
             vc.gameId = @"185";
             [NavController1 pushViewController:vc  animated:YES];
-            [[Global getInstanse] setHideTabBar:YES];
+//            [[Global getInstanse] setHideTabBar:YES];
             NSLog(@"一分六合彩");
             
-//            https://baidujump.app/eipeyipeyi/jump-239.html 
+//
         }
+        else if([@"appdl" containsString:model.categoryType]) {
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
+            webViewVC.webTitle = model.name;
+            [NavController1 pushViewController:webViewVC animated:YES];
+            NSLog(@"APP下载");
+        }
+   
         else {
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
             if (!ret && model.appLink.length) {
@@ -1630,7 +1647,8 @@
                     SysConf.defaultChatRoom = obj;
                     
                 }
-              
+                
+              [UGSystemConfigModel setCurrentConfig:SysConf];
                 
                 
             } failure:^(id msg) {

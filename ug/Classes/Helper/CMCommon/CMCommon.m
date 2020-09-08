@@ -1323,6 +1323,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 +(BOOL )getRoomMode:(NSString *)gameId{
 
     UGChatRoomModel *obj  = [UGChatRoomModel new];
+
     
     for (UGChatRoomModel *object in SysConf.chatRoomAry) {
         
@@ -1338,7 +1339,6 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     
     return NO;
 }
-
 
 /**
 * 当传入nim 为空时，各个站点默认的彩种
