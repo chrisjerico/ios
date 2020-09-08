@@ -688,7 +688,7 @@
             recordVC.item = banner;
         };
     }
-#pragma mark 砸金蛋+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#pragma mark
 	{//砸金蛋 右上
 		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
 		  [self.view addSubview:_goldEggView];
@@ -1259,6 +1259,12 @@
         else if([@"rwzx" containsString:model.categoryType]) {
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
             NSLog(@"任务中心");
+        }
+        else if([@"222" containsString:model.categoryType]) {
+            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+            vc.gameId = @"222";
+            [NavController1 pushViewController:vc  animated:YES];
+            NSLog(@"澳门六合彩");
         }
         else {
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
