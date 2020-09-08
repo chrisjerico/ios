@@ -74,7 +74,23 @@ static RCTRootView *_rnView;
 + (void)setTabbarHidden:(BOOL)hidden animated:(BOOL)animated {
     if (![NavController1.firstVC isKindOfClass:[ReactNativeVC class]]) return;
 //    if (TabBarController1.tabBar.hidden == hidden) return;
+    static BOOL _hidden = false;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UGNavigationController cc_hookSelector:@selector(popViewControllerAnimated:) withOptions:AspectPositionBefore usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            UGNavigationController *nav = ai.instance;
+            if (nav == NavController1 &&
+                nav.viewControllers.count == 2 &&
+                [nav.viewControllers.firstObject isKindOfClass:[ReactNativeVC class]] &&
+                _rnView.superview == nav.viewControllers.firstObject.view &&
+                _hidden) {
+                TabBarController1.tabBar.alpha = 0;
+            }
+        } error:nil];
+    });
+    _hidden = hidden;
     
+    TabBarController1.tabBar.alpha = 1;
     if (!animated) {
         TabBarController1.tabBar.hidden = hidden;
     } else {
