@@ -627,6 +627,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         
         NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
         [self goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:self.nextIssueModel  gameType:self.nextIssueModel.gameId selCode:selCode];
+
         
     });
 }
