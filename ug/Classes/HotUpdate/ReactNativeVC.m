@@ -41,13 +41,6 @@
 
 static RCTRootView *_rnView;
 
-- (void)dealloc {
-    RnPageModel *rpm = _rpm;
-    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-        [ReactNativeHelper removeVC:rpm.rnName];
-    }];
-}
-
 + (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
     if (rpm.vcName2.length) {
         UIViewController *vc = _LoadVC_from_storyboard_(rpm.vcName2);
