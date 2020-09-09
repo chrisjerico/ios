@@ -80,6 +80,9 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
         NSString *value = kvs[key];
         value = [value stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
         value = [value stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        if ([key containsString:@"%s"]) {
+            value = [value stringByReplacingOccurrencesOfString:@"% s" withString:@"%s"];
+        }
         temp[key] = value;
     }
     kvs = [temp copy];
