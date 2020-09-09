@@ -91,6 +91,7 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 }
 
 + (void)setNoTranslate:(id)obj {
+    return; // 9月9日，改为后台传的文本也要翻译
     if ([obj isKindOfClass:[NSString class]]) {
         ((NSString *)obj).fromNetwork = true;
     } else if ([obj isKindOfClass:[NSArray class]]) {
