@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSAttributedString (Utils)
-- (NSAttributedString *)substringWithSize:(CGSize)size;
+- (NSAttributedString *)substringWithFrameSize:(CGSize)size;
 @end
 
 

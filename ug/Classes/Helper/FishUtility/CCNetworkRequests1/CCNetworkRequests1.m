@@ -36,6 +36,11 @@
     //    NSLog(@"error = %@", sm.error);
     //    NSLog(@"response = %@", sm.responseObject);
     
+    {
+        [LanguageHelper setNoTranslate:sm.error.domain];
+        [LanguageHelper setNoTranslate:sm.responseObject];
+    }
+    
     if (sm.error) {
         if ([sm.responseObject[@"data"] isKindOfClass:[NSString class]]) {
             NSMutableDictionary *dict = [sm.responseObject mutableCopy];

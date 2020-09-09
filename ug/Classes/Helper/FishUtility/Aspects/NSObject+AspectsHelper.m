@@ -83,6 +83,20 @@ static NSMutableArray *__hms = nil;
                 [obj performSelectorWithArgs:HookSEL(cls, NSStringFromSelector(sel)), image, state];
             } error:nil];
         }
+        {
+            Class cls = [UILabel class];
+            SEL sel = @selector(setText:);
+            [cls jr_swizzleMethod:sel withBlock:^(id obj, UIColor *color) {
+                [obj performSelectorWithArgs:HookSEL(cls, NSStringFromSelector(sel)), color];
+            } error:nil];
+        }
+        {
+            Class cls = [UINavigationItem class];
+            SEL sel = @selector(setTitle:);
+            [cls jr_swizzleMethod:sel withBlock:^(id obj, UIColor *color) {
+                [obj performSelectorWithArgs:HookSEL(cls, NSStringFromSelector(sel)), color];
+            } error:nil];
+        }
         
         __dict = @{}.mutableCopy;
     });

@@ -49,7 +49,7 @@
     [super setSelected:selected animated:animated];
     
     self.bottomLine.hidden = !selected;
-    self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16];
+    self.titleLabel.font = [_titleLabel.text fontWithFrameSize:CGSizeOffset(self.size, CGSizeMake(-20, -5)) maxFont:selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16]];
     self.layer.borderWidth = selected * APP.borderWidthTimes;
     
     if (Skin1.isBlack||Skin1.is23) {
