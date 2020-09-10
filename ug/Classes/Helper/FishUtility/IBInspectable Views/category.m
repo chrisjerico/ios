@@ -126,10 +126,10 @@ _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
             NSRange range = [aInfo.arguments[1] rangeValue];
             NSString *text = aInfo.arguments[2];
             
+            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
             for (NSString *c in tf.额外允许的字符) {
                 text = [text stringByReplacingOccurrencesOfString:c withString:@""];
             }
-            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
             
             BOOL ret = true;
             if (tf.仅数字)
@@ -194,10 +194,10 @@ _CCRuntimeGetterDoubleValue(BOOL, 内容紧贴边框)
             NSRange range = [aInfo.arguments[1] rangeValue];
             NSString *text = aInfo.arguments[2];
             
+            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
             for (NSString *c in tf.额外允许的字符) {
                 text = [text stringByReplacingOccurrencesOfString:c withString:@""];
             }
-            text = [tf.text stringByReplacingCharactersInRange:range withString:text];
             
             BOOL ret = true;
             if (tf.仅数字)
