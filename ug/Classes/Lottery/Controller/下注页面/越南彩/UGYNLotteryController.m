@@ -805,17 +805,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         [weakSelf goYNBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:weakSelf.nextIssueModel  gameType:weakSelf.nextIssueModel.gameId selCode:selCode isHide:isHide ];
     });
 }
-#pragma mark - 输入号码下注方法
--(void)judgeInputBetDateArray:(NSMutableArray *__strong *) array {
-    NSArray  *arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
-    if (arr.count == 0 ) {
-        [self  setLabelDataCount:0];
-        return;
-    }
 
-    [self inputBetActionModel :arr type:self.inputView.code   array : array ];
-     
-}
 
 -(void)inputBetActionModel:(NSArray  *)arr   type:(TipsType )code  array :(NSMutableArray *__strong *) marray {
     
@@ -2131,6 +2121,19 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
 
     [self inputActionModel :arr type:self.inputView.code ];
+     
+}
+
+#pragma mark - 输入号码下注方法
+-(void)judgeInputBetDateArray:(NSMutableArray *__strong *) array {
+    
+    NSArray  *arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+    if (arr.count == 0 ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
+
+    [self inputBetActionModel :arr type:self.inputView.code   array : array ];
      
 }
 
