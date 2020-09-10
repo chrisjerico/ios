@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YNBetCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) UGGameBetModel *item;
+@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @end
 
 NS_ASSUME_NONNULL_END

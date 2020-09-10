@@ -19,9 +19,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.titleLabel.layer.cornerRadius= 3;
-    self.titleLabel.layer.masksToBounds = YES;
-    self.titleLabel.backgroundColor = UGBlueColor;
+//    self.layer.cornerRadius= 3;
+//    self.layer.masksToBounds = YES;
+//    self.backgroundColor = UGBlueColor;
 }
 
 - (void)setItem:(UGGameBetModel *)item {

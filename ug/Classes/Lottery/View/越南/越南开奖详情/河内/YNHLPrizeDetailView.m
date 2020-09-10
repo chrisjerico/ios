@@ -7,6 +7,7 @@
 //
 
 #import "YNHLPrizeDetailView.h"
+#import "CMLabelCommon.h"
 @interface YNHLPrizeDetailView (){
      UIScrollView* maskView;
 }
@@ -24,6 +25,9 @@
         
         float h = 0;
         h = UGScerrnH - 300;
+        if (h < 600) {
+            h = 600;
+        }
  
         self.size = CGSizeMake(UGScreenW - 50, h);
         self.center = CGPointMake(UGScreenW / 2 , UGScerrnH / 2);
@@ -95,6 +99,16 @@
         [subLabel(@"t9label")setTextColor:[UIColor blackColor]];
         [self.cancelButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     }
+    
+        [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"一等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"二等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"三等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"四等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"五等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"六等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"七等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"八等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
 
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
@@ -154,5 +168,9 @@
     [subLabel(@"t7label")setText:_nextIssueModel.t7];
     [subLabel(@"t8label")setText:_nextIssueModel.t8];
     [subLabel(@"t9label")setText:_nextIssueModel.t9];
+    
+
+    
+    
 }
 @end

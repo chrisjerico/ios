@@ -24,6 +24,7 @@
 #import "BetDetailViewController.h"
 #import "DZPModel.h"
 #import "UGPopViewController.h"
+#import "CMLabelCommon.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -210,7 +211,7 @@ static LogVC *_logVC = nil;
     
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"数据转换"];
+        [titles addObject:@"获取这个字符串中的所有xxx的所在的inde"];
         [titles addObject:@"下注明细"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
@@ -220,19 +221,11 @@ static LogVC *_logVC = nil;
             
         }];
         
-        [ac setActionAtTitle:@"数据转换" handler:^(UIAlertAction *aa) {
-          NSArray  *array = [@"00;99;02" componentsSeparatedByString:@";"];//分隔符逗号
-          
-          NSMutableArray* intArray = [NSMutableArray new];
-          if (array.count) {
-              for (NSString *obj in array) {
-                  NSLog(@"obj = %@",obj);
-                  int objInt = [obj intValue];
-                  [intArray addObject: [NSNumber numberWithInt:objInt]];
-              }
-          }
+        [ac setActionAtTitle:@"获取这个字符串中的所有xxx的所在的inde" handler:^(UIAlertAction *aa) {
+            NSString *str = @"66690-1213-678687-1212312-12312-66690-12113-6786871-12123127-123129";
+           NSMutableArray *arrayRanges = [CMLabelCommon getRangeStr:str findText:@"-"];
             
-            NSLog(@"intArray = %@",intArray);
+            NSLog(@"arrayRanges = %@",arrayRanges);
         }];
         
         

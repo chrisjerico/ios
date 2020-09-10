@@ -55,6 +55,10 @@ static NSString *ID=@"YNBetCollectionViewCell";
         
         float h = 0;
         h = UGScerrnH - 300;
+        
+        if (h<600) {
+            h =600;
+        }
  
         self.size = CGSizeMake(UGScreenW - 50, h);
         self.center = CGPointMake(UGScreenW / 2 , UGScerrnH / 2);
@@ -350,6 +354,7 @@ static NSString *ID=@"YNBetCollectionViewCell";
     YNBetCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     UGGameBetModel *model = [_dataArray objectAtIndex:indexPath.row];
     cell.item = model;
+    cell.numberLabel.text = [NSString stringWithFormat:@"%ld.",indexPath.row +1];
     return cell;
 }
 
