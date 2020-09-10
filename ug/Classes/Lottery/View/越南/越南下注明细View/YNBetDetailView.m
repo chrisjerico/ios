@@ -364,7 +364,7 @@ static NSString *ID=@"YNBetCollectionViewCell";
 
 //返回每个item大小
 - (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return  CGSizeMake((self.frame.size.width-30) / 5, 26);
+    return  CGSizeMake((self.frame.size.width-30)/3, 26);
 }
 
 /** 头视图Size */
@@ -375,12 +375,12 @@ static NSString *ID=@"YNBetCollectionViewCell";
 /** 列间距*/
 -(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
 
-    return 6;
+    return 5;
 }
 /** 行间距*/
 -(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {
 
-    return 6;
+    return 5;
 }
 /** 边缘之间的间距*/
 -(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout {

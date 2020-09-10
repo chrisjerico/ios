@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qSx-8U-nPd">
-                        <rect key="frame" x="35" y="0.0" width="108" height="50"/>
+                        <rect key="frame" x="48" y="0.0" width="95" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="RKd-FB-lrZ"/>
                         </constraints>
@@ -26,11 +26,11 @@
                         <color key="textColor" red="0.37063515190000001" green="0.57926970720000004" blue="0.89804404969999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jER-oJ-bfm">
-                        <rect key="frame" x="0.0" y="0.0" width="32" height="50"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jER-oJ-bfm">
+                        <rect key="frame" x="0.0" y="0.0" width="45" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="GaS-jH-oav"/>
-                            <constraint firstAttribute="width" constant="32" id="fek-3I-hGo"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="fek-3I-hGo"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.81233280900000004" green="0.1812030375" blue="0.39998859170000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
