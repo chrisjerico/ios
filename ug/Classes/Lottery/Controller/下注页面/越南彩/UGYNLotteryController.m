@@ -441,6 +441,8 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.amountTextF.delegate = self;
     self.amountTextF.keyboardType = UIKeyboardTypeNumberPad;
     
+    [self.amountTextF addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+    
     self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.bottomCloseView.hidden = YES;
     
@@ -2213,7 +2215,14 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
     return YES;
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (textField == self.amountTextF)
+    {
+        NSLog(@"textField.text= %@",textField);
+    }
+    return YES;
+}
 #pragma mark - YBPopupMenuDelegate
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
@@ -3084,6 +3093,25 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self.selectLabel setTextColor:[UIColor whiteColor]];
     [CMLabelCommon setRichNumberWithLabel:self.selectLabel Color:RGBA(247, 211, 72, 1) FontSize:16];
     
+}
+
+#pragma mark -textfield添加事件，只要值改变就调用此函数
+-(void)changedTextField:(UITextField *)textField
+{
+    int multip = textField.text.intValue;
+    if (multip > 0  ) {
+       int count =   self.amount * multip;
+        NSString *amountStr;
+        if ([UGSystemConfigModel.currentConfig.currency isEqualToString:@"VND"]) {
+            amountStr = [NSString stringWithFormat:@"金额:%d 越南盾",count];
+        }
+        else {
+            amountStr = [NSString stringWithFormat:@"金额:%d 元",count];
+        }
+        
+        self.amountLabel.text = amountStr;
+        [CMLabelCommon setRichNumberWithLabel:self.amountLabel Color:RGBA(247, 211, 72, 1) FontSize:16];
+     }
 }
 
 @end
