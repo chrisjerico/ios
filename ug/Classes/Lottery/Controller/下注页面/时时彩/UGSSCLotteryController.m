@@ -608,9 +608,9 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
         else if ([@"定位胆" isEqualToString:type.name]) {
             for (UGGameplayModel *model in self.gameDataArray) {
                 
-                if (!model.select) {
-                    continue;
-                }
+//                if (!model.select) {
+//                    continue;
+//                }
                 for (UGGameplaySectionModel *type in model.list) {
                     UGGameplaySectionModel *sectionModel = type.ezdwlist[0];
                     for (UGGameBetModel *game in sectionModel.list) {
