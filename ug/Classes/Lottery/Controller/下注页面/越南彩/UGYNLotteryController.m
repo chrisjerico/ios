@@ -711,6 +711,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     
     dispatch_async(dispatch_get_main_queue(), ^{
         // UI更新代码
+        [self.inputView.inputTextView setText:@""];
         [self.amountTextF resignFirstResponder];
         [self updateSelectLabelWithCount:0];
         [self setAmountLableCount :0];
@@ -2218,14 +2219,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
     return YES;
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (textField == self.amountTextF)
-    {
-        NSLog(@"textField.text= %@",textField);
-    }
-    return YES;
-}
+
 #pragma mark - YBPopupMenuDelegate
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
