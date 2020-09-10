@@ -2378,7 +2378,14 @@ static NSString *footViewID = @"YNCollectionFootView";
             [self resetClick:nil];
             [self.yncontentView bringSubviewToFront:self.betCollectionView];
             self.ynSelectStr = @"选择号码";
-            self.inputView.code = Tip_百;
+            
+            if ([code isEqualToString:@"BL"]) {
+                  self.inputView.code = Tip_十;
+            }
+            else{
+                  self.inputView.code = Tip_百;
+            }
+          
         }
         else if([code isEqualToString:@"DDQX"]||[code isEqualToString:@"CQ"]){
             [self.ynsegmentView.segment setSectionTitles:@[@"输入号码",@"快速选择"]];
