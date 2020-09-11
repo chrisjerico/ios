@@ -740,7 +740,7 @@
 
     WeakSelf
     betDetailView.betClickBlock = ^{
-        [weakSelf handleData];
+//        [weakSelf handleData];
         [weakSelf resetClick:nil];
     };
     betDetailView.cancelBlock = ^{

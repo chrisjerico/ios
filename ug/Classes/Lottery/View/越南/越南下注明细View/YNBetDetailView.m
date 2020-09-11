@@ -297,14 +297,10 @@ static NSString *ID=@"YNBetCollectionViewCell";
                     [weakSelf submitBet:params];
                 }];
             }
-            else {
-                
-                [weakSelf hiddenSelf];
-                 [SVProgressHUD showSuccessWithStatus:model.msg];
-            }
-            
-            SANotificationEventPost(UGNotificationGetUserInfo, nil);
+           
             [weakSelf hiddenSelf];
+            [SVProgressHUD showSuccessWithStatus:model.msg];
+            SANotificationEventPost(UGNotificationGetUserInfo, nil);
             if (weakSelf.betClickBlock) {
                 weakSelf.betClickBlock();
             }
