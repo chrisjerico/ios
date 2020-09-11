@@ -282,7 +282,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入注数" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXf-jf-UeE" userLabel="下注倍数">
-                                        <rect key="frame" x="55" y="50" width="149" height="36"/>
+                                        <rect key="frame" x="55" y="50" width="208" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="dVG-w8-8zF"/>
                                         </constraints>
@@ -296,11 +296,11 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tch-E1-wNY" userLabel="筹码" customClass="IBButton">
-                                        <rect key="frame" x="214" y="50" width="60" height="36"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tch-E1-wNY" userLabel="筹码" customClass="IBButton">
+                                        <rect key="frame" x="273" y="50" width="1" height="36"/>
                                         <color key="backgroundColor" red="0.40180855989999997" green="0.67699187989999998" blue="0.35686457160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="TEK-yg-x1M"/>
+                                            <constraint firstAttribute="width" constant="1" id="TEK-yg-x1M"/>
                                             <constraint firstAttribute="height" constant="36" id="cEi-Lc-tEw"/>
                                         </constraints>
                                         <state key="normal" title="筹码">

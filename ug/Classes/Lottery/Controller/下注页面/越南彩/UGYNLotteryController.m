@@ -730,7 +730,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self.amountTextF resignFirstResponder];
     ck_parameters(^{
         ck_parameter_non_equal(self.selectLabel.text, @"已选中 0 注", @"请选择玩法");
-        ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
+//        ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
@@ -797,8 +797,10 @@ static NSString *footViewID = @"YNCollectionFootView";
             
            
         }
+        
+        
         weakSelf.nextIssueModel.defaultAdds = weakSelf.defaultAdds;
-        weakSelf.nextIssueModel.multipleStr = weakSelf.amountTextF.text;
+        weakSelf.nextIssueModel.multipleStr = [weakSelf getMultipleStr];
         weakSelf.nextIssueModel.totalAmountStr = [NSString stringWithFormat:@"%d",weakSelf.amount];
         weakSelf.nextIssueModel.defname = bet.name;
         
@@ -864,7 +866,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         bet.name = [NSString stringWithFormat:@"%@",[intArray objectAtIndex:i]];
         bet.betInfo = bet.name;
         bet.title = bet.alias;
-        bet.betMultiple = self.amountTextF.text;
+        bet.betMultiple = [self getMultipleStr];
         bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
   
         [*marray addObject:bet];
@@ -1284,7 +1286,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             bet.name = name;
             bet.betInfo = name;
             bet.title = bet.alias;
-            bet.betMultiple = self.amountTextF.text;
+            bet.betMultiple = [self getMultipleStr];
             bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
             NSLog(@"self.defaultGold = %d",self.defaultGold);
             NSLog(@"money = %@",bet.money);
@@ -1345,7 +1347,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 bet.name = name;
                 bet.betInfo = name;
                 bet.title = bet.alias;
-                bet.betMultiple = self.amountTextF.text;
+                bet.betMultiple = [self getMultipleStr];
                 bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
                 [array addObject:bet];
                 
@@ -1418,7 +1420,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                     bet.name = name;
                     bet.title = bet.alias;
                     bet.betInfo = name;
-                    bet.betMultiple = self.amountTextF.text;
+                    bet.betMultiple = [self getMultipleStr];
                     bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
                     [array addObject:bet];
                 }
@@ -1503,7 +1505,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                         bet.name = name;
                         bet.title = bet.alias;
                         bet.betInfo = name;
-                        bet.betMultiple = self.amountTextF.text;
+                        bet.betMultiple = [self getMultipleStr];
                         bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
                         [array addObject:bet];
                     }
@@ -1582,7 +1584,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
             bet.betInfo = bet.name;
             bet.title = bet.alias;
-            bet.betMultiple = self.amountTextF.text;
+            bet.betMultiple = [self getMultipleStr];
             bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:model.code]] ;
             [array addObject:bet];
             
@@ -1632,7 +1634,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
             bet.betInfo = bet.name;
             bet.title = bet.alias;
-            bet.betMultiple = self.amountTextF.text;
+            bet.betMultiple = [self getMultipleStr];
             bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:model.code]] ;
             [array addObject:bet];
         }
@@ -2186,6 +2188,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     UGGameBetModel *betM = [group.list objectAtIndex:self.segmentIndex];
     
     NSMutableArray *array = [NSMutableArray array];
+
     
     for (int i = 0; i < intArray.count; i++) {
         UGGameBetModel *bet = [[UGGameBetModel alloc] init];
@@ -2193,7 +2196,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         bet.name = [NSString stringWithFormat:@"%@",[intArray objectAtIndex:i]];
         bet.betInfo = bet.name;
         bet.title = bet.alias;
-        bet.betMultiple = self.amountTextF.text;
+        bet.betMultiple = [self getMultipleStr];
         bet.money = [NSString stringWithFormat:@"%d",self.defaultGold] ;
         [array addObject:bet];
         
@@ -2208,6 +2211,20 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSLog(@"count = %ld",(long)count);
         [self  setLabelDataCount:count];
     }
+}
+
+//设置下注为空
+-(NSString *)getMultipleStr{
+    NSString *intMultiple = @"1";
+    
+    if (![CMCommon stringIsNull:self.amountTextF.text]) {
+        
+        int intStr = [self.amountTextF.text intValue];
+        if (intStr > 0) {
+            intMultiple = self.amountTextF.text;
+        }
+    }
+    return intMultiple;
 }
 
 #pragma mark - textField delegate
