@@ -483,6 +483,13 @@
             
             [weakSelf showSliderAction];
             
+            
+            if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] ||
+                [weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
+                 [subButton(@"追号btn") setHidden:YES];
+                 [self showSlider:NO];
+            }
+            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];

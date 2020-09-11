@@ -14,6 +14,12 @@ typedef NS_ENUM(NSInteger, TipsType) {
     Tip_十        = 1,
     Tip_百        = 2,
     Tip_千        = 3,
+    Tip_偏斜2      = 4,
+    Tip_偏斜3      = 5,
+    Tip_偏斜4      = 6,
+    Tip_串烧4      = 7,
+    Tip_串烧8      = 8,
+    Tip_串烧10     = 9,
 
 };
 
