@@ -122,7 +122,9 @@
 //===============================================输入号码
 @property (nonatomic, strong) NSString *  inputStr;  //输入字符。
 @property (nonatomic, strong) NSMutableArray  * mintArray;//输入字符 数组
-
+@property (nonatomic, assign) int  px2count;//偏斜2总注数。
+@property (nonatomic, assign) int  px3count;//偏斜3总注数。
+@property (nonatomic, assign) int  px4count;//偏斜4总注数。
 
 @end
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
@@ -482,6 +484,9 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self getNextIssueData];
     
 #pragma mark - 进入时默认
+    self.px2count = 0;
+    self.px3count = 0;
+    self.px4count = 0;
     self.inputView.code = Tip_十;
     [self  setDefaultData:@"PIHAO2"];
     [self  setDefaultOddsData:@"98"];
@@ -2058,13 +2063,44 @@ static NSString *footViewID = @"YNCollectionFootView";
 {
     if (textView.markedTextRange == nil) {
         self.inputStr  = textView.text;
-        [self judgeInputDate:textView.text];
+         NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+        if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
+            ||[selcode isEqualToString:@"PIANXIE4"]){
+            
+            [self judgeForInputDate:textView.text];
+        } else {
+             [self judgeInputDate:textView.text];
+        }
+      
         
     }
 }
+  -(void)judgeForInputDate:(NSString *)str{
+      NSArray  *arr = [self.inputStr componentsSeparatedByString:@"|"];//分隔符逗号
+      if (arr.count == 0 ) {
+          [self judgeInputDate:str];
+          return;
+      }
+      
+      for (NSString *objStr in arr) {
+           [self judgeInputDate:objStr];
+      }
+      NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+      if ([selcode isEqualToString:@"PIANXIE2"]) {
+          [self  setLabelDataCount:_px2count];
+      }
+      else if ([selcode isEqualToString:@"PIANXIE3"]){
+          [self  setLabelDataCount:_px3count];
+      }
+      else {
+          [self  setLabelDataCount:_px4count];
+      }
+      
+  }
+
 #pragma mark - 输入下注
 -(void)judgeInputDate:(NSString *)str{
-    NSArray  *arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+    NSArray  *arr = [str componentsSeparatedByString:@";"];//分隔符逗号
     if (arr.count == 0 ) {
         [self  setLabelDataCount:0];
         return;
@@ -2072,11 +2108,15 @@ static NSString *footViewID = @"YNCollectionFootView";
     
     NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
     
-    if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
-        ||[selcode isEqualToString:@"PIANXIE4"]||[selcode isEqualToString:@"CHUANSHAO4"]
+    if ([selcode isEqualToString:@"CHUANSHAO4"]
         ||[selcode isEqualToString:@"CHUANSHAO8"]||[selcode isEqualToString:@"CHUANSHAO10"]){
         [self specialInputActionModel :arr type:self.inputView.code ];
-    } else {
+    }
+    else if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
+    ||[selcode isEqualToString:@"PIANXIE4"]){
+        [self pxSpecialInputActionModel :arr type:self.inputView.code ];
+    }
+    else {
         [self inputActionModel :arr type:self.inputView.code ];
     }
     
@@ -2094,12 +2134,16 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
     
     NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
-    
-    if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
-        ||[selcode isEqualToString:@"PIANXIE4"]||[selcode isEqualToString:@"CHUANSHAO4"]
+
+    if ([selcode isEqualToString:@"CHUANSHAO4"]
         ||[selcode isEqualToString:@"CHUANSHAO8"]||[selcode isEqualToString:@"CHUANSHAO10"]){
         [self specialInputBetActionModel :arr type:self.inputView.code   array : array ];
-    } else {
+    }
+    else if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
+    ||[selcode isEqualToString:@"PIANXIE4"]){
+        [self pxSpecialInputBetActionModel :arr type:self.inputView.code   array : array ];
+    }
+    else {
         [self inputBetActionModel :arr type:self.inputView.code   array : array ];
     }
 
@@ -2115,7 +2159,6 @@ static NSString *footViewID = @"YNCollectionFootView";
         return  YES;
     }
 }
-
 //数组中是否有空
 -(BOOL)isNullArray:(NSArray  *)arr{
     BOOL isNull = NO;
@@ -2127,6 +2170,18 @@ static NSString *footViewID = @"YNCollectionFootView";
         }
     }
     return isNull;
+}
+//数组中是否有大于99
+-(BOOL)isbigArray:(NSArray  *)arr{
+    BOOL isBig = NO;
+    
+    for (NSString *str in arr) {
+        if ([str intValue] > 99) {
+            isBig = YES;
+            break;
+        }
+    }
+    return isBig;
 }
 //
 -(void)inputActionModel:(NSArray  *)arr   type:(TipsType )code{
@@ -2293,15 +2348,29 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.nextIssueModel.defnameStr = nameStr;
 }
 
-
-//特殊玩法    //如果是偏斜2 长度只能为2  是1注
--(void)specialInputActionModel:(NSArray  *)arr   type:(TipsType )code{
+//特殊玩法 偏斜
+-(void)pxSpecialInputActionModel:(NSArray  *)arr   type:(TipsType )code{
     
     if ([self isRepeatArray:arr] ) {
+        _px2count = 0;
+        _px3count = 0;
+        _px4count = 0;
         return;
     }
-    
-    NSMutableArray* intArray = [NSMutableArray new];
+    if ([self isNullArray:arr] ) {
+        _px2count = 0;
+        _px3count = 0;
+        _px4count = 0;
+        return;
+    }
+    if ([self isbigArray:arr] ) {
+        _px2count = 0;
+        _px3count = 0;
+        _px4count = 0;
+        return;
+    }
+    int count = 0;
+
     NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
     if (arr.count) {
         {
@@ -2309,17 +2378,19 @@ static NSString *footViewID = @"YNCollectionFootView";
         if ([selcode isEqualToString:@"PIANXIE2"]){
             
             if (arr.count != 2) {
-                [self  setLabelDataCount:0];
+               _px2count = 0;
                 return;
                 
             } else {
                 
-                if (![CMCommon stringIsNull:[arr objectAtIndex:0]] && ![CMCommon stringIsNull:[arr objectAtIndex:1]]) {
+                if (![CMCommon stringIsNull:[arr objectAtIndex:0]] && ![CMCommon stringIsNull:[arr objectAtIndex:1]]
+                    && [[arr objectAtIndex:0] intValue] < 100 && [[arr objectAtIndex:1] intValue] < 100) {
                     
-                    [self  setLabelDataCount:1];
+                    count  = 1;
+                    _px2count = _px2count + count;
                 }
                 else{
-                    [self  setLabelDataCount:0];
+                    _px2count = 0;
                     return;
                 }
             }
@@ -2328,18 +2399,20 @@ static NSString *footViewID = @"YNCollectionFootView";
         if ([selcode isEqualToString:@"PIANXIE3"]){
             
             if (arr.count != 3) {
-                [self  setLabelDataCount:0];
+                _px3count = 0;
                 return;
                 
             } else {
                 
                 if (![CMCommon stringIsNull:[arr objectAtIndex:0]] && ![CMCommon stringIsNull:[arr objectAtIndex:1]]
-                    && ![CMCommon stringIsNull:[arr objectAtIndex:2]]) {
-                    
-                    [self  setLabelDataCount:1];
+                    && ![CMCommon stringIsNull:[arr objectAtIndex:2]]
+                    && [[arr objectAtIndex:0] intValue] < 100 && [[arr objectAtIndex:1] intValue] < 100
+                    && [[arr objectAtIndex:2] intValue] < 100){
+                    count  = 1;
+                    _px3count = _px3count + count;
                 }
                 else{
-                    [self  setLabelDataCount:0];
+                    _px3count = 0;
                     return;
                 }
             }
@@ -2348,22 +2421,55 @@ static NSString *footViewID = @"YNCollectionFootView";
         if ([selcode isEqualToString:@"PIANXIE4"]||[selcode isEqualToString:@"CHUANSHAO4"] ){
             
             if (arr.count != 4) {
-                [self  setLabelDataCount:0];
+                 _px4count = 0;
                 return;
                 
             } else {
                 
                 if (![CMCommon stringIsNull:[arr objectAtIndex:0]] && ![CMCommon stringIsNull:[arr objectAtIndex:1]]
-                    && ![CMCommon stringIsNull:[arr objectAtIndex:2]]&& ![CMCommon stringIsNull:[arr objectAtIndex:3]]) {
+                    && ![CMCommon stringIsNull:[arr objectAtIndex:2]]&& ![CMCommon stringIsNull:[arr objectAtIndex:3]]
+                    && [[arr objectAtIndex:0] intValue] < 100 && [[arr objectAtIndex:1] intValue] < 100
+                    && [[arr objectAtIndex:2] intValue] < 100 && [[arr objectAtIndex:3] intValue] < 100){
                     
-                    [self  setLabelDataCount:1];
+                     count  = 1;
+                     _px4count = _px4count + count;
                 }
                 else{
-                    [self  setLabelDataCount:0];
+                    _px4count = 0;
                     return;
                 }
             }
         }
+        
+    }
+ 
+}
+}
+
+//特殊玩法 偏斜
+-(void)pxSpecialInputBetActionModel:(NSArray  *)arr   type:(TipsType )code  array :(NSMutableArray *__strong *) marray{
+
+}
+//特殊玩法    //如果是偏斜2 长度只能为2  是1注
+-(void)specialInputActionModel:(NSArray  *)arr   type:(TipsType )code{
+    
+    if ([self isRepeatArray:arr] ) {
+        return;
+    }
+    if ([self isNullArray:arr] ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
+    if ([self isbigArray:arr] ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
+    
+    
+    NSMutableArray* intArray = [NSMutableArray new];
+    NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+    if (arr.count) {
+        {
         //如果是 串烧8 长度只能为8  是1注
         if ([selcode isEqualToString:@"CHUANSHAO8"] ){
             
@@ -2410,166 +2516,8 @@ static NSString *footViewID = @"YNCollectionFootView";
             }
         }
         }
-
-        for (NSString *obj in arr) {
-            NSLog(@"obj = %@",obj);
-            int objInt = [obj intValue];
-            
-            if (objInt < 0) {
-                break;
-            }
-            
-            if (code == Tip_千 ) {
-                //范围在0---9999
-                if (objInt > 9999) {
-                    break;
-                }
-            }
-            else  if (code == Tip_百) {
-                //范围在0---999
-                if (objInt > 999) {
-                    break;
-                }
-            }
-            else  if (code == Tip_十 ||code == Tip_串烧10
-                      || code == Tip_串烧8 || code == Tip_串烧4
-                      || code == Tip_偏斜4 || code == Tip_偏斜3
-                      || code ==Tip_偏斜2) {
-                //范围在0---99
-                if (objInt > 99) {
-                    break;
-                }
-            }
-            
-            [intArray addObject: [NSNumber numberWithInt:objInt]];
-        }
     }
-    
-    
-    
-    UGGameplayModel *model = [self.gameDataArray objectAtIndex:self.typeIndexPath.row];
-    UGGameplaySectionModel *group = [model.list objectAtIndex:0];
-    self.qsView.segmentedControl.selectedSegmentIndex = 0;
-    UGGameBetModel *betM = [group.list objectAtIndex:self.segmentIndex];
-    NSMutableArray *array = [NSMutableArray array];
-    
-    {
-    if ([selcode isEqualToString:@"PIANXIE2"]){
-        
-        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-        [bet setValuesForKeysWithDictionary:betM.mj_keyValues];
-        NSMutableString *name = [[NSMutableString alloc] init];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-        
-        bet.name = name;
-        bet.title = bet.alias;
-        bet.betInfo = name;
-        bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
-        [array addObject:bet];
-        
-    }
-    if ([selcode isEqualToString:@"PIANXIE3"]){
-        
-        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-        [bet setValuesForKeysWithDictionary:betM.mj_keyValues];
-        NSMutableString *name = [[NSMutableString alloc] init];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:2]]];
-        
-        bet.name = name;
-        bet.title = bet.alias;
-        bet.betInfo = name;
-        bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
-        [array addObject:bet];
-        
-    }
-    if ([selcode isEqualToString:@"PIANXIE4"]||[selcode isEqualToString:@"CHUANSHAO4"] ){
-        
-        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-        [bet setValuesForKeysWithDictionary:betM.mj_keyValues];
-        NSMutableString *name = [[NSMutableString alloc] init];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:2]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:3]]];
-        bet.name = name;
-        bet.title = bet.alias;
-        bet.betInfo = name;
-        bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
-        [array addObject:bet];
-        
-    }
-    if ([selcode isEqualToString:@"CHUANSHAO8"]){
-        
-        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-        [bet setValuesForKeysWithDictionary:betM.mj_keyValues];
-        NSMutableString *name = [[NSMutableString alloc] init];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:2]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:3]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:4]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:5]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:6]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:7]]];
-        bet.name = name;
-        bet.title = bet.alias;
-        bet.betInfo = name;
-        bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
-        [array addObject:bet];
-        
-    }
-    if ([selcode isEqualToString:@"CHUANSHAO10"]){
-        
-        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-        [bet setValuesForKeysWithDictionary:betM.mj_keyValues];
-        NSMutableString *name = [[NSMutableString alloc] init];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:2]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:3]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:4]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:5]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:6]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:7]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:8]]];
-        [name appendString:@"|"];
-        [name appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:9]]];
-        bet.name = name;
-        bet.title = bet.alias;
-        bet.betInfo = name;
-        bet.money = [NSString stringWithFormat:@"%d",[self setDefaultGoldDataForCode:bet.code]] ;
-        [array addObject:bet];
-        
-    }
-    }
-    
-    
-    
-    
+ 
 }
 
 -(void)specialInputBetActionModel:(NSArray  *)arr   type:(TipsType )code  array :(NSMutableArray *__strong *) marray {
@@ -2584,65 +2532,8 @@ static NSString *footViewID = @"YNCollectionFootView";
     if (arr.count) {
         
         {
-        //如果是偏斜2 长度只能为2  是1注
-        if ([selcode isEqualToString:@"PIANXIE2"]){
-            
-            if (arr.count != 2) {
-                [self  setLabelDataCount:0];
-                return;
-                
-            } else {
-                
-                if (![CMCommon stringIsNull:[arr objectAtIndex:0]] && ![CMCommon stringIsNull:[arr objectAtIndex:1]]) {
-                    
-                    [self  setLabelDataCount:1];
-                }
-                else{
-                    [self  setLabelDataCount:0];
-                    return;
-                }
-            }
-        }
-        //如果是偏斜3 长度只能为3  是1注
-        if ([selcode isEqualToString:@"PIANXIE3"]){
-            
-            if (arr.count != 3) {
-                [self  setLabelDataCount:0];
-                return;
-                
-            } else {
-                
-                if (![CMCommon stringIsNull:[arr objectAtIndex:0]] && ![CMCommon stringIsNull:[arr objectAtIndex:1]]
-                    && ![CMCommon stringIsNull:[arr objectAtIndex:2]]) {
-                    
-                    [self  setLabelDataCount:1];
-                }
-                else{
-                    [self  setLabelDataCount:0];
-                    return;
-                }
-            }
-        }
-        //如果是偏斜4 串烧4 长度只能为4  是1注
-        if ([selcode isEqualToString:@"PIANXIE4"]||[selcode isEqualToString:@"CHUANSHAO4"] ){
-            
-            if (arr.count != 4) {
-                [self  setLabelDataCount:0];
-                return;
-                
-            } else {
-                
-                if (![CMCommon stringIsNull:[arr objectAtIndex:0]] && ![CMCommon stringIsNull:[arr objectAtIndex:1]]
-                    && ![CMCommon stringIsNull:[arr objectAtIndex:2]]&& ![CMCommon stringIsNull:[arr objectAtIndex:3]]) {
-                    
-                    [self  setLabelDataCount:1];
-                }
-                else{
-                    [self  setLabelDataCount:0];
-                    return;
-                }
-            }
-        }
+
+
         //如果是 串烧8 长度只能为8  是1注
         if ([selcode isEqualToString:@"CHUANSHAO8"] ){
             
