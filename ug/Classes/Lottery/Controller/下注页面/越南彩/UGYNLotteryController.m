@@ -125,7 +125,9 @@
 @property (nonatomic, assign) int  px2count;//偏斜2总注数。
 @property (nonatomic, assign) int  px3count;//偏斜3总注数。
 @property (nonatomic, assign) int  px4count;//偏斜4总注数。
-
+@property (strong, nonatomic) NSMutableArray *px2array;//偏斜2下注数。
+@property (strong, nonatomic) NSMutableArray *px3array;//偏斜3下注数。
+@property (strong, nonatomic) NSMutableArray *px4array;//偏斜4下注数。
 @end
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
 static NSString *lottryBetCellid = @"UGTimeLotteryBetCollectionViewCell";
@@ -487,6 +489,9 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.px2count = 0;
     self.px3count = 0;
     self.px4count = 0;
+    self.px2array = [NSMutableArray array];
+    self.px3array = [NSMutableArray array];
+    self.px4array = [NSMutableArray array];
     self.inputView.code = Tip_十;
     [self  setDefaultData:@"PIHAO2"];
     [self  setDefaultOddsData:@"98"];
@@ -687,6 +692,13 @@ static NSString *footViewID = @"YNCollectionFootView";
     
     {
         //输入号码
+        self.px2count = 0;
+        self.px3count = 0;
+        self.px4count = 0;
+        [self.px2array removeAllObjects];
+        [self.px3array removeAllObjects];
+        [self.px4array removeAllObjects];
+        
     }
     {
         //快速选择
@@ -2127,27 +2139,95 @@ static NSString *footViewID = @"YNCollectionFootView";
 #pragma mark - 输入号码下注方法
 -(void)judgeInputBetDateArray:(NSMutableArray *__strong *) array {
     
-    NSArray  *arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+//    NSArray  *arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+//    if (arr.count == 0 ) {
+//        [self  setLabelDataCount:0];
+//        return;
+//    }
+//
+//    NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+//
+//    if ([selcode isEqualToString:@"CHUANSHAO4"]
+//        ||[selcode isEqualToString:@"CHUANSHAO8"]||[selcode isEqualToString:@"CHUANSHAO10"]){
+//        [self specialInputBetActionModel :arr type:self.inputView.code   array : array ];
+//    }
+//    else if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
+//    ||[selcode isEqualToString:@"PIANXIE4"]){
+//        [self pxSpecialInputBetActionModel :arr type:self.inputView.code   array : array ];
+//    }
+//    else {
+//        [self inputBetActionModel :arr type:self.inputView.code   array : array ];
+//    }
+    
+    NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+    if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
+        ||[selcode isEqualToString:@"PIANXIE4"]){
+        
+        [self judgeForInputBetDate:array];
+    } else {
+        [self judgeInputDate:@"" arry:array];
+    }
+
+}
+
+-(void)judgeForInputBetDate:(NSMutableArray *__strong *) array {
+     NSArray  *arr = [self.inputStr componentsSeparatedByString:@"|"];//分隔符逗号
+     if (arr.count == 0 ) {
+         [self judgeInputDate:@"" arry:array];
+         return;
+     }
+     
+     for (NSString *objStr in arr) {
+          [self judgeInputDate:objStr arry:array];
+     }
+     NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+     if ([selcode isEqualToString:@"PIANXIE2"]) {
+         
+     }
+     else if ([selcode isEqualToString:@"PIANXIE3"]){
+         
+     }
+     else {
+        
+     }
+     
+ }
+
+-(void)judgeInputDate:(NSString *)str  arry:(NSMutableArray *__strong *) array {
+    NSArray  *arr;
+    if ([CMCommon stringIsNull:str]) {
+          arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+    }
+    else{
+        arr = [str componentsSeparatedByString:@";"];//分隔符逗号
+    }
     if (arr.count == 0 ) {
         [self  setLabelDataCount:0];
         return;
     }
-    
-    NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
 
+    NSString * selcode =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+    
     if ([selcode isEqualToString:@"CHUANSHAO4"]
         ||[selcode isEqualToString:@"CHUANSHAO8"]||[selcode isEqualToString:@"CHUANSHAO10"]){
         [self specialInputBetActionModel :arr type:self.inputView.code   array : array ];
     }
     else if ([selcode isEqualToString:@"PIANXIE2"]||[selcode isEqualToString:@"PIANXIE3"]
-    ||[selcode isEqualToString:@"PIANXIE4"]){
+             ||[selcode isEqualToString:@"PIANXIE4"]){
         [self pxSpecialInputBetActionModel :arr type:self.inputView.code   array : array ];
     }
     else {
         [self inputBetActionModel :arr type:self.inputView.code   array : array ];
     }
-
+    
+    
+    
 }
+
+
+
+
+
 
 //数组中是否有重复元素
 -(BOOL)isRepeatArray:(NSArray  *)arr{
