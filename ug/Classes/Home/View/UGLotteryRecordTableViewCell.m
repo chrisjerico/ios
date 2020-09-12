@@ -43,7 +43,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     } else {
         [_issueLabel setTextColor:[UIColor blackColor]];
     }
-    
+    self.tiemLabel.textColor = Skin1.textColor3;
     [self setBackgroundColor:Skin1.bgColor];
 
 }

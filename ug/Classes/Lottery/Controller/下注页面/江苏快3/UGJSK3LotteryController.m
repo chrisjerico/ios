@@ -351,6 +351,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
         NSString *selCode = @"";
+        NSString *selName = @"";
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
             if (!model.select) {
@@ -358,6 +359,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             }
             NSLog(@"model.code ======================== %@",model.code);
             selCode = model.code;
+            selName = model.name;
             for (UGGameplaySectionModel *type in model.list) {
                 for (UGGameBetModel *game in type.list) {
                     if (game.select) {
@@ -369,6 +371,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
             }
         }
+
         NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
         [self goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:self.nextIssueModel  gameType:self.nextIssueModel.gameId selCode:selCode];
         

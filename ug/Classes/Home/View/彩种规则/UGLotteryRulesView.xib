@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UGLotteryRulesView">
-            <rect key="frame" x="0.0" y="0.0" width="351" height="539"/>
+            <rect key="frame" x="0.0" y="0.0" width="351" height="574"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jx-fO-BnC">
@@ -33,7 +33,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.93689066170000002" green="0.95278483629999999" blue="0.9647069573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="5F0-Lg-C9Q"/>
                         <constraint firstItem="awd-fj-qSm" firstAttribute="centerX" secondItem="7jx-fO-BnC" secondAttribute="centerX" id="BmO-IT-fNU"/>
@@ -43,47 +43,83 @@
                         <constraint firstItem="awd-fj-qSm" firstAttribute="centerY" secondItem="7jx-fO-BnC" secondAttribute="centerY" id="uPe-Tb-hzJ"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfL-sl-2bj">
-                    <rect key="frame" x="30" y="475" width="291" height="44"/>
-                    <color key="backgroundColor" red="0.28788453339999998" green="0.58269137140000005" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="PO7-dk-537"/>
-                    </constraints>
-                    <state key="normal" title="确定">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="sureClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="N2r-gM-bcb"/>
-                    </connections>
-                </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="                            " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WXL-rP-26k">
-                    <rect key="frame" x="0.0" y="55" width="351" height="415"/>
+                    <rect key="frame" x="0.0" y="55" width="351" height="445"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yFd-4c-Lqc">
+                    <rect key="frame" x="10" y="510" width="331" height="49"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pze-Vc-fed" customClass="IBButton">
+                            <rect key="frame" x="0.0" y="0.0" width="160.5" height="49"/>
+                            <color key="backgroundColor" red="0.96863394979999995" green="0.96861582989999995" blue="0.96862822770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" red="0.81569182870000001" green="0.81567639110000001" blue="0.81568688150000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="sureClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="DgW-Vb-HKn"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoC-fu-X1d" customClass="IBButton">
+                            <rect key="frame" x="170.5" y="0.0" width="160.5" height="49"/>
+                            <color key="backgroundColor" red="0.2349167466" green="0.49709111449999999" blue="0.96471136810000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <state key="normal" title="确定">
+                                <color key="titleColor" red="0.96863394979999995" green="0.96861582989999995" blue="0.96862822770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="sureClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="hpd-ba-uEl"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="FVV-x2-96R"/>
+                        <constraint firstAttribute="height" constant="49" id="QSk-2a-pby"/>
+                    </constraints>
+                </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="yFd-4c-Lqc" firstAttribute="top" secondItem="WXL-rP-26k" secondAttribute="bottom" constant="10" id="Dpz-AP-tGV"/>
                 <constraint firstItem="WXL-rP-26k" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="KlY-fB-JqL"/>
                 <constraint firstItem="WXL-rP-26k" firstAttribute="top" secondItem="7jx-fO-BnC" secondAttribute="bottom" constant="5" id="PcS-AJ-zsN"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yFd-4c-Lqc" secondAttribute="trailing" constant="10" id="T3f-it-Lwa"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7jx-fO-BnC" secondAttribute="trailing" id="UhI-5G-Lcd"/>
-                <constraint firstItem="DfL-sl-2bj" firstAttribute="top" secondItem="WXL-rP-26k" secondAttribute="bottom" constant="5" id="Uw3-KI-hQD"/>
-                <constraint firstAttribute="bottom" secondItem="DfL-sl-2bj" secondAttribute="bottom" constant="20" id="Wtr-a2-d40"/>
-                <constraint firstItem="DfL-sl-2bj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="bDx-tw-z6z"/>
                 <constraint firstItem="7jx-fO-BnC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="d1V-id-RS5"/>
+                <constraint firstItem="yFd-4c-Lqc" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="-15" id="fSb-ls-m3j"/>
+                <constraint firstItem="yFd-4c-Lqc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="gXM-hc-WEl"/>
                 <constraint firstItem="7jx-fO-BnC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mdS-vb-uaU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="WXL-rP-26k" secondAttribute="trailing" id="vkQ-j8-mSC"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DfL-sl-2bj" secondAttribute="trailing" constant="30" id="zMk-iO-mgF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="contentTextView" destination="WXL-rP-26k" id="6w7-dA-0nU"/>
-                <outlet property="sureButton" destination="DfL-sl-2bj" id="XxR-wk-GT7"/>
+                <outlet property="queDingBtn" destination="eoC-fu-X1d" id="Lhs-KQ-v9H"/>
+                <outlet property="quxiaoBtn" destination="pze-Vc-fed" id="acm-ff-oVX"/>
                 <outlet property="titleLabel" destination="awd-fj-qSm" id="LhT-v5-Ieb"/>
             </connections>
-            <point key="canvasLocation" x="92.028985507246389" y="33.147321428571431"/>
+            <point key="canvasLocation" x="92.028985507246389" y="44.866071428571423"/>
         </view>
     </objects>
 </document>

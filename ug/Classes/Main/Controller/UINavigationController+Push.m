@@ -202,12 +202,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         return false;
     }
     
-   
-//    if ([CMCommon getRoomMode:model.gameId]) {
+   //聊天室数据有
+
+    if ([CMCommon getRoomMode:model.gameId] ) {
         return [self goLotteryBetAndChatVC:model];
-//    } else {
-//        return [self goUGCommonLotteryController:model vcName:vcName];
-//    }
+    } else {
+        return [self goUGCommonLotteryController:model vcName:vcName];
+    }
    
 }
 
@@ -257,8 +258,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            vc.gotoTabBlock = ^{
                TabBarController1.selectedIndex = 0;
            };
+  
+           vc.hidesBottomBarWhenPushed = YES;
 
-
+           
            // Push
            if ([UGTabbarController canPushToViewController:vc]) {
                [NavController1 setViewControllers:({
@@ -272,6 +275,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                    vcs;
                }) animated:YES];
            }
+           
+           dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
+
+//           dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+//               [[Global getInstanse] setHideTabBar:NO];
+//           });
+//           
            return true;
        }
 }
@@ -418,7 +428,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     switch (linkPosition) {
         case 1: {
             // 资金管理
-            [NavController1 pushViewController:[UGFundsViewController new] animated:true];
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFundsViewController") animated:true];
             break;
         }
         case 2: {
@@ -604,14 +614,14 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 21: {
             //21' => '充值',
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 0;
             [NavController1 pushViewController:fundsVC animated:true];
             break;
         }
         case 22: {
             //22' => '提现',
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 1;
             [NavController1 pushViewController:fundsVC animated:true];
             break;
@@ -656,7 +666,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 28: {
             //21' => '资金明细',
 //            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 4;
             [NavController1 pushViewController:fundsVC animated:YES];
             return true;
@@ -770,13 +780,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_存款: {
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 0;
             [NavController1 pushViewController:fundsVC animated:YES];
             return true;
         }
         case UCI_取款: {
-            UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
             fundsVC.selectIndex = 1;
             [NavController1 pushViewController:fundsVC animated:YES];
             return true;

@@ -2051,6 +2051,7 @@
 		D4773ABF23FC16B100D38D60 /* LineConversion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */; };
 		D4773AC223FC1F7F00D38D60 /* LineConversionHeaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */; };
 		D4773ACE23FD628800D38D60 /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
+		D47EF9E825035E5D0002ECC0 /* Funds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D47EF9E725035E5D0002ECC0 /* Funds.storyboard */; };
 		D48075D4249C777500E1E5F5 /* MessageUnderMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */; };
 		D4ACBF5D246C25C3005AB971 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACBF5C246C25C3005AB971 /* NSArray+Log.m */; };
 		D4ACC04724701F6F005AB971 /* UINavigationController+FDFullscreenPopGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4ACC04624701F6E005AB971 /* UINavigationController+FDFullscreenPopGesture.m */; };
@@ -4002,6 +4003,7 @@
 		D4773AC123FC1F7F00D38D60 /* LineConversionHeaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineConversionHeaderVC.m; sourceTree = "<group>"; };
 		D4773ACC23FD628800D38D60 /* LineMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LineMainViewController.h; sourceTree = "<group>"; };
 		D4773ACD23FD628800D38D60 /* LineMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LineMainViewController.m; sourceTree = "<group>"; };
+		D47EF9E725035E5D0002ECC0 /* Funds.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Funds.storyboard; sourceTree = "<group>"; };
 		D48075D2249C777500E1E5F5 /* MessageUnderMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageUnderMenuView.h; sourceTree = "<group>"; };
 		D48075D3249C777500E1E5F5 /* MessageUnderMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageUnderMenuView.m; sourceTree = "<group>"; };
 		D4ACBF5B246C25C3005AB971 /* NSArray+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
@@ -5922,6 +5924,7 @@
 				031E172E23BE812400B0F813 /* 资金明细 */,
 				031E172523BE812400B0F813 /* UGFundsViewController.h */,
 				031E172923BE812400B0F813 /* UGFundsViewController.m */,
+				D47EF9E725035E5D0002ECC0 /* Funds.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9045,6 +9048,7 @@
 				D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */,
 				031E1BA023BE812900B0F813 /* BMpreferential.storyboard in Resources */,
 				031E1AB223BE812800B0F813 /* icon_arrow_up@2x.png in Resources */,
+				D47EF9E825035E5D0002ECC0 /* Funds.storyboard in Resources */,
 				031E1ABA23BE812800B0F813 /* Shade_left@2x.png in Resources */,
 				031E1E7223BE812C00B0F813 /* UGRealBetRecordCell.xib in Resources */,
 				CF4758F7239636D200966536 /* 65.gif in Resources */,

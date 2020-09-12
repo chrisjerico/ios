@@ -250,6 +250,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"NSSelectChatRoom_share" object:nil userInfo:dic];
 }
 
+
 - (void)submitBet:(NSDictionary *)params {
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
@@ -279,7 +280,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
                 
                 if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat) && ![__self isSpecialRule]) {
-                    
+
                     if (Skin1.isBlack||Skin1.is23) {
                         [LEEAlert alert].config
                         .LeeAddTitle(^(UILabel *label) {

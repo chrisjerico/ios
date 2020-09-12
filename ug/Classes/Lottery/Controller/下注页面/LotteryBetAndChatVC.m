@@ -80,9 +80,6 @@
         
         __self.jsDic = [da objectForKey:@"jsDic"];
         SysConf.hasShare = YES;
-        
-                NSLog(@"da = %@",da);
-        //
         dispatch_async(dispatch_get_main_queue(), ^{
            // UI更新代码
            [__self selectChatRoom ];
@@ -220,7 +217,9 @@
         if (!sm.error) {
             NSLog(@"model.data = %@",sm.responseObject[@"data"]);
             NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+            
             NSMutableArray *chatIdAry = [NSMutableArray new];
+
             NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
             
             NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
@@ -234,7 +233,6 @@
             for (int i = 0; i< chatAry.count; i++) {
                 RoomChatModel *dic =  [chatAry objectAtIndex:i];
                 [chatIdAry addObject:dic.roomId];
-
                 [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
                 
             }
@@ -461,6 +459,7 @@
             SysConf.defaultChatRoom  = obj;
         }
         
+        [UGSystemConfigModel setCurrentConfig:SysConf];
         __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
            // UI更新代码
@@ -475,6 +474,7 @@
 
 -(void)alertViewChatTitleAry:(NSArray *)chatTitleAry  chat2Ary:(NSArray *)chat2Ary{
     __weakSelf_(__self);
+
     UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];
     for (NSString *key in chatTitleAry) {
         [ac setActionAtTitle:key handler:^(UIAlertAction *aa) {
@@ -490,7 +490,6 @@
             //取数据
             NSArray * rpArray = [WHCSqlite query:[RememberPass class] where:[NSString stringWithFormat:@"roomId = '%@'",chatId]];
             RememberPass *rp = (RememberPass *)[rpArray objectAtIndex:0];
-            
             BOOL isPass = NO;
             if (![CMCommon stringIsNull:rp.password]) {
                 isPass = YES;

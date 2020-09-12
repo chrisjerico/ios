@@ -43,10 +43,20 @@
     
     
 	[self addSubview:self.hasSubSign];
-	[self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(self);
-		make.right.equalTo(self);
-	}];
+    
+    if (APP.isBottom) {
+       [self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
+           make.bottom.equalTo(self).inset(6);
+           make.right.equalTo(self).inset(6);
+       }];
+    } else {
+
+        [self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self);
+            make.right.equalTo(self);
+        }];
+    }
+	
     
     // 一闪一闪的动画效果
     FastSubViewCode(self);

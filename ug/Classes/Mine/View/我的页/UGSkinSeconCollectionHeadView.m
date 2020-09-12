@@ -24,14 +24,14 @@
 
 // 充值
 - (IBAction)chongzhiAction:(id)sender {
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 2;
     [NavController1 pushViewController:fundsVC animated:YES];
 }
 
 // 体现
 - (IBAction)tixianAcition:(id)sender {
-    UGFundsViewController *fundsVC = [[UGFundsViewController alloc] init];
+    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 3;
     [NavController1 pushViewController:fundsVC animated:YES];
 }

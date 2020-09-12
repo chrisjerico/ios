@@ -93,6 +93,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 	[rightItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[rightItem addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+    self.navigationItem.leftBarButtonItem = nil;
 	[self.view addSubview:self.collectionView];
 	[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.view);
