@@ -368,7 +368,7 @@ UIActionSheetDelegate> {
 
 - (UIButton *)backView {
     if (_backView == nil) {
-        _backView = [[UIButton alloc] initWithFrame:CGRectMake(50, 30, 100, 85)];
+        _backView = [[UIButton alloc] initWithFrame:CGRectMake(50, 100, 100, 85)];
         [_backView setImage:[UIImage imageNamed:@"backHome"] forState:UIControlStateNormal];
     }
     return _backView;
