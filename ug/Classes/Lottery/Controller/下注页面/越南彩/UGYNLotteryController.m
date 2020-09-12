@@ -125,9 +125,7 @@
 @property (nonatomic, assign) int  px2count;//偏斜2总注数。
 @property (nonatomic, assign) int  px3count;//偏斜3总注数。
 @property (nonatomic, assign) int  px4count;//偏斜4总注数。
-@property (strong, nonatomic) NSMutableArray *px2array;//偏斜2下注数。
-@property (strong, nonatomic) NSMutableArray *px3array;//偏斜3下注数。
-@property (strong, nonatomic) NSMutableArray *px4array;//偏斜4下注数。
+
 @end
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
 static NSString *lottryBetCellid = @"UGTimeLotteryBetCollectionViewCell";
@@ -489,9 +487,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.px2count = 0;
     self.px3count = 0;
     self.px4count = 0;
-    self.px2array = [NSMutableArray array];
-    self.px3array = [NSMutableArray array];
-    self.px4array = [NSMutableArray array];
+
     self.inputView.code = Tip_十;
     [self  setDefaultData:@"PIHAO2"];
     [self  setDefaultOddsData:@"98"];
@@ -695,9 +691,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         self.px2count = 0;
         self.px3count = 0;
         self.px4count = 0;
-        [self.px2array removeAllObjects];
-        [self.px3array removeAllObjects];
-        [self.px4array removeAllObjects];
+
         
     }
     {
@@ -809,6 +803,8 @@ static NSString *footViewID = @"YNCollectionFootView";
             else  if ([self.ynSelectStr isEqualToString: @"输入号码"]) {
                 
                 [weakSelf judgeInputBetDateArray:&array];
+                
+                 isHide = YES;
             }
             
             
@@ -2089,7 +2085,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 -(BOOL)isbigArray:(NSArray  *)arr {
     int number = 0;
-    NSLog(@"self.inputView.code = %d",self.inputView.code);
+    NSLog(@"sarr = %@",arr);
     if (self.inputView.code == Tip_千 ) {
         number = 9999;
     }
@@ -2103,6 +2099,23 @@ static NSString *footViewID = @"YNCollectionFootView";
     return [CMCommon isbigArray:arr number:number];
 }
 
+-(BOOL)isLengthArray:(NSArray  *)arr {
+    int length = 0;
+    NSLog(@"sarr = %@",arr);
+    if (self.inputView.code == Tip_千 ) {
+        length = 4;
+    }
+    else  if (self.inputView.code  == Tip_百) {
+        length = 3;
+    }
+    else  {
+        length = 2;
+    }
+    
+    return [CMCommon isLengthArray:arr length:length];
+}
+
+
 -(BOOL)isRepeatArray:(NSString *)str {
     
     BOOL isRepeat = NO;
@@ -2112,18 +2125,22 @@ static NSString *footViewID = @"YNCollectionFootView";
     for (NSString *objStr in array) {
         NSArray  * arr = [objStr componentsSeparatedByString:@";"];//分隔符逗
         
-//        if ([CMCommon isRepeatArray:arr] ) {
-//            isRepeat = YES;
-//            break;
-//        }
-//        if ([CMCommon isNullArray:arr] ) {
-//            isRepeat = YES;
-//            break;
-//        }
-//        if ([CMCommon isbigArray:arr number:99 ] ) {
-//            isRepeat = YES;
-//            break;
-//        }
+        if ([CMCommon isRepeatArray:arr] ) {
+            isRepeat = YES;
+            break;
+        }
+        if ([CMCommon isNullArray:arr] ) {
+            isRepeat = YES;
+            break;
+        }
+        if ([CMCommon isbigArray:arr number:99 ] ) {
+            isRepeat = YES;
+            break;
+        }
+        if ([CMCommon isLengthArray:arr length:2 ] ) {
+            isRepeat = YES;
+            break;
+        }
         [marray addObject:arr];
     }
     
@@ -2280,6 +2297,10 @@ static NSString *footViewID = @"YNCollectionFootView";
         [self inputBetActionModel :arr   array : array ];
     }
     
+    NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
+    [nameStr appendString:self.inputStr];
+    [nameStr appendString:@"】"];
+    self.nextIssueModel.defnameStr = nameStr;
     
     
 }
@@ -2300,6 +2321,11 @@ static NSString *footViewID = @"YNCollectionFootView";
         [self  setLabelDataCount:0];
         return;
     }
+    if ([self  isLengthArray:arr ] ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
+    
    
     int count;
     NSMutableArray* intArray = [NSMutableArray new];
@@ -2363,6 +2389,11 @@ static NSString *footViewID = @"YNCollectionFootView";
         [self  setLabelDataCount:0];
         return;
     }
+    if ([self  isLengthArray:arr ] ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
+    
     
     int count;
     NSMutableArray* intArray = [NSMutableArray new];
@@ -2379,7 +2410,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         return;
     }
     
-    NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
+  
     
     UGGameplayModel *model = [self.gameDataArray objectAtIndex:self.typeIndexPath.row];
     UGGameplaySectionModel *group = [model.list objectAtIndex:0];
@@ -2399,15 +2430,9 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         [*marray addObject:bet];
         
-        [nameStr appendString:bet.name];
-        if (i< intArray.count-1) {
-            [nameStr appendString:@","];
-        } else {
-            [nameStr appendString:@"】"];
-        }
+       
     }
-    
-    self.nextIssueModel.defnameStr = nameStr;
+
 }
 
 //特殊玩法 偏斜
@@ -2523,6 +2548,11 @@ static NSString *footViewID = @"YNCollectionFootView";
         [self  setLabelDataCount:0];
         return;
     }
+    if ([self  isLengthArray:arr ] ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
+    
     
     NSMutableArray* intArray = [NSMutableArray new];
     if (arr.count) {
@@ -2631,6 +2661,10 @@ static NSString *footViewID = @"YNCollectionFootView";
         [self  setLabelDataCount:0];
         return;
     }
+    if ([self  isLengthArray:arr ] ) {
+        [self  setLabelDataCount:0];
+        return;
+    }
     
     
     NSMutableArray* intArray = [NSMutableArray new];
@@ -2718,6 +2752,10 @@ static NSString *footViewID = @"YNCollectionFootView";
     if ([self isbigArray:arr ] ) {
         return;
     }
+    if ([self  isLengthArray:arr ] ) {
+        return;
+    }
+    
     
     int count;
     NSMutableArray* intArray = [NSMutableArray new];
@@ -2780,7 +2818,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             [intArray addObject: [NSNumber numberWithInt:objInt]];
         }
     }
-    NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
+
     
     UGGameplayModel *model = [self.gameDataArray objectAtIndex:self.typeIndexPath.row];
     UGGameplaySectionModel *group = [model.list objectAtIndex:0];
@@ -2808,15 +2846,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             
             [*marray addObject:bet];
             
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:2]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:3]]];
-            [nameStr appendString:@"】"];
-            
+           
         }
         
         if ([selcode isEqualToString:@"CHUANSHAO8"]){
@@ -2848,23 +2878,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             
             [*marray addObject:bet];
             
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:2]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:3]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:4]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:5]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:6]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:7]]];
-            [nameStr appendString:@"】"];
-            
+           
         }
         
         if ([selcode isEqualToString:@"CHUANSHAO10"]){
@@ -2899,31 +2913,12 @@ static NSString *footViewID = @"YNCollectionFootView";
             
             [*marray addObject:bet];
             
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:0]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:1]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:2]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:3]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:4]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:5]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:6]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:7]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:8]]];
-            [nameStr appendString:@","];
-            [nameStr appendString:[NSString stringWithFormat:@"%@",[intArray objectAtIndex:9]]];
-            [nameStr appendString:@"】"];
+       
             
         }
     }
     
-    self.nextIssueModel.defnameStr = nameStr;
+  
 }
 
 //设置下注为空  默认为1

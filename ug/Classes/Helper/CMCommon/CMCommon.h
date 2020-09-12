@@ -228,7 +228,12 @@
 */
 +(BOOL)isbigArray:(NSArray  *)arr  number:(int)number;
 
-
+/**
+*  数组中长度是否有大于  length
+*  length int
+*
+*/
++(BOOL)isLengthArray:(NSArray  *)arr  length:(int)length;
 /**
 *  ios 数组,逆序
 *

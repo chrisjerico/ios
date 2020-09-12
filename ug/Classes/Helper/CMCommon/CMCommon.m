@@ -1638,4 +1638,21 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }
     return isBig;
 }
+
+/**
+*  数组中长度是否有大于  length
+*  length int
+*
+*/
++(BOOL)isLengthArray:(NSArray  *)arr  length:(int)length{
+    BOOL isLength = NO;
+    
+    for (NSString *str in arr) {
+        if ([str length] != length) {
+            isLength = YES;
+            break;
+        }
+    }
+    return isLength;
+}
 @end

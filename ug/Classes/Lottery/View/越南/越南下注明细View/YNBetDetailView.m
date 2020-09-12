@@ -33,6 +33,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;    /**<   取消Button */
+@property (weak, nonatomic) IBOutlet UILabel *mxLabel;         /**<   组合明细lable*/
 
 @property (nonatomic) float amount; /**<   总金额*/
 @end
@@ -129,6 +130,8 @@ static NSString *ID=@"YNBetCollectionViewCell";
         [subLabel(@"总金额label")setTextColor:[UIColor blackColor]];
         [self.cancelButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     }
+    
+    [self.mxLabel setHidden:self.isHide];
 
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
@@ -162,9 +165,10 @@ static NSString *ID=@"YNBetCollectionViewCell";
     }
     
     self.betArray = array.mutableCopy;
-//    if (!self.isHide) {
-        [_collectionView reloadData];
-//    }
+    
+
+    [_collectionView reloadData];
+
     self.numberLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)array.count];
     
 
@@ -273,7 +277,6 @@ static NSString *ID=@"YNBetCollectionViewCell";
         
     }
 
-      HJSonLog(@"mutDict = %@",mutDict);
     [self submitBet:mutDict];
         
 }
@@ -326,9 +329,6 @@ static NSString *ID=@"YNBetCollectionViewCell";
 }
 
 
-
-
-
 - (NSMutableArray<UGBetModel *> *)betArray {
     if (_betArray == nil) {
         _betArray = [NSMutableArray array];
@@ -338,7 +338,9 @@ static NSString *ID=@"YNBetCollectionViewCell";
 
 #pragma mark - UICollectionViewDelegate
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+
     return _dataArray.count;
+    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -349,8 +351,13 @@ static NSString *ID=@"YNBetCollectionViewCell";
     
     YNBetCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     UGGameBetModel *model = [_dataArray objectAtIndex:indexPath.row];
+    
+
     cell.item = model;
     cell.numberLabel.text = [NSString stringWithFormat:@"%ld.",indexPath.row +1];
+    
+    [cell setHidden:self.isHide];
+    
     return cell;
 }
 

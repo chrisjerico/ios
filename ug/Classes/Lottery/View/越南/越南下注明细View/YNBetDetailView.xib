@@ -323,6 +323,7 @@
                 <outlet property="cancelButton" destination="D3x-o3-efV" id="hDO-Iu-53a"/>
                 <outlet property="collectionView" destination="vms-Tl-Vwn" id="izS-y0-eDf"/>
                 <outlet property="multipleTF" destination="qlp-da-Xlr" id="Q0Y-yk-ngU"/>
+                <outlet property="mxLabel" destination="AMy-Vo-c5w" id="AR7-Sk-hXF"/>
                 <outlet property="numberLabel" destination="b5C-aD-l3b" id="NaW-Pc-o1g"/>
                 <outlet property="submitButton" destination="Hsu-Cj-Nvi" id="Xae-fL-JFn"/>
                 <outlet property="titellabel" destination="jMF-3P-rh3" id="4QJ-yC-ev4"/>
