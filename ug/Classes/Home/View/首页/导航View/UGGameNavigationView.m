@@ -140,7 +140,7 @@
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 4);
+    return UIEdgeInsetsMake(4, 4, 0, 4);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -219,6 +219,12 @@
             make.centerX.equalTo(self).offset(20);
             make.top.equalTo(self);
         }];
+        
+        if (Skin1.isLH) {
+//             self.layer.borderColor=[RGBA(229, 229, 229, 1) CGColor];
+//             self.layer.borderWidth=1;
+
+        }
         
         
     }
