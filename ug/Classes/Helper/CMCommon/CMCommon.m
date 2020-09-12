@@ -1597,4 +1597,45 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }];
     [task resume];
 }
+
+
+//数组中是否有重复元素
++(BOOL)isRepeatArray:(NSArray  *)arr{
+    NSSet *set = [NSSet setWithArray:arr];
+    
+    if ([set allObjects].count  == arr.count) {
+        return  NO;
+    } else {
+        return  YES;
+    }
+}
+
+//数组中是否有空
++(BOOL)isNullArray:(NSArray  *)arr{
+    BOOL isNull = NO;
+    
+    for (NSString *str in arr) {
+        if ([CMCommon stringIsNull:str]) {
+            isNull = YES;
+            break;
+        }
+    }
+    return isNull;
+}
+/**
+*  数组中是否有大于  number
+*  number int
+*
+*/
++(BOOL)isbigArray:(NSArray  *)arr  number:(int)number{
+    BOOL isBig = NO;
+    
+    for (NSString *str in arr) {
+        if ([str intValue] > number) {
+            isBig = YES;
+            break;
+        }
+    }
+    return isBig;
+}
 @end

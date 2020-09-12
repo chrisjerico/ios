@@ -55,6 +55,8 @@
 }
 
 -(void)setCode:(TipsType)code{
+    
+    _code = code;
     NSString *str = @"";
     if (code == Tip_千) {
         str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：0001;0015;0099";
