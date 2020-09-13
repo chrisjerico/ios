@@ -415,6 +415,36 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.qsView.segmentedControl.selectedSegmentIndex = 0;
     if (group.list.count) {
         UGGameBetModel *bet = [group.list objectAtIndex:self.segmentIndex];
+      
+        NSString * code =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
+        
+        NSLog(@"code = %@",code);
+        if ([code isEqualToString: @"PIANXIE2"]) {
+            self.qsView.seleced = YES;
+            self.qsView.selecedCount = 2;
+        }
+        else if([code isEqualToString: @"PIANXIE3"]) {
+            self.qsView.seleced = YES;
+            self.qsView.selecedCount = 3;
+        }
+        else if([code isEqualToString: @"PIANXIE4"] ||[code isEqualToString: @"CHUANSHAO4"] ) {
+            self.qsView.seleced = YES;
+            self.qsView.selecedCount = 4;
+        }
+        else if([code isEqualToString: @"CHUANSHAO8"]) {
+            self.qsView.seleced = YES;
+            self.qsView.selecedCount = 8;
+        }
+        else if([code isEqualToString: @"CHUANSHAO10"]) {
+            self.qsView.seleced = YES;
+            self.qsView.selecedCount = 10;
+        }
+        
+        else {
+            self.qsView.seleced = NO;
+            self.qsView.selecedCount = 100000;
+        }
+        
         self.qsView.bet = bet;
     }
 }

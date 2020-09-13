@@ -83,6 +83,8 @@
             }];
             ynQuickListView.dataArry = dd.list;
             ynQuickListView.code = bet.code;
+            ynQuickListView.seleced  = self.seleced;
+            ynQuickListView.selecedCount = self.selecedCount;
             WeakSelf;
             ynQuickListView.collectIndexBlock = ^(UICollectionView *collectionView,NSIndexPath* indexPath) {
                 

@@ -17,6 +17,10 @@ typedef void(^YNQuickListBlock)(UICollectionView *collectionView,NSIndexPath* in
 
 @property (nonatomic, copy) YNQuickListBlock ynCollectIndexBlock;
 
+@property (nonatomic) int selecedCount;// 可以选择的数量  （偏斜2 偏斜3 偏斜4 串烧4 串烧8 串烧10）
+
+@property (nonatomic) BOOL seleced;//是否有 可以选择的数量
+
 -(void)reload;
 @end
 

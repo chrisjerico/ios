@@ -16,6 +16,10 @@ typedef void(^QuickListBlock)(UICollectionView *collectionView,NSIndexPath* inde
 @property (nonatomic, strong)NSMutableArray<UGGameBetModel *> *dataArry;//数据
 
 @property (nonatomic, copy) QuickListBlock collectIndexBlock;
+
+@property (nonatomic) int selecedCount;// 可以选择的数量  （偏斜2 偏斜3 偏斜4 串烧4 串烧8 串烧10）
+
+@property (nonatomic) BOOL seleced;//是否有 可以选择的数量 
 @end
 
 NS_ASSUME_NONNULL_END
