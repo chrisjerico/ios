@@ -498,10 +498,15 @@
         subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
         subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
         [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
-        self.gameNavigationView.layer.cornerRadius = 8;
-        self.gameNavigationView.layer.masksToBounds = true;
-        self.gameNavigationView.layer.borderWidth = 1;
-        self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
+        
+        if (!Skin1.isLH) {
+            self.gameNavigationView.layer.cornerRadius = 8;
+            self.gameNavigationView.layer.masksToBounds = true;
+            self.gameNavigationView.layer.borderWidth = 1;
+            self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
+        }
+       
+
         
         if (APP.isWhite) {
             subView(@"优惠活动外View").layer.borderWidth = 0;
@@ -548,8 +553,7 @@
         [self.rankingView setBackgroundColor:Skin1.navBarBgColor];
         [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
         [self.rollingView setBackgroundColor:Skin1.homeContentColor];
-        [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
-        //         [self.gameNavigationView setBackgroundColor:[UIColor redColor]];
+//        [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
         [self.gameTypeView setBackgroundColor:Skin1.bgColor];
         [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
         [self.upRecommendedView setBackgroundColor:Skin1.bgColor];

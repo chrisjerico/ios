@@ -9,7 +9,7 @@
 #import "UGGameNavigationView.h"
 #import "YYWebImage.h"
 #import "FLAnimatedImageView.h"
-@interface UGGameNavigationView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface UGGameNavigationView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
 @property(nonatomic, strong)UIButton * scrollRightButton;
 @end
 
@@ -45,6 +45,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
+    WSLWaterFlowLayout * _flow;
+       _flow = [[WSLWaterFlowLayout alloc] init];
+       _flow.delegate = self;
+       _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
+    
     UICollectionViewFlowLayout *layout = ({
         layout = [[UICollectionViewFlowLayout alloc] init];
         if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId]) || [Skin1 isJY]) {
@@ -57,18 +62,23 @@
         }
         layout;
     });
-    self = [super initWithFrame:frame collectionViewLayout:layout];
+    
+    if (Skin1.isLH) {
+         self = [super initWithFrame:frame collectionViewLayout:_flow];
+    } else {
+        self = [super initWithFrame:frame collectionViewLayout:layout];
+    }
+
     if (Skin1.isJY) {
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
     }
-    //    self.alwaysBounceHorizontal=YES;
     if (self) {
         [self registerClass: [UGGameNavigationViewCell class] forCellWithReuseIdentifier:@"UGGameNavigationViewCell"];
         self.delegate = self;
         self.dataSource = self;
     }
-    [self setBackgroundColor:[UIColor redColor]];
+    [self setBackgroundColor:Skin1.homeContentColor];
     return self;
 }
 - (void)didMoveToWindow {
@@ -100,7 +110,7 @@
     
     CGRect frame = CGRectMake(0, 0, UGScreenW, 60);
     [self initWithFrame:frame];
-    self.backgroundColor = [UIColor redColor];
+
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -120,7 +130,52 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     GameModel *gm = self.sourceData[indexPath.item];
     [NavController1 pushViewControllerWithGameModel:gm];
+    
+    
 }
+
+#pragma mark - WSLWaterFlowLayoutDelegate
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CGFloat oneLineCnt = 5;
+     if (_sourceData.count%5 && !(_sourceData.count%4)) {
+         oneLineCnt = 4;
+     }
+    
+    float itemW = (UGScreenW-20)/ MIN(oneLineCnt, self.sourceData.count);
+    CGSize size = {itemW, 75};
+    return size;
+    
+    
+}
+
+/** 列数*/
+-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 1;
+}
+/** 行数*/
+-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    CGFloat oneLineCnt = 5;
+    if (_sourceData.count%5 && !(_sourceData.count%4)) {
+        oneLineCnt = 4;
+    }
+    return MIN(oneLineCnt, self.sourceData.count);
+}
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 0;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(0, 0, 0,0);
+}
+
 
 
 #pragma mark ---- UICollectionViewDelegateFlowLayout
@@ -134,13 +189,12 @@
     if (Skin1.isJY) {
          oneLineCnt = 5;
     }
-    
-    return (CGSize){(UGScreenW - 40)/MIN(oneLineCnt, self.sourceData.count), 75};
+     return (CGSize){(UGScreenW - 40)/MIN(oneLineCnt, self.sourceData.count),75};
     
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(4, 4, 0, 4);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -177,7 +231,7 @@
         _titleLabel = [UILabel new];
 
         [self setBackgroundColor:[UIColor clearColor]];
-        //        [_titleLabel setBackgroundColor:[UIColor redColor]];
+  
         if (APP.isFontSystemSize) {
              _titleLabel.font = [UIFont systemFontOfSize:13];
         } else {
@@ -221,8 +275,8 @@
         }];
         
         if (Skin1.isLH) {
-//             self.layer.borderColor=[RGBA(229, 229, 229, 1) CGColor];
-//             self.layer.borderWidth=1;
+             self.layer.borderColor=[RGBA(229, 229, 229, 1) CGColor];
+             self.layer.borderWidth=1;
 
         }
         
