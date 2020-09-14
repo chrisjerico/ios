@@ -24,6 +24,7 @@ pod 'STPickerView', '2.4' # 一个多功能的选择器,有城市选择，日期
 #pod 'WHC_ModelSqliteKit'  # 专业的ORM数据库操作开源库，线程安全，高性能模型对象存储Sqlite开源库，真正实现一行代码操作数据库，让数据库存储变得简单 
 pod 'BRPickerView'        #BRPickerView 封装的是iOS中常用的选择器组件，主要包括：日期选择器、时间选择器、地址选择器、自定义字符串选择器。高度封装，提供了两种使用方式，支持自定义主题样式，适配深色模式。
 pod 'XYYSegmentControl', '~> 1.4.0' #分段选择方便、快速集成)
+# pod 'FBSDKLoginKit'       #Facebook 登录
 # fish新增
 
 #pod 'JRSwizzle'         # 方法交换库

@@ -3,7 +3,10 @@
   "version": "2.3.0",
   "summary": "React Native Image Editing native modules for iOS & Android",
   "license": "MIT",
-  "authors": "Dawid Urbaniak <dawidu@onet.pl>",
+  "authors": {
+    "name": "Dawid Urbaniak",
+    "email": "dawidu@onet.pl"
+  },
   "homepage": "https://github.com/react-native-community/react-native-image-editor#readme",
   "platforms": {
     "ios": "9.0"

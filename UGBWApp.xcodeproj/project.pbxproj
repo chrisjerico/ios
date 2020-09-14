@@ -1682,10 +1682,16 @@
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953BF3F24C5B36300051D24 /* mYYLabel.m */; };
+		4959678124E25C8A005D5B53 /* UIImageView+CreateByUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677C24E25C89005D5B53 /* UIImageView+CreateByUrl.m */; };
+		4959678224E25C8A005D5B53 /* SUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677D24E25C89005D5B53 /* SUCache.m */; };
+		4959678324E25C8A005D5B53 /* SUCacheItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677E24E25C89005D5B53 /* SUCacheItem.m */; };
 		495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */; };
 		495CF4C424C8590800A4574D /* UGTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */; };
 		495CF4CA24C9496400A4574D /* UGTaskSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CF4C824C9496400A4574D /* UGTaskSectionTableViewCell.m */; };
 		495CF4CB24C9496400A4574D /* UGTaskSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495CF4C924C9496400A4574D /* UGTaskSectionTableViewCell.xib */; };
+		495E621F24E650A700BDC3CA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621C24E650A700BDC3CA /* FBSDKLoginKit.framework */; };
+		495E622024E650A700BDC3CA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621D24E650A700BDC3CA /* FBSDKShareKit.framework */; };
+		495E622124E650A700BDC3CA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621E24E650A700BDC3CA /* FBSDKCoreKit.framework */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
@@ -1995,6 +2001,7 @@
 		D435F90623CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D435F90223CEF940008648CE /* KMCGeigerCounter.m */; };
 		D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D435F90823CEF996008648CE /* AudioToolbox.framework */; };
+		D439D12724F227D300B719DA /* FBTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D439D12624F227D300B719DA /* FBTransitionViewController.m */; };
 		D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */; };
 		D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */ = {isa = PBXBuildFile; fileRef = D43B77EB242E2B5400913BE1 /* UIViewController+vcTabName.m */; };
 		D43DAF642453283A0014A301 /* ztlight.gif in Resources */ = {isa = PBXBuildFile; fileRef = D43DAF622453283A0014A301 /* ztlight.gif */; };
@@ -3612,12 +3619,24 @@
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		4953BF3E24C5B36300051D24 /* mYYLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mYYLabel.h; sourceTree = "<group>"; };
 		4953BF3F24C5B36300051D24 /* mYYLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mYYLabel.m; sourceTree = "<group>"; };
+		4959677B24E25C89005D5B53 /* SUCacheItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUCacheItem.h; sourceTree = "<group>"; };
+		4959677C24E25C89005D5B53 /* UIImageView+CreateByUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CreateByUrl.m"; sourceTree = "<group>"; };
+		4959677D24E25C89005D5B53 /* SUCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUCache.m; sourceTree = "<group>"; };
+		4959677E24E25C89005D5B53 /* SUCacheItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUCacheItem.m; sourceTree = "<group>"; };
+		4959677F24E25C89005D5B53 /* SUCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUCache.h; sourceTree = "<group>"; };
+		4959678024E25C89005D5B53 /* UIImageView+CreateByUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CreateByUrl.h"; sourceTree = "<group>"; };
 		495CF4C024C8590800A4574D /* UGTaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTaskTableViewCell.h; sourceTree = "<group>"; };
 		495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTaskTableViewCell.m; sourceTree = "<group>"; };
 		495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTaskTableViewCell.xib; sourceTree = "<group>"; };
 		495CF4C724C9496400A4574D /* UGTaskSectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTaskSectionTableViewCell.h; sourceTree = "<group>"; };
 		495CF4C824C9496400A4574D /* UGTaskSectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTaskSectionTableViewCell.m; sourceTree = "<group>"; };
 		495CF4C924C9496400A4574D /* UGTaskSectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTaskSectionTableViewCell.xib; sourceTree = "<group>"; };
+		495E621C24E650A700BDC3CA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		495E621D24E650A700BDC3CA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		495E621E24E650A700BDC3CA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		495E622324E650FC00BDC3CA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		495E622424E650FC00BDC3CA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		495E622524E650FC00BDC3CA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
 		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
@@ -3927,6 +3946,8 @@
 		D435F90123CEF940008648CE /* KMCGeigerCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCGeigerCounter.h; sourceTree = "<group>"; };
 		D435F90223CEF940008648CE /* KMCGeigerCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCGeigerCounter.m; sourceTree = "<group>"; };
 		D435F90823CEF996008648CE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D439D12524F227D300B719DA /* FBTransitionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBTransitionViewController.h; sourceTree = "<group>"; };
+		D439D12624F227D300B719DA /* FBTransitionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBTransitionViewController.m; sourceTree = "<group>"; };
 		D43A785423EFEFED00F75B0C /* RedEnvelope.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RedEnvelope.storyboard; sourceTree = "<group>"; };
 		D43B77EA242E2B5400913BE1 /* UIViewController+vcTabName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+vcTabName.h"; sourceTree = "<group>"; };
 		D43B77EB242E2B5400913BE1 /* UIViewController+vcTabName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+vcTabName.m"; sourceTree = "<group>"; };
@@ -4061,8 +4082,10 @@
 			files = (
 				D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */,
 				D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */,
+				495E622024E650A700BDC3CA /* FBSDKShareKit.framework in Frameworks */,
 				D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */,
 				D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */,
+				495E621F24E650A700BDC3CA /* FBSDKLoginKit.framework in Frameworks */,
 				D4463AC023A773EF008EF03D /* Security.framework in Frameworks */,
 				D4463ABE23A773E7008EF03D /* UIKit.framework in Frameworks */,
 				D4463ABC23A773DF008EF03D /* Foundation.framework in Frameworks */,
@@ -4070,6 +4093,7 @@
 				D4463AB823A773CD008EF03D /* SystemConfiguration.framework in Frameworks */,
 				D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */,
 				D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */,
+				495E622124E650A700BDC3CA /* FBSDKCoreKit.framework in Frameworks */,
 				D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */,
 				21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */,
 			);
@@ -4264,6 +4288,7 @@
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
 				031E14DE23BE812300B0F813 /* Category */,
+				4959677824E25C4A005D5B53 /* FacebookHelper */,
 				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
 				D43DAF8224555B1C0014A301 /* 自定义拖动条 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
@@ -6107,6 +6132,7 @@
 		031E177A23BE812500B0F813 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				495E621B24E650A700BDC3CA /* facebook */,
 				031E177B23BE812500B0F813 /* MJRefresh */,
 				031E17AA23BE812500B0F813 /* SVProgressHUD */,
 				031E17B523BE812500B0F813 /* AFNetworking */,
@@ -6491,6 +6517,8 @@
 				031E182523BE812600B0F813 /* UGLoginViewController.m */,
 				031E182623BE812600B0F813 /* UGRegisterViewController.h */,
 				031E182423BE812600B0F813 /* UGRegisterViewController.m */,
+				D439D12524F227D300B719DA /* FBTransitionViewController.h */,
+				D439D12624F227D300B719DA /* FBTransitionViewController.m */,
 			);
 			path = "登录注册";
 			sourceTree = "<group>";
@@ -7676,6 +7704,7 @@
 		2E2BF98637033623A296F5F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				495E622224E650FC00BDC3CA /* facebook */,
 				D435F90823CEF996008648CE /* AudioToolbox.framework */,
 				D4463AC523A7740E008EF03D /* libresolv.tbd */,
 				D4463AC323A77404008EF03D /* UserNotifications.framework */,
@@ -7704,6 +7733,48 @@
 				D4DE3F1224C5E8D500DD3A69 /* UGPopViewController.xib */,
 			);
 			path = "1次弹出框";
+			sourceTree = "<group>";
+		};
+		4959677824E25C4A005D5B53 /* FacebookHelper */ = {
+			isa = PBXGroup;
+			children = (
+				4959677A24E25C89005D5B53 /* Tool */,
+			);
+			path = FacebookHelper;
+			sourceTree = "<group>";
+		};
+		4959677A24E25C89005D5B53 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				4959677B24E25C89005D5B53 /* SUCacheItem.h */,
+				4959677E24E25C89005D5B53 /* SUCacheItem.m */,
+				4959678024E25C89005D5B53 /* UIImageView+CreateByUrl.h */,
+				4959677C24E25C89005D5B53 /* UIImageView+CreateByUrl.m */,
+				4959677F24E25C89005D5B53 /* SUCache.h */,
+				4959677D24E25C89005D5B53 /* SUCache.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		495E621B24E650A700BDC3CA /* facebook */ = {
+			isa = PBXGroup;
+			children = (
+				495E621C24E650A700BDC3CA /* FBSDKLoginKit.framework */,
+				495E621D24E650A700BDC3CA /* FBSDKShareKit.framework */,
+				495E621E24E650A700BDC3CA /* FBSDKCoreKit.framework */,
+			);
+			path = facebook;
+			sourceTree = "<group>";
+		};
+		495E622224E650FC00BDC3CA /* facebook */ = {
+			isa = PBXGroup;
+			children = (
+				495E622324E650FC00BDC3CA /* FBSDKLoginKit.framework */,
+				495E622424E650FC00BDC3CA /* FBSDKShareKit.framework */,
+				495E622524E650FC00BDC3CA /* FBSDKCoreKit.framework */,
+			);
+			name = facebook;
+			path = ug/Classes/Frameworks/facebook;
 			sourceTree = "<group>";
 		};
 		CF166B3524A47E9C00EF8835 /* 切站点、切热更新 */ = {
@@ -10326,6 +10397,7 @@
 				031E1A2023BE812700B0F813 /* CCNetworkRequests1+UGLiuHe.m in Sources */,
 				031E195423BE812600B0F813 /* UGPostDetailVC.m in Sources */,
 				031E1C7C23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
+				D439D12724F227D300B719DA /* FBTransitionViewController.m in Sources */,
 				031E1C8423BE812A00B0F813 /* UGFunds2microcodeView.m in Sources */,
 				031E1B2C23BE812800B0F813 /* UGChanglongaideModel.m in Sources */,
 				031E1E3223BE812C00B0F813 /* UGPromotion6rowButtonTableViewCell.m in Sources */,
@@ -10353,6 +10425,7 @@
 				031E195623BE812600B0F813 /* LHGalleryListVC1.m in Sources */,
 				031E1C6C23BE812A00B0F813 /* UGRechargeRecordTableViewController.m in Sources */,
 				031E1E7C23BE812D00B0F813 /* UGPlatformBalanceTableViewCell.m in Sources */,
+				4959678124E25C8A005D5B53 /* UIImageView+CreateByUrl.m in Sources */,
 				031E1A9223BE812700B0F813 /* MOFSDatePicker.m in Sources */,
 				031E1D2623BE812B00B0F813 /* UGMissionLevelController.m in Sources */,
 				031E1D7C23BE812B00B0F813 /* UGRealBetRecordViewController.m in Sources */,
@@ -10364,6 +10437,7 @@
 				031E193E23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,
 				031E1DA623BE812B00B0F813 /* UGwithdrawListModel.m in Sources */,
 				031E1AA423BE812800B0F813 /* YBPopupMenu.m in Sources */,
+				4959678224E25C8A005D5B53 /* SUCache.m in Sources */,
 				031E1D9823BE812B00B0F813 /* UGYubaoConversionCenterController.m in Sources */,
 				031E1BAE23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1C0A23BE812900B0F813 /* UGbetModel.m in Sources */,
@@ -10487,6 +10561,7 @@
 				D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */,
 				031E1D9A23BE812B00B0F813 /* UGYubaoInComeController.m in Sources */,
 				D444AAB924614D25002737CB /* DZPOneTableViewCell.m in Sources */,
+				4959678324E25C8A005D5B53 /* SUCacheItem.m in Sources */,
 				031E1E7023BE812C00B0F813 /* UGBetRecorddHeaderView.m in Sources */,
 				031E1B5223BE812800B0F813 /* UGYYRightMenuView.m in Sources */,
 				031E1A5623BE812700B0F813 /* UUMarqueeView.m in Sources */,
@@ -11029,6 +11104,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ug/Classes/Frameworks/facebook",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(ug)/ug/Classes/Other/UGPCH.pch";
@@ -11061,6 +11137,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ug/Classes/Frameworks/facebook",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(ug)/ug/Classes/Other/UGPCH.pch";
