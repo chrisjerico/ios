@@ -427,3 +427,17 @@ MJExtensionCodingImplementation
 
 @end
 
+
+
+
+
+@implementation platformModel 
+
+@end
+
+//第3方登录Model
+@implementation OauthModel
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"switch":@"mSwith"}];
+}
+@end

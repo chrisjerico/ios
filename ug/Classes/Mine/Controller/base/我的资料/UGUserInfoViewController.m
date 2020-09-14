@@ -62,7 +62,7 @@
 
     }
     
-    
+    [self getSystemConfig];
     [self setupUserInfo];
     [self getUserInfo];
     
@@ -201,6 +201,29 @@
     }
     
 }
+
+
+- (void)getSystemConfig {
+    WeakSelf;
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+           
+            if (config.oauth.mSwith) {
+                BOOL isFSShow = config.oauth.platform.facebook;
+                 [weakSelf.FBbtn setHidden:!isFSShow];
+            } else {
+                [weakSelf.FBbtn setHidden:YES];
+            }
+
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 
 #pragma mark -  FB方法
 

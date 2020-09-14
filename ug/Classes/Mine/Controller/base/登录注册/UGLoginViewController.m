@@ -607,6 +607,13 @@
                 weakSelf.webBgViewHeightConstraint.constant = 0.1;
             }
             
+            if (config.oauth.mSwith) {
+                BOOL isFSShow = config.oauth.platform.facebook;
+                 [weakSelf.FSloginButton setHidden:!isFSShow];
+            } else {
+                [weakSelf.FSloginButton setHidden:YES];
+            }
+            
             
             
             

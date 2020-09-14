@@ -75,6 +75,19 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 #define SysConf [UGSystemConfigModel currentConfig]
 
+
+@interface platformModel : UGModel
+@property (nonatomic) BOOL twitter;   /**<   twitter登录是否启用*/
+@property (nonatomic) BOOL facebook;  /**<   facebook登录是否启用*/
+@property (nonatomic) BOOL google;    /**<   google登录是否启用*/
+@end
+
+//第3方登录Model
+@interface OauthModel : UGModel
+@property (nonatomic) BOOL mSwith; /**<   第三方登录是否启用*/
+@property (nonatomic, copy) platformModel *platform;
+@end
+
 // 我的页功能按钮Model
 @interface UGUserCenterItem :UGModel
 @property (nonatomic, assign) UserCenterItemType code; /**<   id */
@@ -209,6 +222,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 */
 @property (nonatomic, copy) NSString * showNavigationBar;/**<   //显示在前还是后 1 前 0 后
 */
+@property (nonatomic, copy) OauthModel * oauth;/**<   第三方登录*/
+
 
 + (instancetype)currentConfig;
 
