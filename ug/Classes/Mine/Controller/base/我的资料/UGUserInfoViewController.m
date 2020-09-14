@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *moneyType;
 
+@property (weak, nonatomic) IBOutlet UIView *FBView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *time2Label;
 @property (weak, nonatomic) IBOutlet UIButton *FBbtn;
@@ -212,9 +213,9 @@
            
             if (config.oauth.mSwith) {
                 BOOL isFSShow = config.oauth.platform.facebook;
-                 [weakSelf.FBbtn setHidden:!isFSShow];
+                 [weakSelf.FBView setHidden:!isFSShow];
             } else {
-                [weakSelf.FBbtn setHidden:YES];
+                [weakSelf.FBView setHidden:YES];
             }
 
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
