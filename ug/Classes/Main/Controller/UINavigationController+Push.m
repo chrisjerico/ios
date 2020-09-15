@@ -203,6 +203,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     
    //聊天室数据有
+    
+    NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
 
     if ([CMCommon getRoomMode:model.gameId] ) {
         return [self goLotteryBetAndChatVC:model];
@@ -220,13 +222,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
            
             vc.nim = model;
-    //        if (vc.navigationController.viewControllers.count > 1){
                       // 隐藏底部条
                 vc.hidesBottomBarWhenPushed = YES;
-    //        }
-    //        else{
-    //            vc.hidesBottomBarWhenPushed = NO;
-    //        }
+
             // Push
             if ([UGTabbarController canPushToViewController:vc]) {
                 [NavController1 setViewControllers:({
@@ -904,6 +902,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                     [CMCommon goQQ:ss];
                 }];
             }
+            return true;
+        }
+        case UCI_聊天室: {
+            [NavController1 pushViewControllerWithNextIssueModel:nil];
             return true;
         }
             

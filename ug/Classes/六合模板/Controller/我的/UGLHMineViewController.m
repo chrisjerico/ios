@@ -113,10 +113,30 @@
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     
     __weakSelf_(__self);
-    [__self.tableView.dataArray setArray:SysConf.userCenter];
-    [__self.tableView reloadData];
+    [self.tableView.dataArray setArray:SysConf.userCenter];
+    
+    if ( [@"l002" containsString:APP.SiteId]) {
+        UGUserCenterItem * obj = [UGUserCenterItem new];
+        obj.code = UCI_聊天室;
+        obj.lhImgName = @"l002chat";
+        obj.name = @"聊天室";
+        [self.tableView.dataArray addObject:obj];
+
+    }
+    
+    NSLog(@"self.tableView.dataArray  = %@",self.tableView.dataArray );
+    
+    [self.tableView reloadData];
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
         [__self.tableView.dataArray setArray:SysConf.userCenter];
+        if ( [@"l002" containsString:APP.SiteId]) {
+            UGUserCenterItem * obj = [UGUserCenterItem new];
+            obj.code = UCI_聊天室;
+            obj.lhImgName = @"l002chat";
+            obj.name = @"聊天室";
+            [self.tableView.dataArray addObject:obj];
+
+        }
         [__self.tableView reloadData];
     });
     
@@ -150,6 +170,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
     UGUserCenterItem *uci = tableView.dataArray[indexPath.row];
+
     subLabel(@"标题Label").text = uci.name;
     [subImageView(@"图片ImageView") sd_setImageWithURL:[NSURL URLWithString:uci.logo] placeholderImage:[UIImage imageNamed:uci.lhImgName]];
     subLabel(@"红点Label").text = @([UGUserModel currentUser].unreadMsg).stringValue;

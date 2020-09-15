@@ -27,6 +27,16 @@
     }
     
 
+    
+    [self.allBtn setBackgroundColor:Skin1.navBarBgColor];
+    [self.bigBtn setBackgroundColor:Skin1.navBarBgColor];
+    [self.smallBtn setBackgroundColor:Skin1.navBarBgColor];
+    [self.jiBtn setBackgroundColor:Skin1.navBarBgColor];
+    [self.ouBtn setBackgroundColor:Skin1.navBarBgColor];
+    [self.removeBtn setBackgroundColor:Skin1.navBarBgColor];
+
+
+
 }
 
 - (void)setLeftTitle:(BOOL)leftTitle {

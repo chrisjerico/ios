@@ -1325,7 +1325,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     UGChatRoomModel *obj  = [UGChatRoomModel new];
 
     
-    for (UGChatRoomModel *object in SysConf.chatRoomAry) {
+    for (UGChatRoomModel *object in SysChatRoom.chatRoomAry) {
         
         NSLog(@"object.typeIds = %@",object.typeIds);
         if ( [object.typeIds containsObject:gameId]) {

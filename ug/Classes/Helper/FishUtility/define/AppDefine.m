@@ -11,7 +11,6 @@
 
 
 #define __SiteID__ @"test61f"
-
 #define LocalRnVersion @"1.4.66"
 
 
@@ -88,7 +87,7 @@
                 sb(@"LineConversion"),
                 sb(@"BetDetail"),
                 sb(@"Funds"),
-                
+
                 
         ];
     });
@@ -147,9 +146,10 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 //			_SiteId = @"test61f";
-			_SiteId = @"l002";
+			_SiteId = @"c126";
 
         }
+
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;

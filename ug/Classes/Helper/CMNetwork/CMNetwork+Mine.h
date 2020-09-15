@@ -247,6 +247,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 //领取俸禄接口 c=task&a=sendMissionBonus   (参数bonsId 领取俸禄的id 前面列表会传过去)
 + (void)taskSendMissionBonusWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//FB是否绑定  c=oauth&a=hasBind
++ (void)oauthHasBindWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//绑定旧账号：  c=oauth&a=bindAccount
++ (void)oauthBindAccountWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//访问无密码登录接口：  c=oauth&a=login
++ (void)oauthLoginUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
+//解除三方绑定：oauth/unbind，
++ (void)oauthUnbindUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

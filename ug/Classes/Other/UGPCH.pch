@@ -68,4 +68,6 @@
 #import "NSArray+Log.h"             //XCode状态栏打印Json格式数据
 #import "SGBrowserView.h"            //弹窗
 #import "LanguageHelper.h"
+#import "MyChatRoomsModel.h"
+
 #endif /* UGPCH_pch */

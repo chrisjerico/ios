@@ -46,7 +46,9 @@
 #import "CMTimeCommon.h"
 #import "RoomChatModel.h"
 
-
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "SUCache.h"
 @implementation UIViewController (CanPush)
 
 _CCRuntimeProperty_Assign(BOOL, 允许未登录访问, set允许未登录访问)
@@ -185,6 +187,12 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon deleteWebCache];
         [CMCommon removeLastGengHao];
+        
+        // 清楚FB
+        NSInteger slot = 0;
+        [SUCache deleteItemInSlot:slot];
+        [FBSDKAccessToken setCurrentAccessToken:nil];
+        [FBSDKProfile setCurrentProfile:nil];
         // 通知RN
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             [ReactNativeHelper sendEvent:UGNotificationUserLogout params:UserI];
@@ -790,23 +798,29 @@ static UGTabbarController *_tabBarVC = nil;
                 [CMCommon removeLastRoomAction:chatIdAry];
                 
                 NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
-                SysConf.chatRoomRedirect = [number intValue];
-                SysConf.chatRoomAry = chatRoomAry;
+                
+                
+                MyChatRoomsModel.currentRoom = [MyChatRoomsModel new];;
+               
+                SysChatRoom.chatRoomRedirect = [number intValue];
+                SysChatRoom.chatRoomAry = chatRoomAry;
+                
+              
 
                 if (![CMCommon arryIsNull:chatRoomAry]) {
-                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
-                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+                      UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d,roomName = %@",obj.roomId,obj.sortId,obj.roomName);
             
                 }
                 else{
                     UGChatRoomModel *obj  = [UGChatRoomModel new];
                     obj.roomId = @"0";
                     obj.roomName = @"聊天室";
-                    SysConf.defaultChatRoom = obj;
+                    SysChatRoom.defaultChatRoom = obj;
                     
                 }
-
-                [UGSystemConfigModel setCurrentConfig:SysConf];
+                NSLog(@"SysChatRoom = %@",SysChatRoom);
+          
   
             } failure:^(id msg) {
                 //            [self stopAnimation];

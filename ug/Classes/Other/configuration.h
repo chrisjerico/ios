@@ -312,7 +312,11 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 //=============直播url====================================================================================================
 //http://test12.6yc.com/open_prize/video.html?id=1&&gameType=cqssc
 #define liveUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/video.html?navhidden=1&&id="]
-
+//=============FB登录====================================================================================================
+#define oauthHasBindUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=hasBind"]//接口，oauth    3. 未绑定处理-弹出绑定页面
+#define oauthBindAccountUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=bindAccount"]//- 绑定旧账号：
+#define oauthLoginUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=login"]//- - 访问无密码登录接口：oauth/login，返回站点授权token
+#define oauthUnbindUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=unbind"]//解除三方绑定：oauth/unbind，参数：platform = 'facebook'
 
 
 
