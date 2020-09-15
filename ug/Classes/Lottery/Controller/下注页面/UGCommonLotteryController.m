@@ -312,7 +312,7 @@
 		   UIView * superView = reBetButton.superview;
 		   [superView addSubview:self.radomNumberButton];
 		   [self.radomNumberButton mas_makeConstraints:^(MASConstraintMaker *make) {
-			   make.width.equalTo(@74);
+			   make.width.equalTo(@45);
 			   make.height.equalTo(@30);
 			   make.centerY.equalTo(reBetButton);
 			   make.left.equalTo(reBetButton.mas_right).offset(10);
@@ -331,7 +331,7 @@
 - (void )sliderViewInit {
 	
    __weakSelf_(__self);
-	self.slider = [[MGSlider alloc] initWithFrame:CGRectMake(150, 5,150 , 50)];
+	self.slider = [[MGSlider alloc] initWithFrame:CGRectMake(190, 5,110 , 50)];
 //    self.slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
 	self.slider.thumbSize = CGSizeMake(40, 40);//锚点的大小
 	self.slider.thumbImage = [UIImage imageNamed:@"icon_activity_ticket_details_rebate"];//锚点的图片
@@ -371,7 +371,7 @@
 	
 	
 	
-	self.sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(150, 250, 200, 50)];
+	self.sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(190, 250, 200, 50)];
 	self.sliderLB.font = [UIFont systemFontOfSize:14.0];
 	self.sliderLB.text = @"0.00%";
 	self.sliderLB.textColor = [UIColor whiteColor];
@@ -390,13 +390,13 @@
 		
 		make.right.equalTo(self.bottomView.mas_right).offset(-50);
 		make.height.equalTo([NSNumber numberWithFloat:50]);
-		make.width.equalTo([NSNumber numberWithFloat:120]);
+		make.width.equalTo([NSNumber numberWithFloat:80]);
 		make.top.equalTo([NSNumber numberWithFloat:5]);
 	}];
 	
 	[self.reductionBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
 		
-		make.right.equalTo(self.bottomView.mas_right).offset(-181);
+		make.right.equalTo(self.bottomView.mas_right).offset(-141);
 		make.height.equalTo([NSNumber numberWithFloat:32]);
 		make.width.equalTo([NSNumber numberWithFloat:32]);
 		make.top.equalTo([NSNumber numberWithFloat:13]);
