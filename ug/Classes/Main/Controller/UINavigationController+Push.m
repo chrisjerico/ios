@@ -203,9 +203,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     
    //聊天室数据有
-    
-    NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
+//    [NSThread sleepForTimeInterval:1.0];
+//    NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
 
+    
+    
     if ([CMCommon getRoomMode:model.gameId] ) {
         return [self goLotteryBetAndChatVC:model];
     } else {

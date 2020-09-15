@@ -429,6 +429,8 @@
                      [self getNoticeList];
                  }
             }
+            
+            
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
