@@ -275,13 +275,10 @@
                      __block UITextField *tf = nil;
                      
                      [LEEAlert alert].config
-                     .LeeTitle(@"标题")
-                     .LeeContent(@"内容")
+                     .LeeTitle(@"请输入绑定的真实姓名")
                      .LeeAddTextField(^(UITextField *textField) {
-                         
                          // 这里可以进行自定义的设置
-                         
-                         textField.placeholder = @"输入框";
+                         textField.placeholder = @"请输入真实姓名";
                          
                          if (@available(iOS 13.0, *)) {
                              textField.textColor = [UIColor secondaryLabelColor];
