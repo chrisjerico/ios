@@ -286,7 +286,8 @@ static UGTabbarController *_tabBarVC = nil;
             // 默认加载的页面
             NSMutableArray *temp = @[].mutableCopy;
             for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+//                if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+				if ([@"/home,/gameHall,/chatRoomList,/activity,/user" containsString:mm.path]) {
                     [temp addObject:mm];
                 }
             }
