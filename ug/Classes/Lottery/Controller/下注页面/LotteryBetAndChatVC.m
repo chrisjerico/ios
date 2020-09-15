@@ -169,7 +169,7 @@
         UGChatViewController *vc = [[UGChatViewController alloc] init];
         vc.hideHead = YES;
         
-        if (SysConf.chatRoomRedirect == 1) { /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
+        if (SysChatRoom.chatRoomRedirect == 1) { /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
             if (model.gameId ) {
                 UGChatRoomModel *roomModel =  [self getRoomMode:model.gameId];
                 
@@ -239,13 +239,12 @@
             
             [CMCommon removeLastRoomAction:chatIdAry];
             NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
-            SysConf.chatRoomRedirect = [number intValue];
-            SysConf.chatRoomAry = chatRoomAry;
+            SysChatRoom.chatRoomRedirect = [number intValue];
+            SysChatRoom.chatRoomAry = chatRoomAry;
             
-            
+            NSLog(@"SysChatRoom = %@",SysChatRoom);
             if (![CMCommon arryIsNull:chatRoomAry]) {
-                UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
-                NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+                UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
             }
             else{
                 UGChatRoomModel *obj  = [UGChatRoomModel new];
@@ -253,7 +252,7 @@
                 obj.roomName = @"聊天室";
             }
             
-            if (SysConf.chatRoomRedirect == 1) { /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
+            if (SysChatRoom.chatRoomRedirect == 1) { /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
                 if (__self.nim.gameId ) {
                     UGChatRoomModel *roomModel =  [__self getRoomMode:__self.nim.gameId];
                     __self.vc2.roomId = roomModel.roomId;
@@ -443,23 +442,22 @@
         NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:self.chatAry];
         //                             NSLog(@"chatIdAry = %@",chatIdAry);
         NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
-        SysConf.chatRoomRedirect = [number intValue];
-        SysConf.chatRoomAry = chatRoomAry;
-        NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
-        //            SysConf.chatRoomAry = __self.chatAry;
         
+        
+        SysChatRoom.chatRoomRedirect = [number intValue];
+        SysChatRoom.chatRoomAry = chatRoomAry;
+        NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
+
         if (![CMCommon arryIsNull:chatRoomAry]) {
-            UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
-            NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+            UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
         }
         else{
             UGChatRoomModel *obj  = [UGChatRoomModel new];
             obj.roomId = @"0";
             obj.roomName = @"聊天室";
-            SysConf.defaultChatRoom  = obj;
+            SysChatRoom.defaultChatRoom  = obj;
         }
         
-        [UGSystemConfigModel setCurrentConfig:SysConf];
         __weakSelf_(__self);
         dispatch_async(dispatch_get_main_queue(), ^{
            // UI更新代码
@@ -679,13 +677,13 @@
     
     UGChatRoomModel *obj  = [UGChatRoomModel new];
     
-    obj.roomName = SysConf.defaultChatRoom.roomName;
-    obj.roomId  = SysConf.defaultChatRoom.roomId;
+    obj.roomName = SysChatRoom.defaultChatRoom.roomName;
+    obj.roomId  = SysChatRoom.defaultChatRoom.roomId;
     
-    NSLog(@"SysConf.chatRoomAry=%@",SysConf.chatRoomAry);
+    NSLog(@"SysChatRoom.chatRoomAry=%@",SysChatRoom.chatRoomAry);
     
     
-    for (UGChatRoomModel *object in SysConf.chatRoomAry) {
+    for (UGChatRoomModel *object in SysChatRoom.chatRoomAry) {
         
         NSLog(@"object.typeIds = %@",object.typeIds);
         if ( [object.typeIds containsObject:gameId]) {

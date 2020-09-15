@@ -969,7 +969,7 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求10
-           [self chatgetToken];     // 在线配置的聊天室
+//           [self chatgetToken];     // 在线配置的聊天室
            
     });
        
@@ -1274,23 +1274,23 @@
             NSLog(@"任务中心");
         }
         else if([@"222" containsString:model.categoryType]) {
-            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+
             UGNextIssueModel *m = [UGNextIssueModel new];
             m.title = @"澳门六合彩";
-            vc.nextIssueModel = m;
-            vc.gameId = @"222";
-            [NavController1 pushViewController:vc  animated:YES];
-//            [[Global getInstanse] setHideTabBar:YES];
+            m.gameId = @"222";
+            m.gameType = @"lhc";
+            m.name = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m];
             NSLog(@"澳门六合彩");
         }
         else if([@"185" containsString:model.categoryType]) {
-            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+     
             UGNextIssueModel *m = [UGNextIssueModel new];
             m.title = @"一分六合彩";
-            vc.nextIssueModel = m;
-            vc.gameId = @"185";
-            [NavController1 pushViewController:vc  animated:YES];
-//            [[Global getInstanse] setHideTabBar:YES];
+            m.gameId = @"185";
+            m.gameType = @"lhc";
+            m.name = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m];
             NSLog(@"一分六合彩");
             
 //
@@ -1599,70 +1599,6 @@
     }];
 }
 
-// 得到线上配置的聊天室
-- (void)chatgetToken {
-    
-    {//得到线上配置的聊天室
-        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
-                                 @"token":[UGUserModel currentUser].sessid
-        };
-        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
-        [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-            [CMResult processWithResult:model success:^{
-                NSLog(@"model.data = %@",model.data);
-                NSDictionary *data = (NSDictionary *)model.data;
-                NSMutableArray *chatIdAry = [NSMutableArray new];
-                NSMutableArray *typeIdAry = [NSMutableArray new];
-                NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-//                NSArray * chatAry = [data objectForKey:@"chatAry"];
-                
-                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
-                
-                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
-                //对数组进行排序（升序）
-                    return p1.sortId > p2.sortId;
-                //对数组进行排序（降序）
-                // return [p2.dateOfBirth compare:p1.dateOfBirth];
-                }];
-                
-                for (int i = 0; i< chatAry.count; i++) {
-                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
-                    [chatIdAry addObject:dic.roomId];
-                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
-                    
-                }
-                
-                [CMCommon removeLastRoomAction:chatIdAry];
-
-                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
-                SysConf.chatRoomRedirect = [number intValue];
-                SysConf.chatRoomAry = chatRoomAry;
-                
-                 NSLog(@"typeIdAry = %@",typeIdAry);
-                
-                if (![CMCommon arryIsNull:chatRoomAry]) {
-                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
-                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
-            
-                }
-                else{
-                    UGChatRoomModel *obj  = [UGChatRoomModel new];
-                    obj.roomId = @"0";
-                    obj.roomName = @"聊天室";
-                    SysConf.defaultChatRoom = obj;
-                    
-                }
-                
-              [UGSystemConfigModel setCurrentConfig:SysConf];
-                
-                
-            } failure:^(id msg) {
-                //            [self stopAnimation];
-            }];
-        }];
-        
-    }
-}
 
 
 // 优惠活动

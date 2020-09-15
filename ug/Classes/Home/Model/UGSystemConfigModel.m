@@ -56,7 +56,7 @@ UGSystemConfigModel *currentConfig = nil;
 
 
 @interface UGUserCenterItem ()
-@property (nonatomic, readwrite) NSString *lhImgName;
+//@property (nonatomic) NSString *lhImgName;    /**<   六合模版使用的本地图标 */
 @property (nonatomic, readwrite) NSString *bmImgName;
 @property (nonatomic, readwrite) NSString *defaultImgName;
 @end
@@ -96,7 +96,13 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"kj_trend",               @"kj_trend",            @"kj_trend",                UCI_开奖走势,      @"开奖走势"),
             item(@"usrCenter_qq",           @"usrCenter_qq",        @"usrCenter_qq",            UCI_QQ客服,        @"QQ客服"),
             item(@"center_kaijiang",        @"center_kaijiang",     @"center_kaijiang",         UCI_开奖网,        @"开奖网"),
+            
         ];
+        
+//       if ( [@"l002" containsString:APP.SiteId]) {
+//           [_items addObject:item(@"chatRoom",        @"l002chat",     @"l002chat",         UCI_聊天室,        @"聊天室")];
+//        }
+        
     });
     return _items;
 }

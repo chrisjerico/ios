@@ -2052,6 +2052,7 @@
 		D466533A24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D466533B24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D46653412430CD38000D5377 /* otherLotter.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533F2430CD38000D5377 /* otherLotter.wav */; };
+		D469CAD525109D5000AE976D /* MyChatRoomsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D469CAD225109D5000AE976D /* MyChatRoomsModel.m */; };
 		D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */; };
 		D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */; };
 		D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */; };
@@ -4014,6 +4015,8 @@
 		D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineMainListCollectionViewCell.xib; sourceTree = "<group>"; };
 		D466533924305FAE000D5377 /* lottery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lottery.wav; sourceTree = "<group>"; };
 		D466533F2430CD38000D5377 /* otherLotter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = otherLotter.wav; sourceTree = "<group>"; };
+		D469CAD225109D5000AE976D /* MyChatRoomsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChatRoomsModel.m; sourceTree = "<group>"; };
+		D469CAD425109D5000AE976D /* MyChatRoomsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChatRoomsModel.h; sourceTree = "<group>"; };
 		D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteMainViewController.h; sourceTree = "<group>"; };
 		D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromoteMainViewController.m; sourceTree = "<group>"; };
 		D476E5E82401671000BA0EA9 /* PromoteTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteTitleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -5242,6 +5245,8 @@
 		031E15E323BE812400B0F813 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D469CAD425109D5000AE976D /* MyChatRoomsModel.h */,
+				D469CAD225109D5000AE976D /* MyChatRoomsModel.m */,
 				031E15E423BE812400B0F813 /* UGRankModel.h */,
 				031E15FA23BE812400B0F813 /* UGRankModel.m */,
 				031E15FB23BE812400B0F813 /* UGRedEnvelopeModel.h */,
@@ -10679,6 +10684,7 @@
 				031E1D7823BE812B00B0F813 /* UGFeedBackController.m in Sources */,
 				031E1E0423BE812C00B0F813 /* UGSignInScrHeaderView.m in Sources */,
 				031E1A3A23BE812700B0F813 /* SyyRadioButton.m in Sources */,
+				D469CAD525109D5000AE976D /* MyChatRoomsModel.m in Sources */,
 				032412B923CC5D3F00FABD51 /* PromotionRecordCell2.m in Sources */,
 				031E1BCC23BE812900B0F813 /* UGXYNCLotteryController.m in Sources */,
 				031E1C2C23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.m in Sources */,

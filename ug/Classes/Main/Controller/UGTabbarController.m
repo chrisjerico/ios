@@ -798,23 +798,29 @@ static UGTabbarController *_tabBarVC = nil;
                 [CMCommon removeLastRoomAction:chatIdAry];
                 
                 NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
-                SysConf.chatRoomRedirect = [number intValue];
-                SysConf.chatRoomAry = chatRoomAry;
+                
+                
+                MyChatRoomsModel.currentRoom = [MyChatRoomsModel new];;
+               
+                SysChatRoom.chatRoomRedirect = [number intValue];
+                SysChatRoom.chatRoomAry = chatRoomAry;
+                
+              
 
                 if (![CMCommon arryIsNull:chatRoomAry]) {
-                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
-                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
+                      UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d,roomName = %@",obj.roomId,obj.sortId,obj.roomName);
             
                 }
                 else{
                     UGChatRoomModel *obj  = [UGChatRoomModel new];
                     obj.roomId = @"0";
                     obj.roomName = @"聊天室";
-                    SysConf.defaultChatRoom = obj;
+                    SysChatRoom.defaultChatRoom = obj;
                     
                 }
-
-                [UGSystemConfigModel setCurrentConfig:SysConf];
+                NSLog(@"SysChatRoom = %@",SysChatRoom);
+          
   
             } failure:^(id msg) {
                 //            [self stopAnimation];
