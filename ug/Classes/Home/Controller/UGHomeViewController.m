@@ -445,10 +445,11 @@
             }
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-            [self.contentScrollView.mj_header endRefreshing];
+            [__self.contentScrollView.mj_header endRefreshing];
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-            self.titleView.userName = UserI.username;
+            __self.titleView.userName = UserI.username;
+            
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -971,7 +972,7 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求10
-//           [self chatgetToken];     // 在线配置的聊天室
+//           [self chatgetToken];     // 在线配置的聊天室÷
            
     });
        
@@ -1318,6 +1319,72 @@
     }
 }
 
+// 得到线上配置的聊天室
+- (void)chatgetToken {
+    
+
+    {//得到线上配置的聊天室
+        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
+                                 @"token":[UGUserModel currentUser].sessid
+        };
+        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
+        [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                NSLog(@"model.data = %@",model.data);
+                NSDictionary *data = (NSDictionary *)model.data;
+                NSMutableArray *chatIdAry = [NSMutableArray new];
+                NSMutableArray *typeIdAry = [NSMutableArray new];
+                NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+//                NSArray * chatAry = [data objectForKey:@"chatAry"];
+                
+                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+                
+                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                    return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+                }];
+                
+                for (int i = 0; i< chatAry.count; i++) {
+                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                    [chatIdAry addObject:dic.roomId];
+                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                    
+                }
+                [CMCommon removeLastRoomAction:chatIdAry];
+                
+                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+                
+                
+                MyChatRoomsModel.currentRoom = [MyChatRoomsModel new];;
+                SysChatRoom.chatRoomRedirect = [number intValue];
+                SysChatRoom.chatRoomAry = chatRoomAry;
+                
+              
+
+                if (![CMCommon arryIsNull:chatRoomAry]) {
+                      UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d,roomName = %@",obj.roomId,obj.sortId,obj.roomName);
+            
+                }
+                else{
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
+                    obj.roomId = @"0";
+                    obj.roomName = @"聊天室";
+                    SysChatRoom.defaultChatRoom = obj;
+                    
+                }
+                NSLog(@"SysChatRoom0000000000000000000000000000 = %@",SysChatRoom);
+                [MyChatRoomsModel setCurrentRoom:SysChatRoom ];
+  
+            } failure:^(id msg) {
+                //            [self stopAnimation];
+            }];
+        }];
+        
+    }
+}
 
 - (void)getUserInfo {
     if (!UGLoginIsAuthorized()) {
@@ -1336,6 +1403,8 @@
             UGUserModel.currentUser = user;
             weakSelf.titleView.userName = user.username;
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
+            
+            [weakSelf  chatgetToken];
         } failure:^(id msg) {
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
             if (model.msg.length) {
