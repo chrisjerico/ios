@@ -1953,6 +1953,28 @@
 		CFFAB58B237315C2009593AF /* event.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58A237315C2009593AF /* event.gif */; };
 		CFFAB58D23755569009593AF /* lxb.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFFAB58C23755569009593AF /* lxb.gif */; };
 		D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
+		D40745992511F36900606EA3 /* UGYNLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745952511F36800606EA3 /* UGYNLotteryController.storyboard */; };
+		D407459A2511F36900606EA3 /* UGYNLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745972511F36800606EA3 /* UGYNLotteryController.m */; };
+		D40745C42511F37900606EA3 /* YNSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D407459E2511F37800606EA3 /* YNSegmentView.m */; };
+		D40745C52511F37900606EA3 /* YNBetCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745A02511F37800606EA3 /* YNBetCollectionViewCell.xib */; };
+		D40745C62511F37900606EA3 /* YNBetCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745A22511F37800606EA3 /* YNBetCollectionViewCell.m */; };
+		D40745C72511F37900606EA3 /* YNBetDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745A32511F37800606EA3 /* YNBetDetailView.xib */; };
+		D40745C82511F37900606EA3 /* YNBetDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745A52511F37800606EA3 /* YNBetDetailView.m */; };
+		D40745C92511F37900606EA3 /* YNInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745A82511F37800606EA3 /* YNInputView.xib */; };
+		D40745CA2511F37900606EA3 /* YNInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745A92511F37800606EA3 /* YNInputView.m */; };
+		D40745CB2511F37900606EA3 /* YNCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745AC2511F37800606EA3 /* YNCollectionViewCell.xib */; };
+		D40745CC2511F37900606EA3 /* YNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745AD2511F37800606EA3 /* YNCollectionViewCell.m */; };
+		D40745CD2511F37900606EA3 /* YNHLPrizeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745B02511F37800606EA3 /* YNHLPrizeDetailView.xib */; };
+		D40745CE2511F37900606EA3 /* YNHLPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */; };
+		D40745CF2511F37900606EA3 /* YNHZMPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B42511F37800606EA3 /* YNHZMPrizeDetailView.m */; };
+		D40745D02511F37900606EA3 /* YNHZMPrizeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745B52511F37800606EA3 /* YNHZMPrizeDetailView.xib */; };
+		D40745D12511F37900606EA3 /* YNQuickListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745B92511F37800606EA3 /* YNQuickListCollectionViewCell.xib */; };
+		D40745D22511F37900606EA3 /* YNQuickListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BB2511F37800606EA3 /* YNQuickListCollectionViewCell.m */; };
+		D40745D32511F37900606EA3 /* YNQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BC2511F37800606EA3 /* YNQuickSelectView.m */; };
+		D40745D42511F37900606EA3 /* YNQuickSelectView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745BD2511F37800606EA3 /* YNQuickSelectView.xib */; };
+		D40745D52511F37900606EA3 /* YNQuickListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BF2511F37800606EA3 /* YNQuickListView.m */; };
+		D40745D62511F37900606EA3 /* YNCollectionFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745C22511F37800606EA3 /* YNCollectionFootView.xib */; };
+		D40745D72511F37900606EA3 /* YNCollectionFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745C32511F37800606EA3 /* YNCollectionFootView.m */; };
 		D40A295423E16C0200F07146 /* PromotionDepositRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */; };
 		D40A295823E173A900F07146 /* PromotionWithdrawalsRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */; };
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
@@ -3884,6 +3906,40 @@
 		D405AFCE2278240A00F8C586 /* UGPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGPCH.pch; sourceTree = "<group>"; };
 		D405B344227DB22100F8C586 /* UGNotificationEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGNotificationEvent.h; sourceTree = "<group>"; };
 		D405B345227DB22100F8C586 /* UGNotificationEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGNotificationEvent.m; sourceTree = "<group>"; };
+		D40745952511F36800606EA3 /* UGYNLotteryController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UGYNLotteryController.storyboard; sourceTree = "<group>"; };
+		D40745962511F36800606EA3 /* UGYNLotteryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGYNLotteryController.h; sourceTree = "<group>"; };
+		D40745972511F36800606EA3 /* UGYNLotteryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGYNLotteryController.m; sourceTree = "<group>"; };
+		D407459D2511F37800606EA3 /* YNSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNSegmentView.h; sourceTree = "<group>"; };
+		D407459E2511F37800606EA3 /* YNSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNSegmentView.m; sourceTree = "<group>"; };
+		D40745A02511F37800606EA3 /* YNBetCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNBetCollectionViewCell.xib; sourceTree = "<group>"; };
+		D40745A12511F37800606EA3 /* YNBetDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNBetDetailView.h; sourceTree = "<group>"; };
+		D40745A22511F37800606EA3 /* YNBetCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNBetCollectionViewCell.m; sourceTree = "<group>"; };
+		D40745A32511F37800606EA3 /* YNBetDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNBetDetailView.xib; sourceTree = "<group>"; };
+		D40745A42511F37800606EA3 /* YNBetCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNBetCollectionViewCell.h; sourceTree = "<group>"; };
+		D40745A52511F37800606EA3 /* YNBetDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNBetDetailView.m; sourceTree = "<group>"; };
+		D40745A72511F37800606EA3 /* YNInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNInputView.h; sourceTree = "<group>"; };
+		D40745A82511F37800606EA3 /* YNInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNInputView.xib; sourceTree = "<group>"; };
+		D40745A92511F37800606EA3 /* YNInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNInputView.m; sourceTree = "<group>"; };
+		D40745AB2511F37800606EA3 /* YNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNCollectionViewCell.h; sourceTree = "<group>"; };
+		D40745AC2511F37800606EA3 /* YNCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNCollectionViewCell.xib; sourceTree = "<group>"; };
+		D40745AD2511F37800606EA3 /* YNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNCollectionViewCell.m; sourceTree = "<group>"; };
+		D40745B02511F37800606EA3 /* YNHLPrizeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNHLPrizeDetailView.xib; sourceTree = "<group>"; };
+		D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNHLPrizeDetailView.m; sourceTree = "<group>"; };
+		D40745B22511F37800606EA3 /* YNHLPrizeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNHLPrizeDetailView.h; sourceTree = "<group>"; };
+		D40745B42511F37800606EA3 /* YNHZMPrizeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNHZMPrizeDetailView.m; sourceTree = "<group>"; };
+		D40745B52511F37800606EA3 /* YNHZMPrizeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNHZMPrizeDetailView.xib; sourceTree = "<group>"; };
+		D40745B62511F37800606EA3 /* YNHZMPrizeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNHZMPrizeDetailView.h; sourceTree = "<group>"; };
+		D40745B82511F37800606EA3 /* YNQuickSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickSelectView.h; sourceTree = "<group>"; };
+		D40745B92511F37800606EA3 /* YNQuickListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNQuickListCollectionViewCell.xib; sourceTree = "<group>"; };
+		D40745BA2511F37800606EA3 /* YNQuickListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickListView.h; sourceTree = "<group>"; };
+		D40745BB2511F37800606EA3 /* YNQuickListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNQuickListCollectionViewCell.m; sourceTree = "<group>"; };
+		D40745BC2511F37800606EA3 /* YNQuickSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNQuickSelectView.m; sourceTree = "<group>"; };
+		D40745BD2511F37800606EA3 /* YNQuickSelectView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNQuickSelectView.xib; sourceTree = "<group>"; };
+		D40745BE2511F37800606EA3 /* YNQuickListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickListCollectionViewCell.h; sourceTree = "<group>"; };
+		D40745BF2511F37800606EA3 /* YNQuickListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNQuickListView.m; sourceTree = "<group>"; };
+		D40745C12511F37800606EA3 /* YNCollectionFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNCollectionFootView.h; sourceTree = "<group>"; };
+		D40745C22511F37800606EA3 /* YNCollectionFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNCollectionFootView.xib; sourceTree = "<group>"; };
+		D40745C32511F37800606EA3 /* YNCollectionFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNCollectionFootView.m; sourceTree = "<group>"; };
 		D40A295223E16C0200F07146 /* PromotionDepositRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionDepositRecordVC.h; sourceTree = "<group>"; };
 		D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionDepositRecordVC.m; sourceTree = "<group>"; };
 		D40A295623E173A900F07146 /* PromotionWithdrawalsRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionWithdrawalsRecordVC.h; sourceTree = "<group>"; };
@@ -5649,6 +5705,7 @@
 		031E168823BE812400B0F813 /* 下注页面 */ = {
 			isa = PBXGroup;
 			children = (
+				D40745942511F36800606EA3 /* 越南彩 */,
 				031E168923BE812400B0F813 /* 福彩3D */,
 				031E168D23BE812400B0F813 /* 幸运农场 */,
 				031E169123BE812400B0F813 /* 广东快乐10 */,
@@ -5813,6 +5870,7 @@
 		031E16D023BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D407459B2511F37800606EA3 /* 越南 */,
 				031E16D123BE812400B0F813 /* 广告View */,
 				031E16D523BE812400B0F813 /* 号码Cell */,
 				031E170323BE812400B0F813 /* 滑块View（选择子玩法） */,
@@ -8101,6 +8159,126 @@
 			path = "AppDelegate+";
 			sourceTree = "<group>";
 		};
+		D40745942511F36800606EA3 /* 越南彩 */ = {
+			isa = PBXGroup;
+			children = (
+				D40745952511F36800606EA3 /* UGYNLotteryController.storyboard */,
+				D40745962511F36800606EA3 /* UGYNLotteryController.h */,
+				D40745972511F36800606EA3 /* UGYNLotteryController.m */,
+			);
+			path = "越南彩";
+			sourceTree = "<group>";
+		};
+		D407459B2511F37800606EA3 /* 越南 */ = {
+			isa = PBXGroup;
+			children = (
+				D407459C2511F37800606EA3 /* 越南分段View */,
+				D407459F2511F37800606EA3 /* 越南下注明细View */,
+				D40745A62511F37800606EA3 /* 越南输入号码 */,
+				D40745AA2511F37800606EA3 /* 越南cell */,
+				D40745AE2511F37800606EA3 /* 越南开奖详情 */,
+				D40745B72511F37800606EA3 /* 越南快速选择 */,
+				D40745C02511F37800606EA3 /* 越南Foot */,
+			);
+			path = "越南";
+			sourceTree = "<group>";
+		};
+		D407459C2511F37800606EA3 /* 越南分段View */ = {
+			isa = PBXGroup;
+			children = (
+				D407459D2511F37800606EA3 /* YNSegmentView.h */,
+				D407459E2511F37800606EA3 /* YNSegmentView.m */,
+			);
+			path = "越南分段View";
+			sourceTree = "<group>";
+		};
+		D407459F2511F37800606EA3 /* 越南下注明细View */ = {
+			isa = PBXGroup;
+			children = (
+				D40745A02511F37800606EA3 /* YNBetCollectionViewCell.xib */,
+				D40745A12511F37800606EA3 /* YNBetDetailView.h */,
+				D40745A22511F37800606EA3 /* YNBetCollectionViewCell.m */,
+				D40745A32511F37800606EA3 /* YNBetDetailView.xib */,
+				D40745A42511F37800606EA3 /* YNBetCollectionViewCell.h */,
+				D40745A52511F37800606EA3 /* YNBetDetailView.m */,
+			);
+			path = "越南下注明细View";
+			sourceTree = "<group>";
+		};
+		D40745A62511F37800606EA3 /* 越南输入号码 */ = {
+			isa = PBXGroup;
+			children = (
+				D40745A72511F37800606EA3 /* YNInputView.h */,
+				D40745A82511F37800606EA3 /* YNInputView.xib */,
+				D40745A92511F37800606EA3 /* YNInputView.m */,
+			);
+			path = "越南输入号码";
+			sourceTree = "<group>";
+		};
+		D40745AA2511F37800606EA3 /* 越南cell */ = {
+			isa = PBXGroup;
+			children = (
+				D40745AB2511F37800606EA3 /* YNCollectionViewCell.h */,
+				D40745AC2511F37800606EA3 /* YNCollectionViewCell.xib */,
+				D40745AD2511F37800606EA3 /* YNCollectionViewCell.m */,
+			);
+			path = "越南cell";
+			sourceTree = "<group>";
+		};
+		D40745AE2511F37800606EA3 /* 越南开奖详情 */ = {
+			isa = PBXGroup;
+			children = (
+				D40745AF2511F37800606EA3 /* 河内 */,
+				D40745B32511F37800606EA3 /* 胡志明 */,
+			);
+			path = "越南开奖详情";
+			sourceTree = "<group>";
+		};
+		D40745AF2511F37800606EA3 /* 河内 */ = {
+			isa = PBXGroup;
+			children = (
+				D40745B02511F37800606EA3 /* YNHLPrizeDetailView.xib */,
+				D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */,
+				D40745B22511F37800606EA3 /* YNHLPrizeDetailView.h */,
+			);
+			path = "河内";
+			sourceTree = "<group>";
+		};
+		D40745B32511F37800606EA3 /* 胡志明 */ = {
+			isa = PBXGroup;
+			children = (
+				D40745B42511F37800606EA3 /* YNHZMPrizeDetailView.m */,
+				D40745B52511F37800606EA3 /* YNHZMPrizeDetailView.xib */,
+				D40745B62511F37800606EA3 /* YNHZMPrizeDetailView.h */,
+			);
+			path = "胡志明";
+			sourceTree = "<group>";
+		};
+		D40745B72511F37800606EA3 /* 越南快速选择 */ = {
+			isa = PBXGroup;
+			children = (
+				D40745B82511F37800606EA3 /* YNQuickSelectView.h */,
+				D40745B92511F37800606EA3 /* YNQuickListCollectionViewCell.xib */,
+				D40745BA2511F37800606EA3 /* YNQuickListView.h */,
+				D40745BB2511F37800606EA3 /* YNQuickListCollectionViewCell.m */,
+				D40745BC2511F37800606EA3 /* YNQuickSelectView.m */,
+				D40745BD2511F37800606EA3 /* YNQuickSelectView.xib */,
+				D40745BE2511F37800606EA3 /* YNQuickListCollectionViewCell.h */,
+				D40745BF2511F37800606EA3 /* YNQuickListView.m */,
+			);
+			path = "越南快速选择";
+			sourceTree = "<group>";
+		};
+		D40745C02511F37800606EA3 /* 越南Foot */ = {
+			isa = PBXGroup;
+			children = (
+				D40745C12511F37800606EA3 /* YNCollectionFootView.h */,
+				D40745C22511F37800606EA3 /* YNCollectionFootView.xib */,
+				D40745C32511F37800606EA3 /* YNCollectionFootView.m */,
+			);
+			path = "越南Foot";
+			sourceTree = "<group>";
+		};
 		D4122CBE2504B4010009E602 /* 天空蓝 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9151,6 +9329,7 @@
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
 				CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */,
 				CF4758AA239636D200966536 /* 95.gif in Resources */,
+				D40745CB2511F37900606EA3 /* YNCollectionViewCell.xib in Resources */,
 				031E1CF423BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
 				D4426960249C83D10006878C /* MessageUnderMenuView.xib in Resources */,
 				D4326F0923F6D46900BEEA1B /* BetImgView.xib in Resources */,
@@ -9185,6 +9364,7 @@
 				CF475897239636D200966536 /* 133.gif in Resources */,
 				031E1BCE23BE812900B0F813 /* UGXYNCLotteryController.storyboard in Resources */,
 				D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */,
+				D40745D62511F37900606EA3 /* YNCollectionFootView.xib in Resources */,
 				CF4758DB239636D200966536 /* 84.gif in Resources */,
 				031E1E3823BE812C00B0F813 /* UGPromotion2rowTableViewCell.xib in Resources */,
 				031E1DF023BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
@@ -9197,6 +9377,7 @@
 				CF4758B7239636D200966536 /* 69.gif in Resources */,
 				CF8E242023DDBFD80054BF0F /* Fontisto.ttf in Resources */,
 				031E1DE823BE812C00B0F813 /* UGConvertCollectionViewCell.xib in Resources */,
+				D40745D02511F37900606EA3 /* YNHZMPrizeDetailView.xib in Resources */,
 				D44258FD23E948D80067E981 /* LH_laba.gif in Resources */,
 				031E199623BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				CF475910239636D200966536 /* 115.gif in Resources */,
@@ -9217,6 +9398,7 @@
 				CF8E242B23DDBFD80054BF0F /* FontAwesome.ttf in Resources */,
 				031E1B8823BE812900B0F813 /* UGNoticePopView.xib in Resources */,
 				033372F624F593F400048EC1 /* EggFrenzyViewController.xib in Resources */,
+				D40745CD2511F37900606EA3 /* YNHLPrizeDetailView.xib in Resources */,
 				CF4758C4239636D200966536 /* 6.gif in Resources */,
 				CF475928239636D200966536 /* 111.gif in Resources */,
 				031E1B5623BE812800B0F813 /* UGredActivityView.xib in Resources */,
@@ -9248,6 +9430,8 @@
 				CF4758E9239636D200966536 /* 76.gif in Resources */,
 				031E19F623BE812700B0F813 /* LoadingStateView.xib in Resources */,
 				D4122CC82504B8240009E602 /* TKLPlatformNoticeCell.xib in Resources */,
+				D40745C72511F37900606EA3 /* YNBetDetailView.xib in Resources */,
+				D40745C52511F37900606EA3 /* YNBetCollectionViewCell.xib in Resources */,
 				031E1D4223BE812B00B0F813 /* UGGoogleAuthenticationThirdViewController.xib in Resources */,
 				031E1B1C23BE812800B0F813 /* UGHomeViewController.storyboard in Resources */,
 				CF8E242E23DDBFD80054BF0F /* SimpleLineIcons.ttf in Resources */,
@@ -9281,6 +9465,7 @@
 				D4426966249CABEC0006878C /* UGMailBoxTableViewController.xib in Resources */,
 				CF475912239636D200966536 /* 100.gif in Resources */,
 				031E1BE023BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
+				D40745D12511F37900606EA3 /* YNQuickListCollectionViewCell.xib in Resources */,
 				031E1CAA23BE812A00B0F813 /* UGFundDetailsCell.xib in Resources */,
 				031E1D2C23BE812B00B0F813 /* UGIntegralConvertRecordController.storyboard in Resources */,
 				036CA77D23C759DF007BBD25 /* MyPromotion.storyboard in Resources */,
@@ -9421,6 +9606,7 @@
 				03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				CF4758A2239636D200966536 /* 124.gif in Resources */,
 				031E1DEA23BE812C00B0F813 /* UGMissionTableViewCell.xib in Resources */,
+				D40745C92511F37900606EA3 /* YNInputView.xib in Resources */,
 				CF8E242723DDBFD80054BF0F /* Foundation.ttf in Resources */,
 				CF475883239636D200966536 /* 120.gif in Resources */,
 				031E1C1423BE812900B0F813 /* UGLinkNumCollectionViewCell.xib in Resources */,
@@ -9441,6 +9627,7 @@
 				CF475922239636D200966536 /* 39.gif in Resources */,
 				031E1E7623BE812C00B0F813 /* UGLotteryRecordCell.xib in Resources */,
 				D4B75E16227802600007047C /* Assets.xcassets in Resources */,
+				D40745D42511F37900606EA3 /* YNQuickSelectView.xib in Resources */,
 				CF47591E239636D200966536 /* 107.gif in Resources */,
 				CF475916239636D200966536 /* 17.gif in Resources */,
 				CF4758E4239636D200966536 /* 77.gif in Resources */,
@@ -9482,6 +9669,7 @@
 				D42072302456A8E9008D0749 /* DZPOneView.xib in Resources */,
 				031E1AB823BE812800B0F813 /* icon_arrow@3x.png in Resources */,
 				CF475904239636D200966536 /* 99.gif in Resources */,
+				D40745992511F36900606EA3 /* UGYNLotteryController.storyboard in Resources */,
 				031E1B9C23BE812900B0F813 /* UGChanglongBetRecrodCell.xib in Resources */,
 				031E1C9A23BE812A00B0F813 /* UGFunds2microcodeView.xib in Resources */,
 				D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */,
@@ -10380,6 +10568,7 @@
 				D42B958923F3EAD00030C653 /* JYLotteryTitleCollectionView.m in Sources */,
 				031E1E8223BE812D00B0F813 /* UGBalanceTransferLogsCell.m in Sources */,
 				03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
+				D40745D22511F37900606EA3 /* YNQuickListCollectionViewCell.m in Sources */,
 				031E1E6223BE812C00B0F813 /* UGAvaterCollectionViewCell.m in Sources */,
 				031E1AD223BE812800B0F813 /* TGWebProgressLayer.m in Sources */,
 				031E1A7823BE812700B0F813 /* DKProgressLayer.m in Sources */,
@@ -10430,6 +10619,7 @@
 				031E1D0C23BE812A00B0F813 /* JSONModelArray.m in Sources */,
 				031E1E5A23BE812C00B0F813 /* UGFeedbackTableViewCell.m in Sources */,
 				031E1BEC23BE812900B0F813 /* UGJSK3LotteryController.m in Sources */,
+				D40745D72511F37900606EA3 /* YNCollectionFootView.m in Sources */,
 				031E1DDE23BE812C00B0F813 /* UGinviteDomainModel.m in Sources */,
 				03FD07F624FB6F7D00F83D92 /* GoldEggLogTableHeaderView.m in Sources */,
 				D4486C27241D082E00E5CCEA /* OnlineServiceViewController.m in Sources */,
@@ -10439,8 +10629,10 @@
 				031E1C7C23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
 				D439D12724F227D300B719DA /* FBTransitionViewController.m in Sources */,
 				031E1C8423BE812A00B0F813 /* UGFunds2microcodeView.m in Sources */,
+				D407459A2511F36900606EA3 /* UGYNLotteryController.m in Sources */,
 				031E1B2C23BE812800B0F813 /* UGChanglongaideModel.m in Sources */,
 				D4122CB72503AC160009E602 /* UGTKLHomeTitleView.m in Sources */,
+				D40745CC2511F37900606EA3 /* YNCollectionViewCell.m in Sources */,
 				031E1E3223BE812C00B0F813 /* UGPromotion6rowButtonTableViewCell.m in Sources */,
 				031E1AD023BE812800B0F813 /* NSTimer+addition.m in Sources */,
 				031E1B6823BE812800B0F813 /* UGGameSubCollectionView.m in Sources */,
@@ -10462,6 +10654,7 @@
 				031E1AD823BE812800B0F813 /* CustomCollectionViewCell.m in Sources */,
 				031E1D3E23BE812B00B0F813 /* UGUserInfoViewController.m in Sources */,
 				031E1E7A23BE812C00B0F813 /* UGCalenderAlertView.m in Sources */,
+				D40745CF2511F37900606EA3 /* YNHZMPrizeDetailView.m in Sources */,
 				031E1E1623BE812C00B0F813 /* UGAddressCollectionViewCell.m in Sources */,
 				031E1B7C23BE812900B0F813 /* UGPlatformNoticeView.m in Sources */,
 				031E195623BE812600B0F813 /* LHGalleryListVC1.m in Sources */,
@@ -10481,6 +10674,7 @@
 				031E1AA423BE812800B0F813 /* YBPopupMenu.m in Sources */,
 				4959678224E25C8A005D5B53 /* SUCache.m in Sources */,
 				031E1D9823BE812B00B0F813 /* UGYubaoConversionCenterController.m in Sources */,
+				D40745C82511F37900606EA3 /* YNBetDetailView.m in Sources */,
 				031E1BAE23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1C0A23BE812900B0F813 /* UGbetModel.m in Sources */,
 				031E1A6823BE812700B0F813 /* UGAppVersionManager.m in Sources */,
@@ -10501,6 +10695,7 @@
 				031E1DC823BE812C00B0F813 /* UGrealBetStatModel.m in Sources */,
 				031E19DE23BE812700B0F813 /* NSMutableAttributedString+Utils.m in Sources */,
 				D4C0A12723913A6C00B39358 /* Global.m in Sources */,
+				D40745C42511F37900606EA3 /* YNSegmentView.m in Sources */,
 				031E1DD023BE812C00B0F813 /* UGCardInfoModel.m in Sources */,
 				031E1A3823BE812700B0F813 /* CMNetworkStorage.m in Sources */,
 				031E1DB823BE812B00B0F813 /* UGbankModel.m in Sources */,
@@ -10518,6 +10713,7 @@
 				03A5D38B23C051DB0055A998 /* JS_HomeGameColletionCell_1.m in Sources */,
 				031E1C5C23BE812A00B0F813 /* UGhomeRecommendCollectionViewCell.m in Sources */,
 				031E19CE23BE812700B0F813 /* UIImage+Utils.m in Sources */,
+				D40745C62511F37900606EA3 /* YNBetCollectionViewCell.m in Sources */,
 				031E1DF823BE812C00B0F813 /* UGMissionTableViewCell.m in Sources */,
 				031E1B7423BE812800B0F813 /* UGPlatformTitleCollectionViewCell.m in Sources */,
 				031E1CE823BE812A00B0F813 /* MJRefreshAutoFooter.m in Sources */,
@@ -10535,6 +10731,7 @@
 				031E1E2A23BE812C00B0F813 /* UGContentMoneyCollectionViewCell.m in Sources */,
 				CFE074D123C0BBBF0083EA7E /* LotteryBetAndChatVC.m in Sources */,
 				031E1A1E23BE812700B0F813 /* AlertHelper.m in Sources */,
+				D40745CE2511F37900606EA3 /* YNHLPrizeDetailView.m in Sources */,
 				031E196C23BE812600B0F813 /* UGLHAdModel.m in Sources */,
 				D48075D4249C777500E1E5F5 /* MessageUnderMenuView.m in Sources */,
 				031E19D623BE812700B0F813 /* NSDate+Millisecond.m in Sources */,
@@ -10545,6 +10742,7 @@
 				031E1A9C23BE812800B0F813 /* MOFSAddressPickerView.m in Sources */,
 				031E1A8823BE812700B0F813 /* SAROPSessionTask.m in Sources */,
 				CF166B3424A47E8700EF8835 /* HotBranchView.m in Sources */,
+				D40745CA2511F37900606EA3 /* YNInputView.m in Sources */,
 				D405B346227DB22100F8C586 /* UGNotificationEvent.m in Sources */,
 				22FAD04723D471630002EA1D /* LotteryTrendContentCell.m in Sources */,
 				031E1D6E23BE812B00B0F813 /* UGMosaicGoldViewController.m in Sources */,
@@ -10701,6 +10899,7 @@
 				495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */,
 				031E1AEC23BE812800B0F813 /* LeeTagView.m in Sources */,
 				031E1DC223BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
+				D40745D32511F37900606EA3 /* YNQuickSelectView.m in Sources */,
 				0393C8A624F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m in Sources */,
 				D4326F0E23F7B4F900BEEA1B /* RedBagLogModel.m in Sources */,
 				031E1E5C23BE812C00B0F813 /* UGFeedbackDetailCell.m in Sources */,
@@ -10740,6 +10939,7 @@
 				031E1E2223BE812C00B0F813 /* UGMosaicGoldTableViewCell.m in Sources */,
 				031E1C3023BE812900B0F813 /* UGLotterySubResultCollectionViewCell.m in Sources */,
 				031E1E8623BE812D00B0F813 /* UGYUbaoTitleView.m in Sources */,
+				D40745D52511F37900606EA3 /* YNQuickListView.m in Sources */,
 				4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */,
 				03E3AAB223C8234C009A28C0 /* PromotionMemberRechargeVC.m in Sources */,
 				031E1AAA23BE812800B0F813 /* WMIconSegmentControl.m in Sources */,

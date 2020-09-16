@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test61f"
+#define __SiteID__ @"test29"
 #define LocalRnVersion @"1.4.66"
 
 
@@ -87,6 +87,7 @@
                 sb(@"LineConversion"),
                 sb(@"BetDetail"),
                 sb(@"Funds"),
+                sb(@"UGYNLotteryController"),
 
                 
         ];
@@ -145,8 +146,8 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-//			_SiteId = @"test61f";
-			_SiteId = @"c126";
+
+            _SiteId = @"test29";
 
         }
 

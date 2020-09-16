@@ -74,9 +74,35 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isAllowCancel;            /**<    */
 @property (nonatomic, assign) int status;                  /**<    */
 
+//越南彩
+@property (strong, nonatomic)  NSString *multipleStr;     /**<  倍数*/
+@property (strong, nonatomic)  NSString *totalAmountStr; /**<   总金额Label */
+@property (nonatomic, strong) NSString *  defaultAdds;  //默认赔率。
+@property (nonatomic, strong) NSString *  defname;  //越南彩当前选中的彩种名
+@property (nonatomic, strong) NSString *  defnameStr;  //越南彩当前选中的彩种名 选中内容
 
-
+@property (strong, nonatomic)  NSString *d0;     /**<  特等奖*/
+@property (strong, nonatomic)  NSString *d1;     /**<  一等奖*/
+@property (strong, nonatomic)  NSString *d2;     /**<  二等奖*/
+@property (strong, nonatomic)  NSString *d3;     /**<  三等奖*/
+@property (strong, nonatomic)  NSString *d4;     /**<  四等奖*/
+@property (strong, nonatomic)  NSString *d5;     /**<  五等奖*/
+@property (strong, nonatomic)  NSString *d6;     /**<  六等奖*/
+@property (strong, nonatomic)  NSString *d7;     /**<  七等奖*/
+@property (strong, nonatomic)  NSString *d8;     /**<  八等奖   胡志明才有*/
+@property (strong, nonatomic)  NSString *t0;     /**<  头*/
+@property (strong, nonatomic)  NSString *t1;     /**<  一*/
+@property (strong, nonatomic)  NSString *t2;     /**<  二*/
+@property (strong, nonatomic)  NSString *t3;     /**<  三*/
+@property (strong, nonatomic)  NSString *t4;     /**<  四*/
+@property (strong, nonatomic)  NSString *t5;     /**<  五*/
+@property (strong, nonatomic)  NSString *t6;     /**<  六*/
+@property (strong, nonatomic)  NSString *t7;     /**<  七*/
+@property (strong, nonatomic)  NSString *t8;     /**<  8*/
+@property (strong, nonatomic)  NSString *t9;     /**<  9*/
 + (instancetype)modelWithGameId:(NSString *)gameId;
+
+
 @end
 
 @protocol UGAllNextIssueListModel <NSObject>
