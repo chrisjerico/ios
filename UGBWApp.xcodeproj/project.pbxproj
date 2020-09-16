@@ -1975,6 +1975,8 @@
 		D40745D52511F37900606EA3 /* YNQuickListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BF2511F37800606EA3 /* YNQuickListView.m */; };
 		D40745D62511F37900606EA3 /* YNCollectionFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745C22511F37800606EA3 /* YNCollectionFootView.xib */; };
 		D40745D72511F37900606EA3 /* YNCollectionFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745C32511F37800606EA3 /* YNCollectionFootView.m */; };
+		D40745DA251200EB00606EA3 /* NewUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745D9251200EB00606EA3 /* NewUserInfoViewController.m */; };
+		D40745DC251200FB00606EA3 /* NewUserInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745DB251200FB00606EA3 /* NewUserInfoViewController.storyboard */; };
 		D40A295423E16C0200F07146 /* PromotionDepositRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */; };
 		D40A295823E173A900F07146 /* PromotionWithdrawalsRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D40A295723E173A900F07146 /* PromotionWithdrawalsRecordVC.m */; };
 		D40FA8BF229910EF003E596F /* yuebaoMone.gif in Resources */ = {isa = PBXBuildFile; fileRef = D40FA8BE229910EE003E596F /* yuebaoMone.gif */; };
@@ -3940,6 +3942,9 @@
 		D40745C12511F37800606EA3 /* YNCollectionFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNCollectionFootView.h; sourceTree = "<group>"; };
 		D40745C22511F37800606EA3 /* YNCollectionFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNCollectionFootView.xib; sourceTree = "<group>"; };
 		D40745C32511F37800606EA3 /* YNCollectionFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNCollectionFootView.m; sourceTree = "<group>"; };
+		D40745D8251200EB00606EA3 /* NewUserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewUserInfoViewController.h; sourceTree = "<group>"; };
+		D40745D9251200EB00606EA3 /* NewUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewUserInfoViewController.m; sourceTree = "<group>"; };
+		D40745DB251200FB00606EA3 /* NewUserInfoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewUserInfoViewController.storyboard; sourceTree = "<group>"; };
 		D40A295223E16C0200F07146 /* PromotionDepositRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionDepositRecordVC.h; sourceTree = "<group>"; };
 		D40A295323E16C0200F07146 /* PromotionDepositRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionDepositRecordVC.m; sourceTree = "<group>"; };
 		D40A295623E173A900F07146 /* PromotionWithdrawalsRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionWithdrawalsRecordVC.h; sourceTree = "<group>"; };
@@ -6546,6 +6551,9 @@
 				031E180623BE812600B0F813 /* UGUserInfoViewController.h */,
 				031E180823BE812600B0F813 /* UGUserInfoViewController.m */,
 				031E180723BE812600B0F813 /* UGUserInfoViewController.storyboard */,
+				D40745D8251200EB00606EA3 /* NewUserInfoViewController.h */,
+				D40745D9251200EB00606EA3 /* NewUserInfoViewController.m */,
+				D40745DB251200FB00606EA3 /* NewUserInfoViewController.storyboard */,
 			);
 			path = "我的资料";
 			sourceTree = "<group>";
@@ -9255,6 +9263,7 @@
 			files = (
 				CF4758E1239636D200966536 /* 52.gif in Resources */,
 				031E1E4023BE812C00B0F813 /* UGPormotionUserInfoView.xib in Resources */,
+				D40745DC251200FB00606EA3 /* NewUserInfoViewController.storyboard in Resources */,
 				031E1CA023BE812A00B0F813 /* UGFundRecordDetailView.xib in Resources */,
 				031E199A23BE812600B0F813 /* LHPostPayView.xib in Resources */,
 				031E1C2823BE812900B0F813 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
@@ -10945,6 +10954,7 @@
 				031E1AAA23BE812800B0F813 /* WMIconSegmentControl.m in Sources */,
 				031E1B7A23BE812900B0F813 /* UGGameNavigationView.m in Sources */,
 				031E1BA423BE812900B0F813 /* UGBMLoginViewController.m in Sources */,
+				D40745DA251200EB00606EA3 /* NewUserInfoViewController.m in Sources */,
 				031E1A9423BE812700B0F813 /* MOFSToolView.m in Sources */,
 				031E1CD023BE812A00B0F813 /* MJRefreshBackGifFooter.m in Sources */,
 				D451A47C23F6667E00CD0E36 /* JYMineCollectionViewCell.m in Sources */,
