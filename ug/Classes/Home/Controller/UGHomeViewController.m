@@ -48,13 +48,9 @@
 #import "LHJournalDetailVC.h"   // 期刊详情
 #import "UGPostDetailVC.h"      // 帖子详情
 #import "JS_TitleView.h"
-<<<<<<< HEAD
 #import "TKLPlatformNotiveView.h"
-
-=======
-
 #import "UGAllNextIssueListModel.h"
->>>>>>> dev_master
+
 //测试--GPK版
 #import "UGfinancialViewViewController.h"
 
@@ -478,17 +474,13 @@
             [__self.contentScrollView.mj_header endRefreshing];
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-<<<<<<< HEAD
+
             if (Skin1.isTKL) {
                   __self.tkltitleView.userName = UserI.username;
             } else {
                   __self.titleView.userName = UserI.username;
             }
-          
-=======
-            __self.titleView.userName = UserI.username;
-            
->>>>>>> dev_master
+
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
