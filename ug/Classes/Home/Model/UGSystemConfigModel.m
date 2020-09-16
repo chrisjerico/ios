@@ -156,7 +156,11 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.className,            MM_开奖记录,         @"开奖记录"),
             item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.className,  MM_真人视讯,         @"真人视讯"),
             item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.className,  MM_棋牌电子,         @"棋牌电子"),
-            item(@"/gameHall",          @"gcdt",                        UGLotteryHomeController.className,              MM_彩票大厅,         @"彩票大厅"),
+            item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.className,  MM_真人视讯,         @"真人视讯"),
+            item(@"/catchFish",         @"tabbar_buyu",                 UGYYLotterySecondHomeViewController.className,  MM_捕鱼,            @"捕鱼"),
+            item(@"/eGame",             @"tabbar_dianzhi",              UGYYLotterySecondHomeViewController.className,  MM_电子,            @"电子"),
+            item(@"/chess",              @"tabbar_pipai",                UGYYLotterySecondHomeViewController.className,  MM_棋牌,            @"棋牌"),
+            item(@"/eSport",            @"tabbar_dianjin",              UGLotteryHomeController.className,              MM_电竞,            @"电竞"),
             item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,        @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,         @"任务中心"),
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,            @"签到"),
@@ -300,7 +304,9 @@ UGSystemConfigModel *currentConfig = nil;
             }];
         }];
     }
-    else if (self.type == MM_真人视讯 || self.type == MM_棋牌电子) {
+    else if (self.type == MM_真人视讯 || self.type == MM_棋牌电子
+             ||self.type == MM_电竞 || self.type == MM_电子
+             ||self.type == MM_棋牌 || self.type == MM_捕鱼) {
         [SVProgressHUD showWithStatus:nil];
         WeakSelf;
         [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -324,6 +330,18 @@ UGSystemConfigModel *currentConfig = nil;
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"game" keyPath:@"category"].games error:nil]];    // 电子
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"esport" keyPath:@"category"].games error:nil]];  // 电竞
                     vc.dataArray = temp;;
+                }
+                else if (weakSelf.type == MM_棋牌){
+                      vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"card" keyPath:@"category"].games error:nil];    // 棋牌
+                }
+                else if (weakSelf.type == MM_电子){
+                    vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"game" keyPath:@"category"].games error:nil];    // 电子
+                }
+                else if (weakSelf.type == MM_电竞){
+                    vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"esport" keyPath:@"category"].games error:nil];    // 电竞
+                }
+                else if (weakSelf.type == MM_捕鱼){
+                    vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"fish" keyPath:@"category"].games error:nil];    // 捕鱼
                 }
                 completion(vc);;
             } failure:^(id msg) {

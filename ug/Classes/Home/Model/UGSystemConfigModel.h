@@ -70,6 +70,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_在线客服,
     MM_未结算,
     MM_优惠申请,
+    
+    MM_捕鱼,
+    MM_电竞,
+    MM_电子,
+    MM_棋牌,
 };
 
 
