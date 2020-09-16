@@ -178,7 +178,7 @@ UGSystemConfigModel *currentConfig = nil;
         ].mutableCopy;
         
         UGMobileMenu * itemLine;
-        if (APP.oldConversion) {
+        if (APP.isNewConversion) {
             itemLine = item(@"/conversion",        @"change",                      LineConversionHeaderVC.className,               MM_额度转换,        @"额度转换");
         } else {
             itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");

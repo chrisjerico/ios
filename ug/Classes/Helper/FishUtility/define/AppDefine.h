@@ -67,7 +67,7 @@
 @property (nonatomic,assign) BOOL isNoBorder;                             /**<  首页优惠活动没有外面的View */
 @property (nonatomic,assign) BOOL isWihiteBorder;                          /**<  首页优惠活动外面的View白色边框 */
 @property (nonatomic,assign) BOOL isRedWhite;                             /**<  下注界面新年红模板样式 红白配色*/
-@property (nonatomic,assign) BOOL oldConversion;                          /**<  老的转换界面*/
+@property (nonatomic,assign) BOOL isNewConversion;                          /**<  新的额度转换界面*/
 @property (nonatomic,assign) BOOL isParagraphSpacing;                     /**<  首页公告详情段落有间距*/
 
 @property (nonatomic,assign) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
