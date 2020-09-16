@@ -202,12 +202,17 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         return false;
     }
     
-   
-//    if ([CMCommon getRoomMode:model.gameId]) {
+   //聊天室数据有
+//    [NSThread sleepForTimeInterval:1.0];
+//    NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
+
+    
+    
+    if ([CMCommon getRoomMode:model.gameId] ) {
         return [self goLotteryBetAndChatVC:model];
-//    } else {
-//        return [self goUGCommonLotteryController:model vcName:vcName];
-//    }
+    } else {
+        return [self goUGCommonLotteryController:model vcName:vcName];
+    }
    
 }
 
@@ -219,13 +224,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
            
             vc.nim = model;
-    //        if (vc.navigationController.viewControllers.count > 1){
                       // 隐藏底部条
                 vc.hidesBottomBarWhenPushed = YES;
-    //        }
-    //        else{
-    //            vc.hidesBottomBarWhenPushed = NO;
-    //        }
+
             // Push
             if ([UGTabbarController canPushToViewController:vc]) {
                 [NavController1 setViewControllers:({
@@ -257,8 +258,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            vc.gotoTabBlock = ^{
                TabBarController1.selectedIndex = 0;
            };
+  
+           vc.hidesBottomBarWhenPushed = YES;
 
-
+           
            // Push
            if ([UGTabbarController canPushToViewController:vc]) {
                [NavController1 setViewControllers:({
@@ -272,6 +275,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                    vcs;
                }) animated:YES];
            }
+           
+           dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
+
+//           dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+//               [[Global getInstanse] setHideTabBar:NO];
+//           });
+//           
            return true;
        }
 }
@@ -894,6 +904,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                     [CMCommon goQQ:ss];
                 }];
             }
+            return true;
+        }
+        case UCI_聊天室: {
+            [NavController1 pushViewControllerWithNextIssueModel:nil];
             return true;
         }
             

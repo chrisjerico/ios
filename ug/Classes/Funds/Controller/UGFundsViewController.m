@@ -269,6 +269,8 @@
 
     double floatString = [user.balance doubleValue];
     self.moneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+    
+    [self.realNameLabel setHidden:YES];
     if (![CMCommon stringIsNull:user.fullName]) {
         self.realNameLabel.text = user.fullName;
     }

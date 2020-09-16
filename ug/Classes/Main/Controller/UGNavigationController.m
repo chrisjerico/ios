@@ -147,7 +147,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGBalanceConversionController class]]) {
             
-            if (APP.oldConversion) {
+            if (APP.isNewConversion) {
                  viewController =  _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
             } 
         }

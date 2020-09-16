@@ -351,9 +351,8 @@
             
             [CMCommon removeLastRoomAction:chatIdAry];
             //                             NSLog(@"chatIdAry = %@",chatIdAry);
-            SysConf.chatRoomAry = chatRoomAry;
-            NSLog(@"SysConf.chatRoomAry = %@",SysConf.chatRoomAry);
-            //            SysConf.chatRoomAry = chatAry;
+            SysChatRoom.chatRoomAry = chatRoomAry;
+
             
             NSArray *chat2Ary = [RoomChatModel mj_keyValuesArrayWithObjectArray:chatAry];
             UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择要切换的聊天室" btnTitles:[chatTitleAry arrayByAddingObject:@"取消"]];

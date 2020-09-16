@@ -11,7 +11,6 @@
 
 
 #define __SiteID__ @"test61f"
-
 #define LocalRnVersion @"1.4.66"
 
 
@@ -88,7 +87,7 @@
                 sb(@"LineConversion"),
                 sb(@"BetDetail"),
                 sb(@"Funds"),
-                
+
                 
         ];
     });
@@ -146,9 +145,11 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-			_SiteId = @"test61f";
+//			_SiteId = @"test61f";
+			_SiteId = @"c126";
 
         }
+
 #endif
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
@@ -202,7 +203,7 @@
     _isTabMassageBadge = YES;
     _isTabHot = false;
     _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
-    _oldConversion = [@"c200,a002" containsString:_SiteId];
+    _isNewConversion = [@"c200,a002,c186" containsString:_SiteId];
     _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
     _isShow4 = [@"c200,c213,a002" containsString:_SiteId];
     _isNoBorder = [@"c200,c208,a002,c134,c092" containsString:_SiteId];
@@ -243,7 +244,7 @@
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
 
     
-    _betSizeIsBig = [@"c169,c205,c211" containsString:_SiteId];
+    _betSizeIsBig = [@"c169,c205,c211,c048" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
     _addIcons = [@"c190,c134,c085,c193,a002,c006" containsString:_SiteId];

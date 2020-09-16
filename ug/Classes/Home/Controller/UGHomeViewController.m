@@ -48,8 +48,13 @@
 #import "LHJournalDetailVC.h"   // 期刊详情
 #import "UGPostDetailVC.h"      // 帖子详情
 #import "JS_TitleView.h"
+<<<<<<< HEAD
 #import "TKLPlatformNotiveView.h"
 
+=======
+
+#import "UGAllNextIssueListModel.h"
+>>>>>>> dev_master
 //测试--GPK版
 #import "UGfinancialViewViewController.h"
 
@@ -285,7 +290,7 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _liuheForumContentView, _promotionView, _bottomView],
+        NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _liuheForumContentView, _promotionView, _bottomView],
                                @"GPK版":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
                                @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
                                @"火山橙":@[_bannerBgView, _rollingView, _homeAdsBigBgView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _betFormView, _bottomView],
@@ -444,6 +449,8 @@
                      [self getNoticeList];
                  }
             }
+            
+            
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
@@ -468,15 +475,20 @@
             }
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-            [self.contentScrollView.mj_header endRefreshing];
+            [__self.contentScrollView.mj_header endRefreshing];
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+<<<<<<< HEAD
             if (Skin1.isTKL) {
                   __self.tkltitleView.userName = UserI.username;
             } else {
                   __self.titleView.userName = UserI.username;
             }
           
+=======
+            __self.titleView.userName = UserI.username;
+            
+>>>>>>> dev_master
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -528,10 +540,15 @@
         subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
         subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
         [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
-        self.gameNavigationView.layer.cornerRadius = 8;
-        self.gameNavigationView.layer.masksToBounds = true;
-        self.gameNavigationView.layer.borderWidth = 1;
-        self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
+        
+        if (!Skin1.isLH) {
+            self.gameNavigationView.layer.cornerRadius = 8;
+            self.gameNavigationView.layer.masksToBounds = true;
+            self.gameNavigationView.layer.borderWidth = 1;
+            self.gameNavigationView.layer.borderColor = Skin1.homeContentColor.CGColor;
+        }
+       
+
         
         if (APP.isWhite) {
             subView(@"优惠活动外View").layer.borderWidth = 0;
@@ -578,8 +595,7 @@
         [self.rankingView setBackgroundColor:Skin1.navBarBgColor];
         [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
         [self.rollingView setBackgroundColor:Skin1.homeContentColor];
-        [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
-        //         [self.gameNavigationView setBackgroundColor:[UIColor redColor]];
+//        [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
         [self.gameTypeView setBackgroundColor:Skin1.bgColor];
         [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
         [self.upRecommendedView setBackgroundColor:Skin1.bgColor];
@@ -676,15 +692,15 @@
     }
     
     {//大转盘 右上
-        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
+        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 95, 95) ];
         [self.view addSubview:_bigWheelView];
 
         [self.bigWheelView setHidden:YES];
         
         [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
-            make.width.mas_equalTo(70.0);
-            make.height.mas_equalTo(70.0);
+            make.width.mas_equalTo(95.0);
+            make.height.mas_equalTo(95.0);
             make.top.equalTo(__self.view.mas_top).offset(150+105);
         }];
         self.bigWheelView.cancelClickBlock = ^(void) {
@@ -718,7 +734,7 @@
             recordVC.item = banner;
         };
     }
-#pragma mark 砸金蛋+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#pragma mark
 	{//砸金蛋 右上
 		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
 		  [self.view addSubview:_goldEggView];
@@ -995,7 +1011,7 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求10
-           [self chatgetToken];     // 在线配置的聊天室
+//           [self chatgetToken];     // 在线配置的聊天室÷
            
     });
        
@@ -1258,6 +1274,15 @@
             return;
         }
         
+        else if([@"zxkf" containsString:model.alias]) {
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = model.link;
+            webViewVC.webTitle = model.name;
+            [NavController1 pushViewController:webViewVC animated:YES];
+            NSLog(@"在线客服");
+            return;
+        }
+        
         if ([@"forum,gourmet" containsString:model.categoryType]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
@@ -1290,6 +1315,37 @@
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
             NSLog(@"任务中心");
         }
+        else if([@"222" containsString:model.categoryType]) {
+
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = @"澳门六合彩";
+            m.gameId = @"222";
+            m.gameType = @"lhc";
+            m.name = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m];
+            NSLog(@"澳门六合彩");
+        }
+        else if([@"185" containsString:model.categoryType]) {
+     
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = @"一分六合彩";
+            m.gameId = @"185";
+            m.gameType = @"lhc";
+            m.name = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m];
+            NSLog(@"一分六合彩");
+            
+//
+        }
+        else if([@"appdl" containsString:model.categoryType]) {
+//            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+//            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
+//            webViewVC.webTitle = model.name;
+//            [NavController1 pushViewController:webViewVC animated:YES];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            NSLog(@"APP下载");
+        }
+   
         else {
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
             if (!ret && model.appLink.length) {
@@ -1302,6 +1358,72 @@
     }
 }
 
+// 得到线上配置的聊天室
+- (void)chatgetToken {
+    
+
+    {//得到线上配置的聊天室
+        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
+                                 @"token":[UGUserModel currentUser].sessid
+        };
+        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
+        [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                NSLog(@"model.data = %@",model.data);
+                NSDictionary *data = (NSDictionary *)model.data;
+                NSMutableArray *chatIdAry = [NSMutableArray new];
+                NSMutableArray *typeIdAry = [NSMutableArray new];
+                NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+//                NSArray * chatAry = [data objectForKey:@"chatAry"];
+                
+                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+                
+                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                    return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+                }];
+                
+                for (int i = 0; i< chatAry.count; i++) {
+                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                    [chatIdAry addObject:dic.roomId];
+                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                    
+                }
+                [CMCommon removeLastRoomAction:chatIdAry];
+                
+                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+                
+                
+                MyChatRoomsModel.currentRoom = [MyChatRoomsModel new];;
+                SysChatRoom.chatRoomRedirect = [number intValue];
+                SysChatRoom.chatRoomAry = chatRoomAry;
+                
+              
+
+                if (![CMCommon arryIsNull:chatRoomAry]) {
+                      UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d,roomName = %@",obj.roomId,obj.sortId,obj.roomName);
+            
+                }
+                else{
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
+                    obj.roomId = @"0";
+                    obj.roomName = @"聊天室";
+                    SysChatRoom.defaultChatRoom = obj;
+                    
+                }
+                NSLog(@"SysChatRoom0000000000000000000000000000 = %@",SysChatRoom);
+                [MyChatRoomsModel setCurrentRoom:SysChatRoom ];
+  
+            } failure:^(id msg) {
+                //            [self stopAnimation];
+            }];
+        }];
+        
+    }
+}
 
 - (void)getUserInfo {
     if (!UGLoginIsAuthorized()) {
@@ -1326,6 +1448,8 @@
             }
            
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
+            
+            [weakSelf  chatgetToken];
         } failure:^(id msg) {
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
             if (model.msg.length) {
@@ -1603,69 +1727,6 @@
     }];
 }
 
-// 得到线上配置的聊天室
-- (void)chatgetToken {
-    
-    {//得到线上配置的聊天室
-        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
-                                 @"token":[UGUserModel currentUser].sessid
-        };
-        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
-        [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-            [CMResult processWithResult:model success:^{
-                NSLog(@"model.data = %@",model.data);
-                NSDictionary *data = (NSDictionary *)model.data;
-                NSMutableArray *chatIdAry = [NSMutableArray new];
-                NSMutableArray *typeIdAry = [NSMutableArray new];
-                NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
-//                NSArray * chatAry = [data objectForKey:@"chatAry"];
-                
-                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
-                
-                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
-                //对数组进行排序（升序）
-                    return p1.sortId > p2.sortId;
-                //对数组进行排序（降序）
-                // return [p2.dateOfBirth compare:p1.dateOfBirth];
-                }];
-                
-                for (int i = 0; i< chatAry.count; i++) {
-                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
-                    [chatIdAry addObject:dic.roomId];
-                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
-                    
-                }
-                
-                [CMCommon removeLastRoomAction:chatIdAry];
-
-                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
-                SysConf.chatRoomRedirect = [number intValue];
-                SysConf.chatRoomAry = chatRoomAry;
-                
-                 NSLog(@"typeIdAry = %@",typeIdAry);
-                
-                if (![CMCommon arryIsNull:chatRoomAry]) {
-                      UGChatRoomModel *obj  = SysConf.defaultChatRoom = [chatRoomAry objectAtIndex:0];
-                    NSLog(@"roomId = %@,sorId = %d",obj.roomId,obj.sortId);
-            
-                }
-                else{
-                    UGChatRoomModel *obj  = [UGChatRoomModel new];
-                    obj.roomId = @"0";
-                    obj.roomName = @"聊天室";
-                    SysConf.defaultChatRoom = obj;
-                    
-                }
-              
-                
-                
-            } failure:^(id msg) {
-                //            [self stopAnimation];
-            }];
-        }];
-        
-    }
-}
 
 
 // 优惠活动
@@ -1841,7 +1902,11 @@
                         // 需要在主线程执行的代码
                        weakSelf.bigWheelView.itemData = obj;
                        weakSelf.bigWheelView.hidden = NO;
-                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                        //设成网络图片
+//                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
+                        [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                               
+                           }] ;
                         
                         [weakSelf.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
                             make.left.equalTo(self.view.mas_left).with.offset(10);

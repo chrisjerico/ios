@@ -43,7 +43,7 @@
              self.backgroundColor = Skin1.bgColor;
             _titleLabel.textColor = Skin1.textColor4;
         } else {
-             self.backgroundColor = [UIColor whiteColor];
+             self.backgroundColor = RGBA(240, 243, 246, 1);
             _titleLabel.textColor = Skin1.textColor1;
         }
         _activity.hidesWhenStopped = YES;

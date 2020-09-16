@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_开奖走势    = 18,
     UCI_QQ客服     = 19,
     UCI_开奖网     = 20,
+    UCI_聊天室     = 9001,//本地的
 };
 
 // （TabbarController包含的）功能页面
@@ -69,11 +70,29 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_在线客服,
     MM_未结算,
     MM_优惠申请,
+    
+    MM_捕鱼,
+    MM_电竞,
+    MM_电子,
+    MM_棋牌,
 };
 
 
 
 #define SysConf [UGSystemConfigModel currentConfig]
+
+
+@interface platformModel : UGModel
+@property (nonatomic) BOOL twitter;   /**<   twitter登录是否启用*/
+@property (nonatomic) BOOL facebook;  /**<   facebook登录是否启用*/
+@property (nonatomic) BOOL google;    /**<   google登录是否启用*/
+@end
+
+//第3方登录Model
+@interface OauthModel : UGModel
+@property (nonatomic) BOOL mSwith; /**<   第三方登录是否启用*/
+@property (nonatomic, copy) platformModel *platform;
+@end
 
 // 我的页功能按钮Model
 @interface UGUserCenterItem :UGModel
@@ -81,7 +100,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *logo; /**<   图标 */
 @property (nonatomic, copy) NSString *name; /**<   标题 */
 // 自定义参数
-@property (nonatomic, readonly) NSString *lhImgName;    /**<   六合模版使用的本地图标 */
+@property (nonatomic, copy) NSString *lhImgName;    /**<   六合模版使用的本地图标 */
 @property (nonatomic, readonly) NSString *bmImgName;    /**<   GPK版使用的本地图标 */
 @property (nonatomic, readonly) NSString *defaultImgName;   /**<   正常情况使用的本地图标 */
 + (NSArray <UGUserCenterItem *>*)allItems;
@@ -209,6 +228,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 */
 @property (nonatomic, copy) NSString * showNavigationBar;/**<   //显示在前还是后 1 前 0 后
 */
+@property (nonatomic, copy) OauthModel * oauth;/**<   第三方登录*/
+
 
 + (instancetype)currentConfig;
 
@@ -218,10 +239,6 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 // 自定义参数
 @property (nonatomic, readonly) NSArray <NSString *>*qqs;
 
-@property (nonatomic,strong) NSMutableArray<UGChatRoomModel *> *chatRoomAry;                    /**<    在线配置的聊天室i*/
-
-@property (nonatomic,strong) UGChatRoomModel *defaultChatRoom;                                  /**<    默认的聊天室（取列表的第1条数据）i*/
-@property (nonatomic) NSInteger chatRoomRedirect;           /**<   1=强制跳转至彩种对应聊天室, 0=跳转至上一次退出的聊天室 */
 
 @property (nonatomic) BOOL hasShare;                /**<   是否可以下注分享*/
 //优惠图片分类信息

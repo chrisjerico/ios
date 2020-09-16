@@ -235,10 +235,11 @@
     
     
     __weakSelf_(__self);
-    __self.menuNameArray = @[].mutableCopy;
-    [__self.menuNameArray setArray:SysConf.userCenter];
-    [__self skinSeconddataSource];
-    [__self.myCollectionView reloadData];
+    self.menuNameArray = @[].mutableCopy;
+    [self.menuNameArray setArray:SysConf.userCenter];
+
+    [self skinSeconddataSource];
+    [self.myCollectionView reloadData];
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
         [__self.menuNameArray setArray:SysConf.userCenter];
         [__self skinSeconddataSource];
