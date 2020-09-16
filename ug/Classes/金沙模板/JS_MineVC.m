@@ -28,9 +28,7 @@
 #import "UGSecurityCenterViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
-#import "UGUserInfoViewController.h"
-#import "UGUserInfoViewController.h"
-#import "UGUserInfoViewController.h"
+
 #import "UGFeedBackController.h"
 #import "UGMosaicGoldViewController.h"
 #import "UGagentApplyInfo.h"

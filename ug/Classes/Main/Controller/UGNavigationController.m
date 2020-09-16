@@ -38,7 +38,7 @@
 #import "UGMineSkinViewController.h"    //  我的
 #import "LotteryBetAndChatVC.h"
 #import "UGBalanceConversionController.h"//额度转换
-
+#import "UGUserInfoViewController.h"   //个人资料"
 
 // Tools
 #import "UGAppVersionManager.h"
@@ -150,6 +150,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             if (APP.isNewConversion) {
                  viewController =  _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
             } 
+        }
+        
+        if ([viewController isKindOfClass:[UGUserInfoViewController class]]) {
+            
+            if (APP.isNewUserInfoView){
+               viewController =  _LoadVC_from_storyboard_(@"NewUserInfoViewController");
+            }
         }
         
         

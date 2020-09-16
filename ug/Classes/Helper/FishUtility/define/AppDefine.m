@@ -88,6 +88,7 @@
                 sb(@"BetDetail"),
                 sb(@"Funds"),
                 sb(@"UGYNLotteryController"),
+                sb(@"NewUserInfoViewController"),
 
                 
         ];
@@ -205,6 +206,7 @@
     _isTabHot = false;
     _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
     _isNewConversion = [@"c200,a002,c186" containsString:_SiteId];
+    _isNewUserInfoView = [@"c186" containsString:_SiteId];
     _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
     _isShow4 = [@"c200,c213,a002" containsString:_SiteId];
     _isNoBorder = [@"c200,c208,a002,c134,c092" containsString:_SiteId];
