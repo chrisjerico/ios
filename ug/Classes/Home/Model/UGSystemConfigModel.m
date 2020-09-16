@@ -160,8 +160,8 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/catchFish",         @"tabbar_buyu",                 UGYYLotterySecondHomeViewController.className,  MM_捕鱼,            @"捕鱼"),
             item(@"/eGame",             @"tabbar_dianzhi",              UGYYLotterySecondHomeViewController.className,  MM_电子,            @"电子"),
             item(@"/chess",              @"tabbar_pipai",                UGYYLotterySecondHomeViewController.className,  MM_棋牌,            @"棋牌"),
-            item(@"/eSport",            @"tabbar_dianjin",              UGLotteryHomeController.className,              MM_电竞,            @"电竞"),
-            item(@"/user",              @"wode",                        UGMineSkinViewController.className,             MM_我的_默认,        @"我的"),
+            item(@"/eSport",            @"tabbar_dianjin",              UGYYLotterySecondHomeViewController.className,   MM_电竞,            @"电竞"),
+            item(@"/user",              @"wode",                        UGMineSkinViewController.className,              MM_我的_默认,        @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,         @"任务中心"),
             item(@"/Sign",              @"qiandao",                     UGSigInCodeViewController.className,            MM_签到,            @"签到"),
             item(@"/message",           @"zhanneixin",                  UGMailBoxTableViewController.className,         MM_站内信,           @"站内信"),
@@ -175,6 +175,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,          MM_在线客服,          @"在线客服"),
             item(@"/notSettle",         @"tzjl",                        UGBetRecordViewController.className,            MM_未结算,            @"未结算"),
             item(@"/winApply",         @"shenqing",                     UGMosaicGoldViewController.className,            MM_优惠申请,          @"优惠申请"),
+            item(@"/gameHall",         @"dating",                       UGLotteryHomeController.className,               MM_彩票大厅,          @"彩票大厅"),
         ].mutableCopy;
         
         UGMobileMenu * itemLine;
@@ -324,7 +325,8 @@ UGSystemConfigModel *currentConfig = nil;
                 vc.title = weakSelf.name;
                 if (weakSelf.type == MM_真人视讯) {
                     vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"real" keyPath:@"category"].games error:nil];    // 真人
-                } else if (weakSelf.type == MM_棋牌电子) {
+                }
+                else if (weakSelf.type == MM_棋牌电子) {
                     NSMutableArray *temp = @[].mutableCopy;
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"card" keyPath:@"category"].games error:nil]];    // 棋牌
                     [temp addObjectsFromArray:[UGYYGames arrayOfModelsFromDictionaries:[lotterydataArray objectWithValue:@"game" keyPath:@"category"].games error:nil]];    // 电子
