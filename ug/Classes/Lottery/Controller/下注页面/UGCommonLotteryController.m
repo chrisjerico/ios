@@ -326,7 +326,7 @@
                 UIView * superView = reBetButton.superview;
                 [superView addSubview:self.radomNumberButton];
                 [self.radomNumberButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.width.equalTo(@74);
+                    make.width.equalTo(@45);
                     make.height.equalTo(@30);
                     make.centerY.equalTo(reBetButton);
                     make.left.equalTo(reBetButton.mas_right).offset(10);
