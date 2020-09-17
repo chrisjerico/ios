@@ -74,6 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * logo;
 @property (nonatomic, strong) NSString * style;
 @property (nonatomic, strong) NSArray<GameModel> * list;
+@property (nonatomic, strong) NSArray<GameCategoryModel> * subType;/**<   二级分类数据 */
 @end
 
 

@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test61f"
+#define __SiteID__ @"test29"
 #define LocalRnVersion @"1.4.66"
 
 
@@ -87,6 +87,8 @@
                 sb(@"LineConversion"),
                 sb(@"BetDetail"),
                 sb(@"Funds"),
+                sb(@"UGYNLotteryController"),
+                sb(@"NewUserInfoViewController"),
 
                 
         ];
@@ -203,7 +205,8 @@
     _isTabMassageBadge = YES;
     _isTabHot = false;
     _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
-    _oldConversion = [@"c200,a002" containsString:_SiteId];
+    _isNewConversion = [@"c200,a002,c186" containsString:_SiteId];
+    _isNewUserInfoView = [@"c186" containsString:_SiteId];
     _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
     _isShow4 = [@"c200,c213,a002" containsString:_SiteId];
     _isNoBorder = [@"c200,c208,a002,c134,c092" containsString:_SiteId];
@@ -232,13 +235,16 @@
     _isWhite = Skin1.isBlack ? NO : [@"c213,c012" containsString:_SiteId];
     _isHideText = [@"c200" containsString:_SiteId];
     _isShowWZ = [@"c085" containsString:_SiteId];
-    _isShowLogo = [@"GPK版" containsString:Skin1.skitType] ? NO : [@"GPK版" containsString:Skin1.skitType] ? YES : [@"c190" containsString:_SiteId];
-    _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY ? NO : [@"c190" containsString:_SiteId];
+    _isShowLogo = [self showLogo];
+    _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL ? NO : [@"c190" containsString:_SiteId];
     _isCornerRadius = YES;
     _isFontSystemSize = NO;
     _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
     _lotteryHallCustomImgS = [@"c190" containsString:_SiteId];
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
+
+    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
+    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
 
     
     _betSizeIsBig = [@"c169,c205,c211,c048" containsString:_SiteId];
@@ -254,6 +260,19 @@
     _isWebRightMenu = NO;
     _isHideTV = [@"c085" containsString:_SiteId];
     _isBottom = [@"c186" containsString:_SiteId];
+}
+
+-(BOOL)showLogo{
+    if ([@"GPK版" containsString:Skin1.skitType]) {
+        return NO;
+    } else {
+        if (Skin1.isJY||Skin1.isTKL) {
+            return YES;
+        } else {
+            return [@"c190" containsString:_SiteId];
+        }
+        
+    }
 }
 
 #pragma mark - 热更新

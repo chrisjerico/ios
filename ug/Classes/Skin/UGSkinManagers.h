@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL isJY;   /**<   简约模板 */
 @property (nonatomic) BOOL isSLH;  /**<   石榴红模板 */
 @property (nonatomic) BOOL is23;   /**<   经典黑色 */
-
+@property (nonatomic) BOOL isTKL;   /**<   天空蓝模板 */
 @property (nonatomic) BOOL isBlack;/**<   黑色模式 */
 
 

@@ -71,13 +71,11 @@
     });
 }
 
-- (void)setList:(NSArray<GameModel> *)list {
+- (void)setList:(NSArray<GameCategoryModel> *)list {
     _list = list;
 
-    for (GameModel *model in _list) {
-       NSLog(@"model.game_id = %@===========名字：%@ ==========gameId = %@  ===========名字2：%@  ",model.game_id,model.name,model.gameId,model.title);
-        NSLog(@"model.subType = %@",model.subType);
-
+    for (GameCategoryModel *model in _list) {
+       NSLog(@"model.game_id = %@===========名字：%@ ",model.iid,model.name);
     }
     [self.collectionView reloadData];
 }
@@ -108,18 +106,26 @@
         CGPointMake(x, 0);
     }) animated:true];
     
-    GameModel *model = [_list objectAtIndex:indexPath.row];
+    
+    
+    GameCategoryModel *model = [_list objectAtIndex:indexPath.row];
     if (self.jygameTypeSelectBlock)
-        self.jygameTypeSelectBlock( model.subType);
+        self.jygameTypeSelectBlock( model.list);
     
 
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    GameModel *gcm = _list[indexPath.row];
+    GameCategoryModel *gcm = _list[indexPath.row];
     CGFloat w = [gcm.name widthForFont:[UIFont systemFontOfSize:16]] + 10;
-    return CGSizeMake(MAX(100, w),40);
+    return CGSizeMake(MAX(APP.Width/_list.count, w),40);
 }
 
+
+-(void)setListDateforRow:(int)row{
+    GameCategoryModel *model = [_list objectAtIndex:row];
+    if (self.jygameTypeSelectBlock)
+        self.jygameTypeSelectBlock( model.list);
+}
 @end
 

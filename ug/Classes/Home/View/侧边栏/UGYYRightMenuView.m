@@ -59,6 +59,10 @@
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;
 
 @property (nonatomic, strong) NSMutableArray <GameModel *> *tableArray;
+//-------------------------------------------------------------------
+@property (weak, nonatomic) IBOutlet UIView *tklBgView;            /**<   天空蓝View*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tklHight; /**<   天空蓝View 高*/
+
 @end
 
 static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
@@ -351,11 +355,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 -(void)setBalanceLabel{
-//    CGFloat floatValues = [[UGUserModel currentUser].balance floatValue];
-//
-//    NSString *str = [NSString stringWithFormat:@"%.2f",floatValues];
-
-     self.balanceLabel.text  = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
+    self.balanceLabel.text  = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
+    FastSubViewCode(self);
+    subLabel(@"钱Label").text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
@@ -381,6 +383,43 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [subButton(@"免费开户按钮") setHidden:YES];
         
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"BMprofile"]];
+        
+        //天空蓝
+        if (Skin1.isTKL) {
+            [subLabel(@"钱Label") setHidden:NO];
+            [subImageView(@"头像imgView") sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+            [subButton(@"存取Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            [subButton(@"存取Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [self hiddenSelf];
+                //登录
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 0;
+                [NavController1 pushViewController:fundsVC animated:true];
+            }];
+            
+            if ([UGUserModel currentUser].isTest) {
+                [subButton(@"登录Button") setHidden:NO];
+                [subButton(@"注册Button") setHidden:NO];
+                [subButton(@"存取Button") setHidden:YES];
+                
+                [subButton(@"登录Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+                [subButton(@"登录Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                    [self hiddenSelf];
+                    //登录
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
+                }];
+                [subButton(@"注册Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+                [subButton(@"注册Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                    [self hiddenSelf];
+                    //注册
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
+                }];
+            } else {
+                [subButton(@"登录Button") setHidden:YES];
+                [subButton(@"注册Button") setHidden:YES];
+                [subButton(@"存取Button") setHidden:NO];
+            }
+        }
     }
     else{
         [_userNameLabel setHidden:YES];
@@ -400,6 +439,25 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             //注册
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
         }];
+        //天空蓝
+        if (Skin1.isTKL) {
+            [subButton(@"登录Button") setHidden:NO];
+            [subButton(@"注册Button") setHidden:NO];
+            [subButton(@"存取Button") setHidden:YES];
+            [subLabel(@"钱Label") setHidden:YES];
+            [subButton(@"登录Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            [subButton(@"登录Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [self hiddenSelf];
+                //登录
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMLoginViewController") animated:true];
+            }];
+            [subButton(@"注册Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            [subButton(@"注册Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [self hiddenSelf];
+                //注册
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
+            }];
+        }
     }
     
 }
@@ -536,7 +594,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_welComeLabel setHidden:YES];
         [_bg2View setHidden:YES];
         self.bgViewHeightConstraint.constant = 244;
-    } else {
+    }
+    else {
         [self.rechargeView setBackgroundColor:Skin1.navBarBgColor];
         [self.withdrawlView setBackgroundColor:Skin1.navBarBgColor];
         [self.bg2View setBackgroundColor:[UIColor whiteColor]];
@@ -557,12 +616,32 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     
     self.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
-    
+    [self.tklBgView setHidden:YES];
     if (Skin1.isJY) {
         self.bgViewHeightConstraint.constant = k_Height_StatusBar;
         [self.jybgView setBackgroundColor:Skin1.navBarBgColor];
         [self.jybgView setHidden:NO];
-
+        
+    }
+    else if(Skin1.isTKL){
+         FastSubViewCode(self);
+         [self.bgView setHidden:YES];
+         [self.bg2View setHidden:YES];
+         [self.tklBgView setHidden:NO];
+        
+        subImageView(@"头像imgView").layer.cornerRadius = 30;
+        subImageView(@"头像imgView").layer.masksToBounds = YES;
+        
+        subButton(@"登录Button").layer.cornerRadius = 5;
+        subButton(@"登录Button").layer.masksToBounds = YES;
+        
+        subButton(@"注册Button").layer.cornerRadius = 5;
+        subButton(@"注册Button").layer.masksToBounds = YES;
+        
+        subButton(@"存取Button").layer.cornerRadius = 5;
+        subButton(@"存取Button").layer.masksToBounds = YES;
+        
+//        self.tklHight.constant = 180.5;
     }
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;

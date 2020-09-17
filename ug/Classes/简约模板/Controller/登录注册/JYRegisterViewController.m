@@ -70,6 +70,8 @@
 @property (strong, nonatomic) NSTimer* timer;                               /**<   验证码计时*/
 @property (assign, nonatomic) NSTimeInterval vcodeRequestTime;              /**<   验证码时差*/
 
+@property (weak, nonatomic) IBOutlet UILabel *bqhLabel;                     /**<   版权号*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userInfoHeight;    /**<  userInfo高 */
 
 
 
@@ -84,6 +86,19 @@
 
 - (void)initView {
     self.userInfoView.backgroundColor = Skin1.navBarBgColor;
+    
+    
+    if (Skin1.isTKL) {
+         [self.userInfoView setHidden:Skin1.isTKL];
+        self.userInfoHeight.constant = 0.1;
+        
+    }
+    else {
+         [self.userInfoView setHidden:Skin1.isTKL];
+         self.userInfoHeight.constant = 196;
+    }
+   
+    [self.bqhLabel setHidden:Skin1.isTKL];
    
     self.waveView = [[WavesView alloc] initWithFrame:self.waveBgView.bounds];
     [self.waveBgView addSubview:self.waveView];

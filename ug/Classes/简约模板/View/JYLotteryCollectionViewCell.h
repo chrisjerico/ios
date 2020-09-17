@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JYLotteryCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) GameModel *item;
+@property (nonatomic, strong) GameCategoryModel *item;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -187,7 +187,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 totalNum = 1;
             }
             totalAmount = model.money.floatValue * totalNum;
-        } else {
+        }
+        else {
             totalNum = self.betArray.count;
             totalAmount += model.money.floatValue;
         }
@@ -797,12 +798,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
     if (timeStr == nil) {
         timeStr = @"已封盘";
-        //		NSLog(@"betDetailView time nil ++++++++++++++++++++++++++++++++++++++++++++++++++")
-        //		if (self.betClickBlock) {
-        //
-        //			self.betClickBlock();
-        //			[self hiddenSelf];
-        //		}
         [self hiddenSelf];
     }
     self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘时间：%@",timeStr];
@@ -814,10 +809,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         return;
     }
     if (self.closeTimeLabel.text.length) {
-        
-        //        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
-        //        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
-        //        self.closeTimeLabel.attributedText = abStr;
+
         
         [CMLabelCommon setRichNumberWithLabel:self.closeTimeLabel Color:[UIColor redColor] FontSize:15.0];
     }

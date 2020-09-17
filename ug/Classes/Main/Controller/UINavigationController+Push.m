@@ -195,6 +195,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                            @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                            @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
                            @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
+                           @"ofclvn_hochiminhvip"   :@"UGYNLotteryController",  // 越南
+                           @"ofclvn_haboivip"   :@"UGYNLotteryController",  // 河内
     };
     
     NSString *vcName = dict[model.gameType];
@@ -203,9 +205,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     
    //聊天室数据有
-    
-    NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
+//    [NSThread sleepForTimeInterval:1.0];
+//    NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
 
+    
+    
     if ([CMCommon getRoomMode:model.gameId] ) {
         return [self goLotteryBetAndChatVC:model];
     } else {
