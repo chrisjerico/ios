@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -50,18 +50,35 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                          " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pm-wW-loI">
-                                            <rect key="frame" x="0.0" y="13.5" width="152" height="17"/>
+                                            <rect key="frame" x="46" y="13.5" width="106" height="17"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mzl-Ra-N1e">
+                                            <rect key="frame" x="0.0" y="7" width="46" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="XyQ-vA-xB5"/>
+                                                <constraint firstAttribute="width" constant="46" id="brp-Jt-r4S"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="聊天室">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="chatButtonClick:" destination="k6F-86-tNt" eventType="touchUpInside" id="ma5-C3-9RP"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="KDn-w6-bZD" secondAttribute="trailing" constant="5" id="0au-B4-iPu"/>
+                                        <constraint firstItem="5Pm-wW-loI" firstAttribute="leading" secondItem="Mzl-Ra-N1e" secondAttribute="trailing" id="H62-CF-Hgr"/>
                                         <constraint firstItem="5Pm-wW-loI" firstAttribute="centerY" secondItem="l6E-v1-FMr" secondAttribute="centerY" id="Hur-ym-vbE"/>
-                                        <constraint firstItem="5Pm-wW-loI" firstAttribute="leading" secondItem="l6E-v1-FMr" secondAttribute="leading" id="S9I-Ez-Ldz"/>
+                                        <constraint firstItem="Mzl-Ra-N1e" firstAttribute="centerY" secondItem="l6E-v1-FMr" secondAttribute="centerY" id="P39-lk-i0O"/>
                                         <constraint firstItem="KDn-w6-bZD" firstAttribute="centerY" secondItem="l6E-v1-FMr" secondAttribute="centerY" id="glN-Lw-KJv"/>
+                                        <constraint firstItem="Mzl-Ra-N1e" firstAttribute="leading" secondItem="l6E-v1-FMr" secondAttribute="leading" id="mQC-Sj-PHQ"/>
                                         <constraint firstItem="KDn-w6-bZD" firstAttribute="leading" secondItem="5Pm-wW-loI" secondAttribute="trailing" id="wVT-17-nWf"/>
                                     </constraints>
                                 </view>
@@ -71,7 +88,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6c9-PT-NKi">
                                             <rect key="frame" x="0.0" y="0.0" width="72.5" height="44"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wff-po-2Ap">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wff-po-2Ap">
                                                     <rect key="frame" x="0.0" y="0.0" width="72.5" height="44"/>
                                                     <connections>
                                                         <action selector="tryPlayClick:" destination="k6F-86-tNt" eventType="touchUpInside" id="IL1-LQ-a1j"/>
@@ -106,7 +123,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLa-zU-jww">
                                             <rect key="frame" x="72.5" y="0.0" width="72" height="44"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19a-Fa-OKQ">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19a-Fa-OKQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="72" height="44"/>
                                                     <connections>
                                                         <action selector="loginClick:" destination="k6F-86-tNt" eventType="touchUpInside" id="kDu-Iq-m7E"/>
@@ -141,7 +158,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtC-Uc-YEx">
                                             <rect key="frame" x="144.5" y="0.0" width="72.5" height="44"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXm-Qe-IP5">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oXm-Qe-IP5">
                                                     <rect key="frame" x="0.0" y="0.0" width="72.5" height="44"/>
                                                     <connections>
                                                         <action selector="registerClick:" destination="k6F-86-tNt" eventType="touchUpInside" id="ArV-7d-q8i"/>
@@ -219,6 +236,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="chatButton" destination="Mzl-Ra-N1e" id="ZSW-5L-spe"/>
                 <outlet property="imgView" destination="Za7-Lc-M3X" id="46e-Sg-xFP"/>
                 <outlet property="loginView" destination="IK8-6S-7Tn" id="gRm-TR-M5O"/>
                 <outlet property="moreButton" destination="KDn-w6-bZD" id="c2i-Pm-l4y"/>

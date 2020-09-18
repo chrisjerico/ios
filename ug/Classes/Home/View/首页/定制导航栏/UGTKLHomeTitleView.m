@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
 @property (weak, nonatomic) IBOutlet UILabel *playNameLabel;
-
+@property (weak, nonatomic) IBOutlet UIButton *chatButton;
 @end
 @implementation UGTKLHomeTitleView
 
@@ -31,6 +31,7 @@
         [self.userNameLabel setUserInteractionEnabled:true];
         self.playNameLabel.layer.cornerRadius = 10;
         self.playNameLabel.layer.masksToBounds = YES;
+        [self.chatButton setHidden:!APP.isChatButton];
     }
     return self;
 }
@@ -73,6 +74,13 @@
         self.moreClickBlock();
     }
 }
+
+- (IBAction)chatButtonClick:(id)sender {
+    if (self.chatClickBlock) {
+        self.chatClickBlock();
+    }
+}
+
 
 - (IBAction)tryPlayClick:(id)sender {
     if (self.tryPlayClickBlock) {

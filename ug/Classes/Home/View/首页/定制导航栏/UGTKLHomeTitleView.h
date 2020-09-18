@@ -13,7 +13,9 @@ typedef void(^HomeTKLTitleMoreBlock)(void);
 typedef void(^HomeTKLTitleTryplayBlock)(void);
 typedef void(^HomeTKLTitleLoginBlock)(void);
 typedef void(^HomeTKLTitleRegisterBlock)(void);
+typedef void(^HomeTKLTitleChatBlock)(void);
 @interface UGTKLHomeTitleView : UIView
+@property (nonatomic, copy) HomeTKLTitleChatBlock chatClickBlock;          /**<   聊天室*/
 @property (nonatomic, copy) HomeTKLTitleMoreBlock moreClickBlock;          /**<   更多 */
 @property (nonatomic, copy) HomeTKLTitleTryplayBlock tryPlayClickBlock;    /**<   试玩 */
 @property (nonatomic, copy) HomeTKLTitleLoginBlock loginClickBlock;        /**<   登录 */

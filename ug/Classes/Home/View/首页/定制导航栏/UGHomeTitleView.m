@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIView *loginView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *moreButton;
+@property (weak, nonatomic) IBOutlet UIButton *chatButton;
 
 @end
 @implementation UGHomeTitleView
@@ -29,6 +30,7 @@
 			}
 		}]];
 		[self.userNameLabel setUserInteractionEnabled:true];
+        [self.chatButton setHidden:!APP.isChatButton];
     }
     return self;
 }
@@ -71,6 +73,13 @@
         self.moreClickBlock();
     }
 }
+
+- (IBAction)chatButtonClick:(id)sender {
+    if (self.chatClickBlock) {
+        self.chatClickBlock();
+    }
+}
+
 
 - (IBAction)tryPlayClick:(id)sender {
     if (self.tryPlayClickBlock) {

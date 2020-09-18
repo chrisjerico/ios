@@ -2320,7 +2320,9 @@
          self.tkltitleView.userNameTouchedBlock = ^{
              [weakSelf.tabBarController setSelectedIndex:4];
          };
-         
+        self.tkltitleView.chatClickBlock = ^{
+            [NavController1 pushViewControllerWithNextIssueModel:nil];
+        };
          
          
          
@@ -2349,6 +2351,9 @@
          self.titleView.userNameTouchedBlock = ^{
              [weakSelf.tabBarController setSelectedIndex:4];
          };
+        self.titleView.chatClickBlock = ^{
+            [NavController1 pushViewControllerWithNextIssueModel:nil];
+        };
          
          
          
