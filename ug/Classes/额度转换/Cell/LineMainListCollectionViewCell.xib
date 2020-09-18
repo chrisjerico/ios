@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="height" constant="22" id="kZq-uy-4Zx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.76426142450000001" green="0.25971049070000002" blue="0.23527345059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="钱Label"/>
@@ -45,14 +45,15 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0Q-VW-GIg">
-                                <rect key="frame" x="32.5" y="45" width="25" height="25"/>
+                                <rect key="frame" x="15" y="45" width="60" height="25"/>
+                                <color key="backgroundColor" red="0.28285294770000002" green="0.59496212010000005" blue="0.91373091939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="JFY-nU-rxK"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="hoD-6t-Ybr"/>
-                                    <constraint firstAttribute="width" constant="25" id="ulF-lG-9iF"/>
+                                    <constraint firstAttribute="width" constant="60" id="ulF-lG-9iF"/>
                                     <constraint firstAttribute="height" constant="25" id="x68-dk-Zqo"/>
                                 </constraints>
-                                <state key="normal" image="shuaxin"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="点击加载"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="加载Btn"/>
                                 </userDefinedRuntimeAttributes>
@@ -75,11 +76,11 @@
                     </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <constraints>
                 <constraint firstItem="vdQ-3O-jG2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Vce-U9-XTj"/>
                 <constraint firstItem="vdQ-3O-jG2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zHh-Zu-vie"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="152" height="137"/>
             <connections>
                 <outlet property="balanceLabel" destination="HkS-gL-IfS" id="CPd-0z-OCv"/>
@@ -89,7 +90,4 @@
             <point key="canvasLocation" x="-65.217391304347828" y="67.96875"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="shuaxin" width="24" height="24"/>
-    </resources>
 </document>
