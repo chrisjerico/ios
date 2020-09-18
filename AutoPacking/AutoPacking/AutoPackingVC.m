@@ -51,7 +51,7 @@
 
                 
                 NSString *ids = @"c006";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
-                NSString *branch = @"dev_master";// 分支名
+                NSString *branch = @"xionghx/publish";// 分支名
                 BOOL willUpload = 1;        // 打包后是否上传审核
                 BOOL checkStatus = 0;      // 上传后是否审核  1时只能有bigadmin的账号，否则没权限
 
