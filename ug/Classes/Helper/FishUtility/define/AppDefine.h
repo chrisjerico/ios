@@ -95,6 +95,7 @@
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
 @property (nonatomic) BOOL isHideTV;                                    /**<  去除澳门六合彩显示的小电视*/
 @property (nonatomic) BOOL isBottom;                                    /**<  首页二级分类图标显示的位置比照一样放右下角*/
+@property (nonatomic) BOOL isChatButton;                                /**<  首页导航有聊天室按钮显示*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

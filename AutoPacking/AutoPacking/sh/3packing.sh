@@ -144,11 +144,11 @@ __BUNDLE_VERSION=`/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" 
 __BUNDLE_BUILD_VERSION=`/usr/libexec/PlistBuddy -c "Print CFBundleVersion" ${__CURRENT_INFO_PLIST_PATH}`
 
 # 指定输出文件目录不存在则创建
-if test -d "${__EXPORT_PATH}" ; then
-rm -rf ${__EXPORT_PATH}
-else
+#if test -d "${__EXPORT_PATH}" ; then
+#rm -rf ${__EXPORT_PATH}
+#else
 mkdir -pv ${__EXPORT_PATH}
-fi
+#fi
 
 # 归档文件路径
 __EXPORT_ARCHIVE_PATH="${__EXPORT_PATH}/${__SCHEME_NAME}.xcarchive"

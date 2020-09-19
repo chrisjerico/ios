@@ -7740,13 +7740,6 @@
 			path = FansList;
 			sourceTree = "<group>";
 		};
-		222A0AF323D29DBE00A058B0 /* 香槟金模板 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "香槟金模板";
-			sourceTree = "<group>";
-		};
 		226CA21123D2F1EC00E4D921 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -8614,7 +8607,6 @@
 				D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */,
 				D4773ABB23FC165900D38D60 /* Controller */,
 				D4773ABC23FC166800D38D60 /* Cell */,
-				D4773ABD23FC167100D38D60 /* Model */,
 			);
 			path = "额度转换";
 			sourceTree = "<group>";
@@ -8640,13 +8632,6 @@
 				D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		D4773ABD23FC167100D38D60 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D48075D1249C761B00E1E5F5 /* 下边栏 */ = {
@@ -8779,7 +8764,6 @@
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
 				03314FC323CD9F8F0070CB54 /* 火山橙模板 */,
-				222A0AF323D29DBE00A058B0 /* 香槟金模板 */,
 				D42752D623F127AD001E27A0 /* 简约模板 */,
 				D4B75E3B2278122B0007047C /* Other */,
 				D424785C22DDF5860062A6D4 /* Resources */,

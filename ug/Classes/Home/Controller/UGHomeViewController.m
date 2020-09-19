@@ -2320,7 +2320,9 @@
          self.tkltitleView.userNameTouchedBlock = ^{
              [weakSelf.tabBarController setSelectedIndex:4];
          };
-         
+        self.tkltitleView.chatClickBlock = ^{
+            [NavController1 pushViewControllerWithNextIssueModel:nil];
+        };
          
          
          
@@ -2349,6 +2351,9 @@
          self.titleView.userNameTouchedBlock = ^{
              [weakSelf.tabBarController setSelectedIndex:4];
          };
+        self.titleView.chatClickBlock = ^{
+            [NavController1 pushViewControllerWithNextIssueModel:nil];
+        };
          
          
          
@@ -2660,7 +2665,7 @@
             
         }
         else if([pm.style isEqualToString:@"popup"]) {
-            PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+            PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(20, 60, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 100)];
             popView.item = pm;
             [popView show];
         }

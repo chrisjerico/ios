@@ -106,8 +106,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"额度转换";
-    [self.view setBackgroundColor:Skin1.navBarBgColor];
-    [_headView setBackgroundColor:Skin1.navBarBgColor];
+    
+    if (![@"c186" containsString:APP.SiteId]) {
+            [self.view setBackgroundColor:Skin1.navBarBgColor];
+            [_headView setBackgroundColor:Skin1.navBarBgColor];
+    }
+
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
 //    [self fishSegmentView];
@@ -194,7 +198,7 @@
     self.userNameLabel.text = user.username;
 
     double floatString = [user.balance doubleValue];
-    self.moneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+    self.moneyLabel.text =  [NSString stringWithFormat:@"%.4f",floatString];
     if (![CMCommon stringIsNull:user.fullName]) {
         self.realNameLabel.text = user.fullName;
     }

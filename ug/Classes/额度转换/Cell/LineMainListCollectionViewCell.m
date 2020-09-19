@@ -20,6 +20,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _refreshButton.layer.cornerRadius = 3;
+    _refreshButton.layer.masksToBounds = YES;
 }
 
 -(void)setItem:(UGPlatformGameModel *)item {
@@ -27,7 +29,7 @@
     self.nameLabel.text = item.title;
     
     if (item.balance) {
-        self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", item.balance];
+        self.balanceLabel.text = [NSString stringWithFormat:@"%@", item.balance];
         [_balanceLabel setHidden:NO];
         [_refreshButton setHidden:YES];
     } else {
@@ -43,11 +45,11 @@
 }
 
 -(void)animationFunction{
-    if (_item.refreshing) {
-        [self startAnimation];
-    } else {
-        [self.refreshButton.layer removeAllAnimations];
-    }
+//    if (_item.refreshing) {
+//        [self startAnimation];
+//    } else {
+//        [self.refreshButton.layer removeAllAnimations];
+//    }
 }
 
 //刷新余额动画

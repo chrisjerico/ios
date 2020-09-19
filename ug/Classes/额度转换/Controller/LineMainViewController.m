@@ -47,6 +47,20 @@
     _fishdataArray = [NSMutableArray new];
     _sportdataArray = [NSMutableArray new];
     
+    UGPlatformGameModel*obj = [UGPlatformGameModel new];
+    obj.title = @"我的钱包";
+    UGUserModel *user = [UGUserModel currentUser];
+    double floatString = [user.balance doubleValue];
+    obj.balance =  [NSString stringWithFormat:@"%.2f",floatString];
+    [_gamedataArray addObject:obj];
+    [_realdataArray addObject:obj];
+    [_carddataArray addObject:obj];
+    [_esportdataArray addObject:obj];
+    [_fishdataArray addObject:obj];
+    [_sportdataArray addObject:obj];
+    
+    
+    
     [self getRealGames];
 }
 #pragma mark - 网络数据
