@@ -174,7 +174,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     return false;
 }
 
-- (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)model {
+- (BOOL)pushViewControllerWithNextIssueModel:(UGNextIssueModel *)model isChatRoom:(BOOL) isChatRoom{
     
     
     if (!model) {
@@ -211,7 +211,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     
     if ([CMCommon getRoomMode:model.gameId] ) {
-        return [self goLotteryBetAndChatVC:model];
+        return [self goLotteryBetAndChatVC:model isChatRoom:isChatRoom];
     } else {
         return [self goUGCommonLotteryController:model vcName:vcName];
     }
@@ -219,12 +219,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 }
 
  // 去（彩票下注+聊天室）集合页
--(BOOL)goLotteryBetAndChatVC:(UGNextIssueModel *)model {
+-(BOOL)goLotteryBetAndChatVC:(UGNextIssueModel *)model isChatRoom:(BOOL) isChatRoom {
      // 去（彩票下注+聊天室）集合页
         {
             LotteryBetAndChatVC *vc = [LotteryBetAndChatVC new];
 
-           
+            vc.selectChat = isChatRoom;
             vc.nim = model;
                       // 隐藏底部条
                 vc.hidesBottomBarWhenPushed = YES;
@@ -318,7 +318,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     if (linkCategory == 1) {
         // 去彩票下注页
-        return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue]];
+        return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue] isChatRoom:NO];
     }
     
     if (linkCategory == 10) {
@@ -909,7 +909,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_聊天室: {
-            [NavController1 pushViewControllerWithNextIssueModel:nil];
+            [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
             return true;
         }
             

@@ -52,7 +52,7 @@
         return;
     }
     // 去彩票下注页面
-    [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:_nm.adLink]];
+    [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:_nm.adLink] isChatRoom:NO];
 }
 
 - (void)show {

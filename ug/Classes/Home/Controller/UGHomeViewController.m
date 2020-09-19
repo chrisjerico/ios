@@ -1314,7 +1314,7 @@
             m.gameId = @"222";
             m.gameType = @"lhc";
             m.name = @"lhc";
-            [NavController1 pushViewControllerWithNextIssueModel:m];
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
             NSLog(@"澳门六合彩");
         }
         else if([@"185" containsString:model.categoryType]) {
@@ -1324,7 +1324,7 @@
             m.gameId = @"185";
             m.gameType = @"lhc";
             m.name = @"lhc";
-            [NavController1 pushViewControllerWithNextIssueModel:m];
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
             NSLog(@"一分六合彩");
             
 //
@@ -2321,7 +2321,7 @@
              [weakSelf.tabBarController setSelectedIndex:4];
          };
         self.tkltitleView.chatClickBlock = ^{
-            [NavController1 pushViewControllerWithNextIssueModel:nil];
+            [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
         };
          
          
@@ -2352,7 +2352,7 @@
              [weakSelf.tabBarController setSelectedIndex:4];
          };
         self.titleView.chatClickBlock = ^{
-            [NavController1 pushViewControllerWithNextIssueModel:nil];
+            [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
         };
          
          

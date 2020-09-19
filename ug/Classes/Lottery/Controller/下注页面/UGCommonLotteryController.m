@@ -636,7 +636,7 @@
 - (void)onTitleClick {
 	UGLotterySelectController * vc = [UGLotterySelectController new];
 	vc.didSelectedItemBlock = ^(UGNextIssueModel *nextModel) {
-		[NavController1 pushViewControllerWithNextIssueModel:nextModel];
+        [NavController1 pushViewControllerWithNextIssueModel:nextModel isChatRoom:NO];
 	};
 	UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
 	[self presentViewController:nav animated:true completion:nil];
