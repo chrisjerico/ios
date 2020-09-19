@@ -135,7 +135,7 @@
             site(@"c008",        @"c008hy",     @"217",     @"io.fhpt.YSFC008",         @"https://888123app.com",                       @"企业包",     @"888"),//极光 bghguiyg@163.com qwe5794124A
             site(@"c203",        @"c203hy",     @"235",     @"io.fhpt.YSFC203",         @"https://xpjcpapp.com",                        @"企业包",     @"新葡京彩票"),// 第二条域名：https://455126.com
             site(@"c205",        @"c205hy",     @"308",     @"io.fhpt.YSFC205",         @"https://494.cyou",                            @"企业包",     @"494集团"),//
-            site(@"c206",        @"c206hy",     @"328",     @"io.fhpt.YSFC206",         @"http://rdiuyotdhjo533fsddylvgi.com",          @"企业包",     @"370集团"),//
+            site(@"c206",        @"c206hy",     @"328",     @"io.fhpt.YSFC206",         @"https://rdiuyotdhjo533fsddylvgi.com",          @"企业包",     @"370集团"),//
             site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771aa771.com",                        @"企业包",     @"威尼斯人"),//
             site(@"c212",        @"c212hy",     @"247",     @"io.fhpt.YSAC212",         @"https://00852030.com",                        @"企业包",     @"新葡京"),//
             site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450vip12.com",                           @"企业包",     @"450集团"),//
