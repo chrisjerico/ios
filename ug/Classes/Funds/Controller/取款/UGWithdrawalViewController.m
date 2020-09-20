@@ -44,7 +44,8 @@
 		}
 		[self.view addSubview:self.bandCardView];
 	} else {
-		
+        _limitLabel.text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[SysConf.minWithdrawMoney removeFloatAllZero],[SysConf.maxWithdrawMoney removeFloatAllZero]];
+        
 //		[SVProgressHUD showWithStatus:nil];
 		WeakSelf;
 		[CMNetwork getBankCardInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
@@ -52,8 +53,6 @@
 //				[SVProgressHUD showSuccessWithStatus:model.msg];
 				[UGCardInfoModel setCurrentBankCardInfo:model.data];
 				UGCardInfoModel *card = model.data;
-				UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-				weakSelf.limitLabel.text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[config.minWithdrawMoney removeFloatAllZero],[config.maxWithdrawMoney removeFloatAllZero]];
 				if (card) {
 					weakSelf.cardInfoLabel.text = [NSString stringWithFormat:@"%@,尾号%@，%@",card.bankName,[card.bankCard substringFromIndex:card.bankCard.length - 4],card.ownerName];
 				}
@@ -66,10 +65,7 @@
 			}];
 			
 		}];
-		
 	}
-	
-	
 }
 
 - (void)viewDidLoad {

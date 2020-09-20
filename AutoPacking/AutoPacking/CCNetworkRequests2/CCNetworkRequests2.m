@@ -132,7 +132,9 @@
     static AFHTTPSessionManager *m = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        m = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:urlString]];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.timeoutIntervalForRequest = 300;
+        m = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:urlString] sessionConfiguration:config];
     });
     m.requestSerializer = [AFHTTPRequestSerializer serializer];
     m.responseSerializer = [AFJSONResponseSerializer serializer];
