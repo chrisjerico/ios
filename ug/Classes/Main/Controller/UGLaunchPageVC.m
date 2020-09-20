@@ -183,8 +183,10 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __self.waitSysConf = false;
                 __self.waitLanguage = false;
-                __self.waitReactNative = false;
                 __self.waitLanguage = false;
+#ifndef APP_TEST
+                __self.waitReactNative = false;
+#endif
             });
         }
         
