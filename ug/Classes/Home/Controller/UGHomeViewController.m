@@ -1213,6 +1213,14 @@
     if ([collectionView.tagString isEqualToString:@"六合内容"]) {
         UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
         
+        // 后台栏目ID可能不正确，要根据别名修正
+        NSDictionary *typeDict = @{@"sixpic":@"5",
+                                   @"humorGuess":@"6",
+                                   @"rundog":@"7",
+                                   @"fourUnlike":@"8",
+        };
+        model.cid = typeDict[model.categoryType];
+        
         if ([model.thread_type isEqualToString:@"2"]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
