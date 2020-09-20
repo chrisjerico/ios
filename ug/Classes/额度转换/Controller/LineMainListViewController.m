@@ -80,6 +80,8 @@
     for (UGPlatformGameModel *game in self.dataArray) {
         [self.transferArray addObject:game.title];
     }
+    self.outIndex = -1;
+    self.inIndex = -1;
 }
 
 -(void)setDataArray:(NSMutableArray<UGPlatformGameModel *> *)dataArray{
@@ -211,14 +213,27 @@
 
 // 开始转换
 - (IBAction)startTransfer:(id)sender {
+    
+    if (self.outIndex == -1) {
+        [SVProgressHUD showInfoWithStatus:@"请选择转出钱包"];
+        return;
+    }
+    if (self.inIndex == -1) {
+        [SVProgressHUD showInfoWithStatus:@"请选择转入钱包"];
+        return;
+    }
     ck_parameters(^{
         ck_parameter_non_empty(self.moneyLabel1.text, @"请选择转出钱包");
         ck_parameter_non_empty(self.moneyLabel2.text, @"请选择转入钱包");
         ck_parameter_non_equal(self.moneyLabel1.text, self.moneyLabel2.text, @"转出钱包和转入钱包不能一致");
         ck_parameter_non_empty(self.moneyTxt.text, @"请输入转换金额");
+    
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
+        
+        
+
         
         [self.moneyTxt resignFirstResponder];
         UGPlatformGameModel *outModel;
