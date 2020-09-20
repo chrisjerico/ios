@@ -30,7 +30,7 @@
     self.name2Label.textColor = Skin1.textColor2;
     self.hotImageView.hidden = YES;
     
-    if (!Skin1.isJY) {
+    if (!Skin1.isJY && !Skin1.isTKL) {
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
         [self.nameLabel setFont:[UIFont systemFontOfSize:15]];

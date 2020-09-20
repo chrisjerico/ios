@@ -20,23 +20,51 @@
 }
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic) BOOL isGPK;
+@property (nonatomic) BOOL isTKL;
 @property (nonatomic,strong) UIButton *leftBtn;
 @property (nonatomic,strong) UIButton *rightBtn;
+@property(nonatomic, strong)UIButton * scrollRightButton;
 @end
 
 
 @implementation UGPlatformTitleCollectionView
 
+-(UIButton *)scrollRightButton {
+    if (!_scrollRightButton) {
+        _scrollRightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _scrollRightButton.backgroundColor = [UIColor colorWithHex:0x4981de];
+        [_scrollRightButton setImage: [[UIImage imageNamed:@"jiantouyou"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [_scrollRightButton setTintColor:UIColor.whiteColor];
+        [_scrollRightButton addTarget:self action:@selector(scrollRight)];
+        
+    }
+    return _scrollRightButton;
+}
+- (void)scrollRight {
+    
+    NSInteger FrameWidth = UGScreenW - 20;
+    NSInteger contentWidth = self.gameTypeArray.count > 5 ? ((UGScreenW - 20)/5) * self.gameTypeArray.count :FrameWidth;
+    
+    NSInteger oldContentOffSet_X = self.collectionView.contentOffset.x;
+    NSInteger distance = contentWidth - FrameWidth;
+    if (distance > 0) {
+        CGFloat newContenOffSet_X = (oldContentOffSet_X + (NSInteger)(distance)/5) % distance;
+        [self.collectionView setContentOffset:CGPointMake(newContenOffSet_X, 0)];
+        
+    }
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _isGPK = Skin1.isGPK;
+        _isGPK = Skin1.isGPK  ;
+        _isTKL = Skin1.isTKL ;
         UICollectionViewFlowLayout *layout = ({
             layout = [[UICollectionViewFlowLayout alloc] init];
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
-            layout.sectionInset = _isGPK ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
+            layout.sectionInset = _isGPK || _isTKL ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
 			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 				layout.sectionInset = UIEdgeInsetsZero;
 			}
@@ -51,10 +79,13 @@
 			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
 				collectionView.backgroundColor = UIColor.clearColor;
 			}
+            if (_isTKL) {
+               collectionView.backgroundColor = RGBA(246, 246, 246, 1);
+            }
  
             collectionView.dataSource = self;
             collectionView.delegate = self;
-            collectionView.layer.cornerRadius = (_isGPK || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
+            collectionView.layer.cornerRadius = (_isGPK ||_isTKL || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
             collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"GPK版Cell"];
@@ -64,6 +95,8 @@
                  collectionView.layer.borderWidth = 1;
                  collectionView.layer.borderColor = [UIColor whiteColor].CGColor;
              }
+    
+           
             collectionView;
             
   
@@ -71,6 +104,24 @@
         
         self.collectionView = collectionView;
         [self addSubview:collectionView];
+        
+        if (Skin1.isTKL) {
+              [self addSubview: self.scrollRightButton];
+              [self.scrollRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+                  make.centerY.equalTo(self).offset(-5);
+                  make.right.equalTo(self).offset(-5);
+                  make.width.equalTo(@15);
+                  make.height.equalTo(@40);
+              }];
+              UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(0, 0, 15, 40) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomLeft cornerRadii:CGSizeMake(3,3)];
+              CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+              maskLayer.frame = CGRectMake(0, 0, 15, 40);
+              maskLayer.path = maskPath.CGPath;
+              _scrollRightButton.layer.mask = maskLayer;
+            [self.scrollRightButton setHidden:!Skin1.isTKL];
+            [self bringSubviewToFront :self.scrollRightButton];
+        }
+        
         btnwight = 15;
         _leftBtn = ({
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -184,11 +235,12 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (_isGPK) {
+    if (_isGPK || _isTKL) {
         UGPlatformTitleBlackCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GPK版Cell" forIndexPath:indexPath];
         cell.gcm = _gameTypeArray[indexPath.row];
         return cell;
     }
+
     UGPlatformTitleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"默认Cell" forIndexPath:indexPath];
     cell.item = _gameTypeArray[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
@@ -236,6 +288,9 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (_isGPK) {
         return CGSizeMake(92, 140);
+    }
+    else if (_isTKL){
+        return CGSizeMake(((UGScreenW - 20)/5) , 90);
     }
     CGFloat w = 0;
     

@@ -169,6 +169,8 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon removeLastGengHao];
         [__self getUserInfo];
+        
+        [__self chatgetToken];
         // 通知RN
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             [ReactNativeHelper sendEvent:UGNotificationLoginComplete params:UserI];
@@ -299,7 +301,7 @@ static UGTabbarController *_tabBarVC = nil;
     [self setTabbarStyle];
 
     
-    [self chatgetToken];
+//    [self chatgetToken];
     
     [self getAllNextIssueData]; // 彩票大厅数据
     
@@ -672,6 +674,7 @@ static UGTabbarController *_tabBarVC = nil;
             } failure:^(id msg) {}];
         }];
     };
+    NSLog(@"APP.messageRequestTimer= %@",APP.messageRequestTimer);
     dispatch_suspend(APP.messageRequestTimer);
     [CMNetwork getMessageListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
@@ -801,7 +804,6 @@ static UGTabbarController *_tabBarVC = nil;
                 
                 
                 MyChatRoomsModel.currentRoom = [MyChatRoomsModel new];;
-               
                 SysChatRoom.chatRoomRedirect = [number intValue];
                 SysChatRoom.chatRoomAry = chatRoomAry;
                 
@@ -819,8 +821,8 @@ static UGTabbarController *_tabBarVC = nil;
                     SysChatRoom.defaultChatRoom = obj;
                     
                 }
-                NSLog(@"SysChatRoom = %@",SysChatRoom);
-          
+                NSLog(@"SysChatRoom0000000000000000000000000000 = %@",SysChatRoom);
+                [MyChatRoomsModel setCurrentRoom:SysChatRoom ];
   
             } failure:^(id msg) {
                 //            [self stopAnimation];

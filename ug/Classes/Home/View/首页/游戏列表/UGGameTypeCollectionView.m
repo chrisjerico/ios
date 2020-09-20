@@ -35,7 +35,8 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     if (OBJOnceToken(self)) {
         // _titleView
         {
-            BOOL isGPK = Skin1.isGPK;
+            BOOL isGPK = Skin1.isGPK ;
+            BOOL isTKL = Skin1.isTKL;
             _titleView = [[UGPlatformTitleCollectionView alloc] initWithFrame:CGRectZero];
             _titleView.backgroundColor = [UIColor clearColor];
             _titleView.platformTitleSelectBlock = ^(NSInteger selectIndex) {
@@ -55,6 +56,10 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
                 else if (isGPK) {
                     make.top.left.right.equalTo(self);
                     make.height.equalTo(@140);
+                }
+                else if (isTKL) {
+                    make.top.left.right.equalTo(self);
+                    make.height.equalTo(@90);
                 }
 				else if (self.gameTypeArray.count == 1) {
 					/**
@@ -112,9 +117,6 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     _titleView.selectIndex = 0;
     _contentScrollView.contentOffset = CGPointZero;
     
-//    if (gameTypeArray.count==1) {
-//        [_titleView setHidden:YES];
-//    }
     
     // 清空_collectionViews
     for (UGPlatformCollectionView *pcv in _contentStackView.arrangedSubviews)
@@ -124,9 +126,11 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 	NSInteger i = 0;
     for (GameCategoryModel *gcm in gameTypeArray) {
         UGPlatformCollectionView *pcv = [[UGPlatformCollectionView alloc] initWithFrame:CGRectZero];
+ 
         pcv.style = gcm.style;
 		pcv.typeIndex = i;
 		pcv.dataArray = gcm.list;
+        pcv.subType = gcm.subType;
         [pcv xw_addObserverBlockForKeyPath:@"contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
             [__self refreshHeight];
         }];
@@ -146,10 +150,12 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
     NSInteger idx = _titleView.selectIndex;
     UGPlatformCollectionView *pcv = _contentStackView.arrangedSubviews[idx];
     CGFloat h ;
+    
+    //subType  是否有2级分类
 
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
         GameCategoryModel *ob =  [self.gameTypeArray objectAtIndex:idx];
-        if ([ob.iid isEqualToString:@"1"]){
+        if (ob.subType.count){
             h = pcv.contentSize.height + _titleView.height + 5 +40;
             _contentScrollView.cc_constraints.height.constant = h;
         } else {

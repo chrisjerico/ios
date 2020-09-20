@@ -13,7 +13,9 @@ typedef void(^HomeTitleMoreBlock)(void);
 typedef void(^HomeTitleTryplayBlock)(void);
 typedef void(^HomeTitleLoginBlock)(void);
 typedef void(^HomeTitleRegisterBlock)(void);
+typedef void(^HomeTitleChatBlock)(void);
 @interface UGHomeTitleView : UIView
+@property (nonatomic, copy) HomeTitleChatBlock chatClickBlock;          /**<   聊天室*/
 @property (nonatomic, copy) HomeTitleMoreBlock moreClickBlock;          /**<   更多 */
 @property (nonatomic, copy) HomeTitleTryplayBlock tryPlayClickBlock;    /**<   试玩 */
 @property (nonatomic, copy) HomeTitleLoginBlock loginClickBlock;        /**<   登录 */

@@ -70,6 +70,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
     MM_在线客服,
     MM_未结算,
     MM_优惠申请,
+    
+    MM_捕鱼,
+    MM_电竞,
+    MM_电子,
+    MM_棋牌,
 };
 
 
@@ -223,7 +228,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 */
 @property (nonatomic, copy) NSString * showNavigationBar;/**<   //显示在前还是后 1 前 0 后
 */
+
 @property (nonatomic, copy) OauthModel * oauth;/**<   第三方登录*/
+@property (nonatomic, copy) NSString * currency;/**<   /货币单位，默认人民币  CNY    currency*/
 
 
 + (instancetype)currentConfig;

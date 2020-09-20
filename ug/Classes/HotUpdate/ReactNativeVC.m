@@ -121,11 +121,13 @@ static NSString *__lastRnPage = nil;
     if (!_rnView) {
         NSURL *bundleURL = [CodePush bundleURL];
 #ifdef DEBUG
-        if (TARGET_IPHONE_SIMULATOR) {
-            bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-        } else if (APP.isFish) {
-            bundleURL = [NSURL URLWithString:@"http://192.168.1.143:8081/index.bundle?platform=ios"];
-        }
+
+//        if (TARGET_IPHONE_SIMULATOR) {
+//            bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+//        } else if (APP.isFish) {
+//            bundleURL = [NSURL URLWithString:@"http://192.168.1.143:8081/index.bundle?platform=ios"];
+//        }
+
 #endif
         //    NSLog(@"当前rn版本：%@", APP.)
         _rnView = [[RCTRootView alloc] initWithBundleURL:bundleURL moduleName:@"Main" initialProperties:nil launchOptions:nil];

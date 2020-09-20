@@ -166,7 +166,7 @@
         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
     }
     
-    [self getSystemConfig];
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_updateContent:)
@@ -177,24 +177,21 @@
                                              selector:@selector(_accessTokenChanged:)
                                                  name:FBSDKAccessTokenDidChangeNotification
                                                object:nil];
-    
-    
-    [self.FSloginButton setHidden:self.isfromFB];
-    [self.rigesterButton setHidden:self.isfromFB];
-    [self.playButton setHidden:self.isfromFB];
-    
-    self.isFBLoginOK = NO;
+     self.isFBLoginOK = NO;
     
     if (self.isfromFB) {
-        
+        [self.FSloginButton setHidden:self.isfromFB];
+        [self.rigesterButton setHidden:self.isfromFB];
+        [self.playButton setHidden:self.isfromFB];
         if (![CMCommon stringIsNull:UGUserModel.currentUser.username]) {
             self.userNameTextF.text =  UGUserModel.currentUser.username;
         }
         [self.loginButton setTitle:@"绑定" forState:(UIControlStateNormal)];
     } else {
-        [self.loginButton setTitle:@"登录" forState:(UIControlStateNormal)];
+         [self.loginButton setTitle:@"登录" forState:(UIControlStateNormal)];
+         [self getSystemConfig];
     }
-    
+
  
     [self.userNameTextF setEnabled:!self.isNOfboauthLogin];
     

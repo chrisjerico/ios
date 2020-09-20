@@ -32,6 +32,23 @@ NS_ASSUME_NONNULL_BEGIN
  *改变字符串中所有数字的颜色
  */
 + (void)setRichNumberWithLabel:(UILabel*)label Color:(UIColor *)color FontSize:(CGFloat)size ;
+
+
+/*
+*
+*改变字符lab 根据分隔符 最近长度 的颜色改变
+ length：长度
+ markColor ：改变颜色
+ @"66690-1213-66666-78979-123123-98898-7777-908999";
+ 比如：-  前2个长度变红
+ [self messageAction:self.label labStr:str separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+ 
+*/
++(void)messageAction:(UILabel *)theLab labStr:(NSString*)str separation:(NSString *)separation  length:(int)length  andMarkColor:(UIColor *)markColor;
+
+#pragma mark - 获取这个字符串中的所有xxx的所在的index
++ (NSMutableArray *)getRangeStr:(NSString *)text findText:(NSString *)findText;
+
 @end
 
 NS_ASSUME_NONNULL_END

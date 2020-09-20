@@ -43,13 +43,16 @@
              self.backgroundColor = Skin1.bgColor;
             _titleLabel.textColor = Skin1.textColor4;
         } else {
-             self.backgroundColor = [UIColor whiteColor];
+             self.backgroundColor = RGBA(240, 243, 246, 1);
             _titleLabel.textColor = Skin1.textColor1;
         }
         _activity.hidesWhenStopped = YES;
         _activity.color = [UIColor lightGrayColor];
         _myWebView.delegate = self;
         _myWebView.backgroundColor = Skin1.textColor4;
+        _myWebView.scalesPageToFit=YES;
+        _myWebView.multipleTouchEnabled=YES;
+        _myWebView.userInteractionEnabled=YES;
     }
     return self;
 }
@@ -125,6 +128,9 @@
            }"
         ];
     }
+    
+    NSString *meta = [NSString stringWithFormat:@"var meta = document.createElement('meta');meta.content='width=device-width,initial-scale=1.0,minimum-scale=.5,maximum-scale=3';meta.name='viewport';document.getElementsByTagName('head')[0].appendChild(meta);"];
+    [_myWebView stringByEvaluatingJavaScriptFromString:meta];
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

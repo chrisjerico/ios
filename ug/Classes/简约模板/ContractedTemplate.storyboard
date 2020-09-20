@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -508,7 +508,6 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lkh-0G-or1">
                                 <rect key="frame" x="119" y="303" width="137" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="137" id="H9B-ys-RjB"/>
                                     <constraint firstAttribute="height" constant="28" id="Xwa-dF-oc3"/>
                                     <constraint firstAttribute="width" constant="137" id="ecp-tb-0qX"/>
                                 </constraints>
@@ -1259,6 +1258,7 @@
                     <size key="freeformSize" width="375" height="1300"/>
                     <connections>
                         <outlet property="QQTextF" destination="jZ1-BF-DVo" id="Hin-FI-KH6"/>
+                        <outlet property="bqhLabel" destination="we1-2c-xHa" id="OrR-QG-jNG"/>
                         <outlet property="checkPasswordTextF" destination="Ti4-fB-CLV" id="bkU-v3-sE7"/>
                         <outlet property="emailTextF" destination="5n4-tQ-zGJ" id="X0M-ja-VzV"/>
                         <outlet property="emailView" destination="vFi-em-Df2" id="fGF-yc-jWO"/>
@@ -1287,6 +1287,7 @@
                         <outlet property="smsVcodeButton" destination="Hze-7U-XxZ" id="aQd-NK-nk3"/>
                         <outlet property="smsVcodeTextF" destination="gOZ-UW-JrM" id="uVs-oP-w8Z"/>
                         <outlet property="smsVcodeView" destination="aND-Xt-2wq" id="6ZF-WB-JYK"/>
+                        <outlet property="userInfoHeight" destination="ADX-px-nE2" id="6no-sL-hFM"/>
                         <outlet property="userInfoView" destination="mog-Zy-CNx" id="OME-rD-xNP"/>
                         <outlet property="userNameDisabledNotice" destination="9rM-R1-Wub" id="2lL-OF-Lqs"/>
                         <outlet property="userNameTextF" destination="aGI-76-FJp" id="gK5-lh-ZrX"/>

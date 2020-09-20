@@ -138,7 +138,7 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     
     UGAllNextIssueListModel *listModel = self.lotteryGamesArray[indexPath.section];
     UGNextIssueModel *nextModel = listModel.list[indexPath.row];
-    [NavController1 pushViewControllerWithNextIssueModel:nextModel];
+    [NavController1 pushViewControllerWithNextIssueModel:nextModel isChatRoom:NO];
 }
 
 - (void)initCollectionView {

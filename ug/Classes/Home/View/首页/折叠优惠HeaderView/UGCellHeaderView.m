@@ -60,7 +60,7 @@ static CGFloat _contentWidth = 0;
         _stackView.cc_constraints.left.constant = 0;
     }
     
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
          subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor :  RGBA(242, 242, 242, 1);
     }
     else{

@@ -104,6 +104,8 @@
            [userDefault setBool:NO forKey:@"isRememberPsd"];
            self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
       }
+    
+       [self getSystemConfig];
 }
 #pragma mark - 事件
 //点击登录
@@ -207,6 +209,7 @@
                 if (weakSelf.errorTimes == 4) {
                     weakSelf.webBgView.hidden = NO;
                     weakSelf.webBgViewHeightConstraint.constant = 120;
+                     [weakSelf webLoadURL];
                 }
                 
                 UGUserModel *user = (UGUserModel*) model.data;
@@ -468,6 +471,39 @@
         _webView.navigationDelegate = self;
     }
     return _webView;
+}
+
+- (void)getSystemConfig {
+    WeakSelf;
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            NSLog(@"登录增加了滑动验证码配置==%d",[UGSystemConfigModel  currentConfig].loginVCode);
+
+            if ([UGSystemConfigModel  currentConfig].loginVCode) {
+                weakSelf.webBgView.hidden = NO;
+                weakSelf.webBgViewHeightConstraint.constant = 120;
+                [weakSelf webLoadURL];
+            } else {
+                weakSelf.webBgView.hidden = YES;
+                weakSelf.webBgViewHeightConstraint.constant = 0.1;
+            }
+            
+            
+           
+            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
+-(void)webLoadURL{
+    NSString *url = [NSString stringWithFormat:@"%@%@",APP.Host,swiperVerifyUrl];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [self.webView loadRequest:request];
 }
 
 @end

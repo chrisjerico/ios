@@ -67,7 +67,8 @@
 @property (nonatomic,assign) BOOL isNoBorder;                             /**<  首页优惠活动没有外面的View */
 @property (nonatomic,assign) BOOL isWihiteBorder;                          /**<  首页优惠活动外面的View白色边框 */
 @property (nonatomic,assign) BOOL isRedWhite;                             /**<  下注界面新年红模板样式 红白配色*/
-@property (nonatomic,assign) BOOL oldConversion;                          /**<  老的转换界面*/
+@property (nonatomic,assign) BOOL isNewConversion;                          /**<  新的额度转换界面*/
+@property (nonatomic,assign) BOOL isNewUserInfoView;                         /**<  新的我的资料界面*/
 @property (nonatomic,assign) BOOL isParagraphSpacing;                     /**<  首页公告详情段落有间距*/
 
 @property (nonatomic,assign) BOOL isTabHot;                               /**< tab聊天室+红包动画*/
@@ -94,6 +95,7 @@
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
 @property (nonatomic) BOOL isHideTV;                                    /**<  去除澳门六合彩显示的小电视*/
 @property (nonatomic) BOOL isBottom;                                    /**<  首页二级分类图标显示的位置比照一样放右下角*/
+@property (nonatomic) BOOL isChatButton;                                /**<  首页导航有聊天室按钮显示*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

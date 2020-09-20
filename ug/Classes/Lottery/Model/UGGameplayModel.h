@@ -46,7 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *name;           /**<   玩法名称 */
-@property (nonatomic, strong) NSString *typeName;
 @property (nonatomic, strong) NSString *from_id;
 
 @property (nonatomic, strong) NSString *code;           /**<   玩法标识 */
@@ -66,12 +65,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL gameEnable;             /**<   是否启用：0=否，1=是   自己加的  == UGGameplaySectionModel 的enable*/
 @property (nonatomic, strong) NSString *groupNum;
 @property (nonatomic, strong) NSString *groupColor;
-
+@property (nonatomic, strong) NSString *rule;            /**<   玩法规则（越南彩） */
+@property (nonatomic, strong) NSString *betMultiple;            /**<  倍数（越南彩） */
 
 
 // 自定义参数
+@property (nonatomic, strong) NSString *typeName;               /**<  上一级的名称 */
+@property (nonatomic, strong) NSString *codeName;               /**<  上一级的code */
 @property (nonatomic, assign) BOOL select;
 @property (nonatomic, strong) NSString *typeName2;
+@property (nonatomic, strong) NSMutableArray *ynList;            /**<   越南选择号码数组 */
+@property (nonatomic, strong) NSMutableArray *ynFastList;         /**<   越南快速号码数组 */
 @end
 
 @protocol UGGameplaySectionModel <NSObject>
@@ -93,6 +97,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<UGGameBetModel> *zxbzlist;            /**<  自选不中下注的数组 */
 @property (nonatomic, strong) NSMutableArray <UGGameplaySectionModel *>*ezdwlist;            /**<  时时彩二字定位 三字定位下注的数组  福彩3D 定位胆 不定位*/
 @property (nonatomic, strong) NSString *ezdwcode;/**<  定位胆 code */
+
+// 自定义参数
+@property (nonatomic, assign) int yni;              /**<   记录 000  100 200 。。。 第1位 */
 @end
 
 @protocol UGGameplayModel <NSObject>

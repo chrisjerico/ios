@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void(^gameItemSelectBlock)(GameModel *game);
 
 @property (nonatomic, strong) NSArray <GameModel *> *dataArray;
+@property (nonatomic, strong) NSArray<GameCategoryModel *> * subType;/**<   二级分类数据 */
 
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

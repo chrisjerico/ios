@@ -48,8 +48,9 @@
 #import "LHJournalDetailVC.h"   // 期刊详情
 #import "UGPostDetailVC.h"      // 帖子详情
 #import "JS_TitleView.h"
-
+#import "TKLPlatformNotiveView.h"
 #import "UGAllNextIssueListModel.h"
+
 //测试--GPK版
 #import "UGfinancialViewViewController.h"
 
@@ -64,6 +65,7 @@
 #import "GameCategoryDataModel.h"
 #import "UGNoticePopView.h"
 #import "UGHomeTitleView.h"
+#import "UGTKLHomeTitleView.h"
 #import "UGLotteryRulesView.h"
 #import "STButton.h"
 #import "UGPlatformNoticeView.h"
@@ -127,6 +129,8 @@
 @interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
+@property (nonatomic, strong) UGTKLHomeTitleView *tkltitleView;       /**<   自定义导航条 */
+
 @property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
 @property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
 
@@ -162,6 +166,7 @@
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;                   /**<   点击跑马灯弹出的数据 */
 
 @property (nonatomic, strong) UGPlatformNoticeView *notiveView;                     /**<   平台公告View */
+@property (nonatomic, strong) TKLPlatformNotiveView *tklnotiveView;                  /**<   天空蓝平台公告View */
 @property (nonatomic, strong) NSMutableArray <UGNoticeModel *> *popNoticeArray;     /**<   公告数据 */
 
 @property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
@@ -226,6 +231,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *upTitleLabel;                   /**<   下文字View */
 @property (weak, nonatomic) IBOutlet UILabel *downTitleLabel;                /**<   下文字View */
+
 
 @end
 
@@ -320,17 +326,17 @@
     // GPK版的UI调整
     BOOL isGPK = Skin1.isGPK;
     // c108站点定制需求
-    if ([@"c108" containsString: APP.SiteId]) {
+    if ([@"c108" containsString: APP.SiteId]||Skin1.isTKL) {
         _rankingView.backgroundColor = UIColor.whiteColor;
+ 
     } else {
         _rankingView.backgroundColor = isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
     }
     
 
-//    _gameTypeView.cc_constraints.top.constant = isBlack ? 0 : 10;
-//    if (Skin1.isJY) {
-        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY ? 0 : 10;
-//    }
+
+        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY||Skin1.isTKL? 0 : 10;
+
     _headerView.hidden = !isGPK;
     self.fd_prefersNavigationBarHidden = isGPK;
     if (NavController1.topViewController == self) {
@@ -363,7 +369,7 @@
 //        Selector
 //        IMP
     }
-    if (Skin1.isJY) {
+    if (Skin1.isJY||Skin1.isTKL) {
         _rollingView.backgroundColor = RGBA(249, 249, 249, 1);
         [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
         
@@ -379,7 +385,12 @@
     [self.leftwardMarqueeView start];
     [self.upwardMultiMarqueeView start];
     
-    self.titleView.imgName = SysConf.mobile_logo;
+    if (Skin1.isTKL) {
+          self.tkltitleView.imgName = SysConf.mobile_logo;
+    } else {
+          self.titleView.imgName = SysConf.mobile_logo;
+    }
+  
     if (_lhPrizeView.timer) {
         [_lhPrizeView.timer setFireDate:[NSDate date]];
     }
@@ -420,8 +431,13 @@
         });
         // 登录成功
         SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-            __self.titleView.showLoginView = NO;
-//            SysConf.popup_type = @"1";
+            
+            if (Skin1.isTKL) {
+                 __self.tkltitleView.showLoginView = NO;
+            } else {
+                 __self.titleView.showLoginView = NO;
+            }
+           
             if ( [SysConf.popup_type isEqualToString:@"1"]) {
                 
                 BOOL isLogin = UGLoginIsAuthorized();
@@ -429,24 +445,42 @@
                      [self getNoticeList];
                  }
             }
+            
+            
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-            __self.titleView.showLoginView = YES;
+            if (Skin1.isTKL) {
+                __self.tkltitleView.showLoginView = YES;
+            } else {
+                __self.titleView.showLoginView = YES;
+            }
+            
             [__self.bigWheelView setHidden:YES];
         });
         // 登录超时
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
             // onceToken 函数的作用是，限制为只弹一次框，修复弹框多次的bug
             if (OBJOnceToken(UGUserModel.currentUser)) {
-                __self.titleView.showLoginView = YES;
+                if (Skin1.isTKL) {
+                     __self.tkltitleView.showLoginView = YES;
+                } else {
+                     __self.titleView.showLoginView = YES;
+                }
+               
             }
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfo, self, ^(typeof (self) self, id obj) {
-            [self.contentScrollView.mj_header endRefreshing];
+            [__self.contentScrollView.mj_header endRefreshing];
         });
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-            self.titleView.userName = UserI.username;
+
+            if (Skin1.isTKL) {
+                  __self.tkltitleView.userName = UserI.username;
+            } else {
+                  __self.titleView.userName = UserI.username;
+            }
+
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
@@ -489,7 +523,7 @@
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-        if (Skin1.isJY) {
+        if (Skin1.isJY||Skin1.isTKL) {
             subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@"JY_gg"] ;
         }
         else{
@@ -543,7 +577,7 @@
             subView(@"优惠活动外View").backgroundColor = Skin1.homeContentColor;
         }
         
-        if (Skin1.isJY) {
+        if (Skin1.isJY||Skin1.isTKL) {
             _promotionsStackView.cc_constraints.top.constant = 0;
             _promotionsStackView.cc_constraints.left.constant = 0;
         }
@@ -584,7 +618,7 @@
             }
             
         }
-        
+        //游戏列表点击事件
         self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
             [NavController1 pushViewControllerWithGameModel:game];
         };
@@ -969,7 +1003,7 @@
     dispatch_group_async(group, queue, ^{
            
            // 请求10
-//           [self chatgetToken];     // 在线配置的聊天室
+//           [self chatgetToken];     // 在线配置的聊天室÷
            
     });
        
@@ -1280,7 +1314,7 @@
             m.gameId = @"222";
             m.gameType = @"lhc";
             m.name = @"lhc";
-            [NavController1 pushViewControllerWithNextIssueModel:m];
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
             NSLog(@"澳门六合彩");
         }
         else if([@"185" containsString:model.categoryType]) {
@@ -1290,7 +1324,7 @@
             m.gameId = @"185";
             m.gameType = @"lhc";
             m.name = @"lhc";
-            [NavController1 pushViewControllerWithNextIssueModel:m];
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
             NSLog(@"一分六合彩");
             
 //
@@ -1316,6 +1350,72 @@
     }
 }
 
+// 得到线上配置的聊天室
+- (void)chatgetToken {
+    
+
+    {//得到线上配置的聊天室
+        NSDictionary *params = @{@"t":[NSString stringWithFormat:@"%ld",(long)[CMTimeCommon getNowTimestamp]],
+                                 @"token":[UGUserModel currentUser].sessid
+        };
+        NSLog(@"token = %@",[UGUserModel currentUser].sessid);
+        [CMNetwork chatgetTokenWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                NSLog(@"model.data = %@",model.data);
+                NSDictionary *data = (NSDictionary *)model.data;
+                NSMutableArray *chatIdAry = [NSMutableArray new];
+                NSMutableArray *typeIdAry = [NSMutableArray new];
+                NSMutableArray<UGChatRoomModel *> *chatRoomAry = [NSMutableArray new];
+//                NSArray * chatAry = [data objectForKey:@"chatAry"];
+                
+                NSArray * roomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
+                
+                NSArray *chatAry = [roomAry sortedArrayUsingComparator:^NSComparisonResult(RoomChatModel *p1, RoomChatModel *p2){
+                //对数组进行排序（升序）
+                    return p1.sortId > p2.sortId;
+                //对数组进行排序（降序）
+                // return [p2.dateOfBirth compare:p1.dateOfBirth];
+                }];
+                
+                for (int i = 0; i< chatAry.count; i++) {
+                    RoomChatModel *dic =  [chatAry objectAtIndex:i];
+                    [chatIdAry addObject:dic.roomId];
+                    [chatRoomAry addObject: [UGChatRoomModel mj_objectWithKeyValues:dic]];
+                    
+                }
+                [CMCommon removeLastRoomAction:chatIdAry];
+                
+                NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
+                
+                
+                MyChatRoomsModel.currentRoom = [MyChatRoomsModel new];;
+                SysChatRoom.chatRoomRedirect = [number intValue];
+                SysChatRoom.chatRoomAry = chatRoomAry;
+                
+              
+
+                if (![CMCommon arryIsNull:chatRoomAry]) {
+                      UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
+                    NSLog(@"roomId = %@,sorId = %d,roomName = %@",obj.roomId,obj.sortId,obj.roomName);
+            
+                }
+                else{
+                    UGChatRoomModel *obj  = [UGChatRoomModel new];
+                    obj.roomId = @"0";
+                    obj.roomName = @"聊天室";
+                    SysChatRoom.defaultChatRoom = obj;
+                    
+                }
+                NSLog(@"SysChatRoom0000000000000000000000000000 = %@",SysChatRoom);
+                [MyChatRoomsModel setCurrentRoom:SysChatRoom ];
+  
+            } failure:^(id msg) {
+                //            [self stopAnimation];
+            }];
+        }];
+        
+    }
+}
 
 - (void)getUserInfo {
     if (!UGLoginIsAuthorized()) {
@@ -1332,8 +1432,16 @@
             user.sessid = oldUser.sessid;
             user.token = oldUser.token;
             UGUserModel.currentUser = user;
-            weakSelf.titleView.userName = user.username;
+            
+            if (Skin1.isTKL) {
+                 weakSelf.tkltitleView.userName = user.username;
+            } else {
+                 weakSelf.titleView.userName = user.username;
+            }
+           
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
+            
+            [weakSelf  chatgetToken];
         } failure:^(id msg) {
             SANotificationEventPost(UGNotificationGetUserInfoComplete, nil);
             if (model.msg.length) {
@@ -1386,7 +1494,7 @@
                         /**
                          #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
                          */
-                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| [Skin1 isJY]) {
+                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| [Skin1 isJY]||Skin1.isTKL) {
                             weakSelf.gameNavigationViewHeight.constant = 60;
                             weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
                         } else {
@@ -1448,7 +1556,12 @@
             
             NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
             [weakSelf.bottomLabel setText:title];
-            [weakSelf.titleView setImgName:config.mobile_logo];
+            if (Skin1.isTKL) {
+                [weakSelf.tkltitleView setImgName:config.mobile_logo];
+            } else {
+                [weakSelf.titleView setImgName:config.mobile_logo];
+            }
+            
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
@@ -1540,10 +1653,17 @@
                     weakSelf.rankLabel.text = @"投注排行榜";
                 }
                 weakSelf.rankingView.hidden = !config.rankingListSwitch;
-                weakSelf.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
+           
                 weakSelf.rankLabel.textColor = Skin1.textColor1;
                 [weakSelf.view layoutIfNeeded];
                 [weakSelf.upwardMultiMarqueeView reloadData];
+                
+                if (Skin1.isTKL) {
+                    weakSelf.bottomView.backgroundColor = [UIColor whiteColor];
+                } else {
+                    weakSelf.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
+                }
+                
             });
             
         } failure:^(id msg) {
@@ -1945,26 +2065,52 @@
         WeakSelf;
         //在这里 进行请求后的方法，回到主线程
         dispatch_async(dispatch_get_main_queue(), ^{
-            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
-            weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
-            [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-            weakSelf.notiveView.dataArray = self.popNoticeArray;
-            weakSelf.notiveView.supVC = weakSelf;
             
-            UIWindow* window = UIApplication.sharedApplication.keyWindow;
-            BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
             
-            if (!isSubView) {
-//                SysConf.popup_type = @"1";
-                if ( [SysConf.popup_type isEqualToString:@"0"]) {
-                    [weakSelf.notiveView show];
-                } else {
-                    BOOL isLogin = UGLoginIsAuthorized();
-                    if (isLogin) {
+            if (Skin1.isTKL) {
+                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+                weakSelf.tklnotiveView = [[TKLPlatformNotiveView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
+                weakSelf.tklnotiveView.dataArray = self.popNoticeArray;
+  
+                
+                UIWindow* window = UIApplication.sharedApplication.keyWindow;
+                BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
+                
+                if (!isSubView) {
+                    //                SysConf.popup_type = @"1";
+                    if ( [SysConf.popup_type isEqualToString:@"0"]) {
+                        [weakSelf.tklnotiveView show];
+                    } else {
+                        BOOL isLogin = UGLoginIsAuthorized();
+                        if (isLogin) {
+                            [weakSelf.tklnotiveView show];
+                        }
+                    }
+                }
+            } else {
+                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+                weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
+                [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+                weakSelf.notiveView.dataArray = self.popNoticeArray;
+                weakSelf.notiveView.supVC = weakSelf;
+                
+                UIWindow* window = UIApplication.sharedApplication.keyWindow;
+                BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
+                
+                if (!isSubView) {
+                    //                SysConf.popup_type = @"1";
+                    if ( [SysConf.popup_type isEqualToString:@"0"]) {
                         [weakSelf.notiveView show];
+                    } else {
+                        BOOL isLogin = UGLoginIsAuthorized();
+                        if (isLogin) {
+                            [weakSelf.notiveView show];
+                        }
                     }
                 }
             }
+            
+            
         });
 }
 
@@ -2152,30 +2298,72 @@
 
 - (void)setupSubView {
     
-    UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
-    self.navigationItem.titleView = titleView;
-    self.titleView = titleView;
-    WeakSelf
-    self.titleView.moreClickBlock = ^{
-        [weakSelf rightBarBtnClick];
-    };
-    self.titleView.tryPlayClickBlock = ^{
-        SANotificationEventPost(UGNotificationTryPlay, nil);
-    };
-    self.titleView.loginClickBlock = ^{
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-    };
-    self.titleView.registerClickBlock = ^{
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
-    };
-    self.titleView.userNameTouchedBlock = ^{
-        [weakSelf.tabBarController setSelectedIndex:4];
-    };
     
-    if (UGLoginIsAuthorized()) {
-        self.titleView.showLoginView = NO;
-        self.titleView.userName = UserI.username;
+    if (Skin1.isTKL) {
+        
+         UGTKLHomeTitleView *titleView = [[UGTKLHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
+         self.navigationItem.titleView = titleView;
+         self.tkltitleView = titleView;
+         WeakSelf
+         self.tkltitleView.moreClickBlock = ^{
+             [weakSelf rightBarBtnClick];
+         };
+         self.tkltitleView.tryPlayClickBlock = ^{
+             SANotificationEventPost(UGNotificationTryPlay, nil);
+         };
+         self.tkltitleView.loginClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+         };
+         self.tkltitleView.registerClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+         };
+         self.tkltitleView.userNameTouchedBlock = ^{
+             [weakSelf.tabBarController setSelectedIndex:4];
+         };
+        self.tkltitleView.chatClickBlock = ^{
+            [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
+        };
+         
+         
+         
+         if (UGLoginIsAuthorized()) {
+             self.tkltitleView.showLoginView = NO;
+             self.tkltitleView.userName = UserI.username;
+         }
+    } else {
+        
+         UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
+         self.navigationItem.titleView = titleView;
+         self.titleView = titleView;
+         WeakSelf
+         self.titleView.moreClickBlock = ^{
+             [weakSelf rightBarBtnClick];
+         };
+         self.titleView.tryPlayClickBlock = ^{
+             SANotificationEventPost(UGNotificationTryPlay, nil);
+         };
+         self.titleView.loginClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
+         };
+         self.titleView.registerClickBlock = ^{
+             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+         };
+         self.titleView.userNameTouchedBlock = ^{
+             [weakSelf.tabBarController setSelectedIndex:4];
+         };
+        self.titleView.chatClickBlock = ^{
+            [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
+        };
+         
+         
+         
+         
+         if (UGLoginIsAuthorized()) {
+             self.titleView.showLoginView = NO;
+             self.titleView.userName = UserI.username;
+         }
     }
+ 
     //    self.bannerBgViewHeightConstraint.constant = UGScreenW * 0.5;
     //	self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
     //	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
@@ -2414,7 +2602,7 @@
             subView(@"StackView").cc_constraints.top.constant = 0;
             subView(@"StackView").cc_constraints.left.constant = 0;
         }
-        if (Skin1.isJY) {
+        if (Skin1.isJY||Skin1.isTKL) {
              subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor :  RGBA(242, 242, 242, 1);
         }
         else{
@@ -2477,7 +2665,7 @@
             
         }
         else if([pm.style isEqualToString:@"popup"]) {
-            PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 160)];
+            PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(20, 60, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 100)];
             popView.item = pm;
             [popView show];
         }

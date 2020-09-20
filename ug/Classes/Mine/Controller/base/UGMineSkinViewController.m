@@ -29,9 +29,6 @@
 #import "UGMailBoxTableViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
-#import "UGUserInfoViewController.h"
-#import "UGUserInfoViewController.h"
-#import "UGUserInfoViewController.h"
 #import "UGFeedBackController.h"
 #import "UGMosaicGoldViewController.h"
 #import "UGagentApplyInfo.h"
@@ -50,7 +47,7 @@
     NSInteger unreadMsg;
 }
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
-@property (weak, nonatomic) IBOutlet UIView *topupView;
+@property (weak, nonatomic) IBOutlet UIView *topupView;  /**<   头视图 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topupViewNSLayoutConstraintHight;
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
 //===================================================
@@ -65,17 +62,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *fristVipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *secondVipLabel;
 @property (weak, nonatomic) IBOutlet UIView *progressView;  /**<   进度条 */
-@property (weak, nonatomic) IBOutlet UIButton *taskButton;
-@property (weak, nonatomic) IBOutlet UIButton *signButton;
+@property (weak, nonatomic) IBOutlet UIButton *taskButton;  /**<   任务中心 | 转换额度*/
+@property (weak, nonatomic) IBOutlet UIButton *signButton;   /**<   每日签到 | 退出登录*/
 @property (nonatomic, strong) CAShapeLayer *progressLayer;
 @property (nonatomic, strong) CAShapeLayer *containerLayer;
 @property (weak, nonatomic) IBOutlet UILabel *uidLabel;
 //===================================================
 @property (weak, nonatomic) IBOutlet UIView *headerLabelView;
 
-@property (weak, nonatomic) IBOutlet UIButton *topupButton;
-@property (weak, nonatomic) IBOutlet UIButton *withdrawalsButton;
-@property (weak, nonatomic) IBOutlet UIButton *conversionButton;
+@property (weak, nonatomic) IBOutlet UIButton *topupButton;  /**<  视图按钮1 */
+@property (weak, nonatomic) IBOutlet UIButton *withdrawalsButton;/**<  视图按钮2 */
+@property (weak, nonatomic) IBOutlet UIButton *conversionButton;/**<  视图按钮3 */
 
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
 
@@ -90,9 +87,9 @@
 @implementation UGMineSkinViewController
 
 - (void)skin {
-   
+    
     [self.userInfoView setBackgroundColor:  Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor];
-   
+    
     
     [self.view setBackgroundColor: Skin1.is23 ? RGBA(135 , 135 ,135, 1) : Skin1.bgColor];
     
@@ -102,17 +99,41 @@
     
     
     skitType = Skin1.skitType;
-    if ([skitType isEqualToString:@"经典"]||Skin1.isJY) {
+    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]|| Skin1.isJY) {
         self.topupView.hidden = YES;
         self.topupViewNSLayoutConstraintHight.constant = 0.1;
     }
-    else if ([skitType isEqualToString:@"六合资料"]) {//六合资料
-        self.topupView.hidden = YES;
-        self.topupViewNSLayoutConstraintHight.constant = 0.1;
+    else if(Skin1.isTKL) {
+        self.topupView.hidden = NO;
+        self.topupViewNSLayoutConstraintHight.constant = 80;
     }
     else {
         self.topupView.hidden = NO;
         self.topupViewNSLayoutConstraintHight.constant = 63;
+        [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
+    }
+    FastSubViewCode(self.topupView);
+    //    subLabel(@"二维码Label").textColor = Skin1.textColor1;
+    if (Skin1.isTKL) {
+        subView(@"视图4View").hidden = NO;
+        subImageView(@"视图1imag").image = [UIImage imageNamed:@"mine_zjmx"] ;
+        subImageView(@"视图2imag").image = [UIImage imageNamed:@"mine_xzjl"] ;
+        subImageView(@"视图3imag").image = [UIImage imageNamed:@"mine_wdxx"] ;
+        subLabel(@"存款Label").text = @"资金明细";
+        subLabel(@"提现Label").text = @"下注记录";
+        subLabel(@"转换Label").text = @"在线客服";
+        [subButton(@"视图4button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+        }];
+        
+    } else {
+        subView(@"视图4View").hidden = YES;
+        subImageView(@"视图1imag").image = [UIImage imageNamed:@"huoqicunkuan"] ;
+        subImageView(@"视图2imag").image = [UIImage imageNamed:@"qukuan"] ;
+        subImageView(@"视图3imag").image = [UIImage imageNamed:@"Artboard"] ;
+        subLabel(@"存款Label").text = @"存款";
+        subLabel(@"提现Label").text = @"提现";
+        subLabel(@"转换Label").text = @"转换";
     }
     [self.myCollectionView reloadData];
 }
@@ -155,6 +176,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self skin];
     //注册通知
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
@@ -171,20 +193,20 @@
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
-
+    
     if (!self.title) {
         self.title = @"我的";
     }
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
-//    [self.headImageView addGestureRecognizer:tap];
+    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAvaterSelectView)];
+    //    [self.headImageView addGestureRecognizer:tap];
     
     if ([@"c134" containsString:APP.SiteId]) {
         [_headerLabelView setHidden:NO];
     }
-
+    
     
     [self.progressView.layer addSublayer:self.progressLayer];
     self.progressView.layer.cornerRadius = self.progressView.height / 2;
@@ -204,15 +226,7 @@
     
     skitType = Skin1.skitType;
     
-    if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]|| Skin1.isJY) {
-        self.topupView.hidden = YES;
-        self.topupViewNSLayoutConstraintHight.constant = 0.1;
-    }
-    else {
-        self.topupView.hidden = NO;
-        self.topupViewNSLayoutConstraintHight.constant = 63;
-        [CMCommon setBorderWithView:self.topupView top:NO left:NO bottom:YES right:NO borderColor: UGRGBColor(236, 235, 235) borderWidth:1];
-    }
+    
     
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     
@@ -234,11 +248,19 @@
     [self initCollectionView];
     
     
-    if (APP.isC217RWDT) {
-        [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
-    } else {
-        [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
+    if (Skin1.isTKL) {
+        [self.taskButton setImage:[UIImage imageNamed:@"tkl_edzh"] forState:(UIControlStateNormal)];
+        [self.signButton setImage:[UIImage imageNamed:@"tkl_tcdl"] forState:(UIControlStateNormal)];
     }
+    else{
+        if (APP.isC217RWDT) {
+            [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
+        } else {
+            [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
+        }
+    }
+    
+    
 }
 
 - (void)addRightBtn {
@@ -355,7 +377,7 @@ BOOL isOk = NO;
         layout;
         
     });
- 
+    
     self.myCollectionView.backgroundColor =    Skin1.is23 ? RGBA(135, 135, 135, 1) : Skin1.bgColor;
     self.myCollectionView.dataSource = self;
     self.myCollectionView.delegate = self;
@@ -437,7 +459,13 @@ BOOL isOk = NO;
         cell.badgeNum = uci.code==UCI_站内信 ? [UGUserModel currentUser].unreadMsg : 0;
         [cell setBackgroundColor: [UIColor clearColor]];
         cell.layer.borderWidth = 0.5;
-        cell.layer.borderColor = Skin1.isGPK ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        
+        if (Skin1.isTKL) {
+            cell.layer.borderColor = UGRGBColor(231, 230, 230).CGColor;
+        } else {
+            cell.layer.borderColor = Skin1.isGPK ? [UIColor clearColor].CGColor : [[[UIColor whiteColor] colorWithAlphaComponent:0.9] CGColor];
+        }
+        
         return cell;
     }
     return nil;
@@ -524,7 +552,7 @@ BOOL isOk = NO;
         return size;
     }
     else if(Skin1.isJY){
-         CGSize size = {APP.Width, 50};
+        CGSize size = {APP.Width, 50};
         return size;
     }
     else {
@@ -574,10 +602,10 @@ BOOL isOk = NO;
                 webViewVC.urlStr = urlStr;
                 [NavController1 pushViewController:webViewVC animated:YES];
             } else {
-                 [NavController1 pushVCWithUserCenterItemType:uci.code];
+                [NavController1 pushVCWithUserCenterItemType:uci.code];
             }
         } else {
-             [NavController1 pushVCWithUserCenterItemType:uci.code];
+            [NavController1 pushVCWithUserCenterItemType:uci.code];
         }
     }
 }
@@ -587,18 +615,40 @@ BOOL isOk = NO;
 
 // 任务中心
 - (IBAction)showMissionVC:(id)sender {
-    // 任务中心
-    UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
-    if (vc) {
-        [NavController1 popToViewController:vc animated:false];
+    
+    if (Skin1.isTKL) {
+        //额度转换
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
+        
     } else {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+        // 任务中心
+        UIViewController *vc = [NavController1.viewControllers objectWithValue:UGMissionCenterViewController.class keyPath:@"class"];
+        if (vc) {
+            [NavController1 popToViewController:vc animated:false];
+        } else {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:false];
+        }
     }
+    
 }
 
 // 每日签到
 - (IBAction)showSign:(id)sender {
-    [self.navigationController pushViewController:[UGSigInCodeViewController new] animated:YES];
+    
+    if (Skin1.isTKL) {
+        [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                    UGUserModel.currentUser = nil;
+                    SANotificationEventPost(UGNotificationUserLogout, nil);
+                });
+            }
+        }];
+    } else {
+        [self.navigationController pushViewController:[UGSigInCodeViewController new] animated:YES];
+    }
+    
 }
 
 // 刷新余额
@@ -683,18 +733,21 @@ BOOL isOk = NO;
     UGUserModel *user = [UGUserModel currentUser];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     
-    if ([config.missionSwitch isEqualToString:@"0"]) {
-        [self.taskButton setHidden:NO];
-        if ([config.checkinSwitch isEqualToString:@"0"]) {
-            [self.signButton setHidden:YES];
+    
+    if (!Skin1.isTKL) {
+        if ([config.missionSwitch isEqualToString:@"0"]) {
+            [self.taskButton setHidden:NO];
+            if ([config.checkinSwitch isEqualToString:@"0"]) {
+                [self.signButton setHidden:YES];
+            } else {
+                [self.signButton setHidden:NO];
+            }
         } else {
-            [self.signButton setHidden:NO];
+            [self.taskButton setHidden:YES];
+            [self.signButton setHidden:YES];
         }
-    } else {
-        [self.taskButton setHidden:YES];
-        [self.signButton setHidden:YES];
     }
-
+    
     if (flag) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     }
@@ -730,7 +783,7 @@ BOOL isOk = NO;
     else{
         self.uidLabel.text = @"";
     }
-  
+    
 }
 
 
@@ -759,7 +812,7 @@ BOOL isOk = NO;
 }
 
 - (void)getSystemConfig {
-     WeakSelf;
+    WeakSelf;
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
@@ -775,32 +828,47 @@ BOOL isOk = NO;
 }
 
 - (IBAction)depositAction:(id)sender {
+    
     //存款
     UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
     fundsVC.selectIndex = 0;
     [self.navigationController pushViewController:fundsVC animated:YES];
+    
+    
 }
 - (IBAction)withdrawalActon:(id)sender {
-    //提现
-    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-    fundsVC.selectIndex = 1;
-    [self.navigationController pushViewController:fundsVC animated:YES];
+    if (Skin1.isTKL) {
+        //下注记录
+        [NavController1 pushViewController:[UGBetRecordViewController new] animated:true];
+    } else {
+        //提现
+        UGFundsViewController *fundsVC =  _LoadVC_from_storyboard_(@"UGFundsViewController");
+        fundsVC.selectIndex = 1;
+        [self.navigationController pushViewController:fundsVC animated:YES];
+    }
 }
+
 - (IBAction)conversionAction:(id)sender {
-    //转换
-    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController") animated:YES];
+    if (Skin1.isTKL) {
+        //在线客服
+        [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+    } else {
+        //转换
+        [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController") animated:YES];
+    }
+    
 }
 
 // 领取俸禄
 - (IBAction)goSalary:(id)sender {
- 
+    
     [self getMissionBonusList];
 }
 //获取俸禄列表数据
 - (void)getMissionBonusList {
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-
+    
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -812,23 +880,23 @@ BOOL isOk = NO;
             if (![CMCommon arryIsNull:self.historyDataArray]) {
                 [weakSelf showUGSignInHistoryView];
             }
-
-
+            
+            
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
-
+    
 }
 
 #pragma mark -- 其他方法
 
 - (void)showUGSignInHistoryView {
-
+    
     UGSalaryListView *notiveView = [[UGSalaryListView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
     notiveView.dataArray = self.historyDataArray;
     [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-
+    
     [notiveView show];
     
 }

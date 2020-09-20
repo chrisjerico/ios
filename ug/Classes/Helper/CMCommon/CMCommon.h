@@ -185,6 +185,8 @@
  */
 + (void )speakUtteranceWithString:(NSString *)string;
 
+
+#pragma mark -  数组
 /**
 *  ios 判断两个数组中的NSString元素是否相同，但不判断顺序
 *
@@ -213,6 +215,25 @@
 */
 + (NSArray*)killRepeatNoOrderly:(NSArray *)array Orderly:(BOOL)isOrder;
 
+
+//数组中是否有重复元素
++(BOOL)isRepeatArray:(NSArray  *)arr;
+
+//数组中是否有空
++(BOOL)isNullArray:(NSArray  *)arr;
+/**
+*  数组中是否有大于  number
+*  number int
+*
+*/
++(BOOL)isbigArray:(NSArray  *)arr  number:(int)number;
+
+/**
+*  数组中长度是否有大于  length
+*  length int
+*
+*/
++(BOOL)isLengthArray:(NSArray  *)arr  length:(int)length;
 /**
 *  ios 数组,逆序
 *
