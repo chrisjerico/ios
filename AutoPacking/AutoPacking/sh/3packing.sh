@@ -266,7 +266,7 @@ xcodebuild -exportArchive -archivePath ${__EXPORT_ARCHIVE_PATH} \
 -allowProvisioningUpdates
 
 # 修改ipa文件名称
-mv ${__EXPORT_IPA_PATH}/${__SCHEME_NAME}.ipa ${__EXPORT_IPA_PATH}/${__IPA_NAME}.ipa
+mv ${__EXPORT_IPA_PATH}/*.ipa ${__EXPORT_IPA_PATH}/${__IPA_NAME}.ipa
 
 # 检查文件是否存在
 if test -f "${__EXPORT_IPA_PATH}/${__IPA_NAME}.ipa" ; then

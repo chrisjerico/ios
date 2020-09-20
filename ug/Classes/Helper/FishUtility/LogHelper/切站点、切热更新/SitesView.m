@@ -45,6 +45,11 @@
     [sv.sectionTitles sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
         return [obj1 compare:obj2];
     }];
+    [sv.sectionTitles removeObject:@"t"];
+    [sv.sectionTitles insertObject:@"t" atIndex:0];
+    [sv.sectionTitles removeObject:@" "];
+    [sv.sectionTitles insertObject:@" " atIndex:0];
+    
     for (NSString *key in sv.sectionTitles) {
         [groupDict[key] sortUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
             return [obj1 compare:obj2];
