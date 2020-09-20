@@ -35,12 +35,7 @@
 -(void)dataReLoad{
     [self.lineCollection reloadData];
 }
-- (NSMutableArray<NSString *> *)transferArray {
-    if (_transferArray == nil) {
-        _transferArray = [NSMutableArray array];
-    }
-    return _transferArray;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -80,14 +75,16 @@
         subButton(@"5000Btn").backgroundColor = Skin1.bgColor;
         subButton(@"10000Btn").backgroundColor = Skin1.bgColor;
     }
+    
+    _transferArray = [NSMutableArray array];
+    for (UGPlatformGameModel *game in self.dataArray) {
+        [self.transferArray addObject:game.title];
+    }
 }
 
 -(void)setDataArray:(NSMutableArray<UGPlatformGameModel *> *)dataArray{
     _dataArray = dataArray;
-    [self.transferArray addObject:@"我的钱包"];
-    for (UGPlatformGameModel *game in self.dataArray) {
-        [self.transferArray addObject:game.title];
-    }
+
 }
 
 #pragma mark UICollectionView datasource
@@ -311,6 +308,8 @@
 }
 //一键领取
 - (IBAction)onExtractAllBtnClick:(UIButton *)sender {
+    
+    
     if (!_dataArray.count) {
         return;
     }
