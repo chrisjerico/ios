@@ -258,6 +258,7 @@ else
 fi
 
 printMessage "开始导出ipa文件"
+rm -rf ${__EXPORT_IPA_PATH}/*.ipa
 
 xcodebuild -exportArchive -archivePath ${__EXPORT_ARCHIVE_PATH} \
 -exportPath ${__EXPORT_IPA_PATH} \
