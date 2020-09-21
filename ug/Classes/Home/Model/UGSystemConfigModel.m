@@ -368,6 +368,7 @@ UGSystemConfigModel *currentConfig = nil;
         if ([self.clsName isEqualToString:@"LotteryBetAndChatVC"]) {
             LotteryBetAndChatVC * chat = (LotteryBetAndChatVC *)vc  ;
             chat.selectChat = YES;
+            chat.isHeightLess50 = YES;
         }
         completion(vc);
     }

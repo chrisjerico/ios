@@ -94,14 +94,14 @@
                                                         <action selector="tryPlayClick:" destination="k6F-86-tNt" eventType="touchUpInside" id="IL1-LQ-a1j"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="试玩" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u96-Ka-LIS">
-                                                    <rect key="frame" x="38" y="14" width="27" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="试玩" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u96-Ka-LIS">
+                                                    <rect key="frame" x="38" y="14" width="39.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="huabanfuben" translatesAutoresizingMaskIntoConstraints="NO" id="sdQ-VI-qzR">
-                                                    <rect key="frame" x="7" y="6" width="28" height="28"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="huabanfuben" translatesAutoresizingMaskIntoConstraints="NO" id="sdQ-VI-qzR">
+                                                    <rect key="frame" x="8" y="8" width="28" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="28" id="8dC-q9-hAS"/>
                                                         <constraint firstAttribute="height" constant="28" id="RMw-UC-8Aw"/>
@@ -115,6 +115,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="wff-po-2Ap" secondAttribute="trailing" id="S4l-qS-5Xp"/>
                                                 <constraint firstItem="wff-po-2Ap" firstAttribute="top" secondItem="6c9-PT-NKi" secondAttribute="top" id="SmQ-OK-O5D"/>
                                                 <constraint firstItem="u96-Ka-LIS" firstAttribute="centerY" secondItem="6c9-PT-NKi" secondAttribute="centerY" id="ete-M3-hhB"/>
+                                                <constraint firstAttribute="trailing" secondItem="u96-Ka-LIS" secondAttribute="trailing" constant="-5" id="lxb-Ew-dht"/>
                                                 <constraint firstItem="sdQ-VI-qzR" firstAttribute="centerX" secondItem="6c9-PT-NKi" secondAttribute="centerX" constant="-15" id="mEB-k3-kia"/>
                                                 <constraint firstAttribute="bottom" secondItem="wff-po-2Ap" secondAttribute="bottom" id="rRf-gg-Khz"/>
                                                 <constraint firstItem="sdQ-VI-qzR" firstAttribute="centerY" secondItem="6c9-PT-NKi" secondAttribute="centerY" constant="-2" id="u69-5J-4V4"/>
@@ -129,8 +130,8 @@
                                                         <action selector="loginClick:" destination="k6F-86-tNt" eventType="touchUpInside" id="kDu-Iq-m7E"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdf-Hu-Hdt">
-                                                    <rect key="frame" x="38" y="14" width="27" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdf-Hu-Hdt">
+                                                    <rect key="frame" x="38" y="14" width="39" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -152,6 +153,7 @@
                                                 <constraint firstItem="M1v-wo-8hX" firstAttribute="centerY" secondItem="xLa-zU-jww" secondAttribute="centerY" id="Ci2-yx-beC"/>
                                                 <constraint firstItem="19a-Fa-OKQ" firstAttribute="leading" secondItem="xLa-zU-jww" secondAttribute="leading" id="GvQ-v8-f3r"/>
                                                 <constraint firstAttribute="trailing" secondItem="19a-Fa-OKQ" secondAttribute="trailing" id="Hek-WM-RCQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="bdf-Hu-Hdt" secondAttribute="trailing" constant="-5" id="NEP-Vb-3ij"/>
                                                 <constraint firstItem="bdf-Hu-Hdt" firstAttribute="centerY" secondItem="xLa-zU-jww" secondAttribute="centerY" id="u14-yF-4qO"/>
                                             </constraints>
                                         </view>
@@ -164,8 +166,8 @@
                                                         <action selector="registerClick:" destination="k6F-86-tNt" eventType="touchUpInside" id="ArV-7d-q8i"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ei-n4-qdk">
-                                                    <rect key="frame" x="37.5" y="14" width="27" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ei-n4-qdk">
+                                                    <rect key="frame" x="37.5" y="14" width="35" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -181,6 +183,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="oXm-Qe-IP5" secondAttribute="bottom" id="1sM-xF-XTW"/>
+                                                <constraint firstAttribute="trailing" secondItem="1ei-n4-qdk" secondAttribute="trailing" id="9pS-Uo-igc"/>
                                                 <constraint firstAttribute="trailing" secondItem="oXm-Qe-IP5" secondAttribute="trailing" id="IMy-8E-QMT"/>
                                                 <constraint firstItem="oXm-Qe-IP5" firstAttribute="leading" secondItem="wtC-Uc-YEx" secondAttribute="leading" id="Qa7-nK-Mxo"/>
                                                 <constraint firstItem="c4f-Uk-PTA" firstAttribute="centerX" secondItem="wtC-Uc-YEx" secondAttribute="centerX" constant="-15" id="V6G-hE-bK1"/>

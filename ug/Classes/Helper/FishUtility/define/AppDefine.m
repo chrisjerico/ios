@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"test29"
+#define __SiteID__ @"c186"
 #define LocalRnVersion @"1.4.66"
 
 
@@ -89,6 +89,8 @@
                 sb(@"Funds"),
                 sb(@"UGYNLotteryController"),
                 sb(@"NewUserInfoViewController"),
+                sb(@"NewLotteryHomeViewController"),
+                
 
                 
         ];

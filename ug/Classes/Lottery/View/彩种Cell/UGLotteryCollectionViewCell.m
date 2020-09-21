@@ -37,8 +37,7 @@
         self.timeLabel.text = time;
         
     }else {
-        self.timeLabel.text = @"获取下一期...";
-        
+        self.timeLabel.text = @"获取下一期";
     }
 }
 

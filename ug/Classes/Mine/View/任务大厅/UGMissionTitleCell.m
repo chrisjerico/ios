@@ -43,7 +43,7 @@
 - (void)setTitle:(NSString *)title {
 	_title = title;
 	self.titleLabel.text = title;
-	
+    self.titleLabel.font = [_titleLabel.text fontWithFrameSize:CGSizeOffset(self.size, CGSizeMake(-50, 0)) maxFont:[UIFont systemFontOfSize:14]];
 }
 
 - (void)setSelected:(BOOL)selected {
