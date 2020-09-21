@@ -270,7 +270,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
             float amountfloat = [__self.amount floatValue];
             float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
             
-            if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
+            if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= webAmountfloat)) {
                 
                 if (Skin1.isBlack) {
                     [LEEAlert alert].config

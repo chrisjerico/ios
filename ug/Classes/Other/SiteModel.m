@@ -197,6 +197,8 @@
             site(@"hotUpdate",    @"hotUpdate",  @"260",     @"com.abcc4",                @"http://test10.6yc.com",                      @"内测包",     @"热更新测试包"),
 			
             site(@"test08",  	  @"test08",     @"",        @"com.UGGame.cp",           @"http://test08.6yc.com",                   @"内测包",     @"test08"),
+			site(@"shiyu",  	  @"shiyu",     @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                   @"内测包",     @"shiyu"),
+
 
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
             //siteId, /uploadNum,/uploadId/appId, /host, /type, /appName

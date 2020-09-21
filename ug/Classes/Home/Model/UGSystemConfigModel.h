@@ -199,7 +199,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL m_promote_pos;           /**<   优惠活动显示在首页还是内页，1首页，0内页 */
 @property (nonatomic) BOOL yuebaoSwitch;            /**<   未登录时是否允许访问利息宝 */
 @property (nonatomic, copy) NSString *chatRoomName;           /**<   聊天室名称*/
-@property (nonatomic) BOOL chatFollowSwitch;                  /**<   是否允许聊天室跟注 */
+@property (nonatomic, assign) NSInteger chatFollowSwitch;                  /**<   0-不能分享 1- 允许分享 */
+@property (nonatomic) BOOL chatShareBet;                  /**<   是否允许注单分享 */
+
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 
 @property (nonatomic, copy) NSString *easyRememberDomain;    /**<   GPK版易记的网址  动态域名  */
