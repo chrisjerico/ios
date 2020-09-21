@@ -75,6 +75,8 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 
 
 + (void)save:(NSDictionary *)kvs lanCode:(NSString *)lanCode ver:(NSString *)ver {
+    if (![kvs isKindOfClass:[NSDictionary class]]) return;
+    
     NSMutableDictionary *temp = @{}.mutableCopy;
     for (NSString *key in kvs.allKeys) {
         NSString *value = kvs[key];
