@@ -617,6 +617,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 //         [self.bgView setHidden:YES];
          [self.bg2View setHidden:YES];
          [self.tklBgView setHidden:NO];
+         [self.bgView setHidden: YES]; 
         
         subImageView(@"头像imgView").layer.cornerRadius = 30;
         subImageView(@"头像imgView").layer.masksToBounds = YES;

@@ -396,7 +396,7 @@
     }
 
     self.navigationController.navigationBarHidden = [Skin1 isGPK];
-  
+    self.tabBarController.tabBar.hidden = NO;
 
 }
 

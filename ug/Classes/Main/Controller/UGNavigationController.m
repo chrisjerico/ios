@@ -293,14 +293,34 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 设置返回按钮
     viewController.navigationItem.leftBarButtonItem = item;
     
-    if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
-        // 不隐藏底部条
-        viewController.hidesBottomBarWhenPushed = NO;
-    }
-    else{
+//    if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
+//        // 不隐藏底部条
+//        viewController.hidesBottomBarWhenPushed = NO;
+//    }
+//    else{
+//        // 隐藏底部条
+//        viewController.hidesBottomBarWhenPushed = YES;
+//    }
+    if ([viewController isKindOfClass:UGLoginViewController.class]
+        ||[viewController isKindOfClass:UGBMLoginViewController.class]
+        ||[viewController isKindOfClass:JYLoginViewController.class]
+        ||[viewController isKindOfClass:[UGBMRegisterViewController class]]
+        ||[viewController isKindOfClass:[UGRegisterViewController class]]
+        ||[viewController isKindOfClass:[JYRegisterViewController class]]
+        ||[NavController1.lastVC isKindOfClass:UGRegisterViewController.class]
+        ||[NavController1.lastVC isKindOfClass:UGBMRegisterViewController.class]
+        ||[NavController1.lastVC isKindOfClass:JYRegisterViewController.class]
+        ||[NavController1.lastVC isKindOfClass:UGLoginViewController.class]
+        ||[NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]
+        ||[NavController1.lastVC isKindOfClass:JYLoginViewController.class]) {
         // 隐藏底部条
         viewController.hidesBottomBarWhenPushed = YES;
     }
+    else{
+        // 不隐藏底部条
+        viewController.hidesBottomBarWhenPushed =  NO;
+    }
+//
     
     
 //    NSLog(@"NavController1= %@",NavController1);

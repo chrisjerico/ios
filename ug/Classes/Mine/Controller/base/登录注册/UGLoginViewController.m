@@ -93,6 +93,8 @@
         [userDefault setBool:NO forKey:@"isRememberPsd"];
         self.gouImageView.image = [UIImage imageNamed:@"dagou_off"];
     }
+    
+    self.tabBarController.tabBar.hidden = YES;
 }
 
 -(void)dealloc{
