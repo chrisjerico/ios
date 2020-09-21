@@ -258,8 +258,8 @@
                                                                             <action selector="transferOutClick:" destination="tYX-IT-Gt8" eventType="touchUpInside" id="iIL-99-rXD"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转出:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60D-KF-E6c">
-                                                                        <rect key="frame" x="49" y="16.5" width="33" height="17"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转出:" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60D-KF-E6c">
+                                                                        <rect key="frame" x="10" y="16.5" width="72" height="17"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="17" id="Daq-d9-Dty"/>
                                                                         </constraints>
@@ -270,12 +270,8 @@
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="转出Label"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="请选择钱包" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yte-Me-oSt">
-                                                                        <rect key="frame" x="82" y="14.5" width="90" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="21" id="vCp-U9-mys"/>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="wdF-jk-BZ8"/>
-                                                                        </constraints>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="请选择钱包" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yte-Me-oSt">
+                                                                        <rect key="frame" x="90" y="16.5" width="82" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -292,9 +288,11 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
+                                                                    <constraint firstItem="Yaa-aj-kWi" firstAttribute="leading" secondItem="60D-KF-E6c" secondAttribute="trailing" constant="8" id="D0j-iM-TtM"/>
+                                                                    <constraint firstItem="60D-KF-E6c" firstAttribute="leading" secondItem="kHh-nO-2ax" secondAttribute="leading" constant="10" id="QC5-d6-0fI"/>
+                                                                    <constraint firstItem="Yte-Me-oSt" firstAttribute="leading" secondItem="Yaa-aj-kWi" secondAttribute="leading" id="Wof-T2-54j"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Zee-B4-d8k" secondAttribute="trailing" constant="15" id="cHT-Zz-HMV"/>
                                                                     <constraint firstItem="Zee-B4-d8k" firstAttribute="leading" secondItem="Yte-Me-oSt" secondAttribute="trailing" constant="2" id="giK-PZ-jsl"/>
-                                                                    <constraint firstItem="Yte-Me-oSt" firstAttribute="leading" secondItem="60D-KF-E6c" secondAttribute="trailing" id="kLF-Pr-FYY"/>
                                                                     <constraint firstItem="Yaa-aj-kWi" firstAttribute="centerY" secondItem="kHh-nO-2ax" secondAttribute="centerY" id="q5r-le-vdk"/>
                                                                     <constraint firstItem="Yte-Me-oSt" firstAttribute="centerY" secondItem="kHh-nO-2ax" secondAttribute="centerY" id="tBj-C0-EFv"/>
                                                                     <constraint firstItem="60D-KF-E6c" firstAttribute="centerY" secondItem="kHh-nO-2ax" secondAttribute="centerY" id="vNS-rU-Uoh"/>
@@ -328,11 +326,8 @@
                                                                             <action selector="transferInClick:" destination="tYX-IT-Gt8" eventType="touchUpInside" id="gHg-xF-3UY"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转入:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtf-fw-2u8">
-                                                                        <rect key="frame" x="34" y="16.5" width="33" height="17"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="17" id="4Hd-Ig-3Tz"/>
-                                                                        </constraints>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转入:" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtf-fw-2u8">
+                                                                        <rect key="frame" x="0.0" y="16.5" width="67" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -340,12 +335,8 @@
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="转入Label"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="请选择钱包" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlB-IL-Z2c">
-                                                                        <rect key="frame" x="67" y="14.5" width="90" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="DRc-Vn-2PQ"/>
-                                                                            <constraint firstAttribute="height" constant="21" id="Pvv-KL-Uss"/>
-                                                                        </constraints>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="请选择钱包" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IlB-IL-Z2c">
+                                                                        <rect key="frame" x="75" y="16.5" width="82" height="17"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -362,14 +353,16 @@
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstItem="IlB-IL-Z2c" firstAttribute="leading" secondItem="xtf-fw-2u8" secondAttribute="trailing" id="2Re-1m-A50"/>
+                                                                    <constraint firstItem="xtf-fw-2u8" firstAttribute="leading" secondItem="tXy-FL-8G3" secondAttribute="leading" id="4JI-hz-gON"/>
                                                                     <constraint firstItem="IlB-IL-Z2c" firstAttribute="centerY" secondItem="tXy-FL-8G3" secondAttribute="centerY" id="IXi-3g-uRR"/>
                                                                     <constraint firstItem="x7Q-in-DOE" firstAttribute="leading" secondItem="IlB-IL-Z2c" secondAttribute="trailing" constant="2" id="KNx-Hn-oPu"/>
                                                                     <constraint firstAttribute="trailing" secondItem="RCO-3g-cme" secondAttribute="trailing" constant="20" id="RWJ-L5-OJT"/>
                                                                     <constraint firstItem="x7Q-in-DOE" firstAttribute="centerY" secondItem="tXy-FL-8G3" secondAttribute="centerY" id="bGm-Wi-xE2"/>
                                                                     <constraint firstItem="RCO-3g-cme" firstAttribute="centerY" secondItem="tXy-FL-8G3" secondAttribute="centerY" id="fa9-SF-yhZ"/>
                                                                     <constraint firstItem="xtf-fw-2u8" firstAttribute="centerY" secondItem="tXy-FL-8G3" secondAttribute="centerY" id="ljv-fN-F6i"/>
+                                                                    <constraint firstItem="IlB-IL-Z2c" firstAttribute="leading" secondItem="RCO-3g-cme" secondAttribute="leading" id="vja-lb-Fr9"/>
                                                                     <constraint firstAttribute="trailing" secondItem="x7Q-in-DOE" secondAttribute="trailing" constant="30" id="yUP-XZ-yCX"/>
+                                                                    <constraint firstItem="RCO-3g-cme" firstAttribute="leading" secondItem="xtf-fw-2u8" secondAttribute="trailing" constant="8" id="zLh-53-gMS"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>

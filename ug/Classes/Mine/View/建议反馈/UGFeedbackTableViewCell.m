@@ -38,6 +38,8 @@
         self.statusLabel.text = @"已回复";
     }
     self.contentLabel.text = item.content;
+    _typeLabel.font = [_typeLabel.text       fontWithFrameSize:CGSizeOffset(self.size, CGSizeMake(-10, 0)) maxFont:[UIFont systemFontOfSize:13]];
+    _statusLabel.font = [_statusLabel.text   fontWithFrameSize:CGSizeOffset(self.size, CGSizeMake(-10, 0)) maxFont:[UIFont systemFontOfSize:13]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -15,7 +15,7 @@
 #import "UGChanglongBetRecordModel.h"
 #import "UGBetDetailModel.h"
 @implementation CMNetwork (Hall)
-
+//自营彩种列表
 + (void)getOwnLotteryList: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
      
@@ -27,7 +27,7 @@
      
      CMMETHOD_END;
 }
-
+//彩票开奖走势
 + (void)getLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
 	CMMETHOD_BEGIN;
 	 
@@ -39,7 +39,7 @@
 	 
 	 CMMETHOD_END;
 }
-
+//官方彩票开奖走势
 + (void)getOfficialLotteryTrend: (NSDictionary *)params completion: (CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
      

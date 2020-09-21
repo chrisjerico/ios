@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,32 +14,30 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-09-01 19:12:24" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T12-Ac-oyU">
-                        <rect key="frame" x="7" y="11" width="128" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-09-01 19:12:24" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T12-Ac-oyU">
+                        <rect key="frame" x="7" y="14" width="128" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ay-1y-v8a">
-                        <rect key="frame" x="138" y="11" width="89" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请金额" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ay-1y-v8a">
+                        <rect key="frame" x="138" y="14" width="89" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="BNT-sF-KNl"/>
                             <constraint firstAttribute="width" constant="89" id="GFW-qO-Dzp"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="审核中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3Y-hG-rI6">
-                        <rect key="frame" x="231" y="11" width="89" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="审核中" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3Y-hG-rI6">
+                        <rect key="frame" x="231" y="14" width="89" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="CTh-Jn-Lmq"/>
                             <constraint firstAttribute="width" constant="89" id="gXx-7W-x7Y"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -50,16 +46,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="T12-Ac-oyU" firstAttribute="baseline" secondItem="7ay-1y-v8a" secondAttribute="baseline" id="0Y8-Fj-Xju"/>
                     <constraint firstAttribute="trailing" secondItem="n3Y-hG-rI6" secondAttribute="trailing" id="1Fe-1m-OQG"/>
-                    <constraint firstAttribute="bottom" secondItem="7ay-1y-v8a" secondAttribute="bottom" constant="11.5" id="9ce-dM-iAl"/>
                     <constraint firstItem="7ay-1y-v8a" firstAttribute="leading" secondItem="T12-Ac-oyU" secondAttribute="trailing" constant="3" id="DZY-6Z-BeW"/>
-                    <constraint firstItem="n3Y-hG-rI6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Mzl-wb-Lv1"/>
-                    <constraint firstItem="7ay-1y-v8a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Rdg-1r-ye8"/>
                     <constraint firstItem="T12-Ac-oyU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="Sbf-7p-Di8"/>
                     <constraint firstItem="n3Y-hG-rI6" firstAttribute="leading" secondItem="7ay-1y-v8a" secondAttribute="trailing" constant="4" id="V6d-r7-uUZ"/>
-                    <constraint firstAttribute="bottom" secondItem="n3Y-hG-rI6" secondAttribute="bottom" constant="11.5" id="YGg-ck-4aj"/>
-                    <constraint firstItem="T12-Ac-oyU" firstAttribute="top" secondItem="7ay-1y-v8a" secondAttribute="top" id="of6-Tl-uIX"/>
+                    <constraint firstItem="7ay-1y-v8a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="c0y-jC-Ois"/>
+                    <constraint firstItem="n3Y-hG-rI6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="c3P-s5-mhL"/>
+                    <constraint firstItem="T12-Ac-oyU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rsh-ck-4yO"/>
                     <constraint firstItem="n3Y-hG-rI6" firstAttribute="leading" secondItem="7ay-1y-v8a" secondAttribute="trailing" constant="4" id="xWT-Pt-gOO"/>
                 </constraints>
             </tableViewCellContentView>

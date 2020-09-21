@@ -73,6 +73,11 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     self.tiemLabel.text = item.openTime;
     self.numArray = [item.num componentsSeparatedByString:@","];
     self.resultArray = [item.result componentsSeparatedByString:@","];
+    if ([LanguageHelper shared].isCN) {
+        self.collectionBgView.cc_constraints.height.constant = 75;
+    } else {
+        self.collectionBgView.cc_constraints.height.constant = 50;
+    }
     [self.collectionView reloadData];
 }
 
@@ -80,7 +85,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 #pragma mark UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return [LanguageHelper shared].isCN ? 2 : 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -258,7 +263,10 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     });
     
     self.collectionView = collectionView;
-    [self addSubview:collectionView];
+    [self.collectionBgView addSubview:collectionView];
+    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.collectionBgView);
+    }];
     
 }
 

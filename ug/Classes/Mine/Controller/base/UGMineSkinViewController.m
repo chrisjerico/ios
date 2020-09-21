@@ -243,7 +243,7 @@
         [__self.myCollectionView reloadData];
     });
     
-    [self.salaryBtn setHidden:!APP.isShowSalary];
+    [self.salaryBtn.superview setHidden:!APP.isShowSalary];
     //初始化
     [self initCollectionView];
     
@@ -260,6 +260,9 @@
         }
     }
     
+    if (APP.isC217RWDT) {
+        ((UILabel *)[self.taskButton.superview viewWithTagString:@"任务中心Label"]).text = @"任务大厅";
+    }
     
 }
 
@@ -736,15 +739,15 @@ BOOL isOk = NO;
     
     if (!Skin1.isTKL) {
         if ([config.missionSwitch isEqualToString:@"0"]) {
-            [self.taskButton setHidden:NO];
+            [self.taskButton.superview setHidden:NO];
             if ([config.checkinSwitch isEqualToString:@"0"]) {
-                [self.signButton setHidden:YES];
+                [self.signButton.superview setHidden:YES];
             } else {
-                [self.signButton setHidden:NO];
+                [self.signButton.superview setHidden:NO];
             }
         } else {
-            [self.taskButton setHidden:YES];
-            [self.signButton setHidden:YES];
+            [self.taskButton.superview setHidden:YES];
+            [self.signButton.superview setHidden:YES];
         }
     }
     

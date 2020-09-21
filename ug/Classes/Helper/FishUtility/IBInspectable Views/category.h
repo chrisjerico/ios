@@ -18,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) IBInspectable CGPoint 内边距;          /**<    x=left=right，y=top=bottom */
 @end
 
+@interface UIButton (IBInspectableUtils)
+@property (nonatomic) IBInspectable CGPoint 内边距;          /**<    x=left=right，y=top=bottom */
+@property (nonatomic) IBInspectable NSInteger numberOfLines;
+@end
+
 @interface UITextField (IBInspectableUtils)
 @property (nonatomic) IBInspectable NSUInteger 限制长度;       /**<    最大输入文本长度限制 */
 @property (nonatomic) IBInspectable BOOL 仅数字;
