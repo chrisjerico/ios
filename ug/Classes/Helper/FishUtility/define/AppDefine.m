@@ -89,6 +89,8 @@
                 sb(@"Funds"),
                 sb(@"UGYNLotteryController"),
                 sb(@"NewUserInfoViewController"),
+                sb(@"NewLotteryHomeViewController"),
+                
 
                 
         ];

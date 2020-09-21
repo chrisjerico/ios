@@ -234,24 +234,30 @@
         
         
 
-        
+        NSLog(@"self.outIndex = %ld",(long)self.outIndex);
+        NSLog(@"self.inIndex = %ld",(long)self.inIndex);
         [self.moneyTxt resignFirstResponder];
         UGPlatformGameModel *outModel;
         UGPlatformGameModel *intModel;
-        if (self.outIndex) {
-            outModel = self.dataArray[self.outIndex - 1];
+       
+        outModel = self.dataArray[self.outIndex];
+        if ([CMCommon stringIsNull:outModel.gameId] ) {
+            outModel.gameId = @"0";
         }
-        if (self.inIndex) {
-            intModel = self.dataArray[self.inIndex - 1];
+        
+        intModel = self.dataArray[self.inIndex];
+        if ([CMCommon stringIsNull:intModel.gameId] ) {
+            intModel.gameId = @"0";
         }
+       
         [SVProgressHUD showWithStatus:nil];
         
         NSString *amount = self.moneyTxt.text;
         if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
             return;
         }
-        NSDictionary *params = @{@"fromId":outModel ? outModel.gameId : @"0",
-                                 @"toId":intModel ? intModel.gameId : @"0",
+        NSDictionary *params = @{@"fromId": outModel.gameId ,
+                                 @"toId": intModel.gameId ,
                                  @"money":amount,
                                  @"token":[UGUserModel currentUser].sessid,
         };

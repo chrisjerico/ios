@@ -49,6 +49,7 @@
     
     UGPlatformGameModel*obj = [UGPlatformGameModel new];
     obj.title = @"我的钱包";
+    obj.gameId = @"0";
     UGUserModel *user = [UGUserModel currentUser];
     double floatString = [user.balance doubleValue];
     obj.balance =  [NSString stringWithFormat:@"%.2f",floatString];

@@ -227,7 +227,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             vc.selectChat = isChatRoom;
             vc.nim = model;
                       // 隐藏底部条
-                vc.hidesBottomBarWhenPushed = YES;
+            vc.hidesBottomBarWhenPushed = YES;
 
             // Push
             if ([UGTabbarController canPushToViewController:vc]) {
