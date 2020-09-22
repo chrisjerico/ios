@@ -17,6 +17,10 @@
 #import "RegExCategories.h"
 #import "SLWebViewController.h"
 #import "WavesView.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "SUCache.h"
+#import "JYLoginViewController.h"
 @interface JYRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;        /**<   滚动面板*/
 @property (weak, nonatomic) IBOutlet UITextField *inviterTextF;         /**<   推荐id*/
@@ -516,6 +520,17 @@
             [mutDict setValue:self.imgVcodeModel.nc_token forKey:token];
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
         }
+        if (self.isfromFB) {
+            NSInteger slot = 0;
+            NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
+            NSString *name =  [SUCache itemForSlot:slot].profile.name;
+            FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+            
+//            [mutDict setValue:token.tokenString forKey:@"oauth_token"];
+            [mutDict setValue:uuid forKey:@"oauth[uuid]"];
+            [mutDict setValue:name forKey:@"oauth[name]"];
+            [mutDict setValue:@"facebook" forKey:@"oauth[platform]"];
+        }
         [SVProgressHUD showWithStatus:@"正在注册..."];
         NSLog(@"参数：%@ ",mutDict);
         __weakSelf_(__self);
@@ -551,6 +566,16 @@
                     [__self showLogin:nil];
                 }
                 
+                if (self.isfromFB) {
+                    for (UIViewController *vc in self.navigationController.childViewControllers) {
+                        if ([vc isKindOfClass:JYLoginViewController.class]) {
+                            [self.navigationController popViewControllerAnimated:YES];
+                            return;
+                        }
+                    }
+                    UGLoginViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JYLoginViewController"];
+                    [self.navigationController pushViewController:registerVC animated:YES];
+                 }
             } failure:^(id msg) {
                 
                 [SVProgressHUD showErrorWithStatus:msg];

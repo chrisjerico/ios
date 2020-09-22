@@ -10,6 +10,8 @@
 #import "SUCache.h"
 #import "UGRegisterViewController.h"
 #import "UGLoginViewController.h"
+#import "JYLoginViewController.h"
+#import "JYRegisterViewController.h"
 @interface FBTransitionViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel; //XX 绑定账号
 @end
@@ -34,20 +36,32 @@
 //  注册新账号 ==>注册界面
 - (IBAction)registeredAction:(id)sender {
 
-    
-    UGRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"UGRegisterViewController") ;
-    [registerVC setIsfromFB:YES];
-    [self.navigationController pushViewController:registerVC animated:YES];
+    if (Skin1.isJY||Skin1.isTKL) {
+        JYRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"JYRegisterViewController") ;
+        [registerVC setIsfromFB:YES];
+        [self.navigationController pushViewController:registerVC animated:YES];
+    } else {
+        UGRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"UGRegisterViewController") ;
+        [registerVC setIsfromFB:YES];
+        [self.navigationController pushViewController:registerVC animated:YES];
+    }
+   
         
     
 }
 //绑定已有账号==》登录界面
 - (IBAction)bindingAction:(id)sender {
 
-    
-    UGLoginViewController *loginVC = _LoadVC_from_storyboard_(@"UGLoginViewController") ;
-    loginVC.isfromFB = YES;
-    [self.navigationController pushViewController:loginVC animated:YES];
+    if (Skin1.isJY||Skin1.isTKL) {
+        JYLoginViewController *loginVC = _LoadVC_from_storyboard_(@"JYLoginViewController") ;
+        loginVC.isfromFB = YES;
+        [self.navigationController pushViewController:loginVC animated:YES];
+    } else {
+        UGLoginViewController *loginVC = _LoadVC_from_storyboard_(@"UGLoginViewController") ;
+        loginVC.isfromFB = YES;
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+   
 }
 
 @end
