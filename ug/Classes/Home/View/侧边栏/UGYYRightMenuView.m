@@ -239,7 +239,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableArray = [NSMutableArray new];
         
         WeakSelf;
-        if (UserI.isTest) {
+        if (UserI.isTest || DisableLanguage) {
             [[self viewWithTagString:@"切换语言Button"] removeFromSuperview];
         } else {
             UIButton *lanBtn = [self viewWithTagString:@"切换语言Button"];

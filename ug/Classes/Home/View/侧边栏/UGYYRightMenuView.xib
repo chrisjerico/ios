@@ -356,15 +356,15 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="43P-ey-REM">
-                                    <rect key="frame" x="0.0" y="463" width="292.33333333333331" height="349"/>
+                                    <rect key="frame" x="0.0" y="463" width="292.33333333333331" height="319"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="ztz-5v-jHT"/>
                                         <outlet property="delegate" destination="-1" id="B1g-AH-DiX"/>
                                     </connections>
                                 </tableView>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ra-qJ-Oav" customClass="IBButton">
-                                    <rect key="frame" x="0.0" y="812" width="292.33333333333331" height="0.0"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ra-qJ-Oav" customClass="IBButton">
+                                    <rect key="frame" x="0.0" y="782" width="292.33333333333331" height="30"/>
                                     <state key="normal" title="切换语言"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="切换语言Button"/>

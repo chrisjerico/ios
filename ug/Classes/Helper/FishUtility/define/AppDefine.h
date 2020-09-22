@@ -12,6 +12,7 @@
 
 // 测试环境宏
 #define APP_TEST
+#define DisableLanguage 1
 
 
 #define APP [AppDefine shared]
