@@ -58,6 +58,8 @@
 
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
+            
+            NSLog(@"chatShareBetMinAmount = %@",config.chatShareBetMinAmount);
 
             if (config.easyRememberDomain.length) {
                 //是否是正确的域名

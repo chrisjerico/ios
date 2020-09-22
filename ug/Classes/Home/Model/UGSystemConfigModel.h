@@ -234,7 +234,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) OauthModel * oauth;/**<   第三方登录*/
 @property (nonatomic, copy) NSString * currency;/**<   /货币单位，默认人民币  CNY    currency*/
 
-
+@property (nonatomic, copy) NSString * chatShareBetMinAmount;/**<   聊天室 注单分享最小金额限制*/
+//
 + (instancetype)currentConfig;
 
 + (void)setCurrentConfig:(UGSystemConfigModel *)config;

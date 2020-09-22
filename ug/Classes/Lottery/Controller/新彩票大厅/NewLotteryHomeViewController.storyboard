@@ -17,7 +17,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-Pj-poz">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5le-Ar-o34" userLabel="广告View">
+                                <rect key="frame" x="0.0" y="94" width="414" height="44"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notice" translatesAutoresizingMaskIntoConstraints="NO" id="PlK-OG-Huj">
+                                        <rect key="frame" x="8" y="9.5" width="25" height="25"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="AFQ-Bd-YBW"/>
+                                            <constraint firstAttribute="height" constant="25" id="APn-zw-J9N"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="公告图标ImageView"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUo-cb-E4D" customClass="UUMarqueeView">
+                                        <rect key="frame" x="38" y="0.0" width="376" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="QUo-cb-E4D" secondAttribute="bottom" id="HOQ-bd-bVQ"/>
+                                    <constraint firstItem="PlK-OG-Huj" firstAttribute="leading" secondItem="5le-Ar-o34" secondAttribute="leading" constant="8" id="L0q-yX-XNR"/>
+                                    <constraint firstItem="PlK-OG-Huj" firstAttribute="centerY" secondItem="5le-Ar-o34" secondAttribute="centerY" id="Lxu-I2-urf"/>
+                                    <constraint firstItem="QUo-cb-E4D" firstAttribute="top" secondItem="5le-Ar-o34" secondAttribute="top" id="OAS-Ar-4MF"/>
+                                    <constraint firstItem="QUo-cb-E4D" firstAttribute="leading" secondItem="PlK-OG-Huj" secondAttribute="trailing" constant="5" id="UU6-sd-IiQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="QUo-cb-E4D" secondAttribute="trailing" id="az9-8f-BsP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="irq-hH-mKb"/>
+                                    <constraint firstAttribute="height" constant="44" id="wPP-XS-0f2"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-Pj-poz" userLabel="头View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZGU-dP-Xdt">
@@ -52,25 +83,19 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F6-BC-kQY">
-                                        <rect key="frame" x="232" y="3" width="44" height="44"/>
+                                        <rect key="frame" x="232" y="12.5" width="25" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="SDa-7J-vgP"/>
-                                            <constraint firstAttribute="height" constant="44" id="yuE-Cg-Ulu"/>
+                                            <constraint firstAttribute="width" constant="25" id="SDa-7J-vgP"/>
+                                            <constraint firstAttribute="height" constant="25" id="yuE-Cg-Ulu"/>
                                         </constraints>
+                                        <state key="normal" image="icon-refresh"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="按钮Btn"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="refreshBalance:" destination="fSG-Rl-21f" eventType="touchUpInside" id="jNM-0d-Vic"/>
+                                        </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-refresh" translatesAutoresizingMaskIntoConstraints="NO" id="oVn-5h-OVj">
-                                        <rect key="frame" x="237" y="15" width="20" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="T38-Gc-Sve"/>
-                                            <constraint firstAttribute="width" constant="20" id="oNy-eL-MdC"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="按钮图片imgV"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaU-oQ-hds">
                                         <rect key="frame" x="294" y="10" width="50" height="30"/>
                                         <constraints>
@@ -83,6 +108,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="充值Btn"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="rechargeAction:" destination="fSG-Rl-21f" eventType="touchUpInside" id="DdD-a8-eiw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oY4-ee-Tj3">
                                         <rect key="frame" x="354" y="10" width="50" height="30"/>
@@ -96,6 +124,9 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="提现Btn"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="withdrawAction:" destination="fSG-Rl-21f" eventType="touchUpInside" id="FUX-j5-Yid"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.37958842520000002" green="0.54368180040000003" blue="0.65334934" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -107,11 +138,9 @@
                                     <constraint firstItem="GUp-h3-ldR" firstAttribute="centerY" secondItem="wbe-Pj-poz" secondAttribute="centerY" id="Qix-qS-LIi"/>
                                     <constraint firstItem="oY4-ee-Tj3" firstAttribute="centerY" secondItem="wbe-Pj-poz" secondAttribute="centerY" id="USp-Kt-kSZ"/>
                                     <constraint firstItem="6F6-BC-kQY" firstAttribute="leading" secondItem="35x-EP-IJV" secondAttribute="trailing" id="VWt-C4-ltM"/>
-                                    <constraint firstItem="oVn-5h-OVj" firstAttribute="centerY" secondItem="wbe-Pj-poz" secondAttribute="centerY" id="W3L-zp-761"/>
                                     <constraint firstItem="GUp-h3-ldR" firstAttribute="leading" secondItem="ZGU-dP-Xdt" secondAttribute="trailing" constant="5" id="a5R-Me-69c"/>
                                     <constraint firstItem="ZGU-dP-Xdt" firstAttribute="leading" secondItem="wbe-Pj-poz" secondAttribute="leading" constant="5" id="b3A-hw-rBD"/>
                                     <constraint firstAttribute="trailing" secondItem="oY4-ee-Tj3" secondAttribute="trailing" constant="10" id="d4C-1G-76x"/>
-                                    <constraint firstItem="oVn-5h-OVj" firstAttribute="leading" secondItem="35x-EP-IJV" secondAttribute="trailing" constant="5" id="edB-Kc-UFr"/>
                                     <constraint firstItem="6F6-BC-kQY" firstAttribute="centerY" secondItem="wbe-Pj-poz" secondAttribute="centerY" id="ggv-ea-T19"/>
                                     <constraint firstItem="QaU-oQ-hds" firstAttribute="centerY" secondItem="wbe-Pj-poz" secondAttribute="centerY" id="suT-XB-yzq"/>
                                     <constraint firstItem="ZGU-dP-Xdt" firstAttribute="centerY" secondItem="wbe-Pj-poz" secondAttribute="centerY" id="z5K-e1-1tw"/>
@@ -121,11 +150,24 @@
                         <viewLayoutGuide key="safeArea" id="CS2-f7-gFn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5le-Ar-o34" firstAttribute="top" secondItem="wbe-Pj-poz" secondAttribute="bottom" id="2RL-ny-Z8H"/>
                             <constraint firstItem="CS2-f7-gFn" firstAttribute="trailing" secondItem="wbe-Pj-poz" secondAttribute="trailing" id="3vk-at-h83"/>
+                            <constraint firstItem="5le-Ar-o34" firstAttribute="trailing" secondItem="CS2-f7-gFn" secondAttribute="trailing" id="GZs-TN-Qgy"/>
                             <constraint firstItem="wbe-Pj-poz" firstAttribute="leading" secondItem="CS2-f7-gFn" secondAttribute="leading" id="QJb-It-fKa"/>
+                            <constraint firstItem="5le-Ar-o34" firstAttribute="leading" secondItem="CS2-f7-gFn" secondAttribute="leading" id="Sgv-eq-wMx"/>
                             <constraint firstItem="wbe-Pj-poz" firstAttribute="top" secondItem="CS2-f7-gFn" secondAttribute="top" id="s0P-xg-nSC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="headView" destination="wbe-Pj-poz" id="HLZ-UH-ont"/>
+                        <outlet property="leftwardMarqueeView" destination="QUo-cb-E4D" id="s4x-av-g3Y"/>
+                        <outlet property="moneyLabel" destination="35x-EP-IJV" id="BpK-ih-eLH"/>
+                        <outlet property="rechargeButton" destination="QaU-oQ-hds" id="Fsi-Ky-mKg"/>
+                        <outlet property="refreshFirstButton" destination="6F6-BC-kQY" id="UYw-2S-4JY"/>
+                        <outlet property="rollingView" destination="5le-Ar-o34" id="f3o-Fi-Aj1"/>
+                        <outlet property="userNameLabel" destination="GUp-h3-ldR" id="WW8-tG-xld"/>
+                        <outlet property="withdrawButton" destination="oY4-ee-Tj3" id="9XW-HI-pgp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVM-Pp-Dn3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -134,6 +176,7 @@
     </scenes>
     <resources>
         <image name="icon-refresh" width="40" height="40"/>
+        <image name="notice" width="24" height="24"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
