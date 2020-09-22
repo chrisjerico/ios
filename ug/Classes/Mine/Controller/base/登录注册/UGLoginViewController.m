@@ -48,6 +48,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *goHomeButton;
 @property (weak, nonatomic) IBOutlet UIButton *btn_c49goHome;
 @property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;
+
+
+@property (nonatomic, strong) NSString *mfullName;//输入框内容
+
+@property (nonatomic) BOOL mneedFullName;
 @end
 
 @implementation UGLoginViewController
@@ -197,7 +202,7 @@
  
     [self.userNameTextF setEnabled:!self.isNOfboauthLogin];
     
-    
+    self.mfullName = @"";
 }
 
 
@@ -268,6 +273,7 @@
                  NSLog(@"user.needFullName = %d",user.needFullName);
                  if (user.needFullName) {
                      
+                     weakSelf.mneedFullName = user.needFullName;
                      //弹窗
                      // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
                      
@@ -343,6 +349,7 @@
                              
                              //点击事件Block
                              NSString *fullName = tf.text;
+                             weakSelf.mfullName = fullName;
                              
                              NSDictionary *params = @{@"usr":self.userNameTextF.text,
                                                       @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
@@ -352,7 +359,7 @@
                              };
                              
                              NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
-                             if (self.imgVcodeModel) {
+                             if (weakSelf.imgVcodeModel) {
                                  NSString *sid = @"slideCode[nc_sid]";
                                  NSString *token = @"slideCode[nc_token]";
                                  NSString *sig = @"slideCode[nc_sig]";
@@ -865,6 +872,30 @@
         if (message.body) {
             NSDictionary *dict = message.body;
             self.imgVcodeModel = [[UGImgVcodeModel alloc] initWithDictionary:dict error:nil];
+            //如果输入框有数据
+            //后台开启了验证码+开启了输入框
+            //调用登录
+            if (self.mneedFullName && [UGSystemConfigModel  currentConfig].loginVCode && self.mfullName.length && self.imgVcodeModel ) {
+                
+                NSDictionary *params = @{@"usr":self.userNameTextF.text,
+                                         @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
+                                         @"ggCode":self->ggCode.length ? self->ggCode : @"",
+                                         @"fullName":self.mfullName,
+                                         @"device":@"3",    // 0未知，1PC，2原生安卓，3原生iOS，4安卓H5，5iOS_H5，6豪华安卓，7豪华iOS，8混合安卓，9混合iOS，10聊天安卓，11聊天iOS
+                };
+                
+                NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
+                if (self.imgVcodeModel) {
+                    NSString *sid = @"slideCode[nc_sid]";
+                    NSString *token = @"slideCode[nc_token]";
+                    NSString *sig = @"slideCode[nc_sig]";
+                    [mutDict setValue:self.imgVcodeModel.nc_csessionid forKey:sid];
+                    [mutDict setValue:self.imgVcodeModel.nc_token forKey:token];
+                    [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
+                }
+                
+                [self loginAction:mutDict];
+            }
         }
         
     }
