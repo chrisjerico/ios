@@ -733,6 +733,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 		if ([@"定位胆" isEqualToString:temp.typeName] && ![@"组选6" isEqualToString:temp.alias]) {
 			break;
 		}
+		if ([@"五星" isEqualToString:temp.typeName]) {
+			break;
+		}
 		
         NSMutableString *str = [[NSMutableString alloc] init];
         for (int y = i + 1; y < array.count; y++) {
