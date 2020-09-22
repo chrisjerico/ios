@@ -16,7 +16,10 @@
 #import "UGImgVcodeModel.h"
 #import "WKProxy.h"
 #import "RegExCategories.h"
-
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "SUCache.h"
+#import "UGBMLoginViewController.h"
 @interface UGBMRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
 {
      UGBMHeaderView *headView;                /**<   导航头 */
@@ -390,6 +393,17 @@
             [mutDict setValue:self.imgVcodeModel.nc_token forKey:token];
             [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
         }
+        if (self.isfromFB) {
+            NSInteger slot = 0;
+            NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
+            NSString *name =  [SUCache itemForSlot:slot].profile.name;
+            FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+            
+//            [mutDict setValue:token.tokenString forKey:@"oauth_token"];
+            [mutDict setValue:uuid forKey:@"oauth[uuid]"];
+            [mutDict setValue:name forKey:@"oauth[name]"];
+            [mutDict setValue:@"facebook" forKey:@"oauth[platform]"];
+        }
         [SVProgressHUD showWithStatus:@"正在注册..."];
         WeakSelf;
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
@@ -416,6 +430,16 @@
                     weakSelf.imgVcodeTextF.text = nil;
                     [weakSelf showLogin:nil];
                 }
+                if (self.isfromFB) {
+                    for (UIViewController *vc in self.navigationController.childViewControllers) {
+                        if ([vc isKindOfClass:UGBMLoginViewController.class]) {
+                            [self.navigationController popViewControllerAnimated:YES];
+                            return;
+                        }
+                    }
+                    UGBMLoginViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGBMLoginViewController"];
+                    [self.navigationController pushViewController:registerVC animated:YES];
+                 }
                 
             } failure:^(id msg) {
                 

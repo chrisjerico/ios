@@ -203,7 +203,7 @@
 
 
 - (IBAction)loginClick:(id)sender {
-    WeakSelf;
+
     ck_parameters(^{
         ck_parameter_non_empty(self.userNameTextF.text, @"请输入用户名");
         ck_parameter_non_empty(self.passwordTextF.text, @"请输入密码");
@@ -217,17 +217,7 @@
             return ;
             
         }
-        
-        //        if ([UGSystemConfigModel  currentConfig].loginVCode) {
-        //            if (!self.imgVcodeModel) {
-        //                [SVProgressHUD showInfoWithStatus:@"请完成滑动验证"];
-        //                return ;
-        //            }
-        //        }
-        
-        
-        
-        
+
         NSDictionary *params = @{@"usr":self.userNameTextF.text,
                                  @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
                                  @"ggCode":self->ggCode.length ? self->ggCode : @"",
@@ -246,109 +236,230 @@
         
         if (self.isfromFB) {
             //==>绑定旧账号 ==》成功后无密码登录
-            [weakSelf fbauthBindAccounAction];
+            [self fbauthBindAccounAction];
             
             
         }
         else{
-            [SVProgressHUD showWithStatus:@"正在登录..."];
-               
-                [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
-                    
-                    
-                    [CMResult processWithResult:model success:^{
-                        
-                        [SVProgressHUD showSuccessWithStatus:model.msg];
-                        
-                        // 退出登录上一个账号
-                        if (UGUserModel.currentUser) {
-                            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
-                            UGUserModel.currentUser = nil;
-                            SANotificationEventPost(UGNotificationUserLogout, nil);
-                        }
-                        
-                        NSLog(@"model.data = %@",model.data);
-                        
-                        UGUserModel *user = model.data;
-                        UGUserModel.currentUser = user;
-                        
-                        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                        if([userDefault boolForKey:@"isRememberPsd"])
-                        {
-                            [userDefault setObject:weakSelf.userNameTextF.text forKey:@"userName"];
-                            [userDefault setObject:weakSelf.passwordTextF.text forKey:@"userPsw"];
-                        }
-                        
-                        SANotificationEventPost(UGNotificationLoginComplete, nil);
-                        
-                        if (self.isfromFB) {
-                            //去绑定旧账号
-                        }
-                        
-                        NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
-                        
-                        BOOL isGoRoot = YES;
-                        
-                        for (int i= 0; i<simplePwds.count; i++) {
-                            NSString *str = [simplePwds objectAtIndex:i];
-                            if ([weakSelf.passwordTextF.text isEqualToString:str]) {
-                                
-                                isGoRoot = NO;
-                                break;
-                            }
-                        }
-                        
-                        if (isGoRoot) {
-                            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                        } else {
-                            [weakSelf.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
-                            UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
-                            vc.fromVC = @"fromLoginViewController";
-                            [weakSelf.navigationController pushViewController:vc animated:YES];
-                        }
-                        
-                    } failure:^(id msg) {
-                        
-                        weakSelf.errorTimes += 1;
-                        if (weakSelf.errorTimes == 4) {
-                            if (![UGSystemConfigModel  currentConfig].loginVCode) {
-                                weakSelf.webBgView.hidden = NO;
-                                weakSelf.webBgViewHeightConstraint.constant = 120;
-                                [weakSelf webLoadURL];
-                            }
-                            
-                        }
-                        
-                        UGUserModel *user = (UGUserModel*) model.data;
-                        
-                        NSInteger intGgCheck =  user.ggCheck;
-                        
-                        if (intGgCheck == 1) {
-                            
-                            weakSelf.gCheckUserName = self.userNameTextF.text;
-                            [weakSelf showLeeView];
-                        }
-                        if ([weakSelf.userNameTextF.text isEqualToString:weakSelf.gCheckUserName]) {
-                            
-                            [weakSelf showLeeView];
-                            
-                        }
-                        
-                        if (weakSelf.webBgView.hidden == NO) {
-                            [weakSelf.webView reload];
-                            weakSelf.imgVcodeModel = nil;
-                        }
-                        
-                        [SVProgressHUD showErrorWithStatus:msg];
-                        
-                    }];
-                }];
+            
+            [self loginAction:mutDict];
         }
         
         
         
       
     });
+}
+
+-(void)loginAction:(NSMutableDictionary *)mutDict
+{
+    WeakSelf;
+    [SVProgressHUD showWithStatus:@"正在登录..."];
+     [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
+         [CMResult processWithResult:model success:^{
+             if (model.code == 0) {
+                 [weakSelf loginOK:model];
+             }
+
+         } failure:^(id msg) {
+             
+             if (model.code == 1) {
+                 UGUserModel *user = model.data;
+                 NSLog(@"user.needFullName = %d",user.needFullName);
+                 if (user.needFullName) {
+                     
+                     //弹窗
+                     // 使用一个变量接收自定义的输入框对象 以便于在其他位置调用
+                     
+                     __block UITextField *tf = nil;
+                     
+                     [LEEAlert alert].config
+                     .LeeTitle(@"请输入绑定的真实姓名")
+                     .LeeAddTextField(^(UITextField *textField) {
+                         // 这里可以进行自定义的设置
+                         textField.placeholder = @"请输入真实姓名";
+                         
+                         if (@available(iOS 13.0, *)) {
+                             textField.textColor = [UIColor secondaryLabelColor];
+                             
+                         } else {
+                             textField.textColor = [UIColor darkGrayColor];
+                         }
+                         
+                         tf = textField; //赋值
+                     })
+                     .LeeAddAction(^(LEEAction *action) {
+                         
+                         action.title = @"关闭";
+                         
+                         action.titleColor = [UIColor darkGrayColor];
+                         
+                         action.backgroundColor = [UIColor colorWithRed:249/255.0f green:249/255.0f blue:249/255.0f alpha:1.0f];
+                         
+                         action.backgroundHighlightColor = [UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0f];
+                         
+                         action.insets = UIEdgeInsetsMake(0, 10, 10, 10);
+                         
+                         action.borderPosition = LEEActionBorderPositionTop
+                         | LEEActionBorderPositionBottom
+                         | LEEActionBorderPositionLeft
+                         | LEEActionBorderPositionRight;
+                         
+                         action.borderWidth = 1.0f;
+                         
+                         action.borderColor = action.backgroundHighlightColor;
+                         
+                         action.cornerRadius = 5.0f;
+                         
+                         action.clickBlock = ^{
+                             
+                             // 取消点击事件Block
+                         };
+                     })
+                     .LeeAddAction(^(LEEAction *action) {
+                         
+                         action.title = @"确定";
+                         
+                         action.titleColor = [UIColor whiteColor];
+                         
+                         action.backgroundColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
+                         
+                         action.backgroundHighlightColor = [UIColor colorWithRed:239/255.0f green:239/255.0f blue:239/255.0f alpha:1.0f];
+                         
+                         action.insets = UIEdgeInsetsMake(0, 10, 10, 10);
+                         
+                         action.borderPosition = LEEActionBorderPositionTop
+                         | LEEActionBorderPositionBottom
+                         | LEEActionBorderPositionLeft
+                         | LEEActionBorderPositionRight;
+                         
+                         action.borderWidth = 1.0f;
+                         
+                         action.borderColor = action.backgroundHighlightColor;
+                         
+                         action.cornerRadius = 5.0f;
+                         
+                         action.clickBlock = ^{
+                             
+                             //点击事件Block
+                             NSString *fullName = tf.text;
+                             
+                             NSDictionary *params = @{@"usr":self.userNameTextF.text,
+                                                      @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
+                                                      @"ggCode":self->ggCode.length ? self->ggCode : @"",
+                                                      @"fullName":fullName,
+                                                      @"device":@"3",    // 0未知，1PC，2原生安卓，3原生iOS，4安卓H5，5iOS_H5，6豪华安卓，7豪华iOS，8混合安卓，9混合iOS，10聊天安卓，11聊天iOS
+                             };
+                             
+                             NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
+                             if (self.imgVcodeModel) {
+                                 NSString *sid = @"slideCode[nc_sid]";
+                                 NSString *token = @"slideCode[nc_token]";
+                                 NSString *sig = @"slideCode[nc_sig]";
+                                 [mutDict setValue:self.imgVcodeModel.nc_csessionid forKey:sid];
+                                 [mutDict setValue:self.imgVcodeModel.nc_token forKey:token];
+                                 [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
+                             }
+                             
+                             [weakSelf loginAction:mutDict];
+                         };
+                     })
+                     .leeShouldActionClickClose(^(NSInteger index){
+                         // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
+                         // 这里演示了与输入框非空校验结合的例子
+                         BOOL result = ![tf.text isEqualToString:@""];
+                         result = index == 0 ? result : YES;
+                         return result;
+                     })
+                     .LeeShow();
+     
+                     
+                 }
+                 
+             }
+             
+             weakSelf.errorTimes += 1;
+             if (weakSelf.errorTimes == 4) {
+                 if (![UGSystemConfigModel  currentConfig].loginVCode) {
+                     weakSelf.webBgView.hidden = NO;
+                     weakSelf.webBgViewHeightConstraint.constant = 120;
+                     [weakSelf webLoadURL];
+                 }
+                 
+             }
+             
+             UGUserModel *user = (UGUserModel*) model.data;
+             
+             NSInteger intGgCheck =  user.ggCheck;
+             
+             if (intGgCheck == 1) {
+                 
+                 weakSelf.gCheckUserName = self.userNameTextF.text;
+                 [weakSelf showLeeView];
+             }
+             if ([weakSelf.userNameTextF.text isEqualToString:weakSelf.gCheckUserName]) {
+                 
+                 [weakSelf showLeeView];
+                 
+             }
+             
+             if (weakSelf.webBgView.hidden == NO) {
+                 [weakSelf.webView reload];
+                 weakSelf.imgVcodeModel = nil;
+             }
+             
+             [SVProgressHUD showErrorWithStatus:msg];
+             
+         }];
+     }];
+}
+
+-(void)loginOK:(CMResult<id> *)model
+{
+    [SVProgressHUD showSuccessWithStatus:model.msg];
+    
+    // 退出登录上一个账号
+    if (UGUserModel.currentUser) {
+        [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+        UGUserModel.currentUser = nil;
+        SANotificationEventPost(UGNotificationUserLogout, nil);
+    }
+    
+    NSLog(@"model.data = %@",model.data);
+    
+    UGUserModel *user = model.data;
+    UGUserModel.currentUser = user;
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    if([userDefault boolForKey:@"isRememberPsd"])
+    {
+        [userDefault setObject:self.userNameTextF.text forKey:@"userName"];
+        [userDefault setObject:self.passwordTextF.text forKey:@"userPsw"];
+    }
+    
+    SANotificationEventPost(UGNotificationLoginComplete, nil);
+    
+    NSArray *simplePwds = [[NSArray alloc] initWithObjects:@"111111",@"000000",@"222222",@"333333",@"444444",@"555555",@"666666",@"777777",@"888888",@"999999",@"123456",@"654321",@"abcdef",@"aaaaaa",@"qwe123", nil];
+    
+    BOOL isGoRoot = YES;
+    
+    for (int i= 0; i<simplePwds.count; i++) {
+        NSString *str = [simplePwds objectAtIndex:i];
+        if ([self.passwordTextF.text isEqualToString:str]) {
+            
+            isGoRoot = NO;
+            break;
+        }
+    }
+    
+    if (isGoRoot) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        [self.navigationController.view makeToast:@"你的密码过于简单，可能存在风险，请把密码修改成复杂密码" duration:3.0 position:CSToastPositionCenter];
+        UGSecurityCenterViewController *vc = [[UGSecurityCenterViewController alloc] init] ;
+        vc.fromVC = @"fromLoginViewController";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 #pragma mark - facebook 登录相关
 - (IBAction)faceBookLoginAction:(id)sender {

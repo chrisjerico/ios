@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 //guest
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, assign) BOOL isTest;
+@property (nonatomic, assign) BOOL needFullName;// 需要输入用户名称
 @property (nonatomic, strong) NSString *serverTime;
 @property (nonatomic, strong) NSString *lastLoginTime;
 @property (nonatomic, strong) NSString *loginTime;
