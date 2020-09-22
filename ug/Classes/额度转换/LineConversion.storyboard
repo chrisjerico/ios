@@ -177,7 +177,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Idt-ok-Nlo"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ocM-pH-Rdq" firstAttribute="leading" secondItem="Idt-ok-Nlo" secondAttribute="leading" id="57T-2Q-yjX"/>
                             <constraint firstItem="ocM-pH-Rdq" firstAttribute="top" secondItem="Idt-ok-Nlo" secondAttribute="top" id="Vfz-Mg-EEG"/>
