@@ -312,6 +312,8 @@
 }
 
 - (void)loadLanguage {
+    if (DisableLanguage) return;
+    
     // 开启自动本地化
     [UIView enableAutoLocalizable];
     

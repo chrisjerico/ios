@@ -54,6 +54,7 @@ static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
 static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 
 + (instancetype)shared {
+    if (DisableLanguage) return nil;
     static LanguageHelper *obj = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -115,6 +116,8 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 }
 
 + (void)changeLanguageAndRestartApp:(NSString *)lanCode {
+    if (DisableLanguage) return;
+    
     [SVProgressHUD showWithStatus:@"正在切换语言..."];
     [NetworkManager1 language_getLanguagePackage:lanCode].successBlock = ^(id responseObject) {
         NSString *ver = responseObject[@"data"][@"version"];

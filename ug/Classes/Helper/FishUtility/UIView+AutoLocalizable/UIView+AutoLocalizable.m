@@ -40,6 +40,8 @@ static BOOL _EnableAutoLocalizable = false;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        if (DisableLanguage) return;
+        
         [UILabel jr_swizzleMethod:@selector(cc_awakeFromNib_autoLocalizable) withMethod:@selector(awakeFromNib) error:nil];
         [UITextField jr_swizzleMethod:@selector(cc_awakeFromNib_autoLocalizable) withMethod:@selector(awakeFromNib) error:nil];
         [UITextView jr_swizzleMethod:@selector(cc_awakeFromNib_autoLocalizable) withMethod:@selector(awakeFromNib) error:nil];
