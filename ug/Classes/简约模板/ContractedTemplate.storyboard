@@ -175,6 +175,9 @@
                                         <state key="normal" title="使用Facebook登录">
                                             <color key="titleColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="faceBookLoginAction:" destination="Tj0-FN-NIv" eventType="touchUpInside" id="Oxx-tL-3MP"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

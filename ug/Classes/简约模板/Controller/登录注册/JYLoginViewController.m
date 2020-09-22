@@ -690,6 +690,20 @@
     [self.webView loadRequest:request];
 }
 
+
+#pragma mark - facebook 登录相关
+- (IBAction)faceBookLoginAction:(id)sender {
+    
+    //判断是否已经帮定过
+    NSInteger slot = 0;
+    FBSDKAccessToken *token = [SUCache itemForSlot:slot].token;
+    if (token) { // FB用户曾经已经登录
+        [self fbautoLoginWithToken:token];
+    }
+    else{
+        [self FBnewLogin];
+    }
+}
 //facebook自动登录
 - (void)fbautoLoginWithToken:(FBSDKAccessToken *)token {
     [FBSDKAccessToken setCurrentAccessToken:token];

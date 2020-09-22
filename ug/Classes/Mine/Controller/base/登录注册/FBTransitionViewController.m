@@ -12,6 +12,8 @@
 #import "UGLoginViewController.h"
 #import "JYLoginViewController.h"
 #import "JYRegisterViewController.h"
+#import "UGBMLoginViewController.h"
+#import "UGBMRegisterViewController.h"
 @interface FBTransitionViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel; //XX 绑定账号
 @end
@@ -40,7 +42,13 @@
         JYRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"JYRegisterViewController") ;
         [registerVC setIsfromFB:YES];
         [self.navigationController pushViewController:registerVC animated:YES];
-    } else {
+    }
+    else if(Skin1.isGPK){
+        UGBMRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"UGBMRegisterViewController") ;
+        [registerVC setIsfromFB:YES];
+        [self.navigationController pushViewController:registerVC animated:YES];
+    }
+    else {
         UGRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"UGRegisterViewController") ;
         [registerVC setIsfromFB:YES];
         [self.navigationController pushViewController:registerVC animated:YES];
@@ -56,7 +64,13 @@
         JYLoginViewController *loginVC = _LoadVC_from_storyboard_(@"JYLoginViewController") ;
         loginVC.isfromFB = YES;
         [self.navigationController pushViewController:loginVC animated:YES];
-    } else {
+    }
+    else if(Skin1.isGPK){
+        UGBMLoginViewController *loginVC = _LoadVC_from_storyboard_(@"UGBMLoginViewController") ;
+        loginVC.isfromFB = YES;
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
+    else {
         UGLoginViewController *loginVC = _LoadVC_from_storyboard_(@"UGLoginViewController") ;
         loginVC.isfromFB = YES;
         [self.navigationController pushViewController:loginVC animated:YES];
