@@ -374,9 +374,14 @@
                      .leeShouldActionClickClose(^(NSInteger index){
                          // 是否可以关闭回调, 当即将关闭时会被调用 根据返回值决定是否执行关闭处理
                          // 这里演示了与输入框非空校验结合的例子
-                         BOOL result = ![tf.text isEqualToString:@""];
-                         result = index == 0 ? result : YES;
-                         return result;
+                         if(index == 1){
+                             NSLog(@"index = %ld",(long)index);
+                             BOOL result = ![tf.text isEqualToString:@""];
+                             result = index == 0 ? result : YES;
+                             return result;
+                         }
+                         return  YES;
+                        
                      })
                      .LeeShow();
      
