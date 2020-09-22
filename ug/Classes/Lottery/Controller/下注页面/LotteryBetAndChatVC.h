@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UGNextIssueModel *nim;
 
-@property (nonatomic) bool selectChat;
+@property (nonatomic) bool selectChat;//显示聊天室
+
+@property (nonatomic) bool isHeightLess50;//从tabbar 聊天室进入，高度-50
 
 
 

@@ -15,6 +15,7 @@
 #import "ReactNativeHelper.h"
 #import "JSPatchHelper.h"
 
+#import "UIView+AutoLocalizable.h"
 
 @interface LaunchPageModel : UGModel
 @property (nonatomic) NSString *pic;
@@ -165,7 +166,7 @@
     NSLog(@"App.host = %@",APP.Host);
         // 加载初始配置
         {
-    //        _waitLanguage = true;
+//            _waitLanguage = true;
             _waitPic = true;
             _waitReactNative = true;
             _waitSysConf = true;
@@ -173,7 +174,7 @@
             [self loadLaunchImage];
             [self loadReactNative];
             [self loadSysConf];
-    //        [self loadLanguage];
+//            [self loadLanguage];
         }
         
         // 超时处理
@@ -183,8 +184,10 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __self.waitSysConf = false;
                 __self.waitLanguage = false;
-                __self.waitReactNative = false;
                 __self.waitLanguage = false;
+#ifndef APP_TEST
+                __self.waitReactNative = false;
+#endif
             });
         }
         
@@ -309,22 +312,44 @@
 }
 
 - (void)loadLanguage {
-    // 下载语言包
+    // 开启自动本地化
+    [UIView enableAutoLocalizable];
+    
+    NSString *zhLanCode = @"zh-cn";
+    
     __weakSelf_(__self);
+    // 下载中文语言包
+    __block int __i = 1;
+    void (^getZhPackage)(void) = nil;
+    void (^__block __getZhPackage)(void) = getZhPackage = ^{
+        [NetworkManager1 language_getLanguagePackage:zhLanCode].completionBlock = ^(CCSessionModel *sm) {
+            sm.noShowErrorHUD = true;
+            if (!sm.error) {
+                NSString *ver = sm.responseObject[@"data"][@"version"];
+                NSDictionary *package = sm.responseObject[@"data"][@"package"];
+                [LanguageHelper save:package lanCode:zhLanCode ver:ver];
+            } else {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__i++ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    __getZhPackage();
+                });
+            }
+        };
+    };
+    getZhPackage();
+    
+    // 下载语言包
+    __block int __j = 1;
     void (^getLanguagePackage)(NSString *lanCode) = nil;
     void (^__block __getLanguagePackage)(NSString *lanCode) = getLanguagePackage = ^(NSString *lanCode) {
         [NetworkManager1 language_getLanguagePackage:lanCode].completionBlock = ^(CCSessionModel *sm) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                NSArray <NSDictionary *>*package = sm.responseObject[@"data"][@"package"];
-                NSMutableDictionary *kvs = @{}.mutableCopy;
-                for (NSDictionary *dict in package) {
-                    kvs[dict[@"key"]] = dict[@"value"];
-                }
-                [[LanguageHelper shared] save:kvs lanCode:lanCode];
+                NSString *ver = sm.responseObject[@"data"][@"version"];
+                NSDictionary *package = sm.responseObject[@"data"][@"package"];
+                [LanguageHelper save:package lanCode:lanCode ver:ver];
                 __self.waitLanguage = false;
             } else if (__self.waitLanguage) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__j++ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     __getLanguagePackage(lanCode);
                 });
             }
@@ -337,11 +362,17 @@
         [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                NSString *lanCode = [[LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]] getLanCode];
-                [[LanguageHelper shared] setLanCode:lanCode];
-                __self.waitLanguage = ![LanguageHelper shared].kvs.count;
+                LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+//#ifdef DEBUG
+//                lm.currentLanguageCode = @"vi";
+//#endif
+                [LanguageHelper shared].supportLanguagesMap = lm.supportLanguagesMap;
+                [[LanguageHelper shared] setLanCode:[lm getLanCode]];
+                __self.waitLanguage = ![LanguageHelper shared].hasKeys;
                 
-                getLanguagePackage(lanCode);
+                if (![lm.currentLanguageCode isEqualToString:@"zh-cn"]) {
+                    getLanguagePackage([lm getLanCode]);
+                }
             } else if (__self.waitLanguage) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     __getConfigs();

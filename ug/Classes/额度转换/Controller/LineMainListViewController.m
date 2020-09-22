@@ -35,12 +35,7 @@
 -(void)dataReLoad{
     [self.lineCollection reloadData];
 }
-- (NSMutableArray<NSString *> *)transferArray {
-    if (_transferArray == nil) {
-        _transferArray = [NSMutableArray array];
-    }
-    return _transferArray;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -80,14 +75,18 @@
         subButton(@"5000Btn").backgroundColor = Skin1.bgColor;
         subButton(@"10000Btn").backgroundColor = Skin1.bgColor;
     }
+    
+    _transferArray = [NSMutableArray array];
+    for (UGPlatformGameModel *game in self.dataArray) {
+        [self.transferArray addObject:game.title];
+    }
+    self.outIndex = -1;
+    self.inIndex = -1;
 }
 
 -(void)setDataArray:(NSMutableArray<UGPlatformGameModel *> *)dataArray{
     _dataArray = dataArray;
-    [self.transferArray addObject:@"我的钱包"];
-    for (UGPlatformGameModel *game in self.dataArray) {
-        [self.transferArray addObject:game.title];
-    }
+
 }
 
 #pragma mark UICollectionView datasource
@@ -214,32 +213,51 @@
 
 // 开始转换
 - (IBAction)startTransfer:(id)sender {
+    
+    if (self.outIndex == -1) {
+        [SVProgressHUD showInfoWithStatus:@"请选择转出钱包"];
+        return;
+    }
+    if (self.inIndex == -1) {
+        [SVProgressHUD showInfoWithStatus:@"请选择转入钱包"];
+        return;
+    }
     ck_parameters(^{
         ck_parameter_non_empty(self.moneyLabel1.text, @"请选择转出钱包");
         ck_parameter_non_empty(self.moneyLabel2.text, @"请选择转入钱包");
         ck_parameter_non_equal(self.moneyLabel1.text, self.moneyLabel2.text, @"转出钱包和转入钱包不能一致");
         ck_parameter_non_empty(self.moneyTxt.text, @"请输入转换金额");
+    
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
         
+        
+
+        NSLog(@"self.outIndex = %ld",(long)self.outIndex);
+        NSLog(@"self.inIndex = %ld",(long)self.inIndex);
         [self.moneyTxt resignFirstResponder];
         UGPlatformGameModel *outModel;
         UGPlatformGameModel *intModel;
-        if (self.outIndex) {
-            outModel = self.dataArray[self.outIndex - 1];
+       
+        outModel = self.dataArray[self.outIndex];
+        if ([CMCommon stringIsNull:outModel.gameId] ) {
+            outModel.gameId = @"0";
         }
-        if (self.inIndex) {
-            intModel = self.dataArray[self.inIndex - 1];
+        
+        intModel = self.dataArray[self.inIndex];
+        if ([CMCommon stringIsNull:intModel.gameId] ) {
+            intModel.gameId = @"0";
         }
+       
         [SVProgressHUD showWithStatus:nil];
         
         NSString *amount = self.moneyTxt.text;
         if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
             return;
         }
-        NSDictionary *params = @{@"fromId":outModel ? outModel.gameId : @"0",
-                                 @"toId":intModel ? intModel.gameId : @"0",
+        NSDictionary *params = @{@"fromId": outModel.gameId ,
+                                 @"toId": intModel.gameId ,
                                  @"money":amount,
                                  @"token":[UGUserModel currentUser].sessid,
         };
@@ -311,6 +329,8 @@
 }
 //一键领取
 - (IBAction)onExtractAllBtnClick:(UIButton *)sender {
+    
+    
     if (!_dataArray.count) {
         return;
     }

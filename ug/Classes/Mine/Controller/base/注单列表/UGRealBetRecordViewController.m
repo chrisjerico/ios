@@ -31,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *betAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIStackView *bottomStackView;
 
 @property (nonatomic, strong) STButton *titleView;
 
@@ -84,14 +84,9 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGRealBetRecordCell" bundle:nil] forCellReuseIdentifier:realBetRecordCellId];
     
-    if ([CMCommon isPhoneX]) {
-        self.bottomViewHeightConstraint.constant = 70;
-    }else {
-        self.bottomViewHeightConstraint.constant = 50;
-    }
-    
     [self setupRefreshView];
     [self getBetsList];
+    _bottomStackView.axis = [LanguageHelper shared].isCN ? UILayoutConstraintAxisHorizontal : UILayoutConstraintAxisVertical;
 }
 
 - (void)setupRefreshView
@@ -133,10 +128,8 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
             }
             UGBetsRecordListModel *listModel = model.data;
             NSArray *array = listModel.list;
-            __self.betAmountLabel.text = [NSString stringWithFormat:@"总下注金额：%@",listModel.totalBetAmount];
-            __self.winAmountLabel.text = [NSString stringWithFormat:@"总输赢金额：%@",listModel.totalWinAmount];
-            [__self setupTotalAmountLabelTextColor];
-            [__self setupWinAmountLabelTextColor];
+            __self.betAmountLabel.text = listModel.totalBetAmount;
+            __self.winAmountLabel.text = listModel.totalWinAmount;
             if (__self.pageNumber == 1 ) {
                 [__self.dataArray removeAllObjects];
             }
@@ -214,18 +207,6 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 
 
 #pragma mark - YBPopupMenuDelegate
-
-- (void)setupTotalAmountLabelTextColor {
-    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.betAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(240, 211, 88) range:NSMakeRange(6, self.betAmountLabel.text.length - 6)];
-    self.betAmountLabel.attributedText = abStr;
-}
-
-- (void)setupWinAmountLabelTextColor {
-    NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.winAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:UGRGBColor(202, 81, 66) range:NSMakeRange(6, self.winAmountLabel.text.length - 6)];
-    self.winAmountLabel.attributedText = abStr;
-}
 
 - (void)titleViewClick {
     Model *model0 = [Model new];

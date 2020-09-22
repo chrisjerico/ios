@@ -59,6 +59,20 @@ _CCRuntimeGetterDoubleValue(CGFloat, lineSpacing1)
 }
 @end
 
+@implementation UIButton (IBInspectableUtils)
+- (CGPoint)内边距 { return CGPointZero; }
+- (void)set内边距:(CGPoint)内边距 {
+    CGPoint padding = 内边距;
+    self.contentEdgeInsets = UIEdgeInsetsMake(padding.y, padding.x, padding.y, padding.x);
+}
+- (NSInteger)numberOfLines {
+    return self.titleLabel.numberOfLines;
+}
+- (void)setNumberOfLines:(NSInteger)numberOfLines {
+    self.titleLabel.numberOfLines = numberOfLines;
+}
+@end
+
 
 
 @interface _CCTextDelegateModel : NSObject<UITextFieldDelegate, UITextViewDelegate>

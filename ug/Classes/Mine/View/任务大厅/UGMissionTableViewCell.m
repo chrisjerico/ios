@@ -92,6 +92,7 @@
         [self.goButton setTitle:@"已完成" forState:UIControlStateNormal];
         self.goButton.backgroundColor = UGRGBColor(134, 131, 131);
     }
+    self.goButton.titleLabel.font = [self.goButton.currentTitle fontWithFrameSize:CGSizeMake(80, 27) maxFont:[UIFont systemFontOfSize:12]];
     
     CGSize size = [item.missionName sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
     float constant = size.width + self.titleLabel.x - 10;

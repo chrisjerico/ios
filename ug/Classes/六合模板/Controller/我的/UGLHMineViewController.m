@@ -193,15 +193,15 @@
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     
     if ([config.missionSwitch isEqualToString:@"0"]) {
-        [self.taskButton setHidden:NO];
+        [self.taskButton.superview setHidden:NO];
         if ([config.checkinSwitch isEqualToString:@"0"]) {
-            [self.signButton setHidden:YES];
+            [self.signButton.superview setHidden:YES];
         } else {
-            [self.signButton setHidden:NO];
+            [self.signButton.superview setHidden:NO];
         }
     } else {
-        [self.taskButton setHidden:YES];
-        [self.signButton setHidden:YES];
+        [self.taskButton.superview setHidden:YES];
+        [self.signButton.superview setHidden:YES];
     }
     FastSubViewCode(self.userInfoView)
     if (flag) {

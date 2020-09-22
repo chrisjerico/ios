@@ -30,7 +30,8 @@
 	[self.amountField addTarget:self action:@selector(amountEdited:) forControlEvents:UIControlEventAllEditingEvents];
 	
 	UILabel * label = [UILabel new];
-	label.text = @" 元 ";
+	label.text = @"元";
+    label.内边距 = CGPointMake(5, 0);
 	self.amountField.rightView = label;
 	self.amountField.rightViewMode = UITextFieldViewModeAlways;
     

@@ -23,7 +23,7 @@
     return str.length ? [self cc_safe_initWithString:str attributes:attrs] : nil;
 }
 
-- (NSAttributedString *)substringWithSize:(CGSize)size {
+- (NSAttributedString *)substringWithFrameSize:(CGSize)size {
     CGFloat h = [self boundingRectWithSize:CGSizeMake(size.width, MAXFLOAT)
                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                    context:nil].size.height;

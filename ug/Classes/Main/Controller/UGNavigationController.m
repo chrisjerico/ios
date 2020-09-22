@@ -301,6 +301,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         // 隐藏底部条
         viewController.hidesBottomBarWhenPushed = YES;
     }
+
     
     
 //    NSLog(@"NavController1= %@",NavController1);

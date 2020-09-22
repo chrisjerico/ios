@@ -25,14 +25,14 @@
 #import "RedEnvelopeVCViewController.h"
 
 #import "GameCategoryDataModel.h"
+#import "YBPopupMenu.h"
 
-@interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource>
+@interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource, YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, assign) CGRect oldFrame;
 
 @property (nonatomic, assign) BOOL refreshing;
 
@@ -217,11 +217,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:APP.Bounds];
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGYYRightMenuView" owner:self options:nil].firstObject;
-        self.frame = frame;
-        self.oldFrame = frame;
         self.rechargeView.layer.cornerRadius = 5;
         self.rechargeView.layer.masksToBounds = YES;
         self.withdrawlView.layer.cornerRadius = 5;
@@ -241,13 +239,30 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableArray = [NSMutableArray new];
         
         WeakSelf;
+        if (UserI.isTest) {
+            [[self viewWithTagString:@"切换语言Button"] removeFromSuperview];
+        } else {
+            UIButton *lanBtn = [self viewWithTagString:@"切换语言Button"];
+            self.tableView.tableFooterView = ({
+                UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 70)];
+                [lanBtn setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+                [lanBtn setTitle:_NSString(@"%@ ▼", [LanguageHelper shared].title) forState:UIControlStateNormal];
+                [v addSubview:lanBtn];
+                UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 0.5)];
+                line.backgroundColor = Skin1.textColor3;
+                [v addSubview:line];
+                v;
+            });
+            [lanBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(10);
+                make.centerX.equalTo(self.tableView.tableFooterView);
+            }];
+        }
+        
         SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
             [weakSelf.refreshButton.layer removeAllAnimations];
             [weakSelf setBalanceLabel];
-
-            
             [self getTableData];
-
         });
         
         SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
@@ -308,36 +323,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }];
 }
 
-- (void)getUserInfo {
-    if (!UGLoginIsAuthorized()) {
-        [self.refreshButton.layer removeAllAnimations];
-        return;
-    }
-    WeakSelf;
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-       
-        [CMResult processWithResult:model success:^{
-            UGUserModel *user = model.data;
-            
-          ;
-     
-            UGUserModel *oldUser = [UGUserModel currentUser];
-            user.sessid = oldUser.sessid;
-            user.token = oldUser.token;
-            UGUserModel.currentUser = user;
-            
-            
-            NSLog(@"unsettleAmount=%@",  [UGUserModel currentUser].unsettleAmount);
-            [weakSelf.refreshButton.layer removeAllAnimations];
-            [weakSelf setBalanceLabel];
-            [weakSelf tableDataAction ];
-        } failure:^(id msg) {
-            [self.refreshButton.layer removeAllAnimations];
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-}
+
+#pragma mark - IBAction
 
 -(IBAction)showMMemberCenterView{
     NSLog(@"tap");
@@ -358,17 +345,6 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     self.balanceLabel.text  = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
     FastSubViewCode(self);
     subLabel(@"钱Label").text = [NSString stringWithFormat:@"¥%@",[UGUserModel currentUser].balance];
-}
-
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    UIView *view = [super hitTest:point withEvent:event];
-
-    if (CGRectContainsPoint(self.bounds, point)) {
-        
-    } else {
-        [self hiddenSelf];
-    }
-    return view;
 }
 
 - (IBAction)refreshBalance:(id)sender {
@@ -472,6 +448,14 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     [self didSelectCellWithTitle:@"提现"];
 }
 
+- (IBAction)onLanguageBtnClick:(UIButton *)sender {
+    NSArray *titles = [[LanguageHelper shared].supportLanguagesMap valuesWithKeyPath:@"name"];
+    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:titles icons:nil menuWidth:CGSizeMake(150, 150) delegate:self];
+    popView.fontSize = 15;
+    popView.type = YBPopupMenuTypeDefault;
+    [popView showRelyOnView:sender];
+}
+
 
 //刷新余额动画
 - (void)startAnimation {
@@ -481,6 +465,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     ReFreshAnimation.repeatCount = HUGE_VALF;
     [self.refreshButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
 }
+
+
+#pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -578,6 +565,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
   
 }
 
+#pragma mark - show
+
 - (void)show {
     if (Skin1.isBlack||Skin1.is23) {
         [self.rechargeView setBackgroundColor:Skin1.textColor1];
@@ -614,7 +603,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.bgViewHeightConstraint.constant = 180;
     }
     
-    self.backgroundColor = Skin1.textColor4;
+    self.bgView.superview.superview.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     [self.tklBgView setHidden:YES];
     if (Skin1.isJY) {
@@ -625,9 +614,10 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     }
     else if(Skin1.isTKL){
          FastSubViewCode(self);
-         [self.bgView setHidden:YES];
+//         [self.bgView setHidden:YES];
          [self.bg2View setHidden:YES];
          [self.tklBgView setHidden:NO];
+         [self.bgView setHidden: YES]; 
         
         subImageView(@"头像imgView").layer.cornerRadius = 30;
         subImageView(@"头像imgView").layer.masksToBounds = YES;
@@ -644,20 +634,13 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 //        self.tklHight.constant = 180.5;
     }
     
-    UIWindow* window = UIApplication.sharedApplication.keyWindow;
-    UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
-    UIView* view = self;
-    view.hidden = NO;
-    
-    maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    
-    view.x = UGScreenW;
-    [maskView addSubview:view];
-    [window addSubview:maskView];
-    
+    self.frame = APP.Bounds;
+    [APP.Window addSubview:self];
+    self.bgView.superview.superview.cc_constraints.right.constant = -APP.Width;
+    [self layoutIfNeeded];
     [UIView animateWithDuration:0.35 animations:^{
-        view.x = self.oldFrame.origin.x;
+        self.bgView.superview.superview.cc_constraints.right.constant = 0;
+        [self layoutIfNeeded];
     } completion:^(BOOL finished) {
         
     }];
@@ -666,15 +649,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     [self refreshBalance:nil];
 }
 
-- (void)hiddenSelf {
-    UIView* view = self;
-    self.superview.backgroundColor = [UIColor clearColor];
+- (IBAction)hiddenSelf {
     [UIView animateWithDuration:0.35 animations:^{
-        //        view.x = UGScreenW;
-        self.superview.x = UGScreenW - self.oldFrame.size.width;
+        self.bgView.superview.superview.cc_constraints.right.constant = -APP.Width;
+        [self layoutIfNeeded];
     } completion:^(BOOL finished) {
-        [view.superview removeFromSuperview];
-        [view removeFromSuperview];
+        [self removeFromSuperview];
     }];
 }
 
@@ -780,6 +760,16 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }
         [NavController1 pushViewControllerWithGameModel:modle];
     }
+}
+
+#pragma mark - YBPopupMenuDelegate
+
+- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
+    if (index < 0) return;
+    NSString *lanCode = [[LanguageHelper shared].supportLanguagesMap valuesWithKeyPath:@"code"][index];
+    if (!lanCode.length) return;
+    
+    [LanguageHelper changeLanguageAndRestartApp:lanCode];
 }
 
 @end

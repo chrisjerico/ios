@@ -89,6 +89,8 @@
                 sb(@"Funds"),
                 sb(@"UGYNLotteryController"),
                 sb(@"NewUserInfoViewController"),
+                sb(@"NewLotteryHomeViewController"),
+                
 
                 
         ];
@@ -148,7 +150,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 //			_SiteId = @"test61f";
-			_SiteId = @"c186";
+			_SiteId = @"shiyu";
 
         }
 

@@ -95,7 +95,7 @@
         [self.btn_c49goHome setHidden:YES];
     }
 
-   
+    self.tabBarController.tabBar.hidden = YES;
 }
 
 - (void)skin {

@@ -39,6 +39,7 @@
 }
 
 - (void)setContent:(NSString *)content {
+    content = [[LanguageHelper shared] stringForCnString:content];
     _content = content;
     self.contentTextView.text = content;
 }

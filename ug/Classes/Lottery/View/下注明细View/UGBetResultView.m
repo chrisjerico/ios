@@ -9,6 +9,39 @@
 #import "UGBetResultView.h"
 #import "BetImgView.h"
 
+#import "IBView.h"
+@interface StrokeLabel : IBLabel
+@property (nonatomic, strong) UIColor *strokeColor;
+@property (nonatomic, assign) CGFloat strokeWidth;
+@end
+@implementation StrokeLabel
+- (void)drawTextInRect:(CGRect)rect
+{
+    if (self.strokeWidth > 0) {
+        CGSize shadowOffset = self.shadowOffset;
+        UIColor *textColor = self.textColor;
+    
+        CGContextRef c = UIGraphicsGetCurrentContext();
+        CGContextSetLineWidth(c, self.strokeWidth);
+        CGContextSetLineJoin(c, kCGLineJoinRound);
+        //画外边
+        CGContextSetTextDrawingMode(c, kCGTextStroke);
+        self.textColor = self.strokeColor;
+        [super drawTextInRect:rect];
+        //画内文字
+        CGContextSetTextDrawingMode(c, kCGTextFill);
+        self.textColor = textColor;
+        self.shadowOffset = CGSizeMake(0, 0);
+        [super drawTextInRect:rect];
+        self.shadowOffset = shadowOffset;
+    } else {
+        [super drawTextInRect:rect];
+    }
+}
+@end
+
+
+
 @interface UGBetResultView()
 
 //用于保存[@"7", @"11", @"9"]  11 为六合秒秒彩
@@ -24,13 +57,14 @@
 @property(nonatomic, strong) UIButton* closeButton;
 @property(nonatomic, strong) UIButton* timerButton;
 
-@property(nonatomic, strong) dispatch_source_t timer;
-
 @property(nonatomic, strong) void(^timerAction)(dispatch_source_t timer);
 
 @end
 @implementation UGBetResultView
 
+static BOOL preparedToClose = false;
+static BOOL paused = true;
+static UGBetResultView *currentBetResultView;
 
 - (instancetype)initWithShowSecondLine :(BOOL)showSecondLine
 {
@@ -180,7 +214,27 @@
 			make.centerX.equalTo(image);
 			make.top.equalTo(image).offset(20);
 		}];
-		
+        
+        
+        if (OBJOnceToken(self)) {
+            UILabel *lb = [UILabel new];
+            lb.textColor = [UIColor whiteColor];
+            lb.numberOfLines = 0;
+            lb.textAlignment = NSTextAlignmentCenter;
+            [self addSubview:lb];
+            [lb mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self.timerButton);
+                make.width.mas_equalTo(50);
+            }];
+            [_timerButton xw_addObserverBlockForKeyPath:@"selected" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+                lb.text = [[LanguageHelper shared] stringForCnString:[newVal boolValue] ? @"暂停" : @"自动投注"];
+                lb.font = [lb.text fontWithFrameSize:CGSizeMake(50, 50) maxFont:[UIFont systemFontOfSize:19 weight:UIFontWeightHeavy]];
+            }];
+            _timerButton.selected = false;
+        }
+        if (!paused) {
+            [self timerButtonTaped:_timerButton];
+        }
 	}
 	return self;
 }
@@ -189,10 +243,10 @@
 - (void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)showSecondLine timerAction:(void(^)(dispatch_source_t timer))timerAction {
 
 	[self removeFromSuperview];
-	
+    [currentBetResultView removeFromSuperview];
 	UIWindow * window = [[UIApplication sharedApplication] keyWindow] ;
 	
-	[window addSubview: self];
+	[window addSubview: currentBetResultView = self];
 	
 	
 	[self mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -274,8 +328,19 @@
             }
         }
     }
-	[self viewWithTagString:@"第二行结果View"].hidden = !showSecondLine;
+    [self viewWithTagString:@"第二行结果View"].hidden = !showSecondLine || ![LanguageHelper shared].isCN;
     
+    StrokeLabel *lb = [StrokeLabel new];
+    lb.font = [UIFont systemFontOfSize:40 weight:UIFontWeightHeavy];
+    lb.strokeWidth = 10;
+    lb.strokeColor = UIColorRGB(186, 0, 0);
+    lb.textColor = UIColorRGB(251, 240, 0);
+    lb.text = [model.bonus floatValue] > 0 ? @"中奖啦" : @"未中奖";
+    [self addSubview:lb];
+    [lb mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.resultImage);
+    }];
+    self.resultImage.hidden = true;
 	if ([model.bonus floatValue] > 0) {
 		self.bonusLabel.text = [NSString stringWithFormat:@"+%@", model.bonus];
 		self.resultImage.image = [UIImage imageNamed:@"mmczjl"];
@@ -362,18 +427,18 @@
 }
 
 
+#pragma mark -
 
-
-static BOOL preparedToClose = false;
-static BOOL paused = true;
-
+static dispatch_source_t timer;
 
 - (void)closeButtonTaped {
 	if (paused) {
 	
 		[self removeFromSuperview];
-		if (self.timer) {
-			dispatch_source_cancel(self.timer);
+        currentBetResultView = nil;
+		if (timer) {
+			dispatch_source_cancel(timer);
+            timer = nil;
 			preparedToClose = false;
 			paused = true;
 		}
@@ -396,22 +461,26 @@ static BOOL paused = true;
 		preparedToClose = false;
 		paused = false;
 		__block int i = 0;
-		self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-		dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-		dispatch_source_set_event_handler(self.timer, ^{
+        if (timer) {
+            dispatch_source_cancel(timer);
+        }
+		timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+		dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+		dispatch_source_set_event_handler(timer, ^{
 			i ++ ;
 			if (self.timerAction && i%4 == 0) {
-				self.timerAction(self.timer);
+				self.timerAction(timer);
 				self.timerLabel.text = nil;
 				if (preparedToClose) {
-					dispatch_source_cancel(self.timer);
+					dispatch_source_cancel(timer);
+                    timer = nil;
 					paused = true;
 				}
 			} else {
 				self.timerLabel.text = [NSString stringWithFormat:@"倒计时%i秒",(4-i%4)];
 			}
 		});
-		dispatch_resume(self.timer);
+		dispatch_resume(timer);
 	} else {
 //		self.timerLabel.text = nil;
 //		dispatch_source_cancel(self.timer);

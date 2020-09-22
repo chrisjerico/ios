@@ -226,7 +226,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
 //            [SVProgressHUD showSuccessWithStatus:model.msg];
             [SVProgressHUD showSuccessWithStatus:@"兑换成功"];
             weakSelf.inputTextF.text = @"";
-            weakSelf.amountLabel.text = @"";
+            weakSelf.amountLabel.text = @"获得人民币";
             [UGUserModel currentUser].balance = _FloatString4([UGUserModel currentUser].balance.doubleValue + money.doubleValue);
             [UGUserModel currentUser].taskReward = _FloatString4([UGUserModel currentUser].taskReward.doubleValue - money.doubleValue);
             [[NSNotificationCenter defaultCenter] postNotificationName:kDidCreditsExchangeData object:nil];
@@ -275,8 +275,7 @@ static NSString *integralCellid = @"UGConvertCollectionViewCell";
                 }
             }
 
-            
-            NSString *str1 = [NSString stringWithFormat:@"%@%@:1元人民币", config.missionBili ? : @"?", config.missionName];
+            NSString *str1 = [NSString stringWithFormat:@"%@ %@:1元人民币", config.missionBili ? : @"?", config.missionName];
             weakSelf.titleLabel.text = str1;
             weakSelf.inputTextF.placeholder = [NSString stringWithFormat:@"请输入%@",config.missionName];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);

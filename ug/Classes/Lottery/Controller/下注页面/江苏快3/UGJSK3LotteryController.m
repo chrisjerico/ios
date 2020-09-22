@@ -424,23 +424,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
      }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([tableView isEqual:self.tableView]) {
-        return  40.0;
-    } else {
-        UGLotteryHistoryModel *model = self.dataArray.firstObject;
-        if ([@"bjkl8" isEqualToString:model.gameType] ||
-            [@"pk10nn" isEqualToString:model.gameType] ||
-            [@"jsk3" isEqualToString:model.gameType]
-            ) {
-            return 100;
-        }
-        return 80;
-    }
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     return 0.001;
@@ -471,7 +454,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         }
         return 0;
     }
-    return 2;
+    return [LanguageHelper shared].isCN ? 2 : 1;
     
 }
 
@@ -685,7 +668,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         collectionView;
         
     });
-    
+    if (![LanguageHelper shared].isCN) {
+        collectionView.height = 50;
+        collectionView.centerY = self.headerOneView.height/2 + 2;
+    }
     self.headerCollectionView = collectionView;
     [self.headerOneView addSubview:collectionView];
     [self.headerOneView bringSubviewToFront:self.historyBtn];
@@ -710,7 +696,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
-    CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+    CGSize size = [self.currentIssueLabel.text sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
     self.headerCollectionView.x = 25 + size.width;
     [self.headerCollectionView reloadData];
 }

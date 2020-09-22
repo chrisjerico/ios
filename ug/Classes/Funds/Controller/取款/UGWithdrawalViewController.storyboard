@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xjh-QV-lKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xjh-QV-lKb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oN9-be-qaU">
                                         <rect key="frame" x="20" y="0.0" width="364" height="85"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单笔下限100，上线5000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtA-d6-tFx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单笔下限100，上限5000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtA-d6-tFx">
                                                 <rect key="frame" x="0.0" y="69" width="147.5" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -114,7 +114,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入取款密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Brl-cT-GNM">
-                                                <rect key="frame" x="0.0" y="39.5" width="364" height="19"/>
+                                                <rect key="frame" x="0.0" y="40.5" width="364" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
@@ -130,7 +130,7 @@
                                             <constraint firstAttribute="height" constant="85" id="x4R-aA-dXH"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joU-SE-sho">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joU-SE-sho">
                                         <rect key="frame" x="142" y="305" width="120" height="44"/>
                                         <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -163,13 +163,13 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="JVk-5x-bc7"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yC0-wx-rcd" firstAttribute="top" secondItem="JVk-5x-bc7" secondAttribute="top" id="BRb-Vk-a2t"/>
                             <constraint firstItem="JVk-5x-bc7" firstAttribute="trailing" secondItem="yC0-wx-rcd" secondAttribute="trailing" constant="5" id="KfZ-F4-HrB"/>
                             <constraint firstItem="yC0-wx-rcd" firstAttribute="leading" secondItem="JVk-5x-bc7" secondAttribute="leading" constant="5" id="zjf-PK-TTG"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="JVk-5x-bc7"/>
                     </view>
                     <connections>
                         <outlet property="amountTextF" destination="YwZ-h5-Xt2" id="IXO-4b-Nrg"/>
@@ -205,22 +205,28 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvG-Ez-SuA">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvG-Ez-SuA">
                             <rect key="frame" x="155.5" y="181" width="120" height="44"/>
                             <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="cPG-aj-64g"/>
-                                <constraint firstAttribute="width" constant="120" id="g8D-zx-GUo"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="g8D-zx-GUo"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" title="绑定银行卡">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                    <point key="value" x="10" y="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="bandCardClick:" destination="Xjh-QV-lKb" eventType="touchUpInside" id="SRl-iR-AUh"/>
                             </connections>
                         </button>
                     </subviews>
+                    <viewLayoutGuide key="safeArea" id="RIB-WV-kA7"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="B8o-Ic-euk" firstAttribute="centerX" secondItem="UmO-yd-wVv" secondAttribute="centerX" id="6me-cL-Tc8"/>
@@ -230,7 +236,6 @@
                         <constraint firstItem="TvG-Ez-SuA" firstAttribute="centerX" secondItem="UmO-yd-wVv" secondAttribute="centerX" id="rmC-PL-U1B"/>
                         <constraint firstItem="WaG-h0-4r7" firstAttribute="top" secondItem="B8o-Ic-euk" secondAttribute="bottom" constant="30" id="uEE-5v-axu"/>
                     </constraints>
-                    <viewLayoutGuide key="safeArea" id="RIB-WV-kA7"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="111.59420289855073" y="148.66071428571428"/>

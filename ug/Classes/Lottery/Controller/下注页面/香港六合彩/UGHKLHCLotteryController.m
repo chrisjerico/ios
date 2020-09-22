@@ -662,23 +662,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
    
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if ([tableView isEqual:self.tableView]) {
-        return  40.0;
-    } else {
-        UGLotteryHistoryModel *model = self.dataArray.firstObject;
-        if ([@"bjkl8" isEqualToString:model.gameType] ||
-            [@"pk10nn" isEqualToString:model.gameType] ||
-            [@"jsk3" isEqualToString:model.gameType]
-            ) {
-            return 100;
-        }
-        return 80;
-    }
-    
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.001;
 }
@@ -754,7 +737,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         }
         return 0;
     }
-    return 2;
+    return [LanguageHelper shared].isCN ? 2 : 1;
     
 }
 
@@ -1440,6 +1423,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerViewID];
         collectionView;
     });
+    if (![LanguageHelper shared].isCN) {
+        collectionView.height = 50;
+        collectionView.centerY = self.headerOneView.height/2 + 2;
+    }
     self.headerCollectionView = collectionView;
     [self.headerOneView addSubview:collectionView];
     [self.headerOneView bringSubviewToFront:self.historyBtn];
@@ -1743,7 +1730,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         __weakSelf_(__self);
         NSArray *titles = @[@"鼠", @"牛", @"虎", @"兔", @"龙", @"蛇", @"马", @"羊", @"猴", @"鸡", @"狗", @"猪",];
         NSMutableArray *btns = [NSMutableArray array];
-        CGFloat w = 60, h = 45;
+        CGFloat totalW = 0, h = 45;
         UIScrollView *sv ;
         
         if (APP.isShowBorder) {
@@ -1753,12 +1740,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         else{
             sv = [[UIScrollView alloc] initWithFrame:CGRectMake(_segmentView.x, _segmentView.by-5, _segmentView.width, h)];
         }
-        sv.contentSize = CGSizeMake(titles.count * w, h);
+        
         for (int i=0; i<titles.count; i++) {
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame = CGRectMake(i * w, 0, w, h);
             btn.titleLabel.font = [UIFont systemFontOfSize:16];
-            btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+            btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+            btn.numberOfLines = 0;
             [btn setTitle:titles[i] forState:UIControlStateNormal];
             if (Skin1.isBlack||Skin1.is23) {
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -1768,6 +1755,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [btn setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
             [btn setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
             
+            CGFloat w = [btn.currentTitle widthForFont:btn.titleLabel.font] + 40;
+            btn.frame = CGRectMake(totalW, 0, w, h);
+            totalW += w;
             
             // 点击生肖时，选中/取消选中对应号码
             [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -1805,6 +1795,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [btns addObject:btn];
             [sv addSubview:btn];
         }
+        sv.contentSize = CGSizeMake(totalW + 12, h);
         
         // 选中号码时，选中/取消选中对应生肖
         [self cc_hookSelector:@selector(collectionView:didSelectItemAtIndexPath:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>ai) {

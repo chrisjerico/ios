@@ -64,6 +64,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     self.betDetailView.layer.masksToBounds = YES;
     self.betDetailView.hidden = YES;
     self.amountLabel.delegate = self;
+    ((UIStackView *)self.amountLabel.superview).axis = [LanguageHelper shared].isCN ? UILayoutConstraintAxisHorizontal : UILayoutConstraintAxisVertical;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.rowHeight = 90;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -270,7 +271,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
             float amountfloat = [__self.amount floatValue];
             float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
             
-            if (!UserI.isTest && SysConf.chatFollowSwitch && (amountfloat >= webAmountfloat)) {
+            if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= webAmountfloat)) {
                 
                 if (Skin1.isBlack) {
                     [LEEAlert alert].config
@@ -483,7 +484,7 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
 - (void)updateSelectLabelWithCount:(NSInteger )count {
     self.countLabel.text = [NSString stringWithFormat:@"共 %ld 注",count];
     NSMutableAttributedString *abstr = [[NSMutableAttributedString alloc] initWithString:self.countLabel.text];
-    [abstr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(2, self.countLabel.text.length - 4)];
+    [abstr addAttributes:@{NSForegroundColorAttributeName:[UIColor redColor]} withString:_NSString(@"%ld", count)];
     self.countLabel.attributedText = abstr;
     
 }

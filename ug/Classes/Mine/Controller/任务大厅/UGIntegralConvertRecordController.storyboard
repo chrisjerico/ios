@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ekQ-3x-kac">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ekQ-3x-kac">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,8 +61,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZn-AC-XNM">
                                         <rect key="frame" x="0.0" y="0.0" width="88" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账变类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwg-xk-gZf">
-                                                <rect key="frame" x="15.5" y="11.5" width="57.5" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账变类型" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwg-xk-gZf">
+                                                <rect key="frame" x="2" y="2" width="84" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -83,18 +83,20 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="zwg-xk-gZf" firstAttribute="top" secondItem="EZn-AC-XNM" secondAttribute="top" constant="2" id="HWF-ji-2a6"/>
                                             <constraint firstItem="HWa-ri-Go2" firstAttribute="top" secondItem="EZn-AC-XNM" secondAttribute="top" id="LOd-1v-1Ad"/>
                                             <constraint firstAttribute="trailing" secondItem="HWa-ri-Go2" secondAttribute="trailing" id="bnD-xj-frr"/>
                                             <constraint firstItem="zwg-xk-gZf" firstAttribute="centerX" secondItem="EZn-AC-XNM" secondAttribute="centerX" id="crf-aK-sS0"/>
                                             <constraint firstAttribute="bottom" secondItem="HWa-ri-Go2" secondAttribute="bottom" id="iKf-pl-3gY"/>
                                             <constraint firstItem="zwg-xk-gZf" firstAttribute="centerY" secondItem="EZn-AC-XNM" secondAttribute="centerY" id="qgY-Sn-Hna"/>
+                                            <constraint firstItem="zwg-xk-gZf" firstAttribute="leading" secondItem="EZn-AC-XNM" secondAttribute="leading" constant="2" id="s47-10-Sxc"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5DE-AR-ehM">
                                         <rect key="frame" x="88" y="0.0" width="88" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分账变" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hb-4Y-LUA">
-                                                <rect key="frame" x="15.5" y="11.5" width="57.5" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分账变" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hb-4Y-LUA">
+                                                <rect key="frame" x="2" y="2" width="84" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -117,16 +119,18 @@
                                         <constraints>
                                             <constraint firstItem="9hb-4Y-LUA" firstAttribute="centerX" secondItem="5DE-AR-ehM" secondAttribute="centerX" id="QNf-Ze-CUn"/>
                                             <constraint firstItem="PYI-rG-lnm" firstAttribute="top" secondItem="5DE-AR-ehM" secondAttribute="top" id="TVc-pq-LRj"/>
+                                            <constraint firstItem="9hb-4Y-LUA" firstAttribute="leading" secondItem="5DE-AR-ehM" secondAttribute="leading" constant="2" id="cZh-Kb-Yfb"/>
                                             <constraint firstItem="9hb-4Y-LUA" firstAttribute="centerY" secondItem="5DE-AR-ehM" secondAttribute="centerY" id="gyO-pX-KB1"/>
                                             <constraint firstAttribute="bottom" secondItem="PYI-rG-lnm" secondAttribute="bottom" id="h53-ff-c5g"/>
                                             <constraint firstAttribute="trailing" secondItem="PYI-rG-lnm" secondAttribute="trailing" id="peE-zg-QKK"/>
+                                            <constraint firstItem="9hb-4Y-LUA" firstAttribute="top" secondItem="5DE-AR-ehM" secondAttribute="top" constant="2" id="sg1-d2-8qw"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fej-u8-5sc">
                                         <rect key="frame" x="176" y="0.0" width="88" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分余额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKa-00-WFI">
-                                                <rect key="frame" x="17.5" y="12" width="53.5" height="16"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分余额" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKa-00-WFI">
+                                                <rect key="frame" x="2" y="2" width="84" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -148,10 +152,12 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="BKa-00-WFI" firstAttribute="centerY" secondItem="fej-u8-5sc" secondAttribute="centerY" id="A3U-gn-KWV"/>
+                                            <constraint firstItem="BKa-00-WFI" firstAttribute="top" secondItem="fej-u8-5sc" secondAttribute="top" constant="2" id="cAz-Dd-aHC"/>
                                             <constraint firstItem="BKa-00-WFI" firstAttribute="centerX" secondItem="fej-u8-5sc" secondAttribute="centerX" id="gvc-bU-cpG"/>
                                             <constraint firstAttribute="trailing" secondItem="69y-24-Af5" secondAttribute="trailing" id="i2D-Yn-rc6"/>
                                             <constraint firstItem="69y-24-Af5" firstAttribute="top" secondItem="fej-u8-5sc" secondAttribute="top" id="pyI-36-nIN"/>
                                             <constraint firstAttribute="bottom" secondItem="69y-24-Af5" secondAttribute="bottom" id="sKg-8h-LdU"/>
+                                            <constraint firstItem="BKa-00-WFI" firstAttribute="leading" secondItem="fej-u8-5sc" secondAttribute="leading" constant="2" id="wUq-7T-k1H"/>
                                         </constraints>
                                     </view>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqn-xI-QcW">
@@ -201,7 +207,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换人民币" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMY-pZ-dBa">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换人民币" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMY-pZ-dBa">
                                                     <rect key="frame" x="0.0" y="0.0" width="88" height="57"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

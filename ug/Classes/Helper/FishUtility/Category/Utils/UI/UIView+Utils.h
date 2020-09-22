@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UIGestureRecognizer+Utils.h"
 
+#define CGSizeOffset(size, offset) CGSizeMake(size.width+offset.width, size.height+offset.height)
+
 @interface CCGetConstraint : NSObject
 
 @property (nonatomic, assign) id owner;
