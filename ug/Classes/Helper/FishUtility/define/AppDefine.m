@@ -263,6 +263,7 @@
     _isHideTV = [@"c085" containsString:_SiteId];
     _isBottom = [@"c186" containsString:_SiteId];
     _isChatButton = [@"c186" containsString:_SiteId];
+    _isJingDian =  [@"c235,h003b" containsString:_SiteId];
 }
 
 -(BOOL)showLogo{

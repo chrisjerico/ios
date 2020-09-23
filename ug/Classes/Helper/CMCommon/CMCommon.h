@@ -476,4 +476,11 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 
 //判断网址是否正确
 -(void) validateUrl: (NSURL *) candidate;
+
+/**
+*  判断是否是数字
+*
+*
+*/
++ (BOOL) judgeIsNumberByRegularExpressionWith:(NSString *)str;
 @end

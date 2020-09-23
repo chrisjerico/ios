@@ -1663,4 +1663,21 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }
     return isLength;
 }
+/**
+*  判断是否是数字
+*  
+*
+*/
++ (BOOL) judgeIsNumberByRegularExpressionWith:(NSString *)str
+{
+   if (str.length == 0) {
+        return NO;
+    }
+    NSString *regex = @"[0-9]*";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    if ([pred evaluateWithObject:str]) {
+        return YES;
+    }
+    return NO;
+}
 @end

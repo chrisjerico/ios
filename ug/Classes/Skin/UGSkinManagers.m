@@ -1465,6 +1465,10 @@ static UGSkinManagers *__initSkin1 = nil;
         skitType = @"新年红1";
     }
     
+//    if (APP.isJingDian ) {
+//        skitType = @"1";
+//    }
+    
     
 
 #ifdef DEBUG

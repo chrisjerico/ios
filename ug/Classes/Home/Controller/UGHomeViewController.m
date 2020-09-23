@@ -1221,6 +1221,15 @@
         };
         model.cid = typeDict[model.categoryType];
         
+        
+//        NSLog(@"model.categoryType =%@",model.categoryType);
+        
+        BOOL isNum = [CMCommon judgeIsNumberByRegularExpressionWith:model.categoryType];
+        
+        NSLog(@"isNum = %d",isNum);
+        
+ 
+        
         if ([model.thread_type isEqualToString:@"2"]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
@@ -1315,6 +1324,8 @@
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
             NSLog(@"任务中心");
         }
+
+        
         else if([@"222" containsString:model.categoryType]) {
 
             UGNextIssueModel *m = [UGNextIssueModel new];
@@ -1336,6 +1347,17 @@
             NSLog(@"一分六合彩");
             
 //
+        }
+        else if([@"70" containsString:model.categoryType]) {
+     
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = @"香港六合彩";
+            m.gameId = @"70";
+            m.gameType = @"lhc";
+            m.name = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+            NSLog(@"香港六合彩");
+
         }
         else if([@"appdl" containsString:model.categoryType]) {
 //            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
