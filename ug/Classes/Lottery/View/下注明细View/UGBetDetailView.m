@@ -280,7 +280,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 float amountfloat = [__self.amount floatValue];
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
                 
-                if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= webAmountfloat) && ![__self isSpecialRule]) {
+                float chatShareBetMinAmountfloat =[SysConf.chatShareBetMinAmount floatValue];
+                
+                if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= chatShareBetMinAmountfloat) && (amountfloat >= webAmountfloat) && ![__self isSpecialRule]) {
 
                     if (Skin1.isBlack||Skin1.is23) {
                         [LEEAlert alert].config
