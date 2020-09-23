@@ -226,7 +226,7 @@
              if (model.code == 1) {
                  UGUserModel *user = model.data;
                  NSLog(@"user.needFullName = %d",user.needFullName);
-//                 if (user.needFullName) {
+                 if (user.needFullName) {
                      
                      weakSelf.mneedFullName = user.needFullName;
                      //弹窗
@@ -342,7 +342,7 @@
                      
                  }
                  
-//             }
+             }
              
              weakSelf.errorTimes += 1;
              if (weakSelf.errorTimes == 4) {
