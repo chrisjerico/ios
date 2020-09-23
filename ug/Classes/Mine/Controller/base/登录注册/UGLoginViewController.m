@@ -226,6 +226,7 @@
         NSDictionary *params = @{@"usr":self.userNameTextF.text,
                                  @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
                                  @"ggCode":self->ggCode.length ? self->ggCode : @"",
+                                 @"fullName":self.mfullName.length?self.mfullName:@"",
                                  @"device":@"3",    // 0未知，1PC，2原生安卓，3原生iOS，4安卓H5，5iOS_H5，6豪华安卓，7豪华iOS，8混合安卓，9混合iOS，10聊天安卓，11聊天iOS
         };
         
@@ -271,7 +272,7 @@
              if (model.code == 1) {
                  UGUserModel *user = model.data;
                  NSLog(@"user.needFullName = %d",user.needFullName);
-                 if (user.needFullName) {
+//                 if (user.needFullName) {
                      
                      weakSelf.mneedFullName = user.needFullName;
                      //弹窗
@@ -388,7 +389,7 @@
                      
                  }
                  
-             }
+//             }
              
              weakSelf.errorTimes += 1;
              if (weakSelf.errorTimes == 4) {
@@ -877,30 +878,7 @@
         if (message.body) {
             NSDictionary *dict = message.body;
             self.imgVcodeModel = [[UGImgVcodeModel alloc] initWithDictionary:dict error:nil];
-            //如果输入框有数据
-            //后台开启了验证码+开启了输入框
-            //调用登录
-            if (self.mneedFullName && [UGSystemConfigModel  currentConfig].loginVCode && self.mfullName.length && self.imgVcodeModel ) {
-                
-                NSDictionary *params = @{@"usr":self.userNameTextF.text,
-                                         @"pwd":[UGEncryptUtil md5:self.passwordTextF.text],
-                                         @"ggCode":self->ggCode.length ? self->ggCode : @"",
-                                         @"fullName":self.mfullName,
-                                         @"device":@"3",    // 0未知，1PC，2原生安卓，3原生iOS，4安卓H5，5iOS_H5，6豪华安卓，7豪华iOS，8混合安卓，9混合iOS，10聊天安卓，11聊天iOS
-                };
-                
-                NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
-                if (self.imgVcodeModel) {
-                    NSString *sid = @"slideCode[nc_sid]";
-                    NSString *token = @"slideCode[nc_token]";
-                    NSString *sig = @"slideCode[nc_sig]";
-                    [mutDict setValue:self.imgVcodeModel.nc_csessionid forKey:sid];
-                    [mutDict setValue:self.imgVcodeModel.nc_token forKey:token];
-                    [mutDict setObject:self.imgVcodeModel.nc_value forKey:sig];
-                }
-                
-                [self loginAction:mutDict];
-            }
+
         }
         
     }
