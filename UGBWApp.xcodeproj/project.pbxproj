@@ -1572,6 +1572,10 @@
 		033372F624F593F400048EC1 /* EggFrenzyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033372F424F593F400048EC1 /* EggFrenzyViewController.xib */; };
 		033372F924F59C7E00048EC1 /* 砸金蛋标题.gif in Resources */ = {isa = PBXBuildFile; fileRef = 033372F824F59C7E00048EC1 /* 砸金蛋标题.gif */; };
 		033372FB24F62FDA00048EC1 /* 金蛋_打开@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 033372FA24F62FD900048EC1 /* 金蛋_打开@3x.gif */; };
+		033A72D5251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 033A72D3251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m */; };
+		033A72D6251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 033A72D3251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m */; };
+		033A72D7251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A72D4251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib */; };
+		033A72D8251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A72D4251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib */; };
 		036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
@@ -3582,6 +3586,9 @@
 		033372F424F593F400048EC1 /* EggFrenzyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EggFrenzyViewController.xib; sourceTree = "<group>"; };
 		033372F824F59C7E00048EC1 /* 砸金蛋标题.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "砸金蛋标题.gif"; sourceTree = "<group>"; };
 		033372FA24F62FD900048EC1 /* 金蛋_打开@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "金蛋_打开@3x.gif"; sourceTree = "<group>"; };
+		033A72D2251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSSCLotteryWXNumberIputCell.h; sourceTree = "<group>"; };
+		033A72D3251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSSCLotteryWXNumberIputCell.m; sourceTree = "<group>"; };
+		033A72D4251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSSCLotteryWXNumberIputCell.xib; sourceTree = "<group>"; };
 		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
 		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
 		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
@@ -5868,6 +5875,9 @@
 				031E16AB23BE812400B0F813 /* UGSSCLotteryController.h */,
 				031E16A923BE812400B0F813 /* UGSSCLotteryController.m */,
 				031E16AA23BE812400B0F813 /* UGSSCLotteryController.storyboard */,
+				033A72D2251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.h */,
+				033A72D3251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m */,
+				033A72D4251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib */,
 			);
 			path = "时时彩";
 			sourceTree = "<group>";
@@ -5935,6 +5945,7 @@
 			isa = PBXGroup;
 			children = (
 				CF533AFD251DDD2D00462E31 /* 侧边栏 */,
+				033A72B62519D93400555B09 /* 时时彩CollectionHeader */,
 				D407459B2511F37800606EA3 /* 越南 */,
 				031E16D123BE812400B0F813 /* 广告View */,
 				031E16D523BE812400B0F813 /* 号码Cell */,
@@ -5970,18 +5981,15 @@
 				D4ACC074247041AE005AB971 /* UGLotterySubResultCollectionViewCell.h */,
 				031E16ED23BE812400B0F813 /* UGLotterySubResultCollectionViewCell.m */,
 				031E16F323BE812400B0F813 /* UGLotterySubResultCollectionViewCell.xib */,
-				031E16DA23BE812400B0F813 /* UGTimeLotteryBetHeaderView.h */,
-				031E16F123BE812400B0F813 /* UGTimeLotteryBetHeaderView.m */,
-				031E16EC23BE812400B0F813 /* UGTimeLotteryBetHeaderView.xib */,
 				031E16EE23BE812400B0F813 /* UGTimeLotteryLeftTitleCell.h */,
 				031E170223BE812400B0F813 /* UGTimeLotteryLeftTitleCell.m */,
 				031E16D623BE812400B0F813 /* UGTimeLotteryLeftTitleCell.xib */,
-				031E16F023BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.h */,
-				031E16DB23BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.m */,
-				031E16D923BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.xib */,
 				D4ACC075247041F8005AB971 /* UGLotteryResultCollectionViewCell.h */,
 				031E16D823BE812400B0F813 /* UGLotteryResultCollectionViewCell.m */,
 				031E170123BE812400B0F813 /* UGLotteryResultCollectionViewCell.xib */,
+				031E16F023BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.h */,
+				031E16DB23BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.m */,
+				031E16D923BE812400B0F813 /* UGTimeLotteryBetCollectionViewCell.xib */,
 			);
 			path = "号码Cell";
 			sourceTree = "<group>";
@@ -7671,6 +7679,16 @@
 			path = "火山橙";
 			sourceTree = "<group>";
 		};
+		033A72B62519D93400555B09 /* 时时彩CollectionHeader */ = {
+			isa = PBXGroup;
+			children = (
+				031E16DA23BE812400B0F813 /* UGTimeLotteryBetHeaderView.h */,
+				031E16F123BE812400B0F813 /* UGTimeLotteryBetHeaderView.m */,
+				031E16EC23BE812400B0F813 /* UGTimeLotteryBetHeaderView.xib */,
+			);
+			path = "时时彩CollectionHeader";
+			sourceTree = "<group>";
+		};
 		03638F4B24D57B6900AAFAD3 /* 砸金蛋 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9121,6 +9139,7 @@
 				031E1BD523BE812900B0F813 /* UGPCDDLotteryController.storyboard in Resources */,
 				031E1C1123BE812900B0F813 /* UGLotteryAdPopView.xib in Resources */,
 				038A585924AAD03D0099D659 /* NameEditVC.xib in Resources */,
+				033A72D8251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib in Resources */,
 				031EF5C623BE7B4D00B0F813 /* MomentsPublishImageCell.xib in Resources */,
 				031E1DFB23BE812C00B0F813 /* UGMissionTitleCell.xib in Resources */,
 				031EF58423BE7B4D00B0F813 /* chakan_hongbao.svg in Resources */,
@@ -9423,6 +9442,7 @@
 				031E1D8223BE812B00B0F813 /* UGRealBetRecordViewController.storyboard in Resources */,
 				031E1E2423BE812C00B0F813 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				031E1B1223BE812800B0F813 /* UGLotteryRecordController.storyboard in Resources */,
+				033A72D7251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib in Resources */,
 				031E1D2023BE812B00B0F813 /* UGMissionCenterViewController.storyboard in Resources */,
 				CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */,
 				CF76AA0224D41B23001E4AF6 /* ztlight-yn.gif in Resources */,
@@ -9901,6 +9921,7 @@
 				031E1A5923BE812700B0F813 /* UIView+Events.m in Sources */,
 				031EF55B23BE7B4D00B0F813 /* UIViewController+APP.swift in Sources */,
 				031E1AEF23BE812800B0F813 /* NullSafe.m in Sources */,
+				033A72D6251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m in Sources */,
 				031EF5BC23BE7B4D00B0F813 /* MomentsHomeCell.swift in Sources */,
 				031E1A7123BE812700B0F813 /* UITabBarItem+WZLBadge.m in Sources */,
 				031E1C8F23BE812A00B0F813 /* UGOneTitleTableViewCell.m in Sources */,
@@ -11135,6 +11156,7 @@
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
 				D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */,
 				031E1ADE23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,
+				033A72D5251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m in Sources */,
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
 				031E1A4E23BE812700B0F813 /* CMCommonHook.m in Sources */,
 				031E1B2423BE812800B0F813 /* UGChangLongController.m in Sources */,

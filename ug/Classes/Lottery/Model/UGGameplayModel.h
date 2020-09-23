@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *alias;          /**<   玩法别名 */
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *name;           /**<   玩法名称 */
+@property (nonatomic, strong, nullable) NSString *name;           /**<   玩法名称 */
 @property (nonatomic, strong) NSString *from_id;
 
 @property (nonatomic, strong) NSString *code;           /**<   玩法标识 */
