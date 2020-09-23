@@ -252,6 +252,21 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 }
 
 
+-(BOOL) isBetMin:(float)amountfloat{
+
+    if ([CMCommon stringIsNull:SysConf.chatShareBetMinAmount]) {
+        return YES;
+    }
+    else{
+        float chatShareBetMinAmountfloat =[SysConf.chatShareBetMinAmount floatValue];
+        if (chatShareBetMinAmountfloat == 0) {
+            return  YES;
+        } else {
+            return (amountfloat >= chatShareBetMinAmountfloat);
+        }
+    }
+}
+
 - (void)submitBet:(NSDictionary *)params {
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
@@ -280,9 +295,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 float amountfloat = [__self.amount floatValue];
                 float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
                 
-                float chatShareBetMinAmountfloat =[SysConf.chatShareBetMinAmount floatValue];
+       
                 
-                if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= chatShareBetMinAmountfloat) && (amountfloat >= webAmountfloat) && ![__self isSpecialRule]) {
+                if (!UserI.isTest && UserI.chatShareBet && [weakSelf isBetMin:amountfloat] && (amountfloat >= webAmountfloat) && ![__self isSpecialRule]) {
 
                     if (Skin1.isBlack||Skin1.is23) {
                         [LEEAlert alert].config

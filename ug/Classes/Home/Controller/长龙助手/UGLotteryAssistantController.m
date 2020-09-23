@@ -270,8 +270,8 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
             
             float amountfloat = [__self.amount floatValue];
             float webAmountfloat = [SysConf.chatMinFollowAmount floatValue];
-            float chatShareBetMinAmountfloat =[SysConf.chatShareBetMinAmount floatValue];
-            if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= webAmountfloat)&& (amountfloat >= chatShareBetMinAmountfloat)) {
+   
+            if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= webAmountfloat)&& [weakSelf isBetMin:amountfloat]) {
                 
                 if (Skin1.isBlack) {
                     [LEEAlert alert].config
@@ -325,6 +325,21 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         }];
     }];
     
+}
+
+-(BOOL) isBetMin:(float)amountfloat{
+
+    if ([CMCommon stringIsNull:SysConf.chatShareBetMinAmount]) {
+        return YES;
+    }
+    else{
+        float chatShareBetMinAmountfloat =[SysConf.chatShareBetMinAmount floatValue];
+        if (chatShareBetMinAmountfloat == 0) {
+            return  YES;
+        } else {
+            return (amountfloat >= chatShareBetMinAmountfloat);
+        }
+    }
 }
 
 -(void)goLotteryBetAndChatVC{
