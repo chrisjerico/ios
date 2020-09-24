@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *showNewRequestBtn;
 @property (weak, nonatomic) IBOutlet UIButton *currentSiteIdButton; /**<   当前站点按钮 */
 @property (weak, nonatomic) IBOutlet UISegmentedControl *toolSegmentedControl;
+@property (weak, nonatomic) IBOutlet UITextView *retTextView;
 
 @property (nonatomic) NSMutableArray <CCSessionModel *>*allRequest; /**<    请求列表 */
 @property (nonatomic) NSMutableArray <CCSessionModel *>*aNewRequest; /**<    请求列表 */
@@ -312,6 +313,16 @@ static LogVC *_logVC = nil;
     [_showNewRequestBtn setTitle:@"有0条新请求，点击查看" forState:UIControlStateNormal];
 }
 
+- (IBAction)onUnfoldBtnClick:(UIButton *)sender {
+    static BOOL isUnfold = false;
+    isUnfold = !isUnfold;
+    _reqTableView.cc_constraints.height.constant = isUnfold ? APP.Height - 240 - APP.BottomSafeHeight - APP.StatusBarHeight : 180;
+}
+
+- (IBAction)onResSegmentedControlValueChanged:(UISegmentedControl *)sender {
+    _retTextView.hidden = sender.selectedSegmentIndex;
+}
+
 // 显示返回结果
 - (IBAction)onShowResultBtnClick:(UIButton *)sender {
     static UITextView *tv = nil;
@@ -389,6 +400,22 @@ static LogVC *_logVC = nil;
     if (tableView == _reqTableView) {
         _selectedModel = (_collectButton.selected ? _collects : _allRequest)[indexPath.row];
         _selectedModelKeys = _selectedModel.params.allKeys;
+        if (_selectedModel.error) {
+            _retTextView.text = [_selectedModel.error description];
+        } else if (_selectedModel.responseObject) {
+            __block CCSessionModel *lastModel = _selectedModel;
+            NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.responseObject options:NSJSONWritingPrettyPrinted error:nil];
+            if (data.length > 10000) {
+                _retTextView.text = @"正在加载中。。。";
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if (lastModel == self.selectedModel) {
+                        self.retTextView.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                    }
+                });
+            } else {
+                _retTextView.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            }
+        }
         [_paramsTableView reloadData];
     } else {
         // 文本弹框

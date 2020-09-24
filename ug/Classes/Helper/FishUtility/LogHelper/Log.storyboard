@@ -104,20 +104,39 @@
                                             <action selector="onTopSegmentedControlValueChanged:" destination="jnV-av-miB" eventType="valueChanged" id="yfR-kc-6sp"/>
                                         </connections>
                                     </segmentedControl>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU6-9F-Uag">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ei9-IT-PzX">
                                         <rect key="frame" x="0.0" y="65" width="375" height="25"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="UEB-ix-fGp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="有0条新请求">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onShowNewRequestBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="Jzw-w8-cpV"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU6-9F-Uag">
+                                                <rect key="frame" x="0.0" y="0.0" width="265.66666666666669" height="25"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="UEB-ix-fGp"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="有0条新请求，点击查看">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onShowNewRequestBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="Jzw-w8-cpV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4df-pt-vpU">
+                                                <rect key="frame" x="266.66666666666669" y="0.0" width="108.33333333333331" height="25"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="nqD-yC-QZX"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <state key="normal" title="展开/收起">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onUnfoldBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="vi6-9U-IiK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cza-Fp-ltk">
                                         <rect key="frame" x="0.0" y="90" width="375" height="180"/>
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -203,38 +222,38 @@
                                             <outlet property="delegate" destination="jnV-av-miB" id="0Vl-6h-FXy"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nqn-QL-LFF">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kco-2y-Xg2">
                                         <rect key="frame" x="0.0" y="270" width="375" height="30"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="248" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mlB-L5-Qff">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="mRZ-4v-NN8"/>
                                                 </constraints>
                                                 <segments>
-                                                    <segment title="请求参数"/>
                                                     <segment title="返回结果"/>
+                                                    <segment title="请求参数"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="onResSegmentedControlValueChanged:" destination="jnV-av-miB" eventType="valueChanged" id="mrV-kc-T5g"/>
+                                                </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yv1-tN-xV6">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <rect key="frame" x="320" y="0.0" width="55" height="30"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="55" id="oKM-iC-PwS"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="展开">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="onShowResultBtnClick:" destination="jnV-av-miB" eventType="touchUpInside" id="1Fl-U5-aNW"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Yv1-tN-xV6" secondAttribute="trailing" id="2jF-Nh-azb"/>
-                                            <constraint firstItem="Yv1-tN-xV6" firstAttribute="top" secondItem="Nqn-QL-LFF" secondAttribute="top" id="I8N-Ia-0jV"/>
-                                            <constraint firstAttribute="bottom" secondItem="mlB-L5-Qff" secondAttribute="bottom" id="QU0-ae-hg6"/>
-                                            <constraint firstAttribute="bottom" secondItem="Yv1-tN-xV6" secondAttribute="bottom" id="R2z-TN-LQ0"/>
-                                            <constraint firstItem="mlB-L5-Qff" firstAttribute="top" secondItem="Nqn-QL-LFF" secondAttribute="top" id="cE4-vE-rln"/>
-                                            <constraint firstItem="mlB-L5-Qff" firstAttribute="leading" secondItem="Nqn-QL-LFF" secondAttribute="leading" id="dQu-GM-IiZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="mlB-L5-Qff" secondAttribute="trailing" id="rp4-hi-my9"/>
-                                            <constraint firstItem="Yv1-tN-xV6" firstAttribute="leading" secondItem="Nqn-QL-LFF" secondAttribute="leading" id="x4q-IW-gRO"/>
-                                        </constraints>
-                                    </view>
+                                    </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="25" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHh-li-cTe">
                                         <rect key="frame" x="0.0" y="300" width="375" height="434"/>
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -288,13 +307,24 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="正在加载中。。。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CXS-gJ-BQy">
+                                <rect key="frame" x="0.0" y="344" width="375" height="434"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10.5"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w4j-OV-F0b"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="CXS-gJ-BQy" firstAttribute="centerY" secondItem="lHh-li-cTe" secondAttribute="centerY" id="0zS-YW-zrK"/>
                             <constraint firstItem="bjQ-YF-fEv" firstAttribute="leading" secondItem="w4j-OV-F0b" secondAttribute="leading" id="1wd-uO-iQn"/>
                             <constraint firstItem="bjQ-YF-fEv" firstAttribute="trailing" secondItem="w4j-OV-F0b" secondAttribute="trailing" id="2fE-4o-lzD"/>
+                            <constraint firstItem="CXS-gJ-BQy" firstAttribute="width" secondItem="lHh-li-cTe" secondAttribute="width" id="8yf-ey-2Uj"/>
+                            <constraint firstItem="CXS-gJ-BQy" firstAttribute="centerX" secondItem="lHh-li-cTe" secondAttribute="centerX" id="Fgl-Oo-7Se"/>
                             <constraint firstItem="bjQ-YF-fEv" firstAttribute="bottom" secondItem="w4j-OV-F0b" secondAttribute="bottom" id="Fy4-WF-Vh2"/>
+                            <constraint firstItem="CXS-gJ-BQy" firstAttribute="height" secondItem="lHh-li-cTe" secondAttribute="height" id="RiR-WC-qDG"/>
                             <constraint firstItem="bjQ-YF-fEv" firstAttribute="top" secondItem="w4j-OV-F0b" secondAttribute="top" id="Xil-Ti-mpm"/>
                         </constraints>
                     </view>
@@ -303,6 +333,7 @@
                         <outlet property="currentSiteIdButton" destination="lUk-uB-tOf" id="ALa-m8-Kbj"/>
                         <outlet property="paramsTableView" destination="lHh-li-cTe" id="y3T-NS-JvX"/>
                         <outlet property="reqTableView" destination="Cza-Fp-ltk" id="BDL-It-KWY"/>
+                        <outlet property="retTextView" destination="CXS-gJ-BQy" id="eeP-0G-sR5"/>
                         <outlet property="showNewRequestBtn" destination="fU6-9F-Uag" id="DfB-MK-4VN"/>
                         <outlet property="toolSegmentedControl" destination="MhI-Hc-9EZ" id="79c-wc-KsC"/>
                     </connections>
@@ -313,6 +344,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
