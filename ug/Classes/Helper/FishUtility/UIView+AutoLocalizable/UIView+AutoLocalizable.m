@@ -162,6 +162,6 @@ static BOOL _EnableAutoLocalizable = false;
     });
 }
 - (void)cc_lan_setTitle:(NSString *)title {
-    [self cc_lan_setTitle:[[LanguageHelper shared] stringForCnString:title]];
+    [self cc_lan_setTitle:[[LanguageHelper shared] stringForCnString:title] ? : title];
 }
 @end

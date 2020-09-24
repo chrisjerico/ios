@@ -54,7 +54,6 @@ static NSDictionary <NSString *, NSString *>*_cnKvs = nil;
 static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 
 + (instancetype)shared {
-    if (DisableLanguage) return nil;
     static LanguageHelper *obj = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -175,6 +174,9 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
 }
 
 - (void)setLanCode:(NSString *)lanCode {
+    if (DisableLanguage) {
+        lanCode = @"zh-cn";
+    }
     _lanCode = lanCode;
     _kvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", lanCode)];
     _cnKvs = [[NSUserDefaults standardUserDefaults] dictionaryForKey:_NSString(@"lan_%@", @"zh-cn")];

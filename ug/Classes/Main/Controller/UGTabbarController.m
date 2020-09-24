@@ -433,6 +433,7 @@ static UGTabbarController *_tabBarVC = nil;
         UGNavigationController *nav = [[UGNavigationController alloc] initWithRootViewController:vc];
         nav.view.backgroundColor = Skin1.bgColor;
         nav.tabBarItem.title = mm.name;
+        nav.title = mm.name;
         //
         NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]];
         if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
