@@ -27,12 +27,13 @@
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
-@property (weak, nonatomic) IBOutlet UITextView *resTextView;       /**<    响应TextView */
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;       /**<    收藏按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *showNewRequestBtn;
 @property (weak, nonatomic) IBOutlet UIButton *currentSiteIdButton; /**<   当前站点按钮 */
 @property (weak, nonatomic) IBOutlet UISegmentedControl *toolSegmentedControl;
 
 @property (nonatomic) NSMutableArray <CCSessionModel *>*allRequest; /**<    请求列表 */
+@property (nonatomic) NSMutableArray <CCSessionModel *>*aNewRequest; /**<    请求列表 */
 @property (nonatomic) NSMutableArray <CCSessionModel *>*collects;   /**<    收藏列表 */
 
 @property (nonatomic) CCSessionModel *selectedModel;                /**<    选中的请求 */
@@ -94,19 +95,11 @@ static LogVC *_logVC = nil;
         swipe.direction = UISwipeGestureRecognizerDirectionRight;
         swipe;
     })];
-    
-    // 3击拷贝手势
-    [_logVC.resTextView addGestureTapEventHandle:^(id sender, UITapGestureRecognizer *gestureRecognizer) {
-        [UIPasteboard generalPasteboard].string = _logVC.resTextView.text;
-        [HUDHelper showMsg:@"已拷贝"];
-    }].numberOfTapsRequired = 3;
 }
 
 + (void)addRequestModel:(CCSessionModel *)sm {
-    [_logVC.allRequest insertObject:sm atIndex:0];
-    if (_logVC.view.by > 10) {
-        [_logVC.reqTableView reloadData];
-    }
+    [_logVC.aNewRequest insertObject:sm atIndex:0];
+    [_logVC.showNewRequestBtn setTitle:_NSString(@"有%ld条新请求，点击查看", (long)_logVC.aNewRequest.count) forState:UIControlStateNormal];
 }
 
 + (void)addLog:(NSString *)log {
@@ -117,6 +110,7 @@ static LogVC *_logVC = nil;
     [super viewDidLoad];
     _log = [@"" mutableCopy];
     _allRequest = [NSMutableArray array];
+    _aNewRequest = @[].mutableCopy;
     
     _collects = [[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"Collectedequests"]] mutableCopy];
     if (!_collects.count)
@@ -125,7 +119,6 @@ static LogVC *_logVC = nil;
     
     _reqTableView.rowHeight = 46;
     _paramsTableView.rowHeight = 25;
-    _paramsTableView.hidden = true;
 }
 
 
@@ -311,8 +304,56 @@ static LogVC *_logVC = nil;
     [_reqTableView reloadData];
 }
 
-- (IBAction)onBottomSegmentedControlValueChanged:(UISegmentedControl *)sender {
-    _paramsTableView.hidden = !sender.selectedSegmentIndex;
+// 显示新请求
+- (IBAction)onShowNewRequestBtnClick:(UIButton *)sender {
+    [_allRequest insertObjects:_aNewRequest atIndex:0];
+    [_aNewRequest removeAllObjects];
+    [_reqTableView reloadData];
+    [_showNewRequestBtn setTitle:@"有0条新请求，点击查看" forState:UIControlStateNormal];
+}
+
+// 显示返回结果
+- (IBAction)onShowResultBtnClick:(UIButton *)sender {
+    static UITextView *tv = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIView *v = [[UIView alloc] initWithFrame:APP.Bounds];
+        v.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+        [v addSubview:tv = [[UITextView alloc] initWithFrame:CGRectMake(10, 50, APP.Width-20, APP.Height-100)]];
+        tv.editable = false;
+        tv.layer.masksToBounds = true;
+        tv.layer.cornerRadius = 20;
+        [v addSubview:({
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(v.width-60, 50, 50, 50);
+            [btn setTitle:@"关闭" forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+                tv.superview.hidden = true;
+            }];
+            btn;
+        })];
+        [v addSubview:({
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(v.width-110, 50, 50, 50);
+            [btn setTitle:@"拷贝" forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+                [UIPasteboard generalPasteboard].string = tv.text;
+                [HUDHelper showMsg:@"已拷贝"];
+            }];
+            btn;
+        })];
+        [APP.Window addSubview:v];
+    });
+    if (_selectedModel.error) {
+        tv.text = [_selectedModel.error description];
+    } else if (_selectedModel.responseObject) {
+        NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.responseObject options:NSJSONWritingPrettyPrinted error:nil];
+        tv.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    }
+    [APP.Window addSubview:tv.superview];
+    tv.superview.hidden = false;
 }
 
 
@@ -348,12 +389,6 @@ static LogVC *_logVC = nil;
     if (tableView == _reqTableView) {
         _selectedModel = (_collectButton.selected ? _collects : _allRequest)[indexPath.row];
         _selectedModelKeys = _selectedModel.params.allKeys;
-        if (_selectedModel.error) {
-            _resTextView.text = [_selectedModel.error description];
-        } else if (_selectedModel.responseObject) {
-            NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.responseObject options:NSJSONWritingPrettyPrinted error:nil];
-            _resTextView.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        }
         [_paramsTableView reloadData];
     } else {
         // 文本弹框
