@@ -186,28 +186,26 @@
        // 图片
        if (_item.pic.length) {
            FLAnimatedImageView *imgView = [FLAnimatedImageView new];
-           _mimgView = imgView;
            imgView.contentMode = UIViewContentModeScaleAspectFit;
-           NSURL *url = [NSURL URLWithString:_item.pic];
-           UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
-           if (image) {
-               
-               CGFloat w = labelW;
-               CGFloat h = image.height/image.width * w;
-               imgView.cc_constraints.height.constant = h;
-               [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
-               
-               [self.mUIScrollView addSubview:imgView];
-               [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                   make.centerX.equalTo(self.view);
-                   make.top.equalTo(_titleLabel.mas_bottom).offset(labelY);
-                   make.width.mas_equalTo(labelW);
-                   make.height.mas_equalTo(h);
-               }];
-               
-               _ImgH = h+8;
-               
-           }
+           [self.mUIScrollView addSubview:imgView];
+           _mimgView = imgView;
+           
+           [imgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+               make.centerX.equalTo(self.view);
+               make.top.equalTo(self.titleLabel.mas_bottom).offset(labelY);
+               make.width.mas_equalTo(labelW);
+               make.height.mas_equalTo(60);
+           }];
+           
+           __weakSelf_(__self);
+           [imgView sd_setImageWithURL:[NSURL URLWithString:_item.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+               if (image) {
+                   CGFloat w = labelW;
+                   CGFloat h = image.height/image.width * w;
+                   imgView.cc_constraints.height.constant = h;
+                   __self.ImgH = h+8;
+               }
+           }];
        }
        
        
