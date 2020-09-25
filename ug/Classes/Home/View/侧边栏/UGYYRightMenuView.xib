@@ -400,7 +400,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="PHu-6W-tgT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0Xu-bz-Ziq"/>
                 <constraint firstItem="8Gd-MC-z0g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3KF-jC-xeL"/>

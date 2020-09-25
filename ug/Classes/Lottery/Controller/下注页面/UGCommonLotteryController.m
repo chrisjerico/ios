@@ -23,6 +23,7 @@
 #import "YNBetDetailView.h"
 #import "YNHLPrizeDetailView.h"
 #import "YNHZMPrizeDetailView.h"
+#import "UGLotteryRightMenuView.h"
 
 @interface UIButton (customSetEnable)
 -(void)customSetEnable:(BOOL)enabled;
@@ -635,12 +636,22 @@
 }
 
 - (void)onTitleClick {
-	UGLotterySelectController * vc = [UGLotterySelectController new];
-	vc.didSelectedItemBlock = ^(UGNextIssueModel *nextModel) {
-        [NavController1 pushViewControllerWithNextIssueModel:nextModel isChatRoom:NO];
-	};
-	UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
-	[self presentViewController:nav animated:true completion:nil];
+    
+    if (APP.isNewLotteryView) {
+        UGLotteryRightMenuView  *yymenuView = [[UGLotteryRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW * 2/ 3, UGScerrnH)];
+      
+        [yymenuView show];
+    }
+    else{
+        UGLotterySelectController * vc = [UGLotterySelectController new];
+        vc.didSelectedItemBlock = ^(UGNextIssueModel *nextModel) {
+            [NavController1 pushViewControllerWithNextIssueModel:nextModel isChatRoom:NO];
+        };
+        UGNavigationController * nav = [[UGNavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nav animated:true completion:nil];
+    }
+    
+
 }
 
 
