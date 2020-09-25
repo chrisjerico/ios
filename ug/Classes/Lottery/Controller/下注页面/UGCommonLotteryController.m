@@ -56,7 +56,7 @@
 @property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
-//@property (nonatomic, strong) UIButton * radomNumberButton;
+@property (nonatomic, strong) UGLotteryRightMenuView  *yymenuView;
 @end
 
 
@@ -638,9 +638,17 @@
 - (void)onTitleClick {
     
     if (APP.isNewLotteryView) {
-        UGLotteryRightMenuView  *yymenuView = [[UGLotteryRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW * 2/ 3, UGScerrnH)];
+        self.yymenuView = [[UGLotteryRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW * 2/ 3, UGScerrnH)];
       
-        [yymenuView show];
+        //此处为重点
+        WeakSelf;
+        self.yymenuView.backToHomeBlock = ^{
+            [weakSelf.navigationController popViewControllerAnimated:NO];
+            if (weakSelf.gotoTabBlock) {
+                weakSelf.gotoTabBlock();
+            }
+        };
+        [self.yymenuView show];
     }
     else{
         UGLotterySelectController * vc = [UGLotterySelectController new];

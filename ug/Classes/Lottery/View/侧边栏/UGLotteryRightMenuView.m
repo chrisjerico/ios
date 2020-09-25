@@ -27,6 +27,7 @@
 - (void)show {
     self.frame = APP.Bounds;
     [APP.Window addSubview:self];
+    [self.returnHomeBtn setBackgroundColor:Skin1.navBarBgColor];
     self.returnHomeBtn.superview.superview.cc_constraints.left.constant = -APP.Width;
     [self layoutIfNeeded];
     [UIView animateWithDuration:0.35 animations:^{
@@ -45,5 +46,12 @@
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+}
+#pragma mark - 去首页
+- (IBAction)goHomeAction:(id)sender {
+    
+    [self hiddenSelf];
+    if (self.backToHomeBlock)
+        self.backToHomeBlock();
 }
 @end

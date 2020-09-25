@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef void(^LotteryRightMenuBlock)(void);
 @interface UGLotteryRightMenuView : UIView
+@property (nonatomic, copy) LotteryRightMenuBlock backToHomeBlock;
 - (void)show ;
 @end
 
