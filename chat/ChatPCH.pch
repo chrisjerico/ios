@@ -121,6 +121,8 @@
 #import "UGDocumentVC.h"
 #import "SGBrowserView.h"
 #import "Global.h"
+#import "LanguageHelper.h"
+#import "MyChatRoomsModel.h"
 
 
 
