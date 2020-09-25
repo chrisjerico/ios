@@ -62,6 +62,8 @@ Action一般分为3种类型 1. 默认类型 2. 销毁类型(Destructive) 3.取�
 
 也就是说整个添加的结构是以他们两个展开的 , 这个仅作为了解即可.
 
+![Layout](https://github.com/lixiang1994/LEEAlert/blob/master/Resources/layout.png)
+
 ### Alert
 ```
     // 完整结构
@@ -305,6 +307,13 @@ Action一般分为3种类型 1. 默认类型 2. 销毁类型(Destructive) 3.取�
 - 当需要很复杂的样式时 如果默认提供的这些功能项无法满足, 建议将其封装成一个UIView对象 添加自定义视图来显示.
 - ActionSheet中 取消类型的Action 显示的位置与原生位置相同 处于底部独立的位置.
 - 设置最大宽度高度时如果使用`CGRectGetWidth([[UIScreen mainScreen] bounds])`这类方法 请考虑iOS8以后屏幕旋转 width和height会变化的特性.
+
+
+
+其他问题
+==============
+
+详情请查看[Issues](https://github.com/lixiang1994/LEEAlert/issues?q=is%3Aissue+is%3Aopen+label%3AQ%26A)
 
 
 安装

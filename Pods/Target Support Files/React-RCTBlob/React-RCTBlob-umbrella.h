@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "RCTBlobCollector.h"
 
 FOUNDATION_EXPORT double RCTBlobVersionNumber;
 FOUNDATION_EXPORT const unsigned char RCTBlobVersionString[];
