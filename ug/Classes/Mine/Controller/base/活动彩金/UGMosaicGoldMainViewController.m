@@ -175,7 +175,6 @@
 - (void)buildSegment
 {
 
-    
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.view addSubview:self.slideSwitchView];
     

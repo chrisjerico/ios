@@ -6,12 +6,17 @@
 //  Copyright © 2020 ug. All rights reserved.
 //
 
-#import "UUMarqueeView.h"
-#import "UGNoticeTypeModel.h"
+
 #import "NewLotteryHomeViewController.h"
 #import "UGNoticePopView.h"
 #import "UGFundsViewController.h"
-@interface NewLotteryHomeViewController ()<UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
+#import "XYYSegmentControl.h"
+#import "NewLotteryListController.h"
+#import "UUMarqueeView.h"
+#import "UGNoticeTypeModel.h"
+#import "UGYYRightMenuView.h"
+#import "STBarButtonItem.h"
+@interface NewLotteryHomeViewController ()<UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,XYYSegmentControlDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headView;   /**<   头View */
 @property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;    /**<    刷新按钮 */
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;/**<    昵称 */
@@ -24,7 +29,12 @@
 @property (nonatomic, strong) NSMutableArray <NSString *> *leftwardMarqueeViewData; /**<   跑马灯数据 */
 @property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;  /**<   点击跑马灯弹出的数据 */
 //===================================================
-
+@property (nonatomic, strong)XYYSegmentControl *slideSwitchView;
+@property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;
+@property (nonatomic,strong)  NSMutableArray <NewLotteryListController *> *viewsArray;
+@property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
+//===================================================
+@property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 @end
 
 @implementation NewLotteryHomeViewController
@@ -41,22 +51,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"彩票大厅";
     
     [self.view setBackgroundColor:Skin1.bgColor];
-    [self.headView setBackgroundColor:Skin1.navBarBgColor];
-    [self.rollingView setBackgroundColor:Skin1.bgColor];
-    [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
-    self.withdrawButton.layer.borderWidth = 1;
-    self.withdrawButton.layer.borderColor = [Skin1.textColor1 CGColor];
-    self.withdrawButton.layer.cornerRadius = 3;
-    [self.withdrawButton setTitleColor:Skin1.textColor1 forState:(UIControlStateNormal)];
-    self.rechargeButton.layer.borderWidth = 1;
-    self.rechargeButton.layer.borderColor = [Skin1.textColor1 CGColor];
-    self.rechargeButton.layer.cornerRadius = 3;
-    [self.rechargeButton setTitleColor:Skin1.textColor1 forState:(UIControlStateNormal)];
-    [self.userNameLabel setTextColor:Skin1.textColor1];
-    [self.moneyLabel setTextColor:Skin1.textColor1];
     
+    if (![Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
+        [self.headView setBackgroundColor:Skin1.navBarBgColor];
+    }
+    
+    [self.rollingView setBackgroundColor:Skin1.bgColor];
+    [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(94 , 140, 178, 1) borderWidth:1];
+    self.withdrawButton.layer.borderWidth = 0.5f;
+    self.withdrawButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.withdrawButton.layer.cornerRadius = 3;
+    self.rechargeButton.layer.borderWidth = 0.5f;
+    self.rechargeButton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.rechargeButton.layer.cornerRadius = 3;
+
     self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
     self.leftwardMarqueeView.delegate = self;
     self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
@@ -66,7 +77,13 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNoticeInfo)];
     [self.leftwardMarqueeView addGestureRecognizer:tap];
     
-
+    self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
+    
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"游客"];
+    NSRange strRange = {0,[str length]};
+    [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
+    self.userNameLabel.attributedText = str;
     
     [self getNoticeList];   // 公告列表
     [self getUserInfo];
@@ -74,8 +91,120 @@
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         [self setupUserInfo];
     });
+    
+    
+    [self dataArryInit];
+    [self getAllNextIssueData];
 }
 
+- (void)rightBarBtnClick {
+    
+    self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
+    self.yymenuView.titleType = @"1";
+    //此处为重点
+    WeakSelf;
+    self.yymenuView.backToHomeBlock = ^{
+        weakSelf.navigationController.tabBarController.selectedIndex = 0;
+    };
+    [self.yymenuView show];
+
+}
+
+#pragma mark -- 分栏
+-(void)dataArryInit{
+    _itemArray =[NSMutableArray new];
+    _viewsArray = [NSMutableArray new];
+    _lotteryGamesArray = [NSMutableArray new];
+    _leftwardMarqueeViewData = [NSMutableArray new];
+}
+
+- (void)getAllNextIssueData {
+    WeakSelf;
+    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+       
+        [CMResult processWithResult:model success:^{
+            weakSelf.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            
+            for (UGAllNextIssueListModel *obj in weakSelf.lotteryGamesArray) {
+                NewLotteryListController *realView = [NewLotteryListController new];
+                realView.list = obj.list;
+                [weakSelf.viewsArray addObject:realView];
+                
+                [weakSelf.itemArray addObject:obj.gameTypeName];
+            }
+            [weakSelf buildSegment];
+            
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
+- (void)buildSegment
+{
+
+    self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
+    [self.view addSubview:self.slideSwitchView];
+    
+    [self.slideSwitchView  mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view).with.offset(0);
+        make.top.equalTo(self.rollingView.mas_bottom).offset(0);
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(0);
+    }];
+    [self.slideSwitchView setUserInteractionEnabled:YES];
+    self.slideSwitchView.segmentControlDelegate = self;
+    //设置tab 颜色(可选)
+    self.slideSwitchView.tabItemNormalColor = Skin1.textColor1;
+    self.slideSwitchView.tabItemNormalFont = 13;
+
+    
+    //设置tab 背景颜色(可选)
+    UIColor *bg;
+    if (Skin1.isGPK) {
+        bg = Skin1.textColor4;
+        //设置tab 被选中的颜色(可选)
+        self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
+        self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
+    }
+    else if(Skin1.isBlack){
+         bg = RGBA(135 , 135 ,135, 1);
+         self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
+        self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
+    }
+    else {
+        bg = Skin1.bgColor;
+        self.slideSwitchView.tabItemSelectedColor = Skin1.textColor4 ;
+        self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor4 ;
+    }
+
+    self.slideSwitchView.tabItemNormalBackgroundColor = bg;
+//    //设置tab 被选中的标识的颜色(可选)
+//
+//    //设置tab 被选中标识的风格
+//    self.slideSwitchView.tabSelectionStyle = XYYSegmentedControlSelectionStyleBox;
+    
+}
+
+#pragma mark - XYYSegmentControlDelegate
+
+- (NSUInteger)numberOfTab:(XYYSegmentControl *)view {
+    return [self.itemArray count];//items决定
+}
+
+///待加载的控制器
+- (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
+    
+    NewLotteryListController * realView  = [_viewsArray objectAtIndex:number];
+    return realView;
+    
+}
+
+- (void)slideSwitchView:(XYYSegmentControl *)view didselectTab:(NSUInteger)number {
+    
+//    NewLotteryListController * realView  = [_viewsArray objectAtIndex:number];
+//    [realView rootLoadData];
+    
+}
 #pragma mark -- 头View
 // 刷新余额
 - (IBAction)refreshBalance:(id)sender {
@@ -130,7 +259,10 @@
 #pragma mark - UIS
 - (void)setupUserInfo {
     UGUserModel *user = [UGUserModel currentUser];
-    self.userNameLabel.text = user.username;
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:user.username];
+    NSRange strRange = {0,[str length]};
+    [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
+    self.userNameLabel.attributedText = str;
     double floatString = [user.balance doubleValue];
     self.moneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
 }

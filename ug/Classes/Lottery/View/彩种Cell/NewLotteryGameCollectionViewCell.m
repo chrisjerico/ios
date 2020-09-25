@@ -19,12 +19,17 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.nameLabel.textColor = Skin1.textColor1;
+ 
     self.mBtn.layer.cornerRadius = 5;
-    self.mBtn.layer.borderWidth = 1;
+    self.mBtn.layer.borderWidth = 1.6;
     self.mBtn.layer.borderColor = [RGBA(132,164,183, 1) CGColor];
-    
     self.layer.cornerRadius = 10;
+    self.layer.borderWidth = 2;
+    self.layer.borderColor = [RGBA(132,164,183, 1) CGColor];
+
+    if (![Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
+        [self setBackgroundColor:Skin1.homeContentColor];
+    }
 }
 
 - (void)setItem:(UGNextIssueModel *)item {

@@ -31,6 +31,7 @@
 #import "OnlineServiceViewController.h"     // 在线客服
 #import "UGBetRecordViewController.h"       // 未结算
 #import "UGMosaicGoldViewController.h"      // 活动彩金
+#import "NewLotteryHomeViewController.h"    // 新彩票大厅
 
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
@@ -175,7 +176,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,          MM_在线客服,          @"在线客服"),
             item(@"/notSettle",         @"tzjl",                        UGBetRecordViewController.className,            MM_未结算,            @"未结算"),
             item(@"/winApply",         @"shenqing",                     UGMosaicGoldViewController.className,            MM_优惠申请,          @"优惠申请"),
-            item(@"/gameHall",         @"dating",                       UGLotteryHomeController.className,               MM_彩票大厅,          @"彩票大厅"),
+            
         ].mutableCopy;
         
         UGMobileMenu * itemLine;
@@ -184,9 +185,16 @@ UGSystemConfigModel *currentConfig = nil;
         } else {
             itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");
         }
-        NSArray *arrayTmp = @[itemLine];
+        
+        UGMobileMenu * itemLottery;
+        if (APP.isNewLotteryView) {
+            itemLottery = item(@"/gameHall",         @"dating",                       NewLotteryHomeViewController.className,               MM_彩票大厅,          @"彩票大厅");
+        } else {
+            itemLottery = item(@"/gameHall",         @"dating",                       UGLotteryHomeController.className,               MM_彩票大厅,          @"彩票大厅");
+        }
+        NSArray *arrayTmp = @[itemLine,itemLottery];
         // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,1)];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,2)];
         [_items insertObjects:arrayTmp atIndexes:indexSet];
     });
     return _items;

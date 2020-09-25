@@ -24,6 +24,8 @@
 #import "DZPModel.h"
 #import "UGPopViewController.h"
 #import "CMLabelCommon.h"
+#import "NewLotteryHomeViewController.h"
+
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -205,11 +207,11 @@ static LogVC *_logVC = nil;
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"获取这个字符串中的所有xxx的所在的inde"];
-        [titles addObject:@"下注明细"];
+        [titles addObject:@"新彩票列表"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"下注明细" handler:^(UIAlertAction *aa) {
-            BetDetailViewController *recordVC = _LoadVC_from_storyboard_(@"BetDetailViewController");
+        [ac setActionAtTitle:@"新彩票列表" handler:^(UIAlertAction *aa) {
+            NewLotteryHomeViewController *recordVC = _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
             [NavController1 pushViewController:recordVC animated:true];
             
         }];

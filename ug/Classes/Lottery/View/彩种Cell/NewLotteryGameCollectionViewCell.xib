@@ -18,19 +18,19 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="香港六合彩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khe-wT-imK">
-                        <rect key="frame" x="86.5" y="44.5" width="92" height="22"/>
+                        <rect key="frame" x="89" y="44.5" width="87" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="zET-Fg-evl"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xW3-Op-5aa">
-                        <rect key="frame" x="97.5" y="80.5" width="70" height="30"/>
+                        <rect key="frame" x="90" y="80.5" width="85" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="kD6-uz-STw"/>
-                            <constraint firstAttribute="width" constant="70" id="unL-gu-o7w"/>
+                            <constraint firstAttribute="width" constant="85" id="unL-gu-o7w"/>
                         </constraints>
                         <state key="normal" title="立即游戏">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -147,12 +147,12 @@
             site(@"c237",       @"c237hy",     @"313",      @"io.fhpt.YSAC237",         @"http://app13478.com",                         @"企业包",     @"太阳城集团"),
             
             
-            site(@" test05-fish",  @"",           @"",        @"com.UGGame.cp",           @"http://test05.6yc.com",                       @"内测包",     @"test05"),
-            site(@" test30-andrew",@"",           @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
-            site(@" test126-arc",  @"",           @"",        @"com.UGGame.cp",           @"http://t126f.fhptcdn.com",                    @"内测包",     @"test126"),
-            site(@" test127-shiyu",@"",           @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                    @"内测包",     @"test127"),
-            site(@" test76-ezer",  @"",           @"",        @"com.UGGame.cp",           @"http://t076f.fhptcdn.com",                    @"内测包",     @"test76"),
-            site(@" test77-richard",@"",          @"",        @"com.UGGame.cp",           @"http://t077f.fhptcdn.com",                    @"内测包",     @"test77"),
+            site(@"test05-fish",  @"",           @"",        @"com.UGGame.cp",           @"http://test05.6yc.com",                       @"内测包",     @"test05"),
+            site(@"test30-andrew",@"",           @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
+            site(@"test126-arc",  @"",           @"",        @"com.UGGame.cp",           @"http://t126f.fhptcdn.com",                    @"内测包",     @"test126"),
+            site(@"test127-shiyu",@"",           @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                    @"内测包",     @"test127"),
+            site(@"test76-ezer",  @"",           @"",        @"com.UGGame.cp",           @"http://t076f.fhptcdn.com",                    @"内测包",     @"test76"),
+            site(@"test77-richard",@"",          @"",        @"com.UGGame.cp",           @"http://t077f.fhptcdn.com",                    @"内测包",     @"test77"),
             site(@"hotUpdate",      @"hotUpdate",  @"260",     @"com.abcc4",                @"http://test10.6yc.com",                      @"内测包",     @"热更新测试包"),
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),

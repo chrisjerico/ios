@@ -39,6 +39,7 @@
 #import "LotteryBetAndChatVC.h"
 #import "UGBalanceConversionController.h"//额度转换
 #import "UGUserInfoViewController.h"   //个人资料"
+#import "UGLotteryHomeController.h"   // 彩票大厅
 
 // Tools
 #import "UGAppVersionManager.h"
@@ -144,6 +145,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 判断下是否是非根控制器
     if (self.childViewControllers.count) { // 不是根控制器
         
+        if ([viewController isKindOfClass:[UGLotteryHomeController class]]) {
+            
+            if (APP.isNewLotteryView) {
+                 viewController =  _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
+            }
+        }
         
         if ([viewController isKindOfClass:[UGBalanceConversionController class]]) {
             
