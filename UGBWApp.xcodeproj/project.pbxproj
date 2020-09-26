@@ -1352,7 +1352,6 @@
 		031E1E8E23BECD8500B0F813 /* BaseNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E1E8D23BECD8500B0F813 /* BaseNav.swift */; };
 		031E1E9823BED20300B0F813 /* GameHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E1E9623BED20300B0F813 /* GameHomeVC.m */; };
 		031E1E9F23BED78000B0F813 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E1E9E23BED78000B0F813 /* BaseVC.swift */; };
-		031EF40123BE7A9400B0F813 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40023BE7A9400B0F813 /* AppDelegate.swift */; };
 		031EF40523BE7A9400B0F813 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40423BE7A9400B0F813 /* ViewController.swift */; };
 		031EF40823BE7A9400B0F813 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40623BE7A9400B0F813 /* Main.storyboard */; };
 		031EF40A23BE7A9600B0F813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40923BE7A9600B0F813 /* Assets.xcassets */; };
@@ -1652,6 +1651,7 @@
 		03B71E34251F1CAD0090FC98 /* NewUserInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745DB251200FB00606EA3 /* NewUserInfoViewController.storyboard */; };
 		03B71E37251F1D060090FC98 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
 		03B71E3F251F20220090FC98 /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142523BE812300B0F813 /* category.m */; };
+		03B71E4C251F52FD0090FC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40023BE7A9400B0F813 /* AppDelegate.swift */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -10327,7 +10327,6 @@
 				031EF55023BE7B4D00B0F813 /* SocketManager.swift in Sources */,
 				0315DC9E24AEC46000D635E2 /* NotificationSystemMessageVC.swift in Sources */,
 				031E1A7F23BE812700B0F813 /* SLWebViewController.m in Sources */,
-				031EF40123BE7A9400B0F813 /* AppDelegate.swift in Sources */,
 				031EF5D223BE7B4E00B0F813 /* AttachFunctionMenusCell.swift in Sources */,
 				031E1C9F23BE812A00B0F813 /* UGRechargeRecordCell.m in Sources */,
 				031E1D1523BE812B00B0F813 /* JSONModel+networking.m in Sources */,
@@ -10359,6 +10358,7 @@
 				031E1BA723BE812900B0F813 /* UGBMpreferentialViewController.m in Sources */,
 				031E19B123BE812700B0F813 /* NSNull+Safe.m in Sources */,
 				031E1E0723BE812C00B0F813 /* UGSignInHistoryView.m in Sources */,
+				03B71E4C251F52FD0090FC98 /* AppDelegate.swift in Sources */,
 				031E1D5B23BE812B00B0F813 /* UGRegisterViewController.m in Sources */,
 				031E1AEB23BE812800B0F813 /* LeeTagItem.m in Sources */,
 				031E1E8323BE812D00B0F813 /* UGBalanceTransferLogsCell.m in Sources */,
