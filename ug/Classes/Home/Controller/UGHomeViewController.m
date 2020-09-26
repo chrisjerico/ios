@@ -629,13 +629,13 @@
     
     // 红包事件
     {
-        self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+        self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 70, 70) ];
         [self.view addSubview:_uGredEnvelopeView];
         [self.uGredEnvelopeView setHidden:YES];
         [self.uGredEnvelopeView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
-            make.width.mas_equalTo(95.0);
-            make.height.mas_equalTo(95.0);
+            make.width.mas_equalTo(70.0);
+            make.height.mas_equalTo(70.0);
             make.top.equalTo(__self.view.mas_top).offset(135);
         }];
         self.uGredEnvelopeView.cancelClickBlock = ^(void) {
@@ -692,12 +692,23 @@
         [self.view addSubview:_scratchView];
 //        [self.scratchView setHidden:YES];
         
-        [self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(__self.view.mas_left).with.offset(10);
-            make.width.mas_equalTo(70.0);
-            make.height.mas_equalTo(70.0);
-            make.top.equalTo(__self.view.mas_top).offset(135);
-        }];
+        
+        if (APP.isNewLocation) {
+            [self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.view.mas_left).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(135);
+            }];
+        } else {
+            [self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.view.mas_left).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105+105);
+            }];
+        }
+       
         self.scratchView.cancelClickBlock = ^(void) {
             [__self.scratchView setHidden:YES];
         };
@@ -736,12 +747,23 @@
 
 		  [self.goldEggView setHidden:YES];
 		  
-		  [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
-			  make.left.equalTo(__self.scratchView.mas_right).with.offset(1);
-			  make.width.mas_equalTo(70.0);
-			  make.height.mas_equalTo(70.0);
-			  make.top.equalTo(__self.view.mas_top).offset(135);
-		  }];
+        
+        if (APP.isNewLocation) {
+            [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.scratchView.mas_right).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(135);
+            }];
+        } else {
+            [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(__self.view.mas_right).with.offset(-10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105+105);
+            }];
+        }
+		 
 		  self.goldEggView.cancelClickBlock = ^(void) {
 			  [__self.goldEggView setHidden:YES];
 		  };
@@ -773,17 +795,27 @@
 	  }
 #pragma mark 大转盘
     {//大转盘
-        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
+        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 95, 95) ];
         [self.view addSubview:_bigWheelView];
 
         [self.bigWheelView setHidden:YES];
         
-        [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(__self.goldEggView.mas_right).with.offset(1);
-            make.width.mas_equalTo(70.0);
-            make.height.mas_equalTo(70.0);
-            make.top.equalTo(__self.view.mas_top).offset(135);
-        }];
+        if (APP.isNewLocation) {
+            [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.goldEggView.mas_right).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(135);
+            }];
+        } else {
+            [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(__self.view.mas_right).with.offset(-10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105);
+            }];
+        }
+
         self.bigWheelView.cancelClickBlock = ^(void) {
             [__self.bigWheelView setHidden:YES];
         };
@@ -824,8 +856,8 @@
             [self.uUpperLeftView setHidden:YES];
             [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 if (self.bigWheelView.hidden) {
                       make.top.equalTo(__self.view.mas_top).offset(150+105);
                 } else {
@@ -847,8 +879,8 @@
             [self.ulowerLefttView setHidden:YES];
             [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 make.top.equalTo(__self.uUpperLeftView.mas_bottom).offset(5);
             }];
             self.ulowerLefttView.cancelClickBlock = ^(void) {
@@ -866,8 +898,8 @@
             [self.uUpperRightView setHidden:YES];
             [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 if (self.bigWheelView.hidden) {
                       make.top.equalTo(__self.view.mas_top).offset(150+105);
                 } else {
@@ -888,8 +920,8 @@
             [self.uLowerRightView setHidden:YES];
             [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 make.top.equalTo(__self.uUpperRightView.mas_bottom).offset(5);
             }];
             self.uLowerRightView.cancelClickBlock = ^(void) {
