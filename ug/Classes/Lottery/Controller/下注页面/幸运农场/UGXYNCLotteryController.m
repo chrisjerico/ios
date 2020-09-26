@@ -97,6 +97,7 @@
 @property (nonatomic, strong) NSMutableArray <NSString *> *lmgmentTitleArray;
 //===============================================
 
+@property (strong, nonatomic)UGYYRightMenuView *yymenuView; /**<   UGCommonLotteryController用到，不写会崩 */
 @end
 
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
