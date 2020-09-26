@@ -60,8 +60,7 @@ class LoginVC: BaseVC {
 	}
 	
 	@IBAction func loginButtonTaped(_ sender: Any) {
-//		Alert.showLoading(parenter: view)
-		
+		Alert.showLoading()
 		CMNetwork.userLogin(withParams: ["usr": userNameField.text!, "pwd": passwordField.text!.md5()]) { [weak self] (result, error) in
 			guard let weakSelf = self else { return }
 			if let error = error {
@@ -95,7 +94,7 @@ class LoginVC: BaseVC {
 				})
 				
 				Observable.combineLatest(userInfoSuccess, systemConfigSuccess).filter { $0&&$1 }.subscribe(onNext: { _ in
-					Alert.showTip("信息获取完毕", parenter: weakSelf.view)
+					Alert.showTip("信息获取完毕")
 					App.widow.rootViewController = ControllerProvider.rootTabViewController()
 				}).disposed(by: weakSelf.disposeBag)
 				
@@ -106,40 +105,40 @@ class LoginVC: BaseVC {
 	}
 	
 	func getConfigs(completion: @escaping (_ config: UGSystemConfigModel) -> Void) {
-//		Alert.showLoading(parenter: view)
+		Alert.showLoading()
 		CMNetwork.getSystemConfig(withParams: ["sss": "sss"]) { [weak self] (result, error) in
 			if let error = error {
 				Alert.showTip(error.localizedDescription,  parenter: self?.view)
 			} else if let config = result?.data as? UGSystemConfigModel {
 				completion(config)
 			} else {
-				Alert.showTip("获取系统配置,数据解析失败", parenter: self?.view)
+				Alert.showTip("获取系统配置,数据解析失败")
 			}
 		}
 		
 	}
 	
 	func getUserInfo(sessid: String,  completion: @escaping (_ user: UGUserModel) -> Void) {
-//		Alert.showLoading(parenter: view)
+		Alert.showLoading()
 		CMNetwork.getUserInfo(withParams: ["token": sessid]) { [weak self] (result, error) in
-//			if let error = error {
-//				Alert.showTip(error.localizedDescription,  parenter: self?.view)
-//			} else if let user = result?.data as? UGUserModel {
-//				completion(user)
-//			} else {
-//				Alert.showTip("获取用户信息,数据解析失败", parenter: self?.view)
-//			}
-//			logger.debug("getUserInfo")
+			if let error = error {
+				Alert.showTip(error.localizedDescription,  parenter: self?.view)
+			} else if let user = result?.data as? UGUserModel {
+				completion(user)
+			} else {
+				Alert.showTip("获取用户信息,数据解析失败")
+			}
+			logger.debug("getUserInfo")
 		}
 		
-		userAPI.rx.request(.info(token: sessid)).subscribe { (response) in
-			
+//		userAPI.rx.request(.info(token: sessid)).subscribe { (response) in
+//
 //			let user = UGUserModel(dictionary: <#T##[AnyHashable : Any]!#>)
 //			completion(nil)
-		} onError: { (error) in
-			Alert.showTip("获取用户信息失败")
-			
-		}.disposed(by: disposeBag)
+//		} onError: { (error) in
+//			Alert.showTip("获取用户信息失败")
+//
+//		}.disposed(by: disposeBag)
 
 		
 	}

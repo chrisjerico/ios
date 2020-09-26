@@ -1648,6 +1648,10 @@
 		03B71DB5251F15320090FC98 /* YNQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BC2511F37800606EA3 /* YNQuickSelectView.m */; };
 		03B71DB8251F15460090FC98 /* YNSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D407459E2511F37800606EA3 /* YNSegmentView.m */; };
 		03B71DBB251F15760090FC98 /* YNQuickListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BF2511F37800606EA3 /* YNQuickListView.m */; };
+		03B71E30251F1CA80090FC98 /* NewUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745D9251200EB00606EA3 /* NewUserInfoViewController.m */; };
+		03B71E34251F1CAD0090FC98 /* NewUserInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745DB251200FB00606EA3 /* NewUserInfoViewController.storyboard */; };
+		03B71E37251F1D060090FC98 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
+		03B71E3F251F20220090FC98 /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142523BE812300B0F813 /* category.m */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -9067,6 +9071,7 @@
 				031E1BF923BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
 				031EF58023BE7B4D00B0F813 /* zj_xinwen.svg in Resources */,
 				031E1B9323BE812900B0F813 /* UGGameListCollectionViewCell.xib in Resources */,
+				03B71E34251F1CAD0090FC98 /* NewUserInfoViewController.storyboard in Resources */,
 				031E1D2D23BE812B00B0F813 /* UGIntegralConvertRecordController.storyboard in Resources */,
 				031E1D3123BE812B00B0F813 /* UGPromotionInfoController.storyboard in Resources */,
 				031E19F523BE812700B0F813 /* network_setting.html in Resources */,
@@ -9077,6 +9082,7 @@
 				031E1A9F23BE812800B0F813 /* ZZCircleProgress.bundle in Resources */,
 				031EF56723BE7B4D00B0F813 /* 形状.svg in Resources */,
 				0315DC9F24AEC46000D635E2 /* NotificationSystemMessageVC.xib in Resources */,
+				03B71E37251F1D060090FC98 /* NewLotteryHomeViewController.storyboard in Resources */,
 				031E1B8323BE812900B0F813 /* UGPlatformNoticeCell.xib in Resources */,
 				031E1C2923BE812900B0F813 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
 				031E1C8923BE812A00B0F813 /* UGFundsTransfer2View.xib in Resources */,
@@ -10008,6 +10014,7 @@
 				CF8508722466D6EE0025672F /* FLAnimatedImage.m in Sources */,
 				031E195923BE812600B0F813 /* LHUserInfoVC.m in Sources */,
 				03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */,
+				03B71E3F251F20220090FC98 /* category.m in Sources */,
 				031E1CFD23BE812A00B0F813 /* AFURLRequestSerialization.m in Sources */,
 				031E1CCB23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */,
 				031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
@@ -10363,6 +10370,7 @@
 				031EF54523BE7B4D00B0F813 /* BetModel.swift in Sources */,
 				031E19A723BE812600B0F813 /* JRSwizzle.m in Sources */,
 				031E1B0523BE812800B0F813 /* NSDateComponents+XHCategory.m in Sources */,
+				03B71E30251F1CA80090FC98 /* NewUserInfoViewController.m in Sources */,
 				031E199123BE812600B0F813 /* UGPostCell1.m in Sources */,
 				CF85087A2466D75C0025672F /* LineMainViewController.m in Sources */,
 				031E1CD323BE812A00B0F813 /* MJRefreshBackStateFooter.m in Sources */,
