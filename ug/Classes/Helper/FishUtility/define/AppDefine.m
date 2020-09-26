@@ -149,8 +149,8 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-//			_SiteId = @"test61f";
-			_SiteId = @" test127-shiyu";
+			_SiteId = @"test61f";
+//			_SiteId = @" t127-shiyu";
 
         }
 
