@@ -629,13 +629,13 @@
     
     // 红包事件
     {
-        self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
+        self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 70, 70) ];
         [self.view addSubview:_uGredEnvelopeView];
         [self.uGredEnvelopeView setHidden:YES];
         [self.uGredEnvelopeView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
-            make.width.mas_equalTo(95.0);
-            make.height.mas_equalTo(95.0);
+            make.width.mas_equalTo(70.0);
+            make.height.mas_equalTo(70.0);
             make.top.equalTo(__self.view.mas_top).offset(135);
         }];
         self.uGredEnvelopeView.cancelClickBlock = ^(void) {
@@ -683,18 +683,139 @@
         };
     }
     
-    {//大转盘 右上
+   
+    
+#pragma mark 刮刮乐+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    {
+        self.scratchView = [[UGredEnvelopeView alloc] initWithFrame:CGRectZero];
+        [self.view addSubview:_scratchView];
+//        [self.scratchView setHidden:YES];
+        
+        
+        if (APP.isNewLocation) {
+            [self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.view.mas_left).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(135);
+            }];
+        } else {
+            [self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.view.mas_left).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105+105);
+            }];
+        }
+       
+        self.scratchView.cancelClickBlock = ^(void) {
+            [__self.scratchView setHidden:YES];
+        };
+        self.scratchView.redClickBlock = ^(void) {
+            
+            if (!UGLoginIsAuthorized()) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    UGLoginAuthorize(^(BOOL isFinish) {
+                        if (!isFinish)
+                            return ;
+                    });
+                }];
+                return;
+            }
+            if ([UGUserModel currentUser].isTest) {
+                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+                    SANotificationEventPost(UGNotificationShowLoginView, nil);
+                }];
+                return ;
+            }
+            
+            ScratchController * vc = [[ScratchController alloc] init];
+            vc.item = __self.scratchView.scratchDataModel;
+            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            [[UINavigationController current] presentViewController:vc animated:true completion:nil];
+
+        };
+        
+    }
+#pragma mark 砸金蛋
+	{//砸金蛋
+		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
+		  [self.view addSubview:_goldEggView];
+
+		  [self.goldEggView setHidden:YES];
+		  
+        
+        if (APP.isNewLocation) {
+            [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.scratchView.mas_right).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(135);
+            }];
+        } else {
+            [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(__self.view.mas_right).with.offset(-10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105+105);
+            }];
+        }
+		 
+		  self.goldEggView.cancelClickBlock = ^(void) {
+			  [__self.goldEggView setHidden:YES];
+		  };
+		  self.goldEggView.redClickBlock = ^(void) {
+			  
+			  if (!UGLoginIsAuthorized()) {
+				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
+				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+					  UGLoginAuthorize(^(BOOL isFinish) {
+						  if (!isFinish)
+							  return ;
+					  });
+				  }];
+				  return;
+			  }
+			  if ([UGUserModel currentUser].isTest) {
+				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+					  SANotificationEventPost(UGNotificationShowLoginView, nil);
+				  }];
+				  return ;
+			  }
+			  EggFrenzyViewController * vc = [[EggFrenzyViewController alloc] init];
+			  vc.item = (DZPModel*)__self.goldEggView.itemData;
+			  vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+			  [[UINavigationController current] presentViewController:vc animated:true completion:nil];
+
+		  };
+	  }
+#pragma mark 大转盘
+    {//大转盘
         self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 95, 95) ];
         [self.view addSubview:_bigWheelView];
 
         [self.bigWheelView setHidden:YES];
         
-        [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(__self.view.mas_right).with.offset(-10);
-            make.width.mas_equalTo(95.0);
-            make.height.mas_equalTo(95.0);
-            make.top.equalTo(__self.view.mas_top).offset(150+105);
-        }];
+        if (APP.isNewLocation) {
+            [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(__self.goldEggView.mas_right).with.offset(10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(135);
+            }];
+        } else {
+            [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(__self.view.mas_right).with.offset(-10);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
+                make.top.equalTo(__self.view.mas_top).offset(150+105);
+            }];
+        }
+
         self.bigWheelView.cancelClickBlock = ^(void) {
             [__self.bigWheelView setHidden:YES];
         };
@@ -726,93 +847,6 @@
             recordVC.item = banner;
         };
     }
-#pragma mark
-	{//砸金蛋 右上
-		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
-		  [self.view addSubview:_goldEggView];
-
-		  [self.goldEggView setHidden:YES];
-		  
-		  [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
-			  make.right.equalTo(__self.view.mas_right).with.offset(-10);
-			  make.width.mas_equalTo(70.0);
-			  make.height.mas_equalTo(70.0);
-			  make.top.equalTo(__self.view.mas_top).offset(150+105+105);
-		  }];
-		  self.goldEggView.cancelClickBlock = ^(void) {
-			  [__self.goldEggView setHidden:YES];
-		  };
-		  self.goldEggView.redClickBlock = ^(void) {
-			  
-			  if (!UGLoginIsAuthorized()) {
-				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
-				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-					  UGLoginAuthorize(^(BOOL isFinish) {
-						  if (!isFinish)
-							  return ;
-					  });
-				  }];
-				  return;
-			  }
-			  if ([UGUserModel currentUser].isTest) {
-				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-					  SANotificationEventPost(UGNotificationShowLoginView, nil);
-				  }];
-				  return ;
-			  }
-			  EggFrenzyViewController * vc = [[EggFrenzyViewController alloc] init];
-			  vc.item = (DZPModel*)__self.goldEggView.itemData;
-			  vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-			  [[UINavigationController current] presentViewController:vc animated:true completion:nil];
-
-		  };
-	  }
-	
-#pragma mark 刮刮乐+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-	{
-		self.scratchView = [[UGredEnvelopeView alloc] initWithFrame:CGRectZero];
-		[self.view addSubview:_scratchView];
-//		[self.scratchView setHidden:YES];
-		
-		[self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
-			make.left.equalTo(__self.view.mas_left).with.offset(10);
-			make.width.mas_equalTo(70.0);
-			make.height.mas_equalTo(70.0);
-			make.top.equalTo(__self.view.mas_top).offset(150+105+105);
-		}];
-		self.scratchView.cancelClickBlock = ^(void) {
-			[__self.scratchView setHidden:YES];
-		};
-		self.scratchView.redClickBlock = ^(void) {
-			
-			if (!UGLoginIsAuthorized()) {
-				UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
-				[ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-					UGLoginAuthorize(^(BOOL isFinish) {
-						if (!isFinish)
-							return ;
-					});
-				}];
-				return;
-			}
-			if ([UGUserModel currentUser].isTest) {
-				UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-				[ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-					SANotificationEventPost(UGNotificationShowLoginView, nil);
-				}];
-				return ;
-			}
-			
-			ScratchController * vc = [[ScratchController alloc] init];
-			vc.item = __self.scratchView.scratchDataModel;
-			vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-			[[UINavigationController current] presentViewController:vc animated:true completion:nil];
-
-		};
-		
-	}
     
     // 手机悬浮按钮
     {
@@ -822,8 +856,8 @@
             [self.uUpperLeftView setHidden:YES];
             [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 if (self.bigWheelView.hidden) {
                       make.top.equalTo(__self.view.mas_top).offset(150+105);
                 } else {
@@ -845,8 +879,8 @@
             [self.ulowerLefttView setHidden:YES];
             [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 make.top.equalTo(__self.uUpperLeftView.mas_bottom).offset(5);
             }];
             self.ulowerLefttView.cancelClickBlock = ^(void) {
@@ -864,8 +898,8 @@
             [self.uUpperRightView setHidden:YES];
             [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 if (self.bigWheelView.hidden) {
                       make.top.equalTo(__self.view.mas_top).offset(150+105);
                 } else {
@@ -886,8 +920,8 @@
             [self.uLowerRightView setHidden:YES];
             [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(95.0);
-                make.height.mas_equalTo(95.0);
+                make.width.mas_equalTo(70.0);
+                make.height.mas_equalTo(70.0);
                 make.top.equalTo(__self.uUpperRightView.mas_bottom).offset(5);
             }];
             self.uLowerRightView.cancelClickBlock = ^(void) {

@@ -264,6 +264,7 @@
     _isHideTV = [@"c085" containsString:_SiteId];
     _isBottom = [@"c186" containsString:_SiteId];
     _isChatButton = [@"c186" containsString:_SiteId];
+    _isNewLocation = [@"c206,test29" containsString:_SiteId];
     
 }
 

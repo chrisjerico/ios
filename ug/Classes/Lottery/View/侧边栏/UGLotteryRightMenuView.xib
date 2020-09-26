@@ -46,14 +46,28 @@
                                 <constraint firstAttribute="width" constant="20" id="zKQ-Xf-tGV"/>
                             </constraints>
                         </imageView>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bPA-v8-Uai">
+                            <rect key="frame" x="0.0" y="44" width="260" height="808"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Yo-st-q9M">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="260" id="CNg-V9-Gg1"/>
                         <constraint firstItem="vi3-Yf-sJU" firstAttribute="leading" secondItem="uBR-ja-ciW" secondAttribute="leading" id="IVI-4G-H53"/>
+                        <constraint firstItem="bPA-v8-Uai" firstAttribute="leading" secondItem="uBR-ja-ciW" secondAttribute="leading" id="KpO-Yv-Xbo"/>
                         <constraint firstItem="QhM-Aa-r00" firstAttribute="top" secondItem="uBR-ja-ciW" secondAttribute="top" constant="10" id="N2D-W0-g8g"/>
                         <constraint firstAttribute="trailing" secondItem="vi3-Yf-sJU" secondAttribute="trailing" id="QJp-2r-aH8"/>
+                        <constraint firstAttribute="bottom" secondItem="bPA-v8-Uai" secondAttribute="bottom" id="QR0-Hk-1fX"/>
                         <constraint firstItem="QhM-Aa-r00" firstAttribute="leading" secondItem="uBR-ja-ciW" secondAttribute="leading" constant="70" id="ZMI-A8-Ph6"/>
+                        <constraint firstItem="bPA-v8-Uai" firstAttribute="top" secondItem="vi3-Yf-sJU" secondAttribute="bottom" id="bnb-x0-eCp"/>
+                        <constraint firstAttribute="trailing" secondItem="bPA-v8-Uai" secondAttribute="trailing" id="fAZ-NE-2Oj"/>
                         <constraint firstItem="vi3-Yf-sJU" firstAttribute="top" secondItem="uBR-ja-ciW" secondAttribute="top" id="jAV-qc-hA8"/>
                     </constraints>
                 </view>
