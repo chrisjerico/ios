@@ -377,6 +377,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         @"定位胆":@1,
         @"二字":@1,
         @"不定位":@1,
+		@"五星":@1,
     };
     UGGameBetModel *gbm =  self.dataArray.firstObject;
     return  dict[gbm.typeName ? : gbm.title];

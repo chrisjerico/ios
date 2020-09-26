@@ -613,6 +613,32 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 	}
 	else if ([@"复式" isEqualToString:play.alias]) {
 		[self generateBetArrayWith:play.ezdwlist bet:nil resultArray:array index:0];
+	} else if ([@"组选120" isEqualToString:play.alias]) {
+		NSMutableArray * selectedBetArray = [NSMutableArray array];
+		for (UGGameplaySectionModel * sectionModel in play.ezdwlist) {
+			for (UGGameBetModel * bet in sectionModel.list) {
+				if (!bet.select) {
+					continue;
+				}
+				[selectedBetArray appendObject:bet];
+			}
+		}
+		[selectedBetArray sortUsingComparator:^NSComparisonResult(UGGameBetModel * _Nonnull obj1, UGGameBetModel * _Nonnull obj2) {
+			return  obj1.indexOfSelect > obj2.indexOfSelect;
+		}];
+		UGGameBetModel *tempBet;
+		NSString * betName;
+		for (UGGameBetModel * bet in selectedBetArray) {
+			tempBet = bet;
+			betName = betName? [NSString stringWithFormat:@"%@,%@", betName, bet.name]: bet.name;
+		}
+		UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+		[bet setValuesForKeysWithDictionary:tempBet.mj_keyValues];
+		bet.name = betName;
+		bet.money = self.amountTextF.text;
+		bet.title = tempBet.alias;
+		bet.betInfo = betName;
+		[*array addObject:bet];
 	}
 	else  {
 		NSString * betName;
@@ -1534,9 +1560,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 				return;
 			}
 			NSInteger typeCount = 0;
+			int maxIndexOfSelect = 0;
 			for (UGGameBetModel *game in type.list) {
 				if (game.select) {
 					typeCount ++;
+					maxIndexOfSelect = maxIndexOfSelect > game.indexOfSelect ? maxIndexOfSelect: game.indexOfSelect;
 				}
 			}
 			if (typeCount < [self maxItemsCountForBetIn: indexPath.section]) {
@@ -1544,6 +1572,8 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 			} else if (game.select){
 				game.select = !game.select;
 			}
+			game.indexOfSelect = game.select? maxIndexOfSelect + 1: 0;
+			NSLog(@"%d", maxIndexOfSelect);
 			
 		}
         else if([@"定位胆" isEqualToString:model.name] ) {
