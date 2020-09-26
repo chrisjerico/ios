@@ -96,6 +96,8 @@
 @property (nonatomic) BOOL isHideTV;                                    /**<  去除澳门六合彩显示的小电视*/
 @property (nonatomic) BOOL isBottom;                                    /**<  首页二级分类图标显示的位置比照一样放右下角*/
 @property (nonatomic) BOOL isChatButton;                                /**<  首页导航有聊天室按钮显示*/
+
+@property (nonatomic,assign) BOOL isNewLocation;                         /**<  刮刮乐，大转盘，砸金蛋移动到红包位置*/
 //新的界面
 @property (nonatomic,assign) BOOL isNewConversion;                          /**<  新的额度转换界面*/
 @property (nonatomic,assign) BOOL isNewUserInfoView;                         /**<  新的我的资料界面*/
