@@ -147,53 +147,7 @@ static LogVC *_logVC = nil;
 }
 
 
-//大转盘
-- (void)getactivityTurntableList {
-    
-    self.dzpArray = [NSArray new];
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-    };
-    WeakSelf;
-    [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        
-        [CMResult processWithResult:model success:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 需要在主线程执行的代码
-                weakSelf.dzpArray = model.data;
-                NSLog(@"dzpArray = %@",self.dzpArray);
-                
-                if (weakSelf.dzpArray.count) {
-                    
-                    NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:self.dzpArray];
-                    
-                    
-                    DZPModel *obj = [data objectAtIndex:0];
-                    
-                    
-                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        // 需要在主线程执行的代码
-                        
-                        DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectZero];
-                        [weakSelf.view addSubview:recordVC];
-                        [recordVC mas_makeConstraints:^(MASConstraintMaker *make) {
-                            make.edges.equalTo(self.view);
-                        }];
-                        
-                        //                        recordVC.dataArray = [DZPprizeModel mj_objectArrayWithKeyValuesArray:obj.param.prizeArr];
-                        recordVC.item = obj;
-                    });
-                    
-                }
-                
-            });
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-            
-        }];
-    }];
-}
+
 // 重发
 - (IBAction)onRepeatBtnClick:(UIButton *)sender {
 #define k_Height_NavContentBar 44.0f

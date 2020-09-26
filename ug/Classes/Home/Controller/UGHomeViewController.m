@@ -442,10 +442,14 @@
                 
                 BOOL isLogin = UGLoginIsAuthorized();
                  if (isLogin) {
-                     [self getNoticeList];
+                     [__self getNoticeList];
                  }
             }
             
+            [__self getactivityCratchList];
+            [__self getactivityGoldenEggList]; //砸金蛋
+            [__self getactivityTurntableList];
+            [__self getCheckinListData];
             
         });
         // 退出登陆
@@ -456,7 +460,7 @@
                 __self.titleView.showLoginView = YES;
             }
             
-            [__self.bigWheelView setHidden:YES];
+//            [__self.bigWheelView setHidden:YES];
         });
         // 登录超时
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {
@@ -631,7 +635,7 @@
     {
         self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 70, 70) ];
         [self.view addSubview:_uGredEnvelopeView];
-        [self.uGredEnvelopeView setHidden:YES];
+//        [self.uGredEnvelopeView setHidden:YES];
         [self.uGredEnvelopeView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(__self.view.mas_right).with.offset(-10);
             make.width.mas_equalTo(70.0);
@@ -745,7 +749,7 @@
 		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
 		  [self.view addSubview:_goldEggView];
 
-		  [self.goldEggView setHidden:YES];
+//		  [self.goldEggView setHidden:YES];
 		  
         
         if (APP.isNewLocation) {
@@ -798,7 +802,7 @@
         self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 95, 95) ];
         [self.view addSubview:_bigWheelView];
 
-        [self.bigWheelView setHidden:YES];
+//        [self.bigWheelView setHidden:YES];
         
         if (APP.isNewLocation) {
             [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -1078,7 +1082,7 @@
     });
     dispatch_group_async(group, queue, ^{
            
-           // 请求15 在线人数
+           //
            [self  getactivityTurntableList];     //大转盘
            
     });
@@ -1755,7 +1759,7 @@
         [CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
             weakSelf.uGredEnvelopeView.item = rem;
-//            weakSelf.uGredEnvelopeView.hidden = !rem;
+            weakSelf.uGredEnvelopeView.hidden = !rem;
         } failure:^(id msg) {
             weakSelf.uGredEnvelopeView.hidden = true;
             [SVProgressHUD dismiss];
