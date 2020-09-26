@@ -1209,11 +1209,20 @@
     [subImageView(@"图片ImgV") sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
     [subLabel(@"标题Label") setText:model.name];
     [subLabel(@"详细Label") setText:model.desc];
-    
-    //        NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"hot_01" ofType:@"gif"];
-    //        NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
-    //        UIImage *image = [UIImage sd_animatedGIFWithData:imageData];
+
     [model.isHot isEqualToString:@"1"] ? [subButton(@"hotButton") setHidden:NO] : [subButton(@"hotButton") setHidden:YES];
+    
+    NSLog(@"model.name = %@ model.cid = %@,mode= %@",model.name,model.cid,model);
+    
+    if ([@"l002" containsString:APP.SiteId]) {
+        if ([model.cid isEqualToString:@"662"]||[model.cid isEqualToString:@"714"] ) {
+            [subButton(@"hotButton") setTitle:@"官方" forState:(UIControlStateNormal)];
+        } else {
+            [subButton(@"hotButton") setTitle:@"hot" forState:(UIControlStateNormal)];
+        }
+    }
+    
+    
     [cell setBackgroundColor: [UIColor whiteColor]];
     cell.layer.borderWidth = 1;
     cell.layer.borderColor = [RGBA(221, 221, 221, 1) CGColor];
