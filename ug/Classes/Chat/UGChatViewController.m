@@ -97,54 +97,59 @@
     NSString *gameId = betInfo[@"gameId"];// 彩种
     __block NSString *paneCode = betInfo[@"paneCode"]; // 玩法
     
-    // 第一步：获取玩法赔率
-    [CMNetwork getGameDatasWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
+    // 第一步：获取当前期数信息
+    [CMNetwork getNextIssueWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            UGPlayOddsModel *play = model.data;
+            UGNextIssueModel *nextIssueModel = model.data;
             
-            // 第二步：遍历找到对应号码数据
-            NSMutableArray <UGGameBetModel *>*nums = nil;
-            for (UGGameplayModel *gpm in play.playOdds) {
-                NSMutableArray <UGGameBetModel *>*gbms = @[].mutableCopy;
-                NSMutableArray *temp = [betInfo[@"betBean"] mutableCopy];
-                for (UGGameplaySectionModel *gsm in gpm.list) {
-                    for (NSDictionary *dict in [temp copy]) {
-                        UGGameBetModel *gbm = nil;
-                        gbm = gbm ? : [gsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                        gbm = gbm ? : [gsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                        gbm = gbm ? : [gsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                        
-                        for (UGGameplaySectionModel *subGsm in gsm.ezdwlist) {
-                            gbm = gbm ? : [subGsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                            gbm = gbm ? : [subGsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                            gbm = gbm ? : [subGsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
-                        }
-                        if (gbm) {
-                            gbm.money = dict[@"money"];
-                            gbm.odds = dict[@"odds"];
-                            NSString *subName = gsm.alias.length ? gsm.alias : gsm.name;
-                            if ([subName hasPrefix:gpm.name]) {
-                                gbm.title = subName;
-                            } else {
-                                gbm.title = _NSString(@"%@-%@", gpm.name, subName);
-                            }
-                            
-                            [gbms addObject:gbm];
-                            [temp removeObject:dict];
-                            // 第三步：找到玩法paneCode
-                            paneCode = paneCode.length ? paneCode : gsm.code;
-                        }
-                    }
-                }
-                if (nums.count < gbms.count) {
-                    nums = gbms;
-                }
+            if (![nextIssueModel.curIssue isEqualToString:betInfo[@"turnNum"]]) {
+                [SVProgressHUD showErrorWithStatus:@"该跟注已过期，请选择其它跟注"];
+                return;
             }
             
-            // 第四步：获取当前期数信息
-            [CMNetwork getNextIssueWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
+            // 第二步：获取玩法赔率
+            [CMNetwork getGameDatasWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
                 [CMResult processWithResult:model success:^{
-                    UGNextIssueModel *nextIssueModel = model.data;
+                    UGPlayOddsModel *play = model.data;
+                    
+                    // 第三步：遍历找到对应号码数据
+                    NSMutableArray <UGGameBetModel *>*nums = nil;
+                    for (UGGameplayModel *gpm in play.playOdds) {
+                        NSMutableArray <UGGameBetModel *>*gbms = @[].mutableCopy;
+                        NSMutableArray *temp = [betInfo[@"betBean"] mutableCopy];
+                        for (UGGameplaySectionModel *gsm in gpm.list) {
+                            for (NSDictionary *dict in [temp copy]) {
+                                UGGameBetModel *gbm = nil;
+                                gbm = gbm ? : [gsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                                gbm = gbm ? : [gsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                                gbm = gbm ? : [gsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                                
+                                for (UGGameplaySectionModel *subGsm in gsm.ezdwlist) {
+                                    gbm = gbm ? : [subGsm.lhcOddsArray objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                                    gbm = gbm ? : [subGsm.list objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                                    gbm = gbm ? : [subGsm.zxbzlist objectWithValue:dict[@"playId"] keyPath:@"playId"];
+                                }
+                                if (gbm) {
+                                    gbm.money = dict[@"money"];
+                                    gbm.odds = dict[@"odds"];
+                                    NSString *subName = gsm.alias.length ? gsm.alias : gsm.name;
+                                    if ([subName hasPrefix:gpm.name]) {
+                                        gbm.title = subName;
+                                    } else {
+                                        gbm.title = _NSString(@"%@-%@", gpm.name, subName);
+                                    }
+                                    
+                                    [gbms addObject:gbm];
+                                    [temp removeObject:dict];
+                                    // 第四步：找到玩法paneCode
+                                    paneCode = paneCode.length ? paneCode : gsm.code;
+                                }
+                            }
+                        }
+                        if (nums.count < gbms.count) {
+                            nums = gbms;
+                        }
+                    }
                     
                     // 最后一步：弹框让用户跟注
                     UGBetDetailView *bdv = [[UGBetDetailView alloc] init];
@@ -153,12 +158,13 @@
                     bdv.code = paneCode;
                     [bdv show];
                     
-                } failure:nil];
-                [SVProgressHUD dismiss];
+                } failure:^(id msg) {
+                    [SVProgressHUD dismiss];
+                }];
             }];
-            
-        } failure:nil];
-        [SVProgressHUD dismiss];
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
     }];
 }
 

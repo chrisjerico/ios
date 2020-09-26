@@ -147,17 +147,18 @@
             site(@"c237",       @"c237hy",     @"313",      @"io.fhpt.YSAC237",         @"http://app13478.com",                         @"企业包",     @"太阳城集团"),
             
             
-            site(@" test05-fish",   @"",          @"",        @"com.UGGame.cp",           @"http://t134f.fhptcdn.com",                    @"内测包",     @"test05"),
-            site(@" test30-andrew", @"",          @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
-            site(@" test126-arc",   @"",          @"",        @"com.UGGame.cp",           @"http://t126f.fhptcdn.com",                    @"内测包",     @"test126"),
-            site(@"test127-shiyu", @"",          @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                    @"内测包",     @"test127"),
-            site(@" test76-ezer",   @"",          @"",        @"com.UGGame.cp",           @"http://t076f.fhptcdn.com",                    @"内测包",     @"test76"),
-            site(@" test77-richard",@"",          @"",        @"com.UGGame.cp",           @"http://t077f.fhptcdn.com",                    @"内测包",     @"test77"),
-            site(@" test130-mikis", @"",          @"",        @"com.UGGame.cp",           @"http://test130.fhptcdn.com",                  @"内测包",     @"test130"),
-            site(@" test132-tars",  @"",          @"",        @"com.UGGame.cp",           @"http://t132f.fhptcdn.com",                    @"内测包",     @"test132"),
-            site(@" test133-smith", @"",          @"",        @"com.UGGame.cp",           @"http://t133f.fhptcdn.com",                    @"内测包",     @"test133"),
-            site(@" test128-pryo",  @"",          @"",        @"com.UGGame.cp",           @"http://t128f.fhptcdn.com",                    @"内测包",     @"test128"),
-            site(@" test131-ian",   @"",          @"",        @"com.UGGame.cp",           @"http://test131.fhptcdn.com",                  @"内测包",     @"test131"),
+
+            site(@" t05-fish",      @"",          @"",        @"com.UGGame.cp",           @"http://t134f.fhptcdn.com",                    @"内测包",     @"test05"),
+            site(@" t30-andrew",    @"",          @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
+            site(@" t126-arc",      @"",          @"",        @"com.UGGame.cp",           @"http://t126f.fhptcdn.com",                    @"内测包",     @"test126"),
+            site(@" t127-shiyu",    @"",          @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                    @"内测包",     @"test127"),
+            site(@" t76-ezer",      @"",          @"",        @"com.UGGame.cp",           @"http://t076f.fhptcdn.com",                    @"内测包",     @"test76"),
+            site(@" t77-richard",   @"",          @"",        @"com.UGGame.cp",           @"http://t077f.fhptcdn.com",                    @"内测包",     @"test77"),
+            site(@" t130-mikis",    @"",          @"",        @"com.UGGame.cp",           @"http://test130.fhptcdn.com",                  @"内测包",     @"test130"),
+            site(@" t132-tars",     @"",          @"",        @"com.UGGame.cp",           @"http://t132f.fhptcdn.com",                    @"内测包",     @"test132"),
+            site(@" t133-smith",    @"",          @"",        @"com.UGGame.cp",           @"http://t133f.fhptcdn.com",                    @"内测包",     @"test133"),
+            site(@" t128-pryo",     @"",          @"",        @"com.UGGame.cp",           @"http://t128f.fhptcdn.com",                    @"内测包",     @"test128"),
+            site(@" t131-ian",      @"",          @"",        @"com.UGGame.cp",           @"http://test131.fhptcdn.com",                  @"内测包",     @"test131"),
             site(@"hotUpdate",      @"hotUpdate", @"260",     @"com.abcc4",               @"http://test10.6yc.com",                       @"内测包",     @"热更新测试包"),
             
             site(@"test103",     @"test103",    @"222",     @"com.UGGame.cp",           @"http://103.9.230.243",                        @"内测包",     @"test103"),
@@ -204,7 +205,7 @@
             site(@"test61e",      @"test61Ehy",  @"305",     @"com.UGGame.cp",            @"http://test61e.fhptcdn.com",                 @"内测包",     @"test61e"),
             site(@"test12",       @"test12hy",   @"",        @"com.UGGame.cp",            @"http://test12.6yc.com",                      @"内测包",     @"ttest12"),
 			
-            site(@"test08",  	  @"test08",     @"",        @"com.UGGame.cp",           @"http://test08.6yc.com",                   @"内测包",     @"test08"),
+            site(@"test08",       @"test08",     @"",        @"com.UGGame.cp",           @"http://test08.6yc.com",                   @"内测包",     @"test08"),
 			site(@"shiyu",  	  @"shiyu",     @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                   @"内测包",     @"shiyu"),
 
 

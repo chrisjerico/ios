@@ -1644,6 +1644,10 @@
 		03B71DA9251F142E0090FC98 /* Funds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D47EF9E725035E5D0002ECC0 /* Funds.storyboard */; };
 		03B71DAC251F14630090FC98 /* UGYNLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745972511F36800606EA3 /* UGYNLotteryController.m */; };
 		03B71DAF251F14690090FC98 /* UGYNLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745952511F36800606EA3 /* UGYNLotteryController.storyboard */; };
+		03B71DB2251F151D0090FC98 /* YNInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745A92511F37800606EA3 /* YNInputView.m */; };
+		03B71DB5251F15320090FC98 /* YNQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BC2511F37800606EA3 /* YNQuickSelectView.m */; };
+		03B71DB8251F15460090FC98 /* YNSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D407459E2511F37800606EA3 /* YNSegmentView.m */; };
+		03B71DBB251F15760090FC98 /* YNQuickListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BF2511F37800606EA3 /* YNQuickListView.m */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -10293,6 +10297,7 @@
 				031E1A1D23BE812700B0F813 /* HUDHelper.m in Sources */,
 				031EF5D423BE7B4E00B0F813 /* EmojiKeyBoard.swift in Sources */,
 				CF8508772466D73D0025672F /* JYLoginViewController.m in Sources */,
+				03B71DB5251F15320090FC98 /* YNQuickSelectView.m in Sources */,
 				031EF54323BE7B4D00B0F813 /* UGConversationModel.swift in Sources */,
 				031E1C3123BE812900B0F813 /* UGLotterySubResultCollectionViewCell.m in Sources */,
 				031E1A0D23BE812700B0F813 /* TextFieldAlertView.m in Sources */,
@@ -10403,6 +10408,7 @@
 				031E1B4923BE812800B0F813 /* UGChanglongBetRecordModel.m in Sources */,
 				031EF53123BE7B4D00B0F813 /* APIError.swift in Sources */,
 				031E1CA923BE812A00B0F813 /* UGFundRecordDetailView.m in Sources */,
+				03B71DB8251F15460090FC98 /* YNSegmentView.m in Sources */,
 				031E1E9F23BED78000B0F813 /* BaseVC.swift in Sources */,
 				031E1AF723BE812800B0F813 /* SANotificationEvent.m in Sources */,
 				031E196323BE812600B0F813 /* UGPostListVC.m in Sources */,
@@ -10533,6 +10539,7 @@
 				031E1E6F23BE812C00B0F813 /* UGLotteryRecordCell.m in Sources */,
 				031E1D5123BE812B00B0F813 /* UGSecurityCenterViewController.m in Sources */,
 				031E1D0723BE812A00B0F813 /* JSONKeyMapper.m in Sources */,
+				03B71DBB251F15760090FC98 /* YNQuickListView.m in Sources */,
 				031E19E523BE812700B0F813 /* UIResponder+EventRouter.m in Sources */,
 				031E1CFB23BE812A00B0F813 /* AFURLSessionManager.m in Sources */,
 				031E19C723BE812700B0F813 /* UIScrollView+Utils.m in Sources */,
@@ -10579,6 +10586,7 @@
 				031E1D0923BE812A00B0F813 /* JSONModel.m in Sources */,
 				038A585024A9DD340099D659 /* FollowListVC.swift in Sources */,
 				031E1D6323BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
+				03B71DB2251F151D0090FC98 /* YNInputView.m in Sources */,
 				031E1E2923BE812C00B0F813 /* UGMosaicGoldFinishView.m in Sources */,
 				038A727E24C026B600AF1E43 /* LanguageHelper.m in Sources */,
 				031E1C3D23BE812900B0F813 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,
