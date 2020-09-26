@@ -60,7 +60,7 @@ class LoginVC: BaseVC {
 	}
 	
 	@IBAction func loginButtonTaped(_ sender: Any) {
-		Alert.showLoading(parenter: view)
+//		Alert.showLoading(parenter: view)
 		
 		CMNetwork.userLogin(withParams: ["usr": userNameField.text!, "pwd": passwordField.text!.md5()]) { [weak self] (result, error) in
 			guard let weakSelf = self else { return }
@@ -80,6 +80,8 @@ class LoginVC: BaseVC {
 				
 				let userInfoSuccess = PublishRelay<Bool>()
 				let systemConfigSuccess = PublishRelay<Bool>()
+				UGUserModel.setCurrentUser(accessToken)
+
 				weakSelf.getUserInfo(sessid: accessToken.sessid) { (user) in
 					user.sessid = accessToken.sessid
 					user.token = accessToken.token
@@ -104,7 +106,7 @@ class LoginVC: BaseVC {
 	}
 	
 	func getConfigs(completion: @escaping (_ config: UGSystemConfigModel) -> Void) {
-		Alert.showLoading(parenter: view)
+//		Alert.showLoading(parenter: view)
 		CMNetwork.getSystemConfig(withParams: ["sss": "sss"]) { [weak self] (result, error) in
 			if let error = error {
 				Alert.showTip(error.localizedDescription,  parenter: self?.view)
@@ -118,16 +120,27 @@ class LoginVC: BaseVC {
 	}
 	
 	func getUserInfo(sessid: String,  completion: @escaping (_ user: UGUserModel) -> Void) {
-		Alert.showLoading(parenter: view)
+//		Alert.showLoading(parenter: view)
 		CMNetwork.getUserInfo(withParams: ["token": sessid]) { [weak self] (result, error) in
-			if let error = error {
-				Alert.showTip(error.localizedDescription,  parenter: self?.view)
-			} else if let user = result?.data as? UGUserModel {
-				completion(user)
-			} else {
-				Alert.showTip("获取系统配置,数据解析失败", parenter: self?.view)
-			}
+//			if let error = error {
+//				Alert.showTip(error.localizedDescription,  parenter: self?.view)
+//			} else if let user = result?.data as? UGUserModel {
+//				completion(user)
+//			} else {
+//				Alert.showTip("获取用户信息,数据解析失败", parenter: self?.view)
+//			}
+//			logger.debug("getUserInfo")
 		}
+		
+		userAPI.rx.request(.info(token: sessid)).subscribe { (response) in
+			
+//			let user = UGUserModel(dictionary: <#T##[AnyHashable : Any]!#>)
+//			completion(nil)
+		} onError: { (error) in
+			Alert.showTip("获取用户信息失败")
+			
+		}.disposed(by: disposeBag)
+
 		
 	}
 	deinit {

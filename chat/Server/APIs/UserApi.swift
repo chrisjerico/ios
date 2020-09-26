@@ -14,6 +14,7 @@ let userAPI = MoyaProvider<UserTarger>(plugins: [APILogger.default])
 
 enum UserTarger {
 	case login(usr: String, pwd: String)
+	case info(token: String)
 }
 
 extension UserTarger: TargetType {
@@ -24,13 +25,14 @@ extension UserTarger: TargetType {
 	
 	var path: String {
 		return "/wjapp/api.php"
-		
 	}
 	
 	var method: Moya.Method {
 		switch self {
 		case .login:
 			return .post
+		case .info:
+			return .get
 		}
 	}
 	
@@ -51,9 +53,15 @@ extension UserTarger: TargetType {
 			bodyParameters["pwd"] = pwd
 			bodyParameters["device"] = 3
 			
+		case .info(token: let token):
+			urlParameters["c"] = "user"
+			urlParameters["a"] = "info"
+			
+			bodyParameters["token"] = token
+//			bodyParameters["device"] = 3
 		}
 		
-		
+
 		if checkSign == 1 {
 			urlParameters["checkSign"] = 1
 			bodyParameters = bodyParameters.count > 0 ? CMNetwork.encryptionCheckSign(bodyParameters) as! [String : Any] : bodyParameters
@@ -72,7 +80,8 @@ extension UserTarger: TargetType {
 	}
 	
 	var headers: [String : String]? {
-		return ["Cookie": "loginsessid=\(UGUserModel.currentUser().sessid);logintoken=\(UGUserModel.currentUser().token)"]
+//		return ["Cookie": "loginsessid=\(UGUserModel.currentUser().sessid);logintoken=\(UGUserModel.currentUser().token)"]
+		return nil
 		
 	}
 	

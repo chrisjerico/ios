@@ -150,7 +150,7 @@
             site(@" test05-fish",   @"",          @"",        @"com.UGGame.cp",           @"http://t134f.fhptcdn.com",                    @"内测包",     @"test05"),
             site(@" test30-andrew", @"",          @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
             site(@" test126-arc",   @"",          @"",        @"com.UGGame.cp",           @"http://t126f.fhptcdn.com",                    @"内测包",     @"test126"),
-            site(@" test127-shiyu", @"",          @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                    @"内测包",     @"test127"),
+            site(@"test127-shiyu", @"",          @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                    @"内测包",     @"test127"),
             site(@" test76-ezer",   @"",          @"",        @"com.UGGame.cp",           @"http://t076f.fhptcdn.com",                    @"内测包",     @"test76"),
             site(@" test77-richard",@"",          @"",        @"com.UGGame.cp",           @"http://t077f.fhptcdn.com",                    @"内测包",     @"test77"),
             site(@" test130-mikis", @"",          @"",        @"com.UGGame.cp",           @"http://test130.fhptcdn.com",                  @"内测包",     @"test130"),

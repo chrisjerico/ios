@@ -127,7 +127,7 @@
 //用户账号信息
 + (void)getUserInfoWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     CMMETHOD_BEGIN;
-    
+	NSLog(@"+++++++++++++++=%@", params);
     [self.manager requestInMainThreadWithMethod:[userInfoUrl stringToRestfulUrlWithFlag:RESTFUL]
                                          params:params
                                           model:CMResultClassMake(UGUserModel.class)
