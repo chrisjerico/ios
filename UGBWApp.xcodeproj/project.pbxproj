@@ -904,7 +904,6 @@
 		031E1CC323BE812A00B0F813 /* UGChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177923BE812500B0F813 /* UGChatViewController.m */; };
 		031E1CC423BE812A00B0F813 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177C23BE812500B0F813 /* UIScrollView+MJRefresh.m */; };
 		031E1CC623BE812A00B0F813 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177D23BE812500B0F813 /* MJRefreshConst.m */; };
-		031E1CC723BE812A00B0F813 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177D23BE812500B0F813 /* MJRefreshConst.m */; };
 		031E1CC823BE812A00B0F813 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 031E178123BE812500B0F813 /* MJRefresh.bundle */; };
 		031E1CC923BE812A00B0F813 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 031E178123BE812500B0F813 /* MJRefresh.bundle */; };
 		031E1CCA23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E178323BE812500B0F813 /* UIScrollView+MJExtension.m */; };
@@ -924,7 +923,6 @@
 		031E1CD823BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179623BE812500B0F813 /* MJRefreshAutoGifFooter.m */; };
 		031E1CD923BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179623BE812500B0F813 /* MJRefreshAutoGifFooter.m */; };
 		031E1CDA23BE812A00B0F813 /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179723BE812500B0F813 /* MJRefreshAutoNormalFooter.m */; };
-		031E1CDB23BE812A00B0F813 /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179723BE812500B0F813 /* MJRefreshAutoNormalFooter.m */; };
 		031E1CDC23BE812A00B0F813 /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179923BE812500B0F813 /* MJRefreshNormalHeader.m */; };
 		031E1CDD23BE812A00B0F813 /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179923BE812500B0F813 /* MJRefreshNormalHeader.m */; };
 		031E1CDE23BE812A00B0F813 /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179D23BE812500B0F813 /* MJRefreshStateHeader.m */; };
@@ -932,15 +930,10 @@
 		031E1CE023BE812A00B0F813 /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179E23BE812500B0F813 /* MJRefreshGifHeader.m */; };
 		031E1CE123BE812A00B0F813 /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E179E23BE812500B0F813 /* MJRefreshGifHeader.m */; };
 		031E1CE223BE812A00B0F813 /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A023BE812500B0F813 /* MJRefreshFooter.m */; };
-		031E1CE323BE812A00B0F813 /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A023BE812500B0F813 /* MJRefreshFooter.m */; };
 		031E1CE423BE812A00B0F813 /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A223BE812500B0F813 /* MJRefreshHeader.m */; };
-		031E1CE523BE812A00B0F813 /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A223BE812500B0F813 /* MJRefreshHeader.m */; };
 		031E1CE623BE812A00B0F813 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A423BE812500B0F813 /* MJRefreshBackFooter.m */; };
-		031E1CE723BE812A00B0F813 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A423BE812500B0F813 /* MJRefreshBackFooter.m */; };
 		031E1CE823BE812A00B0F813 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A523BE812500B0F813 /* MJRefreshAutoFooter.m */; };
-		031E1CE923BE812A00B0F813 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A523BE812500B0F813 /* MJRefreshAutoFooter.m */; };
 		031E1CEA23BE812A00B0F813 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A723BE812500B0F813 /* MJRefreshComponent.m */; };
-		031E1CEB23BE812A00B0F813 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17A723BE812500B0F813 /* MJRefreshComponent.m */; };
 		031E1CEC23BE812A00B0F813 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17AB23BE812500B0F813 /* SVRadialGradientLayer.m */; };
 		031E1CED23BE812A00B0F813 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17AB23BE812500B0F813 /* SVRadialGradientLayer.m */; };
 		031E1CEE23BE812A00B0F813 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E17AE23BE812500B0F813 /* SVProgressAnimatedView.m */; };
@@ -1359,7 +1352,6 @@
 		031E1E8E23BECD8500B0F813 /* BaseNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E1E8D23BECD8500B0F813 /* BaseNav.swift */; };
 		031E1E9823BED20300B0F813 /* GameHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E1E9623BED20300B0F813 /* GameHomeVC.m */; };
 		031E1E9F23BED78000B0F813 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031E1E9E23BED78000B0F813 /* BaseVC.swift */; };
-		031EF40123BE7A9400B0F813 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40023BE7A9400B0F813 /* AppDelegate.swift */; };
 		031EF40523BE7A9400B0F813 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40423BE7A9400B0F813 /* ViewController.swift */; };
 		031EF40823BE7A9400B0F813 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40623BE7A9400B0F813 /* Main.storyboard */; };
 		031EF40A23BE7A9600B0F813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40923BE7A9600B0F813 /* Assets.xcassets */; };
@@ -1647,6 +1639,19 @@
 		03B71D93251E31E90090FC98 /* SUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677D24E25C89005D5B53 /* SUCache.m */; };
 		03B71D96251E31F70090FC98 /* UGTKLHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */; };
 		03B71D99251E32030090FC98 /* ScratchLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07EF24FB1CA000F83D92 /* ScratchLogModel.m */; };
+		03B71D9E251E38DE0090FC98 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E177D23BE812500B0F813 /* MJRefreshConst.m */; };
+		03B71DA9251F142E0090FC98 /* Funds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D47EF9E725035E5D0002ECC0 /* Funds.storyboard */; };
+		03B71DAC251F14630090FC98 /* UGYNLotteryController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745972511F36800606EA3 /* UGYNLotteryController.m */; };
+		03B71DAF251F14690090FC98 /* UGYNLotteryController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745952511F36800606EA3 /* UGYNLotteryController.storyboard */; };
+		03B71DB2251F151D0090FC98 /* YNInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745A92511F37800606EA3 /* YNInputView.m */; };
+		03B71DB5251F15320090FC98 /* YNQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BC2511F37800606EA3 /* YNQuickSelectView.m */; };
+		03B71DB8251F15460090FC98 /* YNSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D407459E2511F37800606EA3 /* YNSegmentView.m */; };
+		03B71DBB251F15760090FC98 /* YNQuickListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BF2511F37800606EA3 /* YNQuickListView.m */; };
+		03B71E30251F1CA80090FC98 /* NewUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745D9251200EB00606EA3 /* NewUserInfoViewController.m */; };
+		03B71E34251F1CAD0090FC98 /* NewUserInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745DB251200FB00606EA3 /* NewUserInfoViewController.storyboard */; };
+		03B71E37251F1D060090FC98 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
+		03B71E3F251F20220090FC98 /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142523BE812300B0F813 /* category.m */; };
+		03B71E4C251F52FD0090FC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40023BE7A9400B0F813 /* AppDelegate.swift */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -9054,6 +9059,7 @@
 				031E1D7B23BE812B00B0F813 /* UGBetRecordDetailViewController.storyboard in Resources */,
 				CF8508592466D59B0025672F /* BetImgView.xib in Resources */,
 				031E19EF23BE812700B0F813 /* common_icon_search.png in Resources */,
+				03B71DAF251F14690090FC98 /* UGYNLotteryController.storyboard in Resources */,
 				031E198F23BE812600B0F813 /* LHPostVoteView.xib in Resources */,
 				031E1E0D23BE812C00B0F813 /* UGSignInCollectionViewCell.xib in Resources */,
 				036CA77E23C759DF007BBD25 /* MyPromotion.storyboard in Resources */,
@@ -9065,6 +9071,7 @@
 				031E1BF923BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
 				031EF58023BE7B4D00B0F813 /* zj_xinwen.svg in Resources */,
 				031E1B9323BE812900B0F813 /* UGGameListCollectionViewCell.xib in Resources */,
+				03B71E34251F1CAD0090FC98 /* NewUserInfoViewController.storyboard in Resources */,
 				031E1D2D23BE812B00B0F813 /* UGIntegralConvertRecordController.storyboard in Resources */,
 				031E1D3123BE812B00B0F813 /* UGPromotionInfoController.storyboard in Resources */,
 				031E19F523BE812700B0F813 /* network_setting.html in Resources */,
@@ -9075,6 +9082,7 @@
 				031E1A9F23BE812800B0F813 /* ZZCircleProgress.bundle in Resources */,
 				031EF56723BE7B4D00B0F813 /* 形状.svg in Resources */,
 				0315DC9F24AEC46000D635E2 /* NotificationSystemMessageVC.xib in Resources */,
+				03B71E37251F1D060090FC98 /* NewLotteryHomeViewController.storyboard in Resources */,
 				031E1B8323BE812900B0F813 /* UGPlatformNoticeCell.xib in Resources */,
 				031E1C2923BE812900B0F813 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
 				031E1C8923BE812A00B0F813 /* UGFundsTransfer2View.xib in Resources */,
@@ -9100,6 +9108,7 @@
 				031E1CA123BE812A00B0F813 /* UGFundRecordDetailView.xib in Resources */,
 				031E1E1D23BE812C00B0F813 /* UGActivityGoldTableViewCell.xib in Resources */,
 				031E1B7123BE812800B0F813 /* UGPlatformTitleBlackCell.xib in Resources */,
+				03B71DA9251F142E0090FC98 /* Funds.storyboard in Resources */,
 				031EF57923BE7B4D00B0F813 /* gengduo.svg in Resources */,
 				031E1E6D23BE812C00B0F813 /* UGBetRecorddHeaderView.xib in Resources */,
 				031EF59E23BE7B4D00B0F813 /* UGyouxidating.svg in Resources */,
@@ -10005,6 +10014,7 @@
 				CF8508722466D6EE0025672F /* FLAnimatedImage.m in Sources */,
 				031E195923BE812600B0F813 /* LHUserInfoVC.m in Sources */,
 				03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */,
+				03B71E3F251F20220090FC98 /* category.m in Sources */,
 				031E1CFD23BE812A00B0F813 /* AFURLRequestSerialization.m in Sources */,
 				031E1CCB23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */,
 				031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
@@ -10082,6 +10092,7 @@
 				031E19B523BE812700B0F813 /* NSArray+Safe.m in Sources */,
 				031E1A2D23BE812700B0F813 /* CMNetwork+LH.m in Sources */,
 				031E1C9923BE812A00B0F813 /* UGFundsTransfer2View.m in Sources */,
+				03B71D9E251E38DE0090FC98 /* MJRefreshConst.m in Sources */,
 				031E1E5D23BE812C00B0F813 /* UGFeedbackDetailCell.m in Sources */,
 				031E194723BE812600B0F813 /* UGLHMineViewController.m in Sources */,
 				031E1C4D23BE812A00B0F813 /* UGSegmentCollectionViewCell.m in Sources */,
@@ -10234,10 +10245,8 @@
 				031E1C0323BE812900B0F813 /* UGLotterySettingModel.m in Sources */,
 				031E1D0D23BE812B00B0F813 /* JSONModelArray.m in Sources */,
 				031E1DE123BE812C00B0F813 /* UGbetStatModel.m in Sources */,
-				031E1CC723BE812A00B0F813 /* MJRefreshConst.m in Sources */,
 				031E1B0123BE812800B0F813 /* NSDate+XHCategory.m in Sources */,
 				031E1E8523BE812D00B0F813 /* UGYubaoIncomeTableViewCell.m in Sources */,
-				031E1CE923BE812A00B0F813 /* MJRefreshAutoFooter.m in Sources */,
 				031E1C7523BE812A00B0F813 /* UGFundDetailsTableViewController.m in Sources */,
 				031E1BAF23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1A5F23BE812700B0F813 /* STButton.m in Sources */,
@@ -10286,7 +10295,6 @@
 				031E1A7923BE812700B0F813 /* DKProgressLayer.m in Sources */,
 				031E1B6523BE812800B0F813 /* UGHomeTitleView.m in Sources */,
 				031E1D1123BE812B00B0F813 /* JSONHTTPClient.m in Sources */,
-				031E1CEB23BE812A00B0F813 /* MJRefreshComponent.m in Sources */,
 				031E1D0B23BE812A00B0F813 /* JSONModelError.m in Sources */,
 				031E197923BE812600B0F813 /* UGLHFocusUserModel.m in Sources */,
 				031E1B8723BE812900B0F813 /* UGNoticeHeaderView.m in Sources */,
@@ -10296,6 +10304,7 @@
 				031E1A1D23BE812700B0F813 /* HUDHelper.m in Sources */,
 				031EF5D423BE7B4E00B0F813 /* EmojiKeyBoard.swift in Sources */,
 				CF8508772466D73D0025672F /* JYLoginViewController.m in Sources */,
+				03B71DB5251F15320090FC98 /* YNQuickSelectView.m in Sources */,
 				031EF54323BE7B4D00B0F813 /* UGConversationModel.swift in Sources */,
 				031E1C3123BE812900B0F813 /* UGLotterySubResultCollectionViewCell.m in Sources */,
 				031E1A0D23BE812700B0F813 /* TextFieldAlertView.m in Sources */,
@@ -10318,7 +10327,6 @@
 				031EF55023BE7B4D00B0F813 /* SocketManager.swift in Sources */,
 				0315DC9E24AEC46000D635E2 /* NotificationSystemMessageVC.swift in Sources */,
 				031E1A7F23BE812700B0F813 /* SLWebViewController.m in Sources */,
-				031EF40123BE7A9400B0F813 /* AppDelegate.swift in Sources */,
 				031EF5D223BE7B4E00B0F813 /* AttachFunctionMenusCell.swift in Sources */,
 				031E1C9F23BE812A00B0F813 /* UGRechargeRecordCell.m in Sources */,
 				031E1D1523BE812B00B0F813 /* JSONModel+networking.m in Sources */,
@@ -10350,6 +10358,7 @@
 				031E1BA723BE812900B0F813 /* UGBMpreferentialViewController.m in Sources */,
 				031E19B123BE812700B0F813 /* NSNull+Safe.m in Sources */,
 				031E1E0723BE812C00B0F813 /* UGSignInHistoryView.m in Sources */,
+				03B71E4C251F52FD0090FC98 /* AppDelegate.swift in Sources */,
 				031E1D5B23BE812B00B0F813 /* UGRegisterViewController.m in Sources */,
 				031E1AEB23BE812800B0F813 /* LeeTagItem.m in Sources */,
 				031E1E8323BE812D00B0F813 /* UGBalanceTransferLogsCell.m in Sources */,
@@ -10361,6 +10370,7 @@
 				031EF54523BE7B4D00B0F813 /* BetModel.swift in Sources */,
 				031E19A723BE812600B0F813 /* JRSwizzle.m in Sources */,
 				031E1B0523BE812800B0F813 /* NSDateComponents+XHCategory.m in Sources */,
+				03B71E30251F1CA80090FC98 /* NewUserInfoViewController.m in Sources */,
 				031E199123BE812600B0F813 /* UGPostCell1.m in Sources */,
 				CF85087A2466D75C0025672F /* LineMainViewController.m in Sources */,
 				031E1CD323BE812A00B0F813 /* MJRefreshBackStateFooter.m in Sources */,
@@ -10387,7 +10397,6 @@
 				031E1B7723BE812800B0F813 /* UGGameTypeColletionViewCell.m in Sources */,
 				031E1CDF23BE812A00B0F813 /* MJRefreshStateHeader.m in Sources */,
 				031E1ADD23BE812800B0F813 /* UIView+SDExtension.m in Sources */,
-				031E1CE723BE812A00B0F813 /* MJRefreshBackFooter.m in Sources */,
 				031E1E9823BED20300B0F813 /* GameHomeVC.m in Sources */,
 				031E1A3723BE812700B0F813 /* CMNetwork+Hall.m in Sources */,
 				031E1A1723BE812700B0F813 /* Aspects.m in Sources */,
@@ -10407,6 +10416,7 @@
 				031E1B4923BE812800B0F813 /* UGChanglongBetRecordModel.m in Sources */,
 				031EF53123BE7B4D00B0F813 /* APIError.swift in Sources */,
 				031E1CA923BE812A00B0F813 /* UGFundRecordDetailView.m in Sources */,
+				03B71DB8251F15460090FC98 /* YNSegmentView.m in Sources */,
 				031E1E9F23BED78000B0F813 /* BaseVC.swift in Sources */,
 				031E1AF723BE812800B0F813 /* SANotificationEvent.m in Sources */,
 				031E196323BE812600B0F813 /* UGPostListVC.m in Sources */,
@@ -10484,7 +10494,6 @@
 				031E19A523BE812600B0F813 /* SDWebImageHelper.m in Sources */,
 				031E1E5723BE812C00B0F813 /* UGMineMenuCollectionViewCell.m in Sources */,
 				031E1CA523BE812A00B0F813 /* UGWithdrawRecordDetailView.m in Sources */,
-				031E1CDB23BE812A00B0F813 /* MJRefreshAutoNormalFooter.m in Sources */,
 				031EF55923BE7B4D00B0F813 /* Logger.swift in Sources */,
 				031EF5BF23BE7B4D00B0F813 /* ConcernedMomentsVC.swift in Sources */,
 				031EF5C523BE7B4D00B0F813 /* MomentsPublishImageCell.swift in Sources */,
@@ -10518,7 +10527,6 @@
 				031E1D2F23BE812B00B0F813 /* UGSigInCodeViewController.m in Sources */,
 				031E1B9B23BE812900B0F813 /* UGLotteryAssistantTableViewCell.m in Sources */,
 				031E1DAD23BE812B00B0F813 /* UGYuebaoTransferLogsModel.m in Sources */,
-				031E1CE523BE812A00B0F813 /* MJRefreshHeader.m in Sources */,
 				031E1DD123BE812C00B0F813 /* UGCardInfoModel.m in Sources */,
 				031E19BB23BE812700B0F813 /* UIView+Frame.m in Sources */,
 				CF8508782466D7450025672F /* UGMissionMainViewController.m in Sources */,
@@ -10539,11 +10547,12 @@
 				031E1E6F23BE812C00B0F813 /* UGLotteryRecordCell.m in Sources */,
 				031E1D5123BE812B00B0F813 /* UGSecurityCenterViewController.m in Sources */,
 				031E1D0723BE812A00B0F813 /* JSONKeyMapper.m in Sources */,
+				03B71DBB251F15760090FC98 /* YNQuickListView.m in Sources */,
 				031E19E523BE812700B0F813 /* UIResponder+EventRouter.m in Sources */,
 				031E1CFB23BE812A00B0F813 /* AFURLSessionManager.m in Sources */,
 				031E19C723BE812700B0F813 /* UIScrollView+Utils.m in Sources */,
+				03B71DAC251F14630090FC98 /* UGYNLotteryController.m in Sources */,
 				031E1C8B23BE812A00B0F813 /* UGDepositDetailsCollectionViewCell.m in Sources */,
-				031E1CE323BE812A00B0F813 /* MJRefreshFooter.m in Sources */,
 				031E1C0F23BE812900B0F813 /* UGLotteryAdPopView.m in Sources */,
 				031E19E323BE812700B0F813 /* NSUserDefaults+Utils.m in Sources */,
 				031E1D3723BE812B00B0F813 /* UGAgentViewController.m in Sources */,
@@ -10585,6 +10594,7 @@
 				031E1D0923BE812A00B0F813 /* JSONModel.m in Sources */,
 				038A585024A9DD340099D659 /* FollowListVC.swift in Sources */,
 				031E1D6323BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
+				03B71DB2251F151D0090FC98 /* YNInputView.m in Sources */,
 				031E1E2923BE812C00B0F813 /* UGMosaicGoldFinishView.m in Sources */,
 				038A727E24C026B600AF1E43 /* LanguageHelper.m in Sources */,
 				031E1C3D23BE812900B0F813 /* UGMarkSixLotteryBetItem1Cell.m in Sources */,

@@ -34,6 +34,7 @@ class UGLaunchController: BaseVC {
 		let didLoadlaunchImage = PublishRelay<()>()
 		didLoadlaunchImage.subscribe(onNext: {[weak self] () in
 			
+			logger.debug("didLoadlaunchImage")
 			if UGLoginIsAuthorized() {
 				self?.launch()
 			} else {
@@ -45,15 +46,18 @@ class UGLaunchController: BaseVC {
 			imageView.image = image
 			didLoadlaunchImage.accept(())
 		} else {
-			ChatAPI.rx.request(ChatTarget.launchPic).mapArray(LaunchPictureModel.self).subscribe(onSuccess: { (result) in
-				guard let picString = result.first?.pic, let url = URL(string: picString), let data = try? Data(contentsOf: url) else { return }
-				UserDefaults.standard.set(data, forKey: "launchImageData")
-				imageView.image = UIImage(data: data)
+			ChatAPI.rx.request(ChatTarget.launchPic).mapArray(LaunchPictureModel.self).debug().subscribe(onSuccess: { (result) in
+				
+				
+				guard let picString = result.first?.pic, let url = URL(string: picString) else { return }
+//				UserDefaults.standard.set(data, forKey: "launchImageData")
+//				imageView.image = UIImage(data: data)
+				imageView.kf.setImage(with: url)
 				didLoadlaunchImage.accept(())
 			}) { (error) in
 				didLoadlaunchImage.accept(())
 
-//				Alert.showTip(error.localizedDescription)
+				Alert.showTip(error.localizedDescription)
 			}.disposed(by: disposeBag)
 			
 		}

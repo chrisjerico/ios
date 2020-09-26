@@ -148,6 +148,7 @@
             site(@"c246",       @"c246hy",     @"329",      @"io.fhpt.YSAC246",         @"http://app13478.com",                         @"企业包",     @"澳门新葡京"),
             
             
+
             site(@" t05-fish",      @"",          @"",        @"com.UGGame.cp",           @"http://t134f.fhptcdn.com",                    @"内测包",     @"test05"),
             site(@" t30-andrew",    @"",          @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
             site(@" t126-arc",      @"",          @"",        @"com.UGGame.cp",           @"http://t126f.fhptcdn.com",                    @"内测包",     @"test126"),
