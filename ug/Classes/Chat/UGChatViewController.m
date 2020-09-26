@@ -156,6 +156,7 @@
                     bdv.dataArray = nums;
                     bdv.nextIssueModel = nextIssueModel;
                     bdv.code = paneCode;
+                    bdv.followTag = betInfo[@"tag"];
                     [bdv show];
                     
                 } failure:^(id msg) {

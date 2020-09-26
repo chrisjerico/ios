@@ -22,6 +22,7 @@ typedef void(^BetDetailViewCancelBlock)(void);
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *followTag;  /**<   跟注标示，有值表示从聊天室跟注的注单 */
 - (void)show;
 @end
 

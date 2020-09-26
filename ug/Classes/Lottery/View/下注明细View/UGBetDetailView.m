@@ -234,6 +234,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     
     [mutDict setValue:[NSNumber numberWithBool:self.nextIssueModel.isInstant]  forKey:@"isInstant"];
+    mutDict[@"tag"] = self.followTag;
       HJSonLog(@"mutDict = %@",mutDict);
     [self submitBet:mutDict];
     
@@ -374,8 +375,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         @"二字定位":@1,
         @"三字定位":@1,
         @"定位胆":@1,
+        @"二字":@1,
+        @"不定位":@1,
     };
-    return  dict[self.dataArray.firstObject.typeName];
+    UGGameBetModel *gbm =  self.dataArray.firstObject;
+    return  dict[gbm.typeName ? : gbm.title];
 }
 
 -(NSMutableDictionary *)shareBettingData{
