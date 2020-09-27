@@ -1656,6 +1656,10 @@
 		03B71E37251F1D060090FC98 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
 		03B71E3F251F20220090FC98 /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142523BE812300B0F813 /* category.m */; };
 		03B71E4C251F52FD0090FC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40023BE7A9400B0F813 /* AppDelegate.swift */; };
+		03B720B62520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B720B42520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m */; };
+		03B720B72520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B720B42520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m */; };
+		03B720B82520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B720B52520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib */; };
+		03B720B92520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B720B52520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -3634,6 +3638,9 @@
 		03B1252B24F7FE10007A0858 /* ScratchActionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScratchActionController.h; sourceTree = "<group>"; };
 		03B1252C24F7FE10007A0858 /* ScratchActionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScratchActionController.m; sourceTree = "<group>"; };
 		03B1252D24F7FE10007A0858 /* ScratchActionController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScratchActionController.xib; sourceTree = "<group>"; };
+		03B720B32520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBJPK10LotteryBetCollectionHeader.h; sourceTree = "<group>"; };
+		03B720B42520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBJPK10LotteryBetCollectionHeader.m; sourceTree = "<group>"; };
+		03B720B52520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBJPK10LotteryBetCollectionHeader.xib; sourceTree = "<group>"; };
 		03CF9B5E23C8D6C800CDE142 /* PromotionAdvertisementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionAdvertisementVC.h; sourceTree = "<group>"; };
 		03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionAdvertisementVC.m; sourceTree = "<group>"; };
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
@@ -5918,6 +5925,9 @@
 				031E16BC23BE812400B0F813 /* UGBJPK10LotteryController.h */,
 				031E16BB23BE812400B0F813 /* UGBJPK10LotteryController.m */,
 				031E16BA23BE812400B0F813 /* UGBJPK10LotteryController.storyboard */,
+				03B720B32520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.h */,
+				03B720B42520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m */,
+				03B720B52520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib */,
 			);
 			path = "北京PK10";
 			sourceTree = "<group>";
@@ -9354,6 +9364,7 @@
 				031EF5B423BE7B4D00B0F813 /* MomentsCellImageItem.xib in Resources */,
 				031EF58E23BE7B4D00B0F813 /* guanbi.svg in Resources */,
 				031E1D4523BE812B00B0F813 /* UGGoogleAuthenticationFirstViewController.xib in Resources */,
+				03B720B92520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */,
 				031EF57523BE7B4D00B0F813 /* anquanzhongxin.svg in Resources */,
 				031E1BB323BE812900B0F813 /* BlackTemplate.storyboard in Resources */,
 				031EF5AA23BE7B4D00B0F813 /* zj_huodong.svg in Resources */,
@@ -9384,6 +9395,7 @@
 				031E1E7423BE812C00B0F813 /* UGRecordFilterCollectionViewCell.xib in Resources */,
 				D422D67F22D9A766008E7065 /* address.json in Resources */,
 				CF4758AF239636D200966536 /* 94.gif in Resources */,
+				03B720B82520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */,
 				CF4758E7239636D200966536 /* 89.gif in Resources */,
 				031E19EC23BE812700B0F813 /* water01.png in Resources */,
 				CF4758F3239636D200966536 /* 61.gif in Resources */,
@@ -10397,6 +10409,7 @@
 				031E1CD323BE812A00B0F813 /* MJRefreshBackStateFooter.m in Sources */,
 				03E3AAC323C84EA5009A28C0 /* PromotionIntroductionVC.m in Sources */,
 				031EF5E023BE7B4E00B0F813 /* RoomCell.swift in Sources */,
+				03B720B72520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */,
 				031E1BA323BE812900B0F813 /* UGBMRegisterViewController.m in Sources */,
 				031EF5DD23BE7B4E00B0F813 /* BetListCell.swift in Sources */,
 				CF8508682466D6860025672F /* UGCell190HeaderView.m in Sources */,
@@ -11146,6 +11159,7 @@
 				031E1A0C23BE812700B0F813 /* TextFieldAlertView.m in Sources */,
 				031E1C0E23BE812900B0F813 /* UGLotteryAdPopView.m in Sources */,
 				031E194023BE812600B0F813 /* UGSkinCollectionViewCell.m in Sources */,
+				03B720B62520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */,
 				031E1A5423BE812700B0F813 /* CountDown.m in Sources */,
 				031E1DB623BE812B00B0F813 /* UGModel.m in Sources */,
 				031E1A8223BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,

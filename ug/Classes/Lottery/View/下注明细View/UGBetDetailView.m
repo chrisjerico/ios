@@ -722,15 +722,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         if ([@"定位胆" isEqualToString:temp.typeName]) {
             break;
         }
-//		if ([@"百定位" isEqualToString:temp.typeName]||[@"十定位" isEqualToString:temp.typeName]||[@"个定位" isEqualToString:temp.typeName]) {
-//				  break;
-//			  }
-//		if ([@"二重号" isEqualToString:temp.typeName]||[@"单号" isEqualToString:temp.typeName]) {
-//			break;
-//		}
-//		if ([@"选号" isEqualToString:temp.typeName]) {
-//			break;
-//		}
+		if ([@"官方玩法" isEqualToString:temp.typeName]) {
+			break;
+		}
 		if ([@"定位胆" isEqualToString:temp.typeName] && ![@"组选6" isEqualToString:temp.alias]) {
 			break;
 		}
