@@ -43,11 +43,16 @@
     [ShellHelper pullCode:RNPack.projectDir branch:@"master" completion:^(GitModel * _Nonnull gm) {
         [ShellHelper pullCode:self.projectDir branch:branch completion:^(GitModel * _Nonnull gm) {
             __self.gm = gm;
-            
+            NSString *number = @(gm.number.intValue + 23000).stringValue;
             NSString *(^getChar)(NSString *, int) = ^NSString *(NSString *vStr, int idx) {
                 return [vStr substringWithRange:NSMakeRange(idx, 1)];
             };
-            NSString *ipaVersion = _NSString(@"%@.%@%@.0", getChar(gm.number, 0), getChar(gm.number, 1), getChar(gm.number, 2));
+            NSString *ipaVersion = _NSString(@"%@.%@%@.%@%@",
+                                              getChar(number, 0),
+                                              getChar(number, 1),
+                                              getChar(number, 2),
+                                              getChar(number, 3),
+                                              getChar(number, 4));
             NSLog(@"ipaVersion = %@", ipaVersion);
             if (completion)
                 completion(ipaVersion);
