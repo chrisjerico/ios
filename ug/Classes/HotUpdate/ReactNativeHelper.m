@@ -61,7 +61,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[CodePushConfig current] setAppVersion:RNCheckVersion];
+        [[CodePushConfig current] setAppVersion:RNCheckVersion1];
         [[CodePushConfig current] setServerURL:CodePushHost];
         [[CodePushConfig current] setDeploymentKey:ReactNativeHelper.currentCodePushKey];
 #ifdef APP_TEST
