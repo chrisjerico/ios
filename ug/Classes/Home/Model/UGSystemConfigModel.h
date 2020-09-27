@@ -193,6 +193,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic, copy) NSArray<UGMobileMenu *> *mobileMenu;
 
+@property (nonatomic) NSInteger inviteCodeSwitch;          /**<   邀请码 0不填，1选填，2必填 */
+@property (nonatomic) NSString *inviteWord;			/**<   邀请码文字 */
 @property (nonatomic) NSInteger hide_reco;          /**<   代理人 0不填，1选填，2必填 */
 
 @property (nonatomic, copy) NSString *popup_type;         /**<   公告  0直接弹窗，1登录后弹出 */

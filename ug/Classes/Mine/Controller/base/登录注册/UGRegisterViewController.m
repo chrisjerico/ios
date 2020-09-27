@@ -20,7 +20,10 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "SUCache.h"
 @interface UGRegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,WKScriptMessageHandler,WKNavigationDelegate,WKUIDelegate>
+
+
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
+@property (weak, nonatomic) IBOutlet UITextField *invitationCodeViewTextF;
 @property (weak, nonatomic) IBOutlet UITextField *inviterTextF;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
@@ -37,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *smsVcodeButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imgVcodeImageView;
 
+@property (weak, nonatomic) IBOutlet UIView *invitationCodeView;
 @property (weak, nonatomic) IBOutlet UIView *inviterView;
 @property (weak, nonatomic) IBOutlet UIView *fullNameView;
 @property (weak, nonatomic) IBOutlet UIView *fundPwdView;
@@ -49,7 +53,7 @@
 @property (weak, nonatomic) IBOutlet UIView *webBgView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *userHightConstraint;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *invitationCodeViewHightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inviterViewHightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fullNameViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fundPwdViewHeightConstraint;
@@ -283,6 +287,12 @@
 - (IBAction)registerClick:(id)sender {
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
     ck_parameters(^{
+		
+		if (config.inviteCodeSwitch == 2) {
+//			inviteCode
+			ck_parameter_non_empty(self.invitationCodeViewTextF.text, [NSString stringWithFormat:@"请输入%@", config.inviteWord]);
+		}
+		
         if (config.hide_reco == 2) {
             ck_parameter_non_empty(self.inviterTextF.text, @"请输入推荐人ID");
             
@@ -400,7 +410,8 @@
                                  @"smsCode":self.smsVcodeTextF.text ? self.smsVcodeTextF.text : @"",
                                  @"imgCode":self.imgVcodeTextF.text ? self.imgVcodeTextF.text : @"",
                                  @"email":self.emailTextF.text ? self.emailTextF.text : @"",
-                                 @"regType":self.regType
+								 @"regType":self.regType,
+								 @"inviteCode":self.invitationCodeViewTextF.text.length ? self.invitationCodeViewTextF.text : @""
                                  };
         
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
@@ -558,6 +569,15 @@
         self.mySegmentHightConstraint.constant = 0.1;
     }
     
+	
+	if (config.inviteCodeSwitch == 1) {
+		self.invitationCodeViewTextF.placeholder = [NSString stringWithFormat:@"请输入%@(选填)", config.inviteWord];
+	} else if(config.inviteCodeSwitch == 0){
+		self.invitationCodeView.hidden = YES;
+		self.invitationCodeViewHightConstraint.constant = 0.1;
+	} else {
+		self.invitationCodeViewTextF.placeholder = [NSString stringWithFormat:@"请输入%@", config.inviteWord];
+	}
     if (config.hide_reco) {
         if (config.hide_reco == 1) {
             if (APP.isShowWZ) {
