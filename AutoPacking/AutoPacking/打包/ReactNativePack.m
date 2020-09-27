@@ -215,10 +215,11 @@
 }
 
 - (void)postReactNative:(NSString *)version environment:(NSString *)environment completion:(void (^)(void))completion {
+    NSString *rnCheckVersion = [environment isEqualToString:@"UGiOS"] ? RNCheckVersion : @"1.1.1";
     // 提交rn资源包
     NSLog(@"准备打包rn代码");
     [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"7codepush" ofType:@"sh"]
-                             arguments:@[self.projectDir, APPVersion, version, environment, RNPack.privateKey, ]
+                             arguments:@[self.projectDir, rnCheckVersion, version, environment, RNPack.privateKey, ]
                             completion:^(OutputModel * _Nonnull om) {
         // 获取CodePush版本号判断是否已发布成功
         [NSTask launchedTaskWithLaunchPath:[[NSBundle mainBundle] pathForResource:@"RnInfo" ofType:@"sh"]

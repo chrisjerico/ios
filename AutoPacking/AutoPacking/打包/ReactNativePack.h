@@ -10,7 +10,7 @@
 #import "GitModel.h"
 
 #define RNPack [ReactNativePack shared]
-#define APPVersion @"1.1.1" // 千万别改，改了code-push可能更新不了
+#define RNCheckVersion @"1.1.1" // react-native升级了版本时更新，修改后会导致旧版本无法热更新
 
 NS_ASSUME_NONNULL_BEGIN
 
