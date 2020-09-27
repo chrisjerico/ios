@@ -18,17 +18,6 @@ MJCodingImplementation
              @"successBlock", @"failureBlock", @"completionBlock", @"filePathBlock", @"progressBlock", ];
 }
 
-+ (NSString *)printURLString:(NSString *)URLString params:(NSDictionary *)params {
-    NSMutableString *string = [URLString mutableCopy];
-    if (![string containsString:@"?"])
-        [string appendString:@"?"];
-    
-    for (NSString *key in params.allKeys)
-        [string appendFormat:@"%@=%@&", key, params[key]];
-    
-    return string;
-}
-
 
 #pragma mark -
 
