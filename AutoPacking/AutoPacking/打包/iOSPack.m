@@ -331,9 +331,9 @@
     startUploading();
 }
 
-// 保存发包日志
+// 保存发包记录
 - (void)saveLog:(NSArray <SiteModel *>*)sms uploaded:(BOOL)uploaded checkStatus:(BOOL)checkStatus completion:(void (^)(BOOL ok))completion {
-    // 从git拉取最新的发包日志
+    // 从git拉取最新的发包记录
     NSLog(@"提交打包日志");
     [ShellHelper pullCode:iPack.logFile.stringByDeletingLastPathComponent branch:@"master" completion:^(GitModel * _Nonnull _) {
         NSDateFormatter *df = [NSDateFormatter new];
@@ -353,10 +353,10 @@
             [self saveString:log toFile:iPack.logFile];
         }
         
-        // 提交发包日志到git
+        // 提交发包记录到git
         NSString *title = _NSString(@"%@ %@，%@", [(NSArray *)[sms valueForKey:@"siteId"] componentsJoinedByString:@","], uploaded ? @"【发包】" : @"【只打包】", iPack.gm.log);
         [ShellHelper pushCode:iPack.logFile.stringByDeletingLastPathComponent title:title completion:^{
-            NSLog(@"发包日志提交成功");
+            NSLog(@"发包记录提交成功");
             if (completion) {
                 completion(true);
             }
@@ -370,7 +370,7 @@
     
     // 写入文件末尾
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        [@"——————————————\n    发包日志\n——————————————\n\n" writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
+        [@"——————————————\n    发包记录\n——————————————\n\n" writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
     }
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
     [fileHandle seekToEndOfFile];

@@ -10,7 +10,6 @@
 
 #import <React/RCTRootView.h>
 #import "CodePush.h"
-#import "JSPatchHelper.h"
 
 @interface HotBranchView()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *currentBranchLabel;

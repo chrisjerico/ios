@@ -11,5 +11,5 @@ __Title=$6
 cd $__Path
 
 
-git commit -m "$__Title" PackingLog.txt 热更新发包记录.txt
+git commit -m "$__Title" PackingLog.txt RN发包记录.txt
 git push
