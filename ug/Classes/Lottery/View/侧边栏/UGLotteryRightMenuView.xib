@@ -55,6 +55,10 @@
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="fIV-JQ-Bfj"/>
+                                <outlet property="delegate" destination="-1" id="LUD-dF-pA1"/>
+                            </connections>
                         </collectionView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -84,6 +88,7 @@
                 <constraint firstAttribute="trailing" secondItem="IsX-NE-3Kb" secondAttribute="trailing" id="zJg-PI-9jg"/>
             </constraints>
             <connections>
+                <outlet property="contentCollectionView" destination="bPA-v8-Uai" id="xma-zL-HTr"/>
                 <outlet property="returnHomeBtn" destination="vi3-Yf-sJU" id="RBg-s6-VTz"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="69.642857142857139"/>

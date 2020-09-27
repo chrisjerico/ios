@@ -1150,9 +1150,7 @@
     [self.contentCollectionView registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     [CMCommon setBorderWithView:self.contentCollectionView top:YES left:YES bottom:NO right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
     [self.contentCollectionView setCollectionViewLayout:_flow];
-    
-    
-    
+ 
 }
 #pragma mark - WSLWaterFlowLayoutDelegate
 //返回每个item大小
