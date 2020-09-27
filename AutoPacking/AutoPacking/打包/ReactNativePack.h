@@ -21,10 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shared;
 - (void)setupPlist:(NSDictionary *)dict;    /**<   初始化 */
-- (void)checkEnvironment:(NSString *)environment log:(NSString *)log completion:(void (^)(NSString *environment, NSString *log))completion;
-- (void)getCurrentVersionWithEnvironment:(NSString *)environment completion:(void (^)(NSString *version))completion;   /**<   获取当前版本号 */
-- (void)pullCode:(NSString *)branch completion:(void (^)(void))completion;
-- (void)pack:(NSString *)version environment:(NSString *)environment log:(NSString *)log completion:(void (^)(void))completion;
+- (void)checkEnvironment:(NSString *)environment completion:(void (^)(NSString *environment))completion;
+- (void)pack:(GitModel *)gm environment:(NSString *)environment completion:(void (^)(void))completion;
 @end
 
 NS_ASSUME_NONNULL_END

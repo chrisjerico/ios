@@ -13,7 +13,6 @@
 #import <SafariServices/SafariServices.h>
 
 #import "ReactNativeHelper.h"
-#import "JSPatchHelper.h"
 
 #import "UIView+AutoLocalizable.h"
 
@@ -388,7 +387,6 @@
 }
 
 - (void)loadReactNative {
-    [JSPatchHelper install];
     __weakSelf_(__self);
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         NSLog(@"RN初始化完毕");

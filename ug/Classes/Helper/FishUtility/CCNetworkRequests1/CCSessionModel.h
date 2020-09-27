@@ -40,8 +40,6 @@
 @property (nonatomic) NSHTTPURLResponse *response;            /**<    描述响应（响应头、响应体） */
 @property (nonatomic) NSTimeInterval duration;                /**<    请求响应时长(ms) */
 
-+ (NSString *)printURLString:(NSString *)URLString params:(NSDictionary *)params;           /**<    拼接URL */
-
 - (NSURLSessionDataTask *)dataTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req;   /**<    获取请求Tast */
 
 @end

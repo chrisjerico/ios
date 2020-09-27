@@ -64,7 +64,6 @@
 #import "UIView+Events.h"           //添加手势
 #import "UIView+yyCornerRadius.h"   //添加圆角
 #import "CMNetwork+LH.h"            //六合
-#import "JSPatchHelper.h"
 
 
 // 引入Fish工具集

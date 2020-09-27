@@ -60,7 +60,7 @@ static NSString *segmentCellId = @"UGSegmentCollectionViewCell";
     if (self.dataArray.count < 5) {
         return CGSizeMake((self.width - 5)/self.dataArray.count, self.height);
     }
-    return CGSizeMake((self.width - 5)/5 + 5, self.height);
+    return CGSizeMake((self.width - 5)/4 + 5, self.height);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

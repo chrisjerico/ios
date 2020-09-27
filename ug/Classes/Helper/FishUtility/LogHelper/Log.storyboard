@@ -189,7 +189,7 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="DetailLabel"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200ms" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt3-gX-vpe">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200ms" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt3-gX-vpe">
                                                             <rect key="frame" x="311" y="21.666666666666668" width="50" height="12.000000000000004"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="BdI-1d-xnt"/>
@@ -201,16 +201,40 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="TimeLabel"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4C8-KM-TDR">
+                                                            <rect key="frame" x="288" y="0.0" width="73" height="55"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3m-10-iab">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="73" height="27.666666666666668"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                    <state key="normal" title="拷贝URL"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拷贝URLButton"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qp9-eo-mE2">
+                                                                    <rect key="frame" x="0.0" y="27.666666666666671" width="73" height="27.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                                    <state key="normal" title="拷贝URL+参数"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="拷贝URL+参数Button"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="ZKW-gI-Jbo" firstAttribute="centerY" secondItem="euv-9e-J6u" secondAttribute="centerY" id="7ZB-9s-wDz"/>
+                                                        <constraint firstItem="4C8-KM-TDR" firstAttribute="trailing" secondItem="Yt3-gX-vpe" secondAttribute="trailing" id="Adj-94-ETg"/>
                                                         <constraint firstItem="Rqt-ne-As8" firstAttribute="leading" secondItem="vNr-bY-nZf" secondAttribute="leading" id="H5G-2z-DBh"/>
                                                         <constraint firstItem="vNr-bY-nZf" firstAttribute="top" secondItem="euv-9e-J6u" secondAttribute="top" constant="4" id="Kcg-yw-s25"/>
+                                                        <constraint firstItem="4C8-KM-TDR" firstAttribute="top" secondItem="euv-9e-J6u" secondAttribute="top" id="Pow-DY-BNH"/>
                                                         <constraint firstItem="Rqt-ne-As8" firstAttribute="trailing" secondItem="vNr-bY-nZf" secondAttribute="trailing" id="R0b-5Z-GE9"/>
                                                         <constraint firstItem="vNr-bY-nZf" firstAttribute="leading" secondItem="ZKW-gI-Jbo" secondAttribute="trailing" constant="3" id="TDe-nw-60i"/>
                                                         <constraint firstAttribute="trailing" secondItem="Yt3-gX-vpe" secondAttribute="trailing" constant="14" id="ea9-0m-3dn"/>
                                                         <constraint firstAttribute="bottomMargin" secondItem="Rqt-ne-As8" secondAttribute="bottom" constant="-5" id="ftx-pu-bi6"/>
                                                         <constraint firstItem="Yt3-gX-vpe" firstAttribute="leading" secondItem="vNr-bY-nZf" secondAttribute="trailing" id="qPS-rP-NVP"/>
+                                                        <constraint firstItem="4C8-KM-TDR" firstAttribute="centerY" secondItem="euv-9e-J6u" secondAttribute="centerY" id="que-Ox-n2R"/>
                                                         <constraint firstItem="ZKW-gI-Jbo" firstAttribute="leading" secondItem="euv-9e-J6u" secondAttribute="leading" constant="5" id="uLG-us-bwL"/>
                                                         <constraint firstItem="Yt3-gX-vpe" firstAttribute="centerY" secondItem="euv-9e-J6u" secondAttribute="centerY" id="uMC-Jp-uUq"/>
                                                     </constraints>

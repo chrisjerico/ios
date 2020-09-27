@@ -345,6 +345,18 @@ static LogVC *_logVC = nil;
         subLabel(@"DetailLabel").text = _NSString(@"%@", sm.responseObject[@"msg"]);
         subLabel(@"TimeLabel").text = sm.duration >= 1000 ? _NSString(@"%.1fs", sm.duration/1000.0) : _NSString(@"%dms", (int)sm.duration);
         subLabel(@"TimeLabel").hidden = !(sm.responseObject || sm.error);
+        subLabel(@"TimeLabel").hidden = true;
+        
+        [subButton(@"拷贝URLButton") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"拷贝URLButton") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            [UIPasteboard generalPasteboard].string = sm.urlString;
+            [HUDHelper showMsg:@"已拷贝"];
+        }];
+        [subButton(@"拷贝URL+参数Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"拷贝URL+参数Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            [UIPasteboard generalPasteboard].string = [sm.urlString stringByAppendingURLParams:sm.params];
+            [HUDHelper showMsg:@"已拷贝"];
+        }];
     } else {
         subLabel(@"TitleLabel").text = _selectedModelKeys[indexPath.row];
         subLabel(@"DetailLabel").text =  [_selectedModel.params[_selectedModelKeys[indexPath.row]] description];

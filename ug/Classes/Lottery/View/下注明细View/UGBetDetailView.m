@@ -377,6 +377,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         @"定位胆":@1,
         @"二字":@1,
         @"不定位":@1,
+		@"五星":@1,
     };
     UGGameBetModel *gbm =  self.dataArray.firstObject;
     return  dict[gbm.typeName ? : gbm.title];
@@ -731,6 +732,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 //			break;
 //		}
 		if ([@"定位胆" isEqualToString:temp.typeName] && ![@"组选6" isEqualToString:temp.alias]) {
+			break;
+		}
+		if ([@"五星" isEqualToString:temp.typeName]) {
 			break;
 		}
 		
