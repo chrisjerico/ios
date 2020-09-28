@@ -1905,6 +1905,8 @@
 		CF475929239636D200966536 /* 105.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587D239636D100966536 /* 105.gif */; };
 		CF47592A239636D200966536 /* 10.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587E239636D100966536 /* 10.gif */; };
 		CF47592B239636D200966536 /* 38.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587F239636D100966536 /* 38.gif */; };
+		CF52FA5E2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */; };
+		CF52FA5F2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */; };
 		CF533A81251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */; };
 		CF533A82251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */; };
 		CF533A83251B116000462E31 /* NewLotteryGameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF533A80251B116000462E31 /* NewLotteryGameCollectionViewCell.xib */; };
@@ -3904,6 +3906,9 @@
 		CF47587D239636D100966536 /* 105.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 105.gif; sourceTree = "<group>"; };
 		CF47587E239636D100966536 /* 10.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 10.gif; sourceTree = "<group>"; };
 		CF47587F239636D100966536 /* 38.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 38.gif; sourceTree = "<group>"; };
+		CF52FA5B2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawalAccountTableViewCell.h; sourceTree = "<group>"; };
+		CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGwithdrawalAccountTableViewCell.m; sourceTree = "<group>"; };
+		CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGwithdrawalAccountTableViewCell.xib; sourceTree = "<group>"; };
 		CF533A7E251B116000462E31 /* NewLotteryGameCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewLotteryGameCollectionViewCell.h; sourceTree = "<group>"; };
 		CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewLotteryGameCollectionViewCell.m; sourceTree = "<group>"; };
 		CF533A80251B116000462E31 /* NewLotteryGameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewLotteryGameCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -6113,6 +6118,7 @@
 		031E171D23BE812400B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF52FA582521C57D00ACF773 /* 提款账号 */,
 				031E171E23BE812400B0F813 /* 存款 */,
 				031E172623BE812400B0F813 /* 存取款记录 */,
 				031E172A23BE812400B0F813 /* 取款 */,
@@ -6183,6 +6189,7 @@
 		031E173A23BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CF52FA5A2521C59F00ACF773 /* 提款账号 */,
 				031E173B23BE812400B0F813 /* 存款 */,
 				031E175523BE812400B0F813 /* 存取款记录 */,
 				031E175423BE812400B0F813 /* UGFundDetailsCell.h */,
@@ -8166,6 +8173,23 @@
 			path = "六合表情";
 			sourceTree = "<group>";
 		};
+		CF52FA582521C57D00ACF773 /* 提款账号 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "提款账号";
+			sourceTree = "<group>";
+		};
+		CF52FA5A2521C59F00ACF773 /* 提款账号 */ = {
+			isa = PBXGroup;
+			children = (
+				CF52FA5B2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.h */,
+				CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */,
+				CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */,
+			);
+			path = "提款账号";
+			sourceTree = "<group>";
+		};
 		CF533AFD251DDD2D00462E31 /* 侧边栏 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9621,6 +9645,7 @@
 				031E1B8023BE812900B0F813 /* UGPlatformNoticeView.xib in Resources */,
 				03B1252F24F7FE10007A0858 /* ScratchActionController.xib in Resources */,
 				CF4758E2239636D200966536 /* 46.gif in Resources */,
+				CF52FA5F2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib in Resources */,
 				031E1D3023BE812B00B0F813 /* UGPromotionInfoController.storyboard in Resources */,
 				CF47589A239636D200966536 /* 18.gif in Resources */,
 				031E1E0A23BE812C00B0F813 /* UGSignInHistoryView.xib in Resources */,
@@ -11175,6 +11200,7 @@
 				031E1A8223BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				D451A46623F538B000CD0E36 /* JYGameCollectionViewCell.m in Sources */,
 				D417EFDB2330D24C0024F634 /* AppDelegate+HgBugly.m in Sources */,
+				CF52FA5E2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m in Sources */,
 				03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */,
 				CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */,
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
