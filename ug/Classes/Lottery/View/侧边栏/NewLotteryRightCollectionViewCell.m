@@ -20,7 +20,7 @@
     self.layer.shadowOpacity = 0.1;
 //    self.layer.borderColor = Skin1.textColor2.CGColor;//边框颜色
 //    self.layer.borderWidth = 0.5;//边框宽度
-    [self setBackgroundColor:Skin1.homeContentColor];
+//    [self setBackgroundColor:[UIColor whiteColor]];
 }
 
 @end

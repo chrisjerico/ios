@@ -173,6 +173,13 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
     UGNextIssueModel *item = model.list[indexPath.row];
     cell.titleLabel.text = item.title;
+    
+    NSLog(@"item.title = %@",item.title);
+    if ([self.selectTitle isEqualToString:item.title]) {
+        [cell setBackgroundColor:Skin1.navBarBgColor];
+    } else {
+        [cell setBackgroundColor:[UIColor whiteColor]];
+    }
     return cell;
     
     
@@ -184,6 +191,19 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
         NewLotteryHeaderViewCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:newheaderViewID forIndexPath:indexPath];
         UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
         headerView.titlelabel.text = model.gameTypeName;
+        
+        if ([self.gameType isEqualToString:model.gameType]) {
+            
+            if (OBJOnceToken(self)) {
+                model.isOpen = YES;
+                //刷新Section
+                [UIView performWithoutAnimation:^{
+                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                    [self.contentCollectionView reloadSections:indexSet];
+                }];
+            }
+    
+        }
         
         if (model.isOpen) {
             [headerView.mBtn setImage:[UIImage imageNamed:@"jiantouxia"] forState:UIControlStateNormal];
@@ -215,6 +235,12 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 
+    UGAllNextIssueListModel *listModel = self.lotteryGamesArray[indexPath.section];
+     __block UGNextIssueModel *nextModel = listModel.list[indexPath.row];
+    if (self.didSelectedItemBlock) {
+        self.didSelectedItemBlock(nextModel);
+    }
+    [self hiddenSelf];
 }
 
 

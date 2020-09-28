@@ -57,6 +57,7 @@
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
 @property (nonatomic, strong) UGLotteryRightMenuView  *yymenuView;
+
 @end
 
 
@@ -624,6 +625,9 @@
 	self.navigationItem.leftBarButtonItems = @[self.navigationItem.leftBarButtonItems.firstObject, item0];
 	self.navigationItem.titleView = [UIView new];   // 隐藏标题
 	
+    
+    NSLog(@"self.nextIssueModel.title = %@",self.nextIssueModel.title);
+    self.selectTitle = self.nextIssueModel.title;
 #pragma mark - 去掉这里就不会标题变动。
 	//    if (OBJOnceToken(self)) {
 	//        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
@@ -635,11 +639,18 @@
 	//    }
 }
 
+#pragma mark -- 点击切换
 - (void)onTitleClick {
+    
+    NSLog(@"title = %@",self.nextIssueModel.title);
+    NSLog(@"selectTitle = %@",self.selectTitle);
+    NSLog(@"nextIssueModel = %@",self.nextIssueModel);
     
     if (APP.isNewLotteryView) {
         self.yymenuView = [[UGLotteryRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW * 2/ 3, UGScerrnH)];
       
+        self.yymenuView.selectTitle = self.selectTitle;
+        self.yymenuView.gameType = self.nextIssueModel.gameType;
         //此处为重点
         WeakSelf;
         self.yymenuView.backToHomeBlock = ^{
@@ -647,6 +658,9 @@
             if (weakSelf.gotoTabBlock) {
                 weakSelf.gotoTabBlock();
             }
+        };
+        self.yymenuView.didSelectedItemBlock = ^(UGNextIssueModel *nextModel) {
+            [NavController1 pushViewControllerWithNextIssueModel:nextModel isChatRoom:NO];
         };
         [self.yymenuView show];
     }
