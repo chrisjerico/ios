@@ -159,7 +159,13 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
 //组内成员个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     UGAllNextIssueListModel *model = self.lotteryGamesArray[section];
-    return model.list.count;
+    
+    if (model.isOpen) {
+        return model.list.count;
+    } else {
+        return 0;
+    }
+   
 }
 //每个cell的具体内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -178,11 +184,33 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
         NewLotteryHeaderViewCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:newheaderViewID forIndexPath:indexPath];
         UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
         headerView.titlelabel.text = model.gameTypeName;
+        
+        if (model.isOpen) {
+            [headerView.mBtn setImage:[UIImage imageNamed:@"jiantouxia"] forState:UIControlStateNormal];
+        } else {
+            [headerView.mBtn setImage:[UIImage imageNamed:@"jiantouyou"] forState:UIControlStateNormal];
+        }
+        WeakSelf;
+        [headerView.mClickedBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+
+        [headerView.mClickedBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+           
+            [weakSelf headerBtnActionAtIndexPath:indexPath];
+        }];//所有
         return headerView;
     }
     return nil;
 }
 
+-(void)headerBtnActionAtIndexPath:(NSIndexPath *)indexPath{
+    UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
+    model.isOpen = !model.isOpen;
+    //刷新Section
+    [UIView performWithoutAnimation:^{
+        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+        [self.contentCollectionView reloadSections:indexSet];
+    }];
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];

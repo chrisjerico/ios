@@ -117,6 +117,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic, class) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray; /**<   彩票大厅数据（升级为类方法全局使用） */
+//自定义参数
+@property (nonatomic) BOOL isOpen;   /**<   侧边栏展开 */
 @end
 
 NS_ASSUME_NONNULL_END

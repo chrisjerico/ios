@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NewLotteryHeaderViewCollectionReusableView : UICollectionReusableView
 @property (weak, nonatomic) IBOutlet UILabel *titlelabel;
 @property (weak, nonatomic) IBOutlet UIButton *mBtn;
+@property (weak, nonatomic) IBOutlet UIButton *mClickedBtn;
 
 @end
 
