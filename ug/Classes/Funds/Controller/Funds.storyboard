@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iJL-6j-iQV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iJL-6j-iQV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,7 +47,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="299" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="andrew31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hag-iE-qkI">
-                                                        <rect key="frame" x="5" y="6" width="74.5" height="21"/>
+                                                        <rect key="frame" x="5" y="6" width="74" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="jn3-vk-IMV"/>
                                                         </constraints>
@@ -139,13 +140,13 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="uyW-VV-DGX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TAd-kS-KfB" firstAttribute="trailing" secondItem="uyW-VV-DGX" secondAttribute="trailing" id="3i8-Gr-qkp"/>
                             <constraint firstItem="TAd-kS-KfB" firstAttribute="leading" secondItem="uyW-VV-DGX" secondAttribute="leading" id="lHr-mR-Q0u"/>
                             <constraint firstItem="TAd-kS-KfB" firstAttribute="top" secondItem="uyW-VV-DGX" secondAttribute="top" id="mrh-NP-nb3"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="uyW-VV-DGX"/>
                     </view>
                     <connections>
                         <outlet property="headImageView" destination="L9U-o7-U9u" id="19E-Yc-xVh"/>
@@ -160,9 +161,209 @@
             </objects>
             <point key="canvasLocation" x="-272" y="94"/>
         </scene>
+        <!--虚拟币教程-->
+        <scene sceneID="u7a-oX-xz0">
+            <objects>
+                <viewController storyboardIdentifier="UGXNTutorialsViewController" title="虚拟币教程" id="oCY-Ma-0nu" customClass="UGXNTutorialsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HaT-ao-izD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqP-30-Pez">
+                                <rect key="frame" x="0.0" y="88" width="85" height="774"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNt-SO-qmP">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="KA6-7H-fsu"/>
+                                        </constraints>
+                                        <state key="normal" title="概括">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="disabled" title="概括">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <state key="highlighted" title="概括">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="概括button"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOQ-YT-WmI">
+                                        <rect key="frame" x="0.0" y="44" width="85" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="GwX-20-hpc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="安装虚拟币钱包">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="安装button"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoJ-mO-nyP">
+                                        <rect key="frame" x="0.0" y="132" width="85" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="R7T-wJ-xya"/>
+                                        </constraints>
+                                        <state key="normal" title="身份认证">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="身份button"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lx6-Lg-PS7">
+                                        <rect key="frame" x="0.0" y="88" width="85" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="KxD-af-5kc"/>
+                                        </constraints>
+                                        <state key="normal" title="注册账号">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册button"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vda-rN-04f">
+                                        <rect key="frame" x="0.0" y="176" width="85" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="IGc-Sb-Ctq"/>
+                                        </constraints>
+                                        <state key="normal" title="购买虚拟币">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="购买button"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEX-Ry-loL">
+                                        <rect key="frame" x="0.0" y="220" width="85" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="uAS-5x-JY9"/>
+                                        </constraints>
+                                        <state key="normal" title="网站充值">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="网站button"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QuZ-Ob-Q3N">
+                                        <rect key="frame" x="0.0" y="264" width="85" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="AKN-jP-XIJ"/>
+                                        </constraints>
+                                        <state key="normal" title="钱包付款">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="钱包button"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XoJ-mO-nyP" secondAttribute="trailing" id="2pS-bU-G6i"/>
+                                    <constraint firstAttribute="trailing" secondItem="iOQ-YT-WmI" secondAttribute="trailing" id="3g6-rq-tvu"/>
+                                    <constraint firstAttribute="trailing" secondItem="QuZ-Ob-Q3N" secondAttribute="trailing" id="6Ic-2x-dSz"/>
+                                    <constraint firstItem="QuZ-Ob-Q3N" firstAttribute="top" secondItem="YEX-Ry-loL" secondAttribute="bottom" id="6xb-bK-wZu"/>
+                                    <constraint firstItem="vda-rN-04f" firstAttribute="top" secondItem="XoJ-mO-nyP" secondAttribute="bottom" id="89H-dv-K4u"/>
+                                    <constraint firstItem="XoJ-mO-nyP" firstAttribute="top" secondItem="Lx6-Lg-PS7" secondAttribute="bottom" id="9O3-XT-FiH"/>
+                                    <constraint firstAttribute="trailing" secondItem="YEX-Ry-loL" secondAttribute="trailing" id="C44-Ow-eaK"/>
+                                    <constraint firstItem="Lx6-Lg-PS7" firstAttribute="top" secondItem="iOQ-YT-WmI" secondAttribute="bottom" id="Ky6-Ag-UCW"/>
+                                    <constraint firstItem="QuZ-Ob-Q3N" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="LCI-Zo-3o0"/>
+                                    <constraint firstItem="Lx6-Lg-PS7" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="McH-4J-0HL"/>
+                                    <constraint firstAttribute="trailing" secondItem="RNt-SO-qmP" secondAttribute="trailing" id="Opp-Tz-i7Y"/>
+                                    <constraint firstItem="RNt-SO-qmP" firstAttribute="top" secondItem="hqP-30-Pez" secondAttribute="top" id="VL5-hJ-Nff"/>
+                                    <constraint firstItem="iOQ-YT-WmI" firstAttribute="top" secondItem="RNt-SO-qmP" secondAttribute="bottom" id="ZCc-kQ-uzE"/>
+                                    <constraint firstItem="vda-rN-04f" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="h7X-AI-MkG"/>
+                                    <constraint firstItem="XoJ-mO-nyP" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="ibV-PM-Hgt"/>
+                                    <constraint firstItem="YEX-Ry-loL" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="jNv-Uf-5Uf"/>
+                                    <constraint firstItem="iOQ-YT-WmI" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="mvd-Nh-WLB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lx6-Lg-PS7" secondAttribute="trailing" id="oj7-6y-nBz"/>
+                                    <constraint firstAttribute="trailing" secondItem="vda-rN-04f" secondAttribute="trailing" id="rPN-Ow-mDr"/>
+                                    <constraint firstItem="RNt-SO-qmP" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="txb-WD-gvV"/>
+                                    <constraint firstItem="YEX-Ry-loL" firstAttribute="top" secondItem="vda-rN-04f" secondAttribute="bottom" id="wlC-uL-hyn"/>
+                                    <constraint firstAttribute="width" constant="85" id="zdQ-E9-nI2"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="按钮view"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPW-E3-trh">
+                                <rect key="frame" x="85" y="88" width="329" height="774"/>
+                                <subviews>
+                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sdv-8u-Il9">
+                                        <rect key="frame" x="0.0" y="0.0" width="329" height="774"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </webView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Sdv-8u-Il9" secondAttribute="bottom" id="3Ek-NK-d0e"/>
+                                    <constraint firstItem="Sdv-8u-Il9" firstAttribute="top" secondItem="bPW-E3-trh" secondAttribute="top" id="5CV-EY-Di6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sdv-8u-Il9" secondAttribute="trailing" id="IwP-HT-bb2"/>
+                                    <constraint firstItem="Sdv-8u-Il9" firstAttribute="leading" secondItem="bPW-E3-trh" secondAttribute="leading" id="bSN-wD-W5I"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kEO-Yl-X2k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hqP-30-Pez" firstAttribute="top" secondItem="kEO-Yl-X2k" secondAttribute="top" id="EH7-zJ-YRf"/>
+                            <constraint firstItem="kEO-Yl-X2k" firstAttribute="bottom" secondItem="bPW-E3-trh" secondAttribute="bottom" id="QDX-4L-ub7"/>
+                            <constraint firstItem="kEO-Yl-X2k" firstAttribute="bottom" secondItem="hqP-30-Pez" secondAttribute="bottom" id="h1B-6l-Ryo"/>
+                            <constraint firstItem="bPW-E3-trh" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="trailing" id="lRX-UY-iWZ"/>
+                            <constraint firstItem="bPW-E3-trh" firstAttribute="top" secondItem="kEO-Yl-X2k" secondAttribute="top" id="qlp-Dd-epJ"/>
+                            <constraint firstItem="hqP-30-Pez" firstAttribute="leading" secondItem="kEO-Yl-X2k" secondAttribute="leading" id="vwZ-ts-1Ib"/>
+                            <constraint firstItem="bPW-E3-trh" firstAttribute="trailing" secondItem="kEO-Yl-X2k" secondAttribute="trailing" id="xO2-Bi-p2x"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="mWebView" destination="Sdv-8u-Il9" id="eJy-MJ-F9s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ndc-jQ-fqQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="498.55072463768118" y="93.75"/>
+        </scene>
     </scenes>
     <resources>
         <image name="shuaxin" width="24" height="24"/>
         <image name="txp" width="100" height="100"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

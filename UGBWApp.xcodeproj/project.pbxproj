@@ -1987,6 +1987,22 @@
 		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CF9A93C42407F2C200D6E4F3 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C02407F2C200D6E4F3 /* FLAnimatedImage.m */; };
 		CF9A93C52407F2C200D6E4F3 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */; };
+		CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
+		CFBAAC3225246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
+		CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3525246BBE00C5F6F6 /* 2.html */; };
+		CFBAAC3725246BBF00C5F6F6 /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3525246BBE00C5F6F6 /* 2.html */; };
+		CFBAAC3925246BC600C5F6F6 /* 3.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3825246BC600C5F6F6 /* 3.html */; };
+		CFBAAC3A25246BC600C5F6F6 /* 3.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3825246BC600C5F6F6 /* 3.html */; };
+		CFBAAC3C25246BCC00C5F6F6 /* 4.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3B25246BCC00C5F6F6 /* 4.html */; };
+		CFBAAC3D25246BCD00C5F6F6 /* 4.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3B25246BCC00C5F6F6 /* 4.html */; };
+		CFBAAC3F25246BD400C5F6F6 /* 5.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3E25246BD300C5F6F6 /* 5.html */; };
+		CFBAAC4025246BD400C5F6F6 /* 5.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3E25246BD300C5F6F6 /* 5.html */; };
+		CFBAAC4425246BDB00C5F6F6 /* 6.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4325246BDB00C5F6F6 /* 6.html */; };
+		CFBAAC4525246BDB00C5F6F6 /* 6.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4325246BDB00C5F6F6 /* 6.html */; };
+		CFBAAC4725246BE400C5F6F6 /* 7.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4625246BE300C5F6F6 /* 7.html */; };
+		CFBAAC4825246BE400C5F6F6 /* 7.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4625246BE300C5F6F6 /* 7.html */; };
+		CFBAAC4D25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */; };
+		CFBAAC4E25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */; };
 		CFBD91352461AD4100FFFDEB /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBD91322461AD4100FFFDEB /* PieView.m */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */; };
@@ -3954,6 +3970,15 @@
 		CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		CF9A93C22407F2C200D6E4F3 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
 		CF9A93C32407F2C200D6E4F3 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		CFBAAC3025246BB400C5F6F6 /* 1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 1.html; sourceTree = "<group>"; };
+		CFBAAC3525246BBE00C5F6F6 /* 2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 2.html; sourceTree = "<group>"; };
+		CFBAAC3825246BC600C5F6F6 /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
+		CFBAAC3B25246BCC00C5F6F6 /* 4.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 4.html; sourceTree = "<group>"; };
+		CFBAAC3E25246BD300C5F6F6 /* 5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 5.html; sourceTree = "<group>"; };
+		CFBAAC4325246BDB00C5F6F6 /* 6.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 6.html; sourceTree = "<group>"; };
+		CFBAAC4625246BE300C5F6F6 /* 7.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 7.html; sourceTree = "<group>"; };
+		CFBAAC4B25246CC500C5F6F6 /* UGXNTutorialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGXNTutorialsViewController.h; sourceTree = "<group>"; };
+		CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGXNTutorialsViewController.m; sourceTree = "<group>"; };
 		CFBD91322461AD4100FFFDEB /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieView.m; sourceTree = "<group>"; };
 		CFBD91342461AD4100FFFDEB /* PieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieView.h; sourceTree = "<group>"; };
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
@@ -6139,6 +6164,8 @@
 				031E172223BE812400B0F813 /* UGDepositDetailsViewController.m */,
 				031E172123BE812400B0F813 /* UGRechargeTypeTableViewController.h */,
 				031E172423BE812400B0F813 /* UGRechargeTypeTableViewController.m */,
+				CFBAAC4B25246CC500C5F6F6 /* UGXNTutorialsViewController.h */,
+				CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */,
 			);
 			path = "存款";
 			sourceTree = "<group>";
@@ -8257,6 +8284,28 @@
 			path = FLAnimatedImage;
 			sourceTree = "<group>";
 		};
+		CFBAAC2D25246B7C00C5F6F6 /* 本地网页 */ = {
+			isa = PBXGroup;
+			children = (
+				CFBAAC2F25246B9500C5F6F6 /* 虚拟币 */,
+			);
+			path = "本地网页";
+			sourceTree = "<group>";
+		};
+		CFBAAC2F25246B9500C5F6F6 /* 虚拟币 */ = {
+			isa = PBXGroup;
+			children = (
+				CFBAAC4625246BE300C5F6F6 /* 7.html */,
+				CFBAAC4325246BDB00C5F6F6 /* 6.html */,
+				CFBAAC3E25246BD300C5F6F6 /* 5.html */,
+				CFBAAC3B25246BCC00C5F6F6 /* 4.html */,
+				CFBAAC3825246BC600C5F6F6 /* 3.html */,
+				CFBAAC3525246BBE00C5F6F6 /* 2.html */,
+				CFBAAC3025246BB400C5F6F6 /* 1.html */,
+			);
+			path = "虚拟币";
+			sourceTree = "<group>";
+		};
 		CFCF6DBB23C5B8220039588D /* HotUpdate */ = {
 			isa = PBXGroup;
 			children = (
@@ -8450,6 +8499,7 @@
 		D424785C22DDF5860062A6D4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CFBAAC2D25246B7C00C5F6F6 /* 本地网页 */,
 				D466533F2430CD38000D5377 /* otherLotter.wav */,
 				D466533924305FAE000D5377 /* lottery.wav */,
 				D44258FB23E948C50067E981 /* git */,
@@ -9147,6 +9197,7 @@
 				031E1C2923BE812900B0F813 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
 				031E1C8923BE812A00B0F813 /* UGFundsTransfer2View.xib in Resources */,
 				031EF57023BE7B4D00B0F813 /* yichaihongbao_mini.svg in Resources */,
+				CFBAAC3225246BB400C5F6F6 /* 1.html in Resources */,
 				031E1E4B23BE812C00B0F813 /* UGMineMenuCollectionViewCell.xib in Resources */,
 				031E1AB323BE812800B0F813 /* icon_arrow_up@2x.png in Resources */,
 				031E1C5523BE812A00B0F813 /* UGBetDetailView.xib in Resources */,
@@ -9190,6 +9241,7 @@
 				031E1D1723BE812B00B0F813 /* Promote.storyboard in Resources */,
 				031E1E0923BE812C00B0F813 /* UGSignInHeaderView.xib in Resources */,
 				0315DC9424ACA86200D635E2 /* NotificationMessageVC.xib in Resources */,
+				CFBAAC4025246BD400C5F6F6 /* 5.html in Resources */,
 				031E1B6F23BE812800B0F813 /* UGPlatformTitleCollectionViewCell.xib in Resources */,
 				031EF5BB23BE7B4D00B0F813 /* MomentsCellCommentLabel.xib in Resources */,
 				031E1E7723BE812C00B0F813 /* UGLotteryRecordCell.xib in Resources */,
@@ -9205,6 +9257,7 @@
 				0315DC9824AD74A900D635E2 /* NotificationMessageCell.xib in Resources */,
 				031E1C7323BE812A00B0F813 /* UGWithdrawalViewController.storyboard in Resources */,
 				031EF5B223BE7B4D00B0F813 /* MomentsCell.xib in Resources */,
+				CFBAAC4825246BE400C5F6F6 /* 7.html in Resources */,
 				031E1BF523BE812900B0F813 /* UGGD11X5LotteryController.storyboard in Resources */,
 				031E1BE123BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
 				03F935BD24A1057C001D8A59 /* FansListCell.xib in Resources */,
@@ -9224,6 +9277,7 @@
 				031EF57223BE7B4D00B0F813 /* kai.svg in Resources */,
 				031E1D3523BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
 				031E1BF123BE812900B0F813 /* UGQXCLotteryController.storyboard in Resources */,
+				CFBAAC4525246BDB00C5F6F6 /* 6.html in Resources */,
 				031EF58D23BE7B4D00B0F813 /* jiaguanzhu.svg in Resources */,
 				03E56F8C2480E68C00996099 /* ConversationBottomView.xib in Resources */,
 				031E1BB523BE812900B0F813 /* UGBMUnderMenuView.xib in Resources */,
@@ -9240,6 +9294,7 @@
 				031E19D923BE812700B0F813 /* BankCardList.plist in Resources */,
 				031E19FD23BE812700B0F813 /* Image_loading_failed.jpeg in Resources */,
 				031E1C9B23BE812A00B0F813 /* UGFunds2microcodeView.xib in Resources */,
+				CFBAAC3725246BBF00C5F6F6 /* 2.html in Resources */,
 				D466533B24305FAE000D5377 /* lottery.wav in Resources */,
 				031E1B9523BE812900B0F813 /* UGLotteryRulesView.xib in Resources */,
 				03F8A514247F9FDE00466124 /* ContractedTemplate.storyboard in Resources */,
@@ -9256,6 +9311,7 @@
 				031E1B8123BE812900B0F813 /* UGPlatformNoticeView.xib in Resources */,
 				031EF54E23BE7B4D00B0F813 /* SimulateLocation.gpx in Resources */,
 				031EF5BA23BE7B4D00B0F813 /* Line.xib in Resources */,
+				CFBAAC3D25246BCD00C5F6F6 /* 4.html in Resources */,
 				031E1C9123BE812A00B0F813 /* UGFundsBankView.xib in Resources */,
 				031E1BCF23BE812900B0F813 /* UGXYNCLotteryController.storyboard in Resources */,
 				031E1E4323BE812C00B0F813 /* UGPromotion5rowButtonTableViewCell.xib in Resources */,
@@ -9301,6 +9357,7 @@
 				031E1E7F23BE812D00B0F813 /* UGBalanceTransferLogsCell.xib in Resources */,
 				031E1D4D23BE812B00B0F813 /* UGMineSkinViewController.xib in Resources */,
 				031EF58323BE7B4D00B0F813 /* renwuzhongxin.svg in Resources */,
+				CFBAAC3A25246BC600C5F6F6 /* 3.html in Resources */,
 				031EF56823BE7B4D00B0F813 /* hongbaobeijing.svg in Resources */,
 				031E193D23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */,
 				D435F90523CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */,
@@ -9417,6 +9474,7 @@
 				CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */,
 				031E1D9623BE812B00B0F813 /* UGYubaoViewController.storyboard in Resources */,
 				031E1E1A23BE812C00B0F813 /* UGMessageTableViewCell.xib in Resources */,
+				CFBAAC4725246BE400C5F6F6 /* 7.html in Resources */,
 				226CA21923D319DD00E4D921 /* HSC_HomeGameCollectionCell.xib in Resources */,
 				031E1E0023BE812C00B0F813 /* UGSignInScrFootView.xib in Resources */,
 				031E19EE23BE812700B0F813 /* common_icon_search.png in Resources */,
@@ -9588,6 +9646,7 @@
 				CF47588D239636D200966536 /* 123.gif in Resources */,
 				CF4758F9239636D200966536 /* 164.gif in Resources */,
 				CF4758E9239636D200966536 /* 76.gif in Resources */,
+				CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */,
 				031E19F623BE812700B0F813 /* LoadingStateView.xib in Resources */,
 				D4122CC82504B8240009E602 /* TKLPlatformNoticeCell.xib in Resources */,
 				D40745C72511F37900606EA3 /* YNBetDetailView.xib in Resources */,
@@ -9634,6 +9693,7 @@
 				CF47592A239636D200966536 /* 10.gif in Resources */,
 				D435F90423CEF940008648CE /* KMCGeigerCounterTick.aiff in Resources */,
 				031E1D3423BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
+				CFBAAC3925246BC600C5F6F6 /* 3.html in Resources */,
 				CF4758FA239636D200966536 /* 158.gif in Resources */,
 				CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */,
 				CF475907239636D200966536 /* 98.gif in Resources */,
@@ -9681,6 +9741,8 @@
 				CF4758FC239636D200966536 /* 165.gif in Resources */,
 				CF4758C7239636D200966536 /* 50.gif in Resources */,
 				CF4758FF239636D200966536 /* 70.gif in Resources */,
+				CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */,
+				CFBAAC3C25246BCC00C5F6F6 /* 4.html in Resources */,
 				CF4758F4239636D200966536 /* 75.gif in Resources */,
 				CF4758F1239636D200966536 /* 148.gif in Resources */,
 				031E1D8623BE812B00B0F813 /* UGBetRecordTableViewController.storyboard in Resources */,
@@ -9693,6 +9755,7 @@
 				031E1B4C23BE812800B0F813 /* UGYYRightMenuView.xib in Resources */,
 				CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */,
 				CF475915239636D200966536 /* 15.gif in Resources */,
+				CFBAAC3F25246BD400C5F6F6 /* 5.html in Resources */,
 				CF4758F2239636D200966536 /* 49.gif in Resources */,
 				031E198023BE812600B0F813 /* UGLHHomeContentCollectionViewCell.xib in Resources */,
 				D434744224AB30C500B0F598 /* BetDetailTableViewCell.xib in Resources */,
@@ -9801,6 +9864,7 @@
 				031E194C23BE812600B0F813 /* UGLHC.storyboard in Resources */,
 				033372FB24F62FDA00048EC1 /* 金蛋_打开@3x.gif in Resources */,
 				CF4758E0239636D200966536 /* 147.gif in Resources */,
+				CFBAAC4425246BDB00C5F6F6 /* 6.html in Resources */,
 				031E1D3C23BE812B00B0F813 /* UGUserInfoViewController.storyboard in Resources */,
 				CF4758B0239636D200966536 /* 80.gif in Resources */,
 				031E1D1623BE812B00B0F813 /* Promote.storyboard in Resources */,
@@ -10655,6 +10719,7 @@
 				031E1B1123BE812800B0F813 /* UGLotteryRecordController.m in Sources */,
 				031E196923BE812600B0F813 /* UGLHOldYearViewController.m in Sources */,
 				031EF55E23BE7B4D00B0F813 /* MJRefresh+RX.swift in Sources */,
+				CFBAAC4E25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */,
 				03B71D84251E31220090FC98 /* IBView.m in Sources */,
 				031E1CD923BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */,
 				031E1A0323BE812700B0F813 /* SlideSegmentView1.m in Sources */,
@@ -10927,6 +10992,7 @@
 				031E1B6C23BE812800B0F813 /* UGPlatformTitleBlackCell.m in Sources */,
 				031E197623BE812600B0F813 /* UGLHPostCommentModel.m in Sources */,
 				031E19E023BE812700B0F813 /* NSURL+Utils.m in Sources */,
+				CFBAAC4D25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */,
 				031E1DA023BE812B00B0F813 /* UGdepositStatModel.m in Sources */,
 				031E1A9C23BE812800B0F813 /* MOFSAddressPickerView.m in Sources */,
 				031E1A8823BE812700B0F813 /* SAROPSessionTask.m in Sources */,
