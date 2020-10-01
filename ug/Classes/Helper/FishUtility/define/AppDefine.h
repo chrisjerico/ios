@@ -103,6 +103,8 @@
 @property (nonatomic,assign) BOOL isNewConversion;                          /**<  新的额度转换界面*/
 @property (nonatomic,assign) BOOL isNewUserInfoView;                         /**<  新的我的资料界面*/
 @property (nonatomic,assign) BOOL isNewLotteryView;                         /**<  新的彩票大厅界面*/
+//大转盘
+@property (nonatomic,assign) BOOL isNoCry;                          /**<  没有哭脸*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */

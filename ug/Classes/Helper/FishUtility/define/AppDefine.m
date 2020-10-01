@@ -259,6 +259,7 @@
     _isBottom = [@"c186" containsString:_SiteId];
     _isChatButton = [@"c186" containsString:_SiteId];
     _isNewLocation = [@"c206,test29" containsString:_SiteId];
+    _isNoCry = [@"c018" containsString:_SiteId];
     
 }
 
