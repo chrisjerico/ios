@@ -13,7 +13,7 @@
 // 测试环境宏
 #define APP_TEST
 #define DisableLanguage 1
-#define RNCheckVersion1 @"1.1.1" // react-native升级了版本时更新，修改后会导致旧版本无法热更新
+#define RNCheckVersion1 @"1.2" // react-native升级了版本时更新，修改后会导致旧版本无法热更新
 
 
 #define APP [AppDefine shared]
