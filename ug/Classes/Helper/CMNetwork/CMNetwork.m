@@ -517,6 +517,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             }
 #ifdef APP_TEST
             [completion cc_userInfo][@"error"] = error;
+            [completion cc_userInfo][@"responseObject"] = @{@"responseString":[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]};
 #endif
             if (errResponse.statusCode == 503) {
                 [self performSelector:@selector(alertViewFor503:) withObject:[json objectForKey:@"msg"] afterDelay:4.0];

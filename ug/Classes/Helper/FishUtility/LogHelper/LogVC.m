@@ -348,14 +348,14 @@ static LogVC *_logVC = nil;
         subLabel(@"TimeLabel").hidden = true;
         
         [subButton(@"拷贝URLButton") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"拷贝URLButton") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        [subButton(@"拷贝URLButton") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton  *sender) {
             [UIPasteboard generalPasteboard].string = sm.urlString;
-            [HUDHelper showMsg:@"已拷贝"];
+            [HUDHelper showMsg:@"已拷贝URL"];
         }];
         [subButton(@"拷贝URL+参数Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"拷贝URL+参数Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        [subButton(@"拷贝URL+参数Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton  *sender) {
             [UIPasteboard generalPasteboard].string = [sm.urlString stringByAppendingURLParams:sm.params];
-            [HUDHelper showMsg:@"已拷贝"];
+            [HUDHelper showMsg:@"已拷贝URL+参数"];
         }];
     } else {
         subLabel(@"TitleLabel").text = _selectedModelKeys[indexPath.row];
