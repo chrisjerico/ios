@@ -1203,6 +1203,7 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.conversionCellColor      = color(@"7BA2C2");
                 sm.intoViewColor            = color(@"7BA2C2");
                 sm.moneyCellColor           = color(@"9BB8CB");
+                sm.navBarTitleColor         = color(@"ffffff");
 				sm;
 			}),
             @"GPK版1":({
