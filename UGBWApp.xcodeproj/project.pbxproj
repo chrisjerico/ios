@@ -2003,6 +2003,7 @@
 		CFBAAC4825246BE400C5F6F6 /* 7.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4625246BE300C5F6F6 /* 7.html */; };
 		CFBAAC4D25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */; };
 		CFBAAC4E25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */; };
+		CFBAAC592525CB5F00C5F6F6 /* UGDepositDetailsXNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */; };
 		CFBD91352461AD4100FFFDEB /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBD91322461AD4100FFFDEB /* PieView.m */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */; };
@@ -3979,6 +3980,8 @@
 		CFBAAC4625246BE300C5F6F6 /* 7.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 7.html; sourceTree = "<group>"; };
 		CFBAAC4B25246CC500C5F6F6 /* UGXNTutorialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGXNTutorialsViewController.h; sourceTree = "<group>"; };
 		CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGXNTutorialsViewController.m; sourceTree = "<group>"; };
+		CFBAAC572525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsXNViewController.h; sourceTree = "<group>"; };
+		CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsXNViewController.m; sourceTree = "<group>"; };
 		CFBD91322461AD4100FFFDEB /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieView.m; sourceTree = "<group>"; };
 		CFBD91342461AD4100FFFDEB /* PieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieView.h; sourceTree = "<group>"; };
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
@@ -6166,6 +6169,8 @@
 				031E172423BE812400B0F813 /* UGRechargeTypeTableViewController.m */,
 				CFBAAC4B25246CC500C5F6F6 /* UGXNTutorialsViewController.h */,
 				CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */,
+				CFBAAC572525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.h */,
+				CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */,
 			);
 			path = "存款";
 			sourceTree = "<group>";
@@ -10932,6 +10937,7 @@
 				031E1BAE23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1C0A23BE812900B0F813 /* UGbetModel.m in Sources */,
 				031E1A6823BE812700B0F813 /* UGAppVersionManager.m in Sources */,
+				CFBAAC592525CB5F00C5F6F6 /* UGDepositDetailsXNViewController.m in Sources */,
 				D42AC9F624EE4D3E0088455D /* PlatWebViewController.m in Sources */,
 				031E1D0E23BE812B00B0F813 /* JSONModelClassProperty.m in Sources */,
 				03314FCF23CDA04D0070CB54 /* HSC_MineVC.m in Sources */,
