@@ -28,8 +28,20 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
 
 @implementation UGLotterySelectController
 
+- (BOOL)允许游客访问 {
+    return true;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (self.presentingViewController) {
+        UIButton * rightItem = [UIButton buttonWithType:UIButtonTypeSystem];
+        [rightItem setTitle:@"取消" forState:UIControlStateNormal];
+        [rightItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [rightItem addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
+        self.navigationItem.leftBarButtonItem = nil;
+    }
     
     WeakSelf
     __block NSDate *__lastRefresh = [NSDate date];
@@ -88,12 +100,6 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     self.navigationController.navigationBar.backgroundColor = Skin1.navBarBgColor;
     self.countDown = [[CountDown alloc] init];
 	self.navigationItem.title = @"点击图标切换彩票";
-	UIButton * rightItem = [UIButton buttonWithType:UIButtonTypeSystem];
-	[rightItem setTitle:@"取消" forState:UIControlStateNormal];
-	[rightItem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[rightItem addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightItem];
-    self.navigationItem.leftBarButtonItem = nil;
 	[self.view addSubview:self.collectionView];
 	[self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.view);

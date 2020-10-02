@@ -187,12 +187,11 @@
             __self.isGPK = Skin1.isGPK;
             [__self mas_updateConstraints:^(MASConstraintMaker *make) {
                 if (__self.isGPK) {
-                    make.top.left.right.equalTo(self).offset(0);
+                    make.top.left.right.offset(0);
                     make.height.equalTo(@140);
                 } else {
-                    make.top.equalTo(self);
-                    make.left.equalTo(self).offset(APP.isShowLogo ? 0 : 5);
-                    make.right.equalTo(self).offset( APP.isShowLogo ? 0 : -5);
+                    make.left.offset(APP.isShowLogo ? 0 : 5);
+                    make.right.offset( APP.isShowLogo ? 0 : -5);
                     make.height.equalTo(@55);
                 }
             }];
