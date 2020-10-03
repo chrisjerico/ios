@@ -11,6 +11,7 @@
 #import "UGdepositModel.h"
 #import "UGDepositDetailsViewController.h"
 #import "UGDepositDetailsNoLineViewController.h"
+#import "UGDepositDetailsXNViewController.h"
 
 @interface UGRechargeTypeTableViewController ()
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
@@ -105,7 +106,9 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
         
         if ([model.pid isEqualToString:@"xnb_transfer"]) {
-            
+            UGDepositDetailsXNViewController *vc = _LoadVC_from_storyboard_(@"UGDepositDetailsXNViewController");
+            vc.item = model;
+            [NavController1 pushViewController:vc animated:true];
         }
         else if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
             UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];

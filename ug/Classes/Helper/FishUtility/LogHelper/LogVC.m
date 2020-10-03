@@ -157,16 +157,42 @@ static LogVC *_logVC = nil;
 #define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
 #define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
     
-    
+#pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"获取这个字符串中的所有xxx的所在的inde"];
-        [titles addObject:@"新彩票列表"];
+        [titles addObject:@"包含判断上午下午"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"新彩票列表" handler:^(UIAlertAction *aa) {
-            NewLotteryHomeViewController *recordVC = _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
-            [NavController1 pushViewController:recordVC animated:true];
+        [ac setActionAtTitle:@"包含判断上午下午" handler:^(UIAlertAction *aa) {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+
+//            // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
+//            formatter.AMSymbol = @"上午";
+//            formatter.PMSymbol = @"下午";
+//
+//            [formatter setDateFormat:@"YYYY/MM/dd aaa hh:mm:ss"];
+//
+//            //现在时间,你可以输出来看下是什么格式
+//
+//            NSDate *datenow = [NSDate date];
+//
+//            //----------将nsdate按formatter格式转成nsstring
+//
+//            NSString *currentTimeString = [formatter stringFromDate:datenow];
+//
+//            NSLog(@"currentTimeString =  %@",currentTimeString);
+            
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//            [formatter setDateFormat:@"HH"];
+//            NSString *str = [formatter stringFromDate:[NSDate date]];
+//            int time = [str intValue];
+//            if (time>=18||time<=06) {
+//            NSLog(@"晚上zhi");
+//            }
+//            else{
+//            NSLog(@"早上");
+//            }
             
         }];
         

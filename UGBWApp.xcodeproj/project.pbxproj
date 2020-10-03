@@ -6163,8 +6163,8 @@
 			children = (
 				031E172323BE812400B0F813 /* UGDepositDetailsNoLineViewController.h */,
 				031E171F23BE812400B0F813 /* UGDepositDetailsNoLineViewController.m */,
-				031E172023BE812400B0F813 /* UGDepositDetailsViewController.h */,
 				031E172223BE812400B0F813 /* UGDepositDetailsViewController.m */,
+				031E172023BE812400B0F813 /* UGDepositDetailsViewController.h */,
 				031E172123BE812400B0F813 /* UGRechargeTypeTableViewController.h */,
 				031E172423BE812400B0F813 /* UGRechargeTypeTableViewController.m */,
 				CFBAAC4B25246CC500C5F6F6 /* UGXNTutorialsViewController.h */,

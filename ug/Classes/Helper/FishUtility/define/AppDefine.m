@@ -90,7 +90,7 @@
                 sb(@"UGYNLotteryController"),
                 sb(@"NewUserInfoViewController"),
                 sb(@"NewLotteryHomeViewController"),
-                
+
 
                 
         ];

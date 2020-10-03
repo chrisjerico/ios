@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *qrcode;         /**<   银行账户 ｜虚拟币：二维码图片*/
 @property (nonatomic, strong) NSString *paymentid;//
 @property (nonatomic, strong) NSString *fcomment;//
+@property (nonatomic, strong) NSString *currencyRate;     /**<   虚拟币：货币汇率 */
 
 @property (nonatomic, strong) UGparaModel *para;        /**<   银行+按钮数组 */
 @end
