@@ -143,7 +143,7 @@ static NSString *titleCellid = @"UGMissionTitleCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.titleSelectBlock) {
-        self.titleSelectBlock(indexPath.row,self.titleArray[indexPath.row]);
+        self.titleSelectBlock(indexPath.item,self.titleArray[indexPath.item]);
     }
 }
 

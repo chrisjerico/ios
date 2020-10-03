@@ -447,9 +447,9 @@ static UGTabbarController *_tabBarVC = nil;
         [vcs addObject:nav];
         [mms addObject:mm];
     }
-    if (vcs.count > 2) {
-        self.viewControllers = vcs;
+    if (!_mms || vcs.count > 2) {
         self.mms = mms;
+        self.viewControllers = vcs;
         [self setTabbarStyle];
         [self tabBarController:self shouldSelectViewController:vcs.firstObject];
     }
@@ -635,7 +635,7 @@ static UGTabbarController *_tabBarVC = nil;
             if (rpm) {
                 vc = [ReactNativeVC reactNativeWithRPM:rpm params:[vc rn_keyValues]];
             }
-            if (![UGTabbarController canPushToViewController:vc]) {
+            if ([tabBarController.viewControllers indexOfObject:viewController] && ![UGTabbarController canPushToViewController:vc]) {
                 return ;
             }
             vc.title = mm.name;
