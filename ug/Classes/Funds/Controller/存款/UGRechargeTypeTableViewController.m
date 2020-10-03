@@ -106,9 +106,14 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
         
         if ([model.pid isEqualToString:@"xnb_transfer"]) {
+#ifdef DEBUG
             UGDepositDetailsXNViewController *vc = _LoadVC_from_storyboard_(@"UGDepositDetailsXNViewController");
             vc.item = model;
             [NavController1 pushViewController:vc animated:true];
+ 
+#else
+#endif
+           
         }
         else if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
             UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
