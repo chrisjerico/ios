@@ -14,8 +14,12 @@
 @property (nonatomic, strong) UIScrollView *mUIScrollView;
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;  //选中的数据
 @property (nonatomic, strong) NSIndexPath *lastPath;                //选中的表索引
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray <UGchannelModel *> *tableDataArray;
+
+//===================================================================
+@property (weak, nonatomic) IBOutlet UITextView *inputTV;           //备注
+
 
 @property (nonatomic, strong) UIButton *submit_button;              //提交按钮
 @end
@@ -49,6 +53,8 @@
 
 //设置数据
 - (void)setUIData:(UGchannelModel *)channelModel{
+    FastSubViewCode(self.view);
+    
     
 }
 
