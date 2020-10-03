@@ -7,11 +7,11 @@
 //
 
 #import "UGViewController.h"
-
+@class UGpaymentModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGDepositDetailsXNViewController : UGViewController
-
+@property (nonatomic, strong) UGpaymentModel *item;
 @end
 
 NS_ASSUME_NONNULL_END

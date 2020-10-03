@@ -358,11 +358,11 @@
             <objects>
                 <viewController storyboardIdentifier="UGDepositDetailsXNViewController" title="虚拟币充值" id="zly-0A-m6x" customClass="UGDepositDetailsXNViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lun-KI-aeX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Koh-5v-3mz">
-                                <rect key="frame" x="0.0" y="54" width="414" height="1412"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="1200"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GCZ-C7-yIU">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
@@ -701,6 +701,7 @@
                                     <constraint firstItem="roB-OY-CBN" firstAttribute="leading" secondItem="FWy-x6-BMa" secondAttribute="leading" constant="10" id="a83-Fc-7sy"/>
                                     <constraint firstItem="tZN-Ea-VPt" firstAttribute="leading" secondItem="FWy-x6-BMa" secondAttribute="leading" constant="10" id="f0H-EU-g0f"/>
                                     <constraint firstItem="FWy-x6-BMa" firstAttribute="trailing" secondItem="YdH-cF-u1j" secondAttribute="trailing" id="kd1-5d-FNI"/>
+                                    <constraint firstItem="FWy-x6-BMa" firstAttribute="bottom" secondItem="Enk-Zh-kMr" secondAttribute="bottom" constant="92" id="nbI-ec-KtV"/>
                                     <constraint firstItem="f0e-ur-mI6" firstAttribute="leading" secondItem="FWy-x6-BMa" secondAttribute="leading" constant="10" id="o5v-D7-je1"/>
                                     <constraint firstItem="FWy-x6-BMa" firstAttribute="trailing" secondItem="roB-OY-CBN" secondAttribute="trailing" constant="10" id="plb-84-2Mz"/>
                                     <constraint firstItem="Enk-Zh-kMr" firstAttribute="top" secondItem="f0e-ur-mI6" secondAttribute="bottom" constant="40" id="rpH-gL-qD5"/>
@@ -720,7 +721,7 @@
                             <constraint firstItem="Koh-5v-3mz" firstAttribute="top" secondItem="9Og-QA-HXt" secondAttribute="top" id="odP-Ez-40u"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="1500"/>
+                    <size key="freeformSize" width="414" height="1200"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qEE-DN-dD3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

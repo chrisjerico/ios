@@ -7,26 +7,128 @@
 //
 
 #import "UGDepositDetailsXNViewController.h"
+#import "UGdepositModel.h"
+#import "UGDepositDetailsTableViewCell.h"
 
-@interface UGDepositDetailsXNViewController ()
+@interface UGDepositDetailsXNViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UIScrollView *mUIScrollView;
+@property (nonatomic, strong) UGchannelModel *selectChannelModel ;  //选中的数据
+@property (nonatomic, strong) NSIndexPath *lastPath;                //选中的表索引
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray <UGchannelModel *> *tableDataArray;
 
+@property (nonatomic, strong) UIButton *submit_button;              //提交按钮
 @end
 
 @implementation UGDepositDetailsXNViewController
+@synthesize  lastPath,item;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _tableDataArray = [NSMutableArray new];
+    
+    if (self.item) {
+        _tableDataArray = [[NSMutableArray alloc] initWithArray: item.channel2];
+    }
+    
+    [self.view setBackgroundColor:Skin1.textColor4];
+    
+    if (self.item) {
+        _selectChannelModel = [_tableDataArray objectAtIndex:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        lastPath = indexPath;
+
+        NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.name dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
+        self.title = mas.string;
+        [self setUIData:_selectChannelModel];
+    }
+    
+    [self.tableView reloadData];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//设置数据
+- (void)setUIData:(UGchannelModel *)channelModel{
+    
 }
-*/
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return _tableDataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UGDepositDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGDepositDetailsTableViewCell" forIndexPath:indexPath];
+    
+    UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
+    
+    cell.nameStr = [NSString stringWithFormat:@"%@",channelModel.payeeName];
+    
+    NSInteger row = [indexPath row];
+    
+    NSInteger oldRow = [lastPath row];
+    
+    if (row == oldRow && self.lastPath!=nil) {
+        
+        cell.headerImageStr = @"RadioButton-Selected";
+        
+    }else{
+        cell.headerImageStr = @"RadioButton-Unselected";
+        
+    }
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 0.001;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    return 0.001f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSInteger newRow = [indexPath row];
+    
+    NSInteger oldRow = (self .lastPath !=nil)?[self .lastPath row]:-1;
+    
+    if (newRow != oldRow) {
+        UGDepositDetailsTableViewCell *newcell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        newcell.headerImageStr = @"RadioButton-Selected";
+        
+        UGDepositDetailsTableViewCell *oldcell = [tableView cellForRowAtIndexPath:self.lastPath];
+        
+        oldcell.headerImageStr = @"RadioButton-Unselected";
+        
+        self .lastPath = indexPath;
+        
+        UGchannelModel *channelModel = [_tableDataArray objectAtIndex:indexPath.row];
+        
+        _selectChannelModel = channelModel;
+        
+        [self setUIData:_selectChannelModel];
+        
+        //清空数据
+        
+    }
+    
+
+}
+
+
+
+
 
 @end
