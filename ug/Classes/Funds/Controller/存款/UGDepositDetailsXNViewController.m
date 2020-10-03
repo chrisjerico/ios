@@ -52,8 +52,21 @@
 }
 
 //设置数据
+//accoun==：充值地址
+//qrcode== ：二维码图片
+//domain== ：币种
+//payeeName ==：列表cell显示
+//Address ==:链名称
+//fixedAmount==：按钮数
+//prompt ==：按钮下提示
 - (void)setUIData:(UGchannelModel *)channelModel{
     FastSubViewCode(self.view);
+    subLabel(@"币种内容Label").text = channelModel.domain;
+    subLabel(@"二微码Label").text = channelModel.account;
+    [subImageView(@"二微码ImageV") sd_setImageWithURL:[NSURL URLWithString:channelModel.qrcode] placeholderImage:[UIImage imageNamed:@"bg_microcode"]];
+    
+    
+    
     
     
 }
