@@ -281,6 +281,13 @@
 		vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
 		[self.navigationController pushViewController:vc animated:YES];
 	}
+	else if ([@"esport" isEqualToString:listModel.category]) {//电竞
+		
+		UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+		vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
+		vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
+		[self.navigationController pushViewController:vc animated:YES];
+	}
 	
 	NSLog(@"listModel.category = %@",listModel.category);
 }

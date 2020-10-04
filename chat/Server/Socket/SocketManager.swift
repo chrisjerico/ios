@@ -22,7 +22,7 @@ public class SocketManager: NSObject {
 			return nil
 		}
 		let user = UGUserModel.currentUser()
-		let url: URL = URL(string: "ws://154.83.23.68:811?loginsessid=\(user.sessid)&logintoken=\(user.token)&channel=2&isReload=\(isReload)&isSelectRoom=0")!
+		let url: URL = URL(string: "ws://154.94.8.204:811?loginsessid=\(user.sessid)&logintoken=\(user.token)&channel=2&isReload=\(isReload)&isSelectRoom=0")!
 		let socket: WebSocket = WebSocket(url: url)
 		return socket
 	}

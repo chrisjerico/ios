@@ -1357,7 +1357,6 @@
 		031EF40A23BE7A9600B0F813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40923BE7A9600B0F813 /* Assets.xcassets */; };
 		031EF40D23BE7A9600B0F813 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031EF40B23BE7A9600B0F813 /* LaunchScreen.storyboard */; };
 		031EF52923BE7B4D00B0F813 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41923BE7B4C00B0F813 /* UserApi.swift */; };
-		031EF52B23BE7B4D00B0F813 /* MessageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41B23BE7B4C00B0F813 /* MessageAPI.swift */; };
 		031EF52C23BE7B4D00B0F813 /* MomentsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41C23BE7B4C00B0F813 /* MomentsApi.swift */; };
 		031EF52D23BE7B4D00B0F813 /* FileUploadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41D23BE7B4C00B0F813 /* FileUploadAPI.swift */; };
 		031EF52F23BE7B4D00B0F813 /* FileDownloadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF41F23BE7B4C00B0F813 /* FileDownloadAPI.swift */; };
@@ -1654,7 +1653,6 @@
 		03B71E30251F1CA80090FC98 /* NewUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745D9251200EB00606EA3 /* NewUserInfoViewController.m */; };
 		03B71E34251F1CAD0090FC98 /* NewUserInfoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40745DB251200FB00606EA3 /* NewUserInfoViewController.storyboard */; };
 		03B71E37251F1D060090FC98 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
-		03B71E3F251F20220090FC98 /* category.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E142523BE812300B0F813 /* category.m */; };
 		03B71E4C251F52FD0090FC98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF40023BE7A9400B0F813 /* AppDelegate.swift */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
@@ -3380,7 +3378,6 @@
 		031EF40E23BE7A9600B0F813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		031EF41323BE7ABE00B0F813 /* chat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chat-Bridging-Header.h"; sourceTree = "<group>"; };
 		031EF41923BE7B4C00B0F813 /* UserApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
-		031EF41B23BE7B4C00B0F813 /* MessageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageAPI.swift; sourceTree = "<group>"; };
 		031EF41C23BE7B4C00B0F813 /* MomentsApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsApi.swift; sourceTree = "<group>"; };
 		031EF41D23BE7B4C00B0F813 /* FileUploadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadAPI.swift; sourceTree = "<group>"; };
 		031EF41F23BE7B4C00B0F813 /* FileDownloadAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDownloadAPI.swift; sourceTree = "<group>"; };
@@ -7177,7 +7174,6 @@
 			isa = PBXGroup;
 			children = (
 				031EF41923BE7B4C00B0F813 /* UserApi.swift */,
-				031EF41B23BE7B4C00B0F813 /* MessageAPI.swift */,
 				031EF41C23BE7B4C00B0F813 /* MomentsApi.swift */,
 				031EF42023BE7B4C00B0F813 /* ChatApi.swift */,
 				031EF41D23BE7B4C00B0F813 /* FileUploadAPI.swift */,
@@ -10080,7 +10076,6 @@
 				CF8508722466D6EE0025672F /* FLAnimatedImage.m in Sources */,
 				031E195923BE812600B0F813 /* LHUserInfoVC.m in Sources */,
 				03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */,
-				03B71E3F251F20220090FC98 /* category.m in Sources */,
 				031E1CFD23BE812A00B0F813 /* AFURLRequestSerialization.m in Sources */,
 				031E1CCB23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */,
 				031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */,
@@ -10254,7 +10249,6 @@
 				031E1BD723BE812900B0F813 /* UGPCDDLotteryController.m in Sources */,
 				031E1B7523BE812800B0F813 /* UGPlatformTitleCollectionViewCell.m in Sources */,
 				031E1A0F23BE812700B0F813 /* LogVC.m in Sources */,
-				031EF52B23BE7B4D00B0F813 /* MessageAPI.swift in Sources */,
 				031E197323BE812600B0F813 /* UGLHCategoryListModel.m in Sources */,
 				031E1A5123BE812700B0F813 /* CMLabelCommon.m in Sources */,
 				031E1D6523BE812B00B0F813 /* UGSetupPayPwdController.m in Sources */,
