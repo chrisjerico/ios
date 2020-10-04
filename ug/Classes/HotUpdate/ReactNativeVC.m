@@ -168,7 +168,7 @@ static NSString *__lastRnPage = nil;
 - (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         __lastRnPage = rpm.rnName;
-        [ReactNativeHelper selectVC:rpm.rnName params:params];
+        [ReactNativeHelper pushVC:rpm.rnName params:params];
     }];
 }
 
