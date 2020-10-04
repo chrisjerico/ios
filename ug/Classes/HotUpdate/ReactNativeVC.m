@@ -125,7 +125,7 @@ static NSString *__lastRnPage = nil;
 //        if (TARGET_IPHONE_SIMULATOR) {
 //            bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 //        } else if (APP.isFish) {
-//            bundleURL = [NSURL URLWithString:@"http://192.168.1.143:8081/index.bundle?platform=ios"];
+//            bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
 //        }
 
 #endif
