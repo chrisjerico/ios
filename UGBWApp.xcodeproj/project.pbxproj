@@ -8508,12 +8508,12 @@
 		D407459F2511F37800606EA3 /* 越南下注明细View */ = {
 			isa = PBXGroup;
 			children = (
+				D40745A42511F37800606EA3 /* YNBetCollectionViewCell.h */,
+				D40745A22511F37800606EA3 /* YNBetCollectionViewCell.m */,
 				D40745A02511F37800606EA3 /* YNBetCollectionViewCell.xib */,
 				D40745A12511F37800606EA3 /* YNBetDetailView.h */,
-				D40745A22511F37800606EA3 /* YNBetCollectionViewCell.m */,
-				D40745A32511F37800606EA3 /* YNBetDetailView.xib */,
-				D40745A42511F37800606EA3 /* YNBetCollectionViewCell.h */,
 				D40745A52511F37800606EA3 /* YNBetDetailView.m */,
+				D40745A32511F37800606EA3 /* YNBetDetailView.xib */,
 			);
 			path = "越南下注明细View";
 			sourceTree = "<group>";

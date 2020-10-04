@@ -19,7 +19,6 @@ ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/Picker/Picker.framework
 ${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework
-${BUILT_PRODUCTS_DIR}/RNCAsyncStorage/RNCAsyncStorage.framework
 ${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework
 ${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework
 ${BUILT_PRODUCTS_DIR}/RNFastImage/RNFastImage.framework

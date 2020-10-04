@@ -483,4 +483,12 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 *
 */
 + (BOOL) judgeIsNumberByRegularExpressionWith:(NSString *)str;
+
+/**
+*  取几位小数的四舍五入
+*  randStr:要四舍五入的字符：6.789
+*  scale：取几位小数：2
+   结果：6.79
+*/
++ (NSDecimalNumber *) randStr:(NSString *)str scale:(NSInteger) scale;
 @end
