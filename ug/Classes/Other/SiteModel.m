@@ -146,7 +146,8 @@
             site(@"c235",       @"c235hy",     @"300",      @"io.fhpt.YSAC235",         @"https://p36005.com",                         @"企业包",     @"新葡京娱乐城"),
             site(@"c237",       @"c237hy",     @"313",      @"io.fhpt.YSAC237",         @"http://app13478.com",                         @"企业包",     @"太阳城集团"),
             site(@"c246",       @"c246hy",     @"329",      @"io.fhpt.YSAC246",         @"https://647758.com",                         @"企业包",     @"澳门新葡京"),
-            
+            site(@"c242",       @"c242hy",     @"332",      @"io.fhpt.YSAC242",         @"https://460889.com",                         @"企业包",     @"新葡京娱乐场 "),
+            site(@"c239b",       @"c239bhy",     @"340",      @"io.fhpt.YSAC239",         @"https://5566569.com",                         @"企业包",     @"银河国际"),//b 站
             
 
             site(@" t05-fish",      @"",          @"",        @"com.UGGame.cp",           @"http://t134f.fhptcdn.com",                    @"内测包",     @"test05"),
@@ -205,6 +206,7 @@
             site(@"test61d",      @"test61Dhy",  @"303",     @"com.UGGame.cp",            @"http://test61d.fhptcdn.com",                 @"内测包",     @"test61d"),
             site(@"test61e",      @"test61Ehy",  @"305",     @"com.UGGame.cp",            @"http://test61e.fhptcdn.com",                 @"内测包",     @"test61e"),
             site(@"test12",       @"test12hy",   @"",        @"com.UGGame.cp",            @"http://test12.6yc.com",                      @"内测包",     @"ttest12"),
+            site(@"t039",         @"",           @"",        @"com.UGGame.cp",            @"http://test101f.fhptcdn.com",                @"内测包",     @"t039"),
 			
             site(@"test08",       @"test08",     @"",        @"com.UGGame.cp",           @"http://test08.6yc.com",                   @"内测包",     @"test08"),
 			site(@"shiyu",  	  @"shiyu",     @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                   @"内测包",     @"shiyu"),

@@ -11,6 +11,7 @@
 #import "UGdepositModel.h"
 #import "UGDepositDetailsViewController.h"
 #import "UGDepositDetailsNoLineViewController.h"
+#import "UGDepositDetailsXNViewController.h"
 
 @interface UGRechargeTypeTableViewController ()
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
@@ -72,6 +73,17 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     UGRechargeTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:rechargeTypeCellid forIndexPath:indexPath];
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
     cell.item = model;
+
+    if ([model.pid isEqualToString:@"xnb_online"] || [model.pid isEqualToString:@"xnb_transfer"]  ) {
+        [cell.mBtn setHidden:NO];
+        [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                //虚拟教程
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGXNTutorialsViewController") animated:true];
+        }];
+    } else {
+        [cell.mBtn setHidden:YES];
+    }
     return cell;
 }
 
@@ -91,15 +103,29 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
-    if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
-        UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
-        vc.item = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
-        vc.item = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+
+        
+        if ([model.pid isEqualToString:@"xnb_transfer"]) {
+#ifdef DEBUG
+            UGDepositDetailsXNViewController *vc = _LoadVC_from_storyboard_(@"UGDepositDetailsXNViewController");
+            vc.item = model;
+            [NavController1 pushViewController:vc animated:true];
+ 
+#else
+#endif
+           
+        }
+        else if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
+            UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
+            vc.item = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else {
+            UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+            vc.item = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
 }
 
 

@@ -15,7 +15,7 @@
 #import "UGBetListModel.h"
 #import "UGrealBetListModel.h"
 #import "YBPopupMenu.h"
-#import <BRPickerView.h>
+#import "BRPickerView.h"
 #import "CMTimeCommon.h"
 #import "UITableView+LSEmpty.h"
 @interface PromotionBetRecordVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>

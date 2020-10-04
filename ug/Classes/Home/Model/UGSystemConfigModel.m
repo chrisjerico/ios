@@ -431,12 +431,14 @@ MJExtensionCodingImplementation
         _userCenter = [UGUserCenterItem allItems];
     }
     NSMutableArray *temp = _userCenter.mutableCopy;
+#ifndef DEBUG
     if (!UserI.hasActLottery) {
         [temp removeObject:[temp objectWithValue:@(UCI_活动彩金) keyPath:@"code"]];
     }
     if (!UserI.yuebaoSwitch) {
         [temp removeObject:[temp objectWithValue:@(UCI_利息宝) keyPath:@"code"]];
     }
+#endif
     return temp.copy;
 }
 

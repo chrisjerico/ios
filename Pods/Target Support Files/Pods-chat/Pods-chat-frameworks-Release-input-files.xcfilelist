@@ -1,7 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-chat/Pods-chat-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AvoidCrash/AvoidCrash.framework
 ${BUILT_PRODUCTS_DIR}/BAWKWebView/BAWKWebView.framework
-${BUILT_PRODUCTS_DIR}/BRPickerView/BRPickerView.framework
 ${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework
 ${BUILT_PRODUCTS_DIR}/Base64/Base64.framework
 ${BUILT_PRODUCTS_DIR}/CodePush/CodePush.framework
@@ -19,6 +18,7 @@ ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/Picker/Picker.framework
 ${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework
+${BUILT_PRODUCTS_DIR}/RNCAsyncStorage/RNCAsyncStorage.framework
 ${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework
 ${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework
 ${BUILT_PRODUCTS_DIR}/RNFastImage/RNFastImage.framework

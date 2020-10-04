@@ -58,9 +58,9 @@ static NSString *missionCellid = @"missionCellid";
 }
 
 - (void)setSelectIndex:(NSInteger)selectIndex {
-    
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-    
+    CGFloat x = APP.Width * selectIndex;
+    BOOL animated = fabs(_collectionView.contentOffset.x - x) <= APP.Width;
+    [_collectionView setContentOffset:CGPointMake(x, 0) animated:animated];
 }
 
 - (void)initCollectionView {
