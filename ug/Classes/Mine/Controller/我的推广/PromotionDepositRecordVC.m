@@ -12,7 +12,7 @@
 #import "UGdepositListModel.h"
 #import "UGrealBetListModel.h"
 #import "YBPopupMenu.h"
-#import <BRPickerView.h>
+#import "BRPickerView.h"
 #import "CMTimeCommon.h"
 #import "UITableView+LSEmpty.h"
 @interface PromotionDepositRecordVC ()<UITableViewDelegate, UITableViewDataSource, YBPopupMenuDelegate>

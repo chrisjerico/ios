@@ -12,7 +12,7 @@
 #import "UGrealBetStatModel.h"
 #import "YBPopupMenu.h"
 
-#import <BRPickerView.h>
+#import "BRPickerView.h"
 #import "CMTimeCommon.h"
 #import "PromotionBetRecordVC.h"
 #import "PromotionOtherBetRecordVC.h"

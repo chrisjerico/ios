@@ -28,7 +28,9 @@
         self.nameLabel.textColor = Skin1.textColor1;
     }
     
-    
+    self.mBtn.layer.cornerRadius = 5;
+    self.mBtn.layer.borderWidth = 1;
+    self.mBtn.layer.borderColor = [RGBA(28, 136, 255, 1) CGColor];
 }
 
 - (void)setNameStr:(NSString *)nameStr {
@@ -139,7 +141,9 @@
         
         @"baidu_online"             :@"baidu",          // 百度钱包在线支付
         @"tenpay_transfer"          :@"cft_icon",       // 财付通转账
-        @"xnb_online"               :@"xnb_icon",       // 虚拟币
+        @"xnb_online"               :@"xnb_icon",       // 虚拟币在线
+        @"xnb_transfer"             :@"xnb_icon",       // 虚拟币充值
+        
         @"dk_online"                :@"xnb_icon",       // 点卡支付
         @"ddhb_transfer"            :@"dingding",       // 钉钉红包
         @"dshb_transfer"            :@"duosan",         // 多闪红包

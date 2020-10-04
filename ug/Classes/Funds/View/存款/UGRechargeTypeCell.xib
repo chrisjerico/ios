@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,8 +44,19 @@
                         <color key="textColor" red="0.37063515190000001" green="0.57926970720000004" blue="0.89804404969999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6z-Lr-5V1">
+                        <rect key="frame" x="217" y="24.5" width="70" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="7qy-k8-baj"/>
+                            <constraint firstAttribute="width" constant="70" id="Qgu-S8-py2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="充值教程"/>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="E6z-Lr-5V1" secondAttribute="trailing" constant="5" id="2UA-Cs-onO"/>
+                    <constraint firstItem="E6z-Lr-5V1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4qU-cz-74t"/>
                     <constraint firstItem="GYb-lC-NJt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EQ5-Nd-syY"/>
                     <constraint firstItem="GYb-lC-NJt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hel-Jm-Zvy"/>
                 </constraints>
@@ -53,6 +64,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="headerImageView" destination="GYb-lC-NJt" id="K6l-02-v2p"/>
+                <outlet property="mBtn" destination="E6z-Lr-5V1" id="WbU-Em-ns0"/>
                 <outlet property="nameLabel" destination="c8n-BH-gct" id="DXY-SQ-g8S"/>
                 <outlet property="tipLabel" destination="0h8-6r-IqO" id="CNM-NI-Aeg"/>
             </connections>
