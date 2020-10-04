@@ -117,6 +117,10 @@ static UGTabbarController *_tabBarVC = nil;
         }
     }
     
+    if ([vc isKindOfClass:[ReactNativeVC class]]) {
+        [vc view];
+        [vc viewWillAppear:true];
+    }
     return true;
 }
 

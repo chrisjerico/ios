@@ -132,6 +132,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         // push ReactNativeVC
         {
             ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:rpm params:[viewController rn_keyValues]];
+            [vc view];
+            [vc viewWillAppear:true];
             vc.hidesBottomBarWhenPushed = true;
             [super pushViewController:vc animated:animated];
             return;

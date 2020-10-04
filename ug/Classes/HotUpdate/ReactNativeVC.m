@@ -158,6 +158,15 @@ static NSString *__lastRnPage = nil;
     }
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (![NavController1.topViewController isKindOfClass:[ReactNativeVC class]]) {
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            [ReactNativeHelper selectVC:@"TransitionPage" params:nil];
+        }];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     _backgroundImageView.image = _rnView.snapshotImage;
