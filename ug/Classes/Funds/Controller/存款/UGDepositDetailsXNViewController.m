@@ -44,7 +44,8 @@
     if (self.item) {
         _tableDataArray = [[NSMutableArray alloc] initWithArray: item.channel2];
     }
-    
+    self.submit_button.layer.cornerRadius = 5;
+    self.submit_button.layer.masksToBounds = YES;
     [self.view setBackgroundColor:Skin1.textColor4];
     [self setCollectionViewStyle];
     [self setTableViewStyle];
