@@ -76,19 +76,12 @@
             int hour = (int)[dateComponent hour];
             
             NSLog(@"hour is: %d", hour);
-            if (hour <=5) {
-                __self.dayTime = @"凌晨";
-            }
-            else if (hour <=11) {
+            if (hour <=11) {
                 __self.dayTime = @"上午";
 
             }
-            else if (hour <=17) {
-                __self.dayTime = @"下午";
-
-            }
             else {
-                __self.dayTime = @"晚上";
+                __self.dayTime = @"下午";
             }
         }
         
