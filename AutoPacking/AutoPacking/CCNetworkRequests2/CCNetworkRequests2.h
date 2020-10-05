@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)checkApp:(NSString *)_id ;
 
 // 修改APP信息
-- (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath;
+- (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath ver:(NSString *)ver isForce:(BOOL)isForce log:(NSString *)log;
 
 // 提交热更新版本信息
 - (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(NSString *)log url:(NSString *)url;
