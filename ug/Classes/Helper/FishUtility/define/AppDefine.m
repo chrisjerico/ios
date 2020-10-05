@@ -192,7 +192,7 @@
 #pragma mark - 定制样式
 - (void)setupSiteAndSkinParams {
     _isBgColorForMoneyVC = [@"c134,test29" containsString:_SiteId];
-    _isShowSalary = [@"c217,test29" containsString:_SiteId];
+    _isShowSalary = [@"c217,test29,c018" containsString:_SiteId];
     _isSectionWhite = [@"a002" containsString:_SiteId];
     _isTitleWhite = [@"a002" containsString:_SiteId];
     _isGPKDeposit = [@"c105b" containsString:_SiteId];
@@ -260,6 +260,7 @@
     _isChatButton = [@"c186" containsString:_SiteId];
     _isNewLocation = [@"c206,test29" containsString:_SiteId];
     _isNoCry = [@"c018" containsString:_SiteId];
+
     
 }
 

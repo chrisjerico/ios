@@ -10,6 +10,7 @@
 #import "UGdepositModel.h"
 #import "UGDepositDetailsTableViewCell.h"
 #import "UGDepositDetailsCollectionViewCell.h"
+#import "UITextView+Extension.h"
 @interface UGDepositDetailsXNViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UIScrollView *mUIScrollView;
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;  //选中的数据
@@ -21,12 +22,14 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;        /**<  contentCollectionView 的约束高*/
 @property (nonatomic, strong) NSArray <UGchannelModel *> *channelDataArray;
 @property (nonatomic, strong) NSMutableArray <NSString *> *amountDataArray;
+@property (strong, nonatomic)  NSString *currencyRate;              //汇率
 //===================================================================
 @property (weak, nonatomic) IBOutlet UITextView *inputTV;           //备注
 @property (weak, nonatomic) IBOutlet UITextField *inputTxf;         //金额输入
 @property (strong, nonatomic)  NSString *dayTime;                   //上午/下午
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;            //时间
-@property (nonatomic, strong) UIButton *submit_button;              //提交按钮
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;           //金额
+@property (nonatomic, weak)IBOutlet UIButton *submit_button;              //提交按钮
 @end
 
 @implementation UGDepositDetailsXNViewController
@@ -39,16 +42,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _tableDataArray = [NSMutableArray new];
-    _amountDataArray = [NSMutableArray new];
-    if (self.item) {
-        _tableDataArray = [[NSMutableArray alloc] initWithArray: item.channel2];
-    }
     
-    [self.view setBackgroundColor:Skin1.textColor4];
+    [self setUIStyle];
     [self setCollectionViewStyle];
     [self setTableViewStyle];
+    [self.inputTxf addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
+
+    self.moneyLabel.text = @"";
+    [self.inputTV setPlaceholderWithText:@"请填写备注信息" Color:Skin1.textColor3];
+    _tableDataArray = [NSMutableArray new];
+    _amountDataArray = [NSMutableArray new];
+
     if (self.item) {
+        _tableDataArray = [[NSMutableArray alloc] initWithArray: item.channel2];
         _selectChannelModel = [_tableDataArray objectAtIndex:0];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         lastPath = indexPath;
@@ -99,7 +105,28 @@
     }
 }
 
+
+
 #pragma mark - UI
+-(void)setUIStyle{
+    [self.view setBackgroundColor:Skin1.textColor4];
+    self.submit_button.layer.cornerRadius = 5;
+    self.submit_button.layer.masksToBounds = YES;
+    
+    FastSubViewCode(self.view);
+    subLabel(@"币种内容Label").textColor = Skin1.textColor1;
+    subLabel(@"二微码Label").textColor = Skin1.textColor1;
+    subLabel(@"提示2Label").textColor = Skin1.textColor1;
+    subLabel(@"提示1Label").textColor = [UIColor whiteColor];
+    subView(@"提示bgView").backgroundColor = RGBA(255, 95, 108, 1);
+    subView(@"2微码bgView").layer.borderWidth = 1;
+    subView(@"2微码bgView").layer.borderColor = [RGBA(223 , 230, 240, 1)CGColor];
+    subView(@"金额bgView").layer.borderWidth = 1;
+    subView(@"金额bgView").layer.borderColor = [RGBA(223 , 230, 240, 1)CGColor];
+    subView(@"时间bgView").layer.borderWidth = 1;
+    subView(@"时间bgView").layer.borderColor = [RGBA(223 , 230, 240, 1)CGColor];
+
+}
 
 -(void)setCollectionViewStyle{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
@@ -140,26 +167,21 @@
 //设置数据
 - (void)setUIData:(UGchannelModel *)channelModel{
     FastSubViewCode(self.view);
-    subLabel(@"币种内容Label").textColor = Skin1.textColor1;
-    subLabel(@"二微码Label").textColor = Skin1.textColor1;
-    subLabel(@"提示2Label").textColor = Skin1.textColor1;
-    subLabel(@"提示1Label").textColor = [UIColor whiteColor];
-    subView(@"提示bgView").backgroundColor = RGBA(255, 95, 108, 1);
     //=====================================
     subLabel(@"币种内容Label").text = channelModel.domain;
+    [subLabel(@"链名称内容Label") setText:channelModel.address];
     subLabel(@"二微码Label").text = channelModel.account;
-    [subImageView(@"二微码ImageV") sd_setImageWithURL:[NSURL URLWithString:channelModel.qrcode] placeholderImage:[UIImage imageNamed:@"bg_microcode"]];
-    [subLabel(@"提示2Label") setText:self.item.prompt];
-    [subLabel(@"提示1Label") setText:item.transferPrompt];
-    //=====================================
     
-    subView(@"2微码bgView").layer.borderWidth = 1;
-    subView(@"2微码bgView").layer.borderColor = [RGBA(223 , 230, 240, 1)CGColor];
-    subView(@"金额bgView").layer.borderWidth = 1;
-    subView(@"金额bgView").layer.borderColor = [RGBA(223 , 230, 240, 1)CGColor];
-    subView(@"时间bgView").layer.borderWidth = 1;
-    subView(@"时间bgView").layer.borderColor = [RGBA(223 , 230, 240, 1)CGColor];
+    NSLog(@"channelModel.account = %@",channelModel.account);
+    UIImage * image = [SGQRCodeObtain generateQRCodeWithData:channelModel.account size:160.0];
+    [subImageView(@"二微码ImageV") setImage:image];
+    [subLabel(@"提示2Label") setText:self.item.prompt];
+    [subLabel(@"提示1Label") setText:item.transferPrompt];//address
+   
+    [subLabel(@"汇率Label") setText:[NSString stringWithFormat:@"1 USDT = %@ CNY",[CMCommon randStr:[self currencyRateStr:channelModel.currencyRate count:1.0] scale:2]]];
+    self.currencyRate  = channelModel.currencyRate ;
     //=====================================
+
     UGparaModel *bankModel= channelModel.para;
     if ([CMCommon stringIsNull:bankModel.fixedAmount]) {
         self.amountDataArray = [[NSMutableArray alloc] initWithArray:self->item.quickAmount];
@@ -191,6 +213,28 @@
     
 }
 
+-(NSString *)currencyRateStr:(NSString *)rateStr count :(float )count{
+    float hl = [rateStr floatValue];
+    float rate =  count / hl ;
+    return [NSString stringWithFormat:@"%f",rate];
+}
+
+#pragma mark -textfield添加事件，只要值改变就调用此函数
+-(void)changedTextField:(UITextField *)textField
+{
+
+    float multip = textField.text.floatValue;
+    
+    if (multip > 0) {
+        [self setMoneyLabelText:multip];
+    }
+
+}
+
+-(void)setMoneyLabelText:(float )multip{
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",[CMCommon randStr:[self currencyRateStr:self.currencyRate count:multip] scale:2]];
+}
+
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -208,6 +252,7 @@
     NSLog(@"%ld分区---%ldItem", indexPath.section, indexPath.row);
     NSString *nuberStr = [_amountDataArray objectAtIndex:indexPath.row];
     self.inputTxf.text = nuberStr;
+    [self setMoneyLabelText:nuberStr.floatValue];
 }
 
 #pragma mark - UITableViewDataSource

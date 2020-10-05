@@ -161,38 +161,28 @@ static LogVC *_logVC = nil;
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"获取这个字符串中的所有xxx的所在的inde"];
-        [titles addObject:@"包含判断上午下午"];
+        [titles addObject:@"汇率"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"包含判断上午下午" handler:^(UIAlertAction *aa) {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-
-//            // ----------设置你想要的格式,hh与HH的区别:分别表示12小时制,24小时制
-//            formatter.AMSymbol = @"上午";
-//            formatter.PMSymbol = @"下午";
-//
-//            [formatter setDateFormat:@"YYYY/MM/dd aaa hh:mm:ss"];
-//
-//            //现在时间,你可以输出来看下是什么格式
-//
-//            NSDate *datenow = [NSDate date];
-//
-//            //----------将nsdate按formatter格式转成nsstring
-//
-//            NSString *currentTimeString = [formatter stringFromDate:datenow];
-//
-//            NSLog(@"currentTimeString =  %@",currentTimeString);
+        [ac setActionAtTitle:@"汇率" handler:^(UIAlertAction *aa) {
+            float hl = 1.0 / 0.1473;
+            NSString *str= [NSString stringWithFormat:@"%f", hl];
+            NSLog(@"str为%@",str);
+            float shl = [str floatValue];
+            NSLog(@"shl为%lf",shl);
             
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//            [formatter setDateFormat:@"HH"];
-//            NSString *str = [formatter stringFromDate:[NSDate date]];
-//            int time = [str intValue];
-//            if (time>=18||time<=06) {
-//            NSLog(@"晚上zhi");
-//            }
-//            else{
-//            NSLog(@"早上");
-//            }
+            float ff =   (shl * 100 + 0.5) / 100;
+            
+            NSLog(@"第1种方法：四舍五入为%lf",ff);
+            ///=====================
+            NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:2 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+            NSDecimalNumber *numResult1 = [NSDecimalNumber decimalNumberWithString:str];
+            NSLog(@" 第2种方法：%@", [numResult1 decimalNumberByRoundingAccordingToBehavior:behavior]);
+    
+            
+            
+
+
             
         }];
         

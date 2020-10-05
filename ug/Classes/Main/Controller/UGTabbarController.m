@@ -116,7 +116,6 @@ static UGTabbarController *_tabBarVC = nil;
             return false;
         }
     }
-    
     return true;
 }
 
