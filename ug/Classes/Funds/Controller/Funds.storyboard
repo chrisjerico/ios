@@ -171,13 +171,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqP-30-Pez">
-                                <rect key="frame" x="0.0" y="88" width="85" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="80" height="774"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNt-SO-qmP">
-                                        <rect key="frame" x="0.0" y="0.0" width="85" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="KA6-7H-fsu"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="概括">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
@@ -195,11 +196,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOQ-YT-WmI">
-                                        <rect key="frame" x="0.0" y="44" width="85" height="44"/>
+                                        <rect key="frame" x="0.0" y="44" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="GwX-20-hpc"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="安装虚拟币钱包">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
@@ -211,10 +212,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoJ-mO-nyP">
-                                        <rect key="frame" x="0.0" y="132" width="85" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="R7T-wJ-xya"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="身份认证">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
@@ -226,10 +228,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lx6-Lg-PS7">
-                                        <rect key="frame" x="0.0" y="88" width="85" height="44"/>
+                                        <rect key="frame" x="0.0" y="88" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="KxD-af-5kc"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="注册账号">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
@@ -241,10 +244,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vda-rN-04f">
-                                        <rect key="frame" x="0.0" y="176" width="85" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="IGc-Sb-Ctq"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="购买虚拟币">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
@@ -256,10 +260,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEX-Ry-loL">
-                                        <rect key="frame" x="0.0" y="220" width="85" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="uAS-5x-JY9"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="网站充值">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
@@ -271,10 +276,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QuZ-Ob-Q3N">
-                                        <rect key="frame" x="0.0" y="264" width="85" height="44"/>
+                                        <rect key="frame" x="0.0" y="264" width="80" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AKN-jP-XIJ"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="钱包付款">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
@@ -309,17 +315,17 @@
                                     <constraint firstAttribute="trailing" secondItem="vda-rN-04f" secondAttribute="trailing" id="rPN-Ow-mDr"/>
                                     <constraint firstItem="RNt-SO-qmP" firstAttribute="leading" secondItem="hqP-30-Pez" secondAttribute="leading" id="txb-WD-gvV"/>
                                     <constraint firstItem="YEX-Ry-loL" firstAttribute="top" secondItem="vda-rN-04f" secondAttribute="bottom" id="wlC-uL-hyn"/>
-                                    <constraint firstAttribute="width" constant="85" id="zdQ-E9-nI2"/>
+                                    <constraint firstAttribute="width" constant="80" id="zdQ-E9-nI2"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="按钮view"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPW-E3-trh">
-                                <rect key="frame" x="85" y="88" width="329" height="774"/>
+                                <rect key="frame" x="80" y="88" width="334" height="774"/>
                                 <subviews>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sdv-8u-Il9">
-                                        <rect key="frame" x="0.0" y="0.0" width="329" height="774"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="774"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </webView>
                                 </subviews>
