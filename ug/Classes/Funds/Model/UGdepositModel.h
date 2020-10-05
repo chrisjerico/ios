@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *pid;//
 @property (nonatomic, strong) NSString *payeeName;      /**<   标题  ｜虚拟币：标题 */
-@property (nonatomic, strong) NSString *branchAddress;  /**<   支行地址 */
+@property (nonatomic, strong) NSString *branchAddress;  /**<   支行地址   ｜虚拟币：货币汇率增加的百分比 */
 @property (nonatomic, strong) NSString *address;        /**<   地址 ｜ 虚拟币：链名称*/
 @property (nonatomic, strong) NSString *domain;         /**<   域  ｜虚拟币：币种*/
 @property (nonatomic, strong) NSString *name;           /**<   名字 */
