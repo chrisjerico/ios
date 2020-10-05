@@ -222,9 +222,17 @@
     
     
 }
-
+//返回汇率
 -(NSString *)currencyRateStr:(NSString *)rateStr count :(float )count{
     float hl = [rateStr floatValue];
+    float rate =  count / hl ;
+    return [NSString stringWithFormat:@"%f",rate];
+}
+
+//计算金额
+-(NSString *)moenyCount :(float )count{
+    float hl = [[self currencyRateStr:self.currencyRate count:1.0]  floatValue];
+    NSLog(@"hl = %f",hl);
     float rate =  count / hl ;
     return [NSString stringWithFormat:@"%f",rate];
 }
@@ -242,7 +250,7 @@
 }
 
 -(void)setMoneyLabelText:(float )multip{
-    self.moneyLabel.text = [NSString stringWithFormat:@"%@",[CMCommon randStr:[self currencyRateStr:self.currencyRate count:multip] scale:2]];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",[CMCommon randStr:[self moenyCount:multip] scale:2]];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
