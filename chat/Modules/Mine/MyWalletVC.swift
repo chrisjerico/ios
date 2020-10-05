@@ -82,11 +82,13 @@ class MyWalletVC: BaseVC {
 			
 			switch (indexPath.section, indexPath.item) {
 			case (0, 0):
-				let vc = UGFundsViewController()
+				let vc = UIStoryboard(name: "Funds", bundle: nil).instantiateViewController(withIdentifier: "UGFundsViewController")
+				vc.navigationItem.title = "存款"
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (0, 1):
-				let vc = UGFundsViewController()
+				let vc = UIStoryboard(name: "Funds", bundle: nil).instantiateViewController(withIdentifier: "UGFundsViewController") as! UGFundsViewController
 				vc.selectIndex = 1
+				vc.navigationItem.title = "取款"
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (0, 2):
 				let vc = UIStoryboard(name: "UGYubaoViewController", bundle: nil).instantiateViewController(withIdentifier: "UGYubaoViewController")
@@ -94,7 +96,6 @@ class MyWalletVC: BaseVC {
 			case(0, 3):
 				weakSelf.navigationController?.pushViewController(UIStoryboard(name: "UGPromotionInfoController", bundle: nil).instantiateViewController(withIdentifier: "UGPromotionInfoController") , animated: true)
 
-//				weakSelf.navigationController?.pushViewController(UGPromotionInfoController(), animated: true)
 			case (0, 4):
 				weakSelf.navigationController?.pushViewController(UGActivityGoldTableViewController(), animated: true)
 			case (0, 5):

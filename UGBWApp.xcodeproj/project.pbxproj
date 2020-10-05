@@ -1666,6 +1666,7 @@
 		03D6927823C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6927623C32E0A003D9C12 /* C001BetErrorCustomView.m */; };
 		03D6927A23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */; };
 		03D6927B23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D6927923C32E1A003D9C12 /* C001BetErrorCustomView.xib */; };
+		03E1A127252ADE8100FAD11D /* MessageUnderMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D442695F249C83D10006878C /* MessageUnderMenuView.xib */; };
 		03E3AAB223C8234C009A28C0 /* PromotionMemberRechargeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E3AAB123C8234C009A28C0 /* PromotionMemberRechargeVC.m */; };
 		03E3AAB823C84BCF009A28C0 /* PromotionBetReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E3AAB723C84BCF009A28C0 /* PromotionBetReportVC.m */; };
 		03E3AAB923C84BCF009A28C0 /* PromotionBetReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E3AAB723C84BCF009A28C0 /* PromotionBetReportVC.m */; };
@@ -9348,6 +9349,7 @@
 				031EF40D23BE7A9600B0F813 /* LaunchScreen.storyboard in Resources */,
 				031EF5EC23BE7B4E00B0F813 /* MyShare.storyboard in Resources */,
 				031E1D1723BE812B00B0F813 /* Promote.storyboard in Resources */,
+				03E1A127252ADE8100FAD11D /* MessageUnderMenuView.xib in Resources */,
 				031E1E0923BE812C00B0F813 /* UGSignInHeaderView.xib in Resources */,
 				0315DC9424ACA86200D635E2 /* NotificationMessageVC.xib in Resources */,
 				CFBAAC4025246BD400C5F6F6 /* 5.html in Resources */,

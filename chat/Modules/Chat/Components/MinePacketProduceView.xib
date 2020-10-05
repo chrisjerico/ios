@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -130,7 +130,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="LayerMasksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qt9-Ht-Ao0">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qt9-Ht-Ao0">
                             <rect key="frame" x="255" y="6" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Rpr-1H-UnU"/>
@@ -169,17 +169,18 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fbV-Td-lvg" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="3iH-LZ-8ei"/>
                 <constraint firstItem="fbV-Td-lvg" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="id5-Oz-9EM"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="closeButton" destination="Qt9-Ht-Ao0" id="dzC-hd-1BL"/>
                 <outlet property="handleButton" destination="2kT-nh-cnU" id="Btd-g5-BxM"/>
                 <outlet property="mineNumberCollectionView" destination="b87-4C-QJo" id="lia-hs-zf6"/>
                 <outlet property="quantityField" destination="yEU-qo-4b6" id="oSP-2w-4mR"/>
+                <outlet property="quantityLabel" destination="yxh-hi-bKW" id="hGg-na-Y6B"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="123.88392857142857"/>
         </view>

@@ -20,6 +20,7 @@ class MinePacketProduceView: UIView {
 	@IBOutlet weak var closeButton: UIButton!
 	@IBOutlet weak var mineNumberCollectionView: UICollectionView!
 	@IBOutlet weak var handleButton: UIButton!
+	@IBOutlet weak var quantityLabel: UILabel!
 	weak var delegate: MinePacketProduceViewDelegate?
 	var packetConfig = MinepacketSettingModel()
 	var selectedNumber: Int?
@@ -66,7 +67,14 @@ class MinePacketProduceView: UIView {
 		})
 		items.bind(to: mineNumberCollectionView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
 		
-		
+		quantityField.rx.text.map {$0}.subscribe {[weak self] (content) in
+			self?.quantityLabel.text = "¥\(content)"
+		}.disposed(by: disposeBag)
+//		quantityField.rx.text.subscribe { [weak self] (content) in
+//
+//			self?.quantityLabel.text = "¥\(content!)"
+//		}.disposed(by: disposeBag)
+
 		
 		mineNumberCollectionView.rx.itemSelected.subscribe(onNext: { [weak self] (indexPath) in
 			guard let weakSelf = self else { return }
