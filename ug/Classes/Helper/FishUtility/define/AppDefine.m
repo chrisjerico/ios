@@ -256,7 +256,7 @@
     _isSecondUrl = [@"c213" containsString:_SiteId];
     _isWebRightMenu = NO;
     _isHideTV = [@"c085" containsString:_SiteId];
-    _isBottom = [@"c186" containsString:_SiteId];
+    _isBottom = [@"c186,c225" containsString:_SiteId];
     _isChatButton = [@"c186" containsString:_SiteId];
     _isNewLocation = [@"c206,test29" containsString:_SiteId];
     _isNoCry = [@"c018" containsString:_SiteId];
