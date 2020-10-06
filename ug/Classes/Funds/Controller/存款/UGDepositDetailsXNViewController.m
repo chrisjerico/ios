@@ -70,24 +70,10 @@
     
     __weakSelf_(__self);
     __block NSTimer *__timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
-        {
-            NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit |                 NSSecondCalendarUnit;
-            NSDateComponents *dateComponent = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
-            int hour = (int)[dateComponent hour];
-            
-            NSLog(@"hour is: %d", hour);
-            if (hour <=11) {
-                __self.dayTime = @"上午";
 
-            }
-            else {
-                __self.dayTime = @"下午";
-            }
-        }
-        
         NSString *date = [[NSDate date] stringWithFormat:@"yyyy/MM/dd"];
         NSString *time = [[NSDate date] stringWithFormat:@"HH:mm"];
-        __self.timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",date,__self.dayTime,time];
+        __self.timeLabel.text = [NSString stringWithFormat:@"%@ %@",date,time];
         
         if (!__self) {
             [__timer invalidate];
