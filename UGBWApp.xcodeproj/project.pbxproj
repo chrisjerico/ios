@@ -1904,6 +1904,15 @@
 		CF475929239636D200966536 /* 105.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587D239636D100966536 /* 105.gif */; };
 		CF47592A239636D200966536 /* 10.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587E239636D100966536 /* 10.gif */; };
 		CF47592B239636D200966536 /* 38.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF47587F239636D100966536 /* 38.gif */; };
+		CF4FAFBC252C7F27004C47AB /* HelpDocument.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFBB252C7F26004C47AB /* HelpDocument.storyboard */; };
+		CF4FAFC1252C806A004C47AB /* HelpDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4FAFC0252C806A004C47AB /* HelpDocViewController.m */; };
+		CF4FAFC2252C806A004C47AB /* HelpDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4FAFC0252C806A004C47AB /* HelpDocViewController.m */; };
+		CF4FAFC7252C80FC004C47AB /* HelpDocModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4FAFC6252C80FC004C47AB /* HelpDocModel.m */; };
+		CF4FAFC8252C80FC004C47AB /* HelpDocModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4FAFC6252C80FC004C47AB /* HelpDocModel.m */; };
+		CF4FAFCF252C8C87004C47AB /* 完成充值.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFCD252C8C87004C47AB /* 完成充值.html */; };
+		CF4FAFD0252C8C87004C47AB /* 完成充值.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFCD252C8C87004C47AB /* 完成充值.html */; };
+		CF4FAFD1252C8C87004C47AB /* 确认存款金额.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFCE252C8C87004C47AB /* 确认存款金额.html */; };
+		CF4FAFD2252C8C87004C47AB /* 确认存款金额.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFCE252C8C87004C47AB /* 确认存款金额.html */; };
 		CF52FA5E2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */; };
 		CF52FA5F2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */; };
 		CF533A81251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */; };
@@ -2022,8 +2031,6 @@
 		CFBAAC4525246BDB00C5F6F6 /* 6.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4325246BDB00C5F6F6 /* 6.html */; };
 		CFBAAC4725246BE400C5F6F6 /* 7.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4625246BE300C5F6F6 /* 7.html */; };
 		CFBAAC4825246BE400C5F6F6 /* 7.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC4625246BE300C5F6F6 /* 7.html */; };
-		CFBAAC4D25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */; };
-		CFBAAC4E25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */; };
 		CFBAAC592525CB5F00C5F6F6 /* UGDepositDetailsXNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */; };
 		CFBD91352461AD4100FFFDEB /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBD91322461AD4100FFFDEB /* PieView.m */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
@@ -3943,6 +3950,13 @@
 		CF47587D239636D100966536 /* 105.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 105.gif; sourceTree = "<group>"; };
 		CF47587E239636D100966536 /* 10.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 10.gif; sourceTree = "<group>"; };
 		CF47587F239636D100966536 /* 38.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 38.gif; sourceTree = "<group>"; };
+		CF4FAFBB252C7F26004C47AB /* HelpDocument.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HelpDocument.storyboard; sourceTree = "<group>"; };
+		CF4FAFBF252C806A004C47AB /* HelpDocViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpDocViewController.h; sourceTree = "<group>"; };
+		CF4FAFC0252C806A004C47AB /* HelpDocViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpDocViewController.m; sourceTree = "<group>"; };
+		CF4FAFC5252C80FC004C47AB /* HelpDocModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpDocModel.h; sourceTree = "<group>"; };
+		CF4FAFC6252C80FC004C47AB /* HelpDocModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpDocModel.m; sourceTree = "<group>"; };
+		CF4FAFCD252C8C87004C47AB /* 完成充值.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "完成充值.html"; sourceTree = "<group>"; };
+		CF4FAFCE252C8C87004C47AB /* 确认存款金额.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "确认存款金额.html"; sourceTree = "<group>"; };
 		CF52FA5B2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawalAccountTableViewCell.h; sourceTree = "<group>"; };
 		CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGwithdrawalAccountTableViewCell.m; sourceTree = "<group>"; };
 		CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGwithdrawalAccountTableViewCell.xib; sourceTree = "<group>"; };
@@ -4021,8 +4035,6 @@
 		CFBAAC3E25246BD300C5F6F6 /* 5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 5.html; sourceTree = "<group>"; };
 		CFBAAC4325246BDB00C5F6F6 /* 6.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 6.html; sourceTree = "<group>"; };
 		CFBAAC4625246BE300C5F6F6 /* 7.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 7.html; sourceTree = "<group>"; };
-		CFBAAC4B25246CC500C5F6F6 /* UGXNTutorialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGXNTutorialsViewController.h; sourceTree = "<group>"; };
-		CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGXNTutorialsViewController.m; sourceTree = "<group>"; };
 		CFBAAC572525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGDepositDetailsXNViewController.h; sourceTree = "<group>"; };
 		CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGDepositDetailsXNViewController.m; sourceTree = "<group>"; };
 		CFBD91322461AD4100FFFDEB /* PieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieView.m; sourceTree = "<group>"; };
@@ -4521,6 +4533,7 @@
 				031E14DE23BE812300B0F813 /* Category */,
 				4959677824E25C4A005D5B53 /* FacebookHelper */,
 				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
+				CF4FAFB9252C7ECE004C47AB /* 教程 */,
 				D43DAF8224555B1C0014A301 /* 自定义拖动条 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
 				D4F0411423C868E20070D2B5 /* WHC_SqliteKit */,
@@ -6210,8 +6223,6 @@
 				031E172023BE812400B0F813 /* UGDepositDetailsViewController.h */,
 				031E172123BE812400B0F813 /* UGRechargeTypeTableViewController.h */,
 				031E172423BE812400B0F813 /* UGRechargeTypeTableViewController.m */,
-				CFBAAC4B25246CC500C5F6F6 /* UGXNTutorialsViewController.h */,
-				CFBAAC4C25246CC500C5F6F6 /* UGXNTutorialsViewController.m */,
 				CFBAAC572525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.h */,
 				CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */,
 			);
@@ -8248,6 +8259,41 @@
 			path = "六合表情";
 			sourceTree = "<group>";
 		};
+		CF4FAFB9252C7ECE004C47AB /* 教程 */ = {
+			isa = PBXGroup;
+			children = (
+				CF4FAFBB252C7F26004C47AB /* HelpDocument.storyboard */,
+				CF4FAFBF252C806A004C47AB /* HelpDocViewController.h */,
+				CF4FAFC0252C806A004C47AB /* HelpDocViewController.m */,
+				CF4FAFC5252C80FC004C47AB /* HelpDocModel.h */,
+				CF4FAFC6252C80FC004C47AB /* HelpDocModel.m */,
+			);
+			path = "教程";
+			sourceTree = "<group>";
+		};
+		CF4FAFCB252C894D004C47AB /* 在线支付 */ = {
+			isa = PBXGroup;
+			children = (
+				CFBAAC4625246BE300C5F6F6 /* 7.html */,
+				CFBAAC4325246BDB00C5F6F6 /* 6.html */,
+				CFBAAC3E25246BD300C5F6F6 /* 5.html */,
+				CFBAAC3B25246BCC00C5F6F6 /* 4.html */,
+				CFBAAC3825246BC600C5F6F6 /* 3.html */,
+				CFBAAC3525246BBE00C5F6F6 /* 2.html */,
+				CFBAAC3025246BB400C5F6F6 /* 1.html */,
+			);
+			path = "在线支付";
+			sourceTree = "<group>";
+		};
+		CF4FAFCC252C89AC004C47AB /* 充值 */ = {
+			isa = PBXGroup;
+			children = (
+				CF4FAFCE252C8C87004C47AB /* 确认存款金额.html */,
+				CF4FAFCD252C8C87004C47AB /* 完成充值.html */,
+			);
+			path = "充值";
+			sourceTree = "<group>";
+		};
 		CF52FA582521C57D00ACF773 /* 提款账号 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8405,13 +8451,8 @@
 		CFBAAC2F25246B9500C5F6F6 /* 虚拟币 */ = {
 			isa = PBXGroup;
 			children = (
-				CFBAAC4625246BE300C5F6F6 /* 7.html */,
-				CFBAAC4325246BDB00C5F6F6 /* 6.html */,
-				CFBAAC3E25246BD300C5F6F6 /* 5.html */,
-				CFBAAC3B25246BCC00C5F6F6 /* 4.html */,
-				CFBAAC3825246BC600C5F6F6 /* 3.html */,
-				CFBAAC3525246BBE00C5F6F6 /* 2.html */,
-				CFBAAC3025246BB400C5F6F6 /* 1.html */,
+				CF4FAFCC252C89AC004C47AB /* 充值 */,
+				CF4FAFCB252C894D004C47AB /* 在线支付 */,
 			);
 			path = "虚拟币";
 			sourceTree = "<group>";
@@ -9319,6 +9360,7 @@
 				031EF59823BE7B4D00B0F813 /* tianjia.svg in Resources */,
 				03AFD93D23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				031EF5E923BE7B4E00B0F813 /* MyWalletHeader.xib in Resources */,
+				CF4FAFD2252C8C87004C47AB /* 确认存款金额.html in Resources */,
 				031EF5C323BE7B4D00B0F813 /* MomentsPublishVC.xib in Resources */,
 				032412BC23CC5D3F00FABD51 /* PromotionRecordCell2.xib in Resources */,
 				031E1C1323BE812900B0F813 /* UGTimeLotteryLeftTitleCell.xib in Resources */,
@@ -9512,6 +9554,7 @@
 				031E1BC923BE812900B0F813 /* UGFC3DLotteryController.storyboard in Resources */,
 				031E1E4723BE812C00B0F813 /* UGSkinSeconCollectionHeadView.xib in Resources */,
 				031EF5A023BE7B4D00B0F813 /* bianji.svg in Resources */,
+				CF4FAFD0252C8C87004C47AB /* 完成充值.html in Resources */,
 				031E1C4723BE812900B0F813 /* UGLotteryResultCollectionViewCell.xib in Resources */,
 				031E1BEF23BE812900B0F813 /* UGJSK3LotteryController.storyboard in Resources */,
 				031EF5C023BE7B4D00B0F813 /* ConcernedMomentsVC.xib in Resources */,
@@ -9760,6 +9803,7 @@
 				CF4758E9239636D200966536 /* 76.gif in Resources */,
 				CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */,
 				031E19F623BE812700B0F813 /* LoadingStateView.xib in Resources */,
+				CF4FAFBC252C7F27004C47AB /* HelpDocument.storyboard in Resources */,
 				D4122CC82504B8240009E602 /* TKLPlatformNoticeCell.xib in Resources */,
 				D40745C72511F37900606EA3 /* YNBetDetailView.xib in Resources */,
 				D40745C52511F37900606EA3 /* YNBetCollectionViewCell.xib in Resources */,
@@ -9849,6 +9893,7 @@
 				CF47588B239636D200966536 /* 22.gif in Resources */,
 				031E1B2223BE812800B0F813 /* UGLotteryAssistantController.storyboard in Resources */,
 				D434743A24AB270100B0F598 /* BetDetail.storyboard in Resources */,
+				CF4FAFD1252C8C87004C47AB /* 确认存款金额.html in Resources */,
 				CF8E242423DDBFD80054BF0F /* FontAwesome5_Brands.ttf in Resources */,
 				CF4758FC239636D200966536 /* 165.gif in Resources */,
 				CF4758C7239636D200966536 /* 50.gif in Resources */,
@@ -10036,6 +10081,7 @@
 				CF475914239636D200966536 /* 29.gif in Resources */,
 				CF6241712520708000016A57 /* NewLotteryRightCollectionViewCell.xib in Resources */,
 				0372B59223C9984F00B564FF /* PromotionRecordCell1.xib in Resources */,
+				CF4FAFCF252C8C87004C47AB /* 完成充值.html in Resources */,
 				031E1C2423BE812900B0F813 /* UGFastThreeFourCollectionViewCell.xib in Resources */,
 				031E1C9023BE812A00B0F813 /* UGFundsBankView.xib in Resources */,
 				CF4758CF239636D200966536 /* 92.gif in Resources */,
@@ -10395,6 +10441,7 @@
 				03D6927823C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */,
 				031E1E5923BE812C00B0F813 /* UGMenuTableViewCell.m in Sources */,
 				D4326F1C23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */,
+				CF4FAFC2252C806A004C47AB /* HelpDocViewController.m in Sources */,
 				031E1D9923BE812B00B0F813 /* UGYubaoConversionCenterController.m in Sources */,
 				031E1B5323BE812800B0F813 /* UGYYRightMenuView.m in Sources */,
 				030A873023C59FEB0001EF82 /* ProfileEditVC.swift in Sources */,
@@ -10826,6 +10873,7 @@
 				031E1A3123BE812700B0F813 /* CMNetwork+Mine.m in Sources */,
 				031E1BE323BE812900B0F813 /* UGHKLHCLotteryController.m in Sources */,
 				031E1BD923BE812900B0F813 /* UGCommonLotteryController.m in Sources */,
+				CF4FAFC8252C80FC004C47AB /* HelpDocModel.m in Sources */,
 				031E19E123BE812700B0F813 /* NSURL+Utils.m in Sources */,
 				031E1DC323BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
 				031E1D2B23BE812B00B0F813 /* UGIntegralConvertRecordController.m in Sources */,
@@ -10840,7 +10888,6 @@
 				031E1B1123BE812800B0F813 /* UGLotteryRecordController.m in Sources */,
 				031E196923BE812600B0F813 /* UGLHOldYearViewController.m in Sources */,
 				031EF55E23BE7B4D00B0F813 /* MJRefresh+RX.swift in Sources */,
-				CFBAAC4E25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */,
 				03B71D84251E31220090FC98 /* IBView.m in Sources */,
 				031E1CD923BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */,
 				031E1A0323BE812700B0F813 /* SlideSegmentView1.m in Sources */,
@@ -10987,6 +11034,7 @@
 				031E1CF623BE812A00B0F813 /* AFURLResponseSerialization.m in Sources */,
 				031E1CBC23BE812A00B0F813 /* UGCollectionViewCell.m in Sources */,
 				031E1AFE23BE812800B0F813 /* GLEncryptManager.m in Sources */,
+				CF4FAFC1252C806A004C47AB /* HelpDocViewController.m in Sources */,
 				D4326F0623F6D45200BEEA1B /* BetImgView.m in Sources */,
 				D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */,
 				D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */,
@@ -11119,7 +11167,6 @@
 				031E1B6C23BE812800B0F813 /* UGPlatformTitleBlackCell.m in Sources */,
 				031E197623BE812600B0F813 /* UGLHPostCommentModel.m in Sources */,
 				031E19E023BE812700B0F813 /* NSURL+Utils.m in Sources */,
-				CFBAAC4D25246CC500C5F6F6 /* UGXNTutorialsViewController.m in Sources */,
 				CF6E4D0C2529B49200ABF719 /* BRResultModel.m in Sources */,
 				031E1DA023BE812B00B0F813 /* UGdepositStatModel.m in Sources */,
 				031E1A9C23BE812800B0F813 /* MOFSAddressPickerView.m in Sources */,
@@ -11410,6 +11457,7 @@
 				CFF11A34241E776600C7E3A3 /* DocumentTypeList.m in Sources */,
 				031E197823BE812600B0F813 /* UGLHFocusUserModel.m in Sources */,
 				D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */,
+				CF4FAFC7252C80FC004C47AB /* HelpDocModel.m in Sources */,
 				031E1BA623BE812900B0F813 /* UGBMpreferentialViewController.m in Sources */,
 				031E1D6C23BE812B00B0F813 /* UGMosaicGoldController.m in Sources */,
 				031E1C0623BE812900B0F813 /* UGGameplayModel.m in Sources */,
