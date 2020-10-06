@@ -126,7 +126,7 @@
         
         @"bank_transfer"            :@"transfer",       // 银行转账
         @"yinlian_online"           :@"bank_online",    // 银联钱包在线支付
-        @"bank_online"              :@"quick_online",   // 网银在线支（用银联图标，还是快捷支付图标？）
+        @"bank_online"              :@"bank_online",   // 网银在线支（用银联图标，还是快捷支付图标？）
         @"quick_online"             :@"quick_online",   // 快捷支付
         
         @"jingdong_online"          :@"jd",             // 京东钱包在线支付

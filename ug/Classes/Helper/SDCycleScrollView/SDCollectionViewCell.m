@@ -69,7 +69,8 @@
 
 - (void)setupImageView
 {
-    YYAnimatedImageView *imageView = [YYAnimatedImageView new ];
+    FLAnimatedImageView *imageView = [[FLAnimatedImageView alloc ] initWithFrame:self.bounds];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView = imageView;
     [self.contentView addSubview:imageView];
 }

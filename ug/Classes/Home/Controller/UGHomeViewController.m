@@ -1569,10 +1569,16 @@
                         /**
                          #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
                          */
-                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| [Skin1 isJY]||Skin1.isTKL) {
+                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| Skin1.isTKL) {
                             weakSelf.gameNavigationViewHeight.constant = 60;
                             weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
-                        } else {
+                        }
+                        else if ([Skin1 isJY])
+                        {
+                            weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
+                            weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
+                        }
+                        else {
                             weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
                             
                         }
@@ -1692,7 +1698,10 @@
                 }
                 [weakSelf.leftwardMarqueeView reloadData];
    
-                [weakSelf showPlatformNoticeView];
+                if (![type.popupSwitch isEqualToString:@"0"]) {
+                    [weakSelf showPlatformNoticeView];
+                }
+                
             });
         } failure:nil];
     }];
