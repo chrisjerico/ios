@@ -62,7 +62,8 @@
             [CMNetwork readMsgAllUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
                 [CMResult processWithResult:model success:^{
                     [SVProgressHUD showSuccessWithStatus:model.msg];
-
+                    //==>通知个人中心刷新站内信
+                    SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
                     if (weakSelf.readedclickBllock) {
                         weakSelf.readedclickBllock();
                     }
