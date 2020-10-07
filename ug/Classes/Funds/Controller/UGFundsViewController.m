@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;/**<    昵称 */
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;   /**<    余额 */
 @property (weak, nonatomic) IBOutlet UILabel *realNameLabel;/**<    真实名 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end
 
@@ -55,6 +56,10 @@
     if (!self.title) {
         self.title =  @"资金管理";
     }
+	
+	if (CHAT_TARGET) {
+		self.headerHeight.constant = 0;
+	}
     
     self.fd_prefersNavigationBarHidden = Skin1.isBlack;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -171,7 +176,12 @@
     self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.textColor4;
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor1;
- 
+	if (CHAT_TARGET) {
+		self.slideSwitchView.tabItemSelectedColor = RGBA(0x74, 0x94, 0xff, 1);
+		self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(0x74, 0x94, 0xff, 1);
+		self.slideSwitchView.tabSelectionStyle = XYYSegmentedControlSelectionStyleFullWidthStripe;
+		
+	}
 }
 
 
@@ -227,6 +237,10 @@
     if (number == 2) {
         SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
     }
+	
+	if (CHAT_TARGET) {
+		self.navigationItem.title = self.itemArray[number];
+	}
     
 }
 

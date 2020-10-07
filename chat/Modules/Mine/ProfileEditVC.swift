@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ProfileEditVC: BaseVC {
 	
@@ -19,22 +20,15 @@ class ProfileEditVC: BaseVC {
 		super.viewDidLoad()
 		navigationItem.title = "个人资料编辑"
 		
-		
-		//				ChatAPI.rx.request(ChatTarget.userInfo(sessid: App.user.sessid)).subscribe(onSuccess: { (response) in
-		//					logger.debug(try! response.mapString())
-		//				}) { (error) in
-		//					logger.debug(error.localizedDescription)
-		//				}.disposed(by: disposeBag)
-		
-		ChatAPI.rx.request(ChatTarget.selfUserInfo(target: App.user.userId)).subscribe(onSuccess: { (response) in
-			logger.debug(try! response.mapString())
+		ChatAPI.rx.request(ChatTarget.selfUserInfo(target: App.user.userId)).subscribe(onSuccess: {[weak self] (response) in
+			guard let json = try? JSON(data: response.data) else { return }
+			self?.avatarButton.kf.setImage(with: URL(string: json["data"]["avatar"].stringValue), for: .normal)
 		}) { (error) in
 			logger.debug(error.localizedDescription)
 		}.disposed(by: disposeBag)
 		
 		nameButton.setTitle(App.user.username, for: .normal)
 		avatarButton.kf.setImage(with: URL(string: App.user.avatar), for: .normal)
-		
 		
 		nameButton.rx.tap.subscribe(onNext: { [unowned self] () in
 			let vc = NameEditVC()

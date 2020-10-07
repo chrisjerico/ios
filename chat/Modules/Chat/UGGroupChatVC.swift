@@ -80,54 +80,54 @@ class UGGroupChatVC: MessagesViewController {
 		
 		
 		var isFirstReload = true
-			messagesCollectionView.mj_header.rx.refreshing.startWith(())
-				.flatMap { [weak self] _ in
-					ChatAPI.rx.request(ChatTarget.groupMessageRecord(roomId: "\(self!.room.roomId)", lastMessage: self?.messages.first?.messageId ?? ""))
+		messagesCollectionView.mj_header.rx.refreshing.startWith(())
+			.flatMap { [weak self] _ in
+				ChatAPI.rx.request(ChatTarget.groupMessageRecord(roomId: "\(self!.room.roomId)", lastMessage: self?.messages.first?.messageId ?? ""))
 			}
-				.subscribe(onNext: { [weak self] (response) in
-					self?.messagesCollectionView.mj_header.endRefreshing()
-					guard
-						let json = try? response.mapJSON() as? [String: Any],
-						let messageJson = json["data"] as? [[String: Any]]
-					else {
-//						Alert.showTip("JSON解析出错")
-						return
-					}
-					
-					let messages = messageJson.map{ MessageModel(JSON: $0)!}
-					self?.messages.insert(contentsOf: messages, at: 0)
-					if isFirstReload {
-						self?.messagesCollectionView.reloadData()
-						self?.messagesCollectionView.scrollToBottom()
-					} else {
-						self?.messagesCollectionView.reloadDataAndKeepOffset()
-					}
-					isFirstReload = false
-					}, onError: { [weak self] (error) in
-						self?.messagesCollectionView.mj_header.endRefreshing()
-						Alert.showTip(error.localizedDescription)
-						
-				}).disposed(by: disposeBag)
+			.subscribe(onNext: { [weak self] (response) in
+				self?.messagesCollectionView.mj_header.endRefreshing()
+				guard
+					let json = try? response.mapJSON() as? [String: Any],
+					let messageJson = json["data"] as? [[String: Any]]
+				else {
+					//						Alert.showTip("JSON解析出错")
+					return
+				}
+				
+				let messages = messageJson.map{ MessageModel(JSON: $0)!}
+				self?.messages.insert(contentsOf: messages, at: 0)
+				if isFirstReload {
+					self?.messagesCollectionView.reloadData()
+					self?.messagesCollectionView.scrollToBottom()
+				} else {
+					self?.messagesCollectionView.reloadDataAndKeepOffset()
+				}
+				isFirstReload = false
+			}, onError: { [weak self] (error) in
+				self?.messagesCollectionView.mj_header.endRefreshing()
+				Alert.showTip(error.localizedDescription)
+				
+			}).disposed(by: disposeBag)
 		
 		
 		MessageManager.shared.newMessage.filter { [weak self] message in
 			guard
 				let weakSelf = self,
 				let roomId = message["roomId"] as? String
-				else {
-					return true
+			else {
+				return true
 			}
 			return Int(roomId) == weakSelf.room.roomId
 		}.map { MessageModel(JSON: $0)!}
-			.subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .background))
-			.observeOn(MainScheduler.instance)
-			.subscribe(onNext: { [weak self] (message) in
-				guard let self = self else { return }
-				self.messages.append(message)
-				self.messagesCollectionView.reloadData()
-				self.messagesCollectionView.scrollToBottom()
-			})
-			.disposed(by: disposeBag)
+		.subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .background))
+		.observeOn(MainScheduler.instance)
+		.subscribe(onNext: { [weak self] (message) in
+			guard let self = self else { return }
+			self.messages.append(message)
+			self.messagesCollectionView.reloadData()
+			self.messagesCollectionView.scrollToBottom()
+		})
+		.disposed(by: disposeBag)
 		
 		MessageManager.shared.send(join: room)
 	}
@@ -139,9 +139,7 @@ class UGGroupChatVC: MessagesViewController {
 		messagesCollectionView.register(MessageCollectionViewGifCell.self)
 		messagesCollectionView.register(MessageCollectionViewRedpacketCell.self)
 		messagesCollectionView.register(MessageCollectionViewBetCell.self)
-
 		messagesCollectionView.keyboardDismissMode = .onDrag
-		
 		messagesCollectionView.messagesDataSource = self
 		messagesCollectionView.messageCellDelegate = self
 		messagesCollectionView.messagesLayoutDelegate = self
@@ -149,8 +147,6 @@ class UGGroupChatVC: MessagesViewController {
 		maintainPositionOnKeyboardFrameChanged = true
 		scrollsToBottomOnKeyboardBeginsEditing = true
 		messagesCollectionView.mj_header = RefreshHeader()
-
-		
 	}
 	private func configMessageInputBar() {
 		messageInputBar.backgroundView.backgroundColor = UIColor(hex: "#edeff7")
@@ -173,9 +169,8 @@ class UGGroupChatVC: MessagesViewController {
 		}
 		messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 0)
 		messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 0)
-		
-		messageInputBar.bottomStackView.backgroundColor = UIColor.red
-		messageInputBar.backgroundColor = UIColor.yellow
+//		messageInputBar.bottomStackView.backgroundColor = UIColor.red
+//		messageInputBar.backgroundColor = UIColor.yellow
 		
 		//群附加功能的按钮
 		attachFunctionMenusButton.configure { item in
@@ -273,7 +268,7 @@ class UGGroupChatVC: MessagesViewController {
 			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
 			cell.betDelegate = self
 			return cell
-		
+			
 		} else {
 			let cell = messagesCollectionView.dequeueReusableCell(MessageContentCell.self, for: indexPath)
 			cell.configure(with: message, at: indexPath, and: messagesCollectionView)
@@ -328,12 +323,12 @@ class UGGroupChatVC: MessagesViewController {
 				if let weakSelf = self, response.completed, let response = response.response, let fileModel = try? response.mapObject(NetWorkFileModel.self, keyPath: nil, decrypt: false) {
 					MessageManager.shared.send(imageUrl: fileModel.url, imageUri: fileModel.uri, to: weakSelf.room)
 				}
-				}, onError: { (error) in
-					Alert.showTip(error.localizedDescription)
+			}, onError: { (error) in
+				Alert.showTip(error.localizedDescription)
 			}, onCompleted: {
 				Alert.hide()
 			}).disposed(by: disposeBag)
-
+			
 			
 		case 1:
 			
@@ -356,19 +351,19 @@ class UGGroupChatVC: MessagesViewController {
 				if let weakSelf = self, response.completed, let response = response.response, let fileModel = try? response.mapObject(NetWorkFileModel.self, keyPath: nil, decrypt: false) {
 					MessageManager.shared.send(imageUrl: fileModel.url, imageUri: fileModel.uri, to: weakSelf.room)
 				}
-				}, onError: { (error) in
-					Alert.showTip(error.localizedDescription)
+			}, onError: { (error) in
+				Alert.showTip(error.localizedDescription)
 			}, onCompleted: {
 				Alert.hide()
 			}).disposed(by: disposeBag)
-
+			
 			
 		case 2:
 			
-//			guard room.redpacketConfig.isRedBag else {
-//				Alert.showTip("此房间未开启红包功能")
-//				return
-//			}
+			//			guard room.redpacketConfig.isRedBag else {
+			//				Alert.showTip("此房间未开启红包功能")
+			//				return
+			//			}
 			let produceView = UINib(nibName: "RedPacketProduceView", bundle: nil).instantiate(withOwner: self, options: nil).first as! RedPacketProduceView
 			produceView.delegate = self
 			App.widow.addSubview(produceView)
@@ -378,25 +373,25 @@ class UGGroupChatVC: MessagesViewController {
 			self.resignFirstResponder()
 		case 3:
 			
-//			guard room.minepacketConfig.isMine == 1 else {
-//				Alert.showTip("此房间未开启扫雷红包功能")
-//				return
-//			}
-//			let produceView = MinePacketProduceView(packetConfig: room.minepacketConfig)
-//			let produceView = UINib(nibName: "MinePacketProduceView", bundle: nil).instantiate(withOwner: self, options: nil).first as! MinePacketProduceView
-//			produceView.delegate = self
-
+			//			guard room.minepacketConfig.isMine == 1 else {
+			//				Alert.showTip("此房间未开启扫雷红包功能")
+			//				return
+			//			}
+			//			let produceView = MinePacketProduceView(packetConfig: room.minepacketConfig)
+			//			let produceView = UINib(nibName: "MinePacketProduceView", bundle: nil).instantiate(withOwner: self, options: nil).first as! MinePacketProduceView
+			//			produceView.delegate = self
+			
 			let vc = MinePacketProduceVC()
 			vc.delegate = self
 			vc.modalPresentationStyle = .overFullScreen
 			present(vc, animated: false, completion: nil)
-//			App.widow.addSubview(produceView)
-//			produceView.snp.makeConstraints { (make) in
-//				make.edges.equalToSuperview()
-//			}
-//			self.resignFirstResponder()
-//			produceView.becomeFirstResponder()
-			
+		//			App.widow.addSubview(produceView)
+		//			produceView.snp.makeConstraints { (make) in
+		//				make.edges.equalToSuperview()
+		//			}
+		//			self.resignFirstResponder()
+		//			produceView.becomeFirstResponder()
+		
 		case 4:
 			let vc = BetListVC()
 			vc.delegate = self
@@ -519,13 +514,13 @@ extension UGGroupChatVC: MessageCellDelegate {
 			let browser = SKPhotoBrowser(photos: [SKPhoto.photoWithImage(image)])
 			navigationController?.present(browser, animated: true, completion: nil)
 		}
-			
+		
 		else if
 			let indexPath = messagesCollectionView.indexPath(for: cell),
 			case let .custom(any) = messages[indexPath.section].kind,
 			let redpacket = any as? RedpacketModel
-			
-			
+		
+		
 		{
 			Alert.showLoading()
 			ChatAPI.rx.request(ChatTarget.redPacketInfo(packetId: redpacket.id)).mapObject(RedpacketModel.self).subscribe(onSuccess: { [weak self] (item) in
@@ -548,16 +543,16 @@ extension UGGroupChatVC: MessageCellDelegate {
 			
 			
 		}
-//		else if
-//			let indexPath = messagesCollectionView.indexPath(for: cell),
-//			case let .custom(any) = messages[indexPath.section].kind,
-//			let betModel = any as? BetModel
-//		{
-//			logger.debug(betModel)
-//		}
+		//		else if
+		//			let indexPath = messagesCollectionView.indexPath(for: cell),
+		//			case let .custom(any) = messages[indexPath.section].kind,
+		//			let betModel = any as? BetModel
+		//		{
+		//			logger.debug(betModel)
+		//		}
 		
 	}
-
+	
 	
 	
 }
@@ -617,7 +612,7 @@ extension UGGroupChatVC: CheckRedpacketViewDelegate, RedPacketProduceViewDelegat
 			}) { (error) in
 				Alert.showTip(error.localizedDescription)
 				onCompletion(false)
-		}.disposed(by: disposeBag)
+			}.disposed(by: disposeBag)
 	}
 	
 	func produceRedpacket(quantity: Int, amount: Float, comment: String, onCompletion: @escaping (Bool) -> Void) {
@@ -631,7 +626,7 @@ extension UGGroupChatVC: CheckRedpacketViewDelegate, RedPacketProduceViewDelegat
 			}) { (error) in
 				Alert.showTip(error.localizedDescription)
 				onCompletion(false)
-		}.disposed(by: disposeBag)
+			}.disposed(by: disposeBag)
 	}
 	
 	func viewDidDisapear() {
@@ -692,6 +687,6 @@ extension UGGroupChatVC: MessageCollectionViewBetCellDelegate {
 		resignFirstResponder()
 		
 	}
-
+	
 	
 }

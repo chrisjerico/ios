@@ -165,8 +165,8 @@ class UGPrivateChatVC: MessagesViewController {
 		messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 20, bottom: 8, right: 0)
 		messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 0)
 		
-		messageInputBar.bottomStackView.backgroundColor = UIColor.red
-		messageInputBar.backgroundColor = UIColor.yellow
+//		messageInputBar.bottomStackView.backgroundColor = UIColor.red
+//		messageInputBar.backgroundColor = UIColor.yellow
 		
 		//群附加功能的按钮
 		attachFunctionMenusButton.configure { item in

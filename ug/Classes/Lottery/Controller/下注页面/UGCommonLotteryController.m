@@ -327,7 +327,7 @@
             if (reBetButton) {
                 UIView * superView = reBetButton.superview;
                 [superView addSubview:self.radomNumberButton];
-                self.radomNumberButton.numberOfLines = 0;
+                self.radomNumberButton.titleLabel.numberOfLines = 0;
                 [self.radomNumberButton mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.width.equalTo(@70);
                     make.height.equalTo(@35);

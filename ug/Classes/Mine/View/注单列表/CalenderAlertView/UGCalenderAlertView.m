@@ -86,9 +86,9 @@
 }
 
 - (void)show {
-    self.frame = APP.Bounds;
+    self.frame = UIScreen.mainScreen.bounds;
     self.alpha = 0;
-    [APP.Window addSubview:self];
+	[UIApplication.sharedApplication.keyWindow addSubview:self];
     [UIView animateWithDuration:0.25 animations:^{
         self.alpha = 1;
     }];
