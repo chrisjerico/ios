@@ -1,35 +1,257 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xjh-QV-lKb">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xjh-QV-lKb">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--WithdrawalVC-->
+        <scene sceneID="LqF-sg-xmN">
+            <objects>
+                <viewController storyboardIdentifier="UGWithdrawalVC" id="nbC-QE-gi7" customClass="UGWithdrawalVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ffk-5Z-pPH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLk-sl-jG7" customClass="IBButton">
+                                <rect key="frame" x="16" y="307" width="343" height="48"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.32549019610000002" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="VEh-Rg-Xz2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="确认提交">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="提交Button"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onSubmitBtnClick:" destination="nbC-QE-gi7" eventType="touchUpInside" id="DMn-Zf-nWN"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ccR-Ye-TO8">
+                                <rect key="frame" x="16" y="60" width="343" height="223"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0V-1c-axh" customClass="IBView">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ez-p6-UsY">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="银行卡">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                                        <point key="value" x="13" y="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="提款账号Button"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSelectAcctBtnClick:" destination="nbC-QE-gi7" eventType="touchUpInside" id="8Fv-ec-Kvy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PQq-3j-N5t">
+                                                <rect key="frame" x="312" y="13" width="16" height="22"/>
+                                                <state key="normal" image="arrow_down"/>
+                                                <state key="selected" image="arrow_up"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="PQq-3j-N5t" firstAttribute="centerY" secondItem="z0V-1c-axh" secondAttribute="centerY" id="3oh-Y3-Enj"/>
+                                            <constraint firstItem="3ez-p6-UsY" firstAttribute="top" secondItem="z0V-1c-axh" secondAttribute="top" id="E4v-QE-yZI"/>
+                                            <constraint firstItem="3ez-p6-UsY" firstAttribute="leading" secondItem="z0V-1c-axh" secondAttribute="leading" id="hUf-BB-Rw4"/>
+                                            <constraint firstAttribute="bottom" secondItem="3ez-p6-UsY" secondAttribute="bottom" id="jFz-BU-p9w"/>
+                                            <constraint firstAttribute="trailing" secondItem="PQq-3j-N5t" secondAttribute="trailing" constant="15" id="k9b-NL-4s5"/>
+                                            <constraint firstAttribute="height" constant="48" id="qUi-zX-QpP"/>
+                                            <constraint firstAttribute="trailing" secondItem="3ez-p6-UsY" secondAttribute="trailing" id="rlB-aI-rYa"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemGray5Color"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="H3v-XR-clH">
+                                        <rect key="frame" x="0.0" y="64" width="343" height="95"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写取款金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vs4-gl-6e6" customClass="IBTextField">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="取款金额TextField"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="仅数字含小数">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单笔下限1，上限50000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Kb-YI-d2R">
+                                                <rect key="frame" x="0.0" y="47" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金额上下限Label"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写取款密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xt4-eo-Gwe" customClass="IBTextField">
+                                        <rect key="frame" x="0.0" y="175" width="343" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemGray5Color"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="取款密码TextField"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xt4-eo-Gwe" firstAttribute="height" secondItem="z0V-1c-axh" secondAttribute="height" id="URz-Tg-Cvp"/>
+                                    <constraint firstItem="vs4-gl-6e6" firstAttribute="height" secondItem="z0V-1c-axh" secondAttribute="height" id="lbU-7U-eqR"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9k-yR-69H">
+                                <rect key="frame" x="16" y="365" width="115" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="切换到利息宝取款"/>
+                                <connections>
+                                    <action selector="onYubaoBtnClick:" destination="nbC-QE-gi7" eventType="touchUpInside" id="3G9-Vi-zK6"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EG3-qb-Gfa">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vI2-OR-oMH">
+                                        <rect key="frame" x="107.66666666666669" y="114.33333333333333" width="160" height="171.33333333333337"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="空空如也" translatesAutoresizingMaskIntoConstraints="NO" id="9HJ-Dh-zwC">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="64"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还未绑定提款账户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PN3-xm-6Ly">
+                                                <rect key="frame" x="0.0" y="84.000000000000014" width="160" height="19.333333333333329"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yma-1u-Odd">
+                                                <rect key="frame" x="0.0" y="123.33333333333331" width="160" height="48"/>
+                                                <color key="backgroundColor" red="0.74901960779999999" green="0.32549019610000002" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="E5j-WB-udy"/>
+                                                    <constraint firstAttribute="width" constant="160" id="XWq-UZ-Kt1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <state key="normal" title="添加提款账户">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                                        <point key="value" x="10" y="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onAddWithdrawalAcctBtnClick:" destination="nbC-QE-gi7" eventType="touchUpInside" id="dsh-Xp-PHm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="3Qs-gt-Gyu"/>
+                                    <constraint firstItem="vI2-OR-oMH" firstAttribute="centerY" secondItem="EG3-qb-Gfa" secondAttribute="centerY" id="7Kk-Ob-t2b"/>
+                                    <constraint firstItem="vI2-OR-oMH" firstAttribute="centerX" secondItem="EG3-qb-Gfa" secondAttribute="centerX" id="mss-sK-BLr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="exV-d0-h8L"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="exV-d0-h8L" firstAttribute="trailing" secondItem="EG3-qb-Gfa" secondAttribute="trailing" id="4KT-BB-voL"/>
+                            <constraint firstItem="ccR-Ye-TO8" firstAttribute="centerX" secondItem="ffk-5Z-pPH" secondAttribute="centerX" id="BdQ-bN-Pvb"/>
+                            <constraint firstItem="PLk-sl-jG7" firstAttribute="width" secondItem="ccR-Ye-TO8" secondAttribute="width" id="G0Y-io-BDT"/>
+                            <constraint firstItem="ccR-Ye-TO8" firstAttribute="leading" secondItem="exV-d0-h8L" secondAttribute="leading" constant="16" id="GPy-J8-YlI"/>
+                            <constraint firstItem="N9k-yR-69H" firstAttribute="leading" secondItem="PLk-sl-jG7" secondAttribute="leading" id="GWH-U4-ee3"/>
+                            <constraint firstItem="PLk-sl-jG7" firstAttribute="centerX" secondItem="ffk-5Z-pPH" secondAttribute="centerX" id="NoZ-GR-LKQ"/>
+                            <constraint firstItem="N9k-yR-69H" firstAttribute="top" secondItem="PLk-sl-jG7" secondAttribute="bottom" constant="10" id="S6W-vW-qVO"/>
+                            <constraint firstItem="PLk-sl-jG7" firstAttribute="top" secondItem="ccR-Ye-TO8" secondAttribute="bottom" constant="24" id="S9M-m0-QRO"/>
+                            <constraint firstItem="EG3-qb-Gfa" firstAttribute="top" secondItem="ffk-5Z-pPH" secondAttribute="top" id="dpU-vj-46Z"/>
+                            <constraint firstItem="ccR-Ye-TO8" firstAttribute="top" secondItem="exV-d0-h8L" secondAttribute="top" constant="16" id="l5P-7T-qPt"/>
+                            <constraint firstItem="EG3-qb-Gfa" firstAttribute="leading" secondItem="exV-d0-h8L" secondAttribute="leading" id="rvc-Fn-oqu"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="EG3-qb-Gfa"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="tipsView1" destination="EG3-qb-Gfa" id="Fra-aR-lyP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JJr-RP-7rd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-748" y="153.69458128078819"/>
+        </scene>
         <!--Withdrawal View Controller-->
         <scene sceneID="h13-It-s5V">
             <objects>
                 <viewController storyboardIdentifier="UGWithdrawalViewController" id="Xjh-QV-lKb" customClass="UGWithdrawalViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s3v-s5-1tG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yC0-wx-rcd">
-                                <rect key="frame" x="5" y="44" width="404" height="370"/>
+                                <rect key="frame" x="5" y="44" width="365" height="370"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oN9-be-qaU">
-                                        <rect key="frame" x="20" y="0.0" width="364" height="85"/>
+                                        <rect key="frame" x="20" y="0.0" width="325" height="85"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单笔下限100，上限5000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AtA-d6-tFx">
-                                                <rect key="frame" x="0.0" y="69" width="147.5" height="16"/>
+                                                <rect key="frame" x="0.0" y="69" width="147.66666666666666" height="16"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-dy-stc">
-                                                <rect key="frame" x="0.0" y="63.5" width="364" height="0.5"/>
+                                                <rect key="frame" x="0.0" y="63.333333333333329" width="325" height="0.6666666666666643"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="0.69999999999999996" id="uMI-m5-LQk"/>
@@ -39,7 +261,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入提现金额" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YwZ-h5-Xt2">
-                                                <rect key="frame" x="0.0" y="39.5" width="364" height="19"/>
+                                                <rect key="frame" x="0.0" y="39.333333333333329" width="325" height="19"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
@@ -62,7 +284,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HBj-8F-aRa">
-                                        <rect key="frame" x="20" y="85" width="364" height="85"/>
+                                        <rect key="frame" x="20" y="85" width="325" height="85"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前到账银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBk-Yr-wB3">
                                                 <rect key="frame" x="0.0" y="69" width="93" height="16"/>
@@ -71,7 +293,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4B6-IQ-YqE">
-                                                <rect key="frame" x="0.0" y="63.5" width="364" height="0.5"/>
+                                                <rect key="frame" x="0.0" y="63.333333333333343" width="325" height="0.6666666666666714"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="0.69999999999999996" id="nt9-rh-Hwo"/>
@@ -81,7 +303,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                              " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCf-HM-A39">
-                                                <rect key="frame" x="0.0" y="40.5" width="364" height="18"/>
+                                                <rect key="frame" x="0.0" y="40.333333333333343" width="325" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -101,10 +323,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T03-E2-gIY">
-                                        <rect key="frame" x="20" y="170" width="364" height="85"/>
+                                        <rect key="frame" x="20" y="170" width="325" height="85"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ci1-lu-l4G">
-                                                <rect key="frame" x="0.0" y="63.5" width="364" height="0.5"/>
+                                                <rect key="frame" x="0.0" y="63.333333333333314" width="325" height="0.6666666666666643"/>
                                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="0.69999999999999996" id="Ejx-9D-QT8"/>
@@ -114,7 +336,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入取款密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Brl-cT-GNM">
-                                                <rect key="frame" x="0.0" y="40.5" width="364" height="18"/>
+                                                <rect key="frame" x="0.0" y="40.333333333333343" width="325" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
@@ -131,7 +353,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joU-SE-sho">
-                                        <rect key="frame" x="142" y="305" width="120" height="44"/>
+                                        <rect key="frame" x="122.66666666666669" y="305" width="120" height="44"/>
                                         <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="Ist-4c-4ba"/>
@@ -190,7 +412,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yinhangka" translatesAutoresizingMaskIntoConstraints="NO" id="B8o-Ic-euk">
-                            <rect key="frame" x="155.5" y="30" width="120" height="70"/>
+                            <rect key="frame" x="155.66666666666666" y="30" width="119.99999999999997" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="715-j8-f2P"/>
                                 <constraint firstAttribute="height" constant="70" id="fCi-rc-aaf"/>
@@ -200,13 +422,13 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还没有绑定银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WaG-h0-4r7">
-                            <rect key="frame" x="133" y="130" width="165.5" height="21"/>
+                            <rect key="frame" x="132.66666666666669" y="130" width="165.66666666666669" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvG-Ez-SuA">
-                            <rect key="frame" x="155.5" y="181" width="120" height="44"/>
+                            <rect key="frame" x="155.66666666666666" y="181" width="119.99999999999997" height="44"/>
                             <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="cPG-aj-64g"/>
@@ -242,6 +464,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow_down" width="16" height="16"/>
+        <image name="arrow_up" width="16" height="16"/>
         <image name="yinhangka" width="64" height="43"/>
+        <image name="空空如也" width="76" height="64"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

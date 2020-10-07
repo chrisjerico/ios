@@ -15,11 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface UGbankModel : UGModel<UGbankModel>
 @property (nonatomic, strong) NSString *bankId;
+@property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *logo;
 @property (nonatomic, strong) NSString *home;
-@property (nonatomic, strong) NSString *sort;
-@property (nonatomic, assign) BOOL isDelete;
 
 @end
 

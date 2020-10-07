@@ -12,4 +12,7 @@
 +(JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"bankId"}];
 }
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"bankId":@"id"};
+}
 @end

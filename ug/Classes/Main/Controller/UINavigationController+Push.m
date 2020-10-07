@@ -794,18 +794,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_银行卡管理: {
-            [NavController1 pushViewController:({
-                UIViewController *vc = nil;
-                UGUserModel *user = [UGUserModel currentUser];
-                if (user.hasBankCard) {
-                    vc = _LoadVC_from_storyboard_(@"UGBankCardInfoController");
-                } else if (user.hasFundPwd) {
-                    vc = _LoadVC_from_storyboard_(@"UGBindCardViewController");
-                } else {
-                    vc = _LoadVC_from_storyboard_(@"UGSetupPayPwdController");
-                }
-                vc;
-            }) animated:YES];
+            [NavController1 pushViewController:UserI.hasFundPwd ? _LoadVC_from_storyboard_(@"WithdrawalAccountListVC") : _LoadVC_from_storyboard_(@"UGSetupPayPwdController") animated:YES];
             return true;
         }
         case UCI_利息宝: {

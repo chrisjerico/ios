@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *currencyRate;     /**<   虚拟币：货币汇率 */
 
 @property (nonatomic, strong) UGparaModel *para;        /**<   银行+按钮数组 */
+
+@property (nonatomic, assign) UGWithdrawalType type;
 @end
 //======================================
 @protocol UGpaymentModel <NSObject>

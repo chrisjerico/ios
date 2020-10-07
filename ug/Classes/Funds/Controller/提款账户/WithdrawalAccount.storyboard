@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--我的提款账户-->
+        <scene sceneID="DMS-qt-bau">
+            <objects>
+                <viewController storyboardIdentifier="WithdrawalAccountListVC" title="我的提款账户" id="VHj-Ua-qrm" customClass="WithdrawalAccountListVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dpr-PY-CGS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QTX-fx-5W5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2A8-Ca-0b4" customClass="IBView">
+                                        <rect key="frame" x="30" y="296.33333333333331" width="315" height="219.66666666666669"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qiw-8Z-hZt">
+                                                <rect key="frame" x="0.0" y="0.0" width="315" height="50"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完善个人信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Io-QK-RX4">
+                                                        <rect key="frame" x="105.66666666666666" y="14.666666666666684" width="104" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8td-Of-ReF">
+                                                        <rect key="frame" x="0.0" y="49" width="315" height="1"/>
+                                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="zPT-yN-IqG"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstItem="2Io-QK-RX4" firstAttribute="centerX" secondItem="Qiw-8Z-hZt" secondAttribute="centerX" id="1tU-7G-fsR"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8td-Of-ReF" secondAttribute="trailing" id="946-LV-gNo"/>
+                                                    <constraint firstItem="8td-Of-ReF" firstAttribute="leading" secondItem="Qiw-8Z-hZt" secondAttribute="leading" id="Y8o-ol-JLw"/>
+                                                    <constraint firstAttribute="bottom" secondItem="8td-Of-ReF" secondAttribute="bottom" id="YTO-tD-gjd"/>
+                                                    <constraint firstItem="2Io-QK-RX4" firstAttribute="centerY" secondItem="Qiw-8Z-hZt" secondAttribute="centerY" id="e8z-eF-iYt"/>
+                                                    <constraint firstAttribute="height" constant="50" id="t8g-4I-MJF"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="HK3-Fv-53L">
+                                                <rect key="frame" x="11" y="61.999999999999986" width="293" height="137.66666666666663"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXc-7F-dcK">
+                                                        <rect key="frame" x="0.0" y="0.0" width="293" height="15.666666666666666"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请务必填写真实姓名(" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtx-FP-qIg">
+                                                                <rect key="frame" x="0.0" y="0.0" width="124.33333333333333" height="15.666666666666666"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="填写后不可修改" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVM-VQ-PBy">
+                                                                <rect key="frame" x="124.33333333333334" y="0.0" width="93" height="15.666666666666666"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <color key="textColor" red="0.79215686269999996" green="0.31764705879999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" text=")" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vy-2C-tTT">
+                                                                <rect key="frame" x="217.33333333333331" y="0.0" width="75.666666666666686" height="15.666666666666666"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="真实姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMS-cv-OJL" customClass="IBTextField">
+                                                        <rect key="frame" x="0.0" y="26.666666666666686" width="293" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="wMo-yv-bwq"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                                <real key="value" value="15"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zOS-LL-0D8">
+                                                        <rect key="frame" x="0.0" y="87.666666666666686" width="293" height="50"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h99-hL-j2f" customClass="IBButton">
+                                                                <rect key="frame" x="0.0" y="0.0" width="139" height="50"/>
+                                                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="T9N-Qr-p82"/>
+                                                                </constraints>
+                                                                <state key="normal" title="取消">
+                                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray3Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                        <real key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="取消真实姓名Button"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onCancelBtnClick:" destination="VHj-Ua-qrm" eventType="touchUpInside" id="PZZ-ZD-fHg"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pI-1v-WgO" customClass="IBButton">
+                                                                <rect key="frame" x="154" y="0.0" width="139" height="50"/>
+                                                                <color key="backgroundColor" red="0.75053584740000001" green="0.32663996810000001" blue="0.15269200890000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <state key="normal" title="确定">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray3Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                        <real key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="提交真实姓名Button"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onSetRealNameBtnClick:" destination="VHj-Ua-qrm" eventType="touchUpInside" id="uoC-81-3Qh"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Qiw-8Z-hZt" firstAttribute="leading" secondItem="2A8-Ca-0b4" secondAttribute="leading" id="4Eu-BV-4uu"/>
+                                            <constraint firstItem="HK3-Fv-53L" firstAttribute="top" secondItem="Qiw-8Z-hZt" secondAttribute="bottom" constant="12" id="4Si-7k-Ql6"/>
+                                            <constraint firstItem="HK3-Fv-53L" firstAttribute="leading" secondItem="2A8-Ca-0b4" secondAttribute="leading" constant="11" id="8ay-xY-HcY"/>
+                                            <constraint firstAttribute="bottom" secondItem="HK3-Fv-53L" secondAttribute="bottom" constant="20" id="PUL-Li-jTz"/>
+                                            <constraint firstItem="Qiw-8Z-hZt" firstAttribute="top" secondItem="2A8-Ca-0b4" secondAttribute="top" id="QCz-vj-gEc"/>
+                                            <constraint firstItem="HK3-Fv-53L" firstAttribute="centerX" secondItem="2A8-Ca-0b4" secondAttribute="centerX" id="X0X-6B-USZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Qiw-8Z-hZt" secondAttribute="trailing" id="gU1-3f-JNY"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="2A8-Ca-0b4" firstAttribute="centerY" secondItem="QTX-fx-5W5" secondAttribute="centerY" id="474-Pl-pdN"/>
+                                    <constraint firstItem="2A8-Ca-0b4" firstAttribute="centerX" secondItem="QTX-fx-5W5" secondAttribute="centerX" id="GfJ-Ed-Sgx"/>
+                                    <constraint firstItem="2A8-Ca-0b4" firstAttribute="leading" secondItem="QTX-fx-5W5" secondAttribute="leading" constant="30" id="s6A-AY-enz"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQX-CQ-xdW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t3z-Rs-QCn" customClass="IBView">
+                                        <rect key="frame" x="30" y="337" width="315" height="138"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tD1-hQ-8XC">
+                                                <rect key="frame" x="11" y="24" width="293" height="94"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请联系在线客服" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdM-65-4v4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="293" height="24"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="twC-16-FtW">
+                                                        <rect key="frame" x="0.0" y="44" width="293" height="50"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6BD-2t-POe" customClass="IBButton">
+                                                                <rect key="frame" x="0.0" y="0.0" width="139" height="50"/>
+                                                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="gW1-37-HcS"/>
+                                                                </constraints>
+                                                                <state key="normal" title="取消">
+                                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray3Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                        <real key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onCancelBtnClick:" destination="VHj-Ua-qrm" eventType="touchUpInside" id="b6e-42-H3U"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xo-Ln-uDh" customClass="IBButton">
+                                                                <rect key="frame" x="154" y="0.0" width="139" height="50"/>
+                                                                <color key="backgroundColor" red="0.75053584741550694" green="0.32663996811346652" blue="0.1526920089102364" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <state key="normal" title="确定">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" systemColor="systemGray3Color"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                        <real key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="去在线客服Button"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onContactCustomerServiceBtnClick:" destination="VHj-Ua-qrm" eventType="touchUpInside" id="dy6-Zm-Bkl"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="tD1-hQ-8XC" secondAttribute="bottom" constant="20" id="3Oc-kG-Uqj"/>
+                                            <constraint firstItem="tD1-hQ-8XC" firstAttribute="centerX" secondItem="t3z-Rs-QCn" secondAttribute="centerX" id="qtr-nU-FBZ"/>
+                                            <constraint firstItem="tD1-hQ-8XC" firstAttribute="top" secondItem="t3z-Rs-QCn" secondAttribute="top" constant="24" id="sxb-h1-hbR"/>
+                                            <constraint firstItem="tD1-hQ-8XC" firstAttribute="leading" secondItem="t3z-Rs-QCn" secondAttribute="leading" constant="11" id="wIl-6T-c95"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="t3z-Rs-QCn" firstAttribute="centerY" secondItem="YQX-CQ-xdW" secondAttribute="centerY" id="BXf-Qh-KaM"/>
+                                    <constraint firstItem="t3z-Rs-QCn" firstAttribute="centerX" secondItem="YQX-CQ-xdW" secondAttribute="centerX" id="Og2-ol-VRt"/>
+                                    <constraint firstItem="t3z-Rs-QCn" firstAttribute="leading" secondItem="YQX-CQ-xdW" secondAttribute="leading" constant="30" id="fBs-wx-Vg4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ajj-Gq-co9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QTX-fx-5W5" firstAttribute="leading" secondItem="Ajj-Gq-co9" secondAttribute="leading" id="GeA-RU-sRM"/>
+                            <constraint firstAttribute="bottom" secondItem="YQX-CQ-xdW" secondAttribute="bottom" id="Hkq-Iy-Q8e"/>
+                            <constraint firstItem="QTX-fx-5W5" firstAttribute="trailing" secondItem="Ajj-Gq-co9" secondAttribute="trailing" id="ITt-c9-vLn"/>
+                            <constraint firstItem="QTX-fx-5W5" firstAttribute="top" secondItem="Dpr-PY-CGS" secondAttribute="top" id="Ky4-xY-Jdl"/>
+                            <constraint firstItem="YQX-CQ-xdW" firstAttribute="top" secondItem="Dpr-PY-CGS" secondAttribute="top" id="PBE-eQ-cc6"/>
+                            <constraint firstAttribute="bottom" secondItem="YQX-CQ-xdW" secondAttribute="bottom" id="Ukg-gV-6Fw"/>
+                            <constraint firstAttribute="trailing" secondItem="YQX-CQ-xdW" secondAttribute="trailing" id="b5Q-yQ-SaA"/>
+                            <constraint firstItem="YQX-CQ-xdW" firstAttribute="top" secondItem="Dpr-PY-CGS" secondAttribute="top" id="bup-mu-ZKh"/>
+                            <constraint firstItem="YQX-CQ-xdW" firstAttribute="trailing" secondItem="Ajj-Gq-co9" secondAttribute="trailing" id="gCI-Hs-bnr"/>
+                            <constraint firstItem="YQX-CQ-xdW" firstAttribute="leading" secondItem="Dpr-PY-CGS" secondAttribute="leading" id="lpW-HA-lUl"/>
+                            <constraint firstAttribute="bottom" secondItem="QTX-fx-5W5" secondAttribute="bottom" id="wIE-tU-aGG"/>
+                            <constraint firstItem="YQX-CQ-xdW" firstAttribute="leading" secondItem="Ajj-Gq-co9" secondAttribute="leading" id="yoM-0q-ap8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="realnameTextField" destination="cMS-cv-OJL" id="2bD-qx-R3r"/>
+                        <outlet property="tipsView1" destination="YQX-CQ-xdW" id="KfR-Yy-Qyv"/>
+                        <outlet property="tipsView2" destination="QTX-fx-5W5" id="QyR-Ro-NzI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="War-mP-Pzm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="68" y="-7.389162561576355"/>
+        </scene>
+        <!--绑定提款账户-->
+        <scene sceneID="RN9-LT-Qhx">
+            <objects>
+                <viewController storyboardIdentifier="BindWithdrawalAccountVC" title="绑定提款账户" id="iyP-by-78L" customClass="BindWithdrawalAccountVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MlW-cD-T3K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4vv-Is-ruY">
+                                <rect key="frame" x="16" y="60" width="343" height="572"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cal-tW-Bz5" customClass="IBView">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNB-H7-IB6">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="银行卡">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                                        <point key="value" x="13" y="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="选择提款类型Button"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="onSelectWithdrawalTypeBtnClick:" destination="iyP-by-78L" eventType="touchUpInside" id="t9m-bV-LDs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcI-yh-Fgk">
+                                                <rect key="frame" x="312" y="13" width="16" height="22"/>
+                                                <state key="normal" image="arrow_down"/>
+                                                <state key="selected" image="arrow_up"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="BNB-H7-IB6" secondAttribute="trailing" id="HRb-lk-cph"/>
+                                            <constraint firstItem="BNB-H7-IB6" firstAttribute="top" secondItem="Cal-tW-Bz5" secondAttribute="top" id="RvI-ua-Xgb"/>
+                                            <constraint firstAttribute="height" constant="48" id="bHn-Uy-vge"/>
+                                            <constraint firstAttribute="trailing" secondItem="rcI-yh-Fgk" secondAttribute="trailing" constant="15" id="dua-XG-ApS"/>
+                                            <constraint firstAttribute="bottom" secondItem="BNB-H7-IB6" secondAttribute="bottom" id="gjH-11-PkT"/>
+                                            <constraint firstItem="BNB-H7-IB6" firstAttribute="leading" secondItem="Cal-tW-Bz5" secondAttribute="leading" id="sBY-EJ-RTZ"/>
+                                            <constraint firstItem="rcI-yh-Fgk" firstAttribute="centerY" secondItem="Cal-tW-Bz5" secondAttribute="centerY" id="sO3-EC-P26"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemGray5Color"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Knt-M4-uGv">
+                                        <rect key="frame" x="0.0" y="64" width="343" height="142"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ak-x1-ICL" customClass="IBView">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Npk-kv-50h">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="选择银行">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                                                <point key="value" x="13" y="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="选择银行Button"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onSelectBankTypeBtnClick:" destination="iyP-by-78L" eventType="touchUpInside" id="XYR-IT-em5"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rqS-Vd-igT">
+                                                        <rect key="frame" x="312" y="13" width="16" height="22"/>
+                                                        <state key="normal" image="arrow_down"/>
+                                                        <state key="selected" image="arrow_up"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="Npk-kv-50h" secondAttribute="bottom" id="M8C-bl-uOH"/>
+                                                    <constraint firstItem="Npk-kv-50h" firstAttribute="leading" secondItem="6ak-x1-ICL" secondAttribute="leading" id="cJv-T3-VIY"/>
+                                                    <constraint firstItem="rqS-Vd-igT" firstAttribute="centerY" secondItem="6ak-x1-ICL" secondAttribute="centerY" id="gTw-N4-7MB"/>
+                                                    <constraint firstItem="Npk-kv-50h" firstAttribute="top" secondItem="6ak-x1-ICL" secondAttribute="top" id="mNP-tT-WDE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Npk-kv-50h" secondAttribute="trailing" id="nyi-Ea-fDY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="rqS-Vd-igT" secondAttribute="trailing" constant="15" id="zCe-31-uL3"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入开户地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPj-9C-KDu" customClass="IBTextField">
+                                                <rect key="frame" x="0.0" y="47" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="银行开户地址TextField"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入银行卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVu-bl-8f6" customClass="IBTextField">
+                                                <rect key="frame" x="0.0" y="94" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="银行卡号TextField"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字加字母" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3v5-Qy-jqW">
+                                        <rect key="frame" x="0.0" y="222" width="343" height="142"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VM-Qt-ZQL" customClass="IBView">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCl-qk-Xbh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="选择币种">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                                                <point key="value" x="13" y="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="选择虚拟币Button"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onSelectVirtualTypeBtnClick:" destination="iyP-by-78L" eventType="touchUpInside" id="1Aq-a3-sQF"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqF-9O-6pe">
+                                                        <rect key="frame" x="312" y="13" width="16" height="22"/>
+                                                        <state key="normal" image="arrow_down"/>
+                                                        <state key="selected" image="arrow_up"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="gqF-9O-6pe" secondAttribute="trailing" constant="15" id="LjN-BM-xSB"/>
+                                                    <constraint firstItem="gqF-9O-6pe" firstAttribute="centerY" secondItem="1VM-Qt-ZQL" secondAttribute="centerY" id="Nx8-o9-Met"/>
+                                                    <constraint firstItem="bCl-qk-Xbh" firstAttribute="leading" secondItem="1VM-Qt-ZQL" secondAttribute="leading" id="WE7-Z9-AR8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bCl-qk-Xbh" secondAttribute="trailing" id="kkz-bc-McK"/>
+                                                    <constraint firstItem="bCl-qk-Xbh" firstAttribute="top" secondItem="1VM-Qt-ZQL" secondAttribute="top" id="vx8-sE-Ngj"/>
+                                                    <constraint firstAttribute="bottom" secondItem="bCl-qk-Xbh" secondAttribute="bottom" id="yl8-0p-2yG"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6cc-0s-unp" customClass="IBView">
+                                                <rect key="frame" x="0.0" y="47" width="343" height="48"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-Db-Nu0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" title="选择链名称">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="point" keyPath="内边距">
+                                                                <point key="value" x="13" y="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="选择区块链Button"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onSelectBlockchainTypeBtnClick:" destination="iyP-by-78L" eventType="touchUpInside" id="Gv9-XB-DO0"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bUn-Qq-Loh">
+                                                        <rect key="frame" x="312" y="13" width="16" height="22"/>
+                                                        <state key="normal" image="arrow_down"/>
+                                                        <state key="selected" image="arrow_up"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="Owz-Db-Nu0" firstAttribute="top" secondItem="6cc-0s-unp" secondAttribute="top" id="9sP-K3-LHE"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Owz-Db-Nu0" secondAttribute="bottom" id="Sci-NN-Z41"/>
+                                                    <constraint firstItem="Owz-Db-Nu0" firstAttribute="leading" secondItem="6cc-0s-unp" secondAttribute="leading" id="bLg-9r-4wn"/>
+                                                    <constraint firstItem="bUn-Qq-Loh" firstAttribute="centerY" secondItem="6cc-0s-unp" secondAttribute="centerY" id="bvI-bt-rT0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Owz-Db-Nu0" secondAttribute="trailing" id="p1z-of-yZP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bUn-Qq-Loh" secondAttribute="trailing" constant="15" id="zcm-wR-C6Q"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入收款钱包地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vkP-54-XWz" customClass="IBTextField">
+                                                <rect key="frame" x="0.0" y="94" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="虚拟币地址TextField"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="3Cl-jQ-2W6">
+                                        <rect key="frame" x="0.0" y="380" width="343" height="95"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入微信号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9V7-50-VoS" customClass="IBTextField">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="微信号TextField"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入微信所绑定手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ubJ-4J-dkM" customClass="IBTextField">
+                                                <rect key="frame" x="0.0" y="47" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="微信绑定手机号TextField"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ybM-Ty-4z7">
+                                        <rect key="frame" x="0.0" y="491" width="343" height="48"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入支付宝账户" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgH-Xq-zIZ" customClass="IBTextField">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGray5Color"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetLeft">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetRight">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="支付宝号TextField"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3p-gw-Xbw">
+                                        <rect key="frame" x="0.0" y="555" width="343" height="17"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户姓名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7i6-f8-Y1e">
+                                                <rect key="frame" x="0.0" y="0.0" width="71.666666666666671" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" text="王霸胆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQU-HV-J56">
+                                                <rect key="frame" x="71.666666666666657" y="0.0" width="271.33333333333337" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="真实姓名Label"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1VM-Qt-ZQL" firstAttribute="height" secondItem="Cal-tW-Bz5" secondAttribute="height" id="BfO-lu-891"/>
+                                    <constraint firstItem="9V7-50-VoS" firstAttribute="height" secondItem="Cal-tW-Bz5" secondAttribute="height" id="R2X-vr-efz"/>
+                                    <constraint firstItem="sgH-Xq-zIZ" firstAttribute="height" secondItem="Cal-tW-Bz5" secondAttribute="height" id="V9s-q1-fCW"/>
+                                    <constraint firstItem="aPj-9C-KDu" firstAttribute="height" secondItem="Cal-tW-Bz5" secondAttribute="height" id="esk-dr-5RJ"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6d3-XZ-r2D" customClass="IBButton">
+                                <rect key="frame" x="16" y="656" width="343" height="48"/>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.32549019610000002" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="确定">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="确定Button"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onSubmitBtnClick:" destination="iyP-by-78L" eventType="touchUpInside" id="3RW-Ku-LUm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6wg-yd-cEu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6d3-XZ-r2D" firstAttribute="height" secondItem="Cal-tW-Bz5" secondAttribute="height" id="4O7-P3-zbV"/>
+                            <constraint firstItem="6d3-XZ-r2D" firstAttribute="centerX" secondItem="MlW-cD-T3K" secondAttribute="centerX" id="Gek-na-i7n"/>
+                            <constraint firstItem="6d3-XZ-r2D" firstAttribute="width" secondItem="4vv-Is-ruY" secondAttribute="width" id="ZnO-YA-LCg"/>
+                            <constraint firstItem="4vv-Is-ruY" firstAttribute="top" secondItem="6wg-yd-cEu" secondAttribute="top" constant="16" id="h0I-u6-3TF"/>
+                            <constraint firstItem="4vv-Is-ruY" firstAttribute="leading" secondItem="6wg-yd-cEu" secondAttribute="leading" constant="16" id="kuH-lQ-Vbk"/>
+                            <constraint firstItem="4vv-Is-ruY" firstAttribute="centerX" secondItem="MlW-cD-T3K" secondAttribute="centerX" id="nR4-jP-UOa"/>
+                            <constraint firstItem="6d3-XZ-r2D" firstAttribute="top" secondItem="4vv-Is-ruY" secondAttribute="bottom" constant="24" id="psb-8N-W98"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alipayStackView" destination="ybM-Ty-4z7" id="429-ED-NCJ"/>
+                        <outlet property="bankStackView" destination="Knt-M4-uGv" id="sEC-q7-hwo"/>
+                        <outlet property="virtualStackView" destination="3v5-Qy-jqW" id="yV7-CX-t9N"/>
+                        <outlet property="wechatStackView" destination="3Cl-jQ-2W6" id="Kt8-VC-vUj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Vz-5V-v28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834" y="-7"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow_down" width="16" height="16"/>
+        <image name="arrow_up" width="16" height="16"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -91,8 +91,7 @@
                 if (user.hasBankCard) {
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 }else {
-                    UGBindCardViewController *bindCardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGBindCardViewController"];
-                    [weakSelf.navigationController pushViewController:bindCardVC animated:YES];
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
                 }
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];

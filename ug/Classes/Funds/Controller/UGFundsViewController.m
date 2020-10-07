@@ -9,7 +9,7 @@
 #import "UGFundsViewController.h"
 #import "XYYSegmentControl.h"
 #import "UGRechargeTypeTableViewController.h"
-#import "UGWithdrawalViewController.h"
+#import "UGWithdrawalVC.h"
 #import "UGRechargeRecordTableViewController.h"
 #import "UGFundDetailsTableViewController.h"
 #import "UGBMHeaderView.h"
@@ -190,8 +190,7 @@
     }
     // 取款
     else if (number == 1) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
-        UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
+        UGWithdrawalVC *withdrawalVC = _LoadVC_from_storyboard_(@"UGWithdrawalVC");
         WeakSelf
         withdrawalVC.withdrawSuccessBlock = ^{
             weakSelf.selectIndex = 3;
