@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 
 //参数是否加密
-#define checkSign CHAT_TARGET ? 0 : 1
+#define checkSign 1
 //路径转换为restful开关
 #define RESTFUL NO
 //获取开奖数据间隔

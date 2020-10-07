@@ -51,7 +51,7 @@
 
                 
 
-                NSString *ids = @"c213";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+                NSString *ids = @"c198";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
                 NSString *branch = @"dev_master";// 分支名
                 BOOL isForce = false;      // 是否强制更新
                 NSString *updateLog = @""; // 更新日志，给用户看的
