@@ -866,6 +866,50 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:betRecordVC animated:YES];
             return true;
         }
+        case UCI_未结注单: {
+            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            return true;
+        }
+        case UCI_UG注单: {
+            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            return true;
+        }
+        case UCI_电子注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"game";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_真人注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"real";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_棋牌注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"card";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_捕鱼注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"fish";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_电竞注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"esport";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_体育注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"sport";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
         case UCI_个人信息: {
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGUserInfoViewController") animated:YES];
             return true;

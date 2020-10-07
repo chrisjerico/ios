@@ -105,7 +105,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
 }
 
 - (void)getBetsList {
-    // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，
+    // 游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 ，esport 电竞 fish捕鱼
     // 注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
