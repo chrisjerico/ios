@@ -194,6 +194,9 @@
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
     
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self refreshBalance:nil];
+     });
     if (!self.title) {
         self.title = @"我的";
     }

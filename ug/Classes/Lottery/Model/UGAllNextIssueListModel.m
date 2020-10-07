@@ -32,6 +32,12 @@
 
 static NSArray<UGAllNextIssueListModel *> *__lotteryGamesArray = nil;
 
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"gameId",
+                                                      
+                                                       }];
+}
+
 + (NSArray<UGAllNextIssueListModel *> *)lotteryGamesArray {
     return __lotteryGamesArray;
 }

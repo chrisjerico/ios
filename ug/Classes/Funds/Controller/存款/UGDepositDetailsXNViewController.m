@@ -52,6 +52,7 @@
     [self.inputTV setPlaceholderWithText:@"请填写备注信息" Color:Skin1.textColor3];
     _tableDataArray = [NSMutableArray new];
     _amountDataArray = [NSMutableArray new];
+    _selectChannelModel = [UGchannelModel new];
 
     if (self.item) {
         _tableDataArray = [[NSMutableArray alloc] initWithArray: item.channel2];
@@ -69,31 +70,10 @@
     
     __weakSelf_(__self);
     __block NSTimer *__timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
-        {
-            NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit |                 NSSecondCalendarUnit;
-            NSDateComponents *dateComponent = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
-            int hour = (int)[dateComponent hour];
-            
-            NSLog(@"hour is: %d", hour);
-            if (hour <=5) {
-                __self.dayTime = @"凌晨";
-            }
-            else if (hour <=11) {
-                __self.dayTime = @"上午";
 
-            }
-            else if (hour <=17) {
-                __self.dayTime = @"下午";
-
-            }
-            else {
-                __self.dayTime = @"晚上";
-            }
-        }
-        
         NSString *date = [[NSDate date] stringWithFormat:@"yyyy/MM/dd"];
         NSString *time = [[NSDate date] stringWithFormat:@"HH:mm"];
-        __self.timeLabel.text = [NSString stringWithFormat:@"%@ %@ %@",date,__self.dayTime,time];
+        __self.timeLabel.text = [NSString stringWithFormat:@"%@ %@",date,time];
         
         if (!__self) {
             [__timer invalidate];
@@ -172,14 +152,23 @@
     [subLabel(@"链名称内容Label") setText:channelModel.address];
     subLabel(@"二微码Label").text = channelModel.account;
     
-    NSLog(@"channelModel.account = %@",channelModel.account);
+    NSLog(@"channelModel.currencyRate = %@",channelModel.currencyRate);
     UIImage * image = [SGQRCodeObtain generateQRCodeWithData:channelModel.account size:160.0];
     [subImageView(@"二微码ImageV") setImage:image];
     [subLabel(@"提示2Label") setText:self.item.prompt];
     [subLabel(@"提示1Label") setText:item.transferPrompt];//address
+    
+    
+    if (![CMCommon stringIsNull:channelModel.branchAddress]) {
+        float hlc = [channelModel.branchAddress floatValue];
+        float currencyRate =  [channelModel.currencyRate floatValue];
+        float jg = (100 + hlc) * currencyRate/100;
+        self.currencyRate  = [NSString stringWithFormat:@"%f", jg];
+    } else {
+        self.currencyRate  = channelModel.currencyRate;
+    }
    
-    [subLabel(@"汇率Label") setText:[NSString stringWithFormat:@"1 USDT = %@ CNY",[CMCommon randStr:[self currencyRateStr:channelModel.currencyRate count:1.0] scale:2]]];
-    self.currencyRate  = channelModel.currencyRate ;
+    [subLabel(@"汇率Label") setText:[NSString stringWithFormat:@"1 USDT = %@ CNY",[CMCommon randStr:[self currencyRateStr:self.currencyRate count:1.0] scale:2]]];
     //=====================================
 
     UGparaModel *bankModel= channelModel.para;
@@ -212,9 +201,17 @@
     
     
 }
-
+//返回汇率
 -(NSString *)currencyRateStr:(NSString *)rateStr count :(float )count{
     float hl = [rateStr floatValue];
+    float rate =  count / hl ;
+    return [NSString stringWithFormat:@"%f",rate];
+}
+
+//计算金额
+-(NSString *)moenyCount :(float )count{
+    float hl = [[self currencyRateStr:self.currencyRate count:1.0]  floatValue];
+    NSLog(@"hl = %f",hl);
     float rate =  count / hl ;
     return [NSString stringWithFormat:@"%f",rate];
 }
@@ -232,7 +229,7 @@
 }
 
 -(void)setMoneyLabelText:(float )multip{
-    self.moneyLabel.text = [NSString stringWithFormat:@"%@",[CMCommon randStr:[self currencyRateStr:self.currencyRate count:multip] scale:2]];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",[CMCommon randStr:[self moenyCount:multip] scale:2]];
 }
 
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
@@ -344,6 +341,65 @@
 }
 
 
+- (IBAction)submitAction:(id)sender {
+    [self rechargeTransfer];
+}
+
+//线下支付
+- (void)rechargeTransfer{
+    
+    NSString *amount = [self.inputTxf.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSLog(@"amount = %@",amount);
+    NSString *remark = [self.inputTV.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSLog(@"remark = %@",remark);
+    NSString *payer = [NSString stringWithFormat:@"%@USDT",self.moneyLabel.text];
+    
+    if ([CMCommon stringIsNull:amount]) {
+        [self.view makeToast:@"请输入金额"];
+        return;
+    }
+
+    
+    NSDate *timeDate=[NSDate date];
+    NSDateFormatter*dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+     NSString * locationString=[dateformatter stringFromDate:timeDate];
+    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
+        return;
+    }
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+                             @"amount":amount,
+                             @"channel":_selectChannelModel.pid,
+                             @"payee":_selectChannelModel.account,
+                             @"payer":payer,
+                             @"remark":remark,
+                             @"depositTime":locationString
+                             };
+    
+    NSLog(@"params = %@",params);
+    
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork rechargeTransferWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+                [SVProgressHUD showSuccessWithStatus:model.msg];
+            
+            //返回上个界面
+            //发送通知到存款记录
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+             SANotificationEventPost(UGNotificationDepositSuccessfully, nil);
+            
+             SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
+
+        } failure:^(id msg) {
+            
+            [SVProgressHUD showErrorWithStatus:msg];
+            
+        }];
+    }];
+}
 
 
 @end

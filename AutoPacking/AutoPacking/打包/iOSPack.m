@@ -124,13 +124,18 @@
 #pragma mark - 批量打包+上传
 
 // 批量打包
-- (void)startPackingWithIds:(NSString *)ids version:(NSString *)version willUpload:(BOOL)willUpload checkStatus:(BOOL)checkStatus{
+- (void)startPackingWithIds:(NSString *)ids ver:(NSString *)ver willUpload:(BOOL)willUpload isForce:(BOOL)isForce log:(NSString *)log checkStatus:(BOOL)checkStatus {
+    
+    if (isForce && !log.length) {
+        assert(!@"强制更新请输入更新日志。".length);
+    }
+    
     __weakSelf_(__self);
     // 检查站点配置
     [self checkSiteInfo:ids];
     
     // 批量打包
-    [ShellHelper iosPacking:_projectDir sites:[SiteModel sites:ids] version:version completion:^(NSArray<SiteModel *> *okSites) {
+    [ShellHelper iosPacking:_projectDir sites:[SiteModel sites:ids] version:ver completion:^(NSArray<SiteModel *> *okSites) {
         if (!okSites.count) {
             NSLog(@"没有一个打包成功的。");
             exit(0);
@@ -179,7 +184,7 @@
         });
         
         // 批量上传
-        [__self upload:okSites  checkStatus:checkStatus completion:^(NSArray<SiteModel *> *okSites) {
+        [__self upload:okSites ver:ver isForce:isForce checkStatus:checkStatus log:log completion:^(NSArray<SiteModel *> *okSites) {
             NSMutableArray *fails = [SiteModel sites:ids].mutableCopy;
             [fails removeObjectsInArray:okSites];
             if (fails.count) {
@@ -193,7 +198,7 @@
 }
 
 // 批量上传审核
-- (void)upload:(NSArray <SiteModel *>*)_sites   checkStatus:(BOOL)checkStatus  completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
+- (void)upload:(NSArray <SiteModel *>*)_sites ver:(NSString *)ver isForce:(BOOL)isForce checkStatus:(BOOL)checkStatus log:(NSString *)log completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
     __weakSelf_(__self);
@@ -212,7 +217,7 @@
                 // 提交审核
                 [NetworkManager1 getInfo:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
                     __sm.siteUrl = sm.responseObject[@"data"][@"site_url"];
-                    [NetworkManager1 editInfo:__sm plistPath:plistPath].completionBlock = ^(CCSessionModel *sm) {
+                    [NetworkManager1 editInfo:__sm plistPath:plistPath ver:ver isForce:isForce log:log].completionBlock = ^(CCSessionModel *sm) {
                         if (!sm.error) {
                             NSLog(@"%@ 提交审核成功", __sm.siteId);
                             [okSites addObject:__sm];

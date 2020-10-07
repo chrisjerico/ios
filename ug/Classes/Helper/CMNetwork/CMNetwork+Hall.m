@@ -64,7 +64,23 @@
                                      completion:completionBlock];
     
     CMMETHOD_END;
-}
+}//
+
+//彩票分组列表
++ (void)getLotteryGroupGamesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
+    
+    CMMETHOD_BEGIN;
+    
+    [self.manager requestInMainThreadWithMethod:[getLotteryGroupGames stringToRestfulUrlWithFlag:RESTFUL]
+                                         params:params
+                                          model:CMResultArrayClassMake(UGAllNextIssueListModel.class)
+                                           post:NO
+                                     completion:completionBlock];
+    
+    CMMETHOD_END;
+}//getLotteryGroupGames
+
+
 
 //获取彩票游戏数据
 + (void)getGameDatasWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {

@@ -76,6 +76,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define modifyFundPwdUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=changeFundPwd"]
 //获取彩票大厅数据
 #define getAllNextIssue [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryGames"]
+//彩票分组列表
+#define getLotteryGroupGames [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryGroupGames"]
 //彩票开奖记录
 #define getLotteryHistoryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryHistory"]
 //彩票规则
