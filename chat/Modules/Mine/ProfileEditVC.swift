@@ -39,6 +39,7 @@ class ProfileEditVC: BaseVC {
 		genderButton.rx.tap.subscribe(onNext: { [unowned self] () in
 			let vc = GenderEditVC()
 			vc.modalPresentationStyle = .fullScreen
+			vc.selectedValue.accept(App.user.sessid)
 			self.navigationController?.present(vc, animated: true, completion: nil)
 		}).disposed(by: disposeBag)
 		

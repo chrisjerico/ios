@@ -62,7 +62,7 @@ enum ChatTarget {
 	case updateNickname(text: String)
 	// 设置用户性别
 	case updateGender(text: String)
-
+	
 	// 平台公告
 	case platformAlert(type: Int, page: Int, pageSize: Int)
 	
@@ -293,13 +293,13 @@ extension ChatTarget: TargetType {
 			
 			bodyParameters["token"] = App.user.sessid
 			bodyParameters["text"] = text
-		
-			case let .updateGender(text):
+			
+		case let .updateGender(text):
 			urlParameters["c"] = "chat"
 			urlParameters["a"] = "updateGender"
 			
 			bodyParameters["token"] = App.user.sessid
-			bodyParameters["text"] = text
+			bodyParameters["gender"] = Int(text)
 		case .platformAlert(type: let type, page: let page, pageSize: let pageSize):
 			urlParameters["c"] = "chat"
 			urlParameters["a"] = "platformAlert"

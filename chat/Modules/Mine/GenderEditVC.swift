@@ -41,7 +41,7 @@ class GenderEditVC: BaseVC {
 		confirmButton.rx.tap.asObservable()
 			.do(onNext: {Alert.showLoading() })
 			.flatMap { [unowned self] _ in self.selectedValue }
-			.flatMap { ChatAPI.rx.request(ChatTarget.updateGender(text: $0))}
+			.flatMap { ChatAPI.rx.request(ChatTarget.updateGender(text: $0 == "男" ? "1":"2"))}
 			.mapBool()
 			.do(onError: { (error) in
 				Alert.showTip(error.localizedDescription)

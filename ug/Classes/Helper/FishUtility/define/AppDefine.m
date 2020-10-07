@@ -149,12 +149,13 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-//			_SiteId = @"test61f";
-			_SiteId = @" t127-shiyu";
-
+			_SiteId = @"c198";
         }
 
 #endif
+		if (CHAT_TARGET) {
+			_SiteId = @" t127-shiyu";
+		}
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
         if (!_Host.length) {
