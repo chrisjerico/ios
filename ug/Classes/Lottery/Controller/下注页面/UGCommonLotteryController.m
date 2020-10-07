@@ -650,6 +650,7 @@
         self.yymenuView = [[UGLotteryRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW * 2/ 3, UGScerrnH)];
       
         self.yymenuView.selectTitle = self.selectTitle;
+        NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
         self.yymenuView.gameType = self.nextIssueModel.gameType;
         //此处为重点
         WeakSelf;

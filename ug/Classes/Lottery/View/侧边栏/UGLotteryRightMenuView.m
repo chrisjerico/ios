@@ -70,10 +70,10 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
 #pragma mark - 彩票栏目
 - (void)getAllNextIssueData {
     WeakSelf;
-    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 
         [CMResult processWithResult:model success:^{
-            weakSelf.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
+            weakSelf.lotteryGamesArray =  model.data;
             [weakSelf.contentCollectionView reloadData];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
@@ -150,9 +150,6 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
 #pragma mark UICollectionView datasource
 ////组个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    
-    NSLog(@"self.lotteryGamesArray.count= %lu",(unsigned long)self.lotteryGamesArray.count);
     return self.lotteryGamesArray.count;
     
 }
@@ -161,7 +158,7 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     UGAllNextIssueListModel *model = self.lotteryGamesArray[section];
     
     if (model.isOpen) {
-        return model.list.count;
+        return model.lotteries.count;
     } else {
         return 0;
     }
@@ -171,10 +168,9 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     NewLotteryRightCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:newLotteryCellID forIndexPath:indexPath];
     UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
-    UGNextIssueModel *item = model.list[indexPath.row];
+    UGNextIssueModel *item = model.lotteries[indexPath.row];
     cell.titleLabel.text = item.title;
-    
-    NSLog(@"item.title = %@",item.title);
+
     if ([self.selectTitle isEqualToString:item.title]) {
         [cell setBackgroundColor:Skin1.navBarBgColor];
     } else {
@@ -190,9 +186,9 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         NewLotteryHeaderViewCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:newheaderViewID forIndexPath:indexPath];
         UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
-        headerView.titlelabel.text = model.gameTypeName;
+        headerView.titlelabel.text = model.name;
         
-        if ([self.gameType isEqualToString:model.gameType]) {
+        if ([self.gameType isEqualToString:model.gameId]) {
             
             if (OBJOnceToken(self)) {
                 model.isOpen = YES;
@@ -236,7 +232,8 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
 
     UGAllNextIssueListModel *listModel = self.lotteryGamesArray[indexPath.section];
-     __block UGNextIssueModel *nextModel = listModel.list[indexPath.row];
+     __block UGNextIssueModel *nextModel = listModel.lotteries[indexPath.row];
+    
     if (self.didSelectedItemBlock) {
         self.didSelectedItemBlock(nextModel);
     }

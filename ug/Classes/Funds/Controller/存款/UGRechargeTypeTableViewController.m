@@ -96,7 +96,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
                 [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"身份认证" WebName:@"4"]];
                 [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"购买虚拟币" WebName:@"5"]];
                 [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"确认存款金额" WebName:@"确认存款金额"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"钱包付款" WebName:@"7"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"钱包付款" WebName:@"钱包付款"]];
                 [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"完成充值" WebName:@"完成充值"]];
             }
             

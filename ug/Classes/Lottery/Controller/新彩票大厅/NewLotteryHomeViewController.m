@@ -125,20 +125,21 @@
 
 - (void)getAllNextIssueData {
     WeakSelf;
-    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
        
         [CMResult processWithResult:model success:^{
-            weakSelf.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
-            
+            weakSelf.lotteryGamesArray =  model.data;
+
             for (UGAllNextIssueListModel *obj in weakSelf.lotteryGamesArray) {
                 NewLotteryListController *realView = [NewLotteryListController new];
-                realView.list = obj.list;
+                realView.list = obj.lotteries;
                 [weakSelf.viewsArray addObject:realView];
-                
-                [weakSelf.itemArray addObject:obj.gameTypeName];
+
+                [weakSelf.itemArray addObject:obj.name];
             }
             [weakSelf buildSegment];
-            
+
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
