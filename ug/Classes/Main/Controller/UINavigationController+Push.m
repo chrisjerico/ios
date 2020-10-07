@@ -867,7 +867,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_未结注单: {
-            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"real";
+            betRecordVC.status = @"1";
+            [NavController1 pushViewController:betRecordVC animated:YES];
             return true;
         }
         case UCI_UG注单: {
