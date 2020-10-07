@@ -181,6 +181,19 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     
 }
 
+-(BOOL)hasModel:(UGAllNextIssueListModel *)model{
+    
+    BOOL isOk = NO;
+    for (UGNextIssueModel *item in model.lotteries) {
+        if ([item.title isEqualToString:self.selectTitle]) {
+            isOk = YES;
+            break;
+        }
+    }
+    return isOk;
+    
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
@@ -188,8 +201,7 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
         UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
         headerView.titlelabel.text = model.name;
         
-        if ([self.gameType isEqualToString:model.gameId]) {
-            
+        if ([self hasModel:model]) {
             if (OBJOnceToken(self)) {
                 model.isOpen = YES;
                 //刷新Section
