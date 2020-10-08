@@ -169,7 +169,10 @@
         [CMResult processWithResult:model success:^{
             NSArray * lotteryGamesArray =  model.data;
             
-            if ([CMCommon arryIsNull:lotteryGamesArray]) {
+            int count = (int)lotteryGamesArray.count;
+            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
+            
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
                 APP.isNewLotteryView = NO;
             } else {
                 APP.isNewLotteryView = YES;
