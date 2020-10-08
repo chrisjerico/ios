@@ -126,7 +126,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         // RN內push
         if ([self.viewControllers.lastObject isKindOfClass:ReactNativeVC.class]) {
-            [(ReactNativeVC *)self.viewControllers.lastObject push:rpm params:[viewController rn_keyValues]];
+            [(ReactNativeVC *)self.viewControllers.lastObject pushOrJump:true rpm:rpm params:[viewController rn_keyValues]];
             return ;
         }
         // push ReactNativeVC
