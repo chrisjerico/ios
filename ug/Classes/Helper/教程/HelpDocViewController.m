@@ -13,6 +13,7 @@
     float btnH;
 }
 @property (weak, nonatomic) IBOutlet UIView *btnView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnViewWidth;
 @property (weak, nonatomic) IBOutlet UIWebView *mWebView;
 @property (weak, nonatomic) IBOutlet UIStackView *nameStack;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackHeight;
@@ -29,12 +30,20 @@
     [self.mWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#FFFFFF'"];
     [CMCommon setBorderWithView:_btnView top:NO left:YES bottom:NO right:YES borderColor:RGBA(252, 223, 224, 1) borderWidth:1.0];
     btnH = 44.0;
-    if(self.itemArry.count){
-        [self resetData];
+    
+    if (self.webName.length) {
+        self.btnViewWidth.constant = 0.0;
+        [self loadHtml:self.webName];
+    } else {
+        self.btnViewWidth.constant = 80.0;
+        if(self.itemArry.count){
+            [self resetData];
+        }
+        else{
+            self.stackHeight.constant = 0.0;
+        }
     }
-    else{
-        self.stackHeight.constant = 0.0;
-    }
+    
  
 }
 

@@ -45,17 +45,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6z-Lr-5V1">
-                        <rect key="frame" x="217" y="24.5" width="70" height="28"/>
+                        <rect key="frame" x="223" y="27.5" width="66" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="28" id="7qy-k8-baj"/>
-                            <constraint firstAttribute="width" constant="70" id="Qgu-S8-py2"/>
+                            <constraint firstAttribute="height" constant="22" id="7qy-k8-baj"/>
+                            <constraint firstAttribute="width" constant="66" id="Qgu-S8-py2"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="充值教程"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="E6z-Lr-5V1" secondAttribute="trailing" constant="5" id="2UA-Cs-onO"/>
+                    <constraint firstAttribute="trailing" secondItem="E6z-Lr-5V1" secondAttribute="trailing" constant="3" id="2UA-Cs-onO"/>
                     <constraint firstItem="E6z-Lr-5V1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4qU-cz-74t"/>
                     <constraint firstItem="GYb-lC-NJt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EQ5-Nd-syY"/>
                     <constraint firstItem="GYb-lC-NJt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hel-Jm-Zvy"/>
