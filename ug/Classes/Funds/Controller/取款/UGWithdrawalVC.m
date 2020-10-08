@@ -7,6 +7,7 @@
 //
 
 #import "UGWithdrawalVC.h"
+#import "UGYubaoConversionViewController.h"
 #import "WithdrawalAcctModel.h"
 #import "YBPopupMenu.h"
 
@@ -53,7 +54,17 @@
 
 // 去利息宝
 - (IBAction)onYubaoBtnClick:(UIButton *)sender {
-    [NavController1 pushVCWithUserCenterItemType:UCI_利息宝];
+    [SVProgressHUD show];
+    [CMNetwork getYuebaoInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGYubaoConversionViewController *vc = _LoadVC_from_storyboard_(@"UGYubaoConversionViewController");
+            vc.infoModel = model.data;
+            [NavController1 pushViewController:vc animated:YES];
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+        [SVProgressHUD dismiss];
+    }];
 }
 
 // 选择提款账号
@@ -110,7 +121,7 @@
     
     __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
-    [NetworkManager1 withdraw_apply].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 withdraw_apply:_selectedWam.type amount:amount pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
         if (!sm.error) {
             [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
             subTextField(@"取款金额TextField").text = nil;

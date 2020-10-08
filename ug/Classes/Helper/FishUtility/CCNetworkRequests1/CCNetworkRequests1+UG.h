@@ -51,8 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 // 设置真实姓名
 - (CCSessionModel *)user_profileName:(NSString *)realname;
 
-//
-- (CCSessionModel *)withdraw_apply;
+// 提款申请
+- (CCSessionModel *)withdraw_apply:(UGWithdrawalType)type amount:(NSString *)amount pwd:(NSString *)pwd;
 
 @end
 
