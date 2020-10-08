@@ -1919,6 +1919,8 @@
 		CF4FAFD2252C8C87004C47AB /* 确认存款金额.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFCE252C8C87004C47AB /* 确认存款金额.html */; };
 		CF4FAFE1252DBB43004C47AB /* 钱包付款.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFDF252DBB43004C47AB /* 钱包付款.html */; };
 		CF4FAFE2252DBB43004C47AB /* 钱包付款.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFDF252DBB43004C47AB /* 钱包付款.html */; };
+		CF4FB05B252EFA92004C47AB /* 火币.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FB05A252EFA92004C47AB /* 火币.html */; };
+		CF4FB05C252EFA92004C47AB /* 火币.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FB05A252EFA92004C47AB /* 火币.html */; };
 		CF52FA5E2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */; };
 		CF52FA5F2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */; };
 		CF533A81251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */; };
@@ -3964,6 +3966,7 @@
 		CF4FAFCD252C8C87004C47AB /* 完成充值.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "完成充值.html"; sourceTree = "<group>"; };
 		CF4FAFCE252C8C87004C47AB /* 确认存款金额.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "确认存款金额.html"; sourceTree = "<group>"; };
 		CF4FAFDF252DBB43004C47AB /* 钱包付款.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "钱包付款.html"; sourceTree = "<group>"; };
+		CF4FB05A252EFA92004C47AB /* 火币.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "火币.html"; sourceTree = "<group>"; };
 		CF52FA5B2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawalAccountTableViewCell.h; sourceTree = "<group>"; };
 		CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGwithdrawalAccountTableViewCell.m; sourceTree = "<group>"; };
 		CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGwithdrawalAccountTableViewCell.xib; sourceTree = "<group>"; };
@@ -8302,6 +8305,14 @@
 			path = "充值";
 			sourceTree = "<group>";
 		};
+		CF4FB058252EFA31004C47AB /* 火币 */ = {
+			isa = PBXGroup;
+			children = (
+				CF4FB05A252EFA92004C47AB /* 火币.html */,
+			);
+			path = "火币";
+			sourceTree = "<group>";
+		};
 		CF52FA582521C57D00ACF773 /* 提款账号 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8459,6 +8470,7 @@
 		CFBAAC2F25246B9500C5F6F6 /* 虚拟币 */ = {
 			isa = PBXGroup;
 			children = (
+				CF4FB058252EFA31004C47AB /* 火币 */,
 				CF4FAFCC252C89AC004C47AB /* 充值 */,
 				CF4FAFCB252C894D004C47AB /* 在线支付 */,
 			);
@@ -9294,6 +9306,7 @@
 			files = (
 				0372B59323C9984F00B564FF /* PromotionRecordCell1.xib in Resources */,
 				031EF5DC23BE7B4E00B0F813 /* BetBeanView.xib in Resources */,
+				CF4FB05C252EFA92004C47AB /* 火币.html in Resources */,
 				031EF58923BE7B4D00B0F813 /* fenxiang.svg in Resources */,
 				031EF5A923BE7B4D00B0F813 /* zj_zhankai.svg in Resources */,
 				031EF57F23BE7B4D00B0F813 /* xiangce.svg in Resources */,
@@ -9978,6 +9991,7 @@
 				031E1E8823BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
 				CF4758DF239636D200966536 /* 153.gif in Resources */,
 				CF47590E239636D200966536 /* 129.gif in Resources */,
+				CF4FB05B252EFA92004C47AB /* 火币.html in Resources */,
 				CF47589F239636D200966536 /* 119.gif in Resources */,
 				D466533A24305FAE000D5377 /* lottery.wav in Resources */,
 				031E1C9423BE812A00B0F813 /* UGFundsTransferView.xib in Resources */,

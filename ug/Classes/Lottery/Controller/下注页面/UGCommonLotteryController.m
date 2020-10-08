@@ -800,7 +800,9 @@
 		[self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
 		return ;
 	}
-	
+    
+    NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+    self.nextIssueModel.title = self.selectTitle;
 	
 	UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
 	betDetailView.dataArray = objArray;

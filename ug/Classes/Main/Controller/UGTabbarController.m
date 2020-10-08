@@ -620,7 +620,7 @@ static UGTabbarController *_tabBarVC = nil;
                 temp.允许未登录访问 = rpm.允许未登录访问;
                 temp;
             })]) {
-                [(ReactNativeVC *)vc push:rpm params:[vc rn_keyValues]];
+                [(ReactNativeVC *)vc  pushOrJump:false rpm:rpm params:[vc rn_keyValues]];
                 return true;
             }
             return false;

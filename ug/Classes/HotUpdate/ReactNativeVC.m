@@ -165,10 +165,14 @@ static NSString *__lastRnPage = nil;
     self.navigationController.navigationBarHidden = _navigationBarHidden;
 }
 
-- (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
+- (void)pushOrJump:(BOOL)pushOrJump rpm:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         __lastRnPage = rpm.rnName;
-        [ReactNativeHelper pushVC:rpm.rnName params:params];
+        if (pushOrJump) {
+            [ReactNativeHelper pushVC:rpm.rnName params:params];
+        } else {
+            [ReactNativeHelper selectVC:rpm.rnName params:params];
+        }
     }];
 }
 
