@@ -308,10 +308,10 @@ UGSystemConfigModel *currentConfig = nil;
                 if (intStatus == 2) {
                     completion([UGPromotionIncomeController new]);
                 } else {
-                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                        [HUDHelper showMsg:@"在线注册代理已关闭"];
-                        return ;
-                    }
+//                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+//                        [HUDHelper showMsg:@"在线注册代理已关闭"];
+//                        return ;
+//                    }
                     UGAgentViewController *vc = [UGAgentViewController new];
                     vc.item = obj;
                     completion(vc);

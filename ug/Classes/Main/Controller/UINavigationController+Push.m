@@ -833,10 +833,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                         if (intStatus == 2) {
                             [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
                         } else {
-                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                                [HUDHelper showMsg:@"在线注册代理已关闭"];
-                                return ;
-                            }
+//                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+//                                [HUDHelper showMsg:@"在线注册代理已关闭"];
+//                                return ;
+//                            }
                             UGAgentViewController *vc = [[UGAgentViewController alloc] init];
                             vc.item = obj;
                             [NavController1 pushViewController:vc animated:YES];
