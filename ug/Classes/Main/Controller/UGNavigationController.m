@@ -107,6 +107,56 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     });
 }
 
+- (void)getLotteryGroupGamesData {
+
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
+       
+        [CMResult processWithResult:model success:^{
+            NSArray * lotteryGamesArray =  model.data;
+            
+            int count = (int)lotteryGamesArray.count;
+            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
+            
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
+                APP.isNewLotteryView = NO;
+            } else {
+                APP.isNewLotteryView = YES;
+            }
+          
+
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
+-(void)getisNewLotteryViewCompletion:(nonnull void (^)(BOOL ))completion {
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
+       
+        [CMResult processWithResult:model success:^{
+            NSArray * lotteryGamesArray =  model.data;
+            
+            int count = (int)lotteryGamesArray.count;
+            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
+            
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
+                APP.isNewLotteryView = NO;
+            } else {
+                APP.isNewLotteryView = YES;
+            }
+            
+            if (completion)
+                completion(APP.isNewLotteryView);
+          
+
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 去RN页面
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"vcName"];
@@ -146,6 +196,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (self.childViewControllers.count) { // 不是根控制器
         
         if ([viewController isKindOfClass:[UGLotteryHomeController class]]) {
+            
+            [self  getisNewLotteryViewCompletion:^(BOOL  isNewLotteryView) {
+         
+            }];
             
             if (APP.isNewLotteryView) {
                  viewController =  _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");

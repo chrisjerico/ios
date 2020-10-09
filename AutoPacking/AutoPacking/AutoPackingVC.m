@@ -12,6 +12,12 @@
 
 @implementation AutoPackingVC
 
+- (void)extracted:(NSString *)branch checkStatus:(BOOL)checkStatus ids:(NSString *)ids isForce:(BOOL)isForce updateLog:(NSString *)updateLog willUpload:(BOOL)willUpload {
+    [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
+        [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog checkStatus:checkStatus];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -59,9 +65,7 @@
                 BOOL checkStatus = 0 ;      // 上传后是否审核  1时只能有bigadmin的账号，否则没权限
 
                 
-                [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
-                    [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog checkStatus:checkStatus];
-                }];
+                [self extracted:branch checkStatus:checkStatus ids:ids isForce:isForce updateLog:updateLog willUpload:willUpload];
             }
             else {
                 NSString *environment = @"ezer3";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
