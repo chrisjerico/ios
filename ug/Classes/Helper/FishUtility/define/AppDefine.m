@@ -149,7 +149,7 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-			_SiteId = @"test08";
+			_SiteId = @"c242";
         }
 
 #endif
@@ -193,7 +193,7 @@
 #pragma mark - 定制样式
 - (void)setupSiteAndSkinParams {
     _isBgColorForMoneyVC = [@"c134,test29" containsString:_SiteId];
-    _isShowSalary = [@"c217,test29,c018" containsString:_SiteId];
+    _isShowSalary = [@"c217,test29,c018, c242" containsString:_SiteId];
     _isSectionWhite = [@"a002" containsString:_SiteId];
     _isTitleWhite = [@"a002" containsString:_SiteId];
     _isGPKDeposit = [@"c105b" containsString:_SiteId];
