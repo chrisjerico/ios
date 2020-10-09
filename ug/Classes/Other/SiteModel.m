@@ -211,6 +211,7 @@
 			
             site(@"test08",       @"test08",     @"",        @"com.UGGame.cp",           @"http://test08.6yc.com",                   @"内测包",     @"test08"),
 			site(@"shiyu",  	  @"shiyu",     @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                   @"内测包",     @"shiyu"),
+            site(@"mj",           @"mj",         @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",               @"内测包",       @"mj"),
 
 
             // 站点编号 / 上传编号 / 上传ID / 签名方式 / APP名 / bundleID / 接口域名
