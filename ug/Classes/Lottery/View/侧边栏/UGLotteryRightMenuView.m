@@ -174,7 +174,7 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     if ([self.selectTitle isEqualToString:item.title]) {
         [cell setBackgroundColor:Skin1.navBarBgColor];
     } else {
-        [cell setBackgroundColor:[UIColor whiteColor]];
+        [cell setBackgroundColor:RGBA(235, 235, 235, 1)];
     }
     return cell;
     

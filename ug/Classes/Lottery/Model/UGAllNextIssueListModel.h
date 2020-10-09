@@ -118,7 +118,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //彩票分组列表
 @property (nonatomic, strong) NSString *gameId;         /**<   游戏分类标识 */
-@property (nonatomic, strong) NSString *name;           /**<   游戏分类名称 */
+@property (nonatomic, copy) NSString *name;           /**<   游戏分类名称 */
 @property (nonatomic, strong) NSString *logo;           /**<   游戏分类图片 */
 @property (nonatomic, strong) NSArray<UGNextIssueModel> *lotteries;
 
