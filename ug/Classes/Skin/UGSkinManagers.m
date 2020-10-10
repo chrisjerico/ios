@@ -1466,6 +1466,9 @@ static UGSkinManagers *__initSkin1 = nil;
     if ([@"c239b" containsString:APP.SiteId]) {
         skitType = @"简约模板0";
     }
+	if ([@"c245" containsString:APP.SiteId]) {
+		skitType = @"简约模板1";
+	}
     
     
 
