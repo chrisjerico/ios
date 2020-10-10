@@ -9,10 +9,12 @@
 #import "UGWithdrawalVC.h"
 #import "UGYubaoConversionViewController.h"
 #import "WithdrawalAcctModel.h"
+#import "UGbankModel.h"
 #import "YBPopupMenu.h"
 
 @interface UGWithdrawalVC ()
 @property (weak, nonatomic) IBOutlet UIView *tipsView1; /**<   您还未绑定提款账户 */
+@property (weak, nonatomic) IBOutlet UILabel *rateLabel;/**<   虚拟币汇率Label */
 
 @property (nonatomic, strong) NSMutableArray <WithdrawalAcctModel *>*wams;
 @property (nonatomic, strong) NSMutableArray *titles;
@@ -29,10 +31,64 @@
     FastSubViewCode(self.view);
     subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[SysConf.minWithdrawMoney removeFloatAllZero],[SysConf.maxWithdrawMoney removeFloatAllZero]];
     subButton(@"提交Button").backgroundColor = Skin1.navBarBgColor;
+    subLabel(@"虚拟币汇率Label").hidden = true;
     
+    if (Skin1.isBlack) {
+        self.view.backgroundColor = Skin1.bgColor;
+        _tipsView1.backgroundColor = Skin1.bgColor;
+        subTextField(@"取款金额TextField").textColor = Skin1.textColor1;
+        subTextField(@"取款密码TextField").textColor = Skin1.textColor1;
+        subTextField(@"取款金额TextField").placeholderColor = Skin1.textColor3;
+        subTextField(@"取款密码TextField").placeholderColor = Skin1.textColor3;
+        subLabel(@"未绑定提示Label").textColor = Skin1.textColor1;
+        subLabel(@"金额上下限Label").textColor = Skin1.textColor1;
+        subButton(@"提款账号Button").backgroundColor = Skin1.bgColor;
+        [subButton(@"提款账号Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+    }
+    
+    NSMutableArray <UGbankModel *>*virtualList = @[].mutableCopy;
+    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm) {
+        sm.noShowErrorHUD = true;
+        if (!sm.error) {
+            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                [virtualList addObject:[UGbankModel mj_objectWithKeyValues:dict]];
+            }
+        }
+    };
+    
+    __weakSelf_(__self);
+    [self xw_addNotificationForName:UITextFieldTextDidChangeNotification block:^(NSNotification * _Nonnull noti) {
+        CGFloat rate = 0;
+        for (UGbankModel *bm in virtualList) {
+            if ([bm.bankId isEqualToString:__self.selectedWam.bankId])
+                rate = bm.currencyRate.doubleValue;
+        }
+        CGFloat amount = subTextField(@"取款金额TextField").text.doubleValue;
+        subLabel(@"虚拟币汇率Label").hidden = !(__self.selectedWam.type == UGWithdrawalTypeVirtual && rate > 0.0001);
+        subLabel(@"虚拟币汇率Label").text = _NSString(@"=%@ USDT　　1 USDT = %@ CNY", [AppDefine stringWithFloat:rate * amount decimal:8], [AppDefine stringWithFloat:1/rate decimal:4]);
+    }];
+    
+    [NetworkManager1 user_bankCard:UGWithdrawalTypeAll].completionBlock = ^(CCSessionModel *sm) {
+        if (!sm.error) {
+            [__self.wams removeAllObjects];
+            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                if ([dict[@"data"] allKeys].count)
+                [__self.wams addObject:[WithdrawalAcctModel mj_objectWithKeyValues:dict]];
+            }
+            __self.tipsView1.hidden = __self.wams.count;
+            
+        } else {
+            __self.tipsView1.hidden = UserI.hasBankCard;
+        }
+    };
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     __weakSelf_(__self);
     [NetworkManager1 user_bankCard:UGWithdrawalTypeAll].completionBlock = ^(CCSessionModel *sm) {
         if (!sm.error) {
+            [__self.wams removeAllObjects];
             for (NSDictionary *dict in sm.responseObject[@"data"]) {
                 if ([dict[@"data"] allKeys].count)
                 [__self.wams addObject:[WithdrawalAcctModel mj_objectWithKeyValues:dict]];
@@ -69,6 +125,7 @@
 
 // 选择提款账号
 - (IBAction)onSelectAcctBtnClick:(UIButton *)sender {
+    [_titles removeAllObjects];
     for (WithdrawalAcctModel *wam in _wams) {
         NSString *title = nil;
         switch (wam.type) {
@@ -144,6 +201,7 @@
     FastSubViewCode(self.view);
     [subButton(@"提款账号Button") setTitle:_titles[index] forState:UIControlStateNormal];
     _selectedWam = _wams[index];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UITextFieldTextDidChangeNotification object:nil];
 }
 
 @end

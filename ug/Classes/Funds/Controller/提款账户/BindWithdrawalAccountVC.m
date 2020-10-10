@@ -202,7 +202,12 @@
     }
     else if ([ybPopupMenu.tagString isEqualToString:@"选择虚拟币"]) {
         UGbankModel *bm = _selectedVirtual = _virtualList[index];
-        _blockchainList = [bm.home componentsSeparatedByString:@","];
+        NSMutableArray *temp = @[].mutableCopy;
+        for (NSString *l in [bm.home componentsSeparatedByString:@","]) {
+            if (l.length)
+                [temp addObject:l];
+        }
+        _blockchainList = [temp copy];
         subButton(@"选择区块链Button").superview.hidden = !_blockchainList.count;
         [subButton(@"选择虚拟币Button") setTitle:bm.name forState:UIControlStateNormal];
     }

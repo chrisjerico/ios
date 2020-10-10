@@ -80,7 +80,7 @@
 }
 
 - (CCSessionModel *)user_profileName:(NSString *)realname {
-    return [self req:@"wjapp/api.php?c=user&a=bindBank"
+    return [self req:@"wjapp/api.php?c=user&a=profileName"
                     :@{@"fullName":realname,}
                     :true];
 }

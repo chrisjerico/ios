@@ -21,13 +21,14 @@
 
 @property (nonatomic, strong) SlideSegmentView1 *ssv1;
 @property (nonatomic, strong) NSArray <NSDictionary *>*dataArrayList;
+@property (nonatomic, strong) NSArray <UGbankModel *>*virtualList;  /**<   虚拟币信息 */
 @end
 
 @implementation WithdrawalAccountListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    __weakSelf_(__self);
     _tipsView1.hidden = true;
     _tipsView2.hidden = UserI.fullName.stringByTrim.length;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:({
@@ -35,7 +36,9 @@
         btn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         [btn setTitle:@"新增" forState:UIControlStateNormal];
         [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+            if (__self.tipsView1.hidden && __self.tipsView2.hidden) {
+                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+            }
         }];
         btn;
     })];
@@ -46,6 +49,29 @@
     subButton(@"提交真实姓名Button").backgroundColor = Skin1.navBarBgColor;
     
     
+    // 获取 virtualList
+    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm) {
+        sm.noShowErrorHUD = true;
+        if (!sm.error) {
+            NSMutableArray *temp = @[].mutableCopy;
+            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                [temp addObject:[UGbankModel mj_objectWithKeyValues:dict]];
+            }
+            __self.virtualList = [temp copy];
+            [(UITableView *)__self.ssv1.contentViews[__self.ssv1.selectedIndex] reloadData];
+        }
+    };
+    
+    [self setupSSV];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [((UITableView *)_ssv1.contentViews[_ssv1.selectedIndex]).mj_header beginRefreshing];
+}
+
+
+- (void)setupSSV {
     __weakSelf_(__self);
     NSArray *titles = @[@"全部", @"银行卡", @"支付宝", @"微信", @"虚拟币", ];
     NSMutableArray *tvs = @[].mutableCopy;
@@ -84,29 +110,6 @@
                     }
                 }
             }
-            
-            if (OBJOnceToken(tv.noDataTipsLabel)) {
-                tv.noDataTipsLabel.text = @"";
-                tv.noDataTipsLabel.height = 200;
-                UILabel *lb = [UILabel new];
-                lb.text = @"空空如也\n点击右上角“新增”添加提款账户吧";
-                lb.numberOfLines = 0;
-                lb.textAlignment = NSTextAlignmentCenter;
-                lb.font = [UIFont systemFontOfSize:13];
-                lb.textColor = [UIColor colorWithHex:0x666666];
-                [tv.noDataTipsLabel addSubview:lb];
-                [lb mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.bottom.left.right.equalTo(tv.noDataTipsLabel);
-                }];
-                
-                UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"空空如也"]];
-                imgView.contentMode = UIViewContentModeScaleAspectFit;
-                [tv.noDataTipsLabel addSubview:imgView];
-                [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.bottom.equalTo(tv.noDataTipsLabel).mas_offset(-60);
-                    make.centerX.equalTo(tv.noDataTipsLabel);
-                }];
-            }
             return nil;
         }];
         [tvs addObject:tv];
@@ -114,18 +117,42 @@
     
     SlideSegmentView1 *ssv1 = _ssv1 = _LoadView_from_nib_(@"SlideSegmentView1");
     ssv1.frame = CGRectMake(0, 0, APP.Width, 100);
-    ssv1.contentViews = tvs;
-    ssv1.titleBar.titleForItemAtIndex = ^NSString *(NSUInteger idx) {
-        return titles[idx];
+    [ssv1 setupTitles:titles contents:tvs];
+    ssv1.bigScrollView.scrollEnabled = true;
+    ssv1.titleBar.barHeight = 44;
+    ssv1.titleBar.insetVertical = 5;
+    ssv1.titleBar.updateCellForItemAtIndex = ^(SlideSegmentBar1 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
+        label.text = titles[idx];
+        label.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:15];
+        label.textColor = selected ? Skin1.navBarBgColor : [UIColor grayColor];
     };
-    __weak_Obj_(ssv1, __ssv1);
-    ssv1.didSelectedIndex = ^(NSUInteger idx) {
-        UITableView *tv = __ssv1.contentViews[idx];
-        if (!tv.dataArray.count) {
-            [tv.mj_header beginRefreshing];
-        } else {
-            [tv reloadData];
+    ssv1.titleBar.underlineColor = Skin1.navBarBgColor;
+    ssv1.didSelectedIndex = ^(SlideSegmentView1 *ssv1, NSUInteger idx) {
+        UITableView *tv = ssv1.contentViews[idx];
+        if (OBJOnceToken(tv.noDataTipsLabel)) {
+            tv.noDataTipsLabel.text = @"";
+            tv.noDataTipsLabel.height = 200;
+            UILabel *lb = [UILabel new];
+            lb.text = @"空空如也\n点击右上角“新增”添加提款账户吧";
+            lb.numberOfLines = 0;
+            lb.textAlignment = NSTextAlignmentCenter;
+            lb.font = [UIFont systemFontOfSize:13];
+            lb.textColor = [UIColor colorWithHex:0x666666];
+            [tv.noDataTipsLabel addSubview:lb];
+            [lb mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.left.right.equalTo(tv.noDataTipsLabel);
+            }];
+            
+            UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"空空如也"]];
+            imgView.contentMode = UIViewContentModeScaleAspectFit;
+            [tv.noDataTipsLabel addSubview:imgView];
+            [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(tv.noDataTipsLabel).mas_offset(-60);
+                make.centerX.equalTo(tv.noDataTipsLabel);
+            }];
         }
+        tv.tableFooterView = tv.dataArray.count ? (tv.footerView ? : [UIView new]) : tv.noDataTipsLabel;
+        [tv reloadData];
     };
     
     [self.view insertSubview:ssv1 atIndex:0];
@@ -135,11 +162,6 @@
         make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         make.width.mas_equalTo(APP.Width);
     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [((UITableView *)_ssv1.contentViews[_ssv1.selectedIndex]).mj_header beginRefreshing];
 }
 
 #pragma mark - IBAction
@@ -227,16 +249,20 @@
             subLabel(@"标题1Label").text = @"币种：";
             subLabel(@"标题2Label").text = @"链名称：";
             subLabel(@"标题3Label").text = @"钱包地址：";
-            subLabel(@"内容1Label").text = wam.ownerName;
+            subLabel(@"内容1Label").text = @"";
             subLabel(@"内容2Label").text = wam.countname;
             subLabel(@"内容3Label").text = wam.account;
+            for (UGbankModel *bm in _virtualList) {
+                if ([bm.bankId isEqualToString:wam.bankId])
+                    subLabel(@"内容1Label").text = bm.name;
+            }
             break;
             
         default:;
     }
     
     [subButton(@"编辑Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-    [subButton(@"编辑Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+    [subButton(@"编辑Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton *sender) {
         __self.tipsView1.hidden = false;
     }];
     return cell;

@@ -91,7 +91,7 @@
                 if (user.hasBankCard) {
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 }else {
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"WithdrawalAccountListVC") animated:true];
                 }
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];

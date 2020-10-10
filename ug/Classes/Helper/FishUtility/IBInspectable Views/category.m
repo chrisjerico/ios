@@ -159,6 +159,9 @@ _CCRuntimeProperty_Copy(NSString *, 额外允许的字符, set额外允许的字
         } error:nil];
     }
 }
+- (void)setPlaceholderColor:(UIColor *)placeholderColor {
+    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder attributes:@{NSForegroundColorAttributeName:placeholderColor}];
+}
 @end
 
 

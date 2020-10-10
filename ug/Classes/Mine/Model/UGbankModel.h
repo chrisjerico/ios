@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *logo;
 @property (nonatomic, strong) NSString *home;
+@property (nonatomic, strong) NSString *currencyRate;/**<   虚拟币汇率 */
 
 @end
 
