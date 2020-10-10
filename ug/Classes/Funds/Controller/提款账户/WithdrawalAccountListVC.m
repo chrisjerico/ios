@@ -121,7 +121,6 @@
     ssv1.bigScrollView.scrollEnabled = true;
     ssv1.titleBar.barHeight = 44;
     ssv1.titleBar.insetVertical = 5;
-    [ssv1.titleBar cellWidthAdaptiveTitleWithFontSize:15 space:100];
     ssv1.titleBar.updateCellForItemAtIndex = ^(SlideSegmentBar1 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
         label.text = titles[idx];
         label.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:15];
