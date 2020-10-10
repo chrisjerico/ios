@@ -170,7 +170,12 @@
     if ([sender.tagString isEqualToString:@"取消真实姓名Button"]) {
         [NavController1 popViewControllerAnimated:true];
     } else {
-        _tipsView1.hidden = true;
+        [UIView animateWithDuration:0.2 animations:^{
+            self.tipsView1.alpha = 0;
+        } completion:^(BOOL finished) {
+            self.tipsView1.hidden = true;
+            self.tipsView1.alpha = 1;
+        }];
     }
 }
 
@@ -191,6 +196,7 @@
 
 // 联系客服
 - (IBAction)onContactCustomerServiceBtnClick:(UIButton *)sender {
+    [self onCancelBtnClick:nil];
     [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
 }
 
@@ -265,6 +271,12 @@
     [subButton(@"编辑Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"编辑Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton *sender) {
         __self.tipsView1.hidden = false;
+        __self.tipsView1.backgroundColor = [UIColor clearColor];
+        __self.tipsView1.transform = CGAffineTransformMakeScale(1.1, 1.1);
+        [UIView animateWithDuration:0.15 animations:^{
+            __self.tipsView1.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+            __self.tipsView1.transform = CGAffineTransformIdentity;
+        }];
     }];
     return cell;
 }
