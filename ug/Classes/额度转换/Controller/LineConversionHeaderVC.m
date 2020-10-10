@@ -49,8 +49,8 @@
         label.textColor = selected ? [UIColor redColor] : Skin1.textColor2;
         label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
     };
-    _segmentView.titleBar.underlineFrameForItemAtIndex = ^CGRect(NSUInteger idx, CGFloat titleWidth, CGFloat cellWidth, CGFloat cellHeight) {
-        return CGRectMake(0, cellHeight-2, titleWidth+20, 2);
+    _segmentView.titleBar.underlineFrameForItemAtIndex = ^CGRect(CGSize cellSize, CGFloat labelWidth, NSUInteger idx) {
+        return CGRectMake(0, cellSize.height-2, labelWidth+20, 2);
     };
     
     self.segmentView.titleBar.backgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.35];

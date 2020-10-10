@@ -15,7 +15,7 @@
 @property (nonatomic, assign) CGFloat barHeight;
 
 @property (nonatomic, strong) UIColor *underlineColor;  /**<    下划线颜色 */
-@property (nonatomic, strong) CGRect (^underlineFrameForItemAtIndex)(NSUInteger idx, CGFloat titleWidth, CGFloat cellWidth, CGFloat cellHeight);
+@property (nonatomic, strong) CGRect (^underlineFrameForItemAtIndex)(CGSize cellSize, CGFloat labelWidth, NSUInteger idx);
 @property (nonatomic, strong) void (^updateCellForItemAtIndex)(SlideSegmentBar2 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected); // 配置Cell样式
 
 @property (nonatomic, strong) CGFloat (^widthForItemAtIndex)(NSUInteger idx);

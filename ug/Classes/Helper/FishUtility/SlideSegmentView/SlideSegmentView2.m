@@ -171,7 +171,7 @@
             // 下划线动画
             [UIView animateWithDuration:0.25 animations:^{
                 if (__self.underlineFrameForItemAtIndex) {
-                    CGRect rect = __self.underlineFrameForItemAtIndex(indexPath.item, label.width, cell.width, cell.height);
+                    CGRect rect = __self.underlineFrameForItemAtIndex(cell.size, label.width, indexPath.item);
                     __self.underlineView.frame = CGRectMake(cell.left + rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
                 } else {
                     __self.underlineView.frame = CGRectMake(cell.left, cell.height-2, cell.width, 2);
