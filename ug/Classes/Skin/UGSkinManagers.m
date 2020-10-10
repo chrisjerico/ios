@@ -1467,7 +1467,7 @@ static UGSkinManagers *__initSkin1 = nil;
         skitType = @"简约模板0";
     }
 	if ([@"c245" containsString:APP.SiteId]) {
-		skitType = @"简约模板1";
+		skitType = @"1";
 	}
     
     
@@ -1483,7 +1483,7 @@ static UGSkinManagers *__initSkin1 = nil;
         sm = [UGSkinManagers allSkin][@"天空蓝"];
         return sm;
     }
-    
+
 #endif
     
 	return [UGSkinManagers allSkin][skitType];
