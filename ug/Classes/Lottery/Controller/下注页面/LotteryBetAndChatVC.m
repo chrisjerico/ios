@@ -377,7 +377,7 @@
                 label.textColor = [UIColor whiteColor];
             }
         };
-        ssv1.didSelectedIndex = ^(SlideSegmentView1 *ssv1, NSUInteger idx) {
+        ssv1.didSelectedIndexChange = ^(SlideSegmentView1 *ssv1, NSUInteger idx) {
             if (idx) {
                 [__self.downBtn setHidden:NO];
                 //得到线上配置的聊天室

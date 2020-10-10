@@ -28,7 +28,7 @@
 @interface SlideSegmentView1 : UIView
 
 @property (nonatomic, assign) NSUInteger selectedIndex;
-@property (nonatomic, strong) void (^didSelectedIndex)(SlideSegmentView1 *ssv1, NSUInteger idx); //选中回调
+@property (nonatomic, strong) void (^didSelectedIndexChange)(SlideSegmentView1 *ssv1, NSUInteger idx); //选中回调
 
 - (void)setupTitles:(NSArray <NSString *>*)titles contents:(NSArray *)viewsOrViewControllers;
 - (void)setSelectedIndex:(NSUInteger)selectedIndex animated:(BOOL)animated;

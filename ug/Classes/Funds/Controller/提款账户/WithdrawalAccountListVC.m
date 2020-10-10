@@ -121,13 +121,14 @@
     ssv1.bigScrollView.scrollEnabled = true;
     ssv1.titleBar.barHeight = 44;
     ssv1.titleBar.insetVertical = 5;
+    [ssv1.titleBar cellWidthAdaptiveTitleWithFontSize:15 space:100];
     ssv1.titleBar.updateCellForItemAtIndex = ^(SlideSegmentBar1 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
         label.text = titles[idx];
         label.font = selected ? [UIFont boldSystemFontOfSize:15] : [UIFont systemFontOfSize:15];
         label.textColor = selected ? Skin1.navBarBgColor : [UIColor grayColor];
     };
     ssv1.titleBar.underlineColor = Skin1.navBarBgColor;
-    ssv1.didSelectedIndex = ^(SlideSegmentView1 *ssv1, NSUInteger idx) {
+    ssv1.didSelectedIndexChange = ^(SlideSegmentView1 *ssv1, NSUInteger idx) {
         UITableView *tv = ssv1.contentViews[idx];
         if (OBJOnceToken(tv.noDataTipsLabel)) {
             tv.noDataTipsLabel.text = @"";
@@ -256,6 +257,7 @@
                 if ([bm.bankId isEqualToString:wam.bankId])
                     subLabel(@"内容1Label").text = bm.name;
             }
+            subLabel(@"标题2Label").superview.hidden = !wam.countname.stringByTrim.length;
             break;
             
         default:;

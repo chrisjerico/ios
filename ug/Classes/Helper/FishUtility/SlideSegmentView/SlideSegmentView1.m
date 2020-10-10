@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, assign) NSInteger numberOfItems;
-@property (nonatomic, strong) void (^didSelectItem)(NSInteger idx);
+@property (nonatomic, strong) void (^didSelectItemAtIndex)(NSInteger idx);
 @property (nonatomic, strong) UIView *underlineView;
 @property (nonatomic, assign) CGFloat fontSize;
 @property (nonatomic, assign) CGFloat space;
@@ -68,6 +68,28 @@
     }
 }
 
+- (void)setSelectedIndex:(NSUInteger)selectedIndex animated:(BOOL)animated {
+    UICollectionView *cv = _collectionView;
+    
+    // 滚动至指定Cell
+    CGFloat left = _insetVertical;
+    CGFloat right = 0;
+    
+    for (int i=0; i<selectedIndex; i++)
+        left += [self collectionView:cv layout:cv.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]].width;
+    right = left + [self collectionView:cv layout:cv.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:selectedIndex inSection:0]].width;
+    
+    if (left < cv.contentOffset.x) {
+        [cv setContentOffset:CGPointMake(left, 0) animated:animated];
+    }
+    else if (right - cv.width > cv.contentOffset.x) {
+        [cv setContentOffset:CGPointMake(right-cv.width, 0) animated:animated];
+    }
+
+    // 选中指定item
+    [cv selectItemAtIndexPath:[NSIndexPath indexPathForItem:selectedIndex inSection:0] animated:animated scrollPosition:UICollectionViewScrollPositionNone];
+}
+
 - (void)reloadData {
     [_collectionView reloadData];
 }
@@ -86,7 +108,6 @@
         return CGSizeMake((self.width-_insetVertical*2) / _numberOfItems, self.height);
     }
     
-    
     CGFloat titleW = [_titles[indexPath.item] widthForFont:[UIFont systemFontOfSize:_fontSize]];
     return CGSizeMake(titleW + _space + 2, self.height);
 }
@@ -104,8 +125,8 @@
         label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:16];
-        label.tagString = @"label";
         label.text = _titles[indexPath.item];
+        label.tagString = @"label";
         [cell addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(cell);
@@ -124,23 +145,25 @@
             label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16];
         }
         
-        // 下划线动画
-        [UIView animateWithDuration:0.25 animations:^{
-            if (__self.underlineFrameForItemAtIndex) {
-                CGRect rect = __self.underlineFrameForItemAtIndex(indexPath.item, label.width, cell.width, cell.height);
-                __self.underlineView.frame = CGRectMake(cell.left + rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-            } else {
-                __self.underlineView.frame = CGRectMake(cell.left, cell.height-2, cell.width, 2);
-            }
-        }];
+        if (selected) {
+            // 下划线动画
+            [UIView animateWithDuration:0.25 animations:^{
+                if (__self.underlineFrameForItemAtIndex) {
+                    CGRect rect = __self.underlineFrameForItemAtIndex(indexPath.item, label.width, cell.width, cell.height);
+                    __self.underlineView.frame = CGRectMake(cell.left + rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+                } else {
+                    __self.underlineView.frame = CGRectMake(cell.left, cell.height-2, cell.width, 2);
+                }
+            }];
+        }
     }];
 
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (_didSelectItem)
-        _didSelectItem(indexPath.item);
+    if (collectionView && _didSelectItemAtIndex)
+        _didSelectItemAtIndex(indexPath.item);
 }
 
 @end
@@ -198,29 +221,7 @@
     _selectedIndex = selectedIndex;
     
     // TitleBar
-    {
-        UICollectionView *cv = _titleBar.collectionView;
-        // 滚动至指定Cell
-        if (_titleBar.widthForItemAtIndex) {
-            CGFloat left = 0;
-            CGFloat right = 0;
-            
-            for (int i=0; i<selectedIndex; i++)
-                left += _titleBar.widthForItemAtIndex(i);
-            right = left + _titleBar.widthForItemAtIndex(selectedIndex);
-            
-            if (left < cv.contentOffset.x) {
-                [cv setContentOffset:CGPointMake(left, 0) animated:animated];
-            }
-            else if (right - cv.width > cv.contentOffset.x) {
-                [cv setContentOffset:CGPointMake(right-cv.width, 0) animated:animated];
-            }
-        }
-
-        
-        // 选中指定item
-        [cv selectItemAtIndexPath:[NSIndexPath indexPathForItem:_selectedIndex inSection:0] animated:animated scrollPosition:UICollectionViewScrollPositionNone];
-    }
+    [_titleBar setSelectedIndex:selectedIndex animated:animated];
     
     // BigScrollView
     {
@@ -229,8 +230,8 @@
         [_bigScrollView setContentOffset:CGPointMake(x, 0) animated:animated];
     }
     
-    if (_didSelectedIndex)
-        _didSelectedIndex(self, selectedIndex);
+    if (_didSelectedIndexChange)
+        _didSelectedIndexChange(self, selectedIndex);
 }
 
 
@@ -273,8 +274,8 @@
     // TitleBar
     __weakSelf_(__self);
     _titleBar.numberOfItems = contentViews.count;
-    _titleBar.didSelectItem = ^(NSInteger idx) {
-        [__self setSelectedIndex:idx animated:false];
+    _titleBar.didSelectItemAtIndex = ^(NSInteger idx) {
+        [__self setSelectedIndex:idx animated:true];
     };
 }
 
