@@ -732,6 +732,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:recordVC animated:true];
             break;
         }
+        case 38: {
+            //38' => '修改密码',
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGModifyLoginPwdController") animated:true];
+            break;
+        }
+        case 39: {
+            //39' => '修改提款密码',
+            [NavController1 pushViewController: _LoadVC_from_storyboard_(@"UGModifyPayPwdController") animated:true];
+            break;
+        }
         default: {
             return false;
         }

@@ -281,13 +281,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 -(void)getTableData{
-    if (APP.isWebRightMenu) {
+
         [self tableDataAction ];
-    } else {
-        [self initTitleAndImgs ];
-        [self.tableView reloadData];
-    }
-    
+
 }
 
 -(void)tableDataAction{
@@ -299,20 +295,26 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             [CMResult processWithResult:model success:^{
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"=====");
-                    
-                    NSMutableArray <GameModel *> *tempArry = model.data;
-                    
-                    // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
-                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
-                    // 排序结果
-                    self.tableArray = [NSMutableArray new];
-                    self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-                    
-                    // 需要在主线程执行的代码
-                     self.tableArray = model.data;
-                     NSLog(@"tableArray = %@",self.tableArray);
-                    [self.tableView reloadData];
+
+                    NSArray <GameModel *> *tempArry = [GameModel mj_objectArrayWithKeyValuesArray : model.data];
+            
+                    if (tempArry.count) {
+                        // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
+                        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
+                        // 排序结果
+                        self.tableArray = [NSMutableArray <GameModel *> new];
+                        self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]].mutableCopy;
+                        APP.isWebRightMenu = YES;
+                        // 需要在主线程执行的代码
+                        [self.tableView reloadData];
+                        
+                    }
+                    else{
+                        APP.isWebRightMenu = NO;
+                        [self initTitleAndImgs ];
+                        [self.tableView reloadData];
+                    }
+
                     
                 });
                 
