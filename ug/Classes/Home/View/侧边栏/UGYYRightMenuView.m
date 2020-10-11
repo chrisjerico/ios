@@ -288,6 +288,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 -(void)tableDataAction{
     
+    WeakSelf;
         NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                                  };
         [CMNetwork systemMobileRightWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -305,15 +306,19 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                         self.tableArray = [NSMutableArray <GameModel *> new];
                         self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]].mutableCopy;
                         APP.isWebRightMenu = YES;
+                        [weakSelf.bg2View setHidden:YES];
                         // 需要在主线程执行的代码
-                        [self.tableView reloadData];
+                        [weakSelf.tableView reloadData];
                         
                     }
                     else{
                         APP.isWebRightMenu = NO;
+                        [weakSelf.bg2View setHidden:NO];
                         [self initTitleAndImgs ];
                         [self.tableView reloadData];
                     }
+                    
+                    
 
                     
                 });
@@ -597,11 +602,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_headImageView setHidden:YES];
         [_myButton setHidden:YES];
         [_welComeLabel setHidden:NO];
-        if (APP.isWebRightMenu) {
-            [_bg2View setHidden:YES];
-        } else {
-            [_bg2View setHidden:NO];
-        }
+    
         self.bgViewHeightConstraint.constant = 180;
     }
     
