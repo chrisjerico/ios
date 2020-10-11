@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UGRechargeLogsModel <NSObject>
 
 @end
-// 充值记录
+// 充值/提款记录
 // {{LOCAL_HOST}}?c=recharge&a=logs&token=oALLC07Hc5Rba9ipchIFiBuc&startDate=2018-09-09&endDate=2019-09-26&page=1&rows=20
 @interface UGRechargeLogsModel : UGModel<UGRechargeLogsModel>
 @property (nonatomic, strong) NSString *orderNo;    /**<   提款单号 */
@@ -26,7 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *bankCard;
 @property (nonatomic, strong) NSString *bankAccount;
 
-
+// 为虚拟币提款功能新增字段
+@property (nonatomic, assign) UGWithdrawalType type;/**<   提款类型 */
+@property (nonatomic, strong) NSString *bankName;   /**<   链名称 */
+@property (nonatomic, strong) NSString *chainName;  /**<   链名称 */
 @end
 
 @interface UGRechargeLogsListModel : UGModel

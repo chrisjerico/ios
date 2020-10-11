@@ -85,10 +85,10 @@
                     :true];
 }
 
-- (CCSessionModel *)withdraw_apply:(UGWithdrawalType)type amount:(NSString *)amount pwd:(NSString *)pwd {
+- (CCSessionModel *)withdraw_apply:(NSString *)wid amount:(NSString *)amount pwd:(NSString *)pwd {
     return [self req:@"wjapp/api.php?c=withdraw&a=apply"
                     :@{
-                        @"type":@(type),
+                        @"id":wid,
                         @"money":amount,
                         @"pwd":[UGEncryptUtil md5:pwd],
                     }

@@ -39,7 +39,7 @@
 @implementation NSDictionary (NilSafe)
 
 void * _func2 (id self, SEL sel, ...) {
-//    NSLog(@"———————— < NSNull > 调用了无效函数， [< NSNull > %@]", NSStringFromSelector(sel));
+//    NSLog(@"———————— < NSDictionary > 调用了无效函数， [< NSNull > %@]", NSStringFromSelector(sel));
     return nil;
 }
 

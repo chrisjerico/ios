@@ -10,8 +10,8 @@
 
 @implementation WithdrawalAcctModel
 
-- (void)setData:(NSDictionary *)data {
-    [self setValuesWithDictionary:data];
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"wid":@"id"};
 }
 
 @end

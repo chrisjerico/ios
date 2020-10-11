@@ -11,6 +11,15 @@
 
 @implementation NSArray (Safe)
 
+void * _func3 (id self, SEL sel, ...) {
+//    NSLog(@"———————— < NSArray > 调用了无效函数， [< NSNull > %@]", NSStringFromSelector(sel));
+    return nil;
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)sel {
+    return class_addMethod(self, sel, (IMP)_func3, "^v24@0:8^v16");
+}
+
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

@@ -22,9 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *uid;        /**<   用户ID */
 //@property (nonatomic, assign) UGWithdrawalType type;        /**<   账户类型 */
 @property (nonatomic, copy) NSString *bankId;        /**<   银行卡ID */
-@property (nonatomic, copy) NSString *username;        /**<   真实姓名 */
-@property (nonatomic, copy) NSString *account;        /**<   账号 */
-@property (nonatomic, copy) NSString *countname;        /**<   开户地址 */
 @property (nonatomic, copy) NSString *bankName;        /**<   银行 */
 @property (nonatomic, copy) NSString *bankCode;        /**<   银行代码 */
 @property (nonatomic, copy) NSString *bankBackgroundImage;        /**<   银行背景图 */

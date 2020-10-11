@@ -72,8 +72,11 @@
         if (!sm.error) {
             [__self.wams removeAllObjects];
             for (NSDictionary *dict in sm.responseObject[@"data"]) {
-                if ([dict[@"data"] allKeys].count)
-                [__self.wams addObject:[WithdrawalAcctModel mj_objectWithKeyValues:dict]];
+                for (NSDictionary *subD2 in dict[@"data"]) {
+                    WithdrawalAcctModel *wam = [WithdrawalAcctModel mj_objectWithKeyValues:subD2];
+                    [wam setValuesWithDictionary:dict];
+                    [__self.wams addObject:wam];
+                }
             }
             __self.tipsView1.hidden = __self.wams.count;
             
@@ -90,8 +93,11 @@
         if (!sm.error) {
             [__self.wams removeAllObjects];
             for (NSDictionary *dict in sm.responseObject[@"data"]) {
-                if ([dict[@"data"] allKeys].count)
-                [__self.wams addObject:[WithdrawalAcctModel mj_objectWithKeyValues:dict]];
+                for (NSDictionary *subD2 in dict[@"data"]) {
+                    WithdrawalAcctModel *wam = [WithdrawalAcctModel mj_objectWithKeyValues:subD2];
+                    [wam setValuesWithDictionary:dict];
+                    [__self.wams addObject:wam];
+                }
             }
             __self.tipsView1.hidden = __self.wams.count;
             
@@ -130,22 +136,21 @@
         NSString *title = nil;
         switch (wam.type) {
             case UGWithdrawalTypeBankCard:
-                title = _NSString(@"%@（%@，尾号%@，%@）", wam.name, wam.bankName, [wam.account substringFromIndex:wam.account.length-4], wam.username);
+                title = _NSString(@"%@（%@，尾号%@，%@）", wam.name, wam.bankName, [wam.bankCard substringFromIndex:wam.bankCard.length-4], wam.ownerName);
                 break;
             case UGWithdrawalTypeVirtual:
-//                NSString *acct = [NSString stringWithFormat:@"%@*****%@", [wam.account substringToIndex:3]];
-                title = _NSString(@"%@（%@，%@，%@）", wam.name, wam.account, wam.countname, wam.username);
+                title = _NSString(@"%@（%@，%@，%@）", wam.name, wam.bankCard, wam.bankAddr, wam.ownerName);
                 break;
             case UGWithdrawalTypeAlipay:
             case UGWithdrawalTypeWeChat:
             default:
-                title = _NSString(@"%@（%@，%@）", wam.name, wam.account, wam.username);
+                title = _NSString(@"%@（%@，%@）", wam.name, wam.bankCard, wam.ownerName);
                 break;
         }
         [_titles addObject:title];
     }
-    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:_titles icons:nil menuWidth:CGSizeMake(300, 150) delegate:self];
-    popView.fontSize = 15;
+    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:_titles icons:nil menuWidth:CGSizeMake(APP.Width-50, 200) delegate:self];
+    popView.fontSize = 14;
     popView.type = YBPopupMenuTypeDefault;
     [popView showRelyOnView:sender];
 }
@@ -178,7 +183,7 @@
     
     __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
-    [NetworkManager1 withdraw_apply:_selectedWam.type amount:amount pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 withdraw_apply:_selectedWam.wid amount:amount pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
         if (!sm.error) {
             [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
             subTextField(@"取款金额TextField").text = nil;

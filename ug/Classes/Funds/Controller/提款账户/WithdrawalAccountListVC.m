@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong) SlideSegmentView1 *ssv1;
 @property (nonatomic, strong) NSArray <NSDictionary *>*dataArrayList;
-@property (nonatomic, strong) NSArray <UGbankModel *>*virtualList;  /**<   虚拟币信息 */
 @end
 
 @implementation WithdrawalAccountListVC
@@ -37,7 +36,11 @@
         [btn setTitle:@"新增" forState:UIControlStateNormal];
         [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             if (__self.tipsView1.hidden && __self.tipsView2.hidden) {
-                [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+                if (UserI.hasFundPwd) {
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+                } else {
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGSetupPayPwdController") animated:true];
+                }
             }
         }];
         btn;
@@ -47,20 +50,6 @@
     FastSubViewCode(self.view);
     subButton(@"去在线客服Button").backgroundColor = Skin1.navBarBgColor;
     subButton(@"提交真实姓名Button").backgroundColor = Skin1.navBarBgColor;
-    
-    
-    // 获取 virtualList
-    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm) {
-        sm.noShowErrorHUD = true;
-        if (!sm.error) {
-            NSMutableArray *temp = @[].mutableCopy;
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
-                [temp addObject:[UGbankModel mj_objectWithKeyValues:dict]];
-            }
-            __self.virtualList = [temp copy];
-            [(UITableView *)__self.ssv1.contentViews[__self.ssv1.selectedIndex] reloadData];
-        }
-    };
     
     [self setupSSV];
 }
@@ -103,9 +92,11 @@
                     [tv.dataArray removeAllObjects];
                     
                     NSArray *dataArray = [dict[title] intValue] == UGWithdrawalTypeAll ? __self.dataArrayList : [__self.dataArrayList objectsWithValue:dict[title] keyPath:@"type"];
-                    for (NSDictionary *subD in dataArray) {
-                        if ([subD[@"data"] allKeys].count) {
-                            [tv.dataArray addObject:[WithdrawalAcctModel mj_objectWithKeyValues:subD]];
+                    for (NSDictionary *subD1 in dataArray) {
+                        for (NSDictionary *subD2 in subD1[@"data"]) {
+                            WithdrawalAcctModel *wam = [WithdrawalAcctModel mj_objectWithKeyValues:subD2];
+                            [wam setValuesWithDictionary:subD1];
+                            [tv.dataArray addObject:wam];
                         }
                     }
                 }
@@ -185,11 +176,15 @@
     if (!realname.length) {
         [SVProgressHUD showErrorWithStatus:@"请输入真实姓名"];
     }
+    [self.view endEditing:true];
+    [SVProgressHUD show];
     __weakSelf_(__self);
     [NetworkManager1 user_profileName:realname].completionBlock = ^(CCSessionModel *sm) {
+        [SVProgressHUD dismiss];
         if (!sm.error) {
             [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
             __self.tipsView2.hidden = true;
+            UserI.fullName = realname;
         }
     };
 }
@@ -224,45 +219,42 @@
     FastSubViewCode(cell);
     subImageView(@"账户类型ImageView").image = [UIImage imageNamed:imgDict[@(wam.type).stringValue]];
     subLabel(@"账户类型Label").text = wam.name;
+    subLabel(@"标题2Label").superview.hidden = false;
     switch (wam.type) {
         case UGWithdrawalTypeBankCard:
             subLabel(@"标题1Label").text = @"开户姓名：";
             subLabel(@"标题2Label").text = @"开户账号：";
             subLabel(@"标题3Label").text = @"开户地址：";
-            subLabel(@"内容1Label").text = wam.username;
-            subLabel(@"内容2Label").text = wam.account;
-            subLabel(@"内容3Label").text = wam.countname;
+            subLabel(@"内容1Label").text = wam.ownerName;
+            subLabel(@"内容2Label").text = wam.bankCard;
+            subLabel(@"内容3Label").text = wam.bankAddr;
             break;
         case UGWithdrawalTypeWeChat:
             subLabel(@"标题1Label").text = @"真实姓名：";
             subLabel(@"标题2Label").text = @"绑定手机号：";
             subLabel(@"标题3Label").text = @"微信号：";
-            subLabel(@"内容1Label").text = wam.username;
+            subLabel(@"内容1Label").text = wam.ownerName;
             subLabel(@"内容2Label").text = @"";
-            subLabel(@"内容3Label").text = wam.account;
+            subLabel(@"内容3Label").text = wam.bankCard;
             subLabel(@"标题2Label").superview.hidden = true;
             break;
         case UGWithdrawalTypeAlipay:
             subLabel(@"标题1Label").text = @"真实姓名：";
             subLabel(@"标题2Label").text = @"";
             subLabel(@"标题3Label").text = @"支付宝账号：";
-            subLabel(@"内容1Label").text = wam.username;
+            subLabel(@"内容1Label").text = wam.ownerName;
             subLabel(@"内容2Label").text = @"";
-            subLabel(@"内容3Label").text = wam.account;
+            subLabel(@"内容3Label").text = wam.bankCard;
             subLabel(@"标题2Label").superview.hidden = true;
             break;
         case UGWithdrawalTypeVirtual:
             subLabel(@"标题1Label").text = @"币种：";
             subLabel(@"标题2Label").text = @"链名称：";
             subLabel(@"标题3Label").text = @"钱包地址：";
-            subLabel(@"内容1Label").text = @"";
-            subLabel(@"内容2Label").text = wam.countname;
-            subLabel(@"内容3Label").text = wam.account;
-            for (UGbankModel *bm in _virtualList) {
-                if ([bm.bankId isEqualToString:wam.bankId])
-                    subLabel(@"内容1Label").text = bm.name;
-            }
-            subLabel(@"标题2Label").superview.hidden = !wam.countname.stringByTrim.length;
+            subLabel(@"内容1Label").text = wam.bankName;
+            subLabel(@"内容2Label").text = wam.bankAddr;
+            subLabel(@"内容3Label").text = wam.bankCard;
+            subLabel(@"标题2Label").superview.hidden = !wam.bankAddr.stringByTrim.length;
             break;
             
         default:;

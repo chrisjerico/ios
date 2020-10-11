@@ -144,7 +144,9 @@
         return;
     }
     
+    [SVProgressHUD show];
     [NetworkManager1 user_bindBank:_selectedWT wid:wid addr:addr acct:acct].completionBlock = ^(CCSessionModel *sm) {
+        [SVProgressHUD dismiss];
         if (!sm.error) {
             [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
             [NavController1 popViewControllerAnimated:true];
@@ -208,8 +210,10 @@
                 [temp addObject:l];
         }
         _blockchainList = [temp copy];
+        _selectedBlockchain = nil;
         subButton(@"选择区块链Button").superview.hidden = !_blockchainList.count;
         [subButton(@"选择虚拟币Button") setTitle:bm.name forState:UIControlStateNormal];
+        [subButton(@"选择区块链Button") setTitle:@"选择链名称" forState:UIControlStateNormal];
     }
     else if ([ybPopupMenu.tagString isEqualToString:@"选择区块链"]) {
         _selectedBlockchain = _blockchainList[index];
