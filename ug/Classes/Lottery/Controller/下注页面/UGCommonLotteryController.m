@@ -647,10 +647,11 @@
     NSLog(@"nextIssueModel = %@",self.nextIssueModel);
     
     if (APP.isNewLotteryView) {
+        
         self.yymenuView = [[UGLotteryRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW * 2/ 3, UGScerrnH)];
-      
+    
         self.yymenuView.selectTitle = self.selectTitle;
-//        self.yymenuView.gameType = self.nextIssueModel.gameType;
+        self.yymenuView.gameType = self.nextIssueModel.gameType;
         //此处为重点
         WeakSelf;
         self.yymenuView.backToHomeBlock = ^{

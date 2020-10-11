@@ -10,9 +10,14 @@
 #import "NewLotteryHeaderViewCollectionReusableView.h"
 #import "NewLotteryRightCollectionViewCell.h"
 @interface UGLotteryRightMenuView ()<UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
+{
+   
+}
+
 @property (weak, nonatomic) IBOutlet UIButton *returnHomeBtn;
 @property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView;           /**<   彩票栏目*/
 @property (nonatomic, strong) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray;
+@property (nonatomic) BOOL hasHeaderBtnClicked;///**<   栏目头被点击过*/
 @end
 
 static NSString *newLotteryCellID = @"NewLotteryRightCollectionViewCell";
@@ -55,6 +60,7 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     [UIView animateWithDuration:0.35 animations:^{
         self.returnHomeBtn.superview.superview.cc_constraints.left.constant = -APP.Width;
         [self layoutIfNeeded];
+
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
@@ -73,6 +79,8 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
     [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 
         [CMResult processWithResult:model success:^{
+            
+            
             weakSelf.lotteryGamesArray =  model.data;
             [weakSelf.contentCollectionView reloadData];
         } failure:^(id msg) {
@@ -191,7 +199,21 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
         }
     }
     return isOk;
+}
+
+-(BOOL)hasModelType:(UGAllNextIssueListModel *)model{
+    BOOL isOk = NO;
+    if ([model.name isEqualToString:@"全部彩种"]) {
+        return isOk;
+    }
     
+    for (UGNextIssueModel *item in model.lotteries) {
+        if ([item.gameType isEqualToString:self.gameType]) {
+            isOk = YES;
+            break;
+        }
+    }
+    return isOk;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
@@ -200,18 +222,35 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
         NewLotteryHeaderViewCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:newheaderViewID forIndexPath:indexPath];
         UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
         headerView.titlelabel.text = model.name;
-        
-        if ([self hasModel:model]) {
-            if (OBJOnceToken(self)) {
-                model.isOpen = YES;
-                //刷新Section
-                [UIView performWithoutAnimation:^{
-                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-                    [self.contentCollectionView reloadSections:indexSet];
-                }];
+        NSLog(@"model = %@",model);
+        NSLog(@"gameType = %@",self.gameType);//pk10
+        //如果是第一次进来，全部菜种展开  全部彩种
+        //否则，对应的系列展开
+        if ([Global getInstanse].isAllLottery) {
+            if ([model.name isEqualToString:@"全部彩种"]) {
+                if (OBJOnceToken(self)) {
+                    model.isOpen = YES;
+                    //刷新Section
+                    [UIView performWithoutAnimation:^{
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                        [self.contentCollectionView reloadSections:indexSet];
+                    }];
+                }
             }
-    
         }
+        else {
+            if ([self hasModelType:model] && !_hasHeaderBtnClicked) {
+                if (OBJOnceToken(self)) {
+                    model.isOpen = YES;
+                    //刷新Section
+                    [UIView performWithoutAnimation:^{
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
+                        [self.contentCollectionView reloadSections:indexSet];
+                    }];
+                }
+            }
+        }
+        
         
         if (model.isOpen) {
             [headerView.mBtn setImage:[UIImage imageNamed:@"jiantouxia"] forState:UIControlStateNormal];
@@ -222,7 +261,8 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
         [headerView.mClickedBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
 
         [headerView.mClickedBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-           
+            [[Global getInstanse] setIsAllLottery:NO];
+            weakSelf.hasHeaderBtnClicked  = YES;
             [weakSelf headerBtnActionAtIndexPath:indexPath];
         }];//所有
         return headerView;
@@ -231,13 +271,16 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
 }
 
 -(void)headerBtnActionAtIndexPath:(NSIndexPath *)indexPath{
-    UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
-    model.isOpen = !model.isOpen;
-    //刷新Section
-    [UIView performWithoutAnimation:^{
-        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
-        [self.contentCollectionView reloadSections:indexSet];
-    }];
+    
+    UGAllNextIssueListModel *selModel = self.lotteryGamesArray[indexPath.section];
+    selModel.isOpen = !selModel.isOpen;
+    
+    for (UGAllNextIssueListModel *model in self.lotteryGamesArray) {
+        if (![selModel isEqual:model]) {
+            model.isOpen = NO;
+        }
+    }
+    [self.contentCollectionView reloadData];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
