@@ -202,18 +202,29 @@
 
 // 修改APP信息
 - (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath ver:(NSString *)ver isForce:(BOOL)isForce log:(NSString *)log {
-    return [self req:@"api.php"
-                    :@{@"m":@"edit_app",
-                       @"app_id":site.uploadId, // 站点在上传后台的ID
-                       @"site_url":site.siteUrl,// 站点链接
-                       @"ios_plist":plistPath,   // plist地址
-                       @"ios_version":ver,
-                       @"ios_version_name":ver,
-                       @"ios_check_status":@"0",
-                       @"ios_update_log":log,
-                       @"ios_force_update":@(isForce).stringValue,
-                    }
-                    :true];
+    if (isForce) {
+        // 强制更新
+        return [self req:@"api.php"
+                        :@{@"m":@"edit_app",
+                           @"app_id":site.uploadId, // 站点在上传后台的ID
+                           @"site_url":site.siteUrl,// 站点链接
+                           @"ios_version":ver,
+                           @"ios_version_name":ver,
+                           @"ios_update_log":log,
+                           @"ios_force_update":@(isForce).stringValue,
+                        }
+                        :true];
+    } else {
+        // 提交审核
+        return [self req:@"api.php"
+                        :@{@"m":@"edit_app",
+                           @"app_id":site.uploadId, // 站点在上传后台的ID
+                           @"site_url":site.siteUrl,// 站点链接
+                           @"ios_plist":plistPath,   // plist地址
+                           @"ios_check_status":@"0",
+                        }
+                        :true];
+    }
 }
 
 // 提交热更新版本信息
