@@ -42,6 +42,7 @@
 #import "UGHomeViewController.h"
 #import "RedEnvelopeVCViewController.h"
 #import "UGLotteryRulesView.h"
+#import "UGgoBindViewController.h"
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -739,7 +740,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 39: {
             //39' => '修改提款密码',
-            [NavController1 pushViewController: _LoadVC_from_storyboard_(@"UGModifyPayPwdController") animated:true];
+            
+            UIViewController *vc  =  UserI.hasFundPwd ? _LoadVC_from_storyboard_(@"UGModifyPayPwdController") : [UGgoBindViewController new];   // 取款密码
+            [NavController1 pushViewController: vc animated:true];
             break;
         }
         default: {
