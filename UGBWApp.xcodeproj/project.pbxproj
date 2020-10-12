@@ -1725,6 +1725,10 @@
 		495E621F24E650A700BDC3CA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621C24E650A700BDC3CA /* FBSDKLoginKit.framework */; };
 		495E622024E650A700BDC3CA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621D24E650A700BDC3CA /* FBSDKShareKit.framework */; };
 		495E622124E650A700BDC3CA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621E24E650A700BDC3CA /* FBSDKCoreKit.framework */; };
+		CF14029B25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
+		CF14029C25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
+		CF1402A025345C060031C3E4 /* c012充值.html in Resources */ = {isa = PBXBuildFile; fileRef = CF14029F25345C050031C3E4 /* c012充值.html */; };
+		CF1402A125345C060031C3E4 /* c012充值.html in Resources */ = {isa = PBXBuildFile; fileRef = CF14029F25345C050031C3E4 /* c012充值.html */; };
 		CF166B2C24A3405A00EF8835 /* SitesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF166B2B24A3405A00EF8835 /* SitesView.m */; };
 		CF166B2F24A343BE00EF8835 /* SitesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B2E24A343BE00EF8835 /* SitesView.xib */; };
 		CF166B3324A47E8700EF8835 /* HotBranchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF166B3024A47E8600EF8835 /* HotBranchView.xib */; };
@@ -3775,6 +3779,8 @@
 		495E622424E650FC00BDC3CA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		495E622524E650FC00BDC3CA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
+		CF14029A25345BC90031C3E4 /* c012CZ.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c012CZ.jpg; sourceTree = "<group>"; };
+		CF14029F25345C050031C3E4 /* c012充值.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "c012充值.html"; sourceTree = "<group>"; };
 		CF166B2A24A3405A00EF8835 /* SitesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SitesView.h; sourceTree = "<group>"; };
 		CF166B2B24A3405A00EF8835 /* SitesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SitesView.m; sourceTree = "<group>"; };
 		CF166B2E24A343BE00EF8835 /* SitesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SitesView.xib; sourceTree = "<group>"; };
@@ -8056,6 +8062,15 @@
 			path = ug/Classes/Frameworks/facebook;
 			sourceTree = "<group>";
 		};
+		CF14029825345B490031C3E4 /* c012充值 */ = {
+			isa = PBXGroup;
+			children = (
+				CF14029F25345C050031C3E4 /* c012充值.html */,
+				CF14029A25345BC90031C3E4 /* c012CZ.jpg */,
+			);
+			path = "c012充值";
+			sourceTree = "<group>";
+		};
 		CF166B3524A47E9C00EF8835 /* 切站点、切热更新 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8470,6 +8485,7 @@
 		CFBAAC2F25246B9500C5F6F6 /* 虚拟币 */ = {
 			isa = PBXGroup;
 			children = (
+				CF14029825345B490031C3E4 /* c012充值 */,
 				CF4FB058252EFA31004C47AB /* 火币 */,
 				CF4FAFCC252C89AC004C47AB /* 充值 */,
 				CF4FAFCB252C894D004C47AB /* 在线支付 */,
@@ -9437,6 +9453,7 @@
 				031E1BE123BE812900B0F813 /* UGHKLHCLotteryController.storyboard in Resources */,
 				03F935BD24A1057C001D8A59 /* FansListCell.xib in Resources */,
 				031E1C6123BE812A00B0F813 /* UGLotteryGameCollectionViewCell.xib in Resources */,
+				CF1402A125345C060031C3E4 /* c012充值.html in Resources */,
 				031E1E2523BE812C00B0F813 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				031EF5EB23BE7B4E00B0F813 /* MyWallet.storyboard in Resources */,
 				031E1DE923BE812C00B0F813 /* UGConvertCollectionViewCell.xib in Resources */,
@@ -9553,6 +9570,7 @@
 				031EF58723BE7B4D00B0F813 /* yonghuming.svg in Resources */,
 				031E1D8323BE812B00B0F813 /* UGRealBetRecordViewController.storyboard in Resources */,
 				031EF5E423BE7B4E00B0F813 /* MySetting.storyboard in Resources */,
+				CF14029C25345BC90031C3E4 /* c012CZ.jpg in Resources */,
 				031E1E0123BE812C00B0F813 /* UGSignInScrFootView.xib in Resources */,
 				031EF5A123BE7B4D00B0F813 /* paizhao.svg in Resources */,
 				031EF5DF23BE7B4E00B0F813 /* BetListCell.xib in Resources */,
@@ -9744,6 +9762,7 @@
 				CF8E242223DDBFD80054BF0F /* Feather.ttf in Resources */,
 				031E1A0823BE812700B0F813 /* Log.storyboard in Resources */,
 				031E19F423BE812700B0F813 /* network_setting.html in Resources */,
+				CF1402A025345C060031C3E4 /* c012充值.html in Resources */,
 				CF47591D239636D200966536 /* 113.gif in Resources */,
 				CF4758D2239636D200966536 /* 45.gif in Resources */,
 				CF475925239636D200966536 /* 110.gif in Resources */,
@@ -9927,6 +9946,7 @@
 				CF4758F4239636D200966536 /* 75.gif in Resources */,
 				CF4758F1239636D200966536 /* 148.gif in Resources */,
 				031E1D8623BE812B00B0F813 /* UGBetRecordTableViewController.storyboard in Resources */,
+				CF14029B25345BC90031C3E4 /* c012CZ.jpg in Resources */,
 				CF4758E3239636D200966536 /* 63.gif in Resources */,
 				031E1C3623BE812900B0F813 /* UGLotterySubResultCollectionViewCell.xib in Resources */,
 				031E1B8A23BE812900B0F813 /* UGNoticeHeaderView.xib in Resources */,
