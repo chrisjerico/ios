@@ -255,7 +255,7 @@
     _isNoSubtitle = [@"c006" containsString:_SiteId];
     _isNoLeftButton = [@"c217" containsString:_SiteId];
     _isSecondUrl = [@"c213" containsString:_SiteId];
-    _isWebRightMenu = NO;
+
     _isHideTV = [@"c085" containsString:_SiteId];
     _isBottom = [@"c186,c225" containsString:_SiteId];
     _isChatButton = [@"c186" containsString:_SiteId];

@@ -281,17 +281,14 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 }
 
 -(void)getTableData{
-    if (APP.isWebRightMenu) {
+
         [self tableDataAction ];
-    } else {
-        [self initTitleAndImgs ];
-        [self.tableView reloadData];
-    }
-    
+
 }
 
 -(void)tableDataAction{
     
+    WeakSelf;
         NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                                  };
         [CMNetwork systemMobileRightWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -299,20 +296,30 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             [CMResult processWithResult:model success:^{
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"=====");
+
+                    NSArray <GameModel *> *tempArry = [GameModel mj_objectArrayWithKeyValuesArray : model.data];
+            
+                    if (tempArry.count) {
+                        // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
+                        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
+                        // 排序结果
+                        self.tableArray = [NSMutableArray <GameModel *> new];
+                        self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]].mutableCopy;
+                        APP.isWebRightMenu = YES;
+                        [weakSelf.bg2View setHidden:YES];
+                        // 需要在主线程执行的代码
+                        [weakSelf.tableView reloadData];
+                        
+                    }
+                    else{
+                        APP.isWebRightMenu = NO;
+                        [weakSelf.bg2View setHidden:NO];
+                        [self initTitleAndImgs ];
+                        [self.tableView reloadData];
+                    }
                     
-                    NSMutableArray <GameModel *> *tempArry = model.data;
                     
-                    // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
-                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
-                    // 排序结果
-                    self.tableArray = [NSMutableArray new];
-                    self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-                    
-                    // 需要在主线程执行的代码
-                     self.tableArray = model.data;
-                     NSLog(@"tableArray = %@",self.tableArray);
-                    [self.tableView reloadData];
+
                     
                 });
                 
@@ -595,11 +602,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [_headImageView setHidden:YES];
         [_myButton setHidden:YES];
         [_welComeLabel setHidden:NO];
-        if (APP.isWebRightMenu) {
-            [_bg2View setHidden:YES];
-        } else {
-            [_bg2View setHidden:NO];
-        }
+    
         self.bgViewHeightConstraint.constant = 180;
     }
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFx-CG-PhC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cFx-CG-PhC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -151,7 +151,7 @@
                                             <constraint firstAttribute="trailing" secondItem="ekt-7D-MeV" secondAttribute="trailing" constant="15" id="pZe-R7-8FQ"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ur-j9-AZd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ur-j9-AZd">
                                         <rect key="frame" x="40" y="346" width="334" height="44"/>
                                         <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -188,13 +188,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="hUh-Ue-etr"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="k1B-NZ-dYa" firstAttribute="top" secondItem="hUh-Ue-etr" secondAttribute="top" id="Dcc-48-np8"/>
                             <constraint firstItem="k1B-NZ-dYa" firstAttribute="leading" secondItem="hUh-Ue-etr" secondAttribute="leading" id="FI5-eH-J16"/>
                             <constraint firstItem="hUh-Ue-etr" firstAttribute="trailing" secondItem="k1B-NZ-dYa" secondAttribute="trailing" id="rFJ-WP-zdH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hUh-Ue-etr"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="大背景view"/>
                         </userDefinedRuntimeAttributes>
@@ -289,7 +289,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="新密码label"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uGP-dt-hq4">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入4位数字取款新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uGP-dt-hq4">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="IZO-hG-uDf"/>
@@ -302,6 +302,7 @@
                                                         <integer key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="新密码txt"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
@@ -337,7 +338,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="确认新密码label"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请确认新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4Aq-Hm-XeJ">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请确认4位数字取款新密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4Aq-Hm-XeJ">
                                                 <rect key="frame" x="15" y="26.5" width="384" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="LKh-gJ-vVy"/>
@@ -350,6 +351,7 @@
                                                         <integer key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="确认新密码txt"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
@@ -366,7 +368,7 @@
                                             <constraint firstItem="zo2-Sn-Epc" firstAttribute="top" secondItem="4Aq-Hm-XeJ" secondAttribute="bottom" constant="3" id="yql-lC-dvu"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzP-gt-dWR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzP-gt-dWR">
                                         <rect key="frame" x="40" y="346" width="334" height="44"/>
                                         <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -403,13 +405,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="TmT-M1-RyG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AXg-ML-GKa" firstAttribute="top" secondItem="TmT-M1-RyG" secondAttribute="top" id="Z6J-p0-g0K"/>
                             <constraint firstItem="AXg-ML-GKa" firstAttribute="leading" secondItem="TmT-M1-RyG" secondAttribute="leading" id="gCh-yG-DRj"/>
                             <constraint firstItem="TmT-M1-RyG" firstAttribute="trailing" secondItem="AXg-ML-GKa" secondAttribute="trailing" id="uY3-5h-9xD"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="TmT-M1-RyG"/>
                     </view>
                     <connections>
                         <outlet property="bgView" destination="fba-en-uVk" id="z89-51-Jbk"/>
@@ -449,7 +451,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWU-h0-H8k">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="44"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osP-k1-1o3">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osP-k1-1o3">
                                                         <rect key="frame" x="0.0" y="0.0" width="128" height="44"/>
                                                         <connections>
                                                             <action selector="countryClick:" destination="dv7-YV-xA8" eventType="touchUpInside" id="ilI-pX-Pez"/>
@@ -508,7 +510,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYh-b8-sQY">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYh-b8-sQY">
                                                         <rect key="frame" x="0.0" y="0.0" width="128" height="43.5"/>
                                                         <connections>
                                                             <action selector="provinceClick:" destination="dv7-YV-xA8" eventType="touchUpInside" id="ffk-tI-87g"/>
@@ -556,7 +558,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ad-V3-EDD">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ad-V3-EDD">
                                                         <rect key="frame" x="0.0" y="0.0" width="128" height="43.5"/>
                                                         <connections>
                                                             <action selector="cityClick:" destination="dv7-YV-xA8" eventType="touchUpInside" id="UqY-E4-D5Q"/>
@@ -611,7 +613,7 @@
                                             <constraint firstAttribute="height" constant="44" id="xsE-a8-y6r"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsl-Ro-Ajm">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsl-Ro-Ajm">
                                         <rect key="frame" x="40" y="236" width="334" height="44"/>
                                         <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -666,13 +668,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="5lh-sn-4qW"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5lh-sn-4qW" firstAttribute="trailing" secondItem="kYo-fs-29v" secondAttribute="trailing" id="Qd4-8Y-KDx"/>
                             <constraint firstItem="kYo-fs-29v" firstAttribute="top" secondItem="5lh-sn-4qW" secondAttribute="top" id="ZYv-XO-ZGd"/>
                             <constraint firstItem="kYo-fs-29v" firstAttribute="leading" secondItem="5lh-sn-4qW" secondAttribute="leading" id="p0s-Me-m0r"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="5lh-sn-4qW"/>
                     </view>
                     <connections>
                         <outlet property="addressListView" destination="ggP-av-EAF" id="rNo-F6-5gr"/>
