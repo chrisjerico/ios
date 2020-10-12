@@ -160,37 +160,25 @@ static LogVC *_logVC = nil;
 #pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"获取这个字符串中的所有xxx的所在的inde"];
+        [titles addObject:@"变红"];
         [titles addObject:@"汇率"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
         [ac setActionAtTitle:@"汇率" handler:^(UIAlertAction *aa) {
-            float hl = 1.0 / 0.1473;
-            NSString *str= [NSString stringWithFormat:@"%f", hl];
-            NSLog(@"str为%@",str);
-            float shl = [str floatValue];
-            NSLog(@"shl为%lf",shl);
-            
-            float ff =   (shl * 100 + 0.5) / 100;
-            
-            NSLog(@"第1种方法：四舍五入为%lf",ff);
-            ///=====================
-            NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:2 raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
-            NSDecimalNumber *numResult1 = [NSDecimalNumber decimalNumberWithString:str];
-            NSLog(@" 第2种方法：%@", [numResult1 decimalNumberByRoundingAccordingToBehavior:behavior]);
-    
-            
-            
-
 
             
         }];
         
-        [ac setActionAtTitle:@"获取这个字符串中的所有xxx的所在的inde" handler:^(UIAlertAction *aa) {
-            NSString *str = @"66690-1213-678687-1212312-12312-66690-12113-6786871-12123127-123129";
-           NSMutableArray *arrayRanges = [CMLabelCommon getRangeStr:str findText:@"-"];
+        [ac setActionAtTitle:@"变红" handler:^(UIAlertAction *aa) {
+            NSString *str = @"22-1213-123-1212312";
+          
+            NSArray  *array = [str componentsSeparatedByString:@"-"];//--分隔符
             
-            NSLog(@"arrayRanges = %@",arrayRanges);
+            for (NSString *mStr in array) {
+                
+                
+            }
+           
         }];
         
         

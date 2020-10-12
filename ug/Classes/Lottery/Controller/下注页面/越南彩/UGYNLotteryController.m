@@ -523,6 +523,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.inputView.code = Tip_十;
     [self  setDefaultData:@"PIHAO2"];
     [self  setDefaultOddsData:@"98"];
+    [[Global getInstanse] setSelCode:@"PIHAO2"];
     self.segmentIndex = 0;
     //选择号码放到最前面
     [self.yncontentView bringSubviewToFront:self.betCollectionView];
@@ -577,6 +578,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         UGGameBetModel *betModel = obj.list[self.segmentIndex];
         NSString * odds =  betModel.odds;
         NSLog(@"code = %@",betModel.code);
+        [[Global getInstanse] setSelCode:betModel.code];
         [weakSelf setDefaultOddsData:odds];
     };
     
@@ -3183,7 +3185,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         UGGameBetModel *betModel = obj.list[self.segmentIndex];
         NSString * odds =  betModel.odds;
         NSLog(@"code = %@",betModel.code);
-        
+        [[Global getInstanse] setSelCode:betModel.code];
         [self setDefaultOddsData:odds];
     }
     

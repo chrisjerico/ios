@@ -107,7 +107,7 @@
         [CMLabelCommon messageAction:subLabel(@"四等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
         [CMLabelCommon messageAction:subLabel(@"五等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
         [CMLabelCommon messageAction:subLabel(@"六等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-        [CMLabelCommon messageAction:subLabel(@"七等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
+        [CMLabelCommon messageAction:subLabel(@"七等奖label") labStr:@"" separation:@"-" length:4 andMarkColor:[UIColor redColor]];
         [CMLabelCommon messageAction:subLabel(@"八等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
 
     UIWindow* window = UIApplication.sharedApplication.keyWindow;

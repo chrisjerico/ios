@@ -119,6 +119,12 @@
     if (!str.length) {
         str = theLab.text;
     }
+    NSArray  *array = [str componentsSeparatedByString:separation];//--分隔符
+    NSString *arrStr0 = [array objectAtIndex:0];
+    if (arrStr0.length < length) {
+        return;
+    }
+  
     NSMutableArray *arrayRanges = [self getRangeStr:str findText:separation];
     NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:str];
     for (int i = 0; i<arrayRanges.count; i++) {
