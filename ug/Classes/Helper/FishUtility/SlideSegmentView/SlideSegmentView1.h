@@ -19,6 +19,7 @@
 @property (nonatomic, strong) void (^updateCellForItemAtIndex)(SlideSegmentBar1 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected); // 配置Cell样式
 
 @property (nonatomic, strong) CGFloat (^widthForItemAtIndex)(NSUInteger idx);
+- (void)cellWidthAdaptiveTitleWithFontSize:(CGFloat)fontSize;                       /**<   根据标题自适应Cell宽度 */
 - (void)cellWidthAdaptiveTitleWithFontSize:(CGFloat)fontSize space:(CGFloat)space;  /**<   根据标题自适应Cell宽度 */
 
 - (void)reloadData; /**<    刷新数据 */

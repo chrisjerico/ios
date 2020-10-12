@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLk-sl-jG7" customClass="IBButton">
-                                <rect key="frame" x="16" y="306" width="343" height="48"/>
+                                <rect key="frame" x="16" y="386" width="343" height="48"/>
                                 <color key="backgroundColor" red="0.74901960779999999" green="0.32549019610000002" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="VEh-Rg-Xz2"/>
@@ -39,7 +39,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ccR-Ye-TO8">
-                                <rect key="frame" x="16" y="60" width="343" height="222"/>
+                                <rect key="frame" x="16" y="60" width="343" height="302"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0V-1c-axh" customClass="IBView">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="48"/>
@@ -151,6 +151,44 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="取款密码TextField"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAt-0P-5qX">
+                                        <rect key="frame" x="0.0" y="238" width="343" height="64"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWt-I7-YOY">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="64"/>
+                                                <connections>
+                                                    <action selector="onBindWithdrawalAcctBtnClick:" destination="nbC-QE-gi7" eventType="touchUpInside" id="K2T-3p-2be"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1nj-4l-Wf5">
+                                                <rect key="frame" x="105.66666666666669" y="23.666666666666686" width="132" height="17"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="添加" translatesAutoresizingMaskIntoConstraints="NO" id="d0D-va-TML">
+                                                        <rect key="frame" x="0.0" y="0.33333333333331439" width="16" height="16"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定支付宝账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5t-JL-4w3">
+                                                        <rect key="frame" x="31.999999999999986" y="0.0" width="100.00000000000001" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="绑定账户Label"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="yWt-I7-YOY" firstAttribute="leading" secondItem="MAt-0P-5qX" secondAttribute="leading" id="41G-LO-Jol"/>
+                                            <constraint firstAttribute="bottom" secondItem="yWt-I7-YOY" secondAttribute="bottom" id="Cyw-th-32G"/>
+                                            <constraint firstAttribute="trailing" secondItem="yWt-I7-YOY" secondAttribute="trailing" id="HYV-f6-UnN"/>
+                                            <constraint firstItem="1nj-4l-Wf5" firstAttribute="centerY" secondItem="MAt-0P-5qX" secondAttribute="centerY" id="hKe-mB-AUu"/>
+                                            <constraint firstItem="1nj-4l-Wf5" firstAttribute="centerX" secondItem="MAt-0P-5qX" secondAttribute="centerX" id="pQU-at-Plh"/>
+                                            <constraint firstAttribute="height" constant="64" id="tun-cS-p68"/>
+                                            <constraint firstItem="yWt-I7-YOY" firstAttribute="top" secondItem="MAt-0P-5qX" secondAttribute="top" id="vvP-bD-7CD"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="xt4-eo-Gwe" firstAttribute="height" secondItem="z0V-1c-axh" secondAttribute="height" id="URz-Tg-Cvp"/>
@@ -158,7 +196,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9k-yR-69H">
-                                <rect key="frame" x="16" y="364" width="115" height="29"/>
+                                <rect key="frame" x="16" y="444" width="115" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="切换到利息宝取款"/>
                                 <connections>
@@ -233,8 +271,14 @@
                             <constraint firstItem="ccR-Ye-TO8" firstAttribute="top" secondItem="exV-d0-h8L" secondAttribute="top" constant="16" id="l5P-7T-qPt"/>
                             <constraint firstItem="EG3-qb-Gfa" firstAttribute="leading" secondItem="exV-d0-h8L" secondAttribute="leading" id="rvc-Fn-oqu"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="EG3-qb-Gfa"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="bindAcctView" destination="MAt-0P-5qX" id="xrb-Y8-nwj"/>
                         <outlet property="rateLabel" destination="75P-2F-tNG" id="prp-uH-aGl"/>
                         <outlet property="tipsView1" destination="EG3-qb-Gfa" id="Fra-aR-lyP"/>
                     </connections>
@@ -480,6 +524,7 @@
         <image name="arrow_down" width="16" height="16"/>
         <image name="arrow_up" width="16" height="16"/>
         <image name="yinhangka" width="64" height="43"/>
+        <image name="添加" width="16" height="16"/>
         <image name="空空如也" width="76" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

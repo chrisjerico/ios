@@ -8,6 +8,8 @@
 
 #import "BindWithdrawalAccountVC.h"
 #import "YBPopupMenu.h"
+#import "WithdrawalAcctModel.h"
+#import "UGbankModel.h"
 
 @interface BindWithdrawalAccountVC ()<YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UIStackView *bankStackView;    /**<   银行卡StackView */
@@ -15,15 +17,16 @@
 @property (weak, nonatomic) IBOutlet UIStackView *virtualStackView; /**<   虚拟币StackView */
 @property (weak, nonatomic) IBOutlet UIStackView *wechatStackView;  /**<   微信StackView */
 
-@property (nonatomic, strong) NSArray <UGbankModel *>*bankList;
-@property (nonatomic, strong) NSArray <UGbankModel *>*virtualList;
-@property (nonatomic, strong) NSArray <NSString *>*blockchainList;
-@property (nonatomic, strong) UGbankModel *selectedBank;
-@property (nonatomic, strong) UGbankModel *selectedVirtual;
-@property (nonatomic, strong) UGbankModel *selectedWeChat;
-@property (nonatomic, strong) UGbankModel *selectedAlipay;
-@property (nonatomic, strong) NSString *selectedBlockchain;
-@property (nonatomic, assign) UGWithdrawalType selectedWT;
+@property (nonatomic, strong) NSArray <WithdrawalTypeModel *>*typeList; /**<   我的提款账户列表，用于判断是否还能再添加账户 */
+@property (nonatomic, strong) NSArray <UGbankModel *>*bankList;     /**<   银行渠道列表 */
+@property (nonatomic, strong) NSArray <UGbankModel *>*virtualList;  /**<   虚拟币渠道列表 */
+@property (nonatomic, strong) NSArray <NSString *>*blockchainList;  /**<   当前虚拟币渠道的链名称列表 */
+@property (nonatomic, strong) UGbankModel *selectedBank;            /**<   选中的银行 */
+@property (nonatomic, strong) UGbankModel *selectedWeChat;          /**<   选中的微信 */
+@property (nonatomic, strong) UGbankModel *selectedAlipay;          /**<   选中的支付宝 */
+@property (nonatomic, strong) UGbankModel *selectedVirtual;         /**<   选中的虚拟币 */
+@property (nonatomic, strong) NSString *selectedBlockchain;         /**<   选中的链名称 */
+@property (nonatomic, assign) UGWithdrawalType selectedWT;          /**<   选中的提款渠道类型 */
 @end
 
 @implementation BindWithdrawalAccountVC
@@ -36,7 +39,7 @@
     subTextField(@"微信绑定手机号TextField").hidden = true;
     subButton(@"选择区块链Button").superview.hidden = true;
     subButton(@"确定Button").backgroundColor = Skin1.navBarBgColor;
-    _selectedWT = UGWithdrawalTypeBankCard;
+    _bankStackView.hidden = true;
     _wechatStackView.hidden = true;
     _alipayStackView.hidden = true;
     _virtualStackView.hidden = true;
@@ -46,7 +49,26 @@
 
 // 选择提款类型
 - (IBAction)onSelectWithdrawalTypeBtnClick:(UIButton *)sender {
-    NSArray *titles = @[@"银行卡", @"支付宝", @"微信", @"虚拟币"];
+    if (!_typeList) {
+        [SVProgressHUD show];
+        __weakSelf_(__self);
+        [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm) {
+            [SVProgressHUD dismiss];
+            if (!sm.error) {
+                NSMutableArray *temp = @[].mutableCopy;
+                for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                    WithdrawalTypeModel *wam = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
+                    if (wam.isshow && wam.canAdd) {
+                        [temp addObject:wam];
+                    }
+                }
+                __self.typeList = [temp copy];
+                [__self onSelectWithdrawalTypeBtnClick:sender];
+            }
+        };
+        return;
+    }
+    NSArray *titles = [_typeList valueForKey:@"name"];
     YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:titles icons:nil menuWidth:CGSizeMake(300, 150) delegate:self];
     popView.tagString = @"选择提款类型";
     popView.fontSize = 15;
@@ -161,14 +183,8 @@
     if (index < 0) return;
     FastSubViewCode(self.view);
     if ([ybPopupMenu.tagString isEqualToString:@"选择提款类型"]) {
-        NSDictionary *dict = @{
-            @"银行卡":@(UGWithdrawalTypeBankCard),
-            @"支付宝":@(UGWithdrawalTypeAlipay),
-            @"微信":@(UGWithdrawalTypeWeChat),
-            @"虚拟币":@(UGWithdrawalTypeVirtual),
-        };
-        NSString *key = @[@"银行卡", @"支付宝", @"微信", @"虚拟币"][index];
-        UGWithdrawalType wt = [dict[key] intValue];
+        NSString *key = _typeList[index].name;
+        UGWithdrawalType wt = _typeList[index].type;
         
         __weakSelf_(__self);
         void (^refreshUI)(void) = ^{

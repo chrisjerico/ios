@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *category;   /**<   分类 */
 @property (nonatomic, strong) NSString *remark;     /**<   备注 */
 @property (nonatomic, strong) NSString *bankCard;
-@property (nonatomic, strong) NSString *bankAccount;
+@property (nonatomic, strong) NSString *bankAccount;/**<   持卡人 */
 
 // 为虚拟币提款功能新增字段
 @property (nonatomic, assign) UGWithdrawalType type;/**<   提款类型 */

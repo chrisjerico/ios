@@ -60,6 +60,10 @@
     _underlineView.backgroundColor = _underlineColor = underlineColor;
 }
 
+- (void)cellWidthAdaptiveTitleWithFontSize:(CGFloat)fontSize {
+    [self cellWidthAdaptiveTitleWithFontSize:fontSize space:0];
+}
+
 - (void)cellWidthAdaptiveTitleWithFontSize:(CGFloat)fontSize space:(CGFloat)space {
     _fontSize = fontSize;
     _space = space;
@@ -107,9 +111,16 @@
     if (_fontSize < 1 || !_titles.count) {
         return CGSizeMake((self.width-_insetVertical*2) / _numberOfItems, self.height);
     }
-    
+    CGFloat space = _space;
+    if (_space == 0) {
+        CGFloat totalTitleW = 0;
+        for (NSString *s in _titles) {
+            totalTitleW += [s widthForFont:[UIFont systemFontOfSize:_fontSize]];
+        }
+        space = (self.width - _insetVertical*2 - totalTitleW) / _titles.count;
+    }
     CGFloat titleW = [_titles[indexPath.item] widthForFont:[UIFont systemFontOfSize:_fontSize]];
-    return CGSizeMake(titleW + _space + 2, self.height);
+    return CGSizeMake(titleW + space + 2, self.height);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

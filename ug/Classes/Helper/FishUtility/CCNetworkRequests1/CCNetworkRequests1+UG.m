@@ -60,10 +60,9 @@
 }
 
 // 我的提款账户列表
-- (CCSessionModel *)user_bankCard:(UGWithdrawalType)type {
-    NSString *t = type ? @(type).stringValue : nil;
+- (CCSessionModel *)user_bankCard {
     return [self req:@"wjapp/api.php?c=user&a=bankCard"
-                    :@{@"type":t}
+                    :nil
                     :false];
 }
 
@@ -85,12 +84,12 @@
                     :true];
 }
 
-- (CCSessionModel *)withdraw_apply:(NSString *)wid amount:(NSString *)amount pwd:(NSString *)pwd {
+- (CCSessionModel *)withdraw_apply:(NSString *)wid amount:(NSString *)amount virtualAmount:(NSString *)vAmount pwd:(NSString *)pwd {
     return [self req:@"wjapp/api.php?c=withdraw&a=apply"
-                    :@{
-                        @"id":wid,
-                        @"money":amount,
-                        @"pwd":[UGEncryptUtil md5:pwd],
+                    :@{@"id":wid,
+                       @"money":amount,
+                       @"virtual_amount":vAmount,
+                       @"pwd":[UGEncryptUtil md5:pwd],
                     }
                     :true];
 }

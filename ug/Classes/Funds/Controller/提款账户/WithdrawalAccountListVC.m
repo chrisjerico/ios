@@ -19,18 +19,19 @@
 @property (weak, nonatomic) IBOutlet UIView *tipsView1; /**<   联系客服 */
 @property (weak, nonatomic) IBOutlet UIView *tipsView2; /**<   完善真实姓名 */
 
-@property (nonatomic, strong) SlideSegmentView1 *ssv1;
-@property (nonatomic, strong) NSArray <NSDictionary *>*dataArrayList;
+@property (nonatomic, strong) UIBarButtonItem *navRightButton;  /**<   导航条按钮 */
+@property (nonatomic, strong) SlideSegmentView1 *ssv1;          /**<   分页布局 */
+@property (nonatomic, strong) NSArray <WithdrawalTypeModel *>*typeList; /**<   数据 */
 @end
 
 @implementation WithdrawalAccountListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    __weakSelf_(__self);
     _tipsView1.hidden = true;
     _tipsView2.hidden = UserI.fullName.stringByTrim.length;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:({
+    __weakSelf_(__self);
+    _navRightButton = [[UIBarButtonItem alloc] initWithCustomView:({
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         [btn setTitle:@"新增" forState:UIControlStateNormal];
@@ -50,19 +51,55 @@
     FastSubViewCode(self.view);
     subButton(@"去在线客服Button").backgroundColor = Skin1.navBarBgColor;
     subButton(@"提交真实姓名Button").backgroundColor = Skin1.navBarBgColor;
-    
-    [self setupSSV];
+    [SVProgressHUD show];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [((UITableView *)_ssv1.contentViews[_ssv1.selectedIndex]).mj_header beginRefreshing];
+    
+    __weakSelf_(__self);
+    [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm) {
+        [SVProgressHUD dismiss];
+        if (!sm.error) {
+            NSMutableArray *temp = @[].mutableCopy;
+            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
+                if (wtm.isshow) {
+                    for (WithdrawalAcctModel *wam in wtm.data) {
+                        wam.name = wtm.name;
+                    }
+                    [temp addObject:wtm];
+                }
+            }
+            
+            WithdrawalTypeModel *wtm = [WithdrawalTypeModel new];
+            wtm.name = @"全部";
+            wtm.isshow = true;
+            NSMutableArray <WithdrawalAcctModel *>*data = @[].mutableCopy;
+            for (WithdrawalTypeModel *w in temp) {
+                if (w.canAdd) {
+                    wtm.canAdd = true;
+                }
+                [data addObjectsFromArray:w.data];
+            }
+            wtm.data = [data copy];
+            [temp insertObject:wtm atIndex:0];
+            __self.typeList = [temp copy];
+            [__self setupSSV];
+        }
+    };
 }
 
 
 - (void)setupSSV {
+    if (_ssv1) {
+        [(UITableView *)_ssv1.contentViews[_ssv1.selectedIndex] reloadData];
+        self.navigationItem.rightBarButtonItem = _typeList[_ssv1.selectedIndex].canAdd ? _navRightButton  : nil;
+        return;
+    }
+    
     __weakSelf_(__self);
-    NSArray *titles = @[@"全部", @"银行卡", @"支付宝", @"微信", @"虚拟币", ];
+    NSArray *titles = [_typeList valueForKey:@"name"];
     NSMutableArray *tvs = @[].mutableCopy;
     for (NSString *title in titles) {
         UITableView *tv = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 100, 200) style:UITableViewStylePlain];
@@ -73,36 +110,6 @@
         tv.separatorStyle = UITableViewCellSeparatorStyleNone;
         tv.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 8)];
         tv.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 8)];
-        NSDictionary *dict = @{
-            @"全部":@(UGWithdrawalTypeAll),
-            @"银行卡":@(UGWithdrawalTypeBankCard),
-            @"支付宝":@(UGWithdrawalTypeAlipay),
-            @"微信":@(UGWithdrawalTypeWeChat),
-            @"虚拟币":@(UGWithdrawalTypeVirtual),
-        };
-        UGWithdrawalType wt = [dict[title] intValue];
-        [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
-            return [NetworkManager1 user_bankCard:wt];
-        } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            if (!sm.error) {
-                __self.dataArrayList = sm.responseObject[@"data"];
-                for (int i=0; i<titles.count; i++) {
-                    NSString *title = titles[i];
-                    UITableView *tv = __self.ssv1.contentViews[i];
-                    [tv.dataArray removeAllObjects];
-                    
-                    NSArray *dataArray = [dict[title] intValue] == UGWithdrawalTypeAll ? __self.dataArrayList : [__self.dataArrayList objectsWithValue:dict[title] keyPath:@"type"];
-                    for (NSDictionary *subD1 in dataArray) {
-                        for (NSDictionary *subD2 in subD1[@"data"]) {
-                            WithdrawalAcctModel *wam = [WithdrawalAcctModel mj_objectWithKeyValues:subD2];
-                            [wam setValuesWithDictionary:subD1];
-                            [tv.dataArray addObject:wam];
-                        }
-                    }
-                }
-            }
-            return nil;
-        }];
         [tvs addObject:tv];
     }
     
@@ -142,8 +149,9 @@
                 make.centerX.equalTo(tv.noDataTipsLabel);
             }];
         }
-        tv.tableFooterView = tv.dataArray.count ? (tv.footerView ? : [UIView new]) : tv.noDataTipsLabel;
+        tv.tableFooterView = __self.typeList[idx].data.count ? (tv.footerView ? : [UIView new]) : tv.noDataTipsLabel;
         [tv reloadData];
+        __self.navigationItem.rightBarButtonItem = __self.typeList[idx].canAdd ? __self.navRightButton  : nil;
     };
     
     [self.view insertSubview:ssv1 atIndex:0];
@@ -154,6 +162,7 @@
         make.width.mas_equalTo(APP.Width);
     }];
 }
+
 
 #pragma mark - IBAction
 
@@ -199,7 +208,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return tableView.dataArray.count;
+    return _typeList[[_ssv1.contentViews indexOfObject:tableView]].data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,7 +224,7 @@
             @"2":@"支付宝",
         };
     });
-    WithdrawalAcctModel *wam = tableView.dataArray[indexPath.row];
+    WithdrawalAcctModel *wam = _typeList[[_ssv1.contentViews indexOfObject:tableView]].data[indexPath.row];
     FastSubViewCode(cell);
     subImageView(@"账户类型ImageView").image = [UIImage imageNamed:imgDict[@(wam.type).stringValue]];
     subLabel(@"账户类型Label").text = wam.name;

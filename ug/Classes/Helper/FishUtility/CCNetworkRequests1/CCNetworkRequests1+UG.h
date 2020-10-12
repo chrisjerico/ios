@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)system_bankList:(UGWithdrawalType)type;
 
 // 我的提款账户列表
-- (CCSessionModel *)user_bankCard:(UGWithdrawalType)type;
+- (CCSessionModel *)user_bankCard;
 
 // 绑定提款账户
 - (CCSessionModel *)user_bindBank:(UGWithdrawalType)type wid:(NSString *)wid addr:(NSString *)addr acct:(NSString *)acct;
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)user_profileName:(NSString *)realname;
 
 // 提款申请
-- (CCSessionModel *)withdraw_apply:(NSString *)wid amount:(NSString *)amount pwd:(NSString *)pwd;
+- (CCSessionModel *)withdraw_apply:(NSString *)wid amount:(NSString *)amount virtualAmount:(NSString *)vAmount pwd:(NSString *)pwd;
 
 @end
 

@@ -8,6 +8,32 @@
 
 #import "WithdrawalAcctModel.h"
 
+
+@implementation WithdrawalTypeModel
+
+- (void)setData:(NSArray<WithdrawalAcctModel *> *)data {
+    if ([data.firstObject isKindOfClass:[NSDictionary class]]) {
+        NSMutableArray *temp = @[].mutableCopy;
+        for (NSDictionary *dict in data) {
+            [temp addObject:[WithdrawalAcctModel mj_objectWithKeyValues:dict]];
+        }
+        _data = [temp copy];
+    } else {
+        _data = data;
+    }
+}
+
+- (BOOL)canAdd {
+    if (_canAdd) return _canAdd;
+    if (_ismore)
+        return _data.count < 10;
+    else
+        return _data.count < 1;
+}
+
+@end
+
+
 @implementation WithdrawalAcctModel
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName {

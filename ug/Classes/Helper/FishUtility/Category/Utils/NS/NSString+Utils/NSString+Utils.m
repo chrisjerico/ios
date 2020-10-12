@@ -246,6 +246,10 @@
     return [temp stringByReplacingOccurrencesOfString:@"'" withString:@""];
 }
 
+- (NSString *)ciphertext {
+    return [self ciphertextWithHead:3 tail:2];
+}
+
 - (UIImage *)qrCodeWithWidth:(CGFloat)w {
     return [self qrCodeWithWidth:w color:[UIColor blackColor]];
 }
@@ -362,6 +366,13 @@
         current += h > size.height ? -step : step;
     }
 }
+
+- (NSString *)ciphertextWithHead:(int)head tail:(int)tail {
+    if (!self.stringByTrim.length) return nil;
+    NSInteger len = self.length;
+    return _NSString(@"%@****%@", [self substringToIndex:MIN(len, head)], [self substringFromIndex:len-MIN(len, tail)]);
+}
+
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0) {
     if (self.length > idx)
