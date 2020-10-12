@@ -22,11 +22,10 @@
 
     self.mBtn.clipsToBounds = false;
     self.mBtn.layer.cornerRadius = 5;
-    self.mBtn.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.mBtn.layer.shadowOffset = CGSizeMake(0, 1);
-    self.mBtn.layer.shadowRadius = 2;
-    self.mBtn.layer.shadowOpacity = 0.1;
-
+    self.mBtn.layer.borderWidth = 1;
+    self.mBtn.layer.borderColor = Skin1.navBarBgColor.CGColor;
+    self.mBtn.layer.masksToBounds = YES;
+    
     self.clipsToBounds = false;
     self.layer.cornerRadius = 10;
     self.layer.shadowColor = [UIColor blackColor].CGColor;

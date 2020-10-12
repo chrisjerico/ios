@@ -161,6 +161,30 @@
 }
 
 
+- (void)getLotteryGroupGamesData {
+
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
+       
+        [CMResult processWithResult:model success:^{
+            NSArray * lotteryGamesArray =  model.data;
+            
+            int count = (int)lotteryGamesArray.count;
+            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
+            
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
+                APP.isNewLotteryView = NO;
+            } else {
+                APP.isNewLotteryView = YES;
+            }
+          
+
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 
 -(void)initMyLaunchPageVC{
     
@@ -175,6 +199,7 @@
             [self loadLaunchImage];
             [self loadReactNative];
             [self loadSysConf];
+            [self getLotteryGroupGamesData];
 //            [self loadLanguage];
         }
         
