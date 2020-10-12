@@ -573,8 +573,10 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *obj = model.list[0];
+        
         UGGameBetModel *betModel = obj.list[self.segmentIndex];
         NSString * odds =  betModel.odds;
+        NSLog(@"code = %@",betModel.code);
         [weakSelf setDefaultOddsData:odds];
     };
     
@@ -3180,6 +3182,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         UGGameBetModel *betModel = obj.list[self.segmentIndex];
         NSString * odds =  betModel.odds;
+        NSLog(@"code = %@",betModel.code);
         
         [self setDefaultOddsData:odds];
     }
