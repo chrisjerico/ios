@@ -714,14 +714,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		UGGameplaySectionModel *obj = model.list[self.segmentIndex];
 		UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
 		UGGameBetModel *game = type.list[indexPath.row];
-		if ([self isRepeatNumber:game.name]) {
-			[SVProgressHUD showInfoWithStatus:@"不允许选择相同的选项"];
-			return;
-		}
-
+	
 		if (!(game.gameEnable && game.enable)) {
 			return;
 		}
+		if (!game.select) {
+			if ([self isRepeatNumber:game.name]) {
+				[SVProgressHUD showInfoWithStatus:@"不允许选择相同的选项"];
+				return;
+			}
+		}
+	
+
 		NSInteger typeCount = 0;
 		int maxIndexOfSelect = 0;
 		for (UGGameBetModel *game in type.list) {
@@ -1163,7 +1167,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 				if (!bet.select) {
 					continue;
 				}
-				return numberString == bet.name;
+				if (numberString == bet.name) {
+					return true;
+				}
 			}
 		}
 	}
