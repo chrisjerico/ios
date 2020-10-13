@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftyJSON
+import RxSwift
+import RxRelay
 
 class ProfileEditVC: BaseVC {
 	
@@ -59,6 +61,44 @@ class ProfileEditVC: BaseVC {
 		
 	}
 	
+	@IBAction func avatarButtonAction(_ sender: Any) {
+		var seletedImage: UIImage?
+		let takePictureButton = UIAlertController.AlertButton.default("拍摄")
+		let choseFromAlumButon = UIAlertController.AlertButton.default("从相册中选择")
+		let cancelButton = UIAlertController.AlertButton.cancel("取消")
+		UIAlertController.rx.show(in: self, title: nil, message: nil, buttons: [takePictureButton, choseFromAlumButon, cancelButton], preferredStyle: .actionSheet)
+			.asObservable().filter { $0 != 2 }.flatMap { index in
+				return UIImagePickerController.rx.createWithParent(self) { picker in
+					picker.sourceType = index == 0 ? .camera : .photoLibrary
+					picker.allowsEditing = false
+				}
+		}.flatMap {
+			$0.rx.didFinishPickingMediaWithInfo
+		}
+		.take(1)
+			.map { info -> UIImage? in
+			let image = info[.originalImage] as? UIImage
+			seletedImage = image
+			return image
+		}
+		.filterNil()
+			.flatMap{ FileUploadApi.rx.request(.avatar(data: $0)).mapBool()}.subscribe { [weak self] (success) in
+				if success, let image = seletedImage {
+					Alert.showTip("头像更改成功")
+					self?.avatarButton.setImage(image, for: .normal)
+				}
+			} onError: { (error) in
+				Alert.showTip(error.localizedDescription)
+			}.disposed(by: disposeBag)
+
+			
+			
+//		.subscribe(onNext: { [weak self] image in
+//			guard let weakSelf = self else { return }
+////			weakSelf.items.accept([image] + weakSelf.items.value)
+//		}).disposed(by: disposeBag)
+//
+	}
 	
 	
 }
