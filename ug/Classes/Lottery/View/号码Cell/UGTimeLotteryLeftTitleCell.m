@@ -90,8 +90,8 @@
     if (APP.isAllCellStyle) {
         self.backgroundColor = selected ?[Skin1.navBarBgColor colorWithAlphaComponent:0.95]:[UIColor clearColor];
         self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
-        self.layer.borderWidth = 0;
-        self.bottomLine.hidden = YES;
+//        self.layer.borderWidth = 0;
+//        self.bottomLine.hidden = YES;
     }
 }
 

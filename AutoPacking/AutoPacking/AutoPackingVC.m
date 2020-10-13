@@ -57,8 +57,8 @@
 
                 
 
-                NSString *ids = @"test103";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
-                NSString *branch = @"fish/dev1";// 分支名
+                NSString *ids = @"c126";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+                NSString *branch = @"dev_master";// 分支名
                 BOOL isForce = false;      // 是否强制更新
                 NSString *updateLog = @""; // 更新日志，给用户看的
                 BOOL willUpload = 1;        // 打包后是否上传审核
