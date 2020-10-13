@@ -263,6 +263,7 @@
     _isNoCry = [@"c018" containsString:_SiteId];
     _isNoOnLineDoc = NO;
     _isHBDoc = [@"c012" containsString:_SiteId];
+    _isAllCellStyle = [@"c126" containsString:_SiteId];
     
 }
 

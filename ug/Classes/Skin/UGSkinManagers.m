@@ -1480,7 +1480,7 @@ static UGSkinManagers *__initSkin1 = nil;
     if (sm) {
         return sm;
     } else {
-        sm = [UGSkinManagers allSkin][@"天空蓝"];
+        sm = [UGSkinManagers allSkin][@"1"];
         return sm;
     }
 
