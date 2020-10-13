@@ -714,6 +714,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		UGGameplaySectionModel *obj = model.list[self.segmentIndex];
 		UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
 		UGGameBetModel *game = type.list[indexPath.row];
+		if ([self isRepeatNumber:game.name]) {
+			[SVProgressHUD showInfoWithStatus:@"不允许选择相同的选项"];
+			return;
+		}
+
 		if (!(game.gameEnable && game.enable)) {
 			return;
 		}
@@ -1147,6 +1152,22 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		
 	}
 
+}
+
+-(BOOL)isRepeatNumber:(NSString *) numberString{
+	UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+	UGGameplaySectionModel * group = model.list[self.segmentIndex];
+	if ([@"官方玩法" isEqualToString:model.name] && self.ezdwSegmentIndex == 1 && [@"猜前二、猜前三" containsString:group.alias]) {
+		for (UGGameplaySectionModel * section in group.ezdwlist) {
+			for (UGGameBetModel * bet in section.list) {
+				if (!bet.select) {
+					continue;
+				}
+				return numberString == bet.name;
+			}
+		}
+	}
+	return false;
 }
 -(void)gfwfBetActionMode:(UGGameplayModel *)model array :(NSMutableArray *__strong *) array selCode :(NSString *__strong *)selCode {
 	*selCode = model.code;
