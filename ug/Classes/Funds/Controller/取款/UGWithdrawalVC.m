@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) NSMutableArray *acctList; /**<   账户列表（元素可能是WithdrawalAcctModel、WithdrawalTypeModel，要判断元素类型） */
 @property (nonatomic, strong) NSMutableArray *titles;   /**<   标题列表 */
+@property (nonatomic, strong) NSMutableArray <UGbankModel *>*virtualList;      /**<   提款渠道列表，只用到里面的虚拟币汇率 */
 @property (nonatomic, strong) WithdrawalAcctModel *selectedWam; /**<   选中的账户 */
 @property (nonatomic, strong) NSString *virtualAmount;          /**<   虚拟币金额 */
 @end
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     _acctList = @[].mutableCopy;
     _titles = @[].mutableCopy;
+    _virtualList = @[].mutableCopy;
     
     FastSubViewCode(self.view);
     subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[SysConf.minWithdrawMoney removeFloatAllZero],[SysConf.maxWithdrawMoney removeFloatAllZero]];
@@ -67,35 +69,47 @@
         [subButton(@"提款账号Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
     }
     
-    NSMutableArray <UGbankModel *>*virtualList = @[].mutableCopy;
-    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm) {
-        sm.noShowErrorHUD = true;
-        if (!sm.error) {
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
-                [virtualList addObject:[UGbankModel mj_objectWithKeyValues:dict]];
-            }
-        }
-    };
-    
     __weakSelf_(__self);
     [self xw_addNotificationForName:UITextFieldTextDidChangeNotification block:^(NSNotification * _Nonnull noti) {
-        CGFloat rate = 0;
-        for (UGbankModel *bm in virtualList) {
-            if ([bm.bankId isEqualToString:__self.selectedWam.bankId])
-                rate = bm.currencyRate.doubleValue;
+        CGFloat currencyRate = 0;
+        CGFloat rateOffset = 0;
+        for (UGbankModel *bm in __self.virtualList) {
+            if ([bm.bankId isEqualToString:__self.selectedWam.bankId]) {
+                currencyRate = bm.currencyRate.doubleValue;
+                rateOffset = bm.rate.doubleValue;
+            }
         }
+        currencyRate *= 1.0 + rateOffset / 100.0;
         CGFloat amount = subTextField(@"取款金额TextField").text.doubleValue;
-        if (rate > 0.000001) {
-            __self.virtualAmount = [AppDefine stringWithFloat:rate * amount decimal:8];
+        if (currencyRate > 0.000001) {
+            __self.virtualAmount = [AppDefine stringWithFloat:currencyRate * amount decimal:2];
         }
         subLabel(@"虚拟币汇率Label").hidden = !(__self.selectedWam.type == UGWithdrawalTypeVirtual && amount > 0.0001);
-        subLabel(@"虚拟币汇率Label").text = _NSString(@"=%@ USDT　　1 USDT = %@ CNY", __self.virtualAmount, [AppDefine stringWithFloat:1/rate decimal:2]);
+        subLabel(@"虚拟币汇率Label").text = _NSString(@"=%@ USDT　　1 USDT = %@ CNY", __self.virtualAmount, [AppDefine stringWithFloat:1/currencyRate decimal:2]);
     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self reloadData];
+    [self reloadCurrencyRate:nil];
+}
+
+- (void)reloadCurrencyRate:(void (^)(void))completion {
+    __weakSelf_(__self);
+    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm) {
+        sm.noShowErrorHUD = true;
+        if (!sm.error) {
+            [__self.virtualList removeAllObjects];
+            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                [__self.virtualList addObject:[UGbankModel mj_objectWithKeyValues:dict]];
+            }
+            if (completion) {
+                completion();
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:UITextFieldTextDidChangeNotification object:nil];
+        }
+    };
 }
 
 - (void)reloadData {
@@ -220,23 +234,42 @@
     
     [self.view endEditing:YES];
     
-    
     __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
-    [NetworkManager1 withdraw_apply:_selectedWam.wid amount:amount virtualAmount:_virtualAmount pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
-        if (!sm.error) {
-            [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
-            subTextField(@"取款金额TextField").text = nil;
-            subTextField(@"取款密码TextField").text = nil;
-            subLabel(@"虚拟币汇率Label").hidden = true;
-            
-            //发送通知给取款记录
-            SANotificationEventPost(UGNotificationWithdrawalsSuccess, nil);
-            if (__self.withdrawSuccessBlock) {
-                __self.withdrawSuccessBlock();
+    [self reloadCurrencyRate:^{
+        CGFloat currencyRate = 0;
+        CGFloat rateOffset = 0;
+        for (UGbankModel *bm in __self.virtualList) {
+            if ([bm.bankId isEqualToString:__self.selectedWam.bankId]) {
+                currencyRate = bm.currencyRate.doubleValue;
+                rateOffset = bm.rate.doubleValue;
             }
         }
-    };
+        currencyRate *= 1.0 + rateOffset / 100.0;
+        NSString *virtualAmount = currencyRate > 0.000001 ? [AppDefine stringWithFloat:currencyRate * amount.doubleValue decimal:2] : nil;
+        if (virtualAmount != __self.virtualAmount) {
+            [SVProgressHUD showInfoWithStatus:@"当前汇率已变更，已为您更新为最新汇率。。。"];
+            return;
+        }
+        
+        // 提交申请
+        [NetworkManager1 withdraw_apply:__self.selectedWam.wid amount:amount virtualAmount:__self.virtualAmount pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
+            if (!sm.error) {
+                [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
+                subTextField(@"取款金额TextField").text = nil;
+                subTextField(@"取款密码TextField").text = nil;
+                subLabel(@"虚拟币汇率Label").hidden = true;
+                
+                //发送通知给取款记录
+                SANotificationEventPost(UGNotificationWithdrawalsSuccess, nil);
+                if (__self.withdrawSuccessBlock) {
+                    __self.withdrawSuccessBlock();
+                }
+            } else {
+                [__self reloadCurrencyRate:nil];
+            }
+        };
+    }];
 }
 
 
