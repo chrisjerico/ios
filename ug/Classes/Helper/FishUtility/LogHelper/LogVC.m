@@ -170,14 +170,7 @@ static LogVC *_logVC = nil;
         }];
         
         [ac setActionAtTitle:@"变红" handler:^(UIAlertAction *aa) {
-            NSString *str = @"22-1213-123-1212312";
-          
-            NSArray  *array = [str componentsSeparatedByString:@"-"];//--分隔符
-            
-            for (NSString *mStr in array) {
-                
-                
-            }
+
            
         }];
         

@@ -109,12 +109,15 @@
 *改变字符lab 根据分隔符 最近长度 的颜色改变
  length：长度
  markColor ：改变颜色
+ mrType:是否是最前面，1 全部 2 最前；3 最后
  @"66690-1213-66666-78979-123123-98898-7777-908999";
  比如：-  前2个长度变红
  [self messageAction:self.label labStr:str separation:@"-" length:2 andMarkColor:[UIColor redColor]];
  
 */
-+(void)messageAction:(UILabel *)theLab labStr:(NSString*)str separation:(NSString *)separation  length:(int)length  andMarkColor:(UIColor *)markColor {
+
+
++(void)messageAction:(UILabel *)theLab labStr:(NSString*)str separation:(NSString *)separation  length:(int)length  andMarkColor:(UIColor *)markColor isMarkRangeType:(MarkRangeType )mrType {
     
     if (!str.length) {
         str = theLab.text;
@@ -127,16 +130,45 @@
   
     NSMutableArray *arrayRanges = [self getRangeStr:str findText:separation];
     NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:str];
-    for (int i = 0; i<arrayRanges.count; i++) {
-        NSRange markRange = NSMakeRange([[arrayRanges objectAtIndex:i] intValue]-length,length);
-        [strAtt addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:markRange];
+    
+    
+    if (mrType == MR_前面) {
+        for (int i = 0; i<arrayRanges.count; i++) {
+            NSRange markRange = NSMakeRange([[arrayRanges objectAtIndex:i] intValue]+1,length);
+            [strAtt addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:markRange];
+        }
+        NSRange markFrontRange = NSMakeRange(0,length);
+        [strAtt addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:markFrontRange];
+        theLab.attributedText = strAtt;
     }
-    NSRange markEndRange = NSMakeRange(str.length-length,length);
-    [strAtt addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:markEndRange];
+    else if  (mrType == MR_后面) {
+        for (int i = 0; i<arrayRanges.count; i++) {
+            NSRange  markRange =  NSMakeRange([[arrayRanges objectAtIndex:i] intValue]-length,length);
+            [strAtt addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:markRange];
+        }
+        NSRange markEndRange = NSMakeRange(str.length-length,length);
+        [strAtt addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:markEndRange];
+        theLab.attributedText = strAtt;
+    }
+  
+}
+/*
+*
+* label 倒数 第几个 变颜色
+ length：长度
+ markColor ：改变颜色
+ local ：倒数第几个  最后1位 为1
+*/
++(void)messageLabel:(UILabel *)theLab length:(int)length local:(int)local  andMarkColor:(UIColor *)markColor
+{
+    if (local < length) {
+        return;
+    }
+    NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:theLab.text];
+    NSRange markEndRange = NSMakeRange(theLab.text.length-local,length);
+    [strAtt addAttribute:NSForegroundColorAttributeName value:markColor range:markEndRange];
     theLab.attributedText = strAtt;
 }
-
-
 
 /**
  *此方法是用来判断一个字符串是不是整型.

@@ -1628,9 +1628,7 @@
 		03B71D69251E30580090FC98 /* YNBetDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745A52511F37800606EA3 /* YNBetDetailView.m */; };
 		03B71D6C251E30760090FC98 /* ScratchDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FD07EB24FB06D900F83D92 /* ScratchDataModel.m */; };
 		03B71D6F251E308C0090FC98 /* TKLPlatformNotiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4122CC02504B4830009E602 /* TKLPlatformNotiveView.m */; };
-		03B71D72251E30A80090FC98 /* YNHLPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */; };
 		03B71D75251E30BA0090FC98 /* EggFrenzyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 033372F324F593F400048EC1 /* EggFrenzyViewController.m */; };
-		03B71D78251E30D30090FC98 /* YNHZMPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B42511F37800606EA3 /* YNHZMPrizeDetailView.m */; };
 		03B71D7B251E30EA0090FC98 /* NewLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF19A5702518830100E2E659 /* NewLotteryHomeViewController.m */; };
 		03B71D7E251E30FE0090FC98 /* UGLotteryRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533B00251DDE4500462E31 /* UGLotteryRightMenuView.m */; };
 		03B71D81251E31130090FC98 /* ScratchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B1252724F7E035007A0858 /* ScratchController.m */; };
@@ -2029,6 +2027,7 @@
 		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CF9A93C42407F2C200D6E4F3 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C02407F2C200D6E4F3 /* FLAnimatedImage.m */; };
 		CF9A93C52407F2C200D6E4F3 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */; };
+		CFA01CFD2535AC6D00EA71F9 /* YNView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA01CFC2535AC6D00EA71F9 /* YNView.m */; };
 		CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3225246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3525246BBE00C5F6F6 /* 2.html */; };
@@ -2074,8 +2073,6 @@
 		D40745CC2511F37900606EA3 /* YNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745AD2511F37800606EA3 /* YNCollectionViewCell.m */; };
 		D40745CD2511F37900606EA3 /* YNHLPrizeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745B02511F37800606EA3 /* YNHLPrizeDetailView.xib */; };
 		D40745CE2511F37900606EA3 /* YNHLPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */; };
-		D40745CF2511F37900606EA3 /* YNHZMPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B42511F37800606EA3 /* YNHZMPrizeDetailView.m */; };
-		D40745D02511F37900606EA3 /* YNHZMPrizeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745B52511F37800606EA3 /* YNHZMPrizeDetailView.xib */; };
 		D40745D12511F37900606EA3 /* YNQuickListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40745B92511F37800606EA3 /* YNQuickListCollectionViewCell.xib */; };
 		D40745D22511F37900606EA3 /* YNQuickListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BB2511F37800606EA3 /* YNQuickListCollectionViewCell.m */; };
 		D40745D32511F37900606EA3 /* YNQuickSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745BC2511F37800606EA3 /* YNQuickSelectView.m */; };
@@ -4044,6 +4041,8 @@
 		CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		CF9A93C22407F2C200D6E4F3 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
 		CF9A93C32407F2C200D6E4F3 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		CFA01CFB2535AC6D00EA71F9 /* YNView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNView.h; sourceTree = "<group>"; };
+		CFA01CFC2535AC6D00EA71F9 /* YNView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNView.m; sourceTree = "<group>"; };
 		CFBAAC3025246BB400C5F6F6 /* 1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 1.html; sourceTree = "<group>"; };
 		CFBAAC3525246BBE00C5F6F6 /* 2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 2.html; sourceTree = "<group>"; };
 		CFBAAC3825246BC600C5F6F6 /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
@@ -4105,9 +4104,6 @@
 		D40745B02511F37800606EA3 /* YNHLPrizeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNHLPrizeDetailView.xib; sourceTree = "<group>"; };
 		D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNHLPrizeDetailView.m; sourceTree = "<group>"; };
 		D40745B22511F37800606EA3 /* YNHLPrizeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNHLPrizeDetailView.h; sourceTree = "<group>"; };
-		D40745B42511F37800606EA3 /* YNHZMPrizeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YNHZMPrizeDetailView.m; sourceTree = "<group>"; };
-		D40745B52511F37800606EA3 /* YNHZMPrizeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNHZMPrizeDetailView.xib; sourceTree = "<group>"; };
-		D40745B62511F37800606EA3 /* YNHZMPrizeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNHZMPrizeDetailView.h; sourceTree = "<group>"; };
 		D40745B82511F37800606EA3 /* YNQuickSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickSelectView.h; sourceTree = "<group>"; };
 		D40745B92511F37800606EA3 /* YNQuickListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YNQuickListCollectionViewCell.xib; sourceTree = "<group>"; };
 		D40745BA2511F37800606EA3 /* YNQuickListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YNQuickListView.h; sourceTree = "<group>"; };
@@ -8619,30 +8615,13 @@
 		D40745AE2511F37800606EA3 /* 越南开奖详情 */ = {
 			isa = PBXGroup;
 			children = (
-				D40745AF2511F37800606EA3 /* 河内 */,
-				D40745B32511F37800606EA3 /* 胡志明 */,
+				D40745B02511F37800606EA3 /* YNHLPrizeDetailView.xib */,
+				D40745B22511F37800606EA3 /* YNHLPrizeDetailView.h */,
+				D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */,
+				CFA01CFB2535AC6D00EA71F9 /* YNView.h */,
+				CFA01CFC2535AC6D00EA71F9 /* YNView.m */,
 			);
 			path = "越南开奖详情";
-			sourceTree = "<group>";
-		};
-		D40745AF2511F37800606EA3 /* 河内 */ = {
-			isa = PBXGroup;
-			children = (
-				D40745B02511F37800606EA3 /* YNHLPrizeDetailView.xib */,
-				D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */,
-				D40745B22511F37800606EA3 /* YNHLPrizeDetailView.h */,
-			);
-			path = "河内";
-			sourceTree = "<group>";
-		};
-		D40745B32511F37800606EA3 /* 胡志明 */ = {
-			isa = PBXGroup;
-			children = (
-				D40745B42511F37800606EA3 /* YNHZMPrizeDetailView.m */,
-				D40745B52511F37800606EA3 /* YNHZMPrizeDetailView.xib */,
-				D40745B62511F37800606EA3 /* YNHZMPrizeDetailView.h */,
-			);
-			path = "胡志明";
 			sourceTree = "<group>";
 		};
 		D40745B72511F37800606EA3 /* 越南快速选择 */ = {
@@ -9793,7 +9772,6 @@
 				CF4758B7239636D200966536 /* 69.gif in Resources */,
 				CF8E242023DDBFD80054BF0F /* Fontisto.ttf in Resources */,
 				031E1DE823BE812C00B0F813 /* UGConvertCollectionViewCell.xib in Resources */,
-				D40745D02511F37900606EA3 /* YNHZMPrizeDetailView.xib in Resources */,
 				D44258FD23E948D80067E981 /* LH_laba.gif in Resources */,
 				031E199623BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				CF475910239636D200966536 /* 115.gif in Resources */,
@@ -10239,7 +10217,6 @@
 				031EF5BC23BE7B4D00B0F813 /* MomentsHomeCell.swift in Sources */,
 				031E1A7123BE812700B0F813 /* UITabBarItem+WZLBadge.m in Sources */,
 				031E1C8F23BE812A00B0F813 /* UGOneTitleTableViewCell.m in Sources */,
-				03B71D72251E30A80090FC98 /* YNHLPrizeDetailView.m in Sources */,
 				031E1E3323BE812C00B0F813 /* UGPromotion6rowButtonTableViewCell.m in Sources */,
 				031E1B3B23BE812800B0F813 /* UGPlatformGameModel.m in Sources */,
 				031E1C5F23BE812A00B0F813 /* UGLotteryGameCollectionViewCell.m in Sources */,
@@ -10457,7 +10434,6 @@
 				031E1BFB23BE812900B0F813 /* UGBJPK10LotteryController.m in Sources */,
 				031E1C0923BE812900B0F813 /* UGBetDetailModel.m in Sources */,
 				031E1C3523BE812900B0F813 /* UGTimeLotteryBetHeaderView.m in Sources */,
-				03B71D78251E30D30090FC98 /* YNHZMPrizeDetailView.m in Sources */,
 				03E3AABB23C84BD2009A28C0 /* PromotionMemberRechargeVC.m in Sources */,
 				031E19D523BE812700B0F813 /* NSTimer+Block.m in Sources */,
 				031EF5D323BE7B4E00B0F813 /* AttachFunctionMenusView.swift in Sources */,
@@ -11129,7 +11105,6 @@
 				031E1AD823BE812800B0F813 /* CustomCollectionViewCell.m in Sources */,
 				031E1D3E23BE812B00B0F813 /* UGUserInfoViewController.m in Sources */,
 				031E1E7A23BE812C00B0F813 /* UGCalenderAlertView.m in Sources */,
-				D40745CF2511F37900606EA3 /* YNHZMPrizeDetailView.m in Sources */,
 				031E1E1623BE812C00B0F813 /* UGAddressCollectionViewCell.m in Sources */,
 				031E1B7C23BE812900B0F813 /* UGPlatformNoticeView.m in Sources */,
 				031E195623BE812600B0F813 /* LHGalleryListVC1.m in Sources */,
@@ -11165,6 +11140,7 @@
 				031E199E23BE812600B0F813 /* IBTextField.m in Sources */,
 				031E1E5023BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.m in Sources */,
 				031E19E223BE812700B0F813 /* NSUserDefaults+Utils.m in Sources */,
+				CFA01CFD2535AC6D00EA71F9 /* YNView.m in Sources */,
 				031E1C6223BE812A00B0F813 /* UGLotteryCollectionViewCell.m in Sources */,
 				031E1B0223BE812800B0F813 /* NSString+XHDateFormat.m in Sources */,
 				031E198823BE812600B0F813 /* UGLHHomeContentCollectionViewCell.m in Sources */,
