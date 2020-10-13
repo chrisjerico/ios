@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) UGWithdrawalType type;        /**<   账户类型 */
 @property (nonatomic, assign) BOOL ismore;      /**<   是否允许多账号 */
-@property (nonatomic, assign) BOOL isshow;
+@property (nonatomic, assign) BOOL isshow;      /**<   是否启用提款渠道 */
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray <WithdrawalAcctModel *>*data;
 

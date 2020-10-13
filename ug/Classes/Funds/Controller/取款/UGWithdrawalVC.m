@@ -228,6 +228,7 @@
             [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
             subTextField(@"取款金额TextField").text = nil;
             subTextField(@"取款密码TextField").text = nil;
+            subLabel(@"虚拟币汇率Label").hidden = true;
             
             //发送通知给取款记录
             SANotificationEventPost(UGNotificationWithdrawalsSuccess, nil);
