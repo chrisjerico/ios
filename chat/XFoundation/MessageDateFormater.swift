@@ -25,6 +25,7 @@ open class MessageDateFormater {
 
 	public func string(from date: Date) -> String {
 		configureDateFormatter(for: date)
+		formatter.locale = Locale(identifier: "zh_CN")
 		return formatter.string(from: date)
 	}
 
@@ -33,18 +34,32 @@ open class MessageDateFormater {
 		return NSAttributedString(string: dateString, attributes: attributes)
 	}
 
+//	open func configureDateFormatter(for date: Date) {
+//		switch true {
+//		case Calendar.current.isDateInToday(date) || Calendar.current.isDateInYesterday(date):
+//			formatter.doesRelativeDateFormatting = true
+//			formatter.dateStyle = .short
+//			formatter.timeStyle = .short
+//		case Calendar.current.isDate(date, equalTo: Date(), toGranularity: .day):
+//			formatter.dateFormat = "hh:mm"
+//		case Calendar.current.isDate(date, equalTo: Date(), toGranularity: .month):
+//			formatter.dateFormat = "MM-dd hh:mm"
+//		default:
+//			formatter.dateFormat = "yyyy-MM-dd hh:mm"
+//		}
+//	}
 	open func configureDateFormatter(for date: Date) {
 		switch true {
 		case Calendar.current.isDateInToday(date) || Calendar.current.isDateInYesterday(date):
 			formatter.doesRelativeDateFormatting = true
 			formatter.dateStyle = .short
 			formatter.timeStyle = .short
-		case Calendar.current.isDate(date, equalTo: Date(), toGranularity: .day):
-			formatter.dateFormat = "hh:mm"
-		case Calendar.current.isDate(date, equalTo: Date(), toGranularity: .month):
-			formatter.dateFormat = "MM-dd hh:mm"
+		case Calendar.current.isDate(date, equalTo: Date(), toGranularity: .weekOfYear):
+			formatter.dateFormat = "EEEE h:mm a"
+		case Calendar.current.isDate(date, equalTo: Date(), toGranularity: .year):
+			formatter.dateFormat = "E, d MMM, h:mm a"
 		default:
-			formatter.dateFormat = "yyyy-MM-dd hh:mm"
+			formatter.dateFormat = "MMM d, yyyy, h:mm a"
 		}
 	}
 	
