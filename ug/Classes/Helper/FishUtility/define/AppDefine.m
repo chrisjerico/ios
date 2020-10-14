@@ -134,6 +134,21 @@
         return _NSString(@"%.1fM", size/1024/1024);
     return _NSString(@"%.1fG", size/1024/1024/1024);
 }
++ (BOOL)hasUpdateWithCurrentVersion:(NSString *)v1 newVersion:(NSString *)v2 {
+    BOOL hasUpdate = false; // 是否存在新版本
+    
+    NSArray *currentV = [v1 componentsSeparatedByString:@"."];
+    NSArray *newestV = [v2 componentsSeparatedByString:@"."];
+    for (int i=0; i<4; i++) {
+        NSString *v1 = currentV.count > i ? currentV[i] : nil;
+        NSString *v2 = newestV.count > i ? newestV[i] : nil;
+        if (v2.intValue > v1.intValue)
+            hasUpdate = true;
+        if (v2.intValue != v1.intValue)
+            break;
+    }
+    return hasUpdate;
+}
 
 
 #pragma mark - Init

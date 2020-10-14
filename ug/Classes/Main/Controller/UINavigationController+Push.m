@@ -436,7 +436,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 2: {
             // APP下载
-            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             break;
         }
         case 3: {
@@ -663,7 +663,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 27: {
             //27' => '当前版本号',
-            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             break;
         }
         case 28: {

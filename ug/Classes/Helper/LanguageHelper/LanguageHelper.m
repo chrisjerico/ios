@@ -31,7 +31,7 @@ _CCRuntimeProperty_Assign(BOOL, fromNetwork, setFromNetwork)
 @end
 
 @implementation LanguageModel
-+ (NSArray *)mj_objectClassInArray {
++ (NSDictionary *)mj_objectClassInArray {
     return @{@"supportLanguagesMap":@"LanguageMap"};
 }
 - (NSString *)getLanCode {

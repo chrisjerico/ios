@@ -1409,7 +1409,7 @@
 //            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
 //            webViewVC.webTitle = model.name;
 //            [NavController1 pushViewController:webViewVC animated:YES];
-            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             NSLog(@"APP下载");
         }
    

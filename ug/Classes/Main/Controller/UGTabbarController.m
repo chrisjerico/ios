@@ -311,8 +311,6 @@ static UGTabbarController *_tabBarVC = nil;
         }
     }
     
-    //    版本更新
-    [[UGAppVersionManager shareInstance] updateVersionApi:false];
     [self setTabbarStyle];
 
     
