@@ -24,6 +24,7 @@ _CCRuntimeProperty_Copy(void (^)(UIAlertAction *aa), block, setBlock);
         [ac addAction:[UIAlertAction actionWithTitle:btnTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if (action.block)
                 action.block(action);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDidAlertButtonClick object:action];
         }]];
     }
     return ac;
@@ -35,6 +36,7 @@ _CCRuntimeProperty_Copy(void (^)(UIAlertAction *aa), block, setBlock);
         [ac addAction:[UIAlertAction actionWithTitle:btnTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             if (action.block)
                 action.block(action);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDidAlertButtonClick object:action];
         }]];
     }
     
@@ -42,6 +44,7 @@ _CCRuntimeProperty_Copy(void (^)(UIAlertAction *aa), block, setBlock);
         [ac addAction:[UIAlertAction actionWithTitle:cancel style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             if (action.block)
                 action.block(action);
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDidAlertButtonClick object:action];
         }]];
     }
     return ac;

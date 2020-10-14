@@ -54,7 +54,7 @@
             }
             BOOL fav = !__self.contentVC.pm.isBigFav;
             __weakSelf_(__self);
-            [NetworkManager1 lhcdoc_doFavorites:__self.gm.gid type:1 favFlag:fav].successBlock = ^(id responseObject) {
+            [NetworkManager1 lhcdoc_doFavorites:__self.gm.gid type:1 favFlag:fav].successBlock = ^(CCSessionModel *sm, id responseObject) {
                 __self.contentVC.pm.isBigFav = fav;
                 sender.selected = fav;
                 [sender setTitle:fav ? @"取消收藏" : @"收藏" forState:UIControlStateNormal];
@@ -67,12 +67,12 @@
     }
     
     // 获取期数列表
-    [NetworkManager1 lhdoc_lhcNoList:_clm.cid type2:_gm.gid].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 lhdoc_lhcNoList:_clm.cid type2:_gm.gid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
-            NSArray *array = sm.responseObject[@"data"];
+            NSArray *array = sm.resObject[@"data"];
             if ([array isKindOfClass:[NSDictionary class]]) {
-                __self.title = sm.responseObject[@"data"][@"title"] ? : __self.title;
-                array = sm.responseObject[@"data"][@"list"];
+                __self.title = sm.resObject[@"data"][@"title"] ? : __self.title;
+                array = sm.resObject[@"data"][@"list"];
             }
             for (NSDictionary *dict in array) {
                 [__self.dataArray addObject:[LHJournalModel mj_objectWithKeyValues:dict]];

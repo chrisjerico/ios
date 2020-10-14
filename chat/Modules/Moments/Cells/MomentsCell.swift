@@ -94,14 +94,14 @@ class MomentsCell: UITableViewCell {
 		items.accept(item.images)
 		timeLabel.text = item.create_ts
 		authorLabel.text = item.usr
-		avatarImageView.image = UIImage(named: "placeholder_avatar")
+		avatarImageView.kf.setImage(with: URL(string: item.avatar),placeholder: UIImage(named: "placeholder_avatar"))
 		contentLabel.text = item.content
 		browsCountLabel.text = "浏览\(item.view_num)次"
 		thumbsUpButton.isSelected = item.isLiked()
 		deleteButton.isHidden = !item.isSelf()
 //		addFollowButton.isSelected = item.relation_id == "1"
 		addFollowButton.isSelected = item.is_follow
-		
+		addFollowButton.isHidden = item.uid == App.user.uid
 		
 		commentBackDrop.isHidden = !(item.like_list.count + item.comment_list.count > 0)
 		

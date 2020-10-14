@@ -315,17 +315,17 @@
     lv.duration = 3600;
 
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:text images:_photos price:price].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 lhcdoc_postContent:_clm.alias title:_textField.text content:text images:_photos price:price].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         [HUDHelper hideLoadingView];
         if (!sm.error) {
             
             [__self.navigationController popViewControllerAnimated:true];
             if (__self.didSubmitAction)
                 __self.didSubmitAction();
-            [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
+            [AlertHelper showAlertView:sm.resObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
         }
         else{
-            NSDictionary *responeDic = (NSDictionary *) sm.responseObject;
+            NSDictionary *responeDic = (NSDictionary *) sm.resObject;
             NSDictionary *extra = [responeDic objectForKey:@"extra"];
             NSNumber *hasNickname = (NSNumber *) [extra objectForKey:@"hasNickname"];
             BOOL ishas = [hasNickname boolValue];
@@ -353,14 +353,14 @@
                         [HUDHelper showMsg:@"请输入纯汉字昵称"];
                         return;
                     }
-                    [NetworkManager1 lhcdoc_setNickname:tf.text].successBlock = ^(id responseObject) {
-                        [NetworkManager1 lhcdoc_postContent:__self.clm.alias title:__self.textField.text content:text images:__self.photos price:price].completionBlock = ^(CCSessionModel *sm) {
+                    [NetworkManager1 lhcdoc_setNickname:tf.text].successBlock = ^(CCSessionModel *sm, id responseObject) {
+                        [NetworkManager1 lhcdoc_postContent:__self.clm.alias title:__self.textField.text content:text images:__self.photos price:price].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                             NSLog(@"responseObject = %@",responseObject);
                             if (!sm.error) {
                                 [__self.navigationController popViewControllerAnimated:true];
                                 if (__self.didSubmitAction)
                                     __self.didSubmitAction();
-                                [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
+                                [AlertHelper showAlertView:sm.resObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
                             }
                         };
                     };

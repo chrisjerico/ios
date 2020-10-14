@@ -11,7 +11,7 @@
 #import "YNQuickListView.h"
 @interface YNQuickSelectView()
 
-@property (strong, nonatomic) IBOutlet UIView *contentView;
+
 
 @property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;//标题数组
 @property (nonatomic,strong)  NSMutableArray <YNQuickListView *> *itemViewArray;//views 数组

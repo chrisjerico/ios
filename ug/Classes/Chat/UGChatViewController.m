@@ -96,7 +96,7 @@
     [SVProgressHUD show];
     NSString *gameId = betInfo[@"gameId"];// 彩种
     __block NSString *paneCode = betInfo[@"paneCode"]; // 玩法
-    
+    __block NSString *gameName = betInfo[@"gameName"]; // 游戏简称
     // 第一步：获取当前期数信息
     [CMNetwork getNextIssueWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
@@ -150,7 +150,7 @@
                             nums = gbms;
                         }
                     }
-                    
+                    nextIssueModel.title = gameName;
                     // 最后一步：弹框让用户跟注
                     UGBetDetailView *bdv = [[UGBetDetailView alloc] init];
                     bdv.dataArray = nums;
@@ -331,10 +331,10 @@
 -(void)selectChatRoom {
     __weakSelf_(__self);
     //得到线上配置的聊天室
-    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
-            NSLog(@"model.data = %@",sm.responseObject[@"data"]);
-            NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+            NSLog(@"model.data = %@",sm.resObject[@"data"]);
+            NSDictionary *data = (NSDictionary *)sm.resObject[@"data"];
             NSArray *chatAry = [NSArray new];
             NSMutableArray *chatIdAry = [NSMutableArray new];
             NSMutableArray *chatTitleAry = [NSMutableArray new];
@@ -481,10 +481,10 @@
 -(void)chatRoomName {
     __weakSelf_(__self);
     //得到线上配置的聊天室
-    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
-            NSLog(@"model.data = %@",sm.responseObject[@"data"]);
-            NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+            NSLog(@"model.data = %@",sm.resObject[@"data"]);
+            NSDictionary *data = (NSDictionary *)sm.resObject[@"data"];
             self.myroomAry =[RoomChatModel mj_objectArrayWithKeyValuesArray:[data objectForKey:@"chatAry"]];
             
             if (![CMCommon stringIsNull:self.roomId]) {

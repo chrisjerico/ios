@@ -374,7 +374,7 @@
                  weakSelf.imgVcodeModel = nil;
              }
              
-             [SVProgressHUD showErrorWithStatus:msg];
+//             [SVProgressHUD showErrorWithStatus:msg];
              
          }];
      }];

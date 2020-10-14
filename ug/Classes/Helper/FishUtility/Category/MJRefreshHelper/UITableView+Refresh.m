@@ -33,7 +33,7 @@ _CCRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
     __weakSelf_(__self);
     self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         CCSessionModel *sm = self.cc_userInfo[@"HeaderReuqest"] = request(__self);
-        sm.completionBlock = ^(CCSessionModel *sm) {
+        sm.completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (sm != __self.cc_userInfo[@"HeaderReuqest"]) {
                 sm.noShowErrorHUD = true;
                 return ;
@@ -62,7 +62,7 @@ _CCRuntimeProperty_Readonly(UILabel *, noDataTipsLabel, {
     __weakSelf_(__self);
     self.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         CCSessionModel *sm = self.cc_userInfo[@"FooterReuqest"] = request(__self);
-        sm.completionBlock = ^(CCSessionModel *sm) {
+        sm.completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (sm != __self.cc_userInfo[@"FooterReuqest"]) {
                 sm.noShowErrorHUD = true;
                 return ;

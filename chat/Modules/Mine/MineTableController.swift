@@ -8,6 +8,7 @@
 
 import UIKit
 import SVGKit
+import SwiftyJSON
 
 class MineTableController: BaseTableVC {
 	
@@ -16,6 +17,7 @@ class MineTableController: BaseTableVC {
 	@IBOutlet weak var userNameLabel: UILabel!
 	@IBOutlet weak var genderImageView: UIImageView!
 	
+	@IBOutlet var countLabels: [UILabel]!
 	
 	@IBOutlet var itemImages: [UIImageView]!
 	override func viewDidLoad() {
@@ -31,10 +33,26 @@ class MineTableController: BaseTableVC {
 		navigationItem.rightBarButtonItem = item
 		avatarImageView.layer.cornerRadius = 30
 		avatarImageView.layer.masksToBounds = true
-		avatarImageView.kf.setImage(with: URL(string: App.user.avatar), placeholder: UIImage(named: "placeholder_avatar"))
+		
+		ChatAPI.rx.request(ChatTarget.selfUserInfo(target: App.user.userId)).subscribe(onSuccess: {[weak self] (response) in
+			guard let json = try? JSON(data: response.data) else { return }
+			self?.avatarImageView.kf.setImage(with: URL(string: json["data"]["avatar"].stringValue), placeholder: UIImage(named: "placeholder_avatar"))
+		}) { (error) in
+			logger.debug(error.localizedDescription)
+		}.disposed(by: disposeBag)
 		userIdLabel.text = "ID: \(App.user.userId)"
 		userNameLabel.text = App.user.username as String
 //		genderImageView.image = UIImage(named: App.user.)
+		momentsAPI.rx.request(MomentsTarget.statData).mapJSON().subscribe { [weak self] (dic) in
+			let json = JSON(dic)
+			self?.countLabels[0].text = json["data"]["share_count"].stringValue
+			self?.countLabels[1].text = json["data"]["fans_count"].stringValue
+			self?.countLabels[2].text = json["data"]["follow_count"].stringValue
+
+		} onError: { (error) in
+			logger.debug(error.localizedDescription)
+		}.disposed(by: disposeBag)
+
 	}
 	override func awakeFromNib() {
 		super.awakeFromNib()

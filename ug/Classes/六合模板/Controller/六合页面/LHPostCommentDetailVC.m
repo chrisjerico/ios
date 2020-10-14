@@ -59,7 +59,7 @@
             [_tableView setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
                 return [NetworkManager1 lhdoc_contentReplyList:__self.pcm.cid replyPid:__self.pcm.pid page:tv.pageIndex];
             } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-                NSArray *array = sm.responseObject[@"data"][@"list"];
+                NSArray *array = sm.resObject[@"data"][@"list"];
                 for (NSDictionary *dict in array)
                     [tv.dataArray addObject:[UGLHPostCommentModel mj_objectWithKeyValues:dict]];
                 
@@ -84,7 +84,7 @@
     UGLHPostCommentModel *pcm = _pcm;
     FastSubViewCode(_tableView.tableHeaderView);
     BOOL like = !subButton(@"点赞图标Button").selected;
-    [NetworkManager1 lhcdoc_likePost:pcm.pid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 lhcdoc_likePost:pcm.pid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
             pcm.likeNum += like ? 1 : -1;
             pcm.isLike = like;

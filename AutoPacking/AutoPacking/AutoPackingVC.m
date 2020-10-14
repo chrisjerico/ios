@@ -51,16 +51,17 @@
 
                 
 
-                NSString *ids = @"c213";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+                NSString *ids = @"c175,c217";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
                 NSString *branch = @"dev_master";// 分支名
-                BOOL isForce = false;      // 是否强制更新
-                NSString *updateLog = @""; // 更新日志，给用户看的
                 BOOL willUpload = 1;        // 打包后是否上传审核
-                BOOL checkStatus = 0 ;      // 上传后是否审核  1时只能有bigadmin的账号，否则没权限
 
+                // 高权限操作
+                BOOL isReview = true;      // 是否改为已审核
+                BOOL isForce = false;       // 是否强制更新
+                NSString *updateLog = @"";  // 更新日志，给用户看的
                 
                 [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
-                    [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog checkStatus:checkStatus];
+                    [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog isReview:isReview];
                 }];
             }
             else {
@@ -117,12 +118,12 @@
 // 登录
 - (void)login:(NSString *)username pwd:(NSString *)pwd completion:(void (^)(void))completion {
     if (!completion) return;
-    [NetworkManager1 login:username pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 login:username pwd:pwd].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
-            NSLog(@"登录成功，%@", sm.responseObject);
+            NSLog(@"登录成功，%@", sm.resObject);
 
-            [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
-            [[NSUserDefaults standardUserDefaults] setObject:sm.responseObject[@"data"][@"logintoken"] forKey:@"logintoken"];
+            [[NSUserDefaults standardUserDefaults] setObject:sm.resObject[@"data"][@"loginsessid"] forKey:@"loginsessid"];
+            [[NSUserDefaults standardUserDefaults] setObject:sm.resObject[@"data"][@"logintoken"] forKey:@"logintoken"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             completion();
         } else {

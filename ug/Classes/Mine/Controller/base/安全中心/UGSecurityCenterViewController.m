@@ -78,6 +78,11 @@
     [self getSystemConfig];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self.slideSwitchView changeSlideAtSegmentIndex:self.selectIndex];
+}
+
 
 #pragma mark - 配置segment
 

@@ -1,27 +1,28 @@
 //
-//  YNHZMPrizeDetailView.m
+//  YNHLPrizeDetailView.m
 //  UGBWApp
 //
 //  Created by ug on 2020/9/3.
 //  Copyright © 2020 ug. All rights reserved.
 //
 
-#import "YNHZMPrizeDetailView.h"
+#import "YNHLPrizeDetailView.h"
 #import "CMLabelCommon.h"
-@interface YNHZMPrizeDetailView (){
+@interface YNHLPrizeDetailView (){
      UIScrollView* maskView;
 }
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;    /**<   取消Button */
 
+
 @property (nonatomic) float amount; /**<   总金额*/
 @end
-@implementation YNHZMPrizeDetailView
+@implementation YNHLPrizeDetailView
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self = [[NSBundle mainBundle] loadNibNamed:@"YNHZMPrizeDetailView" owner:self options:0].firstObject;
+        self = [[NSBundle mainBundle] loadNibNamed:@"YNHLPrizeDetailView" owner:self options:0].firstObject;
         
         float h = 0;
         h = UGScerrnH - 300;
@@ -49,7 +50,7 @@
 
 - (void)show {
     FastSubViewCode(self)
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self setBackgroundColor:Skin1.bgColor];
 
         [subLabel(@"标题Label")setTextColor:[UIColor whiteColor]];
@@ -101,18 +102,11 @@
         [subLabel(@"t9label")setTextColor:[UIColor blackColor]];
         [self.cancelButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     }
-    
-    
-    [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"一等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"二等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"三等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"四等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"五等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"六等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"七等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"八等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
 
+    [self setLabelColorForSelCode];
+
+  
+    [subView(@"八等奖View") setHidden:self.isHide8View];
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
     if (!maskView) {
@@ -161,7 +155,7 @@
     [subLabel(@"五等奖label")setText:[_nextIssueModel.d5 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"六等奖label")setText:[_nextIssueModel.d6 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"七等奖label")setText:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"八等奖label")setText:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
+    [subLabel(@"八等奖label")setText:[_nextIssueModel.d8 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"t0label")setText:_nextIssueModel.t0];
     [subLabel(@"t1label")setText:_nextIssueModel.t1];
     [subLabel(@"t2label")setText:_nextIssueModel.t2];
@@ -172,6 +166,9 @@
     [subLabel(@"t7label")setText:_nextIssueModel.t7];
     [subLabel(@"t8label")setText:_nextIssueModel.t8];
     [subLabel(@"t9label")setText:_nextIssueModel.t9];
+    
+
+    
     
 }
 @end

@@ -235,7 +235,7 @@
 //    return;
 //    // 这个网络请求导致必现闪退，排查不到原因，只能先注释掉
 //    [SVProgressHUD showWithStatus:nil];
-//    [NetworkManager1 lhcdoc_getUserInfo:uid].completionBlock = ^(CCSessionModel *sm) {
+//    [NetworkManager1 lhcdoc_getUserInfo:uid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
 //        NSLog(@"sm.responseObject[@data]= %@",sm.responseObject[@"data"]);
 //        [SVProgressHUD dismiss];
 //        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -504,7 +504,7 @@
             [HUDHelper showMsg:@"请输入纯汉字昵称"];
             return;
         }
-        [NetworkManager1 lhcdoc_setNickname:tf.text].successBlock = ^(id responseObject) {
+        [NetworkManager1 lhcdoc_setNickname:tf.text].successBlock = ^(CCSessionModel *sm, id responseObject) {
             [self getUserInfo];
         };
         

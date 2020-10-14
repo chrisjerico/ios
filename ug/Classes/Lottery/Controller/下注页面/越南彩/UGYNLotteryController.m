@@ -140,14 +140,8 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 -(UIColor *)getYNSegmentViewColor:(BOOL)selected{
     UIColor *returnColor;
-    if (Skin1.isBlack||Skin1.is23) {
-        returnColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
-        
-    } else {
-        UIColor *selectedColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
-        if ([@"c085" containsString:APP.SiteId]) {
-            selectedColor = [UIColor blueColor];
-        }
+    {
+        UIColor *selectedColor = [UIColor colorWithRed:52.0f/255.0f green:181.0f/255.0f blue:229.0f/255.0f alpha:1.0f];
         returnColor = selected ? selectedColor : [UIColor blackColor];
     }
     
@@ -199,21 +193,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     if (_segmentView == nil) {
         _segmentView = [[UGSegmentView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW /4 * 3, 50) titleArray:self.lmgmentTitleArray];
         _segmentView.hidden = NO;
-        _segmentView.backgroundColor = Skin1.textColor4;
-        if (APP.betBgIsWhite) {
-            _segmentView.backgroundColor =  [UIColor whiteColor];
-        } else {
-            if (APP.isLight) {
-                _segmentView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
-                
-            }
-            else{
-                _segmentView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
-                
-            }
-        }
-        
-        
+  
     }
     return _segmentView;
     
@@ -259,20 +239,8 @@ static NSString *footViewID = @"YNCollectionFootView";
             height = UGScerrnH - 64 - 49 - 114;
         }
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0 , 0, UGScreenW / 4 * 3 - 1, height) collectionViewLayout:self.flow];
-        collectionView.backgroundColor = Skin1.textColor4;
-        if (APP.betBgIsWhite) {
-            collectionView.backgroundColor =  [UIColor whiteColor];
-        } else {
-            if (APP.isLight) {
-                collectionView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
-                
-            }
-            else{
-                collectionView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
-                
-            }
-        }
-        
+      
+
         collectionView.dataSource = self;
         collectionView.delegate = self;
         [collectionView registerNib:[UINib nibWithNibName:@"UGTimeLotteryBetCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:lottryBetCellid];
@@ -515,6 +483,31 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self getGameDatas];
     [self getNextIssueData];
     
+#pragma mark -设置颜色
+    [self.ynsegmentView setBackgroundColor:[UIColor clearColor]];
+    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
+        self.rightStackView.backgroundColor =  [UIColor whiteColor];
+        _segmentView.backgroundColor =  [UIColor whiteColor];
+        self.betCollectionView.backgroundColor = [UIColor whiteColor];
+        self.qsView.contentView.backgroundColor = [UIColor whiteColor];
+    } else {
+        if (APP.isLight) {
+            _segmentView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+            self.rightStackView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+            self.betCollectionView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+            self.qsView.contentView.backgroundColor =  [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+            
+        }
+        else{
+            _segmentView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+            self.rightStackView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+            self.betCollectionView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+            self.qsView.contentView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
+        }
+    }
+ 
+    
+    
 #pragma mark - 进入时默认
     self.px2count = 0;
     self.px3count = 0;
@@ -523,6 +516,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.inputView.code = Tip_十;
     [self  setDefaultData:@"PIHAO2"];
     [self  setDefaultOddsData:@"98"];
+    [[Global getInstanse] setSelCode:@"PIHAO2"];
     self.segmentIndex = 0;
     //选择号码放到最前面
     [self.yncontentView bringSubviewToFront:self.betCollectionView];
@@ -570,7 +564,14 @@ static NSString *footViewID = @"YNCollectionFootView";
         [weakSelf handleTipStrForCode:code];
         [weakSelf resetClick:nil];
         [weakSelf setDefaultData:code];
-        NSString * odds =  [weakSelf.lmgmentOddsArray objectAtIndex:row];
+        
+        UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+        UGGameplaySectionModel *obj = model.list[0];
+        
+        UGGameBetModel *betModel = obj.list[self.segmentIndex];
+        NSString * odds =  betModel.odds;
+        NSLog(@"code = %@",betModel.code);
+        [[Global getInstanse] setSelCode:betModel.code];
         [weakSelf setDefaultOddsData:odds];
     };
     
@@ -855,6 +856,10 @@ static NSString *footViewID = @"YNCollectionFootView";
                 
                  isHide = YES;
             }
+            if ([bet.code isEqualToString:@"TOU"]||[bet.code isEqualToString:@"WEI"]) {
+                isHide = YES;
+            }// 十 个
+
             
             
             
@@ -3163,19 +3168,21 @@ static NSString *footViewID = @"YNCollectionFootView";
         self.typeIndexPath = indexPath;
         
         UGGameplayModel *model = self.gameDataArray[indexPath.row];
-        
+        UGGameplaySectionModel *obj = model.list[0];
         //设置segmentView标题 和 code 数据
         self.segmentIndex = 0;
         [self segmentViewTitleAndCode:model];
-        
+
         NSString * code =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
         
         [self setDefaultData:code];
         //判断ynsegmentView 标题 和 隐藏
         [self determineYnsegmentViewTitle:model.code];
         
-        NSString * odds =  [self.lmgmentOddsArray objectAtIndex:self.segmentIndex];
-        
+        UGGameBetModel *betModel = obj.list[self.segmentIndex];
+        NSString * odds =  betModel.odds;
+        NSLog(@"code = %@",betModel.code);
+        [[Global getInstanse] setSelCode:betModel.code];
         [self setDefaultOddsData:odds];
     }
     

@@ -9,12 +9,10 @@
 #import "UGLaunchPageVC.h"
 
 #import "FLAnimatedImageView.h"
-
 #import <SafariServices/SafariServices.h>
-
 #import "ReactNativeHelper.h"
-
 #import "UIView+AutoLocalizable.h"
+#import "UGAppVersionManager.h"
 
 @interface LaunchPageModel : UGModel
 @property (nonatomic) NSString *pic;
@@ -31,6 +29,7 @@
 @property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
 @property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
 @property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
+@property (nonatomic, assign) int waitCheckUpdate;  /**<   ⌛️等检查更新 */
 @end
 
 
@@ -41,13 +40,25 @@
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
 
-     // 加载初始配置域名
-        {
-            [self getSystemConfig];
-        }
-    //
+    // 检查版本更新
+    {
+        _waitCheckUpdate = -1;
+        __weakSelf_(__self);
+        __block BOOL __isForce = false;
+        [[UGAppVersionManager shareInstance] updateVersionApi:false completion:^(BOOL showUpdated, BOOL isForce) {
+            __self.waitCheckUpdate = showUpdated;
+            __isForce = isForce;
+        }];
+        [self xw_addNotificationForName:kDidAlertButtonClick block:^(NSNotification * _Nonnull noti) {
+            if (!__isForce)
+                __self.waitCheckUpdate = false;
+        }];
+    }
     
-
+    // 加载初始配置域名
+    {
+        [self getSystemConfig];
+    }
 }
 
 // 获取系统配置
@@ -161,6 +172,30 @@
 }
 
 
+- (void)getLotteryGroupGamesData {
+
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
+       
+        [CMResult processWithResult:model success:^{
+            NSArray * lotteryGamesArray =  model.data;
+            
+            int count = (int)lotteryGamesArray.count;
+            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
+            
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
+                APP.isNewLotteryView = NO;
+            } else {
+                APP.isNewLotteryView = YES;
+            }
+          
+
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 
 -(void)initMyLaunchPageVC{
     
@@ -175,6 +210,7 @@
             [self loadLaunchImage];
             [self loadReactNative];
             [self loadSysConf];
+            [self getLotteryGroupGamesData];
 //            [self loadLanguage];
         }
         
@@ -186,6 +222,7 @@
                 __self.waitSysConf = false;
                 __self.waitPic = false;
                 __self.waitLanguage = false;
+                __self.waitCheckUpdate = __self.waitCheckUpdate > 0;
 #ifndef APP_TEST
                 __self.waitReactNative = false;
 #endif
@@ -200,6 +237,7 @@
             if (__self.waitSysConf) continue;
             if (__self.waitPic) continue;
             if (__self.waitLanguage) continue;
+            if (__self.waitCheckUpdate) continue;
             break;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -325,11 +363,11 @@
     __block int __i = 1;
     void (^getZhPackage)(void) = nil;
     void (^__block __getZhPackage)(void) = getZhPackage = ^{
-        [NetworkManager1 language_getLanguagePackage:zhLanCode].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 language_getLanguagePackage:zhLanCode].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                NSString *ver = sm.responseObject[@"data"][@"version"];
-                NSDictionary *package = sm.responseObject[@"data"][@"package"];
+                NSString *ver = sm.resObject[@"data"][@"version"];
+                NSDictionary *package = sm.resObject[@"data"][@"package"];
                 [LanguageHelper save:package lanCode:zhLanCode ver:ver];
             } else {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__i++ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -344,11 +382,11 @@
     __block int __j = 1;
     void (^getLanguagePackage)(NSString *lanCode) = nil;
     void (^__block __getLanguagePackage)(NSString *lanCode) = getLanguagePackage = ^(NSString *lanCode) {
-        [NetworkManager1 language_getLanguagePackage:lanCode].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 language_getLanguagePackage:lanCode].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                NSString *ver = sm.responseObject[@"data"][@"version"];
-                NSDictionary *package = sm.responseObject[@"data"][@"package"];
+                NSString *ver = sm.resObject[@"data"][@"version"];
+                NSDictionary *package = sm.resObject[@"data"][@"package"];
                 [LanguageHelper save:package lanCode:lanCode ver:ver];
                 __self.waitLanguage = false;
             } else if (__self.waitLanguage) {
@@ -362,10 +400,10 @@
     // 获取当前语言配置
     void (^getConfigs)(void) = nil;
     void (^__block __getConfigs)(void) = getConfigs = ^{
-        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.resObject[@"data"]];
 //#ifdef DEBUG
 //                lm.currentLanguageCode = @"vi";
 //#endif

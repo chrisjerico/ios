@@ -22,7 +22,6 @@
 #import "UGBetDetailView.h"
 #import "YNBetDetailView.h"
 #import "YNHLPrizeDetailView.h"
-#import "YNHZMPrizeDetailView.h"
 #import "UGLotteryRightMenuView.h"
 
 @interface UIButton (customSetEnable)
@@ -327,7 +326,7 @@
             if (reBetButton) {
                 UIView * superView = reBetButton.superview;
                 [superView addSubview:self.radomNumberButton];
-                self.radomNumberButton.numberOfLines = 0;
+                self.radomNumberButton.titleLabel.numberOfLines = 0;
                 [self.radomNumberButton mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.width.equalTo(@70);
                     make.height.equalTo(@35);
@@ -628,15 +627,8 @@
     
     NSLog(@"self.nextIssueModel.title = %@",self.nextIssueModel.title);
     self.selectTitle = self.nextIssueModel.title;
-#pragma mark - 去掉这里就不会标题变动。
-	//    if (OBJOnceToken(self)) {
-	//        [self.navigationItem cc_hookSelector:@selector(setTitle:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> ai) {
-	//            NSString *title = ai.arguments.lastObject;
-	//            NSLog(@"title = %@",title);
-	//            [(UIButton *)item0.customView setTitle:_NSString(@"%@ ▼===", title) forState:UIControlStateNormal];
-	//            [(UIButton *)item0.customView sizeToFit];
-	//        } error:nil];
-	//    }
+
+
 }
 
 #pragma mark -- 点击切换
@@ -647,10 +639,11 @@
     NSLog(@"nextIssueModel = %@",self.nextIssueModel);
     
     if (APP.isNewLotteryView) {
+        
         self.yymenuView = [[UGLotteryRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW * 2/ 3, UGScerrnH)];
-      
+    
         self.yymenuView.selectTitle = self.selectTitle;
-//        self.yymenuView.gameType = self.nextIssueModel.gameType;
+        self.yymenuView.gameType = self.nextIssueModel.gameType;
         //此处为重点
         WeakSelf;
         self.yymenuView.backToHomeBlock = ^{
@@ -773,16 +766,20 @@
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             UGNextIssueModel *nextIssueModel = model.data;
-            
+            NSLog(@"[Global getInstanse].selCode = %@",[Global getInstanse].selCode);
             if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
-                YNHZMPrizeDetailView*betDetailView = [[YNHZMPrizeDetailView alloc] init];
+                YNHLPrizeDetailView*betDetailView = [[YNHLPrizeDetailView alloc] init];
                 betDetailView.nextIssueModel = nextIssueModel;
+                betDetailView.selCode = [Global getInstanse].selCode;
+                betDetailView.isHide8View = NO;
                 [betDetailView show];
             }
             else if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//河内
               
                 YNHLPrizeDetailView *betDetailView = [[YNHLPrizeDetailView alloc] init];
                 betDetailView.nextIssueModel = nextIssueModel;
+                betDetailView.selCode = [Global getInstanse].selCode;
+                betDetailView.isHide8View = YES;
                 [betDetailView show];
             }
             
@@ -800,7 +797,9 @@
 		[self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
 		return ;
 	}
-	
+    
+    NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+    self.nextIssueModel.title = self.selectTitle;
 	
 	UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
 	betDetailView.dataArray = objArray;

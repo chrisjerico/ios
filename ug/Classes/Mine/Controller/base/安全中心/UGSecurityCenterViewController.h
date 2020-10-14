@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UGSecurityCenterViewController :UGViewController
 
 @property (nonatomic, strong) NSString  *fromVC;
-
+@property (nonatomic, assign) NSInteger selectIndex;
 @end
 
 NS_ASSUME_NONNULL_END

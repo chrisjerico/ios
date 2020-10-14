@@ -151,6 +151,7 @@
                     </view>
                     <connections>
                         <outlet property="headImageView" destination="L9U-o7-U9u" id="19E-Yc-xVh"/>
+                        <outlet property="headerHeight" destination="KUt-vC-6bS" id="7Wq-Yw-z7X"/>
                         <outlet property="mheadView" destination="TAd-kS-KfB" id="ja3-0V-mxF"/>
                         <outlet property="moneyLabel" destination="pZ6-8w-S3n" id="pWt-rP-PK5"/>
                         <outlet property="realNameLabel" destination="PSJ-dg-hcD" id="Qim-pd-JHR"/>

@@ -175,8 +175,8 @@ static UGTabbarController *_tabBarVC = nil;
             [ReactNativeHelper sendEvent:UGNotificationLoginComplete params:UserI];
         }];
         // 切换语言
-        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
-            LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+            LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.resObject[@"data"]];
             [LanguageHelper shared].supportLanguagesMap = lm.supportLanguagesMap;
             if (![[lm getLanCode] isEqualToString:[LanguageHelper shared].lanCode]) {
                 [LanguageHelper changeLanguageAndRestartApp:[lm getLanCode]];
@@ -207,8 +207,8 @@ static UGTabbarController *_tabBarVC = nil;
             [ReactNativeHelper sendEvent:UGNotificationUserLogout params:UserI];
         }];
         // 切换语言
-        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
-            LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+            LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.resObject[@"data"]];
             [LanguageHelper shared].supportLanguagesMap = lm.supportLanguagesMap;
             if (![[lm getLanCode] isEqualToString:[LanguageHelper shared].lanCode]) {
                 [LanguageHelper changeLanguageAndRestartApp:[lm getLanCode]];
@@ -311,8 +311,6 @@ static UGTabbarController *_tabBarVC = nil;
         }
     }
     
-    //    版本更新
-    [[UGAppVersionManager shareInstance] updateVersionApi:false];
     [self setTabbarStyle];
 
     
@@ -620,7 +618,7 @@ static UGTabbarController *_tabBarVC = nil;
                 temp.允许未登录访问 = rpm.允许未登录访问;
                 temp;
             })]) {
-                [(ReactNativeVC *)vc push:rpm params:[vc rn_keyValues]];
+                [(ReactNativeVC *)vc  pushOrJump:false rpm:rpm params:[vc rn_keyValues]];
                 return true;
             }
             return false;

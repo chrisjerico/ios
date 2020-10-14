@@ -98,13 +98,13 @@
     lsv.offsetY = !_topView.hidden ? NavController1.navigationBar.by : 0;
     lsv.didRefreshBtnClick = ^{
         // 获取帖子详情
-        [NetworkManager1 lhdoc_contentDetail:__self.pm.cid].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 lhdoc_contentDetail:__self.pm.cid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (sm.error) {
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateFail];
             } else {
                 NSString  *link = __self.pm.link;
-                NSLog(@"data=%@",sm.responseObject[@"data"]);
-                __self.pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                NSLog(@"data=%@",sm.resObject[@"data"]);
+                __self.pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                 __self.pm.link = link;
                 [__self setupSSV];
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateSucc];
@@ -313,7 +313,7 @@
             NSString *gid = pm.link.urlParams[@"id"] ? : SysConf.appSelectType;
             [__self.lhPrizeView setGid:gid];
             
-            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSArray *array = sm.resObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
                 UGLHPostCommentModel *pcm = [UGLHPostCommentModel mj_objectWithKeyValues:dict];
                 pcm.cid = __self.pm.cid;
@@ -324,7 +324,7 @@
         [tv setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_contentReplyList:pm.cid replyPid:nil page:tv.pageIndex];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSArray *array = sm.resObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
                 UGLHPostCommentModel *pcm = [UGLHPostCommentModel mj_objectWithKeyValues:dict];
                 pcm.cid = __self.pm.cid;
@@ -371,7 +371,7 @@
     prv.pm = _pm;
     __weakSelf_(__self);
     prv.didConfirmBtnClick = ^(LHPostRewardView * _Nonnull prv, double price) {
-        [NetworkManager1 lhcdoc_tipContent:__self.pm.cid amount:price].successBlock = ^(id responseObject) {
+        [NetworkManager1 lhcdoc_tipContent:__self.pm.cid amount:price].successBlock = ^(CCSessionModel *sm, id responseObject) {
             [prv hide:nil];
             [SVProgressHUD showSuccessWithStatus:@"打赏成功！"];
         };
@@ -385,7 +385,7 @@
     
     BOOL follow = !sender.selected;
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_followPoster:_pm.uid followFlag:follow].successBlock = ^(id responseObject) {
+    [NetworkManager1 lhcdoc_followPoster:_pm.uid followFlag:follow].successBlock = ^(CCSessionModel *sm, id responseObject) {
         __self.pm.isFollow = follow;
         sender.selected = follow;
         [sender setTitle:follow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
@@ -400,7 +400,7 @@
     pvv.pm = _pm;
     __weakSelf_(__self);
     pvv.didConfirmBtnClick = ^(LHPostVoteView * _Nonnull pvv, LHVoteModel * _Nonnull vm) {
-        [NetworkManager1 lhdoc_vote:pvv.pm.cid animalId:vm.animalFlag].successBlock = ^(id responseObject) {
+        [NetworkManager1 lhdoc_vote:pvv.pm.cid animalId:vm.animalFlag].successBlock = ^(CCSessionModel *sm, id responseObject) {
             
             
             [CMCommon showToastTitle:@"投票成功！"];
@@ -428,7 +428,7 @@
     BOOL like = !bottomLikeBtn.selected;
     
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_likePost:_pm.cid type:1 likeFlag:like].successBlock = ^(id responseObject) {
+    [NetworkManager1 lhcdoc_likePost:_pm.cid type:1 likeFlag:like].successBlock = ^(CCSessionModel *sm, id responseObject) {
         __self.pm.isLike = like;
         __self.pm.likeNum += like ? 1 : -1;
         bottomLikeBtn.selected = like;
@@ -454,7 +454,7 @@
     
     BOOL fav = !sender.selected;
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_doFavorites:_pm.cid type:2 favFlag:fav].successBlock = ^(id responseObject) {
+    [NetworkManager1 lhcdoc_doFavorites:_pm.cid type:2 favFlag:fav].successBlock = ^(CCSessionModel *sm, id responseObject) {
         __self.pm.isFav = fav;
         sender.selected = fav;
     };
@@ -542,7 +542,7 @@
             CheckLogin(false, false,);
             
             BOOL like = !subButton(@"点赞图标Button").selected;
-            [NetworkManager1 lhcdoc_likePost:pcm.pid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 lhcdoc_likePost:pcm.pid type:2 likeFlag:like].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                 if (!sm.error) {
                     pcm.likeNum += like ? 1 : -1;
                     pcm.isLike = like;

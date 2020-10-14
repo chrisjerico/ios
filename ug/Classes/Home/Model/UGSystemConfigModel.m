@@ -97,6 +97,15 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"kj_trend",               @"kj_trend",            @"kj_trend",                UCI_开奖走势,      @"开奖走势"),
             item(@"usrCenter_qq",           @"usrCenter_qq",        @"usrCenter_qq",            UCI_QQ客服,        @"QQ客服"),
             item(@"center_kaijiang",        @"center_kaijiang",     @"center_kaijiang",         UCI_开奖网,        @"开奖网"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_未结注单,      @"UCI_未结注单"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_电子注单,      @"UCI_电子注单"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_真人注单,      @"UCI_真人注单"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_棋牌注单,      @"UCI_棋牌注单"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_捕鱼注单,      @"UCI_捕鱼注单"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_电竞注单,      @"UCI_电竞注单"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_体育注单,      @"UCI_体育注单"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_UG注单,       @"UCI_UG注单"),
+            
             
         ];
         
@@ -157,7 +166,6 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.className,            MM_开奖记录,         @"开奖记录"),
             item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.className,  MM_真人视讯,         @"真人视讯"),
             item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.className,  MM_棋牌电子,         @"棋牌电子"),
-            item(@"/zrsx",              @"real_video1",                 UGYYLotterySecondHomeViewController.className,  MM_真人视讯,         @"真人视讯"),
             item(@"/catchFish",         @"tabbar_buyu",                 UGYYLotterySecondHomeViewController.className,  MM_捕鱼,            @"捕鱼"),
             item(@"/eGame",             @"tabbar_dianzhi",              UGYYLotterySecondHomeViewController.className,  MM_电子,            @"电子"),
             item(@"/chess",              @"tabbar_pipai",                UGYYLotterySecondHomeViewController.className,  MM_棋牌,            @"棋牌"),
@@ -300,10 +308,10 @@ UGSystemConfigModel *currentConfig = nil;
                 if (intStatus == 2) {
                     completion([UGPromotionIncomeController new]);
                 } else {
-                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                        [HUDHelper showMsg:@"在线注册代理已关闭"];
-                        return ;
-                    }
+//                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+//                        [HUDHelper showMsg:@"在线注册代理已关闭"];
+//                        return ;
+//                    }
                     UGAgentViewController *vc = [UGAgentViewController new];
                     vc.item = obj;
                     completion(vc);

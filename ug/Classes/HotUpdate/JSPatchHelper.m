@@ -66,8 +66,8 @@
     if (!rnVersion.length) {
         NSLog(@"rn版本号为空！");
         // 获取ip信息
-        [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM) {
-            NSDictionary *ipAddress = ipSM.responseObject[@"data"] ? : @{};
+        [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM, id resObject, NSError *err) {
+            NSDictionary *ipAddress = ipSM.resObject[@"data"] ? : @{};
             NSString *ipInfo = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:ipAddress options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
             NSString *log = _NSString(@"ip地址：%@\n错误类型：%@", ipInfo, @"rn版本号为空");
             NSString *title = _NSString(@"%@%@", ipAddress[@"country"], ipAddress[@"region"]);
@@ -100,11 +100,11 @@
     NSLog(@"正在查找jsp可用的更新");
     void (^findNewVersions)(NSInteger) = nil;
     void (^__block __nextPage)(NSInteger) = findNewVersions = ^(NSInteger page) {
-        [NetworkManager1 getHotUpdateVersionList:page].completionBlock = ^(CCSessionModel *sm) {
-            NSArray *vs = sm.responseObject[@"data"][@"result"];
+        [NetworkManager1 getHotUpdateVersionList:page].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+            NSArray *vs = sm.resObject[@"data"][@"result"];
             if (!vs.count) {
                 if (page <= 1) {
-                    NSError *err = sm.error ? : [NSError errorWithDomain:sm.responseObject[@"msg"] code:-1 userInfo:nil];
+                    NSError *err = sm.error ? : [NSError errorWithDomain:sm.resObject[@"msg"] code:-1 userInfo:nil];
                     if (completion) {
                         completion(err, nil);
                     }
@@ -224,12 +224,12 @@ static NSMutableArray *_updateFinishBlocks = nil;
                 });
             }
         };
-        sm.completionBlock = ^(CCSessionModel *sm) {
+        sm.completionBlock = ^(CCSessionModel *sm, id resObject, NSError *_) {
             NSString *err = nil;
             if (!sm.error) {
                 NSLog(@"jsp包下载完成 %@", hvm.version);
                 // 解压
-                NSString *zipPath = sm.responseObject;
+                NSString *zipPath = sm.resObject;
                 NSString *unzipPath = _NSString(@"%@/jsp%@", APP.DocumentDirectory, hvm.version);
                 [[NSFileManager defaultManager] removeItemAtPath:unzipPath error:nil];
                 BOOL ret = [SSZipArchive unzipFileAtPath:zipPath toDestination:unzipPath];
@@ -274,8 +274,8 @@ static NSMutableArray *_updateFinishBlocks = nil;
                     [AppDefine stringWithFileSize:totalLenght/MAX(speeds.count, 1)];
                 });
                 // 获取ip信息
-                [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM) {
-                    NSDictionary *ipAddress = ipSM.responseObject[@"data"] ? : @{};
+                [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM, id resObject, NSError *err) {
+                    NSDictionary *ipAddress = ipSM.resObject[@"data"] ? : @{};
                     NSString *ipInfo = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:ipAddress options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
                     NSString *log = _NSString(@"下载文件：%@\n\n耗时：%.f秒\n平均下载速度：%@\n\nip地址：%@\n\n下载速度：\n%@\n\n\n错误类型：%@\n错误信息：%@", [hvm rn_keyValues], duration, averageSpeed, ipInfo, temp, err, sm.error);
                     NSString *title = _NSString(@"%@%@", ipAddress[@"country"], ipAddress[@"region"]);

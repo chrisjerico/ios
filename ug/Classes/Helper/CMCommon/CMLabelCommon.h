@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+
 @interface CMLabelCommon : NSObject
+
+
 
 /**
  *改变字符串中具体某些字符串的颜色
@@ -39,12 +43,26 @@ NS_ASSUME_NONNULL_BEGIN
 *改变字符lab 根据分隔符 最近长度 的颜色改变
  length：长度
  markColor ：改变颜色
+ isFront:是否是最前面，yes 最前；No 最后
  @"66690-1213-66666-78979-123123-98898-7777-908999";
  比如：-  前2个长度变红
  [self messageAction:self.label labStr:str separation:@"-" length:2 andMarkColor:[UIColor redColor]];
  
 */
-+(void)messageAction:(UILabel *)theLab labStr:(NSString*)str separation:(NSString *)separation  length:(int)length  andMarkColor:(UIColor *)markColor;
+typedef NS_ENUM(NSInteger, MarkRangeType) {
+    MR_前面   = 1,
+    MR_后面   = 2,
+};
++(void)messageAction:(UILabel *)theLab labStr:(NSString*)str separation:(NSString *)separation  length:(int)length  andMarkColor:(UIColor *)markColor isMarkRangeType:(MarkRangeType )mrType ;
+
+/*
+*
+* label 倒数 第几个 变颜色
+ length：长度
+ markColor ：改变颜色
+ local ：倒数第几个
+*/
++(void)messageLabel:(UILabel *)theLab length:(int)length local:(int)local  andMarkColor:(UIColor *)markColor;
 
 #pragma mark - 获取这个字符串中的所有xxx的所在的index
 + (NSMutableArray *)getRangeStr:(NSString *)text findText:(NSString *)findText;

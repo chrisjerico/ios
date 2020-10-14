@@ -195,10 +195,10 @@
     }
     __weakSelf_(__self);
     BOOL like = !sender.selected;
-    [NetworkManager1 lhcdoc_likePost:_pm.cid type:1 likeFlag:like].completionBlock = ^(CCSessionModel *sObj) {
+    [NetworkManager1 lhcdoc_likePost:_pm.cid type:1 likeFlag:like].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         UGLHPostModel *pm = __self.pm;
         BOOL ok = false;
-        if (!sObj.error) {
+        if (!sm.error) {
             pm.likeNum += like ? 1 : -1;
             pm.isLike = like;
             ok = true;

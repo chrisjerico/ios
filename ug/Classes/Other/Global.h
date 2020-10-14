@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) BOOL hideTabBar; /**<  l002 首页跳转彩种隐藏tabbar*/
 
+@property (nonatomic) BOOL isAllLottery; /**<  新彩票分组第一次进入展示全部菜种*/
+
+@property (nonatomic, strong) NSString *selCode;  /**<  越南彩选中的彩种*/
+
 +(Global *)getInstanse;
 
 @end

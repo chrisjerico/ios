@@ -267,7 +267,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     __block id __block1 = nil;
     __block id __block2 = __block1 = ^(CMResult<id> *model, NSError *err) {
 #ifdef APP_TEST
-        sm.responseObject = [__block2 cc_userInfo][@"responseObject"];
+        sm.resObject = [__block2 cc_userInfo][@"responseObject"];
         sm.error = [__block2 cc_userInfo][@"error"];
         [LogVC addRequestModel:sm];
 #endif

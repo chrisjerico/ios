@@ -63,6 +63,10 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     } else {
         [self getRechargeData];
     }
+	if (CHAT_TARGET) {
+		[self.view setBackgroundColor: UIColor.whiteColor];
+
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {

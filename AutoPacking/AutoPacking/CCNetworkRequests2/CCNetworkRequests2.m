@@ -39,10 +39,10 @@
     //    NSLog(@"response = %@", sm.responseObject);
     
     if (sm.error) {
-        if ([sm.responseObject[@"data"] isKindOfClass:[NSString class]]) {
-            NSMutableDictionary *dict = [sm.responseObject mutableCopy];
+        if ([sm.resObject[@"data"] isKindOfClass:[NSString class]]) {
+            NSMutableDictionary *dict = [sm.resObject mutableCopy];
             dict[@"data"] = nil;
-            sm.responseObject = dict;
+            sm.resObject = dict;
         }
     }
 }
@@ -69,7 +69,7 @@
     if (![sm.urlString containsString:HOST.lastPathComponent])
         return nil;
     
-    NSDictionary *responseObject = sm.responseObject;
+    NSDictionary *responseObject = sm.resObject;
     
     // 返回数据格式错误
     if (![responseObject isKindOfClass:[NSDictionary class]]) {
@@ -189,55 +189,56 @@
                     :true];
 }
 
-// 设置审核通过
-- (CCSessionModel *)checkApp:(NSString *)_id {
-    NSLog(@"_id  = %@",_id);
+// 提交审核
+- (CCSessionModel *)submitReview:(SiteModel *)site plistPath:(NSString *)plistPath ver:(NSString *)ver isForce:(BOOL)isForce log:(NSString *)log {
+    // 非强制更新
+    NSMutableDictionary *dict = @{
+        @"m":@"edit_app",
+        @"app_id":site.uploadId, // 站点在上传后台的ID
+        @"site_url":site.siteUrl,// 站点链接
+        @"ios_plist":plistPath,   // plist地址
+        @"ios_version":ver,      // 版本号
+        @"ios_update_log":log,   // 更新日志
+        @"ios_check_status":@"0",
+    }.mutableCopy;
+    
+    // 强制更新
+    if (isForce) {
+        [dict addEntriesFromDictionary:@{
+            @"ios_version_name":ver, // 强制更新版本
+            @"ios_force_update":@(isForce).stringValue,  // 是否强制更新
+            @"ios_download_page":_NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html", site.uploadId), // 下载页面链接
+        }];
+    }
     return [self req:@"api.php"
-                    :@{@"m":@"check_app",
-                       @"app_id":_id,   // 站点在上传后台的ID
-                       @"check_status":@"2",
+                    :dict
+                    :true];
+}
+
+
+#pragma mark - 高权限操作
+
+// 修改审核状态
+- (CCSessionModel *)changeReviewStatus:(SiteModel *)site reviewed:(BOOL)reviewed {
+    return [self req:@"api.php"
+                    :@{@"m":@"review_app",
+                       @"app_id":site.uploadId,
+                       @"check_status":@(reviewed),
+                       @"platform":@"ios",
                     }
                     :true];
 }
 
-// 修改APP信息
-- (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath ver:(NSString *)ver isForce:(BOOL)isForce log:(NSString *)log {
+// 修改强制更新信息
+- (CCSessionModel *)changeForceUpdateInfo:(SiteModel *)site forceVer:(NSString *)forceVer isForce:(BOOL)isForce log:(NSString *)log {
     return [self req:@"api.php"
                     :@{@"m":@"edit_app",
                        @"app_id":site.uploadId, // 站点在上传后台的ID
                        @"site_url":site.siteUrl,// 站点链接
-                       @"ios_plist":plistPath,   // plist地址
-                       @"ios_version":ver,
-                       @"ios_version_name":ver,
-                       @"ios_check_status":@"0",
-                       @"ios_update_log":log,
-                       @"ios_force_update":@(isForce).stringValue,
-                    }
-                    :true];
-}
-
-// 提交热更新版本信息
-- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(nonnull NSString *)log url:(nonnull NSString *)url {
-    return [self req:@"api.php"
-                    :@{@"m":@"add_hot_update",
-                       @"update_method":@"1",   // 1静默更新 2强制更新
-                       @"fabu_log":log,         // 更新日志
-                       @"update_url":url,       // 文件地址
-                       @"version":version,      // 版本号
-                       @"app_type":@"ios",      // ios or android
-                    }
-                    :true];
-}
-
-// 提交热更新
-- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(nonnull NSString *)log filePath:(NSString *)filePath {
-    return [self req:@"api.php"
-                    :@{@"m":@"add_app_update_log",
-                       @"is_force_update":@false,   // 是否强制更新
-                       @"detail":log,               // 更新日志
-                       @"上传文件":filePath,        // 文件本地路径
-                       @"version":version,          // 版本号
-                       @"type":@1,                  // 1=ios，2=android
+                       @"ios_version_name":forceVer, // 强制更新版本
+                       @"ios_update_log":log,   // 更新日志
+                       @"ios_force_update":@(isForce).stringValue,  // 是否强制更新
+                       @"ios_download_page":_NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html", site.uploadId), // 下载页面链接
                     }
                     :true];
 }

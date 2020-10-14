@@ -138,6 +138,11 @@
 		self.itemLabel.text = @"真人视讯";
 		
 	}
+	else  if([model.category isEqualToString:@"esport"]) {
+		[self.backDropImageView setImage:[UIImage imageNamed:@"dianzijingji"]];
+		self.itemLabel.text = @"";
+		
+	}
 }
 @end
 

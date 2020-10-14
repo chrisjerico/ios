@@ -107,6 +107,34 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     });
 }
 
+
+
+-(void)getisNewLotteryViewCompletion:(nonnull void (^)(BOOL ))completion {
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
+       
+        [CMResult processWithResult:model success:^{
+            NSArray * lotteryGamesArray =  model.data;
+            
+            int count = (int)lotteryGamesArray.count;
+            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
+            
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
+                APP.isNewLotteryView = NO;
+            } else {
+                APP.isNewLotteryView = YES;
+            }
+            
+            if (completion)
+                completion(APP.isNewLotteryView);
+          
+
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 去RN页面
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"vcName"];
@@ -126,7 +154,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         // RN內push
         if ([self.viewControllers.lastObject isKindOfClass:ReactNativeVC.class]) {
-            [(ReactNativeVC *)self.viewControllers.lastObject push:rpm params:[viewController rn_keyValues]];
+            [(ReactNativeVC *)self.viewControllers.lastObject pushOrJump:true rpm:rpm params:[viewController rn_keyValues]];
             return ;
         }
         // push ReactNativeVC
@@ -147,8 +175,17 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGLotteryHomeController class]]) {
             
+//            __block UIViewController *vc =  viewController;
+//           [self  getisNewLotteryViewCompletion:^(BOOL  isNewLotteryView) {
+//
+//                NSLog(@"isNewLotteryView = %d",isNewLotteryView);
+//                if (isNewLotteryView) {
+//                    vc =  _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
+//                }
+//            }];
+            
             if (APP.isNewLotteryView) {
-                 viewController =  _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
+                viewController =  _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
             }
         }
         

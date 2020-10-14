@@ -32,11 +32,12 @@
 
 -(void)selectTextColor:(BOOL)selected{
     self.titleLabel.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16];
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
         if (APP.isSelectStyle) {
              self.backgroundColor = selected ? [RGBA(159, 166, 173, 1) colorWithAlphaComponent:0.2] : RGBA(159, 166, 173, 1);
         }
+
        
     } else {
         UIColor *selectedColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];

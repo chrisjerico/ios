@@ -38,14 +38,14 @@
     
     {
         [LanguageHelper setNoTranslate:sm.error.domain];
-        [LanguageHelper setNoTranslate:sm.responseObject];
+        [LanguageHelper setNoTranslate:sm.resObject];
     }
     
     if (sm.error) {
-        if ([sm.responseObject[@"data"] isKindOfClass:[NSString class]]) {
-            NSMutableDictionary *dict = [sm.responseObject mutableCopy];
+        if ([sm.resObject[@"data"] isKindOfClass:[NSString class]]) {
+            NSMutableDictionary *dict = [sm.resObject mutableCopy];
             dict[@"data"] = nil;
-            sm.responseObject = dict;
+            sm.resObject = dict;
         }
     }
 }
@@ -53,8 +53,8 @@
 // 把 “HTTP请求成功，但服务器返回操作失败” 的情况生成错误信息NSError
 - (NSError *)validationError:(CCSessionModel *)sm {
     
-    if ([sm.urlString containsString:APP.Host.lastPathComponent] && sm.responseObject) {
-        id responseObject = sm.responseObject;
+    if ([sm.urlString containsString:APP.Host.lastPathComponent] && sm.resObject) {
+        id responseObject = sm.resObject;
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             // 业务逻辑错误 code!=false
             int code = [responseObject[@"code"] intValue];

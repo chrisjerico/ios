@@ -97,7 +97,7 @@
                 return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
             }
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSArray *array = sm.resObject[@"data"][@"list"];
             for (NSDictionary *dict in array)
                 [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             return array;
@@ -115,7 +115,7 @@
                 return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:tv.pageIndex];
             }
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSArray *array = sm.resObject[@"data"][@"list"];
             for (NSDictionary *dict in array)
                 [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             return array;
@@ -170,7 +170,7 @@
                 SANotificationEventPost(UGNotificationShowLoginView, nil);
                 return;
             }
-            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                 if (!sm.error) {
                     pm.hasPay = true;
                     [ppv hide:nil];

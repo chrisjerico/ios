@@ -133,6 +133,21 @@
         return _NSString(@"%.1fM", size/1024/1024);
     return _NSString(@"%.1fG", size/1024/1024/1024);
 }
++ (BOOL)hasUpdateWithCurrentVersion:(NSString *)v1 newVersion:(NSString *)v2 {
+    BOOL hasUpdate = false; // 是否存在新版本
+    
+    NSArray *currentV = [v1 componentsSeparatedByString:@"."];
+    NSArray *newestV = [v2 componentsSeparatedByString:@"."];
+    for (int i=0; i<4; i++) {
+        NSString *v1 = currentV.count > i ? currentV[i] : nil;
+        NSString *v2 = newestV.count > i ? newestV[i] : nil;
+        if (v2.intValue > v1.intValue)
+            hasUpdate = true;
+        if (v2.intValue != v1.intValue)
+            break;
+    }
+    return hasUpdate;
+}
 
 
 #pragma mark - Init
@@ -148,12 +163,13 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-//			_SiteId = @"test61f";
-			_SiteId = @" t127-shiyu";
-
+			_SiteId = @"c126";
         }
 
 #endif
+		if (CHAT_TARGET) {
+			_SiteId = @" t127-shiyu";
+		}
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
         _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
         if (!_Host.length) {
@@ -191,7 +207,7 @@
 #pragma mark - 定制样式
 - (void)setupSiteAndSkinParams {
     _isBgColorForMoneyVC = [@"c134,test29" containsString:_SiteId];
-    _isShowSalary = [@"c217,test29,c018" containsString:_SiteId];
+    _isShowSalary = [@"c217,test29,c018, c242" containsString:_SiteId];
     _isSectionWhite = [@"a002" containsString:_SiteId];
     _isTitleWhite = [@"a002" containsString:_SiteId];
     _isGPKDeposit = [@"c105b" containsString:_SiteId];
@@ -202,7 +218,7 @@
     _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
     _isNewConversion = [@"c200,a002,c186" containsString:_SiteId];
     _isNewUserInfoView = [@"c186" containsString:_SiteId];
-    _isNewLotteryView = [@"test60f,testadaf,test61f,test30-andrew" containsString:_SiteId];
+//    _isNewLotteryView = [@"test60f,testadaf,test61f,test30-andrew" containsString:_SiteId];
     _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
     _isShow4 = [@"c200,c213,a002" containsString:_SiteId];
     _isNoBorder = [@"c200,c208,a002,c134,c092" containsString:_SiteId];
@@ -218,7 +234,7 @@
     _isSelectStyle = [@"c212,c208,c134,c200,c193,c116,c213,a002,c158" containsString:_SiteId];
     _isShowBorder =  [@"c212,c208,c134,c200,c213,a002,c193,c116,c092,c158" containsString:_SiteId];
     //背景是白色
-    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY;
+    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY  ;
     //下注页tab 为深色
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
     
@@ -253,13 +269,15 @@
     _isNoSubtitle = [@"c006" containsString:_SiteId];
     _isNoLeftButton = [@"c217" containsString:_SiteId];
     _isSecondUrl = [@"c213" containsString:_SiteId];
-    _isWebRightMenu = NO;
+
     _isHideTV = [@"c085" containsString:_SiteId];
     _isBottom = [@"c186,c225" containsString:_SiteId];
     _isChatButton = [@"c186" containsString:_SiteId];
     _isNewLocation = [@"c206,test29" containsString:_SiteId];
     _isNoCry = [@"c018" containsString:_SiteId];
-
+    _isNoOnLineDoc = NO;
+    _isHBDoc = [@"c012" containsString:_SiteId];
+    _isAllCellStyle = [@"c126" containsString:_SiteId];
     
 }
 

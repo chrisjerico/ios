@@ -386,11 +386,11 @@
 
 -(void)lhLotter{
     CCSessionModel * sessionModel = [NetworkManager1 lhdoc_lotteryNumber];
-    sessionModel.completionBlock = ^(CCSessionModel *sm) {
-        NSNumber *cn = (NSNumber *)sm.responseObject[@"code"];
+    sessionModel.completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+        NSNumber *cn = (NSNumber *)sm.resObject[@"code"];
         if (!sm.error  && [cn intValue] == 0) {
             self.lhModel = nil;
-            UGLHlotteryNumberModel *model = (UGLHlotteryNumberModel *)[UGLHlotteryNumberModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+            UGLHlotteryNumberModel *model = (UGLHlotteryNumberModel *)[UGLHlotteryNumberModel mj_objectWithKeyValues:sm.resObject[@"data"]];
             model.numSxArrary = [model.numSx componentsSeparatedByString:@","];
             model.numbersArrary = [model.numbers componentsSeparatedByString:@","];
             model.numColorArrary = [model.numColor componentsSeparatedByString:@","];
@@ -476,7 +476,7 @@
             }
         }
     };
-    sessionModel.failureBlock = ^(NSError *error) {
+    sessionModel.failureBlock = ^(CCSessionModel *sm, NSError *err) {
         
     };
 }

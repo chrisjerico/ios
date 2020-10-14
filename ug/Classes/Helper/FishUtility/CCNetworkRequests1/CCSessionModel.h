@@ -36,7 +36,7 @@
 @property (nonatomic, weak) id <CCRequestDelegate> delegate;  /**<    Delegate */
 
 @property (nonatomic) NSError *error;                         /**<    错误信息 */
-@property (nonatomic) id responseObject;                      /**<    返回的数据 */
+@property (nonatomic) id resObject;                           /**<    返回的数据 */
 @property (nonatomic) NSHTTPURLResponse *response;            /**<    描述响应（响应头、响应体） */
 @property (nonatomic) NSTimeInterval duration;                /**<    请求响应时长(ms) */
 
@@ -63,14 +63,14 @@
 
 @property (nonatomic) BOOL noShowErrorHUD;    /**<    取消请求失败时显示的错误信息HUD */
 
-@property (nonatomic) void (^successBlock)(id responseObject);                                /**<    请求成功 */
-@property (nonatomic) void (^failureBlock)(NSError *error);                                   /**<    请求失败 */
-@property (nonatomic) void (^completionBlock)(CCSessionModel *sm);                          /**<    请求完成 */
+@property (nonatomic) void (^successBlock)(CCSessionModel *sm, id resObject);                 /**<    请求成功 */
+@property (nonatomic) void (^failureBlock)(CCSessionModel *sm, NSError *err);                 /**<    请求失败 */
+@property (nonatomic) void (^completionBlock)(CCSessionModel *sm, id resObject, NSError *err);/**<    请求完成 */
 
 @property (nonatomic) NSURL *(^filePathBlock)(NSURL *targetPath, NSURLResponse *response);    /**<    设置下载文件的保存路径 */
 @property (nonatomic) void (^progressBlock)(NSProgress *progress);                            /**<    上传/下载 进度回调 */
 
-- (void)setSuccessBlock:(void(^)(id responseObject))successBlock failureBlock:(void(^)(NSError *error))failureBlock;
+- (void)setSuccessBlock:(void(^)(CCSessionModel *sm, id resObject))successBlock failureBlock:(void(^)(CCSessionModel *sm, NSError *err))failureBlock;
 @end
 
 

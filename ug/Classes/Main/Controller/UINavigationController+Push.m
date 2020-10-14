@@ -42,6 +42,7 @@
 #import "UGHomeViewController.h"
 #import "RedEnvelopeVCViewController.h"
 #import "UGLotteryRulesView.h"
+#import "UGgoBindViewController.h"
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -435,7 +436,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 2: {
             // APP下载
-            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             break;
         }
         case 3: {
@@ -662,7 +663,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 27: {
             //27' => '当前版本号',
-            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             break;
         }
         case 28: {
@@ -730,6 +731,25 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
             recordVC.type = 2;
             [NavController1 pushViewController:recordVC animated:true];
+            break;
+        }
+        case 38: {
+            //38' => '修改密码',
+//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGModifyLoginPwdController") animated:true];
+            UGSecurityCenterViewController *vc = [UGSecurityCenterViewController new];
+            vc.selectIndex = 0;
+            [NavController1 pushViewController:vc animated:YES];
+            break;
+        }
+        case 39: {
+            //39' => '修改提款密码',
+            
+//            UIViewController *vc  =  UserI.hasFundPwd ? _LoadVC_from_storyboard_(@"UGModifyPayPwdController") : [UGgoBindViewController new];   // 取款密码
+//            [NavController1 pushViewController: vc animated:true];
+            
+            UGSecurityCenterViewController *vc = [UGSecurityCenterViewController new];
+            vc.selectIndex = 1;
+            [NavController1 pushViewController:vc animated:YES];
             break;
         }
         default: {
@@ -807,11 +827,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case UCI_推荐收益: {
 			
-# if DEBUG
-			MyPromotionVC *vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateInitialViewController];
-			[[UINavigationController current] pushViewController:vc animated:true];
-			return true;
-# endif
+//# if DEBUG
+//			MyPromotionVC *vc = [[UIStoryboard storyboardWithName:@"MyPromotion" bundle:nil] instantiateInitialViewController];
+//			[[UINavigationController current] pushViewController:vc animated:true];
+//			return true;
+//# endif
             if (UserI.isTest) {
                 [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
             } else {
@@ -826,10 +846,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                         if (intStatus == 2) {
                             [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
                         } else {
-                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                                [HUDHelper showMsg:@"在线注册代理已关闭"];
-                                return ;
-                            }
+//                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+//                                [HUDHelper showMsg:@"在线注册代理已关闭"];
+//                                return ;
+//                            }
                             UGAgentViewController *vc = [[UGAgentViewController alloc] init];
                             vc.item = obj;
                             [NavController1 pushViewController:vc animated:YES];
@@ -856,6 +876,53 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case UCI_其他注单记录: {
             UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
             betRecordVC.gameType = @"real";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_未结注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"real";
+            betRecordVC.status = @"1";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_UG注单: {
+            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+            return true;
+        }
+        case UCI_电子注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"game";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_真人注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"real";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_棋牌注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"card";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_捕鱼注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"fish";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_电竞注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"esport";
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
+        case UCI_体育注单: {
+            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+            betRecordVC.gameType = @"sport";
             [NavController1 pushViewController:betRecordVC animated:YES];
             return true;
         }

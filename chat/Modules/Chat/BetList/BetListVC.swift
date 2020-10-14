@@ -53,7 +53,7 @@ class BetListVC: BaseVC {
 		}).disposed(by: disposeBag)
 		
 		ChatAPI.rx.request(ChatTarget.betList(page: page, pageSize: pageSize))
-			.mapArray(BetModel.self)
+			.mapArray(BetModel.self,keyPath: "data.list")
 			.subscribe(onSuccess: { [weak self] (betList) in
 				guard let weakSelf = self else { return }
 				if betList.count > 0 {

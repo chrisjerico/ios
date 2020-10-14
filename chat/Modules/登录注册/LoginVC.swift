@@ -13,6 +13,7 @@ import RxCocoa
 import ObjectMapper
 import RxRelay
 import SwiftyJSON
+import SafariServices
 
 class LoginVC: BaseVC {
 	
@@ -197,5 +198,8 @@ class LoginVC: BaseVC {
 			}
 		}
 		
+	}
+	@IBAction func passwordResetAction(_ sender: Any) {
+		navigationController?.pushVC(with: UserCenterItemType.UCI_在线客服)
 	}
 }

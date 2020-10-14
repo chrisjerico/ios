@@ -129,7 +129,8 @@
     
     self.sectionLabel3.text = @"";
     
-    
+    [self.headerImageView setHidden:YES];
+    self.headerImageView.height = 0.1;
     
     [self teamInviteInfoData];
 }
@@ -250,11 +251,25 @@
     
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
 
+    if ([@"c126b,test61f" containsString:APP.SiteId]) {
+        [self.headerImageView setImage:[UIImage imageNamed:@"c126bHeaderBgImg"]];
+    }
+    else{
+        [self.headerImageView setImage:[UIImage imageNamed:@"promotioninfo"]];
+    }
+    
     if ([config.myreco_img isEqualToString:@"0"]) {
         
         [self.headerImageView setHidden:NO];
-        self.headerImageView.height = 256;
-           [self.tableView reloadData];
+        
+        if ([@"c126b,test61f" containsString:APP.SiteId]) {
+            self.headerImageView.height = kScreenWidth * 22.12 / 18.26;
+        }
+        else{
+            self.headerImageView.height = 256;
+        }
+        
+        [self.tableView reloadData];
     }
     else if([config.myreco_img isEqualToString:@"1"]) {
         
@@ -264,6 +279,8 @@
         [self.tableView reloadData];
 
     }
+    
+
 
 }
 @end

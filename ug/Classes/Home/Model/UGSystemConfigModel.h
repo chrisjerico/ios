@@ -32,16 +32,14 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_开奖走势    = 18,
     UCI_QQ客服     = 19,
     UCI_开奖网     = 20,
-
-//    UCI_电子注单     = 21,
-//    UCI_未结注单     = 22,
-//    UCI_真人注单     = 23,
-//    UCI_棋牌注单     = 24,
-//    UCI_捕鱼注单     = 25,
-//    UCI_电竞注单     = 26,
-//    UCI_体育注单     = 27,
-//    UCI_UG注单      = 28,
-    
+    UCI_未结注单     = 21,
+    UCI_电子注单     = 22,
+    UCI_真人注单     = 23,
+    UCI_棋牌注单     = 24,
+    UCI_捕鱼注单     = 25,
+    UCI_电竞注单     = 26,
+    UCI_体育注单     = 27,
+    UCI_UG注单      = 28,
     UCI_聊天室     = 9001,//本地的
 };
 

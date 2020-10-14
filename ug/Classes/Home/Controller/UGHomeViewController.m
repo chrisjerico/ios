@@ -1286,10 +1286,10 @@
             [SVProgressHUD showWithStatus:nil];
             NSLog(@"");
             NSLog(@"model.contentId = %@",model.contentId);
-            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                 [SVProgressHUD dismiss];
                 if (!sm.error) {
-                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                     pm.link = model.link;
                     NSLog(@"获取帖子详情 = %@",pm.content);
                     void (^push)(void) = ^{
@@ -1308,7 +1308,7 @@
                                 SANotificationEventPost(UGNotificationShowLoginView, nil);
                                 return;
                             }
-                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                                 if (!sm.error) {
                                     pm.hasPay = true;
                                     [ppv hide:nil];
@@ -1409,7 +1409,7 @@
 //            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
 //            webViewVC.webTitle = model.name;
 //            [NavController1 pushViewController:webViewVC animated:YES];
-            [[UGAppVersionManager shareInstance] updateVersionApi:true];
+            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             NSLog(@"APP下载");
         }
    
@@ -2867,10 +2867,10 @@
                 if (intStatus == 2) {
                     [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
                 } else {
-                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
-                        [HUDHelper showMsg:@"在线注册代理已关闭"];
-                        return ;
-                    }
+//                    if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+//                        [HUDHelper showMsg:@"在线注册代理已关闭"];
+//                        return ;
+//                    }
                     UGAgentViewController *vc = [[UGAgentViewController alloc] init];
                     vc.item = obj;
                     [NavController1 pushViewController:vc animated:YES];

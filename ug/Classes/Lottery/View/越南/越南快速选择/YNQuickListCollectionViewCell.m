@@ -29,27 +29,15 @@
     _item = item;
     self.titleLabel.text = item.name;
     
-    if (APP.betBgIsWhite) {
+    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
         self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.bgColor;
     } else {
         self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
     }
     
-    self.titleLabel.textColor =  item.select ? [UIColor whiteColor] : [UIColor blackColor];
+    self.titleLabel.textColor =  item.select ? [UIColor whiteColor] : Skin1.textColor3;
     
-//    if (Skin1.isBlack||Skin1.is23) {
-//        if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
-//            self.backgroundColor = item.select ? RGBA(72, 146, 209, 1):  Skin1.homeContentSubColor;
-//        } else {
-//            self.backgroundColor = item.select ? Skin1.homeContentSubColor : UIColorHex(101010);
-//        }
-//
-//    } else {
-//        self.backgroundColor = item.select ? [Skin1.homeContentSubColor colorWithAlphaComponent:0.2] : [UIColor clearColor];
-//        if (APP.isBorderNavBarBgColor) {
-//            self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
-//        }
-//    }
+
 }
 
 @end

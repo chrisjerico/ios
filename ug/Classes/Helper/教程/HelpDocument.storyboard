@@ -74,6 +74,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="btnView" destination="2Ox-YQ-gWB" id="p7Q-0D-GvY"/>
+                        <outlet property="btnViewWidth" destination="lcL-6y-ovu" id="gKr-wT-Z5a"/>
                         <outlet property="mWebView" destination="zKg-Yh-4l9" id="OPH-Nv-gpg"/>
                         <outlet property="nameStack" destination="A3Z-1K-TLf" id="cz7-ZC-Xe6"/>
                         <outlet property="stackHeight" destination="pyt-0H-Uce" id="Nn8-nK-6HF"/>

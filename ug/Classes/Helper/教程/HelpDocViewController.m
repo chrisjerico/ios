@@ -13,6 +13,7 @@
     float btnH;
 }
 @property (weak, nonatomic) IBOutlet UIView *btnView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnViewWidth;
 @property (weak, nonatomic) IBOutlet UIWebView *mWebView;
 @property (weak, nonatomic) IBOutlet UIStackView *nameStack;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackHeight;
@@ -26,15 +27,23 @@
     // Do any additional setup after loading the view.
     _buttons = [NSMutableArray new];
     self.mWebView.delegate = self;
-    [self.mWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#FFFFFF'"];
+//    [self.mWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#FFFFFF'"];
     [CMCommon setBorderWithView:_btnView top:NO left:YES bottom:NO right:YES borderColor:RGBA(252, 223, 224, 1) borderWidth:1.0];
     btnH = 44.0;
-    if(self.itemArry.count){
-        [self resetData];
+    
+    if (self.webName.length) {
+        self.btnViewWidth.constant = 0.0;
+        [self loadHtml:self.webName];
+    } else {
+        self.btnViewWidth.constant = 80.0;
+        if(self.itemArry.count){
+            [self resetData];
+        }
+        else{
+            self.stackHeight.constant = 0.0;
+        }
     }
-    else{
-        self.stackHeight.constant = 0.0;
-    }
+    
  
 }
 
@@ -116,8 +125,14 @@
 #pragma ---- UIWebViewDelegate
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    self.mWebView.backgroundColor = [UIColor clearColor];
-    [self.mWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#FFFFFF'"];
+    //改变背景颜色
+//    self.mWebView.backgroundColor = [UIColor clearColor];
+//    [self.mWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#FFFFFF'"];
+    
+    //便可实现手势缩放，如果user-scalable=no,就会关闭手势缩放功能
+    NSString*injectionJSString =@"var script = document.createElement('meta');\script.name = 'viewport';script.content=\"width=device-width, initial-scale=1.0,maximum-scale=3.0, minimum-scale=1.0, user-scalable=yes\";document.getElementsByTagName('head')[0].appendChild(script);";
+    [self.mWebView stringByEvaluatingJavaScriptFromString:injectionJSString];
+
 }
 
 @end

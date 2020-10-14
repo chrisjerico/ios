@@ -70,8 +70,7 @@ static NSString *ID=@"YNBetCollectionViewCell";
         self.cancelButton.layer.masksToBounds = YES;
         self.cancelButton.layer.borderColor = Skin1.bgColor.CGColor;
         self.cancelButton.layer.borderWidth = 0.7;
-        
-        
+       
         
         self.layer.cornerRadius = 6;
         self.layer.masksToBounds = YES;
@@ -103,7 +102,7 @@ static NSString *ID=@"YNBetCollectionViewCell";
 
 - (void)show {
     FastSubViewCode(self)
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self setBackgroundColor:Skin1.bgColor];
         [self.collectionView setBackgroundColor:Skin1.bgColor];
         
@@ -111,11 +110,13 @@ static NSString *ID=@"YNBetCollectionViewCell";
         [self.numberLabel setTextColor:[UIColor whiteColor]];
         [self.totalAmountLabel setTextColor:[UIColor whiteColor]];
         [subLabel(@"批号lable")setTextColor:[UIColor whiteColor]];
+        [subLabel(@"标题lable")setTextColor:[UIColor whiteColor]];
         [subLabel(@"组合数label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"倍数label")setTextColor:[UIColor whiteColor]];
         [subLabel(@"总金额label")setTextColor:[UIColor whiteColor]];
+        [subLabel(@"明细label")setTextColor:[UIColor whiteColor]];
         [self.cancelButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-        
+        [self.titellabel setTextColor:[UIColor whiteColor]];
         
     } else {
         [self setBackgroundColor:[UIColor whiteColor]];
@@ -123,11 +124,13 @@ static NSString *ID=@"YNBetCollectionViewCell";
         [self.BatchNumberLabel setTextColor:[UIColor blackColor]];
         [self.numberLabel setTextColor:[UIColor blackColor]];
         [self.totalAmountLabel setTextColor:[UIColor blackColor]];
-        
+        [self.titellabel setTextColor:[UIColor blackColor]];
         [subLabel(@"批号lable")setTextColor:[UIColor blackColor]];
+        [subLabel(@"标题lable")setTextColor:[UIColor blackColor]];
         [subLabel(@"组合数label")setTextColor:[UIColor blackColor]];
         [subLabel(@"倍数label")setTextColor:[UIColor blackColor]];
         [subLabel(@"总金额label")setTextColor:[UIColor blackColor]];
+        [subLabel(@"明细label")setTextColor:[UIColor blackColor]];
         [self.cancelButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     }
     

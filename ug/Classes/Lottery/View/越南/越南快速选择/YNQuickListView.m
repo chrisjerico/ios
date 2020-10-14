@@ -31,7 +31,7 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         self.delegate = self;
         self.dataSource = self;
         self.selecedDataArry = [NSMutableArray new];
-        if (APP.betBgIsWhite) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
             self.backgroundColor =  [UIColor whiteColor];
         } else {
             if (APP.isLight) {
