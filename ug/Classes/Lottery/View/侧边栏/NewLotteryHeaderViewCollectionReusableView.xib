@@ -20,7 +20,7 @@
                         <constraint firstAttribute="height" constant="21" id="PjI-hC-Llw"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.70552372929999996" green="0.61289751530000003" blue="0.6119287014" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.59733796120000004" green="0.4264326692" blue="0.4245352745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snh-tt-UGa">

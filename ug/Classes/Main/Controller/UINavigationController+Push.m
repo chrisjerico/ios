@@ -42,6 +42,7 @@
 #import "UGHomeViewController.h"
 #import "RedEnvelopeVCViewController.h"
 #import "UGLotteryRulesView.h"
+#import "UGgoBindViewController.h"
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -730,6 +731,25 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
             recordVC.type = 2;
             [NavController1 pushViewController:recordVC animated:true];
+            break;
+        }
+        case 38: {
+            //38' => '修改密码',
+//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGModifyLoginPwdController") animated:true];
+            UGSecurityCenterViewController *vc = [UGSecurityCenterViewController new];
+            vc.selectIndex = 0;
+            [NavController1 pushViewController:vc animated:YES];
+            break;
+        }
+        case 39: {
+            //39' => '修改提款密码',
+            
+//            UIViewController *vc  =  UserI.hasFundPwd ? _LoadVC_from_storyboard_(@"UGModifyPayPwdController") : [UGgoBindViewController new];   // 取款密码
+//            [NavController1 pushViewController: vc animated:true];
+            
+            UGSecurityCenterViewController *vc = [UGSecurityCenterViewController new];
+            vc.selectIndex = 1;
+            [NavController1 pushViewController:vc animated:YES];
             break;
         }
         default: {

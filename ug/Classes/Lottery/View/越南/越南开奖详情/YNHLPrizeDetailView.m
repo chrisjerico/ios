@@ -1,27 +1,28 @@
 //
-//  YNHZMPrizeDetailView.m
+//  YNHLPrizeDetailView.m
 //  UGBWApp
 //
 //  Created by ug on 2020/9/3.
 //  Copyright © 2020 ug. All rights reserved.
 //
 
-#import "YNHZMPrizeDetailView.h"
+#import "YNHLPrizeDetailView.h"
 #import "CMLabelCommon.h"
-@interface YNHZMPrizeDetailView (){
+@interface YNHLPrizeDetailView (){
      UIScrollView* maskView;
 }
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;    /**<   取消Button */
+@property (weak, nonatomic) IBOutlet UIView *baView;             /**<   八等奖view */
 
 @property (nonatomic) float amount; /**<   总金额*/
 @end
-@implementation YNHZMPrizeDetailView
+@implementation YNHLPrizeDetailView
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self = [[NSBundle mainBundle] loadNibNamed:@"YNHZMPrizeDetailView" owner:self options:0].firstObject;
+        self = [[NSBundle mainBundle] loadNibNamed:@"YNHLPrizeDetailView" owner:self options:0].firstObject;
         
         float h = 0;
         h = UGScerrnH - 300;
@@ -101,18 +102,32 @@
         [subLabel(@"t9label")setTextColor:[UIColor blackColor]];
         [self.cancelButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
     }
-    
-    
-    [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"一等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"二等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"三等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"四等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"五等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"六等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"七等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
-    [CMLabelCommon messageAction:subLabel(@"八等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor]];
 
+    [self setLabelColorForSelCode];
+    
+
+    
+    self.baView.layer.borderWidth = 1;
+    self.baView.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"特等奖View").layer.borderWidth = 1;
+    subView(@"特等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"一等奖View").layer.borderWidth = 1;
+    subView(@"一等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"二等奖View").layer.borderWidth = 1;
+    subView(@"二等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"三等奖View").layer.borderWidth = 1;
+    subView(@"三等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"四等奖View").layer.borderWidth = 1;
+    subView(@"四等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"五等奖View").layer.borderWidth = 1;
+    subView(@"五等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"六等奖View").layer.borderWidth = 1;
+    subView(@"六等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    subView(@"七等奖View").layer.borderWidth = 1;
+    subView(@"七等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
+    
+  
+    [self.baView setHidden:self.isHide8View];
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
     if (!maskView) {
@@ -161,7 +176,7 @@
     [subLabel(@"五等奖label")setText:[_nextIssueModel.d5 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"六等奖label")setText:[_nextIssueModel.d6 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"七等奖label")setText:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"八等奖label")setText:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
+    [subLabel(@"八等奖label")setText:[_nextIssueModel.d8 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
     [subLabel(@"t0label")setText:_nextIssueModel.t0];
     [subLabel(@"t1label")setText:_nextIssueModel.t1];
     [subLabel(@"t2label")setText:_nextIssueModel.t2];
@@ -172,6 +187,9 @@
     [subLabel(@"t7label")setText:_nextIssueModel.t7];
     [subLabel(@"t8label")setText:_nextIssueModel.t8];
     [subLabel(@"t9label")setText:_nextIssueModel.t9];
+    
+
+    
     
 }
 @end

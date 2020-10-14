@@ -184,8 +184,11 @@
             self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor3 ;
         }
         else{
-            self.slideSwitchView.tabItemSelectedColor = Skin1.textColor1 ;
+        
+            self.slideSwitchView.tabItemSelectedColor = [UIColor whiteColor] ;
+            self.slideSwitchView.tabItemNormalColor = [UIColor blackColor];
             self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor3 ;
+            self.slideSwitchView.tabItemNormalFont = 13;
         }
        
     }

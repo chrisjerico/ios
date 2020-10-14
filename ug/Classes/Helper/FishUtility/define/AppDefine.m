@@ -204,7 +204,7 @@
     _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
     _isNewConversion = [@"c200,a002,c186" containsString:_SiteId];
     _isNewUserInfoView = [@"c186" containsString:_SiteId];
-    _isNewLotteryView = [@"test60f,testadaf,test61f,test30-andrew" containsString:_SiteId];
+//    _isNewLotteryView = [@"test60f,testadaf,test61f,test30-andrew" containsString:_SiteId];
     _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
     _isShow4 = [@"c200,c213,a002" containsString:_SiteId];
     _isNoBorder = [@"c200,c208,a002,c134,c092" containsString:_SiteId];
@@ -255,14 +255,15 @@
     _isNoSubtitle = [@"c006" containsString:_SiteId];
     _isNoLeftButton = [@"c217" containsString:_SiteId];
     _isSecondUrl = [@"c213" containsString:_SiteId];
-    _isWebRightMenu = NO;
+
     _isHideTV = [@"c085" containsString:_SiteId];
     _isBottom = [@"c186,c225" containsString:_SiteId];
     _isChatButton = [@"c186" containsString:_SiteId];
     _isNewLocation = [@"c206,test29" containsString:_SiteId];
     _isNoCry = [@"c018" containsString:_SiteId];
-    _isNoOnLineDoc = [@"c012" containsString:_SiteId];
+    _isNoOnLineDoc = NO;
     _isHBDoc = [@"c012" containsString:_SiteId];
+    _isAllCellStyle = [@"c126" containsString:_SiteId];
     
 }
 

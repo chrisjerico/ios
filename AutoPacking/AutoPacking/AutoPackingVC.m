@@ -12,6 +12,12 @@
 
 @implementation AutoPackingVC
 
+- (void)extracted:(NSString *)branch checkStatus:(BOOL)checkStatus ids:(NSString *)ids isForce:(BOOL)isForce updateLog:(NSString *)updateLog willUpload:(BOOL)willUpload {
+    [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
+        [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog checkStatus:checkStatus];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -51,7 +57,7 @@
 
                 
 
-                NSString *ids = @"c245";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+                NSString *ids = @"c126";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
                 NSString *branch = @"dev_master";// 分支名
                 BOOL isForce = false;      // 是否强制更新
                 NSString *updateLog = @""; // 更新日志，给用户看的
@@ -59,9 +65,7 @@
                 BOOL checkStatus = 0 ;      // 上传后是否审核  1时只能有bigadmin的账号，否则没权限
 
                 
-                [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
-                    [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog checkStatus:checkStatus];
-                }];
+                [self extracted:branch checkStatus:checkStatus ids:ids isForce:isForce updateLog:updateLog willUpload:willUpload];
             }
             else {
                 NSString *environment = @"ezer3";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
