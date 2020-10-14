@@ -1613,6 +1613,7 @@
 		039D3CC425373FD0008511AA /* YNHLPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */; };
 		039D3CC825373FFD008511AA /* YNView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA01CFC2535AC6D00EA71F9 /* YNView.m */; };
 		039D3CCB25374090008511AA /* HelpDocument.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFBB252C7F26004C47AB /* HelpDocument.storyboard */; };
+		039D3CD025374323008511AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -2186,7 +2187,6 @@
 		D451A47F23F6669C00CD0E36 /* JYMineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D451A47E23F6669C00CD0E36 /* JYMineCollectionViewCell.xib */; };
 		D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
 		D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */ = {isa = PBXBuildFile; fileRef = D4564A4423E3E3A800A1A8C6 /* UIView+shadowPath.m */; };
-		D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B75E15227802600007047C /* Assets.xcassets */; };
 		D458ED7F240F9EF100575C3F /* hot_act.gif in Resources */ = {isa = PBXBuildFile; fileRef = D458ED7D240F9EF100575C3F /* hot_act.gif */; };
 		D458ED8E2412417A00575C3F /* UITabBar+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = D458ED8D2412417A00575C3F /* UITabBar+CustomBadge.m */; };
 		D4593B0623FFA6C1008396BE /* LineMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4593B0523FFA6C1008396BE /* LineMainListViewController.m */; };
@@ -9361,6 +9361,7 @@
 				031EF59A23BE7B4D00B0F813 /* meiriqiandao.svg in Resources */,
 				031E1C3B23BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.xib in Resources */,
 				0315DCA424AEC6A700D635E2 /* NotificationSystemMessageCell.xib in Resources */,
+				039D3CD025374323008511AA /* Assets.xcassets in Resources */,
 				031E1BF923BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
 				031EF58023BE7B4D00B0F813 /* zj_xinwen.svg in Resources */,
 				031E1B9323BE812900B0F813 /* UGGameListCollectionViewCell.xib in Resources */,
@@ -9460,7 +9461,6 @@
 				031E1C1523BE812900B0F813 /* UGLinkNumCollectionViewCell.xib in Resources */,
 				031E198723BE812600B0F813 /* UGScratchMusicView.xib in Resources */,
 				03E56F872480A56400996099 /* address.json in Resources */,
-				D4564A4723E3FA9600A1A8C6 /* Assets.xcassets in Resources */,
 				031EF57223BE7B4D00B0F813 /* kai.svg in Resources */,
 				031E1D3523BE812B00B0F813 /* UGAgentViewController.xib in Resources */,
 				031E1BF123BE812900B0F813 /* UGQXCLotteryController.storyboard in Resources */,
