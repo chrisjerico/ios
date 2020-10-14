@@ -8640,13 +8640,13 @@
 		D40745B72511F37800606EA3 /* 越南快速选择 */ = {
 			isa = PBXGroup;
 			children = (
-				D40745B82511F37800606EA3 /* YNQuickSelectView.h */,
 				D40745B92511F37800606EA3 /* YNQuickListCollectionViewCell.xib */,
-				D40745BA2511F37800606EA3 /* YNQuickListView.h */,
-				D40745BB2511F37800606EA3 /* YNQuickListCollectionViewCell.m */,
-				D40745BC2511F37800606EA3 /* YNQuickSelectView.m */,
-				D40745BD2511F37800606EA3 /* YNQuickSelectView.xib */,
 				D40745BE2511F37800606EA3 /* YNQuickListCollectionViewCell.h */,
+				D40745BB2511F37800606EA3 /* YNQuickListCollectionViewCell.m */,
+				D40745BD2511F37800606EA3 /* YNQuickSelectView.xib */,
+				D40745B82511F37800606EA3 /* YNQuickSelectView.h */,
+				D40745BC2511F37800606EA3 /* YNQuickSelectView.m */,
+				D40745BA2511F37800606EA3 /* YNQuickListView.h */,
 				D40745BF2511F37800606EA3 /* YNQuickListView.m */,
 			);
 			path = "越南快速选择";

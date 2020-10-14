@@ -50,7 +50,7 @@
 
 - (void)show {
     FastSubViewCode(self)
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self setBackgroundColor:Skin1.bgColor];
 
         [subLabel(@"标题Label")setTextColor:[UIColor whiteColor]];

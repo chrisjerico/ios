@@ -26,13 +26,15 @@
     _item = item;
     self.nameLabel.text = item.name;
     
-    if (APP.betBgIsWhite) {
+    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
         self.nameLabel.backgroundColor = item.select ? UGBlueColor : Skin1.bgColor;
+        
     } else {
         self.nameLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
     }
+    self.nameLabel.textColor =  item.select ? [UIColor whiteColor] : Skin1.textColor3;
     
-    self.nameLabel.textColor =  item.select ? [UIColor whiteColor] : [UIColor blackColor];
+   
 }
 
 

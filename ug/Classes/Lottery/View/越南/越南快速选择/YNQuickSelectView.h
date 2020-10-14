@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^YNQuickListBlock)(UICollectionView *collectionView,NSIndexPath* indexPath,NSInteger selectedSegmentIndex);
 @interface YNQuickSelectView : UIView
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, strong )UGGameBetModel *bet;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
 

@@ -37,14 +37,9 @@
         
         if (Skin1.isGPK ||Skin1.isBlack ) {
             [self setBackgroundColor:Skin1.homeContentColor];
-            [self.nameLabel setTextColor:Skin1.textColor4];
-            [self.mBtn setTitleColor:Skin1.textColor4 forState:UIControlStateNormal];
-        } else {
-            [self setBackgroundColor:Skin1.homeContentColor];
             [self.nameLabel setTextColor:Skin1.textColor1];
             [self.mBtn setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
         }
-        
     }
     
 }
