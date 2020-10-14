@@ -170,6 +170,7 @@
 + (__kindof UIView *)viewWithNibName:(NSString *)nibName;                       /**<    从xib加载view */
 + (NSString *)stringWithFloat:(double)f decimal:(unsigned short)d;              /**<   double转字符串，去除末尾的0 */
 + (NSString *)stringWithFileSize:(double)size;
++ (BOOL)hasUpdateWithCurrentVersion:(NSString *)v1 newVersion:(NSString *)v2;
 @end
 
 

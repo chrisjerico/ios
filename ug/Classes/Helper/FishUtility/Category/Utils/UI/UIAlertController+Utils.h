@@ -13,6 +13,8 @@
 @end
 
 
+static NSString *kDidAlertButtonClick = @"kDidAlertButtonClick";
+
 @interface UIAlertController (Utils)
 
 + (instancetype)alertWithTitle:(NSString *)title msg:(NSString *)msg btnTitles:(NSArray <NSString *>*)btnTitles;

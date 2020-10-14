@@ -51,7 +51,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [UGLaunchPageVC new];
+    self.window.rootViewController = ({
+        // 版本更新弹框需要在NavController才能弹出来
+        UINavigationController *nav = [UINavigationController new];
+        nav.navigationBarHidden = true;
+        nav.viewControllers = @[[UGLaunchPageVC new]];
+        nav;
+    });
     [self.window makeKeyAndVisible];
     
     self.notiveViewHasShow = YES;

@@ -9,12 +9,10 @@
 #import "UGLaunchPageVC.h"
 
 #import "FLAnimatedImageView.h"
-
 #import <SafariServices/SafariServices.h>
-
 #import "ReactNativeHelper.h"
-
 #import "UIView+AutoLocalizable.h"
+#import "UGAppVersionManager.h"
 
 @interface LaunchPageModel : UGModel
 @property (nonatomic) NSString *pic;
@@ -31,6 +29,7 @@
 @property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
 @property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
 @property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
+@property (nonatomic, assign) int waitCheckUpdate;  /**<   ⌛️等检查更新 */
 @end
 
 
@@ -41,13 +40,25 @@
     [self initNetwork];
 	self.view.backgroundColor = UIColor.whiteColor;
 
-     // 加载初始配置域名
-        {
-            [self getSystemConfig];
-        }
-    //
+    // 检查版本更新
+    {
+        _waitCheckUpdate = -1;
+        __weakSelf_(__self);
+        __block BOOL __isForce = false;
+        [[UGAppVersionManager shareInstance] updateVersionApi:false completion:^(BOOL hasUpdate, BOOL isForce) {
+            __self.waitCheckUpdate = hasUpdate;
+            __isForce = isForce;
+        }];
+        [self xw_addNotificationForName:kDidAlertButtonClick block:^(NSNotification * _Nonnull noti) {
+            if (!__isForce)
+                __self.waitCheckUpdate = false;
+        }];
+    }
     
-
+    // 加载初始配置域名
+    {
+        [self getSystemConfig];
+    }
 }
 
 // 获取系统配置
@@ -211,6 +222,7 @@
                 __self.waitSysConf = false;
                 __self.waitPic = false;
                 __self.waitLanguage = false;
+                __self.waitCheckUpdate = __self.waitCheckUpdate > 0;
 #ifndef APP_TEST
                 __self.waitReactNative = false;
 #endif
@@ -225,6 +237,7 @@
             if (__self.waitSysConf) continue;
             if (__self.waitPic) continue;
             if (__self.waitLanguage) continue;
+            if (__self.waitCheckUpdate) continue;
             break;
         }
         dispatch_async(dispatch_get_main_queue(), ^{

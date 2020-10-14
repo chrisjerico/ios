@@ -7,84 +7,71 @@
 #import "UGAPPVersionModel.h"
 #import "QDAlertView.h"
 
-@interface UGAppVersionManager ()
-@property(nonatomic,strong) UGAPPVersionModel *versionModle;
-
-@end
+static NSString *kLastPromptDate = @"kNowTimeKey";
+static NSString *kVersionModel = @"VersionModel";
+static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
 
 @implementation UGAppVersionManager
-static NSInteger versionNumber = 102;
-+(UGAppVersionManager *)shareInstance
-{
-    
++ (UGAppVersionManager *)shareInstance {
     static UGAppVersionManager *shareInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareInstance = [[[super class] alloc] init];
-        
     });
-
     return shareInstance;
 }
 
 //请求版本信息
-- (void)updateVersionApi:(BOOL)flag {
-    [SVProgressHUD show];
+- (void)updateVersionApi:(BOOL)promptAlreadyLatest completion:(nullable void (^)(BOOL, BOOL))completion {
+    UGAPPVersionModel *vm = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:kVersionModel]];
+    // 若本地有强更新数据，则直接弹窗再拉请求
+    BOOL showBuffer = vm.needForce;
+    if (showBuffer) {
+        [self showAlert:vm promptAlreadyLatest:promptAlreadyLatest completion:completion];
+    }
+    
+    promptAlreadyLatest ? [SVProgressHUD show] : nil;
     WeakSelf;
     [CMNetwork checkVersionWithParams:@{@"device":@"ios"} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            [SVProgressHUD dismiss];
-            weakSelf.versionModle = model.data;
-            [weakSelf upgradeHandel:flag];
+            promptAlreadyLatest ? [SVProgressHUD dismiss] : nil;
+            UGAPPVersionModel *vm = model.data;
+            [[NSUserDefaults standardUserDefaults] setValue:[NSKeyedArchiver archivedDataWithRootObject:vm] forKey:kVersionModel];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            if (!showBuffer) {
+                [weakSelf showAlert:vm promptAlreadyLatest:promptAlreadyLatest completion:completion];
+            }
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+            promptAlreadyLatest ? [SVProgressHUD showErrorWithStatus:msg] : nil;
         }];
     }];
 }
 
-//处理升级
-- (void)upgradeHandel:(BOOL)flag {
-#ifdef APP_TEST
-    return;
-#endif
-    BOOL isForce = false;      // 是否强制升级
-    BOOL hasUpdate = false; // 是否存在新版本
-    
-    NSArray *currentV = [APP.Version componentsSeparatedByString:@"."];
-    NSArray *newestV = [self.versionModle.versionCode componentsSeparatedByString:@"."];
-    for (int i=0; i<4; i++) {
-        NSString *v1 = currentV.count > i ? currentV[i] : nil;
-        NSString *v2 = newestV.count > i ? newestV[i] : nil;
-        if (v2.intValue > v1.intValue)
-            hasUpdate = true;
-        if (v2.intValue != v1.intValue)
-            break;
-    }
-    
-	if (_versionModle.downloadUrl.length && hasUpdate ){
-        if (self.versionModle.switchUpdate) {
-            isForce = YES;
-        }
-        
-        NSString *updateContent = _versionModle.updateContent.length ? _versionModle.updateContent : @"检测到新版本，更新体验全新活动！";
+
+- (void)showAlert:(UGAPPVersionModel *)vm promptAlreadyLatest:(BOOL)promptAlreadyLatest completion:(nullable void (^)(BOOL, BOOL))completion {
+    BOOL isForce = vm.needForce;
+    if (vm.hasUpdate) {
+        NSString *updateContent = vm.updateContent.length ? vm.updateContent : @"检测到新版本，更新体验全新活动！";
         NSArray *btnTitles = isForce ? @[@"去升级"] : @[@"取消", @"去升级"];
         
-        __weakSelf_(__self);
         void (^updateApp)(void) = ^{
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:__self.versionModle.downloadUrl]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:vm.downloadUrl]];
         };
-        if (Skin1.isBlack) {
-            UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
-            if (isForce) {
-                 [LEEAlert alert].config
-                 .LeeAddTitle(^(UILabel *label) {
+        __weakSelf_(__self);
+        void (^showAlert)(void) = ^{
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastPromptDate];
+            
+            if (promptAlreadyLatest && Skin1.isBlack) {
+                UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
+                LEEBaseConfigModel *alert =  [LEEAlert alert].config
+                .LeeAddTitle(^(UILabel *label) {
                     label.text = @"新版本上线";
                     label.textColor = [UIColor whiteColor];
-                 })
+                })
                 .LeeAddContent(^(UILabel *label) {
                     label.text = updateContent;
                     label.textColor = [UIColor whiteColor];
-                 })
+                })
                 .LeeHeaderColor(Skin1.bgColor)
                 .LeeAddAction(^(LEEAction *action) {
                     action.type = LEEActionTypeDefault;
@@ -94,53 +81,41 @@ static NSInteger versionNumber = 102;
                     action.clickBlock = ^{
                         updateApp();
                     };
-                })
-                .LeeShow(); // 设置完成后 别忘记调用Show来显示
-            } else {
-                [LEEAlert alert].config
-                 .LeeAddTitle(^(UILabel *label) {
-                    label.text = @"新版本上线";
-                    label.textColor = [UIColor whiteColor];
-                 })
-                .LeeAddContent(^(UILabel *label) {
-                    label.text = updateContent;
-                    label.textColor = [UIColor whiteColor];
-                 })
-                .LeeHeaderColor(Skin1.bgColor)
-                .LeeAddAction(^(LEEAction *action) {
-                    action.type = LEEActionTypeCancel;
-                    action.title = @"取消";
-                    action.titleColor = blueColor;
-                    action.backgroundColor = Skin1.bgColor;
-                    action.clickBlock = ^{
-                    };
-                })
-                .LeeAddAction(^(LEEAction *action) {
-                    action.type = LEEActionTypeDefault;
-                    action.title = @"去升级";
-                    action.titleColor = blueColor;
-                    action.backgroundColor = Skin1.bgColor;
-                    action.clickBlock = ^{
-                        updateApp();
-                    };
-                })
-                .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                });
+                if (isForce) {
+                    alert = alert.LeeAddAction(^(LEEAction *action) {
+                        action.type = LEEActionTypeCancel;
+                        action.title = @"取消";
+                        action.titleColor = blueColor;
+                        action.backgroundColor = Skin1.bgColor;
+                        action.clickBlock = ^{
+                        };
+                    });
+                }
+                alert.LeeShow();
+            }
+            else{
+                UIAlertController *ac = [AlertHelper showAlertView:@"新版本上线" msg:updateContent btnTitles:btnTitles];
+                [ac setActionAtTitle:@"去升级" handler:^(UIAlertAction *aa) {
+                    updateApp();
+                }];
+            }
+        };
+        
+        if (isForce) {
+            showAlert();
+            if (OBJOnceToken(self)) {
+                [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+                    showAlert();
+                }];
             }
         }
-        else{
-            UIAlertController *ac = [AlertHelper showAlertView:@"新版本上线" msg:updateContent btnTitles:btnTitles];
-            [ac setActionAtTitle:@"去升级" handler:^(UIAlertAction *aa) {
-                updateApp();
-            }];
+        else if (fabs([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptDate]]) > PromptInterval) {
+            showAlert();
         }
-        
-
-        
-        if (!isForce) {
-            [self rememberVersionNowTime];
-        }
-    } else if (flag) {
-     
+    }
+    // 已是最新版本
+    else if (promptAlreadyLatest) {
         if (Skin1.isBlack) {
           UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
           [LEEAlert alert].config
@@ -162,126 +137,13 @@ static NSInteger versionNumber = 102;
               };
           })
           .LeeShow(); // 设置完成后 别忘记调用Show来显示
-          
       }
       else{
           [AlertHelper showAlertView:@"新版本上线" msg:@"您已经是最新版本！" btnTitles:@[@"确定"]];
       }
     }
-}
-
-//判断是否需要升级
--(BOOL)isUpgrade:(NSString *)versionCode{
-    
-    if([versionCode isBlank])
-        return NO;
-    NSString *appVersion = APP_VERSION;
-    if ([APP_VERSION isEqualToString: versionCode]) {
-        return NO;
-    }
-    
-    NSArray *serverCodeArr = [versionCode componentsSeparatedByString:@"."];
-    NSArray *localCodeArr = [ APP_VERSION componentsSeparatedByString:@"."];
-    
-    
-    if ([serverCodeArr count] != [localCodeArr count]  ||  [serverCodeArr count] != 4  || [localCodeArr count] != 4 ) {
-        return YES;
-    }
-    
-    if ([[serverCodeArr objectAtIndex:0] intValue] > [[localCodeArr objectAtIndex:0] intValue]) {
-        return YES;
-    }else if([[serverCodeArr objectAtIndex:0] intValue] < [[localCodeArr objectAtIndex:0] intValue]){
-        return NO;
-    }
-    
-    
-    if ([[serverCodeArr objectAtIndex:1] intValue] > [[localCodeArr objectAtIndex:1] intValue]) {
-        return YES;
-    }else if ([[serverCodeArr objectAtIndex:1] intValue] < [[localCodeArr objectAtIndex:1] intValue]) {
-        return NO;
-    }
-    
-    if ([[serverCodeArr objectAtIndex:2] intValue] > [[localCodeArr objectAtIndex:2] intValue]) {
-        return YES;
-    }else if ([[serverCodeArr objectAtIndex:2] intValue] < [[localCodeArr objectAtIndex:2] intValue]) {
-        return NO;
-    }
-    
-    if ([[serverCodeArr objectAtIndex:3] intValue] > [[localCodeArr objectAtIndex:3] intValue]) {
-        return YES;
-    }else if ([[serverCodeArr objectAtIndex:3] intValue] < [[localCodeArr objectAtIndex:3] intValue]) {
-        return NO;
-    }
-    
-    return NO;
-}
-
--(NSString *)getNetWorkStates{
-    UIApplication *app = [UIApplication sharedApplication];
-    NSArray *children = [[[app valueForKeyPath:@"statusBar"]valueForKeyPath:@"foregroundView"]subviews];
-    NSString *state = [[NSString alloc]init];
-    int netType = 0;
-    //获取到网络返回码
-    for (id child in children) {
-        if ([child isKindOfClass:NSClassFromString(@"UIStatusBarDataNetworkItemView")]) {
-            //获取到状态栏
-            netType = [[child valueForKeyPath:@"dataNetworkType"]intValue];
-            
-            switch (netType) {
-                case 0:
-                    state = @"无网络";
-                    //无网模式
-                    break;
-                case 1:
-                    state = @"2G";
-                    break;
-                case 2:
-                    state = @"3G";
-                    break;
-                case 3:
-                    state = @"4G";
-                    break;
-                case 5:
-                {
-                    state = @"WIFI";
-                }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    //根据状态选择
-    return state;
-}
-
-
-static NSString *kNowTimeKey = @"kNowTimeKey";
-//保存最后一次提醒普通升级当前时间戳
-- (void)rememberVersionNowTime {
-    
-    NSDate *nowDate = [NSDate date];
-    
-    [[NSUserDefaults standardUserDefaults]setObject:nowDate forKey:kNowTimeKey];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
-    //NSString *date2 = [NSString stringWithFormat:@"%ld", (long)[nowDate timeIntervalSince1970]];
-    //NSLog(@"now Time == %@",date2);
-}
-//判断是否超过24小时
-- (BOOL)isVersionUptateTimeMore24h{
-    NSDate  *lastDate = [[NSUserDefaults standardUserDefaults] objectForKey:kNowTimeKey];
-    if (lastDate == nil) {
-        return NO;
-    }
-    NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:lastDate];
-    NSTimeInterval h24 = 24 *60 *60; //24小时
-    //NSLog(@"since Time === %f",time);
-    if (time > h24) {
-        return YES;
-    }
-    return NO;
-    
+    if (completion)
+        completion(vm.hasUpdate, isForce);
 }
 
 @end
