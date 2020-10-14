@@ -215,10 +215,10 @@
 -(void)getChatRoomData{
       //得到线上配置的聊天室
     __weakSelf_(__self);
-    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
-            NSLog(@"model.data = %@",sm.responseObject[@"data"]);
-            NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+            NSLog(@"model.data = %@",sm.resObject[@"data"]);
+            NSDictionary *data = (NSDictionary *)sm.resObject[@"data"];
             
             NSMutableArray *chatIdAry = [NSMutableArray new];
 
@@ -419,8 +419,8 @@
 
 -(void)getChatgetTokenData:(CCSessionModel *) sm{
     if (!sm.error) {
-        NSLog(@"model.data = %@",sm.responseObject[@"data"]);
-        NSDictionary *data = (NSDictionary *)sm.responseObject[@"data"];
+        NSLog(@"model.data = %@",sm.resObject[@"data"]);
+        NSDictionary *data = (NSDictionary *)sm.resObject[@"data"];
         self.chatAry = [NSMutableArray new];
         NSMutableArray *chatIdAry = [NSMutableArray new];
         NSMutableArray *chatTitleAry = [NSMutableArray new];
@@ -642,7 +642,7 @@
        
     }
     //得到线上配置的聊天室
-    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 chat_getToken].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         [__self getChatgetTokenData:sm];
     };
 }

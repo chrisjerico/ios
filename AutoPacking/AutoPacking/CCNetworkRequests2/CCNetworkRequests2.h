@@ -28,17 +28,18 @@ NS_ASSUME_NONNULL_BEGIN
 // 获取APP信息
 - (CCSessionModel *)getInfo:(NSString *)_id;
 
-// 设置审核通过
-- (CCSessionModel *)checkApp:(NSString *)_id ;
+// 提交审核
+- (CCSessionModel *)submitReview:(SiteModel *)site plistPath:(NSString *)plistPath ver:(NSString *)ver isForce:(BOOL)isForce log:(NSString *)log;
 
-// 修改APP信息
-- (CCSessionModel *)editInfo:(SiteModel *)site plistPath:(NSString *)plistPath ver:(NSString *)ver isForce:(BOOL)isForce log:(NSString *)log;
 
-// 提交热更新版本信息
-- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(NSString *)log url:(NSString *)url;
+#pragma mark - 高权限操作
 
-// 提交热更新
-- (CCSessionModel *)addHotUpdateVersion:(NSString *)version log:(nonnull NSString *)log filePath:(NSString *)filePath;
+// 修改审核状态
+- (CCSessionModel *)changeReviewStatus:(SiteModel *)site reviewed:(BOOL)reviewed;
+
+// 修改强制更新信息
+- (CCSessionModel *)changeForceUpdateInfo:(SiteModel *)site forceVer:(NSString *)forceVer isForce:(BOOL)isForce log:(nullable NSString *)log;
+
 @end
 
 NS_ASSUME_NONNULL_END

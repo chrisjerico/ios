@@ -33,7 +33,7 @@
         [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_tkList:__self.segmentedControl.selectedSegmentIndex];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
-            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSArray *array = sm.resObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
                 [tv.dataArray addObject:[UGLHGalleryModel mj_objectWithKeyValues:dict]];
             }

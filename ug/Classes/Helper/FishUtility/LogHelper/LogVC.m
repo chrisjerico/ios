@@ -200,7 +200,7 @@ static LogVC *_logVC = nil;
             [[sObj dataTask:m request:req] resume];
         }
         
-        sObj.completionBlock = ^(CCSessionModel *sObj) {
+        sObj.completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             [_reqTableView reloadData];
         };
         
@@ -312,8 +312,8 @@ static LogVC *_logVC = nil;
     });
     if (_selectedModel.error) {
         tv.text = [_selectedModel.error description];
-    } else if (_selectedModel.responseObject) {
-        NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.responseObject options:NSJSONWritingPrettyPrinted error:nil];
+    } else if (_selectedModel.resObject) {
+        NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.resObject options:NSJSONWritingPrettyPrinted error:nil];
         tv.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     }
     [APP.Window addSubview:tv.superview];
@@ -337,11 +337,11 @@ static LogVC *_logVC = nil;
     if (tableView == _reqTableView) {
         NSArray *array = (_collectButton.selected ? _collects : _allRequest);
         CCSessionModel *sm = array.count > indexPath.row ? array[indexPath.row] : nil;
-        subLabel(@"StateLabel").text = sm.responseObject ? @"✅" : (sm.error ? @"❌" : @"🕓");
+        subLabel(@"StateLabel").text = sm.resObject ? @"✅" : (sm.error ? @"❌" : @"🕓");
         subLabel(@"TitleLabel").text = sm.urlString;
-        subLabel(@"DetailLabel").text = _NSString(@"%@", sm.responseObject[@"msg"]);
+        subLabel(@"DetailLabel").text = _NSString(@"%@", sm.resObject[@"msg"]);
         subLabel(@"TimeLabel").text = sm.duration >= 1000 ? _NSString(@"%.1fs", sm.duration/1000.0) : _NSString(@"%dms", (int)sm.duration);
-        subLabel(@"TimeLabel").hidden = !(sm.responseObject || sm.error);
+        subLabel(@"TimeLabel").hidden = !(sm.resObject || sm.error);
         subLabel(@"TimeLabel").hidden = true;
         
         [subButton(@"拷贝URLButton") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
@@ -367,9 +367,9 @@ static LogVC *_logVC = nil;
         _selectedModelKeys = _selectedModel.params.allKeys;
         if (_selectedModel.error) {
             _retTextView.text = [_selectedModel.error description];
-        } else if (_selectedModel.responseObject) {
+        } else if (_selectedModel.resObject) {
             __block CCSessionModel *lastModel = _selectedModel;
-            NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.responseObject options:NSJSONWritingPrettyPrinted error:nil];
+            NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.resObject options:NSJSONWritingPrettyPrinted error:nil];
             if (data.length > 10000) {
                 _retTextView.text = @"正在加载中。。。";
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

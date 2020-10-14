@@ -1286,10 +1286,10 @@
             [SVProgressHUD showWithStatus:nil];
             NSLog(@"");
             NSLog(@"model.contentId = %@",model.contentId);
-            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                 [SVProgressHUD dismiss];
                 if (!sm.error) {
-                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                     pm.link = model.link;
                     NSLog(@"获取帖子详情 = %@",pm.content);
                     void (^push)(void) = ^{
@@ -1308,7 +1308,7 @@
                                 SANotificationEventPost(UGNotificationShowLoginView, nil);
                                 return;
                             }
-                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm) {
+                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                                 if (!sm.error) {
                                     pm.hasPay = true;
                                     [ppv hide:nil];

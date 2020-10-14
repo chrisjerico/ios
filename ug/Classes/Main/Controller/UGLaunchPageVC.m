@@ -363,11 +363,11 @@
     __block int __i = 1;
     void (^getZhPackage)(void) = nil;
     void (^__block __getZhPackage)(void) = getZhPackage = ^{
-        [NetworkManager1 language_getLanguagePackage:zhLanCode].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 language_getLanguagePackage:zhLanCode].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                NSString *ver = sm.responseObject[@"data"][@"version"];
-                NSDictionary *package = sm.responseObject[@"data"][@"package"];
+                NSString *ver = sm.resObject[@"data"][@"version"];
+                NSDictionary *package = sm.resObject[@"data"][@"package"];
                 [LanguageHelper save:package lanCode:zhLanCode ver:ver];
             } else {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(__i++ * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -382,11 +382,11 @@
     __block int __j = 1;
     void (^getLanguagePackage)(NSString *lanCode) = nil;
     void (^__block __getLanguagePackage)(NSString *lanCode) = getLanguagePackage = ^(NSString *lanCode) {
-        [NetworkManager1 language_getLanguagePackage:lanCode].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 language_getLanguagePackage:lanCode].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                NSString *ver = sm.responseObject[@"data"][@"version"];
-                NSDictionary *package = sm.responseObject[@"data"][@"package"];
+                NSString *ver = sm.resObject[@"data"][@"version"];
+                NSDictionary *package = sm.resObject[@"data"][@"package"];
                 [LanguageHelper save:package lanCode:lanCode ver:ver];
                 __self.waitLanguage = false;
             } else if (__self.waitLanguage) {
@@ -400,10 +400,10 @@
     // 获取当前语言配置
     void (^getConfigs)(void) = nil;
     void (^__block __getConfigs)(void) = getConfigs = ^{
-        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 language_getConfigs].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                LanguageModel *lm = [LanguageModel mj_objectWithKeyValues:sm.resObject[@"data"]];
 //#ifdef DEBUG
 //                lm.currentLanguageCode = @"vi";
 //#endif

@@ -124,7 +124,7 @@
 #pragma mark - 批量打包+上传
 
 // 批量打包
-- (void)startPackingWithIds:(NSString *)ids ver:(NSString *)ver willUpload:(BOOL)willUpload isForce:(BOOL)isForce log:(NSString *)log checkStatus:(BOOL)checkStatus {
+- (void)startPackingWithIds:(NSString *)ids ver:(NSString *)ver willUpload:(BOOL)willUpload isForce:(BOOL)isForce log:(NSString *)log isReview:(BOOL)isReview {
     
     if (isForce && !log.length) {
         assert(!@"强制更新请输入更新日志。".length);
@@ -144,7 +144,7 @@
             [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[okSites.firstObject.ipaPath.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent]];
             
             // 上传打包日志
-            [self saveLog:okSites uploaded:false checkStatus:checkStatus completion:^(BOOL ok) {
+            [self saveLog:okSites packaged:true uploaded:false isForce:isForce isReview:isReview completion:^(BOOL ok) {
                 [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", iPack.logFile]];
                 NSLog(@"只打包不上传，退出打包程序");
                 exit(0);
@@ -169,7 +169,7 @@
                 }
                 NSLog(@"-------");
                 // 上传打包日志
-                [self saveLog:ReSign uploaded:false checkStatus:checkStatus completion:^(BOOL ok) {
+                [self saveLog:ReSign packaged:true uploaded:false isForce:isForce isReview:isReview completion:^(BOOL ok) {
                     if (!temp.count) {
                         [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", iPack.logFile]];
                         NSLog(@"无需上传，退出打包程序！");
@@ -184,12 +184,12 @@
         });
         
         // 批量上传
-        [__self upload:okSites ver:ver isForce:isForce checkStatus:checkStatus log:log completion:^(NSArray<SiteModel *> *okSites) {
+        [__self upload:okSites ver:ver isForce:isForce log:log isReview:isReview completion:^(NSArray<SiteModel *> *okSites) {
             NSMutableArray *fails = [SiteModel sites:ids].mutableCopy;
             [fails removeObjectsInArray:okSites];
             if (fails.count) {
 //                assert(!_NSString(@"部分站点打包或上传失败：%@，请重新打包", [fails valueForKey:@"siteId"]).length);
-                NSLog(@"部分站点打包或上传失败：");
+                NSLog(@"部分站点【打包，或上传，或改为已审核】失败：%@", [fails valueForKey:@"siteId"]);
             }
             NSLog(@"退出打包程序");
             exit(0);
@@ -198,8 +198,8 @@
 }
 
 // 批量上传审核
-- (void)upload:(NSArray <SiteModel *>*)_sites ver:(NSString *)ver isForce:(BOOL)isForce checkStatus:(BOOL)checkStatus log:(NSString *)log completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
-    NSMutableArray *sites = _sites.mutableCopy;
+- (void)upload:(NSArray <SiteModel *>*)_sites ver:(NSString *)ver isForce:(BOOL)isForce log:(NSString *)log isReview:(BOOL)isReview completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
+    NSMutableArray *tempSites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
     __weakSelf_(__self);
     __block SiteModel *__sm = nil;
@@ -207,72 +207,59 @@
     void (^__block __next)(void) = nil;
     // 上传plist文件，并提交审核
     void (^uploadPlist)(void) = ^{
-        [NetworkManager1 uploadWithId:__sm.uploadId sid:__sm.uploadNum file:__sm.plistPath].completionBlock = ^(CCSessionModel *sm) {
-            if (!sm.error) {
-                NSLog(@"%@ plist文件上传成功", __sm.siteId);
-                NSString *plistPath = sm.responseObject[@"data"][@"url"];
-                NSString *plistUrl = _NSString(@"https://app.pindanduo.cn%@", plistPath);
-                [__self saveString:plistUrl toFile:__sm.logPath];
-                
-                // 提交审核
-                [NetworkManager1 getInfo:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
-                    __sm.siteUrl = sm.responseObject[@"data"][@"site_url"];
-                    [NetworkManager1 editInfo:__sm plistPath:plistPath ver:ver isForce:isForce log:log].completionBlock = ^(CCSessionModel *sm) {
-                        if (!sm.error) {
-                            NSLog(@"%@ 提交审核成功", __sm.siteId);
-                            [okSites addObject:__sm];
-                            
-                            if (checkStatus) {
-                                // 上传后提交审核
-                                [NetworkManager1 checkApp:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
-                                    
-                                    
-                                    
-                                    if (!sm.error) {
-                                        NSLog(@"%@ 上传后提交审核成功", __sm.siteId);
-                                        [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
-                                            __sm = nil;
-                                            __next();
-                                        }];
-                                    } else {
-                                        NSLog(@"%@ 上传后提交审核失败", __sm.siteId);
-                                        NSLog(@"sm.error =%@",sm.error);
-                                        __sm = nil;
-                                        __next();
-                                    }
-                                    
-                                };
-                            }
-                            else{
-                                [__self saveLog:@[__sm] uploaded:true checkStatus:checkStatus  completion:^(BOOL ok) {
-                                    __sm = nil;
-                                    __next();
-                                }];
-                            }
-                            
-                            
-                        } else {
-                            NSLog(@"%@ 提交审核失败", __sm.siteId);
-                            __sm = nil;
-                            __next();
-                        }
-                        
-                    };
-                };
-                
+        void (^failureBlock)(CCSessionModel *, NSError *) = ^(CCSessionModel *sm, NSError *error) {
+            NSLog(@"%@ 提交审核失败 %@", __sm.siteId, error);
+            NSLog(@"url = %@, params = %@", sm.urlString, sm.params);
+            __sm = nil;
+            __next();
+        };
+        void (^submitFinish)(void) = ^{
+            NSLog(@"%@ 提交审核成功", __sm.siteId);
+            void (^succ)(void) = ^{
+                [okSites addObject:__sm];
+                [__self saveLog:@[__sm] packaged:true uploaded:true isForce:isForce isReview:isReview completion:^(BOOL ok) {
+                    __sm = nil;
+                    __next();
+                }];
+            };
+            if (isReview) {
+                // 改为已审核
+                [[NetworkManager1 changeReviewStatus:__sm reviewed:true] setSuccessBlock:^(CCSessionModel *sm, id resObject) {
+                    succ();
+                } failureBlock:^(CCSessionModel *sm, NSError *err) {
+                    NSLog(@"%@ 改为已审核失败 %@", __sm.siteId, err);
+                    NSLog(@"url = %@, params = %@", sm.urlString, sm.params);
+                    __sm = nil;
+                    __next();
+                }];
             } else {
-                NSLog(@"%@ plist文件上传失败", __sm.siteId);
-                __sm = nil;
-                __next();
+                succ();
             }
         };
+        
+        // 上传plist
+        [[NetworkManager1 uploadWithId:__sm.uploadId sid:__sm.uploadNum file:__sm.plistPath] setSuccessBlock:^(CCSessionModel *sm, id responseObject) {
+            NSLog(@"%@ plist文件上传成功", __sm.siteId);
+            NSString *plistPath = responseObject[@"data"][@"url"];
+            NSString *plistUrl = _NSString(@"https://app.pindanduo.cn%@", plistPath);
+            [__self saveString:plistUrl toFile:__sm.logPath];
+            
+            // 获取app信息
+            [[NetworkManager1 getInfo:__sm.uploadId] setSuccessBlock:^(CCSessionModel *sm, id responseObject) {
+                __sm.siteUrl = responseObject[@"data"][@"site_url"];
+                // 提交审核
+                [[NetworkManager1 submitReview:__sm plistPath:plistPath ver:ver isForce:isForce log:log] setSuccessBlock:^(CCSessionModel *sm, id responseObject) {
+                    submitFinish();
+                } failureBlock:failureBlock];
+            } failureBlock:failureBlock];
+        } failureBlock:failureBlock];
     };
     
     // 上传ipa包
     void (^startUploading)(void) = ^{
         if (!__sm) {
-            __sm = sites.firstObject;
-            [sites removeObject:__sm];
+            __sm = tempSites.firstObject;
+            [tempSites removeObject:__sm];
             
             if ([[NSFileManager defaultManager] fileExistsAtPath:__sm.plistPath]) {
                 NSLog(@"已上传过 %@.ipa，无需再次上传", __sm.siteId);
@@ -306,10 +293,10 @@
                 NSLog(@"%@ ipa文件上传进度：%.2f", __sm.siteId, (double)__progress);
             }
         };
-        sm.completionBlock = ^(CCSessionModel *sm) {
+        sm.completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (!sm.error) {
                 NSLog(@"%@ ipa文件上传成功", __sm.siteId);
-                NSString *ipaUrl = _NSString(@"https://app.pindanduo.cn%@", sm.responseObject[@"data"][@"url"]);
+                NSString *ipaUrl = _NSString(@"https://app.pindanduo.cn%@", sm.resObject[@"data"][@"url"]);
                 if (![ipaUrl containsString:@".ipa"]) {
                     NSLog(@"%@ ipa文件上传错误❌，%@", __sm.siteId, sm.error);
                     __sm = nil;
@@ -336,8 +323,84 @@
     startUploading();
 }
 
+- (void)changeForceUpdateInfo:(NSString *)ids isForce:(BOOL)isForce log:(NSString *)log {
+    
+    if (isForce && !log.length) {
+        assert(!@"强制更新请输入更新日志。".length);
+    }
+    
+    // 全部修改完毕
+    NSArray *_sites = [SiteModel sites:ids];
+    NSMutableArray *okSites = @[].mutableCopy;
+    void (^completion)(void) = ^{
+        NSMutableArray *fails = _sites.mutableCopy;
+        [fails removeObjectsInArray:okSites];
+        if (fails.count) {
+//                assert(!_NSString(@"部分站点修改更新信息失败：%@，请重新操作", [fails valueForKey:@"siteId"]).length);
+            NSLog(@"部分站点修改更新信息失败：%@", [fails valueForKey:@"siteId"]);
+        }
+        NSLog(@"退出打包程序");
+        exit(0);
+    };
+    
+    
+    // 开始修改
+    NSMutableArray *tempSites = _sites.mutableCopy;
+    __weakSelf_(__self);
+    __block SiteModel *__sm = nil;
+    void (^startUpdate)(void) = nil;
+    void (^__block __next)(void) = startUpdate = ^{
+        if (!__sm) {
+            __sm = tempSites.firstObject;
+            [tempSites removeObject:__sm];
+        }
+        if (!__sm) {
+            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", iPack.logFile]];
+            
+            if (okSites.count < _sites.count) {
+                NSMutableArray *errs = [_sites mutableCopy];
+                [errs removeObjectsInArray:okSites];
+                NSLog(@"所有站点已修改完毕，其中 %@ 站点修改失败！", [[errs valueForKey:@"siteId"] componentsJoinedByString:@","]);
+            } else {
+                NSLog(@"所有站点都已修改成功！");
+            }
+            if (completion) {
+                completion();
+            }
+            return ;
+        }
+        
+        void (^failureBlock)(CCSessionModel *, NSError *) = ^(CCSessionModel *sm, NSError *error) {
+            NSLog(@"%@ 修改强制更新信息失败 %@", __sm.siteId, error);
+            NSLog(@"url = %@, params = %@", sm.urlString, sm.params);
+            __sm = nil;
+            __next();
+        };
+        void (^successBlock)(CCSessionModel *, id) = ^(CCSessionModel *sm, id resObject) {
+            NSLog(@"%@ 修改强制更新信息成功", __sm.siteId);
+            [okSites addObject:__sm];
+            [__self saveLog:@[__sm] packaged:false uploaded:false isForce:isForce isReview:false completion:^(BOOL ok) {
+                __sm = nil;
+                __next();
+            }];
+        };
+        
+        if (isForce) {
+            [[NetworkManager1 changeForceUpdateInfo:__sm forceVer:@"0" isForce:false log:nil] setSuccessBlock:successBlock failureBlock:failureBlock];
+        } else {
+            // 获取app信息
+            [[NetworkManager1 getInfo:__sm.uploadId] setSuccessBlock:^(CCSessionModel *sm, id resObject) {
+                __sm.siteUrl = resObject[@"data"][@"site_url"];
+                NSString *ios_version = resObject[@"data"][@"ios_version"];
+                [[NetworkManager1 changeForceUpdateInfo:__sm forceVer:ios_version isForce:isForce log:log] setSuccessBlock:successBlock failureBlock:failureBlock];
+            } failureBlock:failureBlock];
+        }
+    };
+    startUpdate();
+}
+
 // 保存发包记录
-- (void)saveLog:(NSArray <SiteModel *>*)sms uploaded:(BOOL)uploaded checkStatus:(BOOL)checkStatus completion:(void (^)(BOOL ok))completion {
+- (void)saveLog:(NSArray <SiteModel *>*)sms packaged:(BOOL)packaged uploaded:(BOOL)uploaded isForce:(BOOL)isForce isReview:(BOOL)isReview completion:(void (^)(BOOL ok))completion {
     // 从git拉取最新的发包记录
     NSLog(@"提交打包日志");
     [ShellHelper pullCode:iPack.logFile.stringByDeletingLastPathComponent branch:@"master" completion:^(GitModel * _Nonnull _) {
@@ -346,14 +409,22 @@
         
         for (SiteModel *sm in sms) {
             NSString *downloadPath;
-            if (checkStatus) {
-                downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传并且已审核)", sm.uploadId, sm.siteId);
+            if (packaged) {
+                if (isReview) {
+                    downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传并且已审核)", sm.uploadId, sm.siteId);
+                } else {
+                    downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核,审核后请关闭工单，通知客服)", sm.uploadId, sm.siteId);
+                }
+                if (isForce) {
+                    downloadPath = [@"【此包是强制更新包】， " stringByAppendingString:downloadPath];
+                }
+                if (!uploaded) {
+                    downloadPath = _NSString(@"【%@ %@ 】https://baidujump.app/eipeyipeyi/jump-%@.html", sm.siteId, sm.type,sm.uploadId);
+                }
             } else {
-                downloadPath = _NSString(@"https://baidujump.app/eipeyipeyi/jump-%@.html  (%@原生iOS 已上传请测试审核,审核后请关闭工单，通知客服)", sm.uploadId, sm.siteId);
+                downloadPath = _NSString(@"——————————【%@】修改强制更新状态为：%@————————", sm.siteId, isForce ? @"是":@"否");
             }
-            if (!uploaded) {
-                downloadPath = _NSString(@"【%@ %@ 】https://baidujump.app/eipeyipeyi/jump-%@.html", sm.siteId, sm.type,sm.uploadId);
-            }
+            
             NSString *log = _NSString(@"%@\t\t（%@）%@  |  %@，%@", downloadPath, NSUserName(), [df stringFromDate:[NSDate date]], iPack.gm.commitId, iPack.gm.log);
             [self saveString:log toFile:iPack.logFile];
         }

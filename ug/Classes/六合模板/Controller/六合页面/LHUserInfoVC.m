@@ -38,12 +38,12 @@
     lsv.offsetY = NavController1.navigationBar.by;
     lsv.didRefreshBtnClick = ^{
         // 获取帖子详情
-        [NetworkManager1 lhcdoc_getUserInfo:__self.uid].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 lhcdoc_getUserInfo:__self.uid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (sm.error) {
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateFail];
             } else {
                 [LoadingStateView showWithSuperview:__self.view state:ZJLoadingStateSucc];
-                __self.user = [LHUserModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+                __self.user = [LHUserModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                 [__self setupUI];
             }
         };
@@ -93,7 +93,7 @@
     }
     BOOL follow = !sender.selected;
     __weakSelf_(__self);
-    [NetworkManager1 lhcdoc_followPoster:_uid followFlag:follow].successBlock = ^(id responseObject) {
+    [NetworkManager1 lhcdoc_followPoster:_uid followFlag:follow].successBlock = ^(CCSessionModel *sm, id responseObject) {
         sender.selected = follow;
         [sender setTitle:follow ? @"取消关注" : @"+关注" forState:UIControlStateNormal];
         if (__self.didFollow) {

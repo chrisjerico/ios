@@ -43,16 +43,16 @@
     };
     aciv.onSend = ^(NSString *text, BOOL willFlow) {
         [HUDHelper showLoadingViewWithSuperview:aciv];
-        [NetworkManager1 lhdoc_postContentReply:pm.cid rid:nil content:text].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 lhdoc_postContentReply:pm.cid rid:nil content:text].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             [HUDHelper hideLoadingView];
             if (!sm.error) {
                 if (aciv.didComment)
                     aciv.didComment(text);
                 aciv.textView.text = @"";
                 [aciv.textView resignFirstResponder];
-                [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
+                [AlertHelper showAlertView:sm.resObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
             } else {
-                NSNumber *hasNickname = sm.responseObject[@"extra"][@"hasNickname"];
+                NSNumber *hasNickname = sm.resObject[@"extra"][@"hasNickname"];
                 if (hasNickname && !hasNickname.boolValue) {
                     sm.noShowErrorHUD = true;
                     
@@ -75,7 +75,7 @@
                             [HUDHelper showMsg:@"请输入纯汉字昵称"];
                             return;
                         }
-                        [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(id responseObject) {
+                        [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(CCSessionModel *sm, id responseObject) {
                             if (aciv.onSend) {
                                 aciv.onSend(text, willFlow);
                             }
@@ -110,16 +110,16 @@
     };
     aciv.onSend = ^(NSString *text, BOOL willFlow) {
         [HUDHelper showLoadingViewWithSuperview:aciv];
-        [NetworkManager1 lhdoc_postContentReply:pcm.cid rid:pcm.pid content:text].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 lhdoc_postContentReply:pcm.cid rid:pcm.pid content:text].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             [HUDHelper hideLoadingView];
             if (!sm.error) {
                 if (aciv.didComment)
                     aciv.didComment(text);
                 aciv.textView.text = @"";
                 [aciv.textView resignFirstResponder];
-                [AlertHelper showAlertView:sm.responseObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
+                [AlertHelper showAlertView:sm.resObject[@"msg"] msg:nil btnTitles:@[@"确定"]];
             } else {
-                NSNumber *hasNickname = sm.responseObject[@"extra"][@"hasNickname"];
+                NSNumber *hasNickname = sm.resObject[@"extra"][@"hasNickname"];
                 if (hasNickname && !hasNickname.boolValue) {
                     sm.noShowErrorHUD = true;
                     
@@ -142,7 +142,7 @@
                             [HUDHelper showMsg:@"请输入纯汉字昵称"];
                             return;
                         }
-                        [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(id responseObject) {
+                        [NetworkManager1 lhcdoc_setNickname:__tf.text].successBlock = ^(CCSessionModel *sm, id responseObject) {
                             if (aciv.onSend) {
                                 aciv.onSend(text, willFlow);
                             }

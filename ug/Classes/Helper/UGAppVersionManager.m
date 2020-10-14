@@ -47,7 +47,7 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
     }];
 }
 
-
+// 弹框提示更新
 - (void)showAlert:(UGAPPVersionModel *)vm promptAlreadyLatest:(BOOL)promptAlreadyLatest completion:(nullable void (^)(BOOL, BOOL))completion {
     __block BOOL __showUpdated = false;
     BOOL isForce = vm.needForce;

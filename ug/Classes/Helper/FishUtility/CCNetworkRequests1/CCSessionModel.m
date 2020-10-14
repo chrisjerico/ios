@@ -21,7 +21,7 @@ MJCodingImplementation
 
 #pragma mark -
 
-- (void)setSuccessBlock:(void(^)(id responseObject))successBlock failureBlock:(void(^)(NSError *error))failureBlock {
+- (void)setSuccessBlock:(void (^)(CCSessionModel *, id))successBlock failureBlock:(void (^)(CCSessionModel *, NSError *))failureBlock {
     self.successBlock = successBlock;
     self.failureBlock = failureBlock;
 }
@@ -32,7 +32,7 @@ MJCodingImplementation
     _task = [m dataTaskWithRequest:req completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         __self.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
         __self.response = response;
-        __self.responseObject = responseObject;
+        __self.resObject = responseObject;
         __self.error = error;
         
         [__self callback];
@@ -70,7 +70,7 @@ MJCodingImplementation
         // 请求结果
         __self.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
         __self.response = response;
-        __self.responseObject = filePath.relativePath;
+        __self.resObject = filePath.relativePath;
         __self.error = error;
         
         [__self callback];
@@ -104,7 +104,7 @@ MJCodingImplementation
         // 请求结果
         __self.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
         __self.response = response;
-        __self.responseObject = filePath.absoluteString;
+        __self.resObject = filePath.absoluteString;
         __self.error = error;
         
         [__self callback];
@@ -129,7 +129,7 @@ MJCodingImplementation
         // 请求结果
         __self.duration = [[NSDate date] timeIntervalSinceDate:startTime] * 1000;
         __self.response = response;
-        __self.responseObject = responseObject;
+        __self.resObject = responseObject;
         __self.error = error;
         
         [__self callback];
@@ -161,15 +161,15 @@ MJCodingImplementation
     
     if (!_error) {
         // 请求成功回调
-        if (_successBlock) _successBlock(_responseObject);
+        if (_successBlock) _successBlock(self, _resObject);
     } else {
         // 请求失败回调
-        if (_failureBlock) _failureBlock(_error);
+        if (_failureBlock) _failureBlock(self, _error);
     }
     
     // 请求完成回调
     if (_completionBlock)
-        _completionBlock(self);
+        _completionBlock(self, _resObject, _error);
     
     // 显示错误信息HUD
 #ifdef APP_VERSION

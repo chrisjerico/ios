@@ -55,13 +55,13 @@
             
             {
                 [__self.hotArray removeAllObjects];
-                NSArray *array = sm.responseObject[@"data"][@"hot_list"];
+                NSArray *array = sm.resObject[@"data"][@"hot_list"];
                 for (NSDictionary *dict in array) {
                     [__self.hotArray addObject:[UGLHGalleryModel mj_objectWithKeyValues:dict]];
                 }
             }
             
-            NSArray *array = sm.responseObject[@"data"][@"list"];
+            NSArray *array = sm.resObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {
                 [tv.dataArray addObject:[UGLHGalleryModel mj_objectWithKeyValues:dict]];
             }

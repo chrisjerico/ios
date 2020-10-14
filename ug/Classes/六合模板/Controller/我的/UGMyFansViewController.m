@@ -53,12 +53,12 @@
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array;
             if (__self.mySegment.selectedSegmentIndex) {
-                array = sm.responseObject[@"data"][@"list"];
+                array = sm.resObject[@"data"][@"list"];
                 [self->_tiezfansListArray removeAllObjects];
                 for (NSDictionary *dict in array)
                     [self->_tiezfansListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
             } else {
-                array = sm.responseObject[@"data"][@"list"];
+                array = sm.resObject[@"data"][@"list"];
                 [self->_fansListArray removeAllObjects];
                 for (NSDictionary *dict in array)
                     [self->_fansListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
@@ -70,7 +70,7 @@
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array;
             if (__self.mySegment.selectedSegmentIndex==0) {
-                array = sm.responseObject[@"data"][@"list"];
+                array = sm.resObject[@"data"][@"list"];
                 [self->_fansListArray removeAllObjects];
                 for (NSDictionary *dict in array)
                     [self->_fansListArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];

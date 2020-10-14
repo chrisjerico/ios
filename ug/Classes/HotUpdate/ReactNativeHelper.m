@@ -133,10 +133,10 @@ static id _instace;
     __block int __delay = 1;
     void (^getReactNativePackage)(void) = nil;
     void (^__block __getReactNativePackage)(void) = getReactNativePackage = ^{
-        [NetworkManager1 getCodePushUpdate:ReactNativeHelper.currentCodePushKey].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 getCodePushUpdate:ReactNativeHelper.currentCodePushKey].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             sm.noShowErrorHUD = true;
             if (!sm.error) {
-                NSDictionary *dict = sm.responseObject[@"update_info"];
+                NSDictionary *dict = sm.resObject[@"update_info"];
                 NSMutableDictionary *updatePackage = ({
                     updatePackage = @{}.mutableCopy;
                     for (NSString *key in [dict allKeys]) {
@@ -166,8 +166,8 @@ static id _instace;
                             completion(true);
                     } failCallback:^(NSError *err) {
                         // 获取ip信息
-                        [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM) {
-                            NSDictionary *ipAddress = ipSM.responseObject[@"data"] ? : @{};
+                        [NetworkManager1 getIp].completionBlock = ^(CCSessionModel *ipSM, id resObject, NSError *err) {
+                            NSDictionary *ipAddress = ipSM.resObject[@"data"] ? : @{};
                             NSString *ipInfo = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:ipAddress options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
                             NSString *log = _NSString(@"ip地址：%@\n错误类型：%@", ipInfo, err);
                             NSString *title = _NSString(@"%@%@", ipAddress[@"country"], ipAddress[@"region"]);

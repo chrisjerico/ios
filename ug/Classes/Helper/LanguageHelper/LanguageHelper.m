@@ -118,7 +118,7 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     if (DisableLanguage) return;
     
     [SVProgressHUD showWithStatus:@"正在切换语言..."];
-    [NetworkManager1 language_getLanguagePackage:lanCode].successBlock = ^(id responseObject) {
+    [NetworkManager1 language_getLanguagePackage:lanCode].successBlock = ^(CCSessionModel *sm, id responseObject) {
         NSString *ver = responseObject[@"data"][@"version"];
         NSDictionary *package = responseObject[@"data"][@"package"];
         [LanguageHelper save:package lanCode:lanCode ver:ver];
@@ -152,7 +152,7 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
             getSysConf();
         };
         if (UGLoginIsAuthorized()) {
-            [NetworkManager1 language_changeTo:lanCode].successBlock = ^(id responseObject) {
+            [NetworkManager1 language_changeTo:lanCode].successBlock = ^(CCSessionModel *sm, id responseObject) {
                 restartApp();
             };
         } else {
@@ -291,7 +291,7 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     // 上传
     if (upload) {
         NSDictionary *dict = self.notFoundStrings.copy;
-        [NetworkManager1 uploadLog:[dict.allKeys componentsJoinedByString:@"\n"] title:@"未翻译字段" tag:@"未翻译字段"].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 uploadLog:[dict.allKeys componentsJoinedByString:@"\n"] title:@"未翻译字段" tag:@"未翻译字段"].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (!sm.error) {
                 [self.notFoundStrings removeObjectsForKeys:dict.allKeys];
                 [_temp addEntriesFromDictionary:dict];
