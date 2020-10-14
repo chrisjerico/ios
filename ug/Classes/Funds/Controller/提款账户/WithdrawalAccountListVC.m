@@ -58,15 +58,17 @@
     [super viewWillAppear:animated];
     
     __weakSelf_(__self);
-    [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         [SVProgressHUD dismiss];
         if (!sm.error) {
             NSMutableArray *temp = @[].mutableCopy;
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"]) {
                 WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (wtm.isshow) {
                     for (WithdrawalAcctModel *wam in wtm.data) {
                         wam.name = wtm.name;
+                        wam.minWithdrawMoney = wtm.minWithdrawMoney;
+                        wam.maxWithdrawMoney = wtm.maxWithdrawMoney;
                     }
                     [temp addObject:wtm];
                 }
@@ -188,10 +190,10 @@
     [self.view endEditing:true];
     [SVProgressHUD show];
     __weakSelf_(__self);
-    [NetworkManager1 user_profileName:realname].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 user_profileName:realname].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         [SVProgressHUD dismiss];
         if (!sm.error) {
-            [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
+            [SVProgressHUD showSuccessWithStatus:sm.resObject[@"msg"]];
             __self.tipsView2.hidden = true;
             UserI.fullName = realname;
         }

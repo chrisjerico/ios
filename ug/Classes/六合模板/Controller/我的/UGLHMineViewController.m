@@ -236,13 +236,13 @@
 //    // 这个网络请求导致必现闪退，排查不到原因，只能先注释掉
 //    [SVProgressHUD showWithStatus:nil];
 //    [NetworkManager1 lhcdoc_getUserInfo:uid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
-//        NSLog(@"sm.responseObject[@data]= %@",sm.responseObject[@"data"]);
+//        NSLog(@"sm.resObject[@data]= %@",sm.resObject[@"data"]);
 //        [SVProgressHUD dismiss];
 //        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 //            // UI更新代码
 //            if (!sm.error) {
-//                NSLog(@"sm.responseObject[@data]= %@",sm.responseObject[@"data"]);
-//                LHUserModel*user = [LHUserModel mj_objectWithKeyValues:sm.responseObject[@"data"]];
+//                NSLog(@"sm.resObject[@data]= %@",sm.resObject[@"data"]);
+//                LHUserModel*user = [LHUserModel mj_objectWithKeyValues:sm.resObject[@"data"]];
 //                user.isLhcdocVip ? [self.imgBV setHidden:NO]:[self.imgBV setHidden:YES];
 //            }
 //            

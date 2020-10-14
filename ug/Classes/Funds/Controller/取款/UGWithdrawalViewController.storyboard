@@ -271,15 +271,9 @@
                             <constraint firstItem="ccR-Ye-TO8" firstAttribute="top" secondItem="exV-d0-h8L" secondAttribute="top" constant="16" id="l5P-7T-qPt"/>
                             <constraint firstItem="EG3-qb-Gfa" firstAttribute="leading" secondItem="exV-d0-h8L" secondAttribute="leading" id="rvc-Fn-oqu"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="EG3-qb-Gfa"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="bindAcctView" destination="MAt-0P-5qX" id="xrb-Y8-nwj"/>
-                        <outlet property="rateLabel" destination="75P-2F-tNG" id="prp-uH-aGl"/>
                         <outlet property="tipsView1" destination="EG3-qb-Gfa" id="Fra-aR-lyP"/>
                     </connections>
                 </viewController>

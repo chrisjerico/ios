@@ -36,7 +36,7 @@
     //    NSLog(@"url = %@", sm.urlString);
     //    NSLog(@"params = %@", sm.params);
     //    NSLog(@"error = %@", sm.error);
-    //    NSLog(@"response = %@", sm.responseObject);
+    //    NSLog(@"response = %@", sm.resObject);
     
     if (sm.error) {
         if ([sm.resObject[@"data"] isKindOfClass:[NSString class]]) {

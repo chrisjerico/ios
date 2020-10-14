@@ -14,8 +14,7 @@
 
 @interface UGWithdrawalVC ()<YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UIView *tipsView1; /**<   您还未绑定提款账户 */
-@property (weak, nonatomic) IBOutlet UILabel *rateLabel;/**<   虚拟币汇率Label */
-@property (weak, nonatomic) IBOutlet UIView *bindAcctView;
+@property (weak, nonatomic) IBOutlet UIView *bindAcctView;/**<   绑定提款账户View */
 
 @property (nonatomic, strong) NSMutableArray *acctList; /**<   账户列表（元素可能是WithdrawalAcctModel、WithdrawalTypeModel，要判断元素类型） */
 @property (nonatomic, strong) NSMutableArray *titles;   /**<   标题列表 */
@@ -97,11 +96,11 @@
 
 - (void)reloadCurrencyRate:(void (^)(void))completion {
     __weakSelf_(__self);
-    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         sm.noShowErrorHUD = true;
         if (!sm.error) {
             [__self.virtualList removeAllObjects];
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"]) {
                 [__self.virtualList addObject:[UGbankModel mj_objectWithKeyValues:dict]];
             }
             if (completion) {
@@ -115,14 +114,16 @@
 - (void)reloadData {
     __weakSelf_(__self);
     FastSubViewCode(self.view);
-    [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
             [__self.acctList removeAllObjects];
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"]) {
                 WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (!wtm.isshow) continue;
                 for (WithdrawalAcctModel *wam in wtm.data) {
                     wam.name = wtm.name;
+                    wam.minWithdrawMoney = wtm.minWithdrawMoney;
+                    wam.maxWithdrawMoney = wtm.maxWithdrawMoney;
                     [__self.acctList addObject:wam];
                 }
                 if (!wtm.data.count) {
@@ -225,10 +226,10 @@
         return;
     }
     
-    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    if (amount.floatValue < config.minWithdrawMoney.floatValue ||
-        amount.floatValue > config.maxWithdrawMoney.floatValue) {
-        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"单笔取款金额范围：%@-%@",[config.minWithdrawMoney removeFloatAllZero],[config.maxWithdrawMoney removeFloatAllZero]]];
+    WithdrawalAcctModel *wam = _selectedWam;
+    if (amount.floatValue < wam.minWithdrawMoney.floatValue ||
+        amount.floatValue > wam.maxWithdrawMoney.floatValue) {
+        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"单笔取款金额范围：%@-%@",[wam.minWithdrawMoney removeFloatAllZero],[wam.maxWithdrawMoney removeFloatAllZero]]];
         return ;
     }
     
@@ -240,7 +241,7 @@
         CGFloat currencyRate = 0;
         CGFloat rateOffset = 0;
         for (UGbankModel *bm in __self.virtualList) {
-            if ([bm.bankId isEqualToString:__self.selectedWam.bankId]) {
+            if ([bm.bankId isEqualToString:wam.bankId]) {
                 currencyRate = bm.currencyRate.doubleValue;
                 rateOffset = bm.rate.doubleValue;
             }
@@ -253,9 +254,9 @@
         }
         
         // 提交申请
-        [NetworkManager1 withdraw_apply:__self.selectedWam.wid amount:amount virtualAmount:__self.virtualAmount pwd:pwd].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 withdraw_apply:wam.wid amount:amount virtualAmount:__self.virtualAmount pwd:pwd].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (!sm.error) {
-                [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
+                [SVProgressHUD showSuccessWithStatus:sm.resObject[@"msg"]];
                 subTextField(@"取款金额TextField").text = nil;
                 subTextField(@"取款密码TextField").text = nil;
                 subLabel(@"虚拟币汇率Label").hidden = true;
@@ -284,6 +285,7 @@
     [subButton(@"提款账号Button") setTitle:_titles[index] forState:UIControlStateNormal];
     subTextField(@"取款金额TextField").superview.hidden = !isAcct;
     subTextField(@"取款密码TextField").hidden = !isAcct;
+    subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[wam.minWithdrawMoney removeFloatAllZero],[wam.maxWithdrawMoney removeFloatAllZero]];
     _bindAcctView.hidden = isAcct;
     
     if (isAcct) {

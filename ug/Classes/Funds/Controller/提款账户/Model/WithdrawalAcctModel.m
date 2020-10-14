@@ -9,6 +9,15 @@
 #import "WithdrawalAcctModel.h"
 
 
+@implementation WithdrawalAcctModel
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"wid":@"id"};
+}
+
+@end
+
+
 @implementation WithdrawalTypeModel
 
 - (void)setData:(NSArray<WithdrawalAcctModel *> *)data {
@@ -33,11 +42,3 @@
 
 @end
 
-
-@implementation WithdrawalAcctModel
-
-+ (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"wid":@"id"};
-}
-
-@end

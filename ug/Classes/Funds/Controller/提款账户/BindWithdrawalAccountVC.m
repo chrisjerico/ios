@@ -52,11 +52,11 @@
     if (!_typeList) {
         [SVProgressHUD show];
         __weakSelf_(__self);
-        [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm) {
+        [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             [SVProgressHUD dismiss];
             if (!sm.error) {
                 NSMutableArray *temp = @[].mutableCopy;
-                for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                for (NSDictionary *dict in sm.resObject[@"data"]) {
                     WithdrawalTypeModel *wam = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                     if (wam.isshow && wam.canAdd) {
                         [temp addObject:wam];
@@ -79,10 +79,10 @@
 // 选择银行卡
 - (IBAction)onSelectBankTypeBtnClick:(UIButton *)sender {
     __weakSelf_(__self);
-    [NetworkManager1 system_bankList:UGWithdrawalTypeBankCard].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 system_bankList:UGWithdrawalTypeBankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
             NSMutableArray *temp = @[].mutableCopy;
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"]) {
                 [temp addObject:[UGbankModel mj_objectWithKeyValues:dict]];
             }
             __self.bankList = [temp copy];
@@ -99,10 +99,10 @@
 // 选择虚拟币
 - (IBAction)onSelectVirtualTypeBtnClick:(UIButton *)sender {
     __weakSelf_(__self);
-    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
             NSMutableArray *temp = @[].mutableCopy;
-            for (NSDictionary *dict in sm.responseObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"]) {
                 [temp addObject:[UGbankModel mj_objectWithKeyValues:dict]];
             }
             __self.virtualList = [temp copy];
@@ -167,10 +167,10 @@
     }
     
     [SVProgressHUD show];
-    [NetworkManager1 user_bindBank:_selectedWT wid:wid addr:addr acct:acct].completionBlock = ^(CCSessionModel *sm) {
+    [NetworkManager1 user_bindBank:_selectedWT wid:wid addr:addr acct:acct].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         [SVProgressHUD dismiss];
         if (!sm.error) {
-            [SVProgressHUD showSuccessWithStatus:sm.responseObject[@"msg"]];
+            [SVProgressHUD showSuccessWithStatus:sm.resObject[@"msg"]];
             [NavController1 popViewControllerAnimated:true];
         }
     };
@@ -195,9 +195,9 @@
             [subButton(@"选择提款类型Button") setTitle:key forState:UIControlStateNormal];
         };
         if (wt == UGWithdrawalTypeAlipay || wt == UGWithdrawalTypeWeChat) {
-            [NetworkManager1 system_bankList:wt].completionBlock = ^(CCSessionModel *sm) {
+            [NetworkManager1 system_bankList:wt].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
                 NSMutableArray *temp = @[].mutableCopy;
-                for (NSDictionary *dict in sm.responseObject[@"data"]) {
+                for (NSDictionary *dict in sm.resObject[@"data"]) {
                     [temp addObject:[UGbankModel mj_objectWithKeyValues:dict]];
                 }
                 if (wt == UGWithdrawalTypeWeChat) {

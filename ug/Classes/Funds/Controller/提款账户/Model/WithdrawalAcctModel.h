@@ -24,8 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *bankCard;             /**<   银行卡号 */
 @property (nonatomic, copy) NSString *bankAddr;             /**<   开户地址 */
 
-// 自定义参数
+// 自定义参数（从 WithdrawalTypeModel 传进来）
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *minWithdrawMoney;   /**<   最低提款金额 */
+@property (nonatomic, copy) NSString *maxWithdrawMoney;   /**<   最高提款金额 */
 @end
 
 
@@ -35,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UGWithdrawalType type;        /**<   账户类型 */
 @property (nonatomic, assign) BOOL ismore;      /**<   是否允许多账号 */
 @property (nonatomic, assign) BOOL isshow;      /**<   是否启用提款渠道 */
+@property (nonatomic, strong) NSString *minWithdrawMoney;   /**<   最低提款金额 */
+@property (nonatomic, strong) NSString *maxWithdrawMoney;   /**<   最高提款金额 */
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray <WithdrawalAcctModel *>*data;
 
