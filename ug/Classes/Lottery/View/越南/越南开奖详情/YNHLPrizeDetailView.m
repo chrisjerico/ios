@@ -13,7 +13,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;    /**<   确认下注Button */
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;    /**<   取消Button */
-@property (weak, nonatomic) IBOutlet UIView *baView;             /**<   八等奖view */
+
 
 @property (nonatomic) float amount; /**<   总金额*/
 @end
@@ -104,30 +104,9 @@
     }
 
     [self setLabelColorForSelCode];
-    
 
-    
-    self.baView.layer.borderWidth = 1;
-    self.baView.layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"特等奖View").layer.borderWidth = 1;
-    subView(@"特等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"一等奖View").layer.borderWidth = 1;
-    subView(@"一等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"二等奖View").layer.borderWidth = 1;
-    subView(@"二等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"三等奖View").layer.borderWidth = 1;
-    subView(@"三等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"四等奖View").layer.borderWidth = 1;
-    subView(@"四等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"五等奖View").layer.borderWidth = 1;
-    subView(@"五等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"六等奖View").layer.borderWidth = 1;
-    subView(@"六等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    subView(@"七等奖View").layer.borderWidth = 1;
-    subView(@"七等奖View").layer.borderColor = [[UIColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:204.0/255.0 alpha:1] CGColor];
-    
   
-    [self.baView setHidden:self.isHide8View];
+    [subView(@"八等奖View") setHidden:self.isHide8View];
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
     if (!maskView) {

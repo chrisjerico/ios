@@ -863,6 +863,10 @@ static NSString *footViewID = @"YNCollectionFootView";
                 
                  isHide = YES;
             }
+            if ([bet.code isEqualToString:@"TOU"]||[bet.code isEqualToString:@"WEI"]) {
+                isHide = YES;
+            }// 十 个
+
             
             
             
