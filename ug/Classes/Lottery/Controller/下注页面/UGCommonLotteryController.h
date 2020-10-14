@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //追号=======================================================
 @property (nonatomic, strong) UGNextIssueModel*zuiHaoIssueModel;/**<莫彩种的最近一期下注*/
+//切换=======================================================
+@property (strong, nonatomic)  NSString *selectTitle;/**<选中的标题*/
 
 
 

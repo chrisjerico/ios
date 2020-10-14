@@ -13,7 +13,6 @@
 
 //参数是否加密
 #define checkSign 1
-
 //路径转换为restful开关
 #define RESTFUL NO
 //获取开奖数据间隔
@@ -76,6 +75,8 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define modifyFundPwdUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=changeFundPwd"]
 //获取彩票大厅数据
 #define getAllNextIssue [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryGames"]
+//彩票分组列表
+#define getLotteryGroupGames [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryGroupGames"]
 //彩票开奖记录
 #define getLotteryHistoryUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=game&a=lotteryHistory"]
 //彩票规则

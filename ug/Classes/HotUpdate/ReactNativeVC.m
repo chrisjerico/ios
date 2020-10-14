@@ -125,7 +125,7 @@ static NSString *__lastRnPage = nil;
 //        if (TARGET_IPHONE_SIMULATOR) {
 //            bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 //        } else if (APP.isFish) {
-//            bundleURL = [NSURL URLWithString:@"http://192.168.1.143:8081/index.bundle?platform=ios"];
+//            bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
 //        }
 
 #endif
@@ -165,10 +165,14 @@ static NSString *__lastRnPage = nil;
     self.navigationController.navigationBarHidden = _navigationBarHidden;
 }
 
-- (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
+- (void)pushOrJump:(BOOL)pushOrJump rpm:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         __lastRnPage = rpm.rnName;
-        [ReactNativeHelper selectVC:rpm.rnName params:params];
+        if (pushOrJump) {
+            [ReactNativeHelper pushVC:rpm.rnName params:params];
+        } else {
+            [ReactNativeHelper selectVC:rpm.rnName params:params];
+        }
     }];
 }
 

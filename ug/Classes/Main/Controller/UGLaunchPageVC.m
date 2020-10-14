@@ -13,7 +13,6 @@
 #import <SafariServices/SafariServices.h>
 
 #import "ReactNativeHelper.h"
-#import "JSPatchHelper.h"
 
 #import "UIView+AutoLocalizable.h"
 
@@ -162,6 +161,30 @@
 }
 
 
+- (void)getLotteryGroupGamesData {
+
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
+       
+        [CMResult processWithResult:model success:^{
+            NSArray * lotteryGamesArray =  model.data;
+            
+            int count = (int)lotteryGamesArray.count;
+            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
+            
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
+                APP.isNewLotteryView = NO;
+            } else {
+                APP.isNewLotteryView = YES;
+            }
+          
+
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 
 -(void)initMyLaunchPageVC{
     
@@ -176,6 +199,7 @@
             [self loadLaunchImage];
             [self loadReactNative];
             [self loadSysConf];
+            [self getLotteryGroupGamesData];
 //            [self loadLanguage];
         }
         
@@ -185,7 +209,7 @@
             int timeout = 4; // ⌛️超时时间
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __self.waitSysConf = false;
-                __self.waitLanguage = false;
+                __self.waitPic = false;
                 __self.waitLanguage = false;
 #ifndef APP_TEST
                 __self.waitReactNative = false;
@@ -388,7 +412,6 @@
 }
 
 - (void)loadReactNative {
-    [JSPatchHelper install];
     __weakSelf_(__self);
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         NSLog(@"RN初始化完毕");

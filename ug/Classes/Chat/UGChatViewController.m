@@ -96,7 +96,7 @@
     [SVProgressHUD show];
     NSString *gameId = betInfo[@"gameId"];// 彩种
     __block NSString *paneCode = betInfo[@"paneCode"]; // 玩法
-    
+    __block NSString *gameName = betInfo[@"gameName"]; // 游戏简称
     // 第一步：获取当前期数信息
     [CMNetwork getNextIssueWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
@@ -150,7 +150,7 @@
                             nums = gbms;
                         }
                     }
-                    
+                    nextIssueModel.title = gameName;
                     // 最后一步：弹框让用户跟注
                     UGBetDetailView *bdv = [[UGBetDetailView alloc] init];
                     bdv.dataArray = nums;

@@ -18,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var notiveViewHasShow = false
 	var window: UIWindow?
 
+	
+	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = UGLaunchController()
 		window?.makeKeyAndVisible()

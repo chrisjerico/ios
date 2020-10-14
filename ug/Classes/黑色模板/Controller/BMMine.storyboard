@@ -179,7 +179,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z6h-qf-sL7">
-                                        <rect key="frame" x="13" y="260" width="388" height="120"/>
+                                        <rect key="frame" x="20" y="260" width="368" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="120" id="Kwd-hU-xxZ"/>
@@ -414,6 +414,7 @@
                                     <constraint firstItem="N5v-Ut-4zp" firstAttribute="top" secondItem="rzz-P5-0Ic" secondAttribute="bottom" constant="10" id="Zhp-jk-Fsm"/>
                                     <constraint firstItem="etl-86-R8O" firstAttribute="centerX" secondItem="e0K-0U-boO" secondAttribute="centerX" id="a0n-Mv-2Y5"/>
                                     <constraint firstItem="zGp-eJ-DuM" firstAttribute="top" secondItem="8ll-VL-r8z" secondAttribute="bottom" constant="10" id="bHT-ic-hnT"/>
+                                    <constraint firstItem="wlW-or-3rU" firstAttribute="trailing" secondItem="z6h-qf-sL7" secondAttribute="trailing" constant="20" id="dNi-Fr-sji"/>
                                     <constraint firstItem="wlW-or-3rU" firstAttribute="trailing" secondItem="UKh-v3-Jbw" secondAttribute="trailing" constant="50" id="eyi-HD-45x"/>
                                     <constraint firstItem="UKh-v3-Jbw" firstAttribute="leading" secondItem="rpg-0h-e24" secondAttribute="leading" constant="50" id="gH3-jQ-1yg"/>
                                     <constraint firstItem="yCT-3N-hOg" firstAttribute="top" secondItem="etl-86-R8O" secondAttribute="bottom" constant="10" id="hJy-Zm-Q4U"/>
@@ -422,7 +423,7 @@
                                     <constraint firstItem="yCT-3N-hOg" firstAttribute="centerX" secondItem="e0K-0U-boO" secondAttribute="centerX" id="jQR-oJ-vkt"/>
                                     <constraint firstItem="zGp-eJ-DuM" firstAttribute="leading" secondItem="rpg-0h-e24" secondAttribute="leading" constant="50" id="nOY-SY-a9n"/>
                                     <constraint firstItem="etl-86-R8O" firstAttribute="top" secondItem="UKh-v3-Jbw" secondAttribute="bottom" constant="10" id="uWC-i0-ziM"/>
-                                    <constraint firstItem="z6h-qf-sL7" firstAttribute="leading" secondItem="wlW-or-3rU" secondAttribute="leading" constant="13" id="w71-AJ-Eeh"/>
+                                    <constraint firstItem="z6h-qf-sL7" firstAttribute="leading" secondItem="wlW-or-3rU" secondAttribute="leading" constant="20" id="w71-AJ-Eeh"/>
                                     <constraint firstAttribute="bottom" secondItem="4hR-sl-JFX" secondAttribute="bottom" constant="668" id="wl9-k7-Evo"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="wlW-or-3rU"/>

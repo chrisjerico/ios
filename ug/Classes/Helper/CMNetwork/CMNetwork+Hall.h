@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 //获取彩票大厅游戏数据
 + (void)getAllNextIssueWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//彩票分组列表
++ (void)getLotteryGroupGamesWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 //获取彩票游戏数据
 + (void)getGameDatasWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 

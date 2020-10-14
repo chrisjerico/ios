@@ -11,7 +11,8 @@
 #import "UGdepositModel.h"
 #import "UGDepositDetailsViewController.h"
 #import "UGDepositDetailsNoLineViewController.h"
-
+#import "UGDepositDetailsXNViewController.h"
+#import "HelpDocViewController.h"
 @interface UGRechargeTypeTableViewController ()
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
 @property (nonatomic, strong) NSMutableArray <UGpaymentModel *> *tableViewDataArray;
@@ -72,6 +73,67 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     UGRechargeTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:rechargeTypeCellid forIndexPath:indexPath];
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
     cell.item = model;
+
+    if ([model.pid isEqualToString:@"xnb_online"] ) {
+        [cell.mBtn setHidden:APP.isNoOnLineDoc];
+        [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                //虚拟教程
+            
+            if ([@"c012,test61f" containsString:APP.SiteId]) {
+                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+                vc.webName = @"c012充值";
+                vc.title = @"虚拟币教程";
+                [NavController1 pushViewController:vc animated:true];
+            } else {
+                NSMutableArray *itemArray = [NSMutableArray new];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"概括" WebName:@"1"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"安装虚拟币钱包" WebName:@"2"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"注册账号" WebName:@"3"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"身份认证" WebName:@"4"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"购买虚拟币" WebName:@"5"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"网站充值" WebName:@"6"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"钱包付款" WebName:@"7"]];
+
+                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+                vc.itemArry = itemArray;
+                vc.title = @"虚拟币教程";
+                [NavController1 pushViewController:vc animated:true];
+            }
+           
+        }];
+    }
+    else if ([model.pid isEqualToString:@"xnb_transfer"]){
+        [cell.mBtn setHidden:NO];
+        [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                //虚拟教程
+            if (APP.isHBDoc) {
+                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+                vc.webName = @"火币";
+                vc.title = @"虚拟币教程";
+                [NavController1 pushViewController:vc animated:true];
+            } else {
+                NSMutableArray *itemArray = [NSMutableArray new];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"概括" WebName:@"1"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"安装虚拟币钱包" WebName:@"2"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"注册账号" WebName:@"3"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"身份认证" WebName:@"4"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"购买虚拟币" WebName:@"5"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"确认存款金额" WebName:@"确认存款金额"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"钱包付款" WebName:@"钱包付款"]];
+                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"完成充值" WebName:@"完成充值"]];
+                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+                vc.itemArry = itemArray;
+                vc.title = @"虚拟币教程";
+                [NavController1 pushViewController:vc animated:true];
+            }
+            
+        }];
+    }
+    else {
+        [cell.mBtn setHidden:YES];
+    }
     return cell;
 }
 
@@ -91,15 +153,25 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
-    if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
-        UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
-        vc.item = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
-        vc.item = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+
+        
+        if ([model.pid isEqualToString:@"xnb_transfer"]) {
+
+            UGDepositDetailsXNViewController *vc = _LoadVC_from_storyboard_(@"UGDepositDetailsXNViewController");
+            vc.item = model;
+            [NavController1 pushViewController:vc animated:true];
+        }
+        else if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
+            UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
+            vc.item = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else {
+            UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+            vc.item = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
 }
 
 

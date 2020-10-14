@@ -53,6 +53,7 @@ static NSString *newLotteryGameCellID = @"NewLotteryGameCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     UGNextIssueModel *nextModel = self.list[indexPath.row];
+    [[Global getInstanse] setIsAllLottery:YES];
     [NavController1 pushViewControllerWithNextIssueModel:nextModel isChatRoom:NO];
 }
 

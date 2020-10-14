@@ -51,8 +51,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-Pj-poz" userLabel="头View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ZGU-dP-Xdt">
-                                        <rect key="frame" x="2" y="9" width="20" height="32.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cl_user" translatesAutoresizingMaskIntoConstraints="NO" id="ZGU-dP-Xdt">
+                                        <rect key="frame" x="2" y="7.5" width="20" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="AgK-1b-UMy"/>
                                             <constraint firstAttribute="height" constant="35" id="GTT-WV-dYm"/>
@@ -178,9 +178,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cl_user" width="24" height="24"/>
         <image name="icon-refresh" width="40" height="40"/>
         <image name="notice" width="24" height="24"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -523,6 +523,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.inputView.code = Tip_十;
     [self  setDefaultData:@"PIHAO2"];
     [self  setDefaultOddsData:@"98"];
+    [[Global getInstanse] setSelCode:@"PIHAO2"];
     self.segmentIndex = 0;
     //选择号码放到最前面
     [self.yncontentView bringSubviewToFront:self.betCollectionView];
@@ -570,7 +571,14 @@ static NSString *footViewID = @"YNCollectionFootView";
         [weakSelf handleTipStrForCode:code];
         [weakSelf resetClick:nil];
         [weakSelf setDefaultData:code];
-        NSString * odds =  [weakSelf.lmgmentOddsArray objectAtIndex:row];
+        
+        UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+        UGGameplaySectionModel *obj = model.list[0];
+        
+        UGGameBetModel *betModel = obj.list[self.segmentIndex];
+        NSString * odds =  betModel.odds;
+        NSLog(@"code = %@",betModel.code);
+        [[Global getInstanse] setSelCode:betModel.code];
         [weakSelf setDefaultOddsData:odds];
     };
     
@@ -3163,19 +3171,21 @@ static NSString *footViewID = @"YNCollectionFootView";
         self.typeIndexPath = indexPath;
         
         UGGameplayModel *model = self.gameDataArray[indexPath.row];
-        
+        UGGameplaySectionModel *obj = model.list[0];
         //设置segmentView标题 和 code 数据
         self.segmentIndex = 0;
         [self segmentViewTitleAndCode:model];
-        
+
         NSString * code =  [self.lmgmentCodeArray objectAtIndex:self.segmentIndex];
         
         [self setDefaultData:code];
         //判断ynsegmentView 标题 和 隐藏
         [self determineYnsegmentViewTitle:model.code];
         
-        NSString * odds =  [self.lmgmentOddsArray objectAtIndex:self.segmentIndex];
-        
+        UGGameBetModel *betModel = obj.list[self.segmentIndex];
+        NSString * odds =  betModel.odds;
+        NSLog(@"code = %@",betModel.code);
+        [[Global getInstanse] setSelCode:betModel.code];
         [self setDefaultOddsData:odds];
     }
     

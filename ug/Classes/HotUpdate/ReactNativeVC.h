@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)reactNativeWithRPM:(RnPageModel *)rpm params:(NSDictionary <NSString *, id>* _Nullable)params;  /**<   切换rn页面 */
 - (BOOL)isEqualRPM:(RnPageModel *)rpm;
-- (void)push:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params;
+- (void)pushOrJump:(BOOL)pushOrJump rpm:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params;
 + (void)setTabbarHidden:(BOOL)hidden animated:(BOOL)animated;
 + (void)showLastRnPage;
 @end

@@ -73,7 +73,14 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 		subLabel(@"账户余额label").textColor = Skin1.textColor1;
 		_balanceLabel.textColor = Skin1.textColor1;
 		[_balanceView setBackgroundColor:Skin1.navBarBgColor];
-		if (Skin1.isBlack) {
+		
+		if (CHAT_TARGET) {
+			self.view.backgroundColor = UIColor.whiteColor;
+			self.balanceView.backgroundColor = UIColor.whiteColor;
+			self.conversionButton.backgroundColor = RGBA(0x62, 0x87, 0xff, 1);
+			[self.view viewWithTagString:@"一键提取Button"].backgroundColor = RGBA(0x62, 0x87, 0xff, 1);
+
+		} else if (Skin1.isBlack) {
 			self.tarnsferInArrow.image = [UIImage imageNamed:@"baijiantou"] ;
 			self.transferOutArrow.image = [UIImage imageNamed:@"baijiantou"] ;
 			[self.refreshButton setImage:[UIImage imageNamed:@"BMrefresh"] forState:(UIControlStateNormal)];

@@ -1680,4 +1680,19 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }
     return NO;
 }
+
+
+/**
+*  取几位小数的四舍五入
+*  randStr:要四舍五入的字符：6.789
+*  scale：取几位小数：2
+   结果：6.79
+*/
++ (NSDecimalNumber *) randStr:(NSString *)str scale:(NSInteger) scale{
+    NSDecimalNumberHandler *behavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundPlain scale:scale raiseOnExactness:NO raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:NO];
+    NSDecimalNumber *numResult1 = [NSDecimalNumber decimalNumberWithString:str];
+    NSLog(@" 四舍五入为：%@", [numResult1 decimalNumberByRoundingAccordingToBehavior:behavior]);
+    return [numResult1 decimalNumberByRoundingAccordingToBehavior:behavior];
+    
+}
 @end

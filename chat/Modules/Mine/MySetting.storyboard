@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Ow-sF-i2O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Ow-sF-i2O">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -44,13 +45,13 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="18" id="yGC-dP-0Wr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <inset key="separatorInset" minX="24" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="YLT-Q4-ZmE">
                             <rect key="frame" x="0.0" y="157" width="414" height="119"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9co-cA-74l">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9co-cA-74l">
                                     <rect key="frame" x="40" y="24" width="334" height="48"/>
                                     <color key="backgroundColor" red="0.1843137255" green="0.43921568630000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -62,7 +63,7 @@
                                     </state>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="9co-cA-74l" firstAttribute="leading" secondItem="YLT-Q4-ZmE" secondAttribute="leading" constant="40" id="6ng-G2-2tP"/>
                                 <constraint firstAttribute="trailing" secondItem="9co-cA-74l" secondAttribute="trailing" constant="40" id="Rio-tS-2f9"/>
@@ -118,9 +119,6 @@
                                             <constraint firstAttribute="trailing" secondItem="70G-hB-6sr" secondAttribute="trailing" id="Hcs-eE-0QZ"/>
                                             <constraint firstItem="70G-hB-6sr" firstAttribute="leading" secondItem="7dI-P5-Dcw" secondAttribute="leading" constant="24" id="maH-Vu-KwN"/>
                                         </constraints>
-                                        <connections>
-                                            <segue destination="iPc-gu-vGI" kind="show" id="AWJ-Dz-QgU"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="46" id="GKc-WV-2t1">
                                         <rect key="frame" x="0.0" y="93" width="414" height="46"/>
@@ -157,6 +155,7 @@
                     </tableView>
                     <connections>
                         <outlet property="logoutButton" destination="9co-cA-74l" id="5cx-Kr-8YW"/>
+                        <outlet property="tableView" destination="yGC-dP-0Wr" id="iZ6-Az-9FJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKo-0E-Ki3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -164,4 +163,9 @@
             <point key="canvasLocation" x="82.608695652173921" y="110.49107142857143"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

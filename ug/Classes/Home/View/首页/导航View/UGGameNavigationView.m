@@ -210,7 +210,7 @@
 
 @interface UGGameNavigationViewCell()
 {
-    YYAnimatedImageView * _iconImage;
+    FLAnimatedImageView * _iconImage;
     UILabel * _titleLabel;
     FLAnimatedImageView * _hotImage;
     UILabel *_unreadLabel;
@@ -226,7 +226,7 @@
     if (self) {
         _hotImage = [FLAnimatedImageView new];
         _hotImage.contentMode = UIViewContentModeScaleAspectFit;
-        _iconImage = [YYAnimatedImageView new];
+        _iconImage = [FLAnimatedImageView new];
         _iconImage.contentMode = UIViewContentModeScaleAspectFit;
         _titleLabel = [UILabel new];
 
@@ -305,9 +305,9 @@
         if (error)
            [__hotImageView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
     }];
-    
-    [_iconImage yy_setImageWithURL:[NSURL URLWithString:model.icon] placeholder:[UIImage imageNamed:@"zwt"]];
-    [_iconImage startAnimating];
+
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[UIImage imageNamed:@"zwt"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    }];
     _titleLabel.text = model.name.length ? model.name : model.title;
 }
 

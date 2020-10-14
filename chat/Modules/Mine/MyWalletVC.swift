@@ -82,23 +82,33 @@ class MyWalletVC: BaseVC {
 			
 			switch (indexPath.section, indexPath.item) {
 			case (0, 0):
-				let vc = UGFundsViewController()
+				let vc = UIStoryboard(name: "Funds", bundle: nil).instantiateViewController(withIdentifier: "UGFundsViewController")
+				vc.navigationItem.title = "存款"
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (0, 1):
-				let vc = UGFundsViewController()
+				let vc = UIStoryboard(name: "Funds", bundle: nil).instantiateViewController(withIdentifier: "UGFundsViewController") as! UGFundsViewController
 				vc.selectIndex = 1
+				vc.navigationItem.title = "取款"
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (0, 2):
+				
+				let config = UGSystemConfigModel.currentConfig()
+				guard config.yuebaoSwitch else {
+					Alert.showTip("利息宝暂时关闭，请联系管理员")
+					return
+				}
 				let vc = UIStoryboard(name: "UGYubaoViewController", bundle: nil).instantiateViewController(withIdentifier: "UGYubaoViewController")
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case(0, 3):
-				weakSelf.navigationController?.pushViewController(UIStoryboard(name: "UGPromotionInfoController", bundle: nil).instantiateViewController(withIdentifier: "UGPromotionInfoController") , animated: true)
-
-//				weakSelf.navigationController?.pushViewController(UGPromotionInfoController(), animated: true)
+				weakSelf.navigationController?.pushVC(with: UserCenterItemType.UCI_推荐收益)
 			case (0, 4):
-				weakSelf.navigationController?.pushViewController(UGActivityGoldTableViewController(), animated: true)
+				let vc = UGActivityGoldTableViewController()
+				vc.navigationItem.title = "活动彩金"
+				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (0, 5):
-				weakSelf.navigationController?.pushViewController(UGFundDetailsTableViewController(), animated: true)
+				let vc = UGFundDetailsTableViewController()
+				vc.navigationItem.title = "资金明细"
+				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (1, 0):
 				weakSelf.navigationController?.pushViewController(UGBetRecordViewController(), animated: true)
 			case (1, 1):
@@ -106,6 +116,11 @@ class MyWalletVC: BaseVC {
 			case (2, 0):
 				weakSelf.navigationController?.pushViewController(UGMailBoxTableViewController(), animated: true)
 			case (2, 1):
+				let config = UGSystemConfigModel.currentConfig()
+				guard config.missionSwitch == "0" else {
+					Alert.showTip("签到功能暂时关闭，请联系管理员")
+					return
+				}
 				weakSelf.navigationController?.pushViewController(UIStoryboard(name: "UGMissionCenterViewController", bundle: nil).instantiateViewController(withIdentifier: "UGMissionCenterViewController"), animated: true)
 			case (2, 2):
 				weakSelf.navigationController?.pushViewController(UGSigInCodeViewController(), animated: true)

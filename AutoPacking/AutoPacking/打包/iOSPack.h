@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 - (void)setupPlist:(NSDictionary *)dict;    /**<   初始化 */
 - (void)pullCode:(NSString *)branch completion:(void (^)(NSString *version))completion;
-- (void)startPackingWithIds:(NSString *)ids version:(NSString *)version willUpload:(BOOL)willUpload checkStatus:(BOOL)checkStatus;    /**<   打包、上传 */
+- (void)startPackingWithIds:(NSString *)ids ver:(NSString *)ver willUpload:(BOOL)willUpload isForce:(BOOL)isForce log:(NSString *)log checkStatus:(BOOL)checkStatus;    /**<   打包、上传 */
 @end
 
 

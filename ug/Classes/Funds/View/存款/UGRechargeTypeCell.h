@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *nameStr;
 @property (nonatomic, strong) NSString *tipStr;
 @property (nonatomic, strong) NSString *headerImageStr;
+@property (weak, nonatomic) IBOutlet UIButton *mBtn;//充值按钮
 
 
 @property (nonatomic, strong) UGpaymentModel *item;

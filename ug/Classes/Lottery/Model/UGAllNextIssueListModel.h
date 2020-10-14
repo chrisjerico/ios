@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *customise;      /**<   是否自营彩：1=是，0=否 */
 @property (nonatomic, strong) NSString *pic;            /**<   游戏图片 */
 @property (nonatomic, strong) NSString *openCycle;      /**<   开奖周期 */
+@property (nonatomic, strong) NSString *logo;            /**<   彩票分组列表 游戏图片 */
 
 
 @property (nonatomic, strong) NSString *curCloseTime;   /**<   当期期封盘时间 */
@@ -115,8 +116,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *gameTypeName;   /**<   游戏分类名称 */
 @property (nonatomic, strong) NSArray<UGNextIssueModel> *list;
 
+//彩票分组列表
+@property (nonatomic, strong) NSString *gameId;         /**<   游戏分类标识 */
+@property (nonatomic, copy) NSString *name;           /**<   游戏分类名称 */
+@property (nonatomic, strong) NSString *logo;           /**<   游戏分类图片 */
+@property (nonatomic, strong) NSArray<UGNextIssueModel> *lotteries;
+
 
 @property (nonatomic, class) NSArray<UGAllNextIssueListModel *> *lotteryGamesArray; /**<   彩票大厅数据（升级为类方法全局使用） */
+//自定义参数
+@property (nonatomic) BOOL isOpen;   /**<   侧边栏展开 */
 @end
 
 NS_ASSUME_NONNULL_END

@@ -409,14 +409,9 @@ static NSString *ID=@"YNBetCollectionViewCell";
     if (multip > 0) {
          float totalAmount = 0.0;
          for (UGBetModel *model in self.betArray) {
-             
-             NSLog(@"model.money = %.2f",model.money.floatValue);
              totalAmount += model.money.floatValue;
          }
-        NSLog(@"multip值是---%d",multip);
-        NSLog(@"值是---%.2f",totalAmount);
          self.amount = totalAmount * multip;
-        NSLog(@"值是---%.2f",self.amount);
         self.totalAmountLabel.text = [NSString stringWithFormat:@"%.2lf",self.amount];
      }
 

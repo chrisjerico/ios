@@ -373,22 +373,38 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     
     NSString *deskey = [UGEncryptUtil createUuid];
     NSLog(@"deskey = %@", deskey);
-    NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
     
-    [params enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull obj, BOOL * _Nonnull stop) {
-        NSData *resultData;
-        NSString *resultString;
+    // 参数加密
+    id (^encrypt)(id) = nil;
+    id (^__block __encrypt)(id) = encrypt = ^id (id obj) {
+        if ([obj isKindOfClass:[NSDictionary class]]) {
+            NSMutableDictionary *dict = [obj mutableCopy];
+            [obj enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull obj, BOOL * _Nonnull stop) {
+                dict[key] = __encrypt(obj);
+            }];
+            return dict;
+        } else if ([obj isKindOfClass:[NSArray class]]) {
+            NSMutableArray *arr = @[].mutableCopy;
+            for (id ele in obj) {
+                [arr addObject:ele];
+            }
+            return arr;
+        }
         if ([obj isKindOfClass:[NSNumber class]]) {
-            NSNumber *temp = (NSNumber *)obj;
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            obj = [numberFormatter stringFromNumber:temp];
+            obj = [[NSNumberFormatter new] stringFromNumber:(NSNumber *)obj];
+        } else {
+            obj = [obj description];
         }
         NSData *encryptData = [obj dataUsingEncoding:NSUTF8StringEncoding];
-        resultData = [GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt];
-        resultString = [GLEncryptManager encodeBase64WithData:resultData];
-        [dict setValue:resultString forKey:key];
-    }];
+        return [GLEncryptManager encodeBase64WithData:[GLEncryptManager excute3DESWithData:encryptData secureKey:[deskey dataUsingEncoding:NSUTF8StringEncoding] operation:kCCEncrypt]];
+    };
+    [dict addEntriesFromDictionary:encrypt(params)];
+    
+    // 带上sign
+    NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
     [dict setValue:sign forKey:@"sign"];
+    
+    // 带上token
     if (UGLoginIsAuthorized()) {
         UGUserModel *user = [UGUserModel currentUser];
         NSData *resultData;
@@ -398,7 +414,6 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         resultString = [GLEncryptManager encodeBase64WithData:resultData];
         [dict setValue:resultString forKey:@"token"];
     }
-    
     return dict;
 }
 
@@ -517,6 +532,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             }
 #ifdef APP_TEST
             [completion cc_userInfo][@"error"] = error;
+            [completion cc_userInfo][@"responseObject"] = @{@"responseString":[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]};
 #endif
             if (errResponse.statusCode == 503) {
                 [self performSelector:@selector(alertViewFor503:) withObject:[json objectForKey:@"msg"] afterDelay:4.0];

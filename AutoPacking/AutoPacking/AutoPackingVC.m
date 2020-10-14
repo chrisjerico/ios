@@ -12,6 +12,12 @@
 
 @implementation AutoPackingVC
 
+- (void)extracted:(NSString *)branch checkStatus:(BOOL)checkStatus ids:(NSString *)ids isForce:(BOOL)isForce updateLog:(NSString *)updateLog willUpload:(BOOL)willUpload {
+    [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
+        [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog checkStatus:checkStatus];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -50,29 +56,24 @@
 //                NSString *ids = @"a002,c001,c105b,c190,c048,l001,c228,c018,l002,c053,c085,c134,c137,c141,c150,c151,c158,c163,c165,c169,c173,c175,c002,c091,c084,c049,c011,c012,c073,c092,c116,c126,h003b,c184,c035,c035b,c035c,c052,c054,c108,c193,c200,c120,c006,c198,c008,c203,c205,c208,c212,c213,c217,c211,c230,c233,c235,c237,c005,c201,c206,c246";    // 站点编号(可以批量打包用','号隔开)  注意别删，打全站用
 
                 
-                NSString *ids = @"c206";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+
+                NSString *ids = @"c126";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
                 NSString *branch = @"dev_master";// 分支名
+                BOOL isForce = false;      // 是否强制更新
+                NSString *updateLog = @""; // 更新日志，给用户看的
                 BOOL willUpload = 1;        // 打包后是否上传审核
-                BOOL checkStatus = 1 ;      // 上传后是否审核  1时只能有bigadmin的账号，否则没权限
+                BOOL checkStatus = 0 ;      // 上传后是否审核  1时只能有bigadmin的账号，否则没权限
 
                 
-                [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
-                    [iPack startPackingWithIds:ids version:version willUpload:willUpload  checkStatus:checkStatus];
-                }];
-
+                [self extracted:branch checkStatus:checkStatus ids:ids isForce:isForce updateLog:updateLog willUpload:willUpload];
             }
             else {
-                NSString *log = @"trendView-07";    // 更新日志
                 NSString *environment = @"ezer3";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
                 NSString *branch = @"Ezer/trendView";    // 分支名：fish/dev1
                 
-                [RNPack checkEnvironment:environment log:log completion:^(NSString * _Nonnull environment, NSString * _Nonnull log) {
-                    [RNPack getCurrentVersionWithEnvironment:environment completion:^(NSString * _Nonnull version) {
-                        [RNPack pullCode:branch completion:^{
-                            [RNPack pack:version environment:environment log:log completion:^{
-                                [[NSUserDefaults standardUserDefaults] setObject:log forKey:@"log"];
-                            }];
-                        }];
+                [RNPack checkEnvironment:environment completion:^(NSString * _Nonnull environment) {
+                    [ShellHelper pullCode:RNPack.projectDir branch:branch completion:^(GitModel * _Nonnull gm) {
+                        [RNPack pack:gm environment:environment completion:^{}];
                     }];
                 }];
             }

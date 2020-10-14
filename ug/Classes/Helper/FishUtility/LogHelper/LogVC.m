@@ -157,24 +157,21 @@ static LogVC *_logVC = nil;
 #define IPHONE_SAFEBOTTOMAREA_HEIGHT (IS_PhoneXAll ? 34 : 0)//安全的底部区域
 #define IPHONE_TOPSENSOR_HEIGHT      (IS_PhoneXAll ? 32 : 0)//高级传感器
     
-    
+#pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"获取这个字符串中的所有xxx的所在的inde"];
-        [titles addObject:@"新彩票列表"];
+        [titles addObject:@"变红"];
+        [titles addObject:@"汇率"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"新彩票列表" handler:^(UIAlertAction *aa) {
-            NewLotteryHomeViewController *recordVC = _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
-            [NavController1 pushViewController:recordVC animated:true];
+        [ac setActionAtTitle:@"汇率" handler:^(UIAlertAction *aa) {
+
             
         }];
         
-        [ac setActionAtTitle:@"获取这个字符串中的所有xxx的所在的inde" handler:^(UIAlertAction *aa) {
-            NSString *str = @"66690-1213-678687-1212312-12312-66690-12113-6786871-12123127-123129";
-           NSMutableArray *arrayRanges = [CMLabelCommon getRangeStr:str findText:@"-"];
-            
-            NSLog(@"arrayRanges = %@",arrayRanges);
+        [ac setActionAtTitle:@"变红" handler:^(UIAlertAction *aa) {
+
+           
         }];
         
         
@@ -348,14 +345,14 @@ static LogVC *_logVC = nil;
         subLabel(@"TimeLabel").hidden = true;
         
         [subButton(@"拷贝URLButton") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"拷贝URLButton") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        [subButton(@"拷贝URLButton") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton  *sender) {
             [UIPasteboard generalPasteboard].string = sm.urlString;
-            [HUDHelper showMsg:@"已拷贝"];
+            [HUDHelper showMsg:@"已拷贝URL"];
         }];
         [subButton(@"拷贝URL+参数Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-        [subButton(@"拷贝URL+参数Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        [subButton(@"拷贝URL+参数Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton  *sender) {
             [UIPasteboard generalPasteboard].string = [sm.urlString stringByAppendingURLParams:sm.params];
-            [HUDHelper showMsg:@"已拷贝"];
+            [HUDHelper showMsg:@"已拷贝URL+参数"];
         }];
     } else {
         subLabel(@"TitleLabel").text = _selectedModelKeys[indexPath.row];

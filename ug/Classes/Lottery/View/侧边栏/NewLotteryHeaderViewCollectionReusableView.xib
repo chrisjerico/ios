@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="NewLotteryHeaderViewCollectionReusableView" id="U6b-Vx-4bR" customClass="NewLotteryHeaderViewCollectionReusableView">
+            <rect key="frame" x="0.0" y="0.0" width="260" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AV3-h9-YVx">
+                    <rect key="frame" x="10" y="11.5" width="205" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="PjI-hC-Llw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.59733796120000004" green="0.4264326692" blue="0.4245352745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Snh-tt-UGa">
+                    <rect key="frame" x="225" y="9.5" width="25" height="25"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Azi-h0-UhY"/>
+                        <constraint firstAttribute="width" constant="25" id="vTO-Ca-JcU"/>
+                    </constraints>
+                    <state key="normal" image="jiantouyou"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZU3-De-1rG">
+                    <rect key="frame" x="0.0" y="0.0" width="260" height="44"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="9Gg-ye-v9C"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ZU3-De-1rG" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="1B4-18-zHV"/>
+                <constraint firstItem="Snh-tt-UGa" firstAttribute="leading" secondItem="AV3-h9-YVx" secondAttribute="trailing" constant="10" id="2lv-us-BIg"/>
+                <constraint firstItem="Snh-tt-UGa" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="5VU-wc-rM0"/>
+                <constraint firstItem="ZU3-De-1rG" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="C6n-3D-H2x"/>
+                <constraint firstItem="AV3-h9-YVx" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="OS9-Fd-fJ5"/>
+                <constraint firstItem="9Gg-ye-v9C" firstAttribute="bottom" secondItem="ZU3-De-1rG" secondAttribute="bottom" id="UUc-QZ-vtD"/>
+                <constraint firstAttribute="trailing" secondItem="ZU3-De-1rG" secondAttribute="trailing" id="fRW-gG-sGe"/>
+                <constraint firstAttribute="trailing" secondItem="Snh-tt-UGa" secondAttribute="trailing" constant="10" id="gY4-mX-dkI"/>
+                <constraint firstItem="AV3-h9-YVx" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="z8D-yL-mjC"/>
+            </constraints>
+            <connections>
+                <outlet property="mBtn" destination="Snh-tt-UGa" id="lff-kS-CRX"/>
+                <outlet property="mClickedBtn" destination="ZU3-De-1rG" id="Ehm-Vl-Ebl"/>
+                <outlet property="titlelabel" destination="AV3-h9-YVx" id="U0O-6s-Coi"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="89.732142857142847"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="jiantouyou" width="24" height="24"/>
+    </resources>
+</document>

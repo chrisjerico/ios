@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;/**<    昵称 */
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;   /**<    余额 */
 @property (weak, nonatomic) IBOutlet UILabel *realNameLabel;/**<    真实名 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeight;
 
 @end
 
@@ -55,6 +56,10 @@
     if (!self.title) {
         self.title =  @"资金管理";
     }
+	
+	if (CHAT_TARGET) {
+		self.headerHeight.constant = 0;
+	}
     
     self.fd_prefersNavigationBarHidden = Skin1.isBlack;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -75,8 +80,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (Skin1.isGPK) {
-        [self.navigationController setNavigationBarHidden:YES];//强制隐藏NavBar
-        [headView.leftwardMarqueeView start];
+//        [self.navigationController setNavigationBarHidden:YES];//强制隐藏NavBar
+//        [headView.leftwardMarqueeView start];
+        [self.navigationController setNavigationBarHidden:NO];//不NavBar
         [self.view setBackgroundColor:Skin1.navBarBgColor];
     } else {
         [self.navigationController setNavigationBarHidden:NO];//不NavBar
@@ -90,7 +96,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [headView.leftwardMarqueeView pause];//fixbug  发热  掉电快
+//    [headView.leftwardMarqueeView pause];//fixbug  发热  掉电快
 }
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -120,21 +126,21 @@
     
     self.itemArray = @[@"存款",@"取款",@"存款记录",@"取款记录",@"资金明细"];
     if (Skin1.isGPK) {
-         [self creatView];
-        
-        [self.mheadView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(headView.mas_bottom);
-            make.left.equalTo(self.view.mas_left).offset(0);
-            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
-              make.height.mas_equalTo(130);
-        }];
-        
+
+
+//        [self.mheadView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(headView.mas_bottom);
+//            make.left.equalTo(self.view.mas_left).offset(0);
+//            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+//              make.height.mas_equalTo(130);
+//        }];
+
          self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , headView.frame.size.height+headView.frame.origin.y, self.view.width, self.view.height) channelName:self.itemArray source:self];
         self.slideSwitchView.hmSegmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleDynamic;
         self.slideSwitchView.hmSegmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 20, 0, 20);
         [self.view addSubview:self.slideSwitchView];
         [self.slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.mheadView.mas_bottom);
+            make.top.equalTo(self.view.mas_top);
             make.left.equalTo(self.view.mas_left).offset(0);
             make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
             make.bottom.equalTo(self.view.mas_bottom);
@@ -171,7 +177,12 @@
     self.slideSwitchView.tabItemNormalBackgroundColor = Skin1.textColor4;
     //设置tab 被选中的标识的颜色(可选)
     self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor1;
- 
+	if (CHAT_TARGET) {
+		self.slideSwitchView.tabItemSelectedColor = RGBA(0x74, 0x94, 0xff, 1);
+		self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(0x74, 0x94, 0xff, 1);
+		self.slideSwitchView.tabSelectionStyle = XYYSegmentedControlSelectionStyleFullWidthStripe;
+		
+	}
 }
 
 
@@ -227,6 +238,10 @@
     if (number == 2) {
         SANotificationEventPost(UGNotificationWithRecordOfDeposit, nil);
     }
+	
+	if (CHAT_TARGET) {
+		self.navigationItem.title = self.itemArray[number];
+	}
     
 }
 

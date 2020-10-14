@@ -204,7 +204,10 @@
         }
         else{
              subImageView(@"中奖文字").image = [UIImage imageNamed:@"dzp_failure"];
-             subImageView(@"奖品图").image = [UIImage imageNamed:@"dzp_cryFace"];
+            if (!APP.isNoCry) {
+                subImageView(@"奖品图").image = [UIImage imageNamed:@"dzp_cryFace"];
+            }
+            
         }
   
 

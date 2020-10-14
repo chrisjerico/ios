@@ -56,7 +56,20 @@
 	self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
 	self.waveView.realWaveColor =  Skin1.navBarBgColor;
 	FastSubViewCode(self.view)
-	if (Skin1.isBlack||Skin1.is23) {
+	if (CHAT_TARGET) {
+		[self.view setBackgroundColor: [UIColor whiteColor]];
+		[subLabel(@"本周收益label") setTextColor:[UIColor lightGrayColor]];
+		[subLabel(@"本月收益label") setTextColor:[UIColor lightGrayColor]];
+		[subLabel(@"总收益label") setTextColor:[UIColor lightGrayColor]];
+		[subLabel(@"额度转入转出label") setTextColor:[UIColor blackColor]];
+		[subLabel(@"收益报表label") setTextColor:[UIColor blackColor]];
+		[subLabel(@"转入转出记录label") setTextColor:[UIColor blackColor]];
+		[subLabel(@"内容label") setTextColor:[UIColor blackColor]];
+		[_weekProfitLabel setTextColor:[UIColor blackColor]];
+		[_monthProfitLabel setTextColor:[UIColor blackColor]];
+		[_totalProfitLabel setTextColor:[UIColor blackColor]];
+		[subImageView(@"浪图UIImagV") setHidden:NO];
+	} else if (Skin1.isBlack||Skin1.is23) {
         [self.view setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1):Skin1.bgColor];
 		[subLabel(@"本周收益label") setTextColor:[UIColor whiteColor]];
 		[subLabel(@"本月收益label") setTextColor:[UIColor whiteColor]];
@@ -103,7 +116,11 @@
 }
 
 -(void)setYYBgViewBgColor{
-	if ([@"新年红,石榴红,六合资料,金沙主题,简约模板,火山橙,香槟金" containsString:Skin1.skitType]) {
+	if (CHAT_TARGET){
+		[_yyBgView setBackgroundColor:RGBA(0x4a, 0x77, 0xff, 1)];
+		self.waveBotomView.backgroundColor =  [UIColor whiteColor];
+		self.waveView.realWaveColor =  RGBA(0x4a, 0x77, 0xff, 1);
+	} else if ([@"新年红,石榴红,六合资料,金沙主题,简约模板,火山橙,香槟金" containsString:Skin1.skitType]) {
 		[_yyBgView setBackgroundColor:Skin1.navBarBgColor];
 		self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
 		self.waveView.realWaveColor =  Skin1.navBarBgColor;

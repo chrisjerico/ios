@@ -60,7 +60,12 @@
     }
     
     [self.rollingView setBackgroundColor:Skin1.bgColor];
-    [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(94 , 140, 178, 1) borderWidth:1];
+    self.rollingView .clipsToBounds = false;
+    self.rollingView .layer.shadowColor = [UIColor blackColor].CGColor;
+    self.rollingView .layer.shadowOffset = CGSizeMake(0, 1);
+    self.rollingView .layer.shadowRadius = 2;
+    self.rollingView .layer.shadowOpacity = 0.1;
+    [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:[UIColor blackColor] borderWidth:0.5];
     self.withdrawButton.layer.borderWidth = 0.5f;
     self.withdrawButton.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.withdrawButton.layer.cornerRadius = 3;
@@ -120,20 +125,21 @@
 
 - (void)getAllNextIssueData {
     WeakSelf;
-    [CMNetwork getAllNextIssueWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        NSLog(@"model = %@",model);
        
         [CMResult processWithResult:model success:^{
-            weakSelf.lotteryGamesArray = UGAllNextIssueListModel.lotteryGamesArray = model.data;
-            
+            weakSelf.lotteryGamesArray =  model.data;
+
             for (UGAllNextIssueListModel *obj in weakSelf.lotteryGamesArray) {
                 NewLotteryListController *realView = [NewLotteryListController new];
-                realView.list = obj.list;
+                realView.list = obj.lotteries;
                 [weakSelf.viewsArray addObject:realView];
-                
-                [weakSelf.itemArray addObject:obj.gameTypeName];
+
+                [weakSelf.itemArray addObject:obj.name];
             }
             [weakSelf buildSegment];
-            
+
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
         }];
@@ -154,7 +160,7 @@
     [self.slideSwitchView setUserInteractionEnabled:YES];
     self.slideSwitchView.segmentControlDelegate = self;
     //设置tab 颜色(可选)
-    self.slideSwitchView.tabItemNormalColor = Skin1.textColor1;
+    self.slideSwitchView.tabItemNormalColor = Skin1.textColor3;
     self.slideSwitchView.tabItemNormalFont = 13;
 
     
@@ -173,8 +179,18 @@
     }
     else {
         bg = Skin1.bgColor;
-        self.slideSwitchView.tabItemSelectedColor = Skin1.textColor4 ;
-        self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor4 ;
+        if (![Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
+            self.slideSwitchView.tabItemSelectedColor = Skin1.textColor1 ;
+            self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor3 ;
+        }
+        else{
+        
+            self.slideSwitchView.tabItemSelectedColor = [UIColor whiteColor] ;
+            self.slideSwitchView.tabItemNormalColor = [UIColor blackColor];
+            self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor3 ;
+            self.slideSwitchView.tabItemNormalFont = 13;
+        }
+       
     }
 
     self.slideSwitchView.tabItemNormalBackgroundColor = bg;

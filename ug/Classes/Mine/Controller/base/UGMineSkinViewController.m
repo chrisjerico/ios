@@ -148,6 +148,9 @@
         [self refreshBalance:nil];
     }
     //    SANotificationEventPost(UGNotificationGetUserInfo, nil);
+    self.tabBarController.tabBar.hidden = NO;
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -194,6 +197,9 @@
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
     
+    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+        [self refreshBalance:nil];
+     });
     if (!self.title) {
         self.title = @"我的";
     }
@@ -393,6 +399,8 @@ BOOL isOk = NO;
     [self.myCollectionView registerNib:[UINib nibWithNibName:@"UGSkinSeconCollectionHeadView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UGSkinSeconCollectionHeadView"];
     
     [self.myCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UICollectionReusableView"];
+    
+    self.myCollectionView.contentInset = UIEdgeInsetsMake(0, 0, 84, 0);
     
     [self.myCollectionView setShowsHorizontalScrollIndicator:NO];
 }

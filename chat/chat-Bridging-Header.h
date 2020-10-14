@@ -42,6 +42,7 @@
 #import "UGSigInCodeViewController.h"		// 每日签到
 #import "UGYubaoViewController.h"			// 利息宝
 #import "UGFundDetailsTableViewController.h"  // 资金明细
+#import "UGgoBindViewController.h" //绑定银行卡
 #import "UGNotDetailViewController.h"
 
 #import "UGSystemConfigModel.h"

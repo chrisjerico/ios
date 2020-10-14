@@ -36,7 +36,6 @@ public struct BetModel: Mappable {
 	
 }
 
-
 extension BetModel {
 	
 	var betInfo: [String: Any] {

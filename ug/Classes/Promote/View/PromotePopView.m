@@ -39,7 +39,9 @@
         self.frame = frame;
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
-        if (Skin1.isBlack||Skin1.is23) {
+		if ([APP.SiteId isEqualToString:@"c198"]){
+
+		} else if (Skin1.isBlack||Skin1.is23) {
              self.backgroundColor = Skin1.bgColor;
             _titleLabel.textColor = Skin1.textColor4;
         } else {
@@ -109,7 +111,10 @@
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (Skin1.isBlack) {
+	if ([APP.SiteId isEqualToString:@"c198"]){
+		//编号：	126813
+		//标题：	ios】公告不依后台设置显示 【普通】
+	} else if (Skin1.isBlack) {
         // body.style默认字体色
         [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.color='#DDD'"];
         // body.style背景色

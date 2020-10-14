@@ -15,6 +15,7 @@ let FileUploadApi = MoyaProvider<FileUploadTarget>(plugins: [APILogger.default])
 
 enum FileUploadTarget {
 	case image(data: UIImage)
+	case avatar(data: UIImage)
 	case moments(images: [UIImage])
 }
 
@@ -31,9 +32,7 @@ extension FileUploadTarget: TargetType {
 	
 	var method: Moya.Method {
 		switch self {
-		case .image:
-			return .post
-		case .moments:
+		default:
 			return .post
 			
 		}
@@ -60,8 +59,15 @@ extension FileUploadTarget: TargetType {
 			
 			let imageData = MultipartFormData(provider: .data(image.jpegData(compressionQuality: 0.65)!), name: "files", fileName: "\(UUID().uuidString).jpg", mimeType: "image/jpeg")
 			formDatas.append(imageData)
+		case let .avatar(image):
+			urlParameters["c"] = "chat"
+			urlParameters["a"] = "updateAvatar"
 			
+			bodyParameters["token"] = App.user.sessid
 			
+			let imageData = MultipartFormData(provider: .data(image.jpegData(compressionQuality: 0.65)!), name: "files", fileName: "\(UUID().uuidString).jpg", mimeType: "image/jpeg")
+			formDatas.append(imageData)
+
 			
 		case let .moments(images):
 			urlParameters["c"] = "moment"

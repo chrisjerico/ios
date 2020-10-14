@@ -43,11 +43,16 @@
     [ShellHelper pullCode:RNPack.projectDir branch:@"master" completion:^(GitModel * _Nonnull gm) {
         [ShellHelper pullCode:self.projectDir branch:branch completion:^(GitModel * _Nonnull gm) {
             __self.gm = gm;
-            
+            NSString *number = @(gm.number.intValue + 23000).stringValue;
             NSString *(^getChar)(NSString *, int) = ^NSString *(NSString *vStr, int idx) {
                 return [vStr substringWithRange:NSMakeRange(idx, 1)];
             };
-            NSString *ipaVersion = _NSString(@"%@.%@%@.0", getChar(gm.number, 0), getChar(gm.number, 1), getChar(gm.number, 2));
+            NSString *ipaVersion = _NSString(@"%@.%@%@.%@%@",
+                                              getChar(number, 0),
+                                              getChar(number, 1),
+                                              getChar(number, 2),
+                                              getChar(number, 3),
+                                              getChar(number, 4));
             NSLog(@"ipaVersion = %@", ipaVersion);
             if (completion)
                 completion(ipaVersion);
@@ -119,13 +124,18 @@
 #pragma mark - 批量打包+上传
 
 // 批量打包
-- (void)startPackingWithIds:(NSString *)ids version:(NSString *)version willUpload:(BOOL)willUpload checkStatus:(BOOL)checkStatus{
+- (void)startPackingWithIds:(NSString *)ids ver:(NSString *)ver willUpload:(BOOL)willUpload isForce:(BOOL)isForce log:(NSString *)log checkStatus:(BOOL)checkStatus {
+    
+    if (isForce && !log.length) {
+        assert(!@"强制更新请输入更新日志。".length);
+    }
+    
     __weakSelf_(__self);
     // 检查站点配置
     [self checkSiteInfo:ids];
     
     // 批量打包
-    [ShellHelper iosPacking:_projectDir sites:[SiteModel sites:ids] version:version completion:^(NSArray<SiteModel *> *okSites) {
+    [ShellHelper iosPacking:_projectDir sites:[SiteModel sites:ids] version:ver completion:^(NSArray<SiteModel *> *okSites) {
         if (!okSites.count) {
             NSLog(@"没有一个打包成功的。");
             exit(0);
@@ -174,7 +184,7 @@
         });
         
         // 批量上传
-        [__self upload:okSites  checkStatus:checkStatus completion:^(NSArray<SiteModel *> *okSites) {
+        [__self upload:okSites ver:ver isForce:isForce checkStatus:checkStatus log:log completion:^(NSArray<SiteModel *> *okSites) {
             NSMutableArray *fails = [SiteModel sites:ids].mutableCopy;
             [fails removeObjectsInArray:okSites];
             if (fails.count) {
@@ -188,7 +198,7 @@
 }
 
 // 批量上传审核
-- (void)upload:(NSArray <SiteModel *>*)_sites   checkStatus:(BOOL)checkStatus  completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
+- (void)upload:(NSArray <SiteModel *>*)_sites ver:(NSString *)ver isForce:(BOOL)isForce checkStatus:(BOOL)checkStatus log:(NSString *)log completion:(void (^)(NSArray <SiteModel *>*okSites))completion {
     NSMutableArray *sites = _sites.mutableCopy;
     NSMutableArray *okSites = @[].mutableCopy;
     __weakSelf_(__self);
@@ -207,7 +217,7 @@
                 // 提交审核
                 [NetworkManager1 getInfo:__sm.uploadId].completionBlock = ^(CCSessionModel *sm) {
                     __sm.siteUrl = sm.responseObject[@"data"][@"site_url"];
-                    [NetworkManager1 editInfo:__sm plistPath:plistPath].completionBlock = ^(CCSessionModel *sm) {
+                    [NetworkManager1 editInfo:__sm plistPath:plistPath ver:ver isForce:isForce log:log].completionBlock = ^(CCSessionModel *sm) {
                         if (!sm.error) {
                             NSLog(@"%@ 提交审核成功", __sm.siteId);
                             [okSites addObject:__sm];
@@ -326,9 +336,9 @@
     startUploading();
 }
 
-// 保存发包日志
+// 保存发包记录
 - (void)saveLog:(NSArray <SiteModel *>*)sms uploaded:(BOOL)uploaded checkStatus:(BOOL)checkStatus completion:(void (^)(BOOL ok))completion {
-    // 从git拉取最新的发包日志
+    // 从git拉取最新的发包记录
     NSLog(@"提交打包日志");
     [ShellHelper pullCode:iPack.logFile.stringByDeletingLastPathComponent branch:@"master" completion:^(GitModel * _Nonnull _) {
         NSDateFormatter *df = [NSDateFormatter new];
@@ -348,10 +358,10 @@
             [self saveString:log toFile:iPack.logFile];
         }
         
-        // 提交发包日志到git
+        // 提交发包记录到git
         NSString *title = _NSString(@"%@ %@，%@", [(NSArray *)[sms valueForKey:@"siteId"] componentsJoinedByString:@","], uploaded ? @"【发包】" : @"【只打包】", iPack.gm.log);
         [ShellHelper pushCode:iPack.logFile.stringByDeletingLastPathComponent title:title completion:^{
-            NSLog(@"发包日志提交成功");
+            NSLog(@"发包记录提交成功");
             if (completion) {
                 completion(true);
             }
@@ -365,7 +375,7 @@
     
     // 写入文件末尾
     if(![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        [@"——————————————\n    发包日志\n——————————————\n\n" writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
+        [@"——————————————\n    发包记录\n——————————————\n\n" writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
     }
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:filePath];
     [fileHandle seekToEndOfFile];

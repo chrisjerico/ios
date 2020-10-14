@@ -35,9 +35,12 @@
     self.titleLabel.text = item.name;
     if (item.select) {
         self.leftPoint.backgroundColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+        
     } else {
         self.leftPoint.backgroundColor = APP.betBgIsWhite ? UGRGBColor(195, 195, 196) : APP.TextColor1;
     }
+    
+   
 }
 
 - (void)setTitle:(NSString *)title {
@@ -82,6 +85,13 @@
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = selected ? 0.5 : 0;
         self.backgroundColor = selected ?Skin1.navBarBgColor :[UIColor clearColor];
+    }
+    
+    if (APP.isAllCellStyle) {
+        self.backgroundColor = selected ?[Skin1.navBarBgColor colorWithAlphaComponent:0.95]:[UIColor clearColor];
+        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+//        self.layer.borderWidth = 0;
+//        self.bottomLine.hidden = YES;
     }
 }
 

@@ -138,6 +138,11 @@
 		self.itemLabel.text = @"真人视讯";
 		
 	}
+	else  if([model.category isEqualToString:@"esport"]) {
+		[self.backDropImageView setImage:[UIImage imageNamed:@"dianzijingji"]];
+		self.itemLabel.text = @"";
+		
+	}
 }
 @end
 
@@ -275,6 +280,13 @@
 		[self.navigationController pushViewController:vc animated:YES];
 	}
 	else if ([@"real" isEqualToString:listModel.category]) {//真人
+		
+		UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+		vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
+		vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:listModel.games error:nil];
+		[self.navigationController pushViewController:vc animated:YES];
+	}
+	else if ([@"esport" isEqualToString:listModel.category]) {//电竞
 		
 		UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
 		vc.title = [NSString stringWithFormat:@"%@系列",listModel.categoryName];
