@@ -174,7 +174,7 @@ class UGGroupChatVC: MessagesViewController {
 		
 		//群附加功能的按钮
 		attachFunctionMenusButton.configure { item in
-			item.image = UIImage(named: "groupchat_attach")
+			item.image = UIImage(named: "keyboard_attach")
 			item.imageView?.contentMode = .scaleAspectFit
 			item.setSize(CGSize(width: 30, height: 30), animated: false)
 			item.imageView?.contentMode = .scaleAspectFit
@@ -185,10 +185,8 @@ class UGGroupChatVC: MessagesViewController {
 			weakSelf.messageInputBar.inputTextView.resignFirstResponder()
 			if weakSelf.messageInputBar.bottomStackView.arrangedSubviews.count > 0 {
 				weakSelf.messageInputBar.setStackViewItems([InputItem](), forStack: .bottom, animated: false)
-				item.image = UIImage(named: "groupchat_attach")
 			} else {
 				weakSelf.messageInputBar.setStackViewItems([weakSelf.attachFunctionMenusView], forStack: .bottom, animated: false)
-				item.image = UIImage(named: "tuckup")
 				
 			}
 			
@@ -197,7 +195,7 @@ class UGGroupChatVC: MessagesViewController {
 		
 		//发送表情的按钮
 		emojiButton.configure { (item) in
-			item.image = UIImage(named: "input_keyboad_emoji")
+			item.image = UIImage(named: "keyboard_emoji")
 			item.setSize(CGSize(width: 30, height: 30), animated: false)
 			item.imageView?.contentMode = .scaleAspectFit
 		}
@@ -279,24 +277,17 @@ class UGGroupChatVC: MessagesViewController {
 	
 	
 	// Mark: function
-	
 	func setKeyBoard(type: KeyBoardType) {
 		switch type {
 		case .system:
 			self.messageInputBar.inputTextView.inputView = nil
-			emojiButton.image = UIImage(named: "input_keyboad_emoji")
-			attachFunctionMenusButton.image = UIImage(named: "groupchat_attach")
 		case .emoji:
 			self.messageInputBar.inputTextView.inputView = self.emojiKeyBoard
-			emojiButton.image = UIImage(named: "jianpan")
-			attachFunctionMenusButton.image = UIImage(named: "groupchat_attach")
 		}
 		self.messageInputBar.inputTextView.reloadInputViews()
-		
 	}
-	
 	func clearBottomInputItems () {
-		attachFunctionMenusButton.image = UIImage(named: "groupchat_attach")
+		attachFunctionMenusButton.image = UIImage(named: "keyboard_attach")
 		messageInputBar.setStackViewItems([InputItem](), forStack: .bottom, animated: false)
 	}
 	
