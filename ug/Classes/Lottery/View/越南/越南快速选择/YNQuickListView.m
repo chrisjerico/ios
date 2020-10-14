@@ -8,7 +8,9 @@
 
 #import "YNQuickListView.h"
 #import "YNQuickListCollectionViewCell.h"
-@interface YNQuickListView()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
+#import "NSMutableArray+KVO.h"
+
+@interface YNQuickListView()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,NSMutableArrayDidChangeDelegate>
 {
 }
 @property (nonatomic, strong) WSLWaterFlowLayout *flow;
@@ -31,6 +33,12 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         self.delegate = self;
         self.dataSource = self;
         self.selecedDataArry = [NSMutableArray new];
+   
+        [self.selecedDataArry addObserver:self];
+        
+        
+
+        
         if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
             self.backgroundColor =  [UIColor whiteColor];
         } else {
@@ -46,6 +54,24 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     }
     return self;
     
+}
+
+//回调方法
+
+
+- (void)array:(NSMutableArray *)array didChange:(NSDictionary<NSString *,id> *)change {
+    NSLog(@"%ld", array.count);
+    
+    if (self.seleced) {
+        if (array.count >= self.selecedCount ) {
+            self.hasBgColor = YES;
+        }
+        else{
+            self.hasBgColor = NO;
+        }
+        [self reloadData];
+    }
+   
 }
 
 -(void)setDataArry:(NSMutableArray<UGGameBetModel *> *)dataArry{
@@ -66,6 +92,8 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     
     YNQuickListCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     UGGameBetModel *model = [_dataArry objectAtIndex:indexPath.row];
+    cell.hasSelected = self.seleced;
+    cell.hasBgColor = self.hasBgColor;
     cell.item = model;
     return cell;
 }
@@ -88,30 +116,34 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         //否则   ==》随便选择==》//如果选中，保存到选中的数组
         
         if (self.seleced) {
-            if (self.selecedDataArry.count >= self.selecedCount) {
+            if (self.selecedDataArry.count >= self.selecedCount ) {
+                
+               
                 
                BOOL isbool = [self.selecedDataArry containsObject:game.name];
                 
                 if (isbool) {
                     game.select = NO;
-                    [self.selecedDataArry removeObject:game.name];
+                    [self.selecedDataArry  removeObject:game.name];
                 } else {
                     //啥都不做,除了选中的数组的其他cell 背景都改颜色
                 }
                 
             }
             else {
+               
                  game.select = !game.select;
                 if (game.select) {
-                    [self.selecedDataArry addObject:game.name];
+                    [self.selecedDataArry  addObject:game.name];
                 }
                 else{
                     if ([self.selecedDataArry containsObject:game.name]) {
-                        [self.selecedDataArry removeObject:game.name];
+                        [self.selecedDataArry  removeObject:game.name];
                     }
                 }
             }
-        } else {
+        }
+        else {
             game.select = !game.select;
         }
 

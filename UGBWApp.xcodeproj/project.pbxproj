@@ -8608,8 +8608,8 @@
 		D40745A62511F37800606EA3 /* 越南输入号码 */ = {
 			isa = PBXGroup;
 			children = (
-				D40745A72511F37800606EA3 /* YNInputView.h */,
 				D40745A82511F37800606EA3 /* YNInputView.xib */,
+				D40745A72511F37800606EA3 /* YNInputView.h */,
 				D40745A92511F37800606EA3 /* YNInputView.m */,
 			);
 			path = "越南输入号码";

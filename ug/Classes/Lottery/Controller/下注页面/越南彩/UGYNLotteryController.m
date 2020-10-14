@@ -3939,14 +3939,14 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 //显示金额
 -(void)setAmountLableCount:(int)count{
-    
-    int amount = count * self.defaultGold;
+    int multiple = [[self getMultipleStr] intValue];
+    int amount = count * self.defaultGold ;
     NSString *amountStr;
     if ([UGSystemConfigModel.currentConfig.currency isEqualToString:@"VND"]) {
-        amountStr = [NSString stringWithFormat:@"金额:%d 越南盾",amount];
+        amountStr = [NSString stringWithFormat:@"金额:%d 越南盾",amount * multiple];
     }
     else {
-        amountStr = [NSString stringWithFormat:@"金额:%d 元",amount];
+        amountStr = [NSString stringWithFormat:@"金额:%d 元",amount * multiple];
     }
     self.amount = amount;
     self.amountLabel.text = amountStr;
@@ -3980,8 +3980,9 @@ static NSString *footViewID = @"YNCollectionFootView";
 -(void)changedTextField:(UITextField *)textField
 {
     int multip = textField.text.intValue;
-    if (multip > 0  ) {
-        int count =   self.amount * multip;
+    if (multip >= 0  ) {
+        int multiple = [[self getMultipleStr] intValue];
+        int count =   self.amount * multiple;
         NSString *amountStr;
         if ([UGSystemConfigModel.currentConfig.currency isEqualToString:@"VND"]) {
             amountStr = [NSString stringWithFormat:@"金额:%d 越南盾",count];
