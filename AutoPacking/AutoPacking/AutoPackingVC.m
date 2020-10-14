@@ -56,8 +56,8 @@
                 BOOL willUpload = 1;        // 打包后是否上传审核
 
                 // 高权限操作
-                BOOL isReview = true;      // 是否改为已审核
-                BOOL isForce = false;       // 是否强制更新
+                BOOL isReview = 0;      // 是否改为已审核
+                BOOL isForce = 0;       // 是否强制更新
                 NSString *updateLog = @"";  // 更新日志，给用户看的
                 
                 [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
