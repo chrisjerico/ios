@@ -1610,6 +1610,9 @@
 		0393C8AD24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0393C8AB24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib */; };
 		0393C8B024F7809300F6DFDB /* GoldEggLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0393C8AF24F7809300F6DFDB /* GoldEggLogModel.m */; };
 		03976DB525369FDB00B4201A /* MessageDateFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03976DB425369FDB00B4201A /* MessageDateFormater.swift */; };
+		039D3CC425373FD0008511AA /* YNHLPrizeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D40745B12511F37800606EA3 /* YNHLPrizeDetailView.m */; };
+		039D3CC825373FFD008511AA /* YNView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA01CFC2535AC6D00EA71F9 /* YNView.m */; };
+		039D3CCB25374090008511AA /* HelpDocument.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFBB252C7F26004C47AB /* HelpDocument.storyboard */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -9558,6 +9561,7 @@
 				03A5D38723C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */,
 				031E1D8F23BE812B00B0F813 /* Mine.storyboard in Resources */,
 				031EF59423BE7B4D00B0F813 /* faxian.svg in Resources */,
+				039D3CCB25374090008511AA /* HelpDocument.storyboard in Resources */,
 				031E1B4F23BE812800B0F813 /* UGYYRightMenuTableViewCell.xib in Resources */,
 				031EF58723BE7B4D00B0F813 /* yonghuming.svg in Resources */,
 				031E1D8323BE812B00B0F813 /* UGRealBetRecordViewController.storyboard in Resources */,
@@ -10715,6 +10719,7 @@
 				CF8508682466D6860025672F /* UGCell190HeaderView.m in Sources */,
 				031E1BDF23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
 				0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */,
+				039D3CC425373FD0008511AA /* YNHLPrizeDetailView.m in Sources */,
 				031E1BA523BE812900B0F813 /* UGBMLoginViewController.m in Sources */,
 				CF5B5D1D23E3087A007CBEE0 /* RememberPass.m in Sources */,
 				031EF5E223BE7B4E00B0F813 /* LoginVC.swift in Sources */,
@@ -10828,6 +10833,7 @@
 				031E1DEF23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,
 				03F8A516247FA0BB00466124 /* CCNetworkRequests1+UG.m in Sources */,
 				031E1AF123BE812800B0F813 /* WavesView.m in Sources */,
+				039D3CC825373FFD008511AA /* YNView.m in Sources */,
 				031E1E7D23BE812D00B0F813 /* UGPlatformBalanceTableViewCell.m in Sources */,
 				031E1C6923BE812A00B0F813 /* UGDepositDetailsViewController.m in Sources */,
 				031E19A523BE812600B0F813 /* SDWebImageHelper.m in Sources */,
