@@ -8,6 +8,8 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+
 
 class MySettingVC: UITableViewController {
 	
@@ -19,8 +21,18 @@ class MySettingVC: UITableViewController {
 		logoutButton.rx.tap.subscribe(onNext: { () in
 			Configuration.logout()
 		}).disposed(by: disposeBag)
-		
-		
+				
+		tableView.rx.itemSelected.filter { $0.row == 1 }.subscribe { (_) in
+			if App.user.hasFundPwd {
+				let vc = UIStoryboard(name: "UGSafety", bundle: nil).instantiateViewController(withIdentifier: "UGModifyPayPwdController")
+				self.navigationController?.pushViewController(vc, animated: true)
+			} else {
+				let vc = UGgoBindViewController()
+				vc.title = "绑定银行卡"
+				self.navigationController?.pushViewController(vc, animated: true)
+			}
+		}.disposed(by: disposeBag)
+
 		
 	}
 

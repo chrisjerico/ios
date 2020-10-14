@@ -240,6 +240,9 @@
                                     <state key="normal" title="忘记密码?">
                                         <color key="titleColor" red="0.55294117649999996" green="0.56470588239999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="passwordResetAction:" destination="-1" eventType="touchUpInside" id="Te4-g1-vBB"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

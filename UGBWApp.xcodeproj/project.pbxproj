@@ -1609,6 +1609,7 @@
 		0393C8AC24F74C1500F6DFDB /* EggGrenzyRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0393C8AA24F74C1500F6DFDB /* EggGrenzyRecordTableCell.m */; };
 		0393C8AD24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0393C8AB24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib */; };
 		0393C8B024F7809300F6DFDB /* GoldEggLogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0393C8AF24F7809300F6DFDB /* GoldEggLogModel.m */; };
+		03976DB525369FDB00B4201A /* MessageDateFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03976DB425369FDB00B4201A /* MessageDateFormater.swift */; };
 		03A5D38423C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38523C0445B0055A998 /* JS_HomeGameCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */; };
 		03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */; };
@@ -3681,6 +3682,7 @@
 		0393C8AB24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EggGrenzyRecordTableCell.xib; sourceTree = "<group>"; };
 		0393C8AE24F7809300F6DFDB /* GoldEggLogModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoldEggLogModel.h; sourceTree = "<group>"; };
 		0393C8AF24F7809300F6DFDB /* GoldEggLogModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoldEggLogModel.m; sourceTree = "<group>"; };
+		03976DB425369FDB00B4201A /* MessageDateFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDateFormater.swift; sourceTree = "<group>"; };
 		03A5D38123C0445B0055A998 /* JS_HomeGameCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_HomeGameCollectionCell.h; sourceTree = "<group>"; };
 		03A5D38223C0445B0055A998 /* JS_HomeGameCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_HomeGameCollectionCell.m; sourceTree = "<group>"; };
 		03A5D38323C0445B0055A998 /* JS_HomeGameCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_HomeGameCollectionCell.xib; sourceTree = "<group>"; };
@@ -7394,6 +7396,7 @@
 				031EF46223BE7B4C00B0F813 /* UIImagePickerController+RxCreate.swift */,
 				031EF52423BE7B4D00B0F813 /* NSObject+HasDisposeBag.swift */,
 				031EF46323BE7B4C00B0F813 /* TimeIntervalExtension+XFoundation.swift */,
+				03976DB425369FDB00B4201A /* MessageDateFormater.swift */,
 				031EF44A23BE7B4C00B0F813 /* RegexParser.swift */,
 			);
 			path = XFoundation;
@@ -10404,6 +10407,7 @@
 				031EF53623BE7B4D00B0F813 /* Single+Codable.swift in Sources */,
 				031E1DB723BE812B00B0F813 /* UGModel.m in Sources */,
 				031E1DC123BE812B00B0F813 /* UGapplyWinLogDetail.m in Sources */,
+				03976DB525369FDB00B4201A /* MessageDateFormater.swift in Sources */,
 				0315DCA324AEC6A700D635E2 /* NotificationSystemMessageCell.swift in Sources */,
 				031EF53B23BE7B4D00B0F813 /* CommonParameters.swift in Sources */,
 				031E19C323BE812700B0F813 /* UIGestureRecognizer+Utils.m in Sources */,
