@@ -49,6 +49,7 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
 
 
 - (void)showAlert:(UGAPPVersionModel *)vm promptAlreadyLatest:(BOOL)promptAlreadyLatest completion:(nullable void (^)(BOOL, BOOL))completion {
+    __block BOOL __showUpdated = false;
     BOOL isForce = vm.needForce;
     if (vm.hasUpdate) {
         NSString *updateContent = vm.updateContent.length ? vm.updateContent : @"检测到新版本，更新体验全新活动！";
@@ -57,8 +58,8 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
         void (^updateApp)(void) = ^{
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:vm.downloadUrl]];
         };
-        __weakSelf_(__self);
         void (^showAlert)(void) = ^{
+            __showUpdated = true;
             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastPromptDate];
             
             if (promptAlreadyLatest && Skin1.isBlack) {
@@ -143,7 +144,7 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
       }
     }
     if (completion)
-        completion(vm.hasUpdate, isForce);
+        completion(__showUpdated, isForce);
 }
 
 @end

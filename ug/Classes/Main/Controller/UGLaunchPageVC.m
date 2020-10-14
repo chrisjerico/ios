@@ -45,8 +45,8 @@
         _waitCheckUpdate = -1;
         __weakSelf_(__self);
         __block BOOL __isForce = false;
-        [[UGAppVersionManager shareInstance] updateVersionApi:false completion:^(BOOL hasUpdate, BOOL isForce) {
-            __self.waitCheckUpdate = hasUpdate;
+        [[UGAppVersionManager shareInstance] updateVersionApi:false completion:^(BOOL showUpdated, BOOL isForce) {
+            __self.waitCheckUpdate = showUpdated;
             __isForce = isForce;
         }];
         [self xw_addNotificationForName:kDidAlertButtonClick block:^(NSNotification * _Nonnull noti) {
