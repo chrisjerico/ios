@@ -36,7 +36,7 @@
             if (item.select) {
                 self.titleLabel.backgroundColor = UGBlueColor;
             } else {
-                if (self.hasBgColor) {
+                if ([Global getInstanse].hasBgColor) {
                     self.titleLabel.backgroundColor = RGBA(97, 108, 118, 1);
                 } else {
                     self.titleLabel.backgroundColor =  Skin1.bgColor;
@@ -46,7 +46,7 @@
             if (item.select) {
                 self.titleLabel.backgroundColor = UGBlueColor;
             } else {
-                if (self.hasBgColor) {
+                if ([Global getInstanse].hasBgColor) {
                     self.titleLabel.backgroundColor = RGBA(97, 108, 118, 1);
                 } else {
                     self.titleLabel.backgroundColor =  Skin1.homeContentColor;

@@ -64,10 +64,10 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     
     if (self.seleced) {
         if (array.count >= self.selecedCount ) {
-            self.hasBgColor = YES;
+            [Global getInstanse].hasBgColor = YES;
         }
         else{
-            self.hasBgColor = NO;
+            [Global getInstanse].hasBgColor = NO;
         }
         [self reloadData];
     }
@@ -93,7 +93,6 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     YNQuickListCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     UGGameBetModel *model = [_dataArry objectAtIndex:indexPath.row];
     cell.hasSelected = self.seleced;
-    cell.hasBgColor = self.hasBgColor;
     cell.item = model;
     return cell;
 }

@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *selCode;  /**<  越南彩选中的彩种*/
 
+@property (nonatomic) BOOL hasBgColor;//是否可以背景变灰
+
 +(Global *)getInstanse;
 
 @end

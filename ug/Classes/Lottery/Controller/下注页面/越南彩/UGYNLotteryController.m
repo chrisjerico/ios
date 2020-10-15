@@ -750,6 +750,8 @@ static NSString *footViewID = @"YNCollectionFootView";
             }
         }
         
+        [Global getInstanse].hasBgColor = NO;
+        
     }
     
     
@@ -1724,7 +1726,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             [name appendString:beti.name];
             [nameStr appendString:beti.name];
             if (i< mutArr1.count-1) {
-                [nameStr appendString:@","];
+                [nameStr appendString:@";"];
                 [name appendString:@","];
             } else {
                 [nameStr appendString:@"】"];
@@ -1775,7 +1777,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             
             [nameStr appendString:bet.name];
             if (i< mutArr1.count-1) {
-                [nameStr appendString:@","];
+                [nameStr appendString:@";"];
             } else {
                 [nameStr appendString:@"】"];
             }
@@ -1825,7 +1827,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             
             [nameStr appendString:bet.name];
             if (i< mutArr1.count-1) {
-                [nameStr appendString:@","];
+                [nameStr appendString:@";"];
             } else {
                 [nameStr appendString:@"】"];
             }
@@ -2359,7 +2361,15 @@ static NSString *footViewID = @"YNCollectionFootView";
         return;
     }
     
-    NSArray  *arr = [str componentsSeparatedByString:@";"];//分隔符逗号
+    NSString *spChar = @"👌";
+    for (NSString *split in @";, ") {
+        str = [str stringByReplacingOccurrencesOfString:split withString:spChar];
+    }
+    NSMutableArray *arr = [str componentsSeparatedByString:spChar].mutableCopy;//分隔符逗号
+    for (NSString *ele in arr.copy) {
+        if (!ele.stringByTrim.length)
+            [arr removeObject:ele];
+    }
     if (arr.count == 0 ) {
         [self  setLabelDataCount:0];
         return;
