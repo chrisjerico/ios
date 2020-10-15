@@ -80,9 +80,7 @@
         }
         currencyRate *= 1.0 + rateOffset / 100.0;
         CGFloat amount = subTextField(@"取款金额TextField").text.doubleValue;
-        if (currencyRate > 0.000001) {
-            __self.virtualAmount = [AppDefine stringWithFloat:currencyRate * amount decimal:2];
-        }
+        __self.virtualAmount = currencyRate > 0.000001 ? [AppDefine stringWithFloat:currencyRate * amount decimal:2] : nil;
         subLabel(@"虚拟币汇率Label").hidden = !(__self.selectedWam.type == UGWithdrawalTypeVirtual && amount > 0.0001);
         subLabel(@"虚拟币汇率Label").text = _NSString(@"=%@ USDT　　1 USDT = %@ CNY", __self.virtualAmount, [AppDefine stringWithFloat:1/currencyRate decimal:2]);
     }];
@@ -145,7 +143,7 @@
                             title = _NSString(@"%@（%@，尾号%@，%@）", wam.name, wam.bankName, [wam.bankCard substringFromIndex:wam.bankCard.length-4], wam.ownerName);
                             break;
                         case UGWithdrawalTypeVirtual: {
-                            NSString *acct = [wam.bankCard ciphertextWithHead:5 tail:5];
+                            NSString *acct = [wam.bankCard ciphertextWithHead:4 tail:4 style:0];
                             if (wam.bankAddr.stringByTrim.length) {
                                 title = _NSString(@"%@（%@，%@，%@）", wam.name, acct, wam.bankAddr, wam.ownerName);
                             } else {
@@ -154,12 +152,12 @@
                             break;
                         }
                         case UGWithdrawalTypeAlipay: {
-                            NSString *acct = [wam.bankCard ciphertextWithHead:4 tail:4];
+                            NSString *acct = [wam.bankCard ciphertextWithHead:4 tail:4 style:0];
                             title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.ownerName);
                         }
                         case UGWithdrawalTypeWeChat:
                         default: {
-                            NSString *acct = [wam.bankCard ciphertextWithHead:3 tail:3];
+                            NSString *acct = [wam.bankCard ciphertextWithHead:3 tail:3 style:0];
                             title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.ownerName);
                             break;
                         }
@@ -237,22 +235,7 @@
     
     __weakSelf_(__self);
     [SVProgressHUD showWithStatus:nil];
-    [self reloadCurrencyRate:^{
-        CGFloat currencyRate = 0;
-        CGFloat rateOffset = 0;
-        for (UGbankModel *bm in __self.virtualList) {
-            if ([bm.bankId isEqualToString:wam.bankId]) {
-                currencyRate = bm.currencyRate.doubleValue;
-                rateOffset = bm.rate.doubleValue;
-            }
-        }
-        currencyRate *= 1.0 + rateOffset / 100.0;
-        NSString *virtualAmount = currencyRate > 0.000001 ? [AppDefine stringWithFloat:currencyRate * amount.doubleValue decimal:2] : nil;
-        if (virtualAmount != __self.virtualAmount) {
-            [SVProgressHUD showInfoWithStatus:@"当前汇率已变更，已为您更新为最新汇率。。。"];
-            return;
-        }
-        
+    void (^apply)(void) = ^{
         // 提交申请
         [NetworkManager1 withdraw_apply:wam.wid amount:amount virtualAmount:__self.virtualAmount pwd:pwd].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
             if (!sm.error) {
@@ -270,7 +253,28 @@
                 [__self reloadCurrencyRate:nil];
             }
         };
-    }];
+    };
+    if (wam.type == UGWithdrawalTypeVirtual) {
+        [self reloadCurrencyRate:^{
+            CGFloat currencyRate = 0;
+            CGFloat rateOffset = 0;
+            for (UGbankModel *bm in __self.virtualList) {
+                if ([bm.bankId isEqualToString:wam.bankId]) {
+                    currencyRate = bm.currencyRate.doubleValue;
+                    rateOffset = bm.rate.doubleValue;
+                }
+            }
+            currencyRate *= 1.0 + rateOffset / 100.0;
+            NSString *virtualAmount = currencyRate > 0.000001 ? [AppDefine stringWithFloat:currencyRate * amount.doubleValue decimal:2] : nil;
+            if (virtualAmount != __self.virtualAmount) {
+                [HUDHelper showMsg:@"当前汇率已变更，已为您更新为最新汇率"];
+                return;
+            }
+            apply();
+        }];
+    } else {
+        apply();
+    }
 }
 
 

@@ -73,7 +73,7 @@
 - (NSString *)stringByAppendingURLParams:(NSDictionary *)dict;  /**<    拼接url参数 */
 - (NSString *)substringWithFrameSize:(CGSize)size font:(UIFont *)font;   /**<    按照显示框大小裁剪字符串 */
 - (UIFont *)fontWithFrameSize:(CGSize)size maxFont:(UIFont *)maxFont;   /**<   按照显示框大小获取能刚好放进去的文字大小 */
-- (NSString *)ciphertextWithHead:(int)head tail:(int)tail;      /**<   中间加*号 */
+- (NSString *)ciphertextWithHead:(int)head tail:(int)tail style:(int)style;      /**<   中间加*号（style：0长度不够时两边显示数量保持一致，1优先显示右边，2优先显示左边） */
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0);
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained _Nullable [_Nonnull])buffer count:(NSUInteger)len;
