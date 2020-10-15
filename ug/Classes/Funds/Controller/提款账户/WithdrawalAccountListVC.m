@@ -9,7 +9,6 @@
 #import "WithdrawalAccountListVC.h"
 #import "BindWithdrawalAccountVC.h"
 
-#import "UITableView+Refresh.h"
 #import "SlideSegmentView1.h"
 
 #import "WithdrawalAcctModel.h"
@@ -151,7 +150,7 @@
                 make.centerX.equalTo(tv.noDataTipsLabel);
             }];
         }
-        tv.tableFooterView = __self.typeList[idx].data.count ? (tv.footerView ? : [UIView new]) : tv.noDataTipsLabel;
+//        tv.tableFooterView = __self.typeList[idx].data.count ? (tv.footerView ? : [UIView new]) : tv.noDataTipsLabel;
         [tv reloadData];
         __self.navigationItem.rightBarButtonItem = __self.typeList[idx].canAdd ? __self.navRightButton  : nil;
     };

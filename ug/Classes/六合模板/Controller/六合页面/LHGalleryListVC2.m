@@ -47,8 +47,8 @@
     {
         UITableView *tv = _tableView;
         tv.rowHeight = RowHeight;
-        tv.footerView = [UIView new];
-        tv.footerView.height = 60;
+        tv.tableFooterView = [UIView new];
+        tv.tableFooterView.height = 60;
         [tv setupHeaderRefreshRequest:^CCSessionModel *(UITableView *tv) {
             return [NetworkManager1 lhdoc_tkList:false];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {

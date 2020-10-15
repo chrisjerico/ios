@@ -198,8 +198,8 @@
 		031E19E423BE812700B0F813 /* UIResponder+EventRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147B23BE812300B0F813 /* UIResponder+EventRouter.m */; };
 		031E19E523BE812700B0F813 /* UIResponder+EventRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147B23BE812300B0F813 /* UIResponder+EventRouter.m */; };
 		031E19E623BE812700B0F813 /* UIViewController+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147F23BE812300B0F813 /* UIViewController+Log.m */; };
-		031E19E823BE812700B0F813 /* UITableView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E148223BE812300B0F813 /* UITableView+Refresh.m */; };
-		031E19E923BE812700B0F813 /* UITableView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E148223BE812300B0F813 /* UITableView+Refresh.m */; };
+		031E19E823BE812700B0F813 /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E148223BE812300B0F813 /* UIScrollView+Refresh.m */; };
+		031E19E923BE812700B0F813 /* UIScrollView+Refresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E148223BE812300B0F813 /* UIScrollView+Refresh.m */; };
 		031E19EA23BE812700B0F813 /* IndexesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E148523BE812300B0F813 /* IndexesView.xib */; };
 		031E19EB23BE812700B0F813 /* IndexesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E148523BE812300B0F813 /* IndexesView.xib */; };
 		031E19EC23BE812700B0F813 /* water01.png in Resources */ = {isa = PBXBuildFile; fileRef = 031E148623BE812300B0F813 /* water01.png */; };
@@ -1743,6 +1743,7 @@
 		CF19A5712518830100E2E659 /* NewLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF19A5702518830100E2E659 /* NewLotteryHomeViewController.m */; };
 		CF19A5772518833500E2E659 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
 		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
+		CF4340C8253806D7004708C3 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4340C7253806D7004708C3 /* View.xib */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -2042,8 +2043,8 @@
 		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CF9A93C42407F2C200D6E4F3 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C02407F2C200D6E4F3 /* FLAnimatedImage.m */; };
 		CF9A93C52407F2C200D6E4F3 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */; };
-		CFAD2D2E252DA1DD008BC221 /* WithdrawalAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */; };
 		CFA01CFD2535AC6D00EA71F9 /* YNView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA01CFC2535AC6D00EA71F9 /* YNView.m */; };
+		CFAD2D2E252DA1DD008BC221 /* WithdrawalAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */; };
 		CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3225246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3525246BBE00C5F6F6 /* 2.html */; };
@@ -2430,8 +2431,8 @@
 		031E147C23BE812300B0F813 /* UIResponder+EventRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+EventRouter.h"; sourceTree = "<group>"; };
 		031E147E23BE812300B0F813 /* UIViewController+Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Log.h"; sourceTree = "<group>"; };
 		031E147F23BE812300B0F813 /* UIViewController+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Log.m"; sourceTree = "<group>"; };
-		031E148123BE812300B0F813 /* UITableView+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Refresh.h"; sourceTree = "<group>"; };
-		031E148223BE812300B0F813 /* UITableView+Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Refresh.m"; sourceTree = "<group>"; };
+		031E148123BE812300B0F813 /* UIScrollView+Refresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Refresh.h"; sourceTree = "<group>"; };
+		031E148223BE812300B0F813 /* UIScrollView+Refresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Refresh.m"; sourceTree = "<group>"; };
 		031E148423BE812300B0F813 /* IndexesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexesView.h; sourceTree = "<group>"; };
 		031E148523BE812300B0F813 /* IndexesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexesView.xib; sourceTree = "<group>"; };
 		031E148623BE812300B0F813 /* water01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water01.png; sourceTree = "<group>"; };
@@ -3809,6 +3810,7 @@
 		CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewLotteryHomeViewController.storyboard; sourceTree = "<group>"; };
 		CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLocalizable.h"; sourceTree = "<group>"; };
 		CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLocalizable.m"; sourceTree = "<group>"; };
+		CF4340C7253806D7004708C3 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -4070,9 +4072,9 @@
 		CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		CF9A93C22407F2C200D6E4F3 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
 		CF9A93C32407F2C200D6E4F3 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
-		CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawalAccountCell.xib; sourceTree = "<group>"; };
 		CFA01CFB2535AC6D00EA71F9 /* YNView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNView.h; sourceTree = "<group>"; };
 		CFA01CFC2535AC6D00EA71F9 /* YNView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNView.m; sourceTree = "<group>"; };
+		CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawalAccountCell.xib; sourceTree = "<group>"; };
 		CFBAAC3025246BB400C5F6F6 /* 1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 1.html; sourceTree = "<group>"; };
 		CFBAAC3525246BBE00C5F6F6 /* 2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 2.html; sourceTree = "<group>"; };
 		CFBAAC3825246BC600C5F6F6 /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
@@ -4836,8 +4838,9 @@
 		031E148023BE812300B0F813 /* MJRefreshHelper */ = {
 			isa = PBXGroup;
 			children = (
-				031E148123BE812300B0F813 /* UITableView+Refresh.h */,
-				031E148223BE812300B0F813 /* UITableView+Refresh.m */,
+				031E148123BE812300B0F813 /* UIScrollView+Refresh.h */,
+				031E148223BE812300B0F813 /* UIScrollView+Refresh.m */,
+				CF4340C7253806D7004708C3 /* View.xib */,
 			);
 			path = MJRefreshHelper;
 			sourceTree = "<group>";
@@ -8360,13 +8363,6 @@
 			path = "火币";
 			sourceTree = "<group>";
 		};
-		CF52FA582521C57D00ACF773 /* 提款账号 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "提款账号";
-			sourceTree = "<group>";
-		};
 		CF52FA5A2521C59F00ACF773 /* 提款账号 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9989,6 +9985,7 @@
 				CF4FAFD1252C8C87004C47AB /* 确认存款金额.html in Resources */,
 				CF8E242423DDBFD80054BF0F /* FontAwesome5_Brands.ttf in Resources */,
 				CF4758FC239636D200966536 /* 165.gif in Resources */,
+				CF4340C8253806D7004708C3 /* View.xib in Resources */,
 				CF4758C7239636D200966536 /* 50.gif in Resources */,
 				CF4758FF239636D200966536 /* 70.gif in Resources */,
 				CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */,
@@ -10349,7 +10346,7 @@
 				031E1E6723BE812C00B0F813 /* UGAvaterSelectView.m in Sources */,
 				031E1CD523BE812A00B0F813 /* MJRefreshBackNormalFooter.m in Sources */,
 				031E1C0723BE812900B0F813 /* UGGameplayModel.m in Sources */,
-				031E19E923BE812700B0F813 /* UITableView+Refresh.m in Sources */,
+				031E19E923BE812700B0F813 /* UIScrollView+Refresh.m in Sources */,
 				031E1A8523BE812700B0F813 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				031EF53423BE7B4D00B0F813 /* ObservableType+Codable.swift in Sources */,
 				031E1BAD23BE812900B0F813 /* UGBMMemberCenterViewController.m in Sources */,
@@ -11340,7 +11337,7 @@
 				031E1A5623BE812700B0F813 /* UUMarqueeView.m in Sources */,
 				031E1D8423BE812B00B0F813 /* UGBetRecordTableViewController.m in Sources */,
 				031E1AEA23BE812800B0F813 /* LeeTagItem.m in Sources */,
-				031E19E823BE812700B0F813 /* UITableView+Refresh.m in Sources */,
+				031E19E823BE812700B0F813 /* UIScrollView+Refresh.m in Sources */,
 				CFF11A31241E76AF00C7E3A3 /* IssueView.m in Sources */,
 				031E1ADC23BE812800B0F813 /* UIView+SDExtension.m in Sources */,
 				031E1E6A23BE812C00B0F813 /* UGRecordFilterCollectionViewCell.m in Sources */,
