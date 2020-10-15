@@ -1556,7 +1556,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 			UGGameplaySectionModel *obj = model.list[self.segmentIndex];
 			UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
 			UGGameBetModel *game = type.list[indexPath.row];
-			if (!(game.gameEnable && game.enable)) {
+			if (!(game.enable)) {
 				return;
 			}
 			NSInteger typeCount = 0;

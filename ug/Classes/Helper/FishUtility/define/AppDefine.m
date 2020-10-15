@@ -164,7 +164,9 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-			_SiteId = @" t133-smith";
+//			_SiteId = @" t133-smith";
+			_SiteId = @"c186";
+
         }
 
 #endif
