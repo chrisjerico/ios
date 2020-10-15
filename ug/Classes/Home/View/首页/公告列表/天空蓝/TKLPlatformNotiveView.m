@@ -29,7 +29,7 @@
         self.tableView.dataSource = self;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
-
+        [CMCommon setBorderWithView:self.tableView top:NO left:NO bottom:NO right:YES borderColor:RGBA(232, 232, 232, 1) borderWidth:1];
         [self.tableView registerNib:[UINib nibWithNibName:@"TKLPlatformNoticeCell" bundle:nil] forCellReuseIdentifier:@"TKLPlatformNoticeCell"];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.layer.cornerRadius = 10;
@@ -99,6 +99,11 @@
     TKLPlatformNoticeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TKLPlatformNoticeCell" forIndexPath:indexPath];
     UGNoticeModel *nm = self.dataArray[indexPath.row];
     cell.titleLabel.text = nm.title;
+//    2.自定义UITableViewCell选中后的背景颜色和背景图片
+    //修改背景颜色
+    UIView *backgroundViews = [[UIView alloc]initWithFrame:cell.frame];
+    backgroundViews.backgroundColor = RGBA(49, 120, 273, 1);
+    [cell setSelectedBackgroundView:backgroundViews];
     return cell;
 }
 
@@ -113,5 +118,18 @@
     } else {
         [self.mWebView loadHTMLString:[APP htmlStyleString:nm.content] baseURL:nil];
     }
+}
+
+#pragma ---- UIWebViewDelegate
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //改变背景颜色
+    self.mWebView.backgroundColor = [UIColor clearColor];
+    [self.mWebView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#FFFFFF'"];
+    
+    //便可实现手势缩放，如果user-scalable=no,就会关闭手势缩放功能
+    NSString*injectionJSString =@"var script = document.createElement('meta');\script.name = 'viewport';script.content=\"width=device-width, initial-scale=1.0,maximum-scale=3.0, minimum-scale=1.0, user-scalable=yes\";document.getElementsByTagName('head')[0].appendChild(script);";
+    [self.mWebView stringByEvaluatingJavaScriptFromString:injectionJSString];
+
 }
 @end

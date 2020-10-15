@@ -2152,7 +2152,7 @@
             
             
             if (Skin1.isTKL) {
-                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150-130;
                 weakSelf.tklnotiveView = [[TKLPlatformNotiveView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
                 weakSelf.tklnotiveView.dataArray = self.popNoticeArray;
   
