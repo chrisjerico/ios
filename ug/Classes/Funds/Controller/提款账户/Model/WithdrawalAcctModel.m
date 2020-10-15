@@ -15,6 +15,14 @@
     return @{@"wid":@"id"};
 }
 
+- (NSString *)minWithdrawMoney {
+    return [_minWithdrawMoney removeFloatAllZero];
+}
+
+- (NSString *)maxWithdrawMoney {
+    return _maxWithdrawMoney.doubleValue < 0.01 ? @"不限" : [_maxWithdrawMoney removeFloatAllZero];
+}
+
 @end
 
 

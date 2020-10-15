@@ -32,7 +32,7 @@
     _virtualList = @[].mutableCopy;
     
     FastSubViewCode(self.view);
-    subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[SysConf.minWithdrawMoney removeFloatAllZero],[SysConf.maxWithdrawMoney removeFloatAllZero]];
+    subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限-，上限-"];
     subButton(@"提交Button").backgroundColor = Skin1.navBarBgColor;
     subLabel(@"虚拟币汇率Label").hidden = true;
     subTextField(@"取款金额TextField").superview.hidden = true;
@@ -228,8 +228,8 @@
     
     WithdrawalAcctModel *wam = _selectedWam;
     if (amount.floatValue < wam.minWithdrawMoney.floatValue ||
-        amount.floatValue > wam.maxWithdrawMoney.floatValue) {
-        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"单笔取款金额范围：%@-%@",[wam.minWithdrawMoney removeFloatAllZero],[wam.maxWithdrawMoney removeFloatAllZero]]];
+        (amount.floatValue > wam.maxWithdrawMoney.floatValue && wam.maxWithdrawMoney.doubleValue > 0)) {
+        [SVProgressHUD showInfoWithStatus:[NSString stringWithFormat:@"单笔取款金额范围：%@-%@", wam.minWithdrawMoney, wam.maxWithdrawMoney]];
         return ;
     }
     
@@ -285,7 +285,7 @@
     [subButton(@"提款账号Button") setTitle:_titles[index] forState:UIControlStateNormal];
     subTextField(@"取款金额TextField").superview.hidden = !isAcct;
     subTextField(@"取款密码TextField").hidden = !isAcct;
-    subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限%@，上限%@",[wam.minWithdrawMoney removeFloatAllZero],[wam.maxWithdrawMoney removeFloatAllZero]];
+    subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限%@，上限%@", wam.minWithdrawMoney, wam.maxWithdrawMoney];
     _bindAcctView.hidden = isAcct;
     
     if (isAcct) {
