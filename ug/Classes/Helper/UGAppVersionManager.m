@@ -23,6 +23,13 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
 
 //请求版本信息
 - (void)updateVersionApi:(BOOL)promptAlreadyLatest completion:(nullable void (^)(BOOL, BOOL))completion {
+#ifdef APP_TEST
+    if (completion) {
+        completion(false, false);
+    }
+    return;
+#endif
+        
     UGAPPVersionModel *vm = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:kVersionModel]];
     // 若本地有强更新数据，则直接弹窗再拉请求
     BOOL showBuffer = vm.needForce;
