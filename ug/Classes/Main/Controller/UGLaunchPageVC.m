@@ -58,6 +58,8 @@
     // 加载初始配置域名
     {
         [self getSystemConfig];
+        // UI更新代码
+//        [self initMyLaunchPageVC];
     }
 }
 

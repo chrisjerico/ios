@@ -406,8 +406,8 @@ static UGTabbarController *_tabBarVC = nil;
         }
         
         // 判断优惠活动展示在首页还是内页（c001显示在内页）
-        if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isGPK)
-            continue;
+//        if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isGPK)
+//            continue;
         
         // 已存在的控制器不需要重新初始化
         BOOL existed = false;
