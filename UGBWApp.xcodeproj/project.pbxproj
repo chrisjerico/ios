@@ -1743,7 +1743,6 @@
 		CF19A5712518830100E2E659 /* NewLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF19A5702518830100E2E659 /* NewLotteryHomeViewController.m */; };
 		CF19A5772518833500E2E659 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
 		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
-		CF4340C8253806D7004708C3 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4340C7253806D7004708C3 /* View.xib */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -3810,7 +3809,6 @@
 		CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewLotteryHomeViewController.storyboard; sourceTree = "<group>"; };
 		CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLocalizable.h"; sourceTree = "<group>"; };
 		CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLocalizable.m"; sourceTree = "<group>"; };
-		CF4340C7253806D7004708C3 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -4840,7 +4838,6 @@
 			children = (
 				031E148123BE812300B0F813 /* UIScrollView+Refresh.h */,
 				031E148223BE812300B0F813 /* UIScrollView+Refresh.m */,
-				CF4340C7253806D7004708C3 /* View.xib */,
 			);
 			path = MJRefreshHelper;
 			sourceTree = "<group>";
@@ -9985,7 +9982,6 @@
 				CF4FAFD1252C8C87004C47AB /* 确认存款金额.html in Resources */,
 				CF8E242423DDBFD80054BF0F /* FontAwesome5_Brands.ttf in Resources */,
 				CF4758FC239636D200966536 /* 165.gif in Resources */,
-				CF4340C8253806D7004708C3 /* View.xib in Resources */,
 				CF4758C7239636D200966536 /* 50.gif in Resources */,
 				CF4758FF239636D200966536 /* 70.gif in Resources */,
 				CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */,
