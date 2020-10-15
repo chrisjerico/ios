@@ -20,13 +20,10 @@
 #import "CMLabelCommon.h"
 #import "SGBrowserView.h"
 #import "Global.h"
-@interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>{
-    
-    NSInteger count;  /**<   总注数*/
-    
-    
-    UIScrollView* maskView;
-}
+@interface UGBetDetailView ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong) UIScrollView *maskView;
+@property (nonatomic, assign) NSInteger totalBetNum;  /**<   总注数*/
+
 @property (weak, nonatomic) IBOutlet UIButton *allUpButton;    /**<   批量修改金额Button */
 @property (weak, nonatomic) IBOutlet UITextField *allUpText;    /**<  批量修改金额Label */
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;       /**<   期数彩种Label */
@@ -49,12 +46,6 @@
 
 static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 @implementation UGBetDetailView
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
 
 - (instancetype)init {
     self = [super init];
@@ -96,9 +87,18 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         
 #pragma mark -键盘弹出添加监听事件
         // 键盘出现的通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+        __weakSelf_(__self);
+        [self xw_addNotificationForName:UIKeyboardDidShowNotification block:^(NSNotification * _Nonnull noti) {
+            // 获取键盘的高度
+            //    CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+            __self.maskView.contentOffset = CGPointMake(0,130);
+            //或者
+            //    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, 300, 400) animated:NO];
+        }];
         // 键盘消失的通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHiden:) name:UIKeyboardWillHideNotification object:nil];
+        [self xw_addNotificationForName:UIKeyboardWillHideNotification block:^(NSNotification * _Nonnull noti) {
+            __self.maskView.frame = CGRectMake(0, 0, APP.Width, APP.Height);
+        }];
     }
     return self;
 }
@@ -106,11 +106,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 // 获取系统配置
 - (void)getSystemConfig {
     WeakSelf;
+    FastSubViewCode(weakSelf);
     [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             
             NSLog(@"model = %@",model);
-            FastSubViewCode(weakSelf);
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             if (SysConf.betAmountIsDecimal  == 1) {//betAmountIsDecimal  1=允许小数点，0=不允许，以前默认是允许投注金额带小数点的，默认为1
@@ -281,7 +281,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             if (weakSelf.nextIssueModel.isInstant) {
                 BOOL showSecondLine = [@[@"11"] containsObject:weakSelf.nextIssueModel.gameId]; // 六合秒秒彩
                 UGBetDetailModel *mod = (UGBetDetailModel *)model.data;
-                mod.gameId = self.nextIssueModel.gameId;
+                mod.gameId = weakSelf.nextIssueModel.gameId;
                 
                 UGBetResultView *bet = [[UGBetResultView alloc] initWithShowSecondLine:showSecondLine];
                 
@@ -542,7 +542,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         betModel.displayNumber = self.nextIssueModel.displayNumber;
         betModel.gameName = self.nextIssueModel.title;
         betModel.gameId = self.nextIssueModel.gameId;
-        betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)count];
+        betModel.totalNums = [NSString stringWithFormat:@"%ld",(long)_totalBetNum];
         betModel.totalMoney = _amount;
         betModel.turnNum = self.nextIssueModel.curIssue;
         betModel.activeReturnCoinRatio = [AppDefine stringWithFloat:[Global getInstanse].rebate decimal:8];
@@ -614,10 +614,10 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         
     };
     cell.amountEditedBlock = ^(float amount) {
-        UGBetModel * betModel =  self.betArray[indexPath.row];
+        UGBetModel * betModel =  weakSelf.betArray[indexPath.row];
         betModel.money = [NSString stringWithFormat:@"%f", amount];
-        self.betArray[indexPath.row] = betModel;
-        [self updateTotalLabelText];
+        weakSelf.betArray[indexPath.row] = betModel;
+        [weakSelf updateTotalLabelText];
     };
     return cell;
 }
@@ -818,6 +818,9 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     if (timeStr == nil) {
         timeStr = @"已封盘";
         [self hiddenSelf];
+        if (OBJOnceToken(self)) {
+            [SVProgressHUD showErrorWithStatus:@"已封盘"];
+        }
     }
     self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘时间：%@",timeStr];
     [self updateCloseLabel];
@@ -885,18 +888,18 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             totalAmount += model.money.floatValue;
         }
     }
-    count = 0;
+    _totalBetNum = 0;
     if (num) {
-        count = num;
+        _totalBetNum = num;
     } else {
-        count = self.betArray.count;
+        _totalBetNum = self.betArray.count;
     }
     _amount = [NSString stringWithFormat:@"%.2lf",totalAmount];
-    self.totalAmountLabel.text = [NSString stringWithFormat:@"合计注数：%ld，总金额：¥%@",count,_amount];
+    self.totalAmountLabel.text = [NSString stringWithFormat:@"合计注数：%ld，总金额：¥%@",_totalBetNum,_amount];
     
     NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.totalAmountLabel.text];
-    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5, [NSString stringWithFormat:@"%ld",count].length)];
-    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5 + 5 + [NSString stringWithFormat:@"%ld",count].length, _amount.length + 1)];
+    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5, [NSString stringWithFormat:@"%ld",_totalBetNum].length)];
+    [abStr addAttribute:NSForegroundColorAttributeName value:Skin1.navBarBgColor range:NSMakeRange(5 + 5 + [NSString stringWithFormat:@"%ld",_totalBetNum].length, _amount.length + 1)];
     
     self.totalAmountLabel.attributedText = abStr;
 }
@@ -934,11 +937,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
-    if (!maskView) {
-        maskView = [[UIScrollView alloc] initWithFrame:window.bounds];
-        maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-        [maskView addSubview:view];
-        [window addSubview:maskView];
+    if (!_maskView) {
+        _maskView = [[UIScrollView alloc] initWithFrame:window.bounds];
+        _maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        [_maskView addSubview:view];
+        [window addSubview:_maskView];
     }
     
     view.hidden = NO;
@@ -983,23 +986,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     [self performSelector:@selector(updateTotalLabelText) withObject:nil afterDelay:1.5];
     
-}
-
-
-#pragma mark -键盘监听方法
-- (void)keyboardWasShown:(NSNotification *)notification
-{
-    // 获取键盘的高度
-    //    CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    maskView.contentOffset = CGPointMake(0,130);
-    //或者
-    //    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, 300, 400) animated:NO];
-    
-}
-- (void)keyboardWillBeHiden:(NSNotification *)notification
-{
-    maskView.frame = CGRectMake(0, 0, APP.Width, APP.Height);
 }
 
 @end
