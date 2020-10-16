@@ -750,6 +750,12 @@ static NSString *footViewID = @"YNCollectionFootView";
             }
         }
         
+        
+        for (YNQuickListView *qListView in _qsView.itemViewArray) {
+            if (qListView.selecedDataArry.count) {
+                [qListView.selecedDataArry removeAllObjects];
+            }
+        }
         [Global getInstanse].hasBgColor = NO;
         
     }

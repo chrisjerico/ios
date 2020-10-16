@@ -21,6 +21,7 @@ typedef void(^QuickListBlock)(UICollectionView *collectionView,NSIndexPath* inde
 
 @property (nonatomic) BOOL seleced;//是否有 可以选择的数量
 
+@property (nonatomic, strong)NSMutableArray<NSString *> *selecedDataArry;//已选中数据
 @end
 
 NS_ASSUME_NONNULL_END

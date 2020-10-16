@@ -14,11 +14,16 @@
 {
 }
 @property (nonatomic, strong) WSLWaterFlowLayout *flow;
-@property (nonatomic, strong)NSMutableArray<NSString *> *selecedDataArry;//已选中数据
+
 
 @end
 static NSString *ID=@"YNQuickListCollectionViewCell";
 @implementation YNQuickListView
+
+-(void)dealloc{
+//    [self xw_removeAllNotification];
+    self.selecedDataArry  = nil;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

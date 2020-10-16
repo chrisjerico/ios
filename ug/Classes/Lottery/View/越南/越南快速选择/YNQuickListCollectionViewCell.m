@@ -39,7 +39,7 @@
                 if ([Global getInstanse].hasBgColor) {
                     self.titleLabel.backgroundColor = RGBA(97, 108, 118, 1);
                 } else {
-                    self.titleLabel.backgroundColor =  Skin1.bgColor;
+                    self.titleLabel.backgroundColor =  Skin1.CLBgColor;
                 }
             }
         } else {
