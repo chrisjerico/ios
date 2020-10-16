@@ -432,9 +432,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self.nextIssueCountDown destoryTimer];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+-(void)viewStyle{
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
     self.betButton.layer.cornerRadius = 5;
@@ -442,16 +440,22 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.resetButton.layer.masksToBounds = YES;
     self.amountTextF.delegate = self;
     self.amountTextF.keyboardType = UIKeyboardTypeNumberPad;
-    
     [self.amountTextF addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
-    
     self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.bottomCloseView.hidden = YES;
+    [self.contentView setBackgroundColor:[UIColor clearColor]];
+    self.chipArray = @[@"10",@"100",@"1000",@"10000",@"清除"];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self getGameDatas];
+    [self getNextIssueData];
     
+    [self viewStyle];
     [self tableViewInit];
     [self headertableViewInit];
-    [self.contentView setBackgroundColor:[UIColor clearColor]];
-    
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
         make.left.equalTo(self.contentView.mas_left).with.offset(0);
@@ -463,8 +467,6 @@ static NSString *footViewID = @"YNCollectionFootView";
         make.left.equalTo(_tableView.mas_right).with.offset(0);
         make.top.right.bottom.equalTo(self.contentView).offset(0);
     }];
-    
-    self.chipArray = @[@"10",@"100",@"1000",@"10000",@"清除"];
     //开奖数据
     [self initHeaderCollectionView];
     //第一个分段
@@ -479,9 +481,6 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self inputViewInit];
     //快速选择
     [self qsViewInit];
-    
-    [self getGameDatas];
-    [self getNextIssueData];
     
 #pragma mark -设置颜色
     [self.ynsegmentView setBackgroundColor:[UIColor clearColor]];
@@ -1867,58 +1866,53 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
-    [SVProgressHUD showWithStatus:nil];
     WeakSelf;
+    [SVProgressHUD showWithStatus:nil];
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             if ([CMCommon stringIsNull:model.data]) {
-                [SVProgressHUD showSuccessWithStatus:model.msg];
+                [SVProgressHUD showErrorWithStatus:model.msg];
                 return;
                 
             }
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                UGPlayOddsModel *play = model.data;
-                weakSelf.gameDataArray = play.playOdds.mutableCopy;
-                
-                // 删除enable为NO的数据（不显示出来）
-                for (UGGameplayModel *gm in play.playOdds) {
-                    for (UGGameplaySectionModel *gsm in gm.list) {
-                        if (!gsm.enable)
-                            [weakSelf.gameDataArray removeObject:gm];
-                    }
+            
+            UGPlayOddsModel *play = model.data;
+            weakSelf.gameDataArray = play.playOdds.mutableCopy;
+            // 删除enable为NO的数据（不显示出来）
+            for (UGGameplayModel *gm in play.playOdds) {
+                for (UGGameplaySectionModel *gsm in gm.list) {
+                    if (!gsm.enable)
+                        [weakSelf.gameDataArray removeObject:gm];
                 }
-                //分段标题
-                UGGameplayModel *model = [weakSelf.gameDataArray objectAtIndex:0];
-                for (UGGameplaySectionModel *type in model.list) {
-                    if (type.list.count) {
+            }
+            //分段标题
+            UGGameplayModel *model = [weakSelf.gameDataArray objectAtIndex:0];
+            for (UGGameplaySectionModel *type in model.list) {
+                if (type.list.count) {
+                    for (int i = 0; i <type.list.count; i++) {
+                        NSDictionary *dic = [type.list objectAtIndex:i];
+                        UGGameBetModel *obj = [[UGGameBetModel alloc] mj_setKeyValues:dic];
+                        [weakSelf.lmgmentTitleArray addObject:obj.name];
+                        [weakSelf.lmgmentCodeArray addObject:obj.code];
+                        [weakSelf.lmgmentOddsArray addObject:obj.odds];
                         
-                        
-                        for (int i = 0; i <type.list.count; i++) {
-                            NSDictionary *dic = [type.list objectAtIndex:i];
-                            UGGameBetModel *obj = [[UGGameBetModel alloc] mj_setKeyValues:dic];
-                            [weakSelf.lmgmentTitleArray addObject:obj.name];
-                            [weakSelf.lmgmentCodeArray addObject:obj.code];
-                            [weakSelf.lmgmentOddsArray addObject:obj.odds];
-                            
-                            if (i == 0) {
-                                [weakSelf setDefaultOddsData:obj.odds];
-                                [weakSelf  setDefaultData:obj.code];
-                            }
+                        if (i == 0) {
+                            [weakSelf setDefaultOddsData:obj.odds];
+                            [weakSelf  setDefaultData:obj.code];
                         }
-                        
                     }
                 }
-                [weakSelf handleData];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    weakSelf.segmentView.dataArray = self.lmgmentTitleArray;
-                    [weakSelf.tableView reloadData];
-                    [weakSelf.betCollectionView reloadData];
-                    [weakSelf qsViewSetReloadData ];
-                    [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-                    [SVProgressHUD dismiss];
-                });
-            });
+            }
+            [weakSelf handleData];
+            [SVProgressHUD dismiss];
+            
+            weakSelf.segmentView.dataArray = self.lmgmentTitleArray;
+            [weakSelf.tableView reloadData];
+            [weakSelf.betCollectionView reloadData];
+            [weakSelf qsViewSetReloadData ];
+            [weakSelf.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+           
+            
             
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
