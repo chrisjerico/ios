@@ -43,6 +43,34 @@
     _wechatStackView.hidden = true;
     _alipayStackView.hidden = true;
     _virtualStackView.hidden = true;
+    
+    [SVProgressHUD show];
+    for (UIView *subview in self.view.subviews) {
+        subview.hidden = true;
+    }
+    __weakSelf_(__self);
+    [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+        [SVProgressHUD dismiss];
+        for (UIView *subview in __self.view.subviews) {
+            subview.hidden = false;
+        }
+        if (!sm.error) {
+            NSMutableArray *temp = @[].mutableCopy;
+            for (NSDictionary *dict in sm.resObject[@"data"]) {
+                WithdrawalTypeModel *wam = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
+                if (wam.isshow && wam.canAdd) {
+                    [temp addObject:wam];
+                }
+            }
+            __self.typeList = [temp copy];
+            NSInteger idx = [__self.typeList indexOfValue:@(__self.wt) keyPath:@"type"];
+            [__self ybPopupMenuDidSelectedAtIndex:idx ybPopupMenu:({
+                YBPopupMenu *pm = [YBPopupMenu new];
+                pm.tagString = @"选择提款类型";
+                pm;
+            })];
+        }
+    };
 }
 
 #pragma mark - IBAction

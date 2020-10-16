@@ -8,8 +8,11 @@
 
 #import "UGWithdrawalVC.h"
 #import "UGYubaoConversionViewController.h"
+#import "BindWithdrawalAccountVC.H"
+
 #import "WithdrawalAcctModel.h"
 #import "UGbankModel.h"
+
 #import "YBPopupMenu.h"
 
 @interface UGWithdrawalVC ()<YBPopupMenuDelegate>
@@ -20,6 +23,7 @@
 @property (nonatomic, strong) NSMutableArray *titles;   /**<   标题列表 */
 @property (nonatomic, strong) NSMutableArray <UGbankModel *>*virtualList;      /**<   提款渠道列表，只用到里面的虚拟币汇率 */
 @property (nonatomic, strong) WithdrawalAcctModel *selectedWam; /**<   选中的账户 */
+@property (nonatomic, strong) WithdrawalTypeModel *selectedWtm; /**<   选中的账户 */
 @property (nonatomic, strong) NSString *virtualAmount;          /**<   虚拟币金额 */
 @end
 
@@ -34,6 +38,7 @@
     FastSubViewCode(self.view);
     subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限-，上限-"];
     subButton(@"提交Button").backgroundColor = Skin1.navBarBgColor;
+    subButton(@"添加提款账户Button").backgroundColor = Skin1.navBarBgColor;
     subLabel(@"虚拟币汇率Label").hidden = true;
     subTextField(@"取款金额TextField").superview.hidden = true;
     subTextField(@"取款密码TextField").hidden = true;
@@ -81,7 +86,7 @@
         currencyRate *= 1.0 + rateOffset / 100.0;
         CGFloat amount = subTextField(@"取款金额TextField").text.doubleValue;
         __self.virtualAmount = currencyRate > 0.000001 ? [AppDefine stringWithFloat:currencyRate * amount decimal:2] : nil;
-        subLabel(@"虚拟币汇率Label").hidden = !(__self.selectedWam.type == UGWithdrawalTypeVirtual && amount > 0.0001);
+        subLabel(@"虚拟币汇率Label").hidden = !(__self.selectedWam.type == UGWithdrawalTypeVirtual && __self.virtualAmount && amount > 0.01);
         subLabel(@"虚拟币汇率Label").text = _NSString(@"=%@ USDT　　1 USDT = %@ CNY", __self.virtualAmount, [AppDefine stringWithFloat:1/currencyRate decimal:2]);
     }];
 }
@@ -164,7 +169,10 @@
                     }
                     [__self.titles addObject:title];
                 }
-                if (!__self.selectedWam) {
+                if (__self.selectedWtm) {
+                    NSInteger idx = [__self.acctList indexOfValue:@(__self.selectedWtm.type) keyPath:@"type"];
+                    [__self ybPopupMenuDidSelectedAtIndex:idx ybPopupMenu:nil];
+                } else if (!__self.selectedWam) {
                     [__self ybPopupMenuDidSelectedAtIndex:0 ybPopupMenu:nil];
                 }
             }
@@ -182,8 +190,11 @@
     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"WithdrawalAccountListVC") animated:true];
 }
 
+// 绑定提款账号
 - (IBAction)onBindWithdrawalAcctBtnClick:(UIButton *)sender {
-    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+    BindWithdrawalAccountVC *vc = _LoadVC_from_storyboard_(@"BindWithdrawalAccountVC");
+    vc.wt = _selectedWtm.type;
+    [NavController1 pushViewController:vc animated:true];
 }
 
 // 去利息宝
@@ -203,7 +214,7 @@
 
 // 选择提款账号
 - (IBAction)onSelectAcctBtnClick:(UIButton *)sender {
-    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:_titles icons:@[] menuWidth:CGSizeMake(APP.Width-50, 200) delegate:self];
+    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:_titles icons:@[] menuWidth:CGSizeMake(APP.Width-50, 185) delegate:self];
     popView.fontSize = 14;
     popView.type = YBPopupMenuTypeDefault;
     [popView showRelyOnView:sender];
@@ -211,6 +222,7 @@
 
 // 申请提款
 - (IBAction)onSubmitBtnClick:(UIButton *)sender {
+    if (_selectedWtm) return;
     FastSubViewCode(self.view);
     NSString *amount = subTextField(@"取款金额TextField").text.stringByTrim;
     NSString *pwd = subTextField(@"取款密码TextField").text.stringByTrim;
@@ -254,7 +266,7 @@
             }
         };
     };
-    if (wam.type == UGWithdrawalTypeVirtual) {
+    if (wam.type == UGWithdrawalTypeVirtual && __self.virtualAmount) {
         [self reloadCurrencyRate:^{
             CGFloat currencyRate = 0;
             CGFloat rateOffset = 0;
@@ -292,8 +304,9 @@
     subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限%@，上限%@", wam.minWithdrawMoney, wam.maxWithdrawMoney];
     _bindAcctView.hidden = isAcct;
     
+    _selectedWam = isAcct ? _acctList[index] : nil;
+    _selectedWtm = !isAcct ? _acctList[index] : nil;
     if (isAcct) {
-        _selectedWam = _acctList[index];
         [[NSNotificationCenter defaultCenter] postNotificationName:UITextFieldTextDidChangeNotification object:nil];
     } else {
         subLabel(@"绑定账户Label").text = _NSString(@"绑定%@账号", wam.name);

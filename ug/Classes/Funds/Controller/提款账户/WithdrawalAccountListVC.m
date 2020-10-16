@@ -37,7 +37,9 @@
         [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             if (__self.tipsView1.hidden && __self.tipsView2.hidden) {
                 if (UserI.hasFundPwd) {
-                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+                    BindWithdrawalAccountVC *vc = _LoadVC_from_storyboard_(@"BindWithdrawalAccountVC");
+                    vc.wt = __self.typeList[__self.ssv1.selectedIndex].type;
+                    [NavController1 pushViewController:vc animated:true];
                 } else {
                     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGSetupPayPwdController") animated:true];
                 }
@@ -96,6 +98,7 @@
     if (_ssv1) {
         [(UITableView *)_ssv1.contentViews[_ssv1.selectedIndex] reloadData];
         self.navigationItem.rightBarButtonItem = _typeList[_ssv1.selectedIndex].canAdd ? _navRightButton  : nil;
+        _ssv1.titleBar.barHeight = _typeList[0].data.count ? 44 : 0;
         return;
     }
     
@@ -118,7 +121,7 @@
     ssv1.frame = CGRectMake(0, 0, APP.Width, 100);
     [ssv1 setupTitles:titles contents:tvs];
     ssv1.bigScrollView.scrollEnabled = true;
-    ssv1.titleBar.barHeight = 44;
+    ssv1.titleBar.barHeight = _typeList[0].data.count ? 44 : 0;
     ssv1.titleBar.insetVertical = 5;
     ssv1.titleBar.updateCellForItemAtIndex = ^(SlideSegmentBar1 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
         label.text = titles[idx];
@@ -147,10 +150,11 @@
             [tv.noDataTipsLabel addSubview:imgView];
             [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(tv.noDataTipsLabel).mas_offset(-60);
+                make.top.equalTo(tv.noDataTipsLabel).mas_offset(100);
                 make.centerX.equalTo(tv.noDataTipsLabel);
             }];
         }
-//        tv.tableFooterView = __self.typeList[idx].data.count ? (tv.footerView ? : [UIView new]) : tv.noDataTipsLabel;
+        tv.noDataTipsLabel.hidden = __self.typeList[idx].data.count;
         [tv reloadData];
         __self.navigationItem.rightBarButtonItem = __self.typeList[idx].canAdd ? __self.navRightButton  : nil;
     };
@@ -195,6 +199,7 @@
             [SVProgressHUD showSuccessWithStatus:sm.resObject[@"msg"]];
             __self.tipsView2.hidden = true;
             UserI.fullName = realname;
+            [(UIButton *)__self.navRightButton.customView sendActionsForControlEvents:UIControlEventTouchUpInside];
         }
     };
 }

@@ -240,6 +240,7 @@
                                                         <real key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="添加提款账户Button"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onAddWithdrawalAcctBtnClick:" destination="nbC-QE-gi7" eventType="touchUpInside" id="dsh-Xp-PHm"/>
