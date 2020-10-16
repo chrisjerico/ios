@@ -18,7 +18,7 @@ typedef void(^YNHLPrizeDetailViewCancelBlock)(void);
 @property (nonatomic, copy) YNHLPrizeDetailViewCancelBlock cancelBlock;
 @property (nonatomic, strong) UGNextIssueModel *nextIssueModel;
 @property (nonatomic, strong) NSString *selCode;//选中的越南菜code
-@property (nonatomic) BOOL isHide8View;//河内 隐藏  八等奖View
+
 - (void)show;
 @end
 

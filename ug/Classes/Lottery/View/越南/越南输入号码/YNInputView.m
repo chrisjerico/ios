@@ -49,7 +49,7 @@
    
 //    msg = [NSString stringWithFormat:@"%@",
 //    [s stringByReplacingOccurrencesOfString:@"\\n" withString:@" \r\n" ]];
-    _inputTextView.backgroundColor = Skin1.homeContentColor;
+    _inputTextView.backgroundColor = Skin1.CLBgColor;
     self.contentView.backgroundColor = Skin1.bgColor;
     _inputTextView.textColor = Skin1.textColor1;
 }

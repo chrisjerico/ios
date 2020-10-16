@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YNView : UIView
+@property (nonatomic) BOOL isHeNeiView;//河内 YES 隐藏  八等奖View
 -(void)setLabelColorForSelCode;
 @end
 

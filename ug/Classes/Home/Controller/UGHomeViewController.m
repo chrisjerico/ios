@@ -529,10 +529,16 @@
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         if (Skin1.isJY||Skin1.isTKL) {
             subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@"JY_gg"] ;
+           
+            subView(@"推荐好友上View").layer.borderWidth = 1;
+            subView(@"推荐好友上View").layer.borderColor = [RGBA(232, 232, 232, 1) CGColor];
+            subView(@"推荐好友下View").layer.borderWidth = 1;
+            subView(@"推荐好友下View").layer.borderColor = [RGBA(232, 232, 232, 1) CGColor];
         }
         else{
             subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         }
+        
         subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
         subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
         [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];

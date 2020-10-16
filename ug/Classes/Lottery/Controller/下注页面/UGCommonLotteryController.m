@@ -763,26 +763,32 @@
 - (void)getNextIssueDataForYN {
     NSDictionary *params = @{@"id":self.gameId};
     WeakSelf;
+    [SVProgressHUD showWithStatus:nil];
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            UGNextIssueModel *nextIssueModel = model.data;
-            NSLog(@"[Global getInstanse].selCode = %@",[Global getInstanse].selCode);
-            if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
-                YNHLPrizeDetailView*betDetailView = [[YNHLPrizeDetailView alloc] init];
-                betDetailView.nextIssueModel = nextIssueModel;
-                betDetailView.selCode = [Global getInstanse].selCode;
-                betDetailView.isHide8View = NO;
-                [betDetailView show];
-            }
-            else if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//河内
-              
-                YNHLPrizeDetailView *betDetailView = [[YNHLPrizeDetailView alloc] init];
-                betDetailView.nextIssueModel = nextIssueModel;
-                betDetailView.selCode = [Global getInstanse].selCode;
-                betDetailView.isHide8View = YES;
-                [betDetailView show];
-            }
             
+            if ([CMCommon stringIsNull:model.data]) {
+                [SVProgressHUD showSuccessWithStatus:model.msg];
+            } else {
+                [SVProgressHUD dismiss];
+                UGNextIssueModel *nextIssueModel = model.data;
+                NSLog(@"[Global getInstanse].selCode = %@",[Global getInstanse].selCode);
+                if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
+                    YNHLPrizeDetailView*betDetailView = [[YNHLPrizeDetailView alloc] init];
+                    betDetailView.nextIssueModel = nextIssueModel;
+                    betDetailView.selCode = [Global getInstanse].selCode;
+                    betDetailView.isHeNeiView = NO;
+                    [betDetailView show];
+                }
+                else if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//河内
+                    
+                    YNHLPrizeDetailView *betDetailView = [[YNHLPrizeDetailView alloc] init];
+                    betDetailView.nextIssueModel = nextIssueModel;
+                    betDetailView.selCode = [Global getInstanse].selCode;
+                    betDetailView.isHeNeiView = YES;
+                    [betDetailView show];
+                }
+            }
           
         } failure:^(id msg) {
             [SVProgressHUD dismiss];

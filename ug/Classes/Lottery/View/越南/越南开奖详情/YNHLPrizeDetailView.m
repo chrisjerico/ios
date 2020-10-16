@@ -88,7 +88,7 @@
         [subLabel(@"五等奖label")setTextColor:[UIColor blackColor]];
         [subLabel(@"六等奖label")setTextColor:[UIColor blackColor]];
         [subLabel(@"七等奖label")setTextColor:[UIColor blackColor]];
-        [subLabel(@"八等奖label")setTextColor:[UIColor whiteColor]];
+        [subLabel(@"八等奖label")setTextColor:[UIColor blackColor]];
         [subLabel(@"尾巴label")setTextColor:[UIColor blackColor]];
         [subLabel(@"t0label")setTextColor:[UIColor blackColor]];
         [subLabel(@"t1label")setTextColor:[UIColor blackColor]];
@@ -106,7 +106,7 @@
     [self setLabelColorForSelCode];
 
   
-    [subView(@"八等奖View") setHidden:self.isHide8View];
+    [subView(@"八等奖View") setHidden:self.isHeNeiView];
     UIWindow* window = UIApplication.sharedApplication.keyWindow;
     UIView* view = self;
     if (!maskView) {
