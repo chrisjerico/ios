@@ -99,6 +99,7 @@
         [(UITableView *)_ssv1.contentViews[_ssv1.selectedIndex] reloadData];
         self.navigationItem.rightBarButtonItem = _typeList[_ssv1.selectedIndex].canAdd ? _navRightButton  : nil;
         _ssv1.titleBar.barHeight = _typeList[0].data.count ? 44 : 0;
+        _ssv1.selectedIndex = _ssv1.selectedIndex;
         return;
     }
     

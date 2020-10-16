@@ -133,7 +133,13 @@
                     [__self.acctList addObject:wtm];
                 }
             }
-            __self.tipsView1.hidden = __self.acctList.count;
+            __self.tipsView1.hidden = false;
+            for (WithdrawalTypeModel *wtm in __self.acctList) {
+                if ([wtm isKindOfClass:[WithdrawalAcctModel class]]) {
+                    __self.tipsView1.hidden = true;
+                    break;
+                }
+            }
             
             if (__self.acctList.count) {
                 [__self.titles removeAllObjects];

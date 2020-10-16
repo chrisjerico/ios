@@ -94,15 +94,14 @@
                 } else {
                     NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
                     [vcs removeLastObject];
+                    [NavController1 setViewControllers:vcs animated:false];
                     for (UIViewController *vc in vcs) {
                         if ([vc isKindOfClass:[WithdrawalAccountListVC class]]) {
-                            [vcs addObject:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC")];
-                            [NavController1 setViewControllers:vcs animated:true];
+                            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
                             return;
                         }
                     }
-                    [vcs addObject:_LoadVC_from_storyboard_(@"WithdrawalAccountListVC")];
-                    [NavController1 setViewControllers:vcs animated:true];
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"WithdrawalAccountListVC") animated:true];
                 }
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];

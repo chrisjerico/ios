@@ -54,6 +54,11 @@
 
 - (void)setBarHeight:(CGFloat)barHeight {
     self.cc_constraints.height.constant = _barHeight = barHeight;
+    
+    // 下划线
+    if (!_underlineFrameForItemAtIndex) {
+        _underlineView.by = barHeight;
+    }
 }
 
 - (void)setUnderlineColor:(UIColor *)underlineColor {
@@ -74,6 +79,7 @@
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex animated:(BOOL)animated {
     UICollectionView *cv = _collectionView;
+    NSIndexPath *ip = [NSIndexPath indexPathForItem:selectedIndex inSection:0];
     
     // 滚动至指定Cell
     CGFloat left = _insetVertical;
@@ -81,7 +87,7 @@
     
     for (int i=0; i<selectedIndex; i++)
         left += [self collectionView:cv layout:cv.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]].width;
-    right = left + [self collectionView:cv layout:cv.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:selectedIndex inSection:0]].width;
+    right = left + [self collectionView:cv layout:cv.collectionViewLayout sizeForItemAtIndexPath:ip].width;
     
     if (left < cv.contentOffset.x) {
         [cv setContentOffset:CGPointMake(left, 0) animated:animated];
@@ -91,7 +97,7 @@
     }
 
     // 选中指定item
-    [cv selectItemAtIndexPath:[NSIndexPath indexPathForItem:selectedIndex inSection:0] animated:animated scrollPosition:UICollectionViewScrollPositionNone];
+    [cv selectItemAtIndexPath:ip animated:animated scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 - (void)reloadData {
