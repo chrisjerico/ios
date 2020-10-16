@@ -1695,4 +1695,40 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     return [numResult1 decimalNumberByRoundingAccordingToBehavior:behavior];
     
 }
+
+
+/**
+*对字符串 分割 根据 splitStr
+ 比如“,; ”
+*
+*
+   
+*/
++(NSArray *)arraySeparated:(NSString *)str  split:(NSString *)splitStr{
+    NSString *spChar = @"👌";
+    for (NSString *split in splitStr) {
+        str = [str stringByReplacingOccurrencesOfString:split withString:spChar];
+    }
+    NSMutableArray *arr = [str componentsSeparatedByString:spChar].mutableCopy;//分隔符逗号
+    for (NSString *ele in arr.copy) {
+        if (!ele.stringByTrim.length)
+            [arr removeObject:ele];
+    }
+    
+    return arr.copy;
+}
+
+/**
+*对字符串 替换 根据 splitStr 比如“,; ”
+*spChar  替换成 比如@“,”
+*
+   
+*/
++(NSString *)strReplace:(NSString *)str  spChar:(NSString *)spChar  split:(NSString *)splitStr{
+
+    for (NSString *split in splitStr) {
+        str = [str stringByReplacingOccurrencesOfString:split withString:spChar];
+    }
+    return [str stringByTrim];
+}
 @end

@@ -243,8 +243,8 @@
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
     unreadMsg = user.unreadMsg;
-    double floatString = [user.balance doubleValue];
-    self.userMoneyLabel.text =  [NSString stringWithFormat:@"账户余额 ￥ %.2f",floatString];
+
+    self.userMoneyLabel.text =  [NSString stringWithFormat:@"账户余额 ￥ %@",user.balance];
 }
 
 #pragma mark -- 网络请求

@@ -298,8 +298,8 @@
 	}
 	
 	double floatString = [user.balance doubleValue];
-	self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
-	self.balanceLabel2.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+	self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%@",user.balance];
+	self.balanceLabel2.text =  [NSString stringWithFormat:@"￥%@",user.balance];
 	//进度条
 	double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
 	self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;

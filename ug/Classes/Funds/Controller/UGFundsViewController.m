@@ -291,9 +291,7 @@
 
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     self.userNameLabel.text = user.username;
-
-    double floatString = [user.balance doubleValue];
-    self.moneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+    self.moneyLabel.text =  UGUserModel.currentUser.balance;
     
     [self.realNameLabel setHidden:YES];
     if (![CMCommon stringIsNull:user.fullName]) {

@@ -126,6 +126,8 @@
 @property (nonatomic, assign) int  px3count;//偏斜3总注数。
 @property (nonatomic, assign) int  px4count;//偏斜4总注数。
 
+@property (nonatomic, assign) int  count;//总注数
+
 @end
 static NSString *leftTitleCellid = @"UGTimeLotteryLeftTitleCell";
 static NSString *lottryBetCellid = @"UGTimeLotteryBetCollectionViewCell";
@@ -452,6 +454,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 
     [self getGameDatas];
     [self getNextIssueData];
+    [self getUserInfo];
     
     [self viewStyle];
     [self tableViewInit];
@@ -583,16 +586,10 @@ static NSString *footViewID = @"YNCollectionFootView";
     self.typeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.itemIndexPath = nil;
     
-    [self updateSelectLabelWithCount:0];
-    [self setAmountLableCount :0];
+
+    [self setLabelDataCount :0];
     [self setupBarButtonItems];
-    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-        STButton *button = (STButton *)self.rightItem1.customView;
-        [button.imageView.layer removeAllAnimations];
-        
-        [self setupBarButtonItems];
-        
-    });
+
     [self updateCloseLabel];
     [self updateOpenLabel];
     
@@ -639,6 +636,31 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
+- (void)getUserInfo {
+    if (!UGLoginIsAuthorized()) {
+        return;
+    }
+    WeakSelf;
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+    [CMNetwork getUserInfoWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        
+        [CMResult processWithResult:model success:^{
+            UGUserModel *user = model.data;
+            UGUserModel *oldUser = [UGUserModel currentUser];
+            user.sessid = oldUser.sessid;
+            user.token = oldUser.token;
+            UGUserModel.currentUser = user;
+            
+            STButton *button = (STButton *)self.rightItem1.customView;
+            [button.imageView.layer removeAllAnimations];
+            
+            [weakSelf setupBarButtonItems];
+          
+        } failure:^(id msg) {
+
+        }];
+    }];
+}
 
 #pragma mark - 点击事件
 - (IBAction)showChatRoom:(id)sender {
@@ -764,8 +786,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         // UI更新代码
         [self.inputView.inputTextView setText:@""];
         [self.amountTextF resignFirstResponder];
-        [self updateSelectLabelWithCount:0];
-        [self setAmountLableCount :0];
+        [self setLabelDataCount :0];
         self.amountTextF.text = nil;
         [self.qsView reload];
         [self.betCollectionView reloadData];
@@ -779,11 +800,12 @@ static NSString *footViewID = @"YNCollectionFootView";
 - (IBAction)betClick:(id)sender {
     WeakSelf;
     [self.amountTextF resignFirstResponder];
-    ck_parameters(^{
-        ck_parameter_non_equal(self.selectLabel.text, @"已选择:0 个", @"请选择玩法");
-    }, ^(id err) {
-        [SVProgressHUD showInfoWithStatus:err];
-    }, ^{
+    
+    if (self.count  == 0) {
+        [SVProgressHUD showInfoWithStatus:@"请选择玩法"];
+        return;
+    }
+   
         NSString *selCode = @"";
         NSString *selName = @"";
         NSMutableArray *array = [NSMutableArray array];
@@ -879,7 +901,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
         [weakSelf goYNBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:weakSelf.nextIssueModel  gameType:weakSelf.nextIssueModel.gameId selCode:selCode isHide:isHide ];
-    });
+    
 }
 
 
@@ -2271,7 +2293,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     NSMutableArray  *marray = [NSMutableArray new];
     
     for (NSString *objStr in array) {
-        NSArray  * arr = [objStr componentsSeparatedByString:@";"];//分隔符逗
+        NSArray  * arr = [CMCommon arraySeparated:objStr split:@", ;"];//分隔符逗
         
         if ([CMCommon isRepeatArray:arr] ) {
             isRepeat = YES;
@@ -2352,6 +2374,8 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
+
+
 #pragma mark - 输入下注
 -(void)judgeInputDate:(NSString *)str{
     
@@ -2360,15 +2384,9 @@ static NSString *footViewID = @"YNCollectionFootView";
         return;
     }
     
-    NSString *spChar = @"👌";
-    for (NSString *split in @";, ") {
-        str = [str stringByReplacingOccurrencesOfString:split withString:spChar];
-    }
-    NSMutableArray *arr = [str componentsSeparatedByString:spChar].mutableCopy;//分隔符逗号
-    for (NSString *ele in arr.copy) {
-        if (!ele.stringByTrim.length)
-            [arr removeObject:ele];
-    }
+
+    NSArray *arr = [CMCommon arraySeparated:str split:@", ;"];
+    
     if (arr.count == 0 ) {
         [self  setLabelDataCount:0];
         return;
@@ -2420,7 +2438,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
     
     NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
-    [nameStr appendString:self.inputStr];
+    [nameStr appendString:[CMCommon strReplace:self.inputStr spChar:@";" split:@", ;"]];
     [nameStr appendString:@"】"];
     self.nextIssueModel.defnameStr = nameStr;
     
@@ -2429,10 +2447,10 @@ static NSString *footViewID = @"YNCollectionFootView";
 -(void)judgeInputDate:(NSString *)str  arry:(NSMutableArray *__strong *) array {
     NSArray  *arr;
     if ([CMCommon stringIsNull:str]) {
-        arr = [self.inputStr componentsSeparatedByString:@";"];//分隔符逗号
+        arr = [CMCommon arraySeparated:self.inputStr split:@", ;"];
     }
     else{
-        arr = [str componentsSeparatedByString:@";"];//分隔符逗号
+        arr =  [CMCommon arraySeparated:str split:@", ;"];
     }
     if (arr.count == 0 ) {
         [self  setLabelDataCount:0];
@@ -2454,9 +2472,10 @@ static NSString *footViewID = @"YNCollectionFootView";
     }
     
     NSMutableString *nameStr = [[NSMutableString alloc] initWithString:@"【"];
-    [nameStr appendString:self.inputStr];
+    [nameStr appendString:[CMCommon strReplace:self.inputStr spChar:@";" split:@", ;"]];
     [nameStr appendString:@"】"];
     self.nextIssueModel.defnameStr = nameStr;
+
     
     
 }
@@ -2598,18 +2617,21 @@ static NSString *footViewID = @"YNCollectionFootView";
         _px2count = 0;
         _px3count = 0;
         _px4count = 0;
+        [self  setLabelDataCount:0];
         return;
     }
     if ([CMCommon isNullArray:arr] ) {
         _px2count = 0;
         _px3count = 0;
         _px4count = 0;
+        [self  setLabelDataCount:0];
         return;
     }
     if ([self isbigArray:arr  ] ) {
         _px2count = 0;
         _px3count = 0;
         _px4count = 0;
+        [self  setLabelDataCount:0];
         return;
     }
     int count = 0;
@@ -2631,9 +2653,12 @@ static NSString *footViewID = @"YNCollectionFootView";
                         
                         
                         _px2count++;
+                        
+                        [self  setLabelDataCount:_px2count];
                     }
                     else{
                         _px2count = 0;
+                        [self  setLabelDataCount:_px2count];
                         return;
                     }
                 }
@@ -2643,6 +2668,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 
                 if (arr.count != 3) {
                     _px3count = 0;
+                    [self  setLabelDataCount:_px3count];
                     return;
                     
                 } else {
@@ -2653,9 +2679,11 @@ static NSString *footViewID = @"YNCollectionFootView";
                         && [[arr objectAtIndex:2] intValue] < 100){
                         count  = 1;
                         _px3count = _px3count + count;
+                        [self  setLabelDataCount:_px3count];
                     }
                     else{
                         _px3count = 0;
+                        [self  setLabelDataCount:_px3count];
                         return;
                     }
                 }
@@ -2665,6 +2693,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 
                 if (arr.count != 4) {
                     _px4count = 0;
+                    [self  setLabelDataCount:_px4count];
                     return;
                     
                 } else {
@@ -2676,9 +2705,11 @@ static NSString *footViewID = @"YNCollectionFootView";
                         
                         count  = 1;
                         _px4count = _px4count + count;
+                        [self  setLabelDataCount:_px4count];
                     }
                     else{
                         _px4count = 0;
+                        [self  setLabelDataCount:_px4count];
                         return;
                     }
                 }
@@ -3965,6 +3996,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 -(void)setLabelDataCount:(int  )count{
     dispatch_async(dispatch_get_main_queue(), ^{
         // UI更新代码
+        self.count = count ;
         [self setAmountLableCount:count ];
         [self updateSelectLabelWithCount:count ];
     });

@@ -496,7 +496,7 @@
 // 获取系统配置
 - (void)getSystemConfig {
     WeakSelf;
-
+    [SVProgressHUD showWithStatus:nil];
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			
@@ -539,7 +539,7 @@
 	
 			
 		} failure:^(id msg) {
-			[SVProgressHUD showErrorWithStatus:msg];
+//			[SVProgressHUD showErrorWithStatus:msg];
 		}];
 	}];
 
