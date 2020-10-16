@@ -24,7 +24,12 @@
  */
 + (void)messageSomeAction:(UILabel *)theLab changeString:(NSString *)change andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize {
  
-    NSMutableAttributedString * attriStr = [[NSMutableAttributedString alloc] initWithString:theLab.text];
+    NSMutableAttributedString *attriStr = nil;
+    if (theLab.attributedText.string.length) {
+        attriStr = [[NSMutableAttributedString alloc] initWithAttributedString:theLab.attributedText];
+    } else {
+        attriStr = [[NSMutableAttributedString alloc] initWithString:theLab.text];
+    }
    
     NSDictionary * attriBute ;
     if (fontSize) {
@@ -49,7 +54,12 @@
  */
 + (void)messageAction:(UILabel *)theLab changeString:(NSString *)change andAllColor:(UIColor *)allColor andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize {
     NSString *tempStr = theLab.text;
-    NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:tempStr];
+    NSMutableAttributedString *strAtt = nil;
+    if (theLab.attributedText.string.length) {
+        strAtt = [[NSMutableAttributedString alloc] initWithAttributedString:theLab.attributedText];
+    } else {
+        strAtt = [[NSMutableAttributedString alloc] initWithString:tempStr];
+    }
     [strAtt addAttribute:NSForegroundColorAttributeName value:allColor range:NSMakeRange(0, [strAtt length])];
     NSRange markRange = [tempStr rangeOfString:change];
     [strAtt addAttribute:NSForegroundColorAttributeName value:markColor range:markRange];
@@ -63,7 +73,12 @@
  */
 + (void)messageAction:(UILabel *)theLab startString:(NSString *)start endString:(NSString *)end andAllColor:(UIColor *)allColor andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize {
     NSString *tempStr = theLab.text;
-    NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:tempStr];
+    NSMutableAttributedString *strAtt = nil;
+    if (theLab.attributedText.string.length) {
+        strAtt = [[NSMutableAttributedString alloc] initWithAttributedString:theLab.attributedText];
+    } else {
+        strAtt = [[NSMutableAttributedString alloc] initWithString:tempStr];
+    }
     [strAtt addAttribute:NSForegroundColorAttributeName value:allColor range:NSMakeRange(0, [strAtt length])];
     // 'x''y'字符的范围
     NSRange tempRange = NSMakeRange(0, 0);
@@ -90,7 +105,12 @@
     if ([CMCommon stringIsNull:label.text]) {
         return;
     }
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text];
+    NSMutableAttributedString *attributedString = nil;
+    if (label.attributedText.string.length) {
+        attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:label.attributedText];
+    } else {
+        attributedString = [[NSMutableAttributedString alloc] initWithString:label.text];
+    }
     NSString *temp = nil;
     for(int i =0; i < [attributedString length]; i++) {
         temp = [label.text substringWithRange:NSMakeRange(i, 1)];
@@ -129,7 +149,13 @@
     }
   
     NSMutableArray *arrayRanges = [self getRangeStr:str findText:separation];
-    NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:str];
+    NSMutableAttributedString *strAtt = nil;
+    if (theLab.attributedText.string.length) {
+        strAtt = [[NSMutableAttributedString alloc] initWithAttributedString:theLab.attributedText];
+        strAtt.string = str;
+    } else {
+        strAtt = [[NSMutableAttributedString alloc] initWithString:str];
+    }
     
     
     if (mrType == MR_前面) {
@@ -164,7 +190,12 @@
     if (local < length) {
         return;
     }
-    NSMutableAttributedString *strAtt = [[NSMutableAttributedString alloc] initWithString:theLab.text];
+    NSMutableAttributedString *strAtt = nil;
+    if (theLab.attributedText.string.length) {
+        strAtt = [[NSMutableAttributedString alloc] initWithAttributedString:theLab.attributedText];
+    } else {
+        strAtt = [[NSMutableAttributedString alloc] initWithString:theLab.text];
+    }
     NSRange markEndRange = NSMakeRange(theLab.text.length-local,length);
     [strAtt addAttribute:NSForegroundColorAttributeName value:markColor range:markEndRange];
     theLab.attributedText = strAtt;

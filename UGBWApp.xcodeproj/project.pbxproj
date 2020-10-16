@@ -2507,7 +2507,7 @@
 		031E14EB23BE812300B0F813 /* CMTimeCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTimeCommon.h; sourceTree = "<group>"; };
 		031E14EC23BE812300B0F813 /* CMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMCommon.h; sourceTree = "<group>"; };
 		031E14ED23BE812300B0F813 /* CMCommonHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMCommonHook.m; sourceTree = "<group>"; };
-		031E14EE23BE812300B0F813 /* CMLabelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMLabelCommon.m; sourceTree = "<group>"; };
+		031E14EE23BE812300B0F813 /* CMLabelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMLabelCommon.m; sourceTree = "<group>"; wrapsLines = 0; };
 		031E14EF23BE812300B0F813 /* CMAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMAudioPlayer.m; sourceTree = "<group>"; };
 		031E14F023BE812300B0F813 /* YLEdgeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLEdgeLabel.h; sourceTree = "<group>"; };
 		031E14F223BE812300B0F813 /* CountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDown.h; sourceTree = "<group>"; };
