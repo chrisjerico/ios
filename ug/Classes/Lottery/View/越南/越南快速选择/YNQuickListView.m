@@ -103,27 +103,17 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
     if (self.collectIndexBlock) {
-      
-
         UGGameBetModel *game = [_dataArry objectAtIndex:indexPath.row];
         if (!game.enable) {
             return;
         }
-      
-
         //如果selected 是yes
-        
         //如果选中的数组 数量 >= selectedNumber:==>选中的数组里面的可以取消，其他的不能操作（颜色变化）
-        
         //否则   ==》随便选择==》//如果选中，保存到选中的数组
-        
         if (self.seleced) {
             if (self.selecedDataArry.count >= self.selecedCount ) {
-
-               BOOL isbool = [self.selecedDataArry containsObject:game.name];
-                
+                BOOL isbool = [self.selecedDataArry containsObject:game.name];
                 if (isbool) {
                     game.select = NO;
                     [self.selecedDataArry  removeObject:game.name];
@@ -131,11 +121,9 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
                     //啥都不做,除了选中的数组的其他cell 背景都改颜色
                     return;
                 }
-                
             }
             else {
-               
-                 game.select = !game.select;
+                game.select = !game.select;
                 if (game.select) {
                     [self.selecedDataArry  addObject:game.name];
                 }
@@ -149,12 +137,9 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         else {
             game.select = !game.select;
         }
-
         [self reloadData];
-        
         self.collectIndexBlock(collectionView,indexPath);
     }
-    
 }
 
 #pragma mark - WSLWaterFlowLayoutDelegate
