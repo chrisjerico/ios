@@ -87,7 +87,7 @@
             site(@"c165",        @"c165hy",     @"146",     @"io.fhpt.H57D82AEF",       @"https://1875006.com",                         @"企业包",     @"天天彩票"),
             site(@"c169",        @"c169hy",     @"162",     @"io.fhpt.H529081C9",       @"http://heixxqic169cqhmszw.playzone88.com",    @"企业包",     @"太阳城集团"),
             site(@"c173",        @"c173hy",     @"147",     @"io.fhpt.H50900911",       @"https://www.dfjt1.com",                       @"企业包",     @"东⽅集团"),
-            site(@"c175",        @"c175hy",     @"148",     @"io.fhpt.H57F31D1D",       @"https://7053fndsjfkn.com",                    @"企业包",     @"7053"), // 已上架  极光 lijinju6@gmail.com 密码Wo258258..
+            site(@"c175",        @"c175hy",     @"148",     @"io.fhpt.H57F31D1D",       @"http://7053fndsjfkn.com",                    @"企业包",     @"7053"), // 已上架  极光 lijinju6@gmail.com 密码Wo258258..
 
             site(@"c185",        @"",           @"",        @"io.fhpt.H50BFF911",       @"",                                            @"企业包",     @"太阳城集团"),
             site(@"c186",        @"c186hy",     @"322",     @"io.fhpt.YSAC186",         @"https://200300b.com",                         @"企业包",     @"好彩网"),
