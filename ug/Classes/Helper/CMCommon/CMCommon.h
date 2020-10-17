@@ -508,4 +508,6 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
    
 */
 +(NSString *)strReplace:(NSString *)str  spChar:(NSString *)spChar  split:(NSString *)splitStr;
+
+
 @end

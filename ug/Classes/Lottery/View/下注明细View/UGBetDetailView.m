@@ -300,7 +300,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 
                 if (!UserI.isTest && UserI.chatShareBet && [weakSelf isBetMin:amountfloat] && (amountfloat >= webAmountfloat) && ![__self isSpecialRule]) {
 
-                    if (Skin1.isBlack||Skin1.is23) {
+                    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
                         [LEEAlert alert].config
                         .LeeAddTitle(^(UILabel *label) {
                             label.text = @"分享注单";
@@ -906,7 +906,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
 - (void)show {
     FastSubViewCode(self)
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self setBackgroundColor:Skin1.bgColor];
         [self.tableView setBackgroundColor:Skin1.bgColor];
         [_plView setBackgroundColor:Skin1.bgColor];

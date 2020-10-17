@@ -69,7 +69,7 @@
 		[_monthProfitLabel setTextColor:[UIColor blackColor]];
 		[_totalProfitLabel setTextColor:[UIColor blackColor]];
 		[subImageView(@"浪图UIImagV") setHidden:NO];
-	} else if (Skin1.isBlack||Skin1.is23) {
+	} else if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self.view setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1):Skin1.bgColor];
 		[subLabel(@"本周收益label") setTextColor:[UIColor whiteColor]];
 		[subLabel(@"本月收益label") setTextColor:[UIColor whiteColor]];

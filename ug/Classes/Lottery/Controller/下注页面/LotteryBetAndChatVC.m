@@ -361,7 +361,7 @@
                 __ssv1.titleBar.backgroundColor = Skin1.navBarBgColor;
                 label.textColor = selected ? [UIColor blackColor] : [UIColor whiteColor];
             } else {
-                if (APP.betBgIsWhite) {
+                if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
                     cell.backgroundColor = selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
 //                    if ([@"c012" containsString:APP.SiteId]) {
 //                         cell.backgroundColor = !selected ? [[UIColor grayColor] colorWithAlphaComponent:0.25] : [UIColor whiteColor];

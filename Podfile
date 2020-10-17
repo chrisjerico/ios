@@ -26,7 +26,7 @@ pod 'STPickerView', '2.4' # 一个多功能的选择器,有城市选择，日期
 pod 'XYYSegmentControl', '~> 1.4.0' #分段选择方便、快速集成)
 # pod 'FBSDKLoginKit'       #Facebook 登录
 pod 'HMSegmentedControl'            #分段选择方便、快速集成)
-
+pod "LHProgressHUD"                  #hub loading 控件
 # fish新增
 
 #pod 'JRSwizzle'         # 方法交换库

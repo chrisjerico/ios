@@ -32,7 +32,7 @@
    
     
     if (self.hasSelected) {
-        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             if (item.select) {
                 self.titleLabel.backgroundColor = UGBlueColor;
             } else {
@@ -55,8 +55,8 @@
         }
     }
     else{
-        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
-            self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.bgColor;
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
+            self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.CLBgColor;
         } else {
             self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
         }

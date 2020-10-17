@@ -50,7 +50,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
 -(void)skin {
 	FastSubViewCode(self.view)
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self.view setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1):Skin1.bgColor];
 		[subLabel(@"余额label") setTextColor:[UIColor lightGrayColor]];
 		[subLabel(@"利息宝余额label") setTextColor:[UIColor lightGrayColor]];

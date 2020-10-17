@@ -21,7 +21,7 @@
     _titleLabel.layer.cornerRadius = 3;
     _titleLabel.layer.masksToBounds = true;
     
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
          [self  setBackgroundColor:Skin1.bgColor];
          [_titleLabel setTextColor:[UIColor blackColor]];
     } else {

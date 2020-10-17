@@ -44,7 +44,7 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         
 
         
-        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             self.backgroundColor =  [UIColor whiteColor];
         } else {
             if (APP.isLight) {

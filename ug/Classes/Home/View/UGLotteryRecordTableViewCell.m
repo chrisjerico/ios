@@ -46,7 +46,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 
     [ self.tiemLabel setTextColor:Skin1.textColor2];
     self.backgroundColor = Skin1.textColor4;
-    if (APP.betBgIsWhite) {
+    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
         self.backgroundColor =  [UIColor whiteColor];
     } else {
         if (APP.isLight) {

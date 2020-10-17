@@ -56,6 +56,7 @@ PODS:
     - Base64 (~> 1.1.2)
   - Kingfisher (5.6.0)
   - LEEAlert (1.4.1)
+  - LHProgressHUD (0.1.1)
   - libwebp (1.1.0):
     - libwebp/demux (= 1.1.0)
     - libwebp/mux (= 1.1.0)
@@ -415,6 +416,7 @@ DEPENDENCIES:
   - JSPatch (from `JSPatch/JSPatch.podspec`)
   - Kingfisher (~> 5.6.0)
   - LEEAlert
+  - LHProgressHUD
   - Masonry
   - MBProgressHUD (~> 1.1.0)
   - MessageKit (~> 3.0.0)
@@ -512,6 +514,7 @@ SPEC REPOS:
     - JWT
     - Kingfisher
     - LEEAlert
+    - LHProgressHUD
     - libwebp
     - Masonry
     - MBProgressHUD
@@ -673,6 +676,7 @@ SPEC CHECKSUMS:
   JWT: 9b5c05abbcc1a0e69c3c91e1655b3387fc7e581d
   Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
   LEEAlert: 808af2180ddde98f77f487ee29165673a45376bb
+  LHProgressHUD: 389e402ecf5dbc23073eec058697a5e060ac12b7
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
@@ -747,6 +751,6 @@ SPEC CHECKSUMS:
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: afa38d4809ed3ef5b3770dcb9152a1de4079614f
+PODFILE CHECKSUM: c8b250eb534ef56f03eef0809a565ef9f36ff428
 
 COCOAPODS: 1.10.0.rc.1

@@ -28,7 +28,7 @@
     
     self.layer.borderWidth = item.select ? 1 : 0.5;
     
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
             self.backgroundColor = item.select ? RGBA(72, 146, 209, 1):  Skin1.homeContentSubColor;
         } else {

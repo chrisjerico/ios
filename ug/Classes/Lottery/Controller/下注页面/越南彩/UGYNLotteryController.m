@@ -54,6 +54,9 @@
 #import "YNCollectionViewCell.h"
 #import "CMLabelCommon.h"
 #import "YNHLPrizeDetailView.h"
+
+#import "LHProgressHUD.h"
+
 @interface UGYNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
@@ -487,7 +490,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 #pragma mark -设置颜色
     [self.ynsegmentView setBackgroundColor:[UIColor clearColor]];
-    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
+    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
         self.rightStackView.backgroundColor =  [UIColor whiteColor];
         _segmentView.backgroundColor =  [UIColor whiteColor];
         self.betCollectionView.backgroundColor = [UIColor whiteColor];
@@ -1889,11 +1892,15 @@ static NSString *footViewID = @"YNCollectionFootView";
 - (void)getGameDatas {
     NSDictionary *params = @{@"id":self.gameId};
     WeakSelf;
+
     [SVProgressHUD showWithStatus:nil];
+    LHProgressHUD * hud = [LHProgressHUD showAddedToView:self.view];
+    
     [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             if ([CMCommon stringIsNull:model.data]) {
                 [SVProgressHUD showErrorWithStatus:model.msg];
+                [hud hide];
                 return;
                 
             }
@@ -1927,7 +1934,7 @@ static NSString *footViewID = @"YNCollectionFootView";
             }
             [weakSelf handleData];
             [SVProgressHUD dismiss];
-            
+            [hud hide];
             weakSelf.segmentView.dataArray = self.lmgmentTitleArray;
             [weakSelf.tableView reloadData];
             [weakSelf.betCollectionView reloadData];
@@ -1937,7 +1944,9 @@ static NSString *footViewID = @"YNCollectionFootView";
             
             
         } failure:^(id msg) {
+ 
             [SVProgressHUD dismiss];
+            [hud hide];
         }];
     }];
 }

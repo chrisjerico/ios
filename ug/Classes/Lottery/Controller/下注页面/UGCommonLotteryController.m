@@ -141,11 +141,11 @@
         
         float borderWidth = APP.borderWidthTimes * 0.5;
         UIColor* borderColor;
-        if (Skin1.isBlack||Skin1.is23) {
+        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
             borderColor = Skin1.textColor3;
         } else {
             
-            if (APP.betBgIsWhite) {
+            if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
                 borderColor =  APP.LineColor;
             } else {
                 borderColor =  [[UIColor whiteColor] colorWithAlphaComponent:0.3];
@@ -295,7 +295,7 @@
             [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
         }
         
-        if (Skin1.isBlack||Skin1.is23) {
+        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
             [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
         } else {
             
@@ -496,7 +496,7 @@
 // 获取系统配置
 - (void)getSystemConfig {
     WeakSelf;
-    [SVProgressHUD showWithStatus:nil];
+//    [SVProgressHUD showWithStatus:nil];
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			

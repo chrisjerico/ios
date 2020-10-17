@@ -55,7 +55,7 @@
     self.titleLabel.font = [_titleLabel.text fontWithFrameSize:CGSizeOffset(self.size, CGSizeMake(-20, -5)) maxFont:selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16]];
     self.layer.borderWidth = selected * APP.borderWidthTimes;
     
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
         self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -63,7 +63,7 @@
             self.backgroundColor = selected ? RGBA(72, 146, 209, 1):  RGBA(102, 88, 78, 0.8);
         }
     } else {
-        if (APP.betBgIsWhite) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             self.titleLabel.textColor = selected ? Skin1.navBarBgColor : Skin1.textColor1;
             self.leftPoint.backgroundColor = selected ? Skin1.navBarBgColor : UGRGBColor(195, 195, 196);
             self.layer.borderColor = Skin1.navBarBgColor.CGColor;

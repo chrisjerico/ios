@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 *改变字符lab 根据分隔符 最近长度 的颜色改变
  length：长度
  markColor ：改变颜色
- isFront:是否是最前面，yes 最前；No 最后
+ isMarkRangeType: 最前； 最后
  @"66690-1213-66666-78979-123123-98898-7777-908999";
  比如：-  前2个长度变红
  [self messageAction:self.label labStr:str separation:@"-" length:2 andMarkColor:[UIColor redColor]];

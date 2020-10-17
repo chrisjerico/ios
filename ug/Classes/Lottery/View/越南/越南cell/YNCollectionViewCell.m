@@ -26,7 +26,7 @@
     _item = item;
     self.nameLabel.text = item.name;
     
-    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
+    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
         self.nameLabel.backgroundColor = item.select ? UGBlueColor : Skin1.CLBgColor;
         
     } else {

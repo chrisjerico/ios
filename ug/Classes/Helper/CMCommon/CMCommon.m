@@ -1237,7 +1237,7 @@ static NSString *uuidKey =@"uuidKey";
         borderColor = Skin1.textColor3;
     }
     else{
-        if (APP.betBgIsWhite) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             borderColor =  APP.LineColor;
         } else {
             borderColor =  [[UIColor whiteColor] colorWithAlphaComponent:0.3];
@@ -1731,4 +1731,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }
     return [str stringByTrim];
 }
+
+
+
 @end
