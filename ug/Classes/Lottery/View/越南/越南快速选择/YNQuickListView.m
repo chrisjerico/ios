@@ -121,9 +121,7 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         
         if (self.seleced) {
             if (self.selecedDataArry.count >= self.selecedCount ) {
-                
-               
-                
+
                BOOL isbool = [self.selecedDataArry containsObject:game.name];
                 
                 if (isbool) {
@@ -131,6 +129,7 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
                     [self.selecedDataArry  removeObject:game.name];
                 } else {
                     //啥都不做,除了选中的数组的其他cell 背景都改颜色
+                    return;
                 }
                 
             }
