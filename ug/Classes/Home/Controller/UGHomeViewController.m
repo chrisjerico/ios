@@ -1772,7 +1772,25 @@
         [CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
             weakSelf.uGredEnvelopeView.item = rem;
-            weakSelf.uGredEnvelopeView.hidden = !rem;
+            
+            
+            if ([rem.show_time intValue]) {
+                NSString *time1 = [CMTimeCommon timestampSwitchTime:[rem.show_time intValue] andFormatter:@"yyyy-MM-dd HH:mm"];
+                NSString *time2 = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+                NSDate *date1 = [CMTimeCommon dateForStr:time1 format:@"yyyy-MM-dd HH:mm"];
+                NSDate *date2 = [CMTimeCommon dateForStr:time2 format:@"yyyy-MM-dd HH:mm"];
+                 
+                int k =  [CMTimeCommon compareOneDay:date2 withAnotherDay:date1 formatter:@"yyyy-MM-dd HH:mm"];
+                if (k >= 0) {
+                    weakSelf.uGredEnvelopeView.hidden = NO;
+                }
+                else{
+                    weakSelf.uGredEnvelopeView.hidden = YES;
+                }
+            }
+            else{
+                weakSelf.uGredEnvelopeView.hidden = YES;
+            }
         } failure:^(id msg) {
             weakSelf.uGredEnvelopeView.hidden = true;
             [SVProgressHUD dismiss];
