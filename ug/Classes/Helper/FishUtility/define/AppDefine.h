@@ -60,6 +60,7 @@
 
 
 //======下注界面
+@property (nonatomic,assign) BOOL isC126CellStyle;                          /**<  下注测边栏，选中cell 背景为图*/
 @property (nonatomic,assign) BOOL isAllCellStyle;                          /**<  下注测边栏，选中cell 为NavBgColor  选中无白边*/
 @property (nonatomic) BOOL isHideTV;                                    /**<  去除澳门六合彩显示的小电视*/
 @property (nonatomic,assign) BOOL isShowJinbei;                         /**<  显示金杯  六合彩种*/

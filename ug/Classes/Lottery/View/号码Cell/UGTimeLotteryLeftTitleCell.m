@@ -87,11 +87,21 @@
         self.backgroundColor = selected ?Skin1.navBarBgColor :[UIColor clearColor];
     }
     
-    if (APP.isAllCellStyle) {
-        self.backgroundColor = selected ?[Skin1.navBarBgColor colorWithAlphaComponent:0.95]:[UIColor clearColor];
+    if (APP.isC126CellStyle) {
+        self.layer.borderWidth = 0;
+        self.bottomLine.hidden = YES;
+        if (selected) {
+            self.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"c126CellBg"]];
+            self.textLabel.backgroundColor = [UIColor clearColor];
+            self.detailTextLabel.backgroundColor = [UIColor clearColor];
+        } else {
+            self.backgroundColor = [UIColor clearColor];
+            self.backgroundView = nil;
+            self.textLabel.backgroundColor = [UIColor clearColor];
+            self.detailTextLabel.backgroundColor = [UIColor clearColor];
+        }
         self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
-//        self.layer.borderWidth = 0;
-//        self.bottomLine.hidden = YES;
+
     }
 }
 
