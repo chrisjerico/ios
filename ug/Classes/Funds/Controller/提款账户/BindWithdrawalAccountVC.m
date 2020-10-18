@@ -36,7 +36,6 @@
     
     FastSubViewCode(self.view);
     subLabel(@"真实姓名Label").text = UserI.fullName;
-    subTextField(@"微信绑定手机号TextField").hidden = true;
     subButton(@"选择区块链Button").superview.hidden = true;
     subButton(@"确定Button").backgroundColor = Skin1.navBarBgColor;
     _bankStackView.hidden = true;
@@ -158,13 +157,15 @@
 - (IBAction)onSubmitBtnClick:(UIButton *)sender {
     FastSubViewCode(self.view);
     
+    UGWithdrawalType wt = _selectedWT;
     NSString *wid = nil;
     NSString *addr = nil;
     NSString *acct = nil;
-    switch (_selectedWT) {
+    switch (wt) {
         case UGWithdrawalTypeWeChat:
             wid = _selectedWeChat.bankId;
             acct = subTextField(@"微信号TextField").text;
+            addr = subTextField(@"微信绑定手机号TextField").text;
             break;
         case UGWithdrawalTypeVirtual:
             wid = _selectedVirtual.bankId;
@@ -186,7 +187,7 @@
     BOOL err = false;
     if (!wid.length) err = true;
     if (!acct.length) err = true;
-    if (!addr.length && (_selectedWT == UGWithdrawalTypeBankCard || (_selectedWT == UGWithdrawalTypeVirtual && _blockchainList.count))) {
+    if (!addr.length && (wt == UGWithdrawalTypeBankCard || wt == UGWithdrawalTypeWeChat || (wt == UGWithdrawalTypeVirtual && _blockchainList.count))) {
         err = true;
     }
     if (err) {
@@ -194,11 +195,14 @@
         return;
     }
     
+    __weakSelf_(__self);
     [SVProgressHUD show];
-    [NetworkManager1 user_bindBank:_selectedWT wid:wid addr:addr acct:acct].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+    [NetworkManager1 user_bindBank:wt wid:wid addr:addr acct:acct].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         [SVProgressHUD dismiss];
         if (!sm.error) {
             [SVProgressHUD showSuccessWithStatus:sm.resObject[@"msg"]];
+            if (__self.didBindAccount)
+                __self.didBindAccount(wt, acct);
             [NavController1 popViewControllerAnimated:true];
         }
     };

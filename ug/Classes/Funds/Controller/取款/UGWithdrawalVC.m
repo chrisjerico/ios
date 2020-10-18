@@ -25,6 +25,7 @@
 @property (nonatomic, strong) WithdrawalAcctModel *selectedWam; /**<   选中的账户 */
 @property (nonatomic, strong) WithdrawalTypeModel *selectedWtm; /**<   选中的账户 */
 @property (nonatomic, strong) NSString *virtualAmount;          /**<   虚拟币金额 */
+@property (nonatomic, strong) NSString *justBindAccount;       /**<   刚绑定的账号，绑定成功后优先显示 */
 @end
 
 @implementation UGWithdrawalVC
@@ -119,7 +120,8 @@
     FastSubViewCode(self.view);
     [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         if (!sm.error) {
-            [__self.acctList removeAllObjects];
+            NSMutableArray *wams = @[].mutableCopy;
+            NSMutableArray *wtms = @[].mutableCopy;
             for (NSDictionary *dict in sm.resObject[@"data"]) {
                 WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (!wtm.isshow) continue;
@@ -127,12 +129,13 @@
                     wam.name = wtm.name;
                     wam.minWithdrawMoney = wtm.minWithdrawMoney;
                     wam.maxWithdrawMoney = wtm.maxWithdrawMoney;
-                    [__self.acctList addObject:wam];
+                    [wams addObject:wam];
                 }
                 if (!wtm.data.count) {
-                    [__self.acctList addObject:wtm];
+                    [wtms addObject:wtm];
                 }
             }
+            __self.acctList = [wams arrayByAddingObjectsFromArray:wtms].mutableCopy;
             __self.tipsView1.hidden = false;
             for (WithdrawalTypeModel *wtm in __self.acctList) {
                 if ([wtm isKindOfClass:[WithdrawalAcctModel class]]) {
@@ -156,9 +159,9 @@
                         case UGWithdrawalTypeVirtual: {
                             NSString *acct = [wam.bankCard ciphertextWithHead:4 tail:4 style:0];
                             if (wam.bankAddr.stringByTrim.length) {
-                                title = _NSString(@"%@（%@，%@，%@）", wam.name, acct, wam.bankAddr, wam.ownerName);
+                                title = _NSString(@"%@（%@，%@，%@）", wam.name, acct, wam.bankAddr, wam.name);
                             } else {
-                                title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.ownerName);
+                                title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.name);
                             }
                             break;
                         }
@@ -169,13 +172,21 @@
                         case UGWithdrawalTypeWeChat:
                         default: {
                             NSString *acct = [wam.bankCard ciphertextWithHead:3 tail:3 style:0];
-                            title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.ownerName);
+                            if (wam.bankAddr.stringByTrim.length) {
+                                title = _NSString(@"%@（%@，手机尾号%@, %@）", wam.name, acct, [wam.bankAddr substringFromIndex:wam.bankAddr.length-4], wam.ownerName);
+                            } else {
+                                title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.ownerName);
+                            }
                             break;
                         }
                     }
                     [__self.titles addObject:title];
                 }
-                if (__self.selectedWtm) {
+                if (__self.justBindAccount.length) {
+                    NSInteger idx = [__self.acctList indexOfValue:__self.justBindAccount keyPath:@"bankCard"];
+                    [__self ybPopupMenuDidSelectedAtIndex:idx ybPopupMenu:nil];
+                    __self.justBindAccount = nil;
+                } else if (__self.selectedWtm) {
                     NSInteger idx = [__self.acctList indexOfValue:@(__self.selectedWtm.type) keyPath:@"type"];
                     [__self ybPopupMenuDidSelectedAtIndex:idx ybPopupMenu:nil];
                 } else if (!__self.selectedWam) {
@@ -198,8 +209,12 @@
 
 // 绑定提款账号
 - (IBAction)onBindWithdrawalAcctBtnClick:(UIButton *)sender {
+    __weakSelf_(__self);
     BindWithdrawalAccountVC *vc = _LoadVC_from_storyboard_(@"BindWithdrawalAccountVC");
     vc.wt = _selectedWtm.type;
+    vc.didBindAccount = ^(UGWithdrawalType wt, NSString * _Nonnull acct) {
+        __self.justBindAccount = acct;
+    };
     [NavController1 pushViewController:vc animated:true];
 }
 

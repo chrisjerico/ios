@@ -39,6 +39,9 @@
                 if (UserI.hasFundPwd) {
                     BindWithdrawalAccountVC *vc = _LoadVC_from_storyboard_(@"BindWithdrawalAccountVC");
                     vc.wt = __self.typeList[__self.ssv1.selectedIndex].type;
+                    vc.didBindAccount = ^(UGWithdrawalType wt, NSString * _Nonnull acct) {
+                        __self.ssv1.selectedIndex = [__self.typeList indexOfValue:@(wt) keyPath:@"type"];
+                    };
                     [NavController1 pushViewController:vc animated:true];
                 } else {
                     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGSetupPayPwdController") animated:true];
@@ -250,9 +253,9 @@
             subLabel(@"标题2Label").text = @"绑定手机号：";
             subLabel(@"标题3Label").text = @"微信号：";
             subLabel(@"内容1Label").text = wam.ownerName;
-            subLabel(@"内容2Label").text = @"";
+            subLabel(@"内容2Label").text = wam.bankAddr;
             subLabel(@"内容3Label").text = wam.bankCard;
-            subLabel(@"标题2Label").superview.hidden = true;
+            subLabel(@"标题2Label").superview.hidden = !wam.bankAddr.stringByTrim.length;
             break;
         case UGWithdrawalTypeAlipay:
             subLabel(@"标题1Label").text = @"真实姓名：";
