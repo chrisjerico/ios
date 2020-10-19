@@ -166,8 +166,9 @@ static LogVC *_logVC = nil;
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
         [ac setActionAtTitle:@"汇率" handler:^(UIAlertAction *aa) {
-
             
+            NSDecimalNumber *sale = [CMCommon randStr:@"1604.975" scale:2];
+            NSLog(@"sale = %@",sale);
         }];
         
         [ac setActionAtTitle:@"时间搓" handler:^(UIAlertAction *aa) {

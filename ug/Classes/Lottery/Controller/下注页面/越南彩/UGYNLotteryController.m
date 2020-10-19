@@ -55,7 +55,6 @@
 #import "CMLabelCommon.h"
 #import "YNHLPrizeDetailView.h"
 
-#import "LHProgressHUD.h"
 
 @interface UGYNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
