@@ -35,7 +35,7 @@
 @property (nonatomic) BOOL isFish;
 
 @property (nonatomic,assign)BOOL lotteryHallCustomImgS;                 /**<   彩票大厅自定义图标 */
-@property (nonatomic,assign) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
+
 
 @property (nonatomic,assign) BOOL isShow4;                              /**<  任务中心显示4个，不显示图片 */
 @property (nonatomic,assign) BOOL isShowWZ;                             /**<  将选填 这两个字更换为  如果没有，可不填写 */
@@ -61,6 +61,7 @@
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isC239B;                                   /**<  个人中心去掉真实名字，成长值，成长进度*/
 //======下注界面
+@property (nonatomic,assign) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
 @property (nonatomic,assign) BOOL isC126CellStyle;                          /**<  下注测边栏，选中cell 背景为图*/
 @property (nonatomic,assign) BOOL isAllCellStyle;                          /**<  下注测边栏，选中cell 为NavBgColor  选中无白边*/
 @property (nonatomic) BOOL isHideTV;                                    /**<  去除澳门六合彩显示的小电视*/
