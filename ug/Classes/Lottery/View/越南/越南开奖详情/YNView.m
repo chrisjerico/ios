@@ -41,15 +41,8 @@
         [CMLabelCommon messageAction:subLabel(@"六等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
     }
     else if([[Global getInstanse].selCode isEqualToString:@"ZHUANTI"]) {//ZHUANTI 专题
-        
-        if (self.isHeNeiView) {
-            //专题====特等奖 前2位红
-            [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
-        } else {
             //专题====特等奖 后2位红
             [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_后面];
-        }
-        
     }
     else if([[Global getInstanse].selCode isEqualToString:@"TEBIEBIAOTI"]) {//特别标题===一等奖的后两位
         [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
