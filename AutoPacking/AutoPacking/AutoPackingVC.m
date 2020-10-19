@@ -9,6 +9,7 @@
 #import "AutoPackingVC.h"
 #import "iOSPack.h"
 #import "ReactNativePack.h"
+#import "NSObject+XWAdd.h"
 
 @implementation AutoPackingVC
 
@@ -58,10 +59,12 @@
                 // 高权限操作
                 BOOL isReview = 0;      // 是否改为已审核
                 BOOL isForce = 0;       // 是否强制更新
-                NSString *updateLog = @"";  // 更新日志，给用户看的
+                NSString *updateLog = @"优化用户体验。";  // 更新日志，给用户看的
                 
-                [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
-                    [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog isReview:isReview];
+                [self popupConfirmWithIsReview:isReview isForce:isForce completion:^{
+                    [iPack pullCode:branch completion:^(NSString * _Nonnull version) {
+                        [iPack startPackingWithIds:ids ver:version willUpload:willUpload isForce:isForce log:updateLog isReview:isReview];
+                    }];
                 }];
             }
             else {
@@ -76,6 +79,50 @@
             }
         }];
     }];
+}
+
+// 弹框确认，避免误操作
+- (void)popupConfirmWithIsReview:(BOOL)isReview isForce:(BOOL)isForce completion:(void (^)(void))completion {
+    if (!completion) return;
+    if (!isReview && !isForce) return;
+    
+    __block BOOL __showed = false;
+    void (^showAlert)(void) = ^{
+        if (__showed || ![NSApplication sharedApplication].keyWindow) return;
+        __showed = true;
+        
+        NSString *msg = @"";
+        if (isReview) {
+            msg = [msg stringByAppendingString:@"- 确定要自动改为已审核吗？\n"];
+        }
+        if (isForce) {
+            msg = [msg stringByAppendingString:@"- 确定要强制更新吗？\n"];
+        }
+        
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleWarning;
+        [alert addButtonWithTitle:@"取消"];
+        [alert addButtonWithTitle:@"确定"];
+        alert.messageText = msg;
+        alert.informativeText = @"温馨提示：请慎重选择";
+        
+        [alert beginSheetModalForWindow:[NSApplication sharedApplication].keyWindow completionHandler:^(NSModalResponse returnCode) {
+            //        NSLog(@"%d", returnCode);
+            if (returnCode == NSAlertSecondButtonReturn) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    completion();
+                });
+            } else {
+                NSLog(@"退出打包程序");
+                exit(0);
+            }
+        }];
+    };
+    
+    [[NSApplication sharedApplication] xw_addObserverBlockForKeyPath:@"keyWindow" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+        showAlert();
+    }];
+    showAlert();
 }
 
 // 读取plist
