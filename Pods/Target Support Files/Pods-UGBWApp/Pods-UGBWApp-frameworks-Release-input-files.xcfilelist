@@ -15,7 +15,6 @@ ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/JSPatch/JSPatch.framework
 ${BUILT_PRODUCTS_DIR}/JWT/JWT.framework
 ${BUILT_PRODUCTS_DIR}/LEEAlert/LEEAlert.framework
-${BUILT_PRODUCTS_DIR}/LHProgressHUD/LHProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/Picker/Picker.framework
