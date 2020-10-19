@@ -15,8 +15,6 @@
 
 @property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;//标题数组
 
-
-@property (nonatomic, assign) NSInteger selectedSegmentIndex;//当前选中的索引
 @end
 
 @implementation YNQuickSelectView

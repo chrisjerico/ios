@@ -16,14 +16,11 @@ typedef void(^YNQuickListBlock)(UICollectionView *collectionView,NSIndexPath* in
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, strong )UGGameBetModel *bet;
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
-
 @property (nonatomic, copy) YNQuickListBlock ynCollectIndexBlock;
-
 @property (nonatomic) int selecedCount;// 可以选择的数量  （偏斜2 偏斜3 偏斜4 串烧4 串烧8 串烧10）
-
 @property (nonatomic) BOOL seleced;//是否有 可以选择的数量
-
 @property (nonatomic,strong)  YNQuickListView *listView;//views 数组
+@property (nonatomic, assign) NSInteger selectedSegmentIndex;//当前选中的索引
 
 -(void)reload;
 @end
