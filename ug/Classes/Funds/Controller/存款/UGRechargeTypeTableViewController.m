@@ -86,17 +86,8 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
                 vc.title = @"虚拟币教程";
                 [NavController1 pushViewController:vc animated:true];
             } else {
-                NSMutableArray *itemArray = [NSMutableArray new];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"概括" WebName:@"1"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"安装虚拟币钱包" WebName:@"2"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"注册账号" WebName:@"3"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"身份认证" WebName:@"4"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"购买虚拟币" WebName:@"5"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"网站充值" WebName:@"6"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"钱包付款" WebName:@"7"]];
-
                 HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
-                vc.itemArry = itemArray;
+                vc.webName = @"火币";
                 vc.title = @"虚拟币教程";
                 [NavController1 pushViewController:vc animated:true];
             }
@@ -108,27 +99,10 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
         [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 //虚拟教程
-            if (APP.isHBDoc) {
-                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
-                vc.webName = @"火币";
-                vc.title = @"虚拟币教程";
-                [NavController1 pushViewController:vc animated:true];
-            } else {
-                NSMutableArray *itemArray = [NSMutableArray new];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"概括" WebName:@"1"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"安装虚拟币钱包" WebName:@"2"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"注册账号" WebName:@"3"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"身份认证" WebName:@"4"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"购买虚拟币" WebName:@"5"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"确认存款金额" WebName:@"确认存款金额"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"钱包付款" WebName:@"钱包付款"]];
-                [itemArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"完成充值" WebName:@"完成充值"]];
-                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
-                vc.itemArry = itemArray;
-                vc.title = @"虚拟币教程";
-                [NavController1 pushViewController:vc animated:true];
-            }
-            
+            HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+            vc.webName = @"火币";
+            vc.title = @"虚拟币教程";
+            [NavController1 pushViewController:vc animated:true];
         }];
     }
     else {

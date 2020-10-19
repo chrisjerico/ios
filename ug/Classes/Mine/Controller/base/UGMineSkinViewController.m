@@ -270,6 +270,15 @@
         ((UILabel *)[self.taskButton.superview viewWithTagString:@"任务中心Label"]).text = @"任务大厅";
     }
     
+    if (APP.isC239B) {
+        self.valueLabel.hidden = YES;
+        self.uidLabel.hidden = YES;
+        self.fristVipLabel.hidden = YES;
+        self.secondVipLabel.hidden = YES;
+        self.progressView.hidden = YES;
+    }
+    
+    
 }
 
 - (void)addRightBtn {
@@ -794,6 +803,8 @@ BOOL isOk = NO;
         self.uidLabel.text = @"";
     }
     
+    
+
 }
 
 

@@ -156,7 +156,7 @@
               [CMCommon setBorderWithView:self.rightStackView top:NO left:YES bottom:NO right:YES borderColor:borderColor borderWidth:borderWidth];
         }
        
-        
+//        self.tableView.layer.borderWidth = 0;
         // 左侧玩法栏背景色
         
         self.tableView.backgroundColor = [UIColor clearColor];
