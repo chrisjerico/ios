@@ -23,7 +23,7 @@ typedef void(^YNQuickListBlock)(UICollectionView *collectionView,NSIndexPath* in
 
 @property (nonatomic) BOOL seleced;//是否有 可以选择的数量
 
-@property (nonatomic,strong)  NSMutableArray <YNQuickListView *> *itemViewArray;//views 数组
+@property (nonatomic,strong)  YNQuickListView *listView;//views 数组
 
 -(void)reload;
 @end
