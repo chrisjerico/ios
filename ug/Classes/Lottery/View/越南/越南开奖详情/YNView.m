@@ -40,7 +40,7 @@
         [CMLabelCommon messageAction:subLabel(@"五等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
         [CMLabelCommon messageAction:subLabel(@"六等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
     }
-    else if([[Global getInstanse].selCode isEqualToString:@"ZHUANTI"]) {
+    else if([[Global getInstanse].selCode isEqualToString:@"ZHUANTI"]) {//ZHUANTI 专题
         
         if (self.isHeNeiView) {
             //专题====特等奖 前2位红

@@ -152,7 +152,6 @@
     [subLabel(@"链名称内容Label") setText:channelModel.address];
     subLabel(@"二微码Label").text = channelModel.account;
     
-    NSLog(@"channelModel.currencyRate = %@",channelModel.currencyRate);
     UIImage * image = [SGQRCodeObtain generateQRCodeWithData:channelModel.account size:160.0];
     [subImageView(@"二微码ImageV") setImage:image];
     [subLabel(@"提示2Label") setText:self.item.prompt];
@@ -164,10 +163,12 @@
         float currencyRate =  [channelModel.currencyRate floatValue];
         float jg = (100 + hlc) * currencyRate/100;
         self.currencyRate  = [NSString stringWithFormat:@"%f", jg];
+        
+        
     } else {
         self.currencyRate  = channelModel.currencyRate;
     }
-   
+
     [subLabel(@"汇率Label") setText:[NSString stringWithFormat:@"1 USDT = %@ CNY",[CMCommon randStr:[self currencyRateStr:self.currencyRate count:1.0] scale:2]]];
     //=====================================
 
@@ -210,9 +211,8 @@
 
 //计算金额
 -(NSString *)moenyCount :(float )count{
-    float hl = [[self currencyRateStr:self.currencyRate count:1.0]  floatValue];
-    NSLog(@"hl = %f",hl);
-    float rate =  count / hl ;
+    float  rate = count * [self.currencyRate floatValue];
+   
     return [NSString stringWithFormat:@"%f",rate];
 }
 
@@ -229,6 +229,7 @@
 }
 
 -(void)setMoneyLabelText:(float )multip{
+    NSLog(@"multip = %f",multip);
     self.moneyLabel.text = [NSString stringWithFormat:@"%@",[CMCommon randStr:[self moenyCount:multip] scale:2]];
 }
 

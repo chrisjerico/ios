@@ -37,11 +37,16 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2f-g1-IDC">
                                     <rect key="frame" x="0.0" y="0.0" width="322" height="60.5"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="批号265" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbP-DX-L3t">
-                                            <rect key="frame" x="8" y="14.5" width="65" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="11123123123人情味儿群翁日期味儿群翁日期味儿群翁日期" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRR-ds-ImH">
+                                            <rect key="frame" x="76" y="14.5" width="238" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="批号265" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbP-DX-L3t">
+                                            <rect key="frame" x="8" y="14.5" width="58" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="65" id="MHF-c0-pyQ"/>
-                                                <constraint firstAttribute="height" constant="21" id="aZ2-mD-rET"/>
+                                                <constraint firstAttribute="height" constant="22" id="aZ2-mD-rET"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
@@ -50,19 +55,13 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="批号lable"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="11123123123人情味儿群翁日期味儿群翁日期味儿群翁日期" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRR-ds-ImH">
-                                            <rect key="frame" x="78" y="14.5" width="236" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="FbP-DX-L3t" firstAttribute="leading" secondItem="X2f-g1-IDC" secondAttribute="leading" constant="8" id="9Sa-sb-lbp"/>
+                                        <constraint firstItem="wRR-ds-ImH" firstAttribute="leading" secondItem="FbP-DX-L3t" secondAttribute="trailing" constant="10" id="DGa-ek-7Hx"/>
                                         <constraint firstItem="FbP-DX-L3t" firstAttribute="top" secondItem="X2f-g1-IDC" secondAttribute="top" constant="14.5" id="JVp-y3-RCK"/>
                                         <constraint firstAttribute="bottom" secondItem="wRR-ds-ImH" secondAttribute="bottom" constant="10" id="JWk-3f-fsQ"/>
-                                        <constraint firstItem="wRR-ds-ImH" firstAttribute="leading" secondItem="FbP-DX-L3t" secondAttribute="trailing" constant="5" id="K5O-ck-mwy"/>
                                         <constraint firstAttribute="trailing" secondItem="wRR-ds-ImH" secondAttribute="trailing" constant="8" id="Sv7-6Y-tZh"/>
                                         <constraint firstItem="wRR-ds-ImH" firstAttribute="top" secondItem="X2f-g1-IDC" secondAttribute="top" constant="14.5" id="jrn-eW-upD"/>
                                     </constraints>
@@ -331,7 +330,7 @@
                 <outlet property="titellabel" destination="jMF-3P-rh3" id="4QJ-yC-ev4"/>
                 <outlet property="totalAmountLabel" destination="IRg-dm-hMK" id="jdy-ek-hHm"/>
             </connections>
-            <point key="canvasLocation" x="-399" y="68"/>
+            <point key="canvasLocation" x="-400.00000000000006" y="67.633928571428569"/>
         </view>
     </objects>
     <resources>
