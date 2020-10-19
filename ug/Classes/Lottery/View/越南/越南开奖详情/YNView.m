@@ -51,6 +51,9 @@
         }
         
     }
+    else if([[Global getInstanse].selCode isEqualToString:@"TEBIEBIAOTI"]) {//特别标题===一等奖的后两位
+        [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
+    }
     else if([[Global getInstanse].selCode isEqualToString:@"YIDENGJIANG"]) {//一等奖===一等奖的后两位
         [CMLabelCommon messageAction:subLabel(@"一等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_后面];
     }

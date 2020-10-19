@@ -802,6 +802,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 }// 十 个
                 else  if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
                           ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                          ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
                           ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"LOT2FIRST"]
                           ||[bet.code isEqualToString:@"ZHUZHANG7"]||[bet.code isEqualToString:@"YIDENGJIANG"]) {
                     
@@ -822,6 +823,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 //批号2 地段21K号 标题 专题 标题尾巴   // 加 00-99
                 if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
                     ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                    ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
                     ||[bet.code isEqualToString:@"BIAOTIWB"]
                     ||[bet.code isEqualToString:@"LOT2FIRST"]
                     ||[bet.code isEqualToString:@"ZHUZHANG7"]||[bet.code isEqualToString:@"YIDENGJIANG"]) {
@@ -888,7 +890,8 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         if ([code isEqualToString:@"PIHAO2"]||[code isEqualToString:@"DIDUAN2"]
             ||[code isEqualToString:@"PIHAO3"]||[code isEqualToString:@"BIAOTI"]
-            ||[code isEqualToString:@"ZHUANTI"]||[code isEqualToString:@"BIAOTIWB"]
+            ||[code isEqualToString:@"ZHUANTI"] ||[code isEqualToString:@"TEBIEBIAOTI"]
+            ||[code isEqualToString:@"BIAOTIWB"]
             ||[code isEqualToString:@"3YINJIE"]||[code isEqualToString:@"3GTEBIE"]
             ||[code isEqualToString:@"3WBDJT"]||[code isEqualToString:@"LOT2FIRST"]
             ||[code isEqualToString:@"ZHUZHANG7"]||[code isEqualToString:@"YIDENGJIANG"]) {
@@ -1319,6 +1322,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     //批号2 地段21K号 标题 专题 标题尾巴  Lot2第一个号码  主张7 一等奖// 加 十 个
     if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
         ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+        ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
         ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"LOT2FIRST"]
         ||[bet.code isEqualToString:@"ZHUZHANG7"]||[bet.code isEqualToString:@"YIDENGJIANG"]) {
         
@@ -1618,6 +1622,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     //批号2 地段21K号 标题 专题 标题尾巴  串烧4 串烧8 串烧10// 加 00-99
     if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
         ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+        ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
         ||[bet.code isEqualToString:@"BIAOTIWB"]
         ||[bet.code isEqualToString:@"LOT2FIRST"]
         ||[bet.code isEqualToString:@"ZHUZHANG7"]||[bet.code isEqualToString:@"YIDENGJIANG"]) {
@@ -1944,6 +1949,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 //批号2 地段21K号 标题 专题 标题尾巴   Lot2第一个号码  主张7  一等奖// 加 十 个
                 if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
                     ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                    ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
                     ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"LOT2FIRST"]
                     ||[bet.code isEqualToString:@"ZHUZHANG7"]||[bet.code isEqualToString:@"YIDENGJIANG"]) {
                     
@@ -2079,6 +2085,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 //批号2 地段21K号 标题 专题 标题尾巴  串烧4 串烧8 串烧10  偏斜2 偏斜3 偏斜4  Lot2第一个号码 主张7  一等奖// 加 00-99
                 if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
                     ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                    ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
                     ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"CHUANSHAO4"]
                     ||[bet.code isEqualToString:@"CHUANSHAO8"]||[bet.code isEqualToString:@"CHUANSHAO10"]
                     ||[bet.code isEqualToString:@"PIANXIE2"]||[bet.code isEqualToString:@"PIANXIE3"]
@@ -2184,6 +2191,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     //批号2   地段21k号 标题 专题  标题尾巴      Lot2第一个号码 主张7 一等奖
     if ([code isEqualToString:@"PIHAO2"]||[code isEqualToString:@"DIDUAN2"]
         ||[code isEqualToString:@"BIAOTI"]||[code isEqualToString:@"ZHUANTI"]
+        ||[code isEqualToString:@"TEBIEBIAOTI"]
         ||[code isEqualToString:@"BIAOTIWB"]||[code isEqualToString:@"LOT2FIRST"]
         ||[code isEqualToString:@"ZHUZHANG7"]||[code isEqualToString:@"YIDENGJIANG"]) {
         self.inputView.code = Tip_十;
@@ -3321,6 +3329,7 @@ static NSString *footViewID = @"YNCollectionFootView";
                 //批号2 地段21K号 标题 专题 标题尾巴  Lot2第一个号码 主张7 一等奖// 加 十 个
                 if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
                     ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+                    ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
                     ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"LOT2FIRST"]
                     ||[bet.code isEqualToString:@"ZHUZHANG7"]||[bet.code isEqualToString:@"YIDENGJIANG"]){
                     return 2;
@@ -3570,6 +3579,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         //批号2 地段21K号 标题 专题 标题尾巴 Lot2第一个号码 主张7 一等奖// 加 十 个
         if ([bet.code isEqualToString:@"PIHAO2"]||[bet.code isEqualToString:@"DIDUAN2"]
             ||[bet.code isEqualToString:@"BIAOTI"]||[bet.code isEqualToString:@"ZHUANTI"]
+            ||[bet.code isEqualToString:@"TEBIEBIAOTI"]
             ||[bet.code isEqualToString:@"BIAOTIWB"]||[bet.code isEqualToString:@"LOT2FIRST"]
             ||[bet.code isEqualToString:@"ZHUZHANG7"]||[bet.code isEqualToString:@"YIDENGJIANG"]) {
             
@@ -3815,6 +3825,11 @@ static NSString *footViewID = @"YNCollectionFootView";
         }
     }
     else  if ([code isEqualToString:@"YIDENGJIANG"]) {//一等奖  ==  河内
+        if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//
+            defaultGoldInt = 1;
+        }
+    }
+    else  if ([code isEqualToString:@"TEBIEBIAOTI"]) {//特别标题  ==  河内
         if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//
             defaultGoldInt = 1;
         }
