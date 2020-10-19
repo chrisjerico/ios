@@ -55,10 +55,11 @@
 @property (nonatomic,assign) BOOL isBgColorForMoneyVC;                     /**< 存款页面进去的底色为bg色   */
 @property (nonatomic,assign) BOOL isC217RWDT;                                /**<  我的把任务中心4个字换成任务大厅*/
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
-@property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
+
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
-
-
+//======个人中心
+@property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
+@property (nonatomic) BOOL isC239B;                                   /**<  个人中心去掉真实名字，成长值，成长进度*/
 //======下注界面
 @property (nonatomic,assign) BOOL isC126CellStyle;                          /**<  下注测边栏，选中cell 背景为图*/
 @property (nonatomic,assign) BOOL isAllCellStyle;                          /**<  下注测边栏，选中cell 为NavBgColor  选中无白边*/

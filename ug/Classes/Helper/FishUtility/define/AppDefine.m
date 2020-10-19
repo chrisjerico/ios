@@ -282,6 +282,8 @@
     _isHBDoc = [@"c012" containsString:_SiteId];
     _isAllCellStyle = [@"c126" containsString:_SiteId];
     _isC126CellStyle = [@"c126" containsString:_SiteId];
+    _isC239B = [@"c239b" containsString:_SiteId];
+
     
 }
 
