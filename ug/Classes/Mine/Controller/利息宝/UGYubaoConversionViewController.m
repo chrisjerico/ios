@@ -345,7 +345,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 - (void)setupInfo {
 	
 	self.dayIncomeLabel.text = self.infoModel.todayProfit;
-	self.totalAmountLabel.text = [NSString stringWithFormat:@"总金额 %@",self.infoModel.balance];
+	self.totalAmountLabel.text = [NSString stringWithFormat:@"利息宝余额 %@",self.infoModel.balance];
 	NSString *nhl = [NSString stringWithFormat:@"%.4f",self.infoModel.annualizedRate.floatValue * 100];
 	self.rateLabel.text = [NSString stringWithFormat:@"年化率 %@%%",[nhl removeFloatAllZero]];
 	self.balanceLabel.text = [NSString stringWithFormat:@"%@",[[UGUserModel currentUser].balance removeFloatAllZero]];

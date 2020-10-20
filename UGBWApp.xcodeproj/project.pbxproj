@@ -27,6 +27,8 @@
 		0315DC9F24AEC46000D635E2 /* NotificationSystemMessageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC9D24AEC46000D635E2 /* NotificationSystemMessageVC.xib */; };
 		0315DCA324AEC6A700D635E2 /* NotificationSystemMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DCA124AEC6A700D635E2 /* NotificationSystemMessageCell.swift */; };
 		0315DCA424AEC6A700D635E2 /* NotificationSystemMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DCA224AEC6A700D635E2 /* NotificationSystemMessageCell.xib */; };
+		031A003B253FA7AC00092DFF /* UserMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A0039253FA7AC00092DFF /* UserMainVC.swift */; };
+		031A003C253FA7AC00092DFF /* UserMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A003A253FA7AC00092DFF /* UserMainVC.xib */; };
 		031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
 		031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
 		031A781F23D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */; };
@@ -2265,6 +2267,8 @@
 		0315DC9D24AEC46000D635E2 /* NotificationSystemMessageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSystemMessageVC.xib; sourceTree = "<group>"; };
 		0315DCA124AEC6A700D635E2 /* NotificationSystemMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSystemMessageCell.swift; sourceTree = "<group>"; };
 		0315DCA224AEC6A700D635E2 /* NotificationSystemMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSystemMessageCell.xib; sourceTree = "<group>"; };
+		031A0039253FA7AC00092DFF /* UserMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMainVC.swift; sourceTree = "<group>"; };
+		031A003A253FA7AC00092DFF /* UserMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserMainVC.xib; sourceTree = "<group>"; };
 		031A781A23D35A9C00FF2FFA /* LotteryTrendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryTrendVC.h; sourceTree = "<group>"; };
 		031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryTrendVC.m; sourceTree = "<group>"; };
 		031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotteryTrendVC.xib; sourceTree = "<group>"; };
@@ -4416,6 +4420,8 @@
 			isa = PBXGroup;
 			children = (
 				031EF4F723BE7B4D00B0F813 /* Mine */,
+				031A0039253FA7AC00092DFF /* UserMainVC.swift */,
+				031A003A253FA7AC00092DFF /* UserMainVC.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -9555,6 +9561,7 @@
 				031E1E8923BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
 				CF8508662466D67F0025672F /* UGCellHeaderView.xib in Resources */,
 				031E1B9123BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
+				031A003C253FA7AC00092DFF /* UserMainVC.xib in Resources */,
 				031EF59723BE7B4D00B0F813 /* yue.svg in Resources */,
 				031E1B7923BE812800B0F813 /* UGGameTypeColletionViewCell.xib in Resources */,
 				031E1C9723BE812A00B0F813 /* UGOneTitleTableViewCell.xib in Resources */,
@@ -10796,6 +10803,7 @@
 				031EF53F23BE7B4D00B0F813 /* MessageModel.swift in Sources */,
 				03D6927023C23B9D003D9C12 /* ContactsVC.swift in Sources */,
 				031E1D2923BE812B00B0F813 /* UGIntegralConvertController.m in Sources */,
+				031A003B253FA7AC00092DFF /* UserMainVC.swift in Sources */,
 				031E1CCD23BE812A00B0F813 /* NSBundle+MJRefresh.m in Sources */,
 				031E1D7523BE812B00B0F813 /* UGWriteMessageViewController.m in Sources */,
 				031E1B4923BE812800B0F813 /* UGChanglongBetRecordModel.m in Sources */,
