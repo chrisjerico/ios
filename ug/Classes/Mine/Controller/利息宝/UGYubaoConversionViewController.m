@@ -99,7 +99,12 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 
 -(void)setYyBgViewBgColor{
     NSString *skitType = Skin1.skitType;
-    if ([@"新年红,石榴红,六合资料,金沙主题,简约模板,火山橙,香槟金" containsString:Skin1.skitType]) {
+	
+	if (CHAT_TARGET){
+		[_yyBgView setBackgroundColor:RGBA(0x4a, 0x77, 0xff, 1)];
+		self.waveBotomView.backgroundColor =  [UIColor whiteColor];
+		self.waveView.realWaveColor =  RGBA(0x4a, 0x77, 0xff, 1);
+	} else if ([@"新年红,石榴红,六合资料,金沙主题,简约模板,火山橙,香槟金" containsString:Skin1.skitType]) {
         [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
         self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
         self.waveView.realWaveColor =  Skin1.navBarBgColor;
