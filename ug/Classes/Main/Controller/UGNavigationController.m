@@ -17,7 +17,7 @@
 #import "UGAgentViewController.h"
 #import "UGPromotionIncomeController.h"
 #import "UGBetRecordViewController.h"
-#import "UGGameListViewController.h"
+
 #import "UGDocumentVC.h"
 #import "JYRegisterViewController.h"            // GPK版注册
 #import "JYLoginViewController.h"                // 简约模板登录

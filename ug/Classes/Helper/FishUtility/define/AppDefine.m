@@ -91,7 +91,6 @@
                 sb(@"NewUserInfoViewController"),
                 sb(@"NewLotteryHomeViewController"),
                 sb(@"HelpDocument"),
-
                 
         ];
     });
