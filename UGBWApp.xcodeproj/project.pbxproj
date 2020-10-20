@@ -3651,7 +3651,7 @@
 		031EF52023BE7B4D00B0F813 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		031EF52223BE7B4D00B0F813 /* ControllerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerProvider.swift; sourceTree = "<group>"; };
 		031EF52323BE7B4D00B0F813 /* UGLaunchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGLaunchController.swift; sourceTree = "<group>"; };
-		031EF52423BE7B4D00B0F813 /* NSObject+HasDisposeBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+HasDisposeBag.swift"; path = "../Modules/Base/NSObject+HasDisposeBag.swift"; sourceTree = "<group>"; };
+		031EF52423BE7B4D00B0F813 /* NSObject+HasDisposeBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+HasDisposeBag.swift"; sourceTree = "<group>"; };
 		031EF52623BE7B4D00B0F813 /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		031EF52723BE7B4D00B0F813 /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		031EF52823BE7B4D00B0F813 /* UGConversationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UGConversationVC.swift; sourceTree = "<group>"; };
@@ -4410,6 +4410,14 @@
 				031AFC8F253E8F2000092DFF /* URLModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		031AFC9E253F095C00092DFF /* User */ = {
+			isa = PBXGroup;
+			children = (
+				031EF4F723BE7B4D00B0F813 /* Mine */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		031E13C123BE812300B0F813 /* Skin */ = {
@@ -7286,6 +7294,7 @@
 		031EF3FF23BE7A9400B0F813 /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				031EF51F23BE7B4D00B0F813 /* Base */,
 				031EF4AF23BE7B4D00B0F813 /* Modules */,
 				031EF46423BE7B4C00B0F813 /* Resources */,
 				031EF41723BE7B4C00B0F813 /* Server */,
@@ -7439,7 +7448,6 @@
 				031EF45F23BE7B4C00B0F813 /* UIImagePickerController+Rx.swift */,
 				031EF46023BE7B4C00B0F813 /* RxImagePickerDelegateProxy.swift */,
 				031EF46223BE7B4C00B0F813 /* UIImagePickerController+RxCreate.swift */,
-				031EF52423BE7B4D00B0F813 /* NSObject+HasDisposeBag.swift */,
 				031EF46323BE7B4C00B0F813 /* TimeIntervalExtension+XFoundation.swift */,
 				03976DB425369FDB00B4201A /* MessageDateFormater.swift */,
 				031EF44A23BE7B4C00B0F813 /* RegexParser.swift */,
@@ -7595,13 +7603,12 @@
 		031EF4AF23BE7B4D00B0F813 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				031AFC9E253F095C00092DFF /* User */,
 				031EF4FE23BE7B4D00B0F813 /* 登录注册 */,
 				031E1E9223BECF2900B0F813 /* Game */,
 				031EF4B423BE7B4D00B0F813 /* Moments */,
 				031EF4D523BE7B4D00B0F813 /* Chat */,
 				031EF4F423BE7B4D00B0F813 /* Contacts */,
-				031EF4F723BE7B4D00B0F813 /* Mine */,
-				031EF51F23BE7B4D00B0F813 /* Base */,
 				031EF52523BE7B4D00B0F813 /* Conversation */,
 			);
 			path = Modules;
@@ -7786,6 +7793,7 @@
 		031EF51F23BE7B4D00B0F813 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				031EF52423BE7B4D00B0F813 /* NSObject+HasDisposeBag.swift */,
 				031E1E8D23BECD8500B0F813 /* BaseNav.swift */,
 				031E1E9E23BED78000B0F813 /* BaseVC.swift */,
 				03D6926B23C23495003D9C12 /* BaseTableVC.swift */,

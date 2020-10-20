@@ -264,14 +264,14 @@ extension ChatTarget: TargetType {
 			urlParameters["a"] = "conversationRead"
 			
 			bodyParameters["token"] = App.user.sessid
-			bodyParameters["targetUid"] = targetUid
+			bodyParameters["uid"] = targetUid
 			bodyParameters["type"] = 2
 		case let .otherUserInfo(targetUid):
 			urlParameters["c"] = "chat"
 			urlParameters["a"] = "userInfo"
 			
 			bodyParameters["token"] = App.user.sessid
-			bodyParameters["targetUid"] = targetUid
+			bodyParameters["uid"] = targetUid
 			bodyParameters["type"] = 2
 			
 		case .selfUserInfo(target: let target):
