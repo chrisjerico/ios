@@ -70,7 +70,7 @@
 	
 }
 
-//查询各平台下级游戏列表
+//查询各平台下级游戏列表。'search_text':'搜索的关键字 非必填'
 + (void)getGameListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock {
     
     CMMETHOD_BEGIN;

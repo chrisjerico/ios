@@ -84,7 +84,10 @@
 // 弹框确认，避免误操作
 - (void)popupConfirmWithIsReview:(BOOL)isReview isForce:(BOOL)isForce completion:(void (^)(void))completion {
     if (!completion) return;
-    if (!isReview && !isForce) return;
+    if (!isReview && !isForce) {
+        completion();
+        return;
+    }
     
     __block BOOL __showed = false;
     void (^showAlert)(void) = ^{
