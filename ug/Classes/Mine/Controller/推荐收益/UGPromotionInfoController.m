@@ -30,7 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *sectionLabel3;
-@property (weak, nonatomic) IBOutlet UILabel *sectionLabel4;
+@property (weak, nonatomic) IBOutlet UILabel *sectionLabel4;//佣金方案
 
 @property (weak, nonatomic) IBOutlet UIButton *urlCopy1Button;
 @property (weak, nonatomic) IBOutlet UIButton *urlCopy2Button;
@@ -237,7 +237,14 @@
     double proportion = [self.mUGinviteInfoModel.fandian doubleValue];
     double jg =  proportion *1000/100;
     NSString *jgStr = [NSString stringWithFormat:@"%.2f",jg];
-    self.sectionLabel4.text =  [NSString stringWithFormat:@"您推荐的会员在下注结算后，佣金会自动按照比例加到您的资金账户上。例如：您所推荐的会员下注1000元，您的收益=1000元*(一级下线比例比如：%@%%）=%@元。",self.mUGinviteInfoModel.fandian,jgStr];
+    
+    
+    if([@"c186,test60f" containsString:APP.SiteId]){
+        self.sectionLabel4.text = @"方案一：佣金比例图如上，有效投注达到100万以上，将可赚取0.1%的佣金【100万X0.001=1000】1000元佣金!有效投注越高，佣金就越高，亏损分红达到1万以上，另可再次得到1%佣金，【10000X0.1=1000】1000元亏损分红！";
+    }
+    else{
+        self.sectionLabel4.text =  [NSString stringWithFormat:@"您推荐的会员在下注结算后，佣金会自动按照比例加到您的资金账户上。例如：您所推荐的会员下注1000元，您的收益=1000元*(一级下线比例比如：%@%%）=%@元。",self.mUGinviteInfoModel.fandian,jgStr];
+    }
 
    [self.myQrcode1ImageView setImage:[SGQRCodeObtain generateQRCodeWithData:self.mUGinviteInfoModel.link_i size:160.0]];
     
@@ -254,6 +261,9 @@
     if ([@"c126b,test61f" containsString:APP.SiteId]) {
         [self.headerImageView setImage:[UIImage imageNamed:@"c126bHeaderBgImg"]];
     }
+    else if([@"c186,test60f" containsString:APP.SiteId]){
+        [self.headerImageView setImage:[UIImage imageNamed:@"c186HeaderBgImg"]];
+    }
     else{
         [self.headerImageView setImage:[UIImage imageNamed:@"promotioninfo"]];
     }
@@ -264,6 +274,9 @@
         
         if ([@"c126b,test61f" containsString:APP.SiteId]) {
             self.headerImageView.height = kScreenWidth * 22.12 / 18.26;
+        }
+        else if([@"c186,test60f" containsString:APP.SiteId]){
+            self.headerImageView.height = kScreenWidth * 15.88 / 24.34;
         }
         else{
             self.headerImageView.height = 256;

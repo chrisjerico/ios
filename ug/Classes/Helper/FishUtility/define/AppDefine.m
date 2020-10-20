@@ -164,7 +164,8 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 //			_SiteId = @" t133-smith";
-			_SiteId = @"c186";
+			_SiteId = @"test03";
+//			_SiteId = @"c242";
 
         }
 
@@ -250,7 +251,7 @@
     _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL ? NO : [@"c190" containsString:_SiteId];
     _isCornerRadius = YES;
     _isFontSystemSize = NO;
-    _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217,c126" containsString:_SiteId];
+    _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
     _lotteryHallCustomImgS = [@"c190" containsString:_SiteId];
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
 

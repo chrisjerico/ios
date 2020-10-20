@@ -18,6 +18,9 @@
 }
 
 + (instancetype)cc_utils_URLWithString:(NSString *)URLString {
+	if ([URLString containsString:@"uploadIdentity"] || [URLString containsString:@"applyCoinPwd"]) {
+		return [self cc_utils_URLWithString:URLString];
+	}
     return [self cc_utils_URLWithString:URLString.urlEncodedString];
 }
 
