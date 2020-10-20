@@ -19,6 +19,7 @@
 #import "UGEncryptUtil.h"
 #import "GLEncryptManager.h"
 #import "UGPopViewController.h"
+#import "NSURL+Utils.h"
 
 Class CMResultClassGetResultClass(CMResultClass cls);
 Class CMResultClassGetDataClass(CMResultClass cls);
@@ -667,7 +668,90 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     
     [download resume];
 }
+//上传文件
+- (void)uploadFileWithRequestUrl:(NSString *)urlString
+							data:(NSData *)data
+						fileName:(NSString *)fileName
+						  params:(NSDictionary*)params
+						   model:(CMResultClass)model
+					  completion:(CMNetworkBlock)completion {
+	
+	if (checkSign && ![urlString containsString:@"eapi"]) {
+		// 参数加密
+		urlString = [NSString stringWithFormat:@"%@&checkSign=1",urlString];
+		params = [CMNetwork encryptionCheckSign:params];
+	}
+	
+	id resultClass = CMResultClassGetResultClass(model);
+	id dataClass = CMResultClassGetDataClass(model);
+	
+	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 
+	
+	
+	[manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+		[formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/jpeg"];
+		[formData appendPartWithFormData:data name:fileName];
+		} progress:^(NSProgress * _Nonnull uploadProgress) {
+//			dispatch_async(dispatch_get_main_queue(), ^{
+//				if (!uploadProgress.finished) {
+//					[SVProgressHUD showWithStatus:uploadProgress.localizedDescription];
+//				} else {
+//					[SVProgressHUD dismiss];
+//				}
+//			});
+		
+		} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+			
+			NSError *error;
+			CMResult* result;
+			if (responseObject && [responseObject isKindOfClass:NSDictionary.self]) {
+				result  = [resultClass resultWithJSON:responseObject dataClass:dataClass error:&error];
+			}
+			if (completion) {
+				completion(result, error);
+			}
+			NSLog(@"%@",responseObject);
+		} failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+		
+			if (error.code == 401) {
+				[SVProgressHUD dismiss];
+				SANotificationEventPost(UGNotificationloginTimeout, nil);
+				return ;
+			}
+			if (error.code == 402) {
+				[SVProgressHUD dismiss];
+				[CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+				UGUserModel.currentUser = nil;
+				SANotificationEventPost(UGNotificationUserLogout, nil);
+				return ;
+			}
+			if (error.code == 403 || error.code == 404) {
+				NSDictionary *json = [NSJSONSerialization JSONObjectWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] ? : [NSData data] options:0 error:nil];
+				NSError *err;
+				CMResult *result  = [resultClass resultWithJSON:json dataClass:dataClass error:&err];
+				if (completion != nil) {
+					completion(result, err);
+					return;
+				}
+			}
+#ifdef APP_TEST
+			[completion cc_userInfo][@"error"] = error;
+#endif
+			if (error.code == 503) {
+				[self performSelector:@selector(alertViewFor503:) withObject:error.localizedDescription afterDelay:4.0];
+				completion(nil, error);
+				return ;
+			}
+			CMResult* result  = [resultClass resultWithJSON:nil dataClass:dataClass error:&error];
+			result.statusCode = error.code;
+			if (completion != nil) {
+				completion(result, error);
+			}
+			NSLog(@"%@",error);
+		}];
+	
+}
 - (AFHTTPSessionManager *)sessionManager {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

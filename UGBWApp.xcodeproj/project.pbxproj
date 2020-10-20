@@ -31,6 +31,16 @@
 		031A781E23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
 		031A781F23D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */; };
 		031A782023D35A9C00FF2FFA /* LotteryTrendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */; };
+		031AFC41253C1DCF00092DFF /* ResetPasswordApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AFC3F253C1DCF00092DFF /* ResetPasswordApplyVC.m */; };
+		031AFC42253C1DCF00092DFF /* ResetPasswordApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AFC3F253C1DCF00092DFF /* ResetPasswordApplyVC.m */; };
+		031AFC43253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031AFC40253C1DCF00092DFF /* ResetPasswordApplyVC.xib */; };
+		031AFC44253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031AFC40253C1DCF00092DFF /* ResetPasswordApplyVC.xib */; };
+		031AFC4C253C9D7600092DFF /* CMNetwork+Upload.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AFC4B253C9D7600092DFF /* CMNetwork+Upload.m */; };
+		031AFC4D253C9D7700092DFF /* CMNetwork+Upload.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AFC4B253C9D7600092DFF /* CMNetwork+Upload.m */; };
+		031AFC90253E8F2100092DFF /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AFC8F253E8F2000092DFF /* URLModel.m */; };
+		031AFC91253E8F2100092DFF /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AFC8F253E8F2000092DFF /* URLModel.m */; };
+		031AFC96253EBD6F00092DFF /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147423BE812300B0F813 /* NSURL+Utils.m */; };
+		031AFC97253EBD7000092DFF /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147423BE812300B0F813 /* NSURL+Utils.m */; };
 		031E08EF23BE7FFB00B0F813 /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB113723A3B1E10040DE2B /* SiteModel.m */; };
 		031E08F023BE7FFF00B0F813 /* UGNotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D405B345227DB22100F8C586 /* UGNotificationEvent.m */; };
 		031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */; };
@@ -191,8 +201,6 @@
 		031E19DD23BE812700B0F813 /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147123BE812300B0F813 /* NSArray+Utils.m */; };
 		031E19DE23BE812700B0F813 /* NSMutableAttributedString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147223BE812300B0F813 /* NSMutableAttributedString+Utils.m */; };
 		031E19DF23BE812700B0F813 /* NSMutableAttributedString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147223BE812300B0F813 /* NSMutableAttributedString+Utils.m */; };
-		031E19E023BE812700B0F813 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147423BE812300B0F813 /* NSURL+Utils.m */; };
-		031E19E123BE812700B0F813 /* NSURL+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147423BE812300B0F813 /* NSURL+Utils.m */; };
 		031E19E223BE812700B0F813 /* NSUserDefaults+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147823BE812300B0F813 /* NSUserDefaults+Utils.m */; };
 		031E19E323BE812700B0F813 /* NSUserDefaults+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147823BE812300B0F813 /* NSUserDefaults+Utils.m */; };
 		031E19E423BE812700B0F813 /* UIResponder+EventRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E147B23BE812300B0F813 /* UIResponder+EventRouter.m */; };
@@ -2260,6 +2268,13 @@
 		031A781A23D35A9C00FF2FFA /* LotteryTrendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryTrendVC.h; sourceTree = "<group>"; };
 		031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryTrendVC.m; sourceTree = "<group>"; };
 		031A781C23D35A9C00FF2FFA /* LotteryTrendVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotteryTrendVC.xib; sourceTree = "<group>"; };
+		031AFC3E253C1DCF00092DFF /* ResetPasswordApplyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResetPasswordApplyVC.h; sourceTree = "<group>"; };
+		031AFC3F253C1DCF00092DFF /* ResetPasswordApplyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordApplyVC.m; sourceTree = "<group>"; };
+		031AFC40253C1DCF00092DFF /* ResetPasswordApplyVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPasswordApplyVC.xib; sourceTree = "<group>"; };
+		031AFC4A253C9D7600092DFF /* CMNetwork+Upload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CMNetwork+Upload.h"; sourceTree = "<group>"; };
+		031AFC4B253C9D7600092DFF /* CMNetwork+Upload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CMNetwork+Upload.m"; sourceTree = "<group>"; };
+		031AFC8E253E8F2000092DFF /* URLModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLModel.h; sourceTree = "<group>"; };
+		031AFC8F253E8F2000092DFF /* URLModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLModel.m; sourceTree = "<group>"; };
 		031E13C223BE812300B0F813 /* UGSkinCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGSkinCollectionViewCell.xib; sourceTree = "<group>"; };
 		031E13C323BE812300B0F813 /* UGSkinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinViewController.h; sourceTree = "<group>"; };
 		031E13C423BE812300B0F813 /* UGSkinManagers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGSkinManagers.h; sourceTree = "<group>"; };
@@ -4388,6 +4403,15 @@
 			path = "走势图";
 			sourceTree = "<group>";
 		};
+		031AFC8D253E8EFA00092DFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				031AFC8E253E8F2000092DFF /* URLModel.h */,
+				031AFC8F253E8F2000092DFF /* URLModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		031E13C123BE812300B0F813 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
@@ -4973,6 +4997,8 @@
 				031E14C823BE812300B0F813 /* CMNetwork+Mine.m */,
 				031E14D023BE812300B0F813 /* CMNetwork+Document.h */,
 				031E14C923BE812300B0F813 /* CMNetwork+Document.m */,
+				031AFC4A253C9D7600092DFF /* CMNetwork+Upload.h */,
+				031AFC4B253C9D7600092DFF /* CMNetwork+Upload.m */,
 			);
 			path = CMNetwork;
 			sourceTree = "<group>";
@@ -6268,9 +6294,13 @@
 		031E172A23BE812400B0F813 /* 取款 */ = {
 			isa = PBXGroup;
 			children = (
+				031AFC8D253E8EFA00092DFF /* Model */,
 				031E172D23BE812400B0F813 /* UGWithdrawalViewController.h */,
 				031E172B23BE812400B0F813 /* UGWithdrawalViewController.m */,
 				031E172C23BE812400B0F813 /* UGWithdrawalViewController.storyboard */,
+				031AFC3E253C1DCF00092DFF /* ResetPasswordApplyVC.h */,
+				031AFC3F253C1DCF00092DFF /* ResetPasswordApplyVC.m */,
+				031AFC40253C1DCF00092DFF /* ResetPasswordApplyVC.xib */,
 			);
 			path = "取款";
 			sourceTree = "<group>";
@@ -9339,6 +9369,7 @@
 				CF8508762466D71B0025672F /* PromotePopView.xib in Resources */,
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
 				031EF57623BE7B4D00B0F813 /* yinhangkaguanli.svg in Resources */,
+				031AFC44253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */,
 				038A585D24AB25840099D659 /* MinePacketProduceView.xib in Resources */,
 				03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */,
 				031EF5AD23BE7B4D00B0F813 /* MomentsHomeCell.xib in Resources */,
@@ -10040,6 +10071,7 @@
 				CF47591C239636D200966536 /* 12.gif in Resources */,
 				CF4758FE239636D200966536 /* 64.gif in Resources */,
 				D42072372456B521008D0749 /* DZPTwoView.xib in Resources */,
+				031AFC43253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */,
 				CF624169252066BA00016A57 /* NewLotteryHeaderViewCollectionReusableView.xib in Resources */,
 				CF475909239636D200966536 /* 73.gif in Resources */,
 				031E1AB423BE812800B0F813 /* tag_list_s@2x.png in Resources */,
@@ -10399,6 +10431,7 @@
 				031E1D6F23BE812B00B0F813 /* UGMosaicGoldViewController.m in Sources */,
 				22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */,
 				031EF5C923BE7B4E00B0F813 /* UGGroupChatVC.swift in Sources */,
+				031AFC91253E8F2100092DFF /* URLModel.m in Sources */,
 				0372B59123C9984F00B564FF /* PromotionRecordCell1.m in Sources */,
 				031EF55F23BE7B4D00B0F813 /* Reachability.swift in Sources */,
 				031E1C5323BE812A00B0F813 /* UGBetResultView.m in Sources */,
@@ -10453,6 +10486,7 @@
 				031E1AC323BE812800B0F813 /* WMDropDown2View.m in Sources */,
 				031E1BFB23BE812900B0F813 /* UGBJPK10LotteryController.m in Sources */,
 				031E1C0923BE812900B0F813 /* UGBetDetailModel.m in Sources */,
+				031AFC4D253C9D7700092DFF /* CMNetwork+Upload.m in Sources */,
 				031E1C3523BE812900B0F813 /* UGTimeLotteryBetHeaderView.m in Sources */,
 				03E3AABB23C84BD2009A28C0 /* PromotionMemberRechargeVC.m in Sources */,
 				031E19D523BE812700B0F813 /* NSTimer+Block.m in Sources */,
@@ -10617,6 +10651,7 @@
 				031E1B0723BE812800B0F813 /* UIView+SGExtension.m in Sources */,
 				031E1CD123BE812A00B0F813 /* MJRefreshBackGifFooter.m in Sources */,
 				031E1A5B23BE812700B0F813 /* OpenUDID.m in Sources */,
+				031AFC42253C1DCF00092DFF /* ResetPasswordApplyVC.m in Sources */,
 				030A872923C57AE30001EF82 /* JS_Sidebar.m in Sources */,
 				031E1D8D23BE812B00B0F813 /* UGMineSkinViewController.m in Sources */,
 				031EF5EF23BE7B4E00B0F813 /* ControllerProvider.swift in Sources */,
@@ -10655,6 +10690,7 @@
 				031EF5D923BE7B4E00B0F813 /* BetMessageContentView.swift in Sources */,
 				031E1A9B23BE812800B0F813 /* AddressModel.m in Sources */,
 				22FAD04823D471630002EA1D /* LotteryTrendContentCell.m in Sources */,
+				031AFC96253EBD6F00092DFF /* NSURL+Utils.m in Sources */,
 				031E1AD523BE812800B0F813 /* SRActionSheet.m in Sources */,
 				031E1ACF23BE812800B0F813 /* TGWebViewController.m in Sources */,
 				CF6241742520708500016A57 /* NewLotteryRightCollectionViewCell.m in Sources */,
@@ -10921,7 +10957,6 @@
 				031E1BE323BE812900B0F813 /* UGHKLHCLotteryController.m in Sources */,
 				031E1BD923BE812900B0F813 /* UGCommonLotteryController.m in Sources */,
 				CF4FAFC8252C80FC004C47AB /* HelpDocModel.m in Sources */,
-				031E19E123BE812700B0F813 /* NSURL+Utils.m in Sources */,
 				031E1DC323BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
 				031E1D2B23BE812B00B0F813 /* UGIntegralConvertRecordController.m in Sources */,
 				031E1AE723BE812800B0F813 /* TAAbstractDotView.m in Sources */,
@@ -11151,6 +11186,7 @@
 				031E1BAE23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1C0A23BE812900B0F813 /* UGbetModel.m in Sources */,
 				CF6E4D0E2529B49200ABF719 /* BRStringPickerView.m in Sources */,
+				031AFC4C253C9D7600092DFF /* CMNetwork+Upload.m in Sources */,
 				031E1A6823BE812700B0F813 /* UGAppVersionManager.m in Sources */,
 				CFBAAC592525CB5F00C5F6F6 /* UGDepositDetailsXNViewController.m in Sources */,
 				D42AC9F624EE4D3E0088455D /* PlatWebViewController.m in Sources */,
@@ -11159,6 +11195,7 @@
 				CFD85F0D23F577AB000898CC /* ReactNativeVC.m in Sources */,
 				031E1E1023BE812C00B0F813 /* UGSignInScrFootView.m in Sources */,
 				031E1ADA23BE812800B0F813 /* SDCycleScrollView.m in Sources */,
+				031AFC90253E8F2100092DFF /* URLModel.m in Sources */,
 				031E1CEE23BE812A00B0F813 /* SVProgressAnimatedView.m in Sources */,
 				031E199E23BE812600B0F813 /* IBTextField.m in Sources */,
 				031E1E5023BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.m in Sources */,
@@ -11213,7 +11250,6 @@
 				031E19D623BE812700B0F813 /* NSDate+Millisecond.m in Sources */,
 				031E1B6C23BE812800B0F813 /* UGPlatformTitleBlackCell.m in Sources */,
 				031E197623BE812600B0F813 /* UGLHPostCommentModel.m in Sources */,
-				031E19E023BE812700B0F813 /* NSURL+Utils.m in Sources */,
 				CF6E4D0C2529B49200ABF719 /* BRResultModel.m in Sources */,
 				031E1DA023BE812B00B0F813 /* UGdepositStatModel.m in Sources */,
 				031E1A9C23BE812800B0F813 /* MOFSAddressPickerView.m in Sources */,
@@ -11570,6 +11606,7 @@
 				031E1CB623BE812A00B0F813 /* UGTableViewCell.m in Sources */,
 				226CA20F23D2E37400E4D921 /* HSC_BetFormCell.m in Sources */,
 				031E1C1E23BE812900B0F813 /* UGFastThreeThreeCollectionViewCell.m in Sources */,
+				031AFC97253EBD7000092DFF /* NSURL+Utils.m in Sources */,
 				031E1DBA23BE812B00B0F813 /* UGdepositListModel.m in Sources */,
 				031E1A2223BE812700B0F813 /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,
 				031E1E2C23BE812C00B0F813 /* UGActivityGoldView.m in Sources */,
@@ -11577,6 +11614,7 @@
 				CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */,
 				D4593B0B23FFB646008396BE /* LineMainListCollectionViewCell.m in Sources */,
 				031E1A8E23BE812700B0F813 /* SAROPSession.m in Sources */,
+				031AFC41253C1DCF00092DFF /* ResetPasswordApplyVC.m in Sources */,
 				031E1DEC23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
 				D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */,
 				031E19A823BE812600B0F813 /* AppDefine.m in Sources */,

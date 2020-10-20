@@ -17,6 +17,7 @@ enum FileUploadTarget {
 	case image(data: UIImage)
 	case avatar(data: UIImage)
 	case moments(images: [UIImage])
+	case identity(image: UIImage)
 }
 
 extension FileUploadTarget: TargetType {
@@ -81,7 +82,16 @@ extension FileUploadTarget: TargetType {
 				formDatas.append(imageData)
 			}
 			
+		case let .identity(image):
 			
+			urlParameters["c"] = "user"
+			urlParameters["a"] = "uploadIdentity"
+			
+			bodyParameters["token"] = App.user.sessid
+			
+			let imageData = MultipartFormData(provider: .data(image.jpegData(compressionQuality: 0.65)!), name: "files", fileName: "\(UUID().uuidString).jpg", mimeType: "image/jpeg")
+			formDatas.append(imageData)
+
 			
 		}
 		
