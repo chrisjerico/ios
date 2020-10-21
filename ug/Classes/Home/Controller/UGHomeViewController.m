@@ -29,7 +29,6 @@
 #import "SLWebViewController.h"
 #import "SLWebViewController.h"
 #import "QDWebViewController.h"
-#import "UGGameListViewController.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGChangLongController.h"

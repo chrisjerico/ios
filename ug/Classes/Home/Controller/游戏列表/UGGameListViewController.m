@@ -13,8 +13,10 @@
 #import "QDWebViewController.h"
 
 @interface UGGameListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, weak)IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray <UGSubGameModel *> *dataArray;
+@property (weak, nonatomic) IBOutlet UIButton *searchBtn; //搜索按钮
+@property (weak, nonatomic) IBOutlet UITextField *textF; //搜索textF
 
 @end
 
@@ -30,14 +32,37 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
     
     self.navigationItem.title = self.game.title;
     self.view.backgroundColor = Skin1.bgColor;
-    [self.view addSubview:self.collectionView];
-    [self getGameList];
+    self.searchBtn.layer.cornerRadius = 5;
+    self.searchBtn.layer.masksToBounds = YES;
+    [self.searchBtn setBackgroundColor:Skin1.navBarBgColor];
+    [self collectionViewStyle];
+    [self getGameList:YES];
 }
 
-- (void)getGameList {
+- (IBAction)searchAction:(id)sender {
+    [self getGameList:NO];
+}
+- (IBAction)allAction:(id)sender {
+    [self getGameList:YES];
+}
+
+- (void)getGameList: (BOOL)isAll {
     
     WeakSelf;
-    NSDictionary *params = @{@"id":self.game.gameId};
+    NSDictionary *params;
+    if (isAll) {
+        params = @{@"id":self.game.gameId};
+    } else {
+        NSString *searchStr = @"";
+        if (![CMCommon stringIsNull:self.textF.text]) {
+            searchStr = self.textF.text.stringByTrim;
+        }
+        
+       params = @{@"id":self.game.gameId,
+                  @"search_text":searchStr
+                  };
+    }
+     
     [CMNetwork getGameListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             weakSelf.dataArray = model.data;
@@ -134,35 +159,21 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 }
 
 
-- (UICollectionView *)collectionView {
-    if (_collectionView == nil) {
-        
-        WSLWaterFlowLayout *flow = [[WSLWaterFlowLayout alloc] init];
-        flow.delegate = self;
-        flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
-        
-        UICollectionView *collectionView = ({
-            float collectionViewH;
-            if ([CMCommon isPhoneX]) {
-                collectionViewH = UGScerrnH - 88 - 10;
-            }else {
-                collectionViewH = UGScerrnH - 64 - 10;
-            }
-            collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(5, 5, UGScreenW - 10, collectionViewH) collectionViewLayout:flow];
-            collectionView.backgroundColor = [UIColor clearColor];
-            collectionView.layer.cornerRadius = 10;
-            collectionView.layer.masksToBounds = YES;
-            collectionView.dataSource = self;
-            collectionView.delegate = self;
-            [collectionView setShowsHorizontalScrollIndicator:NO];
-            [collectionView registerNib:[UINib nibWithNibName:@"UGGameListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:gameListCellId];
-            collectionView;
-            
-        });
-        
-        _collectionView = collectionView;
-    }
-    return _collectionView;
+- (void)collectionViewStyle {
+
+    WSLWaterFlowLayout *flow = [[WSLWaterFlowLayout alloc] init];
+    flow.delegate = self;
+    flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
+
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionView.layer.cornerRadius = 10;
+    self.collectionView.layer.masksToBounds = YES;
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
+    [self.collectionView setShowsHorizontalScrollIndicator:NO];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"UGGameListCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:gameListCellId];
+    
+    [self.collectionView setCollectionViewLayout:flow];
 }
 
 - (NSMutableArray<UGSubGameModel *> *)dataArray {

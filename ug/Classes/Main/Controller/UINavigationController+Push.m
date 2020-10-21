@@ -137,7 +137,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     // 去二级游戏列表
     if (model.isPopup) {
-        UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
+        UGGameListViewController *gameListVC = _LoadVC_from_storyboard_(@"UGGameListViewController");
         gameListVC.game = model;
         [NavController1 pushViewController:gameListVC animated:YES];
         return true;

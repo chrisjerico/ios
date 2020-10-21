@@ -5501,11 +5501,10 @@
 		031E15C823BE812400B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF8A8E84253ED5A7008C05C8 /* 游戏列表 */,
 				031E15D523BE812400B0F813 /* UGHomeViewController.h */,
 				031E15E223BE812400B0F813 /* UGHomeViewController.m */,
 				031E15D723BE812400B0F813 /* UGHomeViewController.storyboard */,
-				031E15D823BE812400B0F813 /* UGGameListViewController.h */,
-				031E15CF23BE812400B0F813 /* UGGameListViewController.m */,
 				031E15CB23BE812400B0F813 /* 开奖记录 */,
 				031E15D023BE812400B0F813 /* 资料页 */,
 				031E15D923BE812400B0F813 /* 长龙助手 */,
@@ -8494,6 +8493,15 @@
 				CF6E4D0B2529B49200ABF719 /* BRAddressPickerView.m */,
 			);
 			path = AddressPickerView;
+			sourceTree = "<group>";
+		};
+		CF8A8E84253ED5A7008C05C8 /* 游戏列表 */ = {
+			isa = PBXGroup;
+			children = (
+				031E15D823BE812400B0F813 /* UGGameListViewController.h */,
+				031E15CF23BE812400B0F813 /* UGGameListViewController.m */,
+			);
+			path = "游戏列表";
 			sourceTree = "<group>";
 		};
 		CF8E240F23DDBFD80054BF0F /* Fonts */ = {
