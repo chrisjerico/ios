@@ -68,8 +68,8 @@
                 }];
             }
             else {
-                NSString *environment = @"ezer3";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
-                NSString *branch = @"Ezer/trendView";    // 分支名：fish/dev1
+                NSString *environment = @"master";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
+                NSString *branch = @"master";    // 分支名：fish/dev1
                 
                 [RNPack checkEnvironment:environment completion:^(NSString * _Nonnull environment) {
                     [ShellHelper pullCode:RNPack.projectDir branch:branch completion:^(GitModel * _Nonnull gm) {
