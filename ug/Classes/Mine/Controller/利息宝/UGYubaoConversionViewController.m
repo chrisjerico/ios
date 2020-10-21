@@ -160,11 +160,11 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 	self.collectionView.height = self.amountArray.count * 50;
 	self.scrollCententHeightConstraint.constant = 250 + self.collectionView.height;
 	[self.scrollContentView addSubview:self.collectionView];
-	SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-		[self setupInfo];
-	});
 	[self setupInfo];
-	
+	WeakSelf;
+	SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+		[weakSelf setupInfo];
+	 });
 	
 	
 }

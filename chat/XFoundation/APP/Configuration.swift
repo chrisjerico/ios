@@ -28,8 +28,27 @@ public final class Configuration: NSObject {
 		configAmap()
 		configPhotoBrowser()
 		LogVC.enable()
-        RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
+		RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
+		configSANotifications()
 		
+		
+	}
+	public static func configSANotifications() {
+		SANotificationEventSubscribe(UGNotificationGetUserInfo, self) { (result, error) in
+			let user = UGUserModel.currentUser()
+			guard user.sessid.count > 0 else { return }
+			CMNetwork.getUserInfo(withParams: ["token": user.sessid]) { (result, error) in
+				if error != nil {
+					logger.debug(error?.localizedDescription)
+				}
+				if let newUser = result?.data as? UGUserModel {
+					newUser.sessid = user.sessid
+					newUser.token = user.token
+					UGUserModel.setCurrentUser(newUser)
+					SANotificationEventPost(UGNotificationGetUserInfoComplete, nil)
+				}
+			}
+		}
 	}
 	
 	/// 清除缓存
