@@ -308,7 +308,7 @@ static UGSkinManagers *__initSkin1 = nil;
 				sm.skitType                 = @"经典";
 				sm.skitString               = @"经典 1蓝色";
 				sm.bgColor                  = color(@"7F9493,5389B3");
-				sm.navBarBgColor            = color(@"609AC5");
+                sm.navBarBgColor            = color(@"609AC5");
 				sm.tabBarBgColor            = color(@"8DA3B1");
 				sm.tabNoSelectColor         = color(@"525252");
 				sm.tabSelectedColor         = color(@"010101");
@@ -1420,6 +1420,12 @@ static UGSkinManagers *__initSkin1 = nil;
             skin.isSLH = [skin.skitType isEqualToString:@"石榴红"];
             skin.isBlack = skin.isGPK || skin.is23;
             skin.isTKL = [skin.skitType containsString:@"天空蓝"];
+            
+            if ([@"c242" containsString:APP.SiteId]) {
+                skin.navBarBgColor = color(@"CE0009");
+            } else {
+                skin.navBarBgColor = color(@"609AC5");
+            }
         }
 		
 		__currentSkin1 = __lastSkin1 = __initSkin1 = __dict[@"1"];
@@ -1469,7 +1475,6 @@ static UGSkinManagers *__initSkin1 = nil;
 	if ([@"c245" containsString:APP.SiteId]) {
 		skitType = @"1";
 	}
-    
     
 
 #ifdef DEBUG
