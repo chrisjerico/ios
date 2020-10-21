@@ -10,7 +10,7 @@
 
 
 
-#define __SiteID__ @"c186"
+#define __SiteID__ @"test60f"
 #define LocalRnVersion @"1.4.66"
 
 
@@ -164,7 +164,7 @@
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 //			_SiteId = @" t133-smith";
-			_SiteId = @"test03";
+			_SiteId = @"test60f";
 //			_SiteId = @"c242";
 
         }
