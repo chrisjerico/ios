@@ -1985,6 +1985,10 @@
 		CF6E4D1F2529B49200ABF719 /* BRAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6E4D082529B49200ABF719 /* BRAddressModel.m */; };
 		CF6E4D202529B49200ABF719 /* BRAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6E4D0B2529B49200ABF719 /* BRAddressPickerView.m */; };
 		CF6E4D212529B49200ABF719 /* BRAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6E4D0B2529B49200ABF719 /* BRAddressPickerView.m */; };
+		CF722BDB25416E3400939A7C /* UGOnlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF722BDA25416E3400939A7C /* UGOnlineView.m */; };
+		CF722BDC25416E3400939A7C /* UGOnlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF722BDA25416E3400939A7C /* UGOnlineView.m */; };
+		CF722BE225416F7600939A7C /* UGOnlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF722BE125416F7600939A7C /* UGOnlineView.xib */; };
+		CF722BE325416F7600939A7C /* UGOnlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF722BE125416F7600939A7C /* UGOnlineView.xib */; };
 		CF76AA0124D41B23001E4AF6 /* ztlight2-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */; };
 		CF76AA0224D41B23001E4AF6 /* ztlight-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */; };
 		CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */; };
@@ -4045,6 +4049,9 @@
 		CF6E4D092529B49200ABF719 /* BRAddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddressPickerView.h; sourceTree = "<group>"; };
 		CF6E4D0A2529B49200ABF719 /* BRAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRAddressModel.h; sourceTree = "<group>"; };
 		CF6E4D0B2529B49200ABF719 /* BRAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRAddressPickerView.m; sourceTree = "<group>"; };
+		CF722BD925416E3400939A7C /* UGOnlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGOnlineView.h; sourceTree = "<group>"; };
+		CF722BDA25416E3400939A7C /* UGOnlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGOnlineView.m; sourceTree = "<group>"; };
+		CF722BE125416F7600939A7C /* UGOnlineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGOnlineView.xib; sourceTree = "<group>"; };
 		CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight2-yn.gif"; sourceTree = "<group>"; };
 		CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight-yn.gif"; sourceTree = "<group>"; };
 		CF80DE0924DBDABB005234D8 /* WKUserContentController+MemoryLeak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKUserContentController+MemoryLeak.h"; sourceTree = "<group>"; };
@@ -5626,6 +5633,7 @@
 		031E160F23BE812400B0F813 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				CF722BD725416DEE00939A7C /* 在线客服 */,
 				D4346B5B24053D2000D8FE7C /* 折叠优惠HeaderView */,
 				031E161023BE812400B0F813 /* 红包弹框 */,
 				031E161723BE812400B0F813 /* H5的返回弹框 */,
@@ -8495,6 +8503,16 @@
 			path = AddressPickerView;
 			sourceTree = "<group>";
 		};
+		CF722BD725416DEE00939A7C /* 在线客服 */ = {
+			isa = PBXGroup;
+			children = (
+				CF722BD925416E3400939A7C /* UGOnlineView.h */,
+				CF722BDA25416E3400939A7C /* UGOnlineView.m */,
+				CF722BE125416F7600939A7C /* UGOnlineView.xib */,
+			);
+			path = "在线客服";
+			sourceTree = "<group>";
+		};
 		CF8A8E84253ED5A7008C05C8 /* 游戏列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9522,6 +9540,7 @@
 				03E56F8C2480E68C00996099 /* ConversationBottomView.xib in Resources */,
 				031E1BB523BE812900B0F813 /* UGBMUnderMenuView.xib in Resources */,
 				031E1CF523BE812A00B0F813 /* SVProgressHUD.bundle in Resources */,
+				CF722BE325416F7600939A7C /* UGOnlineView.xib in Resources */,
 				031E1E4123BE812C00B0F813 /* UGPormotionUserInfoView.xib in Resources */,
 				031E1B5723BE812800B0F813 /* UGredActivityView.xib in Resources */,
 				031E1BA923BE812900B0F813 /* BMMine.storyboard in Resources */,
@@ -10059,6 +10078,7 @@
 				031E1D6823BE812B00B0F813 /* UGBindCardViewController.storyboard in Resources */,
 				031E1E1E23BE812C00B0F813 /* UGActivityGoldView.xib in Resources */,
 				CF4758CE239636D200966536 /* 86.gif in Resources */,
+				CF722BE225416F7600939A7C /* UGOnlineView.xib in Resources */,
 				031E1E8823BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
 				CF4758DF239636D200966536 /* 153.gif in Resources */,
 				CF47590E239636D200966536 /* 129.gif in Resources */,
@@ -10677,6 +10697,7 @@
 				031AFC42253C1DCF00092DFF /* ResetPasswordApplyVC.m in Sources */,
 				030A872923C57AE30001EF82 /* JS_Sidebar.m in Sources */,
 				031E1D8D23BE812B00B0F813 /* UGMineSkinViewController.m in Sources */,
+				CF722BDC25416E3400939A7C /* UGOnlineView.m in Sources */,
 				031EF5EF23BE7B4E00B0F813 /* ControllerProvider.swift in Sources */,
 				031E199923BE812600B0F813 /* LHPostRewardView.m in Sources */,
 				031E195323BE812600B0F813 /* UGDocumentListVC.m in Sources */,
@@ -11507,6 +11528,7 @@
 				031E1AEE23BE812800B0F813 /* NullSafe.m in Sources */,
 				0372B59023C9984F00B564FF /* PromotionRecordCell1.m in Sources */,
 				031E19E423BE812700B0F813 /* UIResponder+EventRouter.m in Sources */,
+				CF722BDB25416E3400939A7C /* UGOnlineView.m in Sources */,
 				031E1D8823BE812B00B0F813 /* UGBalanceConversionController.m in Sources */,
 				031E1B7623BE812800B0F813 /* UGGameTypeColletionViewCell.m in Sources */,
 				031E1DC023BE812B00B0F813 /* UGapplyWinLogDetail.m in Sources */,

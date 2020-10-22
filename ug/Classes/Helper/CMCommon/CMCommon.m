@@ -1732,6 +1732,22 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     return [str stringByTrim];
 }
 
-
++(void)goSLWebViewControllerUrl:(NSString *)mUrl{
+    NSString *urlStr = [mUrl stringByTrim];
+    if (!urlStr.length) {
+        return ;
+    }
+    SLWebViewController *webViewVC = [SLWebViewController new];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if (!url.host.length) {
+        urlStr = _NSString(@"%@%@", APP.Host, SysConf.zxkfUrl);
+    }
+    else if (!url.scheme.length) {
+        urlStr = _NSString(@"http://%@", SysConf.zxkfUrl);
+    }
+    webViewVC.isCustomerService = YES;
+    webViewVC.urlStr = urlStr;
+    [NavController1 pushViewController:webViewVC animated:YES];
+}
 
 @end

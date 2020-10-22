@@ -283,7 +283,7 @@
     _isAllCellStyle = [@"c126" containsString:_SiteId];
     _isC126CellStyle = [@"c126" containsString:_SiteId];
     _isC239B = [@"c239b" containsString:_SiteId];
-
+    _isTwoOnline = [@"c150" containsString:_SiteId];
     
 }
 

@@ -142,6 +142,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, readonly) NSString *clsName;
 + (NSArray <UGMobileMenu *>*)allMenus;
 - (void)createViewController:(void (^)(__kindof UIViewController *vc))completion;
+
 @end
 @protocol UGSystemConfigModel <NSObject>
 
@@ -150,7 +151,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 
 @interface UGSystemConfigModel : UGModel<UGSystemConfigModel>
-
+//自定义
+@property (nonatomic, copy) NSString *zxkf_1Url;                    /**<  只返回 在线客服1 */
+//===============================================
 @property (nonatomic, copy) NSString *zxkfUrl2;                    /**<   在线客服2 */
 @property (nonatomic, copy) NSString *zxkfUrl;                    /**<   在线客服 */
 @property (nonatomic, copy) NSString *minWithdrawMoney;           /**<   最低提款金额 */

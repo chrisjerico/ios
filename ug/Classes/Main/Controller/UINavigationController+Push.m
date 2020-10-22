@@ -9,7 +9,7 @@
 #import "UINavigationController+Push.h"
 #import "UGBMMemberCenterViewController.h"
 #import "UGBMBrowseViewController.h"
-
+#import "UGOnlineView.h"
 // ViewController
 #import "UGCommonLotteryController.h"
 #import "UGChangLongController.h"
@@ -450,7 +450,21 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 4: {
             // 在线客服
 
-            [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+            if (APP.isTwoOnline) {
+       
+                float y;
+                if ([CMCommon isPhoneX]) {
+                    y = 160;
+                } else {
+                    y = 100;
+                }
+                UGOnlineView *popView = [[UGOnlineView alloc] initWithFrame:CGRectMake(50, y, UGScreenW - 80, 200)];
+                [popView show];
+               
+            } else {
+                [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+            }
+          
 
             break;
         }

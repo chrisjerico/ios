@@ -55,7 +55,6 @@
 @property (nonatomic,assign) BOOL isBgColorForMoneyVC;                     /**< 存款页面进去的底色为bg色   */
 @property (nonatomic,assign) BOOL isC217RWDT;                                /**<  我的把任务中心4个字换成任务大厅*/
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
-
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
 //======个人中心
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
@@ -113,6 +112,8 @@
 @property (nonatomic) BOOL isNoSubtitle;                               /**<  首页游戏cell没有副标题的高度*/
 @property (nonatomic,assign) BOOL isC190Cell;                                /**<  首页中优惠活动列表c190，c012 图片贴边 */
 @property (nonatomic,assign) BOOL isNewLocation;                         /**<  首页刮刮乐，大转盘，砸金蛋移动到红包位置*/
+@property (nonatomic) BOOL isTwoOnline;                                  /**< 首页点击在线客服会弹出框2个在线客服*/
+
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
