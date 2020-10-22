@@ -458,7 +458,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 } else {
                     y = 100;
                 }
-                UGOnlineView *popView = [[UGOnlineView alloc] initWithFrame:CGRectMake(50, y, UGScreenW - 80, 200)];
+                UGOnlineView *popView = [[UGOnlineView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, 200)];
                 [popView show];
                
             } else {
