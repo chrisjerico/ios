@@ -107,7 +107,7 @@
     [self.registeredLabel setTextColor:Skin1.textColor1];
     [self.two2wmLabel setTextColor:Skin1.textColor1];
     
-    [self.cell5BgView setBackgroundColor:Skin1.CLBgColor];
+    [self.cell5BgView setBackgroundColor:Skin1.textColor4];
     [self.moneyLabel setTextColor:Skin1.textColor1];
     [self.sectionLabel4 setTextColor:Skin1.textColor1];
     
@@ -155,7 +155,7 @@
     self.bigView.layer.cornerRadius = 5;
     self.bigView.layer.masksToBounds = YES;
     
-    [self.bigView setBackgroundColor:Skin1.homeContentSubColor];
+    [self.bigView setBackgroundColor:Skin1.CLBgColor];
     _buttons = [NSMutableArray new];
     [_buttons addObject:self.oneBtn];
     [_buttons addObject:self.secondBtn];
@@ -167,8 +167,8 @@
     UIButton *btnOne = [_buttons objectAtIndex:0];
     [btnOne setTitleColor:[UIColor redColor] forState:0];
     [self loadText:btnOne];
-    [CMCommon setBorderWithView:btnOne top:NO left:NO bottom:NO right:YES borderColor:Skin1.homeContentSubColor borderWidth:1];
-    [btnOne setBackgroundColor:Skin1.homeContentSubColor];
+    [CMCommon setBorderWithView:btnOne top:NO left:NO bottom:NO right:YES borderColor:Skin1.CLBgColor borderWidth:1];
+    [btnOne setBackgroundColor:Skin1.CLBgColor];
   
 }
 - (IBAction)btnAction:(id)sender {
@@ -199,8 +199,8 @@
     [self allButtonSetTitleBlackColor];
     UIButton *btn = (UIButton *)sender;
     [btn setTitleColor:[UIColor redColor] forState:0];
-    [CMCommon setBorderWithView:btn top:NO left:NO bottom:NO right:YES borderColor:Skin1.homeContentSubColor borderWidth:1];
-    [btn setBackgroundColor:Skin1.homeContentSubColor];
+    [CMCommon setBorderWithView:btn top:NO left:NO bottom:NO right:YES borderColor:Skin1.CLBgColor borderWidth:1];
+    [btn setBackgroundColor:Skin1.CLBgColor];
 }
 
 - (void)allButtonSetTitleBlackColor {
