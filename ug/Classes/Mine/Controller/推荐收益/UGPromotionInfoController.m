@@ -63,6 +63,17 @@
 @property (weak, nonatomic) IBOutlet UIView *cell8BgView;         /**<   推荐会员总计cellbg*/
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;          /**<  推荐会员总计 */
 @property (weak, nonatomic) IBOutlet UIView *cell9BgView;         /**<  最下面cellbg*/
+
+@property (weak, nonatomic) IBOutlet UIView *bigView;/**<  佣金比例View*/
+@property (weak, nonatomic) IBOutlet UIButton *oneBtn;/**<  第1个btn*/
+@property (weak, nonatomic) IBOutlet UIButton *secondBtn;/**<  第2个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *threeBtn;/**<  第3个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *fourBtn;/**<  第4个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *fiveBtn;/**<  第5个btn**/
+@property (strong, nonatomic) NSMutableArray *buttons;/**<  btn数组**/
+@property (weak, nonatomic) IBOutlet UILabel *mContentLbl;/**<  佣金比例内容*/
+@property (weak, nonatomic) IBOutlet UIStackView *btnsView;/**<  btnView**/
+
 @end
 
 @implementation UGPromotionInfoController
@@ -133,13 +144,80 @@
     self.headerImageView.height = 0.1;
     
     [self teamInviteInfoData];
+    [self bigViewInitStyle];
 }
 
+-(void)bigViewInitStyle{
+    [self.mContentLbl setTextColor:Skin1.textColor1];
+    [self.btnsView setBackgroundColor:Skin1.textColor3];
+    self.bigView.layer.borderColor=[Skin1.textColor3 CGColor];
+    self.bigView.layer.borderWidth= 1;
+    self.bigView.layer.cornerRadius = 5;
+    self.bigView.layer.masksToBounds = YES;
+    
+    [self.bigView setBackgroundColor:Skin1.homeContentSubColor];
+    _buttons = [NSMutableArray new];
+    [_buttons addObject:self.oneBtn];
+    [_buttons addObject:self.secondBtn];
+    [_buttons addObject:self.threeBtn];
+    [_buttons addObject:self.fourBtn];
+    [_buttons addObject:self.fiveBtn];
+    [self allButtonSetTitleBlackColor];
+    
+    UIButton *btnOne = [_buttons objectAtIndex:0];
+    [btnOne setTitleColor:[UIColor redColor] forState:0];
+    [self loadText:btnOne];
+    [CMCommon setBorderWithView:btnOne top:NO left:NO bottom:NO right:YES borderColor:Skin1.homeContentSubColor borderWidth:1];
+    [btnOne setBackgroundColor:Skin1.homeContentSubColor];
+  
+}
+- (IBAction)btnAction:(id)sender {
+    [self  selectButtonSetRedColor:sender];
+    [self loadText:sender];
+}
+
+-(void)loadText:(UIControl *)sender{
+    UIButton *btn = (UIButton *)sender;
+    if ([btn.tagString isEqualToString:@"彩票返点btn"]) {
+        self.mContentLbl.text = btn.tagString;
+    }
+    else  if ([btn.tagString isEqualToString:@"视讯返点btn"]) {
+        self.mContentLbl.text = btn.tagString;
+    }
+    else  if ([btn.tagString isEqualToString:@"捕鱼返点btn"]) {
+        self.mContentLbl.text = btn.tagString;
+    }
+    else  if ([btn.tagString isEqualToString:@"电子返点btn"]) {
+        self.mContentLbl.text = btn.tagString;
+    }
+    else  if ([btn.tagString isEqualToString:@"棋牌返点btn"]) {
+        self.mContentLbl.text = btn.tagString;
+    }
+}
+
+-(void)selectButtonSetRedColor:(UIControl *)sender{
+    [self allButtonSetTitleBlackColor];
+    UIButton *btn = (UIButton *)sender;
+    [btn setTitleColor:[UIColor redColor] forState:0];
+    [CMCommon setBorderWithView:btn top:NO left:NO bottom:NO right:YES borderColor:Skin1.homeContentSubColor borderWidth:1];
+    [btn setBackgroundColor:Skin1.homeContentSubColor];
+}
+
+- (void)allButtonSetTitleBlackColor {
+    // UIButton
+    for (UIView *v in self.buttons) {
+        if ([ v isKindOfClass:[UIButton class]]) {
+            UIButton *btn = (UIButton *)v;
+            [btn setTitleColor:[UIColor blackColor] forState:0];
+            [btn setBackgroundColor:RGBA(196, 203, 204, 1)];
+            [CMCommon setBorderWithView:btn top:NO left:NO bottom:NO right:YES borderColor:Skin1.textColor3 borderWidth:1];
+        }
+    }
+}
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    
-  
+
 }
 - (IBAction)homeUrlCopy:(id)sender {
     
