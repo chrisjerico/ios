@@ -169,8 +169,6 @@
 - (IBAction)forgetPasswordAction:(id)sender {
 	ResetPasswordApplyVC *vc = [[ResetPasswordApplyVC alloc] init];
 	[self.navigationController pushViewController:vc animated:true];
-	NSArray * array = UGSystemConfigModel.currentConfig.coinPwdAuditOptionAry;
-	NSLog(@"array%@", array);
 }
 
 @end

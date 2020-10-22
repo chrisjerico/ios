@@ -7747,8 +7747,8 @@
 			isa = PBXGroup;
 			children = (
 				031EF4ED23BE7B4D00B0F813 /* BetBeanView.xib */,
-				031EF4EE23BE7B4D00B0F813 /* BetListCell.swift */,
 				031EF4EF23BE7B4D00B0F813 /* BetListVC.swift */,
+				031EF4EE23BE7B4D00B0F813 /* BetListCell.swift */,
 				031EF4F023BE7B4D00B0F813 /* BetListCell.xib */,
 			);
 			path = BetList;

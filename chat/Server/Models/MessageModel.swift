@@ -60,7 +60,7 @@ class MessageModel: Mappable, MessageType {
 		roomId <- map["roomId"]
 		username <- map["username"]
 		msg <- map["msg"]
-		betModel <- map["msgJson"]
+		betModel <- map["betUrl"]
 		time <- map["time"]
 		uid <- map["uid"]
 		avator <- map["avator"]
@@ -83,9 +83,12 @@ class MessageModel: Mappable, MessageType {
 			kind = .custom(redBag)
 		}
 		else if betFollowFlag == 1 {
+			if let betModel = betModel {
+				kind = .custom(betModel)
+			} else {
+				kind = .text(msg.replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\t", with: "").replacingOccurrences(of: "\t", with: ""))
+			}
 //			kind = .text(msgJson.replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\t", with: "").replacingOccurrences(of: "\t", with: ""))
-//			kind = .text(msg.replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\t", with: "").replacingOccurrences(of: "\t", with: ""))
-			kind = .custom(betModel)
 		}
 		else {
 			let mutableAttributedString = NSMutableAttributedString(string: msg)

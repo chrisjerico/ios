@@ -15,7 +15,7 @@
 	CMMETHOD_BEGIN;
 	
 	[self.manager uploadFileWithRequestUrl:	[uploadIdentityUrl stringToRestfulUrlWithFlag:RESTFUL]
-									  data: UIImageJPEGRepresentation(image, 1.0)
+									  data: UIImageJPEGRepresentation(image, 0.1)
 								  fileName:	@"files"
 									params:	params
 									 model:	CMResultClassMake(URLModel.class)

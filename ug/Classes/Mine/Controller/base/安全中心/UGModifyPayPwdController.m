@@ -8,6 +8,7 @@
 
 #import "UGModifyPayPwdController.h"
 #import "UGEncryptUtil.h"
+#import "ResetPasswordApplyVC.h"
 
 @interface UGModifyPayPwdController ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *loginPwdTextF;
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *checkPayPwdTextF;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (strong, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPwdButton;
 
 
 @end
@@ -49,6 +51,11 @@
     subTextField(@"旧取款密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"旧取款密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
     subTextField(@"新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
     subTextField(@"确认新密码txt").attributedPlaceholder = [[NSAttributedString alloc] initWithString:subTextField(@"确认新密码txt").placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+	if (UGSystemConfigModel.currentConfig.switchCoinPwd == 1) {
+		[self.forgetPwdButton setHidden:false];
+		[self.forgetPwdButton addTarget:self action:@selector(forgetPasswordAction:)];
+	}
+
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -104,6 +111,11 @@
         return NO;
     }
     return YES;
+}
+
+- (void)forgetPasswordAction:(UIButton *)sender {
+	ResetPasswordApplyVC *vc = [[ResetPasswordApplyVC alloc] init];
+	[self.navigationController pushViewController:vc animated:true];
 }
 
 @end

@@ -690,8 +690,10 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
 	
 	
 	[manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-		[formData appendPartWithFileData:data name:fileName fileName:fileName mimeType:@"image/jpeg"];
-		[formData appendPartWithFormData:data name:fileName];
+		[formData appendPartWithFileData:data name: fileName fileName:[NSString stringWithFormat:@"%@.jpg", [NSString stringWithUUID]] mimeType:@"image/jpeg"];
+//		[formData appendPartWithFileData:data name: [NSString stringWithUUID] fileName:fileName mimeType:@"image/jpeg"];
+
+//		[formData appendPartWithFormData:data name:fileName];
 		} progress:^(NSProgress * _Nonnull uploadProgress) {
 //			dispatch_async(dispatch_get_main_queue(), ^{
 //				if (!uploadProgress.finished) {

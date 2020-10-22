@@ -30,7 +30,10 @@
 @end
 
 @implementation ResetPasswordApplyVC
-
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.navigationItem.title = @"忘记取款密码";
@@ -41,6 +44,8 @@
 	self.submitButton.layer.cornerRadius = 5;
 	self.submitButton.layer.masksToBounds = true;
 	self.submitButton.backgroundColor = Skin1.navBarBgColor;
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textfieldEditChange:) name:@"UITextFieldTextDidChangeNotification" object:self.passwordField];
+
 }
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
@@ -77,6 +82,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id> *)info {
 	UIImage *image = info[UIImagePickerControllerOriginalImage];
+	NSLog(@"%@", info);
 	[picker dismissViewControllerAnimated:true completion:nil];
 	[SVProgressHUD showWithStatus:nil];
 	WeakSelf;
@@ -121,6 +127,12 @@
 			}
 		}
 	}
+	
+	if ([self.passwordField.text length] != 4) {
+		[SVProgressHUD showErrorWithStatus:@"请输入取款密码"];
+		return;
+	}
+
 	ck_parameter_non_empty(self.passwordField.text, @"请输入取款密码");
 
 	NSString * identityPathDot = [NSString stringWithFormat:@"%@,%@",self.firstPic.path,self.secondPic.path];
@@ -133,17 +145,25 @@
 									   @"bankNo": weakSelf.cardNumberField.text}
 						  completion:^(CMResult<id> *model, NSError *err)
 	{
-		if (err) {
+		if (err.code != 0) {
 			[SVProgressHUD showErrorWithStatus:err.localizedDescription];
-			return;
+		} else {
+			[SVProgressHUD showSuccessWithStatus:@"申请已提交"];
 		}
-		[SVProgressHUD showSuccessWithStatus:@"申请已提交"];
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 			[SVProgressHUD dismiss];
-			[weakSelf dismissViewControllerAnimated:true completion:nil];
+			[UINavigationController.current popViewControllerAnimated:true];
 		});
 	}];
 	
 }
-
+- (void)textfieldEditChange:(NSNotification *)notification
+{
+	UITextField *textField = notification.object;
+	
+	if (textField.text.length > 4)
+	{
+		textField.text = [textField.text substringToIndex:4];
+	}
+}
 @end
