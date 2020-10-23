@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"额度转换";
+    [self.view setBackgroundColor: Skin1.bgColor];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
 
     _gamedataArray = [NSMutableArray new];
