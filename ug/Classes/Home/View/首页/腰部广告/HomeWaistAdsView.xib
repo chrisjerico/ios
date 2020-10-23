@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view hidden="YES" contentMode="scaleToFill" id="Wpf-D4-m7b" userLabel="广告" customClass="HomeWaistAdsView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pn4-rD-zDh" userLabel=" 首页广告图片View">
+                    <rect key="frame" x="8" y="1" width="398" height="119"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="pn4-rD-zDh" secondAttribute="height" multiplier="100:25" priority="750" id="Kvs-F6-M2v"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="jAs-Ky-urC"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="pn4-rD-zDh" firstAttribute="centerX" secondItem="Wpf-D4-m7b" secondAttribute="centerX" id="TqB-Yu-58Q"/>
+                <constraint firstItem="pn4-rD-zDh" firstAttribute="top" secondItem="Wpf-D4-m7b" secondAttribute="top" constant="1" id="bMq-Wo-AEg"/>
+                <constraint firstItem="pn4-rD-zDh" firstAttribute="centerY" secondItem="Wpf-D4-m7b" secondAttribute="centerY" id="ocu-mG-uMe"/>
+                <constraint firstItem="pn4-rD-zDh" firstAttribute="leading" secondItem="Wpf-D4-m7b" secondAttribute="leading" constant="8" id="wVX-wL-nSc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="homeAdsBgView" destination="pn4-rD-zDh" id="m7k-ho-uAG"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="159.04017857142856"/>
+        </view>
+    </objects>
+</document>

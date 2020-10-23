@@ -381,16 +381,4 @@
 	NSLog(@"联系客服");
 	  [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
 }
-# pragma mark <JS_TitleViewDelegagte>
-- (void)loginButtonTaped {
-	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-
-}
-- (void)registButtonnTaped {
-	[NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
-
-}
-- (void)moreButtonTaped {
-	[JS_Sidebar show];
-}
 @end

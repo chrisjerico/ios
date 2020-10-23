@@ -45,7 +45,7 @@
 	self.submitButton.layer.masksToBounds = true;
 	self.submitButton.backgroundColor = Skin1.navBarBgColor;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textfieldEditChange:) name:@"UITextFieldTextDidChangeNotification" object:self.passwordField];
-
+	
 }
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
@@ -103,19 +103,21 @@
 	}];
 }
 - (IBAction)submitAction:(id)sender {
-	
+	NSMutableDictionary * params = @{@"token":UGUserModel.currentUser.sessid}.mutableCopy;
 	for (NSString *key in UGSystemConfigModel.currentConfig.coinPwdAuditOptionAry) {
 		if ([key isEqualToString:@"bank"]) {
 			if ([self.cardNumberField.text length] > 19 || [self.cardNumberField.text length] < 6) {
 				[SVProgressHUD showErrorWithStatus:@"请输入6到19位数的银行卡号"];
 				return;
 			}
+			params[@"bankNo"] = self.cardNumberField.text;
 		} else if ([key isEqualToString:@"mobile"]) {
 			if ([self.phoneNumberField.text length] != 11) {
 				[SVProgressHUD showErrorWithStatus:@"请输入11位手机号码"];
 				return;
 			}
-			ck_parameter_non_empty(self.phoneNumberField.text, @"请输入11位手机号码");
+			params[@"mobile"] = self.phoneNumberField.text;
+			
 		} else if ([key isEqualToString:@"id"]) {
 			if (!self.firstPic) {
 				[SVProgressHUD showErrorWithStatus:@"请上传身份证正面照片"];
@@ -125,26 +127,18 @@
 				[SVProgressHUD showErrorWithStatus:@"请上传身份证反面照片"];
 				return;
 			}
+			NSString * identityPathDot = [NSString stringWithFormat:@"%@,%@",self.firstPic.path,self.secondPic.path];
+			params[@"identityPathDot"] = identityPathDot;
 		}
 	}
 	
 	if ([self.passwordField.text length] != 4) {
-		[SVProgressHUD showErrorWithStatus:@"请输入取款密码"];
+		[SVProgressHUD showErrorWithStatus:@"请输入四位取款密码"];
 		return;
 	}
-
-	ck_parameter_non_empty(self.passwordField.text, @"请输入取款密码");
-
-	NSString * identityPathDot = [NSString stringWithFormat:@"%@,%@",self.firstPic.path,self.secondPic.path];
+	params[@"coinpwd"] = self.passwordField.text;
 	[SVProgressHUD showWithStatus:nil];
-	WeakSelf;
-	[CMNetwork applyFundPwWithParams:@{@"token":UGUserModel.currentUser.sessid,
-									   @"coinpwd":weakSelf.passwordField.text,
-									   @"mobile": weakSelf.phoneNumberField.text,
-									   @"identityPathDot": identityPathDot,
-									   @"bankNo": weakSelf.cardNumberField.text}
-						  completion:^(CMResult<id> *model, NSError *err)
-	{
+	[CMNetwork applyFundPwWithParams:params.copy completion:^(CMResult<id> *model, NSError *err) {
 		if (err.code != 0) {
 			[SVProgressHUD showErrorWithStatus:err.localizedDescription];
 		} else {

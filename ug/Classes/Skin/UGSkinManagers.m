@@ -1421,7 +1421,7 @@ static UGSkinManagers *__initSkin1 = nil;
             skin.isBlack = skin.isGPK || skin.is23;
             skin.isTKL = [skin.skitType containsString:@"天空蓝"];
             
-            if ([@"c242,test60f" containsString:APP.SiteId]) {
+            if ([@"c242" containsString:APP.SiteId]) {
                 skin.navBarBgColor = color(@"CE0009");
                 skin.tabBarBgColor            = color(@"000000");
                 skin.tabNoSelectColor         = color(@"FFFFFF");

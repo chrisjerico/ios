@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQ5-2k-uUp" customClass="HomeMarqueeView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIF-L6-1Cx" customClass="UUMarqueeView">
+                    <rect key="frame" x="38" y="0.0" width="376" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notice" translatesAutoresizingMaskIntoConstraints="NO" id="GZZ-0w-IFJ">
+                    <rect key="frame" x="8" y="9.5" width="25" height="25"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="glr-Tx-7XB"/>
+                        <constraint firstAttribute="height" constant="25" id="sXB-ZR-TYn"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="公告图标ImageView"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyu-Xj-ZGZ">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <connections>
+                        <action selector="showNoticeInfo" destination="yQ5-2k-uUp" eventType="touchUpInside" id="9lq-L8-9cg"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="3UB-9u-hNQ"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="tyu-Xj-ZGZ" secondAttribute="bottom" id="3N0-ka-7Vo"/>
+                <constraint firstItem="GZZ-0w-IFJ" firstAttribute="centerY" secondItem="yQ5-2k-uUp" secondAttribute="centerY" id="9jZ-m2-4v3"/>
+                <constraint firstAttribute="bottom" secondItem="NIF-L6-1Cx" secondAttribute="bottom" id="CPS-cj-dFd"/>
+                <constraint firstItem="tyu-Xj-ZGZ" firstAttribute="top" secondItem="yQ5-2k-uUp" secondAttribute="top" id="Ggo-U4-GCg"/>
+                <constraint firstItem="tyu-Xj-ZGZ" firstAttribute="leading" secondItem="yQ5-2k-uUp" secondAttribute="leading" id="LhZ-iD-yy0"/>
+                <constraint firstAttribute="trailing" secondItem="tyu-Xj-ZGZ" secondAttribute="trailing" id="T0p-CZ-hQm"/>
+                <constraint firstItem="NIF-L6-1Cx" firstAttribute="top" secondItem="yQ5-2k-uUp" secondAttribute="top" id="XkS-0h-sno"/>
+                <constraint firstAttribute="trailing" secondItem="NIF-L6-1Cx" secondAttribute="trailing" id="a2q-9l-pWp"/>
+                <constraint firstItem="NIF-L6-1Cx" firstAttribute="leading" secondItem="GZZ-0w-IFJ" secondAttribute="trailing" constant="5" id="uMc-2S-gDq"/>
+                <constraint firstItem="GZZ-0w-IFJ" firstAttribute="leading" secondItem="yQ5-2k-uUp" secondAttribute="leading" constant="8" id="xjD-1x-IMz"/>
+                <constraint firstAttribute="height" constant="44" id="yCc-1x-lva"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="leftwardMarqueeView" destination="NIF-L6-1Cx" id="C4z-4Z-ZG0"/>
+            </connections>
+            <point key="canvasLocation" x="-65.217391304347828" y="152.67857142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="notice" width="24" height="24"/>
+    </resources>
+</document>

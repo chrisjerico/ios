@@ -7,6 +7,8 @@
 //
 
 #import "HSC_TitleView.h"
+#import "UGMailBoxTableViewController.h"
+
 @interface HSC_TitleView()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -78,25 +80,17 @@
 	
 }
 - (IBAction)loginButtonTaped:(id)sender {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(loginButtonTaped)]) {
-		[self.delegate loginButtonTaped];
-	}
+    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 }
 - (IBAction)registButtonTaped:(id)sender {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(registButtonnTaped)]) {
-		[self.delegate registButtonnTaped];
-	}
+    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
 }
 - (IBAction)avatarButtonTaped:(id)sender {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(avatarButtonTaped)]) {
-		[self.delegate avatarButtonTaped];
-	}
+    [TabBarController1 setSelectedIndex:4];
 }
 
 - (IBAction)emailButtonTaped:(id)sender {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(emailButtonTaped)]) {
-		[self.delegate emailButtonTaped];
-	}
+    [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
 }
 
 @end

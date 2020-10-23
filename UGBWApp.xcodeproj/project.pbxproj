@@ -1756,7 +1756,19 @@
 		CF166B4024A495CF00EF8835 /* UGMailBoxTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */; };
 		CF19A5712518830100E2E659 /* NewLotteryHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF19A5702518830100E2E659 /* NewLotteryHomeViewController.m */; };
 		CF19A5772518833500E2E659 /* NewLotteryHomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */; };
+		CF1E19E52542D4FD004436E2 /* UGCellHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF1E19E12542D4FD004436E2 /* UGCellHeaderView.xib */; };
+		CF1E19E62542D4FD004436E2 /* UGCell190HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */; };
+		CF1E19E72542D4FD004436E2 /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */; };
+		CF1E19E82542D4FD004436E2 /* UGCell190HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */; };
 		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
+		CF43426525396AEA004708C3 /* HomePromotionsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */; };
+		CF43426E25396D10004708C3 /* HomePromotionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43426D25396D10004708C3 /* HomePromotionsVC.m */; };
+		CF43427525397648004708C3 /* HomeTrademarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43427425397648004708C3 /* HomeTrademarkView.m */; };
+		CF4342792539764F004708C3 /* HomeTrademarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4342782539764F004708C3 /* HomeTrademarkView.xib */; };
+		CF43427E25397BEF004708C3 /* HomeLHColumnView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43427D25397BEF004708C3 /* HomeLHColumnView.m */; };
+		CF43428425397BFA004708C3 /* HomeLHColumnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF43428325397BFA004708C3 /* HomeLHColumnView.xib */; };
+		CF434288253981A6004708C3 /* HomeRankingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF434287253981A6004708C3 /* HomeRankingView.xib */; };
+		CF43428D253981B2004708C3 /* HomeRankingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43428C253981B2004708C3 /* HomeRankingView.m */; };
 		CF475880239636D200966536 /* 21.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D4239636D100966536 /* 21.gif */; };
 		CF475881239636D200966536 /* 35.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D5239636D100966536 /* 35.gif */; };
 		CF475882239636D200966536 /* 108.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF4757D6239636D100966536 /* 108.gif */; };
@@ -2016,10 +2028,6 @@
 		CF8508622466D6610025672F /* ReactNativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD85F0C23F577AB000898CC /* ReactNativeVC.m */; };
 		CF8508632466D6670025672F /* ReactNativeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */; };
 		CF8508642466D6720025672F /* OnlineServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4486C26241D082E00E5CCEA /* OnlineServiceViewController.m */; };
-		CF8508652466D67F0025672F /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */; };
-		CF8508662466D67F0025672F /* UGCellHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */; };
-		CF8508682466D6860025672F /* UGCell190HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */; };
-		CF8508692466D6860025672F /* UGCell190HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */; };
 		CF85086A2466D6960025672F /* DocumentTypeList.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF11A33241E776600C7E3A3 /* DocumentTypeList.m */; };
 		CF85086B2466D69C0025672F /* UGDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E161C23BE812400B0F813 /* UGDocumentView.m */; };
 		CF85086C2466D6B50025672F /* JYLotteryTitleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42B958823F3EAD00030C653 /* JYLotteryTitleCollectionView.m */; };
@@ -2036,6 +2044,8 @@
 		CF8508792466D74F0025672F /* UGMosaicGoldMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44258452413BAE800601D70 /* UGMosaicGoldMainViewController.m */; };
 		CF85087A2466D75C0025672F /* LineMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4773ACD23FD628800D38D60 /* LineMainViewController.m */; };
 		CF85087B2466D7810025672F /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */; };
+		CF8C4075253FEC320006B293 /* HomeWaistAdsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8C4074253FEC320006B293 /* HomeWaistAdsView.m */; };
+		CF8C407D253FEC770006B293 /* HomeWaistAdsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF8C407C253FEC770006B293 /* HomeWaistAdsView.xib */; };
 		CF8E242023DDBFD80054BF0F /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8E241023DDBFD80054BF0F /* Fontisto.ttf */; };
 		CF8E242123DDBFD80054BF0F /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8E241123DDBFD80054BF0F /* Octicons.ttf */; };
 		CF8E242223DDBFD80054BF0F /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF8E241223DDBFD80054BF0F /* Feather.ttf */; };
@@ -2056,12 +2066,23 @@
 		CF95A49B252DC1E000922D83 /* UGWithdrawalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF95A499252DC1E000922D83 /* UGWithdrawalVC.m */; };
 		CF95A4A2252DCDAE00922D83 /* WithdrawalAcctModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4A1252DCDAE00922D83 /* WithdrawalAcctModel.m */; };
 		CF95A4A3252DCDAE00922D83 /* WithdrawalAcctModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4A1252DCDAE00922D83 /* WithdrawalAcctModel.m */; };
+		CF988793253FF20400DFFD49 /* HomeBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF988792253FF20400DFFD49 /* HomeBannerView.m */; };
+		CF988798253FF22A00DFFD49 /* HomeBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF988797253FF22A00DFFD49 /* HomeBannerView.xib */; };
+		CF98879C253FF6A400DFFD49 /* HomeBetFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF98879B253FF6A400DFFD49 /* HomeBetFormView.xib */; };
+		CF9887A3253FF6B200DFFD49 /* HomeBetFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9887A2253FF6B200DFFD49 /* HomeBetFormView.m */; };
+		CF9887B4254009E400DFFD49 /* HomeFloatingButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9887B3254009E400DFFD49 /* HomeFloatingButtonsView.xib */; };
+		CF9887C5254014A800DFFD49 /* HomeFloatingButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9887C4254014A800DFFD49 /* HomeFloatingButtonsView.m */; };
 		CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */; };
 		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CF9A93C42407F2C200D6E4F3 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C02407F2C200D6E4F3 /* FLAnimatedImage.m */; };
 		CF9A93C52407F2C200D6E4F3 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */; };
+		CF9CB76A253C10D9007F04B7 /* HomeMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9CB769253C10D9007F04B7 /* HomeMarqueeView.m */; };
+		CF9CB76B253C10D9007F04B7 /* HomeMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9CB769253C10D9007F04B7 /* HomeMarqueeView.m */; };
+		CF9CB76F253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */; };
+		CF9CB770253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */; };
 		CFA01CFD2535AC6D00EA71F9 /* YNView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA01CFC2535AC6D00EA71F9 /* YNView.m */; };
 		CFAD2D2E252DA1DD008BC221 /* WithdrawalAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */; };
+		CFA1EC5A2542D78E003440CB /* TKLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA1EC592542D78E003440CB /* TKLMainViewController.m */; };
 		CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3225246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3525246BBE00C5F6F6 /* 2.html */; };
@@ -2156,11 +2177,7 @@
 		D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D433EBF623D493F300D31008 /* UIImage+Extension.m */; };
 		D4346B572404EFAD00D8FE7C /* PromotePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B562404EFAD00D8FE7C /* PromotePopView.m */; };
 		D4346B592404EFC900D8FE7C /* PromotePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B582404EFC900D8FE7C /* PromotePopView.xib */; };
-		D4346B5E24053DB100D8FE7C /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */; };
-		D4346B6024053DF800D8FE7C /* UGCellHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */; };
 		D4346B652406407C00D8FE7C /* UGMissionMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */; };
-		D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */; };
-		D4346B912407E5DA00D8FE7C /* UGCell190HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */; };
 		D434743A24AB270100B0F598 /* BetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D434743924AB270100B0F598 /* BetDetail.storyboard */; };
 		D434743D24AB2B8100B0F598 /* BetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D434743C24AB2B8100B0F598 /* BetDetailViewController.m */; };
 		D434744024AB2FFA00B0F598 /* BetDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D434743F24AB2FFA00B0F598 /* BetDetailTableViewCell.m */; };
@@ -3833,8 +3850,26 @@
 		CF19A56F2518830100E2E659 /* NewLotteryHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewLotteryHomeViewController.h; sourceTree = "<group>"; };
 		CF19A5702518830100E2E659 /* NewLotteryHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewLotteryHomeViewController.m; sourceTree = "<group>"; };
 		CF19A5762518833500E2E659 /* NewLotteryHomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewLotteryHomeViewController.storyboard; sourceTree = "<group>"; };
+		CF1E19DF2542D4FD004436E2 /* UGCell190HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGCell190HeaderView.h; sourceTree = "<group>"; };
+		CF1E19E02542D4FD004436E2 /* UGCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGCellHeaderView.h; sourceTree = "<group>"; };
+		CF1E19E12542D4FD004436E2 /* UGCellHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGCellHeaderView.xib; sourceTree = "<group>"; };
+		CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGCell190HeaderView.m; sourceTree = "<group>"; };
+		CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGCellHeaderView.m; sourceTree = "<group>"; };
+		CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGCell190HeaderView.xib; sourceTree = "<group>"; };
 		CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLocalizable.h"; sourceTree = "<group>"; };
 		CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLocalizable.m"; sourceTree = "<group>"; };
+		CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePromotionsVC.storyboard; sourceTree = "<group>"; };
+		CF43426C25396D10004708C3 /* HomePromotionsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePromotionsVC.h; sourceTree = "<group>"; };
+		CF43426D25396D10004708C3 /* HomePromotionsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePromotionsVC.m; sourceTree = "<group>"; };
+		CF43427325397648004708C3 /* HomeTrademarkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTrademarkView.h; sourceTree = "<group>"; };
+		CF43427425397648004708C3 /* HomeTrademarkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTrademarkView.m; sourceTree = "<group>"; };
+		CF4342782539764F004708C3 /* HomeTrademarkView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTrademarkView.xib; sourceTree = "<group>"; };
+		CF43427C25397BEF004708C3 /* HomeLHColumnView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeLHColumnView.h; sourceTree = "<group>"; };
+		CF43427D25397BEF004708C3 /* HomeLHColumnView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeLHColumnView.m; sourceTree = "<group>"; };
+		CF43428325397BFA004708C3 /* HomeLHColumnView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeLHColumnView.xib; sourceTree = "<group>"; };
+		CF434287253981A6004708C3 /* HomeRankingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeRankingView.xib; sourceTree = "<group>"; };
+		CF43428B253981B2004708C3 /* HomeRankingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeRankingView.h; sourceTree = "<group>"; };
+		CF43428C253981B2004708C3 /* HomeRankingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeRankingView.m; sourceTree = "<group>"; };
 		CF4757D4239636D100966536 /* 21.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 21.gif; sourceTree = "<group>"; };
 		CF4757D5239636D100966536 /* 35.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 35.gif; sourceTree = "<group>"; };
 		CF4757D6239636D100966536 /* 108.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 108.gif; sourceTree = "<group>"; };
@@ -4072,6 +4107,9 @@
 		CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight-yn.gif"; sourceTree = "<group>"; };
 		CF80DE0924DBDABB005234D8 /* WKUserContentController+MemoryLeak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKUserContentController+MemoryLeak.h"; sourceTree = "<group>"; };
 		CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKUserContentController+MemoryLeak.m"; sourceTree = "<group>"; };
+		CF8C4073253FEC320006B293 /* HomeWaistAdsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeWaistAdsView.h; sourceTree = "<group>"; };
+		CF8C4074253FEC320006B293 /* HomeWaistAdsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeWaistAdsView.m; sourceTree = "<group>"; };
+		CF8C407C253FEC770006B293 /* HomeWaistAdsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWaistAdsView.xib; sourceTree = "<group>"; };
 		CF8E241023DDBFD80054BF0F /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		CF8E241123DDBFD80054BF0F /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		CF8E241223DDBFD80054BF0F /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -4092,6 +4130,15 @@
 		CF95A499252DC1E000922D83 /* UGWithdrawalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGWithdrawalVC.m; sourceTree = "<group>"; };
 		CF95A4A0252DCDAE00922D83 /* WithdrawalAcctModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WithdrawalAcctModel.h; sourceTree = "<group>"; };
 		CF95A4A1252DCDAE00922D83 /* WithdrawalAcctModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WithdrawalAcctModel.m; sourceTree = "<group>"; };
+		CF988791253FF20400DFFD49 /* HomeBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeBannerView.h; sourceTree = "<group>"; };
+		CF988792253FF20400DFFD49 /* HomeBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeBannerView.m; sourceTree = "<group>"; };
+		CF988797253FF22A00DFFD49 /* HomeBannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeBannerView.xib; sourceTree = "<group>"; };
+		CF98879B253FF6A400DFFD49 /* HomeBetFormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeBetFormView.xib; sourceTree = "<group>"; };
+		CF9887A1253FF6B200DFFD49 /* HomeBetFormView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeBetFormView.h; sourceTree = "<group>"; };
+		CF9887A2253FF6B200DFFD49 /* HomeBetFormView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeBetFormView.m; sourceTree = "<group>"; };
+		CF9887B3254009E400DFFD49 /* HomeFloatingButtonsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeFloatingButtonsView.xib; sourceTree = "<group>"; };
+		CF9887C3254014A800DFFD49 /* HomeFloatingButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFloatingButtonsView.h; sourceTree = "<group>"; };
+		CF9887C4254014A800DFFD49 /* HomeFloatingButtonsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeFloatingButtonsView.m; sourceTree = "<group>"; };
 		CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGLHLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		CF997C2623CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHLotteryCollectionViewCell.h; sourceTree = "<group>"; };
@@ -4099,9 +4146,14 @@
 		CF9A93C12407F2C200D6E4F3 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		CF9A93C22407F2C200D6E4F3 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
 		CF9A93C32407F2C200D6E4F3 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		CF9CB768253C10D9007F04B7 /* HomeMarqueeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeMarqueeView.h; sourceTree = "<group>"; };
+		CF9CB769253C10D9007F04B7 /* HomeMarqueeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeMarqueeView.m; sourceTree = "<group>"; };
+		CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMarqueeView.xib; sourceTree = "<group>"; };
 		CFA01CFB2535AC6D00EA71F9 /* YNView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNView.h; sourceTree = "<group>"; };
 		CFA01CFC2535AC6D00EA71F9 /* YNView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNView.m; sourceTree = "<group>"; };
 		CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawalAccountCell.xib; sourceTree = "<group>"; };
+		CFA1EC582542D78E003440CB /* TKLMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLMainViewController.h; sourceTree = "<group>"; };
+		CFA1EC592542D78E003440CB /* TKLMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLMainViewController.m; sourceTree = "<group>"; };
 		CFBAAC3025246BB400C5F6F6 /* 1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 1.html; sourceTree = "<group>"; };
 		CFBAAC3525246BBE00C5F6F6 /* 2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 2.html; sourceTree = "<group>"; };
 		CFBAAC3825246BC600C5F6F6 /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
@@ -4237,14 +4289,8 @@
 		D4346B552404EFAD00D8FE7C /* PromotePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotePopView.h; sourceTree = "<group>"; };
 		D4346B562404EFAD00D8FE7C /* PromotePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotePopView.m; sourceTree = "<group>"; };
 		D4346B582404EFC900D8FE7C /* PromotePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotePopView.xib; sourceTree = "<group>"; };
-		D4346B5C24053DB100D8FE7C /* UGCellHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCellHeaderView.h; sourceTree = "<group>"; };
-		D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCellHeaderView.m; sourceTree = "<group>"; };
-		D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCellHeaderView.xib; sourceTree = "<group>"; };
 		D4346B632406407C00D8FE7C /* UGMissionMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMissionMainViewController.h; sourceTree = "<group>"; };
 		D4346B642406407C00D8FE7C /* UGMissionMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMissionMainViewController.m; sourceTree = "<group>"; };
-		D4346B8C2407E5C900D8FE7C /* UGCell190HeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGCell190HeaderView.h; sourceTree = "<group>"; };
-		D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGCell190HeaderView.m; sourceTree = "<group>"; };
-		D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGCell190HeaderView.xib; sourceTree = "<group>"; };
 		D434743924AB270100B0F598 /* BetDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BetDetail.storyboard; sourceTree = "<group>"; };
 		D434743B24AB2B8100B0F598 /* BetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BetDetailViewController.h; sourceTree = "<group>"; };
 		D434743C24AB2B8100B0F598 /* BetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BetDetailViewController.m; sourceTree = "<group>"; };
@@ -4586,9 +4632,6 @@
 				031E140823BE812300B0F813 /* UGScratchMusicView.h */,
 				031E140C23BE812300B0F813 /* UGScratchMusicView.m */,
 				031E140F23BE812300B0F813 /* UGScratchMusicView.xib */,
-				031E140B23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.h */,
-				031E141023BE812300B0F813 /* UGLHHomeContentCollectionViewCell.m */,
-				031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */,
 			);
 			path = "六合首页";
 			sourceTree = "<group>";
@@ -5655,13 +5698,19 @@
 			isa = PBXGroup;
 			children = (
 				CF722BD725416DEE00939A7C /* 在线客服 */,
-				D4346B5B24053D2000D8FE7C /* 折叠优惠HeaderView */,
+				CF9887AB254008C200DFFD49 /* 悬浮按钮 */,
+				CF434258253960C8004708C3 /* 腰部广告 */,
+				CF434257253960B6004708C3 /* 底部商标 */,
+				CF43425625396081004708C3 /* 优惠活动 */,
+				CF43425525396064004708C3 /* 顶部横幅 */,
+				CF43425325396025004708C3 /* 投注专栏 */,
+				CF43425225395FFA004708C3 /* 投注|中奖排行榜 */,
+				CF43424F25395E5C004708C3 /* 六合栏目列表 */,
 				031E161023BE812400B0F813 /* 红包弹框 */,
 				031E161723BE812400B0F813 /* H5的返回弹框 */,
 				031E161E23BE812400B0F813 /* 定制导航栏 */,
 				031E162223BE812400B0F813 /* 游戏列表 */,
 				031E163423BE812400B0F813 /* 导航View */,
-				031E163723BE812400B0F813 /* 公告列表 */,
 				031E163E23BE812400B0F813 /* 跑马灯公告 */,
 			);
 			path = "首页";
@@ -5743,6 +5792,9 @@
 				031E163A23BE812400B0F813 /* UGPlatformNoticeView.h */,
 				031E163823BE812400B0F813 /* UGPlatformNoticeView.m */,
 				031E163B23BE812400B0F813 /* UGPlatformNoticeView.xib */,
+				031E163F23BE812400B0F813 /* UGNoticeHeaderView.h */,
+				031E164223BE812400B0F813 /* UGNoticeHeaderView.m */,
+				031E164423BE812400B0F813 /* UGNoticeHeaderView.xib */,
 				031E163C23BE812400B0F813 /* UGPlatformNoticeCell.h */,
 				031E163923BE812400B0F813 /* UGPlatformNoticeCell.m */,
 				031E163D23BE812400B0F813 /* UGPlatformNoticeCell.xib */,
@@ -5756,12 +5808,13 @@
 		031E163E23BE812400B0F813 /* 跑马灯公告 */ = {
 			isa = PBXGroup;
 			children = (
+				031E163723BE812400B0F813 /* 公告列表 */,
 				031E164023BE812400B0F813 /* UGNoticePopView.h */,
 				031E164123BE812400B0F813 /* UGNoticePopView.m */,
 				031E164323BE812400B0F813 /* UGNoticePopView.xib */,
-				031E163F23BE812400B0F813 /* UGNoticeHeaderView.h */,
-				031E164223BE812400B0F813 /* UGNoticeHeaderView.m */,
-				031E164423BE812400B0F813 /* UGNoticeHeaderView.xib */,
+				CF9CB768253C10D9007F04B7 /* HomeMarqueeView.h */,
+				CF9CB769253C10D9007F04B7 /* HomeMarqueeView.m */,
+				CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */,
 			);
 			path = "跑马灯公告";
 			sourceTree = "<group>";
@@ -8182,6 +8235,19 @@
 			path = "新彩票大厅";
 			sourceTree = "<group>";
 		};
+		CF1E19DE2542D4FD004436E2 /* 折叠优惠HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				CF1E19DF2542D4FD004436E2 /* UGCell190HeaderView.h */,
+				CF1E19E02542D4FD004436E2 /* UGCellHeaderView.h */,
+				CF1E19E12542D4FD004436E2 /* UGCellHeaderView.xib */,
+				CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */,
+				CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */,
+				CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */,
+			);
+			path = "折叠优惠HeaderView";
+			sourceTree = "<group>";
+		};
 		CF3C073324C01ADF000E6700 /* UIView+AutoLocalizable */ = {
 			isa = PBXGroup;
 			children = (
@@ -8189,6 +8255,80 @@
 				CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */,
 			);
 			path = "UIView+AutoLocalizable";
+			sourceTree = "<group>";
+		};
+		CF43424F25395E5C004708C3 /* 六合栏目列表 */ = {
+			isa = PBXGroup;
+			children = (
+				CF43427C25397BEF004708C3 /* HomeLHColumnView.h */,
+				CF43427D25397BEF004708C3 /* HomeLHColumnView.m */,
+				CF43428325397BFA004708C3 /* HomeLHColumnView.xib */,
+				031E140B23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.h */,
+				031E141023BE812300B0F813 /* UGLHHomeContentCollectionViewCell.m */,
+				031E140A23BE812300B0F813 /* UGLHHomeContentCollectionViewCell.xib */,
+			);
+			path = "六合栏目列表";
+			sourceTree = "<group>";
+		};
+		CF43425225395FFA004708C3 /* 投注|中奖排行榜 */ = {
+			isa = PBXGroup;
+			children = (
+				CF43428B253981B2004708C3 /* HomeRankingView.h */,
+				CF43428C253981B2004708C3 /* HomeRankingView.m */,
+				CF434287253981A6004708C3 /* HomeRankingView.xib */,
+			);
+			path = "投注|中奖排行榜";
+			sourceTree = "<group>";
+		};
+		CF43425325396025004708C3 /* 投注专栏 */ = {
+			isa = PBXGroup;
+			children = (
+				CF9887A1253FF6B200DFFD49 /* HomeBetFormView.h */,
+				CF9887A2253FF6B200DFFD49 /* HomeBetFormView.m */,
+				CF98879B253FF6A400DFFD49 /* HomeBetFormView.xib */,
+			);
+			path = "投注专栏";
+			sourceTree = "<group>";
+		};
+		CF43425525396064004708C3 /* 顶部横幅 */ = {
+			isa = PBXGroup;
+			children = (
+				CF988791253FF20400DFFD49 /* HomeBannerView.h */,
+				CF988792253FF20400DFFD49 /* HomeBannerView.m */,
+				CF988797253FF22A00DFFD49 /* HomeBannerView.xib */,
+			);
+			path = "顶部横幅";
+			sourceTree = "<group>";
+		};
+		CF43425625396081004708C3 /* 优惠活动 */ = {
+			isa = PBXGroup;
+			children = (
+				CF1E19DE2542D4FD004436E2 /* 折叠优惠HeaderView */,
+				CF43426C25396D10004708C3 /* HomePromotionsVC.h */,
+				CF43426D25396D10004708C3 /* HomePromotionsVC.m */,
+				CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */,
+			);
+			path = "优惠活动";
+			sourceTree = "<group>";
+		};
+		CF434257253960B6004708C3 /* 底部商标 */ = {
+			isa = PBXGroup;
+			children = (
+				CF43427325397648004708C3 /* HomeTrademarkView.h */,
+				CF43427425397648004708C3 /* HomeTrademarkView.m */,
+				CF4342782539764F004708C3 /* HomeTrademarkView.xib */,
+			);
+			path = "底部商标";
+			sourceTree = "<group>";
+		};
+		CF434258253960C8004708C3 /* 腰部广告 */ = {
+			isa = PBXGroup;
+			children = (
+				CF8C4073253FEC320006B293 /* HomeWaistAdsView.h */,
+				CF8C4074253FEC320006B293 /* HomeWaistAdsView.m */,
+				CF8C407C253FEC770006B293 /* HomeWaistAdsView.xib */,
+			);
+			path = "腰部广告";
 			sourceTree = "<group>";
 		};
 		CF4757D3239636D100966536 /* 六合表情 */ = {
@@ -8582,6 +8722,16 @@
 				CF95A4A1252DCDAE00922D83 /* WithdrawalAcctModel.m */,
 			);
 			path = Model;
+            sourceTree = "<group>";
+        };
+		CF9887AB254008C200DFFD49 /* 悬浮按钮 */ = {
+			isa = PBXGroup;
+			children = (
+				CF9887C3254014A800DFFD49 /* HomeFloatingButtonsView.h */,
+				CF9887C4254014A800DFFD49 /* HomeFloatingButtonsView.m */,
+				CF9887B3254009E400DFFD49 /* HomeFloatingButtonsView.xib */,
+			);
+			path = "悬浮按钮";
 			sourceTree = "<group>";
 		};
 		CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */ = {
@@ -8905,19 +9055,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D4346B5B24053D2000D8FE7C /* 折叠优惠HeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				D4346B5C24053DB100D8FE7C /* UGCellHeaderView.h */,
-				D4346B5D24053DB100D8FE7C /* UGCellHeaderView.m */,
-				D4346B5F24053DF800D8FE7C /* UGCellHeaderView.xib */,
-				D4346B8C2407E5C900D8FE7C /* UGCell190HeaderView.h */,
-				D4346B8D2407E5C900D8FE7C /* UGCell190HeaderView.m */,
-				D4346B902407E5DA00D8FE7C /* UGCell190HeaderView.xib */,
-			);
-			path = "折叠优惠HeaderView";
-			sourceTree = "<group>";
-		};
 		D434743424AB264900B0F598 /* 下注明细 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9125,6 +9262,8 @@
 				D4773ACD23FD628800D38D60 /* LineMainViewController.m */,
 				D4593B0423FFA6C1008396BE /* LineMainListViewController.h */,
 				D4593B0523FFA6C1008396BE /* LineMainListViewController.m */,
+				CFA1EC582542D78E003440CB /* TKLMainViewController.h */,
+				CFA1EC592542D78E003440CB /* TKLMainViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -9634,7 +9773,6 @@
 				031E194D23BE812600B0F813 /* UGLHC.storyboard in Resources */,
 				031E1D6123BE812B00B0F813 /* UGgoBindViewController.xib in Resources */,
 				031E1E8923BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
-				CF8508662466D67F0025672F /* UGCellHeaderView.xib in Resources */,
 				031E1B9123BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
 				031A003C253FA7AC00092DFF /* UserMainVC.xib in Resources */,
 				031EF59723BE7B4D00B0F813 /* yue.svg in Resources */,
@@ -9729,6 +9867,7 @@
 				CF85085A2466D5A40025672F /* DZPOneView.xib in Resources */,
 				031EF59123BE7B4D00B0F813 /* zijinmingxi.svg in Resources */,
 				031E1C4B23BE812A00B0F813 /* UGSegmentCollectionViewCell.xib in Resources */,
+				CF9CB770253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */,
 				031E19ED23BE812700B0F813 /* water01.png in Resources */,
 				031E1E7523BE812C00B0F813 /* UGRecordFilterCollectionViewCell.xib in Resources */,
 				031E1E6523BE812C00B0F813 /* UGAvaterSelectView.xib in Resources */,
@@ -9762,7 +9901,6 @@
 				031E1C9523BE812A00B0F813 /* UGFundsTransferView.xib in Resources */,
 				CF4FAFE2252DBB43004C47AB /* 钱包付款.html in Resources */,
 				031E1C1D23BE812900B0F813 /* UGSSCBetItem1Cell.xib in Resources */,
-				CF8508692466D6860025672F /* UGCell190HeaderView.xib in Resources */,
 				031E1C8123BE812A00B0F813 /* UGDepositDetailsTableViewCell.xib in Resources */,
 				031EF5B423BE7B4D00B0F813 /* MomentsCellImageItem.xib in Resources */,
 				031EF58E23BE7B4D00B0F813 /* guanbi.svg in Resources */,
@@ -9788,6 +9926,7 @@
 				031E1BDA23BE812900B0F813 /* UGBJKL8LotteryController.storyboard in Resources */,
 				CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */,
 				031E1D9623BE812B00B0F813 /* UGYubaoViewController.storyboard in Resources */,
+				CF8C407D253FEC770006B293 /* HomeWaistAdsView.xib in Resources */,
 				031E1E1A23BE812C00B0F813 /* UGMessageTableViewCell.xib in Resources */,
 				CFBAAC4725246BE400C5F6F6 /* 7.html in Resources */,
 				226CA21923D319DD00E4D921 /* HSC_HomeGameCollectionCell.xib in Resources */,
@@ -9800,6 +9939,7 @@
 				D422D67F22D9A766008E7065 /* address.json in Resources */,
 				CF4758AF239636D200966536 /* 94.gif in Resources */,
 				03B720B82520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */,
+				CF98879C253FF6A400DFFD49 /* HomeBetFormView.xib in Resources */,
 				CF4758E7239636D200966536 /* 89.gif in Resources */,
 				031E19EC23BE812700B0F813 /* water01.png in Resources */,
 				CF4758F3239636D200966536 /* 61.gif in Resources */,
@@ -9838,6 +9978,7 @@
 				031E1BF023BE812900B0F813 /* UGQXCLotteryController.storyboard in Resources */,
 				D4DE3F1424C5E8D500DD3A69 /* UGPopViewController.xib in Resources */,
 				031E1E3423BE812C00B0F813 /* UGPromotion6rowButtonTableViewCell.xib in Resources */,
+				CF434288253981A6004708C3 /* HomeRankingView.xib in Resources */,
 				CF4758A3239636D200966536 /* 31.gif in Resources */,
 				CF4758CD239636D200966536 /* 87.gif in Resources */,
 				031E1E3623BE812C00B0F813 /* UGPormotionView.xib in Resources */,
@@ -9955,7 +10096,6 @@
 				031E1E7E23BE812D00B0F813 /* UGBalanceTransferLogsCell.xib in Resources */,
 				D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */,
 				CF475924239636D200966536 /* 104.gif in Resources */,
-				D4346B912407E5DA00D8FE7C /* UGCell190HeaderView.xib in Resources */,
 				CF4758B1239636D200966536 /* 57.gif in Resources */,
 				031E1A1A23BE812700B0F813 /* LoadingView1.xib in Resources */,
 				CFAD2D2E252DA1DD008BC221 /* WithdrawalAccountCell.xib in Resources */,
@@ -10032,10 +10172,10 @@
 				031E1BB223BE812900B0F813 /* BlackTemplate.storyboard in Resources */,
 				CF475899239636D200966536 /* 32.gif in Resources */,
 				031E1D7A23BE812B00B0F813 /* UGBetRecordDetailViewController.storyboard in Resources */,
+				CF43428425397BFA004708C3 /* HomeLHColumnView.xib in Resources */,
 				031E1D8E23BE812B00B0F813 /* Mine.storyboard in Resources */,
 				031E1E6423BE812C00B0F813 /* UGAvaterSelectView.xib in Resources */,
 				CF4758AC239636D200966536 /* 157.gif in Resources */,
-				D4346B6024053DF800D8FE7C /* UGCellHeaderView.xib in Resources */,
 				CF4758B2239636D200966536 /* 5.gif in Resources */,
 				CF475917239636D200966536 /* 116.gif in Resources */,
 				D458ED7F240F9EF100575C3F /* hot_act.gif in Resources */,
@@ -10074,6 +10214,7 @@
 				CF8E242C23DDBFD80054BF0F /* Zocial.ttf in Resources */,
 				D43DAF642453283A0014A301 /* ztlight.gif in Resources */,
 				031E1B4C23BE812800B0F813 /* UGYYRightMenuView.xib in Resources */,
+				CF988798253FF22A00DFFD49 /* HomeBannerView.xib in Resources */,
 				CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */,
 				CF475915239636D200966536 /* 15.gif in Resources */,
 				CFBAAC3F25246BD400C5F6F6 /* 5.html in Resources */,
@@ -10099,6 +10240,7 @@
 				031E1E2023BE812C00B0F813 /* UGMosaicGoldTableViewCell.xib in Resources */,
 				031E1B9423BE812900B0F813 /* UGLotteryRulesView.xib in Resources */,
 				031E1B6223BE812800B0F813 /* UGHomeTitleView.xib in Resources */,
+				CF43426525396AEA004708C3 /* HomePromotionsVC.storyboard in Resources */,
 				031E1C7223BE812A00B0F813 /* UGWithdrawalViewController.storyboard in Resources */,
 				031E1BF823BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
 				CF4FAFE1252DBB43004C47AB /* 钱包付款.html in Resources */,
@@ -10111,6 +10253,8 @@
 				CF475892239636D200966536 /* 33.gif in Resources */,
 				D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */,
 				03A5D38D23C051DB0055A998 /* JS_HomeGameColletionCell_1.xib in Resources */,
+				CF1E19E52542D4FD004436E2 /* UGCellHeaderView.xib in Resources */,
+				CF9887B4254009E400DFFD49 /* HomeFloatingButtonsView.xib in Resources */,
 				D44258FF23E948E00067E981 /* LH_l001jt.gif in Resources */,
 				CF47590D239636D200966536 /* 28.gif in Resources */,
 				CF475893239636D200966536 /* 27.gif in Resources */,
@@ -10153,6 +10297,7 @@
 				D428E8C02441EC3C000B8980 /* UGSalaryListView.xib in Resources */,
 				031E1C6423BE812A00B0F813 /* UGLotteryCollectionViewCell.xib in Resources */,
 				03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
+				CF4342792539764F004708C3 /* HomeTrademarkView.xib in Resources */,
 				CF4758A2239636D200966536 /* 124.gif in Resources */,
 				031E1DEA23BE812C00B0F813 /* UGMissionTableViewCell.xib in Resources */,
 				D40745C92511F37900606EA3 /* YNInputView.xib in Resources */,
@@ -10191,6 +10336,7 @@
 				CF4758E0239636D200966536 /* 147.gif in Resources */,
 				CFBAAC4425246BDB00C5F6F6 /* 6.html in Resources */,
 				031E1D3C23BE812B00B0F813 /* UGUserInfoViewController.storyboard in Resources */,
+				CF9CB76F253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */,
 				CF4758B0239636D200966536 /* 80.gif in Resources */,
 				031E1D1623BE812B00B0F813 /* Promote.storyboard in Resources */,
 				CF4758CA239636D200966536 /* 151.gif in Resources */,
@@ -10229,6 +10375,7 @@
 				031E1B8223BE812900B0F813 /* UGPlatformNoticeCell.xib in Resources */,
 				CF47589E239636D200966536 /* 131.gif in Resources */,
 				CF4758EC239636D200966536 /* 60.gif in Resources */,
+				CF1E19E82542D4FD004436E2 /* UGCell190HeaderView.xib in Resources */,
 				CF4758B8239636D200966536 /* 168.gif in Resources */,
 				031E1D7623BE812B00B0F813 /* UGFeedBackController.storyboard in Resources */,
 				CF4758DC239636D200966536 /* 90.gif in Resources */,
@@ -10441,6 +10588,7 @@
 				031E198323BE812600B0F813 /* UGScratchMusicView.m in Sources */,
 				031EF53523BE7B4D00B0F813 /* CustomMappable.swift in Sources */,
 				031E1BFF23BE812900B0F813 /* UGYYLotteryHomeViewController.m in Sources */,
+				CF9CB76B253C10D9007F04B7 /* HomeMarqueeView.m in Sources */,
 				031E1B5B23BE812800B0F813 /* UGredActivityView.m in Sources */,
 				D4564A4623E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */,
 				031E1ABF23BE812800B0F813 /* WMMenuCell.m in Sources */,
@@ -10776,7 +10924,6 @@
 				031E1C3123BE812900B0F813 /* UGLotterySubResultCollectionViewCell.m in Sources */,
 				031E1A0D23BE812700B0F813 /* TextFieldAlertView.m in Sources */,
 				031EF54923BE7B4D00B0F813 /* NetWorkFileModel.swift in Sources */,
-				CF8508652466D67F0025672F /* UGCellHeaderView.m in Sources */,
 				031E1A9723BE812700B0F813 /* MOFSPickerManager.m in Sources */,
 				CF5B5D1C23E30854007CBEE0 /* BetFormViewModel.m in Sources */,
 				031E1B1723BE812800B0F813 /* UGDocumentDetailVC.m in Sources */,
@@ -10848,7 +10995,6 @@
 				03B720B72520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */,
 				031E1BA323BE812900B0F813 /* UGBMRegisterViewController.m in Sources */,
 				031EF5DD23BE7B4E00B0F813 /* BetListCell.swift in Sources */,
-				CF8508682466D6860025672F /* UGCell190HeaderView.m in Sources */,
 				031E1BDF23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
 				0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */,
 				039D3CC425373FD0008511AA /* YNHLPrizeDetailView.m in Sources */,
@@ -11119,6 +11265,7 @@
 				031E1DF623BE812C00B0F813 /* UGMissionCollectionView.m in Sources */,
 				031E1C3423BE812900B0F813 /* UGTimeLotteryBetHeaderView.m in Sources */,
 				CFDB113823A3B1E10040DE2B /* SiteModel.m in Sources */,
+				CF1E19E62542D4FD004436E2 /* UGCell190HeaderView.m in Sources */,
 				CF6E4D102529B49200ABF719 /* BRDatePickerView+BR.m in Sources */,
 				031E1C8623BE812A00B0F813 /* UGFundsBankView.m in Sources */,
 				D4326F1423F7C13900BEEA1B /* RedBagLogCell1.m in Sources */,
@@ -11144,6 +11291,7 @@
 				031E1B1023BE812800B0F813 /* UGLotteryRecordController.m in Sources */,
 				D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */,
 				031E1B3223BE812800B0F813 /* UGSystemConfigModel.m in Sources */,
+				CF43428D253981B2004708C3 /* HomeRankingView.m in Sources */,
 				031E1B9A23BE812900B0F813 /* UGLotteryAssistantTableViewCell.m in Sources */,
 				031E1A9623BE812700B0F813 /* MOFSPickerManager.m in Sources */,
 				031E19CC23BE812700B0F813 /* UIView+TagString.m in Sources */,
@@ -11218,6 +11366,7 @@
 				CF4FAFC1252C806A004C47AB /* HelpDocViewController.m in Sources */,
 				D4326F0623F6D45200BEEA1B /* BetImgView.m in Sources */,
 				D433EBF723D493F300D31008 /* UIImage+Extension.m in Sources */,
+				CF9887C5254014A800DFFD49 /* HomeFloatingButtonsView.m in Sources */,
 				D42752CF23EFFA31001E27A0 /* RedEnvelopeVCViewController.m in Sources */,
 				031E1E6623BE812C00B0F813 /* UGAvaterSelectView.m in Sources */,
 				031E1CB423BE812A00B0F813 /* UGTabbarController.m in Sources */,
@@ -11234,6 +11383,7 @@
 				031E1A2023BE812700B0F813 /* CCNetworkRequests1+UGLiuHe.m in Sources */,
 				031E195423BE812600B0F813 /* UGPostDetailVC.m in Sources */,
 				031E1C7C23BE812A00B0F813 /* UGFundLogsModel.m in Sources */,
+				CF43427525397648004708C3 /* HomeTrademarkView.m in Sources */,
 				D439D12724F227D300B719DA /* FBTransitionViewController.m in Sources */,
 				031E1C8423BE812A00B0F813 /* UGFunds2microcodeView.m in Sources */,
 				D407459A2511F36900606EA3 /* UGYNLotteryController.m in Sources */,
@@ -11260,6 +11410,7 @@
 				030A874723C5C3070001EF82 /* JS_MineVC.m in Sources */,
 				031E1CDA23BE812A00B0F813 /* MJRefreshAutoNormalFooter.m in Sources */,
 				031E1AD823BE812800B0F813 /* CustomCollectionViewCell.m in Sources */,
+				CF988793253FF20400DFFD49 /* HomeBannerView.m in Sources */,
 				031E1D3E23BE812B00B0F813 /* UGUserInfoViewController.m in Sources */,
 				031E1E7A23BE812C00B0F813 /* UGCalenderAlertView.m in Sources */,
 				031E1E1623BE812C00B0F813 /* UGAddressCollectionViewCell.m in Sources */,
@@ -11443,6 +11594,7 @@
 				031E1DAA23BE812B00B0F813 /* UGMessageModel.m in Sources */,
 				031E1CB223BE812A00B0F813 /* UGLaunchPageVC.m in Sources */,
 				031E1CBA23BE812A00B0F813 /* UGTableViewController.m in Sources */,
+				CFA1EC5A2542D78E003440CB /* TKLMainViewController.m in Sources */,
 				D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */,
 				031E195C23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
 				D4DB5D4123FBB4DD001C6D8F /* UIView+JHViewCorner.m in Sources */,
@@ -11457,6 +11609,7 @@
 				031E1AC223BE812800B0F813 /* WMDropDown2View.m in Sources */,
 				031E1DD823BE812C00B0F813 /* UGAddressListModel.m in Sources */,
 				03B1252924F7E035007A0858 /* ScratchController.m in Sources */,
+				CF8C4075253FEC320006B293 /* HomeWaistAdsView.m in Sources */,
 				031E1B8C23BE812900B0F813 /* UGLotteryRecordTableViewCell.m in Sources */,
 				D4ACC04724701F6F005AB971 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D434743D24AB2B8100B0F598 /* BetDetailViewController.m in Sources */,
@@ -11516,6 +11669,7 @@
 				495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */,
 				031E1AEC23BE812800B0F813 /* LeeTagView.m in Sources */,
 				031E1DC223BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
+				CF43426E25396D10004708C3 /* HomePromotionsVC.m in Sources */,
 				D40745D32511F37900606EA3 /* YNQuickSelectView.m in Sources */,
 				0393C8A624F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m in Sources */,
 				D4326F0E23F7B4F900BEEA1B /* RedBagLogModel.m in Sources */,
@@ -11542,6 +11696,7 @@
 				032412B923CC5D3F00FABD51 /* PromotionRecordCell2.m in Sources */,
 				031E1BCC23BE812900B0F813 /* UGXYNCLotteryController.m in Sources */,
 				031E1C2C23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.m in Sources */,
+				CF9887A3253FF6B200DFFD49 /* HomeBetFormView.m in Sources */,
 				031E1A8623BE812700B0F813 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				031E1BD623BE812900B0F813 /* UGPCDDLotteryController.m in Sources */,
 				031E1CC623BE812A00B0F813 /* MJRefreshConst.m in Sources */,
@@ -11608,6 +11763,7 @@
 				031E1CD423BE812A00B0F813 /* MJRefreshBackNormalFooter.m in Sources */,
 				031E196223BE812600B0F813 /* UGPostListVC.m in Sources */,
 				CF533B01251DDE4500462E31 /* UGLotteryRightMenuView.m in Sources */,
+				CF43427E25397BEF004708C3 /* HomeLHColumnView.m in Sources */,
 				031E19E623BE812700B0F813 /* UIViewController+Log.m in Sources */,
 				D4426965249CABEC0006878C /* UGMailBoxTableViewController.m in Sources */,
 				031E1A6623BE812700B0F813 /* UIView+ST.m in Sources */,
@@ -11633,8 +11789,8 @@
 				CF52FA5E2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m in Sources */,
 				03314FD923CDE2150070CB54 /* HSC_TitleView.m in Sources */,
 				CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */,
+				CF1E19E72542D4FD004436E2 /* UGCellHeaderView.m in Sources */,
 				031E1CF223BE812A00B0F813 /* SVIndefiniteAnimatedView.m in Sources */,
-				D4346B8E2407E5C900D8FE7C /* UGCell190HeaderView.m in Sources */,
 				031E1ADE23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,
 				033A72D5251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m in Sources */,
 				031E1ACE23BE812800B0F813 /* TGWebViewController.m in Sources */,
@@ -11697,6 +11853,7 @@
 				031E1D4023BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.m in Sources */,
 				031E1DC623BE812B00B0F813 /* UGBalanceTransferLogsModel.m in Sources */,
 				031E1AF623BE812800B0F813 /* SANotificationEvent.m in Sources */,
+				CF9CB76A253C10D9007F04B7 /* HomeMarqueeView.m in Sources */,
 				031E1B6023BE812800B0F813 /* UGDocumentView.m in Sources */,
 				D4F0411A23C86A6A0070D2B5 /* RememberPass.m in Sources */,
 				031E1B2E23BE812800B0F813 /* UGBetItemModel.m in Sources */,
