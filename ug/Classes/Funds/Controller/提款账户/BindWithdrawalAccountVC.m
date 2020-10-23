@@ -185,17 +185,11 @@
         default:;
     }
     BOOL err = false;
-    if (!acct.length) {
-        if (wt != UGWithdrawalTypeWeChat)
-            err = true;
-        else if (!addr.length) {
-            err = true;
-        }
-    }
+    if (!wid.length) err = true;
+    if (!acct.length) err = true;
     if (!addr.length && (wt == UGWithdrawalTypeBankCard || (wt == UGWithdrawalTypeVirtual && _blockchainList.count))) {
         err = true;
     }
-    if (!wid.length) err = true;
     if (err) {
         [SVProgressHUD showErrorWithStatus:@"请完善资料"];
         return;
