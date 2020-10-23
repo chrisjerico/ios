@@ -34,67 +34,17 @@
 }
 
 + (__kindof UIViewController *)viewControllerWithStoryboardID:(NSString *)sid {
+    // 获取所有storyboard
     static NSArray <UIStoryboard *>*sbs = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        UIStoryboard *(^sb)(NSString *) = ^UIStoryboard *(NSString *sbName) {
-            return [UIStoryboard storyboardWithName:sbName bundle:[NSBundle mainBundle]];
-        };
-        sbs = @[sb(@"UGWithdrawalViewController"),
-                sb(@"UGMissionCenterViewController"),
-                sb(@"UGHKLHCLotteryController"),
-                sb(@"UGFeedBackController"),
-                sb(@"UGYubaoViewController"),
-                sb(@"UGPromotionInfoController"),
-                sb(@"UGUserInfoViewController"),
-                sb(@"UGGD11X5LotteryController"),
-                sb(@"UGXYNCLotteryController"),
-                sb(@"UGBJKL8LotteryController"),
-                sb(@"UGGDKL10LotteryController"),
-                sb(@"UGIntegralConvertRecordController"),
-                sb(@"UGBetRecordDetailViewController"),
-                sb(@"UGJSK3LotteryController"),
-                sb(@"UGIntegralConvertController"),
-                sb(@"UGBetRecordTableViewController"),
-                sb(@"UGSafety"),
-                sb(@"UGRealBetRecordViewController"),
-                sb(@"UGHomeViewController"),
-                sb(@"UGBindCardViewController"),
-                sb(@"UGPK10NNLotteryController"),
-                sb(@"UGQXCLotteryController"),
-                sb(@"UGPCDDLotteryController"),
-                sb(@"UGLotteryRecordController"),
-                sb(@"UGLotteryAssistantController"),
-                sb(@"UGSSCLotteryController"),
-                sb(@"UGBJPK10LotteryController"),
-                sb(@"Mine"),
-                sb(@"UGFC3DLotteryController"),
-                sb(@"Promote"),
-                sb(@"UGLHC"),
-                sb(@"UGLHH"),
-                sb(@"BMpreferential"),
-                sb(@"BlackTemplate"),
-                sb(@"BMMine"),
-                sb(@"LHTemplate"),
-                sb(@"LHTemplate"),
-                sb(@"UGYubaoViewController"),
-                sb(@"JS_Mine"),
-                sb(@"HSC_Mine"),
-                sb(@"HSC_Mine"),
-                sb(@"MyPromotion"),
-                sb(@"ContractedTemplate"),
-                sb(@"RedEnvelope"),
-                sb(@"LineConversion"),
-                sb(@"BetDetail"),
-                sb(@"Funds"),
-                sb(@"UGYNLotteryController"),
-                sb(@"NewUserInfoViewController"),
-                sb(@"NewLotteryHomeViewController"),
-                sb(@"HelpDocument"),
-                
-        ];
+        NSMutableArray *temp = @[].mutableCopy;
+        for (NSString *path in [[NSBundle mainBundle] pathsForResourcesOfType:@"storyboardc" inDirectory:nil]) {
+            [temp addObject:[UIStoryboard storyboardWithName:path.lastPathComponent.stringByDeletingPathExtension bundle:[NSBundle mainBundle]]];
+        }
+        sbs = [temp copy];
     });
-    
+    // 遍历storyboard找出指定sid页面
     const char *sel = [@"contains11111NibNamed:" stringByReplacingOccurrencesOfString:@"1" withString:@""].UTF8String;
     for (UIStoryboard *sb in sbs) {
         if ([sb performSelector:sel, sid])

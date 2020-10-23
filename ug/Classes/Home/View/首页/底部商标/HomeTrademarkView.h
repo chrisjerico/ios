@@ -1,15 +1,16 @@
 //
-//  HSC_TitleView.h
-//  ug
+//  HomeTrademarkView.h
+//  UGBWApp
 //
-//  Created by xionghx on 2020/1/14.
+//  Created by fish on 2020/10/16.
 //  Copyright © 2020 ug. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface HSC_TitleView : UIView
+
+@interface HomeTrademarkView : UIView
 
 @end
 
