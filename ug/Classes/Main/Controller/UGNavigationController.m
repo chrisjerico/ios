@@ -31,15 +31,16 @@
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
 #import "UGSigInCodeViewController.h"            // 每日签到
 #import "SLWebViewController.h"
-#import "UGSecurityCenterViewController.h"  // 安全中心
-#import "UGRealBetRecordViewController.h"   // 其他注单记录
-#import "UGMosaicGoldViewController.h"    // 活动彩金
-#import "UGLHMineViewController.h"    // 六合 我的
-#import "UGMineSkinViewController.h"    //  我的
+#import "UGSecurityCenterViewController.h"              // 安全中心
+#import "UGRealBetRecordViewController.h"               // 其他注单记录
+#import "UGMosaicGoldViewController.h"                  // 活动彩金
+#import "UGLHMineViewController.h"                      // 六合 我的
+#import "UGMineSkinViewController.h"                    //  我的
 #import "LotteryBetAndChatVC.h"
-#import "UGBalanceConversionController.h"//额度转换
-#import "UGUserInfoViewController.h"   //个人资料"
-#import "UGLotteryHomeController.h"   // 彩票大厅
+#import "UGBalanceConversionController.h"               //额度转换
+#import "UGUserInfoViewController.h"                    //个人资料"
+#import "UGLotteryHomeController.h"                     // 额度转换天空蓝
+#import "TKLMainViewController.h"
 
 // Tools
 #import "UGAppVersionManager.h"
@@ -191,9 +192,14 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGBalanceConversionController class]]) {
             
-            if (APP.isNewConversion) {
-                 viewController =  _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
-            } 
+            if (Skin1.isTKL) {
+                viewController =  [[TKLMainViewController alloc] init];
+            } else {
+                if (APP.isNewConversion) {
+                     viewController =  _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
+                }
+            }
+           
         }
         
         if ([viewController isKindOfClass:[UGUserInfoViewController class]]) {

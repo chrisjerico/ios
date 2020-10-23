@@ -25,6 +25,7 @@
 #import "UGSigInCodeViewController.h"       // 每日签到
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
+#import "TKLMainViewController.h"           // 额度转换天空蓝
 #import "UGAgentViewController.h"           // 申请代理
 #import "LineConversionHeaderVC.h"          // 额度转换 1
 #import "LotteryBetAndChatVC.h"             // 聊天室
@@ -188,11 +189,17 @@ UGSystemConfigModel *currentConfig = nil;
         ].mutableCopy;
         
         UGMobileMenu * itemLine;
-        if (APP.isNewConversion) {
-            itemLine = item(@"/conversion",        @"change",                      LineConversionHeaderVC.className,               MM_额度转换,        @"额度转换");
+        
+        if (Skin1.isTKL) {
+            itemLine = item(@"/conversion",        @"change",                      TKLMainViewController.className,               MM_额度转换,        @"额度转换");
         } else {
-            itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");
+            if (APP.isNewConversion) {
+                itemLine = item(@"/conversion",        @"change",                      LineConversionHeaderVC.className,               MM_额度转换,        @"额度转换");
+            } else {
+                itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");
+            }
         }
+       
         
         UGMobileMenu * itemLottery;
         if (APP.isNewLotteryView) {

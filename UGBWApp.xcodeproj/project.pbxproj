@@ -1956,6 +1956,7 @@
 		CF4FB05C252EFA92004C47AB /* 火币.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FB05A252EFA92004C47AB /* 火币.html */; };
 		CF52FA5E2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */; };
 		CF52FA5F2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */; };
+		CF5313FD2542E66D00450EF1 /* TKLMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5313FC2542E66D00450EF1 /* TKLMainListViewController.m */; };
 		CF533A81251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */; };
 		CF533A82251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */; };
 		CF533A83251B116000462E31 /* NewLotteryGameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF533A80251B116000462E31 /* NewLotteryGameCollectionViewCell.xib */; };
@@ -4043,6 +4044,8 @@
 		CF52FA5B2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawalAccountTableViewCell.h; sourceTree = "<group>"; };
 		CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGwithdrawalAccountTableViewCell.m; sourceTree = "<group>"; };
 		CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGwithdrawalAccountTableViewCell.xib; sourceTree = "<group>"; };
+		CF5313FB2542E66D00450EF1 /* TKLMainListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLMainListViewController.h; sourceTree = "<group>"; };
+		CF5313FC2542E66D00450EF1 /* TKLMainListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLMainListViewController.m; sourceTree = "<group>"; };
 		CF533A7E251B116000462E31 /* NewLotteryGameCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewLotteryGameCollectionViewCell.h; sourceTree = "<group>"; };
 		CF533A7F251B116000462E31 /* NewLotteryGameCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewLotteryGameCollectionViewCell.m; sourceTree = "<group>"; };
 		CF533A80251B116000462E31 /* NewLotteryGameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewLotteryGameCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -9217,6 +9220,8 @@
 				D4593B0523FFA6C1008396BE /* LineMainListViewController.m */,
 				CFA1EC582542D78E003440CB /* TKLMainViewController.h */,
 				CFA1EC592542D78E003440CB /* TKLMainViewController.m */,
+				CF5313FB2542E66D00450EF1 /* TKLMainListViewController.h */,
+				CF5313FC2542E66D00450EF1 /* TKLMainListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -11592,6 +11597,7 @@
 				031E1BB023BE812900B0F813 /* UGBMLotteryHomeViewController.m in Sources */,
 				03E3AAC223C84EA5009A28C0 /* PromotionIntroductionVC.m in Sources */,
 				031E1D8C23BE812B00B0F813 /* UGMineSkinViewController.m in Sources */,
+				CF5313FD2542E66D00450EF1 /* TKLMainListViewController.m in Sources */,
 				031E19CA23BE812700B0F813 /* UIColor+Utils.m in Sources */,
 				031E1DE423BE812C00B0F813 /* UGMineSkinModel.m in Sources */,
 				031E1D5023BE812B00B0F813 /* UGSecurityCenterViewController.m in Sources */,

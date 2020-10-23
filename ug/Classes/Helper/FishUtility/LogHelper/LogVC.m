@@ -10,7 +10,7 @@
 
 #import "LogVC.h"
 #import "CMAudioPlayer.h"
-
+#import "TKLMainViewController.h"
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
@@ -166,9 +166,11 @@ static LogVC *_logVC = nil;
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
         [ac setActionAtTitle:@"天空蓝额度" handler:^(UIAlertAction *aa) {
-            
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"TKLMainViewController") animated:true];
+            TKLMainViewController *vc = [[TKLMainViewController alloc] init];
+            [NavController1 pushViewController:vc animated:true];
+//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"TKLMainListViewController") animated:true];
         }];
+
         
         [ac setActionAtTitle:@"时间搓" handler:^(UIAlertAction *aa) {
            NSString *time1 = [CMTimeCommon timestampSwitchTime:1602923724 andFormatter:@"yyyy-MM-dd HH:mm"];

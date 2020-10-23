@@ -169,7 +169,7 @@
     _isTabMassageBadge = YES;
     _isTabHot = false;
     _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
-    _isNewConversion = [@"c200,a002,c186" containsString:_SiteId];
+    _isNewConversion = [@"c200,a002,c186,test60f" containsString:_SiteId];
     _isNewUserInfoView = [@"c186" containsString:_SiteId];
 //    _isNewLotteryView = [@"test60f,testadaf,test61f,test30-andrew" containsString:_SiteId];
     _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
