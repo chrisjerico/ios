@@ -654,7 +654,7 @@
         <!--天空蓝额度转换-->
         <scene sceneID="8h5-bi-rVM">
             <objects>
-                <viewController id="Pdh-oO-iCp" userLabel="天空蓝额度转换" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TKLMainViewController" id="Pdh-oO-iCp" userLabel="天空蓝额度转换" customClass="TKLMainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4GB-yF-lfQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -668,7 +668,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="TBI-DJ-X0W">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25L-OF-YwK">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25L-OF-YwK" customClass="IBView">
                                                         <rect key="frame" x="0.0" y="0.0" width="189.5" height="40"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="teM-3c-FpM">
@@ -718,8 +718,21 @@
                                                             <constraint firstAttribute="bottom" secondItem="teM-3c-FpM" secondAttribute="bottom" id="c0y-wf-9RU"/>
                                                             <constraint firstAttribute="trailing" secondItem="teM-3c-FpM" secondAttribute="trailing" id="tw5-U7-CVe"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.40235453840000002" green="0.70780760050000002" blue="0.86276966330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左边View"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snC-WH-mRo">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snC-WH-mRo" customClass="IBView">
                                                         <rect key="frame" x="204.5" y="0.0" width="189.5" height="40"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="m5l-hC-tJh">
@@ -769,8 +782,21 @@
                                                             <constraint firstItem="m5l-hC-tJh" firstAttribute="top" secondItem="snC-WH-mRo" secondAttribute="top" id="QE0-p1-RBA"/>
                                                             <constraint firstItem="m5l-hC-tJh" firstAttribute="leading" secondItem="snC-WH-mRo" secondAttribute="leading" id="bhk-wy-9Q3"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.40235453840000002" green="0.70780760050000002" blue="0.86276966330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
@@ -781,11 +807,11 @@
                                             <constraint firstAttribute="trailing" secondItem="TBI-DJ-X0W" secondAttribute="trailing" id="WkL-pg-ZxO"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5f4-hq-yht">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5f4-hq-yht" customClass="IBView">
                                         <rect key="frame" x="0.0" y="60" width="394" height="40"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Rb-xC-pCd">
-                                                <rect key="frame" x="0.0" y="0.0" width="94.5" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="95" height="40"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="转入金额：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tx9-cQ-GYI">
                                                         <rect key="frame" x="9" y="11" width="76.5" height="18"/>
@@ -800,22 +826,72 @@
                                                     <constraint firstItem="Tx9-cQ-GYI" firstAttribute="centerX" secondItem="0Rb-xC-pCd" secondAttribute="centerX" id="tuk-dI-nXm"/>
                                                 </constraints>
                                             </view>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nyh-Sv-b65">
+                                                <rect key="frame" x="100" y="0.0" width="294" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="仅数字含小数">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="nyh-Sv-b65" firstAttribute="leading" secondItem="0Rb-xC-pCd" secondAttribute="trailing" constant="5" id="3l8-Ts-lTY"/>
+                                            <constraint firstItem="nyh-Sv-b65" firstAttribute="top" secondItem="5f4-hq-yht" secondAttribute="top" id="5pV-3L-rWk"/>
+                                            <constraint firstAttribute="trailing" secondItem="nyh-Sv-b65" secondAttribute="trailing" id="fmx-7g-IaN"/>
                                             <constraint firstAttribute="bottom" secondItem="0Rb-xC-pCd" secondAttribute="bottom" id="gbs-Xh-1D7"/>
+                                            <constraint firstAttribute="bottom" secondItem="nyh-Sv-b65" secondAttribute="bottom" id="hxE-V8-FY9"/>
                                             <constraint firstItem="0Rb-xC-pCd" firstAttribute="leading" secondItem="5f4-hq-yht" secondAttribute="leading" id="n3B-8g-HlA"/>
                                             <constraint firstItem="0Rb-xC-pCd" firstAttribute="top" secondItem="5f4-hq-yht" secondAttribute="top" id="pHb-fb-5H2"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.40235453840000002" green="0.70780760050000002" blue="0.86276966330000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxC-0c-5rI">
                                         <rect key="frame" x="0.0" y="120" width="394" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-O2-YxR" customClass="IBButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
+                                                <color key="backgroundColor" red="0.22716376190000001" green="0.38971507550000001" blue="0.66858863830000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="开始转换">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemTealColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="yEE-O2-YxR" secondAttribute="trailing" id="Uac-Nz-bWI"/>
+                                            <constraint firstAttribute="bottom" secondItem="yEE-O2-YxR" secondAttribute="bottom" id="a4H-zo-xiy"/>
+                                            <constraint firstItem="yEE-O2-YxR" firstAttribute="top" secondItem="lxC-0c-5rI" secondAttribute="top" id="ilV-hh-Rru"/>
+                                            <constraint firstItem="yEE-O2-YxR" firstAttribute="leading" secondItem="lxC-0c-5rI" secondAttribute="leading" id="umU-H8-V4u"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90972405670000001" green="0.90985494850000004" blue="0.9096954465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="0Rb-xC-pCd" firstAttribute="width" secondItem="6Bu-D7-ThV" secondAttribute="width" multiplier="1.89474" constant="-85" id="W4z-Lj-Hv2"/>
+                                    <constraint firstItem="0Rb-xC-pCd" firstAttribute="width" secondItem="6Bu-D7-ThV" secondAttribute="width" id="W4z-Lj-Hv2"/>
                                     <constraint firstAttribute="height" constant="160" id="zQx-in-zrC"/>
                                 </constraints>
                             </stackView>
@@ -846,9 +922,6 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

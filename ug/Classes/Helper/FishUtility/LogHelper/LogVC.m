@@ -162,13 +162,12 @@ static LogVC *_logVC = nil;
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"时间搓"];
-        [titles addObject:@"汇率"];
+        [titles addObject:@"天空蓝额度"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"汇率" handler:^(UIAlertAction *aa) {
+        [ac setActionAtTitle:@"天空蓝额度" handler:^(UIAlertAction *aa) {
             
-            NSDecimalNumber *sale = [CMCommon randStr:@"1604.975" scale:2];
-            NSLog(@"sale = %@",sale);
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"TKLMainViewController") animated:true];
         }];
         
         [ac setActionAtTitle:@"时间搓" handler:^(UIAlertAction *aa) {

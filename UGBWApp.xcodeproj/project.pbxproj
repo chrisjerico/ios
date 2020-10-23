@@ -2071,6 +2071,7 @@
 		CF9CB76F253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */; };
 		CF9CB770253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */; };
 		CFA01CFD2535AC6D00EA71F9 /* YNView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA01CFC2535AC6D00EA71F9 /* YNView.m */; };
+		CFA1EC5A2542D78E003440CB /* TKLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA1EC592542D78E003440CB /* TKLMainViewController.m */; };
 		CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3225246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3525246BBE00C5F6F6 /* 2.html */; };
@@ -4130,6 +4131,8 @@
 		CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMarqueeView.xib; sourceTree = "<group>"; };
 		CFA01CFB2535AC6D00EA71F9 /* YNView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNView.h; sourceTree = "<group>"; };
 		CFA01CFC2535AC6D00EA71F9 /* YNView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNView.m; sourceTree = "<group>"; };
+		CFA1EC582542D78E003440CB /* TKLMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLMainViewController.h; sourceTree = "<group>"; };
+		CFA1EC592542D78E003440CB /* TKLMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLMainViewController.m; sourceTree = "<group>"; };
 		CFBAAC3025246BB400C5F6F6 /* 1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 1.html; sourceTree = "<group>"; };
 		CFBAAC3525246BBE00C5F6F6 /* 2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 2.html; sourceTree = "<group>"; };
 		CFBAAC3825246BC600C5F6F6 /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
@@ -9212,6 +9215,8 @@
 				D4773ACD23FD628800D38D60 /* LineMainViewController.m */,
 				D4593B0423FFA6C1008396BE /* LineMainListViewController.h */,
 				D4593B0523FFA6C1008396BE /* LineMainListViewController.m */,
+				CFA1EC582542D78E003440CB /* TKLMainViewController.h */,
+				CFA1EC592542D78E003440CB /* TKLMainViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -11534,6 +11539,7 @@
 				031E1DAA23BE812B00B0F813 /* UGMessageModel.m in Sources */,
 				031E1CB223BE812A00B0F813 /* UGLaunchPageVC.m in Sources */,
 				031E1CBA23BE812A00B0F813 /* UGTableViewController.m in Sources */,
+				CFA1EC5A2542D78E003440CB /* TKLMainViewController.m in Sources */,
 				D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */,
 				031E195C23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
 				D4DB5D4123FBB4DD001C6D8F /* UIView+JHViewCorner.m in Sources */,
