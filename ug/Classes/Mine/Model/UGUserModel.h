@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *balance;
-@property (nonatomic, strong) NSString *avatar;
+@property (nonatomic, strong) NSString *avatar;/**<   头像 */
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, assign) BOOL enable;
 @property (nonatomic, strong) NSString *fullName;

@@ -392,13 +392,22 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                             </textField>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOF-mH-A03">
+                                                <rect key="frame" x="287" y="34" width="77" height="30"/>
+                                                <state key="normal" title="忘记密码？"/>
+                                                <connections>
+                                                    <action selector="forgetPasswordAction:" destination="Xjh-QV-lKb" eventType="touchUpInside" id="gDd-as-SeW"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Ci1-lu-l4G" firstAttribute="top" secondItem="Brl-cT-GNM" secondAttribute="bottom" constant="5" id="Q0l-PX-kaA"/>
                                             <constraint firstAttribute="trailing" secondItem="Brl-cT-GNM" secondAttribute="trailing" id="QeX-XI-fsZ"/>
+                                            <constraint firstItem="aOF-mH-A03" firstAttribute="bottom" secondItem="Ci1-lu-l4G" secondAttribute="bottom" id="S3h-bl-mKq"/>
                                             <constraint firstAttribute="trailing" secondItem="Ci1-lu-l4G" secondAttribute="trailing" id="azc-wi-bbA"/>
                                             <constraint firstAttribute="bottom" secondItem="Ci1-lu-l4G" secondAttribute="bottom" constant="21" id="ffh-Ob-PqD"/>
+                                            <constraint firstAttribute="trailing" secondItem="aOF-mH-A03" secondAttribute="trailing" id="iCQ-qz-dzo"/>
                                             <constraint firstItem="Ci1-lu-l4G" firstAttribute="leading" secondItem="T03-E2-gIY" secondAttribute="leading" id="mpW-ic-amu"/>
                                             <constraint firstItem="Brl-cT-GNM" firstAttribute="leading" secondItem="T03-E2-gIY" secondAttribute="leading" id="rNp-ar-Ex7"/>
                                             <constraint firstAttribute="height" constant="85" id="x4R-aA-dXH"/>
@@ -454,6 +463,7 @@
                         <outlet property="commitButton" destination="joU-SE-sho" id="uFw-wa-DvG"/>
                         <outlet property="limitLabel" destination="AtA-d6-tFx" id="KM1-4n-3Zk"/>
                         <outlet property="pwdTextF" destination="Brl-cT-GNM" id="CUH-Hr-zui"/>
+                        <outlet property="resetPasswordButton" destination="aOF-mH-A03" id="m1G-Ge-xtD"/>
                         <outlet property="titleLabel" destination="vBk-Yr-wB3" id="0Lc-r6-EFg"/>
                         <outlet property="withdrawalView" destination="yC0-wx-rcd" id="NuE-kw-ZQh"/>
                     </connections>

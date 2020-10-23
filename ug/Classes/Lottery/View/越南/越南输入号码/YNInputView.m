@@ -49,7 +49,7 @@
    
 //    msg = [NSString stringWithFormat:@"%@",
 //    [s stringByReplacingOccurrencesOfString:@"\\n" withString:@" \r\n" ]];
-    _inputTextView.backgroundColor = Skin1.homeContentColor;
+    _inputTextView.backgroundColor = Skin1.CLBgColor;
     self.contentView.backgroundColor = Skin1.bgColor;
     _inputTextView.textColor = Skin1.textColor1;
 }
@@ -59,31 +59,31 @@
     _code = code;
     NSString *str = @"";
     if (code == Tip_千) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：0001;0015;0099";
+        str = @" 怎么玩：\n\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔\n\n 例如：0001;0015;0099";
     }
     else  if(code == Tip_百) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：001;015;099";
+        str = @" 怎么玩：\n\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔\n\n 例如：001;015;123";
     }
     else  if(code == Tip_十) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;15;99";
+        str = @" 怎么玩：\n\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔\n\n 例如：15;12,10 19";
     }
     else  if(code == Tip_偏斜2) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;15|02;16";
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔 组数之前用“｜”分割\n 例如：01;15|02;16";
     }
     else  if(code == Tip_偏斜3) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;15;30|02;16;99";
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔 组数之前用“｜”分割\n 例如：01;15;30|02;16;99";
     }
     else  if(code == Tip_偏斜4) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;15;30;36|02;16;81;99";
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔 组数之前用“｜”分割\n 例如：01;15;30;36|02;16;81;99";
     }
     else  if(code == Tip_串烧8) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;15;30;36;11;12;89;99";
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔\n 例如：01;15;30;36;11;12;89;99";
     }
     else  if(code == Tip_串烧4) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;15;30;36";
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔\n 例如：01;15;30;36";
     }
     else  if(code == Tip_串烧10) {
-        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”分隔\n 例如：01;02;03;05;15;30;36;11;12;99";
+        str = @" 怎么玩：\n 在每个下注之间用英文分号“;”或逗号“,”或空格分隔\n 例如：01;02;03;05;15;30;36;11;12;99";
     }
     
     [self.inputTextView setPlaceholderWithText:str Color:Skin1.textColor1];

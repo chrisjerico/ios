@@ -8,15 +8,22 @@
 
 #import "YNQuickListView.h"
 #import "YNQuickListCollectionViewCell.h"
-@interface YNQuickListView()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
+#import "NSMutableArray+KVO.h"
+
+@interface YNQuickListView()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,NSMutableArrayDidChangeDelegate>
 {
 }
 @property (nonatomic, strong) WSLWaterFlowLayout *flow;
-@property (nonatomic, strong)NSMutableArray<NSString *> *selecedDataArry;//已选中数据
+
 
 @end
 static NSString *ID=@"YNQuickListCollectionViewCell";
 @implementation YNQuickListView
+
+-(void)dealloc{
+//    [self xw_removeAllNotification];
+    self.selecedDataArry  = nil;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -31,7 +38,13 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
         self.delegate = self;
         self.dataSource = self;
         self.selecedDataArry = [NSMutableArray new];
-        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
+   
+        [self.selecedDataArry addObserver:self];
+        
+        
+
+        
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             self.backgroundColor =  [UIColor whiteColor];
         } else {
             if (APP.isLight) {
@@ -46,6 +59,24 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     }
     return self;
     
+}
+
+//回调方法
+
+
+- (void)array:(NSMutableArray *)array didChange:(NSDictionary<NSString *,id> *)change {
+    NSLog(@"%ld", array.count);
+    
+    if (self.seleced) {
+        if (array.count >= self.selecedCount ) {
+            [Global getInstanse].hasBgColor = YES;
+        }
+        else{
+            [Global getInstanse].hasBgColor = NO;
+        }
+        [self reloadData];
+    }
+   
 }
 
 -(void)setDataArry:(NSMutableArray<UGGameBetModel *> *)dataArry{
@@ -66,60 +97,49 @@ static NSString *ID=@"YNQuickListCollectionViewCell";
     
     YNQuickListCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:ID forIndexPath:indexPath];
     UGGameBetModel *model = [_dataArry objectAtIndex:indexPath.row];
+    cell.hasSelected = self.seleced;
     cell.item = model;
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
     if (self.collectIndexBlock) {
-      
-
         UGGameBetModel *game = [_dataArry objectAtIndex:indexPath.row];
         if (!game.enable) {
             return;
         }
-      
-
         //如果selected 是yes
-        
         //如果选中的数组 数量 >= selectedNumber:==>选中的数组里面的可以取消，其他的不能操作（颜色变化）
-        
         //否则   ==》随便选择==》//如果选中，保存到选中的数组
-        
         if (self.seleced) {
-            if (self.selecedDataArry.count >= self.selecedCount) {
-                
-               BOOL isbool = [self.selecedDataArry containsObject:game.name];
-                
+            if (self.selecedDataArry.count >= self.selecedCount ) {
+                BOOL isbool = [self.selecedDataArry containsObject:game.name];
                 if (isbool) {
                     game.select = NO;
-                    [self.selecedDataArry removeObject:game.name];
+                    [self.selecedDataArry  removeObject:game.name];
                 } else {
                     //啥都不做,除了选中的数组的其他cell 背景都改颜色
+                    return;
                 }
-                
             }
             else {
-                 game.select = !game.select;
+                game.select = !game.select;
                 if (game.select) {
-                    [self.selecedDataArry addObject:game.name];
+                    [self.selecedDataArry  addObject:game.name];
                 }
                 else{
                     if ([self.selecedDataArry containsObject:game.name]) {
-                        [self.selecedDataArry removeObject:game.name];
+                        [self.selecedDataArry  removeObject:game.name];
                     }
                 }
             }
-        } else {
+        }
+        else {
             game.select = !game.select;
         }
-
         [self reloadData];
-        
         self.collectIndexBlock(collectionView,indexPath);
     }
-    
 }
 
 #pragma mark - WSLWaterFlowLayoutDelegate

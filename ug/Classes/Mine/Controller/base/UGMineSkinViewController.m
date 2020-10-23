@@ -270,6 +270,15 @@
         ((UILabel *)[self.taskButton.superview viewWithTagString:@"任务中心Label"]).text = @"任务大厅";
     }
     
+    if (APP.isC239B) {
+        self.valueLabel.hidden = YES;
+        self.uidLabel.hidden = YES;
+        self.fristVipLabel.hidden = YES;
+        self.secondVipLabel.hidden = YES;
+        self.progressView.hidden = YES;
+    }
+    
+    
 }
 
 - (void)addRightBtn {
@@ -782,8 +791,7 @@ BOOL isOk = NO;
         self.moenyNumberLabel.text = _FloatString4(user.taskReward.doubleValue);
     }
     
-    double floatString = [user.balance doubleValue];
-    self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%.2f",floatString];
+    self.userMoneyLabel.text =  [NSString stringWithFormat:@"￥%@",user.balance];
     //进度条
     double progress = user.taskRewardTotal.doubleValue/user.nextLevelInt.doubleValue;
     self.progressLayer.path = [self progressPathWithProgress:progress].CGPath;
@@ -795,6 +803,8 @@ BOOL isOk = NO;
         self.uidLabel.text = @"";
     }
     
+    
+
 }
 
 

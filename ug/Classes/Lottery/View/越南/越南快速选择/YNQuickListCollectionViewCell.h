@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YNQuickListCollectionViewCell : UICollectionViewCell
-
+@property (nonatomic) BOOL hasSelected;//是否有 可以选择的数量
 @property (nonatomic, strong) UGGameBetModel *item;
 @end
 

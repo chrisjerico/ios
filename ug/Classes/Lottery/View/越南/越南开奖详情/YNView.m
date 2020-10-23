@@ -11,6 +11,8 @@
 @implementation YNView
 
 -(void)setLabelColorForSelCode{
+    
+    NSLog(@"selCode = %@",[Global getInstanse].selCode);
     FastSubViewCode(self)
     if ([[Global getInstanse].selCode isEqualToString:@"PIHAO2"]     ||
         [[Global getInstanse].selCode isEqualToString:@"DIDUAN2"]    ||
@@ -27,7 +29,7 @@
         [self length:3 isFront:MR_后面];
     }
     else if([[Global getInstanse].selCode isEqualToString:@"PIHAO4"]) {//批号4==== 奖 后4位 红
-        [self length:3 isFront:MR_后面];
+        [self length:4 isFront:MR_后面];
     }
     else if([[Global getInstanse].selCode isEqualToString:@"LOT2FIRST"]) {//奖 前2位 红 （特—6）  第一个号码
         [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
@@ -38,8 +40,12 @@
         [CMLabelCommon messageAction:subLabel(@"五等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
         [CMLabelCommon messageAction:subLabel(@"六等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
     }
-    else if([[Global getInstanse].selCode isEqualToString:@"ZHUANTI"]) {//专题====特等奖 后2位红
-        [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_后面];
+    else if([[Global getInstanse].selCode isEqualToString:@"ZHUANTI"]) {//ZHUANTI 专题
+            //专题====特等奖 后2位红
+            [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_后面];
+    }
+    else if([[Global getInstanse].selCode isEqualToString:@"TEBIEBIAOTI"]) {//特别标题===一等奖的后两位
+        [CMLabelCommon messageAction:subLabel(@"特等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_前面];
     }
     else if([[Global getInstanse].selCode isEqualToString:@"YIDENGJIANG"]) {//一等奖===一等奖的后两位
         [CMLabelCommon messageAction:subLabel(@"一等奖label") labStr:@"" separation:@"-" length:2 andMarkColor:[UIColor redColor] isMarkRangeType:MR_后面];

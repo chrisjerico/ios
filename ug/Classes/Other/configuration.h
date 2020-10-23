@@ -318,8 +318,10 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define oauthBindAccountUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=bindAccount"]//- 绑定旧账号：
 #define oauthLoginUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=login"]//- - 访问无密码登录接口：oauth/login，返回站点授权token
 #define oauthUnbindUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=unbind"]//解除三方绑定：oauth/unbind，参数：platform = 'facebook'
-
-
+//上传身份证
+#define uploadIdentityUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=uploadIdentity"]
+//找回资金密码
+#define applyFundPwdUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=applyCoinPwd"]
 
 
 

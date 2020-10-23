@@ -1237,7 +1237,7 @@ static NSString *uuidKey =@"uuidKey";
         borderColor = Skin1.textColor3;
     }
     else{
-        if (APP.betBgIsWhite) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             borderColor =  APP.LineColor;
         } else {
             borderColor =  [[UIColor whiteColor] colorWithAlphaComponent:0.3];
@@ -1695,4 +1695,59 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     return [numResult1 decimalNumberByRoundingAccordingToBehavior:behavior];
     
 }
+
+
+/**
+*对字符串 分割 根据 splitStr
+ 比如“,; ”
+*
+*
+   
+*/
++(NSArray *)arraySeparated:(NSString *)str  split:(NSString *)splitStr{
+    NSString *spChar = @"👌";
+    for (NSString *split in splitStr) {
+        str = [str stringByReplacingOccurrencesOfString:split withString:spChar];
+    }
+    NSMutableArray *arr = [str componentsSeparatedByString:spChar].mutableCopy;//分隔符逗号
+    for (NSString *ele in arr.copy) {
+        if (!ele.stringByTrim.length)
+            [arr removeObject:ele];
+    }
+    
+    return arr.copy;
+}
+
+/**
+*对字符串 替换 根据 splitStr 比如“,; ”
+*spChar  替换成 比如@“,”
+*
+   
+*/
++(NSString *)strReplace:(NSString *)str  spChar:(NSString *)spChar  split:(NSString *)splitStr{
+
+    for (NSString *split in splitStr) {
+        str = [str stringByReplacingOccurrencesOfString:split withString:spChar];
+    }
+    return [str stringByTrim];
+}
+
++(void)goSLWebViewControllerUrl:(NSString *)mUrl{
+    NSString *urlStr = [mUrl stringByTrim];
+    if (!urlStr.length) {
+        return ;
+    }
+    SLWebViewController *webViewVC = [SLWebViewController new];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if (!url.host.length) {
+        urlStr = _NSString(@"%@%@", APP.Host, SysConf.zxkfUrl);
+    }
+    else if (!url.scheme.length) {
+        urlStr = _NSString(@"http://%@", SysConf.zxkfUrl);
+    }
+    webViewVC.isCustomerService = YES;
+    webViewVC.urlStr = urlStr;
+    [NavController1 pushViewController:webViewVC animated:YES];
+}
+
 @end

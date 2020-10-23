@@ -44,7 +44,7 @@
 
     self.layer.borderWidth = item.select ? APP.borderWidthTimes * 1 : APP.borderWidthTimes * 0.5;
     
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         self.leftLabel.textColor = Skin1.textColor1;
         if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
              self.backgroundColor = item.select ? RGBA(72, 146, 209, 1):  Skin1.homeContentSubColor;
@@ -63,7 +63,7 @@
         }
         
     } else {
-        if (APP.betBgIsWhite) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             self.leftLabel.textColor = Skin1.textColor1;
         } else {
             self.leftLabel.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;
@@ -79,7 +79,7 @@
             self.backgroundColor = item.select ?Skin1.navBarBgColor:[UIColor clearColor];
         }
         
-        if (APP.betBgIsWhite) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
             self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
         } else {
             self.layer.borderColor = (item.select ? [UIColor whiteColor] : [[UIColor whiteColor] colorWithAlphaComponent:0.3]).CGColor;
@@ -88,7 +88,7 @@
         if (APP.betOddsIsRed) {
             self.rightLabel.textColor = APP.AuxiliaryColor2;
         } else {
-            if (APP.betBgIsWhite) {
+            if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
                 self.rightLabel.textColor = Skin1.textColor1;
             } else {
                 self.rightLabel.textColor = item.select ? [UIColor whiteColor] : Skin1.textColor1;

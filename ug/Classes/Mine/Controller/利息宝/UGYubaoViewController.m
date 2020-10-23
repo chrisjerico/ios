@@ -69,7 +69,7 @@
 		[_monthProfitLabel setTextColor:[UIColor blackColor]];
 		[_totalProfitLabel setTextColor:[UIColor blackColor]];
 		[subImageView(@"浪图UIImagV") setHidden:NO];
-	} else if (Skin1.isBlack||Skin1.is23) {
+	} else if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self.view setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1):Skin1.bgColor];
 		[subLabel(@"本周收益label") setTextColor:[UIColor whiteColor]];
 		[subLabel(@"本月收益label") setTextColor:[UIColor whiteColor]];
@@ -162,6 +162,14 @@
 	
 	
 	UGYUbaoTitleView *titleView = [[UGYUbaoTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 50)];
+	if (CHAT_TARGET) {
+		titleView.titleLabel.textColor = [UIColor blackColor];
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [[UIImage imageNamed:@"nav_back_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style: UIBarButtonItemStyleDone target:self action:@selector(returnButtonAction)];
+		self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+
+//		[titleView.returnButton setImage:[[UIImage imageNamed:@"c_navi_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]forState:UIControlStateNormal];
+//		titleView.returnButton.tintColor = UIColor.blackColor;
+	}
 	self.navigationItem.titleView = titleView;
 	[titleView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.width.mas_equalTo(APP.Width);

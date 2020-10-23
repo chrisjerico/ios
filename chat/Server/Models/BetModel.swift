@@ -66,6 +66,7 @@ extension BetModel {
 struct BetBeanModel: Mappable {
 	
 	var name = ""
+	var groupName = ""
 	var betNum = ""
 	var playId = ""
 	var money = ""
@@ -79,6 +80,7 @@ struct BetBeanModel: Mappable {
 	
 	mutating func mapping(map: Map) {
 		name <- map["name"]
+		groupName <- map["Groupname"]
 		betNum <- map["betNum"]
 		playId <- map["playId"]
 		money <- map["money"]

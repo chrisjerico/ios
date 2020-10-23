@@ -8,9 +8,7 @@
 
 #import "AppDefine.h"
 
-
-
-#define __SiteID__ @"c186"
+#define __SiteID__ @"test60f"
 #define LocalRnVersion @"1.4.66"
 
 
@@ -163,7 +161,10 @@
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
-			_SiteId = @"c126";
+//			_SiteId = @" t133-smith";
+			_SiteId = @"test60f";
+//			_SiteId = @"c242";
+
         }
 
 #endif
@@ -233,10 +234,7 @@
     _isYellow = [@"c085,c134,c200,c193,c116,c208,c213,c212,a002,c158" containsString:_SiteId];
     _isSelectStyle = [@"c212,c208,c134,c200,c193,c116,c213,a002,c158" containsString:_SiteId];
     _isShowBorder =  [@"c212,c208,c134,c200,c213,a002,c193,c116,c092,c158" containsString:_SiteId];
-    //背景是白色
-    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY  ;
-    //下注页tab 为深色
-    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
+
     
     
     _isShowHornView = [@"l001,l002" containsString:_SiteId];
@@ -255,7 +253,10 @@
     _lotteryHallCustomImgS = [@"c190" containsString:_SiteId];
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
 
-    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
+    //背景是白色
+    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
+    //下注页tab 为深色
+    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
 
     
@@ -278,6 +279,9 @@
     _isNoOnLineDoc = NO;
     _isHBDoc = [@"c012" containsString:_SiteId];
     _isAllCellStyle = [@"c126" containsString:_SiteId];
+    _isC126CellStyle = [@"c126" containsString:_SiteId];
+    _isC239B = [@"c239b" containsString:_SiteId];
+    _isTwoOnline = [@"c150" containsString:_SiteId];
     
 }
 

@@ -154,7 +154,7 @@
                     NSString *title = nil;
                     switch (wam.type) {
                         case UGWithdrawalTypeBankCard:
-                            title = _NSString(@"%@（%@，尾号%@，%@）", wam.name, wam.bankName, [wam.bankCard substringFromIndex:wam.bankCard.length-4], wam.ownerName);
+                            title = _NSString(@"%@（%@，尾号%@，%@）", wam.name, wam.bankName, [wam.bankCard substringFromIndex:(int)wam.bankCard.length-4], wam.ownerName);
                             break;
                         case UGWithdrawalTypeVirtual: {
                             NSString *acct = [wam.bankCard ciphertextWithHead:4 tail:4 style:0];
@@ -168,12 +168,13 @@
                         case UGWithdrawalTypeAlipay: {
                             NSString *acct = [wam.bankCard ciphertextWithHead:4 tail:4 style:0];
                             title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.ownerName);
+                            break;
                         }
                         case UGWithdrawalTypeWeChat:
                         default: {
                             NSString *acct = [wam.bankCard ciphertextWithHead:3 tail:3 style:0];
                             if (wam.bankAddr.stringByTrim.length) {
-                                title = _NSString(@"%@（%@，手机尾号%@, %@）", wam.name, acct, [wam.bankAddr substringFromIndex:wam.bankAddr.length-4], wam.ownerName);
+                                title = _NSString(@"%@（%@，手机尾号%@, %@）", wam.name, acct, [wam.bankAddr substringFromIndex:MAX((int)wam.bankAddr.length-4, 0)], wam.ownerName);
                             } else {
                                 title = _NSString(@"%@（%@，%@）", wam.name, acct, wam.ownerName);
                             }

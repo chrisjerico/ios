@@ -141,11 +141,11 @@
         
         float borderWidth = APP.borderWidthTimes * 0.5;
         UIColor* borderColor;
-        if (Skin1.isBlack||Skin1.is23) {
+        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
             borderColor = Skin1.textColor3;
         } else {
             
-            if (APP.betBgIsWhite) {
+            if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
                 borderColor =  APP.LineColor;
             } else {
                 borderColor =  [[UIColor whiteColor] colorWithAlphaComponent:0.3];
@@ -156,7 +156,7 @@
               [CMCommon setBorderWithView:self.rightStackView top:NO left:YES bottom:NO right:YES borderColor:borderColor borderWidth:borderWidth];
         }
        
-        
+//        self.tableView.layer.borderWidth = 0;
         // 左侧玩法栏背景色
         
         self.tableView.backgroundColor = [UIColor clearColor];
@@ -295,7 +295,7 @@
             [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
         }
         
-        if (Skin1.isBlack||Skin1.is23) {
+        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
             [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
         } else {
             
@@ -496,7 +496,7 @@
 // 获取系统配置
 - (void)getSystemConfig {
     WeakSelf;
-
+//    [SVProgressHUD showWithStatus:nil];
 	[CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
 			
@@ -539,7 +539,7 @@
 	
 			
 		} failure:^(id msg) {
-			[SVProgressHUD showErrorWithStatus:msg];
+//			[SVProgressHUD showErrorWithStatus:msg];
 		}];
 	}];
 
@@ -763,26 +763,32 @@
 - (void)getNextIssueDataForYN {
     NSDictionary *params = @{@"id":self.gameId};
     WeakSelf;
+    [SVProgressHUD showWithStatus:nil];
     [CMNetwork getNextIssueWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            UGNextIssueModel *nextIssueModel = model.data;
-            NSLog(@"[Global getInstanse].selCode = %@",[Global getInstanse].selCode);
-            if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
-                YNHLPrizeDetailView*betDetailView = [[YNHLPrizeDetailView alloc] init];
-                betDetailView.nextIssueModel = nextIssueModel;
-                betDetailView.selCode = [Global getInstanse].selCode;
-                betDetailView.isHide8View = NO;
-                [betDetailView show];
-            }
-            else if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//河内
-              
-                YNHLPrizeDetailView *betDetailView = [[YNHLPrizeDetailView alloc] init];
-                betDetailView.nextIssueModel = nextIssueModel;
-                betDetailView.selCode = [Global getInstanse].selCode;
-                betDetailView.isHide8View = YES;
-                [betDetailView show];
-            }
             
+            if ([CMCommon stringIsNull:model.data]) {
+                [SVProgressHUD showSuccessWithStatus:model.msg];
+            } else {
+                [SVProgressHUD dismiss];
+                UGNextIssueModel *nextIssueModel = model.data;
+                NSLog(@"[Global getInstanse].selCode = %@",[Global getInstanse].selCode);
+                if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
+                    YNHLPrizeDetailView*betDetailView = [[YNHLPrizeDetailView alloc] init];
+                    betDetailView.nextIssueModel = nextIssueModel;
+                    betDetailView.selCode = [Global getInstanse].selCode;
+                    betDetailView.isHeNeiView = NO;
+                    [betDetailView show];
+                }
+                else if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {//河内
+                    
+                    YNHLPrizeDetailView *betDetailView = [[YNHLPrizeDetailView alloc] init];
+                    betDetailView.nextIssueModel = nextIssueModel;
+                    betDetailView.selCode = [Global getInstanse].selCode;
+                    betDetailView.isHeNeiView = YES;
+                    [betDetailView show];
+                }
+            }
           
         } failure:^(id msg) {
             [SVProgressHUD dismiss];

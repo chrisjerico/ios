@@ -109,6 +109,7 @@
             
             // 第二步：获取玩法赔率
             [CMNetwork getGameDatasWithParams:@{@"id":gameId} completion:^(CMResult<id> *model, NSError *err) {
+                [SVProgressHUD dismiss];
                 [CMResult processWithResult:model success:^{
                     UGPlayOddsModel *play = model.data;
                     
@@ -158,10 +159,7 @@
                     bdv.code = paneCode;
                     bdv.followTag = betInfo[@"tag"];
                     [bdv show];
-                    
-                } failure:^(id msg) {
-                    [SVProgressHUD dismiss];
-                }];
+                } failure:nil];
             }];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];

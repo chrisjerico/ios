@@ -142,6 +142,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, readonly) NSString *clsName;
 + (NSArray <UGMobileMenu *>*)allMenus;
 - (void)createViewController:(void (^)(__kindof UIViewController *vc))completion;
+
 @end
 @protocol UGSystemConfigModel <NSObject>
 
@@ -150,7 +151,9 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 
 @interface UGSystemConfigModel : UGModel<UGSystemConfigModel>
-
+//自定义
+@property (nonatomic, copy) NSString *zxkf_1Url;                    /**<  只返回 在线客服1 */
+//===============================================
 @property (nonatomic, copy) NSString *zxkfUrl2;                    /**<   在线客服2 */
 @property (nonatomic, copy) NSString *zxkfUrl;                    /**<   在线客服 */
 @property (nonatomic, copy) NSString *minWithdrawMoney;           /**<   最低提款金额 */
@@ -258,6 +261,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, strong) NSDictionary *typyArr;/**<   优惠图片分类信息*/
 @property (nonatomic) NSInteger typeIsShow;           /**<    1 有分类 0没有分类 */
 @property (nonatomic) BOOL switchShowActivityCategory;            /**<   前台申请彩金按分类显示 */
+@property (nonatomic) NSInteger switchCoinPwd;
+@property (nonatomic, strong) NSArray<NSString *> * coinPwdAuditOptionAry;
 @end
 
 NS_ASSUME_NONNULL_END

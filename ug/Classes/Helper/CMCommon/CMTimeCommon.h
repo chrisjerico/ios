@@ -130,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /******************************************************************************
 函数名称 : compareOneDay;
-函数描述 :
+函数描述 :  比较天
    //比较NSDate 大小
 
 输入参数 :oneDay 时间   anotherDay
@@ -138,6 +138,18 @@ NS_ASSUME_NONNULL_BEGIN
 备注信息 :
 ******************************************************************************/
 +(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay;
+
+
+/******************************************************************************
+函数名称 : compareOneDay;
+函数描述 :
+   //比较NSDate 大小
+
+输入参数 :oneDay 时间   anotherDay   formatter:格式
+返回参数 : int   1  晚， -1 早  0 相同
+备注信息 :
+******************************************************************************/
++(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay  formatter:(NSString *)formatter;
 
 /******************************************************************************
 函数名称 : formatTimeStr;
@@ -149,6 +161,53 @@ NS_ASSUME_NONNULL_BEGIN
 备注信息 :
 ******************************************************************************/
 +(NSString *)formatTimeStr:(NSString *)timeStr;
+
+/**
+ *  字符串转NSDate
+ *
+ *  @param theTime 字符串时间
+ *  @param format  转化格式 如yyyy-MM-dd HH:mm:ss,即2015-07-15 15:00:00
+ *
+ *  @return <#return value description#>
+ */
++ (NSDate *)dateFromString:(NSString *)timeStr
+                    format:(NSString *)format;
+
+/**
+ *  字符串转时间戳
+ *
+ *  @param theTime 字符串时间
+ *  @param format  转化格式 如yyyy-MM-dd HH:mm:ss,即2015-07-15 15:00:00
+ *
+ *  @return 返回时间戳的字符串
+ */
++(NSInteger)cTimestampFromString:(NSString *)timeStr
+                          format:(NSString *)format;
+/**
+ *  时间戳转字符串
+ *
+ *  @param timeStamp 时间戳
+ *  @param format    转化格式 如yyyy-MM-dd HH:mm:ss,即2015-07-15 15:00:00
+ *
+ *  @return 返回字符串格式时间
+ */
++ (NSString *)dateStrFromCstampTime:(NSInteger)timeStamp
+                     withDateFormat:(NSString *)format;
+ 
+/**
+ *  NSDate转字符串
+ *
+ *  @param date   NSDate时间
+ *  @param format 转化格式 如yyyy-MM-dd HH:mm:ss,即2015-07-15 15:00:00
+ *
+ *  @return 返回字符串格式时间
+ */
++ (NSString *)datestrFromDate:(NSDate *)date
+               withDateFormat:(NSString *)format;
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

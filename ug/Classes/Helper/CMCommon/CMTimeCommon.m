@@ -349,6 +349,45 @@
 
 
 /******************************************************************************
+函数名称 : compareOneDay;
+函数描述 :
+   //比较NSDate 大小
+
+输入参数 :oneDay 时间   anotherDay   formatter:格式
+返回参数 : int   1  晚， -1 早  0 相同
+备注信息 :
+******************************************************************************/
++(int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay  formatter:(NSString *)formatter
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+
+    [dateFormatter setDateFormat:formatter];
+
+    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
+
+    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
+
+    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
+
+    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
+
+    NSComparisonResult result = [dateA compare:dateB];
+
+    if (result == NSOrderedDescending) {
+        //NSLog(@"oneDay比 anotherDay时间晚");
+        return 1;
+    }
+    else if (result == NSOrderedAscending){
+        //NSLog(@"oneDay比 anotherDay时间早");
+        return -1;
+    }
+    //NSLog(@"两者时间是同一个时间");
+    return 0;
+             
+}
+
+
+/******************************************************************************
 函数名称 : formatTimeStr;
 函数描述 :
    //返回 刚刚，几分钟前，几小时前，昨天，前天
@@ -388,5 +427,51 @@
     
 }
 
+/**
+ *  字符串转NSDate
+ *
+ *  @param theTime 字符串时间
+ *  @param format  转化格式 如yyyy-MM-dd HH:mm:ss,即2015-07-15 15:00:00
+ *
+ *  @return <#return value description#>
+ */
++ (NSDate *)dateFromString:(NSString *)timeStr
+                    format:(NSString *)format
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:format];
+    NSDate *date = [dateFormatter dateFromString:timeStr];
+    return date;
+}
+ 
+
++ (NSString *)dateStrFromCstampTime:(NSInteger)timeStamp
+                  withDateFormat:(NSString *)format
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+    return [self datestrFromDate:date withDateFormat:format];
+}
+
+
++ (NSString *)datestrFromDate:(NSDate *)date
+               withDateFormat:(NSString *)format
+{
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:format];
+    return [dateFormat stringFromDate:date];
+}
+
++ (NSInteger)cTimestampFromDate:(NSDate *)date
+{
+   return (long)[date timeIntervalSince1970];
+}
+ 
+ 
++(NSInteger)cTimestampFromString:(NSString *)timeStr
+                          format:(NSString *)format
+{
+    NSDate *date = [self dateFromString:timeStr format:format];
+    return [self  cTimestampFromDate:date];
+}
 
 @end

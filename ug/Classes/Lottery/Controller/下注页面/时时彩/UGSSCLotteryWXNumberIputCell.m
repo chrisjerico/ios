@@ -20,7 +20,7 @@
 
 - (void)prepareForReuse {
 	[super prepareForReuse];
-//	self.inputView.text = nil;
+	self.inputView.text = nil;
 }
 - (void)textViewDidChange:(UITextView *)textView {
 	

@@ -93,7 +93,7 @@
     UGYYGames *game = self.dataArray[indexPath.row];
     // 去二级游戏列表
     if (game.isPopup) {
-        UGGameListViewController *vc = [[UGGameListViewController alloc] init];
+        UGGameListViewController *vc = _LoadVC_from_storyboard_(@"UGGameListViewController");
         vc.game = game;
         [NavController1 pushViewController:vc animated:YES];
         return;

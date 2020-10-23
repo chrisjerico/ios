@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 	
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self.oddsLabel setTextColor:[UIColor whiteColor]];
     } else {
         [self.oddsLabel setTextColor:[UIColor blackColor]];

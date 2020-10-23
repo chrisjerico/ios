@@ -25,6 +25,7 @@
 #import "UGPopViewController.h"
 #import "CMLabelCommon.h"
 #import "NewLotteryHomeViewController.h"
+#import "CMTimeCommon.h"
 
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
@@ -160,17 +161,30 @@ static LogVC *_logVC = nil;
 #pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"变红"];
+        [titles addObject:@"时间搓"];
         [titles addObject:@"汇率"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
         [ac setActionAtTitle:@"汇率" handler:^(UIAlertAction *aa) {
-
             
+            NSDecimalNumber *sale = [CMCommon randStr:@"1604.975" scale:2];
+            NSLog(@"sale = %@",sale);
         }];
         
-        [ac setActionAtTitle:@"变红" handler:^(UIAlertAction *aa) {
-
+        [ac setActionAtTitle:@"时间搓" handler:^(UIAlertAction *aa) {
+           NSString *time1 = [CMTimeCommon timestampSwitchTime:1602923724 andFormatter:@"yyyy-MM-dd HH:mm"];
+            NSLog(@"time1 = %@",time1);//time1 = 2020-10-17 16:35
+            
+//            NSString *time2 = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+//            NSLog(@"time2 = %@",time2);//time2 = 2020-10-17 17:19
+            NSString *time2 = @"2020-10-17 16:34";
+            NSDate *date1 = [CMTimeCommon dateForStr:time1 format:@"yyyy-MM-dd HH:mm"];
+            NSDate *date2 = [CMTimeCommon dateForStr:time2 format:@"yyyy-MM-dd HH:mm"];
+            
+           int k =  [CMTimeCommon compareOneDay:date2 withAnotherDay:date1 formatter:@"yyyy-MM-dd HH:mm"];
+            
+            NSLog(@"k = %d",k);
+            
            
         }];
         

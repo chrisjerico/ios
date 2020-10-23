@@ -50,7 +50,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 @implementation UGYubaoConversionViewController
 -(void)skin {
 	FastSubViewCode(self.view)
-    if (Skin1.isBlack||Skin1.is23) {
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         [self.view setBackgroundColor:Skin1.is23 ?RGBA(135 , 135 ,135, 1):Skin1.bgColor];
 		[subLabel(@"余额label") setTextColor:[UIColor lightGrayColor]];
 		[subLabel(@"利息宝余额label") setTextColor:[UIColor lightGrayColor]];
@@ -99,7 +99,12 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 
 -(void)setYyBgViewBgColor{
     NSString *skitType = Skin1.skitType;
-    if ([@"新年红,石榴红,六合资料,金沙主题,简约模板,火山橙,香槟金" containsString:Skin1.skitType]) {
+	
+	if (CHAT_TARGET){
+		[_yyBgView setBackgroundColor:RGBA(0x4a, 0x77, 0xff, 1)];
+		self.waveBotomView.backgroundColor =  [UIColor whiteColor];
+		self.waveView.realWaveColor =  RGBA(0x4a, 0x77, 0xff, 1);
+	} else if ([@"新年红,石榴红,六合资料,金沙主题,简约模板,火山橙,香槟金" containsString:Skin1.skitType]) {
         [_yyBgView setBackgroundColor:Skin1.navBarBgColor];
         self.waveBotomView.backgroundColor =  Skin1.navBarBgColor;
         self.waveView.realWaveColor =  Skin1.navBarBgColor;
@@ -155,11 +160,11 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 	self.collectionView.height = self.amountArray.count * 50;
 	self.scrollCententHeightConstraint.constant = 250 + self.collectionView.height;
 	[self.scrollContentView addSubview:self.collectionView];
-	SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-		[self setupInfo];
-	});
 	[self setupInfo];
-	
+	WeakSelf;
+	SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+		[weakSelf setupInfo];
+	 });
 	
 	
 }
@@ -345,7 +350,7 @@ static NSString *convertCellid = @"UGConvertCollectionViewCell";
 - (void)setupInfo {
 	
 	self.dayIncomeLabel.text = self.infoModel.todayProfit;
-	self.totalAmountLabel.text = [NSString stringWithFormat:@"总金额 %@",self.infoModel.balance];
+	self.totalAmountLabel.text = [NSString stringWithFormat:@"利息宝余额 %@",self.infoModel.balance];
 	NSString *nhl = [NSString stringWithFormat:@"%.4f",self.infoModel.annualizedRate.floatValue * 100];
 	self.rateLabel.text = [NSString stringWithFormat:@"年化率 %@%%",[nhl removeFloatAllZero]];
 	self.balanceLabel.text = [NSString stringWithFormat:@"%@",[[UGUserModel currentUser].balance removeFloatAllZero]];

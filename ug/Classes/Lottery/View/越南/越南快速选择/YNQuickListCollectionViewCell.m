@@ -28,11 +28,38 @@
 - (void)setItem:(UGGameBetModel *)item {
     _item = item;
     self.titleLabel.text = item.name;
+
+   
     
-    if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack) {
-        self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.bgColor;
-    } else {
-        self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
+    if (self.hasSelected) {
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
+            if (item.select) {
+                self.titleLabel.backgroundColor = UGBlueColor;
+            } else {
+                if ([Global getInstanse].hasBgColor) {
+                    self.titleLabel.backgroundColor = RGBA(97, 108, 118, 1);
+                } else {
+                    self.titleLabel.backgroundColor =  Skin1.CLBgColor;
+                }
+            }
+        } else {
+            if (item.select) {
+                self.titleLabel.backgroundColor = UGBlueColor;
+            } else {
+                if ([Global getInstanse].hasBgColor) {
+                    self.titleLabel.backgroundColor = RGBA(97, 108, 118, 1);
+                } else {
+                    self.titleLabel.backgroundColor =  Skin1.homeContentColor;
+                }
+            }
+        }
+    }
+    else{
+        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
+            self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.CLBgColor;
+        } else {
+            self.titleLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
+        }
     }
     
     self.titleLabel.textColor =  item.select ? [UIColor whiteColor] : Skin1.textColor3;

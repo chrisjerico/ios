@@ -44,7 +44,7 @@
 #import "UGFundDetailsTableViewController.h"  // 资金明细
 #import "UGgoBindViewController.h" //绑定银行卡
 #import "UGNotDetailViewController.h"
-
+#import "SANotificationEvent.h"
 #import "UGSystemConfigModel.h"
 #import "UGSkinManagers.h"
 

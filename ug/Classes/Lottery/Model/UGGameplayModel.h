@@ -78,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *ynFastList;         /**<   越南快速号码数组 */
 @property (nonatomic, assign) int indexOfSelect;
 
+
 @end
 
 @protocol UGGameplaySectionModel <NSObject>

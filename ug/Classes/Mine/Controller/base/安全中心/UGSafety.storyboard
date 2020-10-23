@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -256,17 +256,23 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="旧取款密码txt"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAb-AV-mp7">
+                                                <rect key="frame" x="322" y="40" width="77" height="30"/>
+                                                <state key="normal" title="忘记密码？"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="bow-Yh-vhf" firstAttribute="leading" secondItem="oCC-EQ-V0H" secondAttribute="leading" constant="15" id="5bi-Bk-VGv"/>
                                             <constraint firstAttribute="height" constant="70" id="9HB-hp-MTF"/>
                                             <constraint firstItem="F7b-7W-FpJ" firstAttribute="leading" secondItem="oCC-EQ-V0H" secondAttribute="leading" constant="15" id="Ed8-Ci-MKs"/>
+                                            <constraint firstItem="Fkt-JE-vj7" firstAttribute="bottom" secondItem="eAb-AV-mp7" secondAttribute="bottom" id="NCR-BN-IUC"/>
                                             <constraint firstItem="Fkt-JE-vj7" firstAttribute="top" secondItem="F7b-7W-FpJ" secondAttribute="bottom" constant="3" id="VRB-Le-8SH"/>
                                             <constraint firstItem="bow-Yh-vhf" firstAttribute="top" secondItem="oCC-EQ-V0H" secondAttribute="top" id="Wzj-ns-nLa"/>
                                             <constraint firstItem="Fkt-JE-vj7" firstAttribute="leading" secondItem="oCC-EQ-V0H" secondAttribute="leading" constant="15" id="YaE-Fv-ehl"/>
                                             <constraint firstAttribute="bottom" secondItem="Fkt-JE-vj7" secondAttribute="bottom" id="bqO-2a-mLO"/>
                                             <constraint firstAttribute="trailing" secondItem="F7b-7W-FpJ" secondAttribute="trailing" constant="15" id="cOY-n2-qcx"/>
+                                            <constraint firstItem="Fkt-JE-vj7" firstAttribute="trailing" secondItem="eAb-AV-mp7" secondAttribute="trailing" id="pEq-vF-jR3"/>
                                             <constraint firstAttribute="trailing" secondItem="Fkt-JE-vj7" secondAttribute="trailing" constant="15" id="sno-iF-tYo"/>
                                         </constraints>
                                     </view>
@@ -416,6 +422,7 @@
                     <connections>
                         <outlet property="bgView" destination="fba-en-uVk" id="z89-51-Jbk"/>
                         <outlet property="checkPayPwdTextF" destination="4Aq-Hm-XeJ" id="Eiz-o3-WRR"/>
+                        <outlet property="forgetPwdButton" destination="eAb-AV-mp7" id="2eS-Yc-xIb"/>
                         <outlet property="loginPwdTextF" destination="F7b-7W-FpJ" id="9j2-Ce-pju"/>
                         <outlet property="payPwdTextF" destination="uGP-dt-hq4" id="NKY-Qb-C9p"/>
                         <outlet property="submitButton" destination="NzP-gt-dWR" id="XZq-HD-Z8d"/>

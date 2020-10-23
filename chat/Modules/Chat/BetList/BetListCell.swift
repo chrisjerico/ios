@@ -93,7 +93,7 @@ class BetBeanView: UIView {
 	@IBOutlet weak var amountLabel: UILabel!
 	
 	func bind(item: BetBeanModel) {
-		nameLabel.text = "【\(item.name)】"
+		nameLabel.text = "【\(item.groupName)】"
 		oddsLabel.text = "@" + item.odds
 		amountLabel.text = item.money
 	}

@@ -663,11 +663,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.001;
+    return 0.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001f;
+    return 0.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -1511,6 +1511,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if (APP.isBA) {
                 self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
             }
+            if ([@"c126" containsString:APP.SiteId] && [@"70" isEqualToString:self.gameId]) {
+                self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
+            }
         }
         if ([@"正特" isEqualToString:model.name]) {
             [self.ztTitleArray removeAllObjects];
@@ -1747,7 +1750,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
             btn.titleLabel.numberOfLines = 0;
             [btn setTitle:titles[i] forState:UIControlStateNormal];
-            if (Skin1.isBlack||Skin1.is23) {
+            if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
                 [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             } else {
                 [btn setTitleColor:APP.TextColor1 forState:UIControlStateNormal];

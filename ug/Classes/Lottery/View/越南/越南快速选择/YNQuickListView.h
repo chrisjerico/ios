@@ -19,7 +19,9 @@ typedef void(^QuickListBlock)(UICollectionView *collectionView,NSIndexPath* inde
 
 @property (nonatomic) int selecedCount;// 可以选择的数量  （偏斜2 偏斜3 偏斜4 串烧4 串烧8 串烧10）
 
-@property (nonatomic) BOOL seleced;//是否有 可以选择的数量 
+@property (nonatomic) BOOL seleced;//是否有 可以选择的数量
+
+@property (nonatomic, strong)NSMutableArray<NSString *> *selecedDataArry;//已选中数据
 @end
 
 NS_ASSUME_NONNULL_END

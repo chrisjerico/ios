@@ -491,4 +491,23 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
    结果：6.79
 */
 + (NSDecimalNumber *) randStr:(NSString *)str scale:(NSInteger) scale;
+
+/**
+*对字符串 分割 根据 splitStr
+ 比如“,; ”
+*
+*
+   
+*/
++(NSArray *)arraySeparated:(NSString *)str  split:(NSString *)splitStr;
+
+/**
+*对字符串 替换 根据 splitStr 比如“,; ”
+*spChar  替换成 比如@“,”
+*
+   
+*/
++(NSString *)strReplace:(NSString *)str  spChar:(NSString *)spChar  split:(NSString *)splitStr;
+
++(void)goSLWebViewControllerUrl:(NSString *)mUrl;
 @end

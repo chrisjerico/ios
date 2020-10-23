@@ -127,7 +127,7 @@ extension MomentsTarget: TargetType {
 			bodyParameters["token"] = App.user.sessid
 			bodyParameters["page"] = page
 			bodyParameters["row"] = row
-			bodyParameters["msg_type"] = 1
+//			bodyParameters["msg_type"] = 1
 		case .addFollow(let uid):
 			urlParameters["c"] = "moment"
 			urlParameters["a"] = "addFollow"

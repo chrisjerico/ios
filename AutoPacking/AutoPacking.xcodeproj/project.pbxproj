@@ -49,6 +49,7 @@
 		CF5D3E892397D9D800CC3D6B /* 0encrypt.sh in Resources */ = {isa = PBXBuildFile; fileRef = CF5D3E882397D9D800CC3D6B /* 0encrypt.sh */; };
 		CF68BDA524A5976B00775B0A /* GitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68BDA424A5976B00775B0A /* GitModel.m */; };
 		CF68BDA824A59B2500775B0A /* SiteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF68BDA724A59B2500775B0A /* SiteModel.m */; };
+		CF8A8E92253F0740008C05C8 /* NSObject+XWAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8A8E91253F0740008C05C8 /* NSObject+XWAdd.m */; };
 		CFB6867624484A6F00C51533 /* NodeModulesFix.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB6867524484A6F00C51533 /* NodeModulesFix.m */; };
 		CFDB111623A14D160040DE2B /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDB111523A14D160040DE2B /* JRSwizzle.m */; };
 		CFDB112223A160550040DE2B /* 4plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112123A160550040DE2B /* 4plist.sh */; };
@@ -137,6 +138,8 @@
 		CF68BDA424A5976B00775B0A /* GitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GitModel.m; sourceTree = "<group>"; };
 		CF68BDA624A59B2500775B0A /* SiteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiteModel.h; path = ../../../ug/Classes/Other/SiteModel.h; sourceTree = "<group>"; };
 		CF68BDA724A59B2500775B0A /* SiteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SiteModel.m; path = ../../../ug/Classes/Other/SiteModel.m; sourceTree = "<group>"; };
+		CF8A8E90253F0740008C05C8 /* NSObject+XWAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+XWAdd.h"; path = "../../../ug/Classes/Helper/FishUtility/Category/Other/NSObject+XWAdd.h"; sourceTree = "<group>"; };
+		CF8A8E91253F0740008C05C8 /* NSObject+XWAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+XWAdd.m"; path = "../../../ug/Classes/Helper/FishUtility/Category/Other/NSObject+XWAdd.m"; sourceTree = "<group>"; };
 		CFB6867424484A6F00C51533 /* NodeModulesFix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeModulesFix.h; sourceTree = "<group>"; };
 		CFB6867524484A6F00C51533 /* NodeModulesFix.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeModulesFix.m; sourceTree = "<group>"; };
 		CFDB111423A14D160040DE2B /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = ../../ug/Classes/Helper/FishUtility/JRSwizzle/JRSwizzle.h; sourceTree = "<group>"; };
@@ -237,6 +240,8 @@
 		CF5D3DFA2397813D00CC3D6B /* 引用主项目的文件（别改会影响主项目） */ = {
 			isa = PBXGroup;
 			children = (
+				CF8A8E90253F0740008C05C8 /* NSObject+XWAdd.h */,
+				CF8A8E91253F0740008C05C8 /* NSObject+XWAdd.m */,
 				CF68BDA624A59B2500775B0A /* SiteModel.h */,
 				CF68BDA724A59B2500775B0A /* SiteModel.m */,
 				CFDB113C23A3D2670040DE2B /* cc_runtime_property.h */,
@@ -465,6 +470,7 @@
 				CF5D3DAA2396BC9500CC3D6B /* ShellHelper.m in Sources */,
 				CFDB111623A14D160040DE2B /* JRSwizzle.m in Sources */,
 				CF5D3E652397929E00CC3D6B /* NSArray+Safe.m in Sources */,
+				CF8A8E92253F0740008C05C8 /* NSObject+XWAdd.m in Sources */,
 				CF5D3E192397819C00CC3D6B /* AFURLResponseSerialization.m in Sources */,
 				CF68BDA824A59B2500775B0A /* SiteModel.m in Sources */,
 				CF5D3E1E2397819C00CC3D6B /* AFSecurityPolicy.m in Sources */,

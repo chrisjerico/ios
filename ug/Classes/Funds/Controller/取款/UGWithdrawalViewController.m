@@ -12,6 +12,8 @@
 #import "UGCardInfoModel.h"
 #import "UGEncryptUtil.h"
 #import "UGSystemConfigModel.h"
+#import "ResetPasswordApplyVC.h"
+
 @interface UGWithdrawalViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) IBOutlet UIView *bandCardView;
 @property (weak, nonatomic) IBOutlet UILabel *bandCardTitleLabel;/**<   您还没有绑定银行卡*/
@@ -23,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *cardInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *limitLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;   /**<   当前到账银行卡*/
+@property (weak, nonatomic) IBOutlet UIButton *resetPasswordButton;
 @end
 
 @implementation UGWithdrawalViewController
@@ -78,8 +81,7 @@
 	[self.pwdTextF setTextColor:Skin1.textColor1];
 	self.amountTextF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_amountTextF.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
 	self.pwdTextF.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_pwdTextF.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
-	
-	
+	if (UGSystemConfigModel.currentConfig.switchCoinPwd == 1) { [self.resetPasswordButton setHidden:false];}
 	self.commitButton.layer.cornerRadius = 3;
 	self.commitButton.layer.masksToBounds = YES;
 	[self.commitButton setBackgroundColor:Skin1.navBarBgColor];
@@ -163,6 +165,10 @@
 	}
 	
 	return YES;
+}
+- (IBAction)forgetPasswordAction:(id)sender {
+	ResetPasswordApplyVC *vc = [[ResetPasswordApplyVC alloc] init];
+	[self.navigationController pushViewController:vc animated:true];
 }
 
 @end

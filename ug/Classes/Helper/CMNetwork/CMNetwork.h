@@ -129,6 +129,20 @@ model:(CMResultClass)model
 post:(BOOL)isPost
 completion:(CMNetworkBlock)completion;
 
+/// 文件上传
+/// @param urlString 请求url
+/// @param data 上传的文件
+/// @param fileName 文件名字
+/// @param params 附加参数
+/// @param model 响应结果类型
+/// @param completion 结果回调
+- (void)uploadFileWithRequestUrl:(NSString *)urlString
+							data:(NSData *)data
+						fileName:(NSString *)fileName
+						  params:(NSDictionary*)params
+						   model:(CMResultClass)model
+					  completion:(CMNetworkBlock)completion;
+
 #pragma mark -
 
 ///

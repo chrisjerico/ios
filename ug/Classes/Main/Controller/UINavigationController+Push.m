@@ -9,7 +9,7 @@
 #import "UINavigationController+Push.h"
 #import "UGBMMemberCenterViewController.h"
 #import "UGBMBrowseViewController.h"
-
+#import "UGOnlineView.h"
 // ViewController
 #import "UGCommonLotteryController.h"
 #import "UGChangLongController.h"
@@ -137,7 +137,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     // 去二级游戏列表
     if (model.isPopup) {
-        UGGameListViewController *gameListVC = [[UGGameListViewController alloc] init];
+        UGGameListViewController *gameListVC = _LoadVC_from_storyboard_(@"UGGameListViewController");
         gameListVC.game = model;
         [NavController1 pushViewController:gameListVC animated:YES];
         return true;
@@ -195,7 +195,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                            @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
                            @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                            @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
-                           @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
+                           @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透 赛车
                            @"ofclvn_hochiminhvip"   :@"UGYNLotteryController",  // 越南
                            @"ofclvn_haboivip"   :@"UGYNLotteryController",  // 河内
     };
@@ -450,7 +450,21 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 4: {
             // 在线客服
 
-            [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+            if (APP.isTwoOnline) {
+       
+                float y;
+                if ([CMCommon isPhoneX]) {
+                    y = 160;
+                } else {
+                    y = 100;
+                }
+                UGOnlineView *popView = [[UGOnlineView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, 200)];
+                [popView show];
+               
+            } else {
+                [NavController1 pushVCWithUserCenterItemType:UCI_在线客服];
+            }
+          
 
             break;
         }

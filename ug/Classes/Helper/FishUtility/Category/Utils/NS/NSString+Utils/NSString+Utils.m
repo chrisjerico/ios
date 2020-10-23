@@ -395,7 +395,7 @@
     }
     return _NSString(@"%@****%@",
                      head > 0 ? [self substringToIndex:head] : @"",
-                     tail > 0 ? [self substringFromIndex:self.length-tail] : @"");
+                     tail > 0 ? [self substringFromIndex:(int)self.length-tail] : @"");
 }
 
 

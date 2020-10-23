@@ -29,7 +29,6 @@
 #import "SLWebViewController.h"
 #import "SLWebViewController.h"
 #import "QDWebViewController.h"
-#import "UGGameListViewController.h"
 #import "UGFundsViewController.h"
 #import "UGBetRecordViewController.h"
 #import "UGChangLongController.h"
@@ -287,7 +286,7 @@
             [v removeFromSuperview];
         }
         NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _liuheForumContentView, _promotionView, _bottomView],
-                               @"GPK版":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
+                               @"GPK版":@[_bannerBgView, _gameTypeView.superview, _rankingView, _promotionView,_bottomView],
                                @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
                                @"火山橙":@[_bannerBgView, _rollingView, _homeAdsBigBgView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _betFormView, _bottomView],
                                
@@ -529,10 +528,16 @@
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         if (Skin1.isJY||Skin1.isTKL) {
             subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@"JY_gg"] ;
+           
+            subView(@"推荐好友上View").layer.borderWidth = 1;
+            subView(@"推荐好友上View").layer.borderColor = [RGBA(232, 232, 232, 1) CGColor];
+            subView(@"推荐好友下View").layer.borderWidth = 1;
+            subView(@"推荐好友下View").layer.borderColor = [RGBA(232, 232, 232, 1) CGColor];
         }
         else{
             subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         }
+        
         subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
         subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
         [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
@@ -1766,7 +1771,25 @@
         [CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
             weakSelf.uGredEnvelopeView.item = rem;
-            weakSelf.uGredEnvelopeView.hidden = !rem;
+            
+            
+            if ([rem.show_time intValue]) {
+                NSString *time1 = [CMTimeCommon timestampSwitchTime:[rem.show_time intValue] andFormatter:@"yyyy-MM-dd HH:mm"];
+                NSString *time2 = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
+                NSDate *date1 = [CMTimeCommon dateForStr:time1 format:@"yyyy-MM-dd HH:mm"];
+                NSDate *date2 = [CMTimeCommon dateForStr:time2 format:@"yyyy-MM-dd HH:mm"];
+                 
+                int k =  [CMTimeCommon compareOneDay:date2 withAnotherDay:date1 formatter:@"yyyy-MM-dd HH:mm"];
+                if (k >= 0) {
+                    weakSelf.uGredEnvelopeView.hidden = NO;
+                }
+                else{
+                    weakSelf.uGredEnvelopeView.hidden = YES;
+                }
+            }
+            else{
+                weakSelf.uGredEnvelopeView.hidden = YES;
+            }
         } failure:^(id msg) {
             weakSelf.uGredEnvelopeView.hidden = true;
             [SVProgressHUD dismiss];
@@ -2152,7 +2175,7 @@
             
             
             if (Skin1.isTKL) {
-                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150-130;
                 weakSelf.tklnotiveView = [[TKLPlatformNotiveView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
                 weakSelf.tklnotiveView.dataArray = self.popNoticeArray;
   

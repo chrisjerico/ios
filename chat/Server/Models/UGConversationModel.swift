@@ -23,7 +23,7 @@ public struct UGConversationApiDataModel: Mappable {
 
 public struct UGConversationModel: Mappable {
 
-	var roomName = " "
+	var roomName = ""
 	var	roomId = 0
 	var	unreadCount = 0
 	var	memberCount = 0
@@ -80,7 +80,7 @@ public struct UGConversationModel: Mappable {
 		minAmount <- map["minAmount"]
 		maxAmount <- map["maxAmount"]
 
-		
+		roomName = roomName.count > 0 ? roomName : "聊天室"
 	}
 	
 }
