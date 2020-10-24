@@ -7,7 +7,7 @@
 #import "SLWebViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "UGMosaicGoldViewController.h"
-
+#import "UGMailBoxTableViewController.h"
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -1431,6 +1431,9 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }
     else if ([app_params isEqualToString:@"goto_coupon_list"]) {//优惠活动
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+    }
+    else if ([app_params isEqualToString:@"goto_mail"]) {//站内信
+        [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
     }
     
     

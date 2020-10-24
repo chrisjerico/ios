@@ -1422,15 +1422,10 @@ static UGSkinManagers *__initSkin1 = nil;
             skin.isTKL = [skin.skitType containsString:@"天空蓝"];
             
             if ([@"c242" containsString:APP.SiteId]) {
-                skin.navBarBgColor = color(@"CE0009");
+                skin.navBarBgColor            = color(@"CE0009");
                 skin.tabBarBgColor            = color(@"000000");
                 skin.tabNoSelectColor         = color(@"FFFFFF");
                 skin.tabSelectedColor         = color(@"DC143C");
-            } else {
-                skin.navBarBgColor = color(@"609AC5");
-                skin.tabBarBgColor            = color(@"8DA3B1");
-                skin.tabNoSelectColor         = color(@"525252");
-                skin.tabSelectedColor         = color(@"010101");
             }
         }
 		
@@ -1485,7 +1480,7 @@ static UGSkinManagers *__initSkin1 = nil;
 
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-    skitType = @"天空蓝";
+//    skitType = @"天空蓝";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
     if (sm) {
