@@ -70,6 +70,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *threeBtn;/**<  第3个btn**/
 @property (weak, nonatomic) IBOutlet UIButton *fourBtn;/**<  第4个btn**/
 @property (weak, nonatomic) IBOutlet UIButton *fiveBtn;/**<  第5个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *esportBtn;/**<  电竞*/
+@property (weak, nonatomic) IBOutlet UIButton *sportBtn;/**<  体育*/
+
 @property (strong, nonatomic) NSMutableArray *buttons;/**<  btn数组**/
 @property (weak, nonatomic) IBOutlet UILabel *mContentLbl;/**<  佣金比例内容*/
 @property (weak, nonatomic) IBOutlet UIStackView *btnsView;/**<  btnView**/
@@ -162,6 +165,8 @@
     [_buttons addObject:self.threeBtn];
     [_buttons addObject:self.fourBtn];
     [_buttons addObject:self.fiveBtn];
+    [_buttons addObject:self.esportBtn];
+    [_buttons addObject:self.sportBtn];
     [self allButtonSetTitleBlackColor];
     
     UIButton *btnOne = [_buttons objectAtIndex:0];
@@ -175,23 +180,28 @@
     [self  selectButtonSetRedColor:sender];
     [self loadText:sender];
 }
-
 -(void)loadText:(UIControl *)sender{
     UIButton *btn = (UIButton *)sender;
     if ([btn.tagString isEqualToString:@"彩票返点btn"]) {
-        self.mContentLbl.text = btn.tagString;
+        self.mContentLbl.text = self.mUGinviteInfoModel.fandian_intro;
     }
-    else  if ([btn.tagString isEqualToString:@"视讯返点btn"]) {
-        self.mContentLbl.text = btn.tagString;
+    else  if ([btn.tagString isEqualToString:@"真人返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.real_fandian_intro;;
     }
     else  if ([btn.tagString isEqualToString:@"捕鱼返点btn"]) {
-        self.mContentLbl.text = btn.tagString;
+        self.mContentLbl.text = self.mUGinviteInfoModel.fish_fandian_intro;
     }
     else  if ([btn.tagString isEqualToString:@"电子返点btn"]) {
-        self.mContentLbl.text = btn.tagString;
+        self.mContentLbl.text = self.mUGinviteInfoModel.game_fandian_intro;
     }
     else  if ([btn.tagString isEqualToString:@"棋牌返点btn"]) {
-        self.mContentLbl.text = btn.tagString;
+        self.mContentLbl.text = self.mUGinviteInfoModel.card_fandian_intro;
+    }
+    else  if ([btn.tagString isEqualToString:@"电竞返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.esport_fandian_intro;
+    }
+    else  if ([btn.tagString isEqualToString:@"体育返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.sport_fandian_intro;
     }
 }
 
@@ -244,25 +254,6 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
@@ -316,6 +307,7 @@
     double jg =  proportion *1000/100;
     NSString *jgStr = [NSString stringWithFormat:@"%.2f",jg];
     
+    self.mContentLbl.text = self.mUGinviteInfoModel.fandian_intro;
     
     if([@"c186,test60f" containsString:APP.SiteId]){
         self.sectionLabel4.text = @"方案一：佣金比例图如上，有效投注达到100万以上，将可赚取0.1%的佣金【100万X0.001=1000】1000元佣金!有效投注越高，佣金就越高，亏损分红达到1万以上，另可再次得到1%佣金，【10000X0.1=1000】1000元亏损分红！";

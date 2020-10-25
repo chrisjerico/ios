@@ -21,7 +21,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ebK-lA-jpc">
-                            <rect key="frame" x="0.0" y="1341" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="1401" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
@@ -279,11 +279,11 @@
                             </tableViewSection>
                             <tableViewSection id="bRG-wB-nNp">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="234" id="Ze6-dm-WwU">
-                                        <rect key="frame" x="0.0" y="856" width="414" height="234"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="294" id="Ze6-dm-WwU">
+                                        <rect key="frame" x="0.0" y="856" width="414" height="294"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ze6-dm-WwU" id="JVJ-Kc-Ie2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="234"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="294"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金比例" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXA-Om-f1T">
@@ -293,10 +293,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgB-o6-EUh" userLabel="大View">
-                                                    <rect key="frame" x="10" y="29" width="394" height="195"/>
+                                                    <rect key="frame" x="10" y="29" width="394" height="255"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gN-G7-roG">
-                                                            <rect key="frame" x="100" y="0.0" width="294" height="195"/>
+                                                            <rect key="frame" x="100" y="0.0" width="294" height="255"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的推荐，显示彩票、视讯、捕鱼、电子、电竞、棋牌、体育的返点，我的推荐，显示彩票、视讯、捕鱼、电子、电竞、棋牌、体育的返点我的推荐，显示彩票、视讯、捕鱼、电子、电竞、棋牌、体育的返点我的推荐，显示彩票、视讯、捕鱼、电子、电竞、棋牌、体育的返点" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UK-0X-Pma">
                                                                     <rect key="frame" x="8" y="10" width="286" height="125.5"/>
@@ -313,10 +313,10 @@
                                                             </constraints>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="ybd-Nh-9Fq">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="195"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="255"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQm-nO-AAN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="38"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="35.5"/>
                                                                     <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <state key="normal" title="彩票返点"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -327,7 +327,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1w-Al-sdQ">
-                                                                    <rect key="frame" x="0.0" y="39" width="100" height="38.5"/>
+                                                                    <rect key="frame" x="0.0" y="36.5" width="100" height="35.5"/>
                                                                     <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <state key="normal" title="视讯返点"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -338,7 +338,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bid-8G-Hqo">
-                                                                    <rect key="frame" x="0.0" y="78.5" width="100" height="38"/>
+                                                                    <rect key="frame" x="0.0" y="73" width="100" height="35.5"/>
                                                                     <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <state key="normal" title="捕鱼返点"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -349,7 +349,7 @@
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-mc-0cc">
-                                                                    <rect key="frame" x="0.0" y="117.5" width="100" height="38.5"/>
+                                                                    <rect key="frame" x="0.0" y="109.5" width="100" height="36"/>
                                                                     <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <state key="normal" title="电子返点"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -359,8 +359,19 @@
                                                                         <action selector="btnAction:" destination="0rr-Jr-DpN" eventType="touchUpInside" id="saV-cm-cC5"/>
                                                                     </connections>
                                                                 </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABh-Fn-9EM">
+                                                                    <rect key="frame" x="0.0" y="146.5" width="100" height="35.5"/>
+                                                                    <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <state key="normal" title="电竞返点"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="电竞返点btn"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="btnAction:" destination="0rr-Jr-DpN" eventType="touchUpInside" id="hLf-Ts-hbR"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JPn-oE-yii">
-                                                                    <rect key="frame" x="0.0" y="157" width="100" height="38"/>
+                                                                    <rect key="frame" x="0.0" y="183" width="100" height="35.5"/>
                                                                     <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <state key="normal" title="棋牌返点"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -368,6 +379,17 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="btnAction:" destination="0rr-Jr-DpN" eventType="touchUpInside" id="vf6-bk-bik"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3Q-Se-2ET">
+                                                                    <rect key="frame" x="0.0" y="219.5" width="100" height="35.5"/>
+                                                                    <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <state key="normal" title="体育返点"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="体育返点btn"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="btnAction:" destination="0rr-Jr-DpN" eventType="touchUpInside" id="BBa-1X-hoz"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -404,7 +426,7 @@
                                         <color key="backgroundColor" red="0.84317356349999995" green="0.84289830919999997" blue="0.86274594069999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="hwu-tW-JfE">
-                                        <rect key="frame" x="0.0" y="1090" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1150" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwu-tW-JfE" id="Wxn-r3-bz0">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -436,7 +458,7 @@
                             <tableViewSection id="w1f-3q-FT0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="65" id="RfE-ui-5fN">
-                                        <rect key="frame" x="0.0" y="1140" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="1200" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RfE-ui-5fN" id="zqt-9a-XCv">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -466,7 +488,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="65" id="8CE-D9-7wC">
-                                        <rect key="frame" x="0.0" y="1205" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="1265" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8CE-D9-7wC" id="WwS-cE-sSF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -496,7 +518,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bQF-n8-HbV">
-                                        <rect key="frame" x="0.0" y="1270" width="414" height="70"/>
+                                        <rect key="frame" x="0.0" y="1330" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bQF-n8-HbV" id="Ddf-K8-7Ae">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
@@ -541,6 +563,7 @@
                         <outlet property="cell9BgView" destination="Ddf-K8-7Ae" id="qqF-EB-T1j"/>
                         <outlet property="cellBgView" destination="7Gi-R2-N7B" id="O3u-Kl-ezN"/>
                         <outlet property="countLabel" destination="AxK-xS-VKX" id="gXM-GW-OLO"/>
+                        <outlet property="esportBtn" destination="ABh-Fn-9EM" id="K41-uT-EPu"/>
                         <outlet property="fiveBtn" destination="JPn-oE-yii" id="HQQ-bK-2AR"/>
                         <outlet property="fourBtn" destination="IOz-mc-0cc" id="lk3-en-uXX"/>
                         <outlet property="headerImageView" destination="XhW-bo-bWz" id="U4z-T9-1c5"/>
@@ -562,6 +585,7 @@
                         <outlet property="registeredLabel" destination="LDy-Qo-kgt" id="DUM-Io-GB5"/>
                         <outlet property="secondBtn" destination="v1w-Al-sdQ" id="zr5-dN-gLv"/>
                         <outlet property="sectionLabel4" destination="bBS-0D-Nlx" id="hhk-X4-pM2"/>
+                        <outlet property="sportBtn" destination="O3Q-Se-2ET" id="kcG-hH-ofb"/>
                         <outlet property="tableView" destination="igE-W2-VWS" id="sco-41-kzL"/>
                         <outlet property="threeBtn" destination="Bid-8G-Hqo" id="OEN-qD-i8d"/>
                         <outlet property="totalMembers" destination="2dP-7y-yod" id="5dp-AK-8IM"/>
