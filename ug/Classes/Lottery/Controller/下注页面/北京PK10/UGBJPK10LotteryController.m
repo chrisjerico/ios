@@ -510,7 +510,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
      if ([tableView isEqual:self.tableView]) {
          self.typeIndexPath = indexPath;
-		 self.segmentView.segmentIndexBlock(0);
          UGGameplayModel *model = self.gameDataArray[indexPath.row];
          if ([@"官方玩法" isEqualToString:model.name]) {
              self.segmentView.dataArray = self.lmgmentTitleArray;
@@ -520,7 +519,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                  self.betCollectionView.height -= self.segmentView.height;
              }
              self.segmentView.hidden = NO;
-             [self resetClick:nil];
+//             [self resetClick:nil];
+			 self.segmentView.segmentIndexBlock(0);
          }
          else {
              if (!self.segmentView.hidden) {

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home PromotionsVC-->
+        <scene sceneID="8Yp-Ao-6FJ">
+            <objects>
+                <viewController storyboardIdentifier="HomePromotionsVC" id="dZP-6q-LwF" customClass="HomePromotionsVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qGV-Xe-EhS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="xOx-sY-cpp" userLabel="优惠活动">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="685"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="礼品-(1)" translatesAutoresizingMaskIntoConstraints="NO" id="5F6-dn-xG7">
+                                        <rect key="frame" x="12" y="15" width="17" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="gq3-vD-Fe3"/>
+                                            <constraint firstAttribute="width" secondItem="5F6-dn-xG7" secondAttribute="height" multiplier="1:1" id="qZO-3k-lWN"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动图标ImageView"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="优惠活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqY-93-biz">
+                                        <rect key="frame" x="35" y="14.5" width="65.5" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动标题Label"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5k-JX-uLG">
+                                        <rect key="frame" x="309" y="0.0" width="105" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="105" id="mnh-9b-icg"/>
+                                        </constraints>
+                                        <state key="normal" title="查看更多&gt;&gt;">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="查看更多优惠活动Button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onShowMorePromoteBtnClick:" destination="dZP-6q-LwF" eventType="touchUpInside" id="gUP-xH-7Q6"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-ou-Cjm">
+                                        <rect key="frame" x="12" y="46" width="390" height="624"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="mbd-GS-7SU">
+                                                <rect key="frame" x="12" y="12" width="366" height="600"/>
+                                                <subviews>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bc6-Gh-YyT">
+                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="600"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="600" id="b8p-Yy-fi7"/>
+                                                        </constraints>
+                                                        <prototypes>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell1" id="aMX-Xl-tBx">
+                                                                <rect key="frame" x="0.0" y="28" width="366" height="132"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aMX-Xl-tBx" id="OnY-b5-R5S">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="366" height="132"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LPV-WH-rRO">
+                                                                            <rect key="frame" x="10" y="10" width="346" height="112"/>
+                                                                            <subviews>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="82s-P4-mqI">
+                                                                                    <rect key="frame" x="10" y="10" width="326" height="92"/>
+                                                                                    <subviews>
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Utk-k4-rLr">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="326" height="20"/>
+                                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                                            <nil key="textColor"/>
+                                                                                            <nil key="highlightedColor"/>
+                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
+                                                                                            </userDefinedRuntimeAttributes>
+                                                                                        </label>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eU8-go-5fw" customClass="FLAnimatedImageView">
+                                                                                            <rect key="frame" x="0.0" y="32" width="326" height="60"/>
+                                                                                            <constraints>
+                                                                                                <constraint firstAttribute="height" constant="60" id="PTr-WC-Kyu"/>
+                                                                                            </constraints>
+                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                                                    <real key="value" value="5"/>
+                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="图片ImageView"/>
+                                                                                            </userDefinedRuntimeAttributes>
+                                                                                        </imageView>
+                                                                                    </subviews>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="StackView"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </stackView>
+                                                                            </subviews>
+                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstItem="82s-P4-mqI" firstAttribute="top" secondItem="LPV-WH-rRO" secondAttribute="top" constant="10" id="0Rh-1t-blM"/>
+                                                                                <constraint firstItem="82s-P4-mqI" firstAttribute="leading" secondItem="LPV-WH-rRO" secondAttribute="leading" constant="10" id="EtB-FW-6YM"/>
+                                                                                <constraint firstItem="82s-P4-mqI" firstAttribute="centerX" secondItem="LPV-WH-rRO" secondAttribute="centerX" id="QaC-S4-VwQ"/>
+                                                                                <constraint firstItem="82s-P4-mqI" firstAttribute="centerY" secondItem="LPV-WH-rRO" secondAttribute="centerY" id="zsH-tC-Q7Y"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                                    <real key="value" value="8"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="cell背景View"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </view>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="bottom" secondItem="LPV-WH-rRO" secondAttribute="bottom" constant="10" id="B04-vG-eCN"/>
+                                                                        <constraint firstItem="LPV-WH-rRO" firstAttribute="leading" secondItem="OnY-b5-R5S" secondAttribute="leading" constant="10" id="I9Z-WA-Yzg"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="LPV-WH-rRO" secondAttribute="trailing" constant="10" id="Nee-Hm-t71"/>
+                                                                        <constraint firstItem="LPV-WH-rRO" firstAttribute="top" secondItem="OnY-b5-R5S" secondAttribute="top" constant="10" id="qsT-pi-mf8"/>
+                                                                    </constraints>
+                                                                </tableViewCellContentView>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </tableViewCell>
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell190" id="xMF-0B-DY4">
+                                                                <rect key="frame" x="0.0" y="160" width="366" height="92"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xMF-0B-DY4" id="WqC-aX-fWu">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="366" height="92"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="bpT-uy-uFU">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="366" height="92"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相持不下" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5f-Fx-12J">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="366" height="20"/>
+                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </label>
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tud-bk-Vbi" customClass="FLAnimatedImageView">
+                                                                                    <rect key="frame" x="0.0" y="32" width="366" height="60"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="60" id="TlG-gx-82p"/>
+                                                                                    </constraints>
+                                                                                    <userDefinedRuntimeAttributes>
+                                                                                        <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                                                            <real key="value" value="5"/>
+                                                                                        </userDefinedRuntimeAttribute>
+                                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="图片ImageView"/>
+                                                                                    </userDefinedRuntimeAttributes>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="StackView"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="bpT-uy-uFU" firstAttribute="leading" secondItem="WqC-aX-fWu" secondAttribute="leading" id="OME-2f-VTx"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="bpT-uy-uFU" secondAttribute="bottom" id="YL7-u1-5KS"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="bpT-uy-uFU" secondAttribute="trailing" id="hMF-Y7-hRB"/>
+                                                                        <constraint firstItem="bpT-uy-uFU" firstAttribute="top" secondItem="WqC-aX-fWu" secondAttribute="top" id="ycY-xT-bdE"/>
+                                                                    </constraints>
+                                                                </tableViewCellContentView>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </tableViewCell>
+                                                        </prototypes>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="dZP-6q-LwF" id="FJ3-UI-IuI"/>
+                                                            <outlet property="delegate" destination="dZP-6q-LwF" id="vWW-1d-4yd"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="mbd-GS-7SU" firstAttribute="centerY" secondItem="PVc-ou-Cjm" secondAttribute="centerY" id="1vM-Za-qKn"/>
+                                            <constraint firstItem="mbd-GS-7SU" firstAttribute="top" secondItem="PVc-ou-Cjm" secondAttribute="top" constant="12" id="BMO-cd-rN1"/>
+                                            <constraint firstItem="mbd-GS-7SU" firstAttribute="leading" secondItem="PVc-ou-Cjm" secondAttribute="leading" constant="12" id="Mmr-Gd-rRf"/>
+                                            <constraint firstItem="mbd-GS-7SU" firstAttribute="centerX" secondItem="PVc-ou-Cjm" secondAttribute="centerX" id="iWr-GS-ILF"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动外View"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PVc-ou-Cjm" firstAttribute="top" secondItem="VqY-93-biz" secondAttribute="bottom" constant="11.5" id="61y-UI-5iM"/>
+                                    <constraint firstItem="w5k-JX-uLG" firstAttribute="top" secondItem="xOx-sY-cpp" secondAttribute="top" id="6e7-9H-NRv"/>
+                                    <constraint firstItem="5F6-dn-xG7" firstAttribute="top" secondItem="xOx-sY-cpp" secondAttribute="top" constant="15" id="6hx-s7-Qrr"/>
+                                    <constraint firstItem="PVc-ou-Cjm" firstAttribute="top" secondItem="w5k-JX-uLG" secondAttribute="bottom" constant="-3" id="99c-4T-sKN"/>
+                                    <constraint firstAttribute="trailing" secondItem="w5k-JX-uLG" secondAttribute="trailing" id="KN8-cQ-lpP"/>
+                                    <constraint firstAttribute="bottom" secondItem="PVc-ou-Cjm" secondAttribute="bottom" constant="15" id="LJG-nV-muZ"/>
+                                    <constraint firstItem="VqY-93-biz" firstAttribute="centerY" secondItem="5F6-dn-xG7" secondAttribute="centerY" constant="1" id="XcD-e5-Uyh"/>
+                                    <constraint firstItem="w5k-JX-uLG" firstAttribute="centerY" secondItem="VqY-93-biz" secondAttribute="centerY" id="XdS-An-kex"/>
+                                    <constraint firstItem="PVc-ou-Cjm" firstAttribute="leading" secondItem="5F6-dn-xG7" secondAttribute="leading" id="ard-U2-Smx"/>
+                                    <constraint firstItem="PVc-ou-Cjm" firstAttribute="centerX" secondItem="xOx-sY-cpp" secondAttribute="centerX" id="b2t-CH-iNO"/>
+                                    <constraint firstItem="VqY-93-biz" firstAttribute="leading" secondItem="5F6-dn-xG7" secondAttribute="trailing" constant="6" id="fcS-7F-Bc7"/>
+                                    <constraint firstItem="5F6-dn-xG7" firstAttribute="leading" secondItem="xOx-sY-cpp" secondAttribute="leading" constant="12" id="ndv-Mk-uVv"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="优惠活动ContentView"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qTM-13-sQs"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xOx-sY-cpp" firstAttribute="leading" secondItem="qGV-Xe-EhS" secondAttribute="leading" id="2SV-ch-Pti"/>
+                            <constraint firstAttribute="trailing" secondItem="xOx-sY-cpp" secondAttribute="trailing" id="3Ux-33-fMR"/>
+                            <constraint firstItem="xOx-sY-cpp" firstAttribute="top" secondItem="qGV-Xe-EhS" secondAttribute="top" id="wQd-Ti-IAd"/>
+                            <constraint firstAttribute="bottom" secondItem="xOx-sY-cpp" secondAttribute="bottom" priority="750" id="wag-NJ-JSm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="promotionsStackView" destination="mbd-GS-7SU" id="grr-Ni-dBu"/>
+                        <outlet property="tableView" destination="bc6-Gh-YyT" id="mY1-EB-c52"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iE1-IO-Ay8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="160" y="142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="礼品-(1)" width="24" height="24"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

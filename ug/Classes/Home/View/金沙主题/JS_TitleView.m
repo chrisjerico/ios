@@ -43,19 +43,13 @@
 }
 
 - (IBAction)loginButtonTaped:(id)sender {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(loginButtonTaped)]) {
-		[self.delegate loginButtonTaped];
-	}
+    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
 }
 - (IBAction)registButtonTaped:(id)sender {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(registButtonnTaped)]) {
-		[self.delegate registButtonnTaped];
-	}
+    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
 }
 - (IBAction)moreButtonTaped:(id)sender {
-	if (self.delegate && [self.delegate respondsToSelector:@selector(moreButtonTaped)]) {
-		[self.delegate moreButtonTaped];
-	}
+    [JS_Sidebar show];
 }
 
 @end

@@ -59,9 +59,6 @@
     [_esportdataArray addObject:obj];
     [_fishdataArray addObject:obj];
     [_sportdataArray addObject:obj];
-    
-    
-    
     [self getRealGames];
 }
 #pragma mark - 网络数据
@@ -119,7 +116,6 @@
 }
 - (void)buildSegment
 {
-    
     self.itemArray = @[@"视讯",@"棋牌",@"电子",@"电竞",@"捕鱼",@"体育"];
     if (Skin1.isGPK) {
         [self creatView];

@@ -10,7 +10,7 @@
 
 #import "LogVC.h"
 #import "CMAudioPlayer.h"
-
+#import "TKLMainViewController.h"
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
@@ -162,14 +162,15 @@ static LogVC *_logVC = nil;
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"时间搓"];
-        [titles addObject:@"汇率"];
+        [titles addObject:@"天空蓝额度"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"汇率" handler:^(UIAlertAction *aa) {
-            
-            NSDecimalNumber *sale = [CMCommon randStr:@"1604.975" scale:2];
-            NSLog(@"sale = %@",sale);
+        [ac setActionAtTitle:@"天空蓝额度" handler:^(UIAlertAction *aa) {
+            TKLMainViewController *vc = [[TKLMainViewController alloc] init];
+            [NavController1 pushViewController:vc animated:true];
+//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"TKLMainListViewController") animated:true];
         }];
+
         
         [ac setActionAtTitle:@"时间搓" handler:^(UIAlertAction *aa) {
            NSString *time1 = [CMTimeCommon timestampSwitchTime:1602923724 andFormatter:@"yyyy-MM-dd HH:mm"];

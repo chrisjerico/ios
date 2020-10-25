@@ -9,146 +9,70 @@
 #import "UGHomeViewController.h"
 
 // ViewController
-#import "UGSSCLotteryController.h"
-#import "UGGD11X5LotteryController.h"
-#import "UGJSK3LotteryController.h"
-#import "UGHKLHCLotteryController.h"
-#import "UGBJPK10LotteryController.h"
-#import "UGQXCLotteryController.h"
-#import "UGPcddLotteryController.h"
-#import "UGXYNCLotteryController.h"
-#import "UGBJKL8LotteryController.h"
-#import "UGGDKL10LotteryController.h"
-#import "UGFC3DLotteryController.h"
-#import "UGPK10NNLotteryController.h"
-#import "UGLotteryRecordController.h"
-#import "UGMailBoxTableViewController.h"
 #import "UGYubaoViewController.h"
-#import "UGDocumentVC.h"
-#import "UGFundsViewController.h"
-#import "SLWebViewController.h"
-#import "SLWebViewController.h"
-#import "QDWebViewController.h"
-#import "UGFundsViewController.h"
-#import "UGBetRecordViewController.h"
-#import "UGChangLongController.h"
 #import "UGLoginViewController.h"
 #import "UGRegisterViewController.h"
-#import "UGPromoteDetailController.h"   // 优惠活动详情
-#import "UGPromotionsController.h"
 #import "UGAgentViewController.h"   // 申请代理
 #import "UGMissionCenterViewController.h"   // 任务中心
-#import "UGLotteryHomeController.h"  // 彩票大厅
-#import "UGYYLotterySecondHomeViewController.h" //展示购彩，真人大厅
-#import "UGPostListVC.h"    // 六合帖子列表
-#import "UGDocumentListVC.h"// 六合期数列表
-#import "LHGalleryListVC1.h"   // 六合图库（样式1）
-#import "LHGalleryListVC2.h"   // 六合图库（样式2）
-#import "LHJournalDetailVC.h"   // 期刊详情
-#import "UGPostDetailVC.h"      // 帖子详情
-#import "JS_TitleView.h"
-#import "TKLPlatformNotiveView.h"
-#import "UGAllNextIssueListModel.h"
-
-//测试--GPK版
-#import "UGfinancialViewViewController.h"
 
 // View
 #import "SDCycleScrollView.h"
-#import "CustomCollectionViewCell.h"
 #import "UUMarqueeView.h"
 #import "UGGameTypeCollectionView.h"
-#import "UGTimeLotteryBetHeaderView.h"
-#import "UGredEnvelopeView.h"
-#import "UGredActivityView.h"
 #import "GameCategoryDataModel.h"
-#import "UGNoticePopView.h"
 #import "UGHomeTitleView.h"
 #import "UGTKLHomeTitleView.h"
-#import "UGLotteryRulesView.h"
-#import "STButton.h"
-#import "UGPlatformNoticeView.h"
-#import "UGAppVersionManager.h"
 #import "UGPromotionIncomeController.h"
 #import "FLAnimatedImageView.h"
 #import "UGBMHeaderView.h"
-#import "PromotePopView.h"
-#import "UGCellHeaderView.h"
-#import "UGCell190HeaderView.h"
-// 六合View
-//#import "UGLHLotteryCollectionViewCell.h"
 #import "UGLHHomeContentCollectionViewCell.h"
 #import "UGScratchMusicView.h"
 #import "LHPostPayView.h"
 #import "UGLHPrizeView.h"           //解码器
+#import "JS_TitleView.h"
+#import "HomeBannerView.h"
+#import "HomeMarqueeView.h"
+#import "HomeLHColumnView.h"
+#import "HomeWaistAdsView.h"
+#import "HomePromotionsVC.h"    // 底部优惠活动View
+#import "HomeBetFormView.h"
+#import "HomeTrademarkView.h"   // 底部商标
+#import "HomeRankingView.h"
+#import "HomeFloatingButtonsView.h"
+#import "JS_HomePromoteContainerView.h"
+#import "HSC_TitleView.h"
 
 // Model
-#import "UGBannerModel.h"
-#import "UGNoticeModel.h"
+#import "UGAllNextIssueListModel.h"
 #import "UGSystemConfigModel.h"
-#import "UGPromoteModel.h"
-#import "UGRankModel.h"
 #import "UGAllNextIssueListModel.h"
 #import "UGYYRightMenuView.h"
 #import "UGGameNavigationView.h"
-#import "UGPlatformGameModel.h"
-#import "UGLHCategoryListModel.h"
-#import "UGLHlotteryNumberModel.h"
-#import "UGYYPlatformGames.h"
-#import "UGhomeAdsModel.h"
 #import "UGChatRoomModel.h"
  #import "RoomChatModel.h"
+
 // Tools
 #import "UIImageView+WebCache.h"
 #import "CMCommon.h"
-#import "UGonlineCount.h"
-#import <SafariServices/SafariServices.h>
 #import "UIImage+YYgradientImage.h"
-#import "SGBrowserView.h"
-#import "CMLabelCommon.h"
 #import "CMTimeCommon.h"
 #import "CountDown.h"
 #import "Global.h"
-#import "CMAudioPlayer.h"
-#import "JS_HomePromoteContainerView.h"
-#import "HSC_TitleView.h"
 #import "UIColor+RGBValues.h"
-#import "BetFormViewModel.h"
-#import "HSC_BetFormCell.h"
-//大转盘
-#import "DZPMainView.h"
-#import "DZPModel.h"
 
-//砸金蛋
-#import "EggFrenzyViewController.h"
-// 刮刮乐
-#import "ScratchController.h"
-#import "ScratchDataModel.h"
 
-@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate, JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
+
+@interface UGHomeViewController ()<SDCycleScrollViewDelegate,UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
-@property (nonatomic, strong) UGTKLHomeTitleView *tkltitleView;       /**<   自定义导航条 */
+@property (nonatomic, strong) UGTKLHomeTitleView *tkltitleView; /**<   自定义导航条 */
 
 @property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
 @property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
 
-@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   GPK版导航头 */
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
-@property (nonatomic, strong) UILabel *nolineLabel;             /**<   在线人数Label */
-@property (nonatomic, strong) UGonlineCount *mUGonlineCount;    /**<   在线人数数据 */
-
-@property (nonatomic, strong)  UGredEnvelopeView *uGredEnvelopeView;    /**<   红包浮动按钮 */
-@property (nonatomic, strong)  UGredActivityView *uGredActivityView;    /**<   红包弹框 */
-
-@property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;       /**<   最外层的ScrollView */
-@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;         /**<   contentScrollView的子视图StackView */
-
-@property (weak, nonatomic) IBOutlet UIView *bannerBgView;                  /**<   横幅背景View */
-@property (nonatomic, strong) SDCycleScrollView *bannerView;                /**<   横幅View */
-@property (nonatomic, strong) NSArray <UGBannerCellModel *> *bannerArray;   /**<   横幅数据 */
 
 @property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
@@ -156,69 +80,10 @@
 @property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
 @property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
 
-@property (weak, nonatomic) IBOutlet UIView *promotionView;                         /**<   优惠活动 view*/
-@property (weak, nonatomic) IBOutlet UIStackView *promotionsStackView;              /**<   优惠活动 */
-
-@property (weak, nonatomic) IBOutlet UIView *rollingView;                           /**<   跑马灯父视图 */
-@property (weak, nonatomic) IBOutlet UUMarqueeView *leftwardMarqueeView;            /**<   跑马灯 */
-@property (nonatomic, strong) NSMutableArray <NSString *> *leftwardMarqueeViewData; /**<   跑马灯数据 */
-@property (nonatomic, strong) UGNoticeTypeModel *noticeTypeModel;                   /**<   点击跑马灯弹出的数据 */
-
-@property (nonatomic, strong) UGPlatformNoticeView *notiveView;                     /**<   平台公告View */
-@property (nonatomic, strong) TKLPlatformNotiveView *tklnotiveView;                  /**<   天空蓝平台公告View */
-@property (nonatomic, strong) NSMutableArray <UGNoticeModel *> *popNoticeArray;     /**<   公告数据 */
-
-@property (weak, nonatomic) IBOutlet UIView *rankingView;                   /**<   中奖排行榜父视图 */
-@property (weak, nonatomic) IBOutlet UILabel *rankLabel;                    /**<   中奖排行标题Label */
-@property (weak, nonatomic) IBOutlet UUMarqueeView *upwardMultiMarqueeView; /**<   中奖排行榜 */
-@property (nonatomic, strong) UGRankListModel *rankListModel;               /**<   中奖排行榜数据 */
-@property (nonatomic, strong) NSArray<UGRankModel *> *rankArray;            /**<   中奖排行榜数据 */
-
-@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;  /**<   底部商标Label */
-@property (weak, nonatomic) IBOutlet UIView *bottomView;    /**<   底部商标ContentView */
-
-@property (weak, nonatomic) IBOutlet UILabel *bottomTitle;  /**<   底部内容文字 */
-@property (weak, nonatomic) IBOutlet UIButton *preferentialBtn;/**<   底部优惠按钮 */
-@property (weak, nonatomic) IBOutlet JS_HomePromoteContainerView *homePromoteContainer;  /**<   站长推荐 */
-
-@property (weak, nonatomic) IBOutlet UIView *homeAdsBigBgView;           /**<   首页广告图片大背景View */
-@property (nonatomic, strong) NSArray <UGhomeAdsModel *> *homeAdsArray;   /**<   首页广告图片 */
-@property (weak, nonatomic) IBOutlet UIView *homeAdsBgView;                  /**<   首页腰部广告图片背景View */
-@property (nonatomic, strong) SDCycleScrollView *homeAdsView;                /**<   首页腰部广告图片View */
 //-------------------------------------------
 //六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *LhPrize_FView;
 @property (weak, nonatomic) IBOutlet UGLHPrizeView *lhPrizeView; /**<    解码器 */
-//--------------------------------------------
-//六合栏目View
-@property (weak, nonatomic) IBOutlet UIView *liuheForumContentView;                     /**<   六合板块View*/
-@property (weak, nonatomic) IBOutlet UICollectionView *contentCollectionView;           /**<  论坛，专帖XXX显示*/
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightLayoutConstraint;        /**<  contentCollectionView 的约束高*/
-@property (nonatomic, strong) NSMutableArray<UGLHCategoryListModel *> *lHCategoryList;   /**<   栏目列表数据 */
-
-@property (nonatomic, strong)   UGPostDetailVC *postvc;                                   /**<   帖子 */
-@property (weak, nonatomic) IBOutlet UIView *betFormView;
-@property (weak, nonatomic) IBOutlet UITableView *betFormTableView;
-@property (nonatomic, strong) BetFormViewModel * betFormViewModel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *betFormTableHeight;
-//-------------------------------------------
-//优惠活动列表
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSString *style;                           /**<   优惠图片样式。slide=折叠式,popup=弹窗式 page = 内页*/
-//-------------------------------------------
-//悬浮窗
-@property (nonatomic, strong)  UGredEnvelopeView *uUpperLeftView;    /**<   手机端浮窗1  左上 */
-@property (nonatomic, strong)  UGredEnvelopeView *ulowerLefttView;   /**<   手机端浮窗2  左下 */
-@property (nonatomic, strong)  UGredEnvelopeView *uUpperRightView;    /**<   手机端浮窗3  右上 */
-@property (nonatomic, strong)  UGredEnvelopeView *uLowerRightView;    /**<   手机端浮窗4  右下 */
-
-//-------------------------------------------
-//大转盘
-@property (nonatomic, strong)  UGredEnvelopeView *bigWheelView;    /**<   大转盘 */
-//砸金蛋
-@property (nonatomic, strong)  UGredEnvelopeView *goldEggView;    /**<   砸金蛋 */
-//刮刮乐
-@property (nonatomic, strong)  UGredEnvelopeView *scratchView;    /**<   刮刮乐 */
 
 
 //--推荐按钮-----------------------------------------
@@ -231,6 +96,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *upTitleLabel;                   /**<   下文字View */
 @property (weak, nonatomic) IBOutlet UILabel *downTitleLabel;                /**<   下文字View */
 
+
+@property (weak, nonatomic) IBOutlet UGBMHeaderView *headerView;/**<   GPK版导航头 */
+@property (weak, nonatomic) IBOutlet UIScrollView *contentScrollView;       /**<   最外层的ScrollView */
+@property (weak, nonatomic) IBOutlet UIStackView *contentStackView;         /**<   contentScrollView的子视图StackView */
+
+@property (nonatomic, strong) HomeBannerView *bannerView;       /**<   顶部横幅 */
+@property (weak, nonatomic) IBOutlet JS_HomePromoteContainerView *homePromoteContainer;  /**<   站长推荐 */
+
+@property (nonatomic, strong) HomeMarqueeView *rollingView;             /**<   跑马灯公告 */
+@property (nonatomic, strong) HomeWaistAdsView *waistAdsView;           /**<   腰部广告 */
+@property (nonatomic, strong) HomeLHColumnView *lhColumnView;           /**<   六合栏目列表 */
+@property (nonatomic, strong) HomePromotionsVC *promotionVC;            /**<   优惠活动 */
+@property (nonatomic, strong) HomeRankingView *rankingView;             /**<   中奖/投注排行榜 */
+@property (nonatomic, strong) HomeBetFormView *betFormView;             /**<   投注专栏 */
+@property (nonatomic, strong) HomeTrademarkView *trademarkView;         /**<   底部商标 */
+@property (nonatomic, strong) HomeFloatingButtonsView *floatingBtnsView;/**<   首页所有悬浮按钮 */
 
 @end
 
@@ -245,14 +126,12 @@
     }
     [_lhPrizeView.countDownForLabel destoryTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.tableView removeObserver:self forKeyPath:@"contentSize" context:@"tableContext"];
 }
 
 
 - (JS_TitleView *)js_titleView {
     if (!_js_titleView) {
         _js_titleView = [[UINib nibWithNibName:@"JS_TitleView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
-        _js_titleView.delegate = self;
         _js_titleView.frame = self.navigationController.navigationBar.bounds;
     }
     return _js_titleView;
@@ -260,7 +139,6 @@
 - (HSC_TitleView *)hsc_titleView {
     if (!_hsc_titleView) {
         _hsc_titleView = [[UINib nibWithNibName:@"HSC_TitleView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
-        _hsc_titleView.delegate = self;
         _hsc_titleView.bounds = self.navigationController.navigationBar.bounds;
         
     }
@@ -285,11 +163,10 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _liuheForumContentView, _promotionView, _bottomView],
-                               @"GPK版":@[_bannerBgView, _gameTypeView.superview, _rankingView, _bottomView],
-                               @"金沙主题":@[_bannerBgView, _rollingView,_homeAdsBigBgView, _homePromoteContainer, _gameTypeView.superview, _promotionView, _rankingView, _bottomView],
-                               @"火山橙":@[_bannerBgView, _rollingView, _homeAdsBigBgView, _gameNavigationView.superview, _gameTypeView.superview, _promotionView, _betFormView, _bottomView],
-                               
+        NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
+                               @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+                               @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+                               @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
         };
         
         NSArray *views = dict[Skin1.skitType];
@@ -297,40 +174,15 @@
             [_contentStackView addArrangedSubviews:views];
         } else {
             // 默认展示内容
-            [_contentStackView addArrangedSubviews:@[_bannerBgView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _homeAdsBigBgView, _gameTypeView.superview, _promotionView, _rankingView, _bottomView,]];
+            [_contentStackView addArrangedSubviews:@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,]];
             
         }
     }
-    // l001站点定制需求
-    if ([APP.SiteId containsString:@"l001"]) {
-        if (Skin1.isLH) {
-            self.bottomTitle.text = @"💻电脑版";
-            [self.preferentialBtn setHidden:YES];
-        } else {
-            self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
-            [self.preferentialBtn setHidden:NO];
-        }
-    }
-    else{
-        self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
-        [self.preferentialBtn setHidden:NO];
-    }
     
-    if (Skin1.is23||Skin1.isBlack) {
-        [self.bottomTitle setTextColor:[UIColor whiteColor]];
-         [self.bottomLabel setTextColor:[UIColor whiteColor]];
-    }
     
     
     // GPK版的UI调整
     BOOL isGPK = Skin1.isGPK;
-    // c108站点定制需求
-    if ([@"c108" containsString: APP.SiteId]||Skin1.isTKL) {
-        _rankingView.backgroundColor = UIColor.whiteColor;
- 
-    } else {
-        _rankingView.backgroundColor = isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
-    }
     
 
 
@@ -342,8 +194,6 @@
         self.navigationController.navigationBarHidden = isGPK;
     }
     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
-        _rollingView.backgroundColor = UIColor.whiteColor;
-        _rankingView.backgroundColor = UIColor.whiteColor;
         _gameTypeView.backgroundColor = [UIColor colorWithHex:0xf9f9f9];
         UIView * titleView = [UIView new];
         [titleView addSubview:self.js_titleView];
@@ -368,11 +218,7 @@
 //        Selector
 //        IMP
     }
-    if (Skin1.isJY||Skin1.isTKL) {
-        _rollingView.backgroundColor = RGBA(249, 249, 249, 1);
-        [CMCommon setBorderWithView:_rollingView top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
-        
-    }
+    
     [self.gameNavigationView reloadData];
 }
 
@@ -381,8 +227,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.leftwardMarqueeView start];
-    [self.upwardMultiMarqueeView start];
+    [self.rollingView start];
+    [self.rankingView start];
     
     if (Skin1.isTKL) {
           self.tkltitleView.imgName = SysConf.mobile_logo;
@@ -401,19 +247,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.leftwardMarqueeView pause];//fixbug  发热  掉电快
-    [self.upwardMultiMarqueeView pause];//fixbug  发热  掉电快
+    [self.rollingView pause];//fixbug  发热  掉电快
+    [self.rankingView pause];//fixbug  发热  掉电快
     if (_lhPrizeView.timer) {
         [_lhPrizeView.timer setFireDate:[NSDate distantFuture]];
-    }
-}
-
-/** 监听自适应高度 */
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"contentSize"]) {
-        CGFloat ht = self.tableView.contentSize.height;
-        self.tableView.cc_constraints.height.constant  = ht +2;
     }
 }
 
@@ -436,20 +273,6 @@
             } else {
                  __self.titleView.showLoginView = NO;
             }
-           
-            if ( [SysConf.popup_type isEqualToString:@"1"]) {
-                
-                BOOL isLogin = UGLoginIsAuthorized();
-                 if (isLogin) {
-                     [__self getNoticeList];
-                 }
-            }
-            
-            [__self getactivityCratchList];
-            [__self getactivityGoldenEggList]; //砸金蛋
-            [__self getactivityTurntableList];
-            [__self getCheckinListData];
-            
         });
         // 退出登陆
         SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
@@ -487,13 +310,6 @@
         });
         // 获取系统配置成功
         SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
-            NSInteger cnt = 0;
-            for (UIView *v in __self.promotionsStackView.arrangedSubviews) {
-                cnt += !v.hidden;
-            }
-            __self.promotionView.hidden = !SysConf.m_promote_pos || !cnt;
-            
-            
             // 3.GCD
             dispatch_async(dispatch_get_main_queue(), ^{
                 // UI更新代码
@@ -518,13 +334,34 @@
         });
     }
     
+    // 横幅
+    _bannerView = _LoadView_from_nib_(@"HomeBannerView");
+    
+    // 跑马灯公告
+    _rollingView = _LoadView_from_nib_(@"HomeMarqueeView");
+    
+    // 腰部广告
+    _waistAdsView = _LoadView_from_nib_(@"HomeWaistAdsView");
+    
+    // 六合栏目列表
+    _lhColumnView = _LoadView_from_nib_(@"HomeLHColumnView");
+    
+    // 优惠活动
+    _promotionVC = _LoadVC_from_storyboard_(@"HomePromotionsVC");
+    [self addChildViewController:_promotionVC];
+    
+    // 投注/中奖排行榜
+    _rankingView = _LoadView_from_nib_(@"HomeRankingView");
+    
+    // 底部商标
+    _trademarkView = _LoadView_from_nib_(@"HomeTrademarkView");
+    
+    // 悬浮按钮
+    _floatingBtnsView = _LoadView_from_nib_(@"HomeFloatingButtonsView");
+    [self.view addSubview:_floatingBtnsView];
+    
     // 配置初始UI
     {
-        [self.tableView addObserver:self forKeyPath:@"contentSize"  options:NSKeyValueObservingOptionNew context:@"tableContext"];
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
         if (Skin1.isJY||Skin1.isTKL) {
             subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@"JY_gg"] ;
@@ -538,9 +375,7 @@
             subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         }
         
-        subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
-        subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
-        [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+
         
         if (!Skin1.isLH) {
             self.gameNavigationView.layer.cornerRadius = 8;
@@ -567,8 +402,6 @@
             subView(@"优惠活动外View").layer.masksToBounds = NO;
             subView(@"优惠活动外View").layer.borderWidth = 0;
             subView(@"优惠活动外View").backgroundColor = [UIColor clearColor];
-            _promotionsStackView.cc_constraints.top.constant = 0;
-            _promotionsStackView.cc_constraints.left.constant = 0;
         } else {
             subView(@"优惠活动外View").layer.cornerRadius = 5;
             subView(@"优惠活动外View").layer.masksToBounds = YES;
@@ -577,28 +410,17 @@
                 subView(@"优惠活动外View").layer.borderWidth = 1;
                 subView(@"优惠活动外View").layer.borderColor = [[UIColor whiteColor] CGColor];
             }
-           
-            _promotionsStackView.cc_constraints.top.constant = 0;
-            _promotionsStackView.cc_constraints.left.constant = 0;
         }
         
         if ( [@"c012," containsString:APP.SiteId]) {//第3种样式：
             subView(@"优惠活动外View").backgroundColor = Skin1.homeContentColor;
         }
         
-        if (Skin1.isJY||Skin1.isTKL) {
-            _promotionsStackView.cc_constraints.top.constant = 0;
-            _promotionsStackView.cc_constraints.left.constant = 0;
-        }
-        
         
         [self.view setBackgroundColor: Skin1.bgColor];
-        [self.rankingView setBackgroundColor:Skin1.navBarBgColor];
-        [self.upwardMultiMarqueeView setBackgroundColor:Skin1.homeContentColor];
-        [self.rollingView setBackgroundColor:Skin1.homeContentColor];
+        
 //        [self.gameNavigationView setBackgroundColor:Skin1.homeContentColor];
         [self.gameTypeView setBackgroundColor:Skin1.bgColor];
-        [self.bottomView setBackgroundColor:Skin1.navBarBgColor];
         [self.upRecommendedView setBackgroundColor:Skin1.bgColor];
         [self.downRecommendedView setBackgroundColor:Skin1.bgColor];
         
@@ -620,332 +442,13 @@
         
         self.upTitleLabel.textColor = Skin1.textColor1;
         self.downTitleLabel.textColor = Skin1.textColor1;
-        {//六合
-            if ([Skin1.skitType isEqualToString:@"六合资料"]) {
-                _lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
-                [self initLHCollectionView];
-            }
-            
-        }
+        
         //游戏列表点击事件
         self.gameTypeView.gameItemSelectBlock = ^(GameModel * _Nonnull game) {
             [NavController1 pushViewControllerWithGameModel:game];
         };
-        
-        [self.bottomView setHidden:APP.isHideFoot];
-        
     }
     
-    // 红包事件
-    {
-        self.uGredEnvelopeView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 70, 70) ];
-        [self.view addSubview:_uGredEnvelopeView];
-//        [self.uGredEnvelopeView setHidden:YES];
-        [self.uGredEnvelopeView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(__self.view.mas_right).with.offset(-10);
-            make.width.mas_equalTo(70.0);
-            make.height.mas_equalTo(70.0);
-            make.top.equalTo(__self.view.mas_top).offset(135);
-        }];
-        self.uGredEnvelopeView.cancelClickBlock = ^(void) {
-            [__self.uGredEnvelopeView setHidden:YES];
-        };
-        
-        // 红包弹框
-        self.uGredEnvelopeView.redClickBlock = ^(void) {
-            //        [__self.uGredEnvelopeView setHidden:YES];
-            if (!UGLoginIsAuthorized()) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
-                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                    UGLoginAuthorize(^(BOOL isFinish) {
-                        if (!isFinish)
-                            return ;
-                    });
-                }];
-                return;
-            }
-            if ([UGUserModel currentUser].isTest) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }];
-                return ;
-            }
-            
-            NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-            
-            [SVProgressHUD showWithStatus:nil];
-            [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-                [CMResult processWithResult:model success:^{
-                    [SVProgressHUD dismiss];
-                    __self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
-                    
-                    __self.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
-                    __self.uGredActivityView.item = __self.uGredEnvelopeView.item;
-                    if (__self.uGredEnvelopeView.item) {
-                        [__self.uGredActivityView show];
-                    }
-                } failure:^(id msg) {
-                    [SVProgressHUD showErrorWithStatus:msg];
-                }];
-            }];
-        };
-    }
-    
-   
-    
-#pragma mark 刮刮乐+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-    {
-        self.scratchView = [[UGredEnvelopeView alloc] initWithFrame:CGRectZero];
-        [self.view addSubview:_scratchView];
-//        [self.scratchView setHidden:YES];
-        
-        
-        if (APP.isNewLocation) {
-            [self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.view.mas_top).offset(135);
-            }];
-        } else {
-            [self.scratchView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.view.mas_top).offset(150+105+105);
-            }];
-        }
-       
-        self.scratchView.cancelClickBlock = ^(void) {
-            [__self.scratchView setHidden:YES];
-        };
-        self.scratchView.redClickBlock = ^(void) {
-            
-            if (!UGLoginIsAuthorized()) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
-                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                    UGLoginAuthorize(^(BOOL isFinish) {
-                        if (!isFinish)
-                            return ;
-                    });
-                }];
-                return;
-            }
-            if ([UGUserModel currentUser].isTest) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }];
-                return ;
-            }
-            
-            ScratchController * vc = [[ScratchController alloc] init];
-            vc.item = __self.scratchView.scratchDataModel;
-            vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-            [[UINavigationController current] presentViewController:vc animated:true completion:nil];
-
-        };
-        
-    }
-#pragma mark 砸金蛋
-	{//砸金蛋
-		  self.goldEggView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
-		  [self.view addSubview:_goldEggView];
-
-//		  [self.goldEggView setHidden:YES];
-		  
-        
-        if (APP.isNewLocation) {
-            [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(__self.scratchView.mas_right).with.offset(10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.view.mas_top).offset(135);
-            }];
-        } else {
-            [self.goldEggView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.view.mas_top).offset(150+105+105);
-            }];
-        }
-		 
-		  self.goldEggView.cancelClickBlock = ^(void) {
-			  [__self.goldEggView setHidden:YES];
-		  };
-		  self.goldEggView.redClickBlock = ^(void) {
-			  
-			  if (!UGLoginIsAuthorized()) {
-				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
-				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-					  UGLoginAuthorize(^(BOOL isFinish) {
-						  if (!isFinish)
-							  return ;
-					  });
-				  }];
-				  return;
-			  }
-			  if ([UGUserModel currentUser].isTest) {
-				  UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-				  [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-					  SANotificationEventPost(UGNotificationShowLoginView, nil);
-				  }];
-				  return ;
-			  }
-			  EggFrenzyViewController * vc = [[EggFrenzyViewController alloc] init];
-			  vc.item = (DZPModel*)__self.goldEggView.itemData;
-			  vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-			  [[UINavigationController current] presentViewController:vc animated:true completion:nil];
-
-		  };
-	  }
-#pragma mark 大转盘
-    {//大转盘
-        self.bigWheelView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 95, 95) ];
-        [self.view addSubview:_bigWheelView];
-
-//        [self.bigWheelView setHidden:YES];
-        
-        if (APP.isNewLocation) {
-            [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(__self.goldEggView.mas_right).with.offset(10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.view.mas_top).offset(135);
-            }];
-        } else {
-            [self.bigWheelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.view.mas_top).offset(150+105);
-            }];
-        }
-
-        self.bigWheelView.cancelClickBlock = ^(void) {
-            [__self.bigWheelView setHidden:YES];
-        };
-        self.bigWheelView.redClickBlock = ^(void) {
-            
-            if (!UGLoginIsAuthorized()) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
-                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                    UGLoginAuthorize(^(BOOL isFinish) {
-                        if (!isFinish)
-                            return ;
-                    });
-                }];
-                return;
-            }
-            if ([UGUserModel currentUser].isTest) {
-                UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
-                [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
-                    SANotificationEventPost(UGNotificationShowLoginView, nil);
-                }];
-                return ;
-            }
-            
-            DZPModel *banner = (DZPModel*)__self.bigWheelView.itemData;
-            DZPMainView *recordVC = [[DZPMainView alloc] initWithFrame:CGRectMake(0, 0, APP.Width-60, APP.Height-60)];
-
-             CGPoint showCenter = CGPointMake(APP.Width/2,APP.Height/2);
-             [SGBrowserView showMoveView:recordVC moveToCenter:showCenter];
-            recordVC.item = banner;
-        };
-    }
-    
-    // 手机悬浮按钮
-    {
-        {//左上
-            self.uUpperLeftView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
-            [self.view addSubview:_uUpperLeftView];
-            [self.uUpperLeftView setHidden:YES];
-            [self.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                if (self.bigWheelView.hidden) {
-                      make.top.equalTo(__self.view.mas_top).offset(150+105);
-                } else {
-                      make.top.equalTo(__self.bigWheelView.mas_bottom).offset(5);
-                }
-              
-            }];
-            self.uUpperLeftView.cancelClickBlock = ^(void) {
-                [__self.uUpperLeftView setHidden:YES];
-            };
-            self.uUpperLeftView.redClickBlock = ^(void) {
-                UGhomeAdsModel *banner = __self.uUpperLeftView.itemSuspension;
-                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
-            };
-        }
-        {//左下
-            self.ulowerLefttView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
-            [self.view addSubview:_ulowerLefttView];
-            [self.ulowerLefttView setHidden:YES];
-            [self.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(__self.view.mas_left).with.offset(10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.uUpperLeftView.mas_bottom).offset(5);
-            }];
-            self.ulowerLefttView.cancelClickBlock = ^(void) {
-                [__self.ulowerLefttView setHidden:YES];
-            };
-            self.ulowerLefttView.redClickBlock = ^(void) {
-                UGhomeAdsModel *banner = __self.ulowerLefttView.itemSuspension;
-                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
-            };
-        }
-        
-        {//右上
-            self.uUpperRightView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
-            [self.view addSubview:_uUpperRightView];
-            [self.uUpperRightView setHidden:YES];
-            [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                if (self.bigWheelView.hidden) {
-                      make.top.equalTo(__self.view.mas_top).offset(150+105);
-                } else {
-                      make.top.equalTo(__self.bigWheelView.mas_bottom).offset(5);
-                }
-            }];
-            self.uUpperRightView.cancelClickBlock = ^(void) {
-                [__self.uUpperRightView setHidden:YES];
-            };
-            self.uUpperRightView.redClickBlock = ^(void) {
-                UGhomeAdsModel *banner = __self.uUpperRightView.itemSuspension;
-                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
-            };
-        }
-        {//右下
-            self.uLowerRightView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-100, 150, 95, 95) ];
-            [self.view addSubview:_uLowerRightView];
-            [self.uLowerRightView setHidden:YES];
-            [self.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(__self.view.mas_right).with.offset(-10);
-                make.width.mas_equalTo(70.0);
-                make.height.mas_equalTo(70.0);
-                make.top.equalTo(__self.uUpperRightView.mas_bottom).offset(5);
-            }];
-            self.uLowerRightView.cancelClickBlock = ^(void) {
-                [__self.uLowerRightView setHidden:YES];
-            };
-            self.uLowerRightView.redClickBlock = ^(void) {
-                UGhomeAdsModel *banner = __self.uLowerRightView.itemSuspension;
-                BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
-            };
-        }
-        
-
-        
-        
-    }
     // c200、c035站点定制需求
     if ([APP.SiteId containsString:@"c035"]) {
         FLAnimatedImageView *gifImageView = [[FLAnimatedImageView alloc] initWithFrame:CGRectMake(APP.Width-100, 300, 100, 100)];
@@ -960,29 +463,14 @@
     
     // 拉取数据
     _contentScrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-
         [__self requestUrl];
-       
     }];
     
     
     
-
     if (_contentScrollView.mj_header.refreshingBlock) {
         _contentScrollView.mj_header.refreshingBlock();
     }
-  
-   
-    
-    
-    if (APP.isCornerRadius) {
-        //只需要设置layer层的两个属性
-        //设置圆角
-        _homeAdsView.layer.cornerRadius =10;
-        //将多余的部分切掉
-        _homeAdsView.layer.masksToBounds = YES;
-    }
-    
 }
 
 -(void)requestUrl{
@@ -1000,7 +488,7 @@
     dispatch_group_async(group, queue, ^{
         
         // 请求二
-        [self getBannerList];       // Banner图
+        [self.bannerView reloadData:^(BOOL succ) {}];       // Banner图、在线人数
     });
     dispatch_group_async(group, queue, ^{
           // 请求3
@@ -1014,26 +502,19 @@
     });
     dispatch_group_async(group, queue, ^{
         
-        // 请求5 红包数据
-         [self getCheckinListData];  // 红包数据
-        
-    });
-    dispatch_group_async(group, queue, ^{
-        
-        // 请求6
-        [self systemOnlineCount];   // 在线人数
+        // 请求5 请求所有悬浮按钮数据
+        [self.floatingBtnsView reloadData:^(BOOL succ) {}];
         
     });
     dispatch_group_async(group, queue, ^{
         
         // 请求7
-        [self getPromoteList];    // 优惠活动
-        
+        [self.promotionVC reloadData:^(BOOL succ) {}];
     });
     dispatch_group_async(group, queue, ^{
            
            // 请求8
-           [self getRankList];     // 投注排行榜/中奖排行榜
+        [self.rankingView reloadData:^(BOOL succ) {}];     // 投注排行榜/中奖排行榜
            
     });
     dispatch_group_async(group, queue, ^{
@@ -1049,17 +530,10 @@
 //           [self chatgetToken];     // 在线配置的聊天室÷
            
     });
-       
     dispatch_group_async(group, queue, ^{
            
-           // 请求11
-           [self getfloatAdsList];     // 首页左右浮窗
-           
-    });
-    dispatch_group_async(group, queue, ^{
-           
-           // 请求12
-           [self getCategoryList];     //栏目列表
+           // 请求12 // 六合栏目列表
+        [self.lhColumnView reloadData:^(BOOL succ) {}];
            
     });
     dispatch_group_async(group, queue, ^{
@@ -1085,21 +559,6 @@
             
         }
     });
-    dispatch_group_async(group, queue, ^{
-           
-           //
-           [self  getactivityTurntableList];     //大转盘
-           
-    });
-	
-	dispatch_group_async(group, queue, ^{
-		[self getactivityGoldenEggList]; //砸金蛋
-	});
-      
-       
-	dispatch_group_async(group, queue, ^{ //刮刮乐
-		[self getactivityCratchList];
-	});
     
     dispatch_group_notify(group, queue, ^{
         
@@ -1138,297 +597,6 @@
     return NO;
 }
 
-
-#pragma mark - 六合方法
-- (void)initLHCollectionView {
-    //六合内容
-    WSLWaterFlowLayout * _flow;
-    _flow = [[WSLWaterFlowLayout alloc] init];
-    _flow.delegate = self;
-    _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
-    
-    //    self.contentCollectionView.backgroundColor = RGBA(221, 221, 221, 1);
-    self.contentCollectionView.backgroundColor = [UIColor whiteColor];
-    self.contentCollectionView.dataSource = self;
-    self.contentCollectionView.delegate = self;
-    self.contentCollectionView.tagString= @"六合内容";
-    [self.contentCollectionView registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    [CMCommon setBorderWithView:self.contentCollectionView top:YES left:YES bottom:NO right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
-    [self.contentCollectionView setCollectionViewLayout:_flow];
- 
-}
-#pragma mark - WSLWaterFlowLayoutDelegate
-//返回每个item大小
-- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    float itemW = (UGScreenW-1)/ 2.0;
-    CGSize size = {itemW, 80};
-    return size;
-    
-    
-}
-
-/** 列数*/
--(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 1;
-}
-/** 行数*/
-//-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-//    return 5;
-//}
-/** 列间距*/
--(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 0;
-}
-/** 行间距*/
--(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 0;
-}
-/** 边缘之间的间距*/
--(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    
-    return UIEdgeInsetsMake(0, 0, 0,0);
-}
-
-
-
-#pragma mark UICollectionView datasource
-////组个数
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    return 1;
-    
-}
-//组内成员个数
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    int rows = 0;
-    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
-        rows = (int)_lHCategoryList.count;
-    }
-    return rows;
-}
-//每个cell的具体内容
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    //    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
-    UGLHHomeContentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
-    FastSubViewCode(cell);
-    [subImageView(@"图片ImgV") sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
-    [subLabel(@"标题Label") setText:model.name];
-    [subLabel(@"详细Label") setText:model.desc];
-
-    [model.isHot isEqualToString:@"1"] ? [subButton(@"hotButton") setHidden:NO] : [subButton(@"hotButton") setHidden:YES];
-    
-    NSLog(@"model.name = %@ model.cid = %@,mode= %@",model.name,model.cid,model);
-    
-    if ([@"l002" containsString:APP.SiteId]) {
-        if ([model.cid isEqualToString:@"662"]||[model.cid isEqualToString:@"714"] ) {
-            [subButton(@"hotButton") setTitle:@"官方" forState:(UIControlStateNormal)];
-        } else {
-            [subButton(@"hotButton") setTitle:@"hot" forState:(UIControlStateNormal)];
-        }
-    }
-    
-    
-    [cell setBackgroundColor: [UIColor whiteColor]];
-    cell.layer.borderWidth = 1;
-    cell.layer.borderColor = [RGBA(221, 221, 221, 1) CGColor];
-    return cell;
-    //    }
-    
-    
-}
-////cell size
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    {
-        float itemW = (UGScreenW)/ 2.0;
-        CGSize size = {itemW, 80};
-        return size;
-    }
-}
-////item偏移
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
-}
-//行间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 0.0;
-}
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0.0;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    if ([collectionView.tagString isEqualToString:@"六合内容"]) {
-        UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
-        
-        // 后台栏目ID可能不正确，要根据别名修正
-        NSDictionary *typeDict = @{@"sixpic":@"5",
-                                   @"humorGuess":@"6",
-                                   @"rundog":@"7",
-                                   @"fourUnlike":@"8",
-        };
-        model.cid = typeDict[model.categoryType];
-        
-        
-//        NSLog(@"model.categoryType =%@",model.categoryType);
-        
-        BOOL isNum = [CMCommon judgeIsNumberByRegularExpressionWith:model.categoryType];
-        
-        NSLog(@"isNum = %d",isNum);
-        
- 
-        
-        if ([model.thread_type isEqualToString:@"2"]) {
-            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            return;
-        }
-        else if (model.contentId.length) {
-            // 获取帖子详情
-            [SVProgressHUD showWithStatus:nil];
-            NSLog(@"");
-            NSLog(@"model.contentId = %@",model.contentId);
-            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
-                [SVProgressHUD dismiss];
-                if (!sm.error) {
-                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
-                    pm.link = model.link;
-                    NSLog(@"获取帖子详情 = %@",pm.content);
-                    void (^push)(void) = ^{
-                        
-                        self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
-                        self.postvc.pm = pm;
-                        self.postvc.title = model.name;
-                        [NavController1 pushViewController:self.postvc animated:true];
-                    };
-                    if (!pm.hasPay && pm.price > 0.000001) {
-                        LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
-                        ppv.pm = pm;
-                        ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
-                            if (!UGLoginIsAuthorized()) {
-                                [ppv hide:nil];
-                                SANotificationEventPost(UGNotificationShowLoginView, nil);
-                                return;
-                            }
-                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
-                                if (!sm.error) {
-                                    pm.hasPay = true;
-                                    [ppv hide:nil];
-                                    UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
-                                    [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
-                                        push();
-                                    }];
-                                }
-                            };
-                        };
-                        [ppv show];
-                    } else {
-                        push();
-                    }
-                }
-            };
-            return;
-        }
-        
-        else if([@"zxkf" containsString:model.alias]) {
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = model.link;
-            webViewVC.webTitle = model.name;
-            [NavController1 pushViewController:webViewVC animated:YES];
-            NSLog(@"在线客服");
-            return;
-        }
-        
-        if ([@"forum,gourmet" containsString:model.categoryType]) {
-            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"高手论坛,极品专贴");
-        }
-        else if([@"mystery,rule" containsString:model.categoryType]) {
-            UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"每期资料,公式规律");
-        }
-        else if([@"humorGuess,rundog,fourUnlike" containsString:model.categoryType]) {
-            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"幽默猜测,跑狗玄机,四不像");
-        }
-        else if([@"sixpic" containsString:model.categoryType]) {
-            LHGalleryListVC2 *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC2");
-            vc.clm = model;
-            [NavController1 pushViewController:vc animated:true];
-            NSLog(@"六合图库");
-        }
-        else if([@"yellowCale" containsString:model.categoryType]) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
-            NSLog(@"老黃历");
-        }
-        else if([@"rwzx" containsString:model.categoryType]) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
-            NSLog(@"任务中心");
-        }
-
-        
-        else if([@"222" containsString:model.categoryType]) {
-
-            UGNextIssueModel *m = [UGNextIssueModel new];
-            m.title = @"澳门六合彩";
-            m.gameId = @"222";
-            m.gameType = @"lhc";
-            m.name = @"lhc";
-            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
-            NSLog(@"澳门六合彩");
-        }
-        else if([@"185" containsString:model.categoryType]) {
-     
-            UGNextIssueModel *m = [UGNextIssueModel new];
-            m.title = @"一分六合彩";
-            m.gameId = @"185";
-            m.gameType = @"lhc";
-            m.name = @"lhc";
-            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
-            NSLog(@"一分六合彩");
-            
-//
-        }
-        else if([@"70" containsString:model.categoryType]) {
-     
-            UGNextIssueModel *m = [UGNextIssueModel new];
-            m.title = @"香港六合彩";
-            m.gameId = @"70";
-            m.gameType = @"lhc";
-            m.name = @"lhc";
-            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
-            NSLog(@"香港六合彩");
-
-        }
-        else if([@"appdl" containsString:model.categoryType]) {
-//            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-//            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
-//            webViewVC.webTitle = model.name;
-//            [NavController1 pushViewController:webViewVC animated:YES];
-            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
-            NSLog(@"APP下载");
-        }
-   
-        else {
-            BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
-            if (!ret && model.appLink.length) {
-                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-                webViewVC.url = model.appLink;
-                webViewVC.webTitle = model.name;
-                [NavController1 pushViewController:webViewVC animated:YES];
-            }
-        }
-    }
-}
 
 // 得到线上配置的聊天室
 - (void)chatgetToken {
@@ -1636,12 +804,10 @@
            
             [weakSelf getCustomGameList];   // 自定义游戏列表
             
-            [weakSelf gethomeAdsList];     // 首页广告图片
+            [weakSelf.waistAdsView reloadData:^(BOOL succ) {}];     // 首页广告图片
             
-            [weakSelf getNoticeList];   // 公告列表
+            [weakSelf.rollingView reloadData:^(BOOL succ) {}];   // 公告列表
             
-            NSString *title =[NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED",config.webName];
-            [weakSelf.bottomLabel setText:title];
             if (Skin1.isTKL) {
                 [weakSelf.tkltitleView setImgName:config.mobile_logo];
             } else {
@@ -1655,506 +821,7 @@
     }];
 }
 
-//查询轮播图
-- (void)getBannerList {
-    WeakSelf;
-    [CMNetwork getBannerListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 需要在主线程执行的代码
-                weakSelf.bannerArray = ((UGBannerModel*)model.data).list;
-                NSMutableArray *mutArr = [NSMutableArray array];
-                if (weakSelf.bannerArray.count) {
-                    for (UGBannerCellModel *banner in self.bannerArray) {
-                        [mutArr addObject:banner.pic];
-                    }
-                    weakSelf.bannerView.imageURLStringsGroup = mutArr.mutableCopy;
-                    NSLog(@"轮播时间：%f",((UGBannerModel*)model.data).interval.floatValue);
-                    weakSelf.bannerView.autoScrollTimeInterval = ((UGBannerModel*)model.data).interval.floatValue;
-                    if (mutArr.count>1) {
-                        weakSelf.bannerView.autoScroll = YES;
-                    } else {
-                         weakSelf.bannerView.autoScroll = NO;
-                    }
-                }
-            });
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-}
-
-// 公告
-- (void)getNoticeList {
-    WeakSelf;
-    [CMNetwork getNoticeListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UGNoticeTypeModel *type = model.data;
-                weakSelf.noticeTypeModel = model.data;
-                weakSelf.popNoticeArray = type.popup.mutableCopy;
-                for (UGNoticeModel *notice in type.scroll) {
-                    //                NSAttributedString *attStr = [[NSAttributedString alloc] initWithData:[notice.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-                    [weakSelf.leftwardMarqueeViewData addObject:notice.title];
-                }
-                [weakSelf.leftwardMarqueeView reloadData];
-   
-                if (![type.popupSwitch isEqualToString:@"0"]) {
-                    [weakSelf showPlatformNoticeView];
-                }
-                
-            });
-        } failure:nil];
-    }];
-}
-
-// 中奖排行榜、投注排行榜
-- (void)getRankList {
-    WeakSelf;
-    [CMNetwork getRankListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [weakSelf.contentScrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 需要在主线程执行的代码
-                UGRankListModel *rank = model.data;
-                weakSelf.rankListModel = rank;
-                weakSelf.rankArray = ({
-                    // 填充5条空数据，看起来就有一段空白形成翻页效果
-                    NSMutableArray *temp = rank.list.mutableCopy;
-                    for (int i=0; i<5; i++) {
-                        UGRankModel *rm = [UGRankModel new];
-                        [temp addObject:rm];
-                    }
-                    [temp copy];
-                });
-                
-                
-                UGSystemConfigModel * config = UGSystemConfigModel.currentConfig;
-                if (config.rankingListSwitch == 0) {
-                } else if (config.rankingListSwitch == 1) {
-                    weakSelf.rankLabel.text = @"中奖排行榜";
-                } else if (config.rankingListSwitch == 2) {
-                    weakSelf.rankLabel.text = @"投注排行榜";
-                }
-                weakSelf.rankingView.hidden = !config.rankingListSwitch;
-           
-                weakSelf.rankLabel.textColor = Skin1.textColor1;
-                [weakSelf.view layoutIfNeeded];
-                [weakSelf.upwardMultiMarqueeView reloadData];
-                
-                if (Skin1.isTKL) {
-                    weakSelf.bottomView.backgroundColor = [UIColor whiteColor];
-                } else {
-                    weakSelf.bottomView.backgroundColor = Skin1.isBlack || !config.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;
-                }
-                
-            });
-            
-        } failure:^(id msg) {
-            
-        }];
-    }];
-}
-
-//得到红包详情数据
-- (void)getCheckinListData {
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-    [SVProgressHUD showWithStatus:nil];
-    WeakSelf;
-    [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [SVProgressHUD dismiss];
-        [CMResult processWithResult:model success:^{
-            UGRedEnvelopeModel *rem = model.data;
-            weakSelf.uGredEnvelopeView.item = rem;
-            
-            
-            if ([rem.show_time intValue]) {
-                NSString *time1 = [CMTimeCommon timestampSwitchTime:[rem.show_time intValue] andFormatter:@"yyyy-MM-dd HH:mm"];
-                NSString *time2 = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
-                NSDate *date1 = [CMTimeCommon dateForStr:time1 format:@"yyyy-MM-dd HH:mm"];
-                NSDate *date2 = [CMTimeCommon dateForStr:time2 format:@"yyyy-MM-dd HH:mm"];
-                 
-                int k =  [CMTimeCommon compareOneDay:date2 withAnotherDay:date1 formatter:@"yyyy-MM-dd HH:mm"];
-                if (k >= 0) {
-                    weakSelf.uGredEnvelopeView.hidden = NO;
-                }
-                else{
-                    weakSelf.uGredEnvelopeView.hidden = YES;
-                }
-            }
-            else{
-                weakSelf.uGredEnvelopeView.hidden = YES;
-            }
-        } failure:^(id msg) {
-            weakSelf.uGredEnvelopeView.hidden = true;
-            [SVProgressHUD dismiss];
-        }];
-    }];
-}
-
-// APP在线人数
-- (void)systemOnlineCount {
-    WeakSelf;
-    [CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [weakSelf.contentScrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 需要在主线程执行的代码
-                
-                weakSelf.mUGonlineCount = model.data;
-                
-                int intOnlineSwitch = [weakSelf.mUGonlineCount.onlineSwitch intValue];
-                
-                if (intOnlineSwitch == 1) {
-                    [weakSelf.nolineLabel setHidden:NO];
-                    [weakSelf.nolineLabel setText:[NSString stringWithFormat:@"当前在线人数：%@",self.mUGonlineCount.onlineUserCount]];
-                } else {
-                    [weakSelf.nolineLabel setHidden:YES];
-                }
-                
-            });
-            
-        } failure:^(id msg) {
-            
-        }];
-    }];
-}
-
-
-
-// 优惠活动
-- (void)getPromoteList {
-    __weakSelf_(__self);
-    [CMNetwork getPromoteListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            UGPromoteListModel *listModel = model.data;
-            NSArray *smallArray = [NSArray new];
-            
-            __self.style = listModel.style;
-            for (UGPromoteModel *obj in listModel.list) {
-                obj.style = listModel.style;
-            }
-            if (![CMCommon arryIsNull:listModel.list]) {
-                if (listModel.list.count>5) {
-                    smallArray = [listModel.list subarrayWithRange:NSMakeRange(0, 5)];
-                } else {
-                    smallArray = listModel.list;
-                }
-            }
-            [__self.tableView.dataArray setArray:smallArray];
-            [__self.tableView reloadData];
-            __self.promotionView.hidden = !SysConf.m_promote_pos || !listModel.list.count;
-        } failure:nil];
-    }];
-}
-//首页广告图片
-- (void)gethomeAdsList {
-    [SVProgressHUD showWithStatus: nil];
-    WeakSelf;
-    [CMNetwork systemhomeAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [self.contentScrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 需要在主线程执行的代码
-                [SVProgressHUD dismiss];
-                weakSelf.homeAdsArray = model.data;
-                
-                NSMutableArray *mutArr = [NSMutableArray array];
-                if (weakSelf.homeAdsArray.count) {
-                    [weakSelf.homeAdsBigBgView setHidden:NO];
-                    for (UGhomeAdsModel *banner in self.homeAdsArray) {
-                            [mutArr addObject:banner.image];
-                    }
-
-                    NSLog(@"SysConf.adSliderTimer = %d",SysConf.adSliderTimer);
-                    weakSelf.homeAdsView.imageURLStringsGroup = mutArr.mutableCopy;
-                    weakSelf.homeAdsView.autoScrollTimeInterval = SysConf.adSliderTimer;
-                    if (mutArr.count>1) {
-                        weakSelf.homeAdsView.autoScroll = YES;
-                    } else {
-                         weakSelf.homeAdsView.autoScroll = NO;
-                    }
-                }
-                else{
-                    [weakSelf.homeAdsBigBgView setHidden:YES];
-                }
-            });
-            
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-            [weakSelf.homeAdsBigBgView setHidden:YES];
-        }];
-    }];
-}
-
-//手机浮窗
-- (void)getfloatAdsList {
-    WeakSelf;
-    [CMNetwork systemfloatAdsWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [weakSelf.contentScrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // 需要在主线程执行的代码
-                [SVProgressHUD dismiss];
-                
-                NSLog(@"数据=%@",model.data);
-                NSMutableArray *mutArr = model.data;
-                if (mutArr.count) {
-                    
-                    NSMutableArray *posArr  = [NSMutableArray new];
-                    for (UGhomeAdsModel *banner in mutArr) {
-                        [posArr addObject:[NSString stringWithFormat:@"%d",banner.position]];
-                    }
-                    
-                    
-                    if ([posArr containsObject: @"1"]) {
-                        UGhomeAdsModel *banner = [mutArr objectWithValue:@"1" keyPath:@"position"];
-                        weakSelf.uUpperLeftView.itemSuspension = banner;
-                        weakSelf.uUpperLeftView.hidden = NO;
-                        
-                        if (!weakSelf.bigWheelView.hidden) {
-                            [weakSelf.uUpperLeftView mas_updateConstraints:^(MASConstraintMaker *make) {
-                                make.top.equalTo(self.bigWheelView.mas_bottom).offset(5);
-                            }];
-    
-                        }
-
-                        
-                    }
-                    else{
-                        weakSelf.uUpperLeftView.hidden = YES;
-                    }
-                    if ([posArr containsObject: @"2"]) {
-                        UGhomeAdsModel *banner = [mutArr objectWithValue:@"2" keyPath:@"position"];
-                        weakSelf.ulowerLefttView.itemSuspension = banner;
-                        weakSelf.ulowerLefttView.hidden = NO;
-                    }
-                    else{
-                        weakSelf.ulowerLefttView.hidden = YES;
-                    }
-                    if ([posArr containsObject: @"3"]) {
-                        UGhomeAdsModel *banner = [mutArr objectWithValue:@"3" keyPath:@"position"];
-                        weakSelf.uUpperRightView.itemSuspension = banner;
-                        weakSelf.uUpperRightView.hidden = NO;
-                    }
-                    else{
-                        weakSelf.uUpperRightView.hidden = YES;
-                    }
-                    if ([posArr containsObject: @"4"]) {
-                        UGhomeAdsModel *banner = [mutArr objectWithValue:@"4" keyPath:@"position"];
-                        weakSelf.uLowerRightView.itemSuspension = banner;
-                        weakSelf.uLowerRightView.hidden = NO;
-                    }
-                    else{
-                        weakSelf.uLowerRightView.hidden = YES;
-                    }
-                    
-                    
-                    NSLog(@"mutArr = %@",mutArr);
-                }
-                else {
-                    weakSelf.uUpperLeftView.hidden = YES;
-                    weakSelf.ulowerLefttView.hidden = YES;
-                    weakSelf.uUpperRightView.hidden = YES;
-                    weakSelf.uLowerRightView.hidden = YES;
-                    
-                }
-                
-                
-            });
-            
-        } failure:^(id msg) {
-            
-        }];
-    }];
-}
-
-//大转盘
-- (void)getactivityTurntableList {
-    WeakSelf;
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             };
-    [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-
-        [CMResult processWithResult:model success:^{
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSArray <DZPModel *> *dzpArray = [NSArray new];
-                // 需要在主线程执行的代码
-                 dzpArray = model.data;
-                
-                NSLog(@"dzpArray = %@",dzpArray);
-
-                if (dzpArray.count) {
-
-                   NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
-                    DZPModel *obj = [data objectAtIndex:0];
-                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        // 需要在主线程执行的代码
-                       weakSelf.bigWheelView.itemData = obj;
-                       weakSelf.bigWheelView.hidden = NO;
-                        //设成网络图片
-//                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
-                        [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                               
-                           }] ;
-                        
-                        [weakSelf.uUpperLeftView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(self.view.mas_left).with.offset(10);
-                            make.width.mas_equalTo(95.0);
-                            make.height.mas_equalTo(95.0);
-                            if (weakSelf.bigWheelView.hidden) {
-                                    make.top.equalTo(weakSelf.view.mas_top).offset(150+105);
-                              } else {
-                                    make.top.equalTo(weakSelf.bigWheelView.mas_bottom).offset(5);
-                              }
-                        }];
-                        
-                        [weakSelf.ulowerLefttView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                              make.left.equalTo(weakSelf.view.mas_left).with.offset(10);
-                              make.width.mas_equalTo(95.0);
-                              make.height.mas_equalTo(95.0);
-                              make.top.equalTo(weakSelf.uUpperLeftView.mas_bottom).offset(5);
-                          }];
-                        
-                        [self.uUpperRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                            make.right.equalTo(weakSelf.view.mas_right).with.offset(-10);
-                            make.width.mas_equalTo(95.0);
-                            make.height.mas_equalTo(95.0);
-                            if (self.bigWheelView.hidden) {
-                                  make.top.equalTo(weakSelf.view.mas_top).offset(150+105);
-                            } else {
-                                  make.top.equalTo(weakSelf.bigWheelView.mas_bottom).offset(5);
-                            }
-                        }];
-                        [weakSelf.uLowerRightView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                              make.right.equalTo(weakSelf.view.mas_right).with.offset(-10);
-                              make.width.mas_equalTo(95.0);
-                              make.height.mas_equalTo(95.0);
-                              make.top.equalTo(weakSelf.uUpperRightView.mas_bottom).offset(5);
-                          }];
-                        
-                    });
-    
-                }
-                else{
-					weakSelf.bigWheelView.hidden = YES;
-                }
-
-            });
-            
-        } failure:^(id msg) {
-//            [SVProgressHUD showErrorWithStatus:msg];
-             weakSelf.bigWheelView.hidden = YES;
-
-        }];
-    }];
-}
-
-#pragma mark +++++++++++++++++砸金蛋数据
-
--(void)getactivityGoldenEggList {
-	 NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-	WeakSelf
-	[CMNetwork activityGoldenEggListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-		[CMResult processWithResult:model success:^{
-			dispatch_async(dispatch_get_main_queue(), ^{
-                NSArray <DZPModel *> *dzpArray = [NSArray new];
-				dzpArray = model.data;
-				if (!dzpArray.count) {
-					return;
-				}
-				NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
-			    DZPModel *obj = [data objectAtIndex:0];
-				weakSelf.goldEggView.itemData = obj;
-				[weakSelf.goldEggView.imgView setImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
-				self.goldEggView.hidden = NO;
-			});
-		} failure:^(id msg) {
-			self.goldEggView.hidden = YES;
-
-		}];
-	}];
-
-}
-#pragma mark +++++++++++++++++刮刮乐数据
-
--(void)getactivityCratchList {
-	 NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
-	WeakSelf
-	[CMNetwork activityScratchListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-		[CMResult processWithResult:model success:^{
-			dispatch_async(dispatch_get_main_queue(), ^{
-				ScratchDataModel * scratchData = [[ScratchDataModel alloc] initWithDictionary:model.data error:nil];
-				if (!scratchData.scratchList.count) {
-					return;
-				}
-				weakSelf.scratchView.scratchDataModel = scratchData;
-				[weakSelf.scratchView.imgView setImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
-				self.scratchView.hidden = NO;
-			});
-		} failure:^(id msg) {
-			self.scratchView.hidden = YES;
-
-		}];
-	}];
-
-}
-
 #pragma mark ------------六合------------------------------------------------------
-// 栏目列表
-- (void)getCategoryList {
-    
-    WeakSelf;
-    [CMNetwork categoryListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [weakSelf.contentScrollView.mj_header endRefreshing];
-        [CMResult processWithResult:model success:^{
-            weakSelf.lHCategoryList = [NSMutableArray<UGLHCategoryListModel *> new];
-            NSLog(@"model= %@",model.data);
-            NSArray *modelArr = (NSArray *)model.data;         //数组转模型数组
-            
-            if (modelArr.count==0) {
-                weakSelf.heightLayoutConstraint.constant = 0.0;
-                return ;
-            }
-            
-            if (modelArr.count) {
-                for (int i = 0 ;i<modelArr.count;i++) {
-                    UGLHCategoryListModel *obj = [modelArr objectAtIndex:i];
-                    
-                    [weakSelf.lHCategoryList addObject:obj];
-                    NSLog(@"obj= %@",obj);
-                }
-            }
-            //数组转模型数组
-            
-            FastSubViewCode(self.view)
-            //            subView(@"开奖结果").hidden = NO;
-            //            subView(@"六合论坛").hidden = NO;
-            // 需要在主线程执行的代码
-            [weakSelf.contentCollectionView reloadData];
-            if (weakSelf.lHCategoryList.count%2==0) {
-                weakSelf.heightLayoutConstraint.constant = weakSelf.lHCategoryList.count/2*80+1;
-            } else {
-                weakSelf.heightLayoutConstraint.constant = weakSelf.lHCategoryList.count/2*80+80+1;
-            }
-            
-            
-        } failure:^(id msg) {
-            
-        }];
-    }];
-}
-
-
 
 - (void)getPlatformGamesWithParams {
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -2164,214 +831,6 @@
         } failure:^(id msg) {
         }];
     }];
-}
-
-
-- (void)showPlatformNoticeView {
-
-        WeakSelf;
-        //在这里 进行请求后的方法，回到主线程
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            
-            if (Skin1.isTKL) {
-                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150-130;
-                weakSelf.tklnotiveView = [[TKLPlatformNotiveView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
-                weakSelf.tklnotiveView.dataArray = self.popNoticeArray;
-  
-                
-                UIWindow* window = UIApplication.sharedApplication.keyWindow;
-                BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
-                
-                if (!isSubView) {
-                    //                SysConf.popup_type = @"1";
-                    if ( [SysConf.popup_type isEqualToString:@"0"]) {
-                        [weakSelf.tklnotiveView show];
-                    } else {
-                        BOOL isLogin = UGLoginIsAuthorized();
-                        if (isLogin) {
-                            [weakSelf.tklnotiveView show];
-                        }
-                    }
-                }
-            } else {
-                CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
-                weakSelf.notiveView = [[UGPlatformNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
-                [weakSelf.notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
-                weakSelf.notiveView.dataArray = self.popNoticeArray;
-                weakSelf.notiveView.supVC = weakSelf;
-                
-                UIWindow* window = UIApplication.sharedApplication.keyWindow;
-                BOOL isSubView = [weakSelf.notiveView isDescendantOfView:window];
-                
-                if (!isSubView) {
-                    //                SysConf.popup_type = @"1";
-                    if ( [SysConf.popup_type isEqualToString:@"0"]) {
-                        [weakSelf.notiveView show];
-                    } else {
-                        BOOL isLogin = UGLoginIsAuthorized();
-                        if (isLogin) {
-                            [weakSelf.notiveView show];
-                        }
-                    }
-                }
-            }
-            
-            
-        });
-}
-
-#pragma mark - SDCycleScrollViewDelegate
-
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-#ifdef DEBUG
-    //	[[UGSkinManagers next] useSkin];
-    //	[HUDHelper showMsg:[UGSkinManagers currentSkin].skitString];
-    //	return;
-#endif
-    
-    if ([cycleScrollView isEqual:self.bannerView]) {
-        UGBannerCellModel *banner = self.bannerArray[index];
-        BOOL ret = [NavController1 pushViewControllerWithLinkCategory:banner.linkCategory linkPosition:banner.linkPosition];
-        if (!ret) {
-            if ([banner.url containsString:@"mobile"]) {
-                // 若跳转地址包含mobile则不做跳转
-                return;
-            }
-            // 去外部链接
-            if ([banner.url stringByReplacingOccurrencesOfString:@" " withString:@""].length) {
-                NSLog(@"url = %@",banner.url );
-                //            if ([banner.url hasPrefix:@"http"]) {
-                if ([banner.url isURL]) {
-                    SLWebViewController *webVC = [[SLWebViewController alloc] init];
-                    webVC.urlStr = banner.url;
-                    [self.navigationController pushViewController:webVC animated:YES];
-                }
-            }
-        }
-    } else {
-        UGhomeAdsModel *banner = self.homeAdsArray[index];
-        BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
-    }
-}
-
-#pragma mark - UUMarqueeViewDelegate
-
-- (NSUInteger)numberOfVisibleItemsForMarqueeView:(UUMarqueeView *)marqueeView {
-    if (marqueeView == self.leftwardMarqueeView) {
-        return 1;
-    }
-    return 6;
-}
-
-- (NSUInteger)numberOfDataForMarqueeView:(UUMarqueeView *)marqueeView {
-    if (marqueeView == self.leftwardMarqueeView) {
-        return self.leftwardMarqueeViewData ? self.leftwardMarqueeViewData.count : 0;
-    }
-    return self.rankArray ? self.rankArray.count : 0;
-}
-
-- (void)createItemView:(UIView *)itemView forMarqueeView:(UUMarqueeView *)marqueeView {
-    
-    if (marqueeView == self.leftwardMarqueeView) {
-        
-        itemView.backgroundColor = [UIColor clearColor];
-        
-        UILabel *content = [[UILabel alloc] initWithFrame:itemView.bounds];
-        content.font = [UIFont systemFontOfSize:14.0f];
-        content.tag = 1001;
-        [itemView addSubview:content];
-    } else {
-        
-        itemView.backgroundColor = [UIColor whiteColor];
-        UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(20.0f, (CGRectGetHeight(itemView.bounds) - 16.0f) / 2.0f, 16.0f, 16.0f)];
-        icon.tag = 1003;
-        [itemView addSubview:icon];
-        UILabel *userName = [[UILabel alloc] initWithFrame:CGRectMake(20.0f + 20.0f, 0.0f, CGRectGetWidth(itemView.bounds) - 20.0f - 20.0f - 75.0f, CGRectGetHeight(itemView.bounds))];
-        userName.font = [UIFont systemFontOfSize:14.0f];
-        userName.textColor = [UIColor redColor];
-        userName.tag = 1001;
-        [itemView addSubview:userName];
-        
-        UILabel *gameLabel = [[UILabel alloc] initWithFrame:CGRectMake((UGScreenW / 3), 0, (UGScreenW / 3), itemView.height)];
-        gameLabel.textColor = [UIColor blackColor];
-        gameLabel.textAlignment = NSTextAlignmentCenter;
-        gameLabel.font = [UIFont systemFontOfSize:14];
-        gameLabel.tag = 1004;
-        [itemView addSubview:gameLabel];
-        
-        UILabel *amountLable = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(gameLabel.frame), 0, (UGScreenW / 3)-20, itemView.height)];
-        amountLable.textColor = [UIColor redColor];
-        amountLable.font = [UIFont systemFontOfSize:14];
-        amountLable.textAlignment = NSTextAlignmentCenter;
-        amountLable.tag = 1002;
-        [itemView addSubview:amountLable];
-    }
-}
-
-- (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
-    if (marqueeView == self.leftwardMarqueeView) {
-        UILabel *content = [itemView viewWithTag:1001];
-        
-//        if (APP.isRollingTextBlack) {
-//            content.textColor = [UIColor blackColor];
-//        }
-//        else{
-             content.textColor = Skin1.textColor1;
-//        }
-       
-        content.text = self.leftwardMarqueeViewData[index];
-    } else {
-        UGRankModel *rank = self.rankArray[index];
-        UILabel *content = [itemView viewWithTag:1001];
-        content.text = rank.username;
-        content.textColor = Skin1.textColor1;
-        
-        UILabel *coin = [itemView viewWithTag:1002];
-        coin.text = rank.coin.length ? _NSString(@"%@元",rank.coin) : nil;
-        
-        UILabel *game = [itemView viewWithTag:1004];
-        game.text = rank.type;
-        game.textColor = Skin1.textColor1;
-        
-        UIImageView *icon = [itemView viewWithTag:1003];
-        NSString *imgName = nil;
-        icon.hidden = NO;
-        if (!rank.coin.length) {
-            imgName = @"yuandian";
-            icon.hidden = YES;
-        } else if (index == 0) {
-            imgName = @"diyiming";
-        } else if (index == 1) {
-            imgName = @"dierming";
-        } else if (index == 2) {
-            imgName = @"disanming";
-        } else {
-            imgName = @"yuandian";
-            icon.hidden = YES;
-        }
-        icon.image = [UIImage imageNamed:imgName];
-        
-        [itemView setBackgroundColor:Skin1.homeContentColor];
-        
-    }
-}
-
-- (CGFloat)itemViewHeightAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView*)marqueeView {
-    // for upwardMultiMarqueeView
-    return self.upwardMultiMarqueeView.height / 6;
-}
-
-- (CGFloat)itemViewWidthAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView*)marqueeView {
-    // for leftwardMarqueeView
-    UILabel *content = [[UILabel alloc] init];
-    content.text = self.leftwardMarqueeViewData[index];
-    return content.intrinsicContentSize.width;  // icon width + label width (it's perfect to cache them all)
-}
-
-- (void)didTouchItemViewAtIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView*)marqueeView {
-    
-    
 }
 
 - (void)rightBarBtnClick {
@@ -2385,23 +844,6 @@
     [self.yymenuView show];
 }
 
-- (void)showNoticeInfo {
-    NSMutableString *str = [[NSMutableString alloc] init];
-    for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
-        [str appendString:notice.content];
-    }
-    if (str.length) {
-        float y;
-        if ([CMCommon isPhoneX]) {
-            y = 160;
-        } else {
-            y = 100;
-        }
-        UGNoticePopView *popView = [[UGNoticePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
-        popView.content = str;
-        [popView show];
-    }
-}
 
 - (void)setupSubView {
     
@@ -2471,88 +913,13 @@
          }
     }
  
-    //    self.bannerBgViewHeightConstraint.constant = UGScreenW * 0.5;
     //	self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
     //	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
-    
-    if (self.nolineLabel == nil) {
-        UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(UGScreenW-140, 10, 140, 30)];
-        text.backgroundColor = RGBA(27, 38, 116,0.5);
-        text.textColor = [UIColor whiteColor];
-        text.font = [UIFont systemFontOfSize:12];
-        text.numberOfLines = 1;
-        text.text = @"当前在线人数:10000";
-        text.textAlignment= NSTextAlignmentCenter;
-        text.layer.cornerRadius = 15;
-        text.layer.masksToBounds = YES;
-        text.hidden = true;
-        [_bannerBgView addSubview:(_nolineLabel = text)];
-    }
     
     
     self.contentScrollView.scrollEnabled = YES;
     self.contentScrollView.bounces = YES;
     //	self.scrollView.backgroundColor = Skin1.bgColor;
-    //	self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:self.bannerBgView.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    self.bannerView =  [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UGScreenW, 280/640.0 * APP.Width) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    self.bannerView.backgroundColor = [UIColor clearColor];
-    self.bannerView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-    self.bannerView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.bannerView.autoScrollTimeInterval = 3.0;
-    self.bannerView.delegate = self;
-    self.bannerView.pageDotColor = RGBA(210, 210, 210, 0.4);
-    [self.bannerBgView insertSubview:self.bannerView atIndex:0];
-    
-    
-    self.homeAdsView =  [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, UGScreenW-20, 250/1000.0 * (APP.Width-20)) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    
-    self.homeAdsView.backgroundColor = [UIColor clearColor];
-    self.homeAdsView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-    self.homeAdsView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
-    if ([@"c018,c217" containsString:APP.SiteId]) {
-            self.homeAdsView.autoScrollTimeInterval = 5.0;
-    } else {
-            self.homeAdsView.autoScrollTimeInterval = 3.0;
-    }
-    
-
-    self.homeAdsView.delegate = self;
-    self.homeAdsView.pageDotColor = RGBA(210, 210, 210, 0.4);
-    [self.homeAdsBgView insertSubview:self.homeAdsView atIndex:0];
-    
-    self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
-    self.leftwardMarqueeView.delegate = self;
-    self.leftwardMarqueeView.timeIntervalPerScroll = 0.5f;
-    self.leftwardMarqueeView.scrollSpeed = 60.0f;
-    self.leftwardMarqueeView.itemSpacing = 20.0f;
-    self.leftwardMarqueeView.touchEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showNoticeInfo)];
-    [self.leftwardMarqueeView addGestureRecognizer:tap];
-    
-    self.upwardMultiMarqueeView.direction = UUMarqueeViewDirectionUpward;
-    self.upwardMultiMarqueeView.timeIntervalPerScroll = 0.0f;
-    self.upwardMultiMarqueeView.scrollSpeed = 10.f;
-    self.upwardMultiMarqueeView.useDynamicHeight = YES;
-    self.upwardMultiMarqueeView.touchEnabled = YES;
-    self.upwardMultiMarqueeView.delegate = self;
-    
-    self.betFormViewModel = [BetFormViewModel new];
-    [self.betFormViewModel setupWithTabeView: _betFormTableView betFormTableHeight: _betFormTableHeight];
-}
-
-- (NSMutableArray<NSString *> *)leftwardMarqueeViewData {
-    if (_leftwardMarqueeViewData == nil) {
-        _leftwardMarqueeViewData = [NSMutableArray array];
-    }
-    return _leftwardMarqueeViewData;
-}
-
-- (NSMutableArray<UGNoticeModel *> *)popNoticeArray {
-    if (_popNoticeArray == nil) {
-        _popNoticeArray = [NSMutableArray array];
-    }
-    return _popNoticeArray;
 }
 
 - (NSMutableArray<GameCategoryModel *> *)gameCategorys {
@@ -2560,307 +927,6 @@
         _gameCategorys = [NSMutableArray array];
     }
     return _gameCategorys;
-}
-#pragma mark - 其他按钮事件
-// 查看更多优惠活动
-- (IBAction)onShowMorePromoteBtnClick:(UIButton *)sender {
-    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
-}
-- (IBAction)goPCVC:(id)sender {
-    TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
-    qdwebVC.url = pcUrl;
-    qdwebVC.webTitle = UGSystemConfigModel.currentConfig.webName;
-    [NavController1 pushViewController:qdwebVC animated:YES];
-}
-- (IBAction)goYOUHUIVC:(id)sender {
-    [self.navigationController pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController")  animated:YES];
-}
-
-
-
-# pragma mark <JS_TitleViewDelegagte, HSC_TitleViewDelegagte>
-- (void)loginButtonTaped {
-    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];
-    
-}
-- (void)registButtonnTaped {
-    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
-}
-- (void)moreButtonTaped {
-    [JS_Sidebar show];
-}
-- (void)avatarButtonTaped {
-    [TabBarController1 setSelectedIndex:4];
-}
-- (void)emailButtonTaped {
-    [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
-}
-
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([_style isEqualToString:@"slide"]) {
-        NSLog(@"count = %lu",(unsigned long)_tableView.dataArray.count);
-        return _tableView.dataArray.count;
-    } else {
-        return 1;
-    }
-}
-
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([_style isEqualToString:@"slide"]) {
-        return ((UGPromoteModel *)tableView.dataArray[section]).selected;
-    } else {
-        return _tableView.dataArray.count;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([_style isEqualToString:@"slide"]) {
-        UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        UGPromoteModel *nm = _tableView.dataArray[indexPath.section];
-        
-        // 加载html
-        {
-            static UGPromoteModel *__nm = nil;
-            __nm = nm;
-            
-            UIWebView *wv = [cell viewWithTagString:@"WebView"];
-            if (!wv) {
-                wv = [UIWebView new];
-                wv.backgroundColor = [UIColor clearColor];
-                wv.tagString = @"WebView";
-                [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-                    //                     NSLog(@"newH === %f",[newVal CGSizeValue].height);
-                    //                     NSLog(@"oldH === %f",[oldVal CGSizeValue].height);
-                    CGFloat h = __nm.webViewHeight = [newVal CGSizeValue].height;
-                    //                     NSLog(@"高度==========%f",h);
-                    [obj mas_updateConstraints:^(MASConstraintMaker *make) {
-                        make.height.mas_equalTo(h);
-                    }];
-                    [self->_tableView beginUpdates];
-                    [self->_tableView endUpdates];
-                }];
-                [cell addSubview:wv];
-                
-                [wv mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.right.equalTo(cell).offset(-2);
-                    make.top.bottom.equalTo(cell).offset(2);
-                    make.height.mas_equalTo(60);
-                }];
-            }
-            
-            wv.scrollView.contentSize = CGSizeMake(100, __nm.webViewHeight);
-            if ([@"c200" containsString:APP.SiteId]) {
-                [wv loadHTMLString:_NSString(@"<head><style>p{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", __nm.content) baseURL:nil];
-            } else {
-                [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
-            }
-        }
-        
-        
-        // webview 上下各一条线
-        UIView *topLineView = [cell viewWithTagString:@"topLineView"];
-        if (!topLineView) {
-            topLineView = [UIView new];
-            topLineView.backgroundColor = Skin1.navBarBgColor;
-            topLineView.tagString = @"topLineView";
-            [cell addSubview:topLineView];
-            
-            [topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.top.right.equalTo(cell);
-                make.height.mas_equalTo(1);
-            }];
-        }
-        UIView *bottomLineView = [cell viewWithTagString:@"bottomLineView"];
-        if (!bottomLineView) {
-            bottomLineView = [UIView new];
-            bottomLineView.backgroundColor = Skin1.navBarBgColor;
-            bottomLineView.tagString = @"bottomLineView";
-            [cell addSubview:bottomLineView];
-            
-            [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.bottom.right.equalTo(cell);
-                make.height.mas_equalTo(1);
-            }];
-        }
-        return cell;
-    } else {
-        UITableViewCell *cell;
-        if (APP.isC190Cell) {
-            cell  = [tableView dequeueReusableCellWithIdentifier:@"cell190" forIndexPath:indexPath];
-        }
-        else{
-            cell  = [tableView dequeueReusableCellWithIdentifier:@"cell1" forIndexPath:indexPath];
-        }
-     
-        UGPromoteModel *pm = tableView.dataArray[indexPath.row];
-        FastSubViewCode(cell);
-        if (APP.isC190Cell) {
-            subView(@"StackView").cc_constraints.top.constant = pm.title.length ? 12 : 0;
-            
-//            if ([@"c012" containsString:APP.SiteId]) {
-//                subView(@"StackView").cc_constraints.top.constant = 12 ;
-//            }
-            subView(@"StackView").cc_constraints.bottom.constant = 0;
-        }
-        if ([@"c199" containsString:APP.SiteId]) {
-            subView(@"StackView").cc_constraints.top.constant = 0;
-            subView(@"StackView").cc_constraints.left.constant = 0;
-        }
-        if (Skin1.isJY||Skin1.isTKL) {
-             subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor :  RGBA(242, 242, 242, 1);
-        }
-        else{
-             subView(@"cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
-        }
-        
-        
-        subView(@"cell背景View").layer.cornerRadius = 8;
-        subView(@"cell背景View").layer.masksToBounds = YES;
-        
-        if (APP.isWihiteBorder) {
-            subView(@"cell背景View").layer.borderWidth = 1;
-            subView(@"cell背景View").layer.borderColor = [[UIColor whiteColor] CGColor];
-        }
-       
-        subLabel(@"标题Label").textColor = Skin1.textColor1;
-        subLabel(@"标题Label").text = pm.title;
-        subLabel(@"标题Label").hidden = !pm.title.length;
-        
-        UIImageView *imgView = [cell viewWithTagString:@"图片ImageView"];
-        //    imgView.frame = cell.bounds;
-        NSURL *url = [NSURL URLWithString:pm.pic];
-        UIImage *image = [[SDImageCache sharedImageCache] imageFromMemoryCacheForKey:[[SDWebImageManager sharedManager] cacheKeyForURL:url]];
-        if (image) {
-            if (APP.isC190Cell) {
-                CGFloat w;
-                w = APP.Width-88;
-                CGFloat h = image.height/image.width * w;
-                imgView.cc_constraints.height.constant = h;
-            } else {
-                CGFloat w = APP.Width-88;
-                CGFloat h = image.height/image.width * w;
-                imgView.cc_constraints.height.constant = h;
-            }
-            [imgView sd_setImageWithURL:url];   // 由于要支持gif动图，还是用sd加载
-        } else {
-            __weakSelf_(__self);
-            __weak_Obj_(imgView, __imgView);
-            imgView.cc_constraints.height.constant = 60;
-            [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                if (image) {
-                    [__self.tableView reloadRowAtIndexPath:indexPath withRowAnimation:UITableViewRowAnimationNone];
-                }
-            }];
-        }
-        return cell;
-    }
-    
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UGPromoteModel *pm = tableView.dataArray[indexPath.row];
-    BOOL ret = [NavController1 pushViewControllerWithLinkCategory:pm.linkCategory linkPosition:pm.linkPosition];
-    if (!ret) {
-        // 去优惠详情
-        
-        NSLog(@"style = %@",pm.style);//slide=折叠式,popup=弹窗式 page = 内页*/
-        
-        if ([pm.style isEqualToString:@"slide"]) {
-            
-        }
-        else if([pm.style isEqualToString:@"popup"]) {
-            PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(20, 60, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 100)];
-            popView.item = pm;
-            [popView show];
-        }
-        else if([pm.style isEqualToString:@"page"]) {
-            UGPromoteDetailController *detailVC = [[UGPromoteDetailController alloc] init];
-            detailVC.item = pm;
-            [NavController1 pushViewController:detailVC animated:YES];
-        }
-    }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if ([_style isEqualToString:@"slide"]) {
-        return 0;
-    } else {
-        return 0;
-    }
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if ([_style isEqualToString:@"slide"]) {
-        UGPromoteModel *item = tableView.dataArray[section];
-        if (APP.isC190Cell) {
-               return [UGCell190HeaderView heightWithModel:item];
-          }
-          else{
-               return [UGCellHeaderView heightWithModel:item];
-          }
-       
-    } else {
-        return 0;
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    NSLog(@"section = %ld",(long)section);
-    UIView *contentView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-    [contentView setBackgroundColor:[UIColor clearColor]];
-    
-    UGCellHeaderView *headerView = [contentView viewWithTagString:@"headerView"];
-    if (!headerView) {
-        
-        if (APP.isC190Cell) {
-             headerView = _LoadView_from_nib_(@"UGCell190HeaderView");
-         }
-         else{
-             headerView = _LoadView_from_nib_(@"UGCellHeaderView");
-         }
-       
-        headerView.tagString = @"headerView";
-        [contentView addSubview:headerView];
-        [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(contentView);
-        }];
-    }
-    UGPromoteModel *item = tableView.dataArray[section];
-    headerView.item = item;
-    WeakSelf
-    headerView.clickBllock = ^{
-        
-        BOOL ret = [NavController1 pushViewControllerWithLinkCategory:item.linkCategory linkPosition:item.linkPosition];
-        if (!ret) {
-            if ([item.style isEqualToString:@"slide"]) {
-                // 去优惠详情
-                item.selected = !item.selected;
-                for (UGPromoteModel *pm in weakSelf.tableView.dataArray) {
-                    if (pm != item) {
-                        pm.selected = false;
-                    }
-                }
-                [weakSelf.tableView reloadData];
-            }
-        }
-    };
-    headerView.hBllock = ^{
-        [weakSelf.tableView reloadSection:section withRowAnimation:(UITableViewRowAnimationNone)];
-    };
-    return contentView;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    UITableViewHeaderFooterView *headerView=(UITableViewHeaderFooterView *)view;
-    headerView.backgroundView = ({
-        UIView * view = [[UIView alloc] initWithFrame:headerView.bounds];
-        view.backgroundColor = [UIColor clearColor];
-        view;
-    });
 }
 
 - (IBAction)goRecommendedAction:(id)sender {

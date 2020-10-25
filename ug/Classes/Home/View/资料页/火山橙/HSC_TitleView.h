@@ -9,16 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol HSC_TitleViewDelegagte <NSObject>
--(void)loginButtonTaped;
--(void)registButtonnTaped;
--(void)avatarButtonTaped;
--(void)emailButtonTaped;
-
-
-@end
 @interface HSC_TitleView : UIView
-@property(nonatomic, weak)id<HSC_TitleViewDelegagte> delegate;
 
 @end
 

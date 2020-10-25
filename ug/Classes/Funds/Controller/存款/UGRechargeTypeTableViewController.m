@@ -75,7 +75,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     cell.item = model;
 
     if ([model.pid isEqualToString:@"xnb_online"] ) {
-        [cell.mBtn setHidden:APP.isNoOnLineDoc];
+        [cell.mBtn setHidden:APP.isNoOnLineDoc || [APP.SiteId isEqualToString:@"c116"]];
         [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 //虚拟教程

@@ -178,13 +178,12 @@
             if ([CMCommon stringIsNull:_webTitle]) {
                  self.title = self.tgWebView.title;
             }
-        } else{
-            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
     }
 }
 
 - (void)dealloc {
+    [self.tgWebView.configuration.userContentController removeScriptMessageHandlerForName:@"postSwiperData"];
     [self.webProgressLayer tg_closeTimer];
     [_webProgressLayer removeFromSuperlayer];
     _webProgressLayer = nil;

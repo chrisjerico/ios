@@ -31,7 +31,7 @@
 
 - (IBAction)cancelButtonClick:(id)sender {
 	if (self.cancelClickBlock)
-		self.cancelClickBlock();
+		self.cancelClickBlock(self);
 }
 
 - (IBAction)redButtonClick:(id)sender {
