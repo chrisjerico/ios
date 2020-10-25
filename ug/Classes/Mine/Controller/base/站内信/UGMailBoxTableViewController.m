@@ -35,7 +35,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(20, 60, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 200)];
+    self.popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(20, k_Height_NavBar +50, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 200)];
     
     if (!self.title) {
           self.title = @"站内信";

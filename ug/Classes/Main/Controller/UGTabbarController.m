@@ -122,7 +122,7 @@ static UGTabbarController *_tabBarVC = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(20, 60, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 200)];
+    self.popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(20, k_Height_NavBar +50, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 200)];
     _tabBarVC = self;
     
     //通过这两个参数来调整badge位置

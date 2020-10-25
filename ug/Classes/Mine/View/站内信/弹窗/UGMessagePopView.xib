@@ -42,10 +42,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zbq-4c-caM">
-                    <rect key="frame" x="0.0" y="398" width="362" height="50"/>
+                    <rect key="frame" x="0.0" y="402" width="362" height="46"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMe-Hm-T31">
-                            <rect key="frame" x="20" y="0.0" width="322" height="50"/>
+                            <rect key="frame" x="20" y="0.0" width="322" height="46"/>
                             <color key="backgroundColor" red="0.75056236980000002" green="0.76106870169999996" blue="0.77110821009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="确定">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,13 +66,13 @@
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="IMe-Hm-T31" secondAttribute="bottom" id="3WY-3D-oiQ"/>
                         <constraint firstAttribute="trailing" secondItem="IMe-Hm-T31" secondAttribute="trailing" constant="20" id="Bx7-md-YVM"/>
-                        <constraint firstAttribute="height" constant="50" id="TXh-LY-NuL"/>
+                        <constraint firstAttribute="height" constant="46" id="TXh-LY-NuL"/>
                         <constraint firstItem="IMe-Hm-T31" firstAttribute="leading" secondItem="Zbq-4c-caM" secondAttribute="leading" constant="20" id="tXo-oc-ZTQ"/>
                         <constraint firstItem="IMe-Hm-T31" firstAttribute="top" secondItem="Zbq-4c-caM" secondAttribute="top" id="tmo-j9-owW"/>
                     </constraints>
                 </view>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8N2-Kk-BoM">
-                    <rect key="frame" x="0.0" y="52" width="362" height="346"/>
+                    <rect key="frame" x="10" y="62" width="342" height="340"/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </webView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="R7A-6m-0zH">
@@ -86,13 +86,13 @@
                 <constraint firstAttribute="trailing" secondItem="Zbq-4c-caM" secondAttribute="trailing" id="CTl-Nk-0kj"/>
                 <constraint firstItem="Zbq-4c-caM" firstAttribute="top" secondItem="8N2-Kk-BoM" secondAttribute="bottom" id="EvP-zL-4pI"/>
                 <constraint firstItem="R7A-6m-0zH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LuB-UI-gBC"/>
-                <constraint firstItem="8N2-Kk-BoM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XFw-yZ-5xY"/>
+                <constraint firstItem="8N2-Kk-BoM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="XFw-yZ-5xY"/>
                 <constraint firstAttribute="bottom" secondItem="Zbq-4c-caM" secondAttribute="bottom" constant="10" id="XVF-e6-zVY"/>
                 <constraint firstItem="lbL-g9-iF3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZJ9-s3-HaK"/>
-                <constraint firstItem="8N2-Kk-BoM" firstAttribute="top" secondItem="lbL-g9-iF3" secondAttribute="bottom" id="cW7-cI-m9A"/>
+                <constraint firstItem="8N2-Kk-BoM" firstAttribute="top" secondItem="lbL-g9-iF3" secondAttribute="bottom" constant="10" id="cW7-cI-m9A"/>
                 <constraint firstItem="lbL-g9-iF3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nVS-gQ-d3h"/>
                 <constraint firstItem="Zbq-4c-caM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uj5-HC-G2k"/>
-                <constraint firstAttribute="trailing" secondItem="8N2-Kk-BoM" secondAttribute="trailing" id="v1z-V6-gvX"/>
+                <constraint firstAttribute="trailing" secondItem="8N2-Kk-BoM" secondAttribute="trailing" constant="10" id="v1z-V6-gvX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
