@@ -329,9 +329,9 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1w-Al-sdQ">
                                                                     <rect key="frame" x="0.0" y="36.5" width="100" height="35.5"/>
                                                                     <color key="backgroundColor" red="0.76180976629999997" green="0.78683990240000001" blue="0.78354102370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <state key="normal" title="视讯返点"/>
+                                                                    <state key="normal" title="真人返点"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="视讯返点btn"/>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="真人返点btn"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="btnAction:" destination="0rr-Jr-DpN" eventType="touchUpInside" id="qdQ-mg-XfN"/>
