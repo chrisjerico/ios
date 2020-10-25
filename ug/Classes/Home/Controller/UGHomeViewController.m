@@ -14,6 +14,7 @@
 #import "UGRegisterViewController.h"
 #import "UGAgentViewController.h"   // 申请代理
 #import "UGMissionCenterViewController.h"   // 任务中心
+#import "XBJNavAndGameListVC.h"
 
 // View
 #import "SDCycleScrollView.h"
@@ -113,6 +114,7 @@
 @property (nonatomic, strong) HomeTrademarkView *trademarkView;         /**<   底部商标 */
 @property (nonatomic, strong) HomeFloatingButtonsView *floatingBtnsView;/**<   首页所有悬浮按钮 */
 
+@property (nonatomic, strong) XBJNavAndGameListVC *xbjNavAndGameListView;/**<   香槟金导航和游戏列表 */
 @end
 
 @implementation UGHomeViewController
@@ -167,6 +169,7 @@
                                @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
                                @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
                                @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
+                               @"香槟金":@[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _betFormView, _trademarkView],
         };
         
         NSArray *views = dict[Skin1.skitType];
@@ -360,6 +363,11 @@
     _floatingBtnsView = _LoadView_from_nib_(@"HomeFloatingButtonsView");
     [self.view addSubview:_floatingBtnsView];
     
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        _xbjNavAndGameListView = _LoadVC_from_storyboard_(@"XBJNavAndGameListVC");
+        [self addChildViewController:_xbjNavAndGameListView];
+    }
+    
     // 配置初始UI
     {
         subView(@"优惠活动Cell背景View").backgroundColor = Skin1.isBlack ? Skin1.bgColor : Skin1.homeContentColor;
@@ -543,6 +551,9 @@
            // 请求13
            [self getPlatformGamesWithParams];     //购彩大厅信息
            
+    });
+    dispatch_group_async(group, queue, ^{
+        [self.xbjNavAndGameListView reloadData:^(BOOL succ) {}];     // 香槟金游戏列表
     });
     dispatch_group_async(group, queue, ^{
            

@@ -1760,6 +1760,8 @@
 		CF1E19E62542D4FD004436E2 /* UGCell190HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */; };
 		CF1E19E72542D4FD004436E2 /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */; };
 		CF1E19E82542D4FD004436E2 /* UGCell190HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */; };
+		CF3476EE252F052000491829 /* XBJNavAndGameListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3476ED252F052000491829 /* XBJNavAndGameListVC.m */; };
+		CF3476F6252F05B500491829 /* XBJ.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF3476F5252F05B500491829 /* XBJ.storyboard */; };
 		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
 		CF43426525396AEA004708C3 /* HomePromotionsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */; };
 		CF43426E25396D10004708C3 /* HomePromotionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43426D25396D10004708C3 /* HomePromotionsVC.m */; };
@@ -2081,8 +2083,8 @@
 		CF9CB76F253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */; };
 		CF9CB770253C10F4007F04B7 /* HomeMarqueeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */; };
 		CFA01CFD2535AC6D00EA71F9 /* YNView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA01CFC2535AC6D00EA71F9 /* YNView.m */; };
-		CFAD2D2E252DA1DD008BC221 /* WithdrawalAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */; };
 		CFA1EC5A2542D78E003440CB /* TKLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA1EC592542D78E003440CB /* TKLMainViewController.m */; };
+		CFAD2D2E252DA1DD008BC221 /* WithdrawalAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */; };
 		CFBAAC3125246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3225246BB400C5F6F6 /* 1.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3025246BB400C5F6F6 /* 1.html */; };
 		CFBAAC3625246BBF00C5F6F6 /* 2.html in Resources */ = {isa = PBXBuildFile; fileRef = CFBAAC3525246BBE00C5F6F6 /* 2.html */; };
@@ -3856,6 +3858,9 @@
 		CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGCell190HeaderView.m; sourceTree = "<group>"; };
 		CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGCellHeaderView.m; sourceTree = "<group>"; };
 		CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGCell190HeaderView.xib; sourceTree = "<group>"; };
+		CF3476EC252F052000491829 /* XBJNavAndGameListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBJNavAndGameListVC.h; sourceTree = "<group>"; };
+		CF3476ED252F052000491829 /* XBJNavAndGameListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBJNavAndGameListVC.m; sourceTree = "<group>"; };
+		CF3476F5252F05B500491829 /* XBJ.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = XBJ.storyboard; sourceTree = "<group>"; };
 		CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLocalizable.h"; sourceTree = "<group>"; };
 		CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLocalizable.m"; sourceTree = "<group>"; };
 		CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePromotionsVC.storyboard; sourceTree = "<group>"; };
@@ -4151,9 +4156,9 @@
 		CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMarqueeView.xib; sourceTree = "<group>"; };
 		CFA01CFB2535AC6D00EA71F9 /* YNView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YNView.h; sourceTree = "<group>"; };
 		CFA01CFC2535AC6D00EA71F9 /* YNView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YNView.m; sourceTree = "<group>"; };
-		CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawalAccountCell.xib; sourceTree = "<group>"; };
 		CFA1EC582542D78E003440CB /* TKLMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLMainViewController.h; sourceTree = "<group>"; };
 		CFA1EC592542D78E003440CB /* TKLMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLMainViewController.m; sourceTree = "<group>"; };
+		CFAD2D2D252DA1DD008BC221 /* WithdrawalAccountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WithdrawalAccountCell.xib; sourceTree = "<group>"; };
 		CFBAAC3025246BB400C5F6F6 /* 1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 1.html; sourceTree = "<group>"; };
 		CFBAAC3525246BBE00C5F6F6 /* 2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 2.html; sourceTree = "<group>"; };
 		CFBAAC3825246BC600C5F6F6 /* 3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = 3.html; sourceTree = "<group>"; };
@@ -5573,6 +5578,7 @@
 			isa = PBXGroup;
 			children = (
 				CF8A8E84253ED5A7008C05C8 /* 游戏列表 */,
+				CF3476F9252F067300491829 /* 香槟金 */,
 				031E15D523BE812400B0F813 /* UGHomeViewController.h */,
 				031E15E223BE812400B0F813 /* UGHomeViewController.m */,
 				031E15D723BE812400B0F813 /* UGHomeViewController.storyboard */,
@@ -8248,6 +8254,16 @@
 			path = "折叠优惠HeaderView";
 			sourceTree = "<group>";
 		};
+		CF3476F9252F067300491829 /* 香槟金 */ = {
+			isa = PBXGroup;
+			children = (
+				CF3476EC252F052000491829 /* XBJNavAndGameListVC.h */,
+				CF3476ED252F052000491829 /* XBJNavAndGameListVC.m */,
+				CF3476F5252F05B500491829 /* XBJ.storyboard */,
+			);
+			path = "香槟金";
+			sourceTree = "<group>";
+		};
 		CF3C073324C01ADF000E6700 /* UIView+AutoLocalizable */ = {
 			isa = PBXGroup;
 			children = (
@@ -8671,8 +8687,8 @@
 				CF6E4E8A252D547900ABF719 /* WithdrawalAccount.storyboard */,
 			);
 			path = "提款账户";
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		CF722BD725416DEE00939A7C /* 在线客服 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8722,8 +8738,8 @@
 				CF95A4A1252DCDAE00922D83 /* WithdrawalAcctModel.m */,
 			);
 			path = Model;
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		CF9887AB254008C200DFFD49 /* 悬浮按钮 */ = {
 			isa = PBXGroup;
 			children = (
@@ -10263,6 +10279,7 @@
 				031E1CA223BE812A00B0F813 /* UGWithdrawRecordDetailView.xib in Resources */,
 				031E1C9623BE812A00B0F813 /* UGOneTitleTableViewCell.xib in Resources */,
 				22FAD04923D471630002EA1D /* LotteryTrendContentCell.xib in Resources */,
+				CF3476F6252F05B500491829 /* XBJ.storyboard in Resources */,
 				D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */,
 				031E1D4C23BE812B00B0F813 /* UGMineSkinViewController.xib in Resources */,
 				CF475884239636D200966536 /* 134.gif in Resources */,
@@ -11386,6 +11403,7 @@
 				CF43427525397648004708C3 /* HomeTrademarkView.m in Sources */,
 				D439D12724F227D300B719DA /* FBTransitionViewController.m in Sources */,
 				031E1C8423BE812A00B0F813 /* UGFunds2microcodeView.m in Sources */,
+				CF3476EE252F052000491829 /* XBJNavAndGameListVC.m in Sources */,
 				D407459A2511F36900606EA3 /* UGYNLotteryController.m in Sources */,
 				031E1B2C23BE812800B0F813 /* UGChanglongaideModel.m in Sources */,
 				D4122CB72503AC160009E602 /* UGTKLHomeTitleView.m in Sources */,
@@ -11885,7 +11903,6 @@
 				031E1A6E23BE812700B0F813 /* UIBarButtonItem+WZLBadge.m in Sources */,
 				031E1E5E23BE812C00B0F813 /* UGConvertCollectionViewCell.m in Sources */,
 				031E1D9223BE812B00B0F813 /* UGYubaoConversionViewController.m in Sources */,
-				D4346B5E24053DB100D8FE7C /* UGCellHeaderView.m in Sources */,
 				CF6E4E86252D541C00ABF719 /* BindWithdrawalAccountVC.m in Sources */,
 				031E1DEE23BE812C00B0F813 /* UGIntegarlConvertRecordCell.m in Sources */,
 				CFE074DD23C0E7840083EA7E /* UGNotDetailViewController.m in Sources */,

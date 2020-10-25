@@ -46,7 +46,14 @@
         }
     });
     
-    [self setBackgroundColor:Skin1.homeContentColor];
+    FastSubViewCode(self);
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        self.backgroundColor = UIColor.clearColor;
+        subImageView(@"公告图标ImageView").cc_constraints.left.constant = 12;
+//        subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@""];
+    } else {
+        self.backgroundColor = Skin1.homeContentColor;
+    }
     
     self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
     self.leftwardMarqueeView.delegate = self;
@@ -186,12 +193,11 @@
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
     UILabel *content = [itemView viewWithTag:1001];
     
-//        if (APP.isRollingTextBlack) {
-//            content.textColor = [UIColor blackColor];
-//        }
-//        else{
-         content.textColor = Skin1.textColor1;
-//        }
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        content.textColor = [UIColor whiteColor];
+    } else {
+        content.textColor = Skin1.textColor1;
+    }
    
     content.text = self.leftwardMarqueeViewData[index];
 }
