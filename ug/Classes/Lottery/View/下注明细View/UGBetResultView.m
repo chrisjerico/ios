@@ -65,7 +65,10 @@
 static BOOL preparedToClose = false;
 static BOOL paused = true;
 static UGBetResultView *currentBetResultView;
-
+- (void)dealloc
+{
+	NSLog(@"6546513a2s1d3f21as3d2");
+}
 - (instancetype)initWithShowSecondLine :(BOOL)showSecondLine
 {
 	self = [super init];
@@ -489,5 +492,42 @@ static dispatch_source_t timer;
 	}
 }
 
-
+-(void)betWith:(NSDictionary *) params
+		gameId:(NSString *)gameId
+	  betBlock: (void(^)(void)) betClickBlock {
+	[CMNetwork userBetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+		[CMResult processWithResult:model success:^{
+			[SVProgressHUD dismiss];
+	
+			BOOL showSecondLine = [@[@"11"] containsObject:gameId]; // 六合秒秒彩
+			UGBetDetailModel *mod = (UGBetDetailModel *)model.data;
+			mod.gameId = gameId;
+			
+			UGBetResultView *bet = [[UGBetResultView alloc] initWithShowSecondLine:showSecondLine];
+			
+			[bet showWith:mod showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
+				[self betWith:params gameId:gameId betBlock:betClickBlock];
+			}];
+			
+			SANotificationEventPost(UGNotificationGetUserInfo, nil);
+			if (betClickBlock) {
+				betClickBlock();
+			}
+			
+			
+		} failure:^(id msg) {
+			[SVProgressHUD dismiss];
+			
+			UIAlertController * alert = [UIAlertController alertWithTitle:@"投注失败" msg:msg btnTitles:@[@"确定"]];
+			[NavController1 presentViewController:alert animated:true completion:nil];
+			
+			NSString *msgStr = (NSString *)msg;
+			if ([msgStr containsString:@"已封盘"]) {
+				if (betClickBlock) {
+					betClickBlock();
+				}
+			}
+		}];
+	}];
+}
 @end

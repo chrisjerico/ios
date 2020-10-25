@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)showWith:(UGBetDetailModel *)model showSecondLine:(BOOL)show timerAction:(void(^)(dispatch_source_t timer))timerAction;
 
 - (void)closeButtonTaped;
+
+-(void)betWith:(NSDictionary *) params
+		gameId:(NSString *)gameId
+	  betBlock: (void(^)(void)) betClickBlock;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -46,7 +46,10 @@
 
 static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 @implementation UGBetDetailView
-
+- (void)dealloc
+{
+	printf("++++___+++");
+}
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -284,9 +287,13 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                 mod.gameId = weakSelf.nextIssueModel.gameId;
                 
                 UGBetResultView *bet = [[UGBetResultView alloc] initWithShowSecondLine:showSecondLine];
-                
+				NSString * gameId = weakSelf.nextIssueModel.gameId.copy;
+				NSDictionary * dic = params.copy;
+				
                 [bet showWith:mod showSecondLine:showSecondLine timerAction:^(dispatch_source_t  _Nonnull timer) {
-                    [weakSelf submitBet:params];
+					[bet betWith:dic gameId:gameId betBlock:^{
+						
+					}];
                 }];
             }
             else {
