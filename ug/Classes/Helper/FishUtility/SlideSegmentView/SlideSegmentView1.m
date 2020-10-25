@@ -11,8 +11,12 @@
 
 @interface SlideSegmentBar1 ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic) NSInteger numberOfItems;
-@property (nonatomic) void (^didSelectItem)(NSInteger idx);
+@property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, assign) NSInteger numberOfItems;
+@property (nonatomic, strong) void (^didSelectItemAtIndex)(NSInteger idx);
+@property (nonatomic, strong) UIView *underlineView;
+@property (nonatomic, assign) CGFloat fontSize;
+@property (nonatomic, assign) CGFloat space;
 @end
 
 @implementation SlideSegmentBar1
@@ -48,6 +52,54 @@
     }
 }
 
+- (void)setBarHeight:(CGFloat)barHeight {
+    self.cc_constraints.height.constant = _barHeight = barHeight;
+    
+    // 下划线
+    if (!_underlineFrameForItemAtIndex) {
+        _underlineView.by = barHeight;
+    }
+}
+
+- (void)setUnderlineColor:(UIColor *)underlineColor {
+    _underlineView.backgroundColor = _underlineColor = underlineColor;
+}
+
+- (void)cellWidthAdaptiveTitleWithFontSize:(CGFloat)fontSize {
+    [self cellWidthAdaptiveTitleWithFontSize:fontSize space:0];
+}
+
+- (void)cellWidthAdaptiveTitleWithFontSize:(CGFloat)fontSize space:(CGFloat)space {
+    _fontSize = fontSize;
+    _space = space;
+    if (_titles) {
+        [_collectionView reloadData];
+    }
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex animated:(BOOL)animated {
+    UICollectionView *cv = _collectionView;
+    NSIndexPath *ip = [NSIndexPath indexPathForItem:selectedIndex inSection:0];
+    
+    // 滚动至指定Cell
+    CGFloat left = _insetVertical;
+    CGFloat right = 0;
+    
+    for (int i=0; i<selectedIndex; i++)
+        left += [self collectionView:cv layout:cv.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]].width;
+    right = left + [self collectionView:cv layout:cv.collectionViewLayout sizeForItemAtIndexPath:ip].width;
+    
+    if (left < cv.contentOffset.x) {
+        [cv setContentOffset:CGPointMake(left, 0) animated:animated];
+    }
+    else if (right - cv.width > cv.contentOffset.x) {
+        [cv setContentOffset:CGPointMake(right-cv.width, 0) animated:animated];
+    }
+
+    // 选中指定item
+    [cv selectItemAtIndexPath:ip animated:animated scrollPosition:UICollectionViewScrollPositionNone];
+}
+
 - (void)reloadData {
     [_collectionView reloadData];
 }
@@ -56,14 +108,25 @@
 #pragma mark - UICollectionViewDataSource
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, _insetLeft, 0, 0);
+    return UIEdgeInsetsMake(0, _insetVertical, 0, _insetVertical);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (_widthForItemAtIndex)
         return CGSizeMake(_widthForItemAtIndex(indexPath.item), self.height);
-    
-    return CGSizeMake(self.width / _numberOfItems, self.height);
+    if (_fontSize < 1 || !_titles.count) {
+        return CGSizeMake((self.width-_insetVertical*2) / _numberOfItems, self.height);
+    }
+    CGFloat space = _space;
+    if (_space == 0) {
+        CGFloat totalTitleW = 0;
+        for (NSString *s in _titles) {
+            totalTitleW += [s widthForFont:[UIFont systemFontOfSize:_fontSize]];
+        }
+        space = (self.width - _insetVertical*2 - totalTitleW) / _titles.count;
+    }
+    CGFloat titleW = [_titles[indexPath.item] widthForFont:[UIFont systemFontOfSize:_fontSize]];
+    return CGSizeMake(titleW + space + 2, self.height);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -76,48 +139,38 @@
     UILabel *label = [cell viewWithTagString:@"label"];
     if (!label) {
         label = [UILabel new];
-        if (APP.isChatWhite && !APP.betBgIsWhite) {
-            label.textColor = [UIColor whiteColor];
-        }
-        else{
-            label.textColor = [UIColor grayColor];
-        }
-        
-        if (APP.isRedWhite) {
-            label.textColor = [UIColor whiteColor];
-        }
-        
+        label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:16];
+        label.text = _titles[indexPath.item];
         label.tagString = @"label";
         [cell addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(cell);
         }];
-        
-        if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
-             label.textColor = [UIColor whiteColor];
-        }
-        
     }
     
     if (_updateCellForItemAtIndex) {
-        _updateCellForItemAtIndex(cell, label, indexPath.item);
-    }
-    else if (_titleForItemAtIndex) {
-        label.text = _titleForItemAtIndex(indexPath.item);
-        label.hidden = false;
+        _updateCellForItemAtIndex(self, cell, label, indexPath.item, cell.selected);
     }
     
     __weakSelf_(__self);
     [cell setDidSelectedChange:^(UICollectionViewCell *cell, BOOL selected) {
-        if (__self.didSelectItemAtIndexPath)
-            __self.didSelectItemAtIndexPath(cell, label, indexPath.item,  selected);
+        if (__self.updateCellForItemAtIndex)
+            __self.updateCellForItemAtIndex(__self, cell, label, indexPath.item, selected);
+        else {
+            label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:16];
+        }
         
-        else if (selected) {
-            // 下划线的默认动画
+        if (selected) {
+            // 下划线动画
             [UIView animateWithDuration:0.25 animations:^{
-                __self.underlineView.frame = CGRectMake(cell.left, cell.height-2, cell.width, 2);
+                if (__self.underlineFrameForItemAtIndex) {
+                    CGRect rect = __self.underlineFrameForItemAtIndex(cell.size, label.width, indexPath.item);
+                    __self.underlineView.frame = CGRectMake(cell.left + rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+                } else {
+                    __self.underlineView.frame = CGRectMake(cell.left, cell.height-2, cell.width, 2);
+                }
             }];
         }
     }];
@@ -126,8 +179,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (_didSelectItem)
-        _didSelectItem(indexPath.item);
+    if (collectionView && _didSelectItemAtIndex)
+        _didSelectItemAtIndex(indexPath.item);
 }
 
 @end
@@ -140,6 +193,9 @@
 
 @interface SlideSegmentView1 ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIStackView *bigStackView;
+@property (nonatomic, readwrite) IBOutlet SlideSegmentBar1 *titleBar;
+@property (nonatomic, readwrite) IBOutlet UIScrollView *bigScrollView;
+@property (nonatomic, readwrite) NSMutableArray <UIScrollView *>*scrollViews;
 @end
 
 @implementation SlideSegmentView1
@@ -154,22 +210,24 @@
 
 #pragma mark - Public
 
-- (void)setContentViews:(NSArray<__kindof UIView *> *)contentViews {
-    _viewControllers = nil;
-    _contentViews = [contentViews copy];
-    [self addContentViewsToBigStackView:_contentViews];
-}
-
-- (void)setViewControllers:(NSArray<__kindof UIViewController *> *)viewControllers {
-    _viewControllers = [viewControllers copy];
-    _contentViews = ({
-        NSMutableArray *views = [NSMutableArray array];
-        for (UIViewController *vc in viewControllers) {
-            [views addObject:vc.view];
-        }
-        [views copy];
-    });
-    [self addContentViewsToBigStackView:_contentViews];
+- (void)setupTitles:(NSArray<NSString *> *)titles contents:(NSArray *)viewsOrViewControllers {
+    _titleBar.titles = titles;
+    
+    if ([viewsOrViewControllers.firstObject isKindOfClass:[UIView class]]) {
+        _viewControllers = nil;
+        _contentViews = [viewsOrViewControllers copy];
+        [self addContentViewsToBigStackView:_contentViews];
+    } else {
+        _viewControllers = [viewsOrViewControllers copy];
+        _contentViews = ({
+            NSMutableArray *views = [NSMutableArray array];
+            for (UIViewController *vc in viewsOrViewControllers) {
+                [views addObject:vc.view];
+            }
+            [views copy];
+        });
+        [self addContentViewsToBigStackView:_contentViews];
+    }
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
@@ -180,29 +238,7 @@
     _selectedIndex = selectedIndex;
     
     // TitleBar
-    {
-        UICollectionView *cv = _titleBar.collectionView;
-        // 滚动至指定Cell
-        if (_titleBar.widthForItemAtIndex) {
-            CGFloat left = 0;
-            CGFloat right = 0;
-            
-            for (int i=0; i<selectedIndex; i++)
-                left += _titleBar.widthForItemAtIndex(i);
-            right = left + _titleBar.widthForItemAtIndex(selectedIndex);
-            
-            if (left < cv.contentOffset.x) {
-                [cv setContentOffset:CGPointMake(left, 0) animated:animated];
-            }
-            else if (right - cv.width > cv.contentOffset.x) {
-                [cv setContentOffset:CGPointMake(right-cv.width, 0) animated:animated];
-            }
-        }
-
-        
-        // 选中指定item
-        [cv selectItemAtIndexPath:[NSIndexPath indexPathForItem:_selectedIndex inSection:0] animated:animated scrollPosition:UICollectionViewScrollPositionNone];
-    }
+    [_titleBar setSelectedIndex:selectedIndex animated:animated];
     
     // BigScrollView
     {
@@ -211,12 +247,25 @@
         [_bigScrollView setContentOffset:CGPointMake(x, 0) animated:animated];
     }
     
-    if (_didSelectedIndex)
-        _didSelectedIndex(selectedIndex);
+    if (_didSelectedIndexChange)
+        _didSelectedIndexChange(self, selectedIndex);
 }
 
 
 #pragma mark - Private
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGFloat bigStackViewWidth = _scrollViews.count * self.width;
+    if (_bigStackView.cc_constraints.width.constant != bigStackViewWidth) {
+        _bigStackView.cc_constraints.width.constant = bigStackViewWidth;
+    }
+    if (OBJOnceToken(self)) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self setSelectedIndex:self.selectedIndex animated:true];
+        });
+    }
+}
 
 - (void)addContentViewsToBigStackView:(NSArray<__kindof UIView *> *)contentViews {
     
@@ -242,8 +291,8 @@
     // TitleBar
     __weakSelf_(__self);
     _titleBar.numberOfItems = contentViews.count;
-    _titleBar.didSelectItem = ^(NSInteger idx) {
-        [__self setSelectedIndex:idx animated:false];
+    _titleBar.didSelectItemAtIndex = ^(NSInteger idx) {
+        [__self setSelectedIndex:idx animated:true];
     };
 }
 

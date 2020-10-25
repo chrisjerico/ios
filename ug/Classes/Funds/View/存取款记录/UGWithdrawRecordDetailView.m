@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankCardLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankAccountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ownerNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remarkLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
@@ -41,13 +42,26 @@
 
 - (void)setItem:(UGRechargeLogsModel *)item {
     _item = item;
+    
     self.orderNoLabel.text = [NSString stringWithFormat:@"交易编号：%@",item.orderNo];
     self.applyLabel.text = [NSString stringWithFormat:@"申请时间：%@",item.applyTime];
     self.statusLabel.text = [NSString stringWithFormat:@"交易状态：%@",item.status];
     self.amoutLabel.text = [NSString stringWithFormat:@"取款金额：%@",item.amount];
-    self.bankCardLabel.text = [NSString stringWithFormat:@"银行卡号：%@",item.bankCard];
-    self.bankAccountLabel.text = [NSString stringWithFormat:@"银行账户：%@",item.bankAccount];
+    self.ownerNameLabel.text = [NSString stringWithFormat:@"持卡人：%@",item.bankAccount];
     self.remarkLabel.text  = [NSString stringWithFormat:@"备注：%@",item.remark];
+    
+    switch (item.type) {
+        case UGWithdrawalTypeAlipay:
+        case UGWithdrawalTypeWeChat:
+        case UGWithdrawalTypeVirtual:
+            self.bankAccountLabel.text = [NSString stringWithFormat:@"提款方式：%@",item.bankName];
+            self.bankCardLabel.text = [NSString stringWithFormat:@"账号：%@",item.bankCard];
+            break;
+        case UGWithdrawalTypeBankCard:
+        default:
+            self.bankAccountLabel.text = [NSString stringWithFormat:@"银行账户：%@",item.bankName];
+            self.bankCardLabel.text = [NSString stringWithFormat:@"银行卡号：%@",item.bankCard];
+    }
 }
 
 

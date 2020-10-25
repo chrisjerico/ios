@@ -8,8 +8,6 @@
 
 #import "AppDefine.h"
 
-
-
 #define __SiteID__ @"test60f"
 #define LocalRnVersion @"1.4.66"
 

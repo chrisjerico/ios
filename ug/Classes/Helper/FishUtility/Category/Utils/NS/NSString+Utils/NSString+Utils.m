@@ -246,6 +246,10 @@
     return [temp stringByReplacingOccurrencesOfString:@"'" withString:@""];
 }
 
+- (NSString *)ciphertext {
+    return [self ciphertextWithHead:3 tail:3 style:0];
+}
+
 - (UIImage *)qrCodeWithWidth:(CGFloat)w {
     return [self qrCodeWithWidth:w color:[UIColor blackColor]];
 }
@@ -362,6 +366,38 @@
         current += h > size.height ? -step : step;
     }
 }
+
+// style：0长度不够时两边显示数量保持一致，1优先显示右边，2优先显示左边
+- (NSString *)ciphertextWithHead:(int)head tail:(int)tail style:(int)style {
+    if (!self.stringByTrim.length) return self;
+    int minHide = 1; // 最少隐藏多少位
+    int len = (int)self.length - minHide;
+    switch (style) {
+        case 1:
+            head = MIN(MAX(len-tail, 0), head);
+            tail = MIN(len, tail);
+        case 2:
+            tail = MIN(MAX(len-head, 0), tail);
+            head = MIN(len, head);
+        case 0:
+        default: {
+            int a = 0, b = 0;
+            while (len-- > 0) {
+                if ((len%2 || b >= tail) && a < head) {
+                    a += 1;
+                } else  if (b < tail) {
+                    b += 1;
+                }
+            }
+            head = a;
+            tail = b;
+        }
+    }
+    return _NSString(@"%@****%@",
+                     head > 0 ? [self substringToIndex:head] : @"",
+                     tail > 0 ? [self substringFromIndex:(int)self.length-tail] : @"");
+}
+
 
 - (NSString *)objectAtIndexedSubscript:(NSUInteger)idx NS_AVAILABLE(10_8, 6_0) {
     if (self.length > idx)

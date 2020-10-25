@@ -300,8 +300,8 @@
             titles = @[@"投注区", @"聊天室"];
         }
         SlideSegmentView1 *ssv1 = _ssv1 = _LoadView_from_nib_(@"SlideSegmentView1");
-        ssv1.frame = CGRectMake(0, 0, APP.Width, APP.Height);
-        ssv1.viewControllers = @[_vc1, _vc2];
+        ssv1.frame = CGRectMake(0, 100, APP.Width, APP.Height);
+        [ssv1 setupTitles:titles contents:@[_vc1, _vc2]];
         for (UIView *v in ssv1.contentViews) {
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(ssv1.width);
@@ -310,15 +310,12 @@
                 } else {
                     make.height.mas_equalTo(UGScerrnH - 20-k_Height_NavBar - IPHONE_SAFEBOTTOMAREA_HEIGHT -40+22);
                 }
-                
+
             }];
         }
         
-        ssv1.titleBar.updateCellForItemAtIndex = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx) {
-            label.text = titles[idx];
-            
-            if (idx) {
-                label.text = [NSString stringWithFormat:@"%@",titles[idx]];
+        ssv1.titleBar.updateCellForItemAtIndex = ^(SlideSegmentBar1 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
+            if (idx && OBJOnceToken(cell)) {
                 __self.mLabel = label;
                 __self.downBtn = ({
                     UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -340,11 +337,8 @@
                     [__self selectChatRoom ];
                 }];
             }
-            
-        };
-        
-        __weak_Obj_(ssv1, __ssv1);
-        ssv1.titleBar.didSelectItemAtIndexPath = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
+
+
             if (APP.isChatWhite && !APP.betBgIsWhite) {
                 label.textColor = [UIColor whiteColor];
             } else {
@@ -353,12 +347,12 @@
                     label.textColor = [UIColor whiteColor];
                 }
             }
-            
+
             label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
-            
+
             if (APP.isRedWhite) {
                 cell.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
-                __ssv1.titleBar.backgroundColor = Skin1.navBarBgColor;
+                titleBar.backgroundColor = Skin1.navBarBgColor;
                 label.textColor = selected ? [UIColor blackColor] : [UIColor whiteColor];
             } else {
                 if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
@@ -370,45 +364,46 @@
                 else{
                     cell.backgroundColor = selected ? [[UIColor whiteColor] colorWithAlphaComponent:0.25] : [UIColor clearColor];
                 }
-                
+
                 NSLog(@"Skin1.skitString = %@",Skin1.skitString);
-                
+
                 NSLog(@"Skin1.is23 = %d",Skin1.is23);
-                
-                __ssv1.titleBar.backgroundColor = Skin1.isBlack||Skin1.is23 || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
-                
+
+                titleBar.backgroundColor = Skin1.isBlack||Skin1.is23 || idx || !APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
+
             }
-            
+
             if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
                 label.textColor = [UIColor whiteColor];
             }
-            
-            
-            
         };
-        ssv1.didSelectedIndex = ^(NSUInteger idx) {
+        ssv1.didSelectedIndexChange = ^(SlideSegmentView1 *ssv1, NSUInteger idx) {
             if (idx) {
                 [__self.downBtn setHidden:NO];
                 //得到线上配置的聊天室
                 if (OBJOnceToken(__self)) {
                     [__self performSelector:@selector(getChatRoomData) afterDelay:0.2];
                 }
+                if (![__self.mLabel.text containsString:@"▼"]) {
+                    __self.mLabel.text = [__self.mLabel.text stringByAppendingString:@"▼"];
+                }
             }
             else {
-                
+
                 [__self.downBtn setHidden:YES];
                 if ([__self.mLabel.text containsString:@"▼"]) {
                     NSString *text = __self.mLabel.text;
                     text =  [text stringByReplacingOccurrencesOfString:@"▼"withString:@""];;
                     __self.mLabel.text = text;
                 }
-     
+
             }
         };
-        ssv1.titleBar.underlineView.hidden = true;
+        ssv1.titleBar.underlineColor = [UIColor clearColor];
+//        [self.view addSubview:ssv1];
         [self.view insertSubview:ssv1 atIndex:0];
         [ssv1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view.mas_topMargin);
+            make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
             make.left.right.bottom.equalTo(self.view);
         }];
         [self.view layoutIfNeeded];

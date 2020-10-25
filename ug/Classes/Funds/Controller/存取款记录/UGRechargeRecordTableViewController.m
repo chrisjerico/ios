@@ -33,7 +33,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     SANotificationEventSubscribe(UGNotificationWithdrawalsSuccess, self, ^(typeof (self) self, id obj) {
-        [self getWithdrawData];
+        [self.tableView.mj_header beginRefreshing];
     });
     
     SANotificationEventSubscribe(UGNotificationWithRecordOfDeposit, self, ^(typeof (self) self, id obj) {

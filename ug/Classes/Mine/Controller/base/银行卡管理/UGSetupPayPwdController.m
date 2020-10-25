@@ -8,6 +8,7 @@
 
 #import "UGSetupPayPwdController.h"
 #import "UGBindCardViewController.h"
+#import "WithdrawalAccountListVC.h"
 #import "UGEncryptUtil.h"
 
 @interface UGSetupPayPwdController ()<UITextFieldDelegate>
@@ -90,9 +91,17 @@
                 user.hasFundPwd = YES;
                 if (user.hasBankCard) {
                     [weakSelf.navigationController popViewControllerAnimated:YES];
-                }else {
-                    UGBindCardViewController *bindCardVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UGBindCardViewController"];
-                    [weakSelf.navigationController pushViewController:bindCardVC animated:YES];
+                } else {
+                    NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+                    [vcs removeLastObject];
+                    [NavController1 setViewControllers:vcs animated:false];
+                    for (UIViewController *vc in vcs) {
+                        if ([vc isKindOfClass:[WithdrawalAccountListVC class]]) {
+                            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"BindWithdrawalAccountVC") animated:true];
+                            return;
+                        }
+                    }
+                    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"WithdrawalAccountListVC") animated:true];
                 }
             } failure:^(id msg) {
                 [SVProgressHUD showErrorWithStatus:msg];

@@ -30,12 +30,11 @@
 - (void)fishSegmentView {
     NSArray *titles = @[@"额度转换", @"转换记录"];
     _segmentView = _LoadView_from_nib_(@"SlideSegmentView1");
-    _segmentView.frame = CGRectMake(0, 0, APP.Width, APP.Height);
     UIViewController *vc1 = [UIViewController new];
     [vc1.view setBackgroundColor:[UIColor greenColor]];
     UIViewController *vc2 = [UIViewController new];
     [vc2.view setBackgroundColor:[UIColor yellowColor]];
-    _segmentView.viewControllers = @[vc1, vc2];
+    [_segmentView setupTitles:titles contents:@[vc1, vc2]];
     for (UIView *v in _segmentView.contentViews) {
         [v mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(APP.Width);
@@ -45,30 +44,15 @@
     
  
     __weakSelf_(__self);
-    _segmentView.titleBar.updateCellForItemAtIndex = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx) {
+    _segmentView.titleBar.updateCellForItemAtIndex = ^(SlideSegmentBar1 *titleBar, UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
         label.text = titles[idx];
-        label.textColor = Skin1.textColor2;
-        label.font =  [UIFont systemFontOfSize:14];
-      
-    };
-
-    _segmentView.titleBar.didSelectItemAtIndexPath = ^(UICollectionViewCell *cell, UILabel *label, NSUInteger idx, BOOL selected) {
-        
         label.textColor = selected ? [UIColor redColor] : Skin1.textColor2;
         label.font = selected ? [UIFont boldSystemFontOfSize:16] : [UIFont systemFontOfSize:14];
-       
-        
-        if (selected) {
-            // 下划线的默认动画
-            [UIView animateWithDuration:0.25 animations:^{
-                __self.segmentView.titleBar.underlineView.frame = CGRectMake(cell.left, cell.height-2, label.width +20, 2);
-//                [__self.segmentView.titleBar.underlineView mas_updateConstraints:^(MASConstraintMaker *make) {
-//                    make.centerX.equalTo(cell.mas_centerX);
-//                }];
-            }];
-        }
-
     };
+    _segmentView.titleBar.underlineFrameForItemAtIndex = ^CGRect(CGSize cellSize, CGFloat labelWidth, NSUInteger idx) {
+        return CGRectMake(0, cellSize.height-2, labelWidth+20, 2);
+    };
+    
     self.segmentView.titleBar.backgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.35];
     [CMCommon setBorderWithView:self.segmentView.titleBar top:YES left:NO bottom:YES right:NO borderColor:[UIColor whiteColor] borderWidth:1];
     [self.view addSubview:_segmentView];

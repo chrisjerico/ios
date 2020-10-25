@@ -50,7 +50,7 @@
         
         // 初始化TableView 及下拉刷新事件
         {
-            tv.footerView = ({
+            tv.tableFooterView = ({
                 UIView *v = [UIView new];
                 v.backgroundColor = [UIColor clearColor];
                 v.height = APP.BottomSafeHeight;

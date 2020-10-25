@@ -1,0 +1,19 @@
+//
+//  BindWithdrawalAccountVC.h
+//  UGBWApp
+//
+//  Created by fish on 2020/10/7.
+//  Copyright © 2020 ug. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface BindWithdrawalAccountVC : UIViewController
+
+@property (nonatomic, assign) UGWithdrawalType wt;
+@property (nonatomic, strong) void (^didBindAccount)(UGWithdrawalType wt, NSString *acct);
+@end
+
+NS_ASSUME_NONNULL_END

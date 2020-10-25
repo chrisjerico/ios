@@ -80,7 +80,7 @@ UGSystemConfigModel *currentConfig = nil;
         _items =@[
             item(@"chongzhi",               @"LH_menu-cz",          @"chongzhi",                UCI_存款,         @"存款"),
             item(@"chongzhi",               @"LH_menu-qk",          @"tixian",                  UCI_取款,         @"取款"),
-            item(@"yinhangqia",             @"LH_menu-account",     @"yinhangqia",              UCI_银行卡管理,     @"银行卡管理"),
+            item(@"yinhangqia",             @"LH_menu-account",     @"yinhangqia",              UCI_银行卡管理,     @"提款账户"),
             item(@"lixibao",                @"LH_syb3",             @"lixibao",                 UCI_利息宝,        @"利息宝"),
             item(@"shouyi1sel",             @"LH_task",             @"shouyi1sel",              UCI_推荐收益,      @"推荐收益"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_彩票注单记录,   @"彩票注单记录"),

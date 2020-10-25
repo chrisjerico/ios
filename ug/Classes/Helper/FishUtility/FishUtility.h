@@ -31,7 +31,7 @@
     #import "YYCategories.h"            // 常用类别
     #import "NSObject+XWAdd.h"          // KVO, NotificationCenter
     #import "MJRefresh.h"               // 上下拉刷新
-    #import "UITableView+Refresh.h"
+    #import "UIScrollView+Refresh.h"
 
     // Utils
     #import "UIView+Utils.h"

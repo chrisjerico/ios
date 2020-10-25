@@ -34,7 +34,7 @@
     //    NSLog(@"url = %@", sm.urlString);
     //    NSLog(@"params = %@", sm.params);
     //    NSLog(@"error = %@", sm.error);
-    //    NSLog(@"response = %@", sm.responseObject);
+    //    NSLog(@"response = %@", sm.resObject);
     
     {
         [LanguageHelper setNoTranslate:sm.error.domain];
