@@ -21,27 +21,27 @@
     [self setBackgroundColor:Skin1.navBarBgColor];
     [self setHidden:APP.isHideFoot];
     
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        // l001站点定制需求
-        if ([APP.SiteId containsString:@"l001"]) {
-            if (Skin1.isLH) {
-                self.bottomTitle.text = @"💻电脑版";
-                [self.preferentialBtn setHidden:YES];
-            } else {
-                self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
-                [self.preferentialBtn setHidden:NO];
-            }
-        }
-        else{
+   
+    // l001站点定制需求
+    if ([APP.SiteId containsString:@"l001"]) {
+        if (Skin1.isLH) {
+            self.bottomTitle.text = @"💻电脑版";
+            [self.preferentialBtn setHidden:YES];
+        } else {
             self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
             [self.preferentialBtn setHidden:NO];
         }
-        
-        if (Skin1.is23||Skin1.isBlack) {
-            [self.bottomTitle setTextColor:[UIColor whiteColor]];
-             [self.bottomLabel setTextColor:[UIColor whiteColor]];
-        }
-    });
+    }
+    else{
+        self.bottomTitle.text = @"💻电脑版 🎁优惠活动";
+        [self.preferentialBtn setHidden:NO];
+    }
+    
+    if (Skin1.is23||Skin1.isBlack||Skin1.isGPK) {
+        [self.bottomTitle setTextColor:[UIColor whiteColor]];
+        [self.bottomLabel setTextColor:[UIColor whiteColor]];
+    }
+   
     
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
         self.bottomLabel.text = [NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED", SysConf.webName];

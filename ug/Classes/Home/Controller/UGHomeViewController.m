@@ -375,9 +375,7 @@
             subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         }
         
-        subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
-        subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
-        [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+
         
         if (!Skin1.isLH) {
             self.gameNavigationView.layer.cornerRadius = 8;
