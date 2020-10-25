@@ -1965,6 +1965,10 @@
 		CF533A8B251B18B700462E31 /* NewLotteryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A89251B18B700462E31 /* NewLotteryListController.m */; };
 		CF533B01251DDE4500462E31 /* UGLotteryRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533B00251DDE4500462E31 /* UGLotteryRightMenuView.m */; };
 		CF533B76251DDE5D00462E31 /* UGLotteryRightMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF533B75251DDE5D00462E31 /* UGLotteryRightMenuView.xib */; };
+		CF5AA98F2545913E006DAC7A /* UGMessagePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5AA98E2545913E006DAC7A /* UGMessagePopView.m */; };
+		CF5AA9902545913E006DAC7A /* UGMessagePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5AA98E2545913E006DAC7A /* UGMessagePopView.m */; };
+		CF5AA996254591C1006DAC7A /* UGMessagePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5AA995254591C1006DAC7A /* UGMessagePopView.xib */; };
+		CF5AA997254591C1006DAC7A /* UGMessagePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5AA995254591C1006DAC7A /* UGMessagePopView.xib */; };
 		CF5B5D1C23E30854007CBEE0 /* BetFormViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 226CA21323D2F21800E4D921 /* BetFormViewModel.m */; };
 		CF5B5D1D23E3087A007CBEE0 /* RememberPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411923C86A6A0070D2B5 /* RememberPass.m */; };
 		CF5B5D1E23E30892007CBEE0 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
@@ -4054,6 +4058,9 @@
 		CF533AFF251DDE4500462E31 /* UGLotteryRightMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryRightMenuView.h; sourceTree = "<group>"; };
 		CF533B00251DDE4500462E31 /* UGLotteryRightMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryRightMenuView.m; sourceTree = "<group>"; };
 		CF533B75251DDE5D00462E31 /* UGLotteryRightMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLotteryRightMenuView.xib; sourceTree = "<group>"; };
+		CF5AA98D2545913E006DAC7A /* UGMessagePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMessagePopView.h; sourceTree = "<group>"; };
+		CF5AA98E2545913E006DAC7A /* UGMessagePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMessagePopView.m; sourceTree = "<group>"; };
+		CF5AA995254591C1006DAC7A /* UGMessagePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMessagePopView.xib; sourceTree = "<group>"; };
 		CF5B5D1F23E31B7B007CBEE0 /* ChatPCH.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatPCH.pch; sourceTree = "<group>"; };
 		CF5D3D7D2396B8D000CC3D6B /* AutoPacking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AutoPacking.xcodeproj; path = AutoPacking/AutoPacking.xcodeproj; sourceTree = "<group>"; };
 		CF62001D24BBF2A700FD26AD /* LanguageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LanguageHelper.h; sourceTree = "<group>"; };
@@ -7194,6 +7201,7 @@
 		031E18D923BE812600B0F813 /* 站内信 */ = {
 			isa = PBXGroup;
 			children = (
+				CF5AA98B25458F65006DAC7A /* 弹窗 */,
 				D48075D1249C761B00E1E5F5 /* 下边栏 */,
 				031E18DB23BE812600B0F813 /* UGMessageTableViewCell.h */,
 				031E18DA23BE812600B0F813 /* UGMessageTableViewCell.m */,
@@ -8567,6 +8575,16 @@
 			path = "侧边栏";
 			sourceTree = "<group>";
 		};
+		CF5AA98B25458F65006DAC7A /* 弹窗 */ = {
+			isa = PBXGroup;
+			children = (
+				CF5AA98D2545913E006DAC7A /* UGMessagePopView.h */,
+				CF5AA98E2545913E006DAC7A /* UGMessagePopView.m */,
+				CF5AA995254591C1006DAC7A /* UGMessagePopView.xib */,
+			);
+			path = "弹窗";
+			sourceTree = "<group>";
+		};
 		CF5D3D7E2396B8D000CC3D6B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -9667,6 +9685,7 @@
 				CF1402A125345C060031C3E4 /* c012充值.html in Resources */,
 				031E1E2523BE812C00B0F813 /* UGContentMoneyCollectionViewCell.xib in Resources */,
 				031EF5EB23BE7B4E00B0F813 /* MyWallet.storyboard in Resources */,
+				CF5AA997254591C1006DAC7A /* UGMessagePopView.xib in Resources */,
 				031E1DE923BE812C00B0F813 /* UGConvertCollectionViewCell.xib in Resources */,
 				031E1E6123BE812C00B0F813 /* UGAvaterCollectionViewCell.xib in Resources */,
 				031E1B5D23BE812800B0F813 /* UGBackToastView.xib in Resources */,
@@ -10162,6 +10181,7 @@
 				CF4758F1239636D200966536 /* 148.gif in Resources */,
 				031E1D8623BE812B00B0F813 /* UGBetRecordTableViewController.storyboard in Resources */,
 				CF14029B25345BC90031C3E4 /* c012CZ.jpg in Resources */,
+				CF5AA996254591C1006DAC7A /* UGMessagePopView.xib in Resources */,
 				CF4758E3239636D200966536 /* 63.gif in Resources */,
 				031E1C3623BE812900B0F813 /* UGLotterySubResultCollectionViewCell.xib in Resources */,
 				031E1B8A23BE812900B0F813 /* UGNoticeHeaderView.xib in Resources */,
@@ -10496,6 +10516,7 @@
 				031E1B9923BE812900B0F813 /* UGChanglongBetRecrodCell.m in Sources */,
 				031E195F23BE812600B0F813 /* LHJournalDetailVC.m in Sources */,
 				031E195D23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
+				CF5AA9902545913E006DAC7A /* UGMessagePopView.m in Sources */,
 				031EF55123BE7B4D00B0F813 /* RegexParser.swift in Sources */,
 				031E1A4D23BE812700B0F813 /* CMCommon.m in Sources */,
 				031E1B8F23BE812900B0F813 /* UGPostCell.m in Sources */,
@@ -11450,6 +11471,7 @@
 				D48075D4249C777500E1E5F5 /* MessageUnderMenuView.m in Sources */,
 				031E19D623BE812700B0F813 /* NSDate+Millisecond.m in Sources */,
 				031E1B6C23BE812800B0F813 /* UGPlatformTitleBlackCell.m in Sources */,
+				CF5AA98F2545913E006DAC7A /* UGMessagePopView.m in Sources */,
 				031E197623BE812600B0F813 /* UGLHPostCommentModel.m in Sources */,
 				CF6E4D0C2529B49200ABF719 /* BRResultModel.m in Sources */,
 				031E1DA023BE812B00B0F813 /* UGdepositStatModel.m in Sources */,
