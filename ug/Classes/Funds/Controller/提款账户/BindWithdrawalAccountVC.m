@@ -55,7 +55,7 @@
         }
         if (!sm.error) {
             NSMutableArray *temp = @[].mutableCopy;
-            for (NSDictionary *dict in sm.resObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {
                 WithdrawalTypeModel *wam = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (wam.isshow && wam.canAdd) {
                     [temp addObject:wam];
@@ -83,7 +83,7 @@
             [SVProgressHUD dismiss];
             if (!sm.error) {
                 NSMutableArray *temp = @[].mutableCopy;
-                for (NSDictionary *dict in sm.resObject[@"data"]) {
+                for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {
                     WithdrawalTypeModel *wam = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                     if (wam.isshow && wam.canAdd) {
                         [temp addObject:wam];

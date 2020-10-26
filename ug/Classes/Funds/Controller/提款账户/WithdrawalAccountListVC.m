@@ -66,7 +66,7 @@
         [SVProgressHUD dismiss];
         if (!sm.error) {
             NSMutableArray *temp = @[].mutableCopy;
-            for (NSDictionary *dict in sm.resObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {
                 WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (wtm.isshow) {
                     for (WithdrawalAcctModel *wam in wtm.data) {

@@ -122,7 +122,7 @@
         if (!sm.error) {
             NSMutableArray *wams = @[].mutableCopy;
             NSMutableArray *wtms = @[].mutableCopy;
-            for (NSDictionary *dict in sm.resObject[@"data"]) {
+            for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {
                 WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (!wtm.isshow) continue;
                 for (WithdrawalAcctModel *wam in wtm.data) {
