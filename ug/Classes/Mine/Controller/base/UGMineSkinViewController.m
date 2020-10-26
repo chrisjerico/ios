@@ -37,7 +37,7 @@
 #import "UGChangLongController.h"
 #import "STBarButtonItem.h"
 #import "UGYYRightMenuView.h"
-
+#import "TKLMoneyViewController.h"
 #import "JYMineCollectionViewCell.h"
 #import "UGSignInHistoryModel.h"
 #import "UGSalaryListView.h"
@@ -849,11 +849,16 @@ BOOL isOk = NO;
 }
 
 - (IBAction)depositAction:(id)sender {
-    
-    //存款
-    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-    fundsVC.selectIndex = 0;
-    [self.navigationController pushViewController:fundsVC animated:YES];
+    if (Skin1.isTKL) {
+        //资金管理
+        [NavController1 pushViewController:[TKLMoneyViewController new] animated:true];
+    } else {
+        //资金管理
+        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+        fundsVC.selectIndex = 0;
+        [self.navigationController pushViewController:fundsVC animated:YES];
+    }
+   
     
     
 }

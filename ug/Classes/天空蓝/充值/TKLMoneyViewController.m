@@ -217,12 +217,12 @@
 
     if ([title hasPrefix:@"充值记录"]) {
         UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 0;
+        fundsVC.selectIndex = 2;
         [NavController1 pushViewController:fundsVC animated:true];
     }
     else if ([title isEqualToString:@"提现记录"]) {
         UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 1;
+        fundsVC.selectIndex = 3;
         [NavController1 pushViewController:fundsVC animated:true];
     }
     else if ([title isEqualToString:@"红包记录"]) {
@@ -234,7 +234,9 @@
        
     }
     else if ([title isEqualToString:@"资金明细"]) {
-       
+        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+        fundsVC.selectIndex = 4;
+        [NavController1 pushViewController:fundsVC animated:true];
     }
     
     
