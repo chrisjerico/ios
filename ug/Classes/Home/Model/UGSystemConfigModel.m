@@ -214,9 +214,9 @@ UGSystemConfigModel *currentConfig = nil;
         } else {
             itemMoney =  item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,         @"资金管理");
         }
-        NSArray *arrayTmp = @[itemLine,itemLottery];
+        NSArray *arrayTmp = @[itemLine,itemLottery,itemMoney];
         // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,2)];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,3)];
         [_items insertObjects:arrayTmp atIndexes:indexSet];
     });
     return _items;
