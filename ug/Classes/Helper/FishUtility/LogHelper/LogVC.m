@@ -26,7 +26,7 @@
 #import "CMLabelCommon.h"
 #import "NewLotteryHomeViewController.h"
 #import "CMTimeCommon.h"
-
+#import "TKLMoneyViewController.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -161,7 +161,7 @@ static LogVC *_logVC = nil;
 #pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"时间搓"];
+        [titles addObject:@"天空蓝充值"];
         [titles addObject:@"天空蓝额度"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
@@ -172,20 +172,9 @@ static LogVC *_logVC = nil;
         }];
 
         
-        [ac setActionAtTitle:@"时间搓" handler:^(UIAlertAction *aa) {
-           NSString *time1 = [CMTimeCommon timestampSwitchTime:1602923724 andFormatter:@"yyyy-MM-dd HH:mm"];
-            NSLog(@"time1 = %@",time1);//time1 = 2020-10-17 16:35
-            
-//            NSString *time2 = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
-//            NSLog(@"time2 = %@",time2);//time2 = 2020-10-17 17:19
-            NSString *time2 = @"2020-10-17 16:34";
-            NSDate *date1 = [CMTimeCommon dateForStr:time1 format:@"yyyy-MM-dd HH:mm"];
-            NSDate *date2 = [CMTimeCommon dateForStr:time2 format:@"yyyy-MM-dd HH:mm"];
-            
-           int k =  [CMTimeCommon compareOneDay:date2 withAnotherDay:date1 formatter:@"yyyy-MM-dd HH:mm"];
-            
-            NSLog(@"k = %d",k);
-            
+        [ac setActionAtTitle:@"天空蓝充值" handler:^(UIAlertAction *aa) {
+            TKLMoneyViewController *vc = [[TKLMoneyViewController alloc] init];
+            [NavController1 pushViewController:vc animated:true];
            
         }];
         

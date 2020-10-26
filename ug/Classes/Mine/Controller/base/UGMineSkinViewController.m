@@ -187,12 +187,12 @@
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
         [self getSystemConfig];
     });
-    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-        [self getSystemConfig];
-        [self.refreshFirstButton.layer removeAllAnimations];
-        [self setupUserInfo:NO];
-        [self.myCollectionView reloadData];
-    });
+//    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
+//        [self getSystemConfig];
+//        [self.refreshFirstButton.layer removeAllAnimations];
+//        [self setupUserInfo:NO];
+//        [self.myCollectionView reloadData];
+//    });
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });

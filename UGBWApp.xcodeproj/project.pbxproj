@@ -1965,6 +1965,14 @@
 		CF533A8B251B18B700462E31 /* NewLotteryListController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533A89251B18B700462E31 /* NewLotteryListController.m */; };
 		CF533B01251DDE4500462E31 /* UGLotteryRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF533B00251DDE4500462E31 /* UGLotteryRightMenuView.m */; };
 		CF533B76251DDE5D00462E31 /* UGLotteryRightMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF533B75251DDE5D00462E31 /* UGLotteryRightMenuView.xib */; };
+		CF5586B72546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5586B52546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m */; };
+		CF5586B82546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5586B52546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m */; };
+		CF5586B92546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5586B62546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib */; };
+		CF5586BA2546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5586B62546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib */; };
+		CF5586C82546BF3200BE2576 /* TKLMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5586C62546BF3200BE2576 /* TKLMoneyViewController.m */; };
+		CF5586C92546BF3200BE2576 /* TKLMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5586C62546BF3200BE2576 /* TKLMoneyViewController.m */; };
+		CF5586CA2546BF3200BE2576 /* TKLMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5586C72546BF3200BE2576 /* TKLMoneyViewController.xib */; };
+		CF5586CB2546BF3200BE2576 /* TKLMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5586C72546BF3200BE2576 /* TKLMoneyViewController.xib */; };
 		CF5AA98F2545913E006DAC7A /* UGMessagePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5AA98E2545913E006DAC7A /* UGMessagePopView.m */; };
 		CF5AA9902545913E006DAC7A /* UGMessagePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5AA98E2545913E006DAC7A /* UGMessagePopView.m */; };
 		CF5AA996254591C1006DAC7A /* UGMessagePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF5AA995254591C1006DAC7A /* UGMessagePopView.xib */; };
@@ -4058,6 +4066,12 @@
 		CF533AFF251DDE4500462E31 /* UGLotteryRightMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLotteryRightMenuView.h; sourceTree = "<group>"; };
 		CF533B00251DDE4500462E31 /* UGLotteryRightMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLotteryRightMenuView.m; sourceTree = "<group>"; };
 		CF533B75251DDE5D00462E31 /* UGLotteryRightMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLotteryRightMenuView.xib; sourceTree = "<group>"; };
+		CF5586B42546B9AF00BE2576 /* TkLMoneyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TkLMoneyCollectionViewCell.h; sourceTree = "<group>"; };
+		CF5586B52546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TkLMoneyCollectionViewCell.m; sourceTree = "<group>"; };
+		CF5586B62546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TkLMoneyCollectionViewCell.xib; sourceTree = "<group>"; };
+		CF5586C52546BF3200BE2576 /* TKLMoneyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLMoneyViewController.h; sourceTree = "<group>"; };
+		CF5586C62546BF3200BE2576 /* TKLMoneyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLMoneyViewController.m; sourceTree = "<group>"; };
+		CF5586C72546BF3200BE2576 /* TKLMoneyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKLMoneyViewController.xib; sourceTree = "<group>"; };
 		CF5AA98D2545913E006DAC7A /* UGMessagePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGMessagePopView.h; sourceTree = "<group>"; };
 		CF5AA98E2545913E006DAC7A /* UGMessagePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGMessagePopView.m; sourceTree = "<group>"; };
 		CF5AA995254591C1006DAC7A /* UGMessagePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGMessagePopView.xib; sourceTree = "<group>"; };
@@ -8575,6 +8589,35 @@
 			path = "侧边栏";
 			sourceTree = "<group>";
 		};
+		CF5586B02546B90400BE2576 /* 天空蓝 */ = {
+			isa = PBXGroup;
+			children = (
+				CF5586B32546B93A00BE2576 /* 注册 */,
+				CF5586B22546B93000BE2576 /* 充值 */,
+			);
+			path = "天空蓝";
+			sourceTree = "<group>";
+		};
+		CF5586B22546B93000BE2576 /* 充值 */ = {
+			isa = PBXGroup;
+			children = (
+				CF5586B42546B9AF00BE2576 /* TkLMoneyCollectionViewCell.h */,
+				CF5586B52546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m */,
+				CF5586B62546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib */,
+				CF5586C52546BF3200BE2576 /* TKLMoneyViewController.h */,
+				CF5586C62546BF3200BE2576 /* TKLMoneyViewController.m */,
+				CF5586C72546BF3200BE2576 /* TKLMoneyViewController.xib */,
+			);
+			path = "充值";
+			sourceTree = "<group>";
+		};
+		CF5586B32546B93A00BE2576 /* 注册 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "注册";
+			sourceTree = "<group>";
+		};
 		CF5AA98B25458F65006DAC7A /* 弹窗 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9385,6 +9428,7 @@
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
 				03314FC323CD9F8F0070CB54 /* 火山橙模板 */,
 				D42752D623F127AD001E27A0 /* 简约模板 */,
+				CF5586B02546B90400BE2576 /* 天空蓝 */,
 				D4B75E3B2278122B0007047C /* Other */,
 				D424785C22DDF5860062A6D4 /* Resources */,
 			);
@@ -9568,6 +9612,7 @@
 				031EF5A423BE7B4D00B0F813 /* huodongcaijin.svg in Resources */,
 				031EF56F23BE7B4D00B0F813 /* yichaihongbao.svg in Resources */,
 				031E1E7923BE812C00B0F813 /* UGCalenderAlertView.xib in Resources */,
+				CF5586BA2546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib in Resources */,
 				CF8508762466D71B0025672F /* PromotePopView.xib in Resources */,
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
 				031EF57623BE7B4D00B0F813 /* yinhangkaguanli.svg in Resources */,
@@ -9715,6 +9760,7 @@
 				031EF59023BE7B4D00B0F813 /* hongbaosaolei.svg in Resources */,
 				031E19D923BE812700B0F813 /* BankCardList.plist in Resources */,
 				031E19FD23BE812700B0F813 /* Image_loading_failed.jpeg in Resources */,
+				CF5586CB2546BF3200BE2576 /* TKLMoneyViewController.xib in Resources */,
 				031E1C9B23BE812A00B0F813 /* UGFunds2microcodeView.xib in Resources */,
 				CFBAAC3725246BBF00C5F6F6 /* 2.html in Resources */,
 				CF6E4D172529B49200ABF719 /* BRPickerView.bundle in Resources */,
@@ -9950,6 +9996,7 @@
 				CF4758EB239636D200966536 /* 74.gif in Resources */,
 				031E1E1C23BE812C00B0F813 /* UGActivityGoldTableViewCell.xib in Resources */,
 				CF4758C0239636D200966536 /* 169.gif in Resources */,
+				CF5586B92546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib in Resources */,
 				031E19D823BE812700B0F813 /* BankCardList.plist in Resources */,
 				031E1BF023BE812900B0F813 /* UGQXCLotteryController.storyboard in Resources */,
 				D4DE3F1424C5E8D500DD3A69 /* UGPopViewController.xib in Resources */,
@@ -10016,6 +10063,7 @@
 				CF475897239636D200966536 /* 133.gif in Resources */,
 				031E1BCE23BE812900B0F813 /* UGXYNCLotteryController.storyboard in Resources */,
 				D43A785523EFEFED00F75B0C /* RedEnvelope.storyboard in Resources */,
+				CF5586CA2546BF3200BE2576 /* TKLMoneyViewController.xib in Resources */,
 				D40745D62511F37900606EA3 /* YNCollectionFootView.xib in Resources */,
 				CF4758DB239636D200966536 /* 84.gif in Resources */,
 				031E1E3823BE812C00B0F813 /* UGPromotion2rowTableViewCell.xib in Resources */,
@@ -10834,6 +10882,7 @@
 				031E1B0123BE812800B0F813 /* NSDate+XHCategory.m in Sources */,
 				031E1E8523BE812D00B0F813 /* UGYubaoIncomeTableViewCell.m in Sources */,
 				031E1C7523BE812A00B0F813 /* UGFundDetailsTableViewController.m in Sources */,
+				CF5586B82546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m in Sources */,
 				031E1BAF23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1A5F23BE812700B0F813 /* STButton.m in Sources */,
 				032412C123CC62B900FABD51 /* PromotionOtherBetRecordVC.m in Sources */,
@@ -11154,6 +11203,7 @@
 				031E1C8B23BE812A00B0F813 /* UGDepositDetailsCollectionViewCell.m in Sources */,
 				031E1C0F23BE812900B0F813 /* UGLotteryAdPopView.m in Sources */,
 				031E19E323BE812700B0F813 /* NSUserDefaults+Utils.m in Sources */,
+				CF5586C92546BF3200BE2576 /* TKLMoneyViewController.m in Sources */,
 				031E1D3723BE812B00B0F813 /* UGAgentViewController.m in Sources */,
 				031EF54023BE7B4D00B0F813 /* RedPacketMessageModel.swift in Sources */,
 				031E193F23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,
@@ -11744,6 +11794,7 @@
 				031E197C23BE812600B0F813 /* UGLHLhlModel.m in Sources */,
 				031E1DDC23BE812C00B0F813 /* UGMissionLevelModel.m in Sources */,
 				031E1AD423BE812800B0F813 /* SRActionSheet.m in Sources */,
+				CF5586B72546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m in Sources */,
 				031E1C5223BE812A00B0F813 /* UGBetResultView.m in Sources */,
 				CF6E4D142529B49200ABF719 /* BRDatePickerView.m in Sources */,
 				031E1B3623BE812800B0F813 /* GameCategoryDataModel.m in Sources */,
@@ -11863,6 +11914,7 @@
 				031E1D0023BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
 				031E1B1423BE812800B0F813 /* UGGameListViewController.m in Sources */,
 				031E1D5623BE812B00B0F813 /* UGModifyLoginPwdController.m in Sources */,
+				CF5586C82546BF3200BE2576 /* TKLMoneyViewController.m in Sources */,
 				031E1AE223BE812800B0F813 /* TAPageControl.m in Sources */,
 				22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */,
 				031E1B5A23BE812800B0F813 /* UGredActivityView.m in Sources */,

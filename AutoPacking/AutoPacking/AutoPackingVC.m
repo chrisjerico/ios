@@ -54,13 +54,13 @@
 
                 
 
-                NSString *ids = @"c126b,c085";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
-                NSString *branch = @"dev_master";// 分支名
+                NSString *ids = @"c235";    // 站点编号(可以批量打包用','号隔开)  c175  c008 c049
+                NSString *branch = @"dev_master_waitWithdrawal";// 分支名dev_master_waitWithdrawal
                 BOOL willUpload = 1;        // 打包后是否上传审核
 
                 // 高权限操作
                 BOOL isReview = 0;      // 是否改为已审核
-                BOOL isForce = 1;       // 是否强制更新
+                BOOL isForce = 0;       // 是否强制更新
                 NSString *updateLog = @"优化用户体验。";  // 更新日志，给用户看的
                 
                 [self popupConfirmWithIsReview:isReview isForce:isForce completion:^{
