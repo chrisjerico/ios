@@ -45,7 +45,10 @@ class RootTabBarController: ESTabBarController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		SocketManager.shared.connect()
-		App.emojiKeyBoard.layoutSubviews()
+//		DispatchQueue.main.async {
+//			App.emojiKeyBoard.layoutSubviews()
+//
+//		}
 
 		MessageManager.shared.newNotification.subscribe(onNext: { (notification) in
 			if let message = notification["msg"] as? String {

@@ -139,6 +139,8 @@ pod 'SVGKit', '~> 3.0.0-beta3'
 pod 'JSPatch', :path => "JSPatch/JSPatch.podspec"
 pod 'SSZipArchive'  # 加/解压缩
 
+# svg
+pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
 # rn
 config = use_native_modules!
