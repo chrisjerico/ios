@@ -1511,9 +1511,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             if (APP.isBA) {
                 self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
             }
-            if ([@"c126" containsString:APP.SiteId] && [@"70" isEqualToString:self.gameId]) {
-                self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
-            }
+//            if ([@"c126" containsString:APP.SiteId] && [@"70" isEqualToString:self.gameId]) {
+//                self.tmTitleArray = [NSMutableArray arrayWithArray:[CMCommon arrrayReverse:self.tmTitleArray]];
+//            }
         }
         if ([@"正特" isEqualToString:model.name]) {
             [self.ztTitleArray removeAllObjects];

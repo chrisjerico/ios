@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGFundDetailsTableViewController : UITableViewController
+@interface UGFundDetailsTableViewController : UIViewController
 
 @end
 

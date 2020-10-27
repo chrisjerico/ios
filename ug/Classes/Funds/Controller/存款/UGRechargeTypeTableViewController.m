@@ -23,7 +23,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"充值";
     if (APP.isBgColorForMoneyVC) {
         self.tableView.backgroundColor = Skin1.bgColor;
     } else {

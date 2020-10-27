@@ -13,7 +13,7 @@ typedef NS_OPTIONS(NSInteger, RecordType) {
     RecordTypeRecharge,//充值记录
     RecordTypeWithdraw //取款记录
 };
-@interface UGRechargeRecordTableViewController : UITableViewController
+@interface UGRechargeRecordTableViewController : UIViewController
 @property (nonatomic, assign) RecordType recordType;
 
 
