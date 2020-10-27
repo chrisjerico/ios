@@ -289,9 +289,6 @@ static UGTabbarController *_tabBarVC = nil;
         }];
     }
     
-    
-    [[UGSkinManagers skinWithSysConf] useSkin];
-    
     {
         NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
             return obj1.sort > obj2.sort;

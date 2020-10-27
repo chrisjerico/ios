@@ -17,11 +17,10 @@
     });
 }
 
-- (void)cc_postNotificationName:(NSNotificationName)aName object:(id)anObject userInfo:(NSDictionary *)aUserInfo {
-    NSLog(@"发送通知  = %@", aName);
-//    if ([aName isEqualToString:UGNotificationWithSkinSuccess]) {
-//        NSLog(@"主题变化");
-//    }
+- (void)cc_postNotificationName:(NSNotificationName)aName object:(id)anObject userInfo:(NSDictionary *)aUserInfo {    
+    if ([aName hasPrefix:@"UG"]) {
+        NSLog(@"发送通知  = %@", aName);
+    }
     [self cc_postNotificationName:aName object:anObject userInfo:aUserInfo];
 }
 
