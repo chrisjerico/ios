@@ -1507,8 +1507,6 @@ static UGSkinManagers *__initSkin1 = nil;
 	if ([@"c245" containsString:APP.SiteId]) {
 		skitType = @"1";
 	}
-    
-    skitType = @"香槟金6";
 
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
