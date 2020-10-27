@@ -19,6 +19,8 @@
 #import "UGRechargeRecordTableViewController.h"
 #import "UGFundDetailsTableViewController.h"
 #import "UGBalanceConversionRecordController.h"
+#import "UGSignInHistoryModel.h"
+#import "UGSalaryListView.h"
 @interface TKLMoneyViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;          /**<  cell 标题*/
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;      /**<   cell头像*/
@@ -33,6 +35,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;              /**<   刷新按钮 */
 //=========================================================================
 @property (strong, nonatomic)UGYYRightMenuView *yymenuView;   /**<   侧边栏 */
+//=========================================================================
+@property (weak, nonatomic) IBOutlet UIButton *salaryBtn;  /**<   领取俸禄 */
+@property (nonatomic, strong) NSMutableArray <UGSignInHistoryModel *> *historyDataArray;
 @end
 
 @implementation TKLMoneyViewController
@@ -41,6 +46,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"资金管理";
+    _historyDataArray = [NSMutableArray new];
+    [self.salaryBtn.superview setHidden:!APP.isShowSalary];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     self.titleArray = [[NSMutableArray alloc] initWithObjects:@"充值记录",@"提现记录",@"红包记录",@"转换记录",@"资金明细", nil] ;
     self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"tkl_czjl",@"tkl_txjl",@"tkl_hbjl",@"tkl_zzjl",@"tkl_zjmx", nil] ;
@@ -154,6 +161,13 @@
     UGAvaterSelectView *avaterView = [[UGAvaterSelectView alloc] initWithFrame:CGRectMake(0, UGScerrnH, UGScreenW, UGScreenW)];
     [avaterView show];
 }
+//退出登录
+- (IBAction)outApp:(id)sender {
+}
+//领取俸禄
+- (IBAction)lqflAction:(id)sender {
+    [self getMissionBonusList];
+}
 
 //侧边栏
 - (void)rightBarBtnClick {
@@ -166,6 +180,8 @@
     };
     [self.yymenuView show];
 }
+
+
 #pragma mark - UICollectionViewDelegate
 #pragma mark UICollectionView datasource
 //collectionView有几个section
@@ -244,6 +260,42 @@
         [NavController1 pushViewController:detailsVC animated:true];
     }
     
+    
+}
+
+#pragma mark -- 其他方法
+
+//获取俸禄列表数据
+- (void)getMissionBonusList {
+    
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
+
+    [SVProgressHUD showWithStatus:nil];
+    WeakSelf;
+    [CMNetwork getMissionBonusListUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [SVProgressHUD dismiss];
+            NSLog(@"model.data = %@",model.data);
+            weakSelf.historyDataArray = model.data;
+            NSLog(@"_historyDataArray = %@",self.historyDataArray);
+            if (![CMCommon arryIsNull:weakSelf.historyDataArray]) {
+                [weakSelf showUGSignInHistoryView];
+            }
+
+
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+
+}
+- (void)showUGSignInHistoryView {
+
+    UGSalaryListView *notiveView = [[UGSalaryListView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+    notiveView.dataArray = self.historyDataArray;
+    [notiveView.bgView setBackgroundColor: Skin1.navBarBgColor];
+
+    [notiveView show];
     
 }
 @end

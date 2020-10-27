@@ -110,12 +110,15 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlX-rT-DwO">
                                             <rect key="frame" x="0.0" y="0.0" width="76" height="25"/>
+                                            <connections>
+                                                <action selector="outApp:" destination="-1" eventType="touchUpInside" id="H8z-Hh-pGs"/>
+                                            </connections>
                                         </button>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="dailysign" translatesAutoresizingMaskIntoConstraints="NO" id="H3e-2w-itx">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="tkl_tcdl2" translatesAutoresizingMaskIntoConstraints="NO" id="H3e-2w-itx">
                                             <rect key="frame" x="0.0" y="3" width="76" height="19"/>
                                             <rect key="contentStretch" x="0.29999999999999999" y="0.0" width="0.29999999999999999" height="1"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每日签到" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-gb-Qpa">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退出登录" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-gb-Qpa">
                                             <rect key="frame" x="9" y="7" width="37" height="11"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -143,6 +146,9 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-6U-d8N">
                                             <rect key="frame" x="0.0" y="0.0" width="76" height="25"/>
+                                            <connections>
+                                                <action selector="lqflAction:" destination="-1" eventType="touchUpInside" id="eR0-GN-Xbg"/>
+                                            </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="usercenter03" translatesAutoresizingMaskIntoConstraints="NO" id="gkn-Ke-Rt5">
                                             <rect key="frame" x="0.0" y="3" width="76" height="19"/>
@@ -371,10 +377,10 @@
         </view>
     </objects>
     <resources>
-        <image name="dailysign" width="75" height="19.5"/>
         <image name="missionhall" width="75" height="19.5"/>
         <image name="shuaxin" width="24" height="24"/>
         <image name="tkl_czIcon" width="36" height="36"/>
+        <image name="tkl_tcdl2" width="75" height="19.5"/>
         <image name="tkl_txIcon" width="36" height="36"/>
         <image name="txp" width="100" height="100"/>
         <image name="usercenter03" width="75" height="19.5"/>
