@@ -75,12 +75,12 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     cell.item = model;
 
     if ([model.pid isEqualToString:@"xnb_online"] ) {
-        [cell.mBtn setHidden:APP.isNoOnLineDoc || [APP.SiteId isEqualToString:@"c116"]];
+        [cell.mBtn setHidden:APP.isNoOnLineDoc];
         [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 //虚拟教程
             
-            if ([@"c012,test61f" containsString:APP.SiteId]) {
+            if ([@"c012" containsString:APP.SiteId]) {
                 HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
                 vc.webName = @"c012充值";
                 vc.title = @"虚拟币教程";

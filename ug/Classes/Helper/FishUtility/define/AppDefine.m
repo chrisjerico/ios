@@ -228,7 +228,7 @@
     _isChatButton = [@"c186" containsString:_SiteId];
     _isNewLocation = [@"c206" containsString:_SiteId];
     _isNoCry = [@"c018" containsString:_SiteId];
-    _isNoOnLineDoc = NO;
+    _isNoOnLineDoc = [@"c213,c116" containsString:_SiteId];;
     _isHBDoc = [@"c012" containsString:_SiteId];
     _isAllCellStyle = [@"c126" containsString:_SiteId];
     _isC126CellStyle = [@"c126" containsString:_SiteId];
