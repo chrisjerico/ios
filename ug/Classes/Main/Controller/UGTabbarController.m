@@ -710,61 +710,61 @@ static UGTabbarController *_tabBarVC = nil;
             
             if (unreadArray.count > 0) {
                 for (UGMessageModel *model in [unreadArray reverseObjectEnumerator]) {
-                    self.popView.content = model.content;
-                    self.popView.titleLabel.text = model.title;
-                    self.popView.clickBllock = ^{
+//                    self.popView.content = model.content;
+//                    self.popView.titleLabel.text = model.title;
+//                    self.popView.clickBllock = ^{
+//                            readMessage(model);
+//                            dispatch_resume(APP.messageRequestTimer);
+//                    };
+//                    [self.popView show];
+                    
+                    if (Skin1.isBlack) {
+                        [LEEAlert alert].config
+                        .LeeAddTitle(^(UILabel *label) {
+                            label.text = model.title;
+                            label.textColor = [UIColor whiteColor];
+                        })
+                        .LeeAddContent(^(UILabel *label) {
+                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+                            ps.lineSpacing = 5;
+                            [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+                            
+                            // 替换文字颜色
+                            NSAttributedString *as = [mas copy];
+                            for (int i=0; i<as.length; i++) {
+                                NSRange r = NSMakeRange(0, as.length);
+                                NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+                                UIColor *c = dict[NSForegroundColorAttributeName];
+                                if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+                                    dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                                    [mas addAttributes:dict range:NSMakeRange(i, 1)];
+                                }
+                            }
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                label.attributedText = mas;
+                            });
+                        })
+                        .LeeHeaderColor(Skin1.bgColor)
+                        .LeeAction(@"确定", ^{
                             readMessage(model);
                             dispatch_resume(APP.messageRequestTimer);
-                    };
-                    [self.popView show];
-                    
-//                    if (Skin1.isBlack) {
-//                        [LEEAlert alert].config
-//                        .LeeAddTitle(^(UILabel *label) {
-//                            label.text = model.title;
-//                            label.textColor = [UIColor whiteColor];
-//                        })
-//                        .LeeAddContent(^(UILabel *label) {
-//                            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-//                            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-//                            ps.lineSpacing = 5;
-//                            [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
-//                            
-//                            // 替换文字颜色
-//                            NSAttributedString *as = [mas copy];
-//                            for (int i=0; i<as.length; i++) {
-//                                NSRange r = NSMakeRange(0, as.length);
-//                                NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-//                                UIColor *c = dict[NSForegroundColorAttributeName];
-//                                if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-//                                    dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-//                                    [mas addAttributes:dict range:NSMakeRange(i, 1)];
-//                                }
-//                            }
-//                            
-//                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                label.attributedText = mas;
-//                            });
-//                        })
-//                        .LeeHeaderColor(Skin1.bgColor)
-//                        .LeeAction(@"确定", ^{
-//                            readMessage(model);
-//                            dispatch_resume(APP.messageRequestTimer);
-//                        })
-//                        .LeeShow(); // 设置完成后 别忘记调用Show来显示
-//                    }
-//                    else {
-//                        [LEEAlert alert].config
-//                        .LeeTitle(model.title)
-//                        .LeeAddContent(^(UILabel *label) {
-//                            label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-//                        })
-//                        .LeeAction(@"确定", ^{
-//                            readMessage(model);
-//                            dispatch_resume(APP.messageRequestTimer);
-//                        })
-//                        .LeeShow(); // 设置完成后 别忘记调用Show来显示
-//                    }
+                        })
+                        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                    }
+                    else {
+                        [LEEAlert alert].config
+                        .LeeTitle(model.title)
+                        .LeeAddContent(^(UILabel *label) {
+                            label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+                        })
+                        .LeeAction(@"确定", ^{
+                            readMessage(model);
+                            dispatch_resume(APP.messageRequestTimer);
+                        })
+                        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+                    }
                 }
             } else {
                 dispatch_resume(APP.messageRequestTimer);
