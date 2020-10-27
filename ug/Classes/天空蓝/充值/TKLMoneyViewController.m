@@ -163,6 +163,15 @@
 }
 //退出登录
 - (IBAction)outApp:(id)sender {
+    [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                UGUserModel.currentUser = nil;
+                SANotificationEventPost(UGNotificationUserLogout, nil);
+            });
+        }
+    }];
 }
 //领取俸禄
 - (IBAction)lqflAction:(id)sender {

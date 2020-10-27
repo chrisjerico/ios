@@ -73,6 +73,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    self.title = @"提现";
 	self.view.backgroundColor = Skin1.textColor4;
 	[self.limitLabel setTextColor:Skin1.textColor1];
 	[self.titleLabel setTextColor:Skin1.textColor1];

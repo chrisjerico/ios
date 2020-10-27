@@ -41,12 +41,15 @@
 #import "JYMineCollectionViewCell.h"
 #import "UGSignInHistoryModel.h"
 #import "UGSalaryListView.h"
+#import "CMLabelCommon.h"
+#import "TKLMainViewController.h"
+
 @interface UGMineSkinViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSString *skitType;
     NSInteger unreadMsg;
 }
-@property (weak, nonatomic) IBOutlet UIView *userInfoView;
+@property (weak, nonatomic) IBOutlet UIView *userInfoView;/**<   头View */
 @property (weak, nonatomic) IBOutlet UIView *topupView;  /**<   头视图 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topupViewNSLayoutConstraintHight;
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollectionView;
@@ -82,6 +85,17 @@
 //===================================================
 @property (weak, nonatomic) IBOutlet UIButton *salaryBtn; /**<   领取俸禄 */
 @property (nonatomic, strong) NSMutableArray <UGSignInHistoryModel *> *historyDataArray;
+
+//===================================================天空蓝
+@property (weak, nonatomic) IBOutlet UIView *tkl_userInfoView;                      /**<   头View */
+@property (weak, nonatomic) IBOutlet UIImageView *tkl_headImageView;                /**<   用户头像 */
+@property (weak, nonatomic) IBOutlet UILabel *tkl_userNameLabel;                    /**<   用户昵称 */
+@property (weak, nonatomic) IBOutlet UILabel *tkl_userMoneyLabel;                   /**<   用户余额 */
+@property (weak, nonatomic) IBOutlet UILabel *tkl_uidLabel;                         /**<   用户id */
+@property (weak, nonatomic) IBOutlet UIButton *tkl_refreshFirstButton;              /**<   刷新按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *tkl_salaryBtn;                       /**<   领取俸禄 */
+@property (weak, nonatomic) IBOutlet UIButton *tkl_taskButton;  /**<    转换额度*/
+@property (weak, nonatomic) IBOutlet UIButton *tkl_signButton;   /**<   退出登录*/
 @end
 
 @implementation UGMineSkinViewController
@@ -155,13 +169,19 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.refreshFirstButton.layer removeAllAnimations];
+    [self stopAnimation];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (self.refreshFirstButton.selected)
-        [self startAnimation];
+    if (Skin1.isTKL) {
+        if (self.tkl_refreshFirstButton.selected)
+            [self startAnimation];
+    } else {
+        if (self.refreshFirstButton.selected)
+            [self startAnimation];
+    }
+   
 }
 
 - (void)viewDidLayoutSubviews {
@@ -179,6 +199,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (Skin1.isTKL) {
+        [self.userInfoView setHidden: YES];
+        [self.tkl_userInfoView setHidden: NO];
+        [self.tkl_userInfoView setBackgroundColor: Skin1.navBarBgColor];
+        self.tkl_headImageView.layer.cornerRadius = self.tkl_headImageView.height / 2 ;
+        self.tkl_headImageView.layer.masksToBounds = YES;
+        self.tkl_headImageView.userInteractionEnabled = YES;
+    }
+    else{
+        [self.userInfoView setHidden: NO];
+        [self.tkl_userInfoView setHidden: YES];
+        if (APP.isC217RWDT) {
+            [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
+        } else {
+            [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
+        }
+    }
+    
     [self skin];
     //注册通知
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
@@ -187,14 +226,15 @@
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
         [self getSystemConfig];
     });
-//    SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
-//        [self getSystemConfig];
-//        [self.refreshFirstButton.layer removeAllAnimations];
-//        [self setupUserInfo:NO];
-//        [self.myCollectionView reloadData];
-//    });
+
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+        if (Skin1.isTKL) {
+            [self.tkl_headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+        } else {
+            [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+        }
+        
+        
     });
     
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
@@ -254,17 +294,7 @@
     [self initCollectionView];
     
     
-    if (Skin1.isTKL) {
-        [self.taskButton setImage:[UIImage imageNamed:@"tkl_edzh"] forState:(UIControlStateNormal)];
-        [self.signButton setImage:[UIImage imageNamed:@"tkl_tcdl"] forState:(UIControlStateNormal)];
-    }
-    else{
-        if (APP.isC217RWDT) {
-            [self.taskButton setImage:[UIImage imageNamed:@"missionhallc217"] forState:(UIControlStateNormal)];
-        } else {
-            [self.taskButton setImage:[UIImage imageNamed:@"missionhall"] forState:(UIControlStateNormal)];
-        }
-    }
+
     
     if (APP.isC217RWDT) {
         ((UILabel *)[self.taskButton.superview viewWithTagString:@"任务中心Label"]).text = @"任务大厅";
@@ -277,6 +307,9 @@
         self.secondVipLabel.hidden = YES;
         self.progressView.hidden = YES;
     }
+    
+    
+   
     
     
 }
@@ -700,12 +733,22 @@ BOOL isOk = NO;
     ReFreshAnimation.toValue = [NSNumber numberWithFloat:M_PI*2.0];
     ReFreshAnimation.duration = 1;
     ReFreshAnimation.repeatCount = HUGE_VALF;
-    [self.refreshFirstButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
+    if (Skin1.isTKL) {
+        [self.tkl_refreshFirstButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
+    } else {
+        [self.refreshFirstButton.layer addAnimation:ReFreshAnimation forKey:@"rotationAnimation"];
+    }
+    
 }
 
 //刷新余额动画
 - (void)stopAnimation {
-    [self.refreshFirstButton.layer removeAllAnimations];
+    if (Skin1.isTKL) {
+        [self.tkl_refreshFirstButton.layer removeAllAnimations];
+    } else {
+        [self.refreshFirstButton.layer removeAllAnimations];
+    }
+   
 }
 
 - (CAShapeLayer *)containerLayer {
@@ -752,20 +795,42 @@ BOOL isOk = NO;
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-    
-    
-    if (!Skin1.isTKL) {
+
+    if (Skin1.isTKL) {
         if ([config.missionSwitch isEqualToString:@"0"]) {
-            [self.taskButton.superview setHidden:NO];
+            [self.tkl_taskButton.superview setHidden:NO];
             if ([config.checkinSwitch isEqualToString:@"0"]) {
-                [self.signButton.superview setHidden:YES];
+                [self.tkl_signButton.superview setHidden:YES];
             } else {
-                [self.signButton.superview setHidden:NO];
+                [self.tkl_signButton.superview setHidden:NO];
             }
         } else {
-            [self.taskButton.superview setHidden:YES];
-            [self.signButton.superview setHidden:YES];
+            [self.tkl_taskButton.superview setHidden:YES];
+            [self.tkl_signButton.superview setHidden:YES];
         }
+        [self.tkl_headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
+        if (![CMCommon stringIsNull:user.username]) {
+            self.tkl_userNameLabel.text = [NSString stringWithFormat:@"您好,%@",user.username];
+        }
+        if (![CMCommon stringIsNull:user.balance]) {
+            self.tkl_userMoneyLabel.text = [NSString stringWithFormat:@"余额:%@ 元",user.balance];
+            [CMLabelCommon setRichNumberWithLabel:self.tkl_userMoneyLabel Color:RGBA(255, 211, 0, 1) FontSize:17.0];
+        }
+        if (![CMCommon stringIsNull:user.uid]) {
+            self.tkl_uidLabel.text = [NSString stringWithFormat:@"用户ID:%@",user.uid];
+        }
+    }
+    
+    if ([config.missionSwitch isEqualToString:@"0"]) {
+        [self.taskButton.superview setHidden:NO];
+        if ([config.checkinSwitch isEqualToString:@"0"]) {
+            [self.signButton.superview setHidden:YES];
+        } else {
+            [self.signButton.superview setHidden:NO];
+        }
+    } else {
+        [self.taskButton.superview setHidden:YES];
+        [self.signButton.superview setHidden:YES];
     }
     
     if (flag) {
@@ -884,7 +949,23 @@ BOOL isOk = NO;
     }
     
 }
+//退出登录
+- (IBAction)outApp:(id)sender {
+    [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+                UGUserModel.currentUser = nil;
+                SANotificationEventPost(UGNotificationUserLogout, nil);
+            });
+        }
+    }];
+}
 
+- (IBAction)edzhAction:(id)sender {
+    TKLMainViewController *vc = [[TKLMainViewController alloc] init];
+    [NavController1 pushViewController:vc animated:true];
+}
 // 领取俸禄
 - (IBAction)goSalary:(id)sender {
     
