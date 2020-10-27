@@ -380,9 +380,7 @@ static LogVC *_logVC = nil;
     if (tableView == _reqTableView) {
         _selectedModel = (_collectButton.selected ? _collects : _allRequest)[indexPath.row];
         _selectedModelKeys = _selectedModel.params.allKeys;
-        if (_selectedModel.error) {
-            _retTextView.text = [_selectedModel.error description];
-        } else if (_selectedModel.resObject) {
+        if (_selectedModel.resObject) {
             __block CCSessionModel *lastModel = _selectedModel;
             NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.resObject options:NSJSONWritingPrettyPrinted error:nil];
             if (data.length > 10000) {
@@ -395,6 +393,8 @@ static LogVC *_logVC = nil;
             } else {
                 _retTextView.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             }
+        } else {
+            _retTextView.text = [_selectedModel.error description];
         }
         [_paramsTableView reloadData];
     } else {

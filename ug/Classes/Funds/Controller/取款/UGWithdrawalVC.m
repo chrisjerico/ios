@@ -119,7 +119,8 @@
     __weakSelf_(__self);
     FastSubViewCode(self.view);
     [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
-        if (!sm.error) {
+        sm.noShowErrorHUD = true;
+        if (!sm.error || sm.resObject[@"data"][@"allAccountList"]) {
             NSMutableArray *wams = @[].mutableCopy;
             NSMutableArray *wtms = @[].mutableCopy;
             for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {

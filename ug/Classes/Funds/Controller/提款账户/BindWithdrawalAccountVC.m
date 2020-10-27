@@ -49,11 +49,12 @@
     }
     __weakSelf_(__self);
     [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+        sm.noShowErrorHUD = true;
         [SVProgressHUD dismiss];
         for (UIView *subview in __self.view.subviews) {
             subview.hidden = false;
         }
-        if (!sm.error) {
+        if (!sm.error || sm.resObject[@"data"][@"allAccountList"]) {
             NSMutableArray *temp = @[].mutableCopy;
             for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {
                 WithdrawalTypeModel *wam = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
@@ -80,8 +81,9 @@
         [SVProgressHUD show];
         __weakSelf_(__self);
         [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+            sm.noShowErrorHUD = true;
             [SVProgressHUD dismiss];
-            if (!sm.error) {
+            if (!sm.error || sm.resObject[@"data"][@"allAccountList"]) {
                 NSMutableArray *temp = @[].mutableCopy;
                 for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {
                     WithdrawalTypeModel *wam = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
