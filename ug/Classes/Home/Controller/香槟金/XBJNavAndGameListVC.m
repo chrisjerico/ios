@@ -30,12 +30,15 @@
     _navCollectionViewHeightConstraint.constant = (_gcdm.navs.count/4 + !!(_gcdm.navs.count%4)) * 70;
     
     __weakSelf_(__self);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    FastSubViewCode(self.view);
+    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+        subView(@"导航顶部提示View").backgroundColor = Skin1.navBarBgColor;
+        self.navCollectionView.superview.superview.backgroundColor = Skin1.homeContentColor;
+        [self.gameTableView reloadData];
         NSIndexPath *ip = [NSIndexPath indexPathForRow:0 inSection:0];
         [__self.gameTableView selectRowAtIndexPath:ip animated:true scrollPosition:UITableViewScrollPositionNone];
         [__self tableView:__self.gameTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     });
-    
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
         [self refreshUIWithIsLogin:true];
     });
@@ -138,7 +141,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     FastSubViewCode(cell);
     GameCategoryModel *gcm = tableView.dataArray[indexPath.row];
-    subView(@"背景色View").backgroundColor = cell.selected ? UIColorRGB(68, 58, 153) : Skin1.homeContentColor;
+    subView(@"背景色View").backgroundColor = cell.selected ? Skin1.navBarBgColor : Skin1.homeContentColor;
     [subImageView(@"游戏分类图标ImageView") sd_setImageWithURL:[NSURL URLWithString:gcm.logo]];
     subLabel(@"游戏分类标题Label").text = gcm.name;
     subLabel(@"游戏分类标题Label").textColor = cell.selected ? UIColor.whiteColor : UIColor.blackColor;
@@ -151,7 +154,7 @@
     [_gameCollectionView reloadData];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     FastSubViewCode(cell);
-    subView(@"背景色View").backgroundColor = UIColorRGB(68, 58, 153);
+    subView(@"背景色View").backgroundColor = Skin1.navBarBgColor;
     subLabel(@"游戏分类标题Label").textColor = UIColor.whiteColor;
     
     CGFloat tableViewH = tableView.dataArray.count * 64;

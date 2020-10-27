@@ -2009,6 +2009,7 @@
 		CF722BDC25416E3400939A7C /* UGOnlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF722BDA25416E3400939A7C /* UGOnlineView.m */; };
 		CF722BE225416F7600939A7C /* UGOnlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF722BE125416F7600939A7C /* UGOnlineView.xib */; };
 		CF722BE325416F7600939A7C /* UGOnlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF722BE125416F7600939A7C /* UGOnlineView.xib */; };
+		CF7249BA2546D1E4005BAC2D /* NSNotificationCenter+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7249B92546D1E4005BAC2D /* NSNotificationCenter+Log.m */; };
 		CF76AA0124D41B23001E4AF6 /* ztlight2-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */; };
 		CF76AA0224D41B23001E4AF6 /* ztlight-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */; };
 		CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */; };
@@ -4108,6 +4109,8 @@
 		CF722BD925416E3400939A7C /* UGOnlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGOnlineView.h; sourceTree = "<group>"; };
 		CF722BDA25416E3400939A7C /* UGOnlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGOnlineView.m; sourceTree = "<group>"; };
 		CF722BE125416F7600939A7C /* UGOnlineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGOnlineView.xib; sourceTree = "<group>"; };
+		CF7249B82546D1E4005BAC2D /* NSNotificationCenter+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+Log.h"; sourceTree = "<group>"; };
+		CF7249B92546D1E4005BAC2D /* NSNotificationCenter+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Log.m"; sourceTree = "<group>"; };
 		CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight2-yn.gif"; sourceTree = "<group>"; };
 		CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight-yn.gif"; sourceTree = "<group>"; };
 		CF80DE0924DBDABB005234D8 /* WKUserContentController+MemoryLeak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKUserContentController+MemoryLeak.h"; sourceTree = "<group>"; };
@@ -4925,6 +4928,8 @@
 			children = (
 				031E147E23BE812300B0F813 /* UIViewController+Log.h */,
 				031E147F23BE812300B0F813 /* UIViewController+Log.m */,
+				CF7249B82546D1E4005BAC2D /* NSNotificationCenter+Log.h */,
+				CF7249B92546D1E4005BAC2D /* NSNotificationCenter+Log.m */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -11448,6 +11453,7 @@
 				031E193E23BE812600B0F813 /* UIImage+YYgradientImage.m in Sources */,
 				031E1DA623BE812B00B0F813 /* UGwithdrawListModel.m in Sources */,
 				031E1AA423BE812800B0F813 /* YBPopupMenu.m in Sources */,
+				CF7249BA2546D1E4005BAC2D /* NSNotificationCenter+Log.m in Sources */,
 				4959678224E25C8A005D5B53 /* SUCache.m in Sources */,
 				031E1D9823BE812B00B0F813 /* UGYubaoConversionCenterController.m in Sources */,
 				D40745C82511F37900606EA3 /* YNBetDetailView.m in Sources */,

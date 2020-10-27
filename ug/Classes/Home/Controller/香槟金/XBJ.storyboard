@@ -84,6 +84,9 @@
                                                             <constraint firstAttribute="trailing" secondItem="rVO-wk-vKM" secondAttribute="trailing" constant="12" id="bVT-B8-BAb"/>
                                                             <constraint firstItem="gsl-KP-vFT" firstAttribute="leading" secondItem="PSr-VI-bME" secondAttribute="leading" constant="12" id="mYD-V2-Rh5"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="导航顶部提示View"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXx-vq-Y2A">
                                                         <rect key="frame" x="0.0" y="28" width="351" height="70"/>

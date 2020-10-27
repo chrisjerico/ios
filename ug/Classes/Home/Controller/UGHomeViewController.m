@@ -182,7 +182,9 @@
         }
     }
     
-    
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        self.contentScrollView.backgroundColor = Skin1.bgColor;
+    }
     
     // GPK版的UI调整
     BOOL isGPK = Skin1.isGPK;
