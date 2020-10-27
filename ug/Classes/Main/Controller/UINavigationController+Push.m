@@ -43,6 +43,9 @@
 #import "RedEnvelopeVCViewController.h"
 #import "UGLotteryRulesView.h"
 #import "UGgoBindViewController.h"
+#import "UGRechargeTypeTableViewController.h"   //  存款
+#import "UGWithdrawalViewController.h"          //提现
+#import "UGFundDetailsTableViewController.h"    //资金明细
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -631,16 +634,29 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 21: {
             //21' => '充值',
-            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-            fundsVC.selectIndex = 0;
-            [NavController1 pushViewController:fundsVC animated:true];
+            if (Skin1.isTKL) {
+                UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                [NavController1 pushViewController:rechargeVC animated:YES];
+            } else {
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 0;
+                [NavController1 pushViewController:fundsVC animated:true];
+            }
+           
             break;
         }
         case 22: {
             //22' => '提现',
-            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-            fundsVC.selectIndex = 1;
-            [NavController1 pushViewController:fundsVC animated:true];
+            if (Skin1.isTKL) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
+                UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
+                [NavController1 pushViewController:withdrawalVC animated:YES];
+            } else {
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 1;
+                [NavController1 pushViewController:fundsVC animated:true];
+            }
+ 
             break;
         }
         case 23: {
@@ -683,9 +699,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 28: {
             //21' => '资金明细',
 //            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
-            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-            fundsVC.selectIndex = 4;
-            [NavController1 pushViewController:fundsVC animated:YES];
+            
+            if (Skin1.isTKL) {
+                UGFundDetailsTableViewController *detailsVC = _LoadVC_from_storyboard_(@"UGFundDetailsTableViewController");
+                [NavController1 pushViewController:detailsVC animated:true];
+            } else {
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 4;
+                [NavController1 pushViewController:fundsVC animated:YES];
+            }
+
             return true;
             
             break;

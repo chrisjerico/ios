@@ -14,6 +14,11 @@
 #import "CMLabelCommon.h"
 #import "STBarButtonItem.h"
 #import "UGAvaterSelectView.h"
+#import "UGRechargeTypeTableViewController.h"
+#import "UGWithdrawalViewController.h"
+#import "UGRechargeRecordTableViewController.h"
+#import "UGFundDetailsTableViewController.h"
+#import "UGBalanceConversionRecordController.h"
 @interface TKLMoneyViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;          /**<  cell 标题*/
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;      /**<   cell头像*/
@@ -35,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"充值";
+    self.title = @"资金管理";
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     self.titleArray = [[NSMutableArray alloc] initWithObjects:@"充值记录",@"提现记录",@"红包记录",@"转换记录",@"资金明细", nil] ;
     self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"tkl_czjl",@"tkl_txjl",@"tkl_hbjl",@"tkl_zzjl",@"tkl_zjmx", nil] ;
@@ -132,15 +137,14 @@
 }
 - (IBAction)rechargeButtonTaped:(id)sender {
     //存款
-    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-    fundsVC.selectIndex = 0;
-    [self.navigationController pushViewController:fundsVC animated:YES];
+    UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:rechargeVC animated:YES];
 }
 - (IBAction)withdrawButtonTaped:(id)sender {
     //提现
-    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-    fundsVC.selectIndex = 1;
-    [self.navigationController pushViewController:fundsVC animated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
+    UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
+    [self.navigationController pushViewController:withdrawalVC animated:YES];
 }
 //换头像
 - (IBAction)showAvaterSelectView {
@@ -216,14 +220,14 @@
 - (void)didSelectCellWithTitle:(NSString *)title {
 
     if ([title hasPrefix:@"充值记录"]) {
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 2;
-        [NavController1 pushViewController:fundsVC animated:true];
+        UGRechargeRecordTableViewController *rechargeRecordVC = _LoadVC_from_storyboard_(@"UGRechargeRecordTableViewController");
+        rechargeRecordVC.recordType = RecordTypeRecharge;
+        [NavController1 pushViewController:rechargeRecordVC animated:true];
     }
     else if ([title isEqualToString:@"提现记录"]) {
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 3;
-        [NavController1 pushViewController:fundsVC animated:true];
+        UGRechargeRecordTableViewController *rechargeRecordVC =  _LoadVC_from_storyboard_(@"UGRechargeRecordTableViewController");
+        rechargeRecordVC.recordType = RecordTypeWithdraw;
+        [NavController1 pushViewController:rechargeRecordVC animated:true];
     }
     else if ([title isEqualToString:@"红包记录"]) {
         RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
@@ -231,12 +235,13 @@
         [NavController1 pushViewController:recordVC animated:true];
     }
     else if ([title isEqualToString:@"转换记录"]) {
-       
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+        UGBalanceConversionRecordController *recordVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionRecordController"];
+        [self.navigationController pushViewController:recordVC animated:YES];
     }
     else if ([title isEqualToString:@"资金明细"]) {
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 4;
-        [NavController1 pushViewController:fundsVC animated:true];
+        UGFundDetailsTableViewController *detailsVC = _LoadVC_from_storyboard_(@"UGFundDetailsTableViewController");
+        [NavController1 pushViewController:detailsVC animated:true];
     }
     
     

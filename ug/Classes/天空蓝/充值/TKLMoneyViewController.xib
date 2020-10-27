@@ -66,20 +66,20 @@
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ajX-W1-PIg">
-                            <rect key="frame" x="330" y="7.5" width="76" height="85"/>
+                            <rect key="frame" x="330" y="22.5" width="76" height="55"/>
                             <subviews>
-                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="V4l-EX-kk5">
-                                    <rect key="frame" x="0.0" y="0.0" width="76" height="25"/>
+                                <view hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="V4l-EX-kk5">
+                                    <rect key="frame" x="0.0" y="-14" width="76" height="14"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1LE-Zt-5R5">
-                                            <rect key="frame" x="0.0" y="0.0" width="76" height="25"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="76" height="14"/>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="missionhall" translatesAutoresizingMaskIntoConstraints="NO" id="p5G-MN-M7N">
-                                            <rect key="frame" x="0.0" y="3" width="76" height="19"/>
+                                            <rect key="frame" x="0.0" y="3" width="76" height="8"/>
                                             <rect key="contentStretch" x="0.29999999999999999" y="0.0" width="0.29999999999999999" height="1"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务中心" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIL-ad-3wd">
-                                            <rect key="frame" x="9" y="7" width="37" height="11"/>
+                                            <rect key="frame" x="9" y="7" width="37" height="0.0"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -106,7 +106,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="yrQ-eP-Gjk">
-                                    <rect key="frame" x="0.0" y="30" width="76" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="76" height="25"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlX-rT-DwO">
                                             <rect key="frame" x="0.0" y="0.0" width="76" height="25"/>
@@ -139,7 +139,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="bxk-bU-qno">
-                                    <rect key="frame" x="0.0" y="60" width="76" height="25"/>
+                                    <rect key="frame" x="0.0" y="30" width="76" height="25"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1O-6U-d8N">
                                             <rect key="frame" x="0.0" y="0.0" width="76" height="25"/>

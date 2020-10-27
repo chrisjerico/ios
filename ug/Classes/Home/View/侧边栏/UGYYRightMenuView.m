@@ -23,9 +23,10 @@
 #import "SLWebViewController.h"
 #import "LotteryTrendVC.h"
 #import "RedEnvelopeVCViewController.h"
-
+#import "UGRechargeTypeTableViewController.h"
 #import "GameCategoryDataModel.h"
 #import "YBPopupMenu.h"
+#import "UGWithdrawalViewController.h"
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource, YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -701,14 +702,29 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
     }
     else if ([title isEqualToString:@"充值"]) {
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 0;
-        [NavController1 pushViewController:fundsVC animated:true];
+        
+        if(Skin1.isTKL){
+            UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [NavController1 pushViewController:rechargeVC animated:YES];
+        }
+        else{
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+            fundsVC.selectIndex = 0;
+            [NavController1 pushViewController:fundsVC animated:true];
+        }
+  
     }
     else if ([title isEqualToString:@"提现"]) {
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 1;
-        [NavController1 pushViewController:fundsVC animated:true];
+        if (Skin1.isTKL) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
+            UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
+            [NavController1 pushViewController:withdrawalVC animated:YES];
+        } else {
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+            fundsVC.selectIndex = 1;
+            [NavController1 pushViewController:fundsVC animated:true];
+        }
+       
     }
     else if ([title isEqualToString:@"优惠活动"]) {
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];

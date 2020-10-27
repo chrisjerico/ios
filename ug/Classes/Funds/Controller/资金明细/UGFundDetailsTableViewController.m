@@ -12,6 +12,7 @@
 #import "BetDetailViewController.h"
 
 @interface UGFundDetailsTableViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray <UGFundLogsModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
@@ -31,6 +32,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"资金明细";
      [self.view setBackgroundColor: Skin1.bgColor];
     self.pageSize = size;
     self.pageNumber = page;
@@ -48,7 +50,16 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     self.startTime = [formatter stringFromDate:startDay];
     [self setupRefreshView];
     [self getFundLogs];
+    
+//    [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
+//     {
+//        make.left.equalTo(self.view.mas_left).with.offset(0);
+//        make.top.bottom.equalTo(self.view).offset(0);
+//        make.width.mas_equalTo(UGScreenW);
+//    }];
 }
+
+
 
 //添加上下拉刷新
 - (void)setupRefreshView
@@ -136,7 +147,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001f;
+    return 0.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

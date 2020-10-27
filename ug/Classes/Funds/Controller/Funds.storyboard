@@ -163,6 +163,74 @@
             </objects>
             <point key="canvasLocation" x="-272" y="94"/>
         </scene>
+        <!--资金明细-->
+        <scene sceneID="Cva-b7-VjI">
+            <objects>
+                <viewController storyboardIdentifier="UGFundDetailsTableViewController" title="资金明细" id="z8H-kT-1EU" customClass="UGFundDetailsTableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dKq-6q-tS4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oRL-Vi-1bA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="z8H-kT-1EU" id="PFT-kG-O3c"/>
+                                    <outlet property="delegate" destination="z8H-kT-1EU" id="bio-ob-Q1D"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bQL-er-w5c"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oRL-Vi-1bA" firstAttribute="leading" secondItem="bQL-er-w5c" secondAttribute="leading" id="UCs-pF-5ZE"/>
+                            <constraint firstItem="bQL-er-w5c" firstAttribute="bottom" secondItem="oRL-Vi-1bA" secondAttribute="bottom" id="YdZ-8v-AmJ"/>
+                            <constraint firstItem="bQL-er-w5c" firstAttribute="trailing" secondItem="oRL-Vi-1bA" secondAttribute="trailing" id="t2i-7B-Rsh"/>
+                            <constraint firstItem="oRL-Vi-1bA" firstAttribute="top" secondItem="bQL-er-w5c" secondAttribute="top" id="zx9-5Q-mjz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="oRL-Vi-1bA" id="bxl-Vs-5y5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eM5-W4-1sI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-246" y="813"/>
+        </scene>
+        <!--充值记录-->
+        <scene sceneID="WNp-yy-uiH">
+            <objects>
+                <viewController storyboardIdentifier="UGRechargeRecordTableViewController" title="充值记录" id="QNi-NO-lKd" customClass="UGRechargeRecordTableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rbW-5y-21z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fUP-jg-9OT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="QNi-NO-lKd" id="McE-r6-YDf"/>
+                                    <outlet property="delegate" destination="QNi-NO-lKd" id="IAD-q7-2Ly"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CCN-e7-Mac"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fUP-jg-9OT" firstAttribute="top" secondItem="CCN-e7-Mac" secondAttribute="top" id="Lsd-Yr-Ktf"/>
+                            <constraint firstItem="CCN-e7-Mac" firstAttribute="trailing" secondItem="fUP-jg-9OT" secondAttribute="trailing" id="ZFU-HU-cX6"/>
+                            <constraint firstItem="CCN-e7-Mac" firstAttribute="bottom" secondItem="fUP-jg-9OT" secondAttribute="bottom" id="lX6-NL-rhd"/>
+                            <constraint firstItem="fUP-jg-9OT" firstAttribute="leading" secondItem="CCN-e7-Mac" secondAttribute="leading" id="t55-u3-r3o"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="fUP-jg-9OT" id="rtV-Ue-6X2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sK1-Yd-OwY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="588" y="826"/>
+        </scene>
         <!--虚拟币充值-->
         <scene sceneID="UPy-sS-LHf">
             <objects>
