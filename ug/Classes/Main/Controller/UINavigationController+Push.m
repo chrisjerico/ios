@@ -635,7 +635,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 21: {
             //21' => '充值',
             if (Skin1.isTKL) {
-                UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+                UGRechargeTypeTableViewController *rechargeVC = _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
                 [NavController1 pushViewController:rechargeVC animated:YES];
             } else {
                 UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");

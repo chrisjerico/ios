@@ -16,6 +16,8 @@
 @interface UGRechargeTypeTableViewController ()
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
 @property (nonatomic, strong) NSMutableArray <UGpaymentModel *> *tableViewDataArray;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";

@@ -704,7 +704,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"充值"]) {
         
         if(Skin1.isTKL){
-            UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            UGRechargeTypeTableViewController *rechargeVC = _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
             [NavController1 pushViewController:rechargeVC animated:YES];
         }
         else{

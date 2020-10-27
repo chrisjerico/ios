@@ -196,7 +196,7 @@
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
     // 存款
     if (number == 0) {
-        UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        UGRechargeTypeTableViewController *rechargeVC =  _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
         return rechargeVC;
     }
     // 取款

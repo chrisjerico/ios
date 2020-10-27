@@ -144,7 +144,7 @@
 }
 - (IBAction)rechargeButtonTaped:(id)sender {
     //存款
-    UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UGRechargeTypeTableViewController *rechargeVC = _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
     [self.navigationController pushViewController:rechargeVC animated:YES];
 }
 - (IBAction)withdrawButtonTaped:(id)sender {
