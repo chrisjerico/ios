@@ -54,8 +54,8 @@
 
                 
 
-                NSString *ids = @"c213";    // 站点编号(可以批量打包用','号隔开)每天上班第一件事打t005
-                NSString *branch = @"dev_master_waitWithdrawal";// 分支名dev_master_waitWithdrawal
+                NSString *ids = @"c084,c085,c213,c134,c200,c208,c012,c092,a002,c035";    // 站点编号(可以批量打包用','号隔开)每天上班第一件事打t005
+                NSString *branch = @"dev_master";// 分支名dev_master_waitWithdrawal
                 BOOL willUpload = 1;        // 打包后是否上传审核
 
                 // 高权限操作
