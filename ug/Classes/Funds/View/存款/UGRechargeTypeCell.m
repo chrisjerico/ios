@@ -50,9 +50,8 @@
                      if (APP.isBgColorForMoneyVC) {
                          dict[NSForegroundColorAttributeName] = [UIColor whiteColor];
                      } else {
-                         dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+                         dict[NSFontAttributeName] = Skin1.textColor2;
                      }
-                     
                      [mas addAttributes:dict range:NSMakeRange(i, 1)];
                  }
              }
@@ -61,9 +60,10 @@
              
              mas;
          });
+         [self.nameLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
      }
      else{
-        [self.nameLabel setFont:[UIFont boldSystemFontOfSize:18.0]];
+        [self.nameLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
      }
 
 }
