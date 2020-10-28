@@ -2017,6 +2017,10 @@
 		CF6E4E87252D541C00ABF719 /* BindWithdrawalAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6E4E85252D541C00ABF719 /* BindWithdrawalAccountVC.m */; };
 		CF6E4E8B252D547900ABF719 /* WithdrawalAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6E4E8A252D547900ABF719 /* WithdrawalAccount.storyboard */; };
 		CF6E4E8C252D547900ABF719 /* WithdrawalAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6E4E8A252D547900ABF719 /* WithdrawalAccount.storyboard */; };
+		CF6ED3E1254961DB00C8D739 /* TKLRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6ED3E0254961DB00C8D739 /* TKLRegisterViewController.m */; };
+		CF6ED3E2254961DB00C8D739 /* TKLRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6ED3E0254961DB00C8D739 /* TKLRegisterViewController.m */; };
+		CF6ED3E7254961F500C8D739 /* TKLStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6ED3E6254961F500C8D739 /* TKLStoryboard.storyboard */; };
+		CF6ED3E8254961F500C8D739 /* TKLStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF6ED3E6254961F500C8D739 /* TKLStoryboard.storyboard */; };
 		CF722BDB25416E3400939A7C /* UGOnlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF722BDA25416E3400939A7C /* UGOnlineView.m */; };
 		CF722BDC25416E3400939A7C /* UGOnlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF722BDA25416E3400939A7C /* UGOnlineView.m */; };
 		CF722BE225416F7600939A7C /* UGOnlineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF722BE125416F7600939A7C /* UGOnlineView.xib */; };
@@ -4125,6 +4129,9 @@
 		CF6E4E84252D541C00ABF719 /* BindWithdrawalAccountVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindWithdrawalAccountVC.h; sourceTree = "<group>"; };
 		CF6E4E85252D541C00ABF719 /* BindWithdrawalAccountVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindWithdrawalAccountVC.m; sourceTree = "<group>"; };
 		CF6E4E8A252D547900ABF719 /* WithdrawalAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WithdrawalAccount.storyboard; sourceTree = "<group>"; };
+		CF6ED3DF254961DB00C8D739 /* TKLRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLRegisterViewController.h; sourceTree = "<group>"; };
+		CF6ED3E0254961DB00C8D739 /* TKLRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLRegisterViewController.m; sourceTree = "<group>"; };
+		CF6ED3E6254961F500C8D739 /* TKLStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TKLStoryboard.storyboard; sourceTree = "<group>"; };
 		CF722BD925416E3400939A7C /* UGOnlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGOnlineView.h; sourceTree = "<group>"; };
 		CF722BDA25416E3400939A7C /* UGOnlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGOnlineView.m; sourceTree = "<group>"; };
 		CF722BE125416F7600939A7C /* UGOnlineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGOnlineView.xib; sourceTree = "<group>"; };
@@ -8611,6 +8618,7 @@
 			children = (
 				CF5586B32546B93A00BE2576 /* 注册 */,
 				CF5586B22546B93000BE2576 /* 充值 */,
+				CF6ED3E6254961F500C8D739 /* TKLStoryboard.storyboard */,
 			);
 			path = "天空蓝";
 			sourceTree = "<group>";
@@ -8631,6 +8639,8 @@
 		CF5586B32546B93A00BE2576 /* 注册 */ = {
 			isa = PBXGroup;
 			children = (
+				CF6ED3DF254961DB00C8D739 /* TKLRegisterViewController.h */,
+				CF6ED3E0254961DB00C8D739 /* TKLRegisterViewController.m */,
 			);
 			path = "注册";
 			sourceTree = "<group>";
@@ -9842,6 +9852,7 @@
 				038A727C24C0266400AF1E43 /* BetDetail.storyboard in Resources */,
 				031EF57C23BE7B4D00B0F813 /* pinglun.svg in Resources */,
 				031E194D23BE812600B0F813 /* UGLHC.storyboard in Resources */,
+				CF6ED3E8254961F500C8D739 /* TKLStoryboard.storyboard in Resources */,
 				031E1D6123BE812B00B0F813 /* UGgoBindViewController.xib in Resources */,
 				031E1E8923BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
 				031E1B9123BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
@@ -9995,6 +10006,7 @@
 				031E199A23BE812600B0F813 /* LHPostPayView.xib in Resources */,
 				031E1C2823BE812900B0F813 /* UGFastThreeOneCollectionViewCell.xib in Resources */,
 				031E1BDA23BE812900B0F813 /* UGBJKL8LotteryController.storyboard in Resources */,
+				CF6ED3E7254961F500C8D739 /* TKLStoryboard.storyboard in Resources */,
 				CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */,
 				031E1D9623BE812B00B0F813 /* UGYubaoViewController.storyboard in Resources */,
 				CF8C407D253FEC770006B293 /* HomeWaistAdsView.xib in Resources */,
@@ -10768,6 +10780,7 @@
 				03D6926C23C23495003D9C12 /* BaseTableVC.swift in Sources */,
 				031E1AA723BE812800B0F813 /* WMSegmentControl.m in Sources */,
 				031EF53623BE7B4D00B0F813 /* Single+Codable.swift in Sources */,
+				CF6ED3E2254961DB00C8D739 /* TKLRegisterViewController.m in Sources */,
 				031E1DB723BE812B00B0F813 /* UGModel.m in Sources */,
 				031E1DC123BE812B00B0F813 /* UGapplyWinLogDetail.m in Sources */,
 				03976DB525369FDB00B4201A /* MessageDateFormater.swift in Sources */,
@@ -11476,6 +11489,7 @@
 				031E1A5823BE812700B0F813 /* UIView+Events.m in Sources */,
 				031E1ABE23BE812800B0F813 /* WMMenuCell.m in Sources */,
 				031E1DE223BE812C00B0F813 /* UGinviteInfoModel.m in Sources */,
+				CF6ED3E1254961DB00C8D739 /* TKLRegisterViewController.m in Sources */,
 				CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */,
 				031E1C7823BE812A00B0F813 /* UGdepositModel.m in Sources */,
 				031E1DD423BE812C00B0F813 /* UGrealBetListModel.m in Sources */,
