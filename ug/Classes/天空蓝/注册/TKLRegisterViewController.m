@@ -650,19 +650,19 @@
     
     if (sender.selected) { // 按下去了就是明文
         
-        NSString *tempPwdStr = self.checkPasswordTextF.text;
-        self.fundPwdView.text = @""; // 这句代码可以防止切换的时候光标偏移
-        self.fundPwdView.secureTextEntry = NO;
-        self.fundPwdView.text = tempPwdStr;
+        NSString *tempPwdStr = self.fundPwdTextF.text;
+        self.fundPwdTextF.text = @""; // 这句代码可以防止切换的时候光标偏移
+        self.fundPwdTextF.secureTextEntry = NO;
+        self.fundPwdTextF.text = tempPwdStr;
         
         [self.pwd3ImageView setImage:[UIImage imageNamed:@"yanjing"]];
         
     } else { // 暗文
         
-        NSString *tempPwdStr = self.checkPasswordTextF.text;
-        self.fundPwdView.text = @"";
-        self.fundPwdView.secureTextEntry = YES;
-        self.fundPwdView.text = tempPwdStr;
+        NSString *tempPwdStr = self.fundPwdTextF.text;
+        self.fundPwdTextF.text = @"";
+        self.fundPwdTextF.secureTextEntry = YES;
+        self.fundPwdTextF.text = tempPwdStr;
         [self.pwd3ImageView setImage:[UIImage imageNamed:@"biyan"]];
     }
 }
