@@ -43,17 +43,17 @@
         };
         // 站点编号 /              上传编号      / 上传ID    / 签名方式                 / APP名                     / bundleID                  / 接口域名
         __dataArray = @[
-            site(@"a002",        @"a002hy",     @"129",     @"com.UGGame.cp",           @"https://5049uuu.com",                         @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123   超级签名
-            site(@"a002a",       @"",           @"",        @"io.fhpt.H52A8B80A",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
-            site(@"a002b",       @"",           @"",        @"io.fhpt.H53D2C0A9",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
-            site(@"a002c",       @"",           @"",        @"io.fhpt.H5069C7C0",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
-            site(@"a002d",       @"",           @"",        @"io.fhpt.H5E99F6BB",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
-            site(@"a002e",       @"",           @"",        @"io.fhpt.H5B2F70A9",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | qaz123
+            site(@"a002",        @"a002hy",     @"129",     @"com.UGGame.cp",           @"https://5049uuu.com",                         @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | lihongwei599   超级签名
+            site(@"a002a",       @"",           @"",        @"io.fhpt.H52A8B80A",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
+            site(@"a002b",       @"",           @"",        @"io.fhpt.H53D2C0A9",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
+            site(@"a002c",       @"",           @"",        @"io.fhpt.H5069C7C0",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
+            site(@"a002d",       @"",           @"",        @"io.fhpt.H5E99F6BB",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
+            site(@"a002e",       @"",           @"",        @"io.fhpt.H5B2F70A9",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 
             site(@"c001",        @"c001hy",     @"130",     @"io.fhpt.H5BAECCD9",       @"https://c47app1.com",                        @"超级签名",    @"彩47"),          // https://dev.app2.xin/index | 15697023521 | aa135246  | 123456   该网站域名根本没用，该客户应么有用原生
-            site(@"c005",        @"c005hy",     @"180",     @"io.fhpt.H5AD6EE3E",       @"http://nxmdbybnbc005ojrz.playzone88.com",                     @"超级签名",    @"乐盈彩票"),          // https://dev.app2.xin/index | 13545990831 | dz990990
+            site(@"c005",        @"c005hy",     @"180",     @"io.fhpt.H5AD6EE3E",       @"http://nxmdbybnbc005ojrz.playzone88.com",                     @"超级签名",    @"乐盈彩票"),          // 没有使用原生 https://dev.app2.xin/index | 13545990831 | dz990990
             site(@"c105",        @"",           @"",        @"",                        @"",                                            @"超级签名",    @"澳⻔彩票"),          // https://dev.app2.xin/index | 15542484889 | aa168168
             site(@"c105b",       @"c105bhy",    @"268",     @"io.fhpt.YSAC105B",       @"https://390qp8.com",                           @"超级签名",    @"390棋牌"),          // https://dev.app2.xin/index | 15542484889 | aa168168
-            site(@"c114",        @"c114hy",     @"157",     @"",                        @"",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123
+            site(@"c114",        @"c114hy",     @"157",     @"io.fhpt.YSAC114",                        @"https://c432019.com",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123   昨天才看到的arc 给的链接
             site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://306565.com",                          @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：xiaokeai190  改成非超级签名
             site(@"c190hyls",    @"c190hyls",   @"299",     @"io.fhpt.YSAC190hyls",     @"https://306565.com",                          @"企业包",    @"22333彩世界"),          //超级签名出问题，客户要求临时上一个
             site(@"c201",        @"c201hy",     @"213",     @"io.fhpt.YSFC201",         @"https://dkcp520.com",                         @"超级签名",    @"大咖彩票"),          //https://dev.app2.xin/index | 18675958156 | dk880880 （由于超级签名密码不对暂时改为企业包，等客户有通知才再改回来，这个站点也没几个用户在用）
@@ -147,7 +147,7 @@
             site(@"c237",       @"c237hy",     @"313",      @"io.fhpt.YSAC237",         @"http://app13478.com",                         @"企业包",     @"太阳城集团"),
             site(@"c246",       @"c246hy",     @"329",      @"io.fhpt.YSAC246",         @"https://647758.com",                         @"企业包",     @"澳门新葡京"),
             site(@"c242",       @"c242hy",     @"332",      @"io.fhpt.YSAC242",         @"https://460889.com",                         @"企业包",     @"新葡京娱乐场"),
-			site(@"c245",       @"c245hy",     @"343",      @"io.fhpt.YSAC245",         @"https://4823app.com",                         @"企业包",     @"4823威尼斯人"),
+			site(@"c245",       @"c245hy",     @"343",      @"io.fhpt.YSAC245",         @"https://4823app.com",                         @"企业包",     @"4823威尼斯人"),//极光账号 vn4823sym@gmail.com 密码 Aa362600.jg
             site(@"c239b",       @"c239bhy",     @"340",      @"io.fhpt.YSAC239",         @"https://5566569.com",                         @"企业包",     @"银河国际"),//b 站
 
             
