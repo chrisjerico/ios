@@ -147,7 +147,7 @@
             site(@"c237",       @"c237hy",     @"313",      @"io.fhpt.YSAC237",         @"http://app13478.com",                         @"企业包",     @"太阳城集团"),
             site(@"c246",       @"c246hy",     @"329",      @"io.fhpt.YSAC246",         @"https://647758.com",                         @"企业包",     @"澳门新葡京"),
             site(@"c242",       @"c242hy",     @"332",      @"io.fhpt.YSAC242",         @"https://460889.com",                         @"企业包",     @"新葡京娱乐场"),
-			site(@"c245",       @"c245hy",     @"343",      @"io.fhpt.YSAC245",         @"https://4823app.com",                         @"企业包",     @"4823威尼斯人"),
+			site(@"c245",       @"c245hy",     @"343",      @"io.fhpt.YSAC245",         @"https://4823app.com",                         @"企业包",     @"4823威尼斯人"),//极光账号 vn4823sym@gmail.com 密码 Aa362600.jg
             site(@"c239b",       @"c239bhy",     @"340",      @"io.fhpt.YSAC239",         @"https://5566569.com",                         @"企业包",     @"银河国际"),//b 站
 
             
