@@ -27,6 +27,9 @@
                                     <segment title="用户注册"/>
                                     <segment title="代理注册"/>
                                 </segments>
+                                <connections>
+                                    <action selector="myValueChanged:" destination="NoN-6D-vF3" eventType="valueChanged" id="xwl-Dv-3rA"/>
+                                </connections>
                             </segmentedControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tg1-Nr-cDS">
                                 <rect key="frame" x="0.0" y="112" width="414" height="1188"/>
@@ -254,6 +257,9 @@
                                                                     <constraint firstAttribute="width" constant="61" id="WiN-Vg-TUZ"/>
                                                                 </constraints>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <connections>
+                                                                    <action selector="pwdTextSwitch:" destination="NoN-6D-vF3" eventType="touchUpInside" id="B7r-8t-mS8"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -343,6 +349,9 @@
                                                                     <constraint firstAttribute="width" constant="61" id="VJk-s3-WM8"/>
                                                                 </constraints>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <connections>
+                                                                    <action selector="pwd2TextSwitch:" destination="NoN-6D-vF3" eventType="touchUpInside" id="jm6-mB-Xuw"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -494,6 +503,12 @@
                                                                 <rect key="frame" x="51" y="0.0" width="260" height="50"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="限制长度">
+                                                                        <integer key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biyan" translatesAutoresizingMaskIntoConstraints="NO" id="Hnq-Qm-ctS">
                                                                 <rect key="frame" x="332" y="15" width="20" height="20"/>
@@ -509,6 +524,9 @@
                                                                     <constraint firstAttribute="width" constant="61" id="vNz-Xh-du6"/>
                                                                 </constraints>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <connections>
+                                                                    <action selector="pwd3TextSwitch:" destination="NoN-6D-vF3" eventType="touchUpInside" id="FCz-Cp-5Fk"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -857,6 +875,9 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <state key="normal" title="获取验证码"/>
+                                                                <connections>
+                                                                    <action selector="getSmsVcode:" destination="NoN-6D-vF3" eventType="touchUpInside" id="O9F-Z4-uSJ"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -897,7 +918,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="KGu-sG-DuY" secondAttribute="trailing" constant="1" id="uPZ-Lx-ZwR"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0c2-hU-R3J" userLabel="手机View">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0c2-hU-R3J" userLabel="验证码View">
                                                 <rect key="frame" x="0.0" y="760" width="374" height="60"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X37-B5-87X" customClass="IBView">
@@ -933,6 +954,9 @@
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnp-VM-dxy">
                                                                         <rect key="frame" x="0.0" y="0.0" width="120" height="46"/>
+                                                                        <connections>
+                                                                            <action selector="getImgVcode:" destination="NoN-6D-vF3" eventType="touchUpInside" id="869-Ks-8p9"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击获取" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15s-5S-JsQ">
                                                                         <rect key="frame" x="33.5" y="15" width="53.5" height="16"/>
@@ -1029,6 +1053,9 @@
                                                         <state key="normal" title="注册">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="registerClick:" destination="NoN-6D-vF3" eventType="touchUpInside" id="6yB-CQ-C4A"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1079,6 +1106,9 @@
                                                                     </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPx-6M-Er3">
                                                                         <rect key="frame" x="0.0" y="0.0" width="187" height="40"/>
+                                                                        <connections>
+                                                                            <action selector="showLogin:" destination="NoN-6D-vF3" eventType="touchUpInside" id="F34-C6-WNi"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1146,6 +1176,43 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="1300"/>
+                    <connections>
+                        <outlet property="QQTextF" destination="29V-oU-9k0" id="PRu-3j-lfX"/>
+                        <outlet property="bqhLabel" destination="smY-GE-abc" id="WtV-5V-lVA"/>
+                        <outlet property="checkPasswordTextF" destination="jNN-ka-zcp" id="rUs-ro-Nlc"/>
+                        <outlet property="emailTextF" destination="wru-XQ-niK" id="UYy-u9-qKP"/>
+                        <outlet property="emailView" destination="A94-mo-U2v" id="RYx-Mr-pIZ"/>
+                        <outlet property="fullNameView" destination="80m-gz-r2q" id="ZIz-4G-5Zt"/>
+                        <outlet property="fundPwdTextF" destination="tje-8G-SfS" id="vgI-1A-bSl"/>
+                        <outlet property="fundPwdView" destination="dOh-qt-0Js" id="hZB-r9-2GH"/>
+                        <outlet property="goLoginButton" destination="dPx-6M-Er3" id="EjV-ER-ohd"/>
+                        <outlet property="imgVcodeImageView" destination="wfI-a9-7f6" id="LCv-lC-6Gs"/>
+                        <outlet property="imgVcodeTextF" destination="5Xn-rZ-aWB" id="paq-Sl-eT4"/>
+                        <outlet property="imgVcodeView" destination="0c2-hU-R3J" id="9vV-Rq-tW8"/>
+                        <outlet property="inviterTextF" destination="04h-LA-JIB" id="5hX-bn-iem"/>
+                        <outlet property="inviterView" destination="c11-Hi-8M7" id="1fY-1A-kNX"/>
+                        <outlet property="myScrollView" destination="Tg1-Nr-cDS" id="UoQ-Y7-lyb"/>
+                        <outlet property="mySegmentCV" destination="y3d-Ka-iur" id="mDX-gx-6ZJ"/>
+                        <outlet property="mySegmentHightConstraint" destination="VOG-Ul-2n7" id="3yb-Uf-mhB"/>
+                        <outlet property="passwordTextF" destination="L0C-2E-iq2" id="eaD-6N-Lax"/>
+                        <outlet property="phoneTextF" destination="wUT-DX-ZbR" id="wNN-MR-Z9H"/>
+                        <outlet property="phoneView" destination="DZt-ep-qlI" id="byB-e4-azp"/>
+                        <outlet property="pwd2ImageView" destination="fGt-ni-J3B" id="jto-YX-gbW"/>
+                        <outlet property="pwd3ImageView" destination="Hnq-Qm-ctS" id="2oA-3b-3uo"/>
+                        <outlet property="pwdImgeView" destination="BWI-Fu-0AX" id="mda-vY-nTT"/>
+                        <outlet property="qqView" destination="hX4-kd-Tkt" id="qS6-BO-As4"/>
+                        <outlet property="realNameTextF" destination="D1a-02-0Ej" id="TDg-q8-lsf"/>
+                        <outlet property="registerButton" destination="PWm-DT-W3m" id="wKK-ng-1wj"/>
+                        <outlet property="smsVcodeButton" destination="dnp-VM-dxy" id="pvg-lb-sB1"/>
+                        <outlet property="smsVcodeTextF" destination="W7q-29-M22" id="6ae-d5-5Iv"/>
+                        <outlet property="smsVcodeView" destination="ObK-05-Lij" id="bRF-XX-nq6"/>
+                        <outlet property="userNameDisabledNotice" destination="OJL-U0-ciN" id="Ec5-io-wCp"/>
+                        <outlet property="userNameTextF" destination="JxN-bM-XRd" id="eek-PH-gPn"/>
+                        <outlet property="webBGView" destination="IQI-aS-nVm" id="ZdD-ew-cSH"/>
+                        <outlet property="webBgView" destination="Idp-2s-zZQ" id="BDe-j3-P33"/>
+                        <outlet property="wechatTextF" destination="eRH-Jn-HiT" id="MMi-mG-Mbn"/>
+                        <outlet property="wechatView" destination="6Ch-va-f6x" id="Gt2-SE-nIo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iW-KS-RTi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

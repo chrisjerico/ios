@@ -12,6 +12,7 @@
 #import "UGLoginViewController.h"
 #import "JYLoginViewController.h"
 #import "JYRegisterViewController.h"
+#import "TKLRegisterViewController.h"           // 天空蓝版注册
 #import "UGBMLoginViewController.h"
 #import "UGBMRegisterViewController.h"
 @interface FBTransitionViewController ()
@@ -38,8 +39,13 @@
 //  注册新账号 ==>注册界面
 - (IBAction)registeredAction:(id)sender {
 
-    if (Skin1.isJY||Skin1.isTKL) {
+    if (Skin1.isJY) {
         JYRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"JYRegisterViewController") ;
+        [registerVC setIsfromFB:YES];
+        [self.navigationController pushViewController:registerVC animated:YES];
+    }
+    else if(Skin1.isTKL){
+        TKLRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"TKLRegisterViewController") ;
         [registerVC setIsfromFB:YES];
         [self.navigationController pushViewController:registerVC animated:YES];
     }

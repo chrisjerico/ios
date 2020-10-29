@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TKLRegisterViewController : UIViewController
-
+@property (nonatomic ,assign) BOOL isfromFB;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -19,7 +19,8 @@
 #import "UGBetRecordViewController.h"
 
 #import "UGDocumentVC.h"
-#import "JYRegisterViewController.h"            // GPK版注册
+#import "TKLRegisterViewController.h"           // 天空蓝版注册
+#import "JYRegisterViewController.h"             // 简约版注册
 #import "JYLoginViewController.h"                // 简约模板登录
 #import "UGBMRegisterViewController.h"           // GPK版注册
 #import "UGBMLoginViewController.h"              // GPK版登录
@@ -212,7 +213,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGBMRegisterViewController class]]
             ||[viewController isKindOfClass:[UGRegisterViewController class]]
-            ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
+            ||[viewController isKindOfClass:[JYRegisterViewController class]]
+            ||[viewController isKindOfClass:[TKLRegisterViewController class]]) {
             
             if (!Skin1.isGPK && !Skin1.isJY&& !Skin1.isTKL){
                 if (![viewController isKindOfClass:[UGRegisterViewController class]]) {
@@ -226,9 +228,15 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 }
                 
             }
-            if (Skin1.isJY||Skin1.isTKL){//简约模板  注册
+            if (Skin1.isJY){//简约模板  注册
                 if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
+                }
+                
+            }
+            if (Skin1.isTKL){//天空蓝模板  注册
+                if (![viewController isKindOfClass:[TKLRegisterViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"TKLRegisterViewController");
                 }
                 
             }
