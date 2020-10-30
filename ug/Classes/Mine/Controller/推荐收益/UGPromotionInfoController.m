@@ -258,13 +258,13 @@
     
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
 
-    if ([@"c126b,test61f" containsString:APP.SiteId]) {
+    if ([@"c126b" isEqualToString:APP.SiteId]) {
         [self.headerImageView setImage:[UIImage imageNamed:@"c126bHeaderBgImg"]];
     }
-    else if([@"c126,test60f" containsString:APP.SiteId]){
+    else if([@"c126" isEqualToString:APP.SiteId]){
         [self.headerImageView setImage:[UIImage imageNamed:@"c126HeaderBgImg"]];
     }
-    else if([@"c186" containsString:APP.SiteId]){
+    else if([@"c186" isEqualToString:APP.SiteId]){
         [self.headerImageView setImage:[UIImage imageNamed:@"c186HeaderBgImg"]];
     }
     else{
@@ -275,13 +275,13 @@
         
         [self.headerImageView setHidden:NO];
         
-        if ([@"c126b,test61f" containsString:APP.SiteId]) {
+        if ([@"c126b" isEqualToString:APP.SiteId]){
             self.headerImageView.height = kScreenWidth * 22.12 / 18.26;
         }
-        else if([@"c126,test60f" containsString:APP.SiteId]){
+        else if([@"c126" isEqualToString:APP.SiteId]){
             self.headerImageView.height = kScreenWidth * 45 / 69;
         }
-        else if([@"c186" containsString:APP.SiteId]){
+        else if([@"c186" isEqualToString:APP.SiteId]){
             self.headerImageView.height = kScreenWidth * 15.88 / 24.34;
         }
         else{
