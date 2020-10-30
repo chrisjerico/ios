@@ -326,7 +326,7 @@ PODS:
     - React-Core
   - RNCMaskedView (0.1.10):
     - React
-  - RNCPicker (1.8.1):
+  - RNCPicker (1.8.0):
     - React-Core
   - RNFastImage (7.0.2):
     - React
@@ -336,10 +336,10 @@ PODS:
     - React
   - RNReactNativeModalPatch (1.0.0):
     - React
-  - RNReanimated (1.13.1):
+  - RNReanimated (1.13.0):
     - React
-  - RNScreens (2.12.0):
-    - React-Core
+  - RNScreens (2.11.0):
+    - React
   - RNSVG (12.1.0):
     - React
   - RNVectorIcons (6.6.0):
@@ -717,12 +717,12 @@ SPEC CHECKSUMS:
   RegExCategories: e68befacacd5bda853c88f70ec745cb2d0cfb89c
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNCPicker: 914b557e20b3b8317b084aca9ff4b4edb95f61e4
+  RNCPicker: a724b3aa22b182697c190a8fd7b060b66119e136
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
   RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
   RNReactNativeModalPatch: fc3c9f788dfa44e1914edd380ade65f3eb2236fd
-  RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
-  RNScreens: 4b488fdf9537bbce829e2910c8cce1d17f6d9be8
+  RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
+  RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RxAlertController: ef75925a2a002f0f1fd03378ddeceaa9c1c5558f
@@ -755,4 +755,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ab28fedd664ed764451b7f9fb2b208c4dc0e0b83
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0.rc.1
