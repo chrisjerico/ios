@@ -15,6 +15,7 @@
                 <outlet property="handleButton" destination="jkR-oM-QKn" id="8te-3P-Ux1"/>
                 <outlet property="mineNumberCollectionView" destination="Y4h-zp-04p" id="EYw-eh-nPH"/>
                 <outlet property="quantityField" destination="xWc-W2-hdL" id="vV1-gG-ncN"/>
+                <outlet property="quantityFieldLabel" destination="1xI-6N-PfR" id="4Br-5L-vGV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -161,14 +161,14 @@ private extension Configuration {
 	static func configKeyboard() {
 		
 		//		键盘与输入控件距离
-		IQKeyboardManager.shared.enable = false
-		let handlingClasses = [
-			PublicMomentsVC.self,
-			ConcernedMomentsVC.self,
-			UGCommonLotteryController.self,
-			LoginVC.self
-		]
-		IQKeyboardManager.shared.enabledDistanceHandlingClasses = handlingClasses
+//		IQKeyboardManager.shared.enable = false
+//		let handlingClasses = [
+//			PublicMomentsVC.self,
+//			ConcernedMomentsVC.self,
+//			UGCommonLotteryController.self,
+//			LoginVC.self
+//		]
+//		IQKeyboardManager.shared.enabledDistanceHandlingClasses = handlingClasses
 		
 		//		点击键盘外收起键盘
 		IQKeyboardManager.shared.shouldResignOnTouchOutside = true

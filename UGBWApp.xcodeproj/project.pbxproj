@@ -1536,7 +1536,7 @@
 		031EF5D423BE7B4E00B0F813 /* EmojiKeyBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4E423BE7B4D00B0F813 /* EmojiKeyBoard.swift */; };
 		031EF5D523BE7B4E00B0F813 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4E523BE7B4D00B0F813 /* EmojiCell.swift */; };
 		031EF5D623BE7B4E00B0F813 /* MessageCollectionViewRedpacketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4E623BE7B4D00B0F813 /* MessageCollectionViewRedpacketCell.swift */; };
-		031EF5D723BE7B4E00B0F813 /* MinePacketProduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4E723BE7B4D00B0F813 /* MinePacketProduceView.swift */; };
+		031EF5D723BE7B4E00B0F813 /* MinePacketProduceViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4E723BE7B4D00B0F813 /* MinePacketProduceViewDelegate.swift */; };
 		031EF5D823BE7B4E00B0F813 /* BetMessageContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031EF4E823BE7B4D00B0F813 /* BetMessageContentView.xib */; };
 		031EF5D923BE7B4E00B0F813 /* BetMessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4E923BE7B4D00B0F813 /* BetMessageContentView.swift */; };
 		031EF5DA23BE7B4E00B0F813 /* RedPacketProduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031EF4EA23BE7B4D00B0F813 /* RedPacketProduceView.swift */; };
@@ -1611,7 +1611,6 @@
 		038A585824AAD03D0099D659 /* NameEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A585624AAD03D0099D659 /* NameEditVC.swift */; };
 		038A585924AAD03D0099D659 /* NameEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585724AAD03D0099D659 /* NameEditVC.xib */; };
 		038A585B24AB185F0099D659 /* RedPacketProduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585A24AB185E0099D659 /* RedPacketProduceView.xib */; };
-		038A585D24AB25840099D659 /* MinePacketProduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 038A585C24AB25840099D659 /* MinePacketProduceView.xib */; };
 		038A727C24C0266400AF1E43 /* BetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D434743924AB270100B0F598 /* BetDetail.storyboard */; };
 		038A727E24C026B600AF1E43 /* LanguageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CF62001E24BBF2A700FD26AD /* LanguageHelper.m */; };
 		0393C8A624F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0393C8A424F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m */; };
@@ -3679,7 +3678,7 @@
 		031EF4E423BE7B4D00B0F813 /* EmojiKeyBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyBoard.swift; sourceTree = "<group>"; };
 		031EF4E523BE7B4D00B0F813 /* EmojiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		031EF4E623BE7B4D00B0F813 /* MessageCollectionViewRedpacketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewRedpacketCell.swift; sourceTree = "<group>"; };
-		031EF4E723BE7B4D00B0F813 /* MinePacketProduceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinePacketProduceView.swift; sourceTree = "<group>"; };
+		031EF4E723BE7B4D00B0F813 /* MinePacketProduceViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinePacketProduceViewDelegate.swift; sourceTree = "<group>"; };
 		031EF4E823BE7B4D00B0F813 /* BetMessageContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BetMessageContentView.xib; sourceTree = "<group>"; };
 		031EF4E923BE7B4D00B0F813 /* BetMessageContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetMessageContentView.swift; sourceTree = "<group>"; };
 		031EF4EA23BE7B4D00B0F813 /* RedPacketProduceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedPacketProduceView.swift; sourceTree = "<group>"; };
@@ -3748,7 +3747,6 @@
 		038A585624AAD03D0099D659 /* NameEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditVC.swift; sourceTree = "<group>"; };
 		038A585724AAD03D0099D659 /* NameEditVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameEditVC.xib; sourceTree = "<group>"; };
 		038A585A24AB185E0099D659 /* RedPacketProduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RedPacketProduceView.xib; sourceTree = "<group>"; };
-		038A585C24AB25840099D659 /* MinePacketProduceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MinePacketProduceView.xib; sourceTree = "<group>"; };
 		0393C8A324F7429600F6DFDB /* EggGrenzyAwardCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EggGrenzyAwardCollectionCell.h; sourceTree = "<group>"; };
 		0393C8A424F7429600F6DFDB /* EggGrenzyAwardCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EggGrenzyAwardCollectionCell.m; sourceTree = "<group>"; };
 		0393C8A524F7429600F6DFDB /* EggGrenzyAwardCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EggGrenzyAwardCollectionCell.xib; sourceTree = "<group>"; };
@@ -7825,14 +7823,13 @@
 				031EF4DF23BE7B4D00B0F813 /* BetFollowView.swift */,
 				031EF4E023BE7B4D00B0F813 /* AttachMenusView */,
 				031EF4E323BE7B4D00B0F813 /* EmojiKeyBoard */,
+				031EF4E723BE7B4D00B0F813 /* MinePacketProduceViewDelegate.swift */,
 				031EF4E623BE7B4D00B0F813 /* MessageCollectionViewRedpacketCell.swift */,
 				031EF4E823BE7B4D00B0F813 /* BetMessageContentView.xib */,
 				031EF4E923BE7B4D00B0F813 /* BetMessageContentView.swift */,
 				031EF4EB23BE7B4D00B0F813 /* MessageCollectionViewGifCell.swift */,
 				031EF4EA23BE7B4D00B0F813 /* RedPacketProduceView.swift */,
 				038A585A24AB185E0099D659 /* RedPacketProduceView.xib */,
-				031EF4E723BE7B4D00B0F813 /* MinePacketProduceView.swift */,
-				038A585C24AB25840099D659 /* MinePacketProduceView.xib */,
 				0315DC8A24AC2C6800D635E2 /* MinePacketProduceVC.swift */,
 				0315DC8B24AC2C6800D635E2 /* MinePacketProduceVC.xib */,
 			);
@@ -9672,7 +9669,6 @@
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
 				031EF57623BE7B4D00B0F813 /* yinhangkaguanli.svg in Resources */,
 				031AFC44253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */,
-				038A585D24AB25840099D659 /* MinePacketProduceView.xib in Resources */,
 				03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */,
 				031EF5AD23BE7B4D00B0F813 /* MomentsHomeCell.xib in Resources */,
 				031E1ABB23BE812800B0F813 /* Shade_left@2x.png in Resources */,
@@ -10619,7 +10615,7 @@
 				CF8508792466D74F0025672F /* UGMosaicGoldMainViewController.m in Sources */,
 				031E1D3923BE812B00B0F813 /* UGPromotionIncomeController.m in Sources */,
 				031E1E7123BE812C00B0F813 /* UGBetRecorddHeaderView.m in Sources */,
-				031EF5D723BE7B4E00B0F813 /* MinePacketProduceView.swift in Sources */,
+				031EF5D723BE7B4E00B0F813 /* MinePacketProduceViewDelegate.swift in Sources */,
 				031E1B9923BE812900B0F813 /* UGChanglongBetRecrodCell.m in Sources */,
 				031E195F23BE812600B0F813 /* LHJournalDetailVC.m in Sources */,
 				031E195D23BE812600B0F813 /* LHPostCommentDetailVC.m in Sources */,
