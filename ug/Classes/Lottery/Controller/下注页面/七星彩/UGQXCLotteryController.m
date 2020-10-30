@@ -473,9 +473,16 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             [@"第三球" isEqualToString:model.name] ||
             [@"第四球" isEqualToString:model.name] ||
             [@"第五球" isEqualToString:model.name] ||
-            [@"第六球" isEqualToString:model.name] ||
-            [@"第七球" isEqualToString:model.name]) {
+            [@"第六球" isEqualToString:model.name]
+            ) {
             if (indexPath.row < 10) {
+                UGSSCBetItem1Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
+                cell.item = game;
+                return cell;
+            }
+        }
+        else if ([@"第七球" isEqualToString:model.name]){
+            if (indexPath.row < 15) {
                 UGSSCBetItem1Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:sscBetItem1CellId forIndexPath:indexPath];
                 cell.item = game;
                 return cell;
