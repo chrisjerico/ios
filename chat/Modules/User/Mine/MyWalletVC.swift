@@ -106,7 +106,7 @@ class MyWalletVC: BaseVC {
 				vc.navigationItem.title = "活动彩金"
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (0, 5):
-				let vc = UGFundDetailsTableViewController()
+				let vc = AppDefine.viewController(withStoryboardID: "UGFundDetailsTableViewController")!
 				vc.navigationItem.title = "资金明细"
 				weakSelf.navigationController?.pushViewController(vc, animated: true)
 			case (1, 0):

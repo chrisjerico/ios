@@ -82,6 +82,7 @@ class ConversationCell: UITableViewCell {
 		titleLable.snp.makeConstraints { (make) in
 			make.left.equalTo(iconImage.snp.right).offset(8)
 			make.top.equalTo(iconImage)
+			make.right.equalTo(self).offset(-60)
 		}
 		
 		addSubview(subTitleLable)
