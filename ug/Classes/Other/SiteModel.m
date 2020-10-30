@@ -118,7 +118,7 @@
             site(@"c035",        @"c035hy",     @"169",     @"io.fhpt.H5D70A94D",       @"https://5504707.com",                         @"企业包",     @"凤凰彩票"),
             site(@"c035b",       @"c035b",      @"264",     @"io.fhpt.YSAC035B",        @"https://5504596.com",                         @"企业包",     @"凤凰彩票"),
             site(@"c035c",       @"c035c",      @"265",     @"io.fhpt.YSAC035C",        @"https://5504597.com",                         @"企业包",     @"凤凰彩票"),
-            site(@"c052",        @"c052hy",     @"290",     @"io.fhpt.YSAC052",         @"https://2075app.com",                        @"企业包",     @"天天彩票"),
+            site(@"c052",        @"c052hy",     @"290",     @"io.fhpt.YSAC052",         @"https://4924920.com",                        @"企业包",     @"天天彩票"),
             site(@"c054",        @"c054hy",     @"134",     @"io.fhpt.H5CBD9DE0",       @"https://666mv.cc",                            @"企业包",     @"⾹港国际"),
             site(@"c108",        @"c108hy",     @"138",     @"io.fhpt.H53779C0A",       @"https://823653.com",                          @"企业包",     @"葡京娱乐场"),
             site(@"c193",        @"c193hy",     @"204",     @"io.fhpt.H54C32CA8",       @"https://4906app.app",                         @"企业包",     @"新葡京彩票"),//shjiu 密码Facai4906

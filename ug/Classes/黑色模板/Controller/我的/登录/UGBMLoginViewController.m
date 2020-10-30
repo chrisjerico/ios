@@ -374,7 +374,10 @@
                  weakSelf.imgVcodeModel = nil;
              }
              
-             [SVProgressHUD showErrorWithStatus:msg];
+             if(![@"c126b" containsString:APP.SiteId]){
+                 [SVProgressHUD showErrorWithStatus:msg];
+             }
+             
              
          }];
      }];

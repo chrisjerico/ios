@@ -26,6 +26,11 @@
         self.frame = frame;
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
+        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
+             self.backgroundColor = Skin1.bgColor;
+        } else {
+             self.backgroundColor = [UIColor whiteColor];
+        }
 
         _activity.hidesWhenStopped = YES;
         _activity.color = [UIColor lightGrayColor];
