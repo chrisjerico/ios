@@ -101,7 +101,7 @@ static NSString *__title = nil;
     self.fd_prefersNavigationBarHidden = NO;
     self.navigationItem.title = __title.length ? __title : @"任务中心";
     
-    [self.salaryBtn.superview setHidden:!APP.isShowSalary];
+    [self.salaryBtn.superview setHidden:!(APP.isShowSalary || SysConf.mBonsSwitch)];
 
 
     self.userInfoView.backgroundColor = Skin1.is23 ? RGBA(111, 111, 111, 1) : Skin1.navBarBgColor;

@@ -249,7 +249,7 @@
         [__self.myCollectionView reloadData];
     });
     
-    [self.salaryBtn.superview setHidden:!APP.isShowSalary];
+    [self.salaryBtn.superview setHidden:!(APP.isShowSalary || SysConf.mBonsSwitch)];
     //初始化
     [self initCollectionView];
     

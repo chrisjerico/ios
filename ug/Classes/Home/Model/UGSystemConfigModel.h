@@ -212,6 +212,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *chatRoomName;           /**<   聊天室名称*/
 @property (nonatomic, assign) NSInteger chatFollowSwitch;                  /**<   0-不能分享 1- 允许分享 */
 @property (nonatomic) BOOL chatShareBet;                  /**<   是否允许注单分享 */
+@property (nonatomic) BOOL mBonsSwitch;             /**<   是否显示俸禄界面 */
 
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 

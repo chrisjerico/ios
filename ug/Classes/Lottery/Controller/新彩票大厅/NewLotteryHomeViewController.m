@@ -181,6 +181,11 @@
          self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
         self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
     }
+    else if ([@"香槟金" containsString:Skin1.skitType]) {
+        bg = Skin1.bgColor;
+        self.slideSwitchView.tabItemSelectedColor = [UIColor whiteColor];
+        self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor3 ;
+    }
     else {
         bg = Skin1.bgColor;
         if (![Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
@@ -359,7 +364,7 @@
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
     if (marqueeView == self.leftwardMarqueeView) {
         UILabel *content = [itemView viewWithTag:1001];
-        content.textColor = Skin1.textColor1;
+        content.textColor = [@"香槟金" containsString:Skin1.skitType] ? Skin1.textColor4 : Skin1.textColor1;
         content.text = self.leftwardMarqueeViewData[index];
     }
 }
