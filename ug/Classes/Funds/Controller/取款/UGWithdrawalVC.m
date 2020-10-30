@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) NSMutableArray *acctList; /**<   账户列表（元素可能是WithdrawalAcctModel、WithdrawalTypeModel，要判断元素类型） */
 @property (nonatomic, strong) NSMutableArray *titles;   /**<   标题列表 */
-@property (nonatomic, strong) NSMutableArray <UGbankModel *>*virtualList;      /**<   提款渠道列表，只用到里面的虚拟币汇率 */
+@property (nonatomic, strong) NSMutableArray <UGbankModel *>*sysBankList;      /**<   提款渠道列表，只用到里面的虚拟币汇率 */
 @property (nonatomic, strong) WithdrawalAcctModel *selectedWam; /**<   选中的账户 */
 @property (nonatomic, strong) WithdrawalTypeModel *selectedWtm; /**<   选中的账户 */
 @property (nonatomic, strong) NSString *virtualAmount;          /**<   虚拟币金额 */
@@ -34,7 +34,7 @@
     [super viewDidLoad];
     _acctList = @[].mutableCopy;
     _titles = @[].mutableCopy;
-    _virtualList = @[].mutableCopy;
+    _sysBankList = @[].mutableCopy;
     
     FastSubViewCode(self.view);
     subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限-，上限-"];
@@ -78,7 +78,7 @@
     [self xw_addNotificationForName:UITextFieldTextDidChangeNotification block:^(NSNotification * _Nonnull noti) {
         CGFloat currencyRate = 0;
         CGFloat rateOffset = 0;
-        for (UGbankModel *bm in __self.virtualList) {
+        for (UGbankModel *bm in __self.sysBankList) {
             if ([bm.bankId isEqualToString:__self.selectedWam.bankId]) {
                 currencyRate = bm.currencyRate.doubleValue;
                 rateOffset = bm.rate.doubleValue;
@@ -95,17 +95,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self reloadData];
-    [self reloadCurrencyRate:nil];
 }
 
 - (void)reloadCurrencyRate:(void (^)(void))completion {
     __weakSelf_(__self);
-    [NetworkManager1 system_bankList:UGWithdrawalTypeVirtual].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+    [NetworkManager1 system_bankList:UGWithdrawalTypeAll].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         sm.noShowErrorHUD = true;
         if (!sm.error) {
-            [__self.virtualList removeAllObjects];
+            [__self.sysBankList removeAllObjects];
             for (NSDictionary *dict in sm.resObject[@"data"]) {
-                [__self.virtualList addObject:[UGbankModel mj_objectWithKeyValues:dict]];
+                [__self.sysBankList addObject:[UGbankModel mj_objectWithKeyValues:dict]];
             }
             if (completion) {
                 completion();
@@ -117,6 +116,15 @@
 
 - (void)reloadData {
     __weakSelf_(__self);
+    if (!_sysBankList.count) {
+        [self reloadCurrencyRate:^{
+            if (__self.sysBankList.count) {
+                [__self reloadData];
+            }
+        }];
+        return;
+    }
+    
     FastSubViewCode(self.view);
     [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         sm.noShowErrorHUD = true;
@@ -127,6 +135,7 @@
                 WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (!wtm.isshow) continue;
                 for (WithdrawalAcctModel *wam in wtm.data) {
+                    if (![__self.sysBankList containsValue:wam.bankId keyPath:@"bankId"]) continue;
                     wam.name = wtm.name;
                     wam.minWithdrawMoney = wtm.minWithdrawMoney;
                     wam.maxWithdrawMoney = wtm.maxWithdrawMoney;
@@ -293,7 +302,7 @@
         [self reloadCurrencyRate:^{
             CGFloat currencyRate = 0;
             CGFloat rateOffset = 0;
-            for (UGbankModel *bm in __self.virtualList) {
+            for (UGbankModel *bm in __self.sysBankList) {
                 if ([bm.bankId isEqualToString:wam.bankId]) {
                     currencyRate = bm.currencyRate.doubleValue;
                     rateOffset = bm.rate.doubleValue;
