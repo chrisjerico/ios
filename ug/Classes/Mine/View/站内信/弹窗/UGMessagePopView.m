@@ -8,8 +8,6 @@
 
 #import "UGMessagePopView.h"
 @interface UGMessagePopView ()<UIWebViewDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *qdButton;
-
 @property (weak, nonatomic) IBOutlet UIWebView *myWebView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
@@ -28,20 +26,7 @@
         self.frame = frame;
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;
-        
-        
-        self.qdButton.layer.cornerRadius = 5;
-        self.qdButton.layer.masksToBounds = YES;
-        [self.qdButton setBackgroundColor:Skin1.navBarBgColor];
-        
-        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
-             self.backgroundColor = Skin1.bgColor;
-            _titleLabel.textColor = Skin1.textColor4;
-        } else {
-             self.backgroundColor = [UIColor whiteColor];
-            _titleLabel.textColor = Skin1.textColor1;
-        }
-        
+
         _activity.hidesWhenStopped = YES;
         _activity.color = [UIColor lightGrayColor];
         _myWebView.delegate = self;
@@ -107,7 +92,7 @@
             TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
             webViewVC.url = url;
             [NavController1 pushViewController:webViewVC animated:YES];
-            [self close:nil];
+            if (self.closeBlock) self.closeBlock();
             return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
         }
         else{
@@ -116,7 +101,7 @@
                 
                 [CMCommon goVCWithUrl:url];
 
-                [self close:nil];
+                if (self.closeBlock) self.closeBlock();
                 return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
                 
             }
@@ -130,34 +115,5 @@
 
 
 
-- (IBAction)close:(id)sender {
-    [self hiddenSelf];
-    if (self.clickBllock) {
-        self.clickBllock();
-    }
-}
 
-- (void)show {
-    
-    UIWindow* window = UIApplication.sharedApplication.keyWindow;
-    UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
-    UIView* view = self;
-    view.hidden = NO;
-    
-    maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    
-    [maskView addSubview:view];
-    [window addSubview:maskView];
-    
-}
-
-- (void)hiddenSelf {
-    
-    UIView* view = self;
-    self.superview.backgroundColor = [UIColor clearColor];
-    [view.superview removeFromSuperview];
-    [view removeFromSuperview];
-    
-}
 @end

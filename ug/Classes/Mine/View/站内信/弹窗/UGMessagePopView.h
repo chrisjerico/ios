@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^UGMessagePopViewClickBlcok)(void);
+
 @interface UGMessagePopView : UIView
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic)  NSString *content;
-@property (nonatomic, copy) UGMessagePopViewClickBlcok clickBllock;
-- (void)show;
+@property (nonatomic , copy ) void (^closeBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

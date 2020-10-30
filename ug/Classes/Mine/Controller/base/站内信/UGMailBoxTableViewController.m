@@ -236,15 +236,28 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UGMessageModel *model = self.dataArray[indexPath.row];
-    //    [QDAlertView showWithTitle:model.title message:model.content];
+
     
-    __weakSelf_(__self);
-    self.popView.content = model.content;
-    self.popView.titleLabel.text = model.title;
-    self.popView.clickBllock = ^{
-        [__self readMsg:model.messageId];
+
+    UGMessagePopView *popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(0, 0, 350, 260)];
+    popView.closeBlock = ^{
+        [LEEAlert closeWithCompletionBlock:nil];
     };
-    [self.popView show];
+    WeakSelf;
+    [LEEAlert alert].config
+    .LeeTitle(model.title)
+    .LeeAddCustomView(^(LEECustomView *custom) {
+
+        popView.content = model.content;
+        custom.view = popView;
+        custom.positionType = LEECustomViewPositionTypeCenter;
+    })
+    .LeeAction(@"确定", ^{
+        [weakSelf readMsg:model.messageId];
+    })
+    .LeeShow();
+    
+//    __weakSelf_(__self);
 //    if (Skin1.isBlack) {
 //        [LEEAlert alert].config
 //        .LeeAddTitle(^(UILabel *label) {
@@ -294,7 +307,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 //        })
 //        .LeeShow(); // 设置完成后 别忘记调用Show来显示
 //    }
-    
+//
     
     
     if (model.isRead == 0) {

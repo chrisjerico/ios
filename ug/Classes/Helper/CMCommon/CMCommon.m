@@ -8,6 +8,16 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "UGMosaicGoldViewController.h"
 #import "UGMailBoxTableViewController.h"
+#import "UGMineSkinViewController.h"
+#import "UGSecurityCenterViewController.h"
+#import "UGPromotionIncomeController.h"
+#import "UGagentApplyInfo.h"
+#import "UGAgentViewController.h"
+#import "UGBalanceConversionRecordController.h"
+#import "UGYYLotteryHomeViewController.h"
+#import "UGChangLongController.h"
+#import "UGBetRecordViewController.h"
+#import "UGRealBetRecordViewController.h"
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -1414,27 +1424,166 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 */
 +(void)goVCWithUrl:(NSString *)url{
     
-    NSArray *params =[url componentsSeparatedByString:@"?"];
-    NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
-    for (NSString *paramStr in params) {
-        NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
-        if (dicArray.count > 1) {
-            NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [tempDic setObject:decodeValue forKey:dicArray[0]];
+    
+    if ([url containsString:@"/mobile/#/ucenter/index"]) {//【个人中心】
+        UGMineSkinViewController *vc = [UGMineSkinViewController new];
+        [NavController1 pushViewController:vc animated:true];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/myinfo"]) {//【个人资料
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGUserInfoViewController") animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/myfpwd"]) {//【安全中心】
+        [NavController1 pushViewController:[UGSecurityCenterViewController new] animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/feedback"]) {//【建议反馈】
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFeedBackController") animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/myreco"]) {//【推荐收益】
+        if (UserI.isTest) {
+            [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+        } else {
+            [SVProgressHUD showWithStatus:nil];
+            [CMNetwork teamAgentApplyInfoWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
+                [CMResult processWithResult:model success:^{
+                    [SVProgressHUD dismiss];
+                    UGagentApplyInfo *obj  = (UGagentApplyInfo *)model.data;
+                    int intStatus = obj.reviewStatus.intValue;
+                    
+                    //0 未提交  1 待审核  2 审核通过 3 审核拒绝
+                    if (intStatus == 2) {
+                        [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
+                    } else {
+//                            if (![SysConf.agent_m_apply isEqualToString:@"1"]) {
+//                                [HUDHelper showMsg:@"在线注册代理已关闭"];
+//                                return ;
+//                            }
+                        UGAgentViewController *vc = [[UGAgentViewController alloc] init];
+                        vc.item = obj;
+                        [NavController1 pushViewController:vc animated:YES];
+                    }
+                } failure:^(id msg) {
+                    [SVProgressHUD showErrorWithStatus:msg];
+                }];
+            }];
         }
     }
-    NSLog(@"tempDic:%@",tempDic);
-    NSString *app_params = [tempDic objectForKey:@"app_params"];
-    
-    if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
-        [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+    else  if ([url containsString:@"/mobile/#/ucenter/yuebao"]) {//【利息宝】
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
     }
-    else if ([app_params isEqualToString:@"goto_coupon_list"]) {//优惠活动
+    else  if ([url containsString:@"/mobile/#/ucenter/yuebao/in"]) {//【额度转入转出】
+
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/yuebao/cash"]) {//【转入转出记录】
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+        UGBalanceConversionRecordController *recordVC = [storyboard instantiateViewControllerWithIdentifier:@"UGBalanceConversionRecordController"];
+        [NavController1 pushViewController:recordVC animated:YES];
+        
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/yuebao/settle"]) {//【收益报表】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/bank/deposit"]) {//【资金管理】
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFundsViewController") animated:true];
+    }
+    else  if ([url containsString:@"/mobile/#/bank/bank"]) {//【提款账户】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/bank/realtrans"]) {//【额度转换】
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/task"]) {//【任务大厅】
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/taskExChange"]) {//【积分对换】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/taskChange"]) {//【积分账变】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/taskLevel"]) {//【等级】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/promote"]) {//【优惠活动】
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
     }
-    else if ([app_params isEqualToString:@"goto_mail"]) {//站内信
-        [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
+    else  if ([url containsString:@"/mobile/#/ucenter/promote"]) {//【活动彩金申请】
+        [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
     }
+    else  if ([url containsString:@"/mobile/#/chat/chatList"]) {//【聊天室列表】
+        [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/guessing"]) {//【全民竞猜】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/guessing/myGuess"]) {//【我的竞猜】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/list"]) {//【彩票大厅】
+        UGYYLotteryHomeViewController*vc = [[UGYYLotteryHomeViewController alloc] init];
+        [NavController1 pushViewController:vc animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/ucenter/lottoryTrend"]) {//【开奖走势】
+        
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/changLongBet"]) {//【长龙助手】
+        [NavController1 pushViewController:[UGChangLongController new] animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/settled"]) {//【今日已结】
+        UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
+        [NavController1 pushViewController:betRecordVC animated:true];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/week"]) {//【彩票注单】
+        [NavController1 pushViewController:[UGBetRecordViewController new] animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/realBetReal"]) {//【真人注单】
+        UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+        betRecordVC.gameType = @"real";
+        [NavController1 pushViewController:betRecordVC animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/realBetFish"]) {//【捕鱼注单】
+        UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+        betRecordVC.gameType = @"fish";
+        [NavController1 pushViewController:betRecordVC animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/realBetEsport"]) {//【电竞注单】
+        UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+        betRecordVC.gameType = @"esport";
+        [NavController1 pushViewController:betRecordVC animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/notcount"]) {//【未结注单】
+        UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
+        betRecordVC.gameType = @"real";
+        betRecordVC.status = @"1";
+        [NavController1 pushViewController:betRecordVC animated:YES];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/ugGameList"]) {//【UG注单】
+//        [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+    }
+    else{
+        NSArray *params =[url componentsSeparatedByString:@"?"];
+        NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
+        for (NSString *paramStr in params) {
+            NSArray *dicArray = [paramStr componentsSeparatedByString:@"="];
+            if (dicArray.count > 1) {
+                NSString *decodeValue = [dicArray[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                [tempDic setObject:decodeValue forKey:dicArray[0]];
+            }
+        }
+        NSLog(@"tempDic:%@",tempDic);
+        NSString *app_params = [tempDic objectForKey:@"app_params"];
+        
+        if ([app_params isEqualToString:@"goto_act_file"]) {//申请优惠
+            [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
+        }
+        else if ([app_params isEqualToString:@"goto_coupon_list"]) {//优惠活动
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+        }
+        else if ([app_params isEqualToString:@"goto_mail"]) {//站内信
+            [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
+        }
+    }
+    
+
     
     
 }
