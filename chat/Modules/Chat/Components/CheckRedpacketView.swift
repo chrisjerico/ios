@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CheckRedpacketViewDelegate: NSObject, ViewDisapearDelegate {
+protocol CheckRedpacketViewDelegate: ViewDisapearDelegate {
 	func checkRedpacketCheckButtonTaped(sender: RedpacketSender, redpacketId: String)
 	func grabButtonTaped(view:CheckRedpacketView, redpacketId: String)
 }

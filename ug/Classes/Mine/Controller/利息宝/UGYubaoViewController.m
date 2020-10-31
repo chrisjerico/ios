@@ -162,14 +162,6 @@
 	
 	
 	UGYUbaoTitleView *titleView = [[UGYUbaoTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 50)];
-	if (CHAT_TARGET) {
-		titleView.titleLabel.textColor = [UIColor blackColor];
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [[UIImage imageNamed:@"nav_back_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] style: UIBarButtonItemStyleDone target:self action:@selector(returnButtonAction)];
-		self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-
-//		[titleView.returnButton setImage:[[UIImage imageNamed:@"c_navi_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]forState:UIControlStateNormal];
-//		titleView.returnButton.tintColor = UIColor.blackColor;
-	}
 	self.navigationItem.titleView = titleView;
 	[titleView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.width.mas_equalTo(APP.Width);
@@ -180,7 +172,12 @@
 	[self.titleView.returnButton addTarget:self action:@selector(returnButtonAction) forControlEvents:UIControlEventTouchUpInside];
 	
 	self.countDown = [[CountDown alloc] init];
-	
+	if (CHAT_TARGET) {
+		self.navigationItem.titleView = nil;
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:titleView.progressView];
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [[UIImage imageNamed:@"nav_back_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style: UIBarButtonItemStyleDone target:self action:@selector(returnButtonAction)];
+		self.navigationItem.title = @"利息宝";
+	}
 }
 
 - (void)returnButtonAction{

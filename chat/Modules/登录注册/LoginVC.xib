@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -163,7 +163,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="q9M-cN-anW">
-                    <rect key="frame" x="111" y="734" width="192" height="80"/>
+                    <rect key="frame" x="143" y="734" width="128" height="80"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z6e-sq-vRx">
                             <rect key="frame" x="0.0" y="15" width="64" height="50"/>
@@ -178,17 +178,27 @@
                                         <action selector="goRegist:" destination="-1" eventType="touchUpInside" id="q3b-8H-v6i"/>
                                     </connections>
                                 </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tht-vj-rtb">
+                                    <rect key="frame" x="63" y="21" width="1" height="8"/>
+                                    <color key="backgroundColor" red="0.55294117649999996" green="0.56470588239999997" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="4Xr-2c-qUA"/>
+                                        <constraint firstAttribute="height" constant="8" id="iJs-wv-orK"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="UqE-8V-O6O" secondAttribute="bottom" id="9Cf-1T-oRz"/>
                                 <constraint firstAttribute="trailing" secondItem="UqE-8V-O6O" secondAttribute="trailing" id="Mul-Au-Wqj"/>
                                 <constraint firstAttribute="width" constant="64" id="QJI-Z6-JRv"/>
+                                <constraint firstAttribute="trailing" secondItem="Tht-vj-rtb" secondAttribute="trailing" id="aTB-UQ-eGw"/>
+                                <constraint firstItem="Tht-vj-rtb" firstAttribute="centerY" secondItem="z6e-sq-vRx" secondAttribute="centerY" id="esb-rx-oeB"/>
                                 <constraint firstItem="UqE-8V-O6O" firstAttribute="leading" secondItem="z6e-sq-vRx" secondAttribute="leading" id="pjK-bL-foK"/>
                                 <constraint firstItem="UqE-8V-O6O" firstAttribute="top" secondItem="z6e-sq-vRx" secondAttribute="top" id="tCv-Ym-4cn"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Unp-X5-iU4">
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Unp-X5-iU4">
                             <rect key="frame" x="64" y="15" width="64" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDO-qZ-Eft">
@@ -232,7 +242,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEh-xo-l2s">
-                            <rect key="frame" x="128" y="15" width="64" height="50"/>
+                            <rect key="frame" x="64" y="15" width="64" height="50"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egK-aW-Jq4">
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="50"/>
