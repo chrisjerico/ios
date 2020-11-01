@@ -884,21 +884,5 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 
-- (void)getPlatformGamesWithParams {
-    [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            NSMutableArray <UGYYPlatformGames *>*lotterydataArray = ({
-               NSMutableArray *temp = @[].mutableCopy;
-               NSArray *dataArray = model.data;
-               for (int i=0; i<dataArray.count; i++) {
-                   [temp addObject:dataArray[i]];
-               }
-               temp;
-           });
-           
-           [Global getInstanse].lotterydataArray   = lotterydataArray;
-        } failure:^(id msg) {
-        }];
-    }];
-}
+
 @end
