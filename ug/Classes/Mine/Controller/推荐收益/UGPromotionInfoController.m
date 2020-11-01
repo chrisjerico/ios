@@ -322,11 +322,14 @@
     if (![CMCommon stringIsNull:self.mUGinviteInfoModel.game_fandian_intro]) {
         [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"电子返点" WebName:self.mUGinviteInfoModel.game_fandian_intro]];
     }
-    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.card_fandian_intro]) {
-        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"电竞返点" WebName:self.mUGinviteInfoModel.card_fandian_intro]];
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.esport_fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"电竞返点" WebName:self.mUGinviteInfoModel.esport_fandian_intro]];
     }
     if (![CMCommon stringIsNull:self.mUGinviteInfoModel.sport_fandian_intro]) {
         [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"体育返点" WebName:self.mUGinviteInfoModel.sport_fandian_intro]];
+    }
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.card_fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"棋牌返点" WebName:self.mUGinviteInfoModel.card_fandian_intro]];
     }
     
     
