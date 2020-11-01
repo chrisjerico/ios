@@ -9,8 +9,10 @@
 #import "UGPromotionInfoController.h"
 #import "UGinviteInfoModel.h"
 #import "UGSystemConfigModel.h"
-
-@interface UGPromotionInfoController ()
+#import "HelpDocModel.h"
+@interface UGPromotionInfoController (){
+    float btnH;
+}
 @property (weak, nonatomic) IBOutlet UITableView *mytableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -65,18 +67,12 @@
 @property (weak, nonatomic) IBOutlet UIView *cell9BgView;         /**<  最下面cellbg*/
 
 @property (weak, nonatomic) IBOutlet UIView *bigView;/**<  佣金比例View*/
-@property (weak, nonatomic) IBOutlet UIButton *oneBtn;/**<  第1个btn*/
-@property (weak, nonatomic) IBOutlet UIButton *secondBtn;/**<  第2个btn**/
-@property (weak, nonatomic) IBOutlet UIButton *threeBtn;/**<  第3个btn**/
-@property (weak, nonatomic) IBOutlet UIButton *fourBtn;/**<  第4个btn**/
-@property (weak, nonatomic) IBOutlet UIButton *fiveBtn;/**<  第5个btn**/
-@property (weak, nonatomic) IBOutlet UIButton *esportBtn;/**<  电竞*/
-@property (weak, nonatomic) IBOutlet UIButton *sportBtn;/**<  体育*/
-
 @property (strong, nonatomic) NSMutableArray *buttons;/**<  btn数组**/
 @property (weak, nonatomic) IBOutlet UILabel *mContentLbl;/**<  佣金比例内容*/
 @property (weak, nonatomic) IBOutlet UIStackView *btnsView;/**<  btnView**/
-
+@property (weak, nonatomic) IBOutlet UIView *btnsBgView;/**<  btn背景View**/
+@property (nonatomic, strong) NSMutableArray <HelpDocModel *> * itemArry;//多个web文档
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *stackHeight;
 @end
 
 @implementation UGPromotionInfoController
@@ -153,6 +149,7 @@
 -(void)bigViewInitStyle{
     [self.mContentLbl setTextColor:Skin1.textColor1];
     [self.btnsView setBackgroundColor:Skin1.textColor3];
+    [self.btnsBgView setBackgroundColor:RGBA(196, 203, 204, 1)];
     self.bigView.layer.borderColor=[Skin1.textColor3 CGColor];
     self.bigView.layer.borderWidth= 1;
     self.bigView.layer.cornerRadius = 5;
@@ -160,51 +157,65 @@
     
     [self.bigView setBackgroundColor:Skin1.CLBgColor];
     _buttons = [NSMutableArray new];
-    [_buttons addObject:self.oneBtn];
-    [_buttons addObject:self.secondBtn];
-    [_buttons addObject:self.threeBtn];
-    [_buttons addObject:self.fourBtn];
-    [_buttons addObject:self.fiveBtn];
-    [_buttons addObject:self.esportBtn];
-    [_buttons addObject:self.sportBtn];
-    [self allButtonSetTitleBlackColor];
-    
-    UIButton *btnOne = [_buttons objectAtIndex:0];
-    [btnOne setTitleColor:[UIColor redColor] forState:0];
-    [self loadText:btnOne];
-    [CMCommon setBorderWithView:btnOne top:NO left:NO bottom:NO right:YES borderColor:Skin1.CLBgColor borderWidth:1];
-    [btnOne setBackgroundColor:Skin1.CLBgColor];
+    _itemArry = [NSMutableArray new];
+    btnH = 35.0;
+    self.mContentLbl.text = @"";
+   
   
 }
-- (IBAction)btnAction:(id)sender {
-    [self  selectButtonSetRedColor:sender];
-    [self loadText:sender];
-}
--(void)loadText:(UIControl *)sender{
-    UIButton *btn = (UIButton *)sender;
-    if ([btn.tagString isEqualToString:@"彩票返点btn"]) {
-        self.mContentLbl.text = self.mUGinviteInfoModel.fandian_intro;
-    }
-    else  if ([btn.tagString isEqualToString:@"真人返点btn"]) {
-        self.mContentLbl.text = self.mUGinviteInfoModel.real_fandian_intro;;
-    }
-    else  if ([btn.tagString isEqualToString:@"捕鱼返点btn"]) {
-        self.mContentLbl.text = self.mUGinviteInfoModel.fish_fandian_intro;
-    }
-    else  if ([btn.tagString isEqualToString:@"电子返点btn"]) {
-        self.mContentLbl.text = self.mUGinviteInfoModel.game_fandian_intro;
-    }
-    else  if ([btn.tagString isEqualToString:@"棋牌返点btn"]) {
-        self.mContentLbl.text = self.mUGinviteInfoModel.card_fandian_intro;
-    }
-    else  if ([btn.tagString isEqualToString:@"电竞返点btn"]) {
-        self.mContentLbl.text = self.mUGinviteInfoModel.esport_fandian_intro;
-    }
-    else  if ([btn.tagString isEqualToString:@"体育返点btn"]) {
-        self.mContentLbl.text = self.mUGinviteInfoModel.sport_fandian_intro;
-    }
-}
 
+- (void)cleanAllStack {
+    NSArray * allStack = @[self.btnsView];
+    for (UIStackView * stack in allStack) {
+        for (UIView * view in stack.arrangedSubviews) {
+            [stack removeArrangedSubview:view];
+            [view removeFromSuperview];
+        }
+    }
+}
+-(void)resetData{
+
+    [self cleanAllStack];
+    for (NSInteger i = 0; i < _itemArry.count; i++) {
+        HelpDocModel * item = _itemArry[i];
+        WeakSelf
+        [self bindButtonTitle:item.btnTitle Action:^(UIButton *button) {
+            [button addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [weakSelf selectButtonSetRedColor:sender];
+                [weakSelf loadText:item.webName];
+            }];
+        }];
+    }
+    UIButton *btnOne = [_buttons objectAtIndex:0];
+    [btnOne setTitleColor:[UIColor redColor] forState:0];
+    [CMCommon setBorderWithView:btnOne top:NO left:NO bottom:NO right:YES borderColor:Skin1.CLBgColor borderWidth:1];
+    [btnOne setBackgroundColor:Skin1.CLBgColor];
+    HelpDocModel * itemOne = _itemArry[0];
+    [self loadText:itemOne.webName];
+    self.stackHeight.constant = _itemArry.count *  btnH;
+    
+}
+-(void)loadText:(NSString *)content{
+    self.mContentLbl.text = content;
+}
+- (void)bindButtonTitle:(NSString *)content Action: (void (^)(UIButton *)) handle{
+    UIView * view = [UIView new];
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:content forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    button.titleLabel.numberOfLines = 2;
+    [button setTitleColor:[UIColor blackColor] forState:0];
+    [button setBackgroundColor:RGBA(196, 203, 204, 1)];
+    [view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(view);
+        make.height.mas_equalTo(btnH);
+    }];
+    [self.btnsView addArrangedSubview:view];
+    [_buttons addObject:button];
+    handle(button);
+}
 -(void)selectButtonSetRedColor:(UIControl *)sender{
     [self allButtonSetTitleBlackColor];
     UIButton *btn = (UIButton *)sender;
@@ -298,6 +309,27 @@
 
 #pragma mark -- UI数据
 -(void)setUIDate{
+    
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"彩票返点" WebName:self.mUGinviteInfoModel.fandian_intro]];
+    }
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.real_fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"真人返点" WebName:self.mUGinviteInfoModel.real_fandian_intro]];
+    }
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.fish_fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"捕鱼返点" WebName:self.mUGinviteInfoModel.fish_fandian_intro]];
+    }
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.game_fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"电子返点" WebName:self.mUGinviteInfoModel.game_fandian_intro]];
+    }
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.card_fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"电竞返点" WebName:self.mUGinviteInfoModel.card_fandian_intro]];
+    }
+    if (![CMCommon stringIsNull:self.mUGinviteInfoModel.sport_fandian_intro]) {
+        [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"体育返点" WebName:self.mUGinviteInfoModel.sport_fandian_intro]];
+    }
+    
+    
     self.userNameLabel.text = self.mUGinviteInfoModel.username;
     self.promotionIdlabel.text =self.mUGinviteInfoModel.rid;
     self.promotionUrlLabel.text = self.mUGinviteInfoModel.link_i;
@@ -358,18 +390,26 @@
             self.headerImageView.height = 256;
         }
         
-        [self.tableView reloadData];
+        [self reloadView];
     }
     else if([config.myreco_img isEqualToString:@"1"]) {
         
         [self.headerImageView setHidden:YES];
         self.headerImageView.height = 0.1;
-        
-        [self.tableView reloadData];
-
+        [self reloadView];
+       
     }
-    
 
+}
+
+-(void)reloadView{
+    if(self.itemArry.count){
+        [self resetData];
+    }
+    else{
+        self.stackHeight.constant = 0.0;
+    }
+    [self.tableView reloadData];
 
 }
 @end
