@@ -63,6 +63,20 @@
 @property (weak, nonatomic) IBOutlet UIView *cell8BgView;         /**<   推荐会员总计cellbg*/
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;          /**<  推荐会员总计 */
 @property (weak, nonatomic) IBOutlet UIView *cell9BgView;         /**<  最下面cellbg*/
+
+@property (weak, nonatomic) IBOutlet UIView *bigView;/**<  佣金比例View*/
+@property (weak, nonatomic) IBOutlet UIButton *oneBtn;/**<  第1个btn*/
+@property (weak, nonatomic) IBOutlet UIButton *secondBtn;/**<  第2个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *threeBtn;/**<  第3个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *fourBtn;/**<  第4个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *fiveBtn;/**<  第5个btn**/
+@property (weak, nonatomic) IBOutlet UIButton *esportBtn;/**<  电竞*/
+@property (weak, nonatomic) IBOutlet UIButton *sportBtn;/**<  体育*/
+
+@property (strong, nonatomic) NSMutableArray *buttons;/**<  btn数组**/
+@property (weak, nonatomic) IBOutlet UILabel *mContentLbl;/**<  佣金比例内容*/
+@property (weak, nonatomic) IBOutlet UIStackView *btnsView;/**<  btnView**/
+
 @end
 
 @implementation UGPromotionInfoController
@@ -96,7 +110,7 @@
     [self.registeredLabel setTextColor:Skin1.textColor1];
     [self.two2wmLabel setTextColor:Skin1.textColor1];
     
-    [self.cell5BgView setBackgroundColor:Skin1.CLBgColor];
+    [self.cell5BgView setBackgroundColor:Skin1.textColor4];
     [self.moneyLabel setTextColor:Skin1.textColor1];
     [self.sectionLabel4 setTextColor:Skin1.textColor1];
     
@@ -133,13 +147,87 @@
     self.headerImageView.height = 0.1;
     
     [self teamInviteInfoData];
+    [self bigViewInitStyle];
 }
 
+-(void)bigViewInitStyle{
+    [self.mContentLbl setTextColor:Skin1.textColor1];
+    [self.btnsView setBackgroundColor:Skin1.textColor3];
+    self.bigView.layer.borderColor=[Skin1.textColor3 CGColor];
+    self.bigView.layer.borderWidth= 1;
+    self.bigView.layer.cornerRadius = 5;
+    self.bigView.layer.masksToBounds = YES;
+    
+    [self.bigView setBackgroundColor:Skin1.CLBgColor];
+    _buttons = [NSMutableArray new];
+    [_buttons addObject:self.oneBtn];
+    [_buttons addObject:self.secondBtn];
+    [_buttons addObject:self.threeBtn];
+    [_buttons addObject:self.fourBtn];
+    [_buttons addObject:self.fiveBtn];
+    [_buttons addObject:self.esportBtn];
+    [_buttons addObject:self.sportBtn];
+    [self allButtonSetTitleBlackColor];
+    
+    UIButton *btnOne = [_buttons objectAtIndex:0];
+    [btnOne setTitleColor:[UIColor redColor] forState:0];
+    [self loadText:btnOne];
+    [CMCommon setBorderWithView:btnOne top:NO left:NO bottom:NO right:YES borderColor:Skin1.CLBgColor borderWidth:1];
+    [btnOne setBackgroundColor:Skin1.CLBgColor];
+  
+}
+- (IBAction)btnAction:(id)sender {
+    [self  selectButtonSetRedColor:sender];
+    [self loadText:sender];
+}
+-(void)loadText:(UIControl *)sender{
+    UIButton *btn = (UIButton *)sender;
+    if ([btn.tagString isEqualToString:@"彩票返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.fandian_intro;
+    }
+    else  if ([btn.tagString isEqualToString:@"真人返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.real_fandian_intro;;
+    }
+    else  if ([btn.tagString isEqualToString:@"捕鱼返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.fish_fandian_intro;
+    }
+    else  if ([btn.tagString isEqualToString:@"电子返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.game_fandian_intro;
+    }
+    else  if ([btn.tagString isEqualToString:@"棋牌返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.card_fandian_intro;
+    }
+    else  if ([btn.tagString isEqualToString:@"电竞返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.esport_fandian_intro;
+    }
+    else  if ([btn.tagString isEqualToString:@"体育返点btn"]) {
+        self.mContentLbl.text = self.mUGinviteInfoModel.sport_fandian_intro;
+    }
+}
+
+-(void)selectButtonSetRedColor:(UIControl *)sender{
+    [self allButtonSetTitleBlackColor];
+    UIButton *btn = (UIButton *)sender;
+    [btn setTitleColor:[UIColor redColor] forState:0];
+    [CMCommon setBorderWithView:btn top:NO left:NO bottom:NO right:YES borderColor:Skin1.CLBgColor borderWidth:1];
+    [btn setBackgroundColor:Skin1.CLBgColor];
+}
+
+- (void)allButtonSetTitleBlackColor {
+    // UIButton
+    for (UIView *v in self.buttons) {
+        if ([ v isKindOfClass:[UIButton class]]) {
+            UIButton *btn = (UIButton *)v;
+            [btn setTitleColor:[UIColor blackColor] forState:0];
+            [btn setBackgroundColor:RGBA(196, 203, 204, 1)];
+            [CMCommon setBorderWithView:btn top:NO left:NO bottom:NO right:YES borderColor:Skin1.textColor3 borderWidth:1];
+        }
+    }
+}
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    
-  
+
 }
 - (IBAction)homeUrlCopy:(id)sender {
     
@@ -166,25 +254,6 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Incomplete implementation, return the number of sections
-//    return 0;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete implementation, return the number of rows
-//    return 0;
-//}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
@@ -238,6 +307,7 @@
     double jg =  proportion *1000/100;
     NSString *jgStr = [NSString stringWithFormat:@"%.2f",jg];
     
+    self.mContentLbl.text = self.mUGinviteInfoModel.fandian_intro;
     
     if([@"c186,test60f" containsString:APP.SiteId]){
         self.sectionLabel4.text = @"方案一：佣金比例图如上，有效投注达到100万以上，将可赚取0.1%的佣金【100万X0.001=1000】1000元佣金!有效投注越高，佣金就越高，亏损分红达到1万以上，另可再次得到1%佣金，【10000X0.1=1000】1000元亏损分红！";
