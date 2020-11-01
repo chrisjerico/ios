@@ -68,8 +68,8 @@
     [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
     NSString *description = _NSString(@"（%@）%@ ｜ 分支：%@ - %@ - %@", NSUserName(), [df stringFromDate:[NSDate date]], gm.branch, gm.commitId, gm.log);
     [self postReactNative:description environment:environment completion:^{
-        NSString *log = _NSString(@"（%@）%@ | 环境：%@ | 分支：%@ - %@ - %@", NSUserName(), [df stringFromDate:[NSDate date]], environment, gm.branch, gm.commitId, gm.log);
-        NSString *title = _NSString(@"（%@）环境：%@ | 分支：%@ - %@ - %@", NSUserName(), environment, gm.branch, gm.commitId, gm.log);
+        NSString *log = _NSString(@"（%@）%@ | 环境：%@ | 分支：%@ - %@ - %@", NSUserName(), [df stringFromDate:[NSDate date]], [environment stringByReplacingOccurrencesOfString:@"UGiOS" withString:@"master"], gm.branch, gm.commitId, gm.log);
+        NSString *title = _NSString(@"（%@）环境：%@ | 分支：%@ - %@ - %@", NSUserName(), [environment stringByReplacingOccurrencesOfString:@"UGiOS" withString:@"master"], gm.branch, gm.commitId, gm.log);
         [self saveLog:log title:title completion:^(BOOL ok) {
             NSLog(@"热更新发布成功");
             NSLog(@"退出程序！");
