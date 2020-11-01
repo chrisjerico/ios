@@ -260,6 +260,7 @@
         NSLog(@"每期资料,公式规律");
     }
     else if([@"humorGuess,rundog,fourUnlike" containsString:model.categoryType]) {
+        //fourUnlike
         LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
         vc.clm = model;
         [NavController1 pushViewController:vc animated:true];
