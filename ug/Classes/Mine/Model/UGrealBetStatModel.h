@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *validBetAmount;//
 @property (nonatomic, strong) NSString *bet_sum;//
 @property (nonatomic, strong) NSString *netAmount;//
+@property (nonatomic, strong) NSString *fandian_sum;// 返点
 @end
 
 NS_ASSUME_NONNULL_END

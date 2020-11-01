@@ -85,7 +85,7 @@
             self.titleArray = @[@"分级",@"用户名",@"日期",@"提款金额"];//4
             break;
         case PromotionTableTypeRealityReport://真人报表
-            self.titleArray = @[@"分级",@"日期",@"投注金额",@"会员输赢"];//4
+            self.titleArray = @[@"分级",@"日期",@"投注金额",@"会员输赢",@"返点"];//5
             break;
         case PromotionTableTypeRealityRcord://真人记录
             self.titleArray = @[@"分级",@"用户",@"游戏",@"日期",@"投注金额",@"会员输赢"];//5
@@ -198,7 +198,7 @@
         }
             break;
         case PromotionTableTypeRealityReport://真人报表
-            //4
+            //5
         {
             [self teamRealBetStatData];
         }
@@ -502,7 +502,7 @@
         case PromotionTableTypeRealityReport://真人报表
             //4
         {
-            UGPromotion4rowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion4rowTableViewCell" forIndexPath:indexPath];
+            UGPromotion5rowButtonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGPromotion5rowButtonTableViewCell" forIndexPath:indexPath];
             UGrealBetStatModel *model = (UGrealBetStatModel *)self.dataArray[indexPath.row];
              int intLevel = [model.level intValue];
               if (intLevel == 0) {
@@ -519,6 +519,8 @@
             cell.thirdLabel.text = model.validBetAmount;
           
             cell.fourthLabel.text =  model.netAmount;
+            cell.fifthLabel.text =  model.fandian_sum;
+            [cell.fifthButton setHidden:YES];
          
             return cell;
         }
@@ -656,7 +658,7 @@
         }
             break;
         case PromotionTableTypeRealityReport://真人报表
-            //4
+            //5
         {
             
         }
