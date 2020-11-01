@@ -343,7 +343,7 @@ UGSystemConfigModel *currentConfig = nil;
         [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD dismiss];
-                NSMutableArray <UGYYPlatformGames *>*lotterydataArray = ({
+                 NSMutableArray <UGYYPlatformGames *>*lotterydataArray = ({
                     NSMutableArray *temp = @[].mutableCopy;
                     NSArray *dataArray = model.data;
                     for (int i=0; i<dataArray.count; i++) {
@@ -351,6 +351,8 @@ UGSystemConfigModel *currentConfig = nil;
                     }
                     temp;
                 });
+                
+                [Global getInstanse].lotterydataArray   = lotterydataArray;
                 UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
                 vc.title = weakSelf.name;
                 if (weakSelf.type == MM_真人视讯) {

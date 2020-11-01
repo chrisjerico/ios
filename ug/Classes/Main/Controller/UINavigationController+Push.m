@@ -46,6 +46,7 @@
 #import "UGRechargeTypeTableViewController.h"   //  存款
 #import "UGWithdrawalViewController.h"          //提现
 #import "UGFundDetailsTableViewController.h"    //资金明细
+#import "UGYYLotterySecondHomeViewController.h" //大厅
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -797,6 +798,49 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 41: {
             //40' => '试玩',
             SANotificationEventPost(UGNotificationTryPlay, nil);
+            break;
+        }
+        case 42: {
+            //真人大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games error:nil];
+            vc.title = @"真人大厅";
+            [NavController1 pushViewController:vc animated:YES];
+            
+            break;
+        }
+        case 43: {
+            //棋牌大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"card" keyPath:@"category"].games error:nil];
+            vc.title = @"棋牌大厅";
+            [NavController1 pushViewController:vc animated:YES];
+            
+            break;
+        }
+        case 44: {
+            //电子大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"game" keyPath:@"category"].games error:nil];
+            vc.title = @"电子大厅";
+            [NavController1 pushViewController:vc animated:YES];
+            
+            break;
+        }
+        case 45: {
+            //体育大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.title = @"体育大厅";
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"sport" keyPath:@"category"].games error:nil];
+            [NavController1 pushViewController:vc animated:YES];
+            break;
+        }
+        case 46: {
+            //电竞大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"esport" keyPath:@"category"].games error:nil];
+            vc.title = @"电竞大厅";
+            [NavController1 pushViewController:vc animated:YES];
             break;
         }
         default: {
