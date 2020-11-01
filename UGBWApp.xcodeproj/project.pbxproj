@@ -2026,7 +2026,6 @@
 		CF76AA0124D41B23001E4AF6 /* ztlight2-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */; };
 		CF76AA0224D41B23001E4AF6 /* ztlight-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */; };
 		CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */; };
-		CF85084F2466D4510025672F /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
 		CF8508512466D4E40025672F /* UGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E176823BE812500B0F813 /* UGTabbarController.m */; };
 		CF8508522466D5000025672F /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DF423C9F51C0039588D /* RSA.m */; };
 		CF8508532466D5090025672F /* IssueView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF11A30241E76AF00C7E3A3 /* IssueView.m */; };
@@ -2117,7 +2116,6 @@
 		CFBD91352461AD4100FFFDEB /* PieView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFBD91322461AD4100FFFDEB /* PieView.m */; };
 		CFCADE45237D281C00680F62 /* cplts_看图王.gif in Resources */ = {isa = PBXBuildFile; fileRef = CFCADE44237D281C00680F62 /* cplts_看图王.gif */; };
 		CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */; };
-		CFCF6DC423C5F3CE0039588D /* JSPatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */; };
 		CFCF6DDC23C8403F0039588D /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = CFCF6DDA23C8403F0039588D /* main.jsbundle */; };
 		CFCF6DF723C9F51C0039588D /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DF423C9F51C0039588D /* RSA.m */; };
 		CFD85F0923F44754000898CC /* NSObject+RnKeyValues.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD85F0823F44754000898CC /* NSObject+RnKeyValues.m */; };
@@ -4196,8 +4194,6 @@
 		CFCADE44237D281C00680F62 /* cplts_看图王.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "cplts_看图王.gif"; sourceTree = "<group>"; };
 		CFCF6DBD23C5B8370039588D /* ReactNativeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReactNativeHelper.h; sourceTree = "<group>"; };
 		CFCF6DBE23C5B8370039588D /* ReactNativeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeHelper.m; sourceTree = "<group>"; };
-		CFCF6DC223C5F3CE0039588D /* JSPatchHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSPatchHelper.h; sourceTree = "<group>"; };
-		CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSPatchHelper.m; sourceTree = "<group>"; };
 		CFCF6DDA23C8403F0039588D /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../../../../bundle/main.jsbundle; sourceTree = "<group>"; };
 		CFCF6DF423C9F51C0039588D /* RSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSA.m; sourceTree = "<group>"; };
 		CFCF6DF523C9F51C0039588D /* RSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSA.h; sourceTree = "<group>"; };
@@ -8851,8 +8847,6 @@
 				CFD85F0C23F577AB000898CC /* ReactNativeVC.m */,
 				CFD85F0723F44754000898CC /* NSObject+RnKeyValues.h */,
 				CFD85F0823F44754000898CC /* NSObject+RnKeyValues.m */,
-				CFCF6DC223C5F3CE0039588D /* JSPatchHelper.h */,
-				CFCF6DC323C5F3CE0039588D /* JSPatchHelper.m */,
 			);
 			path = HotUpdate;
 			sourceTree = "<group>";
@@ -10933,7 +10927,6 @@
 				031E1B6B23BE812800B0F813 /* UGPlatformCollectionView.m in Sources */,
 				031E1A6323BE812700B0F813 /* NSString+ST.m in Sources */,
 				031E1AA123BE812800B0F813 /* ZZCountingLabel.m in Sources */,
-				CF85084F2466D4510025672F /* JSPatchHelper.m in Sources */,
 				031E1AC123BE812800B0F813 /* WMMenuHead.m in Sources */,
 				031E1C0323BE812900B0F813 /* UGLotterySettingModel.m in Sources */,
 				031E1D0D23BE812B00B0F813 /* JSONModelArray.m in Sources */,
@@ -11425,7 +11418,6 @@
 				031E1A1223BE812700B0F813 /* NSObject+AspectsHelper.m in Sources */,
 				031E1BD023BE812900B0F813 /* UGGDKL10LotteryController.m in Sources */,
 				031E19D023BE812700B0F813 /* UIAlertController+Utils.m in Sources */,
-				CFCF6DC423C5F3CE0039588D /* JSPatchHelper.m in Sources */,
 				031E19AC23BE812700B0F813 /* NSDictionary+NilSafe.m in Sources */,
 				031E1B0623BE812800B0F813 /* UIView+SGExtension.m in Sources */,
 				031E1D2423BE812B00B0F813 /* UGMissionListController.m in Sources */,

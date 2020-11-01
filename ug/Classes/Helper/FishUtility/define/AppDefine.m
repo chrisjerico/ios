@@ -9,7 +9,6 @@
 #import "AppDefine.h"
 
 #define __SiteID__ @"test60f"
-#define LocalRnVersion @"1.4.66"
 
 
 @interface UIStoryboard ()
@@ -106,7 +105,6 @@
     if (self) {
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
-        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"] ? : LocalRnVersion;
 #ifdef APP_TEST
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
@@ -249,16 +247,6 @@
 }
 
 #pragma mark - 热更新
-
-- (NSString *)jspPath {
-    return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, [_jspVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
-}
-
-- (void)setJspVersion:(NSString *)jspVersion {
-    _jspVersion = jspVersion;
-    [[NSUserDefaults standardUserDefaults] setObject:jspVersion forKey:@"jspVersion"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 - (void)setRnPageInfos:(NSArray<RnPageModel *> *)rnPageInfos {
     if ([rnPageInfos.firstObject isKindOfClass:[NSDictionary class]]) {
