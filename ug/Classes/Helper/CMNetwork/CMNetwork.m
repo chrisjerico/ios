@@ -177,12 +177,12 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             title = @"网络异常";
         } else {
             // 其他错误
-            msg = @"网络发生未知错误, 请稍后再试.";
+            msg = @"网络环境异常, 请稍后再试.";
             title = @"网络异常";
         }
     } else if (result->_error.isHTTPError) {
         // 其他错误
-        msg = [NSString stringWithFormat: @"网络发生未知错误, 请稍后再试."];
+        msg = [NSString stringWithFormat: @"网络环境异常, 请稍后再试."];
         title = @"网络异常";
     } else if (result->_error.isROPError) {
         // ROP错误

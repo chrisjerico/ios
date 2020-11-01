@@ -73,13 +73,6 @@
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
-
-@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
-
-@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
-@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
-
 //-------------------------------------------
 //六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *LhPrize_FView;
@@ -103,6 +96,11 @@
 
 @property (nonatomic, strong) HomeBannerView *bannerView;       /**<   顶部横幅 */
 @property (weak, nonatomic) IBOutlet JS_HomePromoteContainerView *homePromoteContainer;  /**<   站长推荐 */
+
+@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
+@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
+@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
 
 @property (nonatomic, strong) HomeMarqueeView *rollingView;             /**<   跑马灯公告 */
 @property (nonatomic, strong) HomeWaistAdsView *waistAdsView;           /**<   腰部广告 */

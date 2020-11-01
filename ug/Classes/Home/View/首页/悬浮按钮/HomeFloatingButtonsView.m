@@ -60,6 +60,11 @@
         [self getCheckinListData];      // 红包数据
     });
     
+    SANotificationEventSubscribe(UGNotificationRedPageComplete, self, ^(typeof (self) self, id obj) {
+
+        [self showRedpage];      // show红包
+    });
+    
     BOOL (^checkLogin)(void) = ^BOOL {
         if (!UGLoginIsAuthorized()) {
             UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您还未登录" btnTitles:@[@"取消", @"马上登录"]];
@@ -109,6 +114,8 @@
                 }];
             }];
         };
+        
+     
     }
     
     
@@ -277,6 +284,12 @@
 
 
 #pragma mark - load Data
+//show红包
+-(void)showRedpage {
+    if (self.uGredEnvelopeView.redClickBlock) {
+        self.uGredEnvelopeView.redClickBlock();
+    }
+}
 
 //得到红包详情数据
 - (void)getCheckinListData {

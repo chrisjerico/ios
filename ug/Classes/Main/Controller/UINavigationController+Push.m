@@ -789,6 +789,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:vc animated:YES];
             break;
         }
+        case 40: {
+            //40' => '红包活动',
+            SANotificationEventPost(UGNotificationRedPageComplete, nil);
+            break;
+        }
+        case 41: {
+            //40' => '试玩',
+            SANotificationEventPost(UGNotificationTryPlay, nil);
+            break;
+        }
         default: {
             return false;
         }

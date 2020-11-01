@@ -33,6 +33,7 @@ FOUNDATION_EXTERN NSString *UGNotificationWithdrawalsSuccess;
 FOUNDATION_EXTERN NSString *UGNotificationWithSkinSuccess;          // 换肤
 FOUNDATION_EXTERN NSString *UGNotificationWithResetTabSuccess;     
 FOUNDATION_EXTERN NSString *UGNotificationWithRecordOfDeposit;
+FOUNDATION_EXTERN NSString *UGNotificationRedPageComplete;                  // 红包活动
 
 /// 登录授权
 ///
