@@ -121,7 +121,18 @@
             self.navigationItem.title = self.item.title;
         }
     }
-    
+    if (_item.pic.length) {
+
+        __weakSelf_(__self);
+        [_mimgView sd_setImageWithURL:[NSURL URLWithString:_item.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (image) {
+                CGFloat w = UGScreenW - 2*10;
+                CGFloat h = image.height/image.width * w;
+                __self.mimgView.cc_constraints.height.constant = h;
+                __self.ImgH = h+8;
+            }
+        }];
+    }
     
     __weakSelf_(__self);
     [self.activity startAnimating];
@@ -194,7 +205,7 @@
                make.centerX.equalTo(self.view);
                make.top.equalTo(self.titleLabel.mas_bottom).offset(labelY);
                make.width.mas_equalTo(labelW);
-               make.height.mas_equalTo(60);
+               make.height.mas_equalTo(1);
            }];
            
            __weakSelf_(__self);
