@@ -239,7 +239,7 @@
     NSString *jgStr = [NSString stringWithFormat:@"%.2f",jg];
     
     
-    if([@"c186,test60f" containsString:APP.SiteId]){
+    if([@"c186" isEqualToString:APP.SiteId]||[@"test60f" isEqualToString:APP.SiteId]){
         self.sectionLabel4.text = @"方案一：佣金比例图如上，有效投注达到100万以上，将可赚取0.1%的佣金【100万X0.001=1000】1000元佣金!有效投注越高，佣金就越高，亏损分红达到1万以上，另可再次得到1%佣金，【10000X0.1=1000】1000元亏损分红！";
     }
     else{
@@ -264,7 +264,7 @@
     else if([@"c126" isEqualToString:APP.SiteId]){
         [self.headerImageView setImage:[UIImage imageNamed:@"c126HeaderBgImg"]];
     }
-    else if([@"c186" isEqualToString:APP.SiteId]){
+    else if([@"c186" isEqualToString:APP.SiteId]||[@"test60f" isEqualToString:APP.SiteId]){
         [self.headerImageView setImage:[UIImage imageNamed:@"c186HeaderBgImg"]];
     }
     else{
@@ -281,7 +281,7 @@
         else if([@"c126" isEqualToString:APP.SiteId]){
             self.headerImageView.height = kScreenWidth * 45 / 69;
         }
-        else if([@"c186" isEqualToString:APP.SiteId]){
+        else if([@"c186" isEqualToString:APP.SiteId]||[@"test60f" isEqualToString:APP.SiteId]){
             self.headerImageView.height = kScreenWidth * 15.88 / 24.34;
         }
         else{
