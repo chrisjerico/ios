@@ -161,18 +161,36 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
-                               @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
-                               @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
-                               @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
-        };
+        NSDictionary *dict;
+        if (SysConf.m_promote_pos) {
+            
+            dict  = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
+                                   @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+                                   @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+                                   @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
+            };
+        } else {
+            
+            dict  = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView,  _trademarkView],
+                                   @"GPK版":@[_bannerView, _gameTypeView.superview,  _rankingView, _trademarkView],
+                                   @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview,  _rankingView, _trademarkView],
+                                   @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview,  _betFormView, _trademarkView],
+            };
+        }
+
         
         NSArray *views = dict[Skin1.skitType];
         if (views.count) {
             [_contentStackView addArrangedSubviews:views];
         } else {
             // 默认展示内容
-            [_contentStackView addArrangedSubviews:@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,]];
+            if (SysConf.m_promote_pos) {
+                [_contentStackView addArrangedSubviews:@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,]];
+            }
+            else{
+                [_contentStackView addArrangedSubviews:@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview,  _rankingView, _trademarkView,]];
+            }
+        
             
         }
     }
@@ -811,6 +829,7 @@
             } else {
                 [weakSelf.titleView setImgName:config.mobile_logo];
             }
+            [self skin];
             
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
