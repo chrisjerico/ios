@@ -33,8 +33,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *total_member;   /**<   推荐会员总计 */
 @property (nonatomic, strong) NSString *fandian;   /**<   一级下线比例 */
 
-@property (nonatomic, strong) NSString *fandian_intro;  /**<   佣金比例 */
-
+@property (nonatomic, strong) NSString *fandian_intro;  /**<   彩票佣金比例 */
+@property (nonatomic, strong) NSString *game_fandian_intro;  /**<   游戏佣金比例 */
+@property (nonatomic, strong) NSString *esport_fandian_intro;  /**<   电竞佣金比例 */
+@property (nonatomic, strong) NSString *fish_fandian_intro;  /**<   捕鱼佣金比例 */
+@property (nonatomic, strong) NSString *card_fandian_intro;  /**<   棋牌佣金比例 */
+@property (nonatomic, strong) NSString *real_fandian_intro;  /**<   真人佣金比例 */
+@property (nonatomic, strong) NSString *sport_fandian_intro;  /**<   体育佣金比例 */
 @end
 
 NS_ASSUME_NONNULL_END
