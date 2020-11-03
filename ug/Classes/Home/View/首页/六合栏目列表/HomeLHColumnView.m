@@ -168,13 +168,17 @@
     
     UGLHCategoryListModel *model = [self.lHCategoryList objectAtIndex:indexPath.row];
     
-    // 后台栏目ID可能不正确，要根据别名修正
-    NSDictionary *typeDict = @{@"sixpic":@"5",
-                               @"humorGuess":@"6",
-                               @"rundog":@"7",
-                               @"fourUnlike":@"8",
-    };
-    model.cid = typeDict[model.categoryType];
+    // 后台给的栏目ID可能不正确，要根据别名修正
+    NSMutableDictionary *typeDict = @{@"sixpic":@"5",}.mutableCopy;
+    // 以下别名，链接带alias的则修正
+    if (!model.link.urlParams[@"alias"]) {
+        [typeDict addEntriesFromDictionary:@{
+                    @"humorGuess":@"6",
+                    @"rundog":@"7",
+                    @"fourUnlike":@"8",
+        }];
+    }
+    model.cid = typeDict[model.categoryType] ? : model.cid;
     
     
 //        NSLog(@"model.categoryType =%@",model.categoryType);
@@ -261,6 +265,7 @@
     }
     else if([@"humorGuess,rundog,fourUnlike" containsString:model.categoryType]) {
         //fourUnlike
+        NSLog(@"model.categoryType = %@",model.categoryType);
         LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
         vc.clm = model;
         [NavController1 pushViewController:vc animated:true];
