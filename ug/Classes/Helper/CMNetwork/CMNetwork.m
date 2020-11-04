@@ -465,8 +465,8 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     id resultClass = CMResultClassGetResultClass(model);
     id dataClass = CMResultClassGetDataClass(model);
     
-    //    NSLog(@"url = %@",method);
-    //    NSLog(@"params = %@",params);
+        NSLog(@"url = %@",method);
+        NSLog(@"params = %@",params);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 30;
@@ -498,8 +498,13 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             
 #ifdef DEBUG
             
+//<<<<<<< HEAD
             HJSonLog(@"%@: 返回的json = %@",method,[CMCommon dicParseStr:json]);
             
+//=======
+//			HJSonLog(@"%@: 返回的utf8String = %@",method,[[NSString alloc] initWithData:responseObject encoding: NSUTF8StringEncoding]);
+//			//				HJSonLog(@"%@: 返回的json = %@",method,json);
+//>>>>>>> inviation code genetate
 #endif
             NSError *error;
             CMResult* result;

@@ -33,6 +33,8 @@
 #import "UGagentApplyInfo.h"
 #import "UGgaCaptchaModel.h"
 #import "LHUserModel.h"
+#import "InviteCodeModel.h"
+#import "InviteCodeListModel.h"
 
 @implementation CMNetwork (Mine)
 
@@ -1197,6 +1199,30 @@
     
     
     CMMETHOD_END;
+}
+//生成邀请码
++ (void)generateInviteCodeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+	CMMETHOD_BEGIN;
+	[self.manager requestInMainThreadWithMethod:[generateInviteCode stringToRestfulUrlWithFlag:RESTFUL]
+										 params:params
+										  model:nil
+										   post:YES
+									 completion:completionBlock];
+	
+	
+	CMMETHOD_END;
+}
+//邀请码列表
++ (void)inviteCodeListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+	CMMETHOD_BEGIN;
+	[self.manager requestInMainThreadWithMethod:[inviteCodeList stringToRestfulUrlWithFlag:RESTFUL]
+										 params:params
+										  model:CMResultClassMake(InviteCodeListModel.class)
+										   post:NO
+									 completion:completionBlock];
+	
+	
+	CMMETHOD_END;
 }
 @end
 

@@ -27,6 +27,10 @@
 		0315DC9F24AEC46000D635E2 /* NotificationSystemMessageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DC9D24AEC46000D635E2 /* NotificationSystemMessageVC.xib */; };
 		0315DCA324AEC6A700D635E2 /* NotificationSystemMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0315DCA124AEC6A700D635E2 /* NotificationSystemMessageCell.swift */; };
 		0315DCA424AEC6A700D635E2 /* NotificationSystemMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0315DCA224AEC6A700D635E2 /* NotificationSystemMessageCell.xib */; };
+		031830192551DA4900A63907 /* InviteCodeConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031830182551DA4900A63907 /* InviteCodeConfigModel.m */; };
+		0318301D2551DA4C00A63907 /* InviteCodeConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 031830182551DA4900A63907 /* InviteCodeConfigModel.m */; };
+		0318302A2551E76000A63907 /* NSTextAttachment+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = 031830292551E76000A63907 /* NSTextAttachment+UG.m */; };
+		0318302B2551E76000A63907 /* NSTextAttachment+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = 031830292551E76000A63907 /* NSTextAttachment+UG.m */; };
 		031A003B253FA7AC00092DFF /* UserMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031A0039253FA7AC00092DFF /* UserMainVC.swift */; };
 		031A003C253FA7AC00092DFF /* UserMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031A003A253FA7AC00092DFF /* UserMainVC.xib */; };
 		031A781D23D35A9C00FF2FFA /* LotteryTrendVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 031A781B23D35A9C00FF2FFA /* LotteryTrendVC.m */; };
@@ -1670,6 +1674,22 @@
 		03B720B72520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 03B720B42520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m */; };
 		03B720B82520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B720B52520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib */; };
 		03B720B92520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03B720B52520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib */; };
+		03CF305E254FD57500D75721 /* PromotionCodeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF305C254FD57500D75721 /* PromotionCodeListVC.m */; };
+		03CF305F254FD57500D75721 /* PromotionCodeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF305C254FD57500D75721 /* PromotionCodeListVC.m */; };
+		03CF3060254FD57500D75721 /* PromotionCodeListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CF305D254FD57500D75721 /* PromotionCodeListVC.xib */; };
+		03CF3061254FD57500D75721 /* PromotionCodeListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CF305D254FD57500D75721 /* PromotionCodeListVC.xib */; };
+		03CF3068254FE44200D75721 /* PromotionCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF3066254FE44200D75721 /* PromotionCodeCell.m */; };
+		03CF3069254FE44200D75721 /* PromotionCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF3066254FE44200D75721 /* PromotionCodeCell.m */; };
+		03CF306A254FE44200D75721 /* PromotionCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CF3067254FE44200D75721 /* PromotionCodeCell.xib */; };
+		03CF306B254FE44200D75721 /* PromotionCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CF3067254FE44200D75721 /* PromotionCodeCell.xib */; };
+		03CF3070254FFBCA00D75721 /* InviteCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF306F254FFBCA00D75721 /* InviteCodeModel.m */; };
+		03CF3071254FFBCA00D75721 /* InviteCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF306F254FFBCA00D75721 /* InviteCodeModel.m */; };
+		03CF307A25503B3D00D75721 /* InviteCodeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF307925503B3D00D75721 /* InviteCodeListModel.m */; };
+		03CF307B25503B3D00D75721 /* InviteCodeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF307925503B3D00D75721 /* InviteCodeListModel.m */; };
+		03CF30812550F74A00D75721 /* InviteCodeGenerateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF307F2550F74A00D75721 /* InviteCodeGenerateVC.m */; };
+		03CF30822550F74A00D75721 /* InviteCodeGenerateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF307F2550F74A00D75721 /* InviteCodeGenerateVC.m */; };
+		03CF30832550F74A00D75721 /* InviteCodeGenerateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */; };
+		03CF30842550F74A00D75721 /* InviteCodeGenerateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */; };
 		03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03CF9B6123C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */; };
 		03D6926923C22C9B003D9C12 /* UINavigationController+Push.m in Sources */ = {isa = PBXBuildFile; fileRef = 03D6926823C22C9B003D9C12 /* UINavigationController+Push.m */; };
@@ -2335,6 +2355,10 @@
 		0315DC9D24AEC46000D635E2 /* NotificationSystemMessageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSystemMessageVC.xib; sourceTree = "<group>"; };
 		0315DCA124AEC6A700D635E2 /* NotificationSystemMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSystemMessageCell.swift; sourceTree = "<group>"; };
 		0315DCA224AEC6A700D635E2 /* NotificationSystemMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSystemMessageCell.xib; sourceTree = "<group>"; };
+		031830172551DA4900A63907 /* InviteCodeConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCodeConfigModel.h; sourceTree = "<group>"; };
+		031830182551DA4900A63907 /* InviteCodeConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCodeConfigModel.m; sourceTree = "<group>"; };
+		031830282551E76000A63907 /* NSTextAttachment+UG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTextAttachment+UG.h"; sourceTree = "<group>"; };
+		031830292551E76000A63907 /* NSTextAttachment+UG.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTextAttachment+UG.m"; sourceTree = "<group>"; };
 		031A0039253FA7AC00092DFF /* UserMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMainVC.swift; sourceTree = "<group>"; };
 		031A003A253FA7AC00092DFF /* UserMainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserMainVC.xib; sourceTree = "<group>"; };
 		031A781A23D35A9C00FF2FFA /* LotteryTrendVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryTrendVC.h; sourceTree = "<group>"; };
@@ -3792,6 +3816,19 @@
 		03B720B32520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBJPK10LotteryBetCollectionHeader.h; sourceTree = "<group>"; };
 		03B720B42520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBJPK10LotteryBetCollectionHeader.m; sourceTree = "<group>"; };
 		03B720B52520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBJPK10LotteryBetCollectionHeader.xib; sourceTree = "<group>"; };
+		03CF305B254FD57500D75721 /* PromotionCodeListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionCodeListVC.h; sourceTree = "<group>"; };
+		03CF305C254FD57500D75721 /* PromotionCodeListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionCodeListVC.m; sourceTree = "<group>"; };
+		03CF305D254FD57500D75721 /* PromotionCodeListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionCodeListVC.xib; sourceTree = "<group>"; };
+		03CF3065254FE44200D75721 /* PromotionCodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionCodeCell.h; sourceTree = "<group>"; };
+		03CF3066254FE44200D75721 /* PromotionCodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionCodeCell.m; sourceTree = "<group>"; };
+		03CF3067254FE44200D75721 /* PromotionCodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionCodeCell.xib; sourceTree = "<group>"; };
+		03CF306E254FFBCA00D75721 /* InviteCodeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCodeModel.h; sourceTree = "<group>"; };
+		03CF306F254FFBCA00D75721 /* InviteCodeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCodeModel.m; sourceTree = "<group>"; };
+		03CF307825503B3D00D75721 /* InviteCodeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCodeListModel.h; sourceTree = "<group>"; };
+		03CF307925503B3D00D75721 /* InviteCodeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCodeListModel.m; sourceTree = "<group>"; };
+		03CF307E2550F74A00D75721 /* InviteCodeGenerateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteCodeGenerateVC.h; sourceTree = "<group>"; };
+		03CF307F2550F74A00D75721 /* InviteCodeGenerateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteCodeGenerateVC.m; sourceTree = "<group>"; };
+		03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InviteCodeGenerateVC.xib; sourceTree = "<group>"; };
 		03CF9B5E23C8D6C800CDE142 /* PromotionAdvertisementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionAdvertisementVC.h; sourceTree = "<group>"; };
 		03CF9B5F23C8D6C800CDE142 /* PromotionAdvertisementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionAdvertisementVC.m; sourceTree = "<group>"; };
 		03D4C80C234F4DEC0028B48F /* ug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ug.entitlements; sourceTree = "<group>"; };
@@ -5722,6 +5759,8 @@
 				031E15F023BE812400B0F813 /* UGPlatformGameModel.m */,
 				03E56F8D2480FB0E00996099 /* UGNoticeTypeModel.h */,
 				03E56F8E2480FB0E00996099 /* UGNoticeTypeModel.m */,
+				031830172551DA4900A63907 /* InviteCodeConfigModel.h */,
+				031830182551DA4900A63907 /* InviteCodeConfigModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6914,6 +6953,17 @@
 				031E180223BE812600B0F813 /* UGPromotionIncomeController.m */,
 				031E17FF23BE812600B0F813 /* UGPromotionTableController.h */,
 				031E180323BE812600B0F813 /* UGPromotionTableController.m */,
+				03CF305B254FD57500D75721 /* PromotionCodeListVC.h */,
+				03CF305C254FD57500D75721 /* PromotionCodeListVC.m */,
+				03CF305D254FD57500D75721 /* PromotionCodeListVC.xib */,
+				03CF3065254FE44200D75721 /* PromotionCodeCell.h */,
+				03CF3066254FE44200D75721 /* PromotionCodeCell.m */,
+				03CF3067254FE44200D75721 /* PromotionCodeCell.xib */,
+				03CF307E2550F74A00D75721 /* InviteCodeGenerateVC.h */,
+				03CF307F2550F74A00D75721 /* InviteCodeGenerateVC.m */,
+				03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */,
+				031830282551E76000A63907 /* NSTextAttachment+UG.h */,
+				031830292551E76000A63907 /* NSTextAttachment+UG.m */,
 			);
 			path = "推荐收益";
 			sourceTree = "<group>";
@@ -7182,6 +7232,10 @@
 				031E18AC23BE812600B0F813 /* UGbankModel.h */,
 				031E18AD23BE812600B0F813 /* UGModel.h */,
 				031E18AE23BE812600B0F813 /* UGgaCaptchaModel.h */,
+				03CF306E254FFBCA00D75721 /* InviteCodeModel.h */,
+				03CF306F254FFBCA00D75721 /* InviteCodeModel.m */,
+				03CF307825503B3D00D75721 /* InviteCodeListModel.h */,
+				03CF307925503B3D00D75721 /* InviteCodeListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -9856,6 +9910,7 @@
 				031E1C1123BE812900B0F813 /* UGLotteryAdPopView.xib in Resources */,
 				038A585924AAD03D0099D659 /* NameEditVC.xib in Resources */,
 				033A72D8251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib in Resources */,
+				03CF306B254FE44200D75721 /* PromotionCodeCell.xib in Resources */,
 				031EF5C623BE7B4D00B0F813 /* MomentsPublishImageCell.xib in Resources */,
 				031E1DFB23BE812C00B0F813 /* UGMissionTitleCell.xib in Resources */,
 				031EF58423BE7B4D00B0F813 /* chakan_hongbao.svg in Resources */,
@@ -9952,6 +10007,7 @@
 				031E1E3B23BE812C00B0F813 /* UGPromotion4rowTableViewCell.xib in Resources */,
 				03D6927123C23B9D003D9C12 /* ContactsVC.xib in Resources */,
 				031E1DF123BE812C00B0F813 /* UGMissionLevelTableViewCell.xib in Resources */,
+				03CF3061254FD57500D75721 /* PromotionCodeListVC.xib in Resources */,
 				038A727C24C0266400AF1E43 /* BetDetail.storyboard in Resources */,
 				031EF57C23BE7B4D00B0F813 /* pinglun.svg in Resources */,
 				031E194D23BE812600B0F813 /* UGLHC.storyboard in Resources */,
@@ -9967,6 +10023,7 @@
 				CF8508742466D7090025672F /* LineConversion.storyboard in Resources */,
 				031E1D9723BE812B00B0F813 /* UGYubaoViewController.storyboard in Resources */,
 				031EF5E323BE7B4E00B0F813 /* LoginVC.xib in Resources */,
+				03CF30842550F74A00D75721 /* InviteCodeGenerateVC.xib in Resources */,
 				22FAD04A23D471630002EA1D /* LotteryTrendContentCell.xib in Resources */,
 				031E1AAF23BE812800B0F813 /* icon_arrow@2x.png in Resources */,
 				031EF58823BE7B4D00B0F813 /* fenxiang_1.svg in Resources */,
@@ -10282,6 +10339,7 @@
 				CF47588F239636D200966536 /* 136.gif in Resources */,
 				CF4758CB239636D200966536 /* 145.gif in Resources */,
 				CF4758FD239636D200966536 /* 171.gif in Resources */,
+				03CF3060254FD57500D75721 /* PromotionCodeListVC.xib in Resources */,
 				D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */,
 				CF4758B9239636D200966536 /* 96.gif in Resources */,
 				031E1E7E23BE812D00B0F813 /* UGBalanceTransferLogsCell.xib in Resources */,
@@ -10566,7 +10624,9 @@
 				031E1B9C23BE812900B0F813 /* UGChanglongBetRecrodCell.xib in Resources */,
 				031E1C9A23BE812A00B0F813 /* UGFunds2microcodeView.xib in Resources */,
 				D42B958623F3E59C0030C653 /* JYLotteryCollectionViewCell.xib in Resources */,
+				03CF306A254FE44200D75721 /* PromotionCodeCell.xib in Resources */,
 				031E1B8223BE812900B0F813 /* UGPlatformNoticeCell.xib in Resources */,
+				03CF30832550F74A00D75721 /* InviteCodeGenerateVC.xib in Resources */,
 				CF47589E239636D200966536 /* 131.gif in Resources */,
 				CF4758EC239636D200966536 /* 60.gif in Resources */,
 				CF1E19E82542D4FD004436E2 /* UGCell190HeaderView.xib in Resources */,
@@ -10909,6 +10969,7 @@
 				031EF53923BE7B4D00B0F813 /* CipherManager.swift in Sources */,
 				CF8508732466D7050025672F /* LineConversionHeaderVC.m in Sources */,
 				031E1B3F23BE812800B0F813 /* UGPlatformNoticeModel.m in Sources */,
+				0318301D2551DA4C00A63907 /* InviteCodeConfigModel.m in Sources */,
 				031E19BF23BE812700B0F813 /* UIResponder+InterfaceOrientation.m in Sources */,
 				031E1CCF23BE812A00B0F813 /* UIView+MJExtension.m in Sources */,
 				031E1B3D23BE812800B0F813 /* UGhomeAdsModel.m in Sources */,
@@ -10954,6 +11015,7 @@
 				CF8508602466D6080025672F /* UGSalaryListView.m in Sources */,
 				031E1AD323BE812800B0F813 /* TGWebProgressLayer.m in Sources */,
 				031E1B3923BE812800B0F813 /* UGonlineCount.m in Sources */,
+				03CF305F254FD57500D75721 /* PromotionCodeListVC.m in Sources */,
 				03D6927823C32E0B003D9C12 /* C001BetErrorCustomView.m in Sources */,
 				031E1E5923BE812C00B0F813 /* UGMenuTableViewCell.m in Sources */,
 				D4326F1C23FA81B300BEEA1B /* UIColor+RGBValues.m in Sources */,
@@ -11136,6 +11198,7 @@
 				031E1A9B23BE812800B0F813 /* AddressModel.m in Sources */,
 				22FAD04823D471630002EA1D /* LotteryTrendContentCell.m in Sources */,
 				031AFC96253EBD6F00092DFF /* NSURL+Utils.m in Sources */,
+				03CF3069254FE44200D75721 /* PromotionCodeCell.m in Sources */,
 				031E1AD523BE812800B0F813 /* SRActionSheet.m in Sources */,
 				031E1ACF23BE812800B0F813 /* TGWebViewController.m in Sources */,
 				CF6241742520708500016A57 /* NewLotteryRightCollectionViewCell.m in Sources */,
@@ -11198,6 +11261,7 @@
 				03B720B72520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */,
 				031E1BA323BE812900B0F813 /* UGBMRegisterViewController.m in Sources */,
 				031EF5DD23BE7B4E00B0F813 /* BetListCell.swift in Sources */,
+				0318302B2551E76000A63907 /* NSTextAttachment+UG.m in Sources */,
 				031E1BDF23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
 				0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */,
 				039D3CC425373FD0008511AA /* YNHLPrizeDetailView.m in Sources */,
@@ -11261,6 +11325,7 @@
 				031E1CB123BE812A00B0F813 /* UGNavigationController.m in Sources */,
 				031E1B8523BE812900B0F813 /* UGNoticePopView.m in Sources */,
 				031EF5BE23BE7B4D00B0F813 /* ConcernedMomentsHeaderView.swift in Sources */,
+				03CF3071254FFBCA00D75721 /* InviteCodeModel.m in Sources */,
 				03D6926A23C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
 				03E56F902480FB0E00996099 /* UGNoticeTypeModel.m in Sources */,
 				031E1A2523BE812700B0F813 /* CCSessionModel.m in Sources */,
@@ -11271,6 +11336,7 @@
 				031EF5CD23BE7B4E00B0F813 /* MessageCollectionViewCustomFlowLayout.swift in Sources */,
 				031E1C9323BE812A00B0F813 /* UGRechargeTypeCell.m in Sources */,
 				031E1AD923BE812800B0F813 /* CustomCollectionViewCell.m in Sources */,
+				03CF30822550F74A00D75721 /* InviteCodeGenerateVC.m in Sources */,
 				031E1C6B23BE812A00B0F813 /* UGRechargeTypeTableViewController.m in Sources */,
 				031EF54D23BE7B4D00B0F813 /* Environment.swift in Sources */,
 				031E1BF723BE812900B0F813 /* UGGD11X5LotteryController.m in Sources */,
@@ -11413,6 +11479,7 @@
 				031E1A8923BE812700B0F813 /* SAROPSessionTask.m in Sources */,
 				031E1A6923BE812700B0F813 /* UGAppVersionManager.m in Sources */,
 				031EF53323BE7B4D00B0F813 /* APIErrorHandler.swift in Sources */,
+				03CF307B25503B3D00D75721 /* InviteCodeListModel.m in Sources */,
 				031E1BCB23BE812900B0F813 /* UGFC3DLotteryController.m in Sources */,
 				CF6241752520709200016A57 /* NewLotteryHeaderViewCollectionReusableView.m in Sources */,
 				031E1AA923BE812800B0F813 /* WMMaskSegmentControl.m in Sources */,
@@ -11451,6 +11518,7 @@
 				031E1A1623BE812700B0F813 /* Aspects.m in Sources */,
 				036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */,
 				031E1B4A23BE812800B0F813 /* UGLotteryHistoryModel.m in Sources */,
+				031830192551DA4900A63907 /* InviteCodeConfigModel.m in Sources */,
 				031E19F223BE812700B0F813 /* LoadingStateView.m in Sources */,
 				031E1AA223BE812800B0F813 /* ZZCircleProgress.m in Sources */,
 				030A872123C4E5B00001EF82 /* JS_Sidebar.m in Sources */,
@@ -11756,6 +11824,7 @@
 				031E19B823BE812700B0F813 /* NSMutableArray+KVO.m in Sources */,
 				031E1A6023BE812700B0F813 /* UIColor+ST.m in Sources */,
 				031E19C423BE812700B0F813 /* UIView+Utils.m in Sources */,
+				03CF3068254FE44200D75721 /* PromotionCodeCell.m in Sources */,
 				031E1DE623BE812C00B0F813 /* UGagentApplyInfo.m in Sources */,
 				031E1DE023BE812C00B0F813 /* UGbetStatModel.m in Sources */,
 				031E1BE223BE812900B0F813 /* UGHKLHCLotteryController.m in Sources */,
@@ -11859,6 +11928,7 @@
 				03E3AAC223C84EA5009A28C0 /* PromotionIntroductionVC.m in Sources */,
 				031E1D8C23BE812B00B0F813 /* UGMineSkinViewController.m in Sources */,
 				CF5313FD2542E66D00450EF1 /* TKLMainListViewController.m in Sources */,
+				03CF305E254FD57500D75721 /* PromotionCodeListVC.m in Sources */,
 				031E19CA23BE812700B0F813 /* UIColor+Utils.m in Sources */,
 				031E1DE423BE812C00B0F813 /* UGMineSkinModel.m in Sources */,
 				031E1D5023BE812B00B0F813 /* UGSecurityCenterViewController.m in Sources */,
@@ -11866,6 +11936,7 @@
 				031E1D8023BE812B00B0F813 /* UGBetRecordDetailViewController.m in Sources */,
 				031E1DAC23BE812B00B0F813 /* UGYuebaoTransferLogsModel.m in Sources */,
 				031E1D6623BE812B00B0F813 /* UGgoBindViewController.m in Sources */,
+				03CF3070254FFBCA00D75721 /* InviteCodeModel.m in Sources */,
 				031E1B7223BE812800B0F813 /* UGGameTypeCollectionView.m in Sources */,
 				031E1D5A23BE812B00B0F813 /* UGRegisterViewController.m in Sources */,
 				D442590323E949600067E981 /* LHHornView.m in Sources */,
@@ -11898,6 +11969,7 @@
 				D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */,
 				031E1D6223BE812B00B0F813 /* UGBankCardInfoController.m in Sources */,
 				031E1CBE23BE812A00B0F813 /* UGViewController.m in Sources */,
+				03CF307A25503B3D00D75721 /* InviteCodeListModel.m in Sources */,
 				031E1DB423BE812B00B0F813 /* UGgaCaptchaModel.m in Sources */,
 				D4346B652406407C00D8FE7C /* UGMissionMainViewController.m in Sources */,
 				03E41B3223C09363004AB7C6 /* JS_HomePromoteContainerView.m in Sources */,
@@ -12059,6 +12131,7 @@
 				495CF4CA24C9496400A4574D /* UGTaskSectionTableViewCell.m in Sources */,
 				031E197223BE812600B0F813 /* UGLHCategoryListModel.m in Sources */,
 				031E1BD823BE812900B0F813 /* UGCommonLotteryController.m in Sources */,
+				0318302A2551E76000A63907 /* NSTextAttachment+UG.m in Sources */,
 				031E1C0823BE812900B0F813 /* UGBetDetailModel.m in Sources */,
 				031E1A8C23BE812700B0F813 /* SAROPSessionConfiguration.m in Sources */,
 				031E1C0423BE812900B0F813 /* UGHallLotteryModel.m in Sources */,
@@ -12090,6 +12163,7 @@
 				031E1A8E23BE812700B0F813 /* SAROPSession.m in Sources */,
 				031AFC41253C1DCF00092DFF /* ResetPasswordApplyVC.m in Sources */,
 				031E1DEC23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
+				03CF30812550F74A00D75721 /* InviteCodeGenerateVC.m in Sources */,
 				D4564A4523E3E3A800A1A8C6 /* UIView+shadowPath.m in Sources */,
 				031E19A823BE812600B0F813 /* AppDefine.m in Sources */,
 				031E1D2E23BE812B00B0F813 /* UGSigInCodeViewController.m in Sources */,

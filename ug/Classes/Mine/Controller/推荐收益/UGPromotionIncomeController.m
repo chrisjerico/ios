@@ -11,6 +11,7 @@
 #import "UGPromotionTableController.h"
 #import "UGPromotionInfoController.h"
 #import "UGPormotionView.h"
+#import "PromotionCodeListVC.h"
 
 
 @interface UGPromotionIncomeController ()<XYYSegmentControlDelegate>
@@ -112,21 +113,19 @@
 #pragma mark 设置右上角按钮
 
 - (void)setupRightItem {
-    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(UGScreenW - 50,100, 50, 50)];
-    UGUserModel *user = [UGUserModel currentUser];
-    [rightButton setTitle:user.fullName forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
-    [rightButton addTarget:self action:@selector(rightClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem = rightItem;
+	UIBarButtonItem * rightItem = [[UIBarButtonItem alloc] initWithTitle:UGSystemConfigModel.currentConfig.inviteCode.displayWord style:UIBarButtonItemStyleDone target:self action:@selector(rightClicked)];
+	self.navigationItem.rightBarButtonItem = rightItem;
+	[rightItem setTitleTextAttributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:14], NSForegroundColorAttributeName: UIColor.whiteColor} forState:UIControlStateNormal];
+	[rightItem setTitleTextAttributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:14], NSForegroundColorAttributeName: UIColor.whiteColor} forState:UIControlStateHighlighted];
+
 }
 
 
 #pragma mark 右上角按钮的点击方法
 
 - (void)rightClicked {
-
+	PromotionCodeListVC * vc = [[PromotionCodeListVC alloc] init];
+	[NavController1 pushViewController:vc animated:true];
     
 }
 

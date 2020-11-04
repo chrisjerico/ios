@@ -325,8 +325,10 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 #define uploadIdentityUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=uploadIdentity"]
 //找回资金密码
 #define applyFundPwdUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=user&a=applyCoinPwd"]
-
-
+//生成邀请码
+#define generateInviteCode  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=createInviteCode"]
+//邀请码列表
+#define inviteCodeList  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=team&a=inviteCodeList"]
 
 #ifdef DEBUG
 #define NSLog(format, ...) printf("\n%s HHLog %s(line%d) %s\n%s\n\n", __TIME__, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String])

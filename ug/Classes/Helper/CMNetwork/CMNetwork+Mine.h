@@ -259,7 +259,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //解除三方绑定：oauth/unbind，
 + (void)oauthUnbindUrlWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
-
+//生成邀请码
++ (void)generateInviteCodeWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+//邀请码列表
++ (void)inviteCodeListWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 @end
 
 NS_ASSUME_NONNULL_END
