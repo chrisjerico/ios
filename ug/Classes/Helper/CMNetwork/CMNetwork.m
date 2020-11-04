@@ -438,7 +438,16 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         [params setValue:nil forKey:@"token"];
     }
     NSLog(@"请求method   =%@",method);
-    NSLog(@"请求params   =%@",params);
+    NSLog(@"请求params   = %@",params);
+    if (params != nil) {
+        NSError *parseError;
+        NSData *jsonData1 = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&parseError];
+        if (parseError) {
+          //解析出错
+        }
+        NSString * str1 = [[NSString alloc] initWithData:jsonData1 encoding:NSUTF8StringEncoding];
+        NSLog(@"请求params   = %@",str1);
+    }
     if (isPost) {
         [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
     } else {
