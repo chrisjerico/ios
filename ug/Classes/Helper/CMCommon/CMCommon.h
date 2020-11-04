@@ -510,4 +510,10 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 +(NSString *)strReplace:(NSString *)str  spChar:(NSString *)spChar  split:(NSString *)splitStr;
 
 +(void)goSLWebViewControllerUrl:(NSString *)mUrl;
+
+//字符串转字典
++(NSDictionary *)strParseDic:(NSString *)jsonString;
+
+//字典转字符串
++(NSString *)dicParseStr:(NSDictionary *)dic;
 @end

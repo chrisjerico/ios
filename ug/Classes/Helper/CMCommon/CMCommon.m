@@ -1902,4 +1902,39 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     [NavController1 pushViewController:webViewVC animated:YES];
 }
 
+//字符串转字典
++(NSDictionary *)strParseDic:(NSString *)jsonString{
+    if (jsonString != nil) {
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+        if (error) {
+          //解析出错
+            NSLog(@"字符串不是字典格式");
+        }
+        return  dic;
+    }
+    else{
+        NSLog(@"字符串为空");
+        return nil;
+    }
+
+}
+
+//字典转字符串
++(NSString *)dicParseStr:(NSDictionary *)dic{
+    if (dic != nil) {
+        NSError *parseError;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+        if (parseError) {
+          //解析出错
+        }
+        NSString * str = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return  str;
+    }
+    else{
+        NSLog(@"字典为空");
+        return nil;
+    }
+}
 @end
