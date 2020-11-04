@@ -353,6 +353,7 @@
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="重置Button"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="resetClick:" destination="kNh-vD-evs" eventType="touchUpInside" id="AVQ-gk-6wH"/>

@@ -325,7 +325,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入金额" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ff4-9g-Mbe" userLabel="下注金额">
-                                        <rect key="frame" x="91.5" y="55" width="107.5" height="36"/>
+                                        <rect key="frame" x="91.5" y="55" width="117.5" height="36"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="cw7-uf-dlL"/>
@@ -340,11 +340,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D3-96-EZv" userLabel="筹码" customClass="IBButton">
-                                        <rect key="frame" x="204" y="55" width="70" height="36"/>
+                                        <rect key="frame" x="214" y="55" width="60" height="36"/>
                                         <color key="backgroundColor" red="0.40180855989999997" green="0.67699187989999998" blue="0.35686457160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="2Ly-lb-RR1"/>
-                                            <constraint firstAttribute="width" constant="70" id="dC9-cG-l8D"/>
+                                            <constraint firstAttribute="width" constant="60" id="dC9-cG-l8D"/>
                                         </constraints>
                                         <state key="normal" title="筹码">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -403,6 +403,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="numberOfLines">
                                                 <integer key="value" value="0"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="重置Button"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="resetClick:" destination="4k1-Qb-ehd" eventType="touchUpInside" id="Zxd-ai-zIT"/>

@@ -188,6 +188,9 @@
             self.nextIssueLabel.textColor = Skin1.navBarBgColor;
             subLabel(@"期数label").textColor = Skin1.navBarBgColor;
             [self.openTimeLabel setHidden:Skin1.isTKL];
+            [subButton(@"追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
+      
+            [subButton(@"重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
         }
         
         // 底部栏背景色
@@ -928,7 +931,13 @@
 		_radomNumberButton.titleLabel.font = [UIFont systemFontOfSize:15];
 		_radomNumberButton.titleLabel.textColor = [UIColor whiteColor];
 		[_radomNumberButton customSetEnable:true];
-		_radomNumberButton.backgroundColor = [UIColor colorWithHex:0x3A3E40];
+        
+        if (Skin1.isTKL) {
+            [_radomNumberButton setBackgroundColor:RGBA(247, 162, 0, 1)];
+        } else {
+            _radomNumberButton.backgroundColor = [UIColor colorWithHex:0x3A3E40];
+        }
+		
 		[_radomNumberButton addTarget:self action:@selector(randomNumber) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _radomNumberButton;
