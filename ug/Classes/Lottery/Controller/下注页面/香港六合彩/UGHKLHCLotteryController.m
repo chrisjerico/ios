@@ -430,19 +430,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self.headerCollectionView reloadData];
 }
 
-- (void)updateCloseLabelText{
-    
-    NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (self.nextIssueModel.isSeal || timeStr == nil) {
-        timeStr = @"封盘中";
-        self.bottomCloseView.hidden = NO;
-        [self resetClick:nil];
-    } else {
-        self.bottomCloseView.hidden = YES;
-    }
-    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
-    [self updateCloseLabel];
-}
 
 
 - (void)updateOpenLabelText {
@@ -1433,19 +1420,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
-
-
-- (void)updateCloseLabel {
-    if (APP.isTextWhite) {
-        return;
-    }
-    if (self.closeTimeLabel.text.length) {
-        
-        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
-        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
-        self.closeTimeLabel.attributedText = abStr;
-    }
-}
 
 //这个方法是有用的不要删除
 - (void)updateOpenLabel {}

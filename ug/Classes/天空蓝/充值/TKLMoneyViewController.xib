@@ -225,10 +225,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="206.5" height="60"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tkl_czIcon" translatesAutoresizingMaskIntoConstraints="NO" id="JKr-z9-qZO">
-                                    <rect key="frame" x="63.5" y="10" width="40" height="40"/>
+                                    <rect key="frame" x="71" y="17.5" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="40" id="8J1-Q8-D20"/>
-                                        <constraint firstAttribute="height" constant="40" id="WnO-Oa-iuE"/>
+                                        <constraint firstAttribute="width" constant="25" id="8J1-Q8-D20"/>
+                                        <constraint firstAttribute="height" constant="25" id="WnO-Oa-iuE"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9t-tk-8JP">
@@ -269,10 +269,10 @@
                                     </connections>
                                 </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tkl_txIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5TZ-yR-vQH">
-                                    <rect key="frame" x="63.5" y="10" width="40" height="40"/>
+                                    <rect key="frame" x="71" y="17.5" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="kEV-p4-LAn"/>
-                                        <constraint firstAttribute="width" constant="40" id="xtE-Fh-ULD"/>
+                                        <constraint firstAttribute="height" constant="25" id="kEV-p4-LAn"/>
+                                        <constraint firstAttribute="width" constant="25" id="xtE-Fh-ULD"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjb-q5-JzW">

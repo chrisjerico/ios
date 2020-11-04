@@ -59,7 +59,7 @@
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;
 
-@property (nonatomic, strong) NSMutableArray <GameModel *> *tableArray;
+@property (nonatomic, strong) NSArray <GameModel *> *tableArray;
 //-------------------------------------------------------------------
 @property (weak, nonatomic) IBOutlet UIView *tklBgView;            /**<   天空蓝View*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tklHight; /**<   天空蓝View 高*/
@@ -309,11 +309,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                     NSArray <GameModel *> *tempArry = [GameModel mj_objectArrayWithKeyValuesArray : model.data];
             
                     if (tempArry.count) {
-                        // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
-                        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
-                        // 排序结果
-                        self.tableArray = [NSMutableArray <GameModel *> new];
-                        self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]].mutableCopy;
+                        
+                        self.tableArray = [tempArry sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                                //给对象排序
+                                NSComparisonResult result = [obj1 compareParkInfo:obj2];
+                                return result;
+                            }];                        // 排序结果
                         APP.isWebRightMenu = YES;
                         [weakSelf.bg2View setHidden:YES];
                         // 需要在主线程执行的代码

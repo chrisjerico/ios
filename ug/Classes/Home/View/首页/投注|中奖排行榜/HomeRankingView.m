@@ -33,16 +33,14 @@
     self.upwardMultiMarqueeView.useDynamicHeight = YES;
     self.upwardMultiMarqueeView.touchEnabled = YES;
     self.upwardMultiMarqueeView.delegate = self;
-    
-    
-    SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
-        // c108站点定制需求
-        if ([@"c108" containsString: APP.SiteId] || Skin1.isTKL || [Skin1.skitType isEqualToString:@"金沙主题"]) {
-            self.backgroundColor = UIColor.whiteColor;
-        } else {
-            self.backgroundColor = Skin1.isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
-        }
-    });
+
+    // c108站点定制需求
+    if ([@"c108" containsString: APP.SiteId] || Skin1.isTKL || [Skin1.skitType isEqualToString:@"金沙主题"]) {
+        self.backgroundColor = UIColor.whiteColor;
+    } else {
+        self.backgroundColor = Skin1.isGPK ? Skin1.bgColor : Skin1.navBarBgColor;
+    }
+
 }
 
 - (void)start { [self.upwardMultiMarqueeView start];}

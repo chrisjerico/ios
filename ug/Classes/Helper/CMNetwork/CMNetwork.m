@@ -498,7 +498,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             
 #ifdef DEBUG
             
-            HJSonLog(@"%@: 返回的json = %@",method,json);
+            HJSonLog(@"%@: 返回的json = %@",method,[CMCommon dicParseStr:json]);
             
 #endif
             NSError *error;
@@ -594,7 +594,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                                                                    error:nil];
 #ifdef DEBUG
             
-            HJSonLog(@"%@: 返回的json = %@",method,json);
+            HJSonLog(@"%@: 返回的json = %@",method,[CMCommon dicParseStr:json]);
             
 #endif
             NSError *error;

@@ -283,10 +283,8 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
     WeakSelf;
      [CMNetwork getGameDatasWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            HJSonLog(@" 返回的json = %@",model);
             
             UGPlayOddsModel *play = model.data;
-            NSLog(@"model.data = %@",model.data);
             weakSelf.gameDataArray = play.playOdds.mutableCopy;
             for (UGGameplayModel *model in weakSelf.gameDataArray) {
                 if ([@"一字定位" isEqualToString:model.name]) {
@@ -2033,19 +2031,6 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
 
 
-- (void)updateCloseLabelText{
-    NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (self.nextIssueModel.isSeal || timeStr == nil) {
-        timeStr = @"封盘中";
-        self.bottomCloseView.hidden = NO;
-        [self resetClick:nil];
-    }else {
-        self.bottomCloseView.hidden = YES;
-    }
-    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
-    [self updateCloseLabel];
-    
-}
 
 
 - (void)updateOpenLabelText {
@@ -2064,18 +2049,6 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
     
 }
 
-- (void)updateCloseLabel {
-    if (APP.isTextWhite) {
-        return;
-    }
-    if (self.closeTimeLabel.text.length) {
-        
-        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
-        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
-        self.closeTimeLabel.attributedText = abStr;
-    }
-    
-}
 
 //这个方法是有用的不要删除
 - (void)updateOpenLabel {}

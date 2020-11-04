@@ -1381,7 +1381,7 @@ static UGSkinManagers *__initSkin1 = nil;
                 sm.conversionCellColor      = color(@"7BA2C2");
                 sm.intoViewColor            = color(@"7BA2C2");
                 sm.moneyCellColor           = color(@"9BB8CB");
-                sm.navBarTitleColor         = color(@"111111");
+                sm.navBarTitleColor         = color(@"FFFFFF");
                 sm;
             }),
 
@@ -1480,6 +1480,7 @@ static UGSkinManagers *__initSkin1 = nil;
 
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
+    skitType = @"1";
 //    skitType = @"天空蓝";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];

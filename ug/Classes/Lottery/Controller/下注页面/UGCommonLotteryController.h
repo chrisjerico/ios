@@ -57,14 +57,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getNextIssueData;
 -(void)playerLotterySound;
 
-
+- (void)updateCloseLabel;
 - (void)getLotteryHistory;
 
 - (void)updateSelectLabelWithCount:(NSInteger)count;
 
 //连码玩法数据处理
 - (void)handleData;
-
+- (void)updateCloseLabelText;
 // 重置
 - (IBAction)resetClick:(id)sender ;
 

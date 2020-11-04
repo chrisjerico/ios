@@ -31,7 +31,8 @@
 @interface UGCommonLotteryController (CC)<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *bottomView;
-@property (nonatomic) IBOutlet UILabel *nextIssueLabel;
+@property (nonatomic) IBOutlet UILabel *nextIssueLabel;/**<   下期开奖label */
+@property (nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
 @property (nonatomic) IBOutlet UILabel *openTimeLabel;
 
@@ -176,9 +177,18 @@
         [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
         [subView(@"中间View") setBackgroundColor:[UIColor clearColor]];
         subLabel(@"线label").hidden = !APP.isShowBorder;
+        [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        
         self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
+        
+        if (Skin1.isTKL) {
+            self.nextIssueLabel.textColor = Skin1.navBarBgColor;
+            subLabel(@"期数label").textColor = Skin1.navBarBgColor;
+
+        }
         
         // 底部栏背景色
         [self.bottomView setBackgroundColor:Skin1.bgColor];
@@ -195,8 +205,7 @@
             bgView;
         }) atIndex:0];
         
-        [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
-        [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+
         
         [subButton(@"长龙btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"长龙btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -346,6 +355,46 @@
         [self sliderViewInit ];
   };
 
+}
+
+- (void)updateCloseLabel {
+    if (APP.isTextWhite) {
+        return;
+    }
+    if (self.closeTimeLabel.text.length) {
+        
+        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
+        
+        if (Skin1.isTKL) {
+            [abStr addAttribute:NSFontAttributeName
+                                         value:[UIFont boldSystemFontOfSize:20]
+                                         range:NSMakeRange(0, self.closeTimeLabel.text.length - 0)];
+            [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, self.closeTimeLabel.text.length - 0)];
+        }
+        else{
+            [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
+        }
+        self.closeTimeLabel.attributedText = abStr;
+    }
+}
+
+- (void)updateCloseLabelText{
+    
+    NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
+    if (self.nextIssueModel.isSeal || timeStr == nil) {
+        timeStr = @"封盘中";
+        self.bottomCloseView.hidden = NO;
+        [self resetClick:nil];
+    } else {
+        self.bottomCloseView.hidden = YES;
+    }
+    if (Skin1.isTKL) {
+        self.closeTimeLabel.text = timeStr;
+    } else {
+        self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
+    }
+    
+    [self updateCloseLabel];
 }
 //拖动条
 - (void )sliderViewInit {
