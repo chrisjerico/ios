@@ -34,7 +34,7 @@
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;/**<   下期开奖label */
 @property (nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
-@property (nonatomic) IBOutlet UILabel *openTimeLabel;
+@property (nonatomic) IBOutlet UILabel *openTimeLabel;/**<   开奖时间Label */
 
 @property (nonatomic) IBOutlet UILabel *selectLabel;      /**<   注数Label */
 @property (nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
@@ -187,7 +187,7 @@
         if (Skin1.isTKL) {
             self.nextIssueLabel.textColor = Skin1.navBarBgColor;
             subLabel(@"期数label").textColor = Skin1.navBarBgColor;
-
+            [self.openTimeLabel setHidden:Skin1.isTKL];
         }
         
         // 底部栏背景色
@@ -367,7 +367,7 @@
         
         if (Skin1.isTKL) {
             [abStr addAttribute:NSFontAttributeName
-                                         value:[UIFont boldSystemFontOfSize:20]
+                                         value:[UIFont boldSystemFontOfSize:22]
                                          range:NSMakeRange(0, self.closeTimeLabel.text.length - 0)];
             [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, self.closeTimeLabel.text.length - 0)];
         }

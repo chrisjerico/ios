@@ -5769,9 +5769,6 @@
 				031E162023BE812400B0F813 /* UGHomeTitleView.h */,
 				031E162123BE812400B0F813 /* UGHomeTitleView.m */,
 				031E161F23BE812400B0F813 /* UGHomeTitleView.xib */,
-				D4122CB52503AC160009E602 /* UGTKLHomeTitleView.h */,
-				D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */,
-				D4122CB92503AC290009E602 /* UGTKLHomeTitleView.xib */,
 			);
 			path = "定制导航栏";
 			sourceTree = "<group>";
@@ -5812,7 +5809,6 @@
 		031E163723BE812400B0F813 /* 公告列表 */ = {
 			isa = PBXGroup;
 			children = (
-				D4122CBE2504B4010009E602 /* 天空蓝 */,
 				031E163A23BE812400B0F813 /* UGPlatformNoticeView.h */,
 				031E163823BE812400B0F813 /* UGPlatformNoticeView.m */,
 				031E163B23BE812400B0F813 /* UGPlatformNoticeView.xib */,
@@ -8271,6 +8267,24 @@
 			path = "折叠优惠HeaderView";
 			sourceTree = "<group>";
 		};
+		CF3A26E02552C56800ECA65F /* 首页定制导航头 */ = {
+			isa = PBXGroup;
+			children = (
+				D4122CB52503AC160009E602 /* UGTKLHomeTitleView.h */,
+				D4122CB62503AC160009E602 /* UGTKLHomeTitleView.m */,
+				D4122CB92503AC290009E602 /* UGTKLHomeTitleView.xib */,
+			);
+			path = "首页定制导航头";
+			sourceTree = "<group>";
+		};
+		CF3A26E22552C5D100ECA65F /* 首页公告 */ = {
+			isa = PBXGroup;
+			children = (
+				D4122CBE2504B4010009E602 /* 天空蓝 */,
+			);
+			path = "首页公告";
+			sourceTree = "<group>";
+		};
 		CF3C073324C01ADF000E6700 /* UIView+AutoLocalizable */ = {
 			isa = PBXGroup;
 			children = (
@@ -8606,6 +8620,8 @@
 		CF5586B02546B90400BE2576 /* 天空蓝 */ = {
 			isa = PBXGroup;
 			children = (
+				CF3A26E22552C5D100ECA65F /* 首页公告 */,
+				CF3A26E02552C56800ECA65F /* 首页定制导航头 */,
 				CF5586B32546B93A00BE2576 /* 注册 */,
 				CF5586B22546B93000BE2576 /* 充值 */,
 				CF6ED3E6254961F500C8D739 /* TKLStoryboard.storyboard */,
