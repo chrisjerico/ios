@@ -47,7 +47,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"资金管理";
     _historyDataArray = [NSMutableArray new];
-    [self.salaryBtn.superview setHidden:!APP.isShowSalary];
+    [self.salaryBtn.superview setHidden:SysConf.mBonsSwitch];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
     self.titleArray = [[NSMutableArray alloc] initWithObjects:@"充值记录",@"提现记录",@"红包记录",@"转换记录",@"资金明细", nil] ;
     self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"tkl_czjl",@"tkl_txjl",@"tkl_hbjl",@"tkl_zzjl",@"tkl_zjmx", nil] ;
