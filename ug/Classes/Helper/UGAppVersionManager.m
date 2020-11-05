@@ -118,8 +118,7 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
                 }];
             }
         }
-        else {
-//        else if (fabs([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptDate]]) > PromptInterval) {
+        else if (fabs([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptDate]]) > PromptInterval) {
             showAlert();
         }
     }
