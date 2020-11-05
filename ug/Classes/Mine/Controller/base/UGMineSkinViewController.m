@@ -290,6 +290,7 @@
     });
     
     [self.salaryBtn.superview setHidden:!APP.isShowSalary];
+    [self.tkl_salaryBtn.superview setHidden:!APP.isShowSalary];
     //初始化
     [self initCollectionView];
     
