@@ -1417,7 +1417,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     self.headerCollectionView = collectionView;
     [self.headerOneView addSubview:collectionView];
     [self.headerOneView bringSubviewToFront:self.historyBtn];
-    
+    FastSubViewCode(self.headerOneView);
+    [self.headerOneView bringSubviewToFront:subView(@"iconView")];
 }
 
 
