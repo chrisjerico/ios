@@ -7,7 +7,7 @@
 //
 
 #import "UGModel.h"
-
+@class  GameModel;
 NS_ASSUME_NONNULL_BEGIN
 @protocol UGNextIssueModel <NSObject>
 
@@ -101,7 +101,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic)  NSString *t7;     /**<  七*/
 @property (strong, nonatomic)  NSString *t8;     /**<  8*/
 @property (strong, nonatomic)  NSString *t9;     /**<  9*/
-+ (instancetype)modelWithGameId:(NSString *)gameId;
+
++ (instancetype)modelWithGameId:(NSString *)gameId model:(GameModel *)model;
 
 
 @end

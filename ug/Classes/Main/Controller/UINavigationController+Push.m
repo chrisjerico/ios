@@ -323,7 +323,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     if (linkCategory == 1) {
         // 去彩票下注页
-        return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue] isChatRoom:NO];
+        return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue model:model] isChatRoom:NO];
     }
     
     if (linkCategory == 10) {

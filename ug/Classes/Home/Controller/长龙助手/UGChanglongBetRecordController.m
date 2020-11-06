@@ -106,7 +106,7 @@ static NSString *changlongBetRecordCellId = @"UGChanglongBetRecrodCell";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBetRecordDetailViewController" bundle:nil];
     UGBetRecordDetailViewController *detailVC = [storyboard instantiateInitialViewController];
     UGChanglongBetRecordModel *model = self.dataArray[indexPath.row];
-    model.pic = [UGNextIssueModel modelWithGameId:model.gameId].pic;
+    model.pic = [UGNextIssueModel modelWithGameId:model.gameId model:nil].pic;
     detailVC.item = model;
     [self.navigationController pushViewController:detailVC animated:YES];
 }

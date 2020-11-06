@@ -107,7 +107,7 @@
             site(@"c090",        @"c090hy",     @"176",     @"io.fhpt.H5D6E1F0A",       @"",                                            @"企业包",     @"⾦沙彩票"),
             site(@"c092",        @"c092hy",     @"156",     @"io.fhpt.H57B34489",       @"https://2013ddd.com",                         @"企业包",     @"2013彩票"),//极光账号：4366762@qq.com 密码：hdghFGDFGbdfbgf234
             site(@"c115",        @"",           @"",        @"io.fhpt.H59BD7AE3",       @"",                                            @"企业包",     @"中彩⽹"),
-            site(@"c116",        @"c116hy",     @"139",     @"io.fhpt.H50A85511",       @"https://13532035.com",                        @"企业包",     @"1353彩世界"),//极光推送，账号：wcai87089@gmail.com密码Csj13530 
+            site(@"c116",        @"c116hy",     @"139",     @"io.fhpt.H50A85511",       @"https://13532037.com",                        @"企业包",     @"1353彩世界"),//极光推送，账号：wcai87089@gmail.com密码Csj13530 rn :https://13532037.com
             site(@"c126b",       @"c126bhy",    @"323",     @"io.fhpt.YSAC126B",         @"https://og878.vip",                        @"企业包",     @"新葡京娱乐场"),
             site(@"c126",        @"c126hy",     @"277",     @"io.fhpt.H5FD4D963",       @"https://758cpapp.com",                        @"企业包",     @"环球彩票网"),
             site(@"c601",        @"",           @"",        @"io.fhpt.H5D5F880F",       @"",                                            @"企业包",     @"六合宝典"),
