@@ -515,16 +515,22 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 7: {
             // 开奖网
-//            TGWebViewController *sf = [[TGWebViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            if (![CMCommon stringIsNull:model.realGameId]) {
+                NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,model.realGameId];
+                [CMCommon goSLWebUrl:url];
+            } else {
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                webViewVC.允许未登录访问 = true;
+                webViewVC.允许游客访问 = true;
+                webViewVC.url = _NSString(@"%@/Open_prize/index.php", APP.Host);
+                webViewVC.webTitle = @"开奖网";
+                [NavController1 pushViewController:webViewVC animated:YES];
+            }
+              
 
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.允许未登录访问 = true;
-            webViewVC.允许游客访问 = true;
-            webViewVC.url = _NSString(@"%@/Open_prize/index.php", APP.Host);
-            webViewVC.webTitle = @"开奖网";
-            [NavController1 pushViewController:webViewVC animated:YES];
             
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            
+
             break;
         }
         case 8: {

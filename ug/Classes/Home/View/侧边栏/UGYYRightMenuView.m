@@ -768,7 +768,13 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     }
     
     else if ([title isEqualToString:@"开奖网"]) {
-        [CMCommon goSLWebUrl:lotteryUrl];
+        if (![CMCommon stringIsNull:self.gameId]) {
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            [CMCommon goSLWebUrl:url];
+        } else {
+            [CMCommon goSLWebUrl:lotteryUrl];
+        }
+
     }
     else if ([title isEqualToString:@"任务中心"]) {
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
