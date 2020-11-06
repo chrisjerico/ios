@@ -194,35 +194,6 @@
         self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         
-        if (Skin1.isTKL) {
-            self.nextIssueLabel.textColor = Skin1.navBarBgColor;
-            subLabel(@"期数label").textColor = Skin1.navBarBgColor;
-            [self.openTimeLabel setHidden:Skin1.isTKL];
-            [subButton(@"追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
-            [self.chipButton  setHidden:Skin1.isTKL];
-            [subButton(@"重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
-            [_bargainingView setHidden:!Skin1.isTKL];
-        }
-        
-        //筹码 bottomView
-        _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
-        //游戏列表点击事件
-        self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
-            if (![CMCommon stringIsNull:item.btnTitle]) {
-                float n1 = [CMCommon floatForNSString:__self.amountTextF.text];
-                float n2 = [CMCommon floatForNSString:item.btnTitle];
-                float sum = n1 + n2;
-                __self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
-            }
-        };
-        [self.view addSubview:_bargainingView];
-        [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.bottomView.mas_top).mas_offset(50);
-            make.left.equalTo(self.view.mas_left).mas_offset(0);
-            make.height.mas_equalTo(45);
-            make.width.mas_equalTo(260);
-        }];
-        
         // 底部栏背景色
         [self.bottomView setBackgroundColor:Skin1.bgColor];
         [self.bottomView insertSubview:({
@@ -356,7 +327,8 @@
         
         if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
             [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
-        } else {
+        }
+        else {
             
             if (APP.isYellow) {
                 [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
@@ -368,7 +340,8 @@
         }
         
         
-        if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
+        if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
+            || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
         } else {
             subButton(@"追号btn").layer.cornerRadius = 5;
             subButton(@"追号btn").layer.masksToBounds = YES;
@@ -394,6 +367,36 @@
                 }];
             }
         }
+        
+        if (Skin1.isTKL) {
+            self.nextIssueLabel.textColor = Skin1.navBarBgColor;
+            subLabel(@"期数label").textColor = Skin1.navBarBgColor;
+            [self.openTimeLabel setHidden:Skin1.isTKL];
+            [subButton(@"追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [self.chipButton  setHidden:Skin1.isTKL];
+            [subButton(@"重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [_bargainingView setHidden:!Skin1.isTKL];
+        }
+        
+        //筹码 bottomView
+        _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
+        //游戏列表点击事件
+        self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
+            if (![CMCommon stringIsNull:item.btnTitle]) {
+                float n1 = [CMCommon floatForNSString:__self.amountTextF.text];
+                float n2 = [CMCommon floatForNSString:item.btnTitle];
+                float sum = n1 + n2;
+                __self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
+            }
+        };
+        [self.bottomView addSubview:_bargainingView];
+        [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.bottomView.mas_top).mas_offset(50);
+            make.left.equalTo(self.bottomView.mas_left).mas_offset(0);
+            make.height.mas_equalTo(45);
+            make.width.mas_equalTo(260);
+        }];
+        
  
     }
 
