@@ -13,7 +13,6 @@
 #import "UGLotteryResultCollectionViewCell.h"
 #import "UGLotterySubResultCollectionViewCell.h"
 #import "UGGameplayModel.h"
-#import "YBPopupMenu.h"
 #import "UGBetDetailView.h"
 #import "STBarButtonItem.h"
 #import "CountDown.h"
@@ -46,7 +45,7 @@
 #import "CMTimeCommon.h"
 #import "UGSegmentView.h"
 #import "UGLinkNumCollectionViewCell.h"
-@interface UGFC3DLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,UITextFieldDelegate,WSLWaterFlowLayoutDelegate>
+@interface UGFC3DLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UITextFieldDelegate,WSLWaterFlowLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
 @property (weak, nonatomic) IBOutlet UILabel *nextIssueLabel;/**<头 下 下期开奖  */
@@ -65,7 +64,6 @@
 @property (nonatomic, strong) UICollectionView *headerCollectionView;
 @property (nonatomic, strong) UICollectionView *betCollectionView;
 
-@property (nonatomic, strong) NSArray <NSString *> *chipArray;
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 
@@ -397,24 +395,6 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 
 
-- (IBAction)chipClick:(id)sender {
-    if (self.amountTextF.isFirstResponder) {
-        [self.amountTextF resignFirstResponder];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-            popView.fontSize = 14;
-            popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
-        });
-    }else {
-        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-        popView.fontSize = 14;
-        popView.type = YBPopupMenuTypeDefault;
-        [popView showRelyOnView:self.chipButton];
-    }
-}
-
 - (IBAction)resetClick:(id)sender {
     [self.amountTextF resignFirstResponder];
     [self updateSelectLabelWithCount:0];
@@ -661,21 +641,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     }
     
 }
-#pragma mark - YBPopupMenuDelegate
 
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0 ) {
-        if (index < self.chipArray.count - 1) {
-            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
-            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
-            float sum = n1 + n2;
-            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
-        }else {
-            self.amountTextF.text = nil;
-        }
-    }
-    
-}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -1841,7 +1807,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     _tableView.estimatedSectionHeaderHeight = 0;
     _tableView.estimatedSectionFooterHeight = 0;
     _tableView.rowHeight = 40;
-    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     
     
     return _tableView;

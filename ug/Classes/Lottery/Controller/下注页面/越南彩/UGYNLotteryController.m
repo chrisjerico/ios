@@ -13,7 +13,7 @@
 #import "UGLotteryResultCollectionViewCell.h"
 #import "UGLotterySubResultCollectionViewCell.h"
 #import "UGGameplayModel.h"
-#import "YBPopupMenu.h"
+
 #import "UGBetDetailView.h"
 #import "STBarButtonItem.h"
 #import "CountDown.h"
@@ -56,7 +56,7 @@
 #import "YNHLPrizeDetailView.h"
 
 
-@interface UGYNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate,UITextFieldDelegate,UITextViewDelegate>
+@interface UGYNLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
 @property (weak, nonatomic) IBOutlet UILabel *nextIssueLabel;/**<头 下 下期开奖  */
@@ -92,7 +92,7 @@
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 @property (nonatomic, strong) NSArray <NSString *> *preNumArray;
 @property (nonatomic, strong) NSArray <NSString *> *preNumSxArray;
-@property (nonatomic, strong) NSArray <NSString *> *chipArray;
+
 
 @property (strong, nonatomic) CountDown *countDown;
 
@@ -165,7 +165,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     _tableView.estimatedSectionHeaderHeight = 0;
     _tableView.estimatedSectionFooterHeight = 0;
     _tableView.rowHeight = 40;
-    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
 
     return _tableView;
 }
@@ -681,23 +681,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     
 }
 
-- (IBAction)chipClick:(id)sender {
-    if (self.amountTextF.isFirstResponder) {
-        [self.amountTextF resignFirstResponder];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-            popView.fontSize = 14;
-            popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
-        });
-    }else {
-        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-        popView.fontSize = 14;
-        popView.type = YBPopupMenuTypeDefault;
-        [popView showRelyOnView:self.chipButton];
-    }
-}
+
 //重置
 - (IBAction)resetClick:(id)sender {
     
@@ -3130,21 +3114,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     return YES;
 }
 
-#pragma mark - YBPopupMenuDelegate
 
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0 ) {
-        if (index < self.chipArray.count - 1) {
-            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
-            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
-            float sum = n1 + n2;
-            self.amountTextF.text = [NSString stringWithFormat:@"%.0f",sum];
-        }else {
-            self.amountTextF.text = nil;
-        }
-    }
-    
-}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

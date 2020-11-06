@@ -360,9 +360,6 @@
                                                 <integer key="value" value="0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="chipClick:" destination="8X6-Ey-2lP" eventType="touchUpInside" id="Khn-4s-tob"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTQ-Z2-o6e" userLabel="下注" customClass="IBButton">
                                         <rect key="frame" x="279" y="55" width="60" height="36"/>

@@ -358,9 +358,6 @@
                                                 <integer key="value" value="0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="chipClick:" destination="4k1-Qb-ehd" eventType="touchUpInside" id="wfm-bZ-e8C"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-QY-ShJ" userLabel="下注" customClass="IBButton">
                                         <rect key="frame" x="279" y="55" width="60" height="36"/>

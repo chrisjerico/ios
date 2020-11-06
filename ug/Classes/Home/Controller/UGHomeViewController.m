@@ -194,15 +194,11 @@
             
         }
     }
-    
-    
-    
+  
     // GPK版的UI调整
     BOOL isGPK = Skin1.isGPK;
-    
 
-
-        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY||Skin1.isTKL? 0 : 10;
+    _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY||Skin1.isTKL? 0 : 10;
 
     _headerView.hidden = !isGPK;
     self.fd_prefersNavigationBarHidden = isGPK;

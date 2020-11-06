@@ -1332,8 +1332,6 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     
     
     UGChatRoomModel *obj  = [UGChatRoomModel new];
-
-    NSLog(@"SysChatRoom.chatRoomAry = %@",SysChatRoom.chatRoomAry);
     
     for (UGChatRoomModel *object in SysChatRoom.chatRoomAry) {
 

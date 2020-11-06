@@ -79,7 +79,7 @@
 @property (nonatomic, strong) UICollectionView *headerCollectionView;
 @property (nonatomic, strong) UICollectionView *betCollectionView;
 
-@property (nonatomic, strong) NSArray <NSString *> *chipArray;
+
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 
@@ -380,21 +380,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 
-#pragma mark - YBPopupMenuDelegate
 
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0 ) {
-        if (index < self.chipArray.count - 1) {
-            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
-            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
-            float sum = n1 + n2;
-            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
-        }else {
-            self.amountTextF.text = nil;
-        }
-    }
-    
-}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -764,7 +750,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
 
     
     return _tableView;

@@ -1759,6 +1759,14 @@
 		CF1E19E62542D4FD004436E2 /* UGCell190HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */; };
 		CF1E19E72542D4FD004436E2 /* UGCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */; };
 		CF1E19E82542D4FD004436E2 /* UGCell190HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */; };
+		CF3A26EB25552E8200ECA65F /* UGBargainingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3A26E925552E8100ECA65F /* UGBargainingCollectionViewCell.m */; };
+		CF3A26EC25552E8200ECA65F /* UGBargainingCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3A26E925552E8100ECA65F /* UGBargainingCollectionViewCell.m */; };
+		CF3A26ED25552E8200ECA65F /* UGBargainingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3A26EA25552E8100ECA65F /* UGBargainingCollectionViewCell.xib */; };
+		CF3A26EE25552E8200ECA65F /* UGBargainingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3A26EA25552E8100ECA65F /* UGBargainingCollectionViewCell.xib */; };
+		CF3A26F32555308E00ECA65F /* UGBargainingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3A26F22555308E00ECA65F /* UGBargainingView.m */; };
+		CF3A26F42555308E00ECA65F /* UGBargainingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3A26F22555308E00ECA65F /* UGBargainingView.m */; };
+		CF3A26F8255530D900ECA65F /* UGBargainingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3A26F7255530D900ECA65F /* UGBargainingView.xib */; };
+		CF3A26F9255530D900ECA65F /* UGBargainingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3A26F7255530D900ECA65F /* UGBargainingView.xib */; };
 		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
 		CF43426525396AEA004708C3 /* HomePromotionsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */; };
 		CF43426E25396D10004708C3 /* HomePromotionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43426D25396D10004708C3 /* HomePromotionsVC.m */; };
@@ -3868,6 +3876,12 @@
 		CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGCell190HeaderView.m; sourceTree = "<group>"; };
 		CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGCellHeaderView.m; sourceTree = "<group>"; };
 		CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGCell190HeaderView.xib; sourceTree = "<group>"; };
+		CF3A26E825552E8100ECA65F /* UGBargainingCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBargainingCollectionViewCell.h; sourceTree = "<group>"; };
+		CF3A26E925552E8100ECA65F /* UGBargainingCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBargainingCollectionViewCell.m; sourceTree = "<group>"; };
+		CF3A26EA25552E8100ECA65F /* UGBargainingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBargainingCollectionViewCell.xib; sourceTree = "<group>"; };
+		CF3A26F12555308E00ECA65F /* UGBargainingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGBargainingView.h; sourceTree = "<group>"; };
+		CF3A26F22555308E00ECA65F /* UGBargainingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGBargainingView.m; sourceTree = "<group>"; };
+		CF3A26F7255530D900ECA65F /* UGBargainingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBargainingView.xib; sourceTree = "<group>"; };
 		CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLocalizable.h"; sourceTree = "<group>"; };
 		CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLocalizable.m"; sourceTree = "<group>"; };
 		CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePromotionsVC.storyboard; sourceTree = "<group>"; };
@@ -8285,6 +8299,19 @@
 			path = "首页公告";
 			sourceTree = "<group>";
 		};
+		CF3A26E625552E1600ECA65F /* 筹码View */ = {
+			isa = PBXGroup;
+			children = (
+				CF3A26E825552E8100ECA65F /* UGBargainingCollectionViewCell.h */,
+				CF3A26E925552E8100ECA65F /* UGBargainingCollectionViewCell.m */,
+				CF3A26EA25552E8100ECA65F /* UGBargainingCollectionViewCell.xib */,
+				CF3A26F12555308E00ECA65F /* UGBargainingView.h */,
+				CF3A26F22555308E00ECA65F /* UGBargainingView.m */,
+				CF3A26F7255530D900ECA65F /* UGBargainingView.xib */,
+			);
+			path = "筹码View";
+			sourceTree = "<group>";
+		};
 		CF3C073324C01ADF000E6700 /* UIView+AutoLocalizable */ = {
 			isa = PBXGroup;
 			children = (
@@ -8620,6 +8647,7 @@
 		CF5586B02546B90400BE2576 /* 天空蓝 */ = {
 			isa = PBXGroup;
 			children = (
+				CF3A26E625552E1600ECA65F /* 筹码View */,
 				CF3A26E22552C5D100ECA65F /* 首页公告 */,
 				CF3A26E02552C56800ECA65F /* 首页定制导航头 */,
 				CF5586B32546B93A00BE2576 /* 注册 */,
@@ -9679,6 +9707,7 @@
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
 				031EF57623BE7B4D00B0F813 /* yinhangkaguanli.svg in Resources */,
 				031AFC44253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */,
+				CF3A26EE25552E8200ECA65F /* UGBargainingCollectionViewCell.xib in Resources */,
 				03F8A511247F644300466124 /* JS_Mine.storyboard in Resources */,
 				031EF5AD23BE7B4D00B0F813 /* MomentsHomeCell.xib in Resources */,
 				031E1ABB23BE812800B0F813 /* Shade_left@2x.png in Resources */,
@@ -9773,6 +9802,7 @@
 				031E1E7723BE812C00B0F813 /* UGLotteryRecordCell.xib in Resources */,
 				031EF57723BE7B4D00B0F813 /* shezhi.svg in Resources */,
 				031E1D3D23BE812B00B0F813 /* UGUserInfoViewController.storyboard in Resources */,
+				CF3A26F9255530D900ECA65F /* UGBargainingView.xib in Resources */,
 				031E1D8723BE812B00B0F813 /* UGBetRecordTableViewController.storyboard in Resources */,
 				031E1A1923BE812700B0F813 /* loadingA.png in Resources */,
 				0315DC8D24AC2C6800D635E2 /* MinePacketProduceVC.xib in Resources */,
@@ -10039,6 +10069,7 @@
 				03A5D38623C0445B0055A998 /* JS_HomeGameCollectionCell.xib in Resources */,
 				031E1E7823BE812C00B0F813 /* UGCalenderAlertView.xib in Resources */,
 				CF475889239636D200966536 /* 20.gif in Resources */,
+				CF3A26F8255530D900ECA65F /* UGBargainingView.xib in Resources */,
 				CFFAB58B237315C2009593AF /* event.gif in Resources */,
 				031E1C2A23BE812900B0F813 /* UGFastThreeTwoCollectionViewCell.xib in Resources */,
 				0393C8A724F7429600F6DFDB /* EggGrenzyAwardCollectionCell.xib in Resources */,
@@ -10395,6 +10426,7 @@
 				CF47588A239636D200966536 /* 36.gif in Resources */,
 				031E193C23BE812600B0F813 /* UGSkinCollectionViewCell.xib in Resources */,
 				CF47591C239636D200966536 /* 12.gif in Resources */,
+				CF3A26ED25552E8200ECA65F /* UGBargainingCollectionViewCell.xib in Resources */,
 				CF4758FE239636D200966536 /* 64.gif in Resources */,
 				D42072372456B521008D0749 /* DZPTwoView.xib in Resources */,
 				031AFC43253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */,
@@ -10920,6 +10952,7 @@
 				031EF5DB23BE7B4E00B0F813 /* MessageCollectionViewGifCell.swift in Sources */,
 				CF166B3D24A495A900EF8835 /* HotBranchView.m in Sources */,
 				031EF5E623BE7B4E00B0F813 /* MineTableController.swift in Sources */,
+				CF3A26F42555308E00ECA65F /* UGBargainingView.m in Sources */,
 				031EF55723BE7B4D00B0F813 /* UIImage+UIColor.swift in Sources */,
 				031E1BBF23BE812900B0F813 /* UGfinancialView.m in Sources */,
 				031E1DD523BE812C00B0F813 /* UGrealBetListModel.m in Sources */,
@@ -11070,6 +11103,7 @@
 				031E1AEB23BE812800B0F813 /* LeeTagItem.m in Sources */,
 				031E1E8323BE812D00B0F813 /* UGBalanceTransferLogsCell.m in Sources */,
 				031EF54823BE7B4D00B0F813 /* MomentsImageUpdateApiModel.swift in Sources */,
+				CF3A26EC25552E8200ECA65F /* UGBargainingCollectionViewCell.m in Sources */,
 				D435F90723CEF940008648CE /* KMCGeigerCounter.m in Sources */,
 				031E1B9F23BE812900B0F813 /* UGGameListCollectionViewCell.m in Sources */,
 				031EF54723BE7B4D00B0F813 /* MomentsModel.swift in Sources */,
@@ -11329,6 +11363,7 @@
 			files = (
 				031E1DF423BE812C00B0F813 /* UGMissionLevelTableViewCell.m in Sources */,
 				031E19B223BE812700B0F813 /* NSNumber+Safe.m in Sources */,
+				CF3A26EB25552E8200ECA65F /* UGBargainingCollectionViewCell.m in Sources */,
 				031E1CD823BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */,
 				031E1AE623BE812800B0F813 /* TAAbstractDotView.m in Sources */,
 				031E1A3C23BE812700B0F813 /* OttoScratchView.m in Sources */,
@@ -11931,6 +11966,7 @@
 				031E19BE23BE812700B0F813 /* UIResponder+InterfaceOrientation.m in Sources */,
 				031E1B5023BE812800B0F813 /* UGYYRightMenuTableViewCell.m in Sources */,
 				031E1C5023BE812A00B0F813 /* UGBetDetailView.m in Sources */,
+				CF3A26F32555308E00ECA65F /* UGBargainingView.m in Sources */,
 				031E194823BE812600B0F813 /* UGLHMyAttentionViewController.m in Sources */,
 				031E1AC823BE812800B0F813 /* YLEdgeLabel.m in Sources */,
 				CF19A5712518830100E2E659 /* NewLotteryHomeViewController.m in Sources */,

@@ -364,9 +364,6 @@
                                                 <integer key="value" value="0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="chipClick:" destination="R4h-Tz-aXk" eventType="touchUpInside" id="8JK-Jk-y0k"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78l-sJ-Dvx" userLabel="下注" customClass="IBButton">
                                         <rect key="frame" x="279" y="55" width="60" height="36"/>

@@ -10,6 +10,7 @@
 #import "UGAllNextIssueListModel.h"
 #import "CountDown.h"
 #import "MGSlider.h"
+#import "UGBargainingView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 // 秒秒彩隐藏头部
@@ -50,7 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UGNextIssueModel*zuiHaoIssueModel;/**<莫彩种的最近一期下注*/
 //切换=======================================================
 @property (strong, nonatomic)  NSString *selectTitle;/**<选中的标题*/
-
+//筹码=======================================================
+@property (nonatomic, strong) UGBargainingView  *bargainingView;//筹码
+@property (nonatomic, strong) NSArray <NSString *> *chipArray;               /**<   筹码数组 */
 
 
 - (void)getGameDatas;

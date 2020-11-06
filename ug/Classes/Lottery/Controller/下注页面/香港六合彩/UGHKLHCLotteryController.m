@@ -13,7 +13,7 @@
 #import "UGLotteryResultCollectionViewCell.h"
 #import "UGLotterySubResultCollectionViewCell.h"
 #import "UGGameplayModel.h"
-#import "YBPopupMenu.h"
+
 #import "UGBetDetailView.h"
 #import "STBarButtonItem.h"
 #import "CountDown.h"
@@ -53,7 +53,7 @@
 
 
 
-@interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,YBPopupMenuDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
+@interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
@@ -81,7 +81,7 @@
 @property (nonatomic, strong) CountDown *countDown;             /**<   倒数器 */
 @property (nonatomic, strong) CountDown *nextIssueCountDown;    /**<   下期倒数器 */
 
-@property (nonatomic, strong) NSArray <NSString *> *chipArray;               /**<   筹码数组 */
+
 @property (nonatomic, strong) UGPlayOddsModel *playOddsModel;   /**<   玩法赔率Model */
 
 @property (nonatomic, strong) NSArray <NSString *> *preNumArray;
@@ -449,23 +449,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 #pragma mark - IBAction
 
-// 筹码弹框
-- (IBAction)chipClick:(id)sender {
-    if (self.amountTextF.isFirstResponder) {
-        [self.amountTextF resignFirstResponder];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-            popView.fontSize = 14;
-            popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
-        });
-    } else {
-        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-        popView.fontSize = 14;
-        popView.type = YBPopupMenuTypeDefault;
-        [popView showRelyOnView:self.chipButton];
-    }
-}
 
 // 重置
 - (IBAction)resetClick:(id)sender {
@@ -601,21 +584,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     });
 }
 
-#pragma mark - YBPopupMenuDelegate
 
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0 ) {
-        if (index < self.chipArray.count - 1) {
-            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
-            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
-            float sum = n1 + n2;
-            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
-        }else {
-            self.amountTextF.text = nil;
-        }
-    }
-    
-}
 
 
 #pragma mark - UITableViewDataSource
@@ -1671,7 +1640,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         _tableView.badgeBgColor = [UIColor clearColor];
 
      

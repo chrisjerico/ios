@@ -23,14 +23,20 @@
 #import "YNBetDetailView.h"
 #import "YNHLPrizeDetailView.h"
 #import "UGLotteryRightMenuView.h"
+#import "YBPopupMenu.h"
 
 @interface UIButton (customSetEnable)
 -(void)customSetEnable:(BOOL)enabled;
 
 @end
+
+@interface UGCommonLotteryController ()<YBPopupMenuDelegate>{
+    
+}
+@end
 @interface UGCommonLotteryController (CC)<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic) UITableView *tableView;
-@property (nonatomic) UIView *bottomView;
+@property (nonatomic) UIView *bottomView;/**<   底部*/
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;/**<   下期开奖label */
 @property (nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
@@ -57,7 +63,9 @@
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
 @property (nonatomic, strong) UGLotteryRightMenuView  *yymenuView;
-
+//筹码=======================================================
+@property (nonatomic) IBOutlet UIButton *chipButton;/**<底部  筹码  */
+@property (nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
 @end
 
 
@@ -109,6 +117,9 @@
 
     [super viewDidLoad];
 
+   
+    
+    
      self.fd_interactivePopDisabled = YES;
     [self setupTitleView];
     
@@ -156,8 +167,7 @@
         if (APP.isShowBorder) {
               [CMCommon setBorderWithView:self.rightStackView top:NO left:YES bottom:NO right:YES borderColor:borderColor borderWidth:borderWidth];
         }
-       
-//        self.tableView.layer.borderWidth = 0;
+
         // 左侧玩法栏背景色
         
         self.tableView.backgroundColor = [UIColor clearColor];
@@ -189,9 +199,29 @@
             subLabel(@"期数label").textColor = Skin1.navBarBgColor;
             [self.openTimeLabel setHidden:Skin1.isTKL];
             [subButton(@"追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
-      
+            [self.chipButton  setHidden:Skin1.isTKL];
             [subButton(@"重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [_bargainingView setHidden:!Skin1.isTKL];
         }
+        
+        //筹码 bottomView
+        _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
+        //游戏列表点击事件
+        self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
+            if (![CMCommon stringIsNull:item.btnTitle]) {
+                float n1 = [CMCommon floatForNSString:__self.amountTextF.text];
+                float n2 = [CMCommon floatForNSString:item.btnTitle];
+                float sum = n1 + n2;
+                __self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
+            }
+        };
+        [self.view addSubview:_bargainingView];
+        [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.bottomView.mas_top).mas_offset(50);
+            make.left.equalTo(self.view.mas_left).mas_offset(0);
+            make.height.mas_equalTo(45);
+            make.width.mas_equalTo(260);
+        }];
         
         // 底部栏背景色
         [self.bottomView setBackgroundColor:Skin1.bgColor];
@@ -207,8 +237,25 @@
             bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
             bgView;
         }) atIndex:0];
-        
-
+        // 筹码弹框
+        [self.chipButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [self.chipButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            if (__self.amountTextF.isFirstResponder) {
+                [__self.amountTextF resignFirstResponder];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
+                    popView.fontSize = 14;
+                    popView.type = YBPopupMenuTypeDefault;
+                    [popView showRelyOnView:__self.chipButton];
+                });
+            }else {
+                YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
+                popView.fontSize = 14;
+                popView.type = YBPopupMenuTypeDefault;
+                [popView showRelyOnView:__self.chipButton];
+            }
+        }];
         
         [subButton(@"长龙btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"长龙btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -347,17 +394,33 @@
                 }];
             }
         }
-        
-       
-     
-
-        
+ 
     }
+
+   
 
   if (OBJOnceToken(self)) {
         [self sliderViewInit ];
   };
+    
 
+
+}
+
+#pragma mark - YBPopupMenuDelegate
+
+- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
+    if (index >= 0 ) {
+        if (index < self.chipArray.count - 1) {
+            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
+            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
+            float sum = n1 + n2;
+            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
+        }else {
+            self.amountTextF.text = nil;
+        }
+    }
+    
 }
 
 - (void)updateCloseLabel {
