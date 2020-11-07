@@ -368,14 +368,10 @@
             }
         }
 
-        if (Skin1.isTKL) {
-            
-            if([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]){
-                return;
-            }
-            if([self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]){
-                return;
-            }
+        if (Skin1.isTKL
+            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
+            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
+
             //筹码 bottomView
             _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
             UIButton *newResetBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
