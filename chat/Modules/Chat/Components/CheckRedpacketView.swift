@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CheckRedpacketViewDelegate: NSObject, ViewDisapearDelegate {
+protocol CheckRedpacketViewDelegate: ViewDisapearDelegate {
 	func checkRedpacketCheckButtonTaped(sender: RedpacketSender, redpacketId: String)
 	func grabButtonTaped(view:CheckRedpacketView, redpacketId: String)
 }
@@ -171,7 +171,7 @@ class CheckRedpacketView: UIView {
 			amountLabel.attributedText = item.grab_amount.mutableAttributedString().x.font(UIFont.boldSystemFont(ofSize: 30)).x.color(UIColor(hex: "#FFE2BF"))
 				+ "元".mutableAttributedString().x.fontSize(14).x.color(UIColor(hex: "#FFE2BF"))
 		} else if item.status == 2 {
-			amountLabel.attributedText = "红包已抢完".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
+			amountLabel.attributedText = "手慢了,红包被抢完了".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
 
 		} else if item.status == 3 {
 			amountLabel.attributedText = "红包已过期".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
@@ -193,7 +193,7 @@ class CheckRedpacketView: UIView {
 			amountLabel.attributedText = item.grab_amount.mutableAttributedString().x.font(UIFont.boldSystemFont(ofSize: 30)).x.color(UIColor(hex: "#FFE2BF"))
 				+ "元".mutableAttributedString().x.fontSize(14).x.color(UIColor(hex: "#FFE2BF"))
 		} else if item.status == 2 {
-			amountLabel.attributedText = "红包已抢完".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
+			amountLabel.attributedText = "手慢了,红包被抢完了".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))
 
 		} else if item.status == 3 {
 			amountLabel.attributedText = "红包已过期".mutableAttributedString().x.fontSize(16).x.color(UIColor(hex: "#FFE2BF"))

@@ -139,6 +139,8 @@ pod 'SVGKit', '~> 3.0.0-beta3'
 pod 'JSPatch', :path => "JSPatch/JSPatch.podspec"
 pod 'SSZipArchive'  # 加/解压缩
 
+# svg
+pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
 # rn
 config = use_native_modules!
@@ -147,3 +149,10 @@ use_react_native!(:path => config["reactNativePath"])
 end
 
 
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+    end
+  end
+end

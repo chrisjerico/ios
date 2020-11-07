@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UGRechargeTypeTableViewController : UITableViewController
+@interface UGRechargeTypeTableViewController : UIViewController
 
 @end
 

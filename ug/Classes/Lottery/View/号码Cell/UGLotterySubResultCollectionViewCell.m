@@ -24,7 +24,13 @@
     if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
          [self  setBackgroundColor:Skin1.bgColor];
          [_titleLabel setTextColor:[UIColor blackColor]];
-    } else {
+    }
+    else if(Skin1.isTKL) {
+         [_titleLabel setTextColor:Skin1.navBarBgColor];
+         [self  setBackgroundColor:[UIColor whiteColor]];
+         [_titleLabel.layer setBorderColor:Skin1.navBarBgColor.CGColor];//设置边界的颜色
+    }
+    else {
          [_titleLabel setTextColor:[UIColor blackColor]];
          [self  setBackgroundColor:[UIColor whiteColor]];
     }

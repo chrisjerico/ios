@@ -177,12 +177,12 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             title = @"网络异常";
         } else {
             // 其他错误
-            msg = @"网络发生未知错误, 请稍后再试.";
+            msg = @"网络环境异常, 请稍后再试.";
             title = @"网络异常";
         }
     } else if (result->_error.isHTTPError) {
         // 其他错误
-        msg = [NSString stringWithFormat: @"网络发生未知错误, 请稍后再试."];
+        msg = [NSString stringWithFormat: @"网络环境异常, 请稍后再试."];
         title = @"网络异常";
     } else if (result->_error.isROPError) {
         // ROP错误
@@ -438,7 +438,16 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         [params setValue:nil forKey:@"token"];
     }
     NSLog(@"请求method   =%@",method);
-    NSLog(@"请求params   =%@",params);
+    NSLog(@"请求params   = %@",params);
+    if (params != nil) {
+        NSError *parseError;
+        NSData *jsonData1 = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&parseError];
+        if (parseError) {
+          //解析出错
+        }
+        NSString * str1 = [[NSString alloc] initWithData:jsonData1 encoding:NSUTF8StringEncoding];
+        NSLog(@"请求params   = %@",str1);
+    }
     if (isPost) {
         [self postWithMethod:method params:params  model:model retryCount:0 completion:completion];
     } else {
@@ -489,7 +498,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
             
 #ifdef DEBUG
             
-            HJSonLog(@"%@: 返回的json = %@",method,json);
+            HJSonLog(@"%@: 返回的json = %@",method,[CMCommon dicParseStr:json]);
             
 #endif
             NSError *error;
@@ -585,7 +594,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
                                                                    error:nil];
 #ifdef DEBUG
             
-            HJSonLog(@"%@: 返回的json = %@",method,json);
+            HJSonLog(@"%@: 返回的json = %@",method,[CMCommon dicParseStr:json]);
             
 #endif
             NSError *error;

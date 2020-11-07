@@ -9,7 +9,6 @@
 #import "AppDefine.h"
 
 #define __SiteID__ @"test60f"
-#define LocalRnVersion @"1.4.66"
 
 
 @interface UIStoryboard ()
@@ -106,13 +105,12 @@
     if (self) {
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
-        _jspVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"jspVersion"] ? : LocalRnVersion;
 #ifdef APP_TEST
         _Test = true;
         _SiteId = [[NSUserDefaults standardUserDefaults] stringForKey:@"当前站点Key"];
         if (!_SiteId.length) {
 //			_SiteId = @" t133-smith";
-			_SiteId = @"test60f";
+			_SiteId = @"c092";
 //			_SiteId = @"c242";
 
         }
@@ -167,7 +165,7 @@
     _isTabMassageBadge = YES;
     _isTabHot = false;
     _isParagraphSpacing = [@"c134,c200,c213,a002" containsString:_SiteId];
-    _isNewConversion = [@"c200,a002,c186" containsString:_SiteId];
+    _isNewConversion = [@"c200,a002,c186,test60f" containsString:_SiteId];
     _isNewUserInfoView = [@"c186" containsString:_SiteId];
 //    _isNewLotteryView = [@"test60f,testadaf,test61f,test30-andrew" containsString:_SiteId];
     _isRedWhite = [@"新年红0" containsString:Skin1.skitType] ? [@"c184" containsString:_SiteId] : NO;
@@ -199,7 +197,7 @@
     _isShowArrow = [@"GPK版" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL ? NO : [@"c190" containsString:_SiteId];
     _isCornerRadius = YES;
     _isFontSystemSize = NO;
-    _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217" containsString:_SiteId];
+    _isBA = [@"c001,c085,c208,a002,c054,c212,c200,c213,c134,c092,c116,c217,c126" containsString:_SiteId];
     _lotteryHallCustomImgS = [@"c190" containsString:_SiteId];
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
 
@@ -214,8 +212,8 @@
     _betSizeIsBig = [@"c169,c205,c211,c048" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
-    _addIcons = [@"c190,c134,c085,c193,a002,c006" containsString:_SiteId];
-    _isReplaceIcon = [@"c085,c193,a002,c006" containsString:_SiteId];
+    _addIcons = [@"c190,c134,c085,c193,a002,c006,c217" containsString:_SiteId];
+    _isReplaceIcon = [@"c085,c193,a002,c006,c217" containsString:_SiteId];
     _isC190Cell = [@"c190" containsString:_SiteId];
     _isC217RWDT = [@"c217" containsString:_SiteId];
     _isNoSubtitle = [@"c006" containsString:_SiteId];
@@ -227,7 +225,7 @@
     _isChatButton = [@"c186" containsString:_SiteId];
     _isNewLocation = [@"c206" containsString:_SiteId];
     _isNoCry = [@"c018" containsString:_SiteId];
-    _isNoOnLineDoc = NO;
+    _isNoOnLineDoc = [@"c213,c116" containsString:_SiteId];;
     _isHBDoc = [@"c012" containsString:_SiteId];
     _isAllCellStyle = [@"c126" containsString:_SiteId];
     _isC126CellStyle = [@"c126" containsString:_SiteId];
@@ -251,16 +249,6 @@
 
 #pragma mark - 热更新
 
-- (NSString *)jspPath {
-    return _NSString(@"%@/jsp%@/main.js", APP.DocumentDirectory, [_jspVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""]);
-}
-
-- (void)setJspVersion:(NSString *)jspVersion {
-    _jspVersion = jspVersion;
-    [[NSUserDefaults standardUserDefaults] setObject:jspVersion forKey:@"jspVersion"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 - (void)setRnPageInfos:(NSArray<RnPageModel *> *)rnPageInfos {
     if ([rnPageInfos.firstObject isKindOfClass:[NSDictionary class]]) {
         NSMutableArray *temp = @[].mutableCopy;
@@ -277,7 +265,7 @@
 #pragma mark - H5 url
 
 - (NSString *)htmlStyleString:(NSString *)content {
-    return _NSString(@"<head><style>img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
+    return _NSString(@"<head><style>table{border-collapse: collapse;}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
 }
 
 - (NSString *)chatShareUrl {

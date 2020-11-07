@@ -16,11 +16,12 @@ class RedPacketProduceView: UIView {
 	@IBOutlet weak var closeButton: UIButton!
 	weak var delegate: RedPacketProduceViewDelegate?
 	var packetConfig = RedpacketSettingModel()
-
+	
 	@IBOutlet weak var handleButton: UIButton!
 	@IBOutlet weak var commentField: UITextField!
 	@IBOutlet weak var amountField: UITextField!
 	@IBOutlet weak var quantityField: UITextField!
+	@IBOutlet weak var amountLabel: UILabel!
 	
 	override func didMoveToSuperview() {
 		super.didMoveToSuperview()
@@ -39,6 +40,10 @@ class RedPacketProduceView: UIView {
 			weakSelf.removeFromSuperview()
 			weakSelf.delegate?.viewDidDisapear()
 		}).disposed(by: disposeBag)
+		
+		amountField.rx.text.filterNil().map { Int($0) ?? 0}.subscribe {[weak self] (number) in
+			self?.amountLabel.text = "¥" + String(number)
+		}.disposed(by: disposeBag)
 	}
 	
 }

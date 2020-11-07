@@ -12,7 +12,7 @@
 #import "UGMessageModel.h"
 #import "MJRefresh.h"
 #import "MessageUnderMenuView.h"
-
+#import "UGMessagePopView.h"
 @interface UGMailBoxTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 
@@ -21,6 +21,7 @@
 @property(nonatomic, assign) int pageNumber;
 @property (nonatomic, weak)IBOutlet UITableView *tableView;   /**<   列表TableView */
 @property (nonatomic, strong)MessageUnderMenuView *underMenu; /**<   下边栏 */
+@property (nonatomic, strong)UGMessagePopView *popView;       /**<   弹窗 */
 @end
 
 //分页初始值
@@ -34,7 +35,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-
+    self.popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(20, k_Height_NavBar +50, UGScreenW - 40, UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 200)];
     
     if (!self.title) {
           self.title = @"站内信";
@@ -116,7 +117,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
         _tableView.badgeBgColor = [UIColor clearColor];
         _tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
      
@@ -235,57 +236,79 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UGMessageModel *model = self.dataArray[indexPath.row];
-    //    [QDAlertView showWithTitle:model.title message:model.content];
+
     
-    __weakSelf_(__self);
-    if (Skin1.isBlack) {
-        [LEEAlert alert].config
-        .LeeAddTitle(^(UILabel *label) {
-            label.text = model.title;
-            label.textColor = [UIColor whiteColor];
-        })
-        .LeeAddContent(^(UILabel *label) {
-            
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-            ps.lineSpacing = 5;
-            [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
-            
-            // 替换文字颜色
-            NSAttributedString *as = [mas copy];
-            for (int i=0; i<as.length; i++) {
-                NSRange r = NSMakeRange(0, as.length);
-                NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
-                UIColor *c = dict[NSForegroundColorAttributeName];
-                if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
-                    dict[NSForegroundColorAttributeName] = Skin1.textColor2;
-                    [mas addAttributes:dict range:NSMakeRange(i, 1)];
-                }
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                label.attributedText = mas;
-            });
-            
-        })
-        .LeeHeaderColor(Skin1.bgColor)
-        .LeeAction(@"确定", ^{//站内信已读
-            [__self readMsg:model.messageId];
-        })
-        .LeeShow(); // 设置完成后 别忘记调用Show来显示
-    } else {
-        [LEEAlert alert].config
-        .LeeTitle(model.title)
-        .LeeAddContent(^(UILabel *label) {
-            
-            label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-        })
-        .LeeAction(@"确定", ^{//站内信已读
-            
-            [__self readMsg:model.messageId];
-        })
-        .LeeShow(); // 设置完成后 别忘记调用Show来显示
-    }
+
+    UGMessagePopView *popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(0, 0, 350, 260)];
+    popView.closeBlock = ^{
+        [LEEAlert closeWithCompletionBlock:nil];
+    };
+    WeakSelf;
+    [LEEAlert alert].config
+    .LeeTitle(model.title)
+    .LeeAddCustomView(^(LEECustomView *custom) {
+
+        popView.content = model.content;
+        custom.view = popView;
+        custom.positionType = LEECustomViewPositionTypeCenter;
+    })
+    .LeeAction(@"确定", ^{
+        [weakSelf readMsg:model.messageId];
+    })
+    .LeeShow();
+    
+//    __weakSelf_(__self);
+//    if (Skin1.isBlack) {
+//        [LEEAlert alert].config
+//        .LeeAddTitle(^(UILabel *label) {
+//            label.text = model.title;
+//            label.textColor = [UIColor whiteColor];
+//        })
+//        .LeeAddContent(^(UILabel *label) {
+//
+//            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+//            NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+//            ps.lineSpacing = 5;
+//            [mas addAttributes:@{NSParagraphStyleAttributeName:ps,} range:NSMakeRange(0, mas.length)];
+//
+//            // 替换文字颜色
+//            NSAttributedString *as = [mas copy];
+//            for (int i=0; i<as.length; i++) {
+//                NSRange r = NSMakeRange(0, as.length);
+//                NSMutableDictionary *dict = [as attributesAtIndex:i effectiveRange:&r].mutableCopy;
+//                UIColor *c = dict[NSForegroundColorAttributeName];
+//                if (fabs(c.red - c.green) < 0.05 && fabs(c.green - c.blue) < 0.05) {
+//                    dict[NSForegroundColorAttributeName] = Skin1.textColor2;
+//                    [mas addAttributes:dict range:NSMakeRange(i, 1)];
+//                }
+//            }
+//
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                label.attributedText = mas;
+//            });
+//
+//        })
+//        .LeeHeaderColor(Skin1.bgColor)
+//        .LeeAction(@"确定", ^{//站内信已读
+//            [__self readMsg:model.messageId];
+//        })
+//        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+//    }
+//    else {
+//        [LEEAlert alert].config
+//        .LeeTitle(model.title)
+//        .LeeAddContent(^(UILabel *label) {
+//
+//            label.attributedText = [[NSAttributedString alloc] initWithData:[model.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+//        })
+//        .LeeAction(@"确定", ^{//站内信已读
+//
+//            [__self readMsg:model.messageId];
+//        })
+//        .LeeShow(); // 设置完成后 别忘记调用Show来显示
+//    }
+//
+    
     
     if (model.isRead == 0) {
         

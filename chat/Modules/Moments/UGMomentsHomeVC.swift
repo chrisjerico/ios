@@ -39,7 +39,7 @@ class UGMomentsHomeVC: BaseVC {
 			case (0, 1):
 				self.navigationController?.pushViewController(PublicMomentsVC(), animated: true)
 			case (1, 0):
-				self.navigationController?.pushViewController(UGYYLotteryHomeViewController(), animated: true)
+				self.navigationController?.pushViewController(GameHomeVC(), animated: true)
 			default:
 				break
 			}
@@ -68,11 +68,3 @@ class UGMomentsHomeVC: BaseVC {
 	}
 	
 }
-//extension UGMomentsHomeVC: UITableViewDelegate {
-//	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//		return 12
-//	}
-//	func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//		return 12
-//	}
-//}

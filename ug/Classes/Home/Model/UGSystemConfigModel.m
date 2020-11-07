@@ -25,6 +25,7 @@
 #import "UGSigInCodeViewController.h"       // 每日签到
 #import "UGPromotionIncomeController.h"     // 推广收益
 #import "UGBalanceConversionController.h"   // 额度转换
+#import "TKLMainViewController.h"           // 额度转换天空蓝
 #import "UGAgentViewController.h"           // 申请代理
 #import "LineConversionHeaderVC.h"          // 额度转换 1
 #import "LotteryBetAndChatVC.h"             // 聊天室
@@ -32,7 +33,7 @@
 #import "UGBetRecordViewController.h"       // 未结算
 #import "UGMosaicGoldViewController.h"      // 活动彩金
 #import "NewLotteryHomeViewController.h"    // 新彩票大厅
-
+#import "TKLMoneyViewController.h"          // 天空蓝 资金管理
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -40,6 +41,7 @@
 #import "UGBMLotteryHomeViewController.h"
 #import "JS_MineVC.h"
 #import "HSC_MineVC.h"
+
 //#import "XBJ_HomeVC.h"
 
 
@@ -178,7 +180,6 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/chatRoomList",      @"liaotian",                    LotteryBetAndChatVC.className,                  MM_聊天室,           @"聊天室"),
             item(@"/referrer",          @"shouyi1",                     UGPromotionIncomeController.className,          MM_推广收益,         @"推广收益"),
             item(@"/securityCenter",    @"ziyuan",                      UGSecurityCenterViewController.className,       MM_安全中心,         @"安全中心"),
-            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,         @"资金管理"),
             item(@"/banks",             @"yinhangqia",                  UGBindCardViewController.className,             MM_银行卡,           @"银行卡"),
             item(@"/yuebao",            @"lixibao",                     UGYubaoViewController.className,                MM_利息宝,           @"利息宝"),
             item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,          MM_在线客服,          @"在线客服"),
@@ -188,11 +189,17 @@ UGSystemConfigModel *currentConfig = nil;
         ].mutableCopy;
         
         UGMobileMenu * itemLine;
-        if (APP.isNewConversion) {
-            itemLine = item(@"/conversion",        @"change",                      LineConversionHeaderVC.className,               MM_额度转换,        @"额度转换");
+        
+        if (Skin1.isTKL) {
+            itemLine = item(@"/conversion",        @"change",                      TKLMainViewController.className,               MM_额度转换,        @"额度转换");
         } else {
-            itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");
+            if (APP.isNewConversion) {
+                itemLine = item(@"/conversion",        @"change",                      LineConversionHeaderVC.className,               MM_额度转换,        @"额度转换");
+            } else {
+                itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");
+            }
         }
+       
         
         UGMobileMenu * itemLottery;
         if (APP.isNewLotteryView) {
@@ -200,9 +207,16 @@ UGSystemConfigModel *currentConfig = nil;
         } else {
             itemLottery = item(@"/gameHall",         @"dating",                       UGLotteryHomeController.className,               MM_彩票大厅,          @"彩票大厅");
         }
-        NSArray *arrayTmp = @[itemLine,itemLottery];
+        
+        UGMobileMenu * itemMoney;
+        if (Skin1.isTKL) {
+            itemMoney =  item(@"/funds",             @"jinlingyingcaiwangtubiao",    TKLMoneyViewController.className,                MM_资金管理,         @"资金管理");
+        } else {
+            itemMoney =  item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,         @"资金管理");
+        }
+        NSArray *arrayTmp = @[itemLine,itemLottery,itemMoney];
         // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,2)];
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,3)];
         [_items insertObjects:arrayTmp atIndexes:indexSet];
     });
     return _items;
@@ -329,7 +343,7 @@ UGSystemConfigModel *currentConfig = nil;
         [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 [SVProgressHUD dismiss];
-                NSMutableArray <UGYYPlatformGames *>*lotterydataArray = ({
+                 NSMutableArray <UGYYPlatformGames *>*lotterydataArray = ({
                     NSMutableArray *temp = @[].mutableCopy;
                     NSArray *dataArray = model.data;
                     for (int i=0; i<dataArray.count; i++) {
@@ -337,6 +351,8 @@ UGSystemConfigModel *currentConfig = nil;
                     }
                     temp;
                 });
+                
+                [Global getInstanse].lotterydataArray   = lotterydataArray;
                 UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
                 vc.title = weakSelf.name;
                 if (weakSelf.type == MM_真人视讯) {

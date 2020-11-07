@@ -14,6 +14,7 @@
 #import "UGWithdrawRecordDetailView.h"
 @interface UGRechargeRecordTableViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray <UGRechargeLogsModel *> *dataArray;
 @property (nonatomic, strong) NSString *startTime;
 
@@ -59,8 +60,10 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     
     [self setupRefreshView];
     if (self.recordType == RecordTypeWithdraw) {
+        self.title = @"提现记录";
         [self getWithdrawData];
     } else {
+        self.title = @"充值记录";
         [self getRechargeData];
     }
 	if (CHAT_TARGET) {

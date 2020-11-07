@@ -9,7 +9,7 @@
 
 // 提款类型
 typedef NS_ENUM(NSInteger, UGWithdrawalType) {
-    UGWithdrawalTypeAll = 0,   // 微信
+    UGWithdrawalTypeAll = 0,   // 全部
     UGWithdrawalTypeBankCard = 1, // 银行卡
     UGWithdrawalTypeAlipay = 2,   // 支付宝
     UGWithdrawalTypeWeChat = 3,   // 微信

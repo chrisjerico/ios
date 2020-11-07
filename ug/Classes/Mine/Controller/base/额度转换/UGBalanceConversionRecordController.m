@@ -146,11 +146,11 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.001f;
+    return 0.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.001f;
+    return 0.0;
 }
 
 - (NSMutableArray<UGBalanceTransferLogsModel *> *)dataArray {

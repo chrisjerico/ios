@@ -19,7 +19,8 @@
 #import "UGBetRecordViewController.h"
 
 #import "UGDocumentVC.h"
-#import "JYRegisterViewController.h"            // GPK版注册
+#import "TKLRegisterViewController.h"           // 天空蓝版注册
+#import "JYRegisterViewController.h"             // 简约版注册
 #import "JYLoginViewController.h"                // 简约模板登录
 #import "UGBMRegisterViewController.h"           // GPK版注册
 #import "UGBMLoginViewController.h"              // GPK版登录
@@ -31,15 +32,16 @@
 #import "UGYYLotteryHomeViewController.h"        // 购彩大厅
 #import "UGSigInCodeViewController.h"            // 每日签到
 #import "SLWebViewController.h"
-#import "UGSecurityCenterViewController.h"  // 安全中心
-#import "UGRealBetRecordViewController.h"   // 其他注单记录
-#import "UGMosaicGoldViewController.h"    // 活动彩金
-#import "UGLHMineViewController.h"    // 六合 我的
-#import "UGMineSkinViewController.h"    //  我的
+#import "UGSecurityCenterViewController.h"              // 安全中心
+#import "UGRealBetRecordViewController.h"               // 其他注单记录
+#import "UGMosaicGoldViewController.h"                  // 活动彩金
+#import "UGLHMineViewController.h"                      // 六合 我的
+#import "UGMineSkinViewController.h"                    //  我的
 #import "LotteryBetAndChatVC.h"
-#import "UGBalanceConversionController.h"//额度转换
-#import "UGUserInfoViewController.h"   //个人资料"
-#import "UGLotteryHomeController.h"   // 彩票大厅
+#import "UGBalanceConversionController.h"               //额度转换
+#import "UGUserInfoViewController.h"                    //个人资料"
+#import "UGLotteryHomeController.h"                     // 额度转换天空蓝
+#import "TKLMainViewController.h"
 
 // Tools
 #import "UGAppVersionManager.h"
@@ -191,9 +193,14 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGBalanceConversionController class]]) {
             
-            if (APP.isNewConversion) {
-                 viewController =  _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
-            } 
+            if (Skin1.isTKL) {
+                viewController =  [[TKLMainViewController alloc] init];
+            } else {
+                if (APP.isNewConversion) {
+                     viewController =  _LoadVC_from_storyboard_(@"LineConversionHeaderVC");
+                }
+            }
+           
         }
         
         if ([viewController isKindOfClass:[UGUserInfoViewController class]]) {
@@ -206,7 +213,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGBMRegisterViewController class]]
             ||[viewController isKindOfClass:[UGRegisterViewController class]]
-            ||[viewController isKindOfClass:[JYRegisterViewController class]] ) {
+            ||[viewController isKindOfClass:[JYRegisterViewController class]]
+            ||[viewController isKindOfClass:[TKLRegisterViewController class]]) {
             
             if (!Skin1.isGPK && !Skin1.isJY&& !Skin1.isTKL){
                 if (![viewController isKindOfClass:[UGRegisterViewController class]]) {
@@ -220,9 +228,15 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 }
                 
             }
-            if (Skin1.isJY||Skin1.isTKL){//简约模板  注册
+            if (Skin1.isJY){//简约模板  注册
                 if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
+                }
+                
+            }
+            if (Skin1.isTKL){//天空蓝模板  注册
+                if (![viewController isKindOfClass:[TKLRegisterViewController class]]) {
+                    viewController = _LoadVC_from_storyboard_(@"TKLRegisterViewController");
                 }
                 
             }

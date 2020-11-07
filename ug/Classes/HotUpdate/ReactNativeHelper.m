@@ -65,7 +65,9 @@
         [[CodePushConfig current] setServerURL:CodePushHost];
         [[CodePushConfig current] setDeploymentKey:ReactNativeHelper.currentCodePushKey];
 #ifdef APP_TEST
-        [[CodePushConfig current] setAppVersion:@"1.1.1"];
+        if (![@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog,by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog" containsString:ReactNativeHelper.currentCodePushKey]) {
+            [[CodePushConfig current] setAppVersion:@"1.1.1"];
+        }
 #endif
 //        [[CodePushConfig current] configuration[@"publicKey"] = ;
         
@@ -471,8 +473,10 @@ RCT_EXPORT_METHOD(launchFinish) {
 
 + (NSDictionary <NSString *, NSString *>*)allCodePushKey {
     return @{
-        @"线上环境":@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
-        @"master":@"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
+        @".dev本地代码":@"LocalCode",
+        @".dev模拟线上":@"iwDsp1YB7bcBov7KIaxDP9tLbuUQ4ksvOXqog",
+        @"`线上环境":@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
+        @"`预备上线":@"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
         @"fish1":@"Nu5AeIufjECzzYroZ1xaX0oYqZbl4ksvOXqog",
         @"fish2":@"fY4dAKb8mxJkcLvTUtH0JpuyAWJ94ksvOXqog",
         @"fish3":@"ynI3JzBw7aJyQ6YfabwwTY3FhAVd4ksvOXqog",
@@ -496,7 +500,7 @@ RCT_EXPORT_METHOD(launchFinish) {
 
 + (NSString *)currentCodePushKey {
 #ifdef APP_TEST
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"master"];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"模拟线上"];
 #else
     return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
 #endif

@@ -107,9 +107,9 @@ class LoginVC: BaseVC {
 	
 	func getConfigs(completion: @escaping (_ config: UGSystemConfigModel) -> Void) {
 		Alert.showLoading()
-		CMNetwork.getSystemConfig(withParams: ["sss": "sss"]) { [weak self] (result, error) in
+		CMNetwork.getSystemConfig(withParams: ["sss": "sss"]) {(result, error) in
 			if let error = error {
-				Alert.showTip(error.localizedDescription,  parenter: self?.view)
+				Alert.showTip(error.localizedDescription)
 			} else if let config = result?.data as? UGSystemConfigModel {
 				completion(config)
 			} else {
@@ -121,9 +121,9 @@ class LoginVC: BaseVC {
 	
 	func getUserInfo(sessid: String,  completion: @escaping (_ user: UGUserModel) -> Void) {
 		Alert.showLoading()
-		CMNetwork.getUserInfo(withParams: ["token": sessid]) { [weak self] (result, error) in
+		CMNetwork.getUserInfo(withParams: ["token": sessid]) {(result, error) in
 			if let error = error {
-				Alert.showTip(error.localizedDescription,  parenter: self?.view)
+				Alert.showTip(error.localizedDescription)
 			} else if let user = result?.data as? UGUserModel {
 				completion(user)
 			} else {

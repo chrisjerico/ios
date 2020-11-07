@@ -122,6 +122,10 @@
 
 - (void)setupNavigationItem{
     self.navigationItem.leftBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"c_navi_back" target:self action:@selector(goBackAction:)];
+	if (CHAT_TARGET) {
+		self.navigationItem.leftBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"nav_back_black" target:self action:@selector(goBackAction:)];
+
+	}
 
 }
     
@@ -535,6 +539,10 @@
 - (STBarButtonItem *)backBtn {
     if (_backBtn == nil) {
         _backBtn = [STBarButtonItem barButtonItemWithImageName:@"c_navi_back" target:self action:@selector(goBackAction:)];
+		if (CHAT_TARGET) {
+			_backBtn = [STBarButtonItem barButtonItemWithImageName:@"nav_back_black" target:self action:@selector(goBackAction:)];
+
+		}
     }
     
     return _backBtn;
@@ -549,7 +557,10 @@
             _closeBtn = [STBarButtonItem barButtonItemWithImageName:@"c_login_close" target:self action:@selector(closeAction:)];
         }
         
- 
+		if (CHAT_TARGET) {
+			_backBtn = [STBarButtonItem barButtonItemWithImageName:@"c_login_close" target:self action:@selector(goBackAction:)];
+
+		}
     }
     
     return _closeBtn;

@@ -43,6 +43,10 @@
 #import "RedEnvelopeVCViewController.h"
 #import "UGLotteryRulesView.h"
 #import "UGgoBindViewController.h"
+#import "UGRechargeTypeTableViewController.h"   //  存款
+#import "UGWithdrawalViewController.h"          //提现
+#import "UGFundDetailsTableViewController.h"    //资金明细
+#import "UGYYLotterySecondHomeViewController.h" //大厅
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -319,7 +323,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     if (linkCategory == 1) {
         // 去彩票下注页
-        return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue] isChatRoom:NO];
+        return [NavController1 pushViewControllerWithNextIssueModel:[UGNextIssueModel modelWithGameId:@(linkPosition).stringValue model:model] isChatRoom:NO];
     }
     
     if (linkCategory == 10) {
@@ -511,16 +515,22 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 7: {
             // 开奖网
-//            TGWebViewController *sf = [[TGWebViewController alloc] initWithURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            if (![CMCommon stringIsNull:model.realGameId]) {
+                NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,model.realGameId];
+                [CMCommon goSLWebUrl:url];
+            } else {
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                webViewVC.允许未登录访问 = true;
+                webViewVC.允许游客访问 = true;
+                webViewVC.url = _NSString(@"%@/Open_prize/index.php", APP.Host);
+                webViewVC.webTitle = @"开奖网";
+                [NavController1 pushViewController:webViewVC animated:YES];
+            }
+              
 
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.允许未登录访问 = true;
-            webViewVC.允许游客访问 = true;
-            webViewVC.url = _NSString(@"%@/Open_prize/index.php", APP.Host);
-            webViewVC.webTitle = @"开奖网";
-            [NavController1 pushViewController:webViewVC animated:YES];
             
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_NSString(@"%@/Open_prize/index.php", APP.Host)]];
+            
+
             break;
         }
         case 8: {
@@ -631,16 +641,29 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case 21: {
             //21' => '充值',
-            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-            fundsVC.selectIndex = 0;
-            [NavController1 pushViewController:fundsVC animated:true];
+            if (Skin1.isTKL) {
+                UGRechargeTypeTableViewController *rechargeVC = _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
+                [NavController1 pushViewController:rechargeVC animated:YES];
+            } else {
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 0;
+                [NavController1 pushViewController:fundsVC animated:true];
+            }
+           
             break;
         }
         case 22: {
             //22' => '提现',
-            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-            fundsVC.selectIndex = 1;
-            [NavController1 pushViewController:fundsVC animated:true];
+            if (Skin1.isTKL) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
+                UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
+                [NavController1 pushViewController:withdrawalVC animated:YES];
+            } else {
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 1;
+                [NavController1 pushViewController:fundsVC animated:true];
+            }
+ 
             break;
         }
         case 23: {
@@ -683,9 +706,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 28: {
             //21' => '资金明细',
 //            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
-            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-            fundsVC.selectIndex = 4;
-            [NavController1 pushViewController:fundsVC animated:YES];
+            
+            if (Skin1.isTKL) {
+                UGFundDetailsTableViewController *detailsVC = _LoadVC_from_storyboard_(@"UGFundDetailsTableViewController");
+                [NavController1 pushViewController:detailsVC animated:true];
+            } else {
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 4;
+                [NavController1 pushViewController:fundsVC animated:YES];
+            }
+
             return true;
             
             break;
@@ -763,6 +793,59 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             
             UGSecurityCenterViewController *vc = [UGSecurityCenterViewController new];
             vc.selectIndex = 1;
+            [NavController1 pushViewController:vc animated:YES];
+            break;
+        }
+        case 40: {
+            //40' => '红包活动',
+            SANotificationEventPost(UGNotificationRedPageComplete, nil);
+            break;
+        }
+        case 41: {
+            //40' => '试玩',
+            SANotificationEventPost(UGNotificationTryPlay, nil);
+            break;
+        }
+        case 42: {
+            //真人大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games error:nil];
+            vc.title = @"真人大厅";
+            [NavController1 pushViewController:vc animated:YES];
+            
+            break;
+        }
+        case 43: {
+            //棋牌大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"card" keyPath:@"category"].games error:nil];
+            vc.title = @"棋牌大厅";
+            [NavController1 pushViewController:vc animated:YES];
+            
+            break;
+        }
+        case 44: {
+            //电子大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"game" keyPath:@"category"].games error:nil];
+            vc.title = @"电子大厅";
+            [NavController1 pushViewController:vc animated:YES];
+            
+            break;
+        }
+        case 45: {
+            //体育大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.title = @"体育大厅";
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"sport" keyPath:@"category"].games error:nil];
+            [NavController1 pushViewController:vc animated:YES];
+            break;
+        }
+        case 46: {
+            //电竞大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"esport" keyPath:@"category"].games error:nil];
+            vc.title = @"电竞大厅";
             [NavController1 pushViewController:vc animated:YES];
             break;
         }

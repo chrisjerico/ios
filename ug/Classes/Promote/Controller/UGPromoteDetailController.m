@@ -121,7 +121,59 @@
             self.navigationItem.title = self.item.title;
         }
     }
+    if (_item.pic.length) {
+
+        __weakSelf_(__self);
+        [_mimgView sd_setImageWithURL:[NSURL URLWithString:_item.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (image) {
+                CGFloat w = UGScreenW - 2*10;
+                CGFloat h = image.height/image.width * w;
+                __self.mimgView.cc_constraints.height.constant = h;
+                __self.ImgH = h+8;
+            }
+        }];
+    }
     
+    if (self.item.content.length) {
+        
+        if (APP.isYHShowTitle) {
+            if (_item.pic.length) {
+                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self.view);
+                    make.top.equalTo(_mimgView.mas_bottom).offset(8);
+                    make.width.mas_equalTo(UGScreenW - 20);
+//                       make.height.mas_equalTo(webH);
+                     make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                }];
+            } else {
+                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self.view);
+                    make.top.equalTo(_titleLabel.mas_bottom).offset(8);
+                    make.width.mas_equalTo(UGScreenW - 20);
+                   make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                }];
+            }
+            
+        }
+        else{
+            if (_item.pic.length) {
+                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self.view);
+                    make.top.equalTo(_mimgView.mas_bottom).offset(8);
+                    make.width.mas_equalTo(UGScreenW - 20);
+                    make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                }];
+            } else {
+                [self.myWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self.view);
+                    make.top.equalTo(self.view.mas_top).offset(8);
+                    make.width.mas_equalTo(UGScreenW - 20);
+                    make.bottom.equalTo(self.view.mas_bottom).offset(IPHONE_SAFEBOTTOMAREA_HEIGHT);
+                }];
+            }
+        }
+        
+    }
     
     __weakSelf_(__self);
     [self.activity startAnimating];
@@ -184,29 +236,29 @@
        }
        
        // 图片
-       if (_item.pic.length) {
-           FLAnimatedImageView *imgView = [FLAnimatedImageView new];
-           imgView.contentMode = UIViewContentModeScaleAspectFit;
-           [self.mUIScrollView addSubview:imgView];
-           _mimgView = imgView;
-           
-           [imgView mas_remakeConstraints:^(MASConstraintMaker *make) {
-               make.centerX.equalTo(self.view);
-               make.top.equalTo(self.titleLabel.mas_bottom).offset(labelY);
-               make.width.mas_equalTo(labelW);
-               make.height.mas_equalTo(60);
-           }];
-           
-           __weakSelf_(__self);
-           [imgView sd_setImageWithURL:[NSURL URLWithString:_item.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-               if (image) {
-                   CGFloat w = labelW;
-                   CGFloat h = image.height/image.width * w;
-                   imgView.cc_constraints.height.constant = h;
-                   __self.ImgH = h+8;
-               }
-           }];
-       }
+
+    FLAnimatedImageView *imgView = [FLAnimatedImageView new];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.mUIScrollView addSubview:imgView];
+    _mimgView = imgView;
+    
+    [imgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(labelY);
+        make.width.mas_equalTo(labelW);
+        make.height.mas_equalTo(1);
+    }];
+    
+    __weakSelf_(__self);
+    [imgView sd_setImageWithURL:[NSURL URLWithString:_item.pic] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image) {
+            CGFloat w = labelW;
+            CGFloat h = image.height/image.width * w;
+            imgView.cc_constraints.height.constant = h;
+            __self.ImgH = h+8;
+        }
+    }];
+       
        
        
        if (self.item.content.length) {

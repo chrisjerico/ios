@@ -117,8 +117,7 @@
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
-@property (nonatomic, readonly) NSString *jspPath;      /**<    jspatch热更新本地文件路径 */
-@property (nonatomic, strong) NSString *jspVersion;     /**<    jspatch热更新版本号 */
+@property (nonatomic, strong) NSString *rnVersion;      /**<    jspatch热更新版本号 */
 @property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
 //@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
 

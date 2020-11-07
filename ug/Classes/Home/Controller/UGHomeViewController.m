@@ -74,13 +74,6 @@
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
 
-
-@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
-
-@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
-@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
-
 //-------------------------------------------
 //六合开奖View
 @property (weak, nonatomic) IBOutlet UIView *LhPrize_FView;
@@ -104,6 +97,11 @@
 
 @property (nonatomic, strong) HomeBannerView *bannerView;       /**<   顶部横幅 */
 @property (weak, nonatomic) IBOutlet JS_HomePromoteContainerView *homePromoteContainer;  /**<   站长推荐 */
+
+@property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
+@property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
+@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
 
 @property (nonatomic, strong) HomeMarqueeView *rollingView;             /**<   跑马灯公告 */
 @property (nonatomic, strong) HomeWaistAdsView *waistAdsView;           /**<   腰部广告 */
@@ -165,21 +163,16 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
-                               @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
-                               @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
-                               @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
-                               @"香槟金":@[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _betFormView, _trademarkView],
+        NSDictionary *dict = @{
+            @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,],
+            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
+            @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+            @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+            @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
+            @"香槟金":@[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _betFormView, _trademarkView],
         };
-        
-        NSArray *views = dict[Skin1.skitType];
-        if (views.count) {
-            [_contentStackView addArrangedSubviews:views];
-        } else {
-            // 默认展示内容
-            [_contentStackView addArrangedSubviews:@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,]];
-            
-        }
+        NSArray *views = dict[Skin1.skitType] ? : dict[@"默认"];
+        [_contentStackView addArrangedSubviews:views];
     }
     
     if ([Skin1.skitType isEqualToString:@"香槟金"]) {
@@ -188,10 +181,8 @@
     
     // GPK版的UI调整
     BOOL isGPK = Skin1.isGPK;
-    
 
-
-        _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY||Skin1.isTKL? 0 : 10;
+    _gameTypeView.cc_constraints.top.constant = isGPK||Skin1.isJY||Skin1.isTKL? 0 : 10;
 
     _headerView.hidden = !isGPK;
     self.fd_prefersNavigationBarHidden = isGPK;
@@ -352,8 +343,10 @@
     _lhColumnView = _LoadView_from_nib_(@"HomeLHColumnView");
     
     // 优惠活动
-    _promotionVC = _LoadVC_from_storyboard_(@"HomePromotionsVC");
-    [self addChildViewController:_promotionVC];
+    if (SysConf.m_promote_pos) {
+        _promotionVC = _LoadVC_from_storyboard_(@"HomePromotionsVC");
+        [self addChildViewController:_promotionVC];
+    }
     
     // 投注/中奖排行榜
     _rankingView = _LoadView_from_nib_(@"HomeRankingView");
@@ -385,9 +378,7 @@
             subImageView(@"公告图标ImageView").image = [[UIImage imageNamed:@"notice"] qmui_imageWithTintColor:Skin1.textColor1];
         }
         
-        subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
-        subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
-        [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+
         
         if (!Skin1.isLH) {
             self.gameNavigationView.layer.cornerRadius = 8;
@@ -757,11 +748,11 @@
                         /**
                          #917 c190首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动
                          */
-                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])|| Skin1.isTKL) {
+                        if (([SysConf.mobileTemplateCategory isEqualToString:@"9"] && [@"c190" containsString:APP.SiteId])) {
                             weakSelf.gameNavigationViewHeight.constant = 60;
                             weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
                         }
-                        else if ([Skin1 isJY])
+                        else if ([Skin1 isJY] || Skin1.isTKL)
                         {
                             weakSelf.gameNavigationViewHeight.constant = ((sourceData.count - 1)/5 + 1)*80;
                             weakSelf.gameNavigationView.showsVerticalScrollIndicator = NO;
@@ -828,6 +819,7 @@
             } else {
                 [weakSelf.titleView setImgName:config.mobile_logo];
             }
+            [self skin];
             
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
@@ -841,8 +833,16 @@
 - (void)getPlatformGamesWithParams {
     [CMNetwork getPlatformGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            [Global getInstanse].lotterydataArray = model.data ;
-            NSLog(@"[Global getInstanse].lotterydataArray = %@",[Global getInstanse].lotterydataArray);
+            NSMutableArray <UGYYPlatformGames *>*lotterydataArray = ({
+               NSMutableArray *temp = @[].mutableCopy;
+               NSArray *dataArray = model.data;
+               for (int i=0; i<dataArray.count; i++) {
+                   [temp addObject:dataArray[i]];
+               }
+               temp;
+           });
+           
+           [Global getInstanse].lotterydataArray   = lotterydataArray;
         } failure:^(id msg) {
         }];
     }];

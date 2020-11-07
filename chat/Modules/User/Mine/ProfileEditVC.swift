@@ -72,16 +72,16 @@ class ProfileEditVC: BaseVC {
 					picker.sourceType = index == 0 ? .camera : .photoLibrary
 					picker.allowsEditing = false
 				}
-		}.flatMap {
-			$0.rx.didFinishPickingMediaWithInfo
-		}
-		.take(1)
+			}.flatMap {
+				$0.rx.didFinishPickingMediaWithInfo
+			}
+			.take(1)
 			.map { info -> UIImage? in
-			let image = info[.originalImage] as? UIImage
-			seletedImage = image
-			return image
-		}
-		.filterNil()
+				let image = info[.originalImage] as? UIImage
+				seletedImage = image
+				return image
+			}
+			.filterNil()
 			.flatMap{ FileUploadApi.rx.request(.avatar(data: $0)).mapBool()}.subscribe { [weak self] (success) in
 				if success, let image = seletedImage {
 					Alert.showTip("头像更改成功")
@@ -90,14 +90,14 @@ class ProfileEditVC: BaseVC {
 			} onError: { (error) in
 				Alert.showTip(error.localizedDescription)
 			}.disposed(by: disposeBag)
-
-			
-			
-//		.subscribe(onNext: { [weak self] image in
-//			guard let weakSelf = self else { return }
-////			weakSelf.items.accept([image] + weakSelf.items.value)
-//		}).disposed(by: disposeBag)
-//
+		
+		
+		
+		//		.subscribe(onNext: { [weak self] image in
+		//			guard let weakSelf = self else { return }
+		////			weakSelf.items.accept([image] + weakSelf.items.value)
+		//		}).disposed(by: disposeBag)
+		//
 	}
 	
 	

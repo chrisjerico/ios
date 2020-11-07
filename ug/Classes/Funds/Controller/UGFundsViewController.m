@@ -196,7 +196,7 @@
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
     // 存款
     if (number == 0) {
-        UGRechargeTypeTableViewController *rechargeVC = [[UGRechargeTypeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        UGRechargeTypeTableViewController *rechargeVC =  _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
         return rechargeVC;
     }
     // 取款
@@ -212,20 +212,20 @@
     // 存款记录
     else if (number == 2) {
         if (! self.rechargeRecordVC) {
-            self.rechargeRecordVC = [[UGRechargeRecordTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            self.rechargeRecordVC =  _LoadVC_from_storyboard_(@"UGRechargeRecordTableViewController");
             self.rechargeRecordVC.recordType = RecordTypeRecharge;
         }
         return self.rechargeRecordVC;
     }
     // 取款记录
     else if (number == 3) {
-        UGRechargeRecordTableViewController *rechargeRecordVC = [[UGRechargeRecordTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        UGRechargeRecordTableViewController *rechargeRecordVC = _LoadVC_from_storyboard_(@"UGRechargeRecordTableViewController");
         rechargeRecordVC.recordType = RecordTypeWithdraw;
         return rechargeRecordVC;
     }
     // 资金明细
     else {
-        UGFundDetailsTableViewController *detailsVC = [[UGFundDetailsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        UGFundDetailsTableViewController *detailsVC = _LoadVC_from_storyboard_(@"UGFundDetailsTableViewController");
         return detailsVC;
     }
 }

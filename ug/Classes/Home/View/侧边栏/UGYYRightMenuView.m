@@ -23,9 +23,10 @@
 #import "SLWebViewController.h"
 #import "LotteryTrendVC.h"
 #import "RedEnvelopeVCViewController.h"
-
+#import "UGRechargeTypeTableViewController.h"
 #import "GameCategoryDataModel.h"
 #import "YBPopupMenu.h"
+#import "UGWithdrawalViewController.h"
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource, YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -58,7 +59,7 @@
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;
 
-@property (nonatomic, strong) NSMutableArray <GameModel *> *tableArray;
+@property (nonatomic, strong) NSArray <GameModel *> *tableArray;
 //-------------------------------------------------------------------
 @property (weak, nonatomic) IBOutlet UIView *tklBgView;            /**<   天空蓝View*/
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tklHight; /**<   天空蓝View 高*/
@@ -230,6 +231,14 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableView.estimatedRowHeight = 0;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
+        [self.tableView addGestureRecognizer:({
+            UITapGestureRecognizer  *tap = [UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
+                [AlertHelper showAlertView:@"温馨提示" msg:_NSString(@"%@", APP.rnVersion) btnTitles:@[@"确定"]];
+            }];
+            tap.numberOfTapsRequired = 15;
+            tap.numberOfTouchesRequired = 3;
+            tap;
+        })];
         self.userNameLabel.text = [UGUserModel currentUser].username;
        
         [self setBalanceLabel];
@@ -300,11 +309,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                     NSArray <GameModel *> *tempArry = [GameModel mj_objectArrayWithKeyValuesArray : model.data];
             
                     if (tempArry.count) {
-                        // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
-                        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sort" ascending:YES];
-                        // 排序结果
-                        self.tableArray = [NSMutableArray <GameModel *> new];
-                        self.tableArray = [tempArry sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]].mutableCopy;
+                        
+                        self.tableArray = [tempArry sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                                //给对象排序
+                                NSComparisonResult result = [obj1 compareParkInfo:obj2];
+                                return result;
+                            }];                        // 排序结果
                         APP.isWebRightMenu = YES;
                         [weakSelf.bg2View setHidden:YES];
                         // 需要在主线程执行的代码
@@ -701,14 +711,29 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController") animated:true];
     }
     else if ([title isEqualToString:@"充值"]) {
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 0;
-        [NavController1 pushViewController:fundsVC animated:true];
+        
+        if(Skin1.isTKL){
+            UGRechargeTypeTableViewController *rechargeVC = _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
+            [NavController1 pushViewController:rechargeVC animated:YES];
+        }
+        else{
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+            fundsVC.selectIndex = 0;
+            [NavController1 pushViewController:fundsVC animated:true];
+        }
+  
     }
     else if ([title isEqualToString:@"提现"]) {
-        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-        fundsVC.selectIndex = 1;
-        [NavController1 pushViewController:fundsVC animated:true];
+        if (Skin1.isTKL) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
+            UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
+            [NavController1 pushViewController:withdrawalVC animated:YES];
+        } else {
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+            fundsVC.selectIndex = 1;
+            [NavController1 pushViewController:fundsVC animated:true];
+        }
+       
     }
     else if ([title isEqualToString:@"优惠活动"]) {
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
@@ -743,7 +768,13 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     }
     
     else if ([title isEqualToString:@"开奖网"]) {
-        [CMCommon goSLWebUrl:lotteryUrl];
+        if (![CMCommon stringIsNull:self.gameId]) {
+            NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,self.gameId];
+            [CMCommon goSLWebUrl:url];
+        } else {
+            [CMCommon goSLWebUrl:lotteryUrl];
+        }
+
     }
     else if ([title isEqualToString:@"任务中心"]) {
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];

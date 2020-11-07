@@ -121,13 +121,13 @@ static NSString *__lastRnPage = nil;
     if (!_rnView) {
         NSURL *bundleURL = [CodePush bundleURL];
 #ifdef DEBUG
-
-//        if (TARGET_IPHONE_SIMULATOR) {
-//            bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-//        } else if (APP.isFish) {
-//            bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
-//        }
-
+        if ([ReactNativeHelper.currentCodePushKey isEqualToString:@"LocalCode"]) {
+            if (TARGET_IPHONE_SIMULATOR) {
+                bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+            } else if (APP.isFish) {
+                bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
+            }
+        }
 #endif
         //    NSLog(@"当前rn版本：%@", APP.)
         _rnView = [[RCTRootView alloc] initWithBundleURL:bundleURL moduleName:@"Main" initialProperties:nil launchOptions:nil];
@@ -140,14 +140,12 @@ static NSString *__lastRnPage = nil;
     _navigationBarHidden = self.navigationController.navigationBarHidden;
     self.navigationController.navigationBarHidden = _rpm.fd_prefersNavigationBarHidden;
     
-    if (_rnView.superview != self.view) {
-        [self.view addSubview:_rnView];
-        __weakSelf_(__self);
-        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-            __lastRnPage = __self.rpm.rnName;
-            [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
-        }];
-    }
+    [self.view addSubview:_rnView];
+    __weakSelf_(__self);
+    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        __lastRnPage = __self.rpm.rnName;
+        [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

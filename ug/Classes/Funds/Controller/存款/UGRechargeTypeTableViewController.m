@@ -16,6 +16,8 @@
 @interface UGRechargeTypeTableViewController ()
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
 @property (nonatomic, strong) NSMutableArray <UGpaymentModel *> *tableViewDataArray;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @end
 
 static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
@@ -23,7 +25,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"充值";
     if (APP.isBgColorForMoneyVC) {
         self.tableView.backgroundColor = Skin1.bgColor;
     } else {
@@ -80,7 +82,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
         [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 //虚拟教程
             
-            if ([@"c012,test61f" containsString:APP.SiteId]) {
+            if ([@"c012" containsString:APP.SiteId]) {
                 HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
                 vc.webName = @"c012充值";
                 vc.title = @"虚拟币教程";

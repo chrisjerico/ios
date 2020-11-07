@@ -7,6 +7,7 @@
 //
 
 #import "UGAllNextIssueListModel.h"
+#import "GameCategoryDataModel.h"
 
 @implementation UGNextIssueModel
 + (JSONKeyMapper *)keyMapper {
@@ -15,13 +16,26 @@
                                                        }];
 }
 
-+ (instancetype)modelWithGameId:(NSString *)gameId {
++ (instancetype)modelWithGameId:(NSString *)gameId model:(GameModel *)model{
     for (UGAllNextIssueListModel *listGame in UGAllNextIssueListModel.lotteryGamesArray) {
         for (UGNextIssueModel *nim in listGame.list)
             if ([nim.gameId isEqualToString:gameId])
                 return nim;
     }
+    
+    if(model){
+        UGNextIssueModel *nim2 = [UGNextIssueModel new];
+        nim2.gameId = model.gameId;
+        nim2.title = model.name;
+        nim2.logo = model.icon;
+        nim2.name = model.name;
+        nim2.gameType = model.gameType;
+        nim2.logo = model.logo;
+        return nim2;
+    }
     return nil;
+
+
 }
 
 

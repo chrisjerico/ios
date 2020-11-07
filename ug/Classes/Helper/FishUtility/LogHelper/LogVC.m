@@ -10,7 +10,7 @@
 
 #import "LogVC.h"
 #import "CMAudioPlayer.h"
-
+#import "TKLMainViewController.h"
 #import "AFHTTPSessionManager.h"
 #import "NSMutableArray+KVO.h"
 #import <SafariServices/SafariServices.h>
@@ -26,7 +26,7 @@
 #import "CMLabelCommon.h"
 #import "NewLotteryHomeViewController.h"
 #import "CMTimeCommon.h"
-
+#import "TKLMoneyViewController.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -161,29 +161,20 @@ static LogVC *_logVC = nil;
 #pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"时间搓"];
+        [titles addObject:@"天空蓝充值"];
         [titles addObject:@"天空蓝额度"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
         [ac setActionAtTitle:@"天空蓝额度" handler:^(UIAlertAction *aa) {
-            
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"TKLMainViewController") animated:true];
+            TKLMainViewController *vc = [[TKLMainViewController alloc] init];
+            [NavController1 pushViewController:vc animated:true];
+//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"TKLMainListViewController") animated:true];
         }];
+
         
-        [ac setActionAtTitle:@"时间搓" handler:^(UIAlertAction *aa) {
-           NSString *time1 = [CMTimeCommon timestampSwitchTime:1602923724 andFormatter:@"yyyy-MM-dd HH:mm"];
-            NSLog(@"time1 = %@",time1);//time1 = 2020-10-17 16:35
-            
-//            NSString *time2 = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
-//            NSLog(@"time2 = %@",time2);//time2 = 2020-10-17 17:19
-            NSString *time2 = @"2020-10-17 16:34";
-            NSDate *date1 = [CMTimeCommon dateForStr:time1 format:@"yyyy-MM-dd HH:mm"];
-            NSDate *date2 = [CMTimeCommon dateForStr:time2 format:@"yyyy-MM-dd HH:mm"];
-            
-           int k =  [CMTimeCommon compareOneDay:date2 withAnotherDay:date1 formatter:@"yyyy-MM-dd HH:mm"];
-            
-            NSLog(@"k = %d",k);
-            
+        [ac setActionAtTitle:@"天空蓝充值" handler:^(UIAlertAction *aa) {
+            TKLMoneyViewController *vc = [[TKLMoneyViewController alloc] init];
+            [NavController1 pushViewController:vc animated:true];
            
         }];
         
@@ -378,9 +369,7 @@ static LogVC *_logVC = nil;
     if (tableView == _reqTableView) {
         _selectedModel = (_collectButton.selected ? _collects : _allRequest)[indexPath.row];
         _selectedModelKeys = _selectedModel.params.allKeys;
-        if (_selectedModel.error) {
-            _retTextView.text = [_selectedModel.error description];
-        } else if (_selectedModel.resObject) {
+        if (_selectedModel.resObject) {
             __block CCSessionModel *lastModel = _selectedModel;
             NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.resObject options:NSJSONWritingPrettyPrinted error:nil];
             if (data.length > 10000) {
@@ -393,6 +382,8 @@ static LogVC *_logVC = nil;
             } else {
                 _retTextView.text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             }
+        } else {
+            _retTextView.text = [_selectedModel.error description];
         }
         [_paramsTableView reloadData];
     } else {

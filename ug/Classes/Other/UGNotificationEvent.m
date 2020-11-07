@@ -33,6 +33,8 @@ NSString *UGNotificationWithSkinSuccess = @"UGNotificationWithSkinSuccess";//换
 NSString *UGNotificationWithResetTabSuccess = @"UGNotificationWithResetTabSuccess";//换tabBar
 
 NSString *UGNotificationWithRecordOfDeposit = @"UGNotificationWithRecordOfDeposit";//存款记录刷新
+
+NSString *UGNotificationRedPageComplete = @"UGNotificationRedPageComplete";//弹出红包活动
 ///
 /// 登录授权
 ///

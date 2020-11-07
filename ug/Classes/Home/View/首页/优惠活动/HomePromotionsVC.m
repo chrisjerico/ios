@@ -46,7 +46,11 @@
     [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    
+    FastSubViewCode(self.view);
+    subImageView(@"优惠活动图标ImageView").image = [[UIImage imageNamed:@"礼品-(1)"] qmui_imageWithTintColor:Skin1.textColor1];
+    subLabel(@"优惠活动标题Label").textColor = Skin1.textColor1;
+    [subButton(@"查看更多优惠活动Button") setTitleColor:Skin1.textColor1 forState:UIControlStateNormal];
+
     _promotionsStackView.cc_constraints.top.constant = 0;
     _promotionsStackView.cc_constraints.left.constant = 0;
 }

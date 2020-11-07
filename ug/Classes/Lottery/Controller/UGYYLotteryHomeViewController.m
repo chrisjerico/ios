@@ -130,7 +130,7 @@
         [weakSelf.collectionView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             
-           [Global getInstanse].lotterydataArray = weakSelf.dataArray = model.data;
+            weakSelf.dataArray = model.data;
             [weakSelf.collectionView reloadData];
         } failure:^(id msg) {
         }];

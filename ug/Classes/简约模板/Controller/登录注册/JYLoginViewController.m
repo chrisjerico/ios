@@ -15,6 +15,7 @@
 #import "UGSecurityCenterViewController.h"
 #import "SLWebViewController.h"
 #import "JYRegisterViewController.h"
+#import "TKLRegisterViewController.h"           // 天空蓝版注册
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "SUCache.h"
@@ -470,16 +471,30 @@
 
 //去注册界面
 - (IBAction)showRegister:(id)sender {
-    for (UIViewController *vc in self.navigationController.childViewControllers) {
-        if ([vc isKindOfClass:JYRegisterViewController.class]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-    }
-    JYRegisterViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JYRegisterViewController"];
-    [self.navigationController pushViewController:registerVC animated:YES];
     
-//    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
+    if (Skin1.isJY) {
+        for (UIViewController *vc in self.navigationController.childViewControllers) {
+            if ([vc isKindOfClass:JYRegisterViewController.class]) {
+                [self.navigationController popViewControllerAnimated:YES];
+                return;
+            }
+        }
+        JYRegisterViewController *registerVC = [self.storyboard instantiateViewControllerWithIdentifier:@"JYRegisterViewController"];
+        [self.navigationController pushViewController:registerVC animated:YES];
+    }
+    else if(Skin1.isTKL){
+        
+        for (UIViewController *vc in self.navigationController.childViewControllers) {
+            if ([vc isKindOfClass:TKLRegisterViewController.class]) {
+                [self.navigationController popViewControllerAnimated:YES];
+                return;
+            }
+        }
+        TKLRegisterViewController *registerVC = _LoadVC_from_storyboard_(@"TKLRegisterViewController") ;
+        [self.navigationController pushViewController:registerVC animated:YES];
+    }
+   
+
     
 }
 //免费试玩

@@ -79,7 +79,7 @@
 @property (nonatomic, strong) UICollectionView *headerCollectionView;
 @property (nonatomic, strong) UICollectionView *betCollectionView;
 
-@property (nonatomic, strong) NSArray <NSString *> *chipArray;
+
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 
@@ -380,21 +380,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 
-#pragma mark - YBPopupMenuDelegate
 
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0 ) {
-        if (index < self.chipArray.count - 1) {
-            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
-            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
-            float sum = n1 + n2;
-            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
-        }else {
-            self.amountTextF.text = nil;
-        }
-    }
-    
-}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -701,19 +687,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self.headerCollectionView reloadData];
 }
 
-- (void)updateCloseLabelText{
-    NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (self.nextIssueModel.isSeal || timeStr == nil) {
-        timeStr = @"封盘中";
-        self.bottomCloseView.hidden = NO;
-        [self resetButtonClick:nil];
-    }else {
-        self.bottomCloseView.hidden = YES;
-    }
-    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
-    [self updateCloseLabel];
-    
-}
 
 
 - (void)updateOpenLabelText {
@@ -731,18 +704,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
-- (void)updateCloseLabel {
-    if (APP.isTextWhite) {
-        return;
-    }
-    if (self.closeTimeLabel.text.length) {
-        
-        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
-        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
-        self.closeTimeLabel.attributedText = abStr;
-    }
-    
-}
+
 
 //这个方法是有用的不要删除
 - (void)updateOpenLabel {}
@@ -788,7 +750,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
 
     
     return _tableView;

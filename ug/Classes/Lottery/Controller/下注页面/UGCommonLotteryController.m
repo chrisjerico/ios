@@ -23,17 +23,24 @@
 #import "YNBetDetailView.h"
 #import "YNHLPrizeDetailView.h"
 #import "UGLotteryRightMenuView.h"
+#import "YBPopupMenu.h"
 
 @interface UIButton (customSetEnable)
 -(void)customSetEnable:(BOOL)enabled;
 
 @end
+
+@interface UGCommonLotteryController ()<YBPopupMenuDelegate>{
+    
+}
+@end
 @interface UGCommonLotteryController (CC)<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic) UITableView *tableView;
-@property (nonatomic) UIView *bottomView;
-@property (nonatomic) IBOutlet UILabel *nextIssueLabel;
+@property (nonatomic) UIView *bottomView;/**<   底部*/
+@property (nonatomic) IBOutlet UILabel *nextIssueLabel;/**<   下期开奖label */
+@property (nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
-@property (nonatomic) IBOutlet UILabel *openTimeLabel;
+@property (nonatomic) IBOutlet UILabel *openTimeLabel;/**<   开奖时间Label */
 
 @property (nonatomic) IBOutlet UILabel *selectLabel;      /**<   注数Label */
 @property (nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
@@ -56,7 +63,9 @@
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
 @property (nonatomic, strong) UGLotteryRightMenuView  *yymenuView;
-
+//筹码=======================================================
+@property (nonatomic) IBOutlet UIButton *chipButton;/**<底部  筹码  */
+@property (nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
 @end
 
 
@@ -108,6 +117,9 @@
 
     [super viewDidLoad];
 
+   
+    
+    
      self.fd_interactivePopDisabled = YES;
     [self setupTitleView];
     
@@ -152,8 +164,7 @@
         if (APP.isShowBorder) {
               [CMCommon setBorderWithView:self.rightStackView top:NO left:YES bottom:NO right:YES borderColor:borderColor borderWidth:borderWidth];
         }
-       
-//        self.tableView.layer.borderWidth = 0;
+
         // 左侧玩法栏背景色
         
         self.tableView.backgroundColor = [UIColor clearColor];
@@ -173,6 +184,9 @@
         [subView(@"上背景View") setBackgroundColor:[UIColor clearColor]];
         [subView(@"中间View") setBackgroundColor:[UIColor clearColor]];
         subLabel(@"线label").hidden = !APP.isShowBorder;
+        [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        
         self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
@@ -191,9 +205,25 @@
             bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
             bgView;
         }) atIndex:0];
-        
-        [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
-        [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        // 筹码弹框
+        [self.chipButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [self.chipButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            if (__self.amountTextF.isFirstResponder) {
+                [__self.amountTextF resignFirstResponder];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
+                    popView.fontSize = 14;
+                    popView.type = YBPopupMenuTypeDefault;
+                    [popView showRelyOnView:__self.chipButton];
+                });
+            }else {
+                YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
+                popView.fontSize = 14;
+                popView.type = YBPopupMenuTypeDefault;
+                [popView showRelyOnView:__self.chipButton];
+            }
+        }];
         
         [subButton(@"长龙btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"长龙btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -294,7 +324,8 @@
         
         if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
             [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
-        } else {
+        }
+        else {
             
             if (APP.isYellow) {
                 [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
@@ -306,7 +337,8 @@
         }
         
         
-        if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
+        if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
+            || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
         } else {
             subButton(@"追号btn").layer.cornerRadius = 5;
             subButton(@"追号btn").layer.masksToBounds = YES;
@@ -333,16 +365,102 @@
             }
         }
         
-       
-     
-
+        if (Skin1.isTKL) {
+            self.nextIssueLabel.textColor = Skin1.navBarBgColor;
+            subLabel(@"期数label").textColor = Skin1.navBarBgColor;
+            [self.openTimeLabel setHidden:Skin1.isTKL];
+            [subButton(@"追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [self.chipButton  setHidden:Skin1.isTKL];
+            [subButton(@"重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [_bargainingView setHidden:!Skin1.isTKL];
+        }
         
+        //筹码 bottomView
+        _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
+        //游戏列表点击事件
+        self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
+            if (![CMCommon stringIsNull:item.btnTitle]) {
+                float n1 = [CMCommon floatForNSString:__self.amountTextF.text];
+                float n2 = [CMCommon floatForNSString:item.btnTitle];
+                float sum = n1 + n2;
+                __self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
+            }
+        };
+        [self.bottomView addSubview:_bargainingView];
+        [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.bottomView.mas_top).mas_offset(50);
+            make.left.equalTo(self.bottomView.mas_left).mas_offset(0);
+            make.height.mas_equalTo(45);
+            make.width.mas_equalTo(260);
+        }];
+        
+ 
     }
+
+   
 
   if (OBJOnceToken(self)) {
         [self sliderViewInit ];
   };
+    
 
+
+}
+
+#pragma mark - YBPopupMenuDelegate
+
+- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
+    if (index >= 0 ) {
+        if (index < self.chipArray.count - 1) {
+            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
+            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
+            float sum = n1 + n2;
+            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
+        }else {
+            self.amountTextF.text = nil;
+        }
+    }
+    
+}
+
+- (void)updateCloseLabel {
+    if (APP.isTextWhite) {
+        return;
+    }
+    if (self.closeTimeLabel.text.length) {
+        
+        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
+        
+        if (Skin1.isTKL) {
+            [abStr addAttribute:NSFontAttributeName
+                                         value:[UIFont boldSystemFontOfSize:22]
+                                         range:NSMakeRange(0, self.closeTimeLabel.text.length - 0)];
+            [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, self.closeTimeLabel.text.length - 0)];
+        }
+        else{
+            [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
+        }
+        self.closeTimeLabel.attributedText = abStr;
+    }
+}
+
+- (void)updateCloseLabelText{
+    
+    NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
+    if (self.nextIssueModel.isSeal || timeStr == nil) {
+        timeStr = @"封盘中";
+        self.bottomCloseView.hidden = NO;
+        [self resetClick:nil];
+    } else {
+        self.bottomCloseView.hidden = YES;
+    }
+    if (Skin1.isTKL) {
+        self.closeTimeLabel.text = timeStr;
+    } else {
+        self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
+    }
+    
+    [self updateCloseLabel];
 }
 //拖动条
 - (void )sliderViewInit {
@@ -876,7 +994,13 @@
 		_radomNumberButton.titleLabel.font = [UIFont systemFontOfSize:15];
 		_radomNumberButton.titleLabel.textColor = [UIColor whiteColor];
 		[_radomNumberButton customSetEnable:true];
-		_radomNumberButton.backgroundColor = [UIColor colorWithHex:0x3A3E40];
+        
+        if (Skin1.isTKL) {
+            [_radomNumberButton setBackgroundColor:RGBA(247, 162, 0, 1)];
+        } else {
+            _radomNumberButton.backgroundColor = [UIColor colorWithHex:0x3A3E40];
+        }
+		
 		[_radomNumberButton addTarget:self action:@selector(randomNumber) forControlEvents:UIControlEventTouchUpInside];
 	}
 	return _radomNumberButton;

@@ -209,10 +209,10 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL allowMemberCancelBet;    /**<   是否允许会员撤单，1允许 0不允许 */
 @property (nonatomic) BOOL m_promote_pos;           /**<   优惠活动显示在首页还是内页，1首页，0内页 */
 @property (nonatomic) BOOL yuebaoSwitch;            /**<   未登录时是否允许访问利息宝 */
+@property (nonatomic) BOOL mBonsSwitch;            /**<   俸禄开关开启。0 为开启， 1 为 关闭*/
 @property (nonatomic, copy) NSString *chatRoomName;           /**<   聊天室名称*/
 @property (nonatomic, assign) NSInteger chatFollowSwitch;                  /**<   0-不能分享 1- 允许分享 */
 @property (nonatomic) BOOL chatShareBet;                  /**<   是否允许注单分享 */
-@property (nonatomic) BOOL mBonsSwitch;             /**<   是否显示俸禄界面 */
 
 @property (nonatomic, copy) NSString *chatMinFollowAmount;    /**<   聊天室跟注最小金额*/
 

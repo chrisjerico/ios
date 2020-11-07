@@ -55,8 +55,12 @@ public final class RefreshFooter: MJRefreshAutoNormalFooter {
      public override func prepare() {
 		 super.prepare()
 		setTitle("正在获取数据中...", for: MJRefreshState.refreshing)
-		setTitle("加载更多", for: MJRefreshState.idle)
-		setTitle("没有更多", for: MJRefreshState.noMoreData)
+//		setTitle("加载更多", for: MJRefreshState.idle)
+		setTitle("", for: MJRefreshState.idle)
+
+//		setTitle("没有更多", for: MJRefreshState.noMoreData)
+		setTitle("", for: MJRefreshState.noMoreData)
+
 		stateLabel?.font = UIFont.systemFont(ofSize: 14.0)
 		stateLabel?.textColor = UIColor(hex: "#999999")
 	 }

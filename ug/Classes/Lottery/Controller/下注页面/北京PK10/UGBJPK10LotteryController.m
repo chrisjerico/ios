@@ -78,7 +78,7 @@
 
 @property (nonatomic, strong) UICollectionView *headerCollectionView;
 @property (nonatomic, strong) UICollectionView *betCollectionView;
-@property (nonatomic, strong) NSArray <NSString *> *chipArray;
+
 @property (nonatomic, strong) NSIndexPath *typeIndexPath;
 @property (nonatomic, strong) NSIndexPath *itemIndexPath;
 @property (nonatomic, strong) NSArray <NSString *> *preNumArray;
@@ -379,23 +379,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
-- (IBAction)chipClick:(id)sender {
-    if (self.amountTextF.isFirstResponder) {
-        [self.amountTextF resignFirstResponder];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-            popView.fontSize = 14;
-            popView.type = YBPopupMenuTypeDefault;
-            [popView showRelyOnView:self.chipButton];
-        });
-    }else {
-        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:self];
-        popView.fontSize = 14;
-        popView.type = YBPopupMenuTypeDefault;
-        [popView showRelyOnView:self.chipButton];
-    }
-}
 
 - (IBAction)resetClick:(id)sender {
     [self.amountTextF resignFirstResponder];
@@ -452,21 +435,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 
-#pragma mark - YBPopupMenuDelegate
-
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0 ) {
-        if (index < self.chipArray.count - 1) {
-            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
-            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
-            float sum = n1 + n2;
-            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
-        }else {
-            self.amountTextF.text = nil;
-        }
-    }
-}
-
 
 #pragma mark - UITableViewDataSource
 
@@ -510,7 +478,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
      if ([tableView isEqual:self.tableView]) {
          self.typeIndexPath = indexPath;
-		 self.segmentView.segmentIndexBlock(0);
          UGGameplayModel *model = self.gameDataArray[indexPath.row];
          if ([@"官方玩法" isEqualToString:model.name]) {
              self.segmentView.dataArray = self.lmgmentTitleArray;
@@ -520,7 +487,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                  self.betCollectionView.height -= self.segmentView.height;
              }
              self.segmentView.hidden = NO;
-             [self resetClick:nil];
+//             [self resetClick:nil];
+			 self.segmentView.segmentIndexBlock(0);
          }
          else {
              if (!self.segmentView.hidden) {
@@ -962,19 +930,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 
-- (void)updateCloseLabelText{
-    NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (self.nextIssueModel.isSeal || timeStr == nil) {
-        timeStr = @"封盘中";
-        self.bottomCloseView.hidden = NO;
-        [self resetClick:nil];
-    } else {
-        self.bottomCloseView.hidden = YES;
-    }
-    self.closeTimeLabel.text = [NSString stringWithFormat:@"封盘:%@",timeStr];
-    [self updateCloseLabel];
-}
-
 
 - (void)updateOpenLabelText{
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curOpenTime currentTimeStr:self.nextIssueModel.serverTime];
@@ -989,18 +944,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
-- (void)updateCloseLabel {
-    if (APP.isTextWhite) {
-        return;
-    }
-    if (self.closeTimeLabel.text.length) {
-        
-        NSMutableAttributedString *abStr = [[NSMutableAttributedString alloc] initWithString:self.closeTimeLabel.text];
-        [abStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(3, self.closeTimeLabel.text.length - 3)];
-        self.closeTimeLabel.attributedText = abStr;
-    }
-    
-}
+
 
 //这个方法是有用的不要删除
 - (void)updateOpenLabel {}
@@ -1046,7 +990,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.rowHeight = 40;
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
 
     
     return _tableView;

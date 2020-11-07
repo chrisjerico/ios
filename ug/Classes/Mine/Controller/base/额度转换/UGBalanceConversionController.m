@@ -264,23 +264,23 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 }
 
 - (void)checkRealBalance:(UGPlatformGameModel *)game {
-	NSDictionary *parmas = @{@"id":game.gameId,
-							 @"token":[UGUserModel currentUser].sessid
-	};
+    NSDictionary *parmas = @{@"id":game.gameId,
+                             @"token":[UGUserModel currentUser].sessid
+    };
     __weakSelf_(__self);
-	[CMNetwork checkRealBalanceWithParams:parmas completion:^(CMResult<id> *model, NSError *err) {
-		
-		[CMResult processWithResult:model success:^{
-			NSDictionary *dict = (NSDictionary *)model.data;
-			game.balance = dict[@"balance"];
-			
-		} failure:^(id msg) {
-			[SVProgressHUD dismiss];
-		}];
-		game.refreshing = NO;
-		[__self.tableView reloadData];
-	}];
-	
+    [CMNetwork checkRealBalanceWithParams:parmas completion:^(CMResult<id> *model, NSError *err) {
+        
+        [CMResult processWithResult:model success:^{
+            NSDictionary *dict = (NSDictionary *)model.data;
+            game.balance = dict[@"balance"];
+            
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+        game.refreshing = NO;
+        [__self.tableView reloadData];
+    }];
+    
 }
 
 - (void)rightBarButtonItemClick {
