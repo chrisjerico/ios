@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateCloseLabelText;
 // 重置
 - (IBAction)resetClick:(id)sender ;
+- (IBAction)betClick:(id)sender ;//下注
 
 //调用下注界面   objArray:模型数组  dicArray 字典数组
 -(void)goUGBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode;

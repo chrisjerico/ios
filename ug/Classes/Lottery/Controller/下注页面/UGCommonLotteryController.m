@@ -367,16 +367,79 @@
                 }];
             }
         }
-        
-        if (Skin1.isTKL) {
+
+        if (Skin1.isTKL
+            ||![self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
+            ||![self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
             self.nextIssueLabel.textColor = Skin1.navBarBgColor;
             subLabel(@"期数label").textColor = Skin1.navBarBgColor;
             [self.openTimeLabel setHidden:Skin1.isTKL];
-            [subButton(@"追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
             [self.chipButton  setHidden:Skin1.isTKL];
-            [subButton(@"重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
             [_bargainingView setHidden:!Skin1.isTKL];
+            [subButton(@"重置Button") setHidden:YES];
+            [subButton(@"下注Button") setHidden:YES];
+            [subLabel(@"已选中label") setHidden:YES];
+            [self.selectLabel setHidden:YES];
             
+            UIButton *newResetBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [newResetBtn setTitle:@"重置" forState:UIControlStateNormal];
+            [newResetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [newResetBtn setBackgroundColor:RGBA(247, 162, 0, 1)];
+            newResetBtn.layer.cornerRadius = 5;
+            newResetBtn.layer.masksToBounds = YES;
+            [self.bottomView addSubview:newResetBtn];
+            [newResetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(self.amountTextF.mas_bottom).mas_offset(0);
+                make.left.equalTo(self.bottomView.mas_left).mas_offset(20);
+                make.height.mas_equalTo(35);
+                make.width.mas_equalTo(60);
+            }];
+            [newResetBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            [newResetBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [__self resetClick:sender];
+            }];
+            self.chipButton.cc_constraints.width.constant  = 30;
+            
+            UILabel *yeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+            [self.bottomView addSubview:yeLable];
+            yeLable.text = @"余额:";
+            yeLable.font = [UIFont systemFontOfSize:14];
+            yeLable.textColor = Skin1.textColor1;
+            [yeLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.amountTextF.mas_top).mas_offset(0);
+                make.left.equalTo(self.amountTextF.mas_right).mas_offset(10);
+                make.height.mas_equalTo(18);
+
+            }];
+            UILabel *yeNumberLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+            [self.bottomView addSubview:yeNumberLable];
+            UGUserModel *user = [UGUserModel currentUser];
+            yeNumberLable.text = user.balance;
+            yeNumberLable.font = [UIFont systemFontOfSize:14];
+            yeNumberLable.textColor = Skin1.textColor1;
+            [yeNumberLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(self.amountTextF.mas_bottom).mas_offset(0);
+                make.left.equalTo(self.amountTextF.mas_right).mas_offset(10);
+                make.height.mas_equalTo(18);
+            }];
+            
+            UIButton *newXZBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [newXZBtn setTitle:@"投注" forState:UIControlStateNormal];
+            [newXZBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [newXZBtn setBackgroundColor:Skin1.navBarBgColor];
+            newXZBtn.layer.cornerRadius = 5;
+            newXZBtn.layer.masksToBounds = YES;
+            [self.bottomView addSubview:newXZBtn];
+            [newXZBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.bottomView.mas_right).mas_offset(-20);
+                make.height.mas_equalTo(70);
+                make.width.mas_equalTo(70);
+                make.centerY.equalTo(self.bottomView.mas_centerY);
+            }];
+            [newXZBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            [newXZBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [__self betClick:sender];
+            }];
         }
         
         //筹码 bottomView
@@ -393,7 +456,7 @@
         [self.bottomView addSubview:_bargainingView];
         [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.bottomView.mas_top).mas_offset(50);
-            make.left.equalTo(self.bottomView.mas_left).mas_offset(10);
+            make.left.equalTo(self.bottomView.mas_left).mas_offset(20);
             make.height.mas_equalTo(45);
             make.width.mas_equalTo(260);
         }];
