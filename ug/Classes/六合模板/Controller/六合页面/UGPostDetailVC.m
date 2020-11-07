@@ -198,7 +198,7 @@
         subLabel(@"标题Label").text = pm.title;
         BOOL isHidden = NO;
         NSLog(@"alias = %@",self.pm.categoryType);
-        if([@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,0cxus0FI,IKHMV2V0" containsString:pm.categoryType]) {
+        if([@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx,0cxus0FI,IKHMV2V0,E9biHXEx" containsString:pm.categoryType]) {
             isHidden = YES;
         }
         else{

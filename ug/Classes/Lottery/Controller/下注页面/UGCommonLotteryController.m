@@ -376,6 +376,7 @@
             [self.chipButton  setHidden:Skin1.isTKL];
             [subButton(@"重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
             [_bargainingView setHidden:!Skin1.isTKL];
+            
         }
         
         //筹码 bottomView
@@ -392,7 +393,7 @@
         [self.bottomView addSubview:_bargainingView];
         [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.bottomView.mas_top).mas_offset(50);
-            make.left.equalTo(self.bottomView.mas_left).mas_offset(0);
+            make.left.equalTo(self.bottomView.mas_left).mas_offset(10);
             make.height.mas_equalTo(45);
             make.width.mas_equalTo(260);
         }];
@@ -631,26 +632,35 @@
             
             if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
             } else {
-                if (SysConf.chaseNumber  == 1) {//追号开关  默认关
-                    [subButton(@"追号btn") setHidden:NO];
-                    [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
-                        make.left.equalTo(subButton(@"追号btn").mas_right).offset(8);
-                    }];
-                } else {
+                
+                if (Skin1.isTKL) {
                     [subButton(@"追号btn") setHidden:YES];
-                    [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
-                        make.left.equalTo(subButton(@"追号btn").mas_left);
-                    }];
-                }
-                
-                if (SysConf.selectNumber == 1) {
-                    [weakSelf.radomNumberButton setHidden:false];
+                    [self.radomNumberButton setHidden:YES];
+                    [self showSlider:NO];
                 } else {
-                    [weakSelf.radomNumberButton setHidden:true];
+                    if (SysConf.chaseNumber  == 1) {//追号开关  默认关
+                        [subButton(@"追号btn") setHidden:NO];
+                        [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(subButton(@"追号btn").mas_right).offset(8);
+                        }];
+                    } else {
+                        [subButton(@"追号btn") setHidden:YES];
+                        [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
+                            make.left.equalTo(subButton(@"追号btn").mas_left);
+                        }];
+                    }
+                    
+                    if (SysConf.selectNumber == 1) {
+                        [weakSelf.radomNumberButton setHidden:false];
+                    } else {
+                        [weakSelf.radomNumberButton setHidden:true];
+                    }
+                    
+                    
+                    [self showSliderAction];
                 }
                 
-                
-                [self showSliderAction];
+      
                 
             }
             
