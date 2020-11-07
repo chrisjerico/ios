@@ -500,7 +500,7 @@ RCT_EXPORT_METHOD(launchFinish) {
 
 + (NSString *)currentCodePushKey {
 #ifdef APP_TEST
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"模拟线上"];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@".dev模拟线上"];
 #else
     return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
 #endif
