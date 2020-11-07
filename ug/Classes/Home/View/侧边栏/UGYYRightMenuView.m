@@ -231,12 +231,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableView.estimatedRowHeight = 0;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
-        [self.tableView addGestureRecognizer:({
+        [self addGestureRecognizer:({
             UITapGestureRecognizer  *tap = [UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
                 [AlertHelper showAlertView:@"温馨提示" msg:_NSString(@"%@", APP.rnVersion) btnTitles:@[@"确定"]];
             }];
-            tap.numberOfTapsRequired = 15;
-            tap.numberOfTouchesRequired = 3;
+            tap.numberOfTapsRequired = 10;
+            tap.numberOfTouchesRequired = 2;
             tap;
         })];
         self.userNameLabel.text = [UGUserModel currentUser].username;
