@@ -72,6 +72,9 @@
         NSString *title = _NSString(@"（%@）环境：%@ | 分支：%@ - %@ - %@", NSUserName(), [environment stringByReplacingOccurrencesOfString:@"UGiOS" withString:@"master"], gm.branch, gm.commitId, gm.log);
         [self saveLog:log title:title completion:^(BOOL ok) {
             NSLog(@"热更新发布成功");
+            [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", RNPack.logFile]];
+            if (completion)
+                completion();
             NSLog(@"退出程序！");
             exit(0);
         }];
