@@ -1776,6 +1776,8 @@
 		CF3E2CF22556CEDF00FB4BDE /* TKLRechargeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CF02556CEDF00FB4BDE /* TKLRechargeListViewController.m */; };
 		CF3E2CF72556CEFA00FB4BDE /* TKLRechargeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CF62556CEFA00FB4BDE /* TKLRechargeMainViewController.m */; };
 		CF3E2CF82556CEFA00FB4BDE /* TKLRechargeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CF62556CEFA00FB4BDE /* TKLRechargeMainViewController.m */; };
+		CF41695E2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */; };
+		CF41695F2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */; };
 		CF43426525396AEA004708C3 /* HomePromotionsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */; };
 		CF43426E25396D10004708C3 /* HomePromotionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43426D25396D10004708C3 /* HomePromotionsVC.m */; };
 		CF43427525397648004708C3 /* HomeTrademarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43427425397648004708C3 /* HomeTrademarkView.m */; };
@@ -3899,6 +3901,8 @@
 		CF3E2CF02556CEDF00FB4BDE /* TKLRechargeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLRechargeListViewController.m; sourceTree = "<group>"; };
 		CF3E2CF52556CEFA00FB4BDE /* TKLRechargeMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLRechargeMainViewController.h; sourceTree = "<group>"; };
 		CF3E2CF62556CEFA00FB4BDE /* TKLRechargeMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLRechargeMainViewController.m; sourceTree = "<group>"; };
+		CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHorizontalPageLayout.m; sourceTree = "<group>"; };
+		CF41695D2557A77B00C2BAA1 /* HLHorizontalPageLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHorizontalPageLayout.h; sourceTree = "<group>"; };
 		CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePromotionsVC.storyboard; sourceTree = "<group>"; };
 		CF43426C25396D10004708C3 /* HomePromotionsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePromotionsVC.h; sourceTree = "<group>"; };
 		CF43426D25396D10004708C3 /* HomePromotionsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePromotionsVC.m; sourceTree = "<group>"; };
@@ -4713,6 +4717,7 @@
 		031E142023BE812300B0F813 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CF4169562557A74A00C2BAA1 /* 横向分页布局 */,
 				031E142223BE812300B0F813 /* FishUtility */,
 				031E14E523BE812300B0F813 /* CMCommon */,
 				031E14C223BE812300B0F813 /* CMNetwork */,
@@ -8363,6 +8368,15 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		CF4169562557A74A00C2BAA1 /* 横向分页布局 */ = {
+			isa = PBXGroup;
+			children = (
+				CF41695D2557A77B00C2BAA1 /* HLHorizontalPageLayout.h */,
+				CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */,
+			);
+			path = "横向分页布局";
+			sourceTree = "<group>";
+		};
 		CF43424F25395E5C004708C3 /* 六合栏目列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -11018,6 +11032,7 @@
 				031E1A6323BE812700B0F813 /* NSString+ST.m in Sources */,
 				031E1AA123BE812800B0F813 /* ZZCountingLabel.m in Sources */,
 				031E1AC123BE812800B0F813 /* WMMenuHead.m in Sources */,
+				CF41695F2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */,
 				031E1C0323BE812900B0F813 /* UGLotterySettingModel.m in Sources */,
 				031E1D0D23BE812B00B0F813 /* JSONModelArray.m in Sources */,
 				031E1DE123BE812C00B0F813 /* UGbetStatModel.m in Sources */,
@@ -11754,6 +11769,7 @@
 				031E1B9623BE812900B0F813 /* UGLotteryRulesView.m in Sources */,
 				CF533A81251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */,
 				031E1DCE23BE812C00B0F813 /* UGBetListModel.m in Sources */,
+				CF41695E2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */,
 				031E1BCA23BE812900B0F813 /* UGFC3DLotteryController.m in Sources */,
 				031E1D3623BE812B00B0F813 /* UGAgentViewController.m in Sources */,
 				031E195A23BE812600B0F813 /* UGChessViewController.m in Sources */,

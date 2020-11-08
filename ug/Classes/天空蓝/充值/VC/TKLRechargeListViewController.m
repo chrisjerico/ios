@@ -8,7 +8,7 @@
 
 #import "TKLRechargeListViewController.h"
 #import "TKLCollectionViewCell.h"
-//#import "HLHorizontalPageLayout.h"
+#import "HLHorizontalPageLayout.h"
 #import "UGdepositModel.h"
 @interface TKLRechargeListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView  *collectionView;
@@ -45,21 +45,21 @@
     CGFloat width = self.collectionView.bounds.size.width;
     NSInteger col = 2; // 列数
     
-//    HLHorizontalPageLayout *layout = [[HLHorizontalPageLayout alloc] init];
-//    layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
-//    layout.minimumInteritemSpacing = 10;
-//    layout.minimumLineSpacing = 10;
-//    // item宽
-//    CGFloat itemWidth = (width - 10 * (col-1) - layout.sectionInset.left - layout.sectionInset.right) / col;
-//    layout.itemSize = CGSizeMake( itemWidth, 44.0);
-//    
-//    [_collectionView setCollectionViewLayout:layout];
-//    _collectionView.dataSource = self;
-//    _collectionView.delegate = self;
-//    _collectionView.pagingEnabled = YES;
-//    _collectionView.showsVerticalScrollIndicator = NO;
-//    [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([TKLCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"TKLCollectionViewCell"];
-//    _collectionView.backgroundColor = Skin1.bgColor;
+    HLHorizontalPageLayout *layout = [[HLHorizontalPageLayout alloc] init];
+    layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
+    // item宽
+    CGFloat itemWidth = (width - 10 * (col-1) - layout.sectionInset.left - layout.sectionInset.right) / col;
+    layout.itemSize = CGSizeMake( itemWidth, 44.0);
+    
+    [_collectionView setCollectionViewLayout:layout];
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
+    _collectionView.pagingEnabled = YES;
+    _collectionView.showsVerticalScrollIndicator = NO;
+    [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([TKLCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"TKLCollectionViewCell"];
+    _collectionView.backgroundColor = Skin1.bgColor;
 
 }
 
