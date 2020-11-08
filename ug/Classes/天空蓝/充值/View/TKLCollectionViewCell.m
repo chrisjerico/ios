@@ -10,6 +10,7 @@
 #import "UGdepositModel.h"
 
 @interface TKLCollectionViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *selectImgV;       /**<   选中iconl */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;            /**<   标题Label */
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;  /**<   icon */
 @end
@@ -21,6 +22,10 @@
     // Initialization code
     self.backgroundColor = Skin1.bgColor;
     self.nameLabel.textColor = Skin1.textColor1;
+    self.layer.borderColor= Skin1.textColor3.CGColor;
+    self.layer.borderWidth= 1;
+    self.layer.cornerRadius = 5;
+    self.layer.masksToBounds = YES;
 }
 
 - (void)setNameStr:(NSString *)nameStr {
@@ -50,10 +55,10 @@
              
              mas;
          });
-         [self.nameLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+         [self.nameLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
      }
      else{
-        [self.nameLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
+        [self.nameLabel setFont:[UIFont boldSystemFontOfSize:15.0]];
      }
 
 }
@@ -114,4 +119,18 @@
     
     [self setHeaderImageStr:imgDict[item.pid]];
 }
+
+- (void)setChecked:(BOOL)checked
+{
+    if (checked) {
+        _selectImgV.image = [UIImage imageNamed:@"pictures_selected"];
+        self.layer.borderColor= Skin1.navBarBgColor.CGColor;
+    }
+    else
+    {
+        self.layer.borderColor= Skin1.textColor3.CGColor;
+        _selectImgV.image = [UIImage imageNamed:@"picture_unselected"];
+    }
+}
+
 @end

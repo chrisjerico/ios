@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *nameStr;
 @property (nonatomic, strong) NSString *headerImageStr;
 @property (nonatomic, strong) UGpaymentModel *item;
+- (void)setChecked:(BOOL)checked;
 @end
 
 NS_ASSUME_NONNULL_END

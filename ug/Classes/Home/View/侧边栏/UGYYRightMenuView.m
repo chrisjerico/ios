@@ -27,6 +27,7 @@
 #import "GameCategoryDataModel.h"
 #import "YBPopupMenu.h"
 #import "UGWithdrawalViewController.h"
+#import "TKLRechargeMainViewController.h";
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource, YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -384,15 +385,14 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             [subButton(@"存Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"存Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 [self hiddenSelf];
-                //登录
-                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-                fundsVC.selectIndex = 0;
-                [NavController1 pushViewController:fundsVC animated:true];
+                //
+                TKLRechargeMainViewController*rechargeVC = _LoadVC_from_storyboard_(@"TKLRechargeMainViewController");
+                [NavController1 pushViewController:rechargeVC animated:YES];
             }];
             [subButton(@"取Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"取Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 [self hiddenSelf];
-                //登录
+                //
                 UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
                 fundsVC.selectIndex = 1;
                 [NavController1 pushViewController:fundsVC animated:true];

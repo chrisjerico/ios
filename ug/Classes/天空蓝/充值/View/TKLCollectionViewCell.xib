@@ -33,12 +33,21 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_unselected" translatesAutoresizingMaskIntoConstraints="NO" id="oad-3w-neP">
+                        <rect key="frame" x="303" y="0.0" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="kKT-iB-f76"/>
+                            <constraint firstAttribute="width" constant="20" id="pSf-Mg-2hn"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <constraints>
                 <constraint firstItem="Qkd-fP-Kf7" firstAttribute="leading" secondItem="i0P-G6-7CJ" secondAttribute="trailing" constant="15" id="1cN-xI-2Dy"/>
                 <constraint firstItem="i0P-G6-7CJ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="HYU-7P-mjD"/>
+                <constraint firstAttribute="trailing" secondItem="oad-3w-neP" secondAttribute="trailing" id="Rcl-mx-C6L"/>
+                <constraint firstItem="oad-3w-neP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VO0-fh-bfX"/>
                 <constraint firstItem="i0P-G6-7CJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="il3-tL-1nj"/>
                 <constraint firstItem="Qkd-fP-Kf7" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="nwz-X6-apd"/>
             </constraints>
@@ -46,8 +55,12 @@
             <connections>
                 <outlet property="headerImageView" destination="i0P-G6-7CJ" id="hda-Qk-yge"/>
                 <outlet property="nameLabel" destination="Qkd-fP-Kf7" id="v7h-Zi-t2L"/>
+                <outlet property="selectImgV" destination="oad-3w-neP" id="aOo-oH-6XW"/>
             </connections>
-            <point key="canvasLocation" x="37" y="50"/>
+            <point key="canvasLocation" x="36.956521739130437" y="49.553571428571423"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="picture_unselected" width="21" height="21"/>
+    </resources>
 </document>

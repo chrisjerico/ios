@@ -27,6 +27,7 @@
     self.layer.borderWidth = 0.5;
     self.layer.borderColor = Skin1.textColor3.CGColor;
     _nameLabel.textColor = Skin1.textColor1;
+    
 }
 
 - (void)setNameStr:(NSString *)nameStr {
