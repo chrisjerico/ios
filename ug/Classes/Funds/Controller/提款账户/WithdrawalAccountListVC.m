@@ -12,6 +12,7 @@
 #import "SlideSegmentView1.h"
 
 #import "WithdrawalAcctModel.h"
+#import "UGbankModel.h"
 
 @interface WithdrawalAccountListVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *realnameTextField;
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) UIBarButtonItem *navRightButton;  /**<   导航条按钮 */
 @property (nonatomic, strong) SlideSegmentView1 *ssv1;          /**<   分页布局 */
 @property (nonatomic, strong) NSArray <WithdrawalTypeModel *>*typeList; /**<   数据 */
+@property (nonatomic, strong) NSArray <UGbankModel *>*sysBankList;  /**<   支持的账户类型（不支持的隐藏掉） */
 @end
 
 @implementation WithdrawalAccountListVC
@@ -61,7 +63,25 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self reloadData];
+}
+
+- (void)reloadData {
     __weakSelf_(__self);
+    if (!__self.sysBankList) {
+        [NetworkManager1 system_bankList:UGWithdrawalTypeAll].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+            if (!err) {
+                NSMutableArray *temp = @[].mutableCopy;
+                for (NSDictionary *dict in sm.resObject[@"data"]) {
+                    [temp addObject:[UGbankModel mj_objectWithKeyValues:dict]];
+                }
+                __self.sysBankList = [temp copy];
+                [__self reloadData];
+            }
+        };
+        return;
+    }
+    
     [NetworkManager1 user_bankCard].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         sm.noShowErrorHUD = true;
         [SVProgressHUD dismiss];
@@ -70,11 +90,15 @@
             for (NSDictionary *dict in sm.resObject[@"data"][@"allAccountList"]) {
                 WithdrawalTypeModel *wtm = [WithdrawalTypeModel mj_objectWithKeyValues:dict];
                 if (wtm.isshow) {
+                    NSMutableArray *wams = @[].mutableCopy;
                     for (WithdrawalAcctModel *wam in wtm.data) {
+                        if (![__self.sysBankList containsValue:wam.bankId keyPath:@"bankId"]) continue;
                         wam.name = wtm.name;
                         wam.minWithdrawMoney = wtm.minWithdrawMoney;
                         wam.maxWithdrawMoney = wtm.maxWithdrawMoney;
+                        [wams addObject:wam];
                     }
+                    wtm.data = wams;
                     [temp addObject:wtm];
                 }
             }
