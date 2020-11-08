@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WithdrawalAcctModel : NSObject
 
-@property (nonatomic, copy) NSString *wid;        /**<   账户id */
+@property (nonatomic, copy) NSString *wid;        /**<   提款渠道id */
 @property (nonatomic, copy) NSString *uid;        /**<   用户ID */
 @property (nonatomic, assign) UGWithdrawalType type;        /**<   账户类型 */
 @property (nonatomic, copy) NSString *bankId;               /**<   银行卡ID */
