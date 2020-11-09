@@ -18,48 +18,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="432" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-PB-kgo">
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-PB-kgo">
                         <rect key="frame" x="0.0" y="0.0" width="432" height="68"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请码" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYW-Jm-9Pb">
-                                <rect key="frame" x="0.0" y="25.5" width="107.5" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="0.0" width="107.5" height="68"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招募" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4u4-qf-4fu">
-                                <rect key="frame" x="108.5" y="25.5" width="107" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="108.5" y="0.0" width="107" height="68"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邀请地址" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07u-sE-tjS">
-                                <rect key="frame" x="216" y="25.5" width="0.0" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="216" y="0.0" width="0.0" height="68"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uSe-HR-akP">
-                                <rect key="frame" x="216" y="25.5" width="0.0" height="17"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="216" y="0.0" width="0.0" height="68"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创建时间" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmI-Os-hQN">
-                                <rect key="frame" x="216.5" y="25.5" width="107.5" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="216.5" y="0.0" width="107.5" height="68"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2C-Wv-LPC">
-                                <rect key="frame" x="325" y="25.5" width="107" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="325" y="0.0" width="107" height="68"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -89,9 +89,6 @@
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

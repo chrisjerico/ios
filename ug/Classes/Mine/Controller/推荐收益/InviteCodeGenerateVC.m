@@ -7,6 +7,7 @@
 //
 
 #import "InviteCodeGenerateVC.h"
+#import "IBButton.h"
 
 @interface InviteCodeGenerateVC ()
 @property (weak, nonatomic) IBOutlet UITextField *lengthField;
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet IBButton *confirmButton;
 @property (nonatomic, assign) NSInteger segmentIndex;
 @end
 
@@ -28,6 +30,9 @@
 	self.typeLabel.text = [NSString stringWithFormat:@"%@类别", inviteCodeModel.displayWord];
 	self.lengthLabel.text = [NSString stringWithFormat:@"%@长度", inviteCodeModel.displayWord];
 	self.numberLabel.text = [NSString stringWithFormat:@"%@数量", inviteCodeModel.displayWord];
+	self.confirmButton.backgroundColor = Skin1.navBarBgColor;
+	self.lengthField.placeholder = [NSString stringWithFormat:@"请输入%@长度", inviteCodeModel.displayWord];
+	self.numberField.placeholder = [NSString stringWithFormat:@"请输入%@数量", inviteCodeModel.displayWord];
 
     // Do any additional setup after loading the view from its nib.
 }
