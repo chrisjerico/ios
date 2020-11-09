@@ -27,6 +27,10 @@
     [super awakeFromNib];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (Skin1.isBlack) {
+        self.backgroundColor = [UIColor clearColor];
+        self.contentLabel.superview.backgroundColor = [UIColor lightGrayColor];
+    }
 }
 
 - (void)bindName:(NSString *)name time:(NSString *)time gameImageName:(NSString *)image number:(NSString *)number {

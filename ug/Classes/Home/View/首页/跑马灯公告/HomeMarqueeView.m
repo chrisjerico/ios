@@ -39,6 +39,9 @@
             self.backgroundColor = RGBA(249, 249, 249, 1);
             [CMCommon setBorderWithView:self top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
         }
+        if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+            self.backgroundColor = UIColor.clearColor;
+        }
     });
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
         if ([SysConf.popup_type isEqualToString:@"1"] && UGLoginIsAuthorized()) {
@@ -49,8 +52,14 @@
     FastSubViewCode(self);
     if ([Skin1.skitType isEqualToString:@"香槟金"]) {
         self.backgroundColor = UIColor.clearColor;
-        subImageView(@"公告图标ImageView").cc_constraints.left.constant = 12;
-//        subImageView(@"公告图标ImageView").image = [UIImage imageNamed:@""];
+        subImageView(@"公告图标ImageView").cc_constraints.left.constant = 15;
+        subImageView(@"公告图标ImageView").hidden = true;
+        subLabel(@"公告Label").hidden = false;
+        subLabel(@"公告Label").textColor = Skin1.menuHeadViewColor;
+        subLabel(@"公告Label").layer.shadowColor = [UIColor blackColor].CGColor;
+        subLabel(@"公告Label").layer.shadowOffset = CGSizeMake(0, 1);
+        subLabel(@"公告Label").layer.shadowRadius = 1.5;
+        subLabel(@"公告Label").layer.shadowOpacity = 0.2;
     } else {
         self.backgroundColor = Skin1.homeContentColor;
     }

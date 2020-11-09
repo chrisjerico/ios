@@ -351,6 +351,9 @@
     // 投注/中奖排行榜
     _rankingView = _LoadView_from_nib_(@"HomeRankingView");
     
+    // 投注专栏
+    _betFormView = _LoadView_from_nib_(@"HomeBetFormView");
+    
     // 底部商标
     _trademarkView = _LoadView_from_nib_(@"HomeTrademarkView");
     

@@ -46,7 +46,7 @@
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
         self.bottomLabel.text = [NSString stringWithFormat:@"COPYRIGHT © %@ RESERVED", SysConf.webName];
         
-        if (Skin1.isTKL) {
+        if ([Skin1.skitType isEqualToString:@"天空蓝"]) {
             self.backgroundColor = [UIColor whiteColor];
         } else {
             self.backgroundColor = Skin1.isBlack || !SysConf.rankingListSwitch ? [UIColor clearColor] : Skin1.navBarBgColor;

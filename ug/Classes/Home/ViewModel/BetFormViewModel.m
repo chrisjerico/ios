@@ -46,6 +46,7 @@
 
     tableView.delegate  = self;
     tableView.dataSource = self;
+    tableView.backgroundColor = [UIColor clearColor];
     [tableView reloadData];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     betFormTableHeight.constant = 6 * 100;
