@@ -115,7 +115,7 @@
 #pragma mark - IBAction
 
 - (IBAction)onMyWalletBtnClick:(UIButton *)sender {
-    [NavController1 pushVCWithUserCenterItemType:UCI_存款];
+    [NavController1 pushVCWithUserCenterItemType:UCI_银行卡管理];
 }
 
 - (IBAction)onLoginBtnClick:(UIButton *)sender {
