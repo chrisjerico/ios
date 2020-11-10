@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet IBButton *confirmButton;
+@property (weak, nonatomic) IBOutlet IBButton *randomButton;
 @property (nonatomic, assign) NSInteger segmentIndex;
 @end
 
@@ -27,12 +28,13 @@
 	self.segmentIndex = 0;
 	InviteCodeConfigModel *inviteCodeModel = UGSystemConfigModel.currentConfig.inviteCode;
 	self.titleLabel.text = inviteCodeModel.displayWord;
-	self.typeLabel.text = [NSString stringWithFormat:@"%@类别", inviteCodeModel.displayWord];
-	self.lengthLabel.text = [NSString stringWithFormat:@"%@长度", inviteCodeModel.displayWord];
-	self.numberLabel.text = [NSString stringWithFormat:@"%@数量", inviteCodeModel.displayWord];
+	self.typeLabel.text = [NSString stringWithFormat:@"%@类型", inviteCodeModel.displayWord];
+	self.lengthLabel.text = inviteCodeModel.displayWord;
+	self.numberLabel.text = @"生成数量";
 	self.confirmButton.backgroundColor = Skin1.navBarBgColor;
 	self.lengthField.placeholder = [NSString stringWithFormat:@"请输入%@长度", inviteCodeModel.displayWord];
-	self.numberField.placeholder = [NSString stringWithFormat:@"请输入%@数量", inviteCodeModel.displayWord];
+	self.numberField.placeholder = [NSString stringWithFormat:@"最多可生成%@%@", inviteCodeModel.canGenNum, inviteCodeModel.displayWord];
+	[self.randomButton setHidden: ![inviteCodeModel.randomSwitch isEqualToString:@"1"]];
 
     // Do any additional setup after loading the view from its nib.
 }

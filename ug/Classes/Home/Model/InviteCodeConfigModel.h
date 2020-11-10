@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString* displayWord;
 @property(nonatomic, strong)NSString* canGenNum;
 @property(nonatomic, strong)NSString* canUseNum;
+@property(nonatomic, strong)NSString* randomSwitch;
+@property(nonatomic, strong)NSString* randomLength;
 
 @end
 
