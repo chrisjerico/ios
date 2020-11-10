@@ -278,7 +278,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     [CMNetwork userBetWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
-            
+            __strong UGBetDetailView *__strongSelf = __self;
             
             // 秒秒彩系列（即时开奖无需等待）
             if (weakSelf.nextIssueModel.isInstant) {
@@ -319,7 +319,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                         })
                         .LeeAction(@"取消", nil)
                         .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                            [weakSelf selectChatRoom];
+                            [__strongSelf selectChatRoom];
                         })
                         .LeeHeaderColor(Skin1.bgColor)
                         .LeeShow();
@@ -330,7 +330,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
                         .LeeContent(@"是否分享到聊天室")
                         .LeeAction(@"取消", nil)
                         .LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
-                            [weakSelf selectChatRoom];
+                            [__strongSelf selectChatRoom];
                         })
                         
                         .LeeShow();
