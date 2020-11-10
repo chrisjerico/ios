@@ -19,7 +19,7 @@
     [super awakeFromNib];
     FastSubViewCode(self)
     _jsWebmasterList = [NSMutableArray<GameModel *> new];
-    self.heightLayoutConstraint.constant = 0.1;
+    self.heightLayoutConstraint.constant = 0;
     UICollectionViewFlowLayout *layout = ({
         layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -39,7 +39,7 @@
     
     _jsWebmasterList = jsWebmasterList;
     if (_jsWebmasterList.count == 0) {
-        self.heightLayoutConstraint.constant = 0.1;
+        self.heightLayoutConstraint.constant = 0;
     }
     else{
         self.heightLayoutConstraint.constant = 81 *  _jsWebmasterList.count ;
