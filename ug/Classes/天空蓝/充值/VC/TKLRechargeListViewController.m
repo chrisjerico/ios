@@ -22,9 +22,6 @@
 @property (nonatomic, strong) NSMutableArray <UGpaymentModel *> *tableViewDataArray;
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
 @property (strong, nonatomic) UICollectionView  *collectionView;
-@property (strong, nonatomic)UGDepositDetailsXNViewController *vc1;
-@property (strong, nonatomic)UGDepositDetailsViewController *vc2;
-@property (strong, nonatomic)UGDepositDetailsNoLineViewController *vc3;
 @end
 
 @implementation TKLRechargeListViewController
@@ -36,9 +33,6 @@
     [self.view addSubview:self.collectionView];
     myRow = 0;
     _tableViewDataArray = [NSMutableArray  new];
-    _vc1 = _LoadVC_from_storyboard_(@"UGDepositDetailsXNViewController");
-    _vc2 = [UGDepositDetailsViewController new];
-    _vc3 = [UGDepositDetailsNoLineViewController new];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self.colloectionBgView).with.offset(10);
         make.right.bottom.equalTo(self.colloectionBgView).with.offset(-10);
@@ -85,9 +79,14 @@
  
 
 -(void)goVC:(UGpaymentModel *)model{
+    for (UIViewController *vc in self.childViewControllers) {
+        [vc.view removeFromSuperview];
+        [vc removeFromParentViewController];
+    }
     if ([model.pid isEqualToString:@"xnb_transfer"]) {
 
         UGDepositDetailsXNViewController *vc = _LoadVC_from_storyboard_(@"UGDepositDetailsXNViewController");
+        [self addChildViewController:vc];
         vc.item = model;
         [_contentView removeAllSubviews];
         [_contentView addSubview:vc.view];
@@ -95,6 +94,7 @@
     }
     else if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
         UGDepositDetailsViewController *vc = [UGDepositDetailsViewController new];
+        [self addChildViewController:vc];
         vc.item = model;
         [_contentView removeAllSubviews];
         [_contentView addSubview:vc.view];
@@ -105,6 +105,7 @@
     }
     else {
         UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+        [self addChildViewController:vc];
         vc.item = model;
         [_contentView removeAllSubviews];
         [_contentView addSubview:vc.view];

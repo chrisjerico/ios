@@ -179,7 +179,6 @@
          make.left.equalTo(self.view.mas_left).with.offset(40);
          make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.equalTo(self.mUIScrollView.mas_top).offset(20);
-         make.width.mas_equalTo(UGScreenW-40);
          
      }];
     [self.tiplabel setText:item.transferPrompt];
@@ -191,7 +190,6 @@
          make.left.equalTo(self.view.mas_left).with.offset(15);
          make.right.equalTo(self.view.mas_right).with.offset(-15);
          make.top.equalTo(self.mUIScrollView.mas_top).offset(10);
-         make.width.mas_equalTo(UGScreenW-20);
          make.height.equalTo(self.tiplabel.mas_height).offset(20);
 
      }];
@@ -208,7 +206,6 @@
          make.left.equalTo(self.view.mas_left).with.offset(40);
          make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.equalTo(self.bg1_label.mas_bottom).offset(20);
-         make.width.mas_equalTo(UGScreenW-40);
      }];
     [self.tip2label setText:item.depositPrompt];
     [self.tip2label sizeToFit];
@@ -219,7 +216,6 @@
         make.left.equalTo(self.view.mas_left).with.offset(15);
         make.right.equalTo(self.view.mas_right).with.offset(-15);
         make.top.equalTo(self.bg1_label.mas_bottom).offset(10);
-        make.width.mas_equalTo(UGScreenW-20);
         make.height.equalTo(self.tip2label.mas_height).offset(20);
         
     }];
@@ -243,7 +239,6 @@
          make.left.equalTo(self.view.mas_left).with.offset(0);
          make.right.equalTo(self.view.mas_right).with.offset(0);
          make.top.equalTo(self.tableView.mas_bottom).offset(0);
-         make.width.mas_equalTo(UGScreenW);
          make.height.mas_equalTo(208);
      }];
     NSLog(@"%@",NSStringFromCGRect(self.uGFundsTransferView.frame));
@@ -254,7 +249,6 @@
          make.left.equalTo(self.view.mas_left).with.offset(0);
          make.right.equalTo(self.view.mas_right).with.offset(0);
          make.top.equalTo(self.uGFundsTransferView.mas_bottom).offset(0);
-         make.width.mas_equalTo(UGScreenW);
          make.height.mas_equalTo(120);
      }];
     NSLog(@"%@",NSStringFromCGRect(self.uGFunds2microcodeView.frame));
@@ -264,7 +258,6 @@
              make.left.equalTo(self.view.mas_left).with.offset(0);
              make.right.equalTo(self.view.mas_right).with.offset(0);
              make.top.equalTo(self.uGFundsTransferView.mas_bottom).offset(0);
-             make.width.mas_equalTo(UGScreenW);
              make.height.mas_equalTo(181);
          }];
     } else {
@@ -272,7 +265,6 @@
              make.left.equalTo(self.view.mas_left).with.offset(0);
              make.right.equalTo(self.view.mas_right).with.offset(0);
              make.top.equalTo(self.uGFunds2microcodeView.mas_bottom).offset(0);
-             make.width.mas_equalTo(UGScreenW);
              make.height.mas_equalTo(181);
          }];
     }
@@ -283,8 +275,6 @@
          make.left.equalTo(self.view.mas_left).with.offset(40);
          make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.mas_equalTo(self.uGFundsTransfer2View.mas_bottom).offset(10);
-         make.width.mas_equalTo(UGScreenW-40);
-
 
      }];
     [self.label setText:self.item.prompt];
@@ -318,7 +308,6 @@
          make.left.equalTo(self.view.mas_left).with.offset(15);
          make.right.equalTo(self.view.mas_right).with.offset(-15);
          make.top.equalTo(self.uGFundsTransfer2View.mas_bottom).offset(0);
-         make.width.mas_equalTo(UGScreenW-20);
          make.height.equalTo(self.label.mas_height).offset(20);
 
      }];
