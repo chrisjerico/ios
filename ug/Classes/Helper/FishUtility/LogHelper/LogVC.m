@@ -163,6 +163,7 @@ static LogVC *_logVC = nil;
         NSMutableArray *titles = @[].mutableCopy;
         [titles addObject:@"天空蓝充值"];
         [titles addObject:@"天空蓝额度"];
+        [titles addObject:@"查看当前页面名"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
         [ac setActionAtTitle:@"天空蓝额度" handler:^(UIAlertAction *aa) {
@@ -177,8 +178,9 @@ static LogVC *_logVC = nil;
             [NavController1 pushViewController:vc animated:true];
            
         }];
-        
-        
+        [ac setActionAtTitle:@"查看当前页面名" handler:^(UIAlertAction *aa) {
+            [SVProgressHUD showInfoWithStatus:NavController1.topViewController.className];
+        }];
         return;
     }
     NSInteger idx = [_reqTableView indexPathForSelectedRow].row;

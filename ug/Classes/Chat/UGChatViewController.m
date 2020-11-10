@@ -68,18 +68,18 @@
 	}
 	
 	// 返回按钮
-	{
-		_closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-		_closeBtn.frame = CGRectMake(APP.Width-80, APP.StatusBarHeight, 40, 45);
-		[_closeBtn setImage:[UIImage imageNamed:@"c_login_close_fff"] forState:UIControlStateNormal];
-		[_closeBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-			[__self.navigationController popViewControllerAnimated:true];
-		}];
-		
-		if (self.navigationController.viewControllers.firstObject != self){
-			[self.view addSubview:_closeBtn];
-		}
-	}
+//	{
+//		_closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//		_closeBtn.frame = CGRectMake(APP.Width-80, APP.StatusBarHeight, 40, 45);
+//		[_closeBtn setImage:[UIImage imageNamed:@"c_login_close_fff"] forState:UIControlStateNormal];
+//		[_closeBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+//			[__self.navigationController popViewControllerAnimated:true];
+//		}];
+//
+//		if (self.navigationController.viewControllers.firstObject != self){
+//			[self.view addSubview:_closeBtn];
+//		}
+//	}
 	
 	
 	[self goShareBetJson];
