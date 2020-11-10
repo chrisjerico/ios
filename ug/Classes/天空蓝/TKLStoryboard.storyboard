@@ -1227,7 +1227,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6j-Pq-Msg">
-                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="792"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiN-b3-55w">
@@ -1257,15 +1257,15 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QUy-cc-6CQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QUy-cc-6CQ" firstAttribute="bottom" secondItem="s6j-Pq-Msg" secondAttribute="bottom" id="0hg-sk-iPA"/>
                             <constraint firstItem="s6j-Pq-Msg" firstAttribute="leading" secondItem="QUy-cc-6CQ" secondAttribute="leading" id="Gby-sg-bVU"/>
                             <constraint firstItem="QUy-cc-6CQ" firstAttribute="trailing" secondItem="s6j-Pq-Msg" secondAttribute="trailing" id="MoP-uk-JI2"/>
                             <constraint firstItem="s6j-Pq-Msg" firstAttribute="top" secondItem="LiN-b3-55w" secondAttribute="bottom" id="WqP-9X-MRu"/>
                             <constraint firstItem="QUy-cc-6CQ" firstAttribute="trailing" secondItem="LiN-b3-55w" secondAttribute="trailing" id="aAJ-9S-ylh"/>
                             <constraint firstItem="LiN-b3-55w" firstAttribute="top" secondItem="QUy-cc-6CQ" secondAttribute="top" id="jZP-XB-F3B"/>
                             <constraint firstItem="LiN-b3-55w" firstAttribute="leading" secondItem="QUy-cc-6CQ" secondAttribute="leading" id="rmB-Z0-oeW"/>
+                            <constraint firstAttribute="bottom" secondItem="s6j-Pq-Msg" secondAttribute="bottom" id="wSs-z7-SEf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1327,7 +1327,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fWg-NR-qEl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cDf-kC-YVH" firstAttribute="leading" secondItem="fWg-NR-qEl" secondAttribute="leading" id="Bh7-DZ-OON"/>
                             <constraint firstItem="fWg-NR-qEl" firstAttribute="bottom" secondItem="cDf-kC-YVH" secondAttribute="bottom" id="K3g-d8-qYz"/>

@@ -1741,6 +1741,10 @@
 		495E621F24E650A700BDC3CA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621C24E650A700BDC3CA /* FBSDKLoginKit.framework */; };
 		495E622024E650A700BDC3CA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621D24E650A700BDC3CA /* FBSDKShareKit.framework */; };
 		495E622124E650A700BDC3CA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495E621E24E650A700BDC3CA /* FBSDKCoreKit.framework */; };
+		4966D626255A62DF0011EF47 /* HomeJSWebmasterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4966D625255A62DF0011EF47 /* HomeJSWebmasterView.m */; };
+		4966D627255A62DF0011EF47 /* HomeJSWebmasterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4966D625255A62DF0011EF47 /* HomeJSWebmasterView.m */; };
+		4966D62B255A77430011EF47 /* HomeJSWebmasterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4966D62A255A77430011EF47 /* HomeJSWebmasterView.xib */; };
+		4966D62C255A77430011EF47 /* HomeJSWebmasterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4966D62A255A77430011EF47 /* HomeJSWebmasterView.xib */; };
 		CF14029B25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
 		CF14029C25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
 		CF1402A025345C060031C3E4 /* c012充值.html in Resources */ = {isa = PBXBuildFile; fileRef = CF14029F25345C050031C3E4 /* c012充值.html */; };
@@ -3868,6 +3872,9 @@
 		495E622324E650FC00BDC3CA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		495E622424E650FC00BDC3CA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		495E622524E650FC00BDC3CA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		4966D624255A62DF0011EF47 /* HomeJSWebmasterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeJSWebmasterView.h; sourceTree = "<group>"; };
+		4966D625255A62DF0011EF47 /* HomeJSWebmasterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeJSWebmasterView.m; sourceTree = "<group>"; };
+		4966D62A255A77430011EF47 /* HomeJSWebmasterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeJSWebmasterView.xib; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF14029A25345BC90031C3E4 /* c012CZ.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c012CZ.jpg; sourceTree = "<group>"; };
 		CF14029F25345C050031C3E4 /* c012充值.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "c012充值.html"; sourceTree = "<group>"; };
@@ -5756,6 +5763,7 @@
 		031E160F23BE812400B0F813 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				4966D623255A61390011EF47 /* 金沙站长推荐 */,
 				CF722BD725416DEE00939A7C /* 在线客服 */,
 				CF9887AB254008C200DFFD49 /* 悬浮按钮 */,
 				CF434258253960C8004708C3 /* 腰部广告 */,
@@ -8255,6 +8263,16 @@
 			path = ug/Classes/Frameworks/facebook;
 			sourceTree = "<group>";
 		};
+		4966D623255A61390011EF47 /* 金沙站长推荐 */ = {
+			isa = PBXGroup;
+			children = (
+				4966D624255A62DF0011EF47 /* HomeJSWebmasterView.h */,
+				4966D625255A62DF0011EF47 /* HomeJSWebmasterView.m */,
+				4966D62A255A77430011EF47 /* HomeJSWebmasterView.xib */,
+			);
+			path = "金沙站长推荐";
+			sourceTree = "<group>";
+		};
 		CF14029825345B490031C3E4 /* c012充值 */ = {
 			isa = PBXGroup;
 			children = (
@@ -10071,6 +10089,7 @@
 				031E1C8123BE812A00B0F813 /* UGDepositDetailsTableViewCell.xib in Resources */,
 				031EF5B423BE7B4D00B0F813 /* MomentsCellImageItem.xib in Resources */,
 				031EF58E23BE7B4D00B0F813 /* guanbi.svg in Resources */,
+				4966D62C255A77430011EF47 /* HomeJSWebmasterView.xib in Resources */,
 				031E1D4523BE812B00B0F813 /* UGGoogleAuthenticationFirstViewController.xib in Resources */,
 				03B720B92520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */,
 				031EF57523BE7B4D00B0F813 /* anquanzhongxin.svg in Resources */,
@@ -10197,6 +10216,7 @@
 				CF4758D2239636D200966536 /* 45.gif in Resources */,
 				CF475925239636D200966536 /* 110.gif in Resources */,
 				CF8E242A23DDBFD80054BF0F /* FontAwesome5_Regular.ttf in Resources */,
+				4966D62B255A77430011EF47 /* HomeJSWebmasterView.xib in Resources */,
 				CF475913239636D200966536 /* 128.gif in Resources */,
 				031E1BE623BE812900B0F813 /* UGPK10NNLotteryController.storyboard in Resources */,
 				031E1D4823BE812B00B0F813 /* UGGoogleAuthenticationSecondViewController.xib in Resources */,
@@ -10870,6 +10890,7 @@
 				031EF53623BE7B4D00B0F813 /* Single+Codable.swift in Sources */,
 				CF6ED3E2254961DB00C8D739 /* TKLRegisterViewController.m in Sources */,
 				031E1DB723BE812B00B0F813 /* UGModel.m in Sources */,
+				4966D627255A62DF0011EF47 /* HomeJSWebmasterView.m in Sources */,
 				031E1DC123BE812B00B0F813 /* UGapplyWinLogDetail.m in Sources */,
 				03976DB525369FDB00B4201A /* MessageDateFormater.swift in Sources */,
 				0315DCA324AEC6A700D635E2 /* NotificationSystemMessageCell.swift in Sources */,
@@ -12062,6 +12083,7 @@
 				031E1DBA23BE812B00B0F813 /* UGdepositListModel.m in Sources */,
 				031E1A2223BE812700B0F813 /* CCNetworkRequests1+UGBlackTemplate.m in Sources */,
 				031E1E2C23BE812C00B0F813 /* UGActivityGoldView.m in Sources */,
+				4966D626255A62DF0011EF47 /* HomeJSWebmasterView.m in Sources */,
 				D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */,
 				CFCF6DBF23C5B8370039588D /* ReactNativeHelper.m in Sources */,
 				D4593B0B23FFB646008396BE /* LineMainListCollectionViewCell.m in Sources */,

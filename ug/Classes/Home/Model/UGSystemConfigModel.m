@@ -163,6 +163,7 @@ UGSystemConfigModel *currentConfig = nil;
         };
         _items =@[
             item(@"/home",              @"shouye",                      UGHomeViewController.className,                 MM_首页,            @"首页"),
+            item(@"/chess",              @"tabbar_pipai",                UGYYLotterySecondHomeViewController.className,  MM_棋牌,            @"棋牌"),
             item(@"/changLong",         @"changlong",                   UGChangLongController.className,                MM_长龙助手,         @"长龙助手"),
             item(@"/lotteryList",       @"dating",                      UGYYLotteryHomeViewController.className,        MM_购彩大厅_默认,     @"购彩大厅"),
             item(@"/lotteryRecord",     @"zdgl",                        UGLotteryRecordController.className,            MM_开奖记录,         @"开奖记录"),
@@ -170,7 +171,6 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/qpdz",              @"chess_electronic1",           UGYYLotterySecondHomeViewController.className,  MM_棋牌电子,         @"棋牌电子"),
             item(@"/catchFish",         @"tabbar_buyu",                 UGYYLotterySecondHomeViewController.className,  MM_捕鱼,            @"捕鱼"),
             item(@"/eGame",             @"tabbar_dianzhi",              UGYYLotterySecondHomeViewController.className,  MM_电子,            @"电子"),
-            item(@"/chess",              @"tabbar_pipai",                UGYYLotterySecondHomeViewController.className,  MM_棋牌,            @"棋牌"),
             item(@"/eSport",            @"tabbar_dianjin",              UGYYLotterySecondHomeViewController.className,   MM_电竞,            @"电竞"),
             item(@"/user",              @"wode",                        UGMineSkinViewController.className,              MM_我的_默认,        @"我的"),
             item(@"/task",              @"renwu",                       UGMissionCenterViewController.className,        MM_任务中心,         @"任务中心"),

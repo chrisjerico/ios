@@ -146,12 +146,12 @@
 }
 - (IBAction)rechargeButtonTaped:(id)sender {
     //存款
-//    TKLRechargeMainViewController*rechargeVC = _LoadVC_from_storyboard_(@"TKLRechargeMainViewController");
-//    [self.navigationController pushViewController:rechargeVC animated:YES];
+    TKLRechargeMainViewController*rechargeVC = _LoadVC_from_storyboard_(@"TKLRechargeMainViewController");
+    [self.navigationController pushViewController:rechargeVC animated:YES];
     
-    TKLRechargeListViewController *view1 = _LoadVC_from_storyboard_(@"TKLRechargeListViewController");
-    view1.type = RT_转账;
-    [self.navigationController pushViewController:view1 animated:YES];
+//    TKLRechargeListViewController *view1 = _LoadVC_from_storyboard_(@"TKLRechargeListViewController");
+//    view1.type = RT_转账;
+//    [self.navigationController pushViewController:view1 animated:YES];
 }
 - (IBAction)withdrawButtonTaped:(id)sender {
     //提现
