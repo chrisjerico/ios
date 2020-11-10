@@ -426,16 +426,24 @@
         [button addTarget:self action:@selector(submit_buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.submit_View addSubview:button ];
         self.submit_button = button;
-        [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.left.equalTo(self.view.mas_left).with.offset(20);
-             make.right.equalTo(self.view.mas_right).with.offset(-20);
-             make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT - 20);
-             make.height.mas_equalTo(44);
-        }];
+       
         
         //=================================================
         _mUIScrollView.contentSize = CGSizeMake(UGScreenW, 1400);
     }
+    
+    [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.left.equalTo(self.view.mas_left).with.offset(20);
+         make.right.equalTo(self.view.mas_right).with.offset(-20);
+         make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT+10);
+         make.height.mas_equalTo(44);
+    }];
+    
+    [self.mUIScrollView  mas_makeConstraints:^(MASConstraintMaker *make) {
+         make.top.equalTo(self.view.mas_top).with.offset(60);
+         make.bottom.equalTo(self.submit_button.mas_top).offset(0);
+         make.width.mas_equalTo(UGScreenW);
+    }];
 }
 
 

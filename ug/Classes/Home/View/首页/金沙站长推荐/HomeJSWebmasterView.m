@@ -65,7 +65,7 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     JS_HomeGameColletionCell_1 *cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"JS_HomeGameColletionCell_1" forIndexPath:indexPath];
-    [cell bind:self.jsWebmasterList[indexPath.row]];
+    [cell bind2:self.jsWebmasterList[indexPath.row]];
     return cell;
 
 }

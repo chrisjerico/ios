@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,20 +17,64 @@
                 <rect key="frame" x="0.0" y="0.0" width="565" height="85"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Theme_jinsha_gam_placeholed" translatesAutoresizingMaskIntoConstraints="NO" id="yTy-36-HaG">
-                        <rect key="frame" x="15" y="20" width="45" height="45"/>
-                    </imageView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6G2-B4-99f">
-                        <rect key="frame" x="75" y="14" width="145" height="57.5"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLD-g7-pDf">
+                        <rect key="frame" x="10" y="10" width="65" height="65"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="梦幻娱乐城" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcA-yY-UPR">
-                                <rect key="frame" x="0.0" y="0.0" width="145" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Theme_jinsha_gam_placeholed" translatesAutoresizingMaskIntoConstraints="NO" id="yTy-36-HaG">
+                                <rect key="frame" x="10" y="10" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="XYB-KK-a36"/>
+                                    <constraint firstAttribute="height" constant="45" id="adM-fq-COe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yTy-36-HaG" firstAttribute="centerY" secondItem="nLD-g7-pDf" secondAttribute="centerY" id="HRo-kH-6sI"/>
+                            <constraint firstItem="yTy-36-HaG" firstAttribute="leading" secondItem="nLD-g7-pDf" secondAttribute="leading" constant="10" id="Jjs-l5-Je5"/>
+                            <constraint firstItem="yTy-36-HaG" firstAttribute="centerX" secondItem="nLD-g7-pDf" secondAttribute="centerX" id="ibX-jV-3Ip"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="iconbgView"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6G2-B4-99f">
+                        <rect key="frame" x="85" y="16.5" width="145" height="52"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seO-12-GZb">
+                                <rect key="frame" x="0.0" y="0.0" width="145" height="15"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9A-Pd-uy8">
+                                        <rect key="frame" x="0.0" y="0.0" width="57.5" height="15"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="js_zztj" translatesAutoresizingMaskIntoConstraints="NO" id="2YN-KS-0Zb">
+                                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="2YN-KS-0Zb" secondAttribute="height" multiplier="4.06:1.06" id="U00-Ub-Neo"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="2YN-KS-0Zb" firstAttribute="centerY" secondItem="j9A-Pd-uy8" secondAttribute="centerY" id="DAn-UI-Vmd"/>
+                                            <constraint firstAttribute="width" secondItem="j9A-Pd-uy8" secondAttribute="height" multiplier="4.06:1.06" id="DnQ-JL-UAT"/>
+                                            <constraint firstItem="2YN-KS-0Zb" firstAttribute="leading" secondItem="j9A-Pd-uy8" secondAttribute="leading" id="Kmg-U0-1k1"/>
+                                            <constraint firstAttribute="height" constant="15" id="vAF-ov-Iw1"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="图片View"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="梦幻娱乐城" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcA-yY-UPR">
+                                        <rect key="frame" x="57.5" y="0.0" width="87.5" height="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🌟🌟🌟🌟🌟888人在玩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMw-IY-Oz7">
-                                <rect key="frame" x="0.0" y="25.5" width="145" height="13.5"/>
+                                <rect key="frame" x="0.0" y="20" width="145" height="13.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13.5" id="4vT-DX-1hc"/>
                                 </constraints>
@@ -38,7 +83,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全网热播主播品牌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6U-35-XJS">
-                                <rect key="frame" x="0.0" y="44" width="145" height="13.5"/>
+                                <rect key="frame" x="0.0" y="38.5" width="145" height="13.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13.5" id="if3-kh-Z2X"/>
                                 </constraints>
@@ -63,14 +108,13 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="yTy-36-HaG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="0bt-74-NJu"/>
                 <constraint firstItem="re6-cy-9vC" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="5sP-Uz-wye"/>
-                <constraint firstItem="yTy-36-HaG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="S5r-MK-m4o"/>
-                <constraint firstItem="yTy-36-HaG" firstAttribute="width" secondItem="yTy-36-HaG" secondAttribute="height" id="WCs-8Z-be5"/>
+                <constraint firstItem="6G2-B4-99f" firstAttribute="leading" secondItem="nLD-g7-pDf" secondAttribute="trailing" constant="10" id="Dy5-Gi-WI3"/>
+                <constraint firstItem="nLD-g7-pDf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="eUL-sW-Quv"/>
                 <constraint firstAttribute="trailing" secondItem="re6-cy-9vC" secondAttribute="trailing" constant="15" id="goz-Ar-jsl"/>
-                <constraint firstItem="yTy-36-HaG" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="ngJ-Ji-Qp6"/>
-                <constraint firstItem="6G2-B4-99f" firstAttribute="leading" secondItem="yTy-36-HaG" secondAttribute="trailing" constant="15" id="y6r-wr-c8c"/>
+                <constraint firstAttribute="bottom" secondItem="nLD-g7-pDf" secondAttribute="bottom" constant="10" id="hly-K5-nMo"/>
                 <constraint firstItem="6G2-B4-99f" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="zLs-cf-JZy"/>
+                <constraint firstItem="nLD-g7-pDf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="zwQ-db-fLP"/>
             </constraints>
             <size key="customSize" width="565" height="85"/>
             <connections>
@@ -84,5 +128,9 @@
     </objects>
     <resources>
         <image name="Theme_jinsha_gam_placeholed" width="75" height="58.5"/>
+        <image name="js_zztj" width="57.5" height="15"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

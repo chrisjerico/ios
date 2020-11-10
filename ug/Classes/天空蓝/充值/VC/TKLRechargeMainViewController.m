@@ -29,6 +29,8 @@
     _view1.type = RT_转账;
     _view2 = _LoadVC_from_storyboard_(@"TKLRechargeListViewController");
     _view2.type = RT_在线;
+    [self addChildViewController:_view1];
+    [self addChildViewController:_view2];
     [_contentView addSubview:_view2.view];
     [_contentView addSubview:_view1.view];
     [_view1.view mas_makeConstraints:^(MASConstraintMaker *make) {

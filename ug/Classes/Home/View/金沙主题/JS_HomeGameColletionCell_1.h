@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JS_HomeGameColletionCell_1 : UICollectionViewCell
 - (void)bind: (GameModel *)item;
+
+- (void)bind2: (GameModel *)item;
 @end
 
 NS_ASSUME_NONNULL_END

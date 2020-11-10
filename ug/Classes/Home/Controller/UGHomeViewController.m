@@ -793,10 +793,12 @@
                     self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
                     
                     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
-                        
+                        NSMutableArray<GameCategoryModel*> *newGameTypeArray =
+                        [[NSMutableArray alloc] initWithArray:self.gameTypeView.gameTypeArray];
                         for (GameCategoryModel *object in  self.gameTypeView.gameTypeArray) {
                             if ([object.iid isEqualToString:@"231"]) {
                                 weakSelf.jsWebmasterView.jsWebmasterList = object.list;
+                                [newGameTypeArray removeObject:object];
                                 break;
                             }
                         }
@@ -811,7 +813,7 @@
                             [weakSelf.contentStackView removeArrangedSubview:weakSelf.homePromoteContainer];
                             [weakSelf.homePromoteContainer removeFromSuperview];
                         }
-                        weakSelf.gameTypeView.gameTypeArray = weakSelf.gameCategorys = [customGameModel.icons filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel *  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                        weakSelf.gameTypeView.gameTypeArray = weakSelf.gameCategorys = [newGameTypeArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel *  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
                             return ![evaluatedObject.iid isEqualToString:@"7"];
                         }]].mutableCopy;
                     }

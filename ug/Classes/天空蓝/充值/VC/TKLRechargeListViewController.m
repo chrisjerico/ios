@@ -90,6 +90,9 @@
         vc.item = model;
         [_contentView removeAllSubviews];
         [_contentView addSubview:vc.view];
+        [vc.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(_contentView);
+        }];
      
     }
     else if (![model.pid isEqualToString:@"alihb_online"] && [model.pid containsString:@"online"]) {
