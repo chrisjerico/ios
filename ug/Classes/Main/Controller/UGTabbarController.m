@@ -298,49 +298,73 @@ static UGTabbarController *_tabBarVC = nil;
             return obj1.sort > obj2.sort;
         }];
 #ifdef DEBUG
-        if (Skin1.isJS) {
-            NSMutableArray *temp = @[].mutableCopy;
-            // 首页 棋牌 购彩 开奖 走势 我的
-            for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                if ([@"/home,/chess,/lotteryList,/lotteryRecord,/catchFish,/user" containsString:mm.path]) {
-                    if ([mm.path isEqualToString:@"/home"]) {
-                        mm.defaultImgName = @"aliyin_transfer";
-                    }
-                    if ([mm.path isEqualToString:@"/chess"]) {
-                        mm.defaultImgName = @"";
-                    }
-                    if ([mm.path isEqualToString:@"/lotteryList"]) {
-                        mm.defaultImgName = @"";
-                    }
-                    if ([mm.path isEqualToString:@"/lotteryRecord"]) {
-                        mm.defaultImgName = @"";
-                    }
-                    if ([mm.path isEqualToString:@"/catchFish"]) {
-                        mm.defaultImgName = @"";
-                    }
-                    if ([mm.path isEqualToString:@"/user"]) {
-                        mm.defaultImgName = @"";
-                    }
-                    [temp addObject:mm];
-                }
-            }
-            [self resetUpChildViewController:temp];
-        }
-        else {
+
             if (menus.count > 3) {
                 // 后台配置的页面
-                [self resetUpChildViewController:menus];
+                if (Skin1.isJS && [APP.SiteId isEqualToString:@"c251"] ) {
+                    NSMutableArray *temp = @[].mutableCopy;
+                    // 首页 棋牌 购彩 开奖 走势 我的
+                    for (UGMobileMenu *mm in menus) {
+                        if ([@"/home,/chess,/lotteryList,/lotteryRecord,/user" containsString:mm.path]) {
+                            if ([mm.path isEqualToString:@"/home"]) {
+                                mm.defaultImgName = @"js_home";
+                            }
+                            if ([mm.path isEqualToString:@"/chess"]) {
+                                mm.defaultImgName = @"js_qp";
+                            }
+                            if ([mm.path isEqualToString:@"/lotteryList"]) {
+                                mm.defaultImgName = @"js_shopping-cart";
+                            }
+                            if ([mm.path isEqualToString:@"/lotteryRecord"]) {
+                                mm.defaultImgName = @"js_gift";
+                            }
+                            if ([mm.path isEqualToString:@"/user"]) {
+                                mm.defaultImgName = @"js_user";
+                            }
+                            [temp addObject:mm];
+                        }
+                    }
+                    [self resetUpChildViewController:temp];
+                } else {
+                    [self resetUpChildViewController:menus];
+                }
+               
             } else {
                 // 默认加载的页面
                 NSMutableArray *temp = @[].mutableCopy;
-                for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                    if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-                        [temp addObject:mm];
+                
+                if (Skin1.isJS && [APP.SiteId isEqualToString:@"c251"] ) {
+                    for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                        if ([@"/home,/chess,/lotteryList,/lotteryRecord,/user" containsString:mm.path]) {
+                            if ([mm.path isEqualToString:@"/home"]) {
+                                mm.defaultImgName = @"js_home";
+                            }
+                            if ([mm.path isEqualToString:@"/chess"]) {
+                                mm.defaultImgName = @"js_qp";
+                            }
+                            if ([mm.path isEqualToString:@"/lotteryList"]) {
+                                mm.defaultImgName = @"js_shopping-cart";
+                            }
+                            if ([mm.path isEqualToString:@"/lotteryRecord"]) {
+                                mm.defaultImgName = @"js_gift";
+                            }
+                            if ([mm.path isEqualToString:@"/user"]) {
+                                mm.defaultImgName = @"js_user";
+                            }
+                            [temp addObject:mm];
+                        }
+                    }
+                } else {
+                    for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                        if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+                            [temp addObject:mm];
+                        }
                     }
                 }
+               
                 [self resetUpChildViewController:temp];
             }
-        }
+        
  
 #else
             if (menus.count > 3) {
