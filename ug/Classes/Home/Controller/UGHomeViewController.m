@@ -60,6 +60,7 @@
 #import "CountDown.h"
 #import "Global.h"
 #import "UIColor+RGBValues.h"
+#import "HomeJSWebmasterView.h"
 
 
 
@@ -113,6 +114,7 @@
 @property (nonatomic, strong) HomeFloatingButtonsView *floatingBtnsView;/**<   首页所有悬浮按钮 */
 
 @property (nonatomic, strong) XBJNavAndGameListVC *xbjNavAndGameListView;/**<   香槟金导航和游戏列表 */
+@property (nonatomic, strong) HomeJSWebmasterView *jsWebmasterView;     /**<  金沙站长推荐 */
 @end
 
 @implementation UGHomeViewController
@@ -167,7 +169,7 @@
             @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,],
             @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
             @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
-            @"金沙主题":@[_bannerView, _rollingView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+            @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
             @"香槟金":@[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _betFormView, _trademarkView],
         };
@@ -342,6 +344,10 @@
     // 六合栏目列表
     _lhColumnView = _LoadView_from_nib_(@"HomeLHColumnView");
     
+    // 金沙站长推荐
+    _jsWebmasterView = _LoadView_from_nib_(@"HomeJSWebmasterView");
+//    _jsWebmasterView.heightLayoutConstraint.constant = 0.1;
+    
     // 优惠活动
     if (SysConf.m_promote_pos) {
         _promotionVC = _LoadVC_from_storyboard_(@"HomePromotionsVC");
@@ -486,10 +492,19 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_async(group, queue, ^{
-        
         // 请求一
           [self getSystemConfig];     // APP配置信息
-        
+    });
+    dispatch_group_async(group, queue, ^{
+        // 请求一
+          [self getCustomGameList];     // 游戏列表
+    });
+    dispatch_group_async(group, queue, ^{
+        [self.rollingView reloadData:^(BOOL succ) {}];   // 公告列表
+
+    });
+    dispatch_group_async(group, queue, ^{
+        [self.waistAdsView reloadData:^(BOOL succ) {}];     // 首页广告图
     });
     dispatch_group_async(group, queue, ^{
         
@@ -775,6 +790,14 @@
                     self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
                     
                     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+                        
+                        for (GameCategoryModel *object in  self.gameTypeView.gameTypeArray) {
+                            if ([object.iid isEqualToString:@"231"]) {
+                                weakSelf.jsWebmasterView.jsWebmasterList = object.list;
+                                break;
+                            }
+                        }
+                        
                         NSArray<GameModel *> * homePromoteItems = [weakSelf.gameCategorys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
                             return [evaluatedObject.iid isEqualToString:@"7"];
                         }]][0].list;
@@ -810,13 +833,7 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"SysConf.announce_first = %d",SysConf.announce_first);
-           
-            [weakSelf getCustomGameList];   // 自定义游戏列表
-            
-            [weakSelf.waistAdsView reloadData:^(BOOL succ) {}];     // 首页广告图片
-            
-            [weakSelf.rollingView reloadData:^(BOOL succ) {}];   // 公告列表
-            
+
             if (Skin1.isTKL) {
                 [weakSelf.tkltitleView setImgName:config.mobile_logo];
             } else {

@@ -144,9 +144,9 @@
         CGFloat cellH = [self collectionView:_gameCollectionView layout:_gameCollectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]].height;
 
         int idx = 0;
-        CGFloat current = 3;
+        CGFloat current = 0;
         for (GameCategoryModel *gcm in _icons) {
-            CGFloat next = current + (gcm.list.count/2 + gcm.list.count%2) * (cellH + 4);
+            CGFloat next = current + (gcm.list.count/2 + gcm.list.count%2) * (cellH + 4) + 10;
             if (scrollView.contentOffset.y > next ) {
                 current = next;
                 idx++;
@@ -179,11 +179,11 @@
     [subButton(@"Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton *sender) {
         sender.selected = true;
         
-        CGFloat offsetY = 3;
+        CGFloat offsetY = 0;
         CGFloat cellH = [__self collectionView:__self.gameCollectionView layout:__self.gameCollectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]].height;
         for (GameCategoryModel *temp in __self.icons) {
             if (temp == gcm) break;
-            offsetY += (temp.list.count/2 + temp.list.count%2) * (cellH + 4);
+            offsetY += (temp.list.count/2 + temp.list.count%2) * (cellH + 4) + 10;
         }
         [__self.gameCollectionView setContentOffset:CGPointMake(0, offsetY) animated:true];
     }];

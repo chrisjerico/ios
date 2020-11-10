@@ -17,6 +17,13 @@ static NSString * const kBadgeTop = @"kBadgeTop";
 
 @implementation UITabBar (CustomBadge)
 
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self jr_swizzleMethod:@selector(didAddSubview:) withMethod:@selector(cc_didAddSubview:) error:nil];
+    });
+}
+
 -(void)setTabIconWidth:(CGFloat)width{
     [self setValue:@(width) forUndefinedKey:kTabIconWidth];
 }
@@ -111,6 +118,16 @@ static NSString * const kBadgeTop = @"kBadgeTop";
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     objc_setAssociatedObject(self, (__bridge const void *)(key), value, OBJC_ASSOCIATION_COPY);
+}
+
+- (void)cc_didAddSubview:(UIView *)subview {
+    [self cc_didAddSubview:subview];
+    // 修复选中Item时badge被遮挡问题
+    NSMutableArray *badgeDotViews = [self valueForKey:kBadgeDotViewsKey];
+    NSMutableArray *badgeNumberViews = [self valueForKey:kBadgeNumberViewsKey];
+    for (UIView *v in [badgeDotViews arrayByAddingObjectsFromArray:badgeNumberViews]) {
+        [self bringSubviewToFront:v];
+    }
 }
 
 @end

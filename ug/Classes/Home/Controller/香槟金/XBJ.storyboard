@@ -369,18 +369,19 @@
                                                             <size key="itemSize" width="109" height="95"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                            <inset key="sectionInset" minX="0.0" minY="2" maxX="0.0" maxY="3"/>
+                                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="15"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="YRn-zs-sSj">
-                                                                <rect key="frame" x="0.0" y="2" width="109" height="95"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="95"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RHO-zc-Jae">
                                                                     <rect key="frame" x="0.0" y="0.0" width="109" height="95"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Q2-x7-WCy" customClass="IBImageView">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Q2-x7-WCy" customClass="IBImageView">
                                                                             <rect key="frame" x="0.0" y="0.0" width="109" height="95"/>
+                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="游戏图标ImageView"/>
                                                                                 <userDefinedRuntimeAttribute type="number" keyPath="圆角偏移量">
@@ -390,12 +391,6 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                     </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="5Q2-x7-WCy" firstAttribute="centerX" secondItem="RHO-zc-Jae" secondAttribute="centerX" id="4ev-ky-Kvo"/>
-                                                                        <constraint firstItem="5Q2-x7-WCy" firstAttribute="leading" secondItem="RHO-zc-Jae" secondAttribute="leading" id="9QA-QP-ds4"/>
-                                                                        <constraint firstItem="5Q2-x7-WCy" firstAttribute="centerY" secondItem="RHO-zc-Jae" secondAttribute="centerY" id="UHt-xB-74d"/>
-                                                                        <constraint firstItem="5Q2-x7-WCy" firstAttribute="top" secondItem="RHO-zc-Jae" secondAttribute="top" id="oOw-z8-ENf"/>
-                                                                    </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <size key="customSize" width="109" height="95"/>
                                                             </collectionViewCell>

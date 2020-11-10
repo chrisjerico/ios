@@ -66,10 +66,10 @@
 - (void)pack:(GitModel *)gm environment:(NSString *)environment completion:(void (^)(void))completion {
     NSDateFormatter *df = [NSDateFormatter new];
     [df setDateFormat:@"yyyy年MM月dd日 HH:mm"];
-    NSString *description = _NSString(@"（%@）%@ ｜ 分支：%@ - %@ - %@", NSUserName(), [df stringFromDate:[NSDate date]], gm.branch, gm.commitId, gm.log);
+    NSString *description = _NSString(@"%@ ｜ 分支：%@ - %@ - %@（%@）", [df stringFromDate:[NSDate date]], gm.branch, gm.commitId, gm.log, NSUserName());
     [self postReactNative:description environment:environment completion:^{
-        NSString *log = _NSString(@"（%@）%@ | 环境：%@ | 分支：%@ - %@ - %@", NSUserName(), [df stringFromDate:[NSDate date]], [environment stringByReplacingOccurrencesOfString:@"UGiOS" withString:@"master"], gm.branch, gm.commitId, gm.log);
-        NSString *title = _NSString(@"（%@）环境：%@ | 分支：%@ - %@ - %@", NSUserName(), [environment stringByReplacingOccurrencesOfString:@"UGiOS" withString:@"master"], gm.branch, gm.commitId, gm.log);
+        NSString *log = _NSString(@"%@ | 环境：%@ | 分支：%@ - %@ - %@（%@）", [df stringFromDate:[NSDate date]], [environment stringByReplacingOccurrencesOfString:@"UGiOS" withString:@"master"], gm.branch, gm.commitId, gm.log, NSUserName());
+        NSString *title = _NSString(@"环境：%@ | 分支：%@ - %@ - %@（%@）", [environment stringByReplacingOccurrencesOfString:@"UGiOS" withString:@"master"], gm.branch, gm.commitId, gm.log, NSUserName());
         [self saveLog:log title:title completion:^(BOOL ok) {
             NSLog(@"热更新发布成功");
             [NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:@[@"-a", @"/Applications/Xcode.app", RNPack.logFile]];

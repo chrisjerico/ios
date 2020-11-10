@@ -10,4 +10,8 @@
 
 @implementation UGChanglongaideModel
 
+- (NSString *)displayNumber {
+    return _displayNumber.length ? _displayNumber : _issue;
+}
+
 @end
