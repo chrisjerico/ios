@@ -273,7 +273,36 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
    
             if (!UserI.isTest && UserI.chatShareBet && (amountfloat >= webAmountfloat)&& [weakSelf isBetMin:amountfloat]) {
                 
-                if (Skin1.isBlack) {
+				if (CHAT_TARGET) {
+					[LEEAlert alert].config
+					.LeeAddTitle(^(UILabel *label) {
+						label.text = @"分享注单";
+						label.textColor = [UIColor whiteColor];
+					})
+					.LeeAddContent(^(UILabel *label) {
+						label.text = @"是否分享到聊天室";
+						label.textColor = [UIColor whiteColor];
+					})
+					.LeeAction(@"取消", nil)
+					.LeeAction(@"分享", ^{//跳到聊天界面，把分享数据传过去
+//                        SysConf.hasShare = YES;
+//                        UGChatViewController *vc = [[UGChatViewController alloc] init];
+//                        vc.shareBetJson = __self.shareJsonStr;
+//                        [NavController1 pushViewController:vc animated:YES];
+						[weakSelf goLotteryBetAndChatVC];
+					})
+					.LeeHeaderColor(Skin1.bgColor)
+					.LeeShow();
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				} else if(Skin1.isBlack) {
                     [LEEAlert alert].config
                     .LeeAddTitle(^(UILabel *label) {
                         label.text = @"分享注单";

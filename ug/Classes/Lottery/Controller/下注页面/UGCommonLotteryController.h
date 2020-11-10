@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
-@property (nonatomic, strong) UIButton * radomNumberButton;
+@property (nonatomic, strong) UIButton * radomNumberButton;/**<随机选中按钮*/
 
 //追号=======================================================
 @property (nonatomic, strong) UGNextIssueModel*zuiHaoIssueModel;/**<莫彩种的最近一期下注*/
@@ -70,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateCloseLabelText;
 // 重置
 - (IBAction)resetClick:(id)sender ;
+- (IBAction)betClick:(id)sender ;//下注
 
 //调用下注界面   objArray:模型数组  dicArray 字典数组
 -(void)goUGBetDetailViewObjArray:(NSArray *)objArray   dicArray:(NSArray *)dicArray issueModel:(UGNextIssueModel *)issueModel gameType:(NSString  *)gameId selCode:(NSString *)selCode;

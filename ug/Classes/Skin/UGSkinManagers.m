@@ -1446,7 +1446,7 @@ static UGSkinManagers *__initSkin1 = nil;
             skin.isSLH = [skin.skitType isEqualToString:@"石榴红"];
             skin.isBlack = skin.isGPK || skin.is23;
             skin.isTKL = [skin.skitType containsString:@"天空蓝"];
-            
+            skin.isJS =  [skin.skitType containsString:@"金沙主题"];
             if ([@"c242" containsString:APP.SiteId]) {
                 skin.navBarBgColor            = color(@"CE0009");
                 skin.tabBarBgColor            = color(@"000000");
@@ -1505,8 +1505,8 @@ static UGSkinManagers *__initSkin1 = nil;
 
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//    skitType = @"GPK版0";
-    skitType = @"天空蓝";
+//    skitType = @"1";
+   skitType = @"金沙主题";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
     if (sm) {

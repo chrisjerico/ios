@@ -1770,6 +1770,16 @@
 		CF3A26F8255530D900ECA65F /* UGBargainingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3A26F7255530D900ECA65F /* UGBargainingView.xib */; };
 		CF3A26F9255530D900ECA65F /* UGBargainingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3A26F7255530D900ECA65F /* UGBargainingView.xib */; };
 		CF3C073724C01AEF000E6700 /* UIView+AutoLocalizable.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */; };
+		CF3E2CE72556C6CC00FB4BDE /* TKLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CE52556C6CC00FB4BDE /* TKLCollectionViewCell.m */; };
+		CF3E2CE82556C6CC00FB4BDE /* TKLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CE52556C6CC00FB4BDE /* TKLCollectionViewCell.m */; };
+		CF3E2CE92556C6CC00FB4BDE /* TKLCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3E2CE62556C6CC00FB4BDE /* TKLCollectionViewCell.xib */; };
+		CF3E2CEA2556C6CC00FB4BDE /* TKLCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF3E2CE62556C6CC00FB4BDE /* TKLCollectionViewCell.xib */; };
+		CF3E2CF12556CEDF00FB4BDE /* TKLRechargeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CF02556CEDF00FB4BDE /* TKLRechargeListViewController.m */; };
+		CF3E2CF22556CEDF00FB4BDE /* TKLRechargeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CF02556CEDF00FB4BDE /* TKLRechargeListViewController.m */; };
+		CF3E2CF72556CEFA00FB4BDE /* TKLRechargeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CF62556CEFA00FB4BDE /* TKLRechargeMainViewController.m */; };
+		CF3E2CF82556CEFA00FB4BDE /* TKLRechargeMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3E2CF62556CEFA00FB4BDE /* TKLRechargeMainViewController.m */; };
+		CF41695E2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */; };
+		CF41695F2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */; };
 		CF43426525396AEA004708C3 /* HomePromotionsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */; };
 		CF43426E25396D10004708C3 /* HomePromotionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43426D25396D10004708C3 /* HomePromotionsVC.m */; };
 		CF43427525397648004708C3 /* HomeTrademarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF43427425397648004708C3 /* HomeTrademarkView.m */; };
@@ -3890,6 +3900,15 @@
 		CF3A26F7255530D900ECA65F /* UGBargainingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGBargainingView.xib; sourceTree = "<group>"; };
 		CF3C073524C01AEE000E6700 /* UIView+AutoLocalizable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLocalizable.h"; sourceTree = "<group>"; };
 		CF3C073624C01AEE000E6700 /* UIView+AutoLocalizable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLocalizable.m"; sourceTree = "<group>"; };
+		CF3E2CE42556C6CC00FB4BDE /* TKLCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLCollectionViewCell.h; sourceTree = "<group>"; };
+		CF3E2CE52556C6CC00FB4BDE /* TKLCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLCollectionViewCell.m; sourceTree = "<group>"; };
+		CF3E2CE62556C6CC00FB4BDE /* TKLCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKLCollectionViewCell.xib; sourceTree = "<group>"; };
+		CF3E2CEF2556CEDF00FB4BDE /* TKLRechargeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLRechargeListViewController.h; sourceTree = "<group>"; };
+		CF3E2CF02556CEDF00FB4BDE /* TKLRechargeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLRechargeListViewController.m; sourceTree = "<group>"; };
+		CF3E2CF52556CEFA00FB4BDE /* TKLRechargeMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLRechargeMainViewController.h; sourceTree = "<group>"; };
+		CF3E2CF62556CEFA00FB4BDE /* TKLRechargeMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLRechargeMainViewController.m; sourceTree = "<group>"; };
+		CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHorizontalPageLayout.m; sourceTree = "<group>"; };
+		CF41695D2557A77B00C2BAA1 /* HLHorizontalPageLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHorizontalPageLayout.h; sourceTree = "<group>"; };
 		CF43426425396AEA004708C3 /* HomePromotionsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePromotionsVC.storyboard; sourceTree = "<group>"; };
 		CF43426C25396D10004708C3 /* HomePromotionsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePromotionsVC.h; sourceTree = "<group>"; };
 		CF43426D25396D10004708C3 /* HomePromotionsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePromotionsVC.m; sourceTree = "<group>"; };
@@ -4712,6 +4731,7 @@
 				031E14DE23BE812300B0F813 /* Category */,
 				4959677824E25C4A005D5B53 /* FacebookHelper */,
 				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
+				CF4169562557A74A00C2BAA1 /* 横向分页布局 */,
 				CF4FAFB9252C7ECE004C47AB /* 教程 */,
 				D43DAF8224555B1C0014A301 /* 自定义拖动条 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
@@ -8342,6 +8362,42 @@
 			path = "UIView+AutoLocalizable";
 			sourceTree = "<group>";
 		};
+		CF3E2CE22556C64C00FB4BDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF5586B42546B9AF00BE2576 /* TkLMoneyCollectionViewCell.h */,
+				CF5586B52546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m */,
+				CF5586B62546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib */,
+				CF3E2CE42556C6CC00FB4BDE /* TKLCollectionViewCell.h */,
+				CF3E2CE52556C6CC00FB4BDE /* TKLCollectionViewCell.m */,
+				CF3E2CE62556C6CC00FB4BDE /* TKLCollectionViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CF3E2CE32556C65F00FB4BDE /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				CF5586C52546BF3200BE2576 /* TKLMoneyViewController.h */,
+				CF5586C62546BF3200BE2576 /* TKLMoneyViewController.m */,
+				CF5586C72546BF3200BE2576 /* TKLMoneyViewController.xib */,
+				CF3E2CEF2556CEDF00FB4BDE /* TKLRechargeListViewController.h */,
+				CF3E2CF02556CEDF00FB4BDE /* TKLRechargeListViewController.m */,
+				CF3E2CF52556CEFA00FB4BDE /* TKLRechargeMainViewController.h */,
+				CF3E2CF62556CEFA00FB4BDE /* TKLRechargeMainViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		CF4169562557A74A00C2BAA1 /* 横向分页布局 */ = {
+			isa = PBXGroup;
+			children = (
+				CF41695D2557A77B00C2BAA1 /* HLHorizontalPageLayout.h */,
+				CF41695C2557A77B00C2BAA1 /* HLHorizontalPageLayout.m */,
+			);
+			path = "横向分页布局";
+			sourceTree = "<group>";
+		};
 		CF43424F25395E5C004708C3 /* 六合栏目列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8681,12 +8737,8 @@
 		CF5586B22546B93000BE2576 /* 充值 */ = {
 			isa = PBXGroup;
 			children = (
-				CF5586B42546B9AF00BE2576 /* TkLMoneyCollectionViewCell.h */,
-				CF5586B52546B9AF00BE2576 /* TkLMoneyCollectionViewCell.m */,
-				CF5586B62546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib */,
-				CF5586C52546BF3200BE2576 /* TKLMoneyViewController.h */,
-				CF5586C62546BF3200BE2576 /* TKLMoneyViewController.m */,
-				CF5586C72546BF3200BE2576 /* TKLMoneyViewController.xib */,
+				CF3E2CE32556C65F00FB4BDE /* VC */,
+				CF3E2CE22556C64C00FB4BDE /* View */,
 			);
 			path = "充值";
 			sourceTree = "<group>";
@@ -9519,8 +9571,8 @@
 				031E176A23BE812500B0F813 /* baseObject */,
 				031E177723BE812500B0F813 /* Chat */,
 				031E177A23BE812500B0F813 /* Frameworks */,
-				031E171C23BE812400B0F813 /* Funds */,
 				031E142023BE812300B0F813 /* Helper */,
+				031E171C23BE812400B0F813 /* Funds */,
 				031E15C723BE812400B0F813 /* Home */,
 				031E168623BE812400B0F813 /* Lottery */,
 				031E176123BE812500B0F813 /* Main */,
@@ -9810,6 +9862,7 @@
 				031EF5C623BE7B4D00B0F813 /* MomentsPublishImageCell.xib in Resources */,
 				031E1DFB23BE812C00B0F813 /* UGMissionTitleCell.xib in Resources */,
 				031EF58423BE7B4D00B0F813 /* chakan_hongbao.svg in Resources */,
+				CF3E2CEA2556C6CC00FB4BDE /* TKLCollectionViewCell.xib in Resources */,
 				031EF40D23BE7A9600B0F813 /* LaunchScreen.storyboard in Resources */,
 				03E1A221252DC86700FAD11D /* UGMailBoxTableViewController.xib in Resources */,
 				031EF5EC23BE7B4E00B0F813 /* MyShare.storyboard in Resources */,
@@ -10437,6 +10490,7 @@
 				CF4758D9239636D200966536 /* 146.gif in Resources */,
 				D428E8C02441EC3C000B8980 /* UGSalaryListView.xib in Resources */,
 				031E1C6423BE812A00B0F813 /* UGLotteryCollectionViewCell.xib in Resources */,
+				CF3E2CE92556C6CC00FB4BDE /* TKLCollectionViewCell.xib in Resources */,
 				03AFD93C23CEFC27003914A6 /* HSC_TitleView.xib in Resources */,
 				CF4342792539764F004708C3 /* HomeTrademarkView.xib in Resources */,
 				CF4758A2239636D200966536 /* 124.gif in Resources */,
@@ -10849,6 +10903,7 @@
 				03B71D9E251E38DE0090FC98 /* MJRefreshConst.m in Sources */,
 				031E1E5D23BE812C00B0F813 /* UGFeedbackDetailCell.m in Sources */,
 				031E194723BE812600B0F813 /* UGLHMineViewController.m in Sources */,
+				CF3E2CF22556CEDF00FB4BDE /* TKLRechargeListViewController.m in Sources */,
 				031E1C4D23BE812A00B0F813 /* UGSegmentCollectionViewCell.m in Sources */,
 				031EF5C223BE7B4D00B0F813 /* UGMomentsHomeVC.swift in Sources */,
 				031E1CD723BE812A00B0F813 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -10999,6 +11054,7 @@
 				031E1A6323BE812700B0F813 /* NSString+ST.m in Sources */,
 				031E1AA123BE812800B0F813 /* ZZCountingLabel.m in Sources */,
 				031E1AC123BE812800B0F813 /* WMMenuHead.m in Sources */,
+				CF41695F2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */,
 				031E1C0323BE812900B0F813 /* UGLotterySettingModel.m in Sources */,
 				031E1D0D23BE812B00B0F813 /* JSONModelArray.m in Sources */,
 				031E1DE123BE812C00B0F813 /* UGbetStatModel.m in Sources */,
@@ -11018,6 +11074,7 @@
 				031E1D1323BE812B00B0F813 /* JSONAPI.m in Sources */,
 				031E199523BE812600B0F813 /* LHPostVoteView.m in Sources */,
 				CF166B4024A495CF00EF8835 /* UGMailBoxTableViewController.m in Sources */,
+				CF3E2CF82556CEFA00FB4BDE /* TKLRechargeMainViewController.m in Sources */,
 				031E197523BE812600B0F813 /* UGLHPostModel.m in Sources */,
 				031E1A8323BE812700B0F813 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				031E1D0123BE812A00B0F813 /* AFSecurityPolicy.m in Sources */,
@@ -11349,6 +11406,7 @@
 				031E1A3123BE812700B0F813 /* CMNetwork+Mine.m in Sources */,
 				031E1BE323BE812900B0F813 /* UGHKLHCLotteryController.m in Sources */,
 				031E1BD923BE812900B0F813 /* UGCommonLotteryController.m in Sources */,
+				CF3E2CE82556C6CC00FB4BDE /* TKLCollectionViewCell.m in Sources */,
 				CF4FAFC8252C80FC004C47AB /* HelpDocModel.m in Sources */,
 				031E1DC323BE812B00B0F813 /* UGinviteLisModel.m in Sources */,
 				031E1D2B23BE812B00B0F813 /* UGIntegralConvertRecordController.m in Sources */,
@@ -11384,6 +11442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				031E1DF423BE812C00B0F813 /* UGMissionLevelTableViewCell.m in Sources */,
+				CF3E2CF12556CEDF00FB4BDE /* TKLRechargeListViewController.m in Sources */,
 				031E19B223BE812700B0F813 /* NSNumber+Safe.m in Sources */,
 				CF3A26EB25552E8200ECA65F /* UGBargainingCollectionViewCell.m in Sources */,
 				031E1CD823BE812A00B0F813 /* MJRefreshAutoGifFooter.m in Sources */,
@@ -11419,6 +11478,7 @@
 				031E1C8623BE812A00B0F813 /* UGFundsBankView.m in Sources */,
 				D4326F1423F7C13900BEEA1B /* RedBagLogCell1.m in Sources */,
 				031E1A2A23BE812700B0F813 /* UITableView+LSEmpty.m in Sources */,
+				CF3E2CE72556C6CC00FB4BDE /* TKLCollectionViewCell.m in Sources */,
 				031E1E2623BE812C00B0F813 /* UGActivityGoldTableViewCell.m in Sources */,
 				031E1CD223BE812A00B0F813 /* MJRefreshBackStateFooter.m in Sources */,
 				D43DAF7F245479F30014A301 /* LYLuckyCardRotationView.m in Sources */,
@@ -11597,6 +11657,7 @@
 				031E1E1023BE812C00B0F813 /* UGSignInScrFootView.m in Sources */,
 				031E1ADA23BE812800B0F813 /* SDCycleScrollView.m in Sources */,
 				031AFC90253E8F2100092DFF /* URLModel.m in Sources */,
+				CF3E2CF72556CEFA00FB4BDE /* TKLRechargeMainViewController.m in Sources */,
 				031E1CEE23BE812A00B0F813 /* SVProgressAnimatedView.m in Sources */,
 				031E199E23BE812600B0F813 /* IBTextField.m in Sources */,
 				031E1E5023BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.m in Sources */,
@@ -11732,6 +11793,7 @@
 				031E1B9623BE812900B0F813 /* UGLotteryRulesView.m in Sources */,
 				CF533A81251B116000462E31 /* NewLotteryGameCollectionViewCell.m in Sources */,
 				031E1DCE23BE812C00B0F813 /* UGBetListModel.m in Sources */,
+				CF41695E2557A77C00C2BAA1 /* HLHorizontalPageLayout.m in Sources */,
 				031E1BCA23BE812900B0F813 /* UGFC3DLotteryController.m in Sources */,
 				031E1D3623BE812B00B0F813 /* UGAgentViewController.m in Sources */,
 				031E195A23BE812600B0F813 /* UGChessViewController.m in Sources */,

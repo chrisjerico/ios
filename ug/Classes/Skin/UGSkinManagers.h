@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL is23;   /**<   经典黑色 */
 @property (nonatomic) BOOL isTKL;   /**<   天空蓝模板 */
 @property (nonatomic) BOOL isBlack;/**<   黑色模式 */
-
+@property (nonatomic) BOOL isJS;   /**<   金沙主题模式 */
 
 
 + (UGSkinManagers *)next; /**<   测试换肤功能时使用 */

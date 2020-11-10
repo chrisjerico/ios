@@ -144,7 +144,7 @@ UGSystemConfigModel *currentConfig = nil;
 
 @interface UGMobileMenu ()
 @property (nonatomic, readwrite) MobileMenuType type;
-@property (nonatomic, readwrite) NSString *defaultImgName;
+//@property (nonatomic, copy) NSString *defaultImgName;
 @property (nonatomic, readwrite) NSString *clsName;
 @end
 @implementation UGMobileMenu

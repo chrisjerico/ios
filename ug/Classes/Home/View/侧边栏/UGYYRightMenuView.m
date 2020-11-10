@@ -27,6 +27,7 @@
 #import "GameCategoryDataModel.h"
 #import "YBPopupMenu.h"
 #import "UGWithdrawalViewController.h"
+#import "TKLRechargeMainViewController.h";
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource, YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -231,12 +232,12 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.tableView.estimatedRowHeight = 0;
         self.tableView.estimatedSectionHeaderHeight = 0;
         self.tableView.estimatedSectionFooterHeight = 0;
-        [self.tableView addGestureRecognizer:({
+        [self addGestureRecognizer:({
             UITapGestureRecognizer  *tap = [UITapGestureRecognizer gestureRecognizer:^(__kindof UIGestureRecognizer *gr) {
                 [AlertHelper showAlertView:@"温馨提示" msg:_NSString(@"%@", APP.rnVersion) btnTitles:@[@"确定"]];
             }];
-            tap.numberOfTapsRequired = 15;
-            tap.numberOfTouchesRequired = 3;
+            tap.numberOfTapsRequired = 10;
+            tap.numberOfTouchesRequired = 2;
             tap;
         })];
         self.userNameLabel.text = [UGUserModel currentUser].username;
@@ -381,19 +382,27 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         if (Skin1.isTKL) {
             [subLabel(@"钱Label") setHidden:NO];
             [subImageView(@"头像imgView") sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
-            [subButton(@"存取Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-            [subButton(@"存取Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [subButton(@"存Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            [subButton(@"存Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 [self hiddenSelf];
-                //登录
+                //
+                TKLRechargeMainViewController*rechargeVC = _LoadVC_from_storyboard_(@"TKLRechargeMainViewController");
+                [NavController1 pushViewController:rechargeVC animated:YES];
+            }];
+            [subButton(@"取Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+            [subButton(@"取Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [self hiddenSelf];
+                //
                 UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-                fundsVC.selectIndex = 0;
+                fundsVC.selectIndex = 1;
                 [NavController1 pushViewController:fundsVC animated:true];
             }];
             
             if ([UGUserModel currentUser].isTest) {
                 [subButton(@"登录Button") setHidden:NO];
                 [subButton(@"注册Button") setHidden:NO];
-                [subButton(@"存取Button") setHidden:YES];
+                [subButton(@"存Button") setHidden:YES];
+                [subButton(@"取Button") setHidden:YES];
                 
                 [subButton(@"登录Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
                 [subButton(@"登录Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -410,7 +419,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             } else {
                 [subButton(@"登录Button") setHidden:YES];
                 [subButton(@"注册Button") setHidden:YES];
-                [subButton(@"存取Button") setHidden:NO];
+                [subButton(@"存Button") setHidden:NO];
+                [subButton(@"取Button") setHidden:NO];
             }
         }
     }
@@ -436,7 +446,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         if (Skin1.isTKL) {
             [subButton(@"登录Button") setHidden:NO];
             [subButton(@"注册Button") setHidden:NO];
-            [subButton(@"存取Button") setHidden:YES];
+            [subButton(@"存Button") setHidden:YES];
+            [subButton(@"取Button") setHidden:YES];
             [subLabel(@"钱Label") setHidden:YES];
             [subButton(@"登录Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"登录Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -641,8 +652,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         subButton(@"注册Button").layer.cornerRadius = 5;
         subButton(@"注册Button").layer.masksToBounds = YES;
         
-        subButton(@"存取Button").layer.cornerRadius = 5;
-        subButton(@"存取Button").layer.masksToBounds = YES;
+
         
 //        self.tklHight.constant = 180.5;
     }

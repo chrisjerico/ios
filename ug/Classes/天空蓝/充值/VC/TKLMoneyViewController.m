@@ -21,6 +21,8 @@
 #import "UGBalanceConversionRecordController.h"
 #import "UGSignInHistoryModel.h"
 #import "UGSalaryListView.h"
+#import "TKLRechargeMainViewController.h"
+#import "TKLRechargeListViewController.h"
 @interface TKLMoneyViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;          /**<  cell 标题*/
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;      /**<   cell头像*/
@@ -144,8 +146,12 @@
 }
 - (IBAction)rechargeButtonTaped:(id)sender {
     //存款
-    UGRechargeTypeTableViewController *rechargeVC = _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
-    [self.navigationController pushViewController:rechargeVC animated:YES];
+//    TKLRechargeMainViewController*rechargeVC = _LoadVC_from_storyboard_(@"TKLRechargeMainViewController");
+//    [self.navigationController pushViewController:rechargeVC animated:YES];
+    
+    TKLRechargeListViewController *view1 = _LoadVC_from_storyboard_(@"TKLRechargeListViewController");
+    view1.type = RT_转账;
+    [self.navigationController pushViewController:view1 animated:YES];
 }
 - (IBAction)withdrawButtonTaped:(id)sender {
     //提现

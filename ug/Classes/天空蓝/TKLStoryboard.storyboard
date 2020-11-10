@@ -1218,6 +1218,135 @@
             </objects>
             <point key="canvasLocation" x="-168.11594202898553" y="162.72321428571428"/>
         </scene>
+        <!--天空蓝充值-->
+        <scene sceneID="eed-Jm-QPr">
+            <objects>
+                <viewController storyboardIdentifier="TKLRechargeMainViewController" title="天空蓝充值" id="PtW-Pg-syH" customClass="TKLRechargeMainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FRR-UQ-hJD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6j-Pq-Msg">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiN-b3-55w">
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jzp-a7-IYI">
+                                        <rect key="frame" x="30" y="12" width="354" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="sDM-hQ-k6a"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="转账充值"/>
+                                            <segment title="在线充值"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="onSegmentedControlValueChanged:" destination="PtW-Pg-syH" eventType="valueChanged" id="ktx-3X-PUB"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="jzp-a7-IYI" firstAttribute="leading" secondItem="LiN-b3-55w" secondAttribute="leading" constant="30" id="CBt-WX-s3w"/>
+                                    <constraint firstAttribute="height" constant="60" id="MIh-Yk-pRe"/>
+                                    <constraint firstItem="jzp-a7-IYI" firstAttribute="centerX" secondItem="LiN-b3-55w" secondAttribute="centerX" id="YKo-ab-meJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="jzp-a7-IYI" secondAttribute="bottom" constant="8" id="wUN-gK-8UG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QUy-cc-6CQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QUy-cc-6CQ" firstAttribute="bottom" secondItem="s6j-Pq-Msg" secondAttribute="bottom" id="0hg-sk-iPA"/>
+                            <constraint firstItem="s6j-Pq-Msg" firstAttribute="leading" secondItem="QUy-cc-6CQ" secondAttribute="leading" id="Gby-sg-bVU"/>
+                            <constraint firstItem="QUy-cc-6CQ" firstAttribute="trailing" secondItem="s6j-Pq-Msg" secondAttribute="trailing" id="MoP-uk-JI2"/>
+                            <constraint firstItem="s6j-Pq-Msg" firstAttribute="top" secondItem="LiN-b3-55w" secondAttribute="bottom" id="WqP-9X-MRu"/>
+                            <constraint firstItem="QUy-cc-6CQ" firstAttribute="trailing" secondItem="LiN-b3-55w" secondAttribute="trailing" id="aAJ-9S-ylh"/>
+                            <constraint firstItem="LiN-b3-55w" firstAttribute="top" secondItem="QUy-cc-6CQ" secondAttribute="top" id="jZP-XB-F3B"/>
+                            <constraint firstItem="LiN-b3-55w" firstAttribute="leading" secondItem="QUy-cc-6CQ" secondAttribute="leading" id="rmB-Z0-oeW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="s6j-Pq-Msg" id="D0R-i6-9QT"/>
+                        <outlet property="segmentedControl" destination="jzp-a7-IYI" id="V8J-ME-Dnp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cp8-mV-8hJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="810" y="11"/>
+        </scene>
+        <!--充值列表-->
+        <scene sceneID="smk-Lq-EJe">
+            <objects>
+                <viewController storyboardIdentifier="TKLRechargeListViewController" id="YT9-zf-Vmd" userLabel="充值列表" customClass="TKLRechargeListViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x9n-cu-okH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lr1-MC-mxH">
+                                <rect key="frame" x="0.0" y="44" width="414" height="130"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSf-EI-cH4">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                        <color key="backgroundColor" red="0.86659032110000001" green="0.86671549079999999" blue="0.86656308169999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="fDa-6J-3vF"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="2" id="x3q-Ag-7Lz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDJ-UT-sdo">
+                                        <rect key="frame" x="0.0" y="128" width="414" height="2"/>
+                                        <color key="backgroundColor" red="0.86659032110000001" green="0.86671549079999999" blue="0.86656308169999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="GeX-J5-N14"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="WDJ-UT-sdo" secondAttribute="bottom" id="BeX-vc-o1A"/>
+                                    <constraint firstItem="WDJ-UT-sdo" firstAttribute="leading" secondItem="Lr1-MC-mxH" secondAttribute="leading" id="Kro-2U-tlW"/>
+                                    <constraint firstItem="JSf-EI-cH4" firstAttribute="top" secondItem="Lr1-MC-mxH" secondAttribute="top" id="OVa-Da-rTS"/>
+                                    <constraint firstAttribute="trailing" secondItem="WDJ-UT-sdo" secondAttribute="trailing" id="d9G-1K-3pO"/>
+                                    <constraint firstAttribute="trailing" secondItem="JSf-EI-cH4" secondAttribute="trailing" id="mSM-31-UcY"/>
+                                    <constraint firstAttribute="height" constant="130" id="vSZ-us-1YP"/>
+                                    <constraint firstItem="JSf-EI-cH4" firstAttribute="leading" secondItem="Lr1-MC-mxH" secondAttribute="leading" id="yOH-zD-K6t"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDf-kC-YVH">
+                                <rect key="frame" x="0.0" y="174" width="414" height="688"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fWg-NR-qEl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cDf-kC-YVH" firstAttribute="leading" secondItem="fWg-NR-qEl" secondAttribute="leading" id="Bh7-DZ-OON"/>
+                            <constraint firstItem="fWg-NR-qEl" firstAttribute="bottom" secondItem="cDf-kC-YVH" secondAttribute="bottom" id="K3g-d8-qYz"/>
+                            <constraint firstItem="fWg-NR-qEl" firstAttribute="trailing" secondItem="Lr1-MC-mxH" secondAttribute="trailing" id="Mu8-BN-A0Q"/>
+                            <constraint firstItem="Lr1-MC-mxH" firstAttribute="leading" secondItem="fWg-NR-qEl" secondAttribute="leading" id="Ywz-cC-vM8"/>
+                            <constraint firstItem="cDf-kC-YVH" firstAttribute="top" secondItem="Lr1-MC-mxH" secondAttribute="bottom" id="Z8X-yc-Xer"/>
+                            <constraint firstItem="Lr1-MC-mxH" firstAttribute="top" secondItem="fWg-NR-qEl" secondAttribute="top" id="bU1-gZ-kDU"/>
+                            <constraint firstItem="fWg-NR-qEl" firstAttribute="trailing" secondItem="cDf-kC-YVH" secondAttribute="trailing" id="fUI-gZ-KZ4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="colloectionBgView" destination="Lr1-MC-mxH" id="Tmi-DX-WAP"/>
+                        <outlet property="contentView" destination="cDf-kC-YVH" id="dby-XT-9OR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXV-AF-zDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="18"/>
+        </scene>
     </scenes>
     <resources>
         <image name="JY_icon_pwd" width="24" height="24"/>

@@ -21,7 +21,7 @@
         autoPackPlist = @"/Users/fish/Desktop/AutoPack.plist";
     }
     else if ([NSUserName() isEqualToString:@"andrew"]) {
-         autoPackPlist = @"/Users/andrew/打包程序/AutoPack.plist";//
+         autoPackPlist = @"/Users/andrew/Desktop/AutoPack.plist";//
     }
     else if ([NSUserName() isEqualToString:@"ezer"]) {
         autoPackPlist = @"/Users/ezer/打包程序/AutoPack.plist";
@@ -50,7 +50,7 @@
 //超级签名后台没有c005，c201
 //                NSString *ids = @"a002,c001,c105b,c190,c048,l001,c228,c018,l002,c053,c085,c134,c137,c141,c150,c151,c158,c163,c165,c169,c173,c175,c002,c091,c049,c011,c012,c073,c092,c116,c126,h003b,c184,c035,c035b,c035c,c052,c054,c108,c193,c200,c120,c006,c198,c008,c203,c205,c208,c212,c213,c217,c211,c230,c233,c235,c237,c206,c246,c126b,c153,c225,c245";    // 站点编号(可以批量打包用','号隔开)  注意别删，打全站用
 
-                NSString *ids = @"c150";    // 站点编号(可以批量打包用','号隔开)每天上班第一件事打t005
+                NSString *ids = @"c084";    // 站点编号(可以批量打包用','号隔开)每天上班第一件事打t005
                 NSString *branch = @"dev_master";// 分支名dev_master_waitWithdrawal
                 BOOL willUpload = 1;        // 打包后是否上传审核
 
@@ -66,7 +66,7 @@
                 }];
             }
             else {
-                NSString *environment = @"master";    // 正式环境：master，其他：fish1,fish2,fish3,parker1,...
+                NSString *environment = @"master";    //master andrew1 正式环境：master，其他：fish1,fish2,fish3,parker1,...
                 NSString *branch = @"master";    // 分支名：fish/dev1
                 
                 [RNPack checkEnvironment:environment completion:^(NSString * _Nonnull environment) {
