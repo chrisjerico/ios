@@ -138,7 +138,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *icon_hot;    /**<   热门图片路径 */
 // 自定义参数
 @property (nonatomic, readonly) MobileMenuType type;        /**<   页面类型 */
-@property (nonatomic, readonly) NSString *defaultImgName;   /**<   本地图标 */
+@property (nonatomic, copy) NSString *defaultImgName;   /**<   本地图标 */
 @property (nonatomic, readonly) NSString *clsName;
 + (NSArray <UGMobileMenu *>*)allMenus;
 - (void)createViewController:(void (^)(__kindof UIViewController *vc))completion;
