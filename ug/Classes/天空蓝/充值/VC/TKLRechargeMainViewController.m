@@ -27,18 +27,16 @@
     self.title = @"充值";
     _view1 = _LoadVC_from_storyboard_(@"TKLRechargeListViewController");
     _view1.type = RT_转账;
-//    [_view1 reLoadDate];
     _view2 = _LoadVC_from_storyboard_(@"TKLRechargeListViewController");
     _view2.type = RT_在线;
-//    [_view2 reLoadDate];
-//    [_contentView addSubview:_view2.view];
+    [_contentView addSubview:_view2.view];
     [_contentView addSubview:_view1.view];
     [_view1.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(_contentView);
     }];
-//    [_view2.view mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.equalTo(_contentView);
-//    }];
+    [_view2.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_contentView);
+    }];
     //转账充值放到最前面
     [_contentView bringSubviewToFront:_view1.view];
     
