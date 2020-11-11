@@ -147,28 +147,37 @@
 -(void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel{
     _nextIssueModel = nextIssueModel;
     FastSubViewCode(self)
-    [subLabel(@"特等奖label") setText:_nextIssueModel.d0];
-    [subLabel(@"一等奖label") setText:_nextIssueModel.d1];
-    [subLabel(@"二等奖label")setText: [_nextIssueModel.d2 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"三等奖label")setText:[_nextIssueModel.d3 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"四等奖label")setText:[_nextIssueModel.d4 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"五等奖label")setText:[_nextIssueModel.d5 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"六等奖label")setText:[_nextIssueModel.d6 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"七等奖label")setText:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"八等奖label")setText:[_nextIssueModel.d8 stringByReplacingOccurrencesOfString:@"," withString:@"-"]];
-    [subLabel(@"t0label")setText:_nextIssueModel.t0];
-    [subLabel(@"t1label")setText:_nextIssueModel.t1];
-    [subLabel(@"t2label")setText:_nextIssueModel.t2];
-    [subLabel(@"t3label")setText:_nextIssueModel.t3];
-    [subLabel(@"t4label")setText:_nextIssueModel.t4];
-    [subLabel(@"t5label")setText:_nextIssueModel.t5];
-    [subLabel(@"t6label")setText:_nextIssueModel.t6];
-    [subLabel(@"t7label")setText:_nextIssueModel.t7];
-    [subLabel(@"t8label")setText:_nextIssueModel.t8];
-    [subLabel(@"t9label")setText:_nextIssueModel.t9];
-    
+    [subLabel(@"特等奖label") setText:[self kongStr:_nextIssueModel.d0]];
+    [subLabel(@"一等奖label") setText:[self kongStr:_nextIssueModel.d1]];
+    [subLabel(@"二等奖label")setText:[self kongStr:[_nextIssueModel.d2 stringByReplacingOccurrencesOfString:@"," withString:@"-"]] ];
+    [subLabel(@"三等奖label")setText:[self kongStr:[_nextIssueModel.d3 stringByReplacingOccurrencesOfString:@"," withString:@"-"]] ];
+    [subLabel(@"四等奖label")setText:[self kongStr:[_nextIssueModel.d4 stringByReplacingOccurrencesOfString:@"," withString:@"-"]] ];
+    [subLabel(@"五等奖label")setText:[self kongStr:[_nextIssueModel.d5 stringByReplacingOccurrencesOfString:@"," withString:@"-"]] ];
+    [subLabel(@"六等奖label")setText:[self kongStr:[_nextIssueModel.d6 stringByReplacingOccurrencesOfString:@"," withString:@"-"]]];
+    [subLabel(@"七等奖label")setText:[self kongStr:[_nextIssueModel.d7 stringByReplacingOccurrencesOfString:@"," withString:@"-"]]];
+    [subLabel(@"八等奖label")setText:[self kongStr:[_nextIssueModel.d8 stringByReplacingOccurrencesOfString:@"," withString:@"-"]] ];
+    [subLabel(@"t0label")setText:[self kongStr:_nextIssueModel.t0]];
+    [subLabel(@"t1label")setText:[self kongStr:_nextIssueModel.t1]];
+    [subLabel(@"t2label")setText:[self kongStr:_nextIssueModel.t2]];
+    [subLabel(@"t3label")setText:[self kongStr:_nextIssueModel.t3]];
+    [subLabel(@"t4label")setText:[self kongStr:_nextIssueModel.t4]];
+    [subLabel(@"t5label")setText:[self kongStr:_nextIssueModel.t5]];
+    [subLabel(@"t6label")setText:[self kongStr:_nextIssueModel.t6]];
+    [subLabel(@"t7label")setText:[self kongStr:_nextIssueModel.t7]];
+    [subLabel(@"t8label")setText:[self kongStr:_nextIssueModel.t8]];
+    [subLabel(@"t9label")setText:[self kongStr:_nextIssueModel.t9]];
+ 
+}
 
+-(NSString *)kongStr:(NSString *)str{
+    NSString *returnStr ;
     
-    
+    if ([CMCommon stringIsNull:str]) {
+        returnStr = @"   ";
+    }
+    else{
+        returnStr = str;
+    }
+    return returnStr;
 }
 @end
