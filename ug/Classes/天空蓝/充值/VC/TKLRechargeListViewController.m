@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSMutableArray <UGpaymentModel *> *tableViewDataArray;
 @property (nonatomic, strong) UGdepositModel *mUGdepositModel;
 @property (strong, nonatomic) UICollectionView  *collectionView;
+@property (strong, nonatomic)HLHorizontalPageLayout *layout;
 @end
 
 @implementation TKLRechargeListViewController
@@ -34,10 +35,17 @@
     myRow = 0;
     _tableViewDataArray = [NSMutableArray  new];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.colloectionBgView).with.offset(10);
-        make.right.bottom.equalTo(self.colloectionBgView).with.offset(-10);
+        make.top.equalTo(self.colloectionBgView).with.offset(10);
+        make.bottom.equalTo(self.colloectionBgView).with.offset(-10);
+        make.left.equalTo(self.colloectionBgView).with.offset(20);
+        make.right.equalTo(self.colloectionBgView).with.offset(-20);
     }];
     
+    FastSubViewCode(self.colloectionBgView);
+    [self.colloectionBgView bringSubviewToFront:subButton(@"左边Button")];
+    [self.colloectionBgView bringSubviewToFront:subButton(@"右边Button")];
+    [subButton(@"右边Button") setHidden:NO];
+    [subButton(@"左边Button") setHidden:YES];
     [self rechargeCashierData];
    
     
@@ -132,18 +140,18 @@
 - (UICollectionView *)collectionView{
     if (_collectionView == nil) {
         
-        CGFloat width = UGScreenW -20;
+        CGFloat width = UGScreenW -40;
         NSInteger col = 2; // 列数
         
-        HLHorizontalPageLayout *layout = [[HLHorizontalPageLayout alloc] init];
-        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
-        layout.minimumInteritemSpacing = 10;
-        layout.minimumLineSpacing = 10;
+        self.layout = [[HLHorizontalPageLayout alloc] init];
+        _layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+        _layout.minimumInteritemSpacing = 10;
+        _layout.minimumLineSpacing = 10;
         // item宽
-        CGFloat itemWidth = (width - 10 * (col-1) - layout.sectionInset.left - layout.sectionInset.right) / col;
-        layout.itemSize = CGSizeMake( itemWidth, 50.0);
+        CGFloat itemWidth = (width - 10 * (col-1) - _layout.sectionInset.left - _layout.sectionInset.right) / col;
+        _layout.itemSize = CGSizeMake( itemWidth, 50.0);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 15, width, 50.0 * 2 + 20) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 15, width, 50.0 * 2 + 20) collectionViewLayout:_layout];
         
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
@@ -151,6 +159,7 @@
         _collectionView.showsVerticalScrollIndicator = NO;
         [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([TKLCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"TKLCollectionViewCell"];
         _collectionView.backgroundColor = Skin1.bgColor;
+
     }
     return _collectionView;
 }
@@ -218,6 +227,52 @@
 //            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
+}
+
+- (IBAction)leftAction:(id)sender {
+
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    // 停止类型1、停止类型2
+    BOOL scrollToScrollStop = !scrollView.tracking && !scrollView.dragging &&    !scrollView.decelerating;
+    if (scrollToScrollStop) {
+        [self scrollViewDidEndScroll];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        // 停止类型3
+        BOOL dragToDragStop = scrollView.tracking && !scrollView.dragging && !scrollView.decelerating;
+        if (dragToDragStop) {
+            [self scrollViewDidEndScroll];
+        }
+    }
+}
+
+#pragma mark - scrollView 停止滚动监测
+- (void)scrollViewDidEndScroll {
+    NSInteger FrameWidth = UGScreenW - 40;
+    NSInteger contentWidth = self.tableViewDataArray.count > 4 ?  self.layout.pageNumber *  FrameWidth : FrameWidth;
+
+    NSInteger oldContentOffSet_X = self.collectionView.contentOffset.x;
+    NSInteger distance = contentWidth - FrameWidth;
+
+
+    FastSubViewCode(self.colloectionBgView);
+
+    if (oldContentOffSet_X == 0) {//第一页
+        [subButton(@"右边Button") setHidden:NO];
+        [subButton(@"左边Button") setHidden:YES];
+    } else if(distance == oldContentOffSet_X ) {//最后1页
+        [subButton(@"右边Button") setHidden:YES];
+        [subButton(@"左边Button") setHidden:NO];
+    }else{
+        [subButton(@"右边Button") setHidden:NO];
+        [subButton(@"左边Button") setHidden:NO];
+    }
+
 }
 
 

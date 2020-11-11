@@ -1309,16 +1309,53 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmf-e5-IHu">
+                                        <rect key="frame" x="394" y="10" width="20" height="110"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="110" id="BFJ-Pc-hE2"/>
+                                            <constraint firstAttribute="width" constant="20" id="yax-JE-ofs"/>
+                                        </constraints>
+                                        <state key="normal" title="⇨"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="右边Button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="leftAction:" destination="YT9-zf-Vmd" eventType="touchUpInside" id="rNp-PK-TvB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s88-XP-sWr">
+                                        <rect key="frame" x="0.0" y="10" width="20" height="110"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="NCq-Y9-32P"/>
+                                            <constraint firstAttribute="height" constant="110" id="PQE-Ex-aNm"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="ai7-B4-wQT"/>
+                                        </constraints>
+                                        <state key="normal" title="⇦"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左边Button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="leftAction:" destination="YT9-zf-Vmd" eventType="touchUpInside" id="pu3-OQ-3vM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="WDJ-UT-sdo" firstAttribute="top" secondItem="Tmf-e5-IHu" secondAttribute="bottom" constant="8" symbolic="YES" id="0dX-1r-daj"/>
+                                    <constraint firstItem="s88-XP-sWr" firstAttribute="centerY" secondItem="Lr1-MC-mxH" secondAttribute="centerY" id="Are-6f-Lit"/>
                                     <constraint firstAttribute="bottom" secondItem="WDJ-UT-sdo" secondAttribute="bottom" id="BeX-vc-o1A"/>
+                                    <constraint firstItem="Tmf-e5-IHu" firstAttribute="top" secondItem="JSf-EI-cH4" secondAttribute="bottom" constant="8" symbolic="YES" id="IO2-ZA-RbP"/>
                                     <constraint firstItem="WDJ-UT-sdo" firstAttribute="leading" secondItem="Lr1-MC-mxH" secondAttribute="leading" id="Kro-2U-tlW"/>
                                     <constraint firstItem="JSf-EI-cH4" firstAttribute="top" secondItem="Lr1-MC-mxH" secondAttribute="top" id="OVa-Da-rTS"/>
+                                    <constraint firstItem="Tmf-e5-IHu" firstAttribute="centerY" secondItem="Lr1-MC-mxH" secondAttribute="centerY" id="Xg9-XS-xox"/>
                                     <constraint firstAttribute="trailing" secondItem="WDJ-UT-sdo" secondAttribute="trailing" id="d9G-1K-3pO"/>
                                     <constraint firstAttribute="trailing" secondItem="JSf-EI-cH4" secondAttribute="trailing" id="mSM-31-UcY"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tmf-e5-IHu" secondAttribute="trailing" id="trg-2Q-dv6"/>
                                     <constraint firstAttribute="height" constant="130" id="vSZ-us-1YP"/>
                                     <constraint firstItem="JSf-EI-cH4" firstAttribute="leading" secondItem="Lr1-MC-mxH" secondAttribute="leading" id="yOH-zD-K6t"/>
+                                    <constraint firstItem="s88-XP-sWr" firstAttribute="leading" secondItem="Lr1-MC-mxH" secondAttribute="leading" id="zEv-0b-xOH"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDf-kC-YVH">
@@ -1345,7 +1382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXV-AF-zDy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636" y="18"/>
+            <point key="canvasLocation" x="1634.7826086956522" y="17.410714285714285"/>
         </scene>
     </scenes>
     <resources>
