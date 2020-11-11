@@ -1320,9 +1320,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="右边Button"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="leftAction:" destination="YT9-zf-Vmd" eventType="touchUpInside" id="rNp-PK-TvB"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s88-XP-sWr">
                                         <rect key="frame" x="0.0" y="10" width="20" height="110"/>
@@ -1336,9 +1333,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左边Button"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="leftAction:" destination="YT9-zf-Vmd" eventType="touchUpInside" id="pu3-OQ-3vM"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

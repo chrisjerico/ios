@@ -26,6 +26,11 @@
     self.layer.borderWidth= 1;
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
+    FastSubViewCode(self)
+    subButton(@"充值教程button").titleLabel.font = [UIFont systemFontOfSize:12];
+    subButton(@"充值教程button").titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    subButton(@"充值教程button").titleLabel.numberOfLines = 2;
+    [subButton(@"充值教程button") setTitle:@"充值\n按钮" forState:0];
 }
 
 - (void)setNameStr:(NSString *)nameStr {

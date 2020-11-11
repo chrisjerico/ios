@@ -65,7 +65,7 @@
     else{
         [cell setChecked:NO];
     }
-    return cell;
+   return (TKLCollectionViewCell *) [CMCommon xnbCell:cell model:model];
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%ld分区---%ldItem", indexPath.section, indexPath.row);
@@ -229,9 +229,6 @@
     }];
 }
 
-- (IBAction)leftAction:(id)sender {
-
-}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     // 停止类型1、停止类型2
@@ -255,13 +252,10 @@
 - (void)scrollViewDidEndScroll {
     NSInteger FrameWidth = UGScreenW - 40;
     NSInteger contentWidth = self.tableViewDataArray.count > 4 ?  self.layout.pageNumber *  FrameWidth : FrameWidth;
-
     NSInteger oldContentOffSet_X = self.collectionView.contentOffset.x;
     NSInteger distance = contentWidth - FrameWidth;
 
-
     FastSubViewCode(self.colloectionBgView);
-
     if (oldContentOffSet_X == 0) {//第一页
         [subButton(@"右边Button") setHidden:NO];
         [subButton(@"左边Button") setHidden:YES];
