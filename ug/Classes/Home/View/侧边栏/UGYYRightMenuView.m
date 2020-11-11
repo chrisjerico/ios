@@ -27,7 +27,8 @@
 #import "GameCategoryDataModel.h"
 #import "YBPopupMenu.h"
 #import "UGWithdrawalViewController.h"
-#import "TKLRechargeMainViewController.h";
+#import "TKLRechargeMainViewController.h"
+#import "UGWithdrawalVC.h"
 
 @interface UGYYRightMenuView ()<UITableViewDelegate,UITableViewDataSource, YBPopupMenuDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -393,9 +394,11 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             [subButton(@"取Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 [self hiddenSelf];
                 //
-                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-                fundsVC.selectIndex = 1;
-                [NavController1 pushViewController:fundsVC animated:true];
+                UGWithdrawalVC *withdrawalVC = _LoadVC_from_storyboard_(@"UGWithdrawalVC");
+                WeakSelf
+                withdrawalVC.withdrawSuccessBlock = ^{
+                };
+                [NavController1 pushViewController:withdrawalVC animated:true];
             }];
             
             if ([UGUserModel currentUser].isTest) {

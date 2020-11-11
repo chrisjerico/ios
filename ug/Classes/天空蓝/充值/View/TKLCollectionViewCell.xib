@@ -24,8 +24,8 @@
                             <constraint firstAttribute="height" constant="30" id="ySD-8g-XkD"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行卡转账" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qkd-fP-Kf7">
-                        <rect key="frame" x="50" y="3" width="76.5" height="44"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行卡转账" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qkd-fP-Kf7">
+                        <rect key="frame" x="50" y="3" width="243" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="2T2-H3-khA"/>
                         </constraints>
@@ -59,6 +59,7 @@
                 <constraint firstAttribute="bottom" secondItem="oad-3w-neP" secondAttribute="bottom" id="N3f-H2-Rsj"/>
                 <constraint firstAttribute="trailing" secondItem="oad-3w-neP" secondAttribute="trailing" id="Rcl-mx-C6L"/>
                 <constraint firstAttribute="bottom" secondItem="e0j-76-ZYn" secondAttribute="bottom" id="WW7-xL-4Kh"/>
+                <constraint firstItem="e0j-76-ZYn" firstAttribute="leading" secondItem="Qkd-fP-Kf7" secondAttribute="trailing" id="Y4c-dm-zBk"/>
                 <constraint firstAttribute="trailing" secondItem="e0j-76-ZYn" secondAttribute="trailing" id="cfq-4G-PW5"/>
                 <constraint firstItem="i0P-G6-7CJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="il3-tL-1nj"/>
                 <constraint firstItem="Qkd-fP-Kf7" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="nwz-X6-apd"/>

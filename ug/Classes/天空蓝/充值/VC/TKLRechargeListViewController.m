@@ -46,6 +46,7 @@
     [self.colloectionBgView bringSubviewToFront:subButton(@"右边Button")];
     [subButton(@"右边Button") setHidden:NO];
     [subButton(@"左边Button") setHidden:YES];
+    [subView(@"无内容View") setHidden:YES];
     [self rechargeCashierData];
    
     
@@ -213,8 +214,15 @@
                 }
                 // 同步到主线程
                  dispatch_async(dispatch_get_main_queue(), ^{
-                     [weakSelf.collectionView reloadData];
-                     
+                     FastSubViewCode(self.view)
+                     if (weakSelf.tableViewDataArray.count) {
+                         [weakSelf.collectionView reloadData];
+                         [subView(@"无内容View") setHidden:YES];
+                     } else {
+                         [subView(@"无内容View") setHidden:NO];
+                         [self.view bringSubviewToFront:subView(@"无内容View")];
+                     }
+
                      dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
 
                      dispatch_after(delayTime, dispatch_get_main_queue(), ^{
@@ -224,6 +232,9 @@
             }];
         } failure:^(id msg) {
             [SVProgressHUD dismiss];
+            FastSubViewCode(self.view)
+            [subView(@"无内容View") setHidden:NO];
+            [self.view bringSubviewToFront:subView(@"无内容View")];
 //            [SVProgressHUD showErrorWithStatus:msg];
         }];
     }];
