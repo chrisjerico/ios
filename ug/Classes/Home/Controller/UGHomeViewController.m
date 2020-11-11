@@ -844,7 +844,6 @@
             } else {
                 [weakSelf.titleView setImgName:config.mobile_logo];
             }
-            [self skin];
             
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
