@@ -32,7 +32,7 @@
     } else {
         self.nameLabel.backgroundColor = item.select ? UGBlueColor : Skin1.homeContentColor;
     }
-    self.nameLabel.textColor =  item.select ? [UIColor whiteColor] : Skin1.textColor3;
+    self.nameLabel.textColor =  item.select ? [UIColor whiteColor] : Skin1.textColor2;
     
    
 }

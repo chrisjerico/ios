@@ -443,8 +443,8 @@ static NSString *footViewID = @"YNCollectionFootView";
         if (APP.isLight) {
             _segmentView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
             self.rightStackView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
-            self.betCollectionView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
-            self.qsView.contentView.backgroundColor =  [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
+            self.betCollectionView.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor :Skin1.bgColor;
+            self.qsView.contentView.backgroundColor =  [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor :Skin1.bgColor;
             
         }
         else{
