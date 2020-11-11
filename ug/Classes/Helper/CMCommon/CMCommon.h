@@ -2,7 +2,7 @@
 //  CMCommon.h
 
 #import <Foundation/Foundation.h>
-
+@class  UGpaymentModel;
 @interface CMCommon : NSObject
 
 /******************************************************************************
@@ -516,4 +516,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 
 //字典转字符串
 +(NSString *)dicParseStr:(NSDictionary *)dic;
+
+//虚拟币充值教程
++(UITableViewCell *)xnbCell:(UITableViewCell *)cell model:(UGpaymentModel *)model;
 @end

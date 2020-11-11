@@ -75,42 +75,8 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
     UGRechargeTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:rechargeTypeCellid forIndexPath:indexPath];
     UGpaymentModel *model = self.tableViewDataArray[indexPath.row];
     cell.item = model;
-
-    if ([model.pid isEqualToString:@"xnb_online"] ) {
-        [cell.mBtn setHidden:APP.isNoOnLineDoc];
-        [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-        [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                //虚拟教程
-            
-            if ([@"c012" containsString:APP.SiteId]) {
-                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
-                vc.webName = @"c012充值";
-                vc.title = @"虚拟币教程";
-                [NavController1 pushViewController:vc animated:true];
-            } else {
-                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
-                vc.webName = @"火币";
-                vc.title = @"虚拟币教程";
-                [NavController1 pushViewController:vc animated:true];
-            }
-           
-        }];
-    }
-    else if ([model.pid isEqualToString:@"xnb_transfer"]){
-        [cell.mBtn setHidden:NO];
-        [cell.mBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-        [cell.mBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                //虚拟教程
-            HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
-            vc.webName = @"火币";
-            vc.title = @"虚拟币教程";
-            [NavController1 pushViewController:vc animated:true];
-        }];
-    }
-    else {
-        [cell.mBtn setHidden:YES];
-    }
-    return cell;
+    
+    return (UGRechargeTypeCell *) [CMCommon xnbCell:cell model:model];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

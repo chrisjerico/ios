@@ -42,7 +42,8 @@
     
     NSInteger item = indexPath.item;
     // 总页数
-    NSInteger pageNumber = item / (self.rowCount * self.columnCount);
+    NSInteger pageNumber =  item / (self.rowCount * self.columnCount);
+    
     // 该页中item的序号
     NSInteger itemInPage = item % (self.rowCount * self.columnCount);
     // item的所在列、行
@@ -68,6 +69,7 @@
     if (itemCount%(self.rowCount*self.columnCount)) {
         pageNumber += 1;
     }
+    self.pageNumber = pageNumber;
     return CGSizeMake(pageNumber * self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
 }
 

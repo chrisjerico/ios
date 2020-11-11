@@ -5740,6 +5740,7 @@
 		031E160723BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03314FD623CDE0B10070CB54 /* 火山橙 */,
 				CFF11A2D241E768700C7E3A3 /* 资料页 */,
 				03A5D37F23BFA4480055A998 /* 金沙主题 */,
 				031E164723BE812400B0F813 /* 六合板块 */,
@@ -9007,7 +9008,6 @@
 		CFF11A2D241E768700C7E3A3 /* 资料页 */ = {
 			isa = PBXGroup;
 			children = (
-				03314FD623CDE0B10070CB54 /* 火山橙 */,
 				031E161D23BE812400B0F813 /* UGDocumentView.h */,
 				031E161C23BE812400B0F813 /* UGDocumentView.m */,
 				CFF11A2F241E76AF00C7E3A3 /* IssueView.h */,

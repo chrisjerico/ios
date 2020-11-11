@@ -15,4 +15,6 @@
 @property (nonatomic) CGSize itemSize;
 @property (nonatomic) UIEdgeInsets sectionInset;
 
+@property (nonatomic)NSInteger pageNumber;// 总页数
+
 @end

@@ -18,6 +18,8 @@
 #import "UGChangLongController.h"
 #import "UGBetRecordViewController.h"
 #import "UGRealBetRecordViewController.h"
+#import "UGdepositModel.h"
+#import "HelpDocViewController.h"
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -1935,5 +1937,45 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
         NSLog(@"字典为空");
         return nil;
     }
+}
+
++(UITableViewCell *)xnbCell:(UITableViewCell *)cell model:(UGpaymentModel *)model{
+    FastSubViewCode(cell);
+    if ([model.pid isEqualToString:@"xnb_online"] ) {
+        [subButton(@"充值教程button") setHidden:APP.isNoOnLineDoc];
+        [subButton(@"充值教程button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"充值教程button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                //虚拟教程
+            
+            if ([@"c012" containsString:APP.SiteId]) {
+                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+                vc.webName = @"c012充值";
+                vc.title = @"虚拟币教程";
+                [NavController1 pushViewController:vc animated:true];
+            } else {
+                HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+                vc.webName = @"火币";
+                vc.title = @"虚拟币教程";
+                [NavController1 pushViewController:vc animated:true];
+            }
+           
+        }];
+    }
+    else if ([model.pid isEqualToString:@"xnb_transfer"]){
+        [subButton(@"充值教程button") setHidden:NO];
+        [subButton(@"充值教程button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+        [subButton(@"充值教程button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                //虚拟教程
+            HelpDocViewController *vc = _LoadVC_from_storyboard_(@"HelpDocViewController");
+            vc.webName = @"火币";
+            vc.title = @"虚拟币教程";
+            [NavController1 pushViewController:vc animated:true];
+        }];
+    }
+    else {
+        [subButton(@"充值教程button") setHidden:YES];
+    }
+    
+    return  cell;
 }
 @end
