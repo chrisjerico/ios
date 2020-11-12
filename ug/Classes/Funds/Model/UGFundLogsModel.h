@@ -20,10 +20,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *changeMoney;/**<   变动金额 */
 @property (nonatomic, strong) NSString *balance;    /**<   会员余额 */
 @property (nonatomic, strong) NSString *category;   /**<   资金明细分类 */
+
+@property (nonatomic, strong) NSString *fid;       /**<   id */
+@property (nonatomic, strong) NSString *name;     /**<   名称 */
+
+-(instancetype)initWithFid:(NSString *)fid Name:(NSString *)name;
 @end
 
 @interface UGFundLogsListModel : UGModel
 @property (nonatomic, strong) NSArray<UGFundLogsModel> *list;
+@property (nonatomic, strong) NSArray<UGFundLogsModel> *groups;
 @property (nonatomic, assign) NSInteger total;      /**<   数据总数 */
 
 @end

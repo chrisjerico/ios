@@ -796,7 +796,7 @@
                         NSMutableArray<GameCategoryModel*> *newGameTypeArray =
                         [[NSMutableArray alloc] initWithArray:self.gameTypeView.gameTypeArray];
                         for (GameCategoryModel *object in  self.gameTypeView.gameTypeArray) {
-                            if ([object.iid isEqualToString:@"231"]) {
+                            if ([object.name isEqualToString:@"站长推荐"]) {
                                 weakSelf.jsWebmasterView.jsWebmasterList = object.list;
                                 [newGameTypeArray removeObject:object];
                                 break;
