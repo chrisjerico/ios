@@ -72,7 +72,6 @@
             site(@"c085",        @"c085hy",     @"165",     @"io.fhpt.H53F348DC",       @"https://x558.cc",                             @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
             site(@"c085yw",        @"c085ywhy",     @"316", @"io.fhpt.YSAC085YW",       @"https://x558.cc",                             @"企业包",     @"10000.AG"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
             site(@"c085a",       @"",           @"",        @"",                        @"https://c10000ll.com",                        @"企业包",     @"彩壹万"),
-            site(@"c117",        @"",           @"",        @"io.fhpt.H5AAB211E",       @"",                                            @"企业包",     @"50.CC彩票⽹"),
             site(@"c131",        @"",           @"",        @"io.fhpt.H51B87207",       @"",                                            @"企业包",     @"5000万娱乐城"),
             site(@"c134",        @"c134hy",     @"142",     @"io.fhpt.H5B711E9A",       @"https://19972030.com",                        @"企业包",     @"1997⾹港彩票"),//极光推送 账号xgcp1997@163.com 密码Qaz369369
             site(@"c137",        @"c137hy",     @"158",     @"io.fhpt.H5B75458D",       @"https://7033005.com",                         @"企业包",     @"7033彩票"),
@@ -147,9 +146,9 @@
             site(@"c246",       @"c246hy",     @"329",      @"io.fhpt.YSAC246",         @"https://647758.com",                         @"企业包",     @"澳门新葡京"),
             site(@"c242",       @"c242hy",     @"332",      @"io.fhpt.YSAC242",         @"https://460889.com",                         @"企业包",     @"新葡京娱乐场"),
 			site(@"c245",       @"c245hy",     @"343",      @"io.fhpt.YSAC245",         @"https://4823app.com",                         @"企业包",     @"4823威尼斯人"),//极光账号 vn4823sym@gmail.com 密码 Aa362600.jg
-            site(@"c239b",      @"c239bhy",    @"340",     @"io.fhpt.YSAC239",         @"https://5566569.com",                         @"企业包",     @"银河国际"),//b 站
+            site(@"c239b",      @"c239bhy",    @"340",      @"io.fhpt.YSAC239",         @"https://5566569.com",                         @"企业包",     @"银河国际"),//b 站
             site(@"c251",       @"c251hy",     @"348",      @"io.fhpt.YSAC251",         @"https://2420app.app",                         @"企业包",     @"新葡京娱乐城"),//
-            
+            site(@"c117",       @"c117hy",     @"352",      @"io.fhpt.YSAC117",         @"https://822323.com",                          @"企业包",     @"50.cc彩票网"),//
 
             site(@" t05-fish",      @"",          @"",        @"com.UGGame.cp",           @"http://t134f.fhptcdn.com",                    @"内测包",     @"test05"),
             site(@" t30-andrew",    @"",          @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
