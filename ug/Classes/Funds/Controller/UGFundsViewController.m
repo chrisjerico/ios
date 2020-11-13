@@ -142,7 +142,7 @@
         [self.slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view.mas_top);
             make.left.equalTo(self.view.mas_left).offset(0);
-            make.width.equalTo([NSNumber numberWithFloat:UGScreenW]);
+            make.width.equalTo([NSNumber numberWithFloat:UGScreenW-10]);
             make.bottom.equalTo(self.view.mas_bottom);
         }];
     } else {

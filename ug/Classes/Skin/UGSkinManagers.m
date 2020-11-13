@@ -1506,6 +1506,7 @@ static UGSkinManagers *__initSkin1 = nil;
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
 //    skitType = @"1";
+//   skitType = @"天空蓝";
     UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
 //    [sm getBlackSkin:true];
     if (sm) {
