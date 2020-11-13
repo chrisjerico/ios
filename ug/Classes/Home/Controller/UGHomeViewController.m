@@ -179,8 +179,13 @@
             };
         }
 
-        
+		if ([@"l002" containsString:APP.SiteId]) {
+			NSMutableDictionary * mDic = dict.mutableCopy;
+			mDic[@"六合资料"] = @[_rollingView, _bannerView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _trademarkView];
+			dict = mDic.copy;
+		}
         NSArray *views = dict[Skin1.skitType];
+	
         if (views.count) {
             [_contentStackView addArrangedSubviews:views];
         } else {
