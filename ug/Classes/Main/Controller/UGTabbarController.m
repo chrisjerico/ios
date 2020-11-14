@@ -169,7 +169,6 @@ static UGTabbarController *_tabBarVC = nil;
         [CMCommon clearWebCache];
         [CMCommon removeLastGengHao];
         [__self getUserInfo];
-        
         [__self chatgetToken];
         // 通知RN
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
