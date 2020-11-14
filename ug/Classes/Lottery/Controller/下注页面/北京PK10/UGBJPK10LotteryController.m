@@ -412,23 +412,25 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
-        NSString *selCode = @"";
+        UGGameplayModel *model =  self.gameDataArray[self.typeIndexPath.row];
+        NSString *selCode = model.code;
         NSMutableArray *array = [NSMutableArray array];
-		UGGameplayModel *model =  self.gameDataArray[self.typeIndexPath.row];
-		selCode = model.code;
-		if ([model.name isEqualToString:@"官方玩法"]) {
-			[self gfwfBetActionMode:model array:&array selCode:&selCode];
-		} else {
-			for (UGGameplaySectionModel *type in model.list) {
-				for (UGGameBetModel *game in type.list) {
-					if (game.select) {
-						game.money = self.amountTextF.text;
-						game.title = type.name;
-						[array addObject:game];
-					}
-				}
-			}
-		}
+        for (UGGameplayModel *model in self.gameDataArray) {
+            if ([model.name isEqualToString:@"官方玩法"]) {
+                [self gfwfBetActionMode:model array:&array selCode:&selCode];
+            } else {
+                for (UGGameplaySectionModel *type in model.list) {
+                    for (UGGameBetModel *game in type.list) {
+                        if (game.select) {
+                            game.money = self.amountTextF.text;
+                            game.title = type.name;
+                            [array addObject:game];
+                        }
+                    }
+                }
+            }
+        }
+		
         NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:array];
         [self goUGBetDetailViewObjArray:array.copy dicArray:dicArray.copy issueModel:self.nextIssueModel  gameType:self.nextIssueModel.gameId selCode:selCode];
     });
