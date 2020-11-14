@@ -65,7 +65,7 @@
                 }];
             }
             else {
-                NSString *environment = @"dev_master";    //master andrew1 正式环境：master，其他：fish1,fish2,fish3,parker1,...
+                NSString *environment = @"master";    //master andrew1 正式环境：master，其他：fish1,fish2,fish3,parker1,...
                 NSString *branch = @"master";    // 分支名：fish/dev1
                 
                 [RNPack checkEnvironment:environment completion:^(NSString * _Nonnull environment) {
