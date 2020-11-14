@@ -183,6 +183,29 @@ static UGTabbarController *_tabBarVC = nil;
                 [LanguageHelper changeLanguageAndRestartApp:[lm getLanCode]];
             }
         };
+        
+        if ([SysConf.loginNotice.loginNotice_switch isEqualToString:@"1"]) {
+            
+            if (![CMCommon stringIsNull:SysConf.loginNotice.loginNotice_text]) {
+                UGMessagePopView *popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(0, 0, 350, 260)];
+                popView.closeBlock = ^{
+                        [LEEAlert closeWithCompletionBlock:nil];
+                    };
+             
+                [LEEAlert alert].config
+                .LeeTitle(@"提示")
+                .LeeAddCustomView(^(LEECustomView *custom) {
+
+                    popView.content = SysConf.loginNotice.loginNotice_text;
+                    custom.view = popView;
+                    custom.positionType = LEECustomViewPositionTypeCenter;
+                })
+                .LeeAction(@"确定", ^{
+                })
+                .LeeShow();
+            }
+       
+        }
     });
     // 退出登陆
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {

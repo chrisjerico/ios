@@ -123,6 +123,11 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) double priceMin;
 @end
 
+// 登录通知Model
+@interface loginNoticeModel : UGModel
+@property (nonatomic, copy) NSString * loginNotice_switch;/**<   //登录通知开关。0 是关 1 是开 */
+@property (nonatomic, copy) NSString * loginNotice_text; /**<   //登录通知文字*/
+@end
 
 
 @protocol UGMobileMenu <NSObject>
@@ -247,6 +252,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString * currency;/**<   /货币单位，默认人民币  CNY    currency*/
 
 @property (nonatomic, copy) NSString * chatShareBetMinAmount;/**<   聊天室 注单分享最小金额限制*/
+
+@property (nonatomic, copy) loginNoticeModel * loginNotice;/**<   登录通知*/
 //
 + (instancetype)currentConfig;
 
