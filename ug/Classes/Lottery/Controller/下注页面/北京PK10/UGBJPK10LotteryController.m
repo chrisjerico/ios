@@ -385,7 +385,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateSelectLabelWithCount:0];
     self.amountTextF.text = nil;
     for (UGGameplayModel *model in self.gameDataArray) {
-        model.select = NO;
+        model.selectedCount = 0;
         for (UGGameplaySectionModel *type in model.list) {
             for (UGGameBetModel *game in type.list) {
                 game.select = NO;
@@ -477,7 +477,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
      if ([tableView isEqual:self.tableView]) {
+         UGGameplayModel *lastModel = self.gameDataArray[self.typeIndexPath.row];
          self.typeIndexPath = indexPath;
+         if ([@"官方玩法" isEqualToString:lastModel.name]) {
+             [self resetClick:nil];
+         }
+         
          UGGameplayModel *model = self.gameDataArray[indexPath.row];
          if ([@"官方玩法" isEqualToString:model.name]) {
              self.segmentView.dataArray = self.lmgmentTitleArray;
@@ -487,7 +492,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                  self.betCollectionView.height -= self.segmentView.height;
              }
              self.segmentView.hidden = NO;
-//             [self resetClick:nil];
+             [self resetClick:nil];
 			 self.segmentView.segmentIndexBlock(0);
          }
          else {
@@ -728,8 +733,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 				}
 			}
 		}
+        model.selectedCount = count;
+        [self.tableView reloadData];
+        [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 		[self.betCollectionView reloadData];
-		[self updateSelectLabelWithCount:count];
+        [self updateSelectLabelWithCount:({
+            NSInteger total = 0;
+            for (UGGameplayModel *model in self.gameDataArray) {
+                if (![@"官方玩法" isEqualToString:model.name]) {
+                    total += model.selectedCount;
+                }
+            }
+            total;
+        })];
 	}
 }
 
@@ -1083,6 +1099,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	if ([@"官方玩法" isEqualToString:model.name] && self.ezdwSegmentIndex == 1 && [@"猜前二、猜前三" containsString:group.alias]) {
 		NSMutableArray * countArray = [NSMutableArray array];
 		[self generateBetArrayWith:group.ezdwlist bet:nil resultArray:&countArray index:0];
+        model.selectedCount = countArray.count;
+        [self.tableView reloadData];
+        [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 		[self updateSelectLabelWithCount:countArray.count];
 	} else {
 		UGGameplaySectionModel * section = group.ezdwlist[0];
@@ -1097,7 +1116,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 		} else {
 			[self updateSelectLabelWithCount:0];
 		}
-		
+        model.selectedCount = count;
+        [self.tableView reloadData];
+        [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 	}
 
 }

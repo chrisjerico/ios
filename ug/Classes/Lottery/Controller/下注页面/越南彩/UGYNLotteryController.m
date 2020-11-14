@@ -689,7 +689,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     {
         //选择号码
         for (UGGameplayModel *model in self.gameDataArray) {
-            model.select = NO;
+            model.selectedCount = 0;
             UGGameplaySectionModel *group = [model.list objectAtIndex:0];
             for (UGGameBetModel *bet in group.list) {
                 for (UGGameplaySectionModel *type2 in bet.ynList) {
@@ -714,7 +714,7 @@ static NSString *footViewID = @"YNCollectionFootView";
     {
         //快速选择
         for (UGGameplayModel *model in self.gameDataArray) {
-            model.select = NO;
+            model.selectedCount = 0;
             UGGameplaySectionModel *group = [model.list objectAtIndex:0];
             for (UGGameBetModel *bet in group.list) {
                 for (UGGameplaySectionModel *type2 in bet.ynFastList) {
@@ -962,7 +962,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr1 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = bet.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
@@ -1009,13 +1009,13 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr2 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = bet.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
         }
         UGGameplaySectionModel *model2 = bet.ynList[1];
-        for (UGGameplayModel *bet in model2.list) {
+        for (UGGameBetModel *bet in model2.list) {
             if (bet.select) {
                 [mutArr2 addObject:bet];
             }
@@ -1084,19 +1084,19 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr3 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = bet.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
         }
         UGGameplaySectionModel *model2 = bet.ynList[1];
-        for (UGGameplayModel *bet in model2.list) {
+        for (UGGameBetModel *bet in model2.list) {
             if (bet.select) {
                 [mutArr2 addObject:bet];
             }
         }
         UGGameplaySectionModel *model3 = bet.ynList[2];
-        for (UGGameplayModel *bet in model3.list) {
+        for (UGGameBetModel *bet in model3.list) {
             if (bet.select) {
                 [mutArr3 addObject:bet];
             }
@@ -1183,26 +1183,26 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr4 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = bet.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
         }
         UGGameplaySectionModel *model2 = bet.ynList[1];
-        for (UGGameplayModel *bet in model2.list) {
+        for (UGGameBetModel *bet in model2.list) {
             if (bet.select) {
                 [mutArr2 addObject:bet];
             }
         }
         UGGameplaySectionModel *model3 = bet.ynList[2];
-        for (UGGameplayModel *bet in model3.list) {
+        for (UGGameBetModel *bet in model3.list) {
             if (bet.select) {
                 [mutArr3 addObject:bet];
             }
         }
         
         UGGameplaySectionModel *model4 = bet.ynList[3];
-        for (UGGameplayModel *bet in model4.list) {
+        for (UGGameBetModel *bet in model4.list) {
             if (bet.select) {
                 [mutArr4 addObject:bet];
             }
@@ -1336,7 +1336,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr1 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = model.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
@@ -1387,13 +1387,13 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr2 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = model.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
         }
         UGGameplaySectionModel *model2 = model.ynList[1];
-        for (UGGameplayModel *bet in model2.list) {
+        for (UGGameBetModel *bet in model2.list) {
             if (bet.select) {
                 [mutArr2 addObject:bet];
             }
@@ -1449,19 +1449,19 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr3 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = model.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
         }
         UGGameplaySectionModel *model2 = model.ynList[1];
-        for (UGGameplayModel *bet in model2.list) {
+        for (UGGameBetModel *bet in model2.list) {
             if (bet.select) {
                 [mutArr2 addObject:bet];
             }
         }
         UGGameplaySectionModel *model3 = model.ynList[2];
-        for (UGGameplayModel *bet in model3.list) {
+        for (UGGameBetModel *bet in model3.list) {
             if (bet.select) {
                 [mutArr3 addObject:bet];
             }
@@ -1523,26 +1523,26 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr4 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = model.ynList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
         }
         UGGameplaySectionModel *model2 = model.ynList[1];
-        for (UGGameplayModel *bet in model2.list) {
+        for (UGGameBetModel *bet in model2.list) {
             if (bet.select) {
                 [mutArr2 addObject:bet];
             }
         }
         UGGameplaySectionModel *model3 = model.ynList[2];
-        for (UGGameplayModel *bet in model3.list) {
+        for (UGGameBetModel *bet in model3.list) {
             if (bet.select) {
                 [mutArr3 addObject:bet];
             }
         }
         
         UGGameplaySectionModel *model4 = model.ynList[3];
-        for (UGGameplayModel *bet in model4.list) {
+        for (UGGameBetModel *bet in model4.list) {
             if (bet.select) {
                 [mutArr4 addObject:bet];
             }
@@ -1645,7 +1645,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr1 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = model.ynFastList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
@@ -1677,7 +1677,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr1 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = model.ynFastList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
@@ -1727,7 +1727,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         for (int i = 0; i< model.ynFastList.count; i++) {
             UGGameplaySectionModel *model1 = model.ynFastList[i];
-            for (UGGameplayModel *bet in model1.list) {
+            for (UGGameBetModel *bet in model1.list) {
                 if (bet.select) {
                     [mutArr1 addObject:bet];
                 }
@@ -1772,7 +1772,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr1 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = bet.ynFastList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
@@ -1825,7 +1825,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSMutableArray *mutArr1 = [NSMutableArray array];
         
         UGGameplaySectionModel *model1 = bet.ynFastList[0];
-        for (UGGameplayModel *bet in model1.list) {
+        for (UGGameBetModel *bet in model1.list) {
             if (bet.select) {
                 [mutArr1 addObject:bet];
             }
@@ -1874,7 +1874,7 @@ static NSString *footViewID = @"YNCollectionFootView";
         
         for (int i = 0; i< bet.ynFastList.count; i++) {
             UGGameplaySectionModel *model1 = bet.ynFastList[i];
-            for (UGGameplayModel *bet in model1.list) {
+            for (UGGameBetModel *bet in model1.list) {
                 if (bet.select) {
                     [mutArr1 addObject:bet];
                 }
@@ -3192,6 +3192,8 @@ static NSString *footViewID = @"YNCollectionFootView";
         NSLog(@"code = %@",betModel.code);
         [[Global getInstanse] setSelCode:betModel.code];
         [self setDefaultOddsData:odds];
+        
+        [self resetClick:nil];
     }
     
 }
@@ -3594,7 +3596,8 @@ static NSString *footViewID = @"YNCollectionFootView";
                 }
             }
         }
-        model.select = number;
+        
+        model.selectedCount = number;
         [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
