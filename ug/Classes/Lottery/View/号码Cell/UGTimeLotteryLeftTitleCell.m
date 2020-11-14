@@ -33,14 +33,25 @@
 - (void)setItem:(UGGameplayModel *)item {
     _item = item;
     self.titleLabel.text = item.name;
-    if (item.select) {
-        self.leftPoint.backgroundColor = APP.betBgIsWhite ? Skin1.navBarBgColor : [UIColor whiteColor];
-        
+    
+    BOOL selected = item.selectedCount;
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
+        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
     } else {
-        self.leftPoint.backgroundColor = APP.betBgIsWhite ? UGRGBColor(195, 195, 196) : APP.TextColor1;
+        if (APP.betBgIsWhite) {
+            self.leftPoint.backgroundColor = selected ? Skin1.navBarBgColor : UGRGBColor(195, 195, 196);
+        } else {
+            self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+        }
     }
     
-   
+    if (APP.isRedWhite) {
+        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+    }
+    
+    if (APP.isC126CellStyle) {
+        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+    }
 }
 
 - (void)setTitle:(NSString *)title {
@@ -57,19 +68,16 @@
     
     if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : RGBA(159, 166, 173, 1);
-        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         if ([Skin1.skitString isEqualToString:@"GPK版香槟金"]) {
             self.backgroundColor = selected ? RGBA(72, 146, 209, 1):  RGBA(102, 88, 78, 0.8);
         }
     } else {
-        if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
+        if (APP.betBgIsWhite) {
             self.titleLabel.textColor = selected ? Skin1.navBarBgColor : Skin1.textColor1;
-            self.leftPoint.backgroundColor = selected ? Skin1.navBarBgColor : UGRGBColor(195, 195, 196);
             self.layer.borderColor = Skin1.navBarBgColor.CGColor;
         } else {
             self.titleLabel.textColor = selected ? [UIColor whiteColor] : Skin1.textColor1;
-            self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
             self.layer.borderColor = [UIColor whiteColor].CGColor;
             self.layer.borderWidth = selected ? 0.5 : 0;
             if (APP.isBorderNavBarBgColor) {
@@ -81,7 +89,6 @@
     
     if (APP.isRedWhite) {
         self.titleLabel.textColor = selected ? [UIColor whiteColor] : Skin1.textColor1;
-        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         self.layer.borderWidth = selected ? 0.5 : 0;
         self.backgroundColor = selected ?Skin1.navBarBgColor :[UIColor clearColor];
@@ -100,8 +107,6 @@
             self.textLabel.backgroundColor = [UIColor clearColor];
             self.detailTextLabel.backgroundColor = [UIColor clearColor];
         }
-        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
-
     }
 }
 

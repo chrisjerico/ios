@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSArray<UGGameplaySectionModel> *list;
-@property (nonatomic, assign) BOOL select;
+@property (nonatomic, assign) NSInteger selectedCount;
 @property (nonatomic, assign) BOOL isShow;
 @property (nonatomic, assign) BOOL isBan;
 @property (nonatomic, assign) BOOL enable;                      /**<   是否启用，0否，1是 */

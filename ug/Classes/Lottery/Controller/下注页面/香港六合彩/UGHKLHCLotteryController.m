@@ -456,7 +456,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self updateSelectLabelWithCount:0];
     self.amountTextF.text = nil;
     for (UGGameplayModel *model in self.gameDataArray) {
-        model.select = NO;
+        model.selectedCount = 0;
         for (UGGameplaySectionModel *type in model.list) {
             for (UGGameBetModel *game in type.list) {
                 game.select = NO;
@@ -488,7 +488,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         NSString *selCode = @"";
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
-            if (!model.select) {
+            if (!model.selectedCount) {
                 continue;
             }
             NSLog(@"model.code ======================== %@",model.code);
@@ -1066,11 +1066,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 }
             }
         }
-        model.select = number;
+        model.selectedCount = number;
         [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
-        //        计算选中多少注
+        // 计算选注数
         NSInteger count = 0;
         for (UGGameplayModel *model in self.gameDataArray) {
             
@@ -1735,8 +1735,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     if (gbm.select)
                         cnt++;
                 }
-                gm.select = cnt;
                 [__self.betCollectionView reloadData];
+                gm.selectedCount = cnt;
+                [__self.tableView reloadData];
+                [__self.tableView selectRowAtIndexPath:__self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
                 [__self updateSelectLabelWithCount:cnt];
             }];
             [btns addObject:btn];

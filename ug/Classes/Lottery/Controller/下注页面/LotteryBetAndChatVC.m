@@ -138,10 +138,10 @@
                                    @"gd11x5":@"UGGD11X5LotteryController",  // 广东11选5
                                    @"xync"  :@"UGXYNCLotteryController",    // 幸运农场
                                    @"bjkl8" :@"UGBJKL8LotteryController",   // 北京快乐8
-                                   @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
+                                   @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐十分
                                    @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                                    @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
-                                   @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透
+                                   @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透 赛车
                                    @"ofclvn_hochiminhvip"   :@"UGYNLotteryController",  // 越南
                                    @"ofclvn_haboivip"   :@"UGYNLotteryController",  // 河内
             };

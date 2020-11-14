@@ -298,7 +298,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     [self updateSelectLabelWithCount:0];
     self.amountTextF.text = nil;
     for (UGGameplayModel *model in self.gameDataArray) {
-        model.select = NO;
+        model.selectedCount = 0;
         for (UGGameplaySectionModel *type in model.list) {
             for (UGGameBetModel *game in type.list) {
                 game.select = NO;
@@ -323,7 +323,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
         NSString *selName = @"";
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
-            if (!model.select) {
+            if (!model.selectedCount) {
                 continue;
             }
             
@@ -499,7 +499,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
                 }
             }
         }
-        model.select = number;
+        model.selectedCount = number;
         [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
