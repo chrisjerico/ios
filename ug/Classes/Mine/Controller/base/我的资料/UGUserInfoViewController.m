@@ -60,7 +60,7 @@
         
         _avaterImageView.layer.masksToBounds = YES;
         _avaterImageView.layer.cornerRadius = 32.5;
-
+        _FBView.hidden = true;
     }
     
     [self getSystemConfig];
