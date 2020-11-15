@@ -73,6 +73,15 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="线label"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511082期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJJ-b6-bmV" userLabel="下期开奖">
+                                                <rect key="frame" x="5" y="56.5" width="108.5" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="18" id="K8j-ka-nvr"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgz-a0-PDy" userLabel="历史记录按钮">
                                                 <rect key="frame" x="364" y="0.0" width="50" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -134,7 +143,9 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="H5i-Zj-3k5" secondAttribute="trailing" id="1Yn-CA-sXZ"/>
+                                            <constraint firstItem="YJJ-b6-bmV" firstAttribute="leading" secondItem="9DV-4u-SqI" secondAttribute="leading" constant="5" id="Chf-eD-csz"/>
                                             <constraint firstItem="zEP-5D-7CR" firstAttribute="leading" secondItem="9DV-4u-SqI" secondAttribute="leading" constant="10" id="DtP-vZ-7nO"/>
+                                            <constraint firstItem="Guv-T6-MBT" firstAttribute="top" secondItem="YJJ-b6-bmV" secondAttribute="bottom" constant="5" id="EXi-aS-5wS"/>
                                             <constraint firstAttribute="bottom" secondItem="zEP-5D-7CR" secondAttribute="bottom" id="Kjm-kC-YgQ"/>
                                             <constraint firstItem="PCB-gA-l7o" firstAttribute="top" secondItem="9DV-4u-SqI" secondAttribute="top" constant="5" id="MOq-Ze-L9d"/>
                                             <constraint firstItem="Guv-T6-MBT" firstAttribute="leading" secondItem="9DV-4u-SqI" secondAttribute="leading" id="QMB-2H-3xT"/>
@@ -181,14 +192,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vol-gH-DSd" userLabel="头_下">
                                         <rect key="frame" x="0.0" y="80" width="414" height="34"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511082期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJJ-b6-bmV" userLabel="下期开奖">
-                                                <rect key="frame" x="5" y="8" width="108.5" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘:04:12:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrp-z1-cfe" userLabel="封盘时间">
-                                                <rect key="frame" x="118.5" y="8" width="96" height="18"/>
+                                                <rect key="frame" x="71.5" y="8" width="96" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -197,7 +202,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="开奖:04:12:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njK-a5-sgn" userLabel="开奖时间">
-                                                <rect key="frame" x="219.5" y="8" width="96" height="18"/>
+                                                <rect key="frame" x="172.5" y="8" width="96" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -223,21 +228,34 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金杯btn"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="截止投注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pOX-7o-c4L">
+                                                <rect key="frame" x="5" y="7" width="61.5" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="61.5" id="O8X-cg-7D7"/>
+                                                    <constraint firstAttribute="height" constant="20.5" id="hnl-iC-vx3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="截止投注label"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="KrG-H5-jEs" secondAttribute="trailing" constant="5" id="1Zn-D7-VSX"/>
-                                            <constraint firstItem="Wrp-z1-cfe" firstAttribute="leading" secondItem="YJJ-b6-bmV" secondAttribute="trailing" constant="5" id="6hn-V7-exR"/>
-                                            <constraint firstItem="YJJ-b6-bmV" firstAttribute="leading" secondItem="Vol-gH-DSd" secondAttribute="leading" constant="5" id="7VV-v4-Ozd"/>
                                             <constraint firstItem="G3y-jw-FC1" firstAttribute="leading" secondItem="Vol-gH-DSd" secondAttribute="leading" id="9KO-15-8MO"/>
                                             <constraint firstItem="njK-a5-sgn" firstAttribute="leading" secondItem="Wrp-z1-cfe" secondAttribute="trailing" constant="5" id="BOW-Bj-uUU"/>
                                             <constraint firstAttribute="bottom" secondItem="G3y-jw-FC1" secondAttribute="bottom" id="L7H-ut-z3c"/>
+                                            <constraint firstItem="pOX-7o-c4L" firstAttribute="leading" secondItem="Vol-gH-DSd" secondAttribute="leading" constant="5" id="Mpy-E6-vab"/>
                                             <constraint firstAttribute="height" constant="34" id="PA7-en-ePE"/>
                                             <constraint firstAttribute="trailing" secondItem="G3y-jw-FC1" secondAttribute="trailing" id="Qhn-nX-GXX"/>
                                             <constraint firstItem="Wrp-z1-cfe" firstAttribute="centerY" secondItem="Vol-gH-DSd" secondAttribute="centerY" id="Wdt-Cf-N8d"/>
                                             <constraint firstItem="KrG-H5-jEs" firstAttribute="top" secondItem="Vol-gH-DSd" secondAttribute="top" constant="7" id="azU-af-cjf"/>
+                                            <constraint firstItem="Wrp-z1-cfe" firstAttribute="leading" secondItem="pOX-7o-c4L" secondAttribute="trailing" constant="5" id="ihO-P5-L9n"/>
                                             <constraint firstItem="njK-a5-sgn" firstAttribute="centerY" secondItem="Vol-gH-DSd" secondAttribute="centerY" id="kft-q0-qkN"/>
-                                            <constraint firstItem="YJJ-b6-bmV" firstAttribute="centerY" secondItem="Vol-gH-DSd" secondAttribute="centerY" id="zF6-Xn-NMa"/>
+                                            <constraint firstItem="pOX-7o-c4L" firstAttribute="centerY" secondItem="Vol-gH-DSd" secondAttribute="centerY" id="lrR-ah-J3n"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中间View"/>
@@ -523,6 +541,9 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

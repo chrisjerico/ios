@@ -189,6 +189,16 @@
         subLabel(@"线label").hidden = !APP.isShowBorder;
         [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
         [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        if (Skin1.isTKL) {
+            subLabel(@"截止投注label").cc_constraints.width.constant  = 61.5;
+            subLabel(@"截止投注label").cc_constraints.left.constant  = 5;
+            [subLabel(@"截止投注label") setHidden:NO];
+        } else {
+            subLabel(@"截止投注label").cc_constraints.width.constant  = 0;
+            subLabel(@"截止投注label").cc_constraints.left.constant  = 0;
+            [subLabel(@"截止投注label") setHidden:YES];
+        }
+      
         
         self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
@@ -401,6 +411,7 @@
             else{
                 self.chipButton.cc_constraints.width.constant  = 60;
             }
+            
             [newResetBtn setHidden:!Skin1.isTKL];
             [yeLable setHidden:!Skin1.isTKL];
             [yeNumberLable setHidden:!Skin1.isTKL];
