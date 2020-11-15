@@ -138,7 +138,7 @@
             [self.view insertSubview:({
                 UIView *bgView = [[UIView alloc] initWithFrame:APP.Bounds];
                 bgView.backgroundColor = ({
-                    UIColor *bgColor = [@"六合资料,香槟金" containsString:Skin1.skitType] ? Skin1.navBarBgColor : Skin1.bgColor;
+                    UIColor *bgColor = [@"六合资料" containsString:Skin1.skitType] ? Skin1.navBarBgColor : Skin1.bgColor;
                     if (APP.isLight)
                         bgColor = [bgColor colorWithAlphaComponent:0.8];
                     bgColor;
