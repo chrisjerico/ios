@@ -52,10 +52,19 @@ UGSystemConfigModel *currentConfig = nil;
 @implementation LHPriceModel
 @end
 
+@implementation loginNoticeModel
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"switch":@"loginNotice_switch",@"text":@"loginNotice_text"}];
+}
+@end
+
 @interface LHStayTunedVC : UIViewController
 @end
 @implementation LHStayTunedVC
 @end
+
+
+
 
 
 @interface UGUserCenterItem ()

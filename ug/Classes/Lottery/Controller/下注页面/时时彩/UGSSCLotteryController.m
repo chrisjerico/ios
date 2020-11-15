@@ -386,7 +386,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
     [self updateSelectLabelWithCount:0];
     self.amountTextF.text = nil;
     for (UGGameplayModel *model in self.gameDataArray) {
-        model.select = NO;
+        model.selectedCount = 0;
         for (UGGameplaySectionModel *type in model.list) {
             for (UGGameBetModel *game in type.list) {
                 game.select = NO;
@@ -423,7 +423,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
           
             
             UGGameplaySectionModel *model1 = play.ezdwlist[1];
-            for (UGGameplayModel *bet in model1.list) {
+            for (UGGameBetModel *bet in model1.list) {
                 if (bet.select) {
                     [mutArr1 addObject:bet];
                 }
@@ -467,13 +467,13 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
             NSMutableArray *mutArr2 = [NSMutableArray array];
             
             UGGameplaySectionModel *model1 = play.ezdwlist[1];
-            for (UGGameplayModel *bet in model1.list) {
+            for (UGGameBetModel *bet in model1.list) {
                 if (bet.select) {
                     [mutArr1 addObject:bet];
                 }
             }
             UGGameplaySectionModel *model2 = play.ezdwlist[2];
-            for (UGGameplayModel *bet in model2.list) {
+            for (UGGameBetModel *bet in model2.list) {
                 if (bet.select) {
                     [mutArr2 addObject:bet];
                 }
@@ -521,19 +521,19 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
             NSMutableArray *mutArr3 = [NSMutableArray array];
             
             UGGameplaySectionModel *model1 = play.ezdwlist[1];
-            for (UGGameplayModel *bet in model1.list) {
+            for (UGGameBetModel *bet in model1.list) {
                 if (bet.select) {
                     [mutArr1 addObject:bet];
                 }
             }
             UGGameplaySectionModel *model2 = play.ezdwlist[2];
-            for (UGGameplayModel *bet in model2.list) {
+            for (UGGameBetModel *bet in model2.list) {
                 if (bet.select) {
                     [mutArr2 addObject:bet];
                 }
             }
             UGGameplaySectionModel *model3 = play.ezdwlist[3];
-            for (UGGameplayModel *bet in model3.list) {
+            for (UGGameBetModel *bet in model3.list) {
                 if (bet.select) {
                     [mutArr3 addObject:bet];
                 }
@@ -706,11 +706,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
         if ([@"二字定位" isEqualToString:type.name]) {
             [self ezdwBetActionMode:type array:&array selCode:&selCode];
         }
-        else if ([@"不定位" isEqualToString:type.name]) {
-            [self bdwBetActionMode:type array:&array selCode:&selCode];
-        }
         else if ([@"三字定位" isEqualToString:type.name]) {
             [self szdwBetActionMode:type array:&array selCode:&selCode];
+        }
+        else if ([@"不定位" isEqualToString:type.name]) {
+            [self bdwBetActionMode:type array:&array selCode:&selCode];
         }
 		else if ([@"五星" isEqualToString:type.name]) {
 			[self wxBetActionMode:type array:&array selCode:&selCode];
@@ -741,7 +741,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
         else{
             for (UGGameplayModel *model in self.gameDataArray) {
                 
-                if (!model.select) {
+                if (!model.selectedCount) {
                     continue;
                 }
                 
@@ -818,26 +818,17 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([tableView isEqual:self.tableView]) {
+        UGGameplayModel *lastModel = self.gameDataArray[self.typeIndexPath.row];
         self.typeIndexPath = indexPath;
+        if ([@"一字定位,二字定位,三字定位,不定位,五星,定位胆" containsString:lastModel.name]) {
+            [self resetClick:nil];
+        }
+        
         UGGameplayModel *model = self.gameDataArray[indexPath.row];
         if ([@"一字定位" isEqualToString:model.name]) {
        
             self.segmentView.dataArray = self.yzgmentTitleArray;
      
-            if (self.segmentView.hidden) {
-                
-                self.betCollectionView.y += self.segmentView.height;
-                self.betCollectionView.height -= self.segmentView.height;
-            }
-            self.segmentIndex = 0;
-            self.segmentView.hidden = NO;
-            [self resetClick:nil];
-            
-        }
-        else  if ([@"不定位" isEqualToString:model.name]) {
-            
-            self.segmentView.dataArray = self.bdwgmentTitleArray;
-            
             if (self.segmentView.hidden) {
                 
                 self.betCollectionView.y += self.segmentView.height;
@@ -873,6 +864,20 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
              [self resetClick:nil];
              
          }
+      else  if ([@"不定位" isEqualToString:model.name]) {
+          
+          self.segmentView.dataArray = self.bdwgmentTitleArray;
+          
+          if (self.segmentView.hidden) {
+              
+              self.betCollectionView.y += self.segmentView.height;
+              self.betCollectionView.height -= self.segmentView.height;
+          }
+          self.segmentIndex = 0;
+          self.segmentView.hidden = NO;
+          [self resetClick:nil];
+          
+      }
 	  else if ([@"五星" isEqualToString:model.name]) {
 			self.segmentView.dataArray = self.wxsegmentTitleArray;
 			if (self.segmentView.hidden) {
@@ -1488,17 +1493,6 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
             game.select = !game.select;
             
         }
-       else  if ([@"不定位" isEqualToString:model.name]) {
-            
-            UGGameplaySectionModel *obj = model.list[self.segmentIndex];
-            UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
-            UGGameBetModel *game = type.list[indexPath.row];
-            if (!(game.gameEnable && game.enable)) {
-                return;
-            }
-            game.select = !game.select;
-            
-        }
         else if ([@"二字定位" isEqualToString:model.name] ) {
             
             UGGameplaySectionModel *obj = model.list[self.segmentIndex];
@@ -1520,6 +1514,17 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
             game.select = !game.select;
             
         }
+        else  if ([@"不定位" isEqualToString:model.name]) {
+             
+             UGGameplaySectionModel *obj = model.list[self.segmentIndex];
+             UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
+             UGGameBetModel *game = type.list[indexPath.row];
+             if (!(game.gameEnable && game.enable)) {
+                 return;
+             }
+             game.select = !game.select;
+             
+         }
 		else if ([@"五星" isEqualToString:model.name] ) {
 			UGGameplaySectionModel *obj = model.list[self.segmentIndex];
 			UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
@@ -1565,6 +1570,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
         [self.betCollectionView reloadData];
         
+        // 已选中个数
         NSInteger number = 0;
         for (UGGameplaySectionModel *type in model.list) {
             for (UGGameBetModel *game in type.list) {
@@ -1573,9 +1579,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                     number ++;
                 }
             }
-        }
-        
-        for (UGGameplaySectionModel *type in model.list) {
+            
             for (UGGameplaySectionModel *type1 in type.ezdwlist) {
                 for (UGGameBetModel *game in type1.list) {
                     game.title = type.name;
@@ -1585,12 +1589,12 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                 }
             }
         }
-        model.select = number;
+        model.selectedCount = number;
         [self.tableView reloadData];
         [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         
         
-        //        计算选中的注数
+        // 计算注数
         NSInteger count = 0;
         
         if ([@"二字定位" isEqualToString:model.name]) {
@@ -1657,7 +1661,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
           NSMutableArray *mutArr1 = [NSMutableArray array];
           
           UGGameplaySectionModel *model1 = play.ezdwlist[1];
-          for (UGGameplayModel *bet in model1.list) {
+          for (UGGameBetModel *bet in model1.list) {
               if (bet.select) {
                   [mutArr1 addObject:bet];
               }
@@ -1705,13 +1709,13 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
           NSMutableArray *mutArr2 = [NSMutableArray array];
           
           UGGameplaySectionModel *model1 = play.ezdwlist[1];
-          for (UGGameplayModel *bet in model1.list) {
+          for (UGGameBetModel *bet in model1.list) {
               if (bet.select) {
                   [mutArr1 addObject:bet];
               }
           }
           UGGameplaySectionModel *model2 = play.ezdwlist[2];
-          for (UGGameplayModel *bet in model2.list) {
+          for (UGGameBetModel *bet in model2.list) {
               if (bet.select) {
                   [mutArr2 addObject:bet];
               }
@@ -1766,19 +1770,19 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
           NSMutableArray *mutArr3 = [NSMutableArray array];
           
           UGGameplaySectionModel *model1 = play.ezdwlist[1];
-          for (UGGameplayModel *bet in model1.list) {
+          for (UGGameBetModel *bet in model1.list) {
               if (bet.select) {
                   [mutArr1 addObject:bet];
               }
           }
           UGGameplaySectionModel *model2 = play.ezdwlist[2];
-          for (UGGameplayModel *bet in model2.list) {
+          for (UGGameBetModel *bet in model2.list) {
               if (bet.select) {
                   [mutArr2 addObject:bet];
               }
           }
           UGGameplaySectionModel *model3 = play.ezdwlist[3];
-          for (UGGameplayModel *bet in model3.list) {
+          for (UGGameBetModel *bet in model3.list) {
               if (bet.select) {
                   [mutArr3 addObject:bet];
               }

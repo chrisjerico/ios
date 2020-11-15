@@ -32,6 +32,7 @@
 @property(nonatomic, assign) NSInteger levelindex;
 
 @property (nonatomic, strong) UIView *titleView;
+@property (nonatomic, strong)UILabel *memberLbl;
 @property (nonatomic, strong) NSArray <NSString *> *titleArray;
 @property (nonatomic, strong) NSArray <NSString *> *levelArray;
 @property (nonatomic, strong) UIButton *levelButton;
@@ -239,6 +240,8 @@
     if (_titleView == nil) {
         _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];
         _titleView.backgroundColor = Skin1.textColor4;
+      
+        
         for (int i = 0; i < self.titleArray.count; i++) {
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(UGScreenW / self.titleArray.count * i, 0, UGScreenW / self.titleArray.count, 44)];
             
@@ -275,6 +278,17 @@
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0,_titleView.height - 0.6, _titleView.width, 0.6)];
         line.backgroundColor = [UIColor lightGrayColor];
         [_titleView addSubview:line];
+        
+        _memberLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UGScreenW, 20)];
+        _memberLbl.text = @"下线盈亏汇总:1000.0000";
+        _memberLbl.textColor = [UIColor redColor];
+        _memberLbl.font = [UIFont systemFontOfSize:12];
+        [_titleView addSubview:_memberLbl];
+        if (self.tableType == PromotionTableTypeMember) {
+            [_memberLbl setHidden:NO];
+        } else {
+            [_memberLbl setHidden:YES];
+        }
         
     }
     return _titleView;

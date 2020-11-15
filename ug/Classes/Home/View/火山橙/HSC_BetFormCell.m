@@ -25,8 +25,10 @@
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        self.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
+    }
     if (Skin1.isBlack) {
         self.backgroundColor = [UIColor clearColor];
         self.contentLabel.superview.backgroundColor = [UIColor lightGrayColor];

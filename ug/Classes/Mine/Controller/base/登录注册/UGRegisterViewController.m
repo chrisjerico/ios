@@ -110,9 +110,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-    // 禁用侧滑返回
-    self.fd_interactivePopDisabled = true;
-    
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });

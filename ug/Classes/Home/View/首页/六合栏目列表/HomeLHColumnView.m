@@ -163,6 +163,84 @@
     return 0.0;
 }
 
+-(int)judgmentLink:(NSString *)link{
+//    /mobile/#/lottery/index ===》彩种 1
+//    /mobile/#/lottery/mystery ===〉帖子  2
+//    /mobile/real/goToGame ===》 游戏第3方  3
+//    “”==〉其他
+    int judgment;
+    if ([ link containsString:@"/mobile/#/lottery/index"]) {
+        judgment = 1;
+    }
+    else if ([link containsString:@"/mobile/#/lottery/mystery"]) {
+        judgment =  2;
+    }
+    else if([link containsString:@"/mobile/real/goToGame"]){
+        judgment = 3;
+    }
+    else{
+        judgment =  4;
+    }
+    return judgment;
+}
+
+-(NSString *)judgmentGameType:(NSString *)gameType{
+
+    NSString * judgment;
+    if ([gameType containsString:@"cqssc" ]) {
+        judgment = @"cqssc";
+    }
+    else if ([gameType containsString:@"pk10"]) {
+        judgment =  @"pk10";
+    }
+    else if([gameType containsString:@"xyft"]){
+        judgment = @"xyft";
+    }
+    else if([gameType containsString:@"qxc"]){
+        judgment = @"qxc";
+    }
+    else if([gameType containsString:@"lhc"]){
+        judgment = @"lhc";
+    }
+    else if([gameType containsString:@"jsk3"]){
+        judgment = @"jsk3";
+    }
+    else if([gameType containsString:@"pcdd"]){
+        judgment = @"pcdd";
+    }
+    else if([gameType containsString:@"gd11x5"]){
+        judgment = @"gd11x5";
+    }
+    else if([gameType containsString:@"xync"]){
+        judgment = @"xync";
+    }
+    else if([gameType containsString:@"bjkl8" ]){
+        judgment = @"bjkl8";
+    }
+    else if([gameType containsString:@"gdkl10"]){
+        judgment = @"gdkl10";
+    }
+    else if([gameType containsString:@"fc3d"]){
+        judgment = @"fc3d";
+    }
+    else if([gameType containsString:@"pk10nn"]){
+        judgment = @"pk10nn";
+    }
+    else if([gameType containsString:@"dlt"]){
+        judgment = @"dlt";
+    }
+    else if([gameType containsString:@"qxc"]){
+        judgment = @"qxc";
+    }
+    else if([gameType containsString:@"ofclvn_hochiminhvip"]){
+        judgment = @"ofclvn_hochiminhvip";
+    }
+    else if([gameType containsString:@"ofclvn_haboivip" ]){
+        judgment = @"ofclvn_haboivip";
+    }
+    return judgment;
+}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
@@ -179,15 +257,7 @@
         }];
     }
     model.cid = typeDict[model.categoryType] ? : model.cid;
-    
-    
-//        NSLog(@"model.categoryType =%@",model.categoryType);
-    
     BOOL isNum = [CMCommon judgeIsNumberByRegularExpressionWith:model.categoryType];
-    
-    NSLog(@"isNum = %d",isNum);
-    
-
     
     if ([model.thread_type isEqualToString:@"2"]) {
         UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
@@ -242,102 +312,168 @@
         return;
     }
     
-    else if([@"zxkf" containsString:model.alias]) {
-        TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-        webViewVC.url = model.link;
-        webViewVC.webTitle = model.name;
-        [NavController1 pushViewController:webViewVC animated:YES];
-        NSLog(@"在线客服");
-        return;
-    }
-    
-    if ([@"forum,gourmet" containsString:model.categoryType]) {
-        UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-        vc.clm = model;
-        [NavController1 pushViewController:vc animated:true];
-        NSLog(@"高手论坛,极品专贴");
-    }
-    else if([@"mystery,rule" containsString:model.categoryType]) {
-        UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
-        vc.clm = model;
-        [NavController1 pushViewController:vc animated:true];
-        NSLog(@"每期资料,公式规律");
-    }
-    else if([@"humorGuess,rundog,fourUnlike" containsString:model.categoryType]) {
-        //fourUnlike
-        NSLog(@"model.categoryType = %@",model.categoryType);
-        LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-        vc.clm = model;
-        [NavController1 pushViewController:vc animated:true];
-        NSLog(@"幽默猜测,跑狗玄机,四不像");
-    }
-    else if([@"sixpic" containsString:model.categoryType]) {
-        LHGalleryListVC2 *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC2");
-        vc.clm = model;
-        [NavController1 pushViewController:vc animated:true];
-        NSLog(@"六合图库");
-    }
-    else if([@"yellowCale" containsString:model.categoryType]) {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
-        NSLog(@"老黃历");
-    }
-    else if([@"rwzx" containsString:model.categoryType]) {
-        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
-        NSLog(@"任务中心");
-    }
-
-    
-    else if([@"222" containsString:model.categoryType]) {
-
+    int judgment = [self judgmentLink:model.link];
+    //    /mobile/#/lottery/index ===》彩种 1
+    //    /mobile/#/lottery/mystery ===〉帖子  2
+    //    /mobile/real/goToGame ===》 游戏第3方  3
+    //    “”==〉其他
+    if (judgment == 1) {
         UGNextIssueModel *m = [UGNextIssueModel new];
-        m.title = @"澳门六合彩";
-        m.gameId = @"222";
-        m.gameType = @"lhc";
-        m.name = @"lhc";
+        m.title = model.name;
+        m.gameId = model.categoryType;
+        m.gameType = [self judgmentGameType:model.baoma_type];
+        m.name = [self judgmentGameType:model.baoma_type];
         [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
-        NSLog(@"澳门六合彩");
     }
-    else if([@"185" containsString:model.categoryType]) {
- 
-        UGNextIssueModel *m = [UGNextIssueModel new];
-        m.title = @"一分六合彩";
-        m.gameId = @"185";
-        m.gameType = @"lhc";
-        m.name = @"lhc";
-        [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
-        NSLog(@"一分六合彩");
-        
-//
-    }
-    else if([@"70" containsString:model.categoryType]) {
- 
-        UGNextIssueModel *m = [UGNextIssueModel new];
-        m.title = @"香港六合彩";
-        m.gameId = @"70";
-        m.gameType = @"lhc";
-        m.name = @"lhc";
-        [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
-        NSLog(@"香港六合彩");
-
-    }
-    else if([@"appdl" containsString:model.categoryType]) {
-//            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-//            webViewVC.url = @"https://baidujump.app/eipeyipeyi/jump-239.html";
-//            webViewVC.webTitle = model.name;
-//            [NavController1 pushViewController:webViewVC animated:YES];
-        [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
-        NSLog(@"APP下载");
-    }
-
-    else {
-        BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
-        if (!ret && model.appLink.length) {
-            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = model.appLink;
-            webViewVC.webTitle = model.name;
-            [NavController1 pushViewController:webViewVC animated:YES];
+    else  if (judgment == 2) {
+        if ([model.thread_type isEqualToString:@"2"]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            return;
+        }
+        else if (model.contentId.length) {
+            // 获取帖子详情
+            [SVProgressHUD showWithStatus:nil];
+            NSLog(@"model.contentId = %@",model.contentId);
+            __weakSelf_(__self);
+            [NetworkManager1 lhdoc_contentDetail:model.contentId].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+                [SVProgressHUD dismiss];
+                if (!sm.error) {
+                    UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
+                    pm.link = model.link;
+                    NSLog(@"获取帖子详情 = %@",pm.content);
+                    void (^push)(void) = ^{
+                        
+                        __self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");
+                        __self.postvc.pm = pm;
+                        __self.postvc.title = model.name;
+                        [NavController1 pushViewController:__self.postvc animated:true];
+                    };
+                    if (!pm.hasPay && pm.price > 0.000001) {
+                        LHPostPayView *ppv = _LoadView_from_nib_(@"LHPostPayView");
+                        ppv.pm = pm;
+                        ppv.didConfirmBtnClick = ^(LHPostPayView * _Nonnull ppv) {
+                            if (!UGLoginIsAuthorized()) {
+                                [ppv hide:nil];
+                                SANotificationEventPost(UGNotificationShowLoginView, nil);
+                                return;
+                            }
+                            [NetworkManager1 lhcdoc_buyContent:pm.cid].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+                                if (!sm.error) {
+                                    pm.hasPay = true;
+                                    [ppv hide:nil];
+                                    UIAlertController *ac = [AlertHelper showAlertView:@"支付成功" msg:nil btnTitles:@[@"确定"]];
+                                    [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                                        push();
+                                    }];
+                                }
+                            };
+                        };
+                        [ppv show];
+                    } else {
+                        push();
+                    }
+                }
+            };
+            return;
         }
     }
+    else  if (judgment == 3) {
+        NSArray  *array = [model.link componentsSeparatedByString:@"/"];
+        NSString *number1 = [array objectAtIndex:array.count-2];
+        if (!UGLoginIsAuthorized()) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
+            return ;
+        }
+        NSDictionary *params = @{@"token":UserI.sessid,
+                                 @"id":number1,
+//                                 @"game":gameCode,
+        };
+        [SVProgressHUD showWithStatus:nil];
+      
+        [CMNetwork getGotoGameUrlWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+            [CMResult processWithResult:model success:^{
+                [SVProgressHUD dismiss];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    QDWebViewController *qdwebVC = [[QDWebViewController alloc] init];
+                    NSLog(@"网络链接：model.data = %@", model.data);
+                    qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
+                    
+                   
+//                    qdwebVC.urlString = [qdwebVC.urlString stringByReplacingOccurrencesOfString:@"http://2044953.com" withString:@"https://2044953.com:8888"];
+                    NSLog(@"网络链接：model.data = %@", qdwebVC.urlString);
+    
+                    qdwebVC.enterGame = YES;
+                    [NavController1 pushViewController:qdwebVC animated:YES];
+                });
+            } failure:^(id msg) {
+                [SVProgressHUD showErrorWithStatus:msg];
+            }];
+        }];
+        
+    }
+    else  if (judgment == 4) {
+
+        if([@"zxkf" containsString:model.alias]) {
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = model.link;
+            webViewVC.webTitle = model.name;
+            [NavController1 pushViewController:webViewVC animated:YES];
+            NSLog(@"在线客服");
+            return;
+        }
+        
+        if ([@"forum,gourmet" containsString:model.categoryType]) {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"高手论坛,极品专贴");
+        }
+        else if([@"mystery,rule" containsString:model.categoryType]) {
+            UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"每期资料,公式规律");
+        }
+        else if([@"humorGuess,rundog,fourUnlike" containsString:model.categoryType]) {
+            //fourUnlike
+            NSLog(@"model.categoryType = %@",model.categoryType);
+            LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"幽默猜测,跑狗玄机,四不像");
+        }
+        else if([@"sixpic" containsString:model.categoryType]) {
+            LHGalleryListVC2 *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC2");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"六合图库");
+        }
+        else if([@"yellowCale" containsString:model.categoryType]) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+            NSLog(@"老黃历");
+        }
+        else if([@"rwzx" containsString:model.categoryType]) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
+            NSLog(@"任务中心");
+        }
+        else if([@"appdl" containsString:model.categoryType]) {
+            [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
+            NSLog(@"APP下载");
+        }
+        else {
+            BOOL ret = [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:model.appLinkCode];
+            if (!ret && model.appLink.length) {
+                TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+                webViewVC.url = model.appLink;
+                webViewVC.webTitle = model.name;
+                [NavController1 pushViewController:webViewVC animated:YES];
+            }
+        }
+    }
+    
+    
 }
 
 

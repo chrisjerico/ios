@@ -12,6 +12,7 @@
 //#import <SDWebImage/FLAnimatedImageView+WebCache.h>
 
 @interface UGGameTypeColletionViewCell ()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hotIconWidth;
 @property (weak, nonatomic) IBOutlet FLAnimatedImageView *imgView;      /**<   图片ImageView */
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;        /**<   标题ImageView */
 @property (weak, nonatomic) IBOutlet UILabel *name2Label;        /**<   标题ImageView */
@@ -29,7 +30,9 @@
     self.nameLabel.textColor = Skin1.textColor1;
     self.name2Label.textColor = Skin1.textColor2;
     self.hotImageView.hidden = YES;
-    
+	if ([@"c117" containsString: APP.SiteId]) {
+		self.hotIconWidth.constant = 50;
+	}
     if (!Skin1.isJY && !Skin1.isTKL) {
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = YES;

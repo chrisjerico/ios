@@ -81,11 +81,11 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
     }];
     
     
-    [self getChanglong];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [weakSelf getChanglong];
     }];
+    [self.tableView.mj_header beginRefreshing];
     SANotificationEventSubscribe(UGNotificationGetChanglongBetRecrod, self, ^(typeof (self) self, id obj) {
         [weakSelf.amountLabel resignFirstResponder];
     });

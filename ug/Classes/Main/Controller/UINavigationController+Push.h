@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition;    /**<   跳转到彩票下注页，或内部功能页 */
 - (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition gameCode:(nullable NSString *)gameCode gameModel:(GameModel *)model;
 - (BOOL)pushVCWithUserCenterItemType:(UserCenterItemType)uciType;       /**<   跳转到（我的页包含的）功能页 */
+
+- (void)getGotoGameUrl:(GameModel *)game ;
 @end
 
 NS_ASSUME_NONNULL_END

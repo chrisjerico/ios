@@ -33,6 +33,9 @@
     __weakSelf_(__self);
     FastSubViewCode(self.view);
     subView(@"导航顶部提示View").backgroundColor = Skin1.menuHeadViewColor;
+    subLabel(@"我的钱包Label").textColor = Skin1.textColor1;
+    subLabel(@"¥Label").textColor = UIColorFromHex(0xda4453);
+    subLabel(@"余额Label").textColor = UIColorFromHex(0xda4453);
     self.navCollectionView.superview.superview.backgroundColor = Skin1.homeContentColor;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         subView(@"导航顶部提示View").backgroundColor = Skin1.menuHeadViewColor;

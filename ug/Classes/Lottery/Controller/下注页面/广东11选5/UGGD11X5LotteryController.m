@@ -331,7 +331,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 	[self updateSelectLabelWithCount:0];
 	self.amountTextF.text = nil;
 	for (UGGameplayModel *model in self.gameDataArray) {
-		model.select = NO;
+		model.selectedCount = NO;
 		for (UGGameplaySectionModel *type in model.list) {
 			for (UGGameBetModel *game in type.list) {
 				game.select = NO;
@@ -370,13 +370,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 				NSMutableArray *mutArr2 = [NSMutableArray array];
 				if (self.segmentIndex == 0) {
 					UGGameplaySectionModel *model0 = play.list[0];
-					for (UGGameplayModel *bet in model0.list) {
+					for (UGGameBetModel *bet in model0.list) {
 						if (bet.select) {
 							[mutArr0 addObject:bet];
 						}
 					}
 					UGGameplaySectionModel *model1 = play.list[1];
-					for (UGGameplayModel *bet in model1.list) {
+					for (UGGameBetModel *bet in model1.list) {
 						if (bet.select) {
 							[mutArr1 addObject:bet];
 						}
@@ -387,19 +387,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 					}
 				}else {
 					UGGameplaySectionModel *model0 = play.list[2];
-					for (UGGameplayModel *bet in model0.list) {
+					for (UGGameBetModel *bet in model0.list) {
 						if (bet.select) {
 							[mutArr0 addObject:bet];
 						}
 					}
 					UGGameplaySectionModel *model1 = play.list[3];
-					for (UGGameplayModel *bet in model1.list) {
+					for (UGGameBetModel *bet in model1.list) {
 						if (bet.select) {
 							[mutArr1 addObject:bet];
 						}
 					}
 					UGGameplaySectionModel *model2 = play.list[4];
-					for (UGGameplayModel *bet in model2.list) {
+					for (UGGameBetModel *bet in model2.list) {
 						if (bet.select) {
 							[mutArr2 addObject:bet];
 						}
@@ -469,7 +469,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 			
          
 			for (UGGameplayModel *model in self.gameDataArray) {
-				if (!model.select) {
+				if (!model.selectedCount) {
 					continue;
 				}
                 NSLog(@"model.code ======================== %@",model.code);
@@ -542,7 +542,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
           UGGameplayModel *lastModel = self.gameDataArray[self.typeIndexPath.row];
           self.typeIndexPath = indexPath;
           UGGameplayModel *model = self.gameDataArray[indexPath.row];
-          if ([@"连码" isEqualToString:lastModel.name]) {
+          if ([@"连码,直选" containsString:lastModel.name]) {
               [self resetClick:nil];
           }
           
@@ -771,353 +771,348 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	
-	if (collectionView == self.betCollectionView) {
-		if (self.bottomCloseView.hidden == NO) {
-			[SVProgressHUD showInfoWithStatus:@"封盘中"];
-			return;
-		}
-		UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    if (collectionView != self.betCollectionView) return;
+    
+    if (self.bottomCloseView.hidden == NO) {
+        [SVProgressHUD showInfoWithStatus:@"封盘中"];
+        return;
+    }
+    UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    
+    if ([@"连码" isEqualToString:model.name]) {
+        UGGameplaySectionModel *type = model.list[self.segmentIndex];
+        UGGameBetModel *game = type.list[indexPath.row];
+        if (!(game.gameEnable && game.enable)) return;
         
-		UGGameplaySectionModel *type = nil;
-		if ([@"连码" isEqualToString:model.name]) {
-			type = model.list[self.segmentIndex];
-		}else if ([@"直选" isEqualToString:model.name]) {
-			
-			if (self.segmentIndex == 0) {
-				type = model.list[indexPath.section - 1];
-			}else {
-				type = model.list[indexPath.section + 1];
-			}
-		}else {
-			type = model.list[indexPath.section];
-		}
-		UGGameBetModel *game = type.list[indexPath.row];
-        if (!(game.gameEnable && game.enable)) {
-             return;
+        NSInteger num = 0;
+        for (UGGameBetModel *bet in type.list) {
+            if (bet.select) {
+                num ++;
+            }
         }
-		if ([@"直选" isEqualToString:model.name]) {
-			UGGameplaySectionModel *sectionModel = nil;
-			if (self.segmentIndex == 0) {
-				if (indexPath.section == 1) {
-					sectionModel = model.list[1];
-					
-				}else {
-					sectionModel = model.list[0];
-				}
-				UGGameBetModel *bet = sectionModel.list[indexPath.row];
-				if (!bet.select) {
-					game.select = !game.select;
-				}
-			}else {
-				if (indexPath.section == 1) {
-					sectionModel = model.list[3];
-					UGGameBetModel *bet = sectionModel.list[indexPath.row];
-					if (!bet.select) {
-						sectionModel = model.list[4];
-						UGGameBetModel *bet = sectionModel.list[indexPath.row];
-						if (!bet.select) {
-							game.select = !game.select;
-						}
-					}
-				}else if (indexPath.section == 2) {
-					sectionModel = model.list[2];
-					UGGameBetModel *bet = sectionModel.list[indexPath.row];
-					if (!bet.select) {
-						sectionModel = model.list[4];
-						UGGameBetModel *bet = sectionModel.list[indexPath.row];
-						if (!bet.select) {
-							game.select = !game.select;
-						}
-					}
-					
-				}else {
-					sectionModel = model.list[2];
-					UGGameBetModel *bet = sectionModel.list[indexPath.row];
-					if (!bet.select) {
-						sectionModel = model.list[3];
-						UGGameBetModel *bet = sectionModel.list[indexPath.row];
-						if (!bet.select) {
-							game.select = !game.select;
-						}
-					}
-					
-				}
-			}
-			
-		}else if ([@"连码" isEqualToString:model.name]) {
-			NSInteger count = 0;
-			for (UGGameBetModel *bet in type.list) {
-				if (bet.select) {
-					count ++;
-				}
-			}
-			NSString *title = self.lmgmentTitleArray[self.segmentIndex];
-			if ([@"二中二" isEqualToString:title]) {
-				
-				if (count == 2 && !game.select) {
-					[SVProgressHUD showInfoWithStatus:@"不允许超过2个选项"];
-				}else {
-					game.select = !game.select;
-				}
-			}else if ([@"三中三" isEqualToString:title]) {
-				if (count == 3 && !game.select) {
-					[SVProgressHUD showInfoWithStatus:@"不允许超过3个选项"];
-				}else {
-					game.select = !game.select;
-				}
-			}else if ([@"四中四" isEqualToString:title]) {
-				if (count == 4 && !game.select) {
-					[SVProgressHUD showInfoWithStatus:@"不允许超过4个选项"];
-				}else {
-					game.select = !game.select;
-				}
-			}else if ([@"五中五" isEqualToString:title] ||
-					  [@"前二组选" isEqualToString:title] ||
-					  [@"前三组选" isEqualToString:title]) {
-				if (count == 5 && !game.select) {
-					[SVProgressHUD showInfoWithStatus:@"不允许超过5个选项"];
-				}else {
-					game.select = !game.select;
-				}
-			}else if ([@"六中五" isEqualToString:title]) {
-				if (count == 6 && !game.select) {
-					[SVProgressHUD showInfoWithStatus:@"不允许超过6个选项"];
-				}else {
-					game.select = !game.select;
-				}
-			}else if ([@"七中五" isEqualToString:title]) {
-				if (count == 7 && !game.select) {
-					[SVProgressHUD showInfoWithStatus:@"不允许超过7个选项"];
-				}else {
-					game.select = !game.select;
-				}
-			}else if ([@"八中五" isEqualToString:title]) {
-				if (count == 8 && !game.select) {
-					[SVProgressHUD showInfoWithStatus:@"不允许超过8个选项"];
-				}else {
-					game.select = !game.select;
-				}
-			}else {
-				
-			}
-			
-			
-		}else {
-			
-			game.select = !game.select;
-		}
-		
-		[self.betCollectionView reloadData];
-		
-		NSInteger number = 0;
-		for (UGGameplaySectionModel *type in model.list) {
-			for (UGGameBetModel *game in type.list) {
-				if (game.select) {
-					number ++;
-				}
-			}
-		}
-		model.select = number;
-		[self.tableView reloadData];
-		[self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-		
-		//        计算选中的注数
-		NSInteger count = 0;
+        NSString *title = self.lmgmentTitleArray[self.segmentIndex];
+        if ([@"二中二" isEqualToString:title]) {
+            
+            if (num == 2 && !game.select) {
+                [SVProgressHUD showInfoWithStatus:@"不允许超过2个选项"];
+            }else {
+                game.select = !game.select;
+            }
+        }else if ([@"三中三" isEqualToString:title]) {
+            if (num == 3 && !game.select) {
+                [SVProgressHUD showInfoWithStatus:@"不允许超过3个选项"];
+            }else {
+                game.select = !game.select;
+            }
+        }else if ([@"四中四" isEqualToString:title]) {
+            if (num == 4 && !game.select) {
+                [SVProgressHUD showInfoWithStatus:@"不允许超过4个选项"];
+            }else {
+                game.select = !game.select;
+            }
+        }else if ([@"五中五" isEqualToString:title] ||
+                  [@"前二组选" isEqualToString:title] ||
+                  [@"前三组选" isEqualToString:title]) {
+            if (num == 5 && !game.select) {
+                [SVProgressHUD showInfoWithStatus:@"不允许超过5个选项"];
+            }else {
+                game.select = !game.select;
+            }
+        }else if ([@"六中五" isEqualToString:title]) {
+            if (num == 6 && !game.select) {
+                [SVProgressHUD showInfoWithStatus:@"不允许超过6个选项"];
+            }else {
+                game.select = !game.select;
+            }
+        }else if ([@"七中五" isEqualToString:title]) {
+            if (num == 7 && !game.select) {
+                [SVProgressHUD showInfoWithStatus:@"不允许超过7个选项"];
+            }else {
+                game.select = !game.select;
+            }
+        }else if ([@"八中五" isEqualToString:title]) {
+            if (num == 8 && !game.select) {
+                [SVProgressHUD showInfoWithStatus:@"不允许超过8个选项"];
+            }else {
+                game.select = !game.select;
+            }
+        }else {
+            
+        }
+        [self.betCollectionView reloadData];
         
-        if ([@"直选" isEqualToString:model.name]) {
-           NSMutableArray *array = [NSMutableArray array];
-           UGGameplayModel *play = self.gameDataArray[self.typeIndexPath.row];
-            if (play.list.count) {
-                if (self.segmentIndex == 0) {
-                    NSMutableArray *mutArr1 = [NSMutableArray array];
-                    NSMutableArray *mutArr2 = [NSMutableArray array];
-                    UGGameplaySectionModel *model0 = play.list[0];
-                    for (UGGameplayModel *bet in model0.list) {
-                        if (bet.select) {
-                            [mutArr1 addObject:bet];
-                        }
-                    }
-                    UGGameplaySectionModel *model1 = play.list[1];
-                    for (UGGameplayModel *bet in model1.list) {
-                        if (bet.select) {
-                            [mutArr2 addObject:bet];
-                        }
-                    }
-                    if (mutArr2.count == 0 || mutArr1.count == 0) {
-                        count = 0;
-                        [self updateSelectLabelWithCount:count];
-                        return;
-                    }
-                    for (int i = 0; i < mutArr1.count; i++) {
-                        
-                        for (int y = 0; y < mutArr2.count; y++) {
-                            
-                            UGGameBetModel *beti = mutArr1[i];
-                            UGGameBetModel *bety = mutArr2[y];
-                            UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                            [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
-                            NSMutableString *name = [[NSMutableString alloc] init];
-                            [name appendString:beti.name];
-                            [name appendString:@","];
-                            [name appendString:bety.name];
-                            bet.name = name;
-                            bet.money = self.amountTextF.text;
-                            bet.title = bet.alias;
-                            bet.betInfo = name;
-                            [array addObject:bet];
-                            
-                        }
-                    }
-                    if (mutArr1.count == 0 || mutArr2.count == 0) {
-                        count = 0;
-                        [self updateSelectLabelWithCount:count];
-                      
-                    } else {
-                        count = array.count;
-                        NSLog(@"count = %ld",(long)count);
-                        [self updateSelectLabelWithCount:count];
+        
+        // 计算注数
+        NSInteger count = 0;
+        NSInteger selectedCount = 0;
+        for (UGGameplaySectionModel *type in model.list) {
+            NSInteger num = 0;
+            for (UGGameBetModel *bet in type.list) {
+                if (bet.select) {
+                    num ++;
+                }
+            }
+            selectedCount += num;
+            NSString *title = self.lmgmentTitleArray[self.segmentIndex];
+            if ([@"二中二" isEqualToString:title]) {
+                if (num >= 2) {
+                    count += 1;
+                }
+            }else if ([@"三中三" isEqualToString:title]) {
+                if (num >= 3) {
+                    count += 1;
+                }
+            }else if ([@"四中四" isEqualToString:title]) {
+                if (num >= 4) {
+                    count += 1;
+                }
+            }else if ([@"五中五" isEqualToString:title]) {
+                if (num >= 5) {
+                    count += 1;
+                }
+            }else if ([@"六中五" isEqualToString:title]) {
+                if (num >= 6) {
+                    count += 1;
+                }
+            }else if ([@"七中五" isEqualToString:title]) {
+                if (num >= 7) {
+                    count += 1;
+                }
+            }else if ([@"八中五" isEqualToString:title]) {
+                if (num >= 8) {
+                    count += 1;
+                }
+            }else if ([@"前二组选" isEqualToString:title]) {
+                if (num >= 2) {
+                    count += [CMCommon pickNum:2 totalNum:num];
+                }
+            }else if ([@"前三组选" isEqualToString:title]) {
+                if (num >= 3) {
+                    count += [CMCommon pickNum:3 totalNum:num];
+                }
+            }else {
+                
+            }
+        }
+        model.selectedCount = selectedCount;
+        [self.tableView reloadData];
+        [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [self updateSelectLabelWithCount:count];
+        
+    }else if ([@"直选" isEqualToString:model.name]) {
+        UGGameplaySectionModel *type = nil;
+        if (self.segmentIndex == 0) {
+            type = model.list[indexPath.section - 1];
+        }else {
+            type = model.list[indexPath.section + 1];
+        }
+        UGGameBetModel *game = type.list[indexPath.row];
+        if (!(game.gameEnable && game.enable)) return;
+        
+        
+        UGGameplaySectionModel *sectionModel = nil;
+        if (self.segmentIndex == 0) {
+            if (indexPath.section == 1) {
+                sectionModel = model.list[1];
+                
+            }else {
+                sectionModel = model.list[0];
+            }
+            UGGameBetModel *bet = sectionModel.list[indexPath.row];
+            if (!bet.select) {
+                game.select = !game.select;
+            }
+        }else {
+            if (indexPath.section == 1) {
+                sectionModel = model.list[3];
+                UGGameBetModel *bet = sectionModel.list[indexPath.row];
+                if (!bet.select) {
+                    sectionModel = model.list[4];
+                    UGGameBetModel *bet = sectionModel.list[indexPath.row];
+                    if (!bet.select) {
+                        game.select = !game.select;
                     }
                 }
-                else {
-                    NSMutableArray *mutArr1 = [NSMutableArray array];
-                    NSMutableArray *mutArr2 = [NSMutableArray array];
-                    NSMutableArray *mutArr3 = [NSMutableArray array];
+            }else if (indexPath.section == 2) {
+                sectionModel = model.list[2];
+                UGGameBetModel *bet = sectionModel.list[indexPath.row];
+                if (!bet.select) {
+                    sectionModel = model.list[4];
+                    UGGameBetModel *bet = sectionModel.list[indexPath.row];
+                    if (!bet.select) {
+                        game.select = !game.select;
+                    }
+                }
+                
+            }else {
+                sectionModel = model.list[2];
+                UGGameBetModel *bet = sectionModel.list[indexPath.row];
+                if (!bet.select) {
+                    sectionModel = model.list[3];
+                    UGGameBetModel *bet = sectionModel.list[indexPath.row];
+                    if (!bet.select) {
+                        game.select = !game.select;
+                    }
+                }
+                
+            }
+        }
+        [self.betCollectionView reloadData];
+        
+        // 计算注数
+        NSInteger count = 0;
+        NSMutableArray *array = [NSMutableArray array];
+        UGGameplayModel *play = self.gameDataArray[self.typeIndexPath.row];
+        if (!play.list.count) return;
+        
+        if (self.segmentIndex == 0) {
+            NSMutableArray *mutArr1 = [NSMutableArray array];
+            NSMutableArray *mutArr2 = [NSMutableArray array];
+            UGGameplaySectionModel *model0 = play.list[0];
+            for (UGGameBetModel *bet in model0.list) {
+                if (bet.select) {
+                    [mutArr1 addObject:bet];
+                }
+            }
+            UGGameplaySectionModel *model1 = play.list[1];
+            for (UGGameBetModel *bet in model1.list) {
+                if (bet.select) {
+                    [mutArr2 addObject:bet];
+                }
+            }
+            
+            model.selectedCount = mutArr1.count + mutArr2.count;
+            [self.tableView reloadData];
+            [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            
+            
+            if (mutArr1.count == 0 || mutArr2.count == 0) {
+                count = 0;
+                [self updateSelectLabelWithCount:count];
+                return;
+            }
+            for (int i = 0; i < mutArr1.count; i++) {
+                
+                for (int y = 0; y < mutArr2.count; y++) {
                     
-                    UGGameplaySectionModel *model0 = play.list[2];
-                    for (UGGameplayModel *bet in model0.list) {
-                        if (bet.select) {
-                            [mutArr1 addObject:bet];
-                        }
-                    }
-                    UGGameplaySectionModel *model1 = play.list[3];
-                    for (UGGameplayModel *bet in model1.list) {
-                        if (bet.select) {
-                            [mutArr2 addObject:bet];
-                        }
-                    }
-                    UGGameplaySectionModel *model2 = play.list[4];
-                    for (UGGameplayModel *bet in model2.list) {
-                        if (bet.select) {
-                            [mutArr3 addObject:bet];
-                        }
-                    }
-                    if (mutArr1 == 0 || mutArr2 == 0 || mutArr3 == 0) {
-                        count = 0;
-                        [self updateSelectLabelWithCount:count];
-                        return;
-                    }
-                    for (int i = 0; i < mutArr1.count; i++) {
-                        
-                        for (int y = 0; y < mutArr2.count; y++) {
-                            
-                            for (int z = 0; z < mutArr3.count; z++) {
-                                UGGameBetModel *beti = mutArr1[i];
-                                UGGameBetModel *bety = mutArr2[y];
-                                UGGameBetModel *betz = mutArr3[z];
-                                UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                                [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
-                                NSMutableString *name = [[NSMutableString alloc] init];
-                                [name appendString:beti.name];
-                                [name appendString:@","];
-                                [name appendString:bety.name];
-                                [name appendString:@","];
-                                [name appendString:betz.name];
-                                bet.name = name;
-                                bet.money = self.amountTextF.text;
-                                bet.title = bet.alias;
-                                bet.betInfo = name;
-                                [array addObject:bet];
-                            }
-                        }
-                    }
+                    UGGameBetModel *beti = mutArr1[i];
+                    UGGameBetModel *bety = mutArr2[y];
+                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                    [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+                    NSMutableString *name = [[NSMutableString alloc] init];
+                    [name appendString:beti.name];
+                    [name appendString:@","];
+                    [name appendString:bety.name];
+                    bet.name = name;
+                    bet.money = self.amountTextF.text;
+                    bet.title = bet.alias;
+                    bet.betInfo = name;
+                    [array addObject:bet];
                     
-                    if (mutArr1.count == 0 || mutArr2.count == 0|| mutArr3.count == 0) {
-                        count = 0;
-                        [self updateSelectLabelWithCount:count];
-                        
-                    } else {
-                        count = array.count;
-                        NSLog(@"count = %ld",(long)count);
-                        [self updateSelectLabelWithCount:count];
+                }
+            }
+            count = array.count;
+            NSLog(@"count = %ld",(long)count);
+            [self updateSelectLabelWithCount:count];
+        }
+        else {
+            NSMutableArray *mutArr1 = [NSMutableArray array];
+            NSMutableArray *mutArr2 = [NSMutableArray array];
+            NSMutableArray *mutArr3 = [NSMutableArray array];
+            
+            UGGameplaySectionModel *model0 = play.list[2];
+            for (UGGameBetModel *bet in model0.list) {
+                if (bet.select) {
+                    [mutArr1 addObject:bet];
+                }
+            }
+            UGGameplaySectionModel *model1 = play.list[3];
+            for (UGGameBetModel *bet in model1.list) {
+                if (bet.select) {
+                    [mutArr2 addObject:bet];
+                }
+            }
+            UGGameplaySectionModel *model2 = play.list[4];
+            for (UGGameBetModel *bet in model2.list) {
+                if (bet.select) {
+                    [mutArr3 addObject:bet];
+                }
+            }
+            
+            model.selectedCount = mutArr1.count + mutArr2.count + mutArr3.count;
+            [self.tableView reloadData];
+            [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            
+            
+            if (mutArr1 == 0 || mutArr2 == 0 || mutArr3 == 0) {
+                count = 0;
+                [self updateSelectLabelWithCount:count];
+                return;
+            }
+            for (int i = 0; i < mutArr1.count; i++) {
+                
+                for (int y = 0; y < mutArr2.count; y++) {
+                    
+                    for (int z = 0; z < mutArr3.count; z++) {
+                        UGGameBetModel *beti = mutArr1[i];
+                        UGGameBetModel *bety = mutArr2[y];
+                        UGGameBetModel *betz = mutArr3[z];
+                        UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                        [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+                        NSMutableString *name = [[NSMutableString alloc] init];
+                        [name appendString:beti.name];
+                        [name appendString:@","];
+                        [name appendString:bety.name];
+                        [name appendString:@","];
+                        [name appendString:betz.name];
+                        bet.name = name;
+                        bet.money = self.amountTextF.text;
+                        bet.title = bet.alias;
+                        bet.betInfo = name;
+                        [array addObject:bet];
                     }
                 }
             }
             
-        }
-        else{
-            for (UGGameplayModel *model in self.gameDataArray) {
-                if (!model.select) {
-                    continue;
-                }
-                for (UGGameplaySectionModel *type in model.list) {
-                    if ([@"连码" isEqualToString:model.name]) {
-                        NSInteger num = 0;
-                        for (UGGameBetModel *bet in type.list) {
-                            if (bet.select) {
-                                num ++;
-                            }
-                        }
-                        NSString *title = self.lmgmentTitleArray[self.segmentIndex];
-                        if ([@"二中二" isEqualToString:title]) {
-                            if (num >= 2) {
-                                count += 1;
-                            }
-                        }else if ([@"三中三" isEqualToString:title]) {
-                            if (num >= 3) {
-                                count += 1;
-                            }
-                        }else if ([@"四中四" isEqualToString:title]) {
-                            if (num >= 4) {
-                                count += 1;
-                            }
-                        }else if ([@"五中五" isEqualToString:title]) {
-                            if (num >= 5) {
-                                count += 1;
-                            }
-                        }else if ([@"六中五" isEqualToString:title]) {
-                            if (num >= 6) {
-                                count += 1;
-                            }
-                        }else if ([@"七中五" isEqualToString:title]) {
-                            if (num >= 7) {
-                                count += 1;
-                            }
-                        }else if ([@"八中五" isEqualToString:title]) {
-                            if (num >= 8) {
-                                count += 1;
-                            }
-                        }else if ([@"前二组选" isEqualToString:title]) {
-                            if (num >= 2) {
-                                count += [CMCommon pickNum:2 totalNum:num];
-                            }
-                        }else if ([@"前三组选" isEqualToString:title]) {
-                            if (num >= 3) {
-                                count += [CMCommon pickNum:3 totalNum:num];
-                            }
-                        }else {
-                            
-                        }
-                        
-                        continue;
-                    }
-                   
-                    else{
-                        for (UGGameBetModel *game in type.list) {
-                            if (game.select) {
-                                count ++;
-                            }
-                        }
-                    }
-
-                }
-            }
+            count = array.count;
+            NSLog(@"count = %ld",(long)count);
             [self updateSelectLabelWithCount:count];
         }
         
-		
-	
-		
-	}
+    }else {
+        UGGameplaySectionModel *type = model.list[indexPath.section];
+        UGGameBetModel *game = type.list[indexPath.row];
+        if (!(game.gameEnable && game.enable)) return;
+        
+        game.select = !game.select;
+        [self.betCollectionView reloadData];
+        
+        NSInteger number = 0;
+        for (UGGameplaySectionModel *type in model.list) {
+            for (UGGameBetModel *game in type.list) {
+                if (game.select) {
+                    number ++;
+                }
+            }
+        }
+        model.selectedCount = number;
+        [self.tableView reloadData];
+        [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        
+        // 计算注数
+        NSInteger count = 0;
+        for (UGGameplayModel *model in self.gameDataArray) {
+            if ([@"连码,直选" containsString:model.name]) continue;
+            for (UGGameplaySectionModel *type in model.list) {
+                for (UGGameBetModel *game in type.list) {
+                    if (game.select) {
+                        count ++;
+                    }
+                }
+            }
+        }
+        [self updateSelectLabelWithCount:count];
+    }
 	
 }
 

@@ -87,6 +87,15 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="历史记录按钮"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511082期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7e-9I-ktL" userLabel="下期开奖">
+                                                <rect key="frame" x="5" y="56.5" width="108.5" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="18" id="Xja-8i-ifk"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xz_sx" translatesAutoresizingMaskIntoConstraints="NO" id="k3b-dU-gQk" userLabel="双箭头图片">
                                                 <rect key="frame" x="377" y="5" width="27" height="52"/>
                                                 <constraints>
@@ -138,6 +147,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="k3b-dU-gQk" secondAttribute="trailing" constant="10" id="041-gc-gzg"/>
                                             <constraint firstItem="cdI-he-9kp" firstAttribute="top" secondItem="NW3-xY-exp" secondAttribute="top" id="5Fs-69-0qu"/>
+                                            <constraint firstItem="JKO-fs-eA2" firstAttribute="top" secondItem="C7e-9I-ktL" secondAttribute="bottom" constant="5" id="8Vj-Cw-fbE"/>
                                             <constraint firstItem="Wce-lc-dfM" firstAttribute="leading" secondItem="NW3-xY-exp" secondAttribute="leading" id="DIj-Kk-ATu"/>
                                             <constraint firstItem="TCN-sg-vub" firstAttribute="leading" secondItem="NW3-xY-exp" secondAttribute="leading" constant="5" id="FQ3-Jb-Bv1"/>
                                             <constraint firstItem="k3b-dU-gQk" firstAttribute="top" secondItem="NW3-xY-exp" secondAttribute="top" constant="5" id="Fwz-eD-0NL"/>
@@ -150,6 +160,7 @@
                                             <constraint firstAttribute="trailing" secondItem="JKO-fs-eA2" secondAttribute="trailing" id="h2N-o2-s3p"/>
                                             <constraint firstItem="TCN-sg-vub" firstAttribute="top" secondItem="NW3-xY-exp" secondAttribute="top" constant="10" id="h3B-JI-sjA"/>
                                             <constraint firstAttribute="trailing" secondItem="cdI-he-9kp" secondAttribute="trailing" id="pp0-Fy-f5I"/>
+                                            <constraint firstItem="C7e-9I-ktL" firstAttribute="leading" secondItem="NW3-xY-exp" secondAttribute="leading" constant="5" id="qPd-ZK-wIW"/>
                                             <constraint firstItem="JKO-fs-eA2" firstAttribute="leading" secondItem="NW3-xY-exp" secondAttribute="leading" id="vpD-o7-C5X"/>
                                             <constraint firstAttribute="bottom" secondItem="qsh-Lf-diO" secondAttribute="bottom" id="wwd-gs-Hsf"/>
                                             <constraint firstAttribute="height" constant="80" id="yf2-tn-we2"/>
@@ -181,14 +192,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ska-kf-68T" userLabel="头_下">
                                         <rect key="frame" x="0.0" y="80" width="414" height="34"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20190511082期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7e-9I-ktL" userLabel="下期开奖">
-                                                <rect key="frame" x="5" y="8" width="108.5" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封盘:04:12:30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4Q-iv-K5a" userLabel="封盘时间">
-                                                <rect key="frame" x="118.5" y="8" width="96" height="18"/>
+                                                <rect key="frame" x="71.5" y="8" width="96" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -197,7 +202,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="开奖:04:12:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gqq-Cx-lhK" userLabel="开奖时间">
-                                                <rect key="frame" x="219.5" y="8" width="96" height="18"/>
+                                                <rect key="frame" x="172.5" y="8" width="96" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -223,20 +228,33 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="金杯btn"/>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="截止投注" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MWs-Yc-0Wj">
+                                                <rect key="frame" x="5" y="7" width="61.5" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20.5" id="fXq-S7-DIf"/>
+                                                    <constraint firstAttribute="width" constant="61.5" id="sGd-a0-ER7"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="截止投注label"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="FbE-4D-0lz" secondAttribute="trailing" constant="5" id="9AB-nr-0gV"/>
+                                            <constraint firstItem="MWs-Yc-0Wj" firstAttribute="centerY" secondItem="ska-kf-68T" secondAttribute="centerY" id="9Yu-fX-Nhf"/>
                                             <constraint firstItem="Gqq-Cx-lhK" firstAttribute="leading" secondItem="s4Q-iv-K5a" secondAttribute="trailing" constant="5" id="AVu-6A-6VN"/>
                                             <constraint firstItem="s4Q-iv-K5a" firstAttribute="centerY" secondItem="ska-kf-68T" secondAttribute="centerY" id="FfR-P7-weW"/>
                                             <constraint firstItem="FbE-4D-0lz" firstAttribute="top" secondItem="ska-kf-68T" secondAttribute="top" constant="7" id="IVA-B5-fvo"/>
                                             <constraint firstAttribute="trailing" secondItem="zgC-sA-pDZ" secondAttribute="trailing" id="KxU-p6-Iwk"/>
-                                            <constraint firstItem="s4Q-iv-K5a" firstAttribute="leading" secondItem="C7e-9I-ktL" secondAttribute="trailing" constant="5" id="Pr5-Aa-b43"/>
+                                            <constraint firstItem="s4Q-iv-K5a" firstAttribute="leading" secondItem="MWs-Yc-0Wj" secondAttribute="trailing" constant="5" id="MyB-bd-Ey8"/>
                                             <constraint firstItem="Gqq-Cx-lhK" firstAttribute="centerY" secondItem="ska-kf-68T" secondAttribute="centerY" id="TQV-Hp-G05"/>
-                                            <constraint firstItem="C7e-9I-ktL" firstAttribute="leading" secondItem="ska-kf-68T" secondAttribute="leading" constant="5" id="WuK-SF-buf"/>
                                             <constraint firstAttribute="height" constant="34" id="YiA-fB-tJe"/>
                                             <constraint firstItem="zgC-sA-pDZ" firstAttribute="leading" secondItem="ska-kf-68T" secondAttribute="leading" id="b4y-kV-mNs"/>
-                                            <constraint firstItem="C7e-9I-ktL" firstAttribute="centerY" secondItem="ska-kf-68T" secondAttribute="centerY" id="eun-7W-Qyb"/>
+                                            <constraint firstItem="MWs-Yc-0Wj" firstAttribute="leading" secondItem="ska-kf-68T" secondAttribute="leading" constant="5" id="rjW-U1-0e5"/>
                                             <constraint firstAttribute="bottom" secondItem="zgC-sA-pDZ" secondAttribute="bottom" id="svF-qj-YiC"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -514,6 +532,9 @@
         <image name="xz_sx" width="100" height="100"/>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

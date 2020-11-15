@@ -128,8 +128,6 @@
     self.titleView.backgroundColor =  [UIColor colorWithPatternImage:[UIImage gradientImageWithBounds:self.titleView.bounds andColors:colors andGradientType:GradientDirectionTopToBottom]];
     
     self.fd_prefersNavigationBarHidden = YES;
-    // 禁用侧滑返回
-    self.fd_interactivePopDisabled = true;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });

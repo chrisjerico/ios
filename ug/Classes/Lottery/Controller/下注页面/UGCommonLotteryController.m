@@ -186,10 +186,30 @@
         subLabel(@"线label").hidden = !APP.isShowBorder;
         [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
         [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
+        if (Skin1.isTKL) {
+            subLabel(@"截止投注label").cc_constraints.width.constant  = 61.5;
+            subLabel(@"截止投注label").cc_constraints.left.constant  = 5;
+            [subLabel(@"截止投注label") setHidden:NO];
+        } else {
+            subLabel(@"截止投注label").cc_constraints.width.constant  = 0;
+            subLabel(@"截止投注label").cc_constraints.left.constant  = 0;
+            [subLabel(@"截止投注label") setHidden:YES];
+        }
+      
         
         self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
+        
+        // 处理期数太长被遮挡问题
+        self.currentIssueLabel.numberOfLines = 0;
+        if (self.currentIssueLabel.cc_constraints.width) {
+            self.currentIssueLabel.cc_constraints.width.constant = 100;
+        } else {
+            [self.currentIssueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(100);
+            }];
+        }
         
         // 底部栏背景色
         [self.bottomView setBackgroundColor:Skin1.bgColor];
@@ -388,6 +408,7 @@
             else{
                 self.chipButton.cc_constraints.width.constant  = 60;
             }
+            
             [newResetBtn setHidden:!Skin1.isTKL];
             [yeLable setHidden:!Skin1.isTKL];
             [yeNumberLable setHidden:!Skin1.isTKL];
