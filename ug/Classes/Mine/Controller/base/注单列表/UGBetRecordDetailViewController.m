@@ -78,10 +78,8 @@
     }else {
         
         self.resultLabel.text = @"等待开奖";
-        float win = self.item.odds.floatValue * self.item.money.floatValue;
-        NSString *winAmount= [[NSString stringWithFormat:@"%.4f",win] removeFloatAllZero];
-        self.winAmountLabel.text = [NSString stringWithFormat:@"%@元",winAmount];
-        self.resultMoneyLabel.text = [NSString stringWithFormat:@"奖金：%@元",winAmount];
+        self.winAmountLabel.text = @"0元";
+        self.resultMoneyLabel.text = @"奖金：0元";
     }
     
 }

@@ -101,6 +101,8 @@ void setInv(NSInvocation *inv, NSMethodSignature *sig, NSArray *args) {
     NSUInteger count = [sig numberOfArguments];
     for (int index = 2; index < count; index++) {
         id obj = args[index-2];
+        if ([obj isKindOfClass:[NSNull class]]) continue;
+        
         char *type = (char *)[sig getArgumentTypeAtIndex:index];
         while (*type == 'r' || // const
                *type == 'n' || // in
