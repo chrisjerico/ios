@@ -139,7 +139,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // 禁用侧滑返回
-    self.fd_interactivePopDisabled = true;
     
     SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
         if (SysConf.domainBindAgentId.intValue > 0) {

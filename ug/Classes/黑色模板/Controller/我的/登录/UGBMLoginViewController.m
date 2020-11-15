@@ -58,7 +58,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.fd_interactivePopDisabled = true;
     self.fd_prefersNavigationBarHidden = YES;
     
     FastSubViewCode(self.view);

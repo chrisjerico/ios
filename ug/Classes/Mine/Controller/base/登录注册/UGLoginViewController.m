@@ -108,7 +108,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.fd_interactivePopDisabled = true;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         [self skin];
     });

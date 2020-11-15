@@ -85,7 +85,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.fd_interactivePopDisabled = true;
     
     self.navigationItem.title = @"登录";
     self.loginButton.layer.cornerRadius = 22;

@@ -15,9 +15,10 @@
     [super load];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [UIViewController jr_swizzleMethod:@selector(cc_dealloc) withMethod:NSSelectorFromString(@"dealloc") error:nil];
-        [UIViewController jr_swizzleMethod:@selector(cc_viewWillAppear:) withMethod:@selector(viewWillAppear:) error:nil];
-        [UIViewController jr_swizzleMethod:@selector(cc_viewWillDisappear:) withMethod:@selector(viewWillDisappear:) error:nil];
+        [UIViewController jr_swizzleMethod:NSSelectorFromString(@"dealloc") withMethod:@selector(cc_dealloc) error:nil];
+        [UIViewController jr_swizzleMethod:@selector(viewDidLoad) withMethod:@selector(cc_viewDidLoad) error:nil];
+        [UIViewController jr_swizzleMethod:@selector(viewWillAppear:) withMethod:@selector(cc_viewWillAppear:) error:nil];
+        [UIViewController jr_swizzleMethod:@selector(viewWillDisappear:) withMethod:@selector(cc_viewWillDisappear:) error:nil];
         
         __block NSDate *__lastDate = nil;
         NSMutableDictionary *dict = @{}.mutableCopy;
@@ -69,6 +70,12 @@
     if (self.classIsCustom)
         NSLog(@"——————————————控制器释放： %@，title=%@", [self class], self.title);
     [self cc_dealloc];
+}
+
+- (void)cc_viewDidLoad {
+    // 全屏返回手势改为侧滑返回
+    self.fd_interactivePopMaxAllowedInitialDistanceToLeftEdge = 40.f;
+    [self cc_viewDidLoad];
 }
 
 - (void)cc_viewWillAppear:(BOOL)animated {
