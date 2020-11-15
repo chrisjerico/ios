@@ -58,7 +58,7 @@ static NSString *fundDetailsCellid = @"UGFundDetailsCell";
     self.startTime = [formatter stringFromDate:startDay];
     [self setupRefreshView];
     [self getFundLogs];
-
+    self.tableView.backgroundColor = Skin1.textColor4;
 
 }
 

@@ -34,8 +34,8 @@
     FastSubViewCode(self.view);
     subView(@"导航顶部提示View").backgroundColor = Skin1.menuHeadViewColor;
     subLabel(@"我的钱包Label").textColor = Skin1.textColor1;
-    subLabel(@"¥Label").textColor = UIColorFromHex(0xda4453);
-    subLabel(@"余额Label").textColor = UIColorFromHex(0xda4453);
+    subLabel(@"¥Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : UIColorFromHex(0xda4453);
+    subLabel(@"余额Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : UIColorFromHex(0xda4453);
     self.navCollectionView.superview.superview.backgroundColor = Skin1.homeContentColor;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         subView(@"导航顶部提示View").backgroundColor = Skin1.menuHeadViewColor;
@@ -177,7 +177,7 @@
     subView(@"背景色View").backgroundColor = cell.selected ? Skin1.navBarBgColor : Skin1.homeContentColor;
     [subImageView(@"游戏分类图标ImageView") sd_setImageWithURL:[NSURL URLWithString:gcm.logo]];
     subLabel(@"游戏分类标题Label").text = gcm.name;
-    subLabel(@"游戏分类标题Label").textColor = cell.selected ? UIColor.whiteColor : UIColor.blackColor;
+    subLabel(@"游戏分类标题Label").textColor = cell.selected ? UIColor.whiteColor : (Skin1.isBlack ? Skin1.textColor2 : UIColor.blackColor);
     [subButton(@"Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton *sender) {
         sender.selected = true;
@@ -197,7 +197,7 @@
             lastSelectedButton = obj;
         }
         subView(@"背景色View").backgroundColor = obj.selected ? Skin1.menuHeadViewColor : Skin1.homeContentColor;
-        subLabel(@"游戏分类标题Label").textColor = obj.selected ? UIColor.whiteColor : UIColor.blackColor;
+        subLabel(@"游戏分类标题Label").textColor = obj.selected ? UIColor.whiteColor : (Skin1.isBlack ? Skin1.textColor2 : UIColor.blackColor);
     }];
     
     if ([APP.SiteId isEqualToString:@"c245"]) {

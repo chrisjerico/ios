@@ -62,8 +62,12 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 		[self.tableView setBackgroundColor:Skin1.textColor4];
 		self.balanceLabel.text = [NSString stringWithFormat:@"¥%@", [UserI.balance removeFloatAllZero]];
 		self.amountTextF.textColor = Skin1.textColor1;
-		self.transferOutLabel.textColor = Skin1.textColor1;
-		self.transferInLabel.textColor = Skin1.textColor1;
+		self.transferOutLabel.textColor = Skin1.textColor3;
+		self.transferInLabel.textColor = Skin1.textColor3;
+        self.transferOutLabel.text = @"请选择钱包";
+        self.transferInLabel.text = @"请选择钱包";
+        self.amountTextF.placeholder = @"请输入金额";
+        self.amountTextF.placeholderColor = Skin1.textColor3;
 		//        self.transferOutArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
 		//        self.tarnsferInArrow.image = [[UIImage imageNamed:@"jiantou1"] qmui_imageWithTintColor:Skin1.textColor1];
 		FastSubViewCode(self.view);
@@ -160,8 +164,8 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 			[CMResult processWithResult:model success:^{
 				[SVProgressHUD showSuccessWithStatus:model.msg];
 				SANotificationEventPost(UGNotificationGetUserInfo, nil);
-				weakSelf.transferOutLabel.text = nil;
-				weakSelf.transferInLabel.text = nil;
+				weakSelf.transferOutLabel.text = @"请选择钱包";
+				weakSelf.transferInLabel.text = @"请选择钱包";
 				weakSelf.amountTextF.text = nil;
 				
 				if (!outModel || !intModel)
@@ -216,8 +220,10 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
                                                   for (UGPlatformGameModel *pgm in __self.dataArray) {
                                                            pgm.balance = @"￥*****";
                                                   }
-                                                  __self.transferOutLabel.text = nil;
-                                                  __self.transferInLabel.text = nil;
+                                                  __self.transferOutLabel.text = @"请选择钱包";
+                                                  __self.transferInLabel.text = @"请选择钱包";
+                                                  __self.transferOutLabel.textColor = Skin1.textColor3;
+                                                  __self.transferInLabel.textColor = Skin1.textColor3;
                                                   __self.amountTextF.text = nil;
                                                   [__self.tableView reloadData];
                                               }
@@ -315,9 +321,11 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 	if (index >= 0) {
 		if (ybPopupMenu == self.transferOutPopView) {
 			self.transferOutLabel.text = self.transferArray[index];
+            self.transferOutLabel.textColor = Skin1.textColor1;
 			self.outIndex = index;
 		} else {
 			self.transferInLabel.text = self.transferArray[index];
+            self.transferInLabel.textColor = Skin1.textColor1;
 			self.inIndex = index;
 		}
 	}

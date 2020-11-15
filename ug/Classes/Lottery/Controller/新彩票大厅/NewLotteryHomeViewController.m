@@ -181,16 +181,13 @@
          self.slideSwitchView.tabItemSelectedColor = RGBA(203, 43, 37, 1.0) ;
         self.slideSwitchView.tabItemSelectionIndicatorColor = RGBA(203, 43, 37, 1.0) ;
     }
-    else if ([@"香槟金" containsString:Skin1.skitType]) {
-        bg = Skin1.bgColor;
-        self.slideSwitchView.tabItemSelectedColor = [UIColor whiteColor];
-        self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor3 ;
-    }
     else {
         bg = Skin1.bgColor;
         if (![Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
-            self.slideSwitchView.tabItemSelectedColor = Skin1.textColor1 ;
-            self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor3 ;
+            self.slideSwitchView.tabItemSelectedColor = [UIColor blackColor];
+            self.slideSwitchView.tabItemNormalColor = Skin1.textColor1;
+            self.slideSwitchView.tabItemSelectionIndicatorColor = Skin1.textColor1;
+            self.slideSwitchView.tabItemNormalFont = 13;
         }
         else{
         

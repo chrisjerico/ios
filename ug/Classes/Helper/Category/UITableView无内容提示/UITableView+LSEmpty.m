@@ -179,7 +179,7 @@
 }
 - (void)setupViews {
   UIView *tipView = [[UIView alloc] init];
-  tipView.backgroundColor = [UIColor colorWithWhite:0.913 alpha:1.000];
+  tipView.backgroundColor = Skin1.textColor3;
 
   self.tipView = tipView;
   [self addSubview:tipView];
