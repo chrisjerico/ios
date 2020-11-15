@@ -193,10 +193,13 @@
             subLabel(@"截止投注label").cc_constraints.width.constant  = 61.5;
             subLabel(@"截止投注label").cc_constraints.left.constant  = 5;
             [subLabel(@"截止投注label") setHidden:NO];
+            subView(@"底部View").cc_constraints.height.constant  = 70;
         } else {
             subLabel(@"截止投注label").cc_constraints.width.constant  = 0;
             subLabel(@"截止投注label").cc_constraints.left.constant  = 0;
             [subLabel(@"截止投注label") setHidden:YES];
+            subView(@"底部View").cc_constraints.height.constant  = 96;
+    
         }
       
         
@@ -401,7 +404,7 @@
             
             if (Skin1.isTKL) {
                 self.chipButton.cc_constraints.width.constant  = 30;
-                [self.bottomView addSubview:_bargainingView];
+                [self.view addSubview:_bargainingView];
                 [self.bottomView addSubview:yeNumberLable];
                 [self.bottomView addSubview:yeLable];
                 [self.bottomView addSubview:newXZBtn];
@@ -438,7 +441,7 @@
             
            
             [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self.bottomView.mas_top).mas_offset(50);
+                make.bottom.equalTo(self.bottomView.mas_top).mas_offset(25);
                 make.left.equalTo(self.bottomView.mas_left).mas_offset(20);
                 make.height.mas_equalTo(45);
                 make.width.mas_equalTo(260);
@@ -491,8 +494,8 @@
             newXZBtn.layer.masksToBounds = YES;
             [newXZBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self.bottomView.mas_right).mas_offset(-20);
-                make.height.mas_equalTo(70);
-                make.width.mas_equalTo(70);
+                make.height.mas_equalTo(50);
+                make.width.mas_equalTo(50);
                 make.centerY.equalTo(self.bottomView.mas_centerY);
             }];
             [newXZBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];

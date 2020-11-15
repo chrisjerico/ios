@@ -78,7 +78,7 @@
     [_dataArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"1000" WebName:@"money_1000"]];
     [_dataArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"5000" WebName:@"money_5000"]];
     [_dataArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"10000" WebName:@"money_1w"]];
-    [_dataArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"50000" WebName:@"money_5w"]];
+//    [_dataArray addObject:[[HelpDocModel alloc] initWithBtnTitle:@"50000" WebName:@"money_5w"]];
 }
 
 @end
