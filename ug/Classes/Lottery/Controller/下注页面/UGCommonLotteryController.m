@@ -24,7 +24,7 @@
 #import "YNHLPrizeDetailView.h"
 #import "UGLotteryRightMenuView.h"
 #import "YBPopupMenu.h"
-#import "YBPopupMenu.h"
+
 
 
 @interface UIButton (customSetEnable)
