@@ -1765,6 +1765,10 @@
 		4966D627255A62DF0011EF47 /* HomeJSWebmasterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4966D625255A62DF0011EF47 /* HomeJSWebmasterView.m */; };
 		4966D62B255A77430011EF47 /* HomeJSWebmasterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4966D62A255A77430011EF47 /* HomeJSWebmasterView.xib */; };
 		4966D62C255A77430011EF47 /* HomeJSWebmasterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4966D62A255A77430011EF47 /* HomeJSWebmasterView.xib */; };
+		49EE5E9D25625C55003DEAEA /* TKLFPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EE5E9C25625C55003DEAEA /* TKLFPView.m */; };
+		49EE5E9E25625C55003DEAEA /* TKLFPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EE5E9C25625C55003DEAEA /* TKLFPView.m */; };
+		49EE5EA425625C95003DEAEA /* TKLFPView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EE5EA325625C95003DEAEA /* TKLFPView.xib */; };
+		49EE5EA525625C95003DEAEA /* TKLFPView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EE5EA325625C95003DEAEA /* TKLFPView.xib */; };
 		CF14029B25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
 		CF14029C25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
 		CF1402A025345C060031C3E4 /* c012充值.html in Resources */ = {isa = PBXBuildFile; fileRef = CF14029F25345C050031C3E4 /* c012充值.html */; };
@@ -3912,6 +3916,9 @@
 		4966D624255A62DF0011EF47 /* HomeJSWebmasterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeJSWebmasterView.h; sourceTree = "<group>"; };
 		4966D625255A62DF0011EF47 /* HomeJSWebmasterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeJSWebmasterView.m; sourceTree = "<group>"; };
 		4966D62A255A77430011EF47 /* HomeJSWebmasterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeJSWebmasterView.xib; sourceTree = "<group>"; };
+		49EE5E9B25625C55003DEAEA /* TKLFPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLFPView.h; sourceTree = "<group>"; };
+		49EE5E9C25625C55003DEAEA /* TKLFPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLFPView.m; sourceTree = "<group>"; };
+		49EE5EA325625C95003DEAEA /* TKLFPView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKLFPView.xib; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF14029A25345BC90031C3E4 /* c012CZ.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c012CZ.jpg; sourceTree = "<group>"; };
 		CF14029F25345C050031C3E4 /* c012充值.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "c012充值.html"; sourceTree = "<group>"; };
@@ -8327,6 +8334,16 @@
 			path = "金沙站长推荐";
 			sourceTree = "<group>";
 		};
+		49EE5E9925625BB6003DEAEA /* 封盘 */ = {
+			isa = PBXGroup;
+			children = (
+				49EE5E9B25625C55003DEAEA /* TKLFPView.h */,
+				49EE5E9C25625C55003DEAEA /* TKLFPView.m */,
+				49EE5EA325625C95003DEAEA /* TKLFPView.xib */,
+			);
+			path = "封盘";
+			sourceTree = "<group>";
+		};
 		CF14029825345B490031C3E4 /* c012充值 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8776,6 +8793,7 @@
 		CF5586B02546B90400BE2576 /* 天空蓝 */ = {
 			isa = PBXGroup;
 			children = (
+				49EE5E9925625BB6003DEAEA /* 封盘 */,
 				CF3A26E625552E1600ECA65F /* 筹码View */,
 				CF3A26E22552C5D100ECA65F /* 首页公告 */,
 				CF3A26E02552C56800ECA65F /* 首页定制导航头 */,
@@ -10032,6 +10050,7 @@
 				031EF57D23BE7B4D00B0F813 /* lixibao.svg in Resources */,
 				031E196723BE812600B0F813 /* LHTemplate.storyboard in Resources */,
 				031E1AB723BE812800B0F813 /* icon_arrow_up@3x.png in Resources */,
+				49EE5EA525625C95003DEAEA /* TKLFPView.xib in Resources */,
 				031E1C1923BE812900B0F813 /* UGTimeLotteryBetCollectionViewCell.xib in Resources */,
 				031E1B1D23BE812800B0F813 /* UGHomeViewController.storyboard in Resources */,
 				031E1C7F23BE812A00B0F813 /* UGDepositDetailsCollectionViewCell.xib in Resources */,
@@ -10409,6 +10428,7 @@
 				CF4758CC239636D200966536 /* 93.gif in Resources */,
 				CF4758BB239636D200966536 /* 154.gif in Resources */,
 				031E19FE23BE812700B0F813 /* black_bg.png in Resources */,
+				49EE5EA425625C95003DEAEA /* TKLFPView.xib in Resources */,
 				031E1E6023BE812C00B0F813 /* UGAvaterCollectionViewCell.xib in Resources */,
 				031E1B8023BE812900B0F813 /* UGPlatformNoticeView.xib in Resources */,
 				03B1252F24F7FE10007A0858 /* ScratchActionController.xib in Resources */,
@@ -10966,6 +10986,7 @@
 				031E1C4D23BE812A00B0F813 /* UGSegmentCollectionViewCell.m in Sources */,
 				031EF5C223BE7B4D00B0F813 /* UGMomentsHomeVC.swift in Sources */,
 				031E1CD723BE812A00B0F813 /* MJRefreshAutoStateFooter.m in Sources */,
+				49EE5E9E25625C55003DEAEA /* TKLFPView.m in Sources */,
 				031EF53923BE7B4D00B0F813 /* CipherManager.swift in Sources */,
 				CF8508732466D7050025672F /* LineConversionHeaderVC.m in Sources */,
 				031E1B3F23BE812800B0F813 /* UGPlatformNoticeModel.m in Sources */,
@@ -11723,6 +11744,7 @@
 				031E1ADA23BE812800B0F813 /* SDCycleScrollView.m in Sources */,
 				031AFC90253E8F2100092DFF /* URLModel.m in Sources */,
 				CF3E2CF72556CEFA00FB4BDE /* TKLRechargeMainViewController.m in Sources */,
+				49EE5E9D25625C55003DEAEA /* TKLFPView.m in Sources */,
 				031E1CEE23BE812A00B0F813 /* SVProgressAnimatedView.m in Sources */,
 				031E199E23BE812600B0F813 /* IBTextField.m in Sources */,
 				031E1E5023BE812C00B0F813 /* UGMineSkinFirstCollectionHeadView.m in Sources */,
