@@ -142,10 +142,14 @@ static NSString *__lastRnPage = nil;
     
     [self.view addSubview:_rnView];
     __weakSelf_(__self);
-    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-        __lastRnPage = __self.rpm.rnName;
-        [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
-    }];
+    if ([__lastRnPage isEqualToString:_rpm.rnName]) {
+        [ReactNativeHelper refreshVC];
+    } else {
+        [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            __lastRnPage = __self.rpm.rnName;
+            [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
+        }];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
