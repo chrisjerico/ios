@@ -279,6 +279,8 @@
         line.backgroundColor = [UIColor lightGrayColor];
         [_titleView addSubview:line];
         
+        
+#ifdef DEBUG
         _memberLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UGScreenW, 20)];
         _memberLbl.text = @"下线盈亏汇总:1000.0000";
         _memberLbl.textColor = [UIColor redColor];
@@ -289,6 +291,10 @@
         } else {
             [_memberLbl setHidden:YES];
         }
+ 
+#else
+   
+#endif
         
     }
     return _titleView;
