@@ -313,6 +313,9 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 //=============直播url====================================================================================================
 //http://test12.6yc.com/open_prize/video.html?id=1&&gameType=cqssc
 #define liveUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"open_prize/video.html?navhidden=1&&id="]
+//=============注单详情url====================================================================================================
+//http://test61f.fhptcdn.com/report/getRealBetDetail.do?id=6235
+#define betDetailUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"report/getRealBetDetail.do?id="]
 //=============FB登录====================================================================================================
 #define oauthHasBindUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=hasBind"]//接口，oauth    3. 未绑定处理-弹出绑定页面
 #define oauthBindAccountUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=oauth&a=bindAccount"]//- 绑定旧账号：
