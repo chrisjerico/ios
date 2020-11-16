@@ -202,7 +202,7 @@
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
 
     //背景是白色
-    _betBgIsWhite =![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158" containsString:_SiteId] || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
+    _betBgIsWhite = (![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158" containsString:_SiteId]) || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
     //下注页tab 为深色
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];

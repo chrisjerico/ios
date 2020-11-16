@@ -38,7 +38,8 @@ static NSString *transferLogsCellId = @"UGBalanceTransferLogsCell";
     self.tableView.rowHeight = 50;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = Skin1.textColor3;
+    self.tableView.tableFooterView = [UIView new];
     [self.tableView registerNib:[UINib nibWithNibName:@"UGBalanceTransferLogsCell" bundle:nil] forCellReuseIdentifier:transferLogsCellId];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

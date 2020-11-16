@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NIF-L6-1Cx" customClass="UUMarqueeView">
-                    <rect key="frame" x="38" y="0.0" width="376" height="44"/>
+                    <rect key="frame" x="39" y="0.0" width="375" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notice" translatesAutoresizingMaskIntoConstraints="NO" id="GZZ-0w-IFJ">
@@ -34,6 +34,16 @@
                         <action selector="showNoticeInfo" destination="yQ5-2k-uUp" eventType="touchUpInside" id="9lq-L8-9cg"/>
                     </connections>
                 </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="公告" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LlI-2v-wVy">
+                    <rect key="frame" x="6" y="13" width="31" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="公告Label"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="3UB-9u-hNQ"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,7 +56,7 @@
                 <constraint firstAttribute="trailing" secondItem="tyu-Xj-ZGZ" secondAttribute="trailing" id="T0p-CZ-hQm"/>
                 <constraint firstItem="NIF-L6-1Cx" firstAttribute="top" secondItem="yQ5-2k-uUp" secondAttribute="top" id="XkS-0h-sno"/>
                 <constraint firstAttribute="trailing" secondItem="NIF-L6-1Cx" secondAttribute="trailing" id="a2q-9l-pWp"/>
-                <constraint firstItem="NIF-L6-1Cx" firstAttribute="leading" secondItem="GZZ-0w-IFJ" secondAttribute="trailing" constant="5" id="uMc-2S-gDq"/>
+                <constraint firstItem="NIF-L6-1Cx" firstAttribute="leading" secondItem="GZZ-0w-IFJ" secondAttribute="trailing" constant="6" id="uMc-2S-gDq"/>
                 <constraint firstItem="GZZ-0w-IFJ" firstAttribute="leading" secondItem="yQ5-2k-uUp" secondAttribute="leading" constant="8" id="xjD-1x-IMz"/>
                 <constraint firstAttribute="height" constant="44" id="yCc-1x-lva"/>
             </constraints>

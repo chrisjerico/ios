@@ -109,7 +109,7 @@
         self.segmentedControl.verticalDividerWidth = 1.0f;
         [self.segmentedControl setTitleFormatter:^NSAttributedString *(HMSegmentedControl *segmentedControl, NSString *title, NSUInteger index, BOOL selected) {
             NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{
-                NSForegroundColorAttributeName : selected ?Skin1.navBarBgColor: [UIColor blackColor],
+                NSForegroundColorAttributeName : selected ? Skin1.navBarBgColor: [UIColor blackColor],
                 NSFontAttributeName : [UIFont systemFontOfSize:15]
             }];
             return attString;

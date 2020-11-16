@@ -23,6 +23,9 @@
     
     self.betFormViewModel = [BetFormViewModel new];
     [self.betFormViewModel setupWithTabeView: _betFormTableView betFormTableHeight: _betFormTableHeight];
+    
+    FastSubViewCode(self)
+    subLabel(@"标题Label").textColor = Skin1.textColor1;
 }
 
 @end

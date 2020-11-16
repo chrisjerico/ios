@@ -266,6 +266,7 @@
         [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
             [CMResult processWithResult:model success:^{
                 UGSystemConfigModel.currentConfig = model.data;
+                [[UGSkinManagers skinWithSysConf] useSkin];
                 [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
                     [ReactNativeHelper sendEvent:@"UGSystemConfigModel.currentConfig" params:[UGSystemConfigModel currentConfig]];
                 }];

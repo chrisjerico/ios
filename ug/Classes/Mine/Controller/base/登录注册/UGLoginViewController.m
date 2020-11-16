@@ -567,9 +567,6 @@
     
 }
 - (void)fboauthLoginUrlAction {//访问无密码登录接口
-    
-    
-    
     NSInteger slot = 0;
     NSString *uuid =  [SUCache itemForSlot:slot].profile.userID;
     NSString *name =  [SUCache itemForSlot:slot].profile.name;

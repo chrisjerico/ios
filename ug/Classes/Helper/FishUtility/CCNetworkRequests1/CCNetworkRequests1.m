@@ -52,8 +52,25 @@
 #pragma mark 生成错误信息
 // 把 “HTTP请求成功，但服务器返回操作失败” 的情况生成错误信息NSError
 - (NSError *)validationError:(CCSessionModel *)sm {
+    if (![sm.urlString containsString:APP.Host.lastPathComponent]) return sm.error;
     
-    if ([sm.urlString containsString:APP.Host.lastPathComponent] && sm.resObject) {
+    // 请求失败
+    if (sm.response.statusCode == 401) {
+        [SVProgressHUD dismiss];
+        SANotificationEventPost(UGNotificationloginTimeout, nil);
+        sm.noShowErrorHUD = true;
+        return [NSError errorWithDomain:@"您的账号已经登录超时，请重新登录。" code:sm.error.code userInfo:sm.error.userInfo];
+    }
+    if (sm.response.statusCode == 402) {
+        [SVProgressHUD dismiss];
+        [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
+        UGUserModel.currentUser = nil;
+        SANotificationEventPost(UGNotificationUserLogout, nil);
+        sm.noShowErrorHUD = true;
+        return [NSError errorWithDomain:@"登录已过期" code:sm.error.code userInfo:sm.error.userInfo];
+    }
+    
+    if (sm.resObject) {
         id responseObject = sm.resObject;
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             // 业务逻辑错误 code!=false
@@ -67,26 +84,7 @@
         }
     }
     
-    // 请求失败
     if (sm.error) {
-        if (sm.response.statusCode == 401) {
-            [SVProgressHUD dismiss];
-            SANotificationEventPost(UGNotificationloginTimeout, nil);
-            sm.noShowErrorHUD = true;
-            return [NSError errorWithDomain:@"您的账号已经登录超时，请重新登录。" code:sm.error.code userInfo:sm.error.userInfo];
-        }
-        if (sm.response.statusCode == 402) {
-            [SVProgressHUD dismiss];
-            [CMNetwork userLogoutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:nil];
-            UGUserModel.currentUser = nil;
-            SANotificationEventPost(UGNotificationUserLogout, nil);
-            sm.noShowErrorHUD = true;
-            return [NSError errorWithDomain:@"登录已过期" code:sm.error.code userInfo:sm.error.userInfo];
-        }
-        
-        if (sm.response.statusCode == 403 || sm.response.statusCode == 404) {
-            return [NSError errorWithDomain:sm.error.userInfo[@"com.alamofire.serialization.response.error.data"] code:sm.response.statusCode userInfo:sm.error.userInfo];
-        }
         return [NSError errorWithDomain:@"当前网络连接异常，请检查一下你的网络设置。" code:sm.error.code userInfo:sm.error.userInfo];
     }
     return nil;

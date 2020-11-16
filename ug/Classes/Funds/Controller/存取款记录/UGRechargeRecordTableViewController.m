@@ -49,6 +49,7 @@ static NSString *rechargeRecordCellid = @"UGRechargeRecordCell";
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0);
     self.tableView.separatorColor = Skin1.isBlack ? [UIColor lightTextColor] : APP.LineColor;
+    self.tableView.backgroundColor = Skin1.textColor4;
     [self.tableView registerNib:[UINib nibWithNibName:@"UGFundDetailsCell" bundle:nil] forCellReuseIdentifier:fundDetailsCell];
     [self.tableView registerNib:[UINib nibWithNibName:@"UGRechargeRecordCell" bundle:nil] forCellReuseIdentifier:rechargeRecordCellid];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

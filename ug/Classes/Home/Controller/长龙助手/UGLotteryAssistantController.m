@@ -133,7 +133,17 @@ static NSString *lotteryAssistantCellid = @"UGLotteryAssistantTableViewCell";
         [__self.tableView.mj_header endRefreshing];
         [CMResult processWithResult:model success:^{
             if (model.data) {
+                NSArray *temp = __self.dataArray;
                 __self.dataArray = model.data;
+                for (UGChanglongaideModel *clm1 in temp) {
+                    for (UGBetItemModel *bet1 in clm1.betList)
+                        if (bet1.select)
+                            for (UGChanglongaideModel *clm2 in __self.dataArray)
+                                if ([clm1.gameId isEqualToString:clm2.gameId] && [clm1.displayNumber isEqualToString:clm2.displayNumber])
+                                    for (UGBetItemModel *bet2 in clm2.betList)
+                                        if ([bet1.playId isEqualToString:bet2.playId])
+                                            bet2.select = true;
+                }
                 [__self.tableView reloadData];
             }
         } failure:^(id msg) {

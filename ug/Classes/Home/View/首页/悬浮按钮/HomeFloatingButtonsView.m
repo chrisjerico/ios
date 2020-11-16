@@ -104,7 +104,8 @@
                     [SVProgressHUD dismiss];
                     __self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
                     
-                    __self.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20,100, UGScreenW-50, UGScreenW-50+150) ];
+                    CGFloat h = UGScreenW-50+150;
+                    __self.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20, (APP.Height-h-10)/2, UGScreenW-50, h) ];
                     __self.uGredActivityView.item = __self.uGredEnvelopeView.item;
                     if (__self.uGredEnvelopeView.item) {
                         [__self.uGredActivityView show];

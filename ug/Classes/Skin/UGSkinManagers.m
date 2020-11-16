@@ -1284,7 +1284,7 @@ static UGSkinManagers *__initSkin1 = nil;
 			}),
 			
 			//香槟金
-            @"香槟金":({
+            @"香槟金0":({
                 UGSkinManagers *sm = defaultSm();
                 sm.skitType                 = @"香槟金";
                 sm.skitString               = @"香槟金";
@@ -1296,6 +1296,32 @@ static UGSkinManagers *__initSkin1 = nil;
                 
                 sm.progressBgColor          = color(@"d80000,fb5959");
                 sm.homeContentColor         = color(@"FFFFFF");
+                sm.homeContentSubColor      = color(@"D3D3D3");
+                sm.cellBgColor              = color(@"FFFFFF");
+                sm.CLBgColor                = color(@"E6E6E6");
+                sm.menuHeadViewColor        = color(@"ff566d,ffbac3");
+                sm.textColor1               = color(@"111111");
+                sm.textColor2               = color(@"555555");
+                sm.textColor3               = color(@"C1C1C1");
+                sm.textColor4               = color(@"FFFFFF");
+                sm.conversionCellColor      = color(@"7BA2C2");
+                sm.intoViewColor            = color(@"7BA2C2");
+                sm.moneyCellColor           = color(@"9BB8CB");
+                sm;
+            }),
+            // 香槟金 蓝色
+            @"香槟金6":({
+                UGSkinManagers *sm = defaultSm();
+                sm.skitType                 = @"香槟金";
+                sm.skitString               = @"香槟金";
+                sm.bgColor                  = color(@"5262AF,5262AF");
+                sm.navBarBgColor            = color(@"5262AF,5262AF");
+                sm.tabBarBgColor            = color(@"C6C6EA");
+                sm.tabNoSelectColor         = color(@"36389C");
+                sm.tabSelectedColor         = color(@"1B1C4E");
+                
+                sm.progressBgColor          = color(@"d80000,fb5959");
+                sm.homeContentColor         = color(@"C4C5E4");
                 sm.homeContentSubColor      = color(@"D3D3D3");
                 sm.cellBgColor              = color(@"FFFFFF");
                 sm.CLBgColor                = color(@"E6E6E6");
@@ -1476,7 +1502,6 @@ static UGSkinManagers *__initSkin1 = nil;
 	if ([@"c245" containsString:APP.SiteId]) {
 		skitType = @"1";
 	}
-    
 
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);

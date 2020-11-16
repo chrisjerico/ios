@@ -14,6 +14,7 @@
 #import "UGRegisterViewController.h"
 #import "UGAgentViewController.h"   // 申请代理
 #import "UGMissionCenterViewController.h"   // 任务中心
+#import "XBJNavAndGameListVC.h"
 
 // View
 #import "SDCycleScrollView.h"
@@ -68,8 +69,8 @@
 @property (nonatomic, strong) UGHomeTitleView *titleView;       /**<   自定义导航条 */
 @property (nonatomic, strong) UGTKLHomeTitleView *tkltitleView; /**<   自定义导航条 */
 
-@property (nonatomic, strong) JS_TitleView * js_titleView; 		/**<   金沙导航条 */
-@property (nonatomic, strong) HSC_TitleView * hsc_titleView; 	/**<   火山橙导航条 */
+@property (nonatomic, strong) JS_TitleView * js_titleView;         /**<   金沙导航条 */
+@property (nonatomic, strong) HSC_TitleView * hsc_titleView;     /**<   火山橙导航条 */
 
 
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;    /**<   侧边栏 */
@@ -111,6 +112,8 @@
 @property (nonatomic, strong) HomeBetFormView *betFormView;             /**<   投注专栏 */
 @property (nonatomic, strong) HomeTrademarkView *trademarkView;         /**<   底部商标 */
 @property (nonatomic, strong) HomeFloatingButtonsView *floatingBtnsView;/**<   首页所有悬浮按钮 */
+
+@property (nonatomic, strong) XBJNavAndGameListVC *xbjNavAndGameListView;/**<   香槟金导航和游戏列表 */
 @property (nonatomic, strong) HomeJSWebmasterView *jsWebmasterView;     /**<  金沙站长推荐 */
 @end
 
@@ -162,45 +165,26 @@
             }
             [v removeFromSuperview];
         }
-        NSDictionary *dict;
-        if (SysConf.m_promote_pos) {
-            
-            dict  = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
-                                   @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
-                                   @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
-                                   @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
-            };
-        } else {
-            
-            dict  = @{@"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView,  _trademarkView],
-                                   @"GPK版":@[_bannerView, _gameTypeView.superview,  _rankingView, _trademarkView],
-                                   @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview,  _rankingView, _trademarkView],
-                                   @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview,  _betFormView, _trademarkView],
-            };
-        }
-
-		if ([@"l002" containsString:APP.SiteId]) {
-			NSMutableDictionary * mDic = dict.mutableCopy;
-			mDic[@"六合资料"] = @[_bannerView, _LhPrize_FView, _rollingView, _gameNavigationView.superview, _lhColumnView, _trademarkView];
-			dict = mDic.copy;
-		}
-        NSArray *views = dict[Skin1.skitType];
-	
-        if (views.count) {
-            [_contentStackView addArrangedSubviews:views];
-        } else {
-            // 默认展示内容
-            if (SysConf.m_promote_pos) {
-                [_contentStackView addArrangedSubviews:@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,]];
-            }
-            else{
-                [_contentStackView addArrangedSubviews:@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview,  _rankingView, _trademarkView,]];
-            }
+        NSMutableDictionary *dict = @{
+            @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,],
+            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
+            @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+            @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
+            @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
+            @"香槟金":@[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _betFormView, _trademarkView],
+        }.mutableCopy;
         
-            
+        if ([@"l002" containsString:APP.SiteId]) {
+            dict[@"六合资料"] = @[_bannerView, _LhPrize_FView, _rollingView, _gameNavigationView.superview, _lhColumnView, _trademarkView];
         }
+        NSArray *views = dict[Skin1.skitType] ? : dict[@"默认"];
+        [_contentStackView addArrangedSubviews:views];
     }
-  
+    
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        self.contentScrollView.backgroundColor = Skin1.bgColor;
+    }
+    
     // GPK版的UI调整
     BOOL isGPK = Skin1.isGPK;
 
@@ -369,11 +353,16 @@
 //    _jsWebmasterView.heightLayoutConstraint.constant = 0.1;
     
     // 优惠活动
-    _promotionVC = _LoadVC_from_storyboard_(@"HomePromotionsVC");
-    [self addChildViewController:_promotionVC];
+    if (SysConf.m_promote_pos) {
+        _promotionVC = _LoadVC_from_storyboard_(@"HomePromotionsVC");
+        [self addChildViewController:_promotionVC];
+    }
     
     // 投注/中奖排行榜
     _rankingView = _LoadView_from_nib_(@"HomeRankingView");
+    
+    // 投注专栏
+    _betFormView = _LoadView_from_nib_(@"HomeBetFormView");
     
     // 底部商标
     _trademarkView = _LoadView_from_nib_(@"HomeTrademarkView");
@@ -381,6 +370,11 @@
     // 悬浮按钮
     _floatingBtnsView = _LoadView_from_nib_(@"HomeFloatingButtonsView");
     [self.view addSubview:_floatingBtnsView];
+    
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        _xbjNavAndGameListView = _LoadVC_from_storyboard_(@"XBJNavAndGameListVC");
+        [self addChildViewController:_xbjNavAndGameListView];
+    }
     
     // 配置初始UI
     {
@@ -523,7 +517,7 @@
     });
     dispatch_group_async(group, queue, ^{
           // 请求3
-           [self getAllNextIssueData]; // 彩票大厅数据 
+           [self getAllNextIssueData]; // 彩票大厅数据
 
     });
     dispatch_group_async(group, queue, ^{
@@ -573,7 +567,9 @@
            [self getPlatformGamesWithParams];     //购彩大厅信息
            
     });
-   
+    dispatch_group_async(group, queue, ^{
+        [self.xbjNavAndGameListView reloadData:^(BOOL succ) {}];     // 香槟金游戏列表
+    });
     dispatch_group_async(group, queue, ^{
            
            // 请求14
@@ -788,12 +784,12 @@
                             
                         }
                         [weakSelf.view layoutIfNeeded];
-					}
-					
-					if (sourceData.count == 1) {
-						weakSelf.gameNavigationViewHeight.constant = 0;
+                    }
+                    
+                    if (sourceData.count == 1) {
+                        weakSelf.gameNavigationViewHeight.constant = 0;
                         [weakSelf.view layoutIfNeeded];
-					}
+                    }
                     // 游戏列表
                     self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
                     
@@ -957,13 +953,13 @@
          }
     }
  
-    //	self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
-    //	self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
+    //    self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
+    //    self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
     
     
     self.contentScrollView.scrollEnabled = YES;
     self.contentScrollView.bounces = YES;
-    //	self.scrollView.backgroundColor = Skin1.bgColor;
+    //    self.scrollView.backgroundColor = Skin1.bgColor;
 }
 
 - (NSMutableArray<GameCategoryModel *> *)gameCategorys {

@@ -39,6 +39,9 @@
             self.backgroundColor = RGBA(249, 249, 249, 1);
             [CMCommon setBorderWithView:self top:YES left:NO bottom:YES right:NO borderColor:RGBA(241, 241, 241, 1) borderWidth:1];
         }
+        if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+            self.backgroundColor = UIColor.clearColor;
+        }
     });
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
         if ([SysConf.popup_type isEqualToString:@"1"] && UGLoginIsAuthorized()) {
@@ -46,7 +49,20 @@
         }
     });
     
-    [self setBackgroundColor:Skin1.homeContentColor];
+    FastSubViewCode(self);
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        self.backgroundColor = UIColor.clearColor;
+        subImageView(@"公告图标ImageView").cc_constraints.left.constant = 15;
+        subImageView(@"公告图标ImageView").hidden = true;
+        subLabel(@"公告Label").hidden = false;
+        subLabel(@"公告Label").textColor = Skin1.menuHeadViewColor;
+        subLabel(@"公告Label").layer.shadowColor = [UIColor blackColor].CGColor;
+        subLabel(@"公告Label").layer.shadowOffset = CGSizeMake(0, 1);
+        subLabel(@"公告Label").layer.shadowRadius = 1.5;
+        subLabel(@"公告Label").layer.shadowOpacity = 0.2;
+    } else {
+        self.backgroundColor = Skin1.homeContentColor;
+    }
     
     self.leftwardMarqueeView.direction = UUMarqueeViewDirectionLeftward;
     self.leftwardMarqueeView.delegate = self;
@@ -186,12 +202,11 @@
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
     UILabel *content = [itemView viewWithTag:1001];
     
-//        if (APP.isRollingTextBlack) {
-//            content.textColor = [UIColor blackColor];
-//        }
-//        else{
-         content.textColor = Skin1.textColor1;
-//        }
+    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        content.textColor = [UIColor whiteColor];
+    } else {
+        content.textColor = Skin1.textColor1;
+    }
    
     content.text = self.leftwardMarqueeViewData[index];
 }

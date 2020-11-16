@@ -62,9 +62,7 @@
         }
     }
     
-    self.titleLabel.textColor =  item.select ? [UIColor whiteColor] : Skin1.textColor3;
-    
-
+    self.titleLabel.textColor =  item.select ? [UIColor whiteColor] : Skin1.textColor2;
 }
 
 @end

@@ -312,9 +312,6 @@ static UGTabbarController *_tabBarVC = nil;
         }];
     }
     
-    
-    [[UGSkinManagers skinWithSysConf] useSkin];
-    
     {
         NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
             return obj1.sort > obj2.sort;
@@ -417,15 +414,25 @@ static UGTabbarController *_tabBarVC = nil;
 
 - (void)setTabbarStyle {
     void (^block1)(NSNotification *) = ^(NSNotification *noti) {
-        [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
-        [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
-        
         
         for (UGNavigationController *nav in TabBarController1.viewControllers) {
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
              [nav.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
+        }
+        
+        [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
+        [TabBarController1.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
+        [TabBarController1.tabBar setUnselectedItemTintColor:Skin1.tabNoSelectColor];
+        [[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
+        [[UITabBar appearance] setUnselectedItemTintColor:Skin1.tabNoSelectColor];
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
+        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
+        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
+        for (UIBarItem *item in TabBarController1.tabBar.items) {
+            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
+            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
         }
     };
     if (OBJOnceToken(self)) {
@@ -433,16 +440,7 @@ static UGTabbarController *_tabBarVC = nil;
     }
     block1(nil);
     
-    [self.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
-    [self.tabBar setUnselectedItemTintColor:Skin1.tabNoSelectColor];
-    [[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
-    [[UITabBar appearance] setUnselectedItemTintColor:Skin1.tabNoSelectColor];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
-    for (UIBarItem *item in self.tabBar.items) {
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
-        [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
-    }
+    
     
     {
         static UIView *__stateView = nil;
@@ -460,6 +458,9 @@ static UGTabbarController *_tabBarVC = nil;
                     __stateView.hidden = false;
                 } error:nil];
             }
+        });
+        SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
+            __stateView.backgroundColor = Skin1.navBarBgColor;
         });
     }
 }
