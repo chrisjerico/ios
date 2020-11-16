@@ -11,6 +11,7 @@
 #import "CountDown.h"
 #import "MGSlider.h"
 #import "UGBargainingView.h"
+#import "TKLFPView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 // 秒秒彩隐藏头部
@@ -54,7 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 //筹码=======================================================
 @property (nonatomic, strong) UGBargainingView  *bargainingView;//筹码
 @property (nonatomic, strong) NSArray <NSString *> *chipArray;               /**<   筹码数组 */
-
+//封盘=======================================================
+@property (nonatomic, strong) TKLFPView * mTKLFPView;/**<天空蓝封盘View*/
 
 - (void)getGameDatas;
 - (void)getNextIssueData;

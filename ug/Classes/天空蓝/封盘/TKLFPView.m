@@ -7,15 +7,24 @@
 //
 
 #import "TKLFPView.h"
-
+#import "CMLabelCommon.h"
 @implementation TKLFPView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+    FastSubViewCode(self);
+    [subLabel(@"温馨提示label") setBackgroundColor:Skin1.navBarBgColor];
+    [subButton(@"关闭button") setBackgroundColor:Skin1.navBarBgColor];
+    [CMLabelCommon messageSomeAction:subLabel(@"内容label") changeString:@"已封盘" andMarkColor:[UIColor redColor] andMarkFondSize:17];
+    
+    subButton(@"关闭button").layer.cornerRadius = 8;
 }
-*/
+
+- (IBAction)close:(id)sender {
+    if (self.closeBlock) self.closeBlock();
+}
+
+
 
 @end

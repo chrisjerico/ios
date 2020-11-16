@@ -111,7 +111,7 @@
         </view>
     </objects>
     <resources>
-        <image name="guanbi" width="24" height="24"/>
+        <image name="guanbi" width="28" height="28"/>
         <image name="notice_TKL" width="1134" height="479"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

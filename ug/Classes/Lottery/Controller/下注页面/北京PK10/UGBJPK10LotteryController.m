@@ -416,6 +416,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         NSString *selCode = model.code;
         NSMutableArray *array = [NSMutableArray array];
         for (UGGameplayModel *model in self.gameDataArray) {
+            if (!model.selectedCount) continue;
             if ([model.name isEqualToString:@"官方玩法"]) {
                 [self gfwfBetActionMode:model array:&array selCode:&selCode];
             } else {

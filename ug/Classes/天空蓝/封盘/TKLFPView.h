@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TKLFPView : UIView
-
+@property (nonatomic , copy ) void (^closeBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END

@@ -25,6 +25,7 @@
 #import "UGLotteryRightMenuView.h"
 #import "YBPopupMenu.h"
 
+
 @interface UIButton (customSetEnable)
 -(void)customSetEnable:(BOOL)enabled;
 
@@ -66,6 +67,7 @@
 //筹码=======================================================
 @property (nonatomic) IBOutlet UIButton *chipButton;/**<底部  筹码  */
 @property (nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
+
 @end
 
 
@@ -505,8 +507,8 @@
         
  
     }
+    
 
-   
 
   if (OBJOnceToken(self)) {
         [self sliderViewInit ];
@@ -560,8 +562,15 @@
         timeStr = @"封盘中";
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
+        if (Skin1.isTKL) {
+        
+
+        }
     } else {
         self.bottomCloseView.hidden = YES;
+        if (Skin1.isTKL) {
+          
+        }
     }
     if (Skin1.isTKL) {
         self.closeTimeLabel.text = timeStr;
