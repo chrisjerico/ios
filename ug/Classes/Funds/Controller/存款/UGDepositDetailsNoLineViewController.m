@@ -88,9 +88,9 @@
      channelModel.paymentid = self.item.pid;
      [self.uGFundsTransferView setItem:channelModel];
     
-
+    NSString *tipStr = [CMCommon stringIsNull: self.item.transferPrompt]?@"UG集团你梦想的起航！来UG成就你的梦想":self.item.transferPrompt;
     CGSize basetipSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
-      CGSize tipsize  = [self.item.transferPrompt
+      CGSize tipsize  = [tipStr
       boundingRectWithSize:basetipSize
       options:NSStringDrawingUsesLineFragmentOrigin
       attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
@@ -98,11 +98,12 @@
       
       int tipHeigth = tipsize.height +20;
     
-    
-    self.tip2label.text = self.item.depositPrompt;
+    NSLog(@"self.item.depositPrompt = %@",self.item.depositPrompt);
+    NSString *tip2Str = [CMCommon stringIsNull: self.item.depositPrompt]?@"请先转帐成功后再点下一步提交存款":self.item.depositPrompt;
+    self.tip2label.text = tip2Str;
     
     CGSize baseSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
-    CGSize tip2size  = [self.item.depositPrompt
+    CGSize tip2size  = [self.tip2label.text
     boundingRectWithSize:baseSize
     options:NSStringDrawingUsesLineFragmentOrigin
     attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
@@ -111,16 +112,9 @@
     int tip2Heigth = tip2size.height +20;
     
 
-//    self.label.text = self.item.prompt;
-//    self.label.attributedText = ({
-//          NSMutableAttributedString *mas = [[NSAttributedString alloc] initWithData:[self.item.prompt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil].mutableCopy;
-//          NSLog(@"string = %@",mas.string);
-//
-//          mas;
-//      });
     
     
-    CGSize labelsize  = [self.item.depositPrompt
+    CGSize labelsize  = [self.tip2label.text
       boundingRectWithSize:baseSize
       options:NSStringDrawingUsesLineFragmentOrigin
       attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
@@ -181,9 +175,9 @@
          make.top.equalTo(self.mUIScrollView.mas_top).offset(20);
          
      }];
-    [self.tiplabel setText:item.transferPrompt];
+    ;
+    [self.tiplabel setText:tipStr];
     [self.tiplabel sizeToFit];
-    NSLog(@"%@",NSStringFromCGRect(self.tiplabel.frame));
     
     [self.bg1_label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
@@ -207,7 +201,7 @@
          make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.equalTo(self.bg1_label.mas_bottom).offset(20);
      }];
-    [self.tip2label setText:item.depositPrompt];
+    [self.tip2label setText:tip2Str];
     [self.tip2label sizeToFit];
     NSLog(@"%@",NSStringFromCGRect(self.tip2label.frame));
     
@@ -420,7 +414,6 @@
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont boldSystemFontOfSize:14];
         label.textColor = [UIColor whiteColor];
-//        label.backgroundColor = Skin1.navBarBgColor;
         label.numberOfLines = 0;
         label.text = @"请选择一个任意转入账户";
         [self.mUIScrollView addSubview:label];

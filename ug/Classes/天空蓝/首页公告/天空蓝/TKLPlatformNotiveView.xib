@@ -57,16 +57,26 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="jZM-72-Ktt"/>
                             </constraints>
-                            <state key="normal" title="我知道了"/>
                             <connections>
                                 <action selector="close:" destination="iN0-l3-epB" eventType="touchUpInside" id="67z-BG-Ztz"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我知道了" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-dl-bkV">
+                            <rect key="frame" x="255.5" y="243" width="61.5" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="kde-Nd-2EN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" systemColor="systemTealColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="mdk-dl-bkV" secondAttribute="bottom" constant="8" id="2aA-PL-ZdE"/>
                         <constraint firstItem="O7z-fc-698" firstAttribute="leading" secondItem="Q4v-yP-3UY" secondAttribute="trailing" id="69y-eZ-QDd"/>
                         <constraint firstAttribute="bottom" secondItem="Ah6-nS-C1Y" secondAttribute="bottom" id="7dm-eh-l3F"/>
+                        <constraint firstAttribute="trailing" secondItem="mdk-dl-bkV" secondAttribute="trailing" constant="5" id="Fqa-wC-16B"/>
                         <constraint firstItem="Q4v-yP-3UY" firstAttribute="leading" secondItem="T1p-VA-MFQ" secondAttribute="leading" id="LsI-SX-poe"/>
                         <constraint firstItem="Ah6-nS-C1Y" firstAttribute="top" secondItem="O7z-fc-698" secondAttribute="bottom" id="NX6-49-xIa"/>
                         <constraint firstAttribute="bottom" secondItem="Q4v-yP-3UY" secondAttribute="bottom" id="Rab-h2-cdo"/>
@@ -105,6 +115,9 @@
         <image name="notice_TKL" width="1134" height="479"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

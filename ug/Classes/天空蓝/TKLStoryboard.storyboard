@@ -1337,9 +1337,6 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="左边Button"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="leftAction:" destination="YT9-zf-Vmd" eventType="touchUpInside" id="pu3-OQ-3vM"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
