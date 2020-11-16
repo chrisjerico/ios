@@ -24,6 +24,7 @@
 #import "YNHLPrizeDetailView.h"
 #import "UGLotteryRightMenuView.h"
 #import "YBPopupMenu.h"
+#import "YBPopupMenu.h"
 
 
 @interface UIButton (customSetEnable)
@@ -38,6 +39,7 @@
 @interface UGCommonLotteryController (CC)<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIView *bottomView;/**<   底部*/
+
 @property (nonatomic) IBOutlet UILabel *nextIssueLabel;/**<   下期开奖label */
 @property (nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (nonatomic) IBOutlet UILabel *closeTimeLabel;
@@ -508,6 +510,14 @@
  
     }
     
+    if(Skin1.isTKL){
+        self.mTKLFPView = [[TKLFPView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+        [self.mTKLFPView setHidden:YES];
+        [self.view addSubview:self.mTKLFPView];
+        [self.view bringSubviewToFront:self.mTKLFPView];
+    }
+    
+   
 
 
   if (OBJOnceToken(self)) {
@@ -563,13 +573,12 @@
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
         if (Skin1.isTKL) {
-        
-
+            [self.mTKLFPView setHidden:NO];
         }
     } else {
         self.bottomCloseView.hidden = YES;
         if (Skin1.isTKL) {
-          
+            [self.mTKLFPView setHidden:YES];
         }
     }
     if (Skin1.isTKL) {
