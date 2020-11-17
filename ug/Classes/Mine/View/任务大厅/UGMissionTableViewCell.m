@@ -8,12 +8,10 @@
 
 #import "UGMissionTableViewCell.h"
 #import "UGMissionModel.h"
-
+//（存款任务）每日单笔存款金额达到5000元
 @interface UGMissionTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageVeiw;
-@property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *rightImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *integralLabel;
 @property (weak, nonatomic) IBOutlet UILabel *overTimeLabel;
@@ -58,7 +56,7 @@
     self.headerImageVeiw.hidden = YES;
     [self.titleLabel setText:item.missionName];
 
-    self.integralLabel.text = [NSString stringWithFormat:@"+%@积分",item.integral];
+    self.integralLabel.text = [NSString stringWithFormat:@"+%@积分",[item.integral removeFloatAllZero]];
     
     if ([CMCommon stringIsNull:item.overTime]) {
         self.overTimeLabel.text = @"";

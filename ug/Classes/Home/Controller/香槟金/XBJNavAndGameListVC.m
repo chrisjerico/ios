@@ -64,10 +64,21 @@
     subButton(@"我的钱包Button").hidden = !isLogin;
     subButton(@"我的钱包Button").hidden = !isLogin;
     subView(@"钱包StackView").hidden = !isLogin;
+    
+    int hour = [[NSDate date] stringWithFormat:@"HH"].intValue;
+    NSString *time = nil;
+    if (hour <= 5)
+        time = @"凌晨好";
+    else if (hour <= 11)
+        time = @"上午好";
+    else if (hour <= 17)
+        time = @"下午好";
+    else
+        time = @"晚上好";
     if (isLogin) {
-        subLabel(@"晚上好Label").text = _NSString(@"晚上好！%@", UserI.username);
+        subLabel(@"晚上好Label").text = _NSString(@"%@！%@", time, UserI.username);
     } else {
-        subLabel(@"晚上好Label").text = _NSString(@"晚上好，请登录。");
+        subLabel(@"晚上好Label").text = _NSString(@"%@，请登录。", time);
     }
     subLabel(@"余额Label").text = [UserI.balance removeFloatAllZero];
 }
@@ -143,13 +154,12 @@
     if (scrollView != _gameCollectionView) return;
     
     if (scrollView.isTracking || scrollView.isDecelerating) {
-        __weakSelf_(__self);
-        CGFloat cellH = [self collectionView:_gameCollectionView layout:_gameCollectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]].height;
-
         int idx = 0;
         CGFloat current = 0;
         for (GameCategoryModel *gcm in _icons) {
-            CGFloat next = current + (gcm.list.count/2 + gcm.list.count%2) * (cellH + 4) + 10;
+            CGSize cellSize = [self collectionView:_gameCollectionView layout:_gameCollectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:[_icons indexOfObject:gcm]]];
+            NSInteger line = _gameCollectionView.width/cellSize.width;
+            CGFloat next = current + (gcm.list.count/line + gcm.list.count%line) * (cellSize.height + 4) + 10;
             if (scrollView.contentOffset.y > next ) {
                 current = next;
                 idx++;
@@ -157,7 +167,7 @@
                 break;
             }
         }
-        UITableViewCell *cell = [__self.gameTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
+        UITableViewCell *cell = [_gameTableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:idx inSection:0]];
         ((UIButton *)[cell viewWithTagString:@"Button"]).selected = true;
     }
 }
@@ -183,10 +193,11 @@
         sender.selected = true;
         
         CGFloat offsetY = 0;
-        CGFloat cellH = [__self collectionView:__self.gameCollectionView layout:__self.gameCollectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]].height;
         for (GameCategoryModel *temp in __self.icons) {
             if (temp == gcm) break;
-            offsetY += (temp.list.count/2 + temp.list.count%2) * (cellH + 4) + 10;
+            CGSize cellSize = [__self collectionView:__self.gameCollectionView layout:__self.gameCollectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:[__self.icons indexOfObject:temp]]];
+            NSInteger line = __self.gameCollectionView.width/cellSize.width;
+            offsetY += (temp.list.count/line + temp.list.count%line) * (cellSize.height + 4) + 10;
         }
         [__self.gameCollectionView setContentOffset:CGPointMake(0, offsetY) animated:true];
     }];
@@ -217,6 +228,9 @@
     if (collectionView == _navCollectionView) {
         return CGSizeMake((APP.Width-24-100-4)/4-1, 70);
     } else {
+        if ([@"c245" containsString:APP.SiteId] && _icons[indexPath.section].iid.intValue == 40) {
+            return CGSizeMake((APP.Width-24-100-8)/3, 50);
+        }
         return CGSizeMake((APP.Width-24-100-8)/2-1, 92);
     }
 }

@@ -168,6 +168,13 @@ UGSystemConfigModel *currentConfig = nil;
             mm.defaultImgName = defaultImgName;
             mm.clsName = clsName;
             mm.type = type;
+            
+            if ([@"c245" containsString:APP.SiteId]) {
+                if (type == MM_在线客服)
+                    mm.defaultImgName = @"JY_kf";
+                if (type == MM_首页)
+                    mm.defaultImgName = @"home2";
+            }
             return mm;
         };
         _items =@[
