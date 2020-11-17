@@ -88,13 +88,9 @@
      channelModel.paymentid = self.item.pid;
      [self.uGFundsTransferView setItem:channelModel];
     
-    NSString *tipStr = [CMCommon stringIsNull: self.item.transferPrompt]?@"UG集团你梦想的起航！来UG成就你的梦想":self.item.transferPrompt;
+    NSString *tipStr = [CMCommon stringIsNull: self.item.transferPrompt] ? nil : self.item.transferPrompt.stringByTrim;
     CGSize basetipSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
-      CGSize tipsize  = [tipStr
-      boundingRectWithSize:basetipSize
-      options:NSStringDrawingUsesLineFragmentOrigin
-      attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
-      context:nil].size;
+    CGSize tipsize  = [tipStr boundingRectWithSize:basetipSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]} context:nil].size;
       
       int tipHeigth = tipsize.height +20;
     
@@ -184,7 +180,7 @@
          make.left.equalTo(self.view.mas_left).with.offset(15);
          make.right.equalTo(self.view.mas_right).with.offset(-15);
          make.top.equalTo(self.mUIScrollView.mas_top).offset(10);
-         make.height.equalTo(self.tiplabel.mas_height).offset(20);
+        make.height.equalTo(self.tiplabel.mas_height).offset(tipStr.length ? 20 :0);
 
      }];
     
@@ -218,7 +214,7 @@
     self.tip2bg_label.layer.masksToBounds = YES;
     [self.tip2bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];
     //==============================================================
-    float tableViewHeight = self->_tableDataArray.count *44.0;
+    float tableViewHeight = self->_tableDataArray.count *44.0+40;
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.view.mas_left).with.offset(0);

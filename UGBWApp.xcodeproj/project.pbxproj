@@ -2074,6 +2074,10 @@
 		CF7249BA2546D1E4005BAC2D /* NSNotificationCenter+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7249B92546D1E4005BAC2D /* NSNotificationCenter+Log.m */; };
 		CF76AA0124D41B23001E4AF6 /* ztlight2-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */; };
 		CF76AA0224D41B23001E4AF6 /* ztlight-yn.gif in Resources */ = {isa = PBXBuildFile; fileRef = CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */; };
+		CF7E608D2563C812005B6649 /* XBJHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7E608C2563C812005B6649 /* XBJHomeTitleView.m */; };
+		CF7E608E2563C813005B6649 /* XBJHomeTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7E608C2563C812005B6649 /* XBJHomeTitleView.m */; };
+		CF7E60932563C827005B6649 /* XBJHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7E60922563C827005B6649 /* XBJHomeTitleView.xib */; };
+		CF7E60942563C827005B6649 /* XBJHomeTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF7E60922563C827005B6649 /* XBJHomeTitleView.xib */; };
 		CF80DE0B24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */; };
 		CF8508512466D4E40025672F /* UGTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E176823BE812500B0F813 /* UGTabbarController.m */; };
 		CF8508522466D5000025672F /* RSA.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCF6DF423C9F51C0039588D /* RSA.m */; };
@@ -4223,6 +4227,9 @@
 		CF7249B92546D1E4005BAC2D /* NSNotificationCenter+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+Log.m"; sourceTree = "<group>"; };
 		CF76A9FE24D41B22001E4AF6 /* ztlight2-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight2-yn.gif"; sourceTree = "<group>"; };
 		CF76AA0024D41B23001E4AF6 /* ztlight-yn.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ztlight-yn.gif"; sourceTree = "<group>"; };
+		CF7E608B2563C812005B6649 /* XBJHomeTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBJHomeTitleView.h; sourceTree = "<group>"; };
+		CF7E608C2563C812005B6649 /* XBJHomeTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XBJHomeTitleView.m; sourceTree = "<group>"; };
+		CF7E60922563C827005B6649 /* XBJHomeTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XBJHomeTitleView.xib; sourceTree = "<group>"; };
 		CF80DE0924DBDABB005234D8 /* WKUserContentController+MemoryLeak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKUserContentController+MemoryLeak.h"; sourceTree = "<group>"; };
 		CF80DE0A24DBDABB005234D8 /* WKUserContentController+MemoryLeak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKUserContentController+MemoryLeak.m"; sourceTree = "<group>"; };
 		CF8C4073253FEC320006B293 /* HomeWaistAdsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeWaistAdsView.h; sourceTree = "<group>"; };
@@ -5869,6 +5876,9 @@
 				031E162023BE812400B0F813 /* UGHomeTitleView.h */,
 				031E162123BE812400B0F813 /* UGHomeTitleView.m */,
 				031E161F23BE812400B0F813 /* UGHomeTitleView.xib */,
+				CF7E608B2563C812005B6649 /* XBJHomeTitleView.h */,
+				CF7E608C2563C812005B6649 /* XBJHomeTitleView.m */,
+				CF7E60922563C827005B6649 /* XBJHomeTitleView.xib */,
 			);
 			path = "定制导航栏";
 			sourceTree = "<group>";
@@ -8410,8 +8420,8 @@
 				CF3476F5252F05B500491829 /* XBJ.storyboard */,
 			);
 			path = "香槟金";
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		CF3A26E02552C56800ECA65F /* 首页定制导航头 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9845,6 +9855,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0372B59323C9984F00B564FF /* PromotionRecordCell1.xib in Resources */,
+				CF7E60942563C827005B6649 /* XBJHomeTitleView.xib in Resources */,
 				031EF5DC23BE7B4E00B0F813 /* BetBeanView.xib in Resources */,
 				CF4FB05C252EFA92004C47AB /* 火币.html in Resources */,
 				031EF58923BE7B4D00B0F813 /* fenxiang.svg in Resources */,
@@ -10351,6 +10362,7 @@
 				031E1B9023BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
 				031E1BF423BE812900B0F813 /* UGGD11X5LotteryController.storyboard in Resources */,
 				CF47591F239636D200966536 /* 106.gif in Resources */,
+				CF7E60932563C827005B6649 /* XBJHomeTitleView.xib in Resources */,
 				CF4758F0239636D200966536 /* 160.gif in Resources */,
 				031E1C1C23BE812900B0F813 /* UGSSCBetItem1Cell.xib in Resources */,
 				CF475908239636D200966536 /* 166.gif in Resources */,
@@ -11209,6 +11221,7 @@
 				031E199923BE812600B0F813 /* LHPostRewardView.m in Sources */,
 				031E195323BE812600B0F813 /* UGDocumentListVC.m in Sources */,
 				CF85086B2466D69C0025672F /* UGDocumentView.m in Sources */,
+				CF7E608E2563C813005B6649 /* XBJHomeTitleView.m in Sources */,
 				031E1B2B23BE812800B0F813 /* UGRedEnvelopeModel.m in Sources */,
 				031E19B323BE812700B0F813 /* NSNumber+Safe.m in Sources */,
 				031E1A7D23BE812700B0F813 /* QDWebViewController.m in Sources */,
@@ -12158,6 +12171,7 @@
 				031E1B6623BE812800B0F813 /* UGPlatformTitleCollectionView.m in Sources */,
 				031E1AE423BE812800B0F813 /* TAAnimatedDotView.m in Sources */,
 				031E1A5C23BE812700B0F813 /* STBarButtonItem.m in Sources */,
+				CF7E608D2563C812005B6649 /* XBJHomeTitleView.m in Sources */,
 				031E1A2823BE812700B0F813 /* LSStretchableTableHeaderView.m in Sources */,
 				031E1E3C23BE812C00B0F813 /* UGPromotion2rowTableViewCell.m in Sources */,
 				031E1AAC23BE812800B0F813 /* WMNavTabBar.m in Sources */,

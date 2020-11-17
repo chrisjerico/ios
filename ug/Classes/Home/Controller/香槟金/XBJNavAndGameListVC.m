@@ -64,6 +64,8 @@
     subButton(@"我的钱包Button").hidden = !isLogin;
     subButton(@"我的钱包Button").hidden = !isLogin;
     subView(@"钱包StackView").hidden = !isLogin;
+    subButton(@"试玩Button").hidden = isLogin;
+    subButton(@"注册Button").hidden = !UserI.isTest && isLogin;
     
     int hour = [[NSDate date] stringWithFormat:@"HH"].intValue;
     NSString *time = nil;
@@ -130,6 +132,14 @@
 
 - (IBAction)onMyWalletBtnClick:(UIButton *)sender {
     [NavController1 pushVCWithUserCenterItemType:UCI_银行卡管理];
+}
+
+- (IBAction)onTryPlayBtnClick:(UIButton *)sender {
+    SANotificationEventPost(UGNotificationTryPlay, nil);
+}
+
+- (IBAction)onRegisterBtnClick:(UIButton *)sender {
+    [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGRegisterViewController") animated:YES];
 }
 
 - (IBAction)onLoginBtnClick:(UIButton *)sender {

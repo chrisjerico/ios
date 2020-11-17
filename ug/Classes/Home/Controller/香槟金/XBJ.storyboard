@@ -45,43 +45,102 @@
                                                                     <constraint firstAttribute="width" secondItem="MH1-yT-R7R" secondAttribute="height" id="2HB-yw-f2v"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVO-wk-vKM" customClass="IBButton">
-                                                                <rect key="frame" x="299" y="4" width="40" height="20"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="20" id="NNz-ZQ-3zO"/>
-                                                                    <constraint firstAttribute="width" constant="40" id="OSW-ts-TAf"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <state key="normal" title="退出">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="point" keyPath="圆角倍数">
-                                                                        <point key="value" x="0.0" y="0.5"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                        <color key="value" white="1" alpha="0.69958172013274333" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="退出登录Button"/>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                        <real key="value" value="1"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="onLogoutBtnClick:" destination="XMS-UU-lTh" eventType="touchUpInside" id="QKo-qV-UDv"/>
-                                                                </connections>
-                                                            </button>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Pt-gv-fCH">
+                                                                <rect key="frame" x="199" y="4" width="140" height="20"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbv-61-zGk" customClass="IBButton">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="20" id="RIP-zX-Rte"/>
+                                                                            <constraint firstAttribute="width" constant="40" id="nt0-eK-N06"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <state key="normal" title="试玩">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="point" keyPath="圆角倍数">
+                                                                                <point key="value" x="0.0" y="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="1" alpha="0.69958172009999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="试玩Button"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="onTryPlayBtnClick:" destination="XMS-UU-lTh" eventType="touchUpInside" id="NSo-EQ-1Wt"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxM-S2-e4E" customClass="IBButton">
+                                                                        <rect key="frame" x="50" y="0.0" width="40" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="20" id="afA-os-zOI"/>
+                                                                            <constraint firstAttribute="width" constant="40" id="qiI-7x-YoE"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <state key="normal" title="注册">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="point" keyPath="圆角倍数">
+                                                                                <point key="value" x="0.0" y="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="1" alpha="0.69958172009999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册Button"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="onRegisterBtnClick:" destination="XMS-UU-lTh" eventType="touchUpInside" id="qSo-QT-6V4"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVO-wk-vKM" customClass="IBButton">
+                                                                        <rect key="frame" x="100" y="0.0" width="40" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="20" id="NNz-ZQ-3zO"/>
+                                                                            <constraint firstAttribute="width" constant="40" id="OSW-ts-TAf"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                        <state key="normal" title="退出">
+                                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="point" keyPath="圆角倍数">
+                                                                                <point key="value" x="0.0" y="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="YES"/>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="1" alpha="0.69958172013274333" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="退出登录Button"/>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="1"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <action selector="onLogoutBtnClick:" destination="XMS-UU-lTh" eventType="touchUpInside" id="QKo-qV-UDv"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="MH1-yT-R7R" firstAttribute="leading" secondItem="gsl-KP-vFT" secondAttribute="trailing" constant="10" id="8PV-eI-mVF"/>
                                                             <constraint firstItem="gsl-KP-vFT" firstAttribute="centerY" secondItem="PSr-VI-bME" secondAttribute="centerY" id="A4z-oa-36K"/>
                                                             <constraint firstItem="MH1-yT-R7R" firstAttribute="top" secondItem="PSr-VI-bME" secondAttribute="top" constant="2" id="BhH-cT-FRI"/>
-                                                            <constraint firstItem="rVO-wk-vKM" firstAttribute="centerY" secondItem="PSr-VI-bME" secondAttribute="centerY" id="GJ1-6O-Qfu"/>
                                                             <constraint firstItem="MH1-yT-R7R" firstAttribute="centerY" secondItem="PSr-VI-bME" secondAttribute="centerY" id="JXL-xu-yWG"/>
                                                             <constraint firstAttribute="height" constant="28" id="MBH-W0-I5F"/>
-                                                            <constraint firstAttribute="trailing" secondItem="rVO-wk-vKM" secondAttribute="trailing" constant="12" id="bVT-B8-BAb"/>
+                                                            <constraint firstItem="2Pt-gv-fCH" firstAttribute="centerY" secondItem="PSr-VI-bME" secondAttribute="centerY" id="UlG-o2-NIJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="2Pt-gv-fCH" secondAttribute="trailing" constant="12" id="gag-s1-54K"/>
                                                             <constraint firstItem="gsl-KP-vFT" firstAttribute="leading" secondItem="PSr-VI-bME" secondAttribute="leading" constant="12" id="mYD-V2-Rh5"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
@@ -94,15 +153,15 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-QY-rJZ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="70"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="XUV-Cb-Fx3">
-                                                                        <rect key="frame" x="25.333333333333332" y="16.333333333333325" width="49.333333333333343" height="37.666666666666657"/>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="XUV-Cb-Fx3">
+                                                                        <rect key="frame" x="25.333333333333332" y="17.000000000000004" width="49.333333333333343" height="36.333333333333343"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="fPN-g6-JtZ">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="49.333333333333336" height="19.333333333333332"/>
+                                                                                <rect key="frame" x="3.6666666666666643" y="0.0" width="42" height="18"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="¥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-k9-yWs">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="9" height="17"/>
-                                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="15.666666666666666"/>
+                                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                         <userDefinedRuntimeAttributes>
@@ -110,8 +169,8 @@
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" horizontalCompressionResistancePriority="748" text="0.00" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="jyg-vW-ykg">
-                                                                                        <rect key="frame" x="9" y="0.0" width="40.333333333333336" height="19.333333333333332"/>
-                                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                                        <rect key="frame" x="8.3333333333333357" y="0.0" width="33.666666666666664" height="18"/>
+                                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                         <userDefinedRuntimeAttributes>
@@ -121,7 +180,7 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwq-zk-o4b">
-                                                                                <rect key="frame" x="0.0" y="23.333333333333343" width="49.333333333333336" height="14.333333333333336"/>
+                                                                                <rect key="frame" x="0.0" y="22" width="49.333333333333336" height="14.333333333333336"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>

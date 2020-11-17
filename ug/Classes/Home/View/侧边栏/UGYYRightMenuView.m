@@ -630,7 +630,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         self.bgViewHeightConstraint.constant = 180;
     }
     
-    self.bgView.superview.superview.backgroundColor = Skin1.textColor4;
+    UIView *contentView = self.bgView.superview.superview;
+    contentView.backgroundColor = Skin1.textColor4;
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     [self.tklBgView setHidden:YES];
     if (Skin1.isJY) {
@@ -662,10 +663,10 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     
     self.frame = APP.Bounds;
     [APP.Window addSubview:self];
-    self.bgView.superview.superview.cc_constraints.right.constant = -APP.Width;
+    contentView.cc_constraints.right.constant = _showFromLeft ? APP.Width : -APP.Width;
     [self layoutIfNeeded];
     [UIView animateWithDuration:0.35 animations:^{
-        self.bgView.superview.superview.cc_constraints.right.constant = 0;
+        contentView.cc_constraints.right.constant = self.showFromLeft ? APP.Width-contentView.width : 0;
         [self layoutIfNeeded];
     } completion:^(BOOL finished) {
         
@@ -677,7 +678,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (IBAction)hiddenSelf {
     [UIView animateWithDuration:0.35 animations:^{
-        self.bgView.superview.superview.cc_constraints.right.constant = -APP.Width;
+        self.bgView.superview.superview.cc_constraints.right.constant = self.showFromLeft ? APP.Width : -APP.Width;
         [self layoutIfNeeded];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];

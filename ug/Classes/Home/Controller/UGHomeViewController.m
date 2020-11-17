@@ -922,6 +922,8 @@
              self.tkltitleView.showLoginView = NO;
              self.tkltitleView.userName = UserI.username;
          }
+    } else if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+        self.navigationItem.titleView = _LoadView_from_nib_(@"XBJHomeTitleView");
     } else {
         
          UGHomeTitleView *titleView = [[UGHomeTitleView alloc] initWithFrame:CGRectMake(0, 0, UGScreenW, 44)];

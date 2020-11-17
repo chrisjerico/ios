@@ -11,15 +11,19 @@
 #import "JSONKeyMapper.h"
 @implementation ScratchWinModel
 
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"scratchId":@"id"};
+}
+
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"scratchId"}];
 }
 @end
 @implementation ScratchModel
 
-//+ (NSDictionary *)mj_replacedKeyFromPropertyName {
-//    return @{@"gameID":@"id"};
-//}
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"gameID":@"id"};
+}
 
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"gameID"}];
