@@ -24,6 +24,7 @@
 #import "YNHLPrizeDetailView.h"
 #import "UGLotteryRightMenuView.h"
 #import "YBPopupMenu.h"
+#import "CMLabelCommon.h"
 
 
 
@@ -573,7 +574,11 @@
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
         if (Skin1.isTKL) {
+            
             [self.mTKLFPView setHidden:NO];
+            FastSubViewCode(self.mTKLFPView)
+            subLabel(@"内容label").text = [NSString stringWithFormat:@"%@已封盘",self.selectTitle];
+            [CMLabelCommon messageSomeAction:subLabel(@"内容label") changeString:@"已封盘" andMarkColor:[UIColor redColor] andMarkFondSize:17];
         }
     } else {
         self.bottomCloseView.hidden = YES;

@@ -22,8 +22,7 @@
         subView(@"提示View").layer.masksToBounds = YES;
         [subLabel(@"温馨提示label") setBackgroundColor:Skin1.navBarBgColor];
         [subButton(@"关闭button") setBackgroundColor:Skin1.navBarBgColor];
-        [CMLabelCommon messageSomeAction:subLabel(@"内容label") changeString:@"已封盘" andMarkColor:[UIColor redColor] andMarkFondSize:17];
-        
+        subLabel(@"内容label").text = @"";
         subButton(@"关闭button").layer.cornerRadius = 8;
 
     }

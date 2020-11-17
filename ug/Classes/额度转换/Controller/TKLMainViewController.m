@@ -15,7 +15,7 @@
 @interface TKLMainViewController ()<XYYSegmentControlDelegate>{
 }
 @property (nonatomic, strong)XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)  NSArray <NSString *> *itemArray;
+@property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;
 
 @property (nonatomic, strong)NSMutableArray <UGPlatformGameModel *> *gamedataArray ;    //电子
 @property (nonatomic, strong)NSMutableArray <UGPlatformGameModel *> *realdataArray ;    //视讯
@@ -39,6 +39,7 @@
     [self.view setBackgroundColor: Skin1.bgColor];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithTitle:@"转换记录" target:self action:@selector(rightBarButtonItemClick)];
 
+    _itemArray = [NSMutableArray new];
     _gamedataArray = [NSMutableArray new];
     _realdataArray = [NSMutableArray new];
     _carddataArray = [NSMutableArray new];
@@ -85,12 +86,11 @@
             NSMutableArray <UGPlatformGameModel *> *dataArray = model.data;
             
             for (UGPlatformGameModel*obj in dataArray) {
-                
-                if ([obj.category isEqualToString:@"game"]) {
-                    [__self.gamedataArray addObject:obj];
-                }
                 if ([obj.category isEqualToString:@"real"]) {
                     [__self.realdataArray addObject:obj];
+                }
+                if ([obj.category isEqualToString:@"game"]) {
+                    [__self.gamedataArray addObject:obj];
                 }
                 if ([obj.category isEqualToString:@"card"]) {
                     [__self.carddataArray addObject:obj];
@@ -104,8 +104,26 @@
                 if ([obj.category isEqualToString:@"sport"]) {
                     [__self.sportdataArray addObject:obj];
                 }
-                
-                
+   
+            }
+            
+            if (__self.realdataArray.count > 1) {
+                [__self.itemArray addObject:@"视讯"];
+            }
+            if (__self.carddataArray.count > 1) {
+                [__self.itemArray addObject:@"棋牌"];
+            }
+            if (__self.gamedataArray.count > 1) {
+                [__self.itemArray addObject:@"电子"];
+            }
+            if (__self.esportdataArray.count > 1) {
+                [__self.itemArray addObject:@"电竞"];
+            }
+            if (__self.fishdataArray.count > 1) {
+                [__self.itemArray addObject:@"捕鱼"];
+            }
+            if (__self.sportdataArray.count > 1) {
+                [__self.itemArray addObject:@"体育"];
             }
             [__self buildSegment];
             
@@ -117,7 +135,7 @@
 #pragma mark - UI
 - (void)buildSegment
 {
-    self.itemArray = @[@"视讯",@"棋牌",@"电子",@"电竞",@"捕鱼",@"体育"];
+    
     
     self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
     [self.view addSubview:self.slideSwitchView];
@@ -149,8 +167,10 @@
 
 ///待加载的控制器
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
+    
+   NSString * name = [self.itemArray objectAtIndex:number];
     // 视讯
-    if (number == 0) {
+    if ([name isEqualToString:@"视讯"]) {
         if (!_realView) {
             _realView  = _LoadVC_from_storyboard_(@"TKLMainListViewController") ;
         }
@@ -158,7 +178,7 @@
         return _realView;
     }
     // 棋牌
-    else if (number == 1) {
+    else if ([name isEqualToString:@"棋牌"]) {
         if (!_cardView) {
             _cardView  = _LoadVC_from_storyboard_(@"TKLMainListViewController") ;
         }
@@ -166,7 +186,7 @@
         return _cardView;
     }
     // 电子
-    else if (number == 2) {
+    else if ([name isEqualToString:@"电子"]) {
         if (!_gameView) {
             _gameView  = _LoadVC_from_storyboard_(@"TKLMainListViewController") ;
         }
@@ -174,7 +194,7 @@
         return _gameView;
     }
     // 电竞
-    else if (number == 3) {
+    else if ([name isEqualToString:@"电竞"]) {
         if (!_esportView) {
             _esportView  = _LoadVC_from_storyboard_(@"TKLMainListViewController") ;
         }
@@ -182,7 +202,7 @@
         return _esportView;
     }
     // 捕鱼
-    else if (number == 4) {
+    else if ([name isEqualToString:@"捕鱼"]) {
         if (!_fishView) {
             _fishView  = _LoadVC_from_storyboard_(@"TKLMainListViewController") ;
         }
@@ -190,7 +210,7 @@
         return _fishView;
     }
     //体育
-    else {
+    else  {
         if (!_sportView) {
             _sportView  = _LoadVC_from_storyboard_(@"TKLMainListViewController") ;
         }
