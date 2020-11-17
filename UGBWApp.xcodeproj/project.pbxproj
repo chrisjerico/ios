@@ -1754,6 +1754,16 @@
 		4959678124E25C8A005D5B53 /* UIImageView+CreateByUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677C24E25C89005D5B53 /* UIImageView+CreateByUrl.m */; };
 		4959678224E25C8A005D5B53 /* SUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677D24E25C89005D5B53 /* SUCache.m */; };
 		4959678324E25C8A005D5B53 /* SUCacheItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677E24E25C89005D5B53 /* SUCacheItem.m */; };
+		4959F2A22563A24700A3F05B /* ChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959F2A12563A24700A3F05B /* ChatMainViewController.m */; };
+		4959F2A32563A24700A3F05B /* ChatMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959F2A12563A24700A3F05B /* ChatMainViewController.m */; };
+		4959F2A82563A3D500A3F05B /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959F2A72563A3D500A3F05B /* ChatListViewController.m */; };
+		4959F2A92563A3D500A3F05B /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959F2A72563A3D500A3F05B /* ChatListViewController.m */; };
+		4959F2AD2563A40700A3F05B /* ChatList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4959F2AC2563A40700A3F05B /* ChatList.storyboard */; };
+		4959F2AE2563A40700A3F05B /* ChatList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4959F2AC2563A40700A3F05B /* ChatList.storyboard */; };
+		4959F2B62563AE2800A3F05B /* ChatListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959F2B42563AE2800A3F05B /* ChatListTableViewCell.m */; };
+		4959F2B72563AE2800A3F05B /* ChatListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959F2B42563AE2800A3F05B /* ChatListTableViewCell.m */; };
+		4959F2B82563AE2800A3F05B /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4959F2B52563AE2800A3F05B /* ChatListTableViewCell.xib */; };
+		4959F2B92563AE2800A3F05B /* ChatListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4959F2B52563AE2800A3F05B /* ChatListTableViewCell.xib */; };
 		495CF4C324C8590800A4574D /* UGTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */; };
 		495CF4C424C8590800A4574D /* UGTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */; };
 		495CF4CA24C9496400A4574D /* UGTaskSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 495CF4C824C9496400A4574D /* UGTaskSectionTableViewCell.m */; };
@@ -3908,6 +3918,14 @@
 		4959677E24E25C89005D5B53 /* SUCacheItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUCacheItem.m; sourceTree = "<group>"; };
 		4959677F24E25C89005D5B53 /* SUCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUCache.h; sourceTree = "<group>"; };
 		4959678024E25C89005D5B53 /* UIImageView+CreateByUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CreateByUrl.h"; sourceTree = "<group>"; };
+		4959F2A02563A24700A3F05B /* ChatMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMainViewController.h; sourceTree = "<group>"; };
+		4959F2A12563A24700A3F05B /* ChatMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMainViewController.m; sourceTree = "<group>"; };
+		4959F2A62563A3D500A3F05B /* ChatListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
+		4959F2A72563A3D500A3F05B /* ChatListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
+		4959F2AC2563A40700A3F05B /* ChatList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatList.storyboard; sourceTree = "<group>"; };
+		4959F2B32563AE2800A3F05B /* ChatListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatListTableViewCell.h; sourceTree = "<group>"; };
+		4959F2B42563AE2800A3F05B /* ChatListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatListTableViewCell.m; sourceTree = "<group>"; };
+		4959F2B52563AE2800A3F05B /* ChatListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatListTableViewCell.xib; sourceTree = "<group>"; };
 		495CF4C024C8590800A4574D /* UGTaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTaskTableViewCell.h; sourceTree = "<group>"; };
 		495CF4C124C8590800A4574D /* UGTaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTaskTableViewCell.m; sourceTree = "<group>"; };
 		495CF4C224C8590800A4574D /* UGTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTaskTableViewCell.xib; sourceTree = "<group>"; };
@@ -8324,6 +8342,37 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		4959F29C2563A1B200A3F05B /* 聊天室列表 */ = {
+			isa = PBXGroup;
+			children = (
+				4959F2B22563ADDB00A3F05B /* view */,
+				4959F2B12563ADD300A3F05B /* VC */,
+				4959F2AC2563A40700A3F05B /* ChatList.storyboard */,
+			);
+			path = "聊天室列表";
+			sourceTree = "<group>";
+		};
+		4959F2B12563ADD300A3F05B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				4959F2A02563A24700A3F05B /* ChatMainViewController.h */,
+				4959F2A12563A24700A3F05B /* ChatMainViewController.m */,
+				4959F2A62563A3D500A3F05B /* ChatListViewController.h */,
+				4959F2A72563A3D500A3F05B /* ChatListViewController.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		4959F2B22563ADDB00A3F05B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				4959F2B32563AE2800A3F05B /* ChatListTableViewCell.h */,
+				4959F2B42563AE2800A3F05B /* ChatListTableViewCell.m */,
+				4959F2B52563AE2800A3F05B /* ChatListTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		495E621B24E650A700BDC3CA /* facebook */ = {
 			isa = PBXGroup;
 			children = (
@@ -9686,6 +9735,7 @@
 				D43DAF6524532A320014A301 /* 大转盘 */,
 				03B1252424F7DFE5007A0858 /* 刮刮乐 */,
 				03638F4B24D57B6900AAFAD3 /* 砸金蛋 */,
+				4959F29C2563A1B200A3F05B /* 聊天室列表 */,
 				031E13CB23BE812300B0F813 /* 六合模板 */,
 				031E165823BE812400B0F813 /* 黑色模板 */,
 				030A874123C5C29C0001EF82 /* 金沙模板 */,
@@ -9983,6 +10033,7 @@
 				031E1A1923BE812700B0F813 /* loadingA.png in Resources */,
 				0315DC8D24AC2C6800D635E2 /* MinePacketProduceVC.xib in Resources */,
 				031E1D1F23BE812B00B0F813 /* UGIntegralConvertController.storyboard in Resources */,
+				4959F2AE2563A40700A3F05B /* ChatList.storyboard in Resources */,
 				031E1A0723BE812700B0F813 /* SlideSegmentView1.xib in Resources */,
 				031E1AB523BE812800B0F813 /* tag_list_s@2x.png in Resources */,
 				031E1B6323BE812800B0F813 /* UGHomeTitleView.xib in Resources */,
@@ -10066,6 +10117,7 @@
 				031E1E8923BE812D00B0F813 /* UGYUbaoTitleView.xib in Resources */,
 				031E1B9123BE812900B0F813 /* UGLotteryRecordTableViewCell.xib in Resources */,
 				031A003C253FA7AC00092DFF /* UserMainVC.xib in Resources */,
+				4959F2B92563AE2800A3F05B /* ChatListTableViewCell.xib in Resources */,
 				031EF59723BE7B4D00B0F813 /* yue.svg in Resources */,
 				031E1B7923BE812800B0F813 /* UGGameTypeColletionViewCell.xib in Resources */,
 				031E1C9723BE812A00B0F813 /* UGOneTitleTableViewCell.xib in Resources */,
@@ -10289,6 +10341,7 @@
 				CF4758B5239636D200966536 /* 55.gif in Resources */,
 				031E196A23BE812600B0F813 /* UGLHH.storyboard in Resources */,
 				03FD07F824FB6F9500F83D92 /* GoleEggLogTableHeaderView.xib in Resources */,
+				4959F2AD2563A40700A3F05B /* ChatList.storyboard in Resources */,
 				CF533B76251DDE5D00462E31 /* UGLotteryRightMenuView.xib in Resources */,
 				0393C8AD24F74C1500F6DFDB /* EggGrenzyRecordTableCell.xib in Resources */,
 				031E198E23BE812600B0F813 /* LHPostVoteView.xib in Resources */,
@@ -10393,6 +10446,7 @@
 				CF4758FD239636D200966536 /* 171.gif in Resources */,
 				03CF3060254FD57500D75721 /* PromotionCodeListVC.xib in Resources */,
 				D42752DF23F128BA001E27A0 /* ContractedTemplate.storyboard in Resources */,
+				4959F2B82563AE2800A3F05B /* ChatListTableViewCell.xib in Resources */,
 				CF4758B9239636D200966536 /* 96.gif in Resources */,
 				031E1E7E23BE812D00B0F813 /* UGBalanceTransferLogsCell.xib in Resources */,
 				D4C0A12F239156FB00B39358 /* hot_01.gif in Resources */,
@@ -10823,6 +10877,7 @@
 				031E1CBB23BE812A00B0F813 /* UGTableViewController.m in Sources */,
 				031E1E3D23BE812C00B0F813 /* UGPromotion2rowTableViewCell.m in Sources */,
 				031E1DED23BE812C00B0F813 /* UGMissionTitleCollectionView.m in Sources */,
+				4959F2B72563AE2800A3F05B /* ChatListTableViewCell.m in Sources */,
 				038A585824AAD03D0099D659 /* NameEditVC.swift in Sources */,
 				D4326F0F23F7B51200BEEA1B /* RedBagLogModel.m in Sources */,
 				031E1AAB23BE812800B0F813 /* WMIconSegmentControl.m in Sources */,
@@ -11470,6 +11525,7 @@
 				031E1C2323BE812900B0F813 /* UGFastThreeOneCollectionViewCell.m in Sources */,
 				031E1A4B23BE812700B0F813 /* CMTimeCommon.m in Sources */,
 				031E1E0523BE812C00B0F813 /* UGSignInScrHeaderView.m in Sources */,
+				4959F2A32563A24700A3F05B /* ChatMainViewController.m in Sources */,
 				CF85086F2466D6C40025672F /* JYLotteryCollectionViewCell.m in Sources */,
 				031E1D8123BE812B00B0F813 /* UGBetRecordDetailViewController.m in Sources */,
 				031E1CC123BE812A00B0F813 /* UGView.m in Sources */,
@@ -11506,6 +11562,7 @@
 				03B71DAC251F14630090FC98 /* UGYNLotteryController.m in Sources */,
 				031E1C8B23BE812A00B0F813 /* UGDepositDetailsCollectionViewCell.m in Sources */,
 				031E1C0F23BE812900B0F813 /* UGLotteryAdPopView.m in Sources */,
+				4959F2A92563A3D500A3F05B /* ChatListViewController.m in Sources */,
 				031E19E323BE812700B0F813 /* NSUserDefaults+Utils.m in Sources */,
 				CF5586C92546BF3200BE2576 /* TKLMoneyViewController.m in Sources */,
 				031E1D3723BE812B00B0F813 /* UGAgentViewController.m in Sources */,
@@ -11769,6 +11826,7 @@
 				D40745C82511F37900606EA3 /* YNBetDetailView.m in Sources */,
 				031E1BAE23BE812900B0F813 /* UGBMBrowseViewController.m in Sources */,
 				031E1C0A23BE812900B0F813 /* UGbetModel.m in Sources */,
+				4959F2A82563A3D500A3F05B /* ChatListViewController.m in Sources */,
 				CF6E4D0E2529B49200ABF719 /* BRStringPickerView.m in Sources */,
 				031AFC4C253C9D7600092DFF /* CMNetwork+Upload.m in Sources */,
 				031E1A6823BE812700B0F813 /* UGAppVersionManager.m in Sources */,
@@ -12079,6 +12137,7 @@
 				031E194623BE812600B0F813 /* UGLHMineViewController.m in Sources */,
 				03E3AAB823C84BCF009A28C0 /* PromotionBetReportVC.m in Sources */,
 				031E1AEE23BE812800B0F813 /* NullSafe.m in Sources */,
+				4959F2A22563A24700A3F05B /* ChatMainViewController.m in Sources */,
 				0372B59023C9984F00B564FF /* PromotionRecordCell1.m in Sources */,
 				031E19E423BE812700B0F813 /* UIResponder+EventRouter.m in Sources */,
 				CF722BDB25416E3400939A7C /* UGOnlineView.m in Sources */,
@@ -12258,6 +12317,7 @@
 				031E1A0023BE812700B0F813 /* MediaViewer.m in Sources */,
 				D43DAF7924545B270014A301 /* LYLuckyCardCellView.m in Sources */,
 				031E1B6A23BE812800B0F813 /* UGPlatformCollectionView.m in Sources */,
+				4959F2B62563AE2800A3F05B /* ChatListTableViewCell.m in Sources */,
 				031E1CA823BE812A00B0F813 /* UGFundRecordDetailView.m in Sources */,
 				031E194223BE812600B0F813 /* UGSkinManagers.m in Sources */,
 				031E1A5E23BE812700B0F813 /* STButton.m in Sources */,
