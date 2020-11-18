@@ -36,6 +36,10 @@
     subLabel(@"我的钱包Label").textColor = Skin1.textColor1;
     subLabel(@"¥Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : UIColorFromHex(0xda4453);
     subLabel(@"余额Label").textColor = Skin1.isBlack ? [UIColor whiteColor] : UIColorFromHex(0xda4453);
+    if ([@"c245" isEqualToString:APP.SiteId]) {
+        subLabel(@"我的钱包Label").text = @"中心钱包";
+    }
+    
     self.navCollectionView.superview.superview.backgroundColor = Skin1.homeContentColor;
     SANotificationEventSubscribe(UGNotificationWithSkinSuccess, self, ^(typeof (self) self, id obj) {
         subView(@"导航顶部提示View").backgroundColor = Skin1.menuHeadViewColor;
@@ -56,6 +60,8 @@
     });
     [self refreshUIWithIsLogin:UGLoginIsAuthorized()];
 }
+
+;
 
 - (void)refreshUIWithIsLogin:(BOOL)isLogin {
     FastSubViewCode(self.view);
@@ -83,6 +89,22 @@
         subLabel(@"晚上好Label").text = _NSString(@"%@，请登录。", time);
     }
     subLabel(@"余额Label").text = [UserI.balance removeFloatAllZero];
+    
+    NSDictionary *vipImages = @{
+        @"0":@"https://i.ibb.co/d6cWB9G/icon-mine-VIP0.png",
+        @"1":@"https://i.ibb.co/vXPbNPy/icon-mine-VIP1.png",
+        @"2":@"https://i.ibb.co/rmgdcxw/icon-mine-VIP2.png",
+        @"3":@"https://i.ibb.co/bs8d6Ls/icon-mine-VIP3.png",
+        @"4":@"https://i.ibb.co/kBy8Vf4/icon-mine-VIP4.png",
+        @"5":@"https://i.ibb.co/phtWt1b/icon-mine-VIP5.png",
+        @"6":@"https://i.ibb.co/P4hnZx9/icon-mine-VIP6.png",
+        @"7":@"https://i.ibb.co/mG3f4yM/icon-mine-VIP7.png",
+        @"8":@"https://i.ibb.co/tPVhCLh/icon-mine-VIP8.png",
+        @"9":@"https://i.ibb.co/6Y93J4W/icon-mine-VIP9.png",
+        @"10":@"https://i.ibb.co/c2vFLkN/icon-mine-VIP10.png",
+    };
+    [subImageView(@"VIPImageView") sd_setImageWithURL:[NSURL URLWithString:vipImages[UserI.curLevelInt]]];
+    subImageView(@"VIPImageView").hidden = UserI.isTest || !isLogin;
 }
 
 - (void)reloadData:(void (^)(BOOL succ))completion {
@@ -194,7 +216,6 @@
     FastSubViewCode(cell);
     __weakSelf_(__self);
     GameCategoryModel *gcm = _icons[indexPath.row];
-    subView(@"背景色View").backgroundColor = cell.selected ? Skin1.navBarBgColor : Skin1.homeContentColor;
     [subImageView(@"游戏分类图标ImageView") sd_setImageWithURL:[NSURL URLWithString:gcm.logo]];
     subLabel(@"游戏分类标题Label").text = gcm.name;
     subLabel(@"游戏分类标题Label").textColor = cell.selected ? UIColor.whiteColor : (Skin1.isBlack ? Skin1.textColor2 : UIColor.blackColor);
@@ -219,11 +240,45 @@
         }
         subView(@"背景色View").backgroundColor = obj.selected ? Skin1.menuHeadViewColor : Skin1.homeContentColor;
         subLabel(@"游戏分类标题Label").textColor = obj.selected ? UIColor.whiteColor : (Skin1.isBlack ? Skin1.textColor2 : UIColor.blackColor);
+        if ([@"c245" isEqualToString:APP.SiteId]) {
+            [subView(@"背景色View").layer removeAllSublayers];
+            if (obj.selected) {
+                [subView(@"背景色View").layer addSublayer:({
+                    CAGradientLayer *layer1 = [CAGradientLayer layer];
+                    layer1.frame = cell.bounds;
+                    layer1.colors = @[(id)UIColorHex(0xFDFB9F).CGColor,(id)UIColorHex(0xFBD979).CGColor,(id)UIColorHex(0xFDFB9F).CGColor];
+                    layer1.startPoint = CGPointMake(0, 1);
+                    layer1.endPoint = CGPointMake(0, 0);
+                    layer1;
+                })];
+                
+                NSDictionary *dict = @{
+                    @"34":@"https://i.ibb.co/Y7ZYQ08/bydw-p.png",
+                    @"36":@"https://i.ibb.co/tsq4rPJ/cptz-a.png",
+                    @"35":@"https://i.ibb.co/BzbdkzS/dzjj-a.png",
+                    @"33":@"https://i.ibb.co/stknT0W/qpyl-a.png",
+                    @"40":@"https://i.ibb.co/ZBP03vz/rmyx-a.png",
+                    @"37":@"https://i.ibb.co/BszyzTb/tyyx-a.png",
+                    @"32":@"https://i.ibb.co/0Fg90s3/zryl-a.png",
+                };
+                NSString *selectedIcon = dict[gcm.iid];
+                if (selectedIcon.length) {
+                    [subImageView(@"游戏分类大图ImageView") sd_setImageWithURL:[NSURL URLWithString:selectedIcon]];
+                }
+            } else {
+                [subView(@"背景色View").layer addSublayer:({
+                    CAGradientLayer *layer1 = [CAGradientLayer layer];
+                    layer1.frame = cell.bounds;
+                    layer1.colors = @[(id)UIColorHex(0x212121).CGColor,(id)[UIColor blackColor].CGColor,(id)UIColorHex(0x212121).CGColor];
+                    layer1.startPoint = CGPointMake(0, 1);
+                    layer1.endPoint = CGPointMake(0, 0);
+                    layer1;
+                })];
+                [subImageView(@"游戏分类大图ImageView") sd_setImageWithURL:[NSURL URLWithString:gcm.logo]];
+            }
+        }
     }];
-    
-    if ([APP.SiteId isEqualToString:@"c245"]) {
-        [subImageView(@"游戏分类大图ImageView") sd_setImageWithURL:[NSURL URLWithString:gcm.logo]];
-    }
+    subButton(@"Button").selected = subButton(@"Button").selected;
     return cell;
 }
 
