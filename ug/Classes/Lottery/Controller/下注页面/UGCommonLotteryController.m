@@ -192,7 +192,7 @@
         [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
         [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
         if (Skin1.isTKL) {
-            subLabel(@"截止投注label").cc_constraints.width.constant  = 61.5;
+            subLabel(@"截止投注label").cc_constraints.width.constant  = self.nextIssueLabel.cc_constraints.width.constant;
             subLabel(@"截止投注label").cc_constraints.left.constant  = 5;
             [subLabel(@"截止投注label") setHidden:NO];
             subView(@"底部View").cc_constraints.height.constant  = 70;
@@ -446,7 +446,7 @@
                 make.bottom.equalTo(self.bottomView.mas_top).mas_offset(25);
                 make.left.equalTo(self.bottomView.mas_left).mas_offset(20);
                 make.height.mas_equalTo(45);
-                make.width.mas_equalTo(260);
+                make.width.mas_equalTo(235);
             }];
             
             
