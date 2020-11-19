@@ -35,6 +35,7 @@
     self.tableView.rowHeight = 50;
     [self.tableView setBackgroundColor:Skin1.bgColor];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.separatorInset = UIEdgeInsetsZero;//分割线顶头
 }
 
 #pragma mark - tableView delegate
@@ -46,7 +47,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ChatListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChatListTableViewCell" forIndexPath:indexPath];
-    [cell setSeparatorInset:UIEdgeInsetsMake(0, 25, 0, 0)];
     RoomChatModel *model = [self.dataArray objectAtIndex:indexPath.row];
   
         if ([Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
