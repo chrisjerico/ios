@@ -27,6 +27,8 @@
 #import "NewLotteryHomeViewController.h"
 #import "CMTimeCommon.h"
 #import "TKLMoneyViewController.h"
+#import "ChatListViewController.h"
+#import "ChatMainViewController.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -161,23 +163,14 @@ static LogVC *_logVC = nil;
 #pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"天空蓝充值"];
-        [titles addObject:@"天空蓝额度"];
+        [titles addObject:@"聊天室列表"];
         [titles addObject:@"查看当前页面名"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"天空蓝额度" handler:^(UIAlertAction *aa) {
-            TKLMainViewController *vc = [[TKLMainViewController alloc] init];
-            [NavController1 pushViewController:vc animated:true];
-//            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"TKLMainListViewController") animated:true];
+        [ac setActionAtTitle:@"聊天室列表" handler:^(UIAlertAction *aa) {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"ChatMainViewController") animated:true];
         }];
 
-        
-        [ac setActionAtTitle:@"天空蓝充值" handler:^(UIAlertAction *aa) {
-            TKLMoneyViewController *vc = [[TKLMoneyViewController alloc] init];
-            [NavController1 pushViewController:vc animated:true];
-           
-        }];
         [ac setActionAtTitle:@"查看当前页面名" handler:^(UIAlertAction *aa) {
             [SVProgressHUD showInfoWithStatus:NavController1.topViewController.className];
         }];

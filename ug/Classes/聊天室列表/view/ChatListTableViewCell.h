@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class RoomChatModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChatListTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) RoomChatModel *item;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -56,10 +56,10 @@
 @property (nonatomic,assign) BOOL isC217RWDT;                                /**<  我的把任务中心4个字换成任务大厅*/
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
-//======个人中心
+//==============================================个人中心
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isC239B;                                   /**<  个人中心去掉真实名字，成长值，成长进度*/
-//======下注界面
+//==============================================下注界面
 @property (nonatomic,assign) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
 @property (nonatomic,assign) BOOL isC126CellStyle;                          /**<  下注测边栏，选中cell 背景为图*/
 @property (nonatomic,assign) BOOL isAllCellStyle;                          /**<  下注测边栏，选中cell 为NavBgColor  选中无白边*/
@@ -88,16 +88,17 @@
 @property (nonatomic,assign) UIFont *cellNormalFont;           /**<   下注页面Cel正常l字体  [UIFont systemFontOfSize:14];*/
 @property (nonatomic,assign)float cellNormalFontSize;                  /**<    下注页面Cel正常l字体  14] */
 @property (nonatomic,assign)float borderWidthTimes;                    /**<    下注页面Cel边框宽的倍数 */
-//=======虚拟币
+//==============================================虚拟币
 @property (nonatomic,assign) BOOL isNoOnLineDoc;                          /**<  虚拟币在线支付没有文档*/
 @property (nonatomic,assign) BOOL isHBDoc;                                /**<  虚拟币充值火币文档*/
-//=======新的界面
+//==============================================新的界面
 @property (nonatomic,assign) BOOL isNewConversion;                          /**<  新的额度转换界面*/
 @property (nonatomic,assign) BOOL isNewUserInfoView;                         /**<  新的我的资料界面*/
 @property (nonatomic,assign) BOOL isNewLotteryView;                         /**<  新的彩票大厅界面*/
-//======大转盘
+@property (nonatomic,assign) BOOL isNewChat;                                /**<  新的聊天室界面 tab 底部*/
+//==============================================大转盘
 @property (nonatomic,assign) BOOL isNoCry;                          /**<  没有哭脸*/
-//======首页
+//==============================================首页
 @property (nonatomic,assign) BOOL isShowLogo;                           /**<  首页中间游戏导航需增加logo图标，游戏导航栏可进行滑动  有左右箭头*/
 @property (nonatomic,assign) BOOL isShowArrow;                          /**<  首页中间游戏导航需增加左右箭头 */
 @property (nonatomic,assign)BOOL isWhite;                              /**<  首页游戏cell加白边 */

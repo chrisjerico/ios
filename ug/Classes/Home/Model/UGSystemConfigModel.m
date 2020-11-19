@@ -34,6 +34,7 @@
 #import "UGMosaicGoldViewController.h"      // 活动彩金
 #import "NewLotteryHomeViewController.h"    // 新彩票大厅
 #import "TKLMoneyViewController.h"          // 天空蓝 资金管理
+#import "ChatMainViewController.h"          // 聊天室列表
 #import "UGYYLotterySecondHomeViewController.h"
 #import "UGBMMemberCenterViewController.h"  //
 #import "UGLHMineViewController.h"  //
@@ -311,6 +312,9 @@ UGSystemConfigModel *currentConfig = nil;
     }
     if (self.type == MM_聊天室 && [@"h005" containsString:APP.SiteId]) {
         return UGChatViewController.className;
+    }
+    if (self.type == MM_聊天室 && APP.isNewChat) {
+        return ChatMainViewController.className;
     }
    
     return _clsName;

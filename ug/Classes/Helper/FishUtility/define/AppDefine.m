@@ -231,6 +231,8 @@
     _isC239B = [@"c239b" containsString:_SiteId];
     _isTwoOnline = [@"c150" containsString:_SiteId];
     
+    _isNewChat = [@"c117" containsString:_SiteId];
+    
 }
 
 -(BOOL)showLogo{

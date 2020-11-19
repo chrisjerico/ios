@@ -111,8 +111,7 @@
             });
             NSString *checkLog = [[log stringByReplacingOccurrencesOfString:@"│" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
             
-            if (![StagingLog isEqualToString:checkLog]) {
-                assert(!@"rn打包失败（请排查：1代码无法编译通过；2代码内容相同无法重复提交；）。".length);
+            if (![StagingLog isEqualToString:checkLog]) {                assert(!@"rn打包失败（请排查：1代码无法编译通过；2代码内容相同无法重复提交；）。".length);
             }
             if (completion) {
                 completion();
