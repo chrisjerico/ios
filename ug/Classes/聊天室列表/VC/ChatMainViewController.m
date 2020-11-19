@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title =  @"聊天室列表";
+    self.mtitle = self.title =  @"聊天室列表";
     [self buildSegment];
 }
 - (void)buildSegment
@@ -72,8 +72,8 @@
         [weakSelf.contentView bringSubviewToFront:weakSelf.view2.view];
         [subLabel(@"线1Label") setHidden:YES];
         [subLabel(@"线2Label") setHidden:NO];
-        weakSelf.mtitle = chat.roomName;
-        weakSelf.title = weakSelf.mtitle ;
+        weakSelf.title =  weakSelf.mtitle = chat.roomName;
+     
     };
     _view2 = [[UGChatViewController alloc] init];
     _view2.hideHead = YES;
@@ -81,7 +81,7 @@
         NSDictionary *dic = [CMCommon LastRoom];
         _view2.roomId = dic[@"roomId"];
         _view2.url = [APP chatGameUrl:dic[@"roomId"] hide:YES];
-        weakSelf.mtitle = dic[@"roomName"];
+        weakSelf.title = weakSelf.mtitle = dic[@"roomName"];
     }
     [self addChildViewController:_view1];
     [self addChildViewController:_view2];
