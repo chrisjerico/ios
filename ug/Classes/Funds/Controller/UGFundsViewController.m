@@ -16,7 +16,7 @@
 #import "HMSegmentedControl.h"
 
 @interface XYYSegmentControl ()
-@property (nonatomic, strong) HMSegmentedControl *hmSegmentedControl;
+//@property (nonatomic, strong) HMSegmentedControl *hmSegmentedControl;
 @end
 
 @interface UGFundsViewController ()<XYYSegmentControlDelegate>{
@@ -136,8 +136,8 @@
 //        }];
 
          self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , headView.frame.size.height+headView.frame.origin.y, self.view.width, self.view.height) channelName:self.itemArray source:self];
-        self.slideSwitchView.hmSegmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleDynamic;
-        self.slideSwitchView.hmSegmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 20, 0, 20);
+//        self.slideSwitchView.hmSegmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleDynamic;
+//        self.slideSwitchView.hmSegmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 20, 0, 20);
         [self.view addSubview:self.slideSwitchView];
         [self.slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view.mas_top);
@@ -154,8 +154,8 @@
         }];
         
         self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, self.view.height) channelName:self.itemArray source:self];
-        self.slideSwitchView.hmSegmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleDynamic;
-        self.slideSwitchView.hmSegmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 20, 0, 20);
+//        self.slideSwitchView.hmSegmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleDynamic;
+//        self.slideSwitchView.hmSegmentedControl.segmentEdgeInset = UIEdgeInsetsMake(0, 20, 0, 20);
         [self.view addSubview:self.slideSwitchView];
         
         [self.slideSwitchView mas_makeConstraints:^(MASConstraintMaker *make) {
