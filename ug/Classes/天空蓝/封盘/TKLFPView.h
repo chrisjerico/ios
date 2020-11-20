@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TKLFPView : UIView
+@property (nonatomic  ) BOOL isClosed;//已经点了关闭
 @property (nonatomic , copy ) void (^closeBlock)(void);
 @end
 

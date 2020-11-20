@@ -38,6 +38,7 @@
 }
 
 - (IBAction)close:(id)sender {
+    self.isClosed = YES;
     [self setHidden:YES];
     if (self.closeBlock) self.closeBlock();
 }
