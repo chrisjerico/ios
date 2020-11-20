@@ -103,6 +103,7 @@
 }
 
 - (void)setHeaderImageStr:(NSString *)headerImageStr {
+
     _headerImageStr= headerImageStr;
     self.headerImageView.image = [UIImage imageNamed:headerImageStr];
 }
@@ -127,7 +128,6 @@
         @"alipay_transfer"          :@"zfb_icon",       // 支付宝转账
         @"zfbzyhk_transfer"         :@"zfb_icon",       // 支付宝转银行卡
         
-        @"bank_transfer"            :@"transfer",       // 银行转账
         @"yinlian_online"           :@"bank_online",    // 银联钱包在线支付
         @"bank_online"              :@"bank_online",   // 网银在线支（用银联图标，还是快捷支付图标？）
         @"quick_online"             :@"quick_online",   // 快捷支付
@@ -156,6 +156,12 @@
         @"aliyin_transfer"          :@"aliyin_transfer",    // 支付宝银联
     }.mutableCopy;
     
+    if ([APP.SiteId isEqualToString:@"c245"]) {
+        [imgDict setValue:@"bank_online" forKey:@"bank_transfer"];// 银行转账
+    } else {
+        [imgDict setValue:@"transfer" forKey:@"bank_transfer"];// 银行转账
+    }
+
     [self setHeaderImageStr:imgDict[item.pid]];
 }
 @end
