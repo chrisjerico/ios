@@ -71,6 +71,10 @@
             }
         }
     }
+    
+    if (APP.isRed) {
+        self.layer.borderColor = (item.select ? [UIColor redColor] : [[UIColor whiteColor] colorWithAlphaComponent:0.3]).CGColor;
+    }
 }
 
 @end

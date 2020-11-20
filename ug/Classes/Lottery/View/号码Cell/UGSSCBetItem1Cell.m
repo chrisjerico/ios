@@ -89,6 +89,10 @@
             }
         }
     }
+    
+    if (APP.isRed) {
+        self.layer.borderColor = (item.select ? [UIColor redColor] : [[UIColor whiteColor] colorWithAlphaComponent:0.3]).CGColor;
+    }
 	
 	if ([item.typeName isEqualToString:@"定位胆"]) {
 		self.nameLabel.hidden = true;

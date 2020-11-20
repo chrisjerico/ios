@@ -34,24 +34,7 @@
     _item = item;
     self.titleLabel.text = item.name;
     
-    BOOL selected = item.selectedCount;
-    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
-        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : Skin1.navBarBgColor;
-    } else {
-        if (APP.betBgIsWhite) {
-            self.leftPoint.backgroundColor = selected ? Skin1.navBarBgColor : UGRGBColor(195, 195, 196);
-        } else {
-            self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
-        }
-    }
-    
-    if (APP.isRedWhite) {
-        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
-    }
-
-    if (APP.isRed) {
-        self.leftPoint.backgroundColor = selected ? [UIColor redColor] : UGRGBColor(195, 195, 196);
-    }
+    [self refreshLeftPointColor:self.selected selectedItemCount:_item.selectedCount];
 }
 
 - (void)setTitle:(NSString *)title {
@@ -107,6 +90,41 @@
             self.textLabel.backgroundColor = [UIColor clearColor];
             self.detailTextLabel.backgroundColor = [UIColor clearColor];
         }
+    }
+
+    [self refreshLeftPointColor:selected selectedItemCount:_item.selectedCount];
+}
+
+- (void)refreshLeftPointColor:(BOOL)cellIsSelected selectedItemCount:(BOOL)selectedItemCount {
+    
+    {
+        BOOL selected = selectedItemCount;
+        
+        UIColor *leftPointSelectColor ;
+        UIColor *leftPointNoSelectColor;
+        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
+            leftPointSelectColor = [UIColor whiteColor] ;
+            leftPointNoSelectColor = Skin1.navBarBgColor;
+        } else {
+            if (APP.betBgIsWhite) {
+                leftPointSelectColor = Skin1.navBarBgColor ;
+                leftPointNoSelectColor = UGRGBColor(195, 195, 196);
+            } else {
+                leftPointSelectColor = [UIColor yellowColor] ;
+                leftPointNoSelectColor = UGRGBColor(195, 195, 196);
+            }
+        }
+        
+        if (APP.isRedWhite) {
+            leftPointSelectColor =  [UIColor whiteColor] ;
+            leftPointNoSelectColor = UGRGBColor(195, 195, 196);
+        }
+        //右边如选择内容投注，左边目录圆标变色
+        self.leftPoint.backgroundColor = selected ? leftPointSelectColor : leftPointNoSelectColor;
+    }
+    
+    if (cellIsSelected && APP.isRed) {
+        self.leftPoint.backgroundColor = [UIColor redColor];
     }
 }
 

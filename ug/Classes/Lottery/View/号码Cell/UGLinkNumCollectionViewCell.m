@@ -42,6 +42,10 @@
         }
         self.layer.borderColor = (item.select ? Skin1.navBarBgColor : APP.LineColor).CGColor;
     }
+    
+    if (APP.isRed) {
+        self.layer.borderColor = (item.select ? [UIColor redColor] : [[UIColor whiteColor] colorWithAlphaComponent:0.3]).CGColor;
+    }
 }
 
 
