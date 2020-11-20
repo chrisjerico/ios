@@ -518,6 +518,10 @@
         [self.view bringSubviewToFront:self.mTKLFPView];
     }
     
+    if(APP.isRed){
+        [subLabel(@"已选中数量Label") setTextColor:[UIColor redColor]];
+    }
+    
    
 
 

@@ -48,9 +48,9 @@
     if (APP.isRedWhite) {
         self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
     }
-    
-    if (APP.isC126CellStyle) {
-        self.leftPoint.backgroundColor = selected ? [UIColor whiteColor] : UGRGBColor(195, 195, 196);
+
+    if (APP.isRed) {
+        self.leftPoint.backgroundColor = selected ? [UIColor redColor] : UGRGBColor(195, 195, 196);
     }
 }
 

@@ -232,6 +232,7 @@
     _isTwoOnline = [@"c150" containsString:_SiteId];
     
     _isNewChat = [@"c117" containsString:_SiteId];
+    _isRed = [@"c126" containsString:_SiteId];
     
 }
 
