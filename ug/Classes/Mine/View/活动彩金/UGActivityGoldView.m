@@ -64,7 +64,7 @@
         }];
         [_webView setOpaque:NO];
         
-        if (Skin1.isBlack) {
+        if (Skin1.isBlack && ![APP.SiteId isEqualToString:@"c245"]) {
             [self setBackgroundColor:Skin1.bgColor];
             [subLabel(@"标题Label") setTextColor:[UIColor whiteColor]];
             [subLabel(@"活动说明Label") setTextColor:[UIColor whiteColor]];
@@ -125,6 +125,10 @@
             }];
         }];
     }
+    
+
+    [subTextView(@"说明TextView") setHidden:APP.isHideSQSM];
+    
 }
 
 - (void)setItem:(UGMosaicGoldParamModel *)item {
@@ -161,7 +165,7 @@
     NSLog(@"self.item.win_apply_content = %@", self.item.win_apply_content);
     
     [self.webView loadHTMLString:[APP htmlStyleString:self.item.win_apply_content] baseURL:nil];
-    if (Skin1.isBlack) {
+    if (Skin1.isBlack && ![APP.SiteId isEqualToString:@"c245"]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.style.backgroundColor=\"#222\";document.body.style.color='#fff'"];
         });
@@ -210,10 +214,13 @@
         }
     }
     
-    if ([CMCommon stringIsNull:_textView.text]) {
-        [self makeToast:@"申请说明不能为空"];
-        return;
+    if (!APP.isHideSQSM) {
+        if ([CMCommon stringIsNull:_textView.text]) {
+            [self makeToast:@"申请说明不能为空"];
+            return;
+        }
     }
+
     if ([CMCommon stringIsNull:subTextField(@"验证码TextField").text]) {
         [self makeToast:@"验证码不能为空"];
         return;
@@ -227,20 +234,22 @@
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
-    NSDictionary *params;
+    NSMutableDictionary *params;
     if (_item.showWinAmount) {
         params = @{@"token":[UGUserModel currentUser].sessid,
                    @"id":pid,
                    @"amount":amount,
-                   @"userComment":userComment,
                    @"imgCode":imgCode
-        };
+        }.mutableCopy;
     } else {
         params = @{@"token":[UGUserModel currentUser].sessid,
                    @"id":pid,
-                   @"userComment":userComment,
                    @"imgCode":imgCode
-        };
+        }.mutableCopy;
+    }
+    
+    if (!APP.isHideSQSM) {
+        [params setValue: userComment forKey:@"userComment"];
     }
     
     

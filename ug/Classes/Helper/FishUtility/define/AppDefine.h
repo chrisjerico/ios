@@ -56,6 +56,7 @@
 @property (nonatomic,assign) BOOL isC217RWDT;                                /**<  我的把任务中心4个字换成任务大厅*/
 @property (nonatomic) BOOL isNoLeftButton;                               /**<  客服界面没有返回按钮，然后把×加亮 */
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
+@property (nonatomic) BOOL isHideSQSM;                               /**<  申请彩金页 申请说明的栏位去掉*/
 //==============================================个人中心
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isC239B;                                   /**<  个人中心去掉真实名字，成长值，成长进度*/
