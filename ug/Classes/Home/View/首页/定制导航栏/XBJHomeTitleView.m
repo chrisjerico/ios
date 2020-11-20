@@ -21,9 +21,11 @@
 
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.superview);
-    }];
+    if (self.superview) {
+        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.superview);
+        }];
+    }
 }
 
 - (IBAction)onMoreBtnClick:(UIButton *)sender {
