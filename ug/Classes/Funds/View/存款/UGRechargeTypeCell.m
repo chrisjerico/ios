@@ -27,6 +27,9 @@
         self.backgroundColor = Skin1.homeContentColor;
         self.nameLabel.textColor = Skin1.textColor1;
     }
+    if ([APP.SiteId isEqualToString:@"c245"]) {
+        self.backgroundColor = [UIColor clearColor];
+    }
     
     self.mBtn.layer.cornerRadius = 5;
     self.mBtn.layer.borderWidth = 1;

@@ -242,7 +242,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             tap;
         })];
         self.userNameLabel.text = [UGUserModel currentUser].username;
-       
+  
         [self setBalanceLabel];
         self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
         self.headImageView.layer.masksToBounds = YES;
@@ -518,6 +518,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         GameModel *model = [self.tableArray objectAtIndex:indexPath.row];
            UGYYRightMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellid forIndexPath:indexPath];
           
+        
            cell.imageName = model.icon;
            
            if (UGLoginIsAuthorized()) {//已经登录
@@ -553,7 +554,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                    }
                }
            }
-
+        
+     
            return cell;
     } else {
         UGYYRightMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellid forIndexPath:indexPath];
@@ -632,6 +634,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     
     UIView *contentView = self.bgView.superview.superview;
     contentView.backgroundColor = Skin1.textColor4;
+    if ([APP.SiteId isEqualToString:@"c245"]) {
+        contentView.backgroundColor = Skin1.menuHeadViewColor;
+    }
     [self.bgView setBackgroundColor:Skin1.menuHeadViewColor];
     [self.tklBgView setHidden:YES];
     if (Skin1.isJY) {
