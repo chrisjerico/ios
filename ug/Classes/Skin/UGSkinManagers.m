@@ -1530,6 +1530,11 @@ static UGSkinManagers *__initSkin1 = nil;
 }
 
 - (void)useSkin {
+    // 通知RN
+    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        [ReactNativeHelper sendEvent:UGNotificationWithSkinSuccess params:__currentSkin1];
+    }];
+    
 	if (self == __currentSkin1) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationWithSkinSuccess object:nil];
 		return;
@@ -1543,14 +1548,6 @@ static UGSkinManagers *__initSkin1 = nil;
 	}
 	__lastSkin1 = self;
 	[[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationWithSkinSuccess object:nil];
-    
-    // 通知RN
-    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-        [ReactNativeHelper sendEvent:UGNotificationWithSkinSuccess params:__currentSkin1];
-    }];
-    
-
-    
 }
 
 - (instancetype)getBlackSkin:(BOOL)blackOrOriginal {

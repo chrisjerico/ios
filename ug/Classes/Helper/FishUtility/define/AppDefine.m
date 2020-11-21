@@ -235,6 +235,10 @@
     _isRed = [@"c126" containsString:_SiteId];
     _isHideSQSM = [@"c245,test60f" containsString:_SiteId];
     
+    // 通知RN
+    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+        [ReactNativeHelper sendEvent:@"AppDefine-SetupSiteAndSkinParams" params:@{}];
+    }];
 }
 
 -(BOOL)showLogo{

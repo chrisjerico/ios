@@ -1552,9 +1552,8 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
         [NavController1 pushViewController:betRecordVC animated:YES];
     }
     else  if ([url containsString:@"/mobile/#/lottery/notcount"]) {//【未结注单】
-        UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
-        betRecordVC.gameType = @"real";
-        betRecordVC.status = @"1";
+        UGBetRecordViewController *betRecordVC = [UGBetRecordViewController new];
+        betRecordVC.selectIndex = 2;
         [NavController1 pushViewController:betRecordVC animated:YES];
     }
     else  if ([url containsString:@"/mobile/#/lottery/ugGameList"]) {//【UG注单】

@@ -977,9 +977,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_未结注单: {
-            UGRealBetRecordViewController *betRecordVC = _LoadVC_from_storyboard_(@"UGRealBetRecordViewController");
-            betRecordVC.gameType = @"real";
-            betRecordVC.status = @"1";
+            UGBetRecordViewController *betRecordVC = [UGBetRecordViewController new];
+            betRecordVC.selectIndex = 2;
             [NavController1 pushViewController:betRecordVC animated:YES];
             return true;
         }
