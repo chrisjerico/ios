@@ -233,7 +233,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.iphoneXBottomView];
+
    
 }
 

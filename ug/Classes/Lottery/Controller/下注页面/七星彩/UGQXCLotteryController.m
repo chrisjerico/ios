@@ -190,8 +190,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.iphoneXBottomView];
-    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

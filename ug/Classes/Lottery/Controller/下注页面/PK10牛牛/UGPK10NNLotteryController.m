@@ -182,7 +182,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.iphoneXBottomView];
+
     
 }
 
