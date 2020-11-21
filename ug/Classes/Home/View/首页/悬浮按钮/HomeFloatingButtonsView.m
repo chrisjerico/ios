@@ -208,6 +208,8 @@
 
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
+    if (!self.superview) return;
+    
     self.alpha = 0;
     self.userInteractionEnabled = false;
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
