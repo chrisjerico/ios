@@ -393,9 +393,13 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
 
 - (IBAction)resetClick:(id)sender {
+    FastSubViewCode(self.view)
+    [subTextField(@"TKL下注TxtF") resignFirstResponder];
+    subTextField(@"TKL下注TxtF").text = nil;
     [self.amountTextF resignFirstResponder];
-    [self updateSelectLabelWithCount:0];
     self.amountTextF.text = nil;
+    [self updateSelectLabelWithCount:0];
+    
     for (UGGameplayModel *model in self.gameDataArray) {
         model.selectedCount = NO;
         for (UGGameplaySectionModel *type in model.list) {
