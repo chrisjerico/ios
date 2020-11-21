@@ -141,10 +141,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _hxheaderViewTitle = @"合肖";
     }
     
-    
+    FastSubViewCode(self.view)
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
     self.chipButton.layer.masksToBounds = YES;
+    subTextField(@"TKL下注TxtF").delegate = self;
     self.amountTextF.delegate = self;
 //    [self.view addSubview:self.tableView];//===========
 //    [self.contentView addSubview:self.tableView];
@@ -172,10 +173,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
           make.top.bottom.equalTo(self.headerMidView).offset(0);
          
       }];
-    
-    
-    self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    self.bottomCloseView.hidden = YES;
+
 //    [self.view addSubview:self.segmentView];
     [self.rightStackView addSubview:self.segmentView];
     [self.segmentView  mas_remakeConstraints:^(MASConstraintMaker *make)
@@ -258,8 +256,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self.view bringSubviewToFront:self.bottomView];
-    [self.view bringSubviewToFront:self.iphoneXBottomView];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -452,9 +449,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 // 重置
 - (IBAction)resetClick:(id)sender {
+    FastSubViewCode(self.view)
+    [subTextField(@"TKL下注TxtF") resignFirstResponder];
+    subTextField(@"TKL下注TxtF").text = nil;
     [self.amountTextF resignFirstResponder];
-    [self updateSelectLabelWithCount:0];
     self.amountTextF.text = nil;
+    [self updateSelectLabelWithCount:0];
+
     for (UGGameplayModel *model in self.gameDataArray) {
         model.selectedCount = 0;
         for (UGGameplaySectionModel *type in model.list) {
@@ -476,10 +477,18 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 // 下注
 - (IBAction)betClick:(id)sender {
+    FastSubViewCode(self.view)
     [self.amountTextF resignFirstResponder];
+    [subTextField(@"TKL下注TxtF") resignFirstResponder];
     ck_parameters(^{
-        ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
-        ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
+        if (Skin1.isTKL) {
+            ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
+            ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
+        } else {
+            ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
+            ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
+        }
+       
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
@@ -559,7 +568,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 if ([@"自选不中" isEqualToString:type.name]) {
                     for (UGGameBetModel *game in type.zxbzlist) {
                         if (game.select) {
-                            game.money = self.amountTextF.text;
+                            if (Skin1.isTKL) {
+                                game.money = subTextField(@"TKL下注TxtF").text;
+                            } else {
+                                game.money = self.amountTextF.text;
+                            }
+                           
                             game.title = type.name;
                             [array addObject:game];
                         }
@@ -568,7 +582,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 else{
                     for (UGGameBetModel *game in type.list) {
                         if (game.select) {
-                            game.money = self.amountTextF.text;
+                            if (Skin1.isTKL) {
+                                game.money = subTextField(@"TKL下注TxtF").text;
+                            } else {
+                                game.money = self.amountTextF.text;
+                            }
                             game.title = type.name;
                             [array addObject:game];
                         }
@@ -953,10 +971,20 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.betCollectionView) {
-        if (self.bottomCloseView.hidden == NO) {
-            [SVProgressHUD showInfoWithStatus:@"封盘中"];
-            return;
+        
+        if (Skin1.isTKL) {
+            FastSubViewCode(self.view)
+            if (subView(@"天空蓝封盘View").hidden == NO) {
+                [SVProgressHUD showInfoWithStatus:@"封盘中"];
+                return;
+            }
+        } else {
+            if (self.bottomCloseView.hidden == NO) {
+                [SVProgressHUD showInfoWithStatus:@"封盘中"];
+                return;
+            }
         }
+        
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = nil;
         if ([@"连码" isEqualToString:model.name] ||
@@ -1425,7 +1453,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([string isEqualToString:@"\n"]) {
+        FastSubViewCode(self.view)
         [self.amountTextF resignFirstResponder];
+        [subTextField(@"TKL下注TxtF") resignFirstResponder];
         return NO;
     }
     return YES;

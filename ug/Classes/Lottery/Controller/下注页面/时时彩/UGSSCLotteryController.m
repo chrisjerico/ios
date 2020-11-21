@@ -126,6 +126,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    FastSubViewCode(self.view)
     self.chipButton.layer.cornerRadius = 5;
     self.chipButton.layer.masksToBounds = YES;
     self.betButton.layer.cornerRadius = 5;
@@ -133,6 +134,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
     self.resetButton.layer.cornerRadius = 5;
     self.resetButton.layer.masksToBounds = YES;
     self.amountTextF.delegate = self;
+    subTextField(@"TKL下注TxtF").delegate = self;
 
     self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.bottomCloseView.hidden = YES;
@@ -233,7 +235,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.iphoneXBottomView];
+
    
 }
 
@@ -382,9 +384,13 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
 
 - (IBAction)resetClick:(id)sender {
+    FastSubViewCode(self.view)
+    [subTextField(@"TKL下注TxtF") resignFirstResponder];
+    subTextField(@"TKL下注TxtF").text = nil;
     [self.amountTextF resignFirstResponder];
-    [self updateSelectLabelWithCount:0];
     self.amountTextF.text = nil;
+    [self updateSelectLabelWithCount:0];
+    
     for (UGGameplayModel *model in self.gameDataArray) {
         model.selectedCount = 0;
         for (UGGameplaySectionModel *type in model.list) {
@@ -413,6 +419,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
 //不定位下注方法
 -(void)bdwBetActionMode:(UGGameplayModel *)type array :(NSMutableArray *__strong *) array selCode :(NSString *__strong *)selCode{
+    FastSubViewCode(self.view)
     NSLog(@"type=%@",type);
     *selCode = type.code;
     if (type.list.count) {
@@ -437,17 +444,21 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
             for (int i = 0; i < mutArr1.count; i++) {
                 
               
-                    
-                    UGGameBetModel *beti = mutArr1[i];
-                    UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                    [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
-                    NSMutableString *name = [[NSMutableString alloc] init];
-                    [name appendString:beti.name];
-                    bet.name = name;
+                
+                UGGameBetModel *beti = mutArr1[i];
+                UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+                [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+                NSMutableString *name = [[NSMutableString alloc] init];
+                [name appendString:beti.name];
+                bet.name = name;
+                if (Skin1.isTKL) {
+                    bet.money = subTextField(@"TKL下注TxtF").text;
+                } else {
                     bet.money = self.amountTextF.text;
-                    bet.title = bet.alias;
-                    bet.betInfo = name;
-                    [*array addObject:bet];
+                }
+                bet.title = bet.alias;
+                bet.betInfo = name;
+                [*array addObject:bet];
 
             }
             
@@ -457,6 +468,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 }
 //二字定位下注方法
 -(void)ezdwBetActionMode:(UGGameplayModel *)type array :(NSMutableArray *__strong *) array selCode :(NSString *__strong *)selCode{
+    FastSubViewCode(self.view)
     NSLog(@"type=%@",type);
     *selCode = type.code;
     if (type.list.count) {
@@ -496,7 +508,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                     [name appendString:@","];
                     [name appendString:bety.name];
                     bet.name = name;
-                    bet.money = self.amountTextF.text;
+                    if (Skin1.isTKL) {
+                        bet.money = subTextField(@"TKL下注TxtF").text;
+                    } else {
+                        bet.money = self.amountTextF.text;
+                    }
                     bet.title = bet.alias;
                     bet.betInfo = name;
                     [*array addObject:bet];
@@ -511,7 +527,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 
 //三字定位下注方法
 -(void)szdwBetActionMode:(UGGameplayModel *)type array :(NSMutableArray *__strong *) array selCode :(NSString *__strong *)selCode{
-
+    FastSubViewCode(self.view)
     *selCode = type.code;
     if (type.list.count) {
         UGGameplaySectionModel *play = type.list[self.segmentIndex];
@@ -560,7 +576,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                         [name appendString:@","];
                         [name appendString:betz.name];
                         bet.name = name;
-                        bet.money = self.amountTextF.text;
+                        if (Skin1.isTKL) {
+                            bet.money = subTextField(@"TKL下注TxtF").text;
+                        } else {
+                            bet.money = self.amountTextF.text;
+                        }
                         bet.title = bet.alias;
                         bet.betInfo = name;
                         [*array addObject:bet];
@@ -574,6 +594,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 }
 //五星下注方法
 -(void)wxBetActionMode:(UGGameplayModel *)type array :(NSMutableArray *__strong *) array selCode :(NSString *__strong *)selCode{
+    FastSubViewCode(self.view)
 	*selCode = type.code;
 	if (!type.list.count) {
 		return;
@@ -586,7 +607,12 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 				if (!bet.select) {
 					continue;
 				}
-				bet.money = self.amountTextF.text;
+                if (Skin1.isTKL) {
+                    bet.money = subTextField(@"TKL下注TxtF").text;
+                } else {
+                    bet.money = self.amountTextF.text;
+                }
+               
 				[*array addObject:bet];
 			}
 		}
@@ -615,7 +641,12 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 		UGGameBetModel *bet = [[UGGameBetModel alloc] init];
 		[bet setValuesForKeysWithDictionary:tempBet.mj_keyValues];
 		bet.name = betName;
-		bet.money = self.amountTextF.text;
+        if (Skin1.isTKL) {
+            bet.money = subTextField(@"TKL下注TxtF").text;
+        } else {
+            bet.money = self.amountTextF.text;
+        }
+
 		bet.title = tempBet.alias;
 		bet.betInfo = betName;
 		[*array addObject:bet];
@@ -652,7 +683,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 		UGGameBetModel *bet = [[UGGameBetModel alloc] init];
 		[bet setValuesForKeysWithDictionary:tempBet.mj_keyValues];
 		bet.name = betName;
-		bet.money = self.amountTextF.text;
+        if (Skin1.isTKL) {
+            bet.money = subTextField(@"TKL下注TxtF").text;
+        } else {
+            bet.money = self.amountTextF.text;
+        }
 		bet.title = tempBet.alias;
 		bet.betInfo = betName;
 		[*array addObject:bet];
@@ -670,6 +705,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 	if (index >= originalArray.count) {
 		return;
 	}
+    FastSubViewCode(self.view)
 	UGGameplaySectionModel * section = originalArray[index];
 	for (UGGameBetModel * game in section.list) {
 		if (!game.select) {
@@ -679,7 +715,12 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 		UGGameBetModel *bet = [[UGGameBetModel alloc] init];
 		[bet setValuesForKeysWithDictionary:game.mj_keyValues];
 		bet.betInfo = info;
-		bet.money = self.amountTextF.text;
+        
+        if (Skin1.isTKL) {
+            bet.money = subTextField(@"TKL下注TxtF").text;
+        } else {
+            bet.money = self.amountTextF.text;
+        }
 		bet.name = bet.betInfo;
 		bet.title = game.alias;
 		if (originalArray.lastObject == section) {
@@ -691,10 +732,17 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 }
 
 - (IBAction)betClick:(id)sender {
+    FastSubViewCode(self.view)
     [self.amountTextF resignFirstResponder];
+    [subTextField(@"TKL下注TxtF") resignFirstResponder];
     ck_parameters(^{
-         ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
-        ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
+        if (Skin1.isTKL) {
+            ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
+            ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
+        } else {
+            ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
+            ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
+        }
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
@@ -725,7 +773,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                     UGGameplaySectionModel *sectionModel = type.ezdwlist[0];
                     for (UGGameBetModel *game in sectionModel.list) {
                         if (game.select) {
-                            game.money = self.amountTextF.text;
+                            if (Skin1.isTKL) {
+                                game.money = subTextField(@"TKL下注TxtF").text;
+                            } else {
+                                game.money = self.amountTextF.text;
+                            }
                             if ([game.alias isEqualToString:@""]) {
                                 game.alias = type.alias;
                             }
@@ -751,7 +803,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                 for (UGGameplaySectionModel *type in model.list) {
                     for (UGGameBetModel *game in type.list) {
                         if (game.select) {
-                            game.money = self.amountTextF.text;
+                            if (Skin1.isTKL) {
+                                game.money = subTextField(@"TKL下注TxtF").text;
+                            } else {
+                                game.money = self.amountTextF.text;
+                            }
                             if ([game.alias isEqualToString:@""]) {
                                 game.alias = type.alias;
                             }
@@ -1476,9 +1532,17 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (collectionView == self.betCollectionView) {
-        if (self.bottomCloseView.hidden == NO) {
-            [SVProgressHUD showInfoWithStatus:@"封盘中"];
-            return;
+        if (Skin1.isTKL) {
+            FastSubViewCode(self.view)
+            if (subView(@"天空蓝封盘View").hidden == NO) {
+                [SVProgressHUD showInfoWithStatus:@"封盘中"];
+                return;
+            }
+        } else {
+            if (self.bottomCloseView.hidden == NO) {
+                [SVProgressHUD showInfoWithStatus:@"封盘中"];
+                return;
+            }
         }
         
         
@@ -1655,6 +1719,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 //不定位 计算选中的注数
 -(void)bdwActionModel:(UGGameplayModel *)model count:(NSInteger)count{
     
+    FastSubViewCode(self.view)
       NSMutableArray *array = [NSMutableArray array];
       UGGameplaySectionModel *play = model.list[self.segmentIndex];
       if (play.ezdwlist.count) {
@@ -1675,16 +1740,20 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
           
           for (int i = 0; i < mutArr1.count; i++) {
 
-                  UGGameBetModel *beti = mutArr1[i];
-                  UGGameBetModel *bet = [[UGGameBetModel alloc] init];
-                  [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
-                  NSMutableString *name = [[NSMutableString alloc] init];
-                  [name appendString:beti.name];
-                  bet.name = name;
+              UGGameBetModel *beti = mutArr1[i];
+              UGGameBetModel *bet = [[UGGameBetModel alloc] init];
+              [bet setValuesForKeysWithDictionary:beti.mj_keyValues];
+              NSMutableString *name = [[NSMutableString alloc] init];
+              [name appendString:beti.name];
+              bet.name = name;
+              if (Skin1.isTKL) {
+                  bet.money = subTextField(@"TKL下注TxtF").text;
+              } else {
                   bet.money = self.amountTextF.text;
-                  bet.title = bet.alias;
-                  bet.betInfo = name;
-                  [array addObject:bet];
+              }
+              bet.title = bet.alias;
+              bet.betInfo = name;
+              [array addObject:bet];
           }
           
           if (mutArr1.count == 0 ) {
@@ -1702,6 +1771,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 //二字定位 计算选中的注数
 -(void)ezdwActionModel:(UGGameplayModel *)model count:(NSInteger)count{
     
+    FastSubViewCode(self.view)
       NSMutableArray *array = [NSMutableArray array];
       UGGameplaySectionModel *play = model.list[self.segmentIndex];
       if (play.ezdwlist.count) {
@@ -1739,7 +1809,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                   [name appendString:@","];
                   [name appendString:bety.name];
                   bet.name = name;
-                  bet.money = self.amountTextF.text;
+                  if (Skin1.isTKL) {
+                      bet.money = subTextField(@"TKL下注TxtF").text;
+                  } else {
+                      bet.money = self.amountTextF.text;
+                  }
                   bet.title = bet.alias;
                   bet.betInfo = name;
                   [array addObject:bet];
@@ -1762,6 +1836,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 //三字定位 计算选中的注数
 -(void)szdwActionModel:(UGGameplayModel *)model count:(NSInteger)count{
     
+    FastSubViewCode(self.view)
       NSMutableArray *array = [NSMutableArray array];
       UGGameplaySectionModel *play = model.list[self.segmentIndex];
       if (play.ezdwlist.count) {
@@ -1811,7 +1886,11 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
                       [name appendString:@","];
                       [name appendString:betz.name];
                       bet.name = name;
-                      bet.money = self.amountTextF.text;
+                      if (Skin1.isTKL) {
+                          bet.money = subTextField(@"TKL下注TxtF").text;
+                      } else {
+                          bet.money = self.amountTextF.text;
+                      }
                       bet.title = bet.alias;
                       bet.betInfo = name;
                       [array addObject:bet];
@@ -2049,7 +2128,9 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
 #pragma mark - textField delegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([string isEqualToString:@"\n"]) {
+        FastSubViewCode(self.view)
         [self.amountTextF resignFirstResponder];
+        [subTextField(@"TKL下注TxtF") resignFirstResponder];
         return NO;
     }
     return YES;

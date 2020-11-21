@@ -143,9 +143,7 @@ static NSString *footViewID = @"YNCollectionFootView";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view bringSubviewToFront:self.iphoneXBottomView];
-    
-    
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

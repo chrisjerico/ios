@@ -382,30 +382,29 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         //天空蓝
         if (Skin1.isTKL) {
             [subLabel(@"钱Label") setHidden:NO];
+            WeakSelf;
             [subImageView(@"头像imgView") sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
             [subButton(@"存Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"存Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [self hiddenSelf];
+                [weakSelf hiddenSelf];
                 //
                 TKLRechargeMainViewController*rechargeVC = _LoadVC_from_storyboard_(@"TKLRechargeMainViewController");
                 [NavController1 pushViewController:rechargeVC animated:YES];
             }];
             [subButton(@"取Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"取Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [self hiddenSelf];
+                [weakSelf hiddenSelf];
                 //
                 UGWithdrawalVC *withdrawalVC = _LoadVC_from_storyboard_(@"UGWithdrawalVC");
-                WeakSelf
+         
                 withdrawalVC.withdrawSuccessBlock = ^{
                 };
                 [NavController1 pushViewController:withdrawalVC animated:true];
             }];
             
             if ([UGUserModel currentUser].isTest) {
-                [subButton(@"登录Button") setHidden:NO];
-                [subButton(@"注册Button") setHidden:NO];
-                [subButton(@"存Button") setHidden:YES];
-                [subButton(@"取Button") setHidden:YES];
+                [subView(@"存取View") setHidden:YES];
+                [subView(@"TKL登录View") setHidden:NO];
                 
                 [subButton(@"登录Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
                 [subButton(@"登录Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -420,10 +419,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
                     [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBMRegisterViewController") animated:true];
                 }];
             } else {
-                [subButton(@"登录Button") setHidden:YES];
-                [subButton(@"注册Button") setHidden:YES];
-                [subButton(@"存Button") setHidden:NO];
-                [subButton(@"取Button") setHidden:NO];
+                [subView(@"存取View") setHidden:NO];
+                [subView(@"TKL登录View") setHidden:YES];
             }
         }
     }
@@ -447,10 +444,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         }];
         //天空蓝
         if (Skin1.isTKL) {
-            [subButton(@"登录Button") setHidden:NO];
-            [subButton(@"注册Button") setHidden:NO];
-            [subButton(@"存Button") setHidden:YES];
-            [subButton(@"取Button") setHidden:YES];
+            [subView(@"存取View") setHidden:NO];
+            [subView(@"TKL登录View") setHidden:YES];
             [subLabel(@"钱Label") setHidden:YES];
             [subButton(@"登录Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
             [subButton(@"登录Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {

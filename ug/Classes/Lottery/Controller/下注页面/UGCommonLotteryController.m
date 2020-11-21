@@ -114,6 +114,8 @@
 	[self getSystemConfig];     // APP配置信息
 	
 	[self resetGengHaoBtn];
+    
+    [self.view bringSubviewToFront:self.iphoneXBottomView];
 	
 }
 - (BOOL)允许游客访问 { return true; }
@@ -191,20 +193,7 @@
         subLabel(@"线label").hidden = !APP.isShowBorder;
         [subLabel(@"期数label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
         [subLabel(@"聊天室label") setTextColor:APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor]];
-        if (Skin1.isTKL) {
-            subLabel(@"截止投注label").cc_constraints.width.constant  = self.nextIssueLabel.cc_constraints.width.constant;
-            subLabel(@"截止投注label").cc_constraints.left.constant  = 5;
-            [subLabel(@"截止投注label") setHidden:NO];
-            subView(@"底部View").cc_constraints.height.constant  = 70;
-        } else {
-            subLabel(@"截止投注label").cc_constraints.width.constant  = 0;
-            subLabel(@"截止投注label").cc_constraints.left.constant  = 0;
-            [subLabel(@"截止投注label") setHidden:YES];
-            subView(@"底部View").cc_constraints.height.constant  = 96;
-    
-        }
-      
-        
+
         self.nextIssueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
         self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
@@ -349,27 +338,40 @@
             [subButton(@"直播btn") setBackgroundImage: [UIImage imageNamed:@"kjw_tv"]  forState:(UIControlStateNormal)];
             [subButton(@"开奖btn") setBackgroundImage: [UIImage imageNamed:@"kjw_01"]  forState:(UIControlStateNormal)];
         }
-        
-        if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
-            [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
-        }
-        else {
-            
-            if (APP.isYellow) {
-                [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
-            }
-            else{
-                [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
-            }
-            
-        }
-        
-        
+  
+        self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        self.bottomCloseView.hidden = YES;
+        [self.bottomView bringSubviewToFront:self.bottomCloseView];
+        subView(@"天空蓝封盘View").backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        subView(@"天空蓝封盘View").hidden = YES;
+        [subView(@"天空蓝底部View") bringSubviewToFront:subView(@"天空蓝封盘View")];
         if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
             || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
         } else {
+            [subView(@"天空蓝下注View") setBackgroundColor:Skin1.bgColor];
+            [subView(@"天空蓝下注View") insertSubview:({
+                UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+                bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+                bgView;
+            }) atIndex:0];
             subButton(@"追号btn").layer.cornerRadius = 5;
             subButton(@"追号btn").layer.masksToBounds = YES;
+            subButton(@"TKL追号btn").layer.cornerRadius = 5;
+            subButton(@"TKL追号btn").layer.masksToBounds = YES;
+            subButton(@"TKL机选btn").layer.cornerRadius = 5;
+            subButton(@"TKL机选btn").layer.masksToBounds = YES;
+            subButton(@"TKL机选btn").layer.cornerRadius = 5;
+            subButton(@"TKL机选btn").layer.masksToBounds = YES;
+            subButton(@"TKL下注Button").layer.cornerRadius = 5;
+            subButton(@"TKL下注Button").layer.masksToBounds = YES;
+            subButton(@"TKL重置Button").layer.cornerRadius = 5;
+            subButton(@"TKL重置Button").layer.masksToBounds = YES;
+            subButton(@"TKL筹码Btn").layer.cornerRadius = 5;
+            subButton(@"TKL筹码Btn").layer.masksToBounds = YES;
+            [subButton(@"TKL重置Button") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [subButton(@"TKL追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [subButton(@"TKL机选btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
+            [subButton(@"TKL下注Button") setBackgroundColor:Skin1.navBarBgColor];
             
             [subButton(@"追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 if ([CMCommon hasGengHao:__self.nextIssueModel.gameId]) {
@@ -379,6 +381,29 @@
                 }
                 
             }];
+            [subButton(@"TKL追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                if ([CMCommon hasGengHao:__self.nextIssueModel.gameId]) {
+                    NSDictionary *lastGengHao = [CMCommon LastGengHao];
+                    NSMutableArray *objArray = [UGGameBetModel mj_objectArrayWithKeyValuesArray:lastGengHao[@"array"]];
+                    [__self goUGBetDetailViewObjArray:objArray dicArray:lastGengHao[@"array"] issueModel:__self.nextIssueModel gameType:lastGengHao[@"gameId"] selCode:lastGengHao[@"selCode"]];
+                }
+                
+            }];
+            [subButton(@"TKL机选btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [__self randomNumber];
+            }];
+            [subButton(@"TKL下注Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [__self betClick :sender];
+            }];
+            [subButton(@"TKL重置Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                [__self resetClick :sender];
+            }];
+            [subButton(@"TKL筹码Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+                sender.selected = !sender.selected;
+                [__self.bargainingView setHidden:sender.selected];
+                
+            }];
+
             UIButton * reBetButton = subButton(@"追号btn");
             if (reBetButton) {
                 UIView * superView = reBetButton.superview;
@@ -393,136 +418,61 @@
             }
         }
 
+        if (Skin1.isTKL) {
+            subLabel(@"截止投注label").cc_constraints.width.constant  = self.nextIssueLabel.cc_constraints.width.constant;
+            subLabel(@"截止投注label").cc_constraints.left.constant  = 5;
+            [subLabel(@"截止投注label") setHidden:NO];
+        } else {
+            subLabel(@"截止投注label").cc_constraints.width.constant  = 0;
+            subLabel(@"截止投注label").cc_constraints.left.constant  = 0;
+            [subLabel(@"截止投注label") setHidden:YES];
+        }
         if (Skin1.isTKL
             && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
-            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
-
-            //筹码 bottomView
+            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"])
+        {
+            //筹码
             _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
-            UIButton *newResetBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            UILabel *yeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-            UILabel *yeNumberLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-            UIButton *newXZBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            [self.view  addSubview:_bargainingView];
+             [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
+                 make.bottom.equalTo(subView(@"天空蓝底部View").mas_top).mas_offset(10);
+                 make.left.equalTo(subView(@"天空蓝底部View").mas_left).mas_offset(20);
+                 make.height.mas_equalTo(45);
+                 make.width.mas_equalTo(235);
+             }];
             
-            if (Skin1.isTKL) {
-                self.chipButton.cc_constraints.width.constant  = 30;
-                [self.view addSubview:_bargainingView];
-                [self.bottomView addSubview:yeNumberLable];
-                [self.bottomView addSubview:yeLable];
-                [self.bottomView addSubview:newXZBtn];
-                [self.bottomView addSubview:newResetBtn];
-                
-            }
-            else{
-                self.chipButton.cc_constraints.width.constant  = 60;
-            }
-            
-            [newResetBtn setHidden:!Skin1.isTKL];
-            [yeLable setHidden:!Skin1.isTKL];
-            [yeNumberLable setHidden:!Skin1.isTKL];
-            [newXZBtn setHidden:!Skin1.isTKL];
-            self.nextIssueLabel.textColor = Skin1.navBarBgColor;
-            subLabel(@"期数label").textColor = Skin1.navBarBgColor;
-            [self.openTimeLabel setHidden:Skin1.isTKL];
-            [self.chipButton  setHidden:Skin1.isTKL];
-            [_bargainingView setHidden:!Skin1.isTKL];
-            [subButton(@"重置Button") setHidden:Skin1.isTKL];
-            [subButton(@"下注Button") setHidden:Skin1.isTKL];
-            [subLabel(@"已选中label") setHidden:Skin1.isTKL];
-            [self.selectLabel setHidden:Skin1.isTKL];
-
-            //游戏列表点击事件
             self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
                 if (![CMCommon stringIsNull:item.btnTitle]) {
-                    float n1 = [CMCommon floatForNSString:__self.amountTextF.text];
+                    float n1 = [CMCommon floatForNSString:subTextField(@"TKL下注TxtF").text];
                     float n2 = [CMCommon floatForNSString:item.btnTitle];
                     float sum = n1 + n2;
-                    __self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
+                    subTextField(@"TKL下注TxtF").text = [NSString stringWithFormat:@"%.2f",sum];
                 }
             };
+            //添加封盘
+            {
+                self.mTKLFPView = [[TKLFPView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+                [self.mTKLFPView setHidden:YES];
+                [self.view addSubview:self.mTKLFPView];
+                [self.view bringSubviewToFront:self.mTKLFPView];
+            }
+            //显示天空蓝底部View
+            //底部View 隐藏
+            [subView(@"底部View") setHidden:YES];
+            [subView(@"天空蓝底部View") setHidden:NO];
             
-           
-            [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self.bottomView.mas_top).mas_offset(25);
-                make.left.equalTo(self.bottomView.mas_left).mas_offset(20);
-                make.height.mas_equalTo(45);
-                make.width.mas_equalTo(235);
-            }];
             
-            
-            [newResetBtn setTitle:@"重置" forState:UIControlStateNormal];
-            [newResetBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [newResetBtn setBackgroundColor:RGBA(247, 162, 0, 1)];
-            newResetBtn.layer.cornerRadius = 5;
-            newResetBtn.layer.masksToBounds = YES;
-            [newResetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self.amountTextF.mas_bottom).mas_offset(0);
-                make.left.equalTo(self.bottomView.mas_left).mas_offset(20);
-                make.height.mas_equalTo(35);
-                make.width.mas_equalTo(60);
-            }];
-            [newResetBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-            [newResetBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [__self resetClick:sender];
-            }];
-
-           
-            yeLable.text = @"余额:";
-            yeLable.font = [UIFont systemFontOfSize:14];
-            yeLable.textColor = Skin1.textColor1;
-            [yeLable mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.amountTextF.mas_top).mas_offset(0);
-                make.left.equalTo(self.amountTextF.mas_right).mas_offset(10);
-                make.height.mas_equalTo(18);
-
-            }];
-
- 
-            UGUserModel *user = [UGUserModel currentUser];
-            yeNumberLable.text = user.balance;
-            yeNumberLable.font = [UIFont systemFontOfSize:14];
-            yeNumberLable.textColor = Skin1.textColor1;
-            [yeNumberLable mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self.amountTextF.mas_bottom).mas_offset(0);
-                make.left.equalTo(self.amountTextF.mas_right).mas_offset(10);
-                make.height.mas_equalTo(18);
-            }];
-            
-
-            [newXZBtn setTitle:@"投注" forState:UIControlStateNormal];
-            [newXZBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [newXZBtn setBackgroundColor:Skin1.navBarBgColor];
-            newXZBtn.layer.cornerRadius = 5;
-            newXZBtn.layer.masksToBounds = YES;
-            [newXZBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(self.bottomView.mas_right).mas_offset(-20);
-                make.height.mas_equalTo(50);
-                make.width.mas_equalTo(50);
-                make.centerY.equalTo(self.bottomView.mas_centerY);
-            }];
-            [newXZBtn removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-            [newXZBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                [__self betClick:sender];
-            }];
         }
-        
-       
-        
- 
+        else{
+            //显示底部View
+            //天空蓝底部View 隐藏
+            [subView(@"底部View") setHidden:NO];
+            [subView(@"天空蓝底部View") setHidden:YES];
+        }
+
     }
-    
-    if(Skin1.isTKL){
-        self.mTKLFPView = [[TKLFPView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-        [self.mTKLFPView setHidden:YES];
-        [self.view addSubview:self.mTKLFPView];
-        [self.view bringSubviewToFront:self.mTKLFPView];
-    }
-    
-    if(APP.isRed){
-        [subLabel(@"已选中数量Label") setTextColor:[UIColor redColor]];
-    }
-    
-   
+
+    [self setSelectLabelLableCololr];
 
 
   if (OBJOnceToken(self)) {
@@ -531,6 +481,33 @@
     
 
 
+}
+
+-(void)setSelectLabelLableCololr{
+    FastSubViewCode(self.view)
+    
+    
+    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
+        [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
+        [CMLabelCommon setRichNumberWithLabel:subLabel(@"TKL已选中label") Color:RGBA(83, 162, 207, 1) FontSize:15.0];
+    }
+    else {
+        
+        if (APP.isYellow) {
+            [self.selectLabel setTextColor:RGBA(247, 211, 72, 1) ];
+            [CMLabelCommon setRichNumberWithLabel:subLabel(@"TKL已选中label") Color:RGBA(247, 211, 72, 1)  FontSize:15.0];
+        }
+        else if(APP.isRed)
+        {
+            [self.selectLabel setTextColor:[UIColor redColor] ];
+            [CMLabelCommon setRichNumberWithLabel:subLabel(@"TKL已选中label") Color:[UIColor redColor] FontSize:15.0];
+        }
+        else{
+            [self.selectLabel setTextColor:RGBA(83, 162, 207, 1)];
+            [CMLabelCommon setRichNumberWithLabel:subLabel(@"TKL已选中label") Color:RGBA(247, 211, 72, 1) FontSize:15.0];
+        }
+        
+    }
 }
 
 #pragma mark - YBPopupMenuDelegate
@@ -573,15 +550,18 @@
 - (void)updateCloseLabelText{
     
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
+    FastSubViewCode(self.view)
     if (self.nextIssueModel.isSeal || timeStr == nil) {
         timeStr = @"封盘中";
+        
         self.bottomCloseView.hidden = NO;
         [self resetClick:nil];
+  
         if (Skin1.isTKL) {
             
+            subView(@"天空蓝封盘View").hidden = NO;
             if (!self.mTKLFPView.isClosed) {
                 [self.mTKLFPView setHidden:NO];
-                FastSubViewCode(self.mTKLFPView)
                 subLabel(@"内容label").text = [NSString stringWithFormat:@"%@已封盘",self.selectTitle];
                 [CMLabelCommon messageSomeAction:subLabel(@"内容label") changeString:@"已封盘" andMarkColor:[UIColor redColor] andMarkFondSize:17];
             }
@@ -590,6 +570,7 @@
     } else {
         self.bottomCloseView.hidden = YES;
         if (Skin1.isTKL) {
+            subView(@"天空蓝封盘View").hidden = YES;
             [self.mTKLFPView setHidden:YES];
         }
     }
@@ -682,11 +663,7 @@
 		make.height.equalTo([NSNumber numberWithFloat:20]);
 		make.top.equalTo([NSNumber numberWithFloat:18]);
 	}];
-	
-	[self.bottomView bringSubviewToFront:self.bottomCloseView];
-	
-  
-	
+
 	[self showSlider:NO];
 	[self showSliderAction];
 	
@@ -769,31 +746,38 @@
             } else {
                 
                 if (Skin1.isTKL) {
-                    [subButton(@"追号btn") setHidden:YES];
-                    [self.radomNumberButton setHidden:YES];
                     [self showSlider:NO];
-                } else {
-                    if (SysConf.chaseNumber  == 1) {//追号开关  默认关
-                        [subButton(@"追号btn") setHidden:NO];
-                        [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(subButton(@"追号btn").mas_right).offset(8);
-                        }];
-                    } else {
-                        [subButton(@"追号btn") setHidden:YES];
-                        [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(subButton(@"追号btn").mas_left);
-                        }];
-                    }
-                    
-                    if (SysConf.selectNumber == 1) {
-                        [weakSelf.radomNumberButton setHidden:false];
-                    } else {
-                        [weakSelf.radomNumberButton setHidden:true];
-                    }
-                    
-                    
-                    [self showSliderAction];
                 }
+                if (SysConf.chaseNumber  == 1) {//追号开关  默认关
+                    [subButton(@"追号btn") setHidden:NO];
+                    [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.left.equalTo(subButton(@"追号btn").mas_right).offset(8);
+                    }];
+                    [subButton(@"TkL追号btn") setHidden:NO];
+                    
+                } else {
+                    [subButton(@"追号btn") setHidden:YES];
+                    [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.left.equalTo(subButton(@"追号btn").mas_left);
+                    }];
+                    [subButton(@"TKL追号btn") setHidden:YES];
+                }
+                
+                if (SysConf.selectNumber == 1) {
+                    [weakSelf.radomNumberButton setHidden:false];
+                    [subButton(@"TKL机选btn") setHidden:NO];
+                    [subButton(@"TKL筹码Btn") setHidden:NO];
+                    [weakSelf.bargainingView setHidden:NO];
+                } else {
+                    [weakSelf.radomNumberButton setHidden:true];
+                    [subButton(@"TKL机选btn") setHidden:YES];
+                    [subButton(@"TKL筹码Btn") setHidden:YES];
+                    [weakSelf.bargainingView setHidden:YES];
+                }
+                
+                
+                [self showSliderAction];
+                
                 
       
                 
@@ -1017,6 +1001,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
        // UI更新代码
         self.selectLabel.text = [NSString stringWithFormat:@"%ld",count];
+        FastSubViewCode(self.view)
+        subLabel(@"TKL已选中label").text = [NSString stringWithFormat:@"已选中%ld注",count];
+        [self setSelectLabelLableCololr];
     });
    
    
@@ -1124,9 +1111,13 @@
         if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
             [subButton(@"追号btn") setEnabled:YES];
             [subButton(@"追号btn") setAlpha:1.0];
+            [subButton(@"TKL追号btn") setEnabled:YES];
+            [subButton(@"TKL追号btn") setAlpha:1.0];
         } else {
             [subButton(@"追号btn") setEnabled:NO];
             [subButton(@"追号btn") setAlpha:0.3];
+            [subButton(@"TKL追号btn") setEnabled:NO];
+            [subButton(@"TKL追号btn") setAlpha:0.3];
         }
     }
     
@@ -1165,6 +1156,10 @@
 // 重置
 - (IBAction)resetClick:(id)sender {
 	
+}
+// 下注
+- (IBAction)betClick:(id)sender {
+    
 }
 
 //机选

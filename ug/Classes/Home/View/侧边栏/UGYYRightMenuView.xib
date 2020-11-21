@@ -55,36 +55,6 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="钱Label"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZW-BH-m2V">
-                                            <rect key="frame" x="207.33333333333331" y="174" width="70" height="25"/>
-                                            <color key="backgroundColor" red="0.96108573679999998" green="0.74439901109999995" blue="0.34115773440000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="4ZS-8t-b1c"/>
-                                                <constraint firstAttribute="width" constant="70" id="bCD-rT-CQc"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <state key="normal" title="注册">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册Button"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cb-RR-T8A">
-                                            <rect key="frame" x="15" y="174" width="70" height="25"/>
-                                            <color key="backgroundColor" red="0.28285294770000002" green="0.59496212010000005" blue="0.91373091939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="pjo-Yq-ObT"/>
-                                                <constraint firstAttribute="width" constant="70" id="umS-qe-h08"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <state key="normal" title="登录">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="登录Button"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
                                         <view contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nxK-19-Qh5">
                                             <rect key="frame" x="86.333333333333314" y="174" width="120" height="25"/>
                                             <subviews>
@@ -151,27 +121,77 @@
                                                 <action selector="refreshBalance:" destination="iN0-l3-epB" eventType="touchUpInside" id="PKS-9A-oKl"/>
                                             </connections>
                                         </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G6V-NF-wz5">
+                                            <rect key="frame" x="66.333333333333314" y="132" width="160" height="25"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d55-OF-Sn4">
+                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="25"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cb-RR-T8A">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="25"/>
+                                                            <color key="backgroundColor" red="0.28285294770000002" green="0.59496212010000005" blue="0.91373091939999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="pjo-Yq-ObT"/>
+                                                                <constraint firstAttribute="width" constant="70" id="umS-qe-h08"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <state key="normal" title="登录">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="登录Button"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZW-BH-m2V">
+                                                            <rect key="frame" x="90" y="0.0" width="70" height="25"/>
+                                                            <color key="backgroundColor" red="0.96108573679999998" green="0.74439901109999995" blue="0.34115773440000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="25" id="4ZS-8t-b1c"/>
+                                                                <constraint firstAttribute="width" constant="70" id="bCD-rT-CQc"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <state key="normal" title="注册">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册Button"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="d55-OF-Sn4" secondAttribute="trailing" id="ET0-0C-3MP"/>
+                                                <constraint firstItem="d55-OF-Sn4" firstAttribute="top" secondItem="G6V-NF-wz5" secondAttribute="top" id="KiX-H0-BMm"/>
+                                                <constraint firstItem="d55-OF-Sn4" firstAttribute="leading" secondItem="G6V-NF-wz5" secondAttribute="leading" id="SsN-1s-A0v"/>
+                                                <constraint firstAttribute="bottom" secondItem="d55-OF-Sn4" secondAttribute="bottom" id="WlO-Tg-MIc"/>
+                                                <constraint firstAttribute="width" constant="160" id="ie3-yo-Pcv"/>
+                                                <constraint firstAttribute="height" constant="25" id="tKu-Y4-KrF"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="TKL登录View"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <viewLayoutGuide key="safeArea" id="ZZT-BI-yZQ"/>
                                     <color key="backgroundColor" red="0.2243953645" green="0.50650745630000005" blue="0.72549456359999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstItem="tdt-H5-wuA" firstAttribute="top" secondItem="EzM-Pm-lyB" secondAttribute="top" constant="35" id="7cH-6h-yIm"/>
                                         <constraint firstItem="ZZT-BI-yZQ" firstAttribute="bottom" secondItem="OID-16-vrY" secondAttribute="bottom" constant="-1" id="8lK-lF-6D7"/>
-                                        <constraint firstItem="ZZT-BI-yZQ" firstAttribute="trailing" secondItem="2ZW-BH-m2V" secondAttribute="trailing" constant="15" id="Ba9-zV-Dy2"/>
                                         <constraint firstItem="ZZT-BI-yZQ" firstAttribute="bottom" secondItem="nxK-19-Qh5" secondAttribute="bottom" constant="20" id="CYs-tc-n04"/>
                                         <constraint firstItem="OID-16-vrY" firstAttribute="leading" secondItem="EzM-Pm-lyB" secondAttribute="leading" id="CZy-yY-4g2"/>
                                         <constraint firstItem="dOV-tI-U2H" firstAttribute="top" secondItem="tdt-H5-wuA" secondAttribute="bottom" constant="8" id="Ezb-c2-g1e"/>
                                         <constraint firstItem="OID-16-vrY" firstAttribute="trailing" secondItem="ZZT-BI-yZQ" secondAttribute="trailing" id="HUT-iw-ehP"/>
                                         <constraint firstItem="nxK-19-Qh5" firstAttribute="centerX" secondItem="EzM-Pm-lyB" secondAttribute="centerX" id="IDo-0z-5Qu"/>
+                                        <constraint firstItem="G6V-NF-wz5" firstAttribute="centerX" secondItem="EzM-Pm-lyB" secondAttribute="centerX" id="Iag-na-cuc"/>
                                         <constraint firstItem="dOV-tI-U2H" firstAttribute="centerX" secondItem="EzM-Pm-lyB" secondAttribute="centerX" id="Js6-Ng-eSy"/>
-                                        <constraint firstItem="ZZT-BI-yZQ" firstAttribute="bottom" secondItem="2ZW-BH-m2V" secondAttribute="bottom" constant="20" id="MUo-Pz-y0n"/>
+                                        <constraint firstItem="G6V-NF-wz5" firstAttribute="top" secondItem="2TL-Pl-pKg" secondAttribute="bottom" constant="5" id="Usa-Fv-rye"/>
                                         <constraint firstAttribute="height" constant="219" id="ZlO-cW-HpV"/>
                                         <constraint firstItem="OID-16-vrY" firstAttribute="top" secondItem="EzM-Pm-lyB" secondAttribute="top" id="dOp-Br-UJM"/>
                                         <constraint firstItem="2TL-Pl-pKg" firstAttribute="centerY" secondItem="dOV-tI-U2H" secondAttribute="centerY" id="jzg-vt-QPw"/>
                                         <constraint firstItem="tdt-H5-wuA" firstAttribute="centerX" secondItem="EzM-Pm-lyB" secondAttribute="centerX" id="tgM-db-TIF"/>
                                         <constraint firstItem="2TL-Pl-pKg" firstAttribute="leading" secondItem="dOV-tI-U2H" secondAttribute="trailing" constant="5" id="tmb-HD-PiN"/>
-                                        <constraint firstItem="8cb-RR-T8A" firstAttribute="bottom" secondItem="ZZT-BI-yZQ" secondAttribute="bottom" constant="-20" id="wNY-FQ-17N"/>
-                                        <constraint firstItem="8cb-RR-T8A" firstAttribute="leading" secondItem="ZZT-BI-yZQ" secondAttribute="leading" constant="15" id="ztc-Tx-Zuu"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1gL-Jl-h4n">
