@@ -435,7 +435,7 @@
     [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make) {
          make.left.equalTo(self.view.mas_left).with.offset(20);
          make.right.equalTo(self.view.mas_right).with.offset(-20);
-         make.bottom.equalTo(self.view.mas_bottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT+10);
+         make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT+10);
          make.height.mas_equalTo(44);
     }];
     

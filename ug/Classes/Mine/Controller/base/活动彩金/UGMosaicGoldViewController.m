@@ -50,6 +50,9 @@
         str =@"审核进度";
     } else {
         str =@"申请反馈";
+        if ([@"c245" isEqualToString:APP.SiteId]) {
+            str = @"申请结果";
+        }
     }
     
     self.itemArray = @[@"申请彩金",str];
