@@ -111,7 +111,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             NSLog(@"网络链接：model.data = %@",model.data);
             qdwebVC.urlString = [CMNetwork encryptionCheckSignForURL:model.data];
             qdwebVC.enterGame = YES;
-            [weakSelf.navigationController pushViewController:qdwebVC  animated:YES];
+            [NavController1 pushViewController:qdwebVC  animated:YES];
         } failure:^(id msg) {
             [SVProgressHUD showErrorWithStatus:msg];
         }];
