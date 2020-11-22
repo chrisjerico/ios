@@ -140,10 +140,11 @@ static NSString *__lastRnPage = nil;
     _navigationBarHidden = self.navigationController.navigationBarHidden;
     self.navigationController.navigationBarHidden = _rpm.fd_prefersNavigationBarHidden;
     
+    UIView *lastSuperview = _rnView.superview;
     [self.view addSubview:_rnView];
     __weakSelf_(__self);
-    if ([__lastRnPage isEqualToString:_rpm.rnName]) {
-        [ReactNativeHelper refreshVC];
+    if (lastSuperview == self.view && [__lastRnPage isEqualToString:_rpm.rnName]) {
+        [ReactNativeHelper refreshVC:_rpm.rnName params:__self.params];
     } else {
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
             __lastRnPage = __self.rpm.rnName;

@@ -177,6 +177,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (self.viewControllers.count && ![UGTabbarController canPushToViewController:viewController])
         return;
     
+    UIViewController *originalVC = viewController;
     // 判断下是否是非根控制器
     if (self.childViewControllers.count) { // 不是根控制器
         
@@ -339,40 +340,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     
     
-    // 设置非根控制器的返回按钮
-    // 设置返回按钮
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
-    [backButton sizeToFit];
-    [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        [NavController1 popViewControllerAnimated:true];
-    }];
-    UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
-    [containView addSubview:backButton];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
-    // 设置返回按钮
-    viewController.navigationItem.leftBarButtonItem = item;
-    
-    if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
-        // 不隐藏底部条
-        viewController.hidesBottomBarWhenPushed = NO;
-    }
-    else{
-        // 隐藏底部条
-        viewController.hidesBottomBarWhenPushed = YES;
-    }
-
-    
-    
-//    NSLog(@"NavController1= %@",NavController1);
-//    NSLog(@"NavController1.viewControllers= %@",NavController1.viewControllers);
-//    NSLog(@"lastVC= %@",NavController1.lastVC);
-//    NSLog(@"viewControllers.lastObject= %@",NavController1.viewControllers.lastObject);
-//    NSLog(@"self.navigationController= %@",self.navigationController);
-//    NSLog(@"self.navigationController.lastObject= %@",self.navigationController.viewControllers.lastObject);
     // 登录
     if ([NavController1.lastVC isKindOfClass:UGBMLoginViewController.class]&&[viewController isKindOfClass:[UGBMLoginViewController class]]) {
         UIViewController *vc = [NavController1.viewControllers objectWithValue:UGBMLoginViewController.class keyPath:@"class"];
@@ -395,7 +362,35 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return;
         }
     }
+    else if (originalVC != viewController) {
+        [NavController1 pushViewController:viewController animated:true];
+    }
     else {
+        // 设置非根控制器的返回按钮
+        // 设置返回按钮
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [backButton setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
+        [backButton sizeToFit];
+        [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+            [NavController1 popViewControllerAnimated:true];
+        }];
+        UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
+        [containView addSubview:backButton];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:containView];
+        // 设置返回按钮
+        viewController.navigationItem.leftBarButtonItem = item;
+        
+        if ([viewController isKindOfClass:UGBMBrowseViewController.class]||[viewController isKindOfClass:UGBMMemberCenterViewController.class]) {
+            // 不隐藏底部条
+            viewController.hidesBottomBarWhenPushed = NO;
+        }
+        else{
+            // 隐藏底部条
+            viewController.hidesBottomBarWhenPushed = YES;
+        }
         // 真正在执行跳转
         [super pushViewController:viewController animated:animated];
     }

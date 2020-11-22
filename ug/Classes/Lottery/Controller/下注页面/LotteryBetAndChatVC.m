@@ -152,9 +152,6 @@
             }
             vc.nextIssueModel = model;
             vc.gameId = model.gameId;
-            vc.gotoTabBlock = ^{
-                TabBarController1.selectedIndex = 0;
-            };
             // 底部占位调大到100
             [vc cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
                 UGCommonLotteryController *vc = ai.instance;

@@ -266,8 +266,12 @@ static NSMutableDictionary *_blockDict = nil;
     [[ReactNativeHelper shared] sendEventWithName:@"SelectVC" body:[ReactNativeHelper addOnceBlocks:[temp rn_keyValues] key:vcName]];
 }
 
-+ (void)refreshVC {
-    [[ReactNativeHelper shared] sendEventWithName:@"SelectVC" body:@{@"rnAction":@"refresh"}];
++ (void)refreshVC:(NSString *)vcName params:(NSDictionary *)params {
+    NSMutableDictionary *temp = @{}.mutableCopy;
+    [temp addEntriesFromDictionary:params];
+    temp[@"vcName"] = vcName;
+    temp[@"rnAction"] = @"refresh";
+    [[ReactNativeHelper shared] sendEventWithName:@"SelectVC" body:[ReactNativeHelper addOnceBlocks:[temp rn_keyValues] key:vcName]];
 }
 
 + (void)removeVC:(NSString *)vcName {

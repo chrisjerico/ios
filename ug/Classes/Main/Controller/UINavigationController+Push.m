@@ -262,10 +262,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            }
            vc.nextIssueModel = model;
            vc.gameId = model.gameId;
-           vc.gotoTabBlock = ^{
-               TabBarController1.selectedIndex = 0;
-           };
-  
            vc.hidesBottomBarWhenPushed = YES;
 
            

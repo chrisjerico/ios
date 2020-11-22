@@ -208,7 +208,6 @@ static UGTabbarController *_tabBarVC = nil;
     });
     // 退出登陆
     SANotificationEventSubscribe(UGNotificationUserLogout, self, ^(typeof (self) self, id obj) {
-        [SVProgressHUD showSuccessWithStatus:@"退出成功"];
         [UGUserModel setCurrentUser:nil];
         
         [NavController1 popToRootViewControllerAnimated:true];
@@ -244,6 +243,7 @@ static UGTabbarController *_tabBarVC = nil;
         if (OBJOnceToken(UGUserModel.currentUser)) {
             UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"您的账号已经登录超时，请重新登录。" btnTitles:@[@"确定"]];
             [ac setActionAtTitle:@"确定" handler:^(UIAlertAction *aa) {
+                SANotificationEventPost(UGNotificationUserLogout, nil);
                 UGUserModel.currentUser = nil;
                 [TabBarController1 setSelectedIndex:0];
                 [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLoginViewController") animated:true];

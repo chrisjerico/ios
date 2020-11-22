@@ -687,8 +687,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 - (void)didSelectCellWithTitle:(NSString *)title {
     if ([title isEqualToString:@"返回首页"]) {
-        if (self.backToHomeBlock)
-            self.backToHomeBlock();
+        [NavController1 popToRootViewControllerAnimated:true];
+        TabBarController1.selectedIndex = 0;
     }
     else if ([title hasPrefix:@"当前版本号("]) {
         [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
@@ -799,8 +799,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 - (void)didSelectCellWitModel:(GameModel *)modle {
     
     if (modle.subId == 30 ) {
-      if (self.backToHomeBlock)
-                 self.backToHomeBlock();
+        [NavController1 popToRootViewControllerAnimated:true];
+        TabBarController1.selectedIndex = 0;
     }
     else{
         if (modle.list) {

@@ -307,11 +307,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     yymenuView.titleType = @"2";
     yymenuView.gameId = self.gameId;
     yymenuView.gameName = self.nextIssueModel.title;
-    //此处为重点
-    WeakSelf;
-    yymenuView.backToHomeBlock = ^{
-        [weakSelf.navigationController popViewControllerAnimated:NO];
-    };
     [yymenuView show];
 }
 

@@ -69,8 +69,8 @@ static NSString *newheaderViewID = @"NewLotteryHeaderViewCollectionReusableView"
 - (IBAction)goHomeAction:(id)sender {
     
     [self hiddenSelf];
-    if (self.backToHomeBlock)
-        self.backToHomeBlock();
+    [NavController1 popToRootViewControllerAnimated:true];
+    TabBarController1.selectedIndex = 0;
 }
 
 #pragma mark - 彩票栏目

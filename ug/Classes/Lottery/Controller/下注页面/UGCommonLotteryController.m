@@ -891,14 +891,6 @@
     
         self.yymenuView.selectTitle = self.selectTitle;
         self.yymenuView.gameType = self.nextIssueModel.gameType;
-        //此处为重点
-        WeakSelf;
-        self.yymenuView.backToHomeBlock = ^{
-            [weakSelf.navigationController popViewControllerAnimated:NO];
-            if (weakSelf.gotoTabBlock) {
-                weakSelf.gotoTabBlock();
-            }
-        };
         self.yymenuView.didSelectedItemBlock = ^(UGNextIssueModel *nextModel) {
             [NavController1 pushViewControllerWithNextIssueModel:nextModel isChatRoom:NO];
         };

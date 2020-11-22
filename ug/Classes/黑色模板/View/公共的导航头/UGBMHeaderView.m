@@ -245,10 +245,6 @@
 - (IBAction)btnClicked:(id)sender {
     self.yymenuView = [[UGYYRightMenuView alloc] initWithFrame:CGRectMake(UGScreenW /2 , 0, UGScreenW / 2, UGScerrnH)];
     self.yymenuView.titleType = @"1";
-    //此处为重点
-    self.yymenuView.backToHomeBlock = ^{
-        TabBarController1.selectedIndex = 0;
-    };
     [self.yymenuView show];
 }
 
