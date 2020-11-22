@@ -1783,6 +1783,10 @@
 		49EE5E9E25625C55003DEAEA /* TKLFPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EE5E9C25625C55003DEAEA /* TKLFPView.m */; };
 		49EE5EA425625C95003DEAEA /* TKLFPView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EE5EA325625C95003DEAEA /* TKLFPView.xib */; };
 		49EE5EA525625C95003DEAEA /* TKLFPView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EE5EA325625C95003DEAEA /* TKLFPView.xib */; };
+		49F8226E256AAFB6009542AE /* LotterySliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8226D256AAFB6009542AE /* LotterySliderView.m */; };
+		49F8226F256AAFB6009542AE /* LotterySliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8226D256AAFB6009542AE /* LotterySliderView.m */; };
+		49F82273256AB183009542AE /* LotterySliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F82272256AB183009542AE /* LotterySliderView.xib */; };
+		49F82274256AB183009542AE /* LotterySliderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F82272256AB183009542AE /* LotterySliderView.xib */; };
 		CF14029B25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
 		CF14029C25345BC90031C3E4 /* c012CZ.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CF14029A25345BC90031C3E4 /* c012CZ.jpg */; };
 		CF1402A025345C060031C3E4 /* c012充值.html in Resources */ = {isa = PBXBuildFile; fileRef = CF14029F25345C050031C3E4 /* c012充值.html */; };
@@ -3951,6 +3955,9 @@
 		49EE5E9B25625C55003DEAEA /* TKLFPView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKLFPView.h; sourceTree = "<group>"; };
 		49EE5E9C25625C55003DEAEA /* TKLFPView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKLFPView.m; sourceTree = "<group>"; };
 		49EE5EA325625C95003DEAEA /* TKLFPView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TKLFPView.xib; sourceTree = "<group>"; };
+		49F8226C256AAFB6009542AE /* LotterySliderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotterySliderView.h; sourceTree = "<group>"; };
+		49F8226D256AAFB6009542AE /* LotterySliderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotterySliderView.m; sourceTree = "<group>"; };
+		49F82272256AB183009542AE /* LotterySliderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotterySliderView.xib; sourceTree = "<group>"; };
 		69F06AC914C3660A83652620 /* Pods-chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chat.debug.xcconfig"; path = "Target Support Files/Pods-chat/Pods-chat.debug.xcconfig"; sourceTree = "<group>"; };
 		CF14029A25345BC90031C3E4 /* c012CZ.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c012CZ.jpg; sourceTree = "<group>"; };
 		CF14029F25345C050031C3E4 /* c012充值.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "c012充值.html"; sourceTree = "<group>"; };
@@ -8320,6 +8327,8 @@
 		4954DF73256A4DFC007F9CAE /* 下注 */ = {
 			isa = PBXGroup;
 			children = (
+				49F82268256AAF54009542AE /* 拉条View */,
+				CF3A26E625552E1600ECA65F /* 筹码View */,
 				4954DF75256A4E11007F9CAE /* 下注View */,
 			);
 			path = "下注";
@@ -8439,6 +8448,16 @@
 				49EE5EA325625C95003DEAEA /* TKLFPView.xib */,
 			);
 			path = "封盘";
+			sourceTree = "<group>";
+		};
+		49F82268256AAF54009542AE /* 拉条View */ = {
+			isa = PBXGroup;
+			children = (
+				49F8226C256AAFB6009542AE /* LotterySliderView.h */,
+				49F8226D256AAFB6009542AE /* LotterySliderView.m */,
+				49F82272256AB183009542AE /* LotterySliderView.xib */,
+			);
+			path = "拉条View";
 			sourceTree = "<group>";
 		};
 		CF14029825345B490031C3E4 /* c012充值 */ = {
@@ -8901,7 +8920,6 @@
 			isa = PBXGroup;
 			children = (
 				49EE5E9925625BB6003DEAEA /* 封盘 */,
-				CF3A26E625552E1600ECA65F /* 筹码View */,
 				CF3A26E22552C5D100ECA65F /* 首页公告 */,
 				CF3A26E02552C56800ECA65F /* 首页定制导航头 */,
 				CF5586B32546B93A00BE2576 /* 注册 */,
@@ -10255,6 +10273,7 @@
 				031EF40823BE7A9400B0F813 /* Main.storyboard in Resources */,
 				031E1CA323BE812A00B0F813 /* UGWithdrawRecordDetailView.xib in Resources */,
 				031EF5EA23BE7B4E00B0F813 /* MineTableController.storyboard in Resources */,
+				49F82274256AB183009542AE /* LotterySliderView.xib in Resources */,
 				031E1DFD23BE812C00B0F813 /* UGSingInHistoryTableViewCell.xib in Resources */,
 				03D6927B23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */,
 				031EF59323BE7B4D00B0F813 /* caipiaozhudanjilu.svg in Resources */,
@@ -10609,6 +10628,7 @@
 				031E196623BE812600B0F813 /* LHTemplate.storyboard in Resources */,
 				CF475881239636D200966536 /* 35.gif in Resources */,
 				031E1B7823BE812800B0F813 /* UGGameTypeColletionViewCell.xib in Resources */,
+				49F82273256AB183009542AE /* LotterySliderView.xib in Resources */,
 				CF475880239636D200966536 /* 21.gif in Resources */,
 				031E1E4A23BE812C00B0F813 /* UGMineMenuCollectionViewCell.xib in Resources */,
 				CF47589D239636D200966536 /* 125.gif in Resources */,
@@ -10937,6 +10957,7 @@
 				031E1A4D23BE812700B0F813 /* CMCommon.m in Sources */,
 				031E1B8F23BE812900B0F813 /* UGPostCell.m in Sources */,
 				031E19A123BE812600B0F813 /* IBButton.m in Sources */,
+				49F8226F256AAFB6009542AE /* LotterySliderView.m in Sources */,
 				031E1D7923BE812B00B0F813 /* UGFeedBackController.m in Sources */,
 				031E1AC923BE812800B0F813 /* YLEdgeLabel.m in Sources */,
 				031E197B23BE812600B0F813 /* UGLHlotteryNumberModel.m in Sources */,
@@ -12296,6 +12317,7 @@
 				031E1D8A23BE812B00B0F813 /* UGBalanceConversionRecordController.m in Sources */,
 				031E1E2E23BE812C00B0F813 /* UGPormotionUserInfoView.m in Sources */,
 				031E1AA023BE812800B0F813 /* ZZCountingLabel.m in Sources */,
+				49F8226E256AAFB6009542AE /* LotterySliderView.m in Sources */,
 				031E195223BE812600B0F813 /* UGDocumentListVC.m in Sources */,
 				031E197423BE812600B0F813 /* UGLHPostModel.m in Sources */,
 				031E1CB623BE812A00B0F813 /* UGTableViewCell.m in Sources */,

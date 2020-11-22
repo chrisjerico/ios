@@ -53,7 +53,7 @@
 
 
 
-@interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
+@interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,SGSegmentedControlDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
@@ -137,10 +137,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }
     
     FastSubViewCode(self.view)
-    subTextField(@"TKL下注TxtF").delegate = self;
 
-  
-   
     [self tableViewInit];
     [self headertableViewInit];
 
@@ -439,10 +436,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 // 重置
 - (IBAction)resetClick:(id)sender {
-    FastSubViewCode(self.view)
-    [subTextField(@"TKL下注TxtF") resignFirstResponder];
-    subTextField(@"TKL下注TxtF").text = nil;
-    [self updateSelectLabelWithCount:0];
+    [super resetClick:sender];
+
 
     for (UGGameplayModel *model in self.gameDataArray) {
         model.selectedCount = 0;
@@ -466,7 +461,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 // 下注
 - (IBAction)betClick:(id)sender {
     FastSubViewCode(self.view)
-    [subTextField(@"TKL下注TxtF") resignFirstResponder];
     ck_parameters(^{
         ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
         ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
@@ -945,7 +939,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.betCollectionView) {
    
-        if (self.bottomCloseView.hidden == NO) {
+        if (self.lotteryView.closeView.hidden == NO) {
             [SVProgressHUD showInfoWithStatus:@"封盘中"];
             return;
         }
@@ -1415,16 +1409,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 
-#pragma mark - textField delegate
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if ([string isEqualToString:@"\n"]) {
-        FastSubViewCode(self.view)
-        [subTextField(@"TKL下注TxtF") resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
 
 //连码玩法数据处理
 - (void)handleData {

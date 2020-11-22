@@ -8,17 +8,14 @@
 
 #import "LotteryView.h"
 @interface LotteryView ()
+
 @end
 @implementation LotteryView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     FastSubViewCode(self);
-    [subView(@"天空蓝下注View") insertSubview:({
-        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
-        bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
-        bgView;
-    }) atIndex:0];
+    [subView(@"天空蓝下注View") setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.2]];
     subButton(@"TKL追号btn").layer.cornerRadius = 5;
     subButton(@"TKL追号btn").layer.masksToBounds = YES;
     subButton(@"TKL机选btn").layer.cornerRadius = 5;
@@ -35,23 +32,16 @@
     [subButton(@"TKL追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
     [subButton(@"TKL机选btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
     [subButton(@"TKL下注Button") setBackgroundColor:Skin1.navBarBgColor];
-    [subButton(@"TKL追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        if (self.zhllock) {
-            self.zhllock();
-        }
-    }];
-    [subButton(@"TKL机选btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        if (self.jxllock) {
-            self.jxllock();
-        }
-    }];
-    [subButton(@"TKL下注Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        if (self.jxllock) {
-            self.jxllock();
-        }
-    }];
+ 
+//    [subButton(@"TKL筹码Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+//    [subButton(@"TKL筹码Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+//        if (self.cmllock) {
+//            self.cmllock(sender);
+//        }
+//    }];//封盘View
 
-
+    subView(@"封盘View").backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    subView(@"封盘View").hidden = YES;
 }
 
 -(void)setGameId:(NSString *)gameId{

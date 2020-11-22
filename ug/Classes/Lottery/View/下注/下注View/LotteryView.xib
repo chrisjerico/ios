@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="LotteryView">
             <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -83,7 +83,7 @@
                                             <rect key="frame" x="60" y="4.5" width="344" height="87"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已选中0注" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KM8-re-4uo">
-                                                    <rect key="frame" x="20" y="14" width="66" height="17"/>
+                                                    <rect key="frame" x="20" y="18" width="66" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -91,8 +91,8 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="TKL已选中label"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crT-xE-JBU" userLabel="筹码" customClass="IBButton">
-                                                    <rect key="frame" x="106" y="9.5" width="46" height="26"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crT-xE-JBU" userLabel="筹码">
+                                                    <rect key="frame" x="106" y="13.5" width="46" height="26"/>
                                                     <color key="backgroundColor" red="0.40180855989999997" green="0.67699187989999998" blue="0.35686457160000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="Qyj-3n-zPP"/>
@@ -169,21 +169,26 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="zzM-CG-2LO" firstAttribute="centerY" secondItem="Vzv-Vt-fIO" secondAttribute="centerY" id="1Zw-ZT-t8b"/>
+                                                <constraint firstItem="T64-Ef-cfe" firstAttribute="bottom" secondItem="tT4-Ks-Xkp" secondAttribute="bottom" id="7HP-bO-tzf"/>
                                                 <constraint firstItem="tT4-Ks-Xkp" firstAttribute="centerY" secondItem="Vzv-Vt-fIO" secondAttribute="centerY" id="G6h-6W-Dl7"/>
                                                 <constraint firstItem="T64-Ef-cfe" firstAttribute="leading" secondItem="KM8-re-4uo" secondAttribute="leading" id="I8q-Vo-0s8"/>
                                                 <constraint firstItem="tT4-Ks-Xkp" firstAttribute="leading" secondItem="T64-Ef-cfe" secondAttribute="trailing" constant="10" id="IOr-qd-3gZ"/>
-                                                <constraint firstItem="KM8-re-4uo" firstAttribute="top" secondItem="Vzv-Vt-fIO" secondAttribute="top" constant="14" id="MIk-el-OfV"/>
                                                 <constraint firstItem="KM8-re-4uo" firstAttribute="leading" secondItem="Vzv-Vt-fIO" secondAttribute="leading" constant="20" id="WNg-CO-epx"/>
                                                 <constraint firstItem="zzM-CG-2LO" firstAttribute="leading" secondItem="tT4-Ks-Xkp" secondAttribute="trailing" constant="10" id="bSd-d3-4vE"/>
                                                 <constraint firstItem="crT-xE-JBU" firstAttribute="leading" secondItem="KM8-re-4uo" secondAttribute="trailing" constant="20" id="ebP-gZ-KQQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="T64-Ef-cfe" secondAttribute="bottom" constant="16" id="mh6-sQ-Pvn"/>
+                                                <constraint firstItem="T64-Ef-cfe" firstAttribute="top" secondItem="crT-xE-JBU" secondAttribute="bottom" constant="1.5" id="qd3-Tx-mBj"/>
                                                 <constraint firstAttribute="trailing" secondItem="zzM-CG-2LO" secondAttribute="trailing" constant="10" id="rCE-Ev-72l"/>
+                                                <constraint firstAttribute="bottom" secondItem="tT4-Ks-Xkp" secondAttribute="bottom" constant="16" id="t1l-gU-PAs"/>
                                                 <constraint firstItem="crT-xE-JBU" firstAttribute="centerY" secondItem="KM8-re-4uo" secondAttribute="centerY" id="xjN-U0-FKs"/>
                                             </constraints>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="KM8-re-4uo" firstAttribute="centerY" secondItem="SF8-U0-XdX" secondAttribute="centerY" id="wVe-zr-oDY"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" red="0.33177879449999997" green="0.34474906329999999" blue="0.3481552899" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -232,6 +237,10 @@
                 <constraint firstAttribute="bottom" secondItem="mSf-my-8jg" secondAttribute="bottom" priority="750" id="yO1-wl-MeB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="closeView" destination="f7L-qa-FFT" id="4Rg-MR-6uJ"/>
+                <outlet property="cmBtn" destination="crT-xE-JBU" id="GbR-Yq-JWN"/>
+            </connections>
             <point key="canvasLocation" x="141" y="94"/>
         </view>
     </objects>
