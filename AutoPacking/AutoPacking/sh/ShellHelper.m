@@ -199,11 +199,15 @@
                                  arguments:@[projectPath, __sm.siteId, __sm.appName, version, __sm.appId, ]
                                 completion:^(OutputModel * _Nonnull om) {
             // 注释掉APP_TEST
-            if (![__sm.type isEqualToString:@"内测包"]) {
+            {
                 NSString *filePath = _NSString(@"%@/ug/Classes/Helper/FishUtility/define/AppDefine.h", projectPath);
                 NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
                 [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
-                content = [content stringByReplacingOccurrencesOfString:@"#define APP_TEST" withString:@"//#define APP_TEST"];
+                if ([__sm.type isEqualToString:@"内测包"]) {
+                    content = [content stringByReplacingOccurrencesOfString:@"//#define APP_TEST" withString:@"#define APP_TEST"];
+                } else {
+                    content = [content stringByReplacingOccurrencesOfString:@"#define APP_TEST" withString:@"//#define APP_TEST"];
+                }
                 [content writeToFile:filePath atomically:true encoding:NSUTF8StringEncoding error:nil];
             }
             
