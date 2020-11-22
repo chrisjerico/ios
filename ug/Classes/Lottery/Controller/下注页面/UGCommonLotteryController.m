@@ -67,9 +67,7 @@
 @property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
 @property (nonatomic, strong) UGLotteryRightMenuView  *yymenuView;
-//筹码=======================================================
-@property (nonatomic) IBOutlet UIButton *chipButton;/**<底部  筹码  */
-@property (nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
+
 
 @end
 
@@ -222,25 +220,7 @@
             bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
             bgView;
         }) atIndex:0];
-        // 筹码弹框
-        [self.chipButton removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
-        [self.chipButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            if (__self.amountTextF.isFirstResponder) {
-                [__self.amountTextF resignFirstResponder];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
-                    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
-                    popView.fontSize = 14;
-                    popView.type = YBPopupMenuTypeDefault;
-                    [popView showRelyOnView:__self.chipButton];
-                });
-            }else {
-                YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:__self.chipArray icons:nil menuWidth:CGSizeMake(100, 200) delegate:__self];
-                popView.fontSize = 14;
-                popView.type = YBPopupMenuTypeDefault;
-                [popView showRelyOnView:__self.chipButton];
-            }
-        }];
+
         
         [subButton(@"长龙btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
         [subButton(@"长龙btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
@@ -342,9 +322,6 @@
         self.bottomCloseView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
         self.bottomCloseView.hidden = YES;
         [self.bottomView bringSubviewToFront:self.bottomCloseView];
-        subView(@"天空蓝封盘View").backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-        subView(@"天空蓝封盘View").hidden = YES;
-        [subView(@"天空蓝底部View") bringSubviewToFront:subView(@"天空蓝封盘View")];
         if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
             || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
         } else {
@@ -354,8 +331,7 @@
                 bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
                 bgView;
             }) atIndex:0];
-            subButton(@"追号btn").layer.cornerRadius = 5;
-            subButton(@"追号btn").layer.masksToBounds = YES;
+
             subButton(@"TKL追号btn").layer.cornerRadius = 5;
             subButton(@"TKL追号btn").layer.masksToBounds = YES;
             subButton(@"TKL机选btn").layer.cornerRadius = 5;
@@ -372,15 +348,6 @@
             [subButton(@"TKL追号btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
             [subButton(@"TKL机选btn") setBackgroundColor:RGBA(247, 162, 0, 1)];
             [subButton(@"TKL下注Button") setBackgroundColor:Skin1.navBarBgColor];
-            
-            [subButton(@"追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-                if ([CMCommon hasGengHao:__self.nextIssueModel.gameId]) {
-                    NSDictionary *lastGengHao = [CMCommon LastGengHao];
-                    NSMutableArray *objArray = [UGGameBetModel mj_objectArrayWithKeyValuesArray:lastGengHao[@"array"]];
-                    [__self goUGBetDetailViewObjArray:objArray dicArray:lastGengHao[@"array"] issueModel:__self.nextIssueModel gameType:lastGengHao[@"gameId"] selCode:lastGengHao[@"selCode"]];
-                }
-                
-            }];
             [subButton(@"TKL追号btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
                 if ([CMCommon hasGengHao:__self.nextIssueModel.gameId]) {
                     NSDictionary *lastGengHao = [CMCommon LastGengHao];
@@ -404,18 +371,6 @@
                 
             }];
 
-            UIButton * reBetButton = subButton(@"追号btn");
-            if (reBetButton) {
-                UIView * superView = reBetButton.superview;
-                [superView addSubview:self.radomNumberButton];
-                self.radomNumberButton.titleLabel.numberOfLines = 0;
-                [self.radomNumberButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.width.equalTo(@70);
-                    make.height.equalTo(@35);
-                    make.centerY.equalTo(reBetButton);
-                    make.left.equalTo(reBetButton.mas_right).offset(6);
-                }];
-            }
         }
 
         if (Skin1.isTKL) {
@@ -435,8 +390,8 @@
             _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
             [self.view  addSubview:_bargainingView];
              [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
-                 make.bottom.equalTo(subView(@"天空蓝底部View").mas_top).mas_offset(10);
-                 make.left.equalTo(subView(@"天空蓝底部View").mas_left).mas_offset(20);
+                 make.bottom.equalTo(subView(@"天空蓝下注View").mas_top).mas_offset(10);
+                 make.left.equalTo(subView(@"天空蓝下注View").mas_left).mas_offset(20);
                  make.height.mas_equalTo(45);
                  make.width.mas_equalTo(235);
              }];
@@ -459,7 +414,7 @@
             //显示天空蓝底部View
             //底部View 隐藏
             [subView(@"底部View") setHidden:YES];
-            [subView(@"天空蓝底部View") setHidden:NO];
+            [subView(@"天空蓝下注View") setHidden:NO];
             
             
         }
@@ -467,7 +422,7 @@
             //显示底部View
             //天空蓝底部View 隐藏
             [subView(@"底部View") setHidden:NO];
-            [subView(@"天空蓝底部View") setHidden:YES];
+            [subView(@"天空蓝下注View") setHidden:YES];
         }
 
     }
@@ -510,21 +465,6 @@
     }
 }
 
-#pragma mark - YBPopupMenuDelegate
-
-- (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
-    if (index >= 0 ) {
-        if (index < self.chipArray.count - 1) {
-            float n1 = [CMCommon floatForNSString:self.amountTextF.text];
-            float n2 = [CMCommon floatForNSString:self.chipArray[index]];
-            float sum = n1 + n2;
-            self.amountTextF.text = [NSString stringWithFormat:@"%.2f",sum];
-        }else {
-            self.amountTextF.text = nil;
-        }
-    }
-    
-}
 
 - (void)updateCloseLabel {
     if (APP.isTextWhite) {
@@ -558,8 +498,7 @@
         [self resetClick:nil];
   
         if (Skin1.isTKL) {
-            
-            subView(@"天空蓝封盘View").hidden = NO;
+
             if (!self.mTKLFPView.isClosed) {
                 [self.mTKLFPView setHidden:NO];
                 subLabel(@"内容label").text = [NSString stringWithFormat:@"%@已封盘",self.selectTitle];
@@ -570,7 +509,6 @@
     } else {
         self.bottomCloseView.hidden = YES;
         if (Skin1.isTKL) {
-            subView(@"天空蓝封盘View").hidden = YES;
             [self.mTKLFPView setHidden:YES];
         }
     }
@@ -582,7 +520,7 @@
     
     [self updateCloseLabel];
 }
-//拖动条
+//拖动条****************************************************/
 - (void )sliderViewInit {
 	
    __weakSelf_(__self);
@@ -724,6 +662,29 @@
 
 }
 
+
+-(void)showSliderAction{
+    if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
+        self.proportion = SysConf.activeReturnCoinRatio;
+        self.lattice = 0.01 * self.proportion;
+        [self showSlider:YES];
+    } else {
+        [self showSlider:NO];
+    }
+    
+    if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
+        [self showSlider:NO];
+    }
+      
+}
+-(void)showSlider:(BOOL)isShow{
+    self.slider.hidden = !isShow;
+    self.sliderLB.hidden = !isShow;
+    self.reductionBtn.hidden = !isShow;
+    self.addBtn.hidden = !isShow;
+}
+
+//拖动条****************************************************/
 // 获取系统配置
 - (void)getSystemConfig {
     WeakSelf;
@@ -749,30 +710,18 @@
                     [self showSlider:NO];
                 }
                 if (SysConf.chaseNumber  == 1) {//追号开关  默认关
-                    [subButton(@"追号btn") setHidden:NO];
-                    [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
-                        make.left.equalTo(subButton(@"追号btn").mas_right).offset(8);
-                    }];
                     [subButton(@"TkL追号btn") setHidden:NO];
                     
                 } else {
-                    [subButton(@"追号btn") setHidden:YES];
-                    [weakSelf.radomNumberButton mas_updateConstraints:^(MASConstraintMaker *make) {
-                        make.left.equalTo(subButton(@"追号btn").mas_left);
-                    }];
                     [subButton(@"TKL追号btn") setHidden:YES];
                 }
                 
                 if (SysConf.selectNumber == 1) {
                     [weakSelf.radomNumberButton setHidden:false];
                     [subButton(@"TKL机选btn") setHidden:NO];
-                    [subButton(@"TKL筹码Btn") setHidden:NO];
-                    [weakSelf.bargainingView setHidden:NO];
                 } else {
                     [weakSelf.radomNumberButton setHidden:true];
                     [subButton(@"TKL机选btn") setHidden:YES];
-                    [subButton(@"TKL筹码Btn") setHidden:YES];
-                    [weakSelf.bargainingView setHidden:YES];
                 }
                 
                 
@@ -792,27 +741,6 @@
 
 }
 
-
--(void)showSliderAction{
-	if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
-		self.proportion = SysConf.activeReturnCoinRatio;
-		self.lattice = 0.01 * self.proportion;
-		[self showSlider:YES];
-	} else {
-		[self showSlider:NO];
-	}
-    
-    if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
-        [self showSlider:NO];
-    }
-      
-}
--(void)showSlider:(BOOL)isShow{
-	self.slider.hidden = !isShow;
-	self.sliderLB.hidden = !isShow;
-	self.reductionBtn.hidden = !isShow;
-	self.addBtn.hidden = !isShow;
-}
 
 
 
@@ -1109,13 +1037,9 @@
     if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
     } else {
         if ([CMCommon hasGengHao:self.nextIssueModel.gameId]) {
-            [subButton(@"追号btn") setEnabled:YES];
-            [subButton(@"追号btn") setAlpha:1.0];
             [subButton(@"TKL追号btn") setEnabled:YES];
             [subButton(@"TKL追号btn") setAlpha:1.0];
         } else {
-            [subButton(@"追号btn") setEnabled:NO];
-            [subButton(@"追号btn") setAlpha:0.3];
             [subButton(@"TKL追号btn") setEnabled:NO];
             [subButton(@"TKL追号btn") setAlpha:0.3];
         }

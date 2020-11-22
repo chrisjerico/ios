@@ -34,7 +34,7 @@
             <connections>
                 <outlet property="homeAdsBgView" destination="pn4-rD-zDh" id="m7k-ho-uAG"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="159.04017857142856"/>
+            <point key="canvasLocation" x="49" y="111"/>
         </view>
     </objects>
 </document>

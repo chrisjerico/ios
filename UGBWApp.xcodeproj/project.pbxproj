@@ -1751,6 +1751,10 @@
 		22FAD04F23D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		22FAD05023D472EF0002EA1D /* LotteryContentCollectionVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FAD04E23D472EF0002EA1D /* LotteryContentCollectionVM.m */; };
 		4953BF4024C5B36300051D24 /* mYYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953BF3F24C5B36300051D24 /* mYYLabel.m */; };
+		4954DF78256A50BA007F9CAE /* LotteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4954DF77256A50BA007F9CAE /* LotteryView.m */; };
+		4954DF79256A50BA007F9CAE /* LotteryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4954DF77256A50BA007F9CAE /* LotteryView.m */; };
+		4954DF7F256A50CE007F9CAE /* LotteryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4954DF7E256A50CE007F9CAE /* LotteryView.xib */; };
+		4954DF80256A50CE007F9CAE /* LotteryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4954DF7E256A50CE007F9CAE /* LotteryView.xib */; };
 		4959678124E25C8A005D5B53 /* UIImageView+CreateByUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677C24E25C89005D5B53 /* UIImageView+CreateByUrl.m */; };
 		4959678224E25C8A005D5B53 /* SUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677D24E25C89005D5B53 /* SUCache.m */; };
 		4959678324E25C8A005D5B53 /* SUCacheItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959677E24E25C89005D5B53 /* SUCacheItem.m */; };
@@ -3912,6 +3916,9 @@
 		443C93C1135A8C900E47477A /* Pods-ug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ug.release.xcconfig"; path = "Target Support Files/Pods-ug/Pods-ug.release.xcconfig"; sourceTree = "<group>"; };
 		4953BF3E24C5B36300051D24 /* mYYLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mYYLabel.h; sourceTree = "<group>"; };
 		4953BF3F24C5B36300051D24 /* mYYLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mYYLabel.m; sourceTree = "<group>"; };
+		4954DF76256A50BA007F9CAE /* LotteryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LotteryView.h; sourceTree = "<group>"; };
+		4954DF77256A50BA007F9CAE /* LotteryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LotteryView.m; sourceTree = "<group>"; };
+		4954DF7E256A50CE007F9CAE /* LotteryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LotteryView.xib; sourceTree = "<group>"; };
 		4959677B24E25C89005D5B53 /* SUCacheItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUCacheItem.h; sourceTree = "<group>"; };
 		4959677C24E25C89005D5B53 /* UIImageView+CreateByUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CreateByUrl.m"; sourceTree = "<group>"; };
 		4959677D24E25C89005D5B53 /* SUCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUCache.m; sourceTree = "<group>"; };
@@ -6341,6 +6348,7 @@
 		031E16D023BE812400B0F813 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4954DF73256A4DFC007F9CAE /* 下注 */,
 				CF533AFD251DDD2D00462E31 /* 侧边栏 */,
 				033A72B62519D93400555B09 /* 时时彩CollectionHeader */,
 				D407459B2511F37800606EA3 /* 越南 */,
@@ -8309,6 +8317,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4954DF73256A4DFC007F9CAE /* 下注 */ = {
+			isa = PBXGroup;
+			children = (
+				4954DF75256A4E11007F9CAE /* 下注View */,
+			);
+			path = "下注";
+			sourceTree = "<group>";
+		};
+		4954DF75256A4E11007F9CAE /* 下注View */ = {
+			isa = PBXGroup;
+			children = (
+				4954DF76256A50BA007F9CAE /* LotteryView.h */,
+				4954DF77256A50BA007F9CAE /* LotteryView.m */,
+				4954DF7E256A50CE007F9CAE /* LotteryView.xib */,
+			);
+			path = "下注View";
+			sourceTree = "<group>";
+		};
 		49579EC924C571E500DD306C /* 1次弹出框 */ = {
 			isa = PBXGroup;
 			children = (
@@ -8453,11 +8479,11 @@
 			isa = PBXGroup;
 			children = (
 				CF1E19DF2542D4FD004436E2 /* UGCell190HeaderView.h */,
-				CF1E19E02542D4FD004436E2 /* UGCellHeaderView.h */,
-				CF1E19E12542D4FD004436E2 /* UGCellHeaderView.xib */,
 				CF1E19E22542D4FD004436E2 /* UGCell190HeaderView.m */,
-				CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */,
 				CF1E19E42542D4FD004436E2 /* UGCell190HeaderView.xib */,
+				CF1E19E02542D4FD004436E2 /* UGCellHeaderView.h */,
+				CF1E19E32542D4FD004436E2 /* UGCellHeaderView.m */,
+				CF1E19E12542D4FD004436E2 /* UGCellHeaderView.xib */,
 			);
 			path = "折叠优惠HeaderView";
 			sourceTree = "<group>";
@@ -10079,6 +10105,7 @@
 				031E19FD23BE812700B0F813 /* Image_loading_failed.jpeg in Resources */,
 				CF5586CB2546BF3200BE2576 /* TKLMoneyViewController.xib in Resources */,
 				031E1C9B23BE812A00B0F813 /* UGFunds2microcodeView.xib in Resources */,
+				4954DF80256A50CE007F9CAE /* LotteryView.xib in Resources */,
 				CFBAAC3725246BBF00C5F6F6 /* 2.html in Resources */,
 				CF6E4D172529B49200ABF719 /* BRPickerView.bundle in Resources */,
 				D466533B24305FAE000D5377 /* lottery.wav in Resources */,
@@ -10408,6 +10435,7 @@
 				D44258FD23E948D80067E981 /* LH_laba.gif in Resources */,
 				031E199623BE812600B0F813 /* LHPostRewardView.xib in Resources */,
 				CF475910239636D200966536 /* 115.gif in Resources */,
+				4954DF7F256A50CE007F9CAE /* LotteryView.xib in Resources */,
 				03314FD423CDA0900070CB54 /* HSC_Mine.storyboard in Resources */,
 				D444AABC24614D3B002737CB /* DZPOneTableViewCell.xib in Resources */,
 				D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */,
@@ -11508,6 +11536,7 @@
 				CF8508522466D5000025672F /* RSA.m in Sources */,
 				031E1A9523BE812700B0F813 /* MOFSToolView.m in Sources */,
 				031E19D723BE812700B0F813 /* NSDate+Millisecond.m in Sources */,
+				4954DF79256A50BA007F9CAE /* LotteryView.m in Sources */,
 				03B71D6F251E308C0090FC98 /* TKLPlatformNotiveView.m in Sources */,
 				031E1C4123BE812900B0F813 /* UGLinkNumCollectionViewCell.m in Sources */,
 				031E1AE123BE812800B0F813 /* TADotView.m in Sources */,
@@ -11957,6 +11986,7 @@
 				031E1B2A23BE812800B0F813 /* UGRedEnvelopeModel.m in Sources */,
 				031E1CEC23BE812A00B0F813 /* SVRadialGradientLayer.m in Sources */,
 				D428E8BE2441EBFA000B8980 /* UGSalaryListView.m in Sources */,
+				4954DF78256A50BA007F9CAE /* LotteryView.m in Sources */,
 				031E1C5E23BE812A00B0F813 /* UGLotteryGameCollectionViewCell.m in Sources */,
 				D43B77EC242E2B5400913BE1 /* UIViewController+vcTabName.m in Sources */,
 				031E1D9A23BE812B00B0F813 /* UGYubaoInComeController.m in Sources */,

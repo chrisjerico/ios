@@ -63,9 +63,6 @@
 @property (weak, nonatomic) IBOutlet UIView *nextIssueView;                 /**<   下期信息父View */
 @property (weak, nonatomic) IBOutlet UIView *bottomCloseView;               /**<   底部封盘View */
 
-@property (weak, nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
-@property (weak, nonatomic) IBOutlet UILabel *selectLabel;      /**<   注数Label */
-@property (weak, nonatomic) IBOutlet UIButton *chipButton;      /**<   筹码Button */
 
 @property (nonatomic, strong) STBarButtonItem *rightItem1;              /**<   导航条上的余额Item */
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;            /**<   右侧边栏 */
@@ -108,7 +105,6 @@
 @property (nonatomic, weak)IBOutlet UITableView *tableView;                   /**<   玩法列表TableView */
 @property (nonatomic, strong) NSMutableArray <UGGameplayModel *>*gameDataArray;    /**<   玩法列表 */
 @property (weak, nonatomic) IBOutlet UIStackView *rightStackView;/**<右边内容*/
-@property (weak, nonatomic) IBOutlet UIView *bottomView;         /**<   底部 */
 @property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 
 
@@ -131,7 +127,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     // 初始化数组
     {
         _gameDataArray = [NSMutableArray array];
-        
         _tmTitleArray = [NSMutableArray array];
         _lwTitleArray = [NSMutableArray array];
         _lxTitleArray = [NSMutableArray array];
@@ -142,13 +137,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }
     
     FastSubViewCode(self.view)
-    self.chipButton.layer.cornerRadius = 5;
-    self.chipButton.layer.masksToBounds = YES;
-    self.chipButton.layer.masksToBounds = YES;
     subTextField(@"TKL下注TxtF").delegate = self;
-    self.amountTextF.delegate = self;
-//    [self.view addSubview:self.tableView];//===========
-//    [self.contentView addSubview:self.tableView];
+
   
    
     [self tableViewInit];
@@ -452,8 +442,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     FastSubViewCode(self.view)
     [subTextField(@"TKL下注TxtF") resignFirstResponder];
     subTextField(@"TKL下注TxtF").text = nil;
-    [self.amountTextF resignFirstResponder];
-    self.amountTextF.text = nil;
     [self updateSelectLabelWithCount:0];
 
     for (UGGameplayModel *model in self.gameDataArray) {
@@ -478,17 +466,11 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 // 下注
 - (IBAction)betClick:(id)sender {
     FastSubViewCode(self.view)
-    [self.amountTextF resignFirstResponder];
     [subTextField(@"TKL下注TxtF") resignFirstResponder];
     ck_parameters(^{
-        if (Skin1.isTKL) {
-            ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
-            ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
-        } else {
-            ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
-            ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
-        }
-       
+        ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
+        ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
+        
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
@@ -568,12 +550,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 if ([@"自选不中" isEqualToString:type.name]) {
                     for (UGGameBetModel *game in type.zxbzlist) {
                         if (game.select) {
-                            if (Skin1.isTKL) {
-                                game.money = subTextField(@"TKL下注TxtF").text;
-                            } else {
-                                game.money = self.amountTextF.text;
-                            }
-                           
+                            game.money = subTextField(@"TKL下注TxtF").text;
                             game.title = type.name;
                             [array addObject:game];
                         }
@@ -582,11 +559,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 else{
                     for (UGGameBetModel *game in type.list) {
                         if (game.select) {
-                            if (Skin1.isTKL) {
-                                game.money = subTextField(@"TKL下注TxtF").text;
-                            } else {
-                                game.money = self.amountTextF.text;
-                            }
+                            game.money = subTextField(@"TKL下注TxtF").text;
                             game.title = type.name;
                             [array addObject:game];
                         }
@@ -971,19 +944,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.betCollectionView) {
-        
-        if (Skin1.isTKL) {
-            FastSubViewCode(self.view)
-            if (subView(@"天空蓝封盘View").hidden == NO) {
-                [SVProgressHUD showInfoWithStatus:@"封盘中"];
-                return;
-            }
-        } else {
-            if (self.bottomCloseView.hidden == NO) {
-                [SVProgressHUD showInfoWithStatus:@"封盘中"];
-                return;
-            }
+   
+        if (self.bottomCloseView.hidden == NO) {
+            [SVProgressHUD showInfoWithStatus:@"封盘中"];
+            return;
         }
+        
         
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = nil;
@@ -1454,7 +1420,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if ([string isEqualToString:@"\n"]) {
         FastSubViewCode(self.view)
-        [self.amountTextF resignFirstResponder];
         [subTextField(@"TKL下注TxtF") resignFirstResponder];
         return NO;
     }
