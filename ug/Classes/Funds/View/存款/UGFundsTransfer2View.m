@@ -32,7 +32,9 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFundsTransfer2View" owner:self options:0].firstObject;
         self.frame = frame;
-        
+        if ([APP.SiteId isEqualToString:@"c245"]) {
+            _my3TextField.placeholder = @"请填写实际转账人姓名（必填写）";
+        }
         _myTextField.textColor = Skin1.textColor1;
         _my2TextField.textColor = Skin1.textColor1;
         _my3TextField.textColor = Skin1.textColor1;

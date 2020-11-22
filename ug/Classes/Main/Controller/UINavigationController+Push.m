@@ -127,6 +127,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         if (![model.gameCode isEqualToString:@"-1"]) {
             NSLog(@"model.gameCode========== %@",model.gameCode);
             [self getGotoGameUrl:model];
+            return true;
         }
     }
     

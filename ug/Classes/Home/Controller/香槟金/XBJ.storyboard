@@ -157,10 +157,10 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="70"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="XUV-Cb-Fx3">
-                                                                        <rect key="frame" x="25.333333333333332" y="17.000000000000004" width="49.333333333333343" height="36.333333333333343"/>
+                                                                        <rect key="frame" x="21.333333333333332" y="14.333333333333332" width="57.333333333333343" height="41.333333333333343"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="fPN-g6-JtZ">
-                                                                                <rect key="frame" x="3.6666666666666643" y="0.0" width="42" height="18"/>
+                                                                                <rect key="frame" x="5.6666666666666643" y="0.0" width="46" height="20.333333333333332"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="¥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHL-k9-yWs">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="15.666666666666666"/>
@@ -171,9 +171,9 @@
                                                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="¥Label"/>
                                                                                         </userDefinedRuntimeAttributes>
                                                                                     </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" horizontalCompressionResistancePriority="748" text="0.00" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="jyg-vW-ykg">
-                                                                                        <rect key="frame" x="8.3333333333333357" y="0.0" width="33.666666666666664" height="18"/>
-                                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" horizontalCompressionResistancePriority="748" text="0.00" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyg-vW-ykg">
+                                                                                        <rect key="frame" x="8.3333333333333357" y="0.0" width="37.666666666666664" height="20.333333333333332"/>
+                                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                         <userDefinedRuntimeAttributes>
@@ -183,8 +183,8 @@
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的钱包" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwq-zk-o4b">
-                                                                                <rect key="frame" x="0.0" y="22" width="49.333333333333336" height="14.333333333333336"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                <rect key="frame" x="0.0" y="24.333333333333343" width="57.333333333333336" height="17"/>
+                                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -278,22 +278,22 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="buq-Ze-rgO">
-                                                                                    <rect key="frame" x="22.666666666666671" y="12.333333333333332" width="25" height="45.333333333333343"/>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="buq-Ze-rgO">
+                                                                                    <rect key="frame" x="17.666666666666671" y="7.6666666666666643" width="35" height="55"/>
                                                                                     <subviews>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="l002chat" translatesAutoresizingMaskIntoConstraints="NO" id="RpZ-13-lfL">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                                                                             <constraints>
-                                                                                                <constraint firstAttribute="width" constant="25" id="Plq-6d-2gR"/>
-                                                                                                <constraint firstAttribute="height" constant="25" id="kP5-Yq-KJU"/>
+                                                                                                <constraint firstAttribute="width" constant="35" id="Plq-6d-2gR"/>
+                                                                                                <constraint firstAttribute="height" constant="35" id="kP5-Yq-KJU"/>
                                                                                             </constraints>
                                                                                             <userDefinedRuntimeAttributes>
                                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="导航图标ImageView"/>
                                                                                             </userDefinedRuntimeAttributes>
                                                                                         </imageView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="存款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRF-oy-0E6">
-                                                                                            <rect key="frame" x="0.0" y="30.999999999999996" width="24.666666666666668" height="14.333333333333332"/>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                                            <rect key="frame" x="3.0000000000000018" y="38" width="28.666666666666671" height="17"/>
+                                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                             <userDefinedRuntimeAttributes>
@@ -395,9 +395,8 @@
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="游戏分类标题Label"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0a-0a-HCv">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S0a-0a-HCv">
                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="64"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="游戏分类大图ImageView"/>
                                                                             </userDefinedRuntimeAttributes>
@@ -410,11 +409,15 @@
                                                                         <constraint firstItem="dWc-6d-Of3" firstAttribute="centerX" secondItem="Vpb-j8-nHu" secondAttribute="centerX" id="1jJ-Kk-7Dw"/>
                                                                         <constraint firstAttribute="trailing" secondItem="tbT-UU-7i6" secondAttribute="trailing" id="2ob-dC-4wn"/>
                                                                         <constraint firstItem="vOX-vM-4S6" firstAttribute="centerY" secondItem="Vpb-j8-nHu" secondAttribute="centerY" id="6H1-wp-cmG"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="S0a-0a-HCv" secondAttribute="trailing" id="9OG-eb-ySj"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="S0a-0a-HCv" secondAttribute="bottom" id="B5H-da-Smk"/>
                                                                         <constraint firstItem="WMY-O7-9Td" firstAttribute="centerY" secondItem="vOX-vM-4S6" secondAttribute="centerY" id="BKs-9v-ME7"/>
                                                                         <constraint firstItem="tbT-UU-7i6" firstAttribute="top" secondItem="Vpb-j8-nHu" secondAttribute="top" id="Cnq-9K-Ky0"/>
                                                                         <constraint firstItem="dWc-6d-Of3" firstAttribute="centerY" secondItem="Vpb-j8-nHu" secondAttribute="centerY" id="Emt-hX-eNh"/>
                                                                         <constraint firstItem="tbT-UU-7i6" firstAttribute="leading" secondItem="Vpb-j8-nHu" secondAttribute="leading" id="S1m-5c-I07"/>
                                                                         <constraint firstItem="dWc-6d-Of3" firstAttribute="top" secondItem="Vpb-j8-nHu" secondAttribute="top" constant="2" id="aJR-51-121"/>
+                                                                        <constraint firstItem="S0a-0a-HCv" firstAttribute="leading" secondItem="Vpb-j8-nHu" secondAttribute="leading" id="hoJ-um-eGh"/>
+                                                                        <constraint firstItem="S0a-0a-HCv" firstAttribute="top" secondItem="Vpb-j8-nHu" secondAttribute="top" id="lU9-xG-Zpu"/>
                                                                         <constraint firstAttribute="trailingMargin" secondItem="WMY-O7-9Td" secondAttribute="trailing" constant="5" id="sdY-UB-3Uj"/>
                                                                         <constraint firstItem="vOX-vM-4S6" firstAttribute="leading" secondItem="Vpb-j8-nHu" secondAttribute="leading" constant="9" id="uk3-tK-NHl"/>
                                                                         <constraint firstItem="dWc-6d-Of3" firstAttribute="leading" secondItem="Vpb-j8-nHu" secondAttribute="leading" id="xwN-k5-UoM"/>

@@ -435,13 +435,13 @@
     [self.submit_button  mas_makeConstraints:^(MASConstraintMaker *make) {
          make.left.equalTo(self.view.mas_left).with.offset(20);
          make.right.equalTo(self.view.mas_right).with.offset(-20);
-         make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-IPHONE_SAFEBOTTOMAREA_HEIGHT+10);
+         make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-10);
          make.height.mas_equalTo(44);
     }];
     
     [self.mUIScrollView  mas_makeConstraints:^(MASConstraintMaker *make) {
          make.top.equalTo(self.view.mas_top).with.offset(60);
-         make.bottom.equalTo(self.submit_button.mas_top).offset(0);
+         make.bottom.equalTo(self.submit_button.mas_top).offset(-5);
          make.width.mas_equalTo(UGScreenW);
     }];
 }

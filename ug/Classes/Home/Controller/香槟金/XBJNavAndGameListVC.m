@@ -89,6 +89,7 @@
         subLabel(@"晚上好Label").text = _NSString(@"%@，请登录。", time);
     }
     subLabel(@"余额Label").text = [UserI.balance removeFloatAllZero];
+    subLabel(@"余额Label").font = [subLabel(@"余额Label").text fontWithFrameSize:CGSizeMake(90, 20) maxFont:[UIFont boldSystemFontOfSize:18]];
     
     NSDictionary *vipImages = @{
         @"0":@"https://i.ibb.co/d6cWB9G/icon-mine-VIP0.png",
@@ -241,6 +242,10 @@
         subView(@"背景色View").backgroundColor = obj.selected ? Skin1.menuHeadViewColor : Skin1.homeContentColor;
         subLabel(@"游戏分类标题Label").textColor = obj.selected ? UIColor.whiteColor : (Skin1.isBlack ? Skin1.textColor2 : UIColor.blackColor);
         if ([@"c245" isEqualToString:APP.SiteId]) {
+            if (OBJOnceToken(subImageView(@"游戏分类大图ImageView"))) {
+                subImageView(@"游戏分类大图ImageView").cc_constraints.left.constant = -6;
+                subImageView(@"游戏分类大图ImageView").cc_constraints.right.constant = -6;
+            }
             [subView(@"背景色View").layer removeAllSublayers];
             if (obj.selected) {
                 [subView(@"背景色View").layer addSublayer:({
