@@ -1588,6 +1588,8 @@
 		033A72D6251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 033A72D3251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m */; };
 		033A72D7251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A72D4251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib */; };
 		033A72D8251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033A72D4251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib */; };
+		033B7818256A955200A7DB18 /* RegistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033B7816256A955200A7DB18 /* RegistVC.swift */; };
+		033B7819256A955200A7DB18 /* RegistVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 033B7817256A955200A7DB18 /* RegistVC.xib */; };
 		036CA77523C7263C007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77723C72643007BBD25 /* JS_TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 036CA77423C7263C007BBD25 /* JS_TitleView.m */; };
 		036CA77923C72657007BBD25 /* JS_TitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036CA77823C72657007BBD25 /* JS_TitleView.xib */; };
@@ -3789,6 +3791,8 @@
 		033A72D2251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGSSCLotteryWXNumberIputCell.h; sourceTree = "<group>"; };
 		033A72D3251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGSSCLotteryWXNumberIputCell.m; sourceTree = "<group>"; };
 		033A72D4251A7D3500555B09 /* UGSSCLotteryWXNumberIputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGSSCLotteryWXNumberIputCell.xib; sourceTree = "<group>"; };
+		033B7816256A955200A7DB18 /* RegistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistVC.swift; sourceTree = "<group>"; };
+		033B7817256A955200A7DB18 /* RegistVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegistVC.xib; sourceTree = "<group>"; };
 		036CA77323C7263C007BBD25 /* JS_TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JS_TitleView.h; sourceTree = "<group>"; };
 		036CA77423C7263C007BBD25 /* JS_TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JS_TitleView.m; sourceTree = "<group>"; };
 		036CA77823C72657007BBD25 /* JS_TitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JS_TitleView.xib; sourceTree = "<group>"; };
@@ -8037,6 +8041,8 @@
 			children = (
 				031EF4FF23BE7B4D00B0F813 /* LoginVC.swift */,
 				031EF50023BE7B4D00B0F813 /* LoginVC.xib */,
+				033B7816256A955200A7DB18 /* RegistVC.swift */,
+				033B7817256A955200A7DB18 /* RegistVC.xib */,
 			);
 			path = "登录注册";
 			sourceTree = "<group>";
@@ -9980,6 +9986,7 @@
 				031E1D6923BE812B00B0F813 /* UGBindCardViewController.storyboard in Resources */,
 				031EF56923BE7B4D00B0F813 /* kefu.svg in Resources */,
 				031EF56B23BE7B4D00B0F813 /* weichaihongbao_mini.svg in Resources */,
+				033B7819256A955200A7DB18 /* RegistVC.xib in Resources */,
 				031E1A1123BE812700B0F813 /* LICENSE in Resources */,
 				031EF57B23BE7B4D00B0F813 /* zhanneixin.svg in Resources */,
 				031EF59823BE7B4D00B0F813 /* tianjia.svg in Resources */,
@@ -11022,6 +11029,7 @@
 				031E19AB23BE812600B0F813 /* NSError+Safe.m in Sources */,
 				CF6E4D1B2529B49200ABF719 /* BRBaseView.m in Sources */,
 				031E1CB923BE812A00B0F813 /* UGCollectionViewController.m in Sources */,
+				033B7818256A955200A7DB18 /* RegistVC.swift in Sources */,
 				031E19F323BE812700B0F813 /* LoadingStateView.m in Sources */,
 				CF85085B2466D5AE0025672F /* JYRegisterViewController.m in Sources */,
 				031E198923BE812600B0F813 /* UGLHHomeContentCollectionViewCell.m in Sources */,

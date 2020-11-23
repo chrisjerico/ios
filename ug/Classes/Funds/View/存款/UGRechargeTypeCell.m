@@ -68,7 +68,9 @@
      else{
         [self.nameLabel setFont:[UIFont boldSystemFontOfSize:17.0]];
      }
-
+    if ([@"c134" containsString: APP.SiteId]) {
+        [self.nameLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+    }
 }
 
 - (void)setTipStr:(NSString *)tipStr {
