@@ -39,6 +39,8 @@
 @property (nonatomic, assign) PromotionTableType tableType;
 @property (nonatomic, strong) UIImageView *arrowImageView;
 
+@property(nonatomic, strong) NSString * sunyi;//盈亏汇总
+
 #pragma mark - 表格
 @property (nonatomic,strong)UITableView *tableView;
 #pragma mark - 数据 （NSMutableArray 可变数组;NSArray 数组）
@@ -280,21 +282,20 @@
         [_titleView addSubview:line];
         
         
-#ifdef DEBUG
-        _memberLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, UGScreenW, 20)];
-        _memberLbl.text = @"下线盈亏汇总:1000.0000";
-        _memberLbl.textColor = [UIColor redColor];
-        _memberLbl.font = [UIFont systemFontOfSize:12];
-        [_titleView addSubview:_memberLbl];
-        if (self.tableType == PromotionTableTypeMember) {
-            [_memberLbl setHidden:NO];
-        } else {
-            [_memberLbl setHidden:YES];
+
+        if (APP.isShowSummary) {
+            _memberLbl = [[UILabel alloc] initWithFrame:CGRectMake(18, -8, UGScreenW, 30)];
+            _memberLbl.text = @"下线盈亏汇总:0";
+            _memberLbl.textColor = [UIColor redColor];
+            _memberLbl.font = [UIFont boldSystemFontOfSize:13];
+            [_titleView addSubview:_memberLbl];
+            if (self.tableType == PromotionTableTypeMember) {
+                [_memberLbl setHidden:NO];
+            } else {
+                [_memberLbl setHidden:YES];
+            }
         }
- 
-#else
-   
-#endif
+
         
     }
     return _titleView;
@@ -717,6 +718,9 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
+            weakSelf.sunyi  =  [NSString stringWithFormat:@"%@",[data objectForKey:@"total_people_sunyi"]] ;
+            NSLog(@"self.sunyi = %@",weakSelf.sunyi);
+            weakSelf.memberLbl.text = [NSString stringWithFormat:@"下线盈亏汇总:%@",weakSelf.sunyi];
             NSArray *list = [data objectForKey:@"list"];
             
             if (weakSelf.pageNumber == 1 ) {

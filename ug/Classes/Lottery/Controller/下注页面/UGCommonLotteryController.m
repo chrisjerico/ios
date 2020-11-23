@@ -84,6 +84,8 @@
     
 }
 
+- (BOOL)允许游客访问 { return true; }
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 }
@@ -105,7 +107,7 @@
     [self.view bringSubviewToFront:self.iphoneXBottomView];
     
 }
-- (BOOL)允许游客访问 { return true; }
+
 
 
 - (void)viewDidLoad {
@@ -123,12 +125,17 @@
     [self lotterySliderViewInit];
     
     //分Views
-    UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
-    [contentstackView addArrangedSubview:self.lotterySliderView];
-    [self.lotterySliderView setHidden:YES];
-    
-    [contentstackView addArrangedSubview:self.lotteryView];
-    [self.lotteryView setHidden:YES];
+    if (![self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
+        && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"])
+    {
+        UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
+        [contentstackView addArrangedSubview:self.lotterySliderView];
+        [self.lotterySliderView setHidden:YES];
+        
+        [contentstackView addArrangedSubview:self.lotteryView];
+        [self.lotteryView setHidden:YES];
+    }
+   
 
     
     //views颜色
@@ -220,7 +227,6 @@
     [self.lotteryView reloadData:^(BOOL succ) {}];
 }
 
-
 -(void)lotterySliderViewInit{
     __weakSelf_(__self);
     self.lotterySliderView = _LoadView_from_nib_(@"LotterySliderView");
@@ -298,7 +304,7 @@
         bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
         bgView;
     }) atIndex:0];
-    
+
     if (APP.isTextWhite) {
         [subLabel(@"封盘Label") setTextColor:[UIColor whiteColor]];
     }
@@ -434,7 +440,6 @@
     }
 }
 
-
 - (void)updateCloseLabel {
     if (APP.isTextWhite) {
         return;
@@ -503,7 +508,6 @@
     }
 }
 
-//拖动条****************************************************/
 // 获取系统配置
 - (void)getSystemConfig {
     WeakSelf;
@@ -527,9 +531,6 @@
     }];
     
 }
-
-
-
 
 - (void)hideHeader {
     UIImageView * mmcHeader = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mmcbg" ]];
@@ -623,7 +624,6 @@
     
 }
 
-
 -(void)playerLotterySound{
     if ([@"c126" containsString:APP.SiteId]) {
         //          [self startWinPlayerFileName:@"lottery" Type:@"wav"];
@@ -646,7 +646,6 @@
     }
     AudioServicesPlaySystemSound( soundIDTest );
 }
-
 
 - (void)getLotteryHistory {
     

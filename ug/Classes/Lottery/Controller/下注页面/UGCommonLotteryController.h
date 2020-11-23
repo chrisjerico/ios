@@ -38,15 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSTimer *timer;    /**<   开奖文本倒数器 */
 @property (nonatomic,strong) NSString * path;   /**<   开奖声音文件路径 */
 
-
-//拖动条=======================================================
-@property (strong, nonatomic)  MGSlider *slider;/**<拖动条*/
-@property (strong, nonatomic)  UILabel *sliderLB;/**<拖动条 刻度显示*/
-@property (strong, nonatomic)  UIButton *reductionBtn;/**<拖动条 -按钮*/
-@property (strong, nonatomic)  UIButton *addBtn;/**<拖动条 +按钮*/
-@property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
-@property ( nonatomic) float lattice;/**<拖动条 一格的值  */
-
 //追号=======================================================
 @property (nonatomic, strong) UGNextIssueModel*zuiHaoIssueModel;/**<莫彩种的最近一期下注*/
 //切换=======================================================

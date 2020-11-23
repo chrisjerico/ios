@@ -234,7 +234,7 @@
     _isNewChat = [@"c117" containsString:_SiteId];
     _isRed = [@"c126" containsString:_SiteId];
     _isHideSQSM = [@"c245,test60f" containsString:_SiteId];
-    
+    _isShowSummary = [@"c163" containsString:_SiteId];
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         [ReactNativeHelper sendEvent:@"AppDefine-SetupSiteAndSkinParams" params:@{}];
