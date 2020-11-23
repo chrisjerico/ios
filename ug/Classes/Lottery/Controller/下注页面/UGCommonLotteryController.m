@@ -55,13 +55,6 @@
 
 @property ( nonatomic) IBOutlet UIButton *historyBtn;
 @property (nonatomic) UICollectionView *betCollectionView;      /**<   下注号码CollectionView */
-//拖动条=======================================================
-@property (strong, nonatomic)  MGSlider *slider;/**<拖动条*/
-@property (strong, nonatomic)  UILabel *sliderLB;/**<拖动条 刻度显示*/
-@property (strong, nonatomic)  UIButton *reductionBtn;/**<拖动条 -按钮*/
-@property (strong, nonatomic)  UIButton *addBtn;/**<拖动条 +按钮*/
-@property ( nonatomic) float proportion;/**<拖动条 显示的最大值    来自网络数据*/
-@property ( nonatomic) float lattice;/**<拖动条 一格的值  */
 
 @property (nonatomic, strong) UGLotteryRightMenuView  *yymenuView;
 

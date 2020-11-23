@@ -61,8 +61,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *closeTimeLabel;               /**<   下期封盘时间Label */
 @property (weak, nonatomic) IBOutlet UILabel *openTimeLabel;                /**<   下期开奖时间Label */
 @property (weak, nonatomic) IBOutlet UIView *nextIssueView;                 /**<   下期信息父View */
-@property (weak, nonatomic) IBOutlet UIView *bottomCloseView;               /**<   底部封盘View */
-
 
 @property (nonatomic, strong) STBarButtonItem *rightItem1;              /**<   导航条上的余额Item */
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;            /**<   右侧边栏 */
@@ -260,6 +258,40 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
+
+-(void)betCollectionViewConstraints{
+    if (self.zodiacScrollView.hidden && !self.segmentView.hidden) {
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            
+            make.right.left.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+            make.top.equalTo(self.segmentView.mas_bottom);
+        }];
+    }
+    else if (!self.zodiacScrollView.hidden && !self.segmentView.hidden){
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            make.right.left.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+            make.top.equalTo(self.zodiacScrollView.mas_bottom);
+        }];
+    }
+    else{
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            make.right.left.top.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+        }];
+    }
+}
+
+- (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
+    [super setNextIssueModel:nextIssueModel];
+    self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
+    if (nextIssueModel.preNumSx.length) {
+        self.subPreNumArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
+    }
+    self.navigationItem.title = nextIssueModel.title;
+}
+
 // 去聊天室
 - (IBAction)showChatRoom:(id)sender {
     //    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
@@ -359,39 +391,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }];
 }
 
--(void)betCollectionViewConstraints{
-    if (self.zodiacScrollView.hidden && !self.segmentView.hidden) {
-        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-            
-            make.right.left.equalTo(self.rightStackView);
-            make.bottom.equalTo(self.rightStackView).offset(50);
-            make.top.equalTo(self.segmentView.mas_bottom);
-        }];
-    }
-    else if (!self.zodiacScrollView.hidden && !self.segmentView.hidden){
-        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-            make.right.left.equalTo(self.rightStackView);
-            make.bottom.equalTo(self.rightStackView).offset(50);
-            make.top.equalTo(self.zodiacScrollView.mas_bottom);
-        }];
-    }
-    else{
-        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-            make.right.left.top.equalTo(self.rightStackView);
-            make.bottom.equalTo(self.rightStackView).offset(50);
-        }];
-    }
-}
-
-- (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
-    [super setNextIssueModel:nextIssueModel];
-    self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
-    if (nextIssueModel.preNumSx.length) {
-        self.subPreNumArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
-    }
-    self.navigationItem.title = nextIssueModel.title;
-}
-
 // 显示侧边栏
 - (void)showRightMenueView {
     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
@@ -487,7 +486,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 // 下注
 - (IBAction)betClick:(id)sender {
+    WeakSelf;
     FastSubViewCode(self.view)
+    [subTextField(@"TKL下注TxtF") resignFirstResponder];
     ck_parameters(^{
         ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
         ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
