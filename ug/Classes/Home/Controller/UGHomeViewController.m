@@ -182,6 +182,7 @@
         }
         NSArray *views = dict[Skin1.skitType] ? : dict[@"默认"];
         [_contentStackView addArrangedSubviews:views];
+    
     }
     
     if ([Skin1.skitType isEqualToString:@"香槟金"]) {

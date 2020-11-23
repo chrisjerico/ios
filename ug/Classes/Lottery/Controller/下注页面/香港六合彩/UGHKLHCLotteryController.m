@@ -53,7 +53,7 @@
 
 
 
-@interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,SGSegmentedControlDelegate,UITextFieldDelegate>
+@interface UGHKLHCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,SGSegmentedControlDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;            /**<   当前期数Label */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
@@ -61,11 +61,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *closeTimeLabel;               /**<   下期封盘时间Label */
 @property (weak, nonatomic) IBOutlet UILabel *openTimeLabel;                /**<   下期开奖时间Label */
 @property (weak, nonatomic) IBOutlet UIView *nextIssueView;                 /**<   下期信息父View */
-@property (weak, nonatomic) IBOutlet UIView *bottomCloseView;               /**<   底部封盘View */
-
-@property (weak, nonatomic) IBOutlet UITextField *amountTextF;  /**<   下注金额TextField */
-@property (weak, nonatomic) IBOutlet UILabel *selectLabel;      /**<   注数Label */
-@property (weak, nonatomic) IBOutlet UIButton *chipButton;      /**<   筹码Button */
 
 @property (nonatomic, strong) STBarButtonItem *rightItem1;              /**<   导航条上的余额Item */
 @property (nonatomic, strong) UGYYRightMenuView *yymenuView;            /**<   右侧边栏 */
@@ -108,7 +103,6 @@
 @property (nonatomic, weak)IBOutlet UITableView *tableView;                   /**<   玩法列表TableView */
 @property (nonatomic, strong) NSMutableArray <UGGameplayModel *>*gameDataArray;    /**<   玩法列表 */
 @property (weak, nonatomic) IBOutlet UIStackView *rightStackView;/**<右边内容*/
-@property (weak, nonatomic) IBOutlet UIView *bottomView;         /**<   底部 */
 @property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;/**<iphoneX的t底部*/
 
 
@@ -131,7 +125,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     // 初始化数组
     {
         _gameDataArray = [NSMutableArray array];
-        
         _tmTitleArray = [NSMutableArray array];
         _lwTitleArray = [NSMutableArray array];
         _lxTitleArray = [NSMutableArray array];
@@ -142,17 +135,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     }
     
     FastSubViewCode(self.view)
-    self.chipButton.layer.cornerRadius = 5;
-    self.chipButton.layer.masksToBounds = YES;
-    self.chipButton.layer.masksToBounds = YES;
-    subTextField(@"TKL下注TxtF").delegate = self;
-    self.amountTextF.delegate = self;
-//    [self.view addSubview:self.tableView];//===========
-//    [self.contentView addSubview:self.tableView];
-  
-   
+
     [self tableViewInit];
     [self headertableViewInit];
+    [self initHeaderCollectionView];
+    [self initBetCollectionView];
+
 
     [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
@@ -166,6 +154,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
           make.left.equalTo(_tableView.mas_right).with.offset(0);
           make.top.right.bottom.equalTo(self.contentView).offset(0);
       }];
+    
+    [self.rightStackView  mas_remakeConstraints:^(MASConstraintMaker *make)
+      {
+          make.left.equalTo(_tableView.mas_right).with.offset(0);
+          make.top.right.bottom.equalTo(self.contentView).offset(0);
+      }];
+    [self.rightStackView addSubview:self.segmentView];
+    [self.segmentView  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        make.left.top.right.equalTo(self.rightStackView).offset(0);
+        make.height.mas_equalTo(40);
+    }];
+
  
      [self.headerTabView  mas_remakeConstraints:^(MASConstraintMaker *make)
       {
@@ -174,13 +175,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
          
       }];
 
-//    [self.view addSubview:self.segmentView];
-    [self.rightStackView addSubview:self.segmentView];
-    [self.segmentView  mas_remakeConstraints:^(MASConstraintMaker *make)
-     {
-        make.left.top.right.equalTo(self.rightStackView).offset(0);
-        make.height.mas_equalTo(40);
-    }];
 
     WeakSelf
     self.segmentIndex = 0;
@@ -195,7 +189,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 btn.selected = false;
         }
     };
-    [self initHeaderCollectionView];
+
 
     
     self.typeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -264,6 +258,40 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
 }
 
+
+-(void)betCollectionViewConstraints{
+    if (self.zodiacScrollView.hidden && !self.segmentView.hidden) {
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            
+            make.right.left.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+            make.top.equalTo(self.segmentView.mas_bottom);
+        }];
+    }
+    else if (!self.zodiacScrollView.hidden && !self.segmentView.hidden){
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            make.right.left.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+            make.top.equalTo(self.zodiacScrollView.mas_bottom);
+        }];
+    }
+    else{
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            make.right.left.top.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+        }];
+    }
+}
+
+- (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
+    [super setNextIssueModel:nextIssueModel];
+    self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
+    if (nextIssueModel.preNumSx.length) {
+        self.subPreNumArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
+    }
+    self.navigationItem.title = nextIssueModel.title;
+}
+
 // 去聊天室
 - (IBAction)showChatRoom:(id)sender {
     //    UGChatViewController *chatVC = [[UGChatViewController alloc] init];
@@ -317,9 +345,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             UGPlayOddsModel *play = model.data;
             weakSelf.playOddsModel = play;
             [weakSelf.rightStackView addSubview:weakSelf.zodiacScrollView];
-          
-            
-            [weakSelf initBetCollectionView];
+
             
             weakSelf.gameDataArray = [play.playOdds mutableCopy];
             for (UGGameplayModel *gm in play.playOdds) {
@@ -348,17 +374,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
             
             if ([weakSelf.gameDataArray.firstObject.name isEqualToString:@"特码"]) {
-                if (weakSelf.segmentView.hidden) {
-                    weakSelf.betCollectionView.y += weakSelf.segmentView.height;
-                    weakSelf.betCollectionView.height -= weakSelf.segmentView.height;
-                }
-                if (weakSelf.zodiacScrollView.hidden) {
-                    weakSelf.betCollectionView.y += weakSelf.zodiacScrollView.height;
-                    weakSelf.betCollectionView.height -= weakSelf.zodiacScrollView.height;
-                }
+
                 weakSelf.zodiacScrollView.hidden = false;
                 weakSelf.segmentView.hidden = NO;
             }
+            
+            [weakSelf betCollectionViewConstraints];
+            
             weakSelf.segmentView.dataArray = weakSelf.tmTitleArray;
             [weakSelf.tableView reloadData];
             [weakSelf.betCollectionView reloadData];
@@ -367,15 +389,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
              [SVProgressHUD dismiss];
         }];
     }];
-}
-
-- (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
-    [super setNextIssueModel:nextIssueModel];
-    self.preNumArray = [nextIssueModel.preNum componentsSeparatedByString:@","];
-    if (nextIssueModel.preNumSx.length) {
-        self.subPreNumArray = [nextIssueModel.preNumSx componentsSeparatedByString:@","];
-    }
-    self.navigationItem.title = nextIssueModel.title;
 }
 
 // 显示侧边栏
@@ -441,12 +454,8 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 // 重置
 - (IBAction)resetClick:(id)sender {
-    FastSubViewCode(self.view)
-    [subTextField(@"TKL下注TxtF") resignFirstResponder];
-    subTextField(@"TKL下注TxtF").text = nil;
-    [self.amountTextF resignFirstResponder];
-    self.amountTextF.text = nil;
-    [self updateSelectLabelWithCount:0];
+    [super resetClick:sender];
+
 
     for (UGGameplayModel *model in self.gameDataArray) {
         model.selectedCount = 0;
@@ -469,18 +478,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 // 下注
 - (IBAction)betClick:(id)sender {
+    WeakSelf;
     FastSubViewCode(self.view)
-    [self.amountTextF resignFirstResponder];
     [subTextField(@"TKL下注TxtF") resignFirstResponder];
     ck_parameters(^{
-        if (Skin1.isTKL) {
-            ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
-            ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
-        } else {
-            ck_parameter_non_equal(self.selectLabel.text, @"0", @"请选择玩法");
-            ck_parameter_non_empty(self.amountTextF.text, @"请输入投注金额");
-        }
-       
+        ck_parameter_non_equal(subLabel(@"TKL已选中label"), @"已选中0注", @"请选择玩法");
+        ck_parameter_non_empty(subTextField(@"TKL下注TxtF"), @"请输入投注金额");
+        
     }, ^(id err) {
         [SVProgressHUD showInfoWithStatus:err];
     }, ^{
@@ -560,12 +564,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 if ([@"自选不中" isEqualToString:type.name]) {
                     for (UGGameBetModel *game in type.zxbzlist) {
                         if (game.select) {
-                            if (Skin1.isTKL) {
-                                game.money = subTextField(@"TKL下注TxtF").text;
-                            } else {
-                                game.money = self.amountTextF.text;
-                            }
-                           
+                            game.money = subTextField(@"TKL下注TxtF").text;
                             game.title = type.name;
                             [array addObject:game];
                         }
@@ -574,11 +573,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 else{
                     for (UGGameBetModel *game in type.list) {
                         if (game.select) {
-                            if (Skin1.isTKL) {
-                                game.money = subTextField(@"TKL下注TxtF").text;
-                            } else {
-                                game.money = self.amountTextF.text;
-                            }
+                            game.money = subTextField(@"TKL下注TxtF").text;
                             game.title = type.name;
                             [array addObject:game];
                         }
@@ -658,24 +653,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _zodiacScrollView.hidden = ![model.name isEqualToString:@"特码"];
         
         
-        {
-            CGFloat y = _segmentView.y;
-            CGFloat h = APP.Height - ([CMCommon isPhoneX] ? 88 : 64) - 154 - APP.StatusBarHeight;
-            if (!_segmentView.hidden) {
-                y += _segmentView.height;
-                h -= _segmentView.height;
-            }
-            if (!_zodiacScrollView.hidden) {
-                y += _zodiacScrollView.height;
-                h -= _zodiacScrollView.height;
-            }
-            _betCollectionView.y = y;
-            _betCollectionView.height = h;
-        }
+        [self betCollectionViewConstraints];
         [self.betCollectionView reloadData];
-        [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
-        
-        
+
         [self resetClick:nil];
     } else {
         
@@ -963,19 +943,12 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.betCollectionView) {
-        
-        if (Skin1.isTKL) {
-            FastSubViewCode(self.view)
-            if (subView(@"天空蓝封盘View").hidden == NO) {
-                [SVProgressHUD showInfoWithStatus:@"封盘中"];
-                return;
-            }
-        } else {
-            if (self.bottomCloseView.hidden == NO) {
-                [SVProgressHUD showInfoWithStatus:@"封盘中"];
-                return;
-            }
+   
+        if (self.lotteryView.closeView.hidden == NO) {
+            [SVProgressHUD showInfoWithStatus:@"封盘中"];
+            return;
         }
+        
         
         UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
         UGGameplaySectionModel *type = nil;
@@ -1366,9 +1339,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         collectionView;
         
     });
-    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
     self.betCollectionView = collectionView;
     [self.rightStackView addSubview:collectionView];
+
 
 }
 
@@ -1441,17 +1415,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 }
 
 
-#pragma mark - textField delegate
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if ([string isEqualToString:@"\n"]) {
-        FastSubViewCode(self.view)
-        [self.amountTextF resignFirstResponder];
-        [subTextField(@"TKL下注TxtF") resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
 
 //连码玩法数据处理
 - (void)handleData {
