@@ -49,7 +49,7 @@
 #import "UGLotteryRecordTableViewCell.h"
 #import "CMTimeCommon.h"
 
-@interface UGXYNCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,UITextFieldDelegate,WSLWaterFlowLayoutDelegate>
+@interface UGXYNCLotteryController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,YBPopupMenuDelegate,WSLWaterFlowLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *currentIssueLabel;/**<头 上 当前开奖  */
 @property (weak, nonatomic) IBOutlet UIButton *historyBtn;/**<头 上 历史记录按钮  */
 @property (weak, nonatomic) IBOutlet UILabel *nextIssueLabel;/**<头 下 下期开奖  */
@@ -783,7 +783,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         collectionView;
         
     });
-    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
     self.betCollectionView = collectionView;
     [self.rightStackView addSubview:collectionView];
     
