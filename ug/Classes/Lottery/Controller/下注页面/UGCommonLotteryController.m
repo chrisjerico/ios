@@ -114,6 +114,84 @@
 }
 - (BOOL)允许游客访问 { return true; }
 
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    FastSubViewCode(self.view);
+    self.fd_interactivePopDisabled = YES;
+    
+    //注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGengHaoBtn) name:@"resetGengHaoBtn"object:nil];
+
+    [self setupTitleView];
+    // 下注view
+    [self lotteryViewInit];
+    // 拉条view
+    [self lotterySliderViewInit];
+    
+    //分Views
+    UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
+    [contentstackView addArrangedSubview:self.lotterySliderView];
+    [self.lotterySliderView setHidden:YES];
+    
+    [contentstackView addArrangedSubview:self.lotteryView];
+    [self.lotteryView setHidden:YES];
+
+    
+    //views颜色
+    [self setViewColors];
+    //各种事件
+    [self allFunction];
+    // 处理期数太长被遮挡问题
+    self.currentIssueLabel.numberOfLines = 0;
+    if (self.currentIssueLabel.cc_constraints.width) {
+        self.currentIssueLabel.cc_constraints.width.constant = 100;
+    } else {
+        [self.currentIssueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(100);
+        }];
+    }
+    //筹码 TKL封盘
+    if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
+        || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
+        [self.lotteryView setHidden:YES];
+    } else {
+        [self.lotteryView setHidden:NO];
+        //筹码
+        _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
+        [self.view  addSubview:_bargainingView];
+        [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.lotteryView.mas_top).mas_offset(10);
+            make.left.equalTo(self.lotteryView.mas_left).mas_offset(20);
+            make.height.mas_equalTo(45);
+            make.width.mas_equalTo(235);
+        }];
+        
+        self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
+            if (![CMCommon stringIsNull:item.btnTitle]) {
+                float n1 = [CMCommon floatForNSString:subTextField(@"TKL下注TxtF").text];
+                float n2 = [CMCommon floatForNSString:item.btnTitle];
+                float sum = n1 + n2;
+                subTextField(@"TKL下注TxtF").text = [NSString stringWithFormat:@"%.2f",sum];
+            }
+        };
+        if (Skin1.isTKL
+            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
+            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"])
+        {
+            //添加封盘
+            {
+                self.mTKLFPView = [[TKLFPView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
+                [self.mTKLFPView setHidden:YES];
+                [self.view addSubview:self.mTKLFPView];
+                [self.view bringSubviewToFront:self.mTKLFPView];
+            }
+            
+        }
+    }
+  
+}
+
 -(void)lotteryViewInit{
     __weakSelf_(__self);
     self.lotteryView = _LoadView_from_nib_(@"LotteryView");
@@ -147,6 +225,16 @@
     [self.lotteryView setGameId:self.nextIssueModel.gameId];
     subTextField(@"TKL下注TxtF").delegate = self;
     [self.lotteryView reloadData:^(BOOL succ) {}];
+}
+
+
+-(void)lotterySliderViewInit{
+    __weakSelf_(__self);
+    self.lotterySliderView = _LoadView_from_nib_(@"LotterySliderView");
+    self.lotterySliderView.reloadlock = ^(void) {
+        [__self.betCollectionView reloadData];
+    };
+ 
 }
 
 -(void)setViewColors{
@@ -328,81 +416,6 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    FastSubViewCode(self.view);
-    self.fd_interactivePopDisabled = YES;
-    
-    //注册通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGengHaoBtn) name:@"resetGengHaoBtn"object:nil];
-
-    [self setupTitleView];
-    // 下注view
-    [self lotteryViewInit];
-    
-    //分Views
-    UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
-    [contentstackView addArrangedSubview:self.lotteryView];
-    [self.lotteryView setHidden:YES];
-
-    //views颜色
-    [self setViewColors];
-    //各种事件
-    [self allFunction];
-    // 处理期数太长被遮挡问题
-    self.currentIssueLabel.numberOfLines = 0;
-    if (self.currentIssueLabel.cc_constraints.width) {
-        self.currentIssueLabel.cc_constraints.width.constant = 100;
-    } else {
-        [self.currentIssueLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(100);
-        }];
-    }
-    //筹码 TKL封盘
-    if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
-        || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
-        [self.lotteryView setHidden:YES];
-    } else {
-        [self.lotteryView setHidden:NO];
-        //筹码
-        _bargainingView = _LoadView_from_nib_(@"UGBargainingView");
-        [self.view  addSubview:_bargainingView];
-        [self.bargainingView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.lotteryView.mas_top).mas_offset(10);
-            make.left.equalTo(self.lotteryView.mas_left).mas_offset(20);
-            make.height.mas_equalTo(45);
-            make.width.mas_equalTo(235);
-        }];
-        
-        self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
-            if (![CMCommon stringIsNull:item.btnTitle]) {
-                float n1 = [CMCommon floatForNSString:subTextField(@"TKL下注TxtF").text];
-                float n2 = [CMCommon floatForNSString:item.btnTitle];
-                float sum = n1 + n2;
-                subTextField(@"TKL下注TxtF").text = [NSString stringWithFormat:@"%.2f",sum];
-            }
-        };
-        if (Skin1.isTKL
-            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]
-            && ![self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"])
-        {
-            //添加封盘
-            {
-                self.mTKLFPView = [[TKLFPView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight)];
-                [self.mTKLFPView setHidden:YES];
-                [self.view addSubview:self.mTKLFPView];
-                [self.view bringSubviewToFront:self.mTKLFPView];
-            }
-            
-        }
-    }
-    
-    if (OBJOnceToken(self)) {
-        //        [self sliderViewInit ];
-    };
-    
-}
-
 -(void)setSelectLabelLableCololr{
     FastSubViewCode(self.lotteryView)
     if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
@@ -478,165 +491,18 @@
     
     [self updateCloseLabel];
 }
-//拖动条****************************************************/
-- (void )sliderViewInit {
-    
-    __weakSelf_(__self);
-    self.slider = [[MGSlider alloc] initWithFrame:CGRectMake(190, 5,110 , 50)];
-    //    self.slider.touchRangeEdgeInsets = UIEdgeInsetsMake(-20, -20, -20, -20);
-    self.slider.thumbSize = CGSizeMake(40, 40);//锚点的大小
-    self.slider.thumbImage = [UIImage imageNamed:[LanguageHelper shared].isCN ? @"icon_activity_ticket_details_rebate" : @"RadioButton-Selected"];//锚点的图片
-    self.slider.thumbColor = [UIColor clearColor];//锚点的背景色
-    self.slider.trackColor = [UIColor colorWithRed:0.29 green:0.42 blue:0.86 alpha:1.00];//进度条的颜色+
-    self.slider.untrackColor = [UIColor grayColor];//进度条的颜色-
-    self.slider.zoom = NO; // 默认点击放大
-    self.slider.progress = 0;// 默认第一次锚点所在的位置，1：100%
-    self.slider.margin = 10; // 距离左右内间距
-    [[Global getInstanse] setRebate:0.0];//进入界面，初始退水为0
-    //	[self.bottomView addSubview:self.slider];
-    [self.slider changeValue:^(CGFloat value) {
-        NSLog(@">>>>>>>>>>>>>>>>>>>>>拖动==== %f", value);
-        [__self setRebateAndSliderLB:value];
-        
-    } endValue:^(CGFloat value) {
-        
-        
-    }];
-    
-    self.reductionBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.reductionBtn setBackgroundImage:[UIImage imageNamed:@"icon_activity_ticket_details_minus"] forState:(UIControlStateNormal)];
-    self.reductionBtn.frame = CGRectMake(20, 200, 50, 50);
-    //	[self.bottomView addSubview:self.reductionBtn];
-    [self.reductionBtn addTarget:self  action:@selector(reductionAction:) forControlEvents:(UIControlEventTouchDown)];
-    
-    
-    
-    
-    self.addBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.addBtn setBackgroundImage:[UIImage imageNamed:@"icon_activity_ticket_details_add"] forState:(UIControlStateNormal)];
-    self.addBtn.frame = CGRectMake(350, 200, 50, 50);
-    //	[self.bottomView addSubview:self.addBtn];
-    [self.addBtn addTarget:self  action:@selector(addImgVAction:) forControlEvents:(UIControlEventTouchDown)];
-    
-    
-    
-    self.sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(190, 250, 200, 50)];
-    self.sliderLB.font = [UIFont systemFontOfSize:14.0];
-    self.sliderLB.text = @"0.00%";
-    self.sliderLB.textColor = [UIColor whiteColor];
-    //	[self.bottomView addSubview:self.sliderLB];
-    
-    
-    [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-        
-        //		make.right.equalTo(self.bottomView.mas_right).offset(-10);
-        make.height.equalTo([NSNumber numberWithFloat:32]);
-        make.width.equalTo([NSNumber numberWithFloat:32]);
-        make.top.equalTo([NSNumber numberWithFloat:13]);
-    }];
-    
-    [self.slider mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-        
-        //		make.right.equalTo(self.bottomView.mas_right).offset(-50);
-        make.height.equalTo([NSNumber numberWithFloat:50]);
-        make.width.equalTo([NSNumber numberWithFloat:80]);
-        make.top.equalTo([NSNumber numberWithFloat:5]);
-    }];
-    
-    [self.reductionBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-        
-        //		make.right.equalTo(self.bottomView.mas_right).offset(-141);
-        make.height.equalTo([NSNumber numberWithFloat:32]);
-        make.width.equalTo([NSNumber numberWithFloat:32]);
-        make.top.equalTo([NSNumber numberWithFloat:13]);
-    }];
-    
-    [self.sliderLB mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
-        make.right.equalTo(self.reductionBtn.mas_left).offset(-6);
-        make.height.equalTo([NSNumber numberWithFloat:20]);
-        make.top.equalTo([NSNumber numberWithFloat:18]);
-    }];
-    
-    [self showSlider:NO];
-    [self showSliderAction];
-    
-}
-
--(void)setRebateAndSliderLB :(float )value{
-    NSString *x =[NSString stringWithFormat:@"%.2f%@",self.lattice * value*100,@"%"];
-    [self.sliderLB setText:x];
-    
-    NSString *rebateStr = [NSString stringWithFormat:@"%.4f",self.lattice * value];
-    float rebateF = [rebateStr floatValue];
-    [[Global getInstanse] setRebate:rebateF];
-    [self.betCollectionView reloadData];
-}
-
--(void)reductionAction:(UIButton *)sender{
-    
-    
-    if (self.slider.moveProgress> 0) {
-        
-        self.slider.moveProgress = self.slider.moveProgress - 0.0005;
-        self.slider.progress = self.slider.moveProgress;
-        
-        [self setRebateAndSliderLB:self.slider.progress];
-        
-        if (self.slider.progress >0.8) {
-            //该控件的bug
-            CGRect frame =  self.slider.valveIV.frame;
-            if (frame.origin.x >= 90.0) {
-                frame.origin.x = 90.0;
-                self.slider.valveIV.frame = frame;
-            }
-            NSLog(@"x= %f",frame.origin.x);
-        }
-    }
-    
-}
-
--(void)addImgVAction:(UIButton *)sender{
-    
-    
-    if (self.slider.moveProgress< 1.0) {
-        self.slider.moveProgress = self.slider.moveProgress + 0.0005;
-        self.slider.progress = self.slider.moveProgress;
-        
-        [self setRebateAndSliderLB:self.slider.progress];
-        
-        if (self.slider.progress >0.8) {
-            //该控件的bug
-            CGRect frame =  self.slider.valveIV.frame;
-            if (frame.origin.x >= 90.0) {
-                frame.origin.x = 90.0;
-                self.slider.valveIV.frame = frame;
-            }
-        }
-        
-    }
-    
-}
-
 
 -(void)showSliderAction{
     if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
-        self.proportion = SysConf.activeReturnCoinRatio;
-        self.lattice = 0.01 * self.proportion;
-        [self showSlider:YES];
+       
+        [self.lotterySliderView setHidden:NO];
     } else {
-        [self showSlider:NO];
+        [self.lotterySliderView setHidden:YES];
     }
     
     if ([self.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"] || [self.nextIssueModel.gameType isEqualToString:@"ofclvn_haboivip"]) {
-        [self showSlider:NO];
+        [self.lotterySliderView setHidden:YES];
     }
-    
-}
--(void)showSlider:(BOOL)isShow{
-    self.slider.hidden = !isShow;
-    self.sliderLB.hidden = !isShow;
-    self.reductionBtn.hidden = !isShow;
-    self.addBtn.hidden = !isShow;
 }
 
 //拖动条****************************************************/

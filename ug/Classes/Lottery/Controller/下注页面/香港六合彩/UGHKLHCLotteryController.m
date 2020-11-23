@@ -140,6 +140,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
     [self tableViewInit];
     [self headertableViewInit];
+    [self initHeaderCollectionView];
+    [self initBetCollectionView];
+
 
     [self.contentView setBackgroundColor:[UIColor clearColor]];
     [self.tableView  mas_remakeConstraints:^(MASConstraintMaker *make)
@@ -153,6 +156,19 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
           make.left.equalTo(_tableView.mas_right).with.offset(0);
           make.top.right.bottom.equalTo(self.contentView).offset(0);
       }];
+    
+    [self.rightStackView  mas_remakeConstraints:^(MASConstraintMaker *make)
+      {
+          make.left.equalTo(_tableView.mas_right).with.offset(0);
+          make.top.right.bottom.equalTo(self.contentView).offset(0);
+      }];
+    [self.rightStackView addSubview:self.segmentView];
+    [self.segmentView  mas_remakeConstraints:^(MASConstraintMaker *make)
+     {
+        make.left.top.right.equalTo(self.rightStackView).offset(0);
+        make.height.mas_equalTo(40);
+    }];
+
  
      [self.headerTabView  mas_remakeConstraints:^(MASConstraintMaker *make)
       {
@@ -161,13 +177,6 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
          
       }];
 
-//    [self.view addSubview:self.segmentView];
-    [self.rightStackView addSubview:self.segmentView];
-    [self.segmentView  mas_remakeConstraints:^(MASConstraintMaker *make)
-     {
-        make.left.top.right.equalTo(self.rightStackView).offset(0);
-        make.height.mas_equalTo(40);
-    }];
 
     WeakSelf
     self.segmentIndex = 0;
@@ -182,7 +191,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                 btn.selected = false;
         }
     };
-    [self initHeaderCollectionView];
+
 
     
     self.typeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -304,9 +313,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             UGPlayOddsModel *play = model.data;
             weakSelf.playOddsModel = play;
             [weakSelf.rightStackView addSubview:weakSelf.zodiacScrollView];
-          
-            
-            [weakSelf initBetCollectionView];
+
             
             weakSelf.gameDataArray = [play.playOdds mutableCopy];
             for (UGGameplayModel *gm in play.playOdds) {
@@ -335,17 +342,13 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 
             
             if ([weakSelf.gameDataArray.firstObject.name isEqualToString:@"特码"]) {
-                if (weakSelf.segmentView.hidden) {
-                    weakSelf.betCollectionView.y += weakSelf.segmentView.height;
-                    weakSelf.betCollectionView.height -= weakSelf.segmentView.height;
-                }
-                if (weakSelf.zodiacScrollView.hidden) {
-                    weakSelf.betCollectionView.y += weakSelf.zodiacScrollView.height;
-                    weakSelf.betCollectionView.height -= weakSelf.zodiacScrollView.height;
-                }
+
                 weakSelf.zodiacScrollView.hidden = false;
                 weakSelf.segmentView.hidden = NO;
             }
+            
+            [weakSelf betCollectionViewConstraints];
+            
             weakSelf.segmentView.dataArray = weakSelf.tmTitleArray;
             [weakSelf.tableView reloadData];
             [weakSelf.betCollectionView reloadData];
@@ -354,6 +357,30 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
              [SVProgressHUD dismiss];
         }];
     }];
+}
+
+-(void)betCollectionViewConstraints{
+    if (self.zodiacScrollView.hidden && !self.segmentView.hidden) {
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            
+            make.right.left.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+            make.top.equalTo(self.segmentView.mas_bottom);
+        }];
+    }
+    else if (!self.zodiacScrollView.hidden && !self.segmentView.hidden){
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            make.right.left.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+            make.top.equalTo(self.zodiacScrollView.mas_bottom);
+        }];
+    }
+    else{
+        [self.betCollectionView mas_remakeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
+            make.right.left.top.equalTo(self.rightStackView);
+            make.bottom.equalTo(self.rightStackView).offset(50);
+        }];
+    }
 }
 
 - (void)setNextIssueModel:(UGNextIssueModel *)nextIssueModel {
@@ -633,24 +660,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         _zodiacScrollView.hidden = ![model.name isEqualToString:@"特码"];
         
         
-        {
-            CGFloat y = _segmentView.y;
-            CGFloat h = APP.Height - ([CMCommon isPhoneX] ? 88 : 64) - 154 - APP.StatusBarHeight;
-            if (!_segmentView.hidden) {
-                y += _segmentView.height;
-                h -= _segmentView.height;
-            }
-            if (!_zodiacScrollView.hidden) {
-                y += _zodiacScrollView.height;
-                h -= _zodiacScrollView.height;
-            }
-            _betCollectionView.y = y;
-            _betCollectionView.height = h;
-        }
+        [self betCollectionViewConstraints];
         [self.betCollectionView reloadData];
-        [self.betCollectionView setContentOffset:CGPointMake(0, 0) animated:YES];
-        
-        
+
         [self resetClick:nil];
     } else {
         
@@ -1334,9 +1346,10 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
         collectionView;
         
     });
-    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
     self.betCollectionView = collectionView;
     [self.rightStackView addSubview:collectionView];
+
 
 }
 

@@ -13,6 +13,7 @@
 #import "UGBargainingView.h"// 筹码View
 #import "TKLFPView.h"// 天空蓝封盘View
 #import "LotteryView.h"// 下注分View
+#import "LotterySliderView.h"// 拉条分View
 NS_ASSUME_NONNULL_BEGIN
 
 // 秒秒彩隐藏头部
@@ -58,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) TKLFPView * mTKLFPView;/**<天空蓝封盘View*/
 //下注分控件=======================================================
 @property (nonatomic, strong) LotteryView *lotteryView;             /**<   下注View*/
-
+@property (nonatomic, strong) LotterySliderView *lotterySliderView;  /**<   拉条View*/
 
 
 - (void)getGameDatas;

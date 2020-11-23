@@ -19,6 +19,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     FastSubViewCode(self);
+    
     __weakSelf_(__self);
     self.slider = [[MGSlider alloc] initWithFrame:CGRectMake(190, 5,110 , 50)];
     self.slider.thumbSize = CGSizeMake(40, 40);//锚点的大小
@@ -39,60 +40,64 @@
         
         
     }];
+    [subView(@"contentView") addSubview:self.slider];
+    
     
     self.reductionBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.reductionBtn setBackgroundImage:[UIImage imageNamed:@"icon_activity_ticket_details_minus"] forState:(UIControlStateNormal)];
-    self.reductionBtn.frame = CGRectMake(20, 200, 50, 50);
-    [self addSubview:self.reductionBtn];
+    self.reductionBtn.frame = CGRectMake(20, 5, 50, 50);
+    [subView(@"contentView") addSubview:self.reductionBtn];
     [self.reductionBtn addTarget:self  action:@selector(reductionAction:) forControlEvents:(UIControlEventTouchDown)];
 
     self.addBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.addBtn setBackgroundImage:[UIImage imageNamed:@"icon_activity_ticket_details_add"] forState:(UIControlStateNormal)];
-    self.addBtn.frame = CGRectMake(350, 200, 50, 50);
-    [self addSubview:self.addBtn];
+    self.addBtn.frame = CGRectMake(350, 5, 50, 50);
+    [subView(@"contentView") addSubview:self.addBtn];
     [self.addBtn addTarget:self  action:@selector(addImgVAction:) forControlEvents:(UIControlEventTouchDown)];
 
-    self.sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(190, 250, 200, 50)];
+    self.sliderLB = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 160, 50)];
     self.sliderLB.font = [UIFont systemFontOfSize:14.0];
-    self.sliderLB.text = @"0.00%";
+    self.sliderLB.text = @"退水：0.00%";
     self.sliderLB.textColor = [UIColor whiteColor];
-    [self addSubview:self.sliderLB];
+    [subView(@"contentView") addSubview:self.sliderLB];
 
     [self.addBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
         
-        //        make.right.equalTo(self.bottomView.mas_right).offset(-10);
+        make.right.equalTo(subView(@"contentView").mas_right).offset(-40);
         make.height.equalTo([NSNumber numberWithFloat:32]);
         make.width.equalTo([NSNumber numberWithFloat:32]);
-        make.top.equalTo([NSNumber numberWithFloat:13]);
+        make.top.equalTo([NSNumber numberWithFloat:8]);
     }];
     
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
         
-        //        make.right.equalTo(self.bottomView.mas_right).offset(-50);
+        make.right.equalTo(subView(@"contentView").mas_right).offset(-80);
         make.height.equalTo([NSNumber numberWithFloat:50]);
         make.width.equalTo([NSNumber numberWithFloat:80]);
-        make.top.equalTo([NSNumber numberWithFloat:5]);
+        make.top.equalTo([NSNumber numberWithFloat:0]);
+
+
     }];
     
     [self.reductionBtn mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
         
-        //        make.right.equalTo(self.bottomView.mas_right).offset(-141);
+        make.right.equalTo(subView(@"contentView").mas_right).offset(-171);
         make.height.equalTo([NSNumber numberWithFloat:32]);
         make.width.equalTo([NSNumber numberWithFloat:32]);
-        make.top.equalTo([NSNumber numberWithFloat:13]);
+        make.top.equalTo([NSNumber numberWithFloat:8]);
     }];
     
     [self.sliderLB mas_makeConstraints:^(MASConstraintMaker *make) { //数组额你不必须都是view
         make.right.equalTo(self.reductionBtn.mas_left).offset(-6);
         make.height.equalTo([NSNumber numberWithFloat:20]);
-        make.top.equalTo([NSNumber numberWithFloat:18]);
+        make.top.equalTo([NSNumber numberWithFloat:16]);
     }];
     [self showSliderAction];
 
 }
 
 -(void)setRebateAndSliderLB :(float )value{
-    NSString *x =[NSString stringWithFormat:@"%.2f%@",self.lattice * value*100,@"%"];
+    NSString *x =[NSString stringWithFormat:@"退水：%.2f%@",self.lattice * value*100,@"%"];
     [self.sliderLB setText:x];
     
     NSString *rebateStr = [NSString stringWithFormat:@"%.4f",self.lattice * value];
@@ -103,6 +108,16 @@
         self.reloadlock();
     }
    
+}
+- (IBAction)btnAction:(UIButton *)sender {
+    FastSubViewCode(self);
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [sender setTitle:@"展开" forState:0];
+    } else {
+        [sender setTitle:@"收起" forState:0];
+    }
+    [subView(@"contentView") setHidden:sender.selected];
 }
 
 
