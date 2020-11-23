@@ -221,54 +221,54 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             ||[viewController isKindOfClass:[UGRegisterViewController class]]
             ||[viewController isKindOfClass:[JYRegisterViewController class]]
             ||[viewController isKindOfClass:[TKLRegisterViewController class]]) {
-            
-            if (!Skin1.isGPK && !Skin1.isJY&& !Skin1.isTKL){
-                if (![viewController isKindOfClass:[UGRegisterViewController class]]) {
-                    viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
-                }
-                
-            }
+
             if (Skin1.isGPK){//GPK版  注册
                 if (![viewController isKindOfClass:[UGBMRegisterViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"UGBMRegisterViewController");
                 }
                 
             }
-            if (Skin1.isJY){//简约模板  注册
+           else  if (Skin1.isJY){//简约模板  注册
                 if (![viewController isKindOfClass:[JYRegisterViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"JYRegisterViewController");
                 }
                 
             }
-            if (Skin1.isTKL){//天空蓝模板  注册
+           else if (Skin1.isTKL){//天空蓝模板  注册
                 if (![viewController isKindOfClass:[TKLRegisterViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"TKLRegisterViewController");
                 }
                 
             }
+           else{
+               if (![viewController isKindOfClass:[UGRegisterViewController class]]) {
+                   viewController =  _LoadVC_from_storyboard_(@"UGRegisterViewController");
+               }
+           }
         }
         
         if ([viewController isKindOfClass:[UGBMLoginViewController class]]
             ||[viewController isKindOfClass:[UGLoginViewController class]]
             ||[viewController isKindOfClass:[JYLoginViewController class]] ) {
             
-            if (!Skin1.isGPK && !Skin1.isJY){
-                if (![viewController isKindOfClass:[UGLoginViewController class]]) {
-                    viewController =  _LoadVC_from_storyboard_(@"UGLoginViewController");
-                }
-                
-            }
+            NSLog(@"Skin1= %@",Skin1);
+
             if (Skin1.isGPK){//GPK版  登录
                 if (![viewController isKindOfClass:[UGBMLoginViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"UGBMLoginViewController");
                 }
                 
             }
-            if (Skin1.isJY||Skin1.isTKL){//简约模板  登录
+            else if (Skin1.isJY||Skin1.isTKL){//简约模板  登录
                 if (![viewController isKindOfClass:[JYLoginViewController class]]) {
                     viewController = _LoadVC_from_storyboard_(@"JYLoginViewController");
                 }
                 
+            }
+            else{
+                if (![viewController isKindOfClass:[UGLoginViewController class]]) {
+                    viewController =  _LoadVC_from_storyboard_(@"UGLoginViewController");
+                }
             }
         }
         
