@@ -15,7 +15,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     FastSubViewCode(self);
-    [subView(@"天空蓝下注View") setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.2]];
+    [subView(@"天空蓝下注View") setBackgroundColor:Skin1.bgColor];
+    [subView(@"天空蓝下注View") insertSubview:({
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+        bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+        bgView;
+    }) atIndex:0];
     subButton(@"TKL追号btn").layer.cornerRadius = 5;
     subButton(@"TKL追号btn").layer.masksToBounds = YES;
     subButton(@"TKL机选btn").layer.cornerRadius = 5;

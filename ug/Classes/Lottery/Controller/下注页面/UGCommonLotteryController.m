@@ -292,7 +292,12 @@
     self.closeTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
     self.openTimeLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
     // iphoneX的t底部背景色
-    [self.iphoneXBottomView setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.2]];
+    [self.iphoneXBottomView setBackgroundColor:Skin1.bgColor];
+    [self.iphoneXBottomView insertSubview:({
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+        bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+        bgView;
+    }) atIndex:0];
     
     if (APP.isTextWhite) {
         [subLabel(@"封盘Label") setTextColor:[UIColor whiteColor]];
