@@ -949,23 +949,17 @@
         self.titleView.chatClickBlock = ^{
             [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
         };
-         
-         
-         
+
          
          if (UGLoginIsAuthorized()) {
              self.titleView.showLoginView = NO;
              self.titleView.userName = UserI.username;
          }
     }
- 
-    //    self.scrollContentHeightConstraints.constant = CGRectGetMaxY(self.rankingView.frame);
-    //    self.scrollView.contentSize = CGSizeMake(UGScreenW, self.scrollContentHeightConstraints.constant);
-    
-    
+
     self.contentScrollView.scrollEnabled = YES;
     self.contentScrollView.bounces = YES;
-    //    self.scrollView.backgroundColor = Skin1.bgColor;
+
 }
 
 - (NSMutableArray<GameCategoryModel *> *)gameCategorys {

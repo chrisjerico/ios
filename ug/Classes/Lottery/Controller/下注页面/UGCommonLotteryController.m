@@ -84,8 +84,10 @@
 
 - (BOOL)允许游客访问 { return true; }
 
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -551,7 +553,7 @@
 - (void)getGameDatas {}
 
 - (void)setupTitleView {
-    self.title = @"聊天";
+   
     // 设置返回按钮
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -561,7 +563,8 @@
     [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
     [backButton sizeToFit];
     [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-        UIViewController *vc=  [NavController1 popViewControllerAnimated:true];
+
+         [NavController1 popViewControllerAnimated:true];
         
     }];
     UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
@@ -734,7 +737,6 @@
             } else {
                 [SVProgressHUD dismiss];
                 UGNextIssueModel *nextIssueModel = model.data;
-                NSLog(@"[Global getInstanse].selCode = %@",[Global getInstanse].selCode);
                 if ([weakSelf.nextIssueModel.gameType isEqualToString:@"ofclvn_hochiminhvip"]) {//胡志明
                     YNHLPrizeDetailView*betDetailView = [[YNHLPrizeDetailView alloc] init];
                     betDetailView.nextIssueModel = nextIssueModel;
@@ -765,8 +767,7 @@
         [self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
         return ;
     }
-    
-    NSLog(@"self.nextIssueModel = %@",self.nextIssueModel);
+
     self.nextIssueModel.title = self.selectTitle;
     
     UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
@@ -804,7 +805,6 @@
     
     WeakSelf
     betDetailView.betClickBlock = ^{
-        //        [weakSelf handleData];
         [weakSelf resetClick:nil];
     };
     betDetailView.cancelBlock = ^{

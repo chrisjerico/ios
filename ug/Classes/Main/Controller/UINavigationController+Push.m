@@ -257,7 +257,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // 去彩票下注页
        {
            UGCommonLotteryController *vc = _LoadVC_from_storyboard_(vcName);
-           //         UGCommonLotteryController *vc = _LoadVC_from_storyboard_(@"UGHKLHCLotteryController");
+
            if (model.isInstant) {
                vc.shoulHideHeader = true;
            }
@@ -271,7 +271,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                [NavController1 setViewControllers:({
                    NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
                    for (UIViewController *vc in NavController1.viewControllers) {
-                       if ([vc isKindOfClass:[UGCommonLotteryController class]]) {
+                       if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
                            [vcs removeObject:vc];
                        }
                    }
@@ -279,13 +279,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                    vcs;
                }) animated:YES];
            }
-           
-           dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC));
-
-//           dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-//               [[Global getInstanse] setHideTabBar:NO];
-//           });
-//           
            return true;
        }
 }

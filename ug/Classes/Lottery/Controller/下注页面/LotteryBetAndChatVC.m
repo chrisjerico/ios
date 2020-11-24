@@ -110,7 +110,7 @@
         [backButton setImage:[UIImage imageNamed:@"c_navi_back"] forState:UIControlStateHighlighted];
         [backButton sizeToFit];
         [backButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-            UIViewController *vc =  [NavController1 popViewControllerAnimated:true];
+            [NavController1 popViewControllerAnimated:true];
             
         }];
         UIView *containView = [[UIView alloc] initWithFrame:backButton.bounds];
@@ -240,8 +240,7 @@
             NSNumber *number = [data objectForKey:@"chatRoomRedirect"];
             SysChatRoom.chatRoomRedirect = [number intValue];
             SysChatRoom.chatRoomAry = chatRoomAry;
-            
-            NSLog(@"SysChatRoom = %@",SysChatRoom);
+
             if (![CMCommon arryIsNull:chatRoomAry]) {
                 UGChatRoomModel *obj  = SysChatRoom.defaultChatRoom = [chatRoomAry objectAtIndex:0];
             }
@@ -282,8 +281,7 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    
-    
+
     // SlideSegmentView1 分页布局View
     if (OBJOnceToken(self)) {
         __weakSelf_(__self);
