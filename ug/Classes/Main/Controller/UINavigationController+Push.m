@@ -47,6 +47,7 @@
 #import "UGWithdrawalViewController.h"          //提现
 #import "UGFundDetailsTableViewController.h"    //资金明细
 #import "UGYYLotterySecondHomeViewController.h" //大厅
+#import "ChatMainViewController.h"              //聊天室列表
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -149,13 +150,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     // 去聊天室
     if (model.seriesId == 9) {
-        // 去聊天室页
-        UGChatViewController *vc = [[UGChatViewController alloc] init];
-        vc.roomId = @(model.subId).stringValue;
-        vc.showChangeRoomTitle = true;
-        vc.hideHead = true;
-        vc.title = model.title.length ? model.title : model.name;
-        [NavController1 pushViewController:vc animated:true];
+        
+        [self gotoChatVC:@(model.subId).stringValue roomName:model.title.length ? model.title : model.name];
         return true;
     }
     
@@ -302,12 +298,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     // linkCategory ： 1=彩票游戏；2=真人视讯；3=捕鱼游戏；4=电子游戏；5=棋牌游戏；6=体育赛事；7=导航链接；8=电竞游戏；9=聊天室；10=手机资料栏目
     if (linkCategory == 9) {
         // 去聊天室页
-        UGChatViewController *vc = [[UGChatViewController alloc] init];
-        vc.roomId = @(linkPosition).stringValue;
-        vc.showChangeRoomTitle = true;
-        vc.hideHead = true;
-        vc.title = @"聊天室";
-        [NavController1 pushViewController:vc animated:true];
+        [self gotoChatVC:@(linkPosition).stringValue roomName:@"聊天室"];
         return true;
     }
     
@@ -434,11 +425,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             break;
         }
         case 3: {
-            // 聊天室
-            UGChatViewController *vc = [[UGChatViewController alloc] init];
-            vc.showChangeRoomTitle = true;
-            vc.title = @"聊天室";
-            [NavController1 pushViewController:vc animated:YES];
+            // 去聊天室页
+            [self gotoChatVC:@(linkPosition).stringValue roomName:@"聊天室"];
             break;
         }
         case 4: {
@@ -844,6 +832,23 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
     }
     return true;
+}
+
+
+-(void)gotoChatVC:(NSString *)roomId roomName :(NSString *)roomName{
+    
+    if (APP.isNewChat) {
+        [NavController1 pushViewController:_LoadVC_from_storyboard_(@"ChatMainViewController") animated:true];
+    } else {
+        UGChatViewController *vc = [[UGChatViewController alloc] init];
+        vc.roomId = roomId;
+        vc.showChangeRoomTitle = true;
+        vc.hideHead = true;
+        vc.title = roomName;
+        [NavController1 pushViewController:vc animated:true];
+    }
+    
+    
 }
 
 - (BOOL)pushVCWithUserCenterItemType:(UserCenterItemType)uciType {
