@@ -656,8 +656,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
         subButton(@"注册Button").layer.cornerRadius = 5;
         subButton(@"注册Button").layer.masksToBounds = YES;
         
-
-        
+        subView(@"存取View").layer.cornerRadius = 5;
+        subView(@"存取View").layer.masksToBounds = YES;
 //        self.tklHight.constant = 180.5;
     }
     
