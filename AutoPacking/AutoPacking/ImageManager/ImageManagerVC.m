@@ -232,6 +232,7 @@
         [_imgCollectionView itemAtIndex:[_resultIMs indexOfObject:im]].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0.1];
     }
     [_selectedIMs removeAllObjects];
+    _tagTextField.stringValue = @"";
 }
 
 
@@ -290,6 +291,14 @@
             [collectionView itemAtIndexPath:ip].textField.textColor = [NSColor whiteColor];
         }
     }
+    
+    NSMutableDictionary *dict = @{}.mutableCopy;
+    for (ImageModel *im in _selectedIMs) {
+        [dict addEntriesFromDictionary:im.tags];
+    }
+    _tagTextField.stringValue = [[dict.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        return [obj1 compare:obj2];
+    }] componentsJoinedByString:@","];
 }
 
 @end
