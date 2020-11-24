@@ -156,7 +156,7 @@
             [vc cc_hookSelector:@selector(viewWillAppear:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
                 UGCommonLotteryController *vc = ai.instance;
                 vc.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
-                vc.betCollectionView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
+                vc.betCollectionView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
             } error:nil];
             _vc1 = vc;
         }
