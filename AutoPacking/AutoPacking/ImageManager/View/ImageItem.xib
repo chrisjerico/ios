@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="ImageItem">
+            <connections>
+                <outlet property="imageView" destination="jAZ-KS-lUc" id="47c-hI-aNk"/>
+                <outlet property="textField" destination="6Bb-k8-tCj" id="kN7-sq-a9x"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="112" height="147"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-KS-lUc">
+                    <rect key="frame" x="0.0" y="0.0" width="112" height="147"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="fdc-QL-LiW"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Bb-k8-tCj">
+                    <rect key="frame" x="0.0" y="0.0" width="112" height="147"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" drawsBackground="YES" id="eJ3-cT-fOF">
+                        <font key="font" metaFont="system" size="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1406369823619632" colorSpace="custom" customColorSpace="displayP3"/>
+                    </textFieldCell>
+                </textField>
+                <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-Od-FoS">
+                    <rect key="frame" x="0.0" y="0.0" width="112" height="22"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HYc-D4-H7s">
+                            <rect key="frame" x="-1" y="-2" width="39" height="25"/>
+                            <buttonCell key="cell" type="squareTextured" title="原图" bezelStyle="texturedSquare" imagePosition="left" borderStyle="border" inset="2" id="7en-en-QpG">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="11" name=".PingFangSC-Regular"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="onCopyLinkBtnClick:" target="-2" id="pWZ-I8-ErQ"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="wmX-KX-h8g">
+                            <rect key="frame" x="36" y="-2" width="40" height="25"/>
+                            <buttonCell key="cell" type="squareTextured" title="中等" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cFf-rf-W3i">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="11" name=".PingFangSC-Regular"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="onCopyLinkBtnClick:" target="-2" id="B9s-QR-YWT"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-Pa-e5H">
+                            <rect key="frame" x="74" y="-2" width="39" height="25"/>
+                            <buttonCell key="cell" type="squareTextured" title="缩略" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b8K-tZ-bXI">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" size="11" name=".PingFangSC-Regular"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="onCopyLinkBtnClick:" target="-2" id="hZ0-5B-sxs"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FTf-Ao-LX9">
+                    <rect key="frame" x="0.0" y="20" width="112" height="127"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ne2-Ex-4bx">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="onClick:" target="-2" id="IL5-tI-LgE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Dcn-Od-FoS" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="AVA-PI-Z7M"/>
+                <constraint firstItem="jAZ-KS-lUc" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="EeP-91-VhC"/>
+                <constraint firstAttribute="bottom" secondItem="jAZ-KS-lUc" secondAttribute="bottom" id="Pht-00-lH3"/>
+                <constraint firstAttribute="trailing" secondItem="Dcn-Od-FoS" secondAttribute="trailing" id="TKG-B9-fS4"/>
+                <constraint firstItem="jAZ-KS-lUc" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="bdX-aN-R93"/>
+                <constraint firstAttribute="bottom" secondItem="Dcn-Od-FoS" secondAttribute="bottom" id="jvU-hQ-yHD"/>
+                <constraint firstAttribute="trailing" secondItem="jAZ-KS-lUc" secondAttribute="trailing" id="o1c-p1-mrj"/>
+            </constraints>
+            <point key="canvasLocation" x="-505" y="149.5"/>
+        </customView>
+    </objects>
+</document>

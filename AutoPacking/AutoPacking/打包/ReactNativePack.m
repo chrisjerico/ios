@@ -15,7 +15,6 @@
 @property (nonatomic, strong) GitModel *gm;
 @property (nonatomic, readonly) NSString *jspatchDir;       /**<   jspatch文件目录 */
 @property (nonatomic, readonly) NSString *jspExportDir;     /**<   jspatch导出目录 */
-@property (nonatomic, copy) NSString *logFile;      /**<   ipa发包记录 */
 @end
 
 

@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSString *projectDir;       /**<   rn项目目录 */
 @property (nonatomic, readonly) NSString *privateKey;       /**<   私钥 */
+@property (nonatomic, copy) NSString *logFile;      /**<   ipa发包记录 */
 
 + (instancetype)shared;
 - (void)setupPlist:(NSDictionary *)dict;    /**<   初始化 */

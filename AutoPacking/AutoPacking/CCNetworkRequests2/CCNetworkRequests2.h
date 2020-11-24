@@ -40,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 修改强制更新信息
 - (CCSessionModel *)changeForceUpdateInfo:(SiteModel *)site forceVer:(NSString *)forceVer isForce:(BOOL)isForce log:(nullable NSString *)log;
 
+// 上传图片
+- (CCSessionModel *)uploadImage:(NSString *)base64;
+
 @end
 
 NS_ASSUME_NONNULL_END

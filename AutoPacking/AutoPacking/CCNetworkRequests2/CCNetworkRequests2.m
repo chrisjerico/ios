@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 
 #define HOST @"http://appadmin.fhptcdn.com"
-
+#define ImgbbKey @"8905badeffd4f4c7f0bbfce3ce4a2f78"
 
 @interface CCNetworkRequests2 ()<CCRequestDelegate>
 @property (readonly) NSDictionary *publicParams;            /**<    公共参数 */
@@ -243,6 +243,8 @@
                     :true];
 }
 
-
+- (CCSessionModel *)uploadImage:(NSString *)base64 {
+    return [self sendRequest:@"https://api.imgbb.com/1/upload" params:@{@"image":base64, @"key":ImgbbKey} isPOST:true];
+}
 
 @end

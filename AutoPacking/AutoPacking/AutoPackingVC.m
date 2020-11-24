@@ -11,6 +11,11 @@
 #import "ReactNativePack.h"
 #import "NSObject+XWAdd.h"
 
+@interface AutoPackingVC ();
+@property (weak) IBOutlet NSButton *imgManagerBtn;
+@end
+
+
 @implementation AutoPackingVC
 
 - (void)viewDidLoad {
@@ -42,6 +47,12 @@
         [RNPack setupPlist:dict];
         NSLog(@"后台用户名 =%@",dict[@"后台用户名"]);
         NSLog(@"后台密码 =%@",dict[@"后台密码"]);
+        
+        BOOL OpenImageManager = 0; // 图片管理器
+        if (OpenImageManager) {
+            return;
+        }
+        
         
         [__self login:dict[@"后台用户名"] pwd:dict[@"后台密码"] completion:^{
             
