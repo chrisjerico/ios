@@ -299,7 +299,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     [self.tableView selectRowAtIndexPath:self.typeIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
-- (IBAction)betButtonClick:(id)sender {
+- (IBAction)betClick:(id)sender {
     FastSubViewCode(self.view)
     [subTextField(@"TKL下注TxtF") resignFirstResponder];
     ck_parameters(^{

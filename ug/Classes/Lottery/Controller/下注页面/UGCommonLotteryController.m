@@ -58,8 +58,6 @@
 
 @property (nonatomic, strong) UGLotteryRightMenuView  *yymenuView;
 
-
-
 @end
 
 
@@ -413,10 +411,12 @@
         subLabel(@"截止投注label").cc_constraints.width.constant  = self.nextIssueLabel.cc_constraints.width.constant;
         subLabel(@"截止投注label").cc_constraints.left.constant  = 5;
         [subLabel(@"截止投注label") setHidden:NO];
+        [self.openTimeLabel setHidden:YES];
     } else {
         subLabel(@"截止投注label").cc_constraints.width.constant  = 0;
         subLabel(@"截止投注label").cc_constraints.left.constant  = 0;
         [subLabel(@"截止投注label") setHidden:YES];
+        [self.openTimeLabel setHidden:NO];
     }
 }
 
@@ -469,6 +469,10 @@
         timeStr = @"封盘中";
         
         self.lotteryView.closeView.hidden = NO;
+        if (subView(@"ync封盘View")) {
+            subView(@"ync封盘View").hidden = NO;
+        }
+        
         [self resetClick:nil];
         
         if (Skin1.isTKL) {
@@ -482,6 +486,9 @@
         }
     } else {
         self.lotteryView.closeView.hidden = YES;
+        if (subView(@"ync封盘View")) {
+            subView(@"ync封盘View").hidden = YES;
+        }
         if (Skin1.isTKL) {
             [self.mTKLFPView setHidden:YES];
         }

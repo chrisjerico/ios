@@ -405,6 +405,9 @@
                                                     <constraint firstItem="iu6-o5-qcy" firstAttribute="centerY" secondItem="Z5H-t1-Oce" secondAttribute="centerY" id="4VF-lX-Ri6"/>
                                                     <constraint firstItem="iu6-o5-qcy" firstAttribute="centerX" secondItem="Z5H-t1-Oce" secondAttribute="centerX" id="Ksx-09-VNz"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="ync封盘View"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                         <viewLayoutGuide key="safeArea" id="5SH-Xq-ptU"/>

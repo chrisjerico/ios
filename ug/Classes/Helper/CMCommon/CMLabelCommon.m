@@ -24,6 +24,13 @@
  */
 + (void)messageSomeAction:(UILabel *)theLab changeString:(NSString *)change andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize {
  
+    if(theLab == nil){
+        return;
+    }
+    if(theLab.text.length == 0){
+        return;
+    }
+    
     NSMutableAttributedString *attriStr = nil;
     if (theLab.attributedText.string.length) {
         attriStr = [[NSMutableAttributedString alloc] initWithAttributedString:theLab.attributedText];
@@ -53,6 +60,14 @@
  *改变字符串中具体某字符串的颜色
  */
 + (void)messageAction:(UILabel *)theLab changeString:(NSString *)change andAllColor:(UIColor *)allColor andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize {
+    
+    if(theLab == nil){
+        return;
+    }
+    if(theLab.text.length == 0){
+        return;
+    }
+    
     NSString *tempStr = theLab.text;
     NSMutableAttributedString *strAtt = nil;
     if (theLab.attributedText.string.length) {
@@ -72,6 +87,13 @@
  *改变字符start 和 end 之间的字符的颜色 和 字体大小
  */
 + (void)messageAction:(UILabel *)theLab startString:(NSString *)start endString:(NSString *)end andAllColor:(UIColor *)allColor andMarkColor:(UIColor *)markColor andMarkFondSize:(float)fontSize {
+    if(theLab == nil){
+        return;
+    }
+    if(theLab.text.length == 0){
+        return;
+    }
+    
     NSString *tempStr = theLab.text;
     NSMutableAttributedString *strAtt = nil;
     if (theLab.attributedText.string.length) {
@@ -102,6 +124,10 @@
  *改变字符串中所有数字的颜色
  */
 + (void)setRichNumberWithLabel:(UILabel*)label Color:(UIColor *)color FontSize:(CGFloat)size {
+   
+    if(label == nil){
+        return;
+    }
     if ([CMCommon stringIsNull:label.text]) {
         return;
     }
@@ -141,6 +167,9 @@
     
     if (!str.length) {
         str = theLab.text;
+    }
+    if ([CMCommon stringIsNull:str]) {
+        return;
     }
     NSArray  *array = [str componentsSeparatedByString:separation];//--分隔符
     NSString *arrStr0 = [array objectAtIndex:0];
@@ -187,6 +216,12 @@
 */
 +(void)messageLabel:(UILabel *)theLab length:(int)length local:(int)local  andMarkColor:(UIColor *)markColor
 {
+    if(theLab == nil){
+        return;
+    }
+    if ([CMCommon stringIsNull:theLab.text]) {
+        return;
+    }
     if (local < length) {
         return;
     }

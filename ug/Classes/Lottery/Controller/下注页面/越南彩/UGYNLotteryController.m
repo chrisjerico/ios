@@ -71,15 +71,15 @@
 @property (weak, nonatomic) IBOutlet UIButton *betButton; /**<底部  下注  */
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;/**<底部  重置  */
 
-
-@property (weak, nonatomic) IBOutlet UIView *bottomCloseView;/**<底部  封盘  */
+@property (weak, nonatomic) IBOutlet UIView *bottomView;                  /**<   底部 */
+@property (weak, nonatomic) IBOutlet UIView *bottomCloseView;            /**<底部  封盘  */
 
 @property (weak, nonatomic) IBOutlet UIView *headerOneView;/**<头 上*/
 @property (weak, nonatomic) IBOutlet UIView *headerMidView;/**<头 中*/
 @property (weak, nonatomic) IBOutlet UIView *nextIssueView;/**<头 下*/
 @property (weak, nonatomic) IBOutlet UIView *contentView;  /**<内容*/
-@property (weak, nonatomic) IBOutlet UIView *bottomView;         /**<   底部 */
-@property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;/**<iphoneX的t底部*/
+
+@property (weak, nonatomic) IBOutlet UIView *iphoneXBottomView;             /**<iphoneX的t底部*/
 
 @property (weak, nonatomic) IBOutlet UITableView *headerTabView;/**<   历史开奖*/
 @property (nonatomic, strong) NSMutableArray <UGLotteryHistoryModel *> *dataArray;/**<   历史开奖数据*/
@@ -855,6 +855,13 @@ static NSString *footViewID = @"YNCollectionFootView";
     [self loadWBDate];
     [self initViews];
     [self initMRDate];
+    
+    [self.bottomView setBackgroundColor:Skin1.bgColor];
+    [self.bottomView insertSubview:({
+        UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 200)];
+        bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+        bgView;
+    }) atIndex:0];
 #pragma mark - 1级选择栏点击事件
     WeakSelf;
     self.segmentView.segmentIndexBlock = ^(NSInteger row) {
