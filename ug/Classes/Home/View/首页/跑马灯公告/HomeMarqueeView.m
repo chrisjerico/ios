@@ -202,12 +202,18 @@
 - (void)updateItemView:(UIView *)itemView atIndex:(NSUInteger)index forMarqueeView:(UUMarqueeView *)marqueeView {
     UILabel *content = [itemView viewWithTag:1001];
     
-    if ([Skin1.skitType isEqualToString:@"香槟金"]) {
-        content.textColor = [UIColor whiteColor];
-    } else {
-        content.textColor = Skin1.textColor1;
+    if ([APP.SiteId isEqualToString:@"c115"]) {
+        content.textColor = [UIColor redColor];
     }
-   
+    else{
+        if ([Skin1.skitType isEqualToString:@"香槟金"]) {
+            content.textColor = [UIColor whiteColor];
+        } else {
+            content.textColor = Skin1.textColor1;
+        }
+       
+    }
+    
     content.text = self.leftwardMarqueeViewData[index];
 }
 
