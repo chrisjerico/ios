@@ -175,7 +175,7 @@
         }.mutableCopy;
         
         if ([@"l002" containsString:APP.SiteId]) {
-            dict[@"六合资料"] = @[_bannerView, _LhPrize_FView, _rollingView, _gameNavigationView.superview, _lhColumnView, _trademarkView];
+            dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _lhColumnView, _trademarkView];
         }
         if ([@"c245" containsString:APP.SiteId]) {
             dict[@"香槟金"] = @[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _trademarkView];

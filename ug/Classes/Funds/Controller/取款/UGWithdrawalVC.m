@@ -35,6 +35,7 @@
     _acctList = @[].mutableCopy;
     _titles = @[].mutableCopy;
     _sysBankList = @[].mutableCopy;
+    self.title = @"取款";
     
     FastSubViewCode(self.view);
     subLabel(@"金额上下限Label").text = [NSString stringWithFormat:@"单笔下限-，上限-"];

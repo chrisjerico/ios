@@ -23,6 +23,7 @@
 #import "UGSalaryListView.h"
 #import "TKLRechargeMainViewController.h"
 #import "TKLRechargeListViewController.h"
+#import "UGWithdrawalVC.h"
 @interface TKLMoneyViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;          /**<  cell 标题*/
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;      /**<   cell头像*/
@@ -155,9 +156,14 @@
 }
 - (IBAction)withdrawButtonTaped:(id)sender {
     //提现
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
-    UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
-    [self.navigationController pushViewController:withdrawalVC animated:YES];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
+//    UGWithdrawalViewController *withdrawalVC = [storyboard instantiateInitialViewController];
+//    [self.navigationController pushViewController:withdrawalVC animated:YES];
+    UGWithdrawalVC *withdrawalVC = _LoadVC_from_storyboard_(@"UGWithdrawalVC");
+
+    withdrawalVC.withdrawSuccessBlock = ^{
+    };
+    [NavController1 pushViewController:withdrawalVC animated:true];
 }
 //换头像
 - (IBAction)showAvaterSelectView {
