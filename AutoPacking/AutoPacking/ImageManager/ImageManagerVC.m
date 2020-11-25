@@ -90,7 +90,11 @@
         NSData *data = [NSData dataWithContentsOfURL:url];
         NSImage *img = [NSImage sd_imageWithData:data];
         if (img) {
-            [imgs addObject:@{@"size":NSStringFromSize(img.size),@"img":[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]}];
+            [imgs addObject:@{
+                @"size":NSStringFromSize(img.size),
+                @"img":[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength],
+                @"url":url,
+            }];
         }
     }
     _tipsLabel.hidden = false;
@@ -98,6 +102,7 @@
     
     __weakSelf_(__self);
     NSMutableArray *existeds = @[].mutableCopy;
+    NSMutableArray *fails = @[].mutableCopy;
     void (^upload)(void) = nil;
     void (^__block __next)(void) = upload = ^{
         NSDictionary *dict = imgs.firstObject;
@@ -105,11 +110,14 @@
         if (!dict) {
             [__self refreshTags];
             [__self onFilterSegmentedControlsClick:nil];
-            if (existeds.count) {
-                __self.tipsLabel.stringValue = [NSString stringWithFormat:@"\n添加成功，其中%d张图片已存在", (int)existeds.count];
-            } else {
-                __self.tipsLabel.stringValue = @"\n添加成功！";
-            }
+            __self.tipsLabel.stringValue = ({
+                NSMutableString *tips = @"\n添加完毕".mutableCopy;
+                if (existeds.count)
+                    [tips appendFormat:@"，其中%d张已存在", (int)existeds.count];
+                if (fails.count)
+                    [tips appendFormat:@"，其中%d张上传失败", (int)fails.count];
+                tips;
+            });
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __self.tipsLabel.hidden = true;
             });
@@ -128,6 +136,8 @@
                 } else {
                     [existeds addObject:url];
                 }
+            } else {
+                [fails addObject:dict[@"url"]];
             }
             NSLog(@"res = %@", [resObject mj_keyValues]);
             __next();
@@ -332,7 +342,7 @@
     } else {
         TagItem *item = [collectionView makeItemWithIdentifier:@"cell" forIndexPath:indexPath];
         TagModel *tm = _allTags[indexPath.item];
-        item.button.title = [NSString stringWithFormat:@"(%ld)%@", (long)tm.cnt, tm.title];
+        item.button.title = [NSString stringWithFormat:@"%@(%ld)", tm.title, (long)tm.cnt];
         item.aSelected = [_selectedTags containsObject:tm];
         item.didClick = ^(BOOL selected) {
             if (selected) {

@@ -737,48 +737,25 @@
             <objects>
                 <viewController id="8Ve-jS-eO9" customClass="ImageManagerVC" sceneMemberID="viewController">
                     <view key="view" id="EDR-ey-xWO" customClass="DragFileView">
-                        <rect key="frame" x="0.0" y="0.0" width="729" height="415"/>
+                        <rect key="frame" x="0.0" y="0.0" width="831" height="639"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gzs-Hp-9R9">
-                                <rect key="frame" x="14" y="387" width="68" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="筛选图片：" id="Y6u-Wm-sCr">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfs-ut-9dD">
-                                <rect key="frame" x="80" y="382" width="156" height="24"/>
+                                <rect key="frame" x="11" y="601" width="206" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="dS2-Ch-MSM">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment label="时间倒序" width="75" selected="YES"/>
-                                        <segment label="正序" width="74" tag="1"/>
+                                        <segment label="时间倒序" width="100" selected="YES"/>
+                                        <segment label="正序" width="99" tag="1"/>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
                                     <action selector="onFilterSegmentedControlsClick:" target="8Ve-jS-eO9" id="pht-mv-vtl"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L0g-rq-4hb">
-                                <rect key="frame" x="240" y="382" width="156" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Dmc-U6-5AR">
-                                    <font key="font" metaFont="system"/>
-                                    <segments>
-                                        <segment label="标签包含" width="75" selected="YES"/>
-                                        <segment label="排除" width="74" tag="1"/>
-                                    </segments>
-                                </segmentedCell>
-                                <connections>
-                                    <action selector="onFilterSegmentedControlsClick:" target="8Ve-jS-eO9" id="gDH-KQ-ZQ4"/>
-                                </connections>
-                            </segmentedControl>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O52-3l-UBV">
-                                <rect key="frame" x="396" y="384" width="205" height="16"/>
+                                <rect key="frame" x="231" y="566" width="458" height="16"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="筛选结果：0，已选中0" id="AGs-XT-cYs">
                                     <font key="font" size="11" name=".PingFangSC-Regular"/>
@@ -787,18 +764,18 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView wantsLayer="YES" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MgS-6L-0au">
-                                <rect key="frame" x="16" y="305" width="573" height="71"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="225" height="556"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <clipView key="contentView" id="Xjw-3u-kQm">
-                                    <rect key="frame" x="0.0" y="0.0" width="573" height="71"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="225" height="556"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView allowsEmptySelection="NO" id="UQQ-id-Gce">
-                                            <rect key="frame" x="0.0" y="0.0" width="573" height="71"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="225" height="556"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" id="QOV-lp-5Wc">
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" id="QOV-lp-5Wc">
                                                 <size key="itemSize" width="150" height="20"/>
-                                                <edgeInsets key="sectionInset" left="5" right="5" top="5" bottom="5"/>
+                                                <edgeInsets key="sectionInset" left="0.0" right="0.0" top="10" bottom="0.0"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
@@ -819,11 +796,11 @@
                                 </scroller>
                             </scrollView>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QEn-TZ-lGk">
-                                <rect key="frame" x="597" y="299" width="5" height="116"/>
+                                <rect key="frame" x="699" y="559" width="5" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sdj-bm-oZe">
-                                <rect key="frame" x="607" y="355" width="112" height="53"/>
+                                <rect key="frame" x="708" y="587" width="112" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="添加图片" bezelStyle="regularSquare" imagePosition="left" alignment="center" borderStyle="border" inset="2" id="7AR-ai-bKv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -834,9 +811,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqF-6A-ocB">
-                                <rect key="frame" x="603" y="324" width="120" height="32"/>
+                                <rect key="frame" x="704" y="556" width="120" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="更新Git图片" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UFJ-mU-7o2">
+                                <buttonCell key="cell" type="push" title="拉取Git图片" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UFJ-mU-7o2">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -844,24 +821,9 @@
                                     <action selector="onMergeToGitBtnClick:" target="8Ve-jS-eO9" id="DMI-nx-O38"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4o-xc-eJK">
-                                <rect key="frame" x="603" y="298" width="120" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="导出所有图片" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="otx-ei-KMD">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="onExportBtnClick:" target="8Ve-jS-eO9" id="5gc-Xy-BKm"/>
-                                </connections>
-                            </button>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="xs4-HP-ona">
-                                <rect key="frame" x="0.0" y="297" width="729" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            </box>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jdf-T5-29S">
-                                <rect key="frame" x="15" y="258" width="119" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="233" y="591" width="210" height="33"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="exN-09-Rd4">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -869,8 +831,8 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rNj-Ds-U8w">
-                                <rect key="frame" x="136" y="257" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="445" y="590" width="88" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="重置标签" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WTC-qe-PsB">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
@@ -880,8 +842,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Acf-D6-f8f">
-                                <rect key="frame" x="224" y="257" width="102" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="527" y="590" width="88" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="增加标签" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" id="dPK-tN-7Yd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
@@ -891,8 +853,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="eZO-0w-mM9">
-                                <rect key="frame" x="319" y="257" width="102" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="607" y="590" width="87" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="删除标签" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7f3-RW-dBd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
@@ -901,26 +863,15 @@
                                     <action selector="onSetupTagBtnClick:" target="8Ve-jS-eO9" id="TRX-5A-K5a"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fiP-qC-Jia">
-                                <rect key="frame" x="621" y="257" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="取消选择" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nQ2-sG-PJH">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="onClearSelectedIMsBtnClick:" target="8Ve-jS-eO9" id="Hto-kM-he0"/>
-                                </connections>
-                            </button>
                             <scrollView wantsLayer="YES" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKe-cN-YPV">
-                                <rect key="frame" x="0.0" y="0.0" width="729" height="250"/>
+                                <rect key="frame" x="234" y="0.0" width="597" height="556"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" id="8Nr-YF-J3T">
-                                    <rect key="frame" x="0.0" y="0.0" width="729" height="250"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="597" height="556"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView selectable="YES" allowsMultipleSelection="YES" id="tVK-cb-Be7">
-                                            <rect key="frame" x="0.0" y="0.0" width="729" height="250"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="597" height="556"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="20" minimumLineSpacing="20" id="FnA-92-Q1o">
                                                 <size key="itemSize" width="100" height="100"/>
@@ -943,10 +894,35 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZSu-id-EuU">
-                                <rect key="frame" x="-2" y="0.0" width="733" height="415"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fiP-qC-Jia">
+                                <rect key="frame" x="600" y="560" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="取消选择" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nQ2-sG-PJH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onClearSelectedIMsBtnClick:" target="8Ve-jS-eO9" id="Hto-kM-he0"/>
+                                </connections>
+                            </button>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L0g-rq-4hb">
+                                <rect key="frame" x="10" y="572" width="206" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Dmc-U6-5AR">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="标签包含" width="100" selected="YES"/>
+                                        <segment label="排除" width="99" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="onFilterSegmentedControlsClick:" target="8Ve-jS-eO9" id="gDH-KQ-ZQ4"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZSu-id-EuU">
+                                <rect key="frame" x="0.0" y="0.0" width="831" height="639"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" drawsBackground="YES" id="bWR-iI-6R4">
+                                <textFieldCell key="cell" alignment="center" title="Label" drawsBackground="YES" id="bWR-iI-6R4">
                                     <font key="font" metaFont="systemBold" size="40"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.60492954371165641" colorSpace="custom" customColorSpace="displayP3"/>
@@ -966,7 +942,7 @@
                 </viewController>
                 <customObject id="lbB-M6-Rdj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75.5" y="1171.5"/>
+            <point key="canvasLocation" x="80.5" y="1280.5"/>
         </scene>
     </scenes>
 </document>
