@@ -27,7 +27,10 @@
     _im = im;
     __weakSelf_(__self);
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:im.thumbURL] completed:^(NSImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        __self.stackView.arrangedSubviews[2].hidden = [NSStringFromSize(image.size) isEqualToString:im.size];
+        if ([NSStringFromSize(image.size) isEqualToString:im.size]) {
+            im.thumbURL = im.originalURL;
+            __self.stackView.arrangedSubviews[2].hidden = true;
+        }
     }];
     self.textField.stringValue = [NSString stringWithFormat:@"尺寸：%@\n标签：%@", im.size, [im.tags.allKeys componentsJoinedByString:@","]];
     self.stackView.arrangedSubviews[1].hidden = !im.mediumURL || [im.mediumURL isEqualToString:im.originalURL];

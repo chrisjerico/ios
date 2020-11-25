@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class TagModel;
 
 @interface ImageModel : NSObject
 
@@ -20,8 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSNumber *>*tags;
 
 + (NSMutableArray <ImageModel *>*)allImages;
-+ (NSArray *)getAllTags;
++ (NSArray <TagModel *>*)getAllTags;
 + (void)save;
+@end
+
+
+
+
+@interface TagModel : NSObject
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, assign) NSInteger cnt;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -41,13 +41,23 @@ MJCodingImplementation
     return ims;
 }
 
-+ (NSArray *)getAllTags {
-    NSMutableDictionary *dict = @{}.mutableCopy;
++ (NSArray<TagModel *> *)getAllTags {
+    NSMutableArray *temp = @[].mutableCopy;
     for (ImageModel *im in ImageModel.allImages) {
-        [dict addEntriesFromDictionary:im.tags];
+        for (NSString *tag in im.tags.allKeys) {
+            TagModel *tm = [temp objectWithValue:tag keyPath:@"title"];
+            if (tm) {
+                tm.cnt += 1;
+            } else {
+                tm = [TagModel new];
+                tm.title = tag;
+                tm.cnt = 1;
+                [temp addObject:tm];
+            }
+        }
     }
-    return [dict.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
-        return [obj1 compare:obj2];
+    return [temp sortedArrayUsingComparator:^NSComparisonResult(TagModel *obj1, TagModel *obj2) {
+        return [obj1.title compare:obj2.title];
     }];
 }
 
@@ -63,4 +73,9 @@ MJCodingImplementation
     [ImageModel save];
 }
 
+@end
+
+
+@implementation TagModel
+MJCodingImplementation
 @end

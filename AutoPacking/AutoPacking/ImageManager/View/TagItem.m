@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SYFlatButton *button = [[SYFlatButton alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+    SYFlatButton *button = [[SYFlatButton alloc] initWithFrame:CGRectMake(0, 0, 150, 20)];
     button.title = @"Code";
     button.momentary = YES;
     button.cornerRadius = 4.0;
@@ -32,7 +32,7 @@
 - (void)setASelected:(BOOL)aSelected {
     _aSelected = aSelected;
     _button.backgroundNormalColor = aSelected ? [[NSColor lightGrayColor] colorWithAlphaComponent:0.5] : [NSColor whiteColor];
-    _button.font = aSelected ? [NSFont boldSystemFontOfSize:13] : [NSFont systemFontOfSize:11];
+    _button.font = aSelected ? [NSFont boldSystemFontOfSize:11.5] : [NSFont systemFontOfSize:11];
 }
 
 - (IBAction)onClick:(SYFlatButton *)sender {

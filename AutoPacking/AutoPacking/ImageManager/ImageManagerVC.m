@@ -22,10 +22,11 @@
 
 @property (weak) IBOutlet NSTextField *tagTextField;
 @property (weak) IBOutlet NSTextField *tipsLabel;
+@property (weak) IBOutlet NSTextField *countLabel;
 @property (nonatomic, strong) NSMutableArray <ImageModel *>*resultIMs;
 @property (nonatomic, strong) NSMutableArray <ImageModel *>*selectedIMs;
-@property (nonatomic, strong) NSArray <NSString *>*allTags;
-@property (nonatomic, strong) NSMutableArray <NSString *>*selectedTags;
+@property (nonatomic, strong) NSArray <TagModel *>*allTags;
+@property (nonatomic, strong) NSMutableArray <TagModel *>*selectedTags;
 @end
 
 @implementation ImageManagerVC
@@ -39,6 +40,7 @@
     [_imgCollectionView registerClass:[ImageItem class] forItemWithIdentifier:@"cell"];
     [_tagCollectionView registerClass:[TagItem class] forItemWithIdentifier:@"cell"];
     _tipsLabel.hidden = true;
+    [self onFilterSegmentedControlsClick:nil];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -175,14 +177,14 @@
         BOOL ignore = false;
         if (isExclude) {
             for (NSString *tag in im.tags) {
-                if ([_selectedTags containsObject:tag]) {
+                if ([_selectedTags containsValue:tag keyPath:@"title"]) {
                     ignore = true;
                     break;
                 }
             }
         } else {
-            for (NSString *tag in _selectedTags) {
-                if (!im.tags[tag]) {
+            for (TagModel *tag in _selectedTags) {
+                if (!im.tags[tag.title]) {
                     ignore = true;
                     break;
                 }
@@ -203,6 +205,7 @@
     }];
     _resultIMs = temp;
     [_imgCollectionView reloadData];
+    _countLabel.stringValue = [NSString stringWithFormat:@"筛选出%ld张，已选中%ld张", (long)_resultIMs.count, (long)_selectedIMs.count];
 }
 
 // 重置标签
@@ -243,17 +246,13 @@
     [self onClearSelectedIMsBtnClick:nil];
 }
 
-- (IBAction)onDeleteImageBtnClick:(NSButton *)sender {
-    [_resultIMs removeObjectsInArray:_selectedIMs];
-    [_selectedIMs removeAllObjects];
-}
-
 - (IBAction)onClearSelectedIMsBtnClick:(NSButton *)sender {
     for (ImageModel *im in _selectedIMs) {
         [_imgCollectionView itemAtIndex:[_resultIMs indexOfObject:im]].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0];
     }
     [_selectedIMs removeAllObjects];
     _tagTextField.stringValue = @"";
+    _countLabel.stringValue = [NSString stringWithFormat:@"筛选出%ld张，已选中%ld张", (long)_resultIMs.count, (long)_selectedIMs.count];
 }
 
 
@@ -279,14 +278,14 @@
         return item;
     } else {
         TagItem *item = [collectionView makeItemWithIdentifier:@"cell" forIndexPath:indexPath];
-        NSString *text = _allTags[indexPath.item];
-        item.button.title = text;
-        item.aSelected = [_selectedTags containsObject:text];
+        TagModel *tm = _allTags[indexPath.item];
+        item.button.title = [NSString stringWithFormat:@"(%ld)%@", (long)tm.cnt, tm.title];
+        item.aSelected = [_selectedTags containsObject:tm];
         item.didClick = ^(BOOL selected) {
             if (selected) {
-                [__self.selectedTags addObject:text];
+                [__self.selectedTags addObject:tm];
             } else {
-                [__self.selectedTags removeObject:text];
+                [__self.selectedTags removeObject:tm];
             }
             [__self onFilterSegmentedControlsClick:nil];
         };
@@ -322,6 +321,9 @@
     _tagTextField.stringValue = [[dict.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
         return [obj1 compare:obj2];
     }] componentsJoinedByString:@","];
+    
+    // 选中数量
+    _countLabel.stringValue = [NSString stringWithFormat:@"筛选出%ld张，已选中%ld张", (long)_resultIMs.count, (long)_selectedIMs.count];
 }
 
 @end
