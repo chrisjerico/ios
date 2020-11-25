@@ -7,12 +7,14 @@
 //
 
 #import "UGBMHeaderView.h"
-#import "UGNoticePopView.h"
+#import "PromotePopView.h"
+
 #import "UGBMMemberCenterViewController.h"
 #import "UGBMLoginViewController.h"
 #import "UGBMRegisterViewController.h"
 #import "UGBMBrowseViewController.h"
 #import "UGFundsViewController.h"
+
 @interface UGBMHeaderView ()<UUMarqueeViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *hornBgView;
 
@@ -181,8 +183,8 @@
         } else {
             y = 100;
         }
-        UGNoticePopView *popView = [[UGNoticePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
-        popView.content = str;
+        PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
+        [popView setContent:str title:@"公告详情"];
         [popView show];
     }
 }

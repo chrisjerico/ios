@@ -98,7 +98,7 @@
     }
 
     [self.activity startAnimating];
-    NSString *str = _NSString(@"<head><style>body{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", self.item.content);
+    NSString *str = _NSString(@"<head><style>body{margin:10}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", self.item.content);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -109,6 +109,14 @@
     });
 }
 
+- (void)setContent:(NSString *)content title:(NSString *)title {
+    self.item = ({
+        UGPromoteModel *pm = [UGPromoteModel new];
+        pm.title = title ? : @"公告详情";
+        pm.content = content;
+        pm;
+    });
+}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	if ([APP.SiteId isEqualToString:@"c198"]){
@@ -117,6 +125,8 @@
 	} else if (Skin1.isBlack) {
         // body.style默认字体色
         [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.color='#DDD'"];
+        // body.style默认文字大小
+        [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.fontSize='14'"];
         // body.style背景色
         [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.background='#171717'"];
         // 表格字体色、边框色

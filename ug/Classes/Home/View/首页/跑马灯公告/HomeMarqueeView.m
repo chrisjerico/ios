@@ -10,7 +10,7 @@
 #import "UUMarqueeView.h"
 #import "TKLPlatformNotiveView.h"
 #import "UGPlatformNoticeView.h"
-#import "UGNoticePopView.h"
+#import "PromotePopView.h"
 
 #import "UGNoticeTypeModel.h"
 
@@ -173,8 +173,8 @@
         } else {
             y = 100;
         }
-        UGNoticePopView *popView = [[UGNoticePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
-        popView.content = str;
+        PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
+        [popView setContent:str title:@"公告详情"];
         [popView show];
     }
 }

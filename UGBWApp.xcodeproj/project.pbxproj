@@ -597,12 +597,8 @@
 		031E1B8123BE812900B0F813 /* UGPlatformNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E163B23BE812400B0F813 /* UGPlatformNoticeView.xib */; };
 		031E1B8223BE812900B0F813 /* UGPlatformNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E163D23BE812400B0F813 /* UGPlatformNoticeCell.xib */; };
 		031E1B8323BE812900B0F813 /* UGPlatformNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E163D23BE812400B0F813 /* UGPlatformNoticeCell.xib */; };
-		031E1B8423BE812900B0F813 /* UGNoticePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E164123BE812400B0F813 /* UGNoticePopView.m */; };
-		031E1B8523BE812900B0F813 /* UGNoticePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E164123BE812400B0F813 /* UGNoticePopView.m */; };
 		031E1B8623BE812900B0F813 /* UGNoticeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E164223BE812400B0F813 /* UGNoticeHeaderView.m */; };
 		031E1B8723BE812900B0F813 /* UGNoticeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E164223BE812400B0F813 /* UGNoticeHeaderView.m */; };
-		031E1B8823BE812900B0F813 /* UGNoticePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E164323BE812400B0F813 /* UGNoticePopView.xib */; };
-		031E1B8923BE812900B0F813 /* UGNoticePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E164323BE812400B0F813 /* UGNoticePopView.xib */; };
 		031E1B8A23BE812900B0F813 /* UGNoticeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E164423BE812400B0F813 /* UGNoticeHeaderView.xib */; };
 		031E1B8B23BE812900B0F813 /* UGNoticeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 031E164423BE812400B0F813 /* UGNoticeHeaderView.xib */; };
 		031E1B8C23BE812900B0F813 /* UGLotteryRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E164523BE812400B0F813 /* UGLotteryRecordTableViewCell.m */; };
@@ -2917,10 +2913,7 @@
 		031E163C23BE812400B0F813 /* UGPlatformNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGPlatformNoticeCell.h; sourceTree = "<group>"; };
 		031E163D23BE812400B0F813 /* UGPlatformNoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGPlatformNoticeCell.xib; sourceTree = "<group>"; };
 		031E163F23BE812400B0F813 /* UGNoticeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGNoticeHeaderView.h; sourceTree = "<group>"; };
-		031E164023BE812400B0F813 /* UGNoticePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGNoticePopView.h; sourceTree = "<group>"; };
-		031E164123BE812400B0F813 /* UGNoticePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGNoticePopView.m; sourceTree = "<group>"; };
 		031E164223BE812400B0F813 /* UGNoticeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGNoticeHeaderView.m; sourceTree = "<group>"; };
-		031E164323BE812400B0F813 /* UGNoticePopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGNoticePopView.xib; sourceTree = "<group>"; };
 		031E164423BE812400B0F813 /* UGNoticeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGNoticeHeaderView.xib; sourceTree = "<group>"; };
 		031E164523BE812400B0F813 /* UGLotteryRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLotteryRecordTableViewCell.m; sourceTree = "<group>"; };
 		031E164623BE812400B0F813 /* UGGameListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGGameListCollectionViewCell.h; sourceTree = "<group>"; };
@@ -5975,9 +5968,6 @@
 			isa = PBXGroup;
 			children = (
 				031E163723BE812400B0F813 /* 公告列表 */,
-				031E164023BE812400B0F813 /* UGNoticePopView.h */,
-				031E164123BE812400B0F813 /* UGNoticePopView.m */,
-				031E164323BE812400B0F813 /* UGNoticePopView.xib */,
 				CF9CB768253C10D9007F04B7 /* HomeMarqueeView.h */,
 				CF9CB769253C10D9007F04B7 /* HomeMarqueeView.m */,
 				CF9CB76E253C10F4007F04B7 /* HomeMarqueeView.xib */,
@@ -10269,7 +10259,6 @@
 				031E1E7523BE812C00B0F813 /* UGRecordFilterCollectionViewCell.xib in Resources */,
 				031E1E6523BE812C00B0F813 /* UGAvaterSelectView.xib in Resources */,
 				031EF59D23BE7B4D00B0F813 /* yijian.svg in Resources */,
-				031E1B8923BE812900B0F813 /* UGNoticePopView.xib in Resources */,
 				031E1D4323BE812B00B0F813 /* UGGoogleAuthenticationThirdViewController.xib in Resources */,
 				031E1E4923BE812C00B0F813 /* UGMineSkinCollectionViewCell.xib in Resources */,
 				031EF5C123BE7B4D00B0F813 /* ConcernedMomentsHeaderView.xib in Resources */,
@@ -10478,7 +10467,6 @@
 				03D6927A23C32E1A003D9C12 /* C001BetErrorCustomView.xib in Resources */,
 				CF475900239636D200966536 /* 58.gif in Resources */,
 				CF8E242B23DDBFD80054BF0F /* FontAwesome.ttf in Resources */,
-				031E1B8823BE812900B0F813 /* UGNoticePopView.xib in Resources */,
 				033372F624F593F400048EC1 /* EggFrenzyViewController.xib in Resources */,
 				D40745CD2511F37900606EA3 /* YNHLPrizeDetailView.xib in Resources */,
 				CF4758C4239636D200966536 /* 6.gif in Resources */,
@@ -11491,7 +11479,6 @@
 				CF8508632466D6670025672F /* ReactNativeHelper.m in Sources */,
 				031E199F23BE812600B0F813 /* IBTextField.m in Sources */,
 				031E1CB123BE812A00B0F813 /* UGNavigationController.m in Sources */,
-				031E1B8523BE812900B0F813 /* UGNoticePopView.m in Sources */,
 				031EF5BE23BE7B4D00B0F813 /* ConcernedMomentsHeaderView.swift in Sources */,
 				03CF3071254FFBCA00D75721 /* InviteCodeModel.m in Sources */,
 				03D6926A23C22C9B003D9C12 /* UINavigationController+Push.m in Sources */,
@@ -12382,7 +12369,6 @@
 				031E194223BE812600B0F813 /* UGSkinManagers.m in Sources */,
 				031E1A5E23BE812700B0F813 /* STButton.m in Sources */,
 				031E1E5423BE812C00B0F813 /* UGMineSkinCollectionViewCell.m in Sources */,
-				031E1B8423BE812900B0F813 /* UGNoticePopView.m in Sources */,
 				031E1C6623BE812A00B0F813 /* UGDepositDetailsNoLineViewController.m in Sources */,
 				031E1C3223BE812900B0F813 /* UGSSCBetItem1Cell.m in Sources */,
 				D4AE1C0A22C0FCC400C142FE /* AppDelegate.m in Sources */,

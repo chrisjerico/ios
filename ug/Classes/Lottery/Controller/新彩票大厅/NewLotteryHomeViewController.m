@@ -8,7 +8,6 @@
 
 
 #import "NewLotteryHomeViewController.h"
-#import "UGNoticePopView.h"
 #import "UGFundsViewController.h"
 #import "XYYSegmentControl.h"
 #import "NewLotteryListController.h"
@@ -16,6 +15,8 @@
 #import "UGNoticeTypeModel.h"
 #import "UGYYRightMenuView.h"
 #import "STBarButtonItem.h"
+#import "PromotePopView.h"
+
 @interface NewLotteryHomeViewController ()<UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,XYYSegmentControlDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headView;   /**<   头View */
 @property (weak, nonatomic) IBOutlet UIButton *refreshFirstButton;    /**<    刷新按钮 */
@@ -318,8 +319,8 @@
         } else {
             y = 100;
         }
-        UGNoticePopView *popView = [[UGNoticePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
-        popView.content = str;
+        PromotePopView *popView = [[PromotePopView alloc] initWithFrame:CGRectMake(40, y, UGScreenW - 80, UGScerrnH - y * 2)];
+        [popView setContent:str title:@"公告详情"];
         [popView show];
     }
 }
