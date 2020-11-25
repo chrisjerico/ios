@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ImageItem">
             <connections>
                 <outlet property="imageView" destination="jAZ-KS-lUc" id="47c-hI-aNk"/>
+                <outlet property="stackView" destination="Dcn-Od-FoS" id="Yhh-hm-in4"/>
                 <outlet property="textField" destination="6Bb-k8-tCj" id="kN7-sq-a9x"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -20,16 +21,16 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-KS-lUc">
-                    <rect key="frame" x="0.0" y="0.0" width="112" height="147"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="fdc-QL-LiW"/>
+                    <rect key="frame" x="-3" y="-3" width="118" height="153"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" imageFrameStyle="groove" id="fdc-QL-LiW"/>
                 </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Bb-k8-tCj">
                     <rect key="frame" x="0.0" y="0.0" width="112" height="147"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" drawsBackground="YES" id="eJ3-cT-fOF">
-                        <font key="font" metaFont="system" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1406369823619632" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </textFieldCell>
                 </textField>
                 <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dcn-Od-FoS">
@@ -39,7 +40,7 @@
                             <rect key="frame" x="-1" y="-2" width="39" height="25"/>
                             <buttonCell key="cell" type="squareTextured" title="原图" bezelStyle="texturedSquare" imagePosition="left" borderStyle="border" inset="2" id="7en-en-QpG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" size="11" name=".PingFangSC-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                             <connections>
                                 <action selector="onCopyLinkBtnClick:" target="-2" id="pWZ-I8-ErQ"/>
@@ -49,7 +50,7 @@
                             <rect key="frame" x="36" y="-2" width="40" height="25"/>
                             <buttonCell key="cell" type="squareTextured" title="中等" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cFf-rf-W3i">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" size="11" name=".PingFangSC-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                             <connections>
                                 <action selector="onCopyLinkBtnClick:" target="-2" id="B9s-QR-YWT"/>
@@ -59,7 +60,7 @@
                             <rect key="frame" x="74" y="-2" width="39" height="25"/>
                             <buttonCell key="cell" type="squareTextured" title="缩略" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b8K-tZ-bXI">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" size="11" name=".PingFangSC-Regular"/>
+                                <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
                             <connections>
                                 <action selector="onCopyLinkBtnClick:" target="-2" id="hZ0-5B-sxs"/>

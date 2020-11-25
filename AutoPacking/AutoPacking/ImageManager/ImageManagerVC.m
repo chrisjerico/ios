@@ -140,6 +140,7 @@
         NSDictionary *dict = imgs.firstObject;
         [imgs removeObject:dict];
         if (!dict) {
+            __self.allTags = [ImageModel getAllTags];
             [__self onFilterSegmentedControlsClick:nil];
             __self.tipsLabel.hidden = true;
             return;
@@ -166,6 +167,7 @@
 
 // 筛选图片
 - (IBAction)onFilterSegmentedControlsClick:(NSSegmentedControl *)sender {
+    [self onClearSelectedIMsBtnClick:nil];
     
     BOOL isExclude = _tagSegmentedControl.selectedSegment;
     NSMutableArray *temp = @[].mutableCopy;
@@ -203,13 +205,32 @@
     [_imgCollectionView reloadData];
 }
 
+// 重置标签
 - (IBAction)onSetupTagBtnClick:(NSButton *)sender {
     NSMutableDictionary *dict = @{}.mutableCopy;
     for (NSString *tag in [_tagTextField.stringValue componentsSeparatedByString:@","]) {
         dict[tag] = @1;
     }
     for (ImageModel *im in _selectedIMs) {
-        im.tags = dict.mutableCopy;
+        switch (sender.tag) {
+            case 0:
+                im.tags = dict.mutableCopy;
+                break;
+            case 1:
+                [im.tags addEntriesFromDictionary:dict];
+                if (im.tags.count > 1) {
+                    im.tags[@"未分类"] = nil;
+                }
+                break;
+            case 2:
+                [im.tags removeObjectsForKeys:dict.allKeys];
+                if (!im.tags.count) {
+                    im.tags[@"未分类"] = @1;
+                }
+                break;
+                
+            default:;
+        }
         im.updateTime = [[NSDate date] timeIntervalSince1970];
     }
     [ImageModel save];
@@ -229,7 +250,7 @@
 
 - (IBAction)onClearSelectedIMsBtnClick:(NSButton *)sender {
     for (ImageModel *im in _selectedIMs) {
-        [_imgCollectionView itemAtIndex:[_resultIMs indexOfObject:im]].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0.1];
+        [_imgCollectionView itemAtIndex:[_resultIMs indexOfObject:im]].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0];
     }
     [_selectedIMs removeAllObjects];
     _tagTextField.stringValue = @"";
@@ -274,24 +295,26 @@
 }
 
 - (void)collectionView:(NSCollectionView *)collectionView didSelectItemsAtIndexPaths:(NSSet<NSIndexPath *> *)indexPaths {
-    if (collectionView == _imgCollectionView) {
-        for (NSIndexPath *ip in indexPaths.allObjects) {
-            ImageModel *im = _resultIMs[ip.item];
-            if ([_selectedIMs containsObject:im]) {
-                [collectionView itemAtIndexPath:ip].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0.1];
-                [_selectedIMs removeObject:im];
-            } else {
-                [collectionView itemAtIndexPath:ip].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0.5];
-                [_selectedIMs addObject:im];
-            }
-        }
-    } else {
-        for (NSIndexPath *ip in indexPaths.allObjects) {
-            [collectionView itemAtIndexPath:ip].textField.backgroundColor = [NSColor blackColor];
-            [collectionView itemAtIndexPath:ip].textField.textColor = [NSColor whiteColor];
+    if (collectionView != _imgCollectionView) return;
+    
+    BOOL isSelect = false;
+    for (NSIndexPath *ip in indexPaths.allObjects) {
+        ImageModel *im = _resultIMs[ip.item];
+        if (![_selectedIMs containsObject:im])
+            isSelect = true;
+    }
+    for (NSIndexPath *ip in indexPaths.allObjects) {
+        ImageModel *im = _resultIMs[ip.item];
+        if (!isSelect) {
+            [collectionView itemAtIndexPath:ip].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0];
+            [_selectedIMs removeObject:im];
+        } else {
+            [collectionView itemAtIndexPath:ip].textField.backgroundColor = [[NSColor blackColor] colorWithAlphaComponent:0.5];
+            [_selectedIMs addObject:im];
         }
     }
     
+    // 列出选中图片的所有标签
     NSMutableDictionary *dict = @{}.mutableCopy;
     for (ImageModel *im in _selectedIMs) {
         [dict addEntriesFromDictionary:im.tags];

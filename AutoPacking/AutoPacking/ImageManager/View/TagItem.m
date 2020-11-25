@@ -29,12 +29,16 @@
     _button.borderNormalColor = [NSColor blackColor];
 }
 
+- (void)setASelected:(BOOL)aSelected {
+    _aSelected = aSelected;
+    _button.backgroundNormalColor = aSelected ? [[NSColor lightGrayColor] colorWithAlphaComponent:0.5] : [NSColor whiteColor];
+    _button.font = aSelected ? [NSFont boldSystemFontOfSize:13] : [NSFont systemFontOfSize:11];
+}
+
 - (IBAction)onClick:(SYFlatButton *)sender {
-    self.selected = !self.selected;
-    _button.backgroundNormalColor = self.selected ? [[NSColor lightGrayColor] colorWithAlphaComponent:0.5] : [NSColor whiteColor];
-    _button.font = self.selected ? [NSFont boldSystemFontOfSize:13] : [NSFont systemFontOfSize:11];
+    self.aSelected = !_aSelected;
     if (_didClick)
-        _didClick(self.selected);
+        _didClick(_aSelected);
 }
 
 @end

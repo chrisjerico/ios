@@ -56,16 +56,6 @@ MJCodingImplementation
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-#pragma mark -
-
-- (NSString *)mediumURL {
-    return _mediumURL ? : _originalURL;
-}
-
-- (NSString *)thumbURL {
-    return _thumbURL ? : _originalURL;
-}
-
 
 #pragma mark - NSMutableArrayDidChangeDelegate
 

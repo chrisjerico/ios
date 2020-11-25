@@ -740,6 +740,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="661" height="390"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZSu-id-EuU">
+                                <rect key="frame" x="-2" y="0.0" width="665" height="390"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" drawsBackground="YES" id="bWR-iI-6R4">
+                                    <font key="font" metaFont="systemBold" size="40"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.60492954371165641" colorSpace="custom" customColorSpace="displayP3"/>
+                                </textFieldCell>
+                            </textField>
                             <scrollView wantsLayer="YES" fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKe-cN-YPV">
                                 <rect key="frame" x="0.0" y="0.0" width="661" height="225"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -750,9 +759,9 @@
                                         <collectionView selectable="YES" allowsMultipleSelection="YES" id="tVK-cb-Be7">
                                             <rect key="frame" x="0.0" y="0.0" width="646" height="377"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="FnA-92-Q1o">
-                                                <size key="itemSize" width="120" height="120"/>
-                                                <edgeInsets key="sectionInset" left="10" right="10" top="10" bottom="10"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="20" minimumLineSpacing="20" id="FnA-92-Q1o">
+                                                <size key="itemSize" width="100" height="100"/>
+                                                <edgeInsets key="sectionInset" left="20" right="20" top="20" bottom="20"/>
                                             </collectionViewFlowLayout>
                                             <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
@@ -876,11 +885,11 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rNj-Ds-U8w">
-                                <rect key="frame" x="141" y="232" width="120" height="32"/>
+                                <rect key="frame" x="141" y="232" width="94" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="批量修改标签" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WTC-qe-PsB">
+                                <buttonCell key="cell" type="push" title="重置标签" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WTC-qe-PsB">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="onSetupTagBtnClick:" target="8Ve-jS-eO9" id="3MS-N7-Tne"/>
@@ -897,15 +906,15 @@
                                     <action selector="onMergeToGitBtnClick:" target="8Ve-jS-eO9" id="DMI-nx-O38"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Acf-D6-f8f">
-                                <rect key="frame" x="260" y="232" width="102" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Acf-D6-f8f">
+                                <rect key="frame" x="229" y="232" width="102" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="删除图片" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dPK-tN-7Yd">
+                                <buttonCell key="cell" type="push" title="增加标签" bezelStyle="rounded" alignment="center" borderStyle="border" tag="1" imageScaling="proportionallyDown" inset="2" id="dPK-tN-7Yd">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="onDeleteImageBtnClick:" target="8Ve-jS-eO9" id="5mc-bz-ahD"/>
+                                    <action selector="onSetupTagBtnClick:" target="8Ve-jS-eO9" id="NMS-LB-zg2"/>
                                 </connections>
                             </button>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QEn-TZ-lGk">
@@ -923,15 +932,17 @@
                                     <action selector="onAddImageBtnClick:" target="8Ve-jS-eO9" id="FS7-QL-w74"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZSu-id-EuU">
-                                <rect key="frame" x="-2" y="0.0" width="665" height="390"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" drawsBackground="YES" id="bWR-iI-6R4">
-                                    <font key="font" metaFont="systemBold" size="40"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.60492954371165641" colorSpace="custom" customColorSpace="displayP3"/>
-                                </textFieldCell>
-                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="eZO-0w-mM9">
+                                <rect key="frame" x="324" y="232" width="102" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="删除标签" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7f3-RW-dBd">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onSetupTagBtnClick:" target="8Ve-jS-eO9" id="TRX-5A-K5a"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>

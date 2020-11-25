@@ -12,6 +12,7 @@
 @interface ImageItem ()
 @property (weak) IBOutlet NSButton *imageView;
 @property (weak) IBOutlet NSTextField *textField;
+@property (weak) IBOutlet NSStackView *stackView;
 
 @end
 
@@ -24,8 +25,13 @@
 
 - (void)setIm:(ImageModel *)im {
     _im = im;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:im.thumbURL]];
+    __weakSelf_(__self);
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:im.thumbURL] completed:^(NSImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        __self.stackView.arrangedSubviews[2].hidden = [NSStringFromSize(image.size) isEqualToString:im.size];
+    }];
     self.textField.stringValue = [NSString stringWithFormat:@"尺寸：%@\n标签：%@", im.size, [im.tags.allKeys componentsJoinedByString:@","]];
+    self.stackView.arrangedSubviews[1].hidden = !im.mediumURL || [im.mediumURL isEqualToString:im.originalURL];
+    self.stackView.arrangedSubviews[2].hidden = !im.thumbURL || [im.thumbURL isEqualToString:im.originalURL];
 }
 
 - (IBAction)onClick:(NSButton *)sender {
