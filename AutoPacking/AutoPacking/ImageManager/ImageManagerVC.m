@@ -239,6 +239,10 @@
     [ImageModel save];
     
     _allTags = [ImageModel getAllTags];
+    for (TagModel *tm in _selectedTags.copy) {
+        if (![_allTags containsValue:tm.title keyPath:@"title"])
+            [_selectedTags removeObject:tm];
+    }
     _tagTextField.stringValue = @"";
     
     [_tagCollectionView reloadData];
