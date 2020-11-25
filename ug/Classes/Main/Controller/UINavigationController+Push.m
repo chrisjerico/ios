@@ -48,6 +48,7 @@
 #import "UGFundDetailsTableViewController.h"    //资金明细
 #import "UGYYLotterySecondHomeViewController.h" //大厅
 #import "ChatMainViewController.h"              //聊天室列表
+#import "UGLotteryHomeController.h"
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -825,6 +826,10 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"esport" keyPath:@"category"].games error:nil];
             vc.title = @"电竞大厅";
             [NavController1 pushViewController:vc animated:YES];
+            break;
+        }
+        case 47: {
+            [NavController1 pushViewController:[UGLotteryHomeController new] animated:YES];
             break;
         }
         default: {
