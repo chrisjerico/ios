@@ -55,6 +55,7 @@
 		CFDB112223A160550040DE2B /* 4plist.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112123A160550040DE2B /* 4plist.sh */; };
 		CFDB112C23A3AE6F0040DE2B /* 5push.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB112B23A3AE6F0040DE2B /* 5push.sh */; };
 		CFDB113E23A3E1AD0040DE2B /* 6clean.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFDB113D23A3E1AD0040DE2B /* 6clean.sh */; };
+		CFE6D7F9256E48D70086BF14 /* DragFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE6D7F8256E48D70086BF14 /* DragFileView.m */; };
 		CFE8765623D424A200BAA5D4 /* 8zip.sh in Resources */ = {isa = PBXBuildFile; fileRef = CFE8765523D424A200BAA5D4 /* 8zip.sh */; };
 		CFEB44C5256CF78A00FD7AE6 /* ImageManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEB44C3256CF78A00FD7AE6 /* ImageManagerVC.m */; };
 		CFEB44DB256CF7B300FD7AE6 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEB44D8256CF7B300FD7AE6 /* ImageModel.m */; };
@@ -229,6 +230,8 @@
 		CFDB112B23A3AE6F0040DE2B /* 5push.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 5push.sh; sourceTree = "<group>"; };
 		CFDB113C23A3D2670040DE2B /* cc_runtime_property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cc_runtime_property.h; path = ../../../ug/Classes/Helper/FishUtility/define/cc_runtime_property.h; sourceTree = "<group>"; };
 		CFDB113D23A3E1AD0040DE2B /* 6clean.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 6clean.sh; sourceTree = "<group>"; };
+		CFE6D7F7256E48D70086BF14 /* DragFileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragFileView.h; sourceTree = "<group>"; };
+		CFE6D7F8256E48D70086BF14 /* DragFileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragFileView.m; sourceTree = "<group>"; };
 		CFE8765523D424A200BAA5D4 /* 8zip.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = 8zip.sh; sourceTree = "<group>"; };
 		CFEB44C3256CF78A00FD7AE6 /* ImageManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManagerVC.m; sourceTree = "<group>"; };
 		CFEB44C4256CF78A00FD7AE6 /* ImageManagerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManagerVC.h; sourceTree = "<group>"; };
@@ -613,6 +616,15 @@
 			path = define;
 			sourceTree = "<group>";
 		};
+		CFE6D7F6256E48B10086BF14 /* DragFileView */ = {
+			isa = PBXGroup;
+			children = (
+				CFE6D7F7256E48D70086BF14 /* DragFileView.h */,
+				CFE6D7F8256E48D70086BF14 /* DragFileView.m */,
+			);
+			path = DragFileView;
+			sourceTree = "<group>";
+		};
 		CFEB44C7256CF79300FD7AE6 /* ImageManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +639,7 @@
 		CFEB44C9256CF79B00FD7AE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFE6D7F6256E48B10086BF14 /* DragFileView */,
 				CFEB46B6256D1B1B00FD7AE6 /* SYFlatButton */,
 				CFEB46AF256D14F500FD7AE6 /* TagItem.h */,
 				CFEB46B0256D14F500FD7AE6 /* TagItem.m */,
@@ -1017,6 +1030,7 @@
 				CFEB467E256CFB8500FD7AE6 /* SDWebImageDownloaderOperation.m in Sources */,
 				CFEB4682256CFB8500FD7AE6 /* SDImageTransformer.m in Sources */,
 				CFEB466D256CFB8500FD7AE6 /* UIImage+MultiFormat.m in Sources */,
+				CFE6D7F9256E48D70086BF14 /* DragFileView.m in Sources */,
 				CFEB4681256CFB8500FD7AE6 /* SDWebImageTransition.m in Sources */,
 				CF5D3E192397819C00CC3D6B /* AFURLResponseSerialization.m in Sources */,
 				CFEB466B256CFB8500FD7AE6 /* UIImage+GIF.m in Sources */,

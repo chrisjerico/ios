@@ -9,6 +9,7 @@
 
 #import "ImageItem.h"
 #import "TagItem.h"
+#import "DragFileView.h"
 
 #import "ImageModel.h"
 
@@ -40,6 +41,28 @@
     [_imgCollectionView registerClass:[ImageItem class] forItemWithIdentifier:@"cell"];
     [_tagCollectionView registerClass:[TagItem class] forItemWithIdentifier:@"cell"];
     _tipsLabel.hidden = true;
+    
+    __weakSelf_(__self);
+    __block BOOL __dragging = false;
+    ((DragFileView *)self.view).didDragging = ^(BOOL inOrOut) {
+        if (!__dragging && !__self.tipsLabel.hidden) return;
+        __dragging = inOrOut;
+        __self.imgCollectionView.hidden = inOrOut;
+        __self.tipsLabel.hidden = !inOrOut;
+        __self.tipsLabel.stringValue = @"\n拖拽到这里导入图片";
+    };
+    ((DragFileView *)self.view).didDragFiles = ^(NSArray<NSString *> * _Nonnull urls) {
+        __self.imgCollectionView.hidden = false;
+        __self.tipsLabel.hidden = true;
+        __dragging = false;
+        [__self addImagesWithURLs:({
+            NSMutableArray *temp = @[].mutableCopy;
+            for (NSString *url in urls) {
+                [temp addObject:[NSURL fileURLWithPath:url]];
+            }
+            temp;
+        })];
+    };
     [self onFilterSegmentedControlsClick:nil];
 }
 
@@ -47,6 +70,70 @@
     [super setRepresentedObject:representedObject];
 
     // Update the view, if already loaded.
+}
+
+- (void)refreshTags {
+    NSArray *temp = _selectedTags.copy;
+    [_selectedTags removeAllObjects];
+    _allTags = [ImageModel getAllTags];
+    for (TagModel *tm in temp) {
+        [_selectedTags addObject:[_allTags objectWithValue:tm.title keyPath:@"title"]];
+    }
+    [_tagCollectionView reloadData];
+}
+
+- (void)addImagesWithURLs:(NSArray <NSURL *>*)urls {
+    NSMutableArray *imgs = @[].mutableCopy;
+    for (NSURL *url in urls) {
+        NSLog(@"--->%@",url);
+        //这个url是文件的路径
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        NSImage *img = [NSImage sd_imageWithData:data];
+        if (img) {
+            [imgs addObject:@{@"size":NSStringFromSize(img.size),@"img":[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]}];
+        }
+    }
+    _tipsLabel.hidden = false;
+    _tipsLabel.stringValue = @"\n正在上传图片...";
+    
+    __weakSelf_(__self);
+    NSMutableArray *existeds = @[].mutableCopy;
+    void (^upload)(void) = nil;
+    void (^__block __next)(void) = upload = ^{
+        NSDictionary *dict = imgs.firstObject;
+        [imgs removeObject:dict];
+        if (!dict) {
+            [__self refreshTags];
+            [__self onFilterSegmentedControlsClick:nil];
+            if (existeds.count) {
+                __self.tipsLabel.stringValue = [NSString stringWithFormat:@"\n添加成功，其中%d张图片已存在", (int)existeds.count];
+            } else {
+                __self.tipsLabel.stringValue = @"\n添加成功！";
+            }
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __self.tipsLabel.hidden = true;
+            });
+            return;
+        }
+        [NetworkManager1 uploadImage:dict[@"img"]].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+            NSString *url = resObject[@"data"][@"url"];
+            if (url.length) {
+                if (![ImageModel.allImages containsValue:url keyPath:@"originalURL"]) {
+                    ImageModel *im = [ImageModel new];
+                    im.originalURL = url;
+                    im.updateTime = im.createTime = [[NSDate date] timeIntervalSince1970];
+                    im.size = dict[@"size"];
+                    im.tags = @{@"未分类":@1}.mutableCopy;
+                    [ImageModel.allImages addObject:im];
+                } else {
+                    [existeds addObject:url];
+                }
+            }
+            NSLog(@"res = %@", [resObject mj_keyValues]);
+            __next();
+        };
+    };
+    upload();
 }
 
 
@@ -120,50 +207,10 @@
     [panel setAllowsMultipleSelection:YES];//是否允许多选file
     NSInteger finded = [panel runModal]; //获取panel的响应
     
-    NSMutableArray *imgs = @[].mutableCopy;
     if (finded == NSModalResponseOK) {
         // NSFileHandlingPanelCancelButton = NSModalResponseCancel； NSFileHandlingPanelOKButton = NSModalResponseOK,
-        for (NSURL *url in [panel URLs]) {
-            NSLog(@"--->%@",url);
-            //这个url是文件的路径
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            NSImage *img = [NSImage sd_imageWithData:data];
-            if (img) {
-                [imgs addObject:@{@"size":NSStringFromSize(img.size),@"img":[data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]}];
-            }
-        }
+        [self addImagesWithURLs:[panel URLs]];
     }
-    _tipsLabel.hidden = false;
-    _tipsLabel.stringValue = @"\n正在上传图片...";
-    
-    __weakSelf_(__self);
-    void (^upload)(void) = nil;
-    void (^__block __next)(void) = upload = ^{
-        NSDictionary *dict = imgs.firstObject;
-        [imgs removeObject:dict];
-        if (!dict) {
-            __self.allTags = [ImageModel getAllTags];
-            [__self.tagCollectionView reloadData];
-            [__self onFilterSegmentedControlsClick:nil];
-            __self.tipsLabel.hidden = true;
-            return;
-        }
-        [NetworkManager1 uploadImage:dict[@"img"]].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
-            NSString *url = resObject[@"data"][@"url"];
-            if (url.length) {
-                ImageModel *im = [ImageModel new];
-                im.originalURL = url;
-                im.updateTime = im.createTime = [[NSDate date] timeIntervalSince1970];
-                im.size = dict[@"size"];
-                im.tags = @{@"未分类":@1}.mutableCopy;
-                [ImageModel.allImages addObject:im];
-            }
-            NSLog(@"res = %@", [resObject mj_keyValues]);
-            __next();
-        };
-    };
-    upload();
-    
 }
 
 // 筛选图片
@@ -237,14 +284,8 @@
     }
     [ImageModel save];
     
-    _allTags = [ImageModel getAllTags];
-    for (TagModel *tm in _selectedTags.copy) {
-        if (![_allTags containsValue:tm.title keyPath:@"title"])
-            [_selectedTags removeObject:tm];
-    }
     _tagTextField.stringValue = @"";
-    
-    [_tagCollectionView reloadData];
+    [self refreshTags];
     [self onFilterSegmentedControlsClick:nil];
     [self onClearSelectedIMsBtnClick:nil];
 }

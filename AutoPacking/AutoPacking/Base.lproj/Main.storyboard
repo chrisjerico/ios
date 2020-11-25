@@ -736,7 +736,7 @@
         <scene sceneID="IJx-Bo-uBi">
             <objects>
                 <viewController id="8Ve-jS-eO9" customClass="ImageManagerVC" sceneMemberID="viewController">
-                    <view key="view" id="EDR-ey-xWO">
+                    <view key="view" id="EDR-ey-xWO" customClass="DragFileView">
                         <rect key="frame" x="0.0" y="0.0" width="729" height="415"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -836,7 +836,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aqF-6A-ocB">
                                 <rect key="frame" x="603" y="324" width="120" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="合并Git并提交" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UFJ-mU-7o2">
+                                <buttonCell key="cell" type="push" title="更新Git图片" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UFJ-mU-7o2">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

@@ -25,8 +25,9 @@
 
 - (void)setIm:(ImageModel *)im {
     _im = im;
+    NSString *size = [[[im.size stringByReplacingOccurrencesOfString:@", " withString:@" x "] stringByReplacingOccurrencesOfString:@"{" withString:@""] stringByReplacingOccurrencesOfString:@"}" withString:@""];
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:im.originalURL]];
-    self.textField.stringValue = [NSString stringWithFormat:@"尺寸：%@\n标签：%@", im.size, [im.tags.allKeys componentsJoinedByString:@","]];
+    self.textField.stringValue = [NSString stringWithFormat:@"%@\n标签：%@", size, [im.tags.allKeys componentsJoinedByString:@","]];
 }
 
 - (IBAction)onClick:(NSButton *)sender {
