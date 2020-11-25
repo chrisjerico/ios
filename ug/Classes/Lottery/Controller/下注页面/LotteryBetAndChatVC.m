@@ -87,13 +87,13 @@
     }];
     // 每次‘彩票下注页’设置导航条按钮时，改为设置LotteryBetAndChatVC页的导航条按钮
     {
-        __weak static UIViewController *__vc = nil;
+        __weak static LotteryBetAndChatVC *__vc = nil;
         __vc = self;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             [UGCommonLotteryController cc_hookSelector:@selector(navigationItem) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo>  _Nonnull ai) {
                 [ai.originalInvocation invoke];
-                if (__vc) {
+                if (__vc.vc1 == ai.instance) {
                     UINavigationItem *ni = __vc.navigationItem;
                     [ai.originalInvocation setReturnValue:&ni];
                 }
