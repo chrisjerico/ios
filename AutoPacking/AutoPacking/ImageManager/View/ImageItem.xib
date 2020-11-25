@@ -37,8 +37,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="112" height="22"/>
                     <subviews>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HYc-D4-H7s">
-                            <rect key="frame" x="-1" y="-2" width="39" height="25"/>
-                            <buttonCell key="cell" type="squareTextured" title="原图" bezelStyle="texturedSquare" imagePosition="left" borderStyle="border" inset="2" id="7en-en-QpG">
+                            <rect key="frame" x="-1" y="-2" width="114" height="25"/>
+                            <buttonCell key="cell" type="squareTextured" title="拷贝图片链接" bezelStyle="texturedSquare" imagePosition="left" borderStyle="border" inset="2" id="7en-en-QpG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="smallSystem"/>
                             </buttonCell>
@@ -46,35 +46,11 @@
                                 <action selector="onCopyLinkBtnClick:" target="-2" id="pWZ-I8-ErQ"/>
                             </connections>
                         </button>
-                        <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="wmX-KX-h8g">
-                            <rect key="frame" x="36" y="-2" width="40" height="25"/>
-                            <buttonCell key="cell" type="squareTextured" title="中等" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cFf-rf-W3i">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="smallSystem"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="onCopyLinkBtnClick:" target="-2" id="B9s-QR-YWT"/>
-                            </connections>
-                        </button>
-                        <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-Pa-e5H">
-                            <rect key="frame" x="74" y="-2" width="39" height="25"/>
-                            <buttonCell key="cell" type="squareTextured" title="缩略" bezelStyle="texturedSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b8K-tZ-bXI">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="smallSystem"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="onCopyLinkBtnClick:" target="-2" id="hZ0-5B-sxs"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <visibilityPriorities>
                         <integer value="1000"/>
-                        <integer value="1000"/>
-                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>

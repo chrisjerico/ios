@@ -25,16 +25,8 @@
 
 - (void)setIm:(ImageModel *)im {
     _im = im;
-    __weakSelf_(__self);
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:im.thumbURL] completed:^(NSImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if ([NSStringFromSize(image.size) isEqualToString:im.size]) {
-            im.thumbURL = im.originalURL;
-            __self.stackView.arrangedSubviews[2].hidden = true;
-        }
-    }];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:im.originalURL]];
     self.textField.stringValue = [NSString stringWithFormat:@"尺寸：%@\n标签：%@", im.size, [im.tags.allKeys componentsJoinedByString:@","]];
-    self.stackView.arrangedSubviews[1].hidden = !im.mediumURL || [im.mediumURL isEqualToString:im.originalURL];
-    self.stackView.arrangedSubviews[2].hidden = !im.thumbURL || [im.thumbURL isEqualToString:im.originalURL];
 }
 
 - (IBAction)onClick:(NSButton *)sender {
@@ -45,16 +37,9 @@
 // 拷贝链接
 - (IBAction)onCopyLinkBtnClick:(NSButton *)sender {
     [[NSPasteboard generalPasteboard] declareTypes:@[NSPasteboardTypeString] owner:nil];
-    switch (sender.tag) {
-        case 1:
-            [[NSPasteboard generalPasteboard] setString:_im.mediumURL forType:NSPasteboardTypeString];
-            break;
-        case 2:
-            [[NSPasteboard generalPasteboard] setString:_im.thumbURL forType:NSPasteboardTypeString];
-            break;
-        default:
-            [[NSPasteboard generalPasteboard] setString:_im.originalURL forType:NSPasteboardTypeString];
-    }
+    [[NSPasteboard generalPasteboard] setString:_im.originalURL forType:NSPasteboardTypeString];
+    if (_didCopy)
+        _didCopy();
 }
 
 @end

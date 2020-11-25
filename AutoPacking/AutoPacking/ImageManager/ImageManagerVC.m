@@ -56,13 +56,13 @@
 - (IBAction)onMergeToGitBtnClick:(NSButton *)sender {
     NSLog(@"提交打包日志");
     _tipsLabel.hidden = false;
-    _tipsLabel.stringValue = @"从Git拉取最新图片。。。";
+    _tipsLabel.stringValue = @"\n从Git拉取最新图片。。。";
     __weakSelf_(__self);
     NSString *projectDir = RNPack.logFile.stringByDeletingLastPathComponent;
     NSString *logFile = [NSString stringWithFormat:@"%@/Images.json", projectDir];
     [ShellHelper pullCode:projectDir branch:@"img/images" completion:^(GitModel * _Nonnull _) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            __self.tipsLabel.stringValue = @"正在合并。。。";
+            __self.tipsLabel.stringValue = @"\n正在合并。。。";
         });
         NSData *data = [NSData dataWithContentsOfFile:logFile];
         if (data) {
@@ -96,7 +96,7 @@
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         [jsonString writeToFile:logFile atomically:true encoding:NSUTF8StringEncoding error:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
-            __self.tipsLabel.stringValue = @"正在提交到Git。。。";
+            __self.tipsLabel.stringValue = @"\n正在提交到Git。。。";
         });
         [ShellHelper pushCode:projectDir title:@"更新图片资源" completion:^{
             NSLog(@"提交图片成功");
@@ -134,7 +134,7 @@
         }
     }
     _tipsLabel.hidden = false;
-    _tipsLabel.stringValue = @"正在上传图片...";
+    _tipsLabel.stringValue = @"\n正在上传图片...";
     
     __weakSelf_(__self);
     void (^upload)(void) = nil;
@@ -143,6 +143,7 @@
         [imgs removeObject:dict];
         if (!dict) {
             __self.allTags = [ImageModel getAllTags];
+            [__self.tagCollectionView reloadData];
             [__self onFilterSegmentedControlsClick:nil];
             __self.tipsLabel.hidden = true;
             return;
@@ -152,8 +153,6 @@
             if (url.length) {
                 ImageModel *im = [ImageModel new];
                 im.originalURL = url;
-                im.mediumURL = resObject[@"data"][@"medium"][@"url"];
-                im.thumbURL = resObject[@"data"][@"thumb"][@"url"];
                 im.updateTime = im.createTime = [[NSDate date] timeIntervalSince1970];
                 im.size = dict[@"size"];
                 im.tags = @{@"未分类":@1}.mutableCopy;
@@ -278,6 +277,15 @@
         item.im = im;
         item.didClick = ^{
             [__self collectionView:__self.imgCollectionView didSelectItemsAtIndexPaths:[NSSet setWithObject:[NSIndexPath indexPathForItem:[__self.resultIMs indexOfObject:im] inSection:0]]];
+        };
+        item.didCopy = ^{
+            __self.tipsLabel.backgroundColor = [NSColor.blackColor colorWithAlphaComponent:0.2];
+            __self.tipsLabel.hidden = false;
+            __self.tipsLabel.stringValue = @"\n已拷贝";
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __self.tipsLabel.backgroundColor = [NSColor.blackColor colorWithAlphaComponent:0.6];
+                __self.tipsLabel.hidden = true;
+            });
         };
         return item;
     } else {

@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ImageModel : NSObject
 
 @property (nonatomic, strong) NSString *originalURL;
-@property (nonatomic, strong) NSString *mediumURL;
-@property (nonatomic, strong) NSString *thumbURL;
 @property (nonatomic, strong) NSString *size;
 @property (nonatomic, assign) NSTimeInterval createTime;
 @property (nonatomic, assign) NSTimeInterval updateTime;

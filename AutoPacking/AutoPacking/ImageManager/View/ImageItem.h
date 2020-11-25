@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) ImageModel *im;
 @property (nonatomic, strong) void (^didClick)(void);
+@property (nonatomic, strong) void (^didCopy)(void);
 @end
 
 NS_ASSUME_NONNULL_END
