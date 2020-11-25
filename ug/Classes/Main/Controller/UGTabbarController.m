@@ -95,7 +95,7 @@ static UGTabbarController *_tabBarVC = nil;
     
     if (user) {
         // 聊天室
-        if ([vc isKindOfClass:[UGChatViewController class]] && !user.chatRoomSwitch) {
+        if (([vc isKindOfClass:[UGChatViewController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) && !user.chatRoomSwitch) {
             [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
             return false;
         }
