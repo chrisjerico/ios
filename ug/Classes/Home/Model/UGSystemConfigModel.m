@@ -453,10 +453,6 @@ MJExtensionCodingImplementation
     return _zxkfUrl.length ? _zxkfUrl : _zxkfUrl2;
 }
 
-- (NSString *)zxkf_1Url {
-    return  _zxkfUrl ;
-}
-
 
 - (NSString *)serviceQQ2 {
     return _serviceQQ2.length ? _serviceQQ2 : _serviceQQ1;

@@ -46,7 +46,8 @@
 }
 
 - (IBAction)oneAction:(id)sender {
-    [CMCommon goSLWebViewControllerUrl:SysConf.zxkf_1Url] ;
+
+    [CMCommon goSLWebViewControllerUrl:SysConf.zxkfUrl] ;
     [self close:self];
 }
 

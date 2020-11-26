@@ -433,8 +433,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         case 4: {
             // 在线客服
 
-            if (APP.isTwoOnline) {
-       
+            if (APP.isTwoOnline  && UGSystemConfigModel.currentConfig.zxkfUrl.length && UGSystemConfigModel.currentConfig.zxkfUrl2.length) {
+                
+            
                 float y;
                 if ([CMCommon isPhoneX]) {
                     y = 160;

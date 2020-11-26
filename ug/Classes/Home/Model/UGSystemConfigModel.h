@@ -157,8 +157,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 
 @interface UGSystemConfigModel : UGModel<UGSystemConfigModel>
-//自定义
-@property (nonatomic, copy) NSString *zxkf_1Url;                    /**<  只返回 在线客服1 */
+
 //===============================================
 @property (nonatomic, copy) NSString *zxkfUrl2;                    /**<   在线客服2 */
 @property (nonatomic, copy) NSString *zxkfUrl;                    /**<   在线客服 */
