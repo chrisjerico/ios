@@ -199,7 +199,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([viewController isKindOfClass:[UGBalanceConversionController class]]) {
             
-            if (Skin1.isTKL) {
+            if (Skin1.isTKL|| [APP.SiteId isEqualToString:@"c085"]) {
                 viewController =  [[TKLMainViewController alloc] init];
             } else {
                 if (APP.isNewConversion) {
