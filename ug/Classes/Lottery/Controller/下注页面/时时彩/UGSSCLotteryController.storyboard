@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F99-Mv-w7O">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F99-Mv-w7O">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -100,45 +100,6 @@
                                                     <constraint firstAttribute="height" constant="52" id="GjE-Pv-Y8O"/>
                                                 </constraints>
                                             </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="TQe-y8-xgf">
-                                                <rect key="frame" x="329" y="54.5" width="85" height="25"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVn-jF-W64">
-                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="Vie-9x-Pxj"/>
-                                                        </constraints>
-                                                        <state key="normal" backgroundImage="xz_icon_cl"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="长龙btn"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lw0-rN-3zk">
-                                                        <rect key="frame" x="30" y="0.0" width="25" height="25"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="UGZ-T5-Q16"/>
-                                                        </constraints>
-                                                        <state key="normal" backgroundImage="xz_icon_kj"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖btn"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78E-s8-hDf">
-                                                        <rect key="frame" x="60" y="0.0" width="25" height="25"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="25" id="4Rp-Rf-tD8"/>
-                                                        </constraints>
-                                                        <state key="normal" backgroundImage="xz_icon_zb"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="直播btn"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="85" id="Z4Q-8n-dKl"/>
-                                                    <constraint firstAttribute="height" constant="25" id="spR-XK-aKw"/>
-                                                </constraints>
-                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -155,11 +116,9 @@
                                             <constraint firstItem="pJw-d6-eWI" firstAttribute="leading" secondItem="jvX-eP-yxt" secondAttribute="leading" constant="5" id="fcZ-ub-TAu"/>
                                             <constraint firstItem="lks-mu-2y0" firstAttribute="top" secondItem="jvX-eP-yxt" secondAttribute="top" constant="5" id="isr-Sd-h0s"/>
                                             <constraint firstAttribute="trailing" secondItem="o98-j5-0Qf" secondAttribute="trailing" id="jqA-m2-dMr"/>
-                                            <constraint firstItem="o98-j5-0Qf" firstAttribute="top" secondItem="TQe-y8-xgf" secondAttribute="bottom" id="qKL-g7-OKX"/>
                                             <constraint firstAttribute="height" constant="80" id="v6W-PO-CDA"/>
                                             <constraint firstItem="NAW-HZ-lRy" firstAttribute="top" secondItem="jvX-eP-yxt" secondAttribute="top" id="w6O-YI-dAj"/>
                                             <constraint firstItem="qpY-yp-Pfz" firstAttribute="top" secondItem="pJw-d6-eWI" secondAttribute="bottom" constant="12" id="xw2-Wm-Bdl"/>
-                                            <constraint firstAttribute="trailing" secondItem="TQe-y8-xgf" secondAttribute="trailing" id="y2J-0x-1Au"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="上背景View"/>
@@ -241,6 +200,45 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="截止投注label"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="TQe-y8-xgf">
+                                                <rect key="frame" x="329" y="4.5" width="85" height="25"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVn-jF-W64">
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="25" id="Vie-9x-Pxj"/>
+                                                        </constraints>
+                                                        <state key="normal" backgroundImage="xz_icon_cl"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="长龙btn"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lw0-rN-3zk">
+                                                        <rect key="frame" x="30" y="0.0" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="25" id="UGZ-T5-Q16"/>
+                                                        </constraints>
+                                                        <state key="normal" backgroundImage="xz_icon_kj"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="开奖btn"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78E-s8-hDf">
+                                                        <rect key="frame" x="60" y="0.0" width="25" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="25" id="4Rp-Rf-tD8"/>
+                                                        </constraints>
+                                                        <state key="normal" backgroundImage="xz_icon_zb"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="直播btn"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="85" id="Z4Q-8n-dKl"/>
+                                                    <constraint firstAttribute="height" constant="25" id="spR-XK-aKw"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -248,7 +246,9 @@
                                             <constraint firstAttribute="bottom" secondItem="xm8-Y8-6PH" secondAttribute="bottom" id="8f3-Hl-puh"/>
                                             <constraint firstItem="838-Ss-oAo" firstAttribute="leading" secondItem="gwl-8f-trc" secondAttribute="leading" constant="5" id="CuG-Be-c9h"/>
                                             <constraint firstItem="Ptx-Py-Ynm" firstAttribute="top" secondItem="gwl-8f-trc" secondAttribute="top" constant="7" id="Fds-PX-04a"/>
+                                            <constraint firstItem="TQe-y8-xgf" firstAttribute="centerY" secondItem="gwl-8f-trc" secondAttribute="centerY" id="JBK-Ys-D3s"/>
                                             <constraint firstAttribute="trailing" secondItem="xm8-Y8-6PH" secondAttribute="trailing" id="KP7-CA-p9D"/>
+                                            <constraint firstAttribute="trailing" secondItem="TQe-y8-xgf" secondAttribute="trailing" id="MKT-g3-sOF"/>
                                             <constraint firstItem="xm8-Y8-6PH" firstAttribute="leading" secondItem="gwl-8f-trc" secondAttribute="leading" id="OtC-2b-xyU"/>
                                             <constraint firstItem="PVi-MP-YPh" firstAttribute="centerY" secondItem="gwl-8f-trc" secondAttribute="centerY" id="PAe-nC-p7b"/>
                                             <constraint firstItem="h0U-RI-jj7" firstAttribute="centerY" secondItem="gwl-8f-trc" secondAttribute="centerY" id="QPI-u3-s0W"/>

@@ -20,19 +20,16 @@
     _bgImageView.image = [[UIImage imageNamed:@"qb"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     _titleLabel.layer.cornerRadius = 3;
     _titleLabel.layer.masksToBounds = true;
-    
-    if (Skin1.isBlack||Skin1.is23||Skin1.isGPK) {
-         [self  setBackgroundColor:Skin1.bgColor];
-         [_titleLabel setTextColor:[UIColor blackColor]];
-    }
-    else if(Skin1.isTKL) {
-         [_titleLabel setTextColor:Skin1.navBarBgColor];
-         [self  setBackgroundColor:[UIColor whiteColor]];
-         [_titleLabel.layer setBorderColor:Skin1.navBarBgColor.CGColor];//设置边界的颜色
-    }
-    else {
-         [_titleLabel setTextColor:[UIColor blackColor]];
-         [self  setBackgroundColor:[UIColor whiteColor]];
+
+    [self setBackgroundColor:[UIColor clearColor]];
+  
+    [_titleLabel.layer setBorderWidth:0.5];
+    if (APP.betBgIsWhite) {
+        _titleLabel.textColor  = Skin1.textColor1;
+        [_titleLabel.layer setBorderColor:Skin1.textColor1.CGColor];//设置边界的颜色
+    } else {
+        _titleLabel.textColor  = Skin1.textColor4;
+        [_titleLabel.layer setBorderColor:Skin1.textColor4.CGColor];//设置边界的颜色
     }
    
     
@@ -65,7 +62,7 @@
 
 - (void)setWin:(BOOL)win {
     _win = win;
-    _titleLabel.backgroundColor = win ? [UIColor yellowColor] : [UIColor whiteColor];
+    _titleLabel.backgroundColor = win ? [UIColor yellowColor] : [UIColor clearColor];
 }
 
 @end

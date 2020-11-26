@@ -1108,7 +1108,6 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
         }else {
             UGLotterySubResultCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:lotterySubResultCellid forIndexPath:indexPath];
             cell.title = self.preNumSxArray[indexPath.row];
-            cell.titleColor = UGGreenColor;
             return cell;
         }
     }
