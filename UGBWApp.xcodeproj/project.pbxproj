@@ -7033,7 +7033,6 @@
 				031E183223BE812600B0F813 /* 活动彩金 */,
 				031E183923BE812600B0F813 /* 建议反馈 */,
 				031E184323BE812600B0F813 /* 注单列表 */,
-				031E184F23BE812600B0F813 /* 额度转换 */,
 				031E180523BE812600B0F813 /* 我的资料 */,
 				031E180923BE812600B0F813 /* 谷歌认证 */,
 				031E182123BE812600B0F813 /* UGMineSkinViewController.h */,
@@ -9617,6 +9616,7 @@
 			isa = PBXGroup;
 			children = (
 				D4773ABE23FC16B100D38D60 /* LineConversion.storyboard */,
+				031E184F23BE812600B0F813 /* 额度转换 */,
 				D4773ABB23FC165900D38D60 /* Controller */,
 				D4773ABC23FC166800D38D60 /* Cell */,
 			);

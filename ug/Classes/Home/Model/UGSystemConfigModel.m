@@ -208,6 +208,7 @@ UGSystemConfigModel *currentConfig = nil;
         UGMobileMenu * itemLine;
         
         if (Skin1.isTKL|| [APP.SiteId isEqualToString:@"c085"]) {
+//        if (Skin1.isTKL) {
             itemLine = item(@"/conversion",        @"change",                      TKLMainViewController.className,               MM_额度转换,        @"额度转换");
         } else {
             if (APP.isNewConversion) {
