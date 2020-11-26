@@ -187,8 +187,8 @@
     
     _isShowHornView = [@"l001,l002" containsString:_SiteId];
     _isBorderNavBarBgColor = Skin1.isBlack ? NO : [@"c085,c212,c208,c134" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
-    _isBall = Skin1.isSLH ? YES : [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217" containsString:_SiteId];
-    _isBall6 = Skin1.isSLH ? YES : [@"c134,c200,c208,c213,a002,c193,c116" containsString:_SiteId];
+    _isBall = Skin1.isSLH ? YES : [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217,c115" containsString:_SiteId];
+    _isBall6 = Skin1.isSLH ? YES : [@"c134,c200,c208,c213,a002,c193,c116,c115" containsString:_SiteId];
     _isBallParty = [@"c092" containsString:_SiteId];
     _isWhite = Skin1.isBlack ? NO : [@"c213,c012" containsString:_SiteId];
     _isHideText = [@"c200" containsString:_SiteId];
