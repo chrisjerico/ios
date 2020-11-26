@@ -208,11 +208,11 @@
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
 
     
-    _betSizeIsBig = [@"c169,c205,c211,c048" containsString:_SiteId];
+    _betSizeIsBig = [@"c169,c205,c211,c048,c115" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
-    _addIcons = [@"c190,c134,c085,c193,a002,c006,c217" containsString:_SiteId];
-    _isReplaceIcon = [@"c085,c193,a002,c006,c217" containsString:_SiteId];
+    _addIcons = [@"c190,c134,c085,c193,a002,c006,c217,c115" containsString:_SiteId];
+    _isReplaceIcon = [@"c085,c193,a002,c006,c217,c115" containsString:_SiteId];
     _isC190Cell = [@"c190" containsString:_SiteId];
     _isC217RWDT = [@"c217" containsString:_SiteId];
     _isNoSubtitle = [@"c006" containsString:_SiteId];
@@ -227,7 +227,7 @@
     _isNoOnLineDoc = [@"c213,c116" containsString:_SiteId];;
     _isHBDoc = [@"c012" containsString:_SiteId];
     _isAllCellStyle = [@"c126" containsString:_SiteId];
-    _isC126CellStyle = [@"c126" containsString:_SiteId];
+    _isC126CellStyle = [@"c126,c115" containsString:_SiteId];
     _isC239B = [@"c239b" containsString:_SiteId];
     _isTwoOnline = [@"c150" containsString:_SiteId];
     

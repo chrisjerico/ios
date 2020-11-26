@@ -99,12 +99,12 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Ng7-pW-rY0">
-                                                <rect key="frame" x="324" y="51.5" width="90" height="28"/>
+                                                <rect key="frame" x="324" y="54.5" width="90" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c48-Ke-irM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="28" id="vpQ-aE-FPx"/>
+                                                            <constraint firstAttribute="width" constant="25" id="vpQ-aE-FPx"/>
                                                         </constraints>
                                                         <state key="normal" backgroundImage="xz_icon_cl"/>
                                                         <userDefinedRuntimeAttributes>
@@ -112,9 +112,9 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z87-dS-2Op">
-                                                        <rect key="frame" x="31" y="0.0" width="28" height="28"/>
+                                                        <rect key="frame" x="32.5" y="0.0" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="28" id="L6U-i6-Esz"/>
+                                                            <constraint firstAttribute="width" constant="25" id="L6U-i6-Esz"/>
                                                         </constraints>
                                                         <state key="normal" backgroundImage="xz_icon_kj"/>
                                                         <userDefinedRuntimeAttributes>
@@ -122,9 +122,9 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8D-Wm-Xyk">
-                                                        <rect key="frame" x="62" y="0.0" width="28" height="28"/>
+                                                        <rect key="frame" x="65" y="0.0" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="28" id="IOT-tw-dUk"/>
+                                                            <constraint firstAttribute="width" constant="25" id="IOT-tw-dUk"/>
                                                         </constraints>
                                                         <state key="normal" backgroundImage="xz_icon_zb"/>
                                                         <userDefinedRuntimeAttributes>
@@ -135,7 +135,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="ENM-0d-E6X"/>
-                                                    <constraint firstAttribute="height" constant="28" id="UVl-wY-h4X"/>
+                                                    <constraint firstAttribute="height" constant="25" id="UVl-wY-h4X"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="iconView"/>

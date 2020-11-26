@@ -104,12 +104,12 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="OWi-re-GEo">
-                                                <rect key="frame" x="324" y="51.5" width="90" height="28"/>
+                                                <rect key="frame" x="324" y="54.5" width="90" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vgS-dl-YaT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="28" height="28"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="28" id="Cdq-jH-Qob"/>
+                                                            <constraint firstAttribute="width" constant="25" id="Cdq-jH-Qob"/>
                                                         </constraints>
                                                         <state key="normal" backgroundImage="xz_icon_cl"/>
                                                         <userDefinedRuntimeAttributes>
@@ -117,9 +117,9 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nj-bC-17d">
-                                                        <rect key="frame" x="31" y="0.0" width="28" height="28"/>
+                                                        <rect key="frame" x="32.5" y="0.0" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="28" id="q0D-Y4-wIY"/>
+                                                            <constraint firstAttribute="width" constant="25" id="q0D-Y4-wIY"/>
                                                         </constraints>
                                                         <state key="normal" backgroundImage="xz_icon_kj"/>
                                                         <userDefinedRuntimeAttributes>
@@ -127,9 +127,9 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Nc-FX-oCq">
-                                                        <rect key="frame" x="62" y="0.0" width="28" height="28"/>
+                                                        <rect key="frame" x="65" y="0.0" width="25" height="25"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="28" id="9K1-U8-NhG"/>
+                                                            <constraint firstAttribute="width" constant="25" id="9K1-U8-NhG"/>
                                                         </constraints>
                                                         <state key="normal" backgroundImage="xz_icon_zb"/>
                                                         <userDefinedRuntimeAttributes>
@@ -138,7 +138,7 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="W66-AC-TVq"/>
+                                                    <constraint firstAttribute="height" constant="25" id="W66-AC-TVq"/>
                                                     <constraint firstAttribute="width" constant="90" id="qQM-Pg-IvF"/>
                                                 </constraints>
                                             </stackView>
