@@ -182,15 +182,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     if (self.childViewControllers.count) { // 不是根控制器
         
         if ([viewController isKindOfClass:[UGLotteryHomeController class]]) {
-            
-//            __block UIViewController *vc =  viewController;
-//           [self  getisNewLotteryViewCompletion:^(BOOL  isNewLotteryView) {
-//
-//                NSLog(@"isNewLotteryView = %d",isNewLotteryView);
-//                if (isNewLotteryView) {
-//                    vc =  _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
-//                }
-//            }];
+
             
             if (APP.isNewLotteryView) {
                 viewController =  _LoadVC_from_storyboard_(@"NewLotteryHomeViewController");
@@ -334,7 +326,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                     [NavController1 popToViewController:vc animated:false];
                     return;
                 }
-                viewController =  [UGMineSkinViewController new];
+                viewController = [UGMineSkinViewController new];
             }
         }
         
@@ -362,9 +354,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 popToViewController:vc animated:false];
             return;
         }
-    }
-    else if (originalVC != viewController) {
-        [NavController1 pushViewController:viewController animated:true];
     }
     else {
         // 设置非根控制器的返回按钮
