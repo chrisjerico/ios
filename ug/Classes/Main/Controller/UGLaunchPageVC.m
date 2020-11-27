@@ -218,15 +218,20 @@
         // 超时处理
         __weakSelf_(__self);
         {
-            int timeout = 4; // ⌛️超时时间
+            int timeout = 5; // ⌛️超时时间
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 __self.waitSysConf = false;
                 __self.waitPic = false;
                 __self.waitLanguage = false;
                 __self.waitCheckUpdate = __self.waitCheckUpdate > 0;
+                
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:@"已更新过一次RN代码"]) {
 #ifndef APP_TEST
-                __self.waitReactNative = false;
+                    __self.waitReactNative = false;
 #endif
+                } else if (!__self.waitCheckUpdate && __self.waitReactNative) {
+                    [SVProgressHUD showWithStatus:@"正在下载资源文件，请稍等片刻..."];
+                }
             });
         }
         
@@ -242,6 +247,7 @@
             break;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"已更新过一次RN代码"];
             NSLog(@"进入首页");
             [SVProgressHUD dismiss];
             APP.Window.rootViewController = [[UGTabbarController alloc] init];
