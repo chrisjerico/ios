@@ -2017,6 +2017,7 @@
 		CF4FAFE2252DBB43004C47AB /* 钱包付款.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FAFDF252DBB43004C47AB /* 钱包付款.html */; };
 		CF4FB05B252EFA92004C47AB /* 火币.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FB05A252EFA92004C47AB /* 火币.html */; };
 		CF4FB05C252EFA92004C47AB /* 火币.html in Resources */ = {isa = PBXBuildFile; fileRef = CF4FB05A252EFA92004C47AB /* 火币.html */; };
+		CF512EB12570C8F90022A542 /* SVProgressHUD+noShowError.m in Sources */ = {isa = PBXBuildFile; fileRef = CF512EB02570C8F90022A542 /* SVProgressHUD+noShowError.m */; };
 		CF52FA5E2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */; };
 		CF52FA5F2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */; };
 		CF5313FD2542E66D00450EF1 /* TKLMainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF5313FC2542E66D00450EF1 /* TKLMainListViewController.m */; };
@@ -4186,6 +4187,8 @@
 		CF4FAFCE252C8C87004C47AB /* 确认存款金额.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "确认存款金额.html"; sourceTree = "<group>"; };
 		CF4FAFDF252DBB43004C47AB /* 钱包付款.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "钱包付款.html"; sourceTree = "<group>"; };
 		CF4FB05A252EFA92004C47AB /* 火币.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "火币.html"; sourceTree = "<group>"; };
+		CF512EAF2570C8F90022A542 /* SVProgressHUD+noShowError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+noShowError.h"; sourceTree = "<group>"; };
+		CF512EB02570C8F90022A542 /* SVProgressHUD+noShowError.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+noShowError.m"; sourceTree = "<group>"; };
 		CF52FA5B2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGwithdrawalAccountTableViewCell.h; sourceTree = "<group>"; };
 		CF52FA5C2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGwithdrawalAccountTableViewCell.m; sourceTree = "<group>"; };
 		CF52FA5D2521C62F00ACF773 /* UGwithdrawalAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGwithdrawalAccountTableViewCell.xib; sourceTree = "<group>"; };
@@ -5195,6 +5198,8 @@
 		031E14B423BE812300B0F813 /* CCNetworkRequests1 */ = {
 			isa = PBXGroup;
 			children = (
+				CF512EAF2570C8F90022A542 /* SVProgressHUD+noShowError.h */,
+				CF512EB02570C8F90022A542 /* SVProgressHUD+noShowError.m */,
 				D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */,
 				D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */,
 				031E14B523BE812300B0F813 /* CCSessionModel.h */,
@@ -12049,6 +12054,7 @@
 				031E1E8A23BE812D00B0F813 /* UGYubaoConversionRecordCell.m in Sources */,
 				031E1DBC23BE812B00B0F813 /* UGAvatarModel.m in Sources */,
 				031E19D223BE812700B0F813 /* NSObject+Utils.m in Sources */,
+				CF512EB12570C8F90022A542 /* SVProgressHUD+noShowError.m in Sources */,
 				031E1AC223BE812800B0F813 /* WMDropDown2View.m in Sources */,
 				031E1DD823BE812C00B0F813 /* UGAddressListModel.m in Sources */,
 				03B1252924F7E035007A0858 /* ScratchController.m in Sources */,

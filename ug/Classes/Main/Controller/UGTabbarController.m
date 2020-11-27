@@ -130,15 +130,6 @@ static UGTabbarController *_tabBarVC = nil;
     [self beginMessageRequest];
     self.delegate = self;
     
-    // 【授权TOKEN:  参数未传递!】此类报错不提示出来
-    [SVProgressHUD cc_hookSelector:@selector(showErrorWithStatus:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo>  _Nonnull ai) {
-        if ([[ai.arguments.firstObject lowercaseString] containsString:@"token"]) {
-            [SVProgressHUD dismiss];
-        } else {
-            [ai.originalInvocation invoke];
-        }
-    } error:nil];
-    
     // 注册成功
     __weakSelf_(__self);
     SANotificationEventSubscribe(UGNotificationRegisterComplete, self, ^(typeof (self) self, id obj) {
