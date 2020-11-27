@@ -53,7 +53,7 @@
                      if (APP.isBgColorForMoneyVC) {
                          dict[NSForegroundColorAttributeName] = [UIColor whiteColor];
                      } else {
-                         dict[NSFontAttributeName] = Skin1.textColor2;
+                         dict[NSForegroundColorAttributeName] = Skin1.textColor2;
                      }
                      [mas addAttributes:dict range:NSMakeRange(i, 1)];
                  }
