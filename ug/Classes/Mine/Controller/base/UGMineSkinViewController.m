@@ -287,6 +287,8 @@
         [__self.menuNameArray setArray:SysConf.userCenter];
         [__self skinSeconddataSource];
         [__self.myCollectionView reloadData];
+        [self.salaryBtn.superview setHidden:SysConf.mBonsSwitch];
+        [self.tkl_salaryBtn.superview setHidden:SysConf.mBonsSwitch];
     });
     
     [self.salaryBtn.superview setHidden:SysConf.mBonsSwitch];
@@ -899,7 +901,8 @@ BOOL isOk = NO;
         [CMResult processWithResult:model success:^{
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
-            NSLog(@"签到==%d",[UGSystemConfigModel  currentConfig].checkinSwitch);
+            [weakSelf.salaryBtn.superview setHidden:SysConf.mBonsSwitch];
+            [weakSelf.tkl_salaryBtn.superview setHidden:SysConf.mBonsSwitch];
             [weakSelf setupUserInfo:YES];
             [weakSelf stopAnimation];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);

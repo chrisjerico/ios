@@ -66,13 +66,19 @@
     self.headImageView.layer.cornerRadius = self.headImageView.height / 2 ;
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.userInteractionEnabled = YES;
+    
     SANotificationEventSubscribe(UGNotificationUserAvatarChanged, self, ^(typeof (self) self, id obj) {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[UGUserModel currentUser].avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
     });
     SANotificationEventSubscribe(UGNotificationGetUserInfoComplete, self, ^(typeof (self) self, id obj) {
         [self refreshBalance:nil];
     });
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        [self.salaryBtn.superview setHidden:SysConf.mBonsSwitch];
+    });
     [self getUserInfo];
+    [self getSystemConfig];
+    
     
 }
 
@@ -109,6 +115,21 @@
     }];
 }
 
+
+- (void)getSystemConfig {
+    WeakSelf;
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            [self.salaryBtn.superview setHidden:SysConf.mBonsSwitch];
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+}
+
 - (void)setupUserInfo{
     UGUserModel *user = [UGUserModel currentUser];
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:user.avatar] placeholderImage:[UIImage imageNamed:@"touxiang-1"]];
@@ -127,7 +148,7 @@
 // 刷新余额
 - (IBAction)refreshBalance:(id)sender {
     [self getUserInfo];
-    
+    [self getSystemConfig];
     if (sender) {
         __weakSelf_(__self);
         [CMNetwork needToTransferOutWithParams:@{@"token":UserI.token} completion:^(CMResult<id> *model, NSError *err) {

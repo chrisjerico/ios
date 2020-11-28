@@ -58,7 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"彩票大厅";
+    self.navigationItem.title = @"彩票大厅";
     
     [self.view setBackgroundColor:Skin1.bgColor];
     
