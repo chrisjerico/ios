@@ -222,8 +222,8 @@
     
     NSLog(@"self.tableType = %ld",(long)self.tableType);
     NSLog(@"APP.SiteId = %@",APP.SiteId);
-    if (self.tableType == PromotionTableTypeMember && [APP.SiteId isEqualToString:@"c085"]) {
-        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:@[@"全部下线"] icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
+    if ([APP.SiteId isEqualToString:@"c085"]) {
+        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:@[@"一级下线"] icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
         popView.type = YBPopupMenuTypeDefault;
         popView.fontSize = 15;
         [popView showRelyOnView:self.levelButton];
@@ -243,8 +243,15 @@
 
 - (void)ybPopupMenuDidSelectedAtIndex:(NSInteger)index ybPopupMenu:(YBPopupMenu *)ybPopupMenu {
     if (index >= 0) {
-        _levelindex = index;
-       [self swithAction];
+        if ([APP.SiteId isEqualToString:@"c085"]) {
+            _levelindex = 1;
+           [self swithAction];
+        }
+        else{
+            _levelindex = index;
+           [self swithAction];
+        }
+     
     }
     
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI * 2);
