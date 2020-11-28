@@ -16,6 +16,8 @@
 #import "UGYYRightMenuView.h"
 #import "STBarButtonItem.h"
 #import "PromotePopView.h"
+#import "UGWithdrawalVC.h"
+#import "TKLRechargeMainViewController.h"
 
 @interface NewLotteryHomeViewController ()<UUMarqueeViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,WSLWaterFlowLayoutDelegate,XYYSegmentControlDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headView;   /**<   头View */
@@ -230,15 +232,33 @@
 }
 // 充值
 - (IBAction)rechargeAction:(id)sender {
-    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-    fundsVC.selectIndex = 0;
-    [NavController1 pushViewController:fundsVC animated:true];
+    if(Skin1.isTKL){
+        //存款
+        TKLRechargeMainViewController*rechargeVC = _LoadVC_from_storyboard_(@"TKLRechargeMainViewController");
+        [self.navigationController pushViewController:rechargeVC animated:YES];
+    }
+    else{
+        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+        fundsVC.selectIndex = 0;
+        [NavController1 pushViewController:fundsVC animated:true];
+    }
+   
 }
 // 提现
 - (IBAction)withdrawAction:(id)sender {
-    UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-    fundsVC.selectIndex = 1;
-    [NavController1 pushViewController:fundsVC animated:true];
+    if(Skin1.isTKL){
+        UGWithdrawalVC *withdrawalVC = _LoadVC_from_storyboard_(@"UGWithdrawalVC");
+
+        withdrawalVC.withdrawSuccessBlock = ^{
+        };
+        [NavController1 pushViewController:withdrawalVC animated:true];
+    }
+    else{
+        UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+        fundsVC.selectIndex = 1;
+        [NavController1 pushViewController:fundsVC animated:true];
+    }
+
 }
 
 - (void)getUserInfo {

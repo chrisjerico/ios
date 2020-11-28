@@ -24,6 +24,7 @@
 #import "TKLRechargeMainViewController.h"
 #import "TKLRechargeListViewController.h"
 #import "UGWithdrawalVC.h"
+#import "TKLMainViewController.h"
 @interface TKLMoneyViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray <NSString *> *titleArray;          /**<  cell 标题*/
 @property (nonatomic, strong) NSMutableArray <NSString *> *imageNameArray;      /**<   cell头像*/
@@ -48,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"资金管理";
+    self.navigationItem.title = @"资金管理";
     _historyDataArray = [NSMutableArray new];
     [self.salaryBtn.superview setHidden:SysConf.mBonsSwitch];
     self.navigationItem.rightBarButtonItem = [STBarButtonItem barButtonItemWithImageName:@"gengduo" target:self action:@selector(rightBarBtnClick)];
@@ -189,6 +190,13 @@
 - (IBAction)lqflAction:(id)sender {
     [self getMissionBonusList];
 }
+
+//去转换额度
+- (IBAction)goZHED:(id)sender {
+    TKLMainViewController *vc = [[TKLMainViewController alloc] init];
+    [NavController1 pushViewController:vc animated:true];
+}
+
 
 //侧边栏
 - (void)rightBarBtnClick {

@@ -172,6 +172,7 @@
             @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
             @"香槟金":@[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _betFormView, _trademarkView],
+            @"天空蓝":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView,],
         }.mutableCopy;
         
         if ([@"l002" containsString:APP.SiteId]) {
