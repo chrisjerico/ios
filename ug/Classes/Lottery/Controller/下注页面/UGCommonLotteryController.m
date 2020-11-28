@@ -9,6 +9,8 @@
 #import "UGCommonLotteryController.h"
 #import "UGLotterySelectController.h"
 #import "UGChangLongController.h"
+#import "LotteryBetAndChatVC.h"
+
 // View
 #import "STBarButtonItem.h"
 #import "CMTimeCommon.h"
@@ -105,7 +107,10 @@
     [self resetGengHaoBtn];
     
     [self.view bringSubviewToFront:self.iphoneXBottomView];
-    
+    //修复点击澳门六合彩，进入彩种页面，点击长龙助手后，点击返回按钮，回到彩种页面，底部菜单栏出现导致不能正常投注
+    if (self.navigationController.viewControllers.count > 1) {
+        self.tabBarController.tabBar.hidden = YES;
+    }
 }
 
 
