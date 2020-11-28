@@ -197,7 +197,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                            @"gdkl10":@"UGGDKL10LotteryController",  // 广东快乐10
                            @"fc3d"  :@"UGFC3DLotteryController",    // 福彩3D
                            @"pk10nn":@"UGPK10NNLotteryController",  // pk10牛牛
-                           @"dlt"   :@"UGBJPK10LotteryController",  // 大乐透 赛车
+                           @"dlt"   :@"UGBJPK10LotteryController",  //   幸运飞艇 大乐透 赛车
                            @"ofclvn_hochiminhvip"   :@"UGYNLotteryController",  // 越南
                            @"ofclvn_haboivip"   :@"UGYNLotteryController",  // 河内
     };
