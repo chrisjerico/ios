@@ -92,10 +92,10 @@
     CGSize basetipSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
     CGSize tipsize  = [tipStr boundingRectWithSize:basetipSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]} context:nil].size;
       
-      int tipHeigth = tipsize.height +20;
+      int tipHeigth = 0;
     
     NSLog(@"self.item.depositPrompt = %@",self.item.depositPrompt);
-    NSString *tip2Str = [CMCommon stringIsNull: self.item.depositPrompt]?@"请先转帐成功后再点下一步提交存款":self.item.depositPrompt;
+    NSString *tip2Str = self.item.depositPrompt;
     self.tip2label.text = tip2Str;
     
     CGSize baseSize = CGSizeMake(UGScreenW -40, CGFLOAT_MAX);
@@ -105,7 +105,15 @@
     attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14.0]}
     context:nil].size;
     
-    int tip2Heigth = tip2size.height +20;
+    int tip2Heigth = 0;
+    
+    if ([CMCommon stringIsNull:self.item.depositPrompt]) {
+        tip2Heigth =  20;
+        [self.tip2label setHidden:YES];
+    } else {
+        tip2Heigth = tip2size.height +20;
+        [self.tip2label setHidden:NO];
+    }
     
 
     
@@ -163,30 +171,31 @@
         
     };
     
-    //==============================================================
+    //==============================================================不再使用
     [self.tiplabel  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.view.mas_left).with.offset(40);
          make.right.equalTo(self.view.mas_right).with.offset(-40);
          make.top.equalTo(self.mUIScrollView.mas_top).offset(20);
-         
+         make.height.mas_equalTo(0);
      }];
     ;
-    [self.tiplabel setText:tipStr];
-    [self.tiplabel sizeToFit];
+//    [self.tiplabel setText:tipStr];
+//    [self.tiplabel sizeToFit];
     
     [self.bg1_label  mas_remakeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self.view.mas_left).with.offset(15);
          make.right.equalTo(self.view.mas_right).with.offset(-15);
          make.top.equalTo(self.mUIScrollView.mas_top).offset(10);
-        make.height.equalTo(self.tiplabel.mas_height).offset(tipStr.length ? 20 :0);
-
+         make.height.mas_equalTo(0);
      }];
     
     self.bg1_label.layer.cornerRadius = 5;
     self.bg1_label.layer.masksToBounds = YES;
     [self.bg1_label setBackgroundColor:Skin1.navBarBgColor];
+    [self.bg1_label setHidden: YES];
+    [self.tiplabel setHidden: YES];
     
     
     
@@ -206,10 +215,16 @@
         make.left.equalTo(self.view.mas_left).with.offset(15);
         make.right.equalTo(self.view.mas_right).with.offset(-15);
         make.top.equalTo(self.bg1_label.mas_bottom).offset(10);
-        make.height.equalTo(self.tip2label.mas_height).offset(20);
+        if (tip2Str.length) {
+            make.height.equalTo(self.tip2label.mas_height).offset(20);
+        } else {
+            make.height.mas_equalTo(0);
+        }
+       
         
     }];
-    
+
+    [self.tip2bg_label setHidden:!tip2Str.length];
     self.tip2bg_label.layer.cornerRadius = 5;
     self.tip2bg_label.layer.masksToBounds = YES;
     [self.tip2bg_label setBackgroundColor:RGBA(232, 73, 64, 1)];

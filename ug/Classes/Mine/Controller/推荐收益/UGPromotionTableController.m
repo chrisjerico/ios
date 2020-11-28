@@ -96,8 +96,9 @@
         default:
             break;
     }
-    
+
     self.levelArray = @[@"全部下线",@"1级下线",@"2级下线",@"3级下线",@"4级下线",@"5级下线",@"6级下线",@"7级下线",@"8级下线",@"9级下线",@"10级下线"];
+    
     [self.view addSubview:self.titleView];
     
     if(_tableView == nil){
@@ -219,10 +220,22 @@
     CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
     self.arrowImageView.transform = transform;
     
-    YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
-    popView.type = YBPopupMenuTypeDefault;
-    popView.fontSize = 15;
-    [popView showRelyOnView:self.levelButton];
+    NSLog(@"self.tableType = %ld",(long)self.tableType);
+    NSLog(@"APP.SiteId = %@",APP.SiteId);
+    if (self.tableType == PromotionTableTypeMember && [APP.SiteId isEqualToString:@"c085"]) {
+        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:@[@"全部下线"] icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
+        popView.type = YBPopupMenuTypeDefault;
+        popView.fontSize = 15;
+        [popView showRelyOnView:self.levelButton];
+    }
+    else{
+        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
+        popView.type = YBPopupMenuTypeDefault;
+        popView.fontSize = 15;
+        [popView showRelyOnView:self.levelButton];
+    }
+    
+   
 }
 
 

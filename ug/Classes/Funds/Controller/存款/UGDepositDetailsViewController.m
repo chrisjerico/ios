@@ -344,8 +344,8 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 0, 0)];
         label.textAlignment = NSTextAlignmentLeft;
 //        label.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-        label.font = [UIFont systemFontOfSize:14];
-        label.textColor =  Skin1.textColor1;
+        label.font = [UIFont systemFontOfSize:15];
+        label.textColor =  [UIColor redColor];
         label.numberOfLines = 0;
         label.text = @"";
         [self.view addSubview:label];
