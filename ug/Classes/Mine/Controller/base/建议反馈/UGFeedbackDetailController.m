@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"反馈记录详情";
-    self.tableView.rowHeight = 100;
+    
     self.contentTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.contentTextView.layer.borderWidth = 0.8;
     self.contentTextView.delegate = self;
@@ -36,6 +36,7 @@
     [self getFeedbackDetail];
     
     self.tableView.tableHeaderView.height = NavController1.navigationBar.by + 10;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)getFeedbackDetail {

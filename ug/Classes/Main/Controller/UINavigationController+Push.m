@@ -49,6 +49,7 @@
 #import "UGYYLotterySecondHomeViewController.h" //大厅
 #import "ChatMainViewController.h"              //聊天室列表
 #import "UGLotteryHomeController.h"
+#import "TKLMoneyViewController.h"              //天空蓝的资金管理
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -900,9 +901,15 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_存款: {
-            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
-            fundsVC.selectIndex = 0;
-            [NavController1 pushViewController:fundsVC animated:YES];
+            
+            if (Skin1.isTKL) {
+                [NavController1 pushViewController:[TKLMoneyViewController new] animated:true];
+            } else {
+                UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+                fundsVC.selectIndex = 0;
+                [NavController1 pushViewController:fundsVC animated:YES];
+            }
+
             return true;
         }
         case UCI_取款: {
