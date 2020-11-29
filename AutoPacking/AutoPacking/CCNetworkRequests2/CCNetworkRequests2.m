@@ -135,10 +135,10 @@
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         config.timeoutIntervalForRequest = 300;
         m = [[AFHTTPSessionManager manager] initWithBaseURL:[NSURL URLWithString:urlString] sessionConfiguration:config];
+        m.requestSerializer = [AFHTTPRequestSerializer serializer];
+        m.responseSerializer = [AFJSONResponseSerializer serializer];
+        m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
     });
-    m.requestSerializer = [AFHTTPRequestSerializer serializer];
-    m.responseSerializer = [AFJSONResponseSerializer serializer];
-    m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
     
     NSString *filePath = params[@"上传文件"];
     if (filePath.length) {

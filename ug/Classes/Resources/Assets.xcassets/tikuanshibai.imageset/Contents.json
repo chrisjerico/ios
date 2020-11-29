@@ -1,23 +1,21 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "tikuanshibai.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tikuanshibai@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tikuanshibai@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
