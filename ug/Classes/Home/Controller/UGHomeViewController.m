@@ -165,6 +165,13 @@
             }
             [v removeFromSuperview];
         }
+        
+        // 热更新切换模板慢时，在viewDidLoad可能会因为还不是香槟金而没初始化xbjNavAndGameListView，在这里再初始化一次
+        if ([Skin1.skitType isEqualToString:@"香槟金"] && !_xbjNavAndGameListView) {
+            _xbjNavAndGameListView = _LoadVC_from_storyboard_(@"XBJNavAndGameListVC");
+            [self addChildViewController:_xbjNavAndGameListView];
+        }
+        
         NSMutableDictionary *dict = @{
             @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,],
             @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
