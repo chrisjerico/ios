@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (CCSessionModel *)user_bankCard;
 
 // 绑定提款账户
-- (CCSessionModel *)user_bindBank:(UGWithdrawalType)type wid:(NSString *)wid addr:(NSString *)addr acct:(NSString *)acct;
+- (CCSessionModel *)user_bindBank:(UGWithdrawalType)type wid:(NSString *)wid addr:(NSString *)addr acct:(NSString *)acct pwd:(NSString *)pwd;
 
 // 设置真实姓名
 - (CCSessionModel *)user_profileName:(NSString *)realname;

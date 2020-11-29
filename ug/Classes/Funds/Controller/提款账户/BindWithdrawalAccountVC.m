@@ -43,6 +43,25 @@
     _alipayStackView.hidden = true;
     _virtualStackView.hidden = true;
     
+    // 获取系统配置成功
+    SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+        // 3.GCD
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // UI更新代码
+            if ([SysConf.switchBindVerify isEqualToString:@"1"]) {//开启
+                [subTextField(@"提款密码TextField") setHidden:NO];
+            }
+            else{//关闭
+                [subTextField(@"提款密码TextField") setHidden:YES];
+            }
+        });
+
+        
+        [[AppDefine shared] setupSiteAndSkinParams];
+    });
+    
+    
+    
     [SVProgressHUD show];
     for (UIView *subview in self.view.subviews) {
         subview.hidden = true;
@@ -71,6 +90,9 @@
             })];
         }
     };
+    
+    [self getSystemConfig];
+    
 }
 
 #pragma mark - IBAction
@@ -163,6 +185,7 @@
     NSString *wid = nil;
     NSString *addr = nil;
     NSString *acct = nil;
+    NSString *pwd = nil;
     switch (wt) {
         case UGWithdrawalTypeWeChat:
             wid = _selectedWeChat.bankId;
@@ -187,6 +210,10 @@
         default:;
     }
     BOOL err = false;
+    pwd = subTextField(@"提款密码TextField").text;
+    if ([SysConf.switchBindVerify isEqualToString:@"1"]) {
+        if (!pwd.length) err = true;
+    }
     if (!wid.length) err = true;
     if (!acct.length) err = true;
     if (!addr.length && (wt == UGWithdrawalTypeBankCard || (wt == UGWithdrawalTypeVirtual && _blockchainList.count))) {
@@ -199,7 +226,7 @@
     
     __weakSelf_(__self);
     [SVProgressHUD show];
-    [NetworkManager1 user_bindBank:wt wid:wid addr:addr acct:acct].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+    [NetworkManager1 user_bindBank:wt wid:wid addr:addr acct:acct pwd:pwd].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
         [SVProgressHUD dismiss];
         if (!sm.error) {
             [SVProgressHUD showSuccessWithStatus:sm.resObject[@"msg"]];
@@ -271,5 +298,29 @@
     }
 }
 
+#pragma mark 获取系统配置
+- (void)getSystemConfig {
+    FastSubViewCode(self.view);
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+      
+        [CMResult processWithResult:model success:^{
+           
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+          
+            // UI更新代码
+            if ([SysConf.switchBindVerify isEqualToString:@"1"]) {//开启
+                [subTextField(@"提款密码TextField") setHidden:NO];
+            }
+            else{//关闭
+                [subTextField(@"提款密码TextField") setHidden:YES];
+            }
+            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
 
 @end

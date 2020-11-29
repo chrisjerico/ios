@@ -67,15 +67,30 @@
 }
 
 // 绑定提款账户
-- (CCSessionModel *)user_bindBank:(UGWithdrawalType)type wid:(NSString *)wid addr:(NSString *)addr acct:(NSString *)acct {
-    return [self req:@"wjapp/api.php?c=user&a=bindBank"
-                    :@{@"type":@(type),
-                       @"bank_id":wid,
-                       @"bank_addr":addr,
-                       @"bank_card":acct,
-                       @"owner_name":UserI.fullName,
-                    }
-                    :true];
+- (CCSessionModel *)user_bindBank:(UGWithdrawalType)type wid:(NSString *)wid addr:(NSString *)addr acct:(NSString *)acct pwd:(NSString *)pwd{
+    
+    
+    if (pwd.length) {
+        return [self req:@"wjapp/api.php?c=user&a=bindBank"
+                        :@{@"type":@(type),
+                           @"bank_id":wid,
+                           @"bank_addr":addr,
+                           @"bank_card":acct,
+                           @"pwd":pwd.md5,
+                           @"owner_name":UserI.fullName,
+                        }
+                        :true];
+    } else {
+        return [self req:@"wjapp/api.php?c=user&a=bindBank"
+                        :@{@"type":@(type),
+                           @"bank_id":wid,
+                           @"bank_addr":addr,
+                           @"bank_card":acct,
+                           @"owner_name":UserI.fullName,
+                        }
+                        :true];
+    }
+   
 }
 
 - (CCSessionModel *)user_profileName:(NSString *)realname {
