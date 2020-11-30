@@ -55,7 +55,7 @@
             [CMLabelCommon messageSomeAction:_titleLab3 changeString:@"889777.com,668000.com" andMarkColor:[UIColor redColor] andMarkFondSize:0];
             
         } else if([APP.SiteId isEqualToString:@"l002"]) {
-            _titleLab1.text = @"推荐下载70333.com王中王APP,体验全网最快开奖查询!";
+            _titleLab1.text = @"推荐下载70333.com威尼斯人APP,体验全网最快开奖查询!";
             _titleLab2.text = @"一个发帖就能赚钱的论坛，你们还在等什么呢!!!";
             _titleLab3.text = @"本站备用网址一:300777.com备用网址二:400777.com截图保存相册";
             
