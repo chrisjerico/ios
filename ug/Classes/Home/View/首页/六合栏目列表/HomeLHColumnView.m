@@ -319,12 +319,30 @@
     //    “”==〉其他
     //    /mobile/#/lottery/index ===》彩种 1
     if (judgment == 1) {
-        UGNextIssueModel *m = [UGNextIssueModel new];
-        m.title = model.name;
-        m.gameId = model.categoryType;
-        m.gameType = [self judgmentGameType:model.baoma_type];
-        m.name = [self judgmentGameType:model.baoma_type];
-        [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        
+        NSLog(@"model.categoryType = %@",model.categoryType);
+        if ([model.categoryType isEqualToString:@"187"]) {
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = model.name;
+            m.gameId = model.categoryType;
+            m.gameType = @"cqssc";
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        }
+        else if ([model.categoryType isEqualToString:@"186"]) {
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = model.name;
+            m.gameId = model.categoryType;
+            m.gameType = @"pk10";
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        }
+        else{
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = model.name;
+            m.gameId = model.categoryType;
+            m.gameType = [self judgmentGameType:model.baoma_type];
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        }
+      
     }
     else  if (judgment == 2) { //    /mobile/#/lottery/mystery ===〉帖子  2
         if ([model.thread_type isEqualToString:@"2"]) {
