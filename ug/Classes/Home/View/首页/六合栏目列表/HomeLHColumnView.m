@@ -317,6 +317,7 @@
     //    /mobile/#/lottery/mystery ===〉帖子  2
     //    /mobile/real/goToGame ===》 游戏第3方  3
     //    “”==〉其他
+    //    /mobile/#/lottery/index ===》彩种 1
     if (judgment == 1) {
         UGNextIssueModel *m = [UGNextIssueModel new];
         m.title = model.name;
@@ -325,7 +326,7 @@
         m.name = [self judgmentGameType:model.baoma_type];
         [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
     }
-    else  if (judgment == 2) {
+    else  if (judgment == 2) { //    /mobile/#/lottery/mystery ===〉帖子  2
         if ([model.thread_type isEqualToString:@"2"]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
             vc.clm = model;
@@ -378,7 +379,15 @@
             };
             return;
         }
+        
+        else{
+            UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
+            NSLog(@"每期资料,公式规律");
+        }
     }
+    //    /mobile/real/goToGame ===》 游戏第3方  3
     else  if (judgment == 3) {
         NSArray  *array = [model.link componentsSeparatedByString:@"/"];
         NSString *number1 = [array objectAtIndex:array.count-2];
@@ -413,6 +422,7 @@
         }];
         
     }
+    //    “”==〉其他
     else  if (judgment == 4) {
 
         if([@"zxkf" containsString:model.alias]) {
