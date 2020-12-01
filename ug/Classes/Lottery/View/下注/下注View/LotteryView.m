@@ -21,7 +21,7 @@
         bgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
         bgView;
     }) atIndex:0];
-    subTextField(@"TKL下注TxtF").keyboardType = UIKeyboardTypeDecimalPad;
+//    subTextField(@"TKL下注TxtF").keyboardType = UIKeyboardTypeDecimalPad;
     subButton(@"TKL追号btn").layer.cornerRadius = 5;
     subButton(@"TKL追号btn").layer.masksToBounds = YES;
     subButton(@"TKL机选btn").layer.cornerRadius = 5;
