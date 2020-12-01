@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 // 自定义参数
 @property (nonatomic, strong) NSString *playName1;
+@property (nonatomic, strong) NSString *baseName;               /**<  最根级的名称 */
+@property (nonatomic, strong) NSString *baseCode;               /**<  最根级的code */
 @end
 
 @protocol UGGameBetModel <NSObject>
@@ -78,6 +80,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *ynFastList;         /**<   越南快速号码数组 */
 @property (nonatomic, assign) int indexOfSelect;
 
+@property (nonatomic, strong) NSString *baseName;               /**<  最根级的名称 */
+@property (nonatomic, strong) NSString *baseCode;               /**<  最根级的code */
 
 @end
 

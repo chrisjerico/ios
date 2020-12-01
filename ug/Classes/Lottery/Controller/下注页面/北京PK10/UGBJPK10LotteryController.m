@@ -257,6 +257,15 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
                     }
                     for (UGGameBetModel *gbm in gsm.list){
                         gbm.gameEnable = gsm.enable;
+                        gbm.baseCode = gm.code;
+                        gbm.baseName = gm.name;
+//                        if ([gsm.alias isEqualToString:@"冠军"] && [gbm.name isEqualToString:@"大"] && [gm.name isEqualToString:@"两面"]) {
+//                            NSLog(@"gm.name = %@",gm.name);
+//                            NSLog(@"gm.code = %@",gm.code);
+//                            NSLog(@"gbm.name = %@",gbm.name);
+//                            NSLog(@"gsm.alias = %@",gsm.alias);
+//                        }
+           
                     }
                 }
             }

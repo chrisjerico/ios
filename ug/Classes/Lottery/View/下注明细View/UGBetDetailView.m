@@ -646,6 +646,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         bet.playId = model.playId;
         bet.title = model.title;
         bet.name = model.name;
+        bet.baseName = model.baseName;
+        bet.baseCode = model.baseCode;
         
         if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
             bet.odds = [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [model.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
@@ -743,11 +745,23 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         for (int y = i + 1; y < array.count; y++) {
             
             UGBetModel *model = array[y];
-            if ([temp.playId isEqualToString:model.playId]) {
-                temp.title = temp.alias;
-                [str appendFormat:@",%@",model.name];
-                [self.betArray removeObject:model];
+            if ([CMCommon stringIsNull:temp.baseCode]) {
+                if ([temp.playId isEqualToString:model.playId]) {
+                    temp.title = temp.alias;
+                    [str appendFormat:@",%@",model.name];
+                    [self.betArray removeObject:model];
+                }
+            } else {
+                
+                NSLog(@"model.baseCode = %@",model.baseCode);
+                NSLog(@"temp.baseCode = %@",temp.baseCode);
+                if ([temp.playId isEqualToString:model.playId] && [temp.baseCode isEqualToString:model.baseCode] ) {
+                    temp.title = temp.alias;
+                    [str appendFormat:@",%@",model.name];
+                    [self.betArray removeObject:model];
+                }
             }
+            
         }
         if (str.length) {
             NSInteger count = 0;
