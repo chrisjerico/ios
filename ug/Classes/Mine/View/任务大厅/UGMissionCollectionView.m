@@ -31,17 +31,8 @@ static NSString *missionCellid = @"missionCellid";
         
         self.frame = frame;
         
-            UGMissionMainViewController *missionListVC = [[UGMissionMainViewController alloc] init];
-        
-            UIStoryboard *storyboard0 = [UIStoryboard storyboardWithName:@"UGIntegralConvertController" bundle:nil];
-            UGIntegralConvertController *convertVC = [storyboard0 instantiateInitialViewController];
-        
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGIntegralConvertRecordController" bundle:nil];
-            UGIntegralConvertRecordController *recordVC = [storyboard instantiateInitialViewController];
-        
-            UGMissionLevelController *levelVC = [[UGMissionLevelController alloc] initWithStyle:UITableViewStyleGrouped];
-        
-        self.viewConterllers = @[missionListVC,convertVC,recordVC,levelVC];
+         
+        [self getSystemModeData];
         [self initCollectionView];
         
         if (Skin1.isBlack) {
@@ -52,9 +43,41 @@ static NSString *missionCellid = @"missionCellid";
         }
 
         
+        // 获取系统配置成功
+        SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+            // 3.GCD
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [self getSystemModeData];
+                [self.collectionView reloadData ];
+            });
+
+        });
+        
     }
     return self;
     
+}
+
+-(void)getSystemModeData{
+    UGMissionMainViewController *missionListVC = [[UGMissionMainViewController alloc] init];
+    
+    UIStoryboard *storyboard0 = [UIStoryboard storyboardWithName:@"UGIntegralConvertController" bundle:nil];
+    UGIntegralConvertController *convertVC = [storyboard0 instantiateInitialViewController];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGIntegralConvertRecordController" bundle:nil];
+    UGIntegralConvertRecordController *recordVC = [storyboard instantiateInitialViewController];
+    
+    UGMissionLevelController *levelVC = [[UGMissionLevelController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    
+    
+    if ([UGSystemConfigModel.currentConfig.isIntToMoney isEqualToString:@"0"]) {
+        self.viewConterllers = @[missionListVC,recordVC,levelVC];
+    } else {
+        self.viewConterllers = @[missionListVC,convertVC,recordVC,levelVC];
+    }
+
 }
 
 - (void)setSelectIndex:(NSInteger)selectIndex {

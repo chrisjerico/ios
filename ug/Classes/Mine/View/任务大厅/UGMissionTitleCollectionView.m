@@ -32,19 +32,40 @@ static NSString *titleCellid = @"UGMissionTitleCell";
             [self skin];
         });
         
-        UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-        NSString *str1 = [NSString stringWithFormat:@"%@兑换",config.missionName];
-        NSString *str2 = [NSString stringWithFormat:@"%@账变",config.missionName];
 
 
-        self.titleArray = @[@"任务大厅",str1,str2,@"VIP等级"];
-        self.imageArray = @[@"missions.27015d78",@"integral.ffe5f6cf",@"integralChange.a5a00618",@"vipGrade.d4d2d844"];
+        
+        [self getSystemModeData];
+       
         [self initGameCollectionView];
+        
+        // 获取系统配置成功
+        SANotificationEventSubscribe(UGNotificationGetSystemConfigComplete, self, ^(typeof (self) self, id obj) {
+            // 3.GCD
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // UI更新代码
+                [self getSystemModeData];
+                [self.collectionView reloadData ];
+            });
+
+        });
         
     }
     return self;
 }
 
+-(void)getSystemModeData{
+    UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
+    NSString *str1 = [NSString stringWithFormat:@"%@兑换",config.missionName];
+    NSString *str2 = [NSString stringWithFormat:@"%@账变",config.missionName];
+    if ([UGSystemConfigModel.currentConfig.isIntToMoney isEqualToString:@"0"]) {
+        self.titleArray = @[@"任务大厅",str2,@"VIP等级"];
+        self.imageArray = @[@"missions.27015d78",@"integralChange.a5a00618",@"vipGrade.d4d2d844"];
+    } else {
+        self.titleArray = @[@"任务大厅",str1,str2,@"VIP等级"];
+        self.imageArray = @[@"missions.27015d78",@"integral.ffe5f6cf",@"integralChange.a5a00618",@"vipGrade.d4d2d844"];
+    }
+}
 - (void)setSelectIndex:(NSInteger)selectIndex {
     [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:selectIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     

@@ -148,6 +148,7 @@ static NSString *__title = nil;
     };
     
     [self getUserInfo];
+    [self getSystemConfig];
     
     // 彩币兑换成功时，刷新余额、彩币
     [self xw_addNotificationForName:kDidCreditsExchangeData block:^(NSNotification * _Nonnull noti) {
@@ -328,6 +329,23 @@ static NSString *__title = nil;
     }];
 }
 
+// 获取系统配置
+- (void)getSystemConfig {
+    WeakSelf;
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+      
+        [CMResult processWithResult:model success:^{
+         
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            
+            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
+        } failure:^(id msg) {
+            [SVProgressHUD showErrorWithStatus:msg];
+        }];
+    }];
+}
+
 
 #pragma mark - IBAction
 
@@ -353,6 +371,7 @@ static NSString *__title = nil;
 // 刷新余额
 - (IBAction)refreshBalance:(id)sender {
     [self getUserInfo];
+    [self getSystemConfig];
 }
 
 // 每日签到

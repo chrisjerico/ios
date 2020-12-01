@@ -258,6 +258,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString * chatShareBetMinAmount;/**<   聊天室 注单分享最小金额限制*/
 
 @property (nonatomic, copy) loginNoticeModel * loginNotice;/**<   登录通知*/
+
 //
 + (instancetype)currentConfig;
 
