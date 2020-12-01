@@ -82,7 +82,7 @@
 
             site(@"c185",        @"",           @"",        @"io.fhpt.H50BFF911",       @"",                                            @"企业包",     @"太阳城集团"),
             site(@"c186",        @"c186hy",     @"322",     @"io.fhpt.YSAC186",         @"https://200300b.com",                         @"企业包",     @"好彩网"),
-            site(@"c225",        @"c225hy",           @"342",        @"io.fhpt.H50A96411",       @"https://8393483.com",                                            @"企业包",     @"51彩票"),
+            site(@"c225",        @"c225hy",     @"342",     @"io.fhpt.H50A96411",       @"https://8393483.com",                                            @"企业包",     @"51彩票"),
             site(@"c002",        @"c002hy",     @"173",     @"io.fhpt.YSAC002",         @"https://154977.com",                          @"企业包",     @"永利彩世界"),//极光推送 caishijie05022@163.com 密码Aa362400
             site(@"c084",        @"c084hy",     @"136",     @"io.fhpt.H599DB7B9",       @"https://papghawshugposwaughwsoohu.com",       @"企业包",     @"新2彩票"),//极光 jiguangx2c@gmail.com Qwe741123
             site(@"c012",        @"c012hy",     @"170",     @"io.fhpt.H5F0B8A01",       @"https://08492039.com",                        @"企业包",     @"8号彩票"),//极光账号：bahao   密码Qaz123123
@@ -104,7 +104,7 @@
             site(@"c052",        @"c052hy",     @"290",     @"io.fhpt.YSAC052",         @"https://4924920.com",                        @"企业包",     @"天天彩票"),
             site(@"c108",        @"c108hy",     @"138",     @"io.fhpt.H53779C0A",       @"https://823653.com",                          @"企业包",     @"葡京娱乐场"),
             site(@"c193",        @"c193hy",     @"204",     @"io.fhpt.H54C32CA8",       @"https://4906app.com",                         @"企业包",     @"新葡京彩票"),//shjiu 密码Facai4906
-            site(@"c200",        @"c200hy",     @"183",     @"io.fhpt.H5830E440",       @"https://20181995.com",                        @"企业包",     @"1995澳门彩票"),
+            site(@"c200",        @"c200hy",     @"183",     @"io.fhpt.H5830E440",       @"https://20181995.com",                        @"企业包",     @"澳门彩票"),
             site(@"c120",        @"c120hy",     @"140",     @"io.fhpt.H591E28D0",       @"https://asafew435yrtgre.net",                 @"企业包",     @"新葡京彩票"),
             site(@"c018a",       @"",           @"",        @"io.fhpt.H53DDB5F6",       @"",                                            @"企业包",     @"今⽇彩票"),
             site(@"c018b",       @"",           @"",        @"io.fhpt.H504390D9",       @"",                                            @"企业包",     @"彩聊"),
