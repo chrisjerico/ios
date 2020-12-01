@@ -64,15 +64,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     //    [bar setBackgroundImage:[UIImage imageNamed:@"Rectangle"] forBarMetrics:UIBarMetricsDefault];
 //     UINavigationBar *bar = [UINavigationBar appearanceWhenContainedInInstancesOfClasses:@[self]];
 //    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.textColor1}];
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [UGNavigationController cc_hookSelector:@selector(pushViewController:animated:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
-            NSArray <UIViewController *>*vcs = ((UINavigationController *)ai.instance).viewControllers;
-            vcs.lastObject.hidesBottomBarWhenPushed = false;
-            vcs[MAX(vcs.count-2, 0)].hidesBottomBarWhenPushed = false;
-        } error:nil];
-    });
 }
 
 
