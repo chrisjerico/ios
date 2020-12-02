@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *betAmountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *winAmountLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *ticketNoLabel;
 @end
 
 @implementation UGRealBetRecordCell
@@ -34,6 +34,7 @@
     self.timeLabel.text = item.betTime;
     self.betAmountLabel.text = [NSString stringWithFormat:@"%@元",item.betAmount];
     self.winAmountLabel.text = [NSString stringWithFormat:@"%@元",item.winAmount];
+    self.ticketNoLabel.text = item.ticketNo;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
