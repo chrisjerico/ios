@@ -33,12 +33,12 @@
     self.layer.shadowRadius = 2;
     self.layer.shadowOpacity = 0.1;
 
-    if (![Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
+//    if (![Skin1.skitString isEqualToString:@"经典 1蓝色"]) {
         [self setBackgroundColor:Skin1.homeContentColor];
         [self.nameLabel setTextColor:Skin1.textColor1];
         [self.mBtn setTitleColor:UIColorHex(0xDA4F49) forState:UIControlStateNormal];
         self.mBtn.layer.borderColor = UIColorHex(0xDA4F49).CGColor;
-    }
+//    }
     
 }
 
