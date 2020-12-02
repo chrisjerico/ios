@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *winCount;   /**<   中奖笔数 */
 //@property (nonatomic, strong) NSString *winAmount;   /**<   中奖金额 */
 @property (nonatomic, strong) NSString *winLoseAmount;   /**<  输赢 */
+@property (nonatomic, strong) NSString *ticketNo;        /**<  单号*/
 //==========下注明细
 @property (nonatomic, strong) NSString *title;           /**<  彩種  */
 @property (nonatomic, strong) NSString *betCount;        /**<  笔数*/
