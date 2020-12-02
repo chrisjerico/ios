@@ -104,67 +104,15 @@
 
 }
 
-- (void)setHeaderImageStr:(NSString *)headerImageStr {
-
-    _headerImageStr= headerImageStr;
-    self.headerImageView.image = [UIImage imageNamed:headerImageStr];
-}
-
 - (void)setItem:(UGpaymentModel *)item {
     _item = item;
     [self setNameStr:item.name];
     [self setTipStr:item.tip];
     
-    NSMutableDictionary *imgDict = @{
-        @"wechat_online"            :@"wechat_online",  // 微信在线支付
-        @"wxzsm_transfer"           :@"wechat_online",  // 微信
-        @"wechat_transfer"          :@"wechat_online",  // 微信转账
-        @"wxsm_transfer"            :@"wechat_online",  // 微信扫码
-        
-        @"wechat_alipay_transfer"   :@"wx_zfb",         // 微信支付宝转账
-        @"wxzfbsm_transfer"         :@"wx_zfb",         // 微信支付宝扫码
-        
-        @"alipay_online"            :@"zfb_icon",       // 支付宝在线支付
-        @"alihb_online"             :@"zfb_icon",       // 支付宝红包支付
-        @"zhifubao_transfer"        :@"zfb_icon",       // 支付宝扫码
-        @"alipay_transfer"          :@"zfb_icon",       // 支付宝转账
-        @"zfbzyhk_transfer"         :@"zfb_icon",       // 支付宝转银行卡
-        
-        @"yinlian_online"           :@"bank_online",    // 银联钱包在线支付
-        @"bank_online"              :@"bank_online",   // 网银在线支（用银联图标，还是快捷支付图标？）
-        @"quick_online"             :@"quick_online",   // 快捷支付
-        
-        @"jingdong_online"          :@"jd",             // 京东钱包在线支付
-        @"jdzz_transfer"            :@"jd",             // 京东钱包转账
-        
-        @"tenpay_online"            :@"yunshanfu",      // 云闪付在线支付
-        @"yunshanfu_transfer"       :@"yunshanfu",      // 云闪付
-        @"ysf_transfer"            :@"yunshanfu",      // 云闪付在线支付
-        
-        @"qq_online"                :@"qq_online",      // QQ钱包在线支付
-        @"qqpay_transfer"           :@"qq_online",      // QQ钱包转账
-        
-        @"baidu_online"             :@"baidu",          // 百度钱包在线支付
-        @"tenpay_transfer"          :@"cft_icon",       // 财付通转账
-        @"xnb_online"               :@"xnb_icon",       // 虚拟币在线
-        @"xnb_transfer"             :@"USDT",           // 虚拟币充值
-        
-        @"dk_online"                :@"xnb_icon",       // 点卡支付
-        @"ddhb_transfer"            :@"dingding",       // 钉钉红包
-        @"dshb_transfer"            :@"duosan",         // 多闪红包
-        @"xlsm_transfer"            :@"xlsm",           // 闲聊扫码
-        @"yxsm_transfer"            :@"yxsm_transfer_icon",           // 易信扫码
-        @"huobi_online"             :@"huobi_online",    // 火币
-        @"aliyin_transfer"          :@"aliyin_transfer",    // 支付宝银联
-        @"bankalipay_transfer"      :@"yhzfb",    // 银行支付宝转账
-    }.mutableCopy;
-    
-    if ([APP.SiteId isEqualToString:@"c245"]) {
-        [imgDict setValue:@"bank_online" forKey:@"bank_transfer"];// 银行转账
-    } else {
-        [imgDict setValue:@"transfer" forKey:@"bank_transfer"];// 银行转账
-    }
 
-    [self setHeaderImageStr:imgDict[item.pid]];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:item.bank_sort_icon] placeholderImage:[UIImage imageNamed:@"loading"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
+    }] ;
 }
+   
 @end
