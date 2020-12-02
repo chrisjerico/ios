@@ -4,7 +4,7 @@
 //
 //  Created by zyf on 15/7/24.
 //  Copyright (c) 2015年 zyf. All rights reserved.
-//
+// UIImageRenderingModeAlwaysTemplate
 
 #import "UITabBarItem+WebCache.h"
 
@@ -15,17 +15,17 @@
     [[ZYImageCacheManager sharedImageCacheManager] getImageWithUrl:urlString complete:^(UIImage *image) {
         //使用图片
         if (image == NULL) {
-            self.image = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            self.image = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         } else {
             
-            self.image = [self scaleImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] toScale:0.5];
-            [self.image qmui_imageWithBlendColor:Skin1.tabNoSelectColor];
+            self.image = [self scaleImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] toScale:0.5];
+
         }
     }];
 }
 
 - (void)zy_setImageWithURL:(NSString *)urlString placeholderImage:(UIImage *)placeholderImage {
-    self.image = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.image = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self zy_setImageWithURL:urlString withImage:placeholderImage];
 }
 
@@ -33,16 +33,16 @@
     [[ZYImageCacheManager sharedImageCacheManager] getImageWithUrl:urlString complete:^(UIImage *image) {
         //使用图片
         if (image == NULL) {
-            self.selectedImage = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            self.selectedImage = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         } else {
-            self.selectedImage = [self scaleImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] toScale:0.5];
-            [self.image qmui_imageWithBlendColor:Skin1.tabSelectedColor];
+            self.selectedImage = [self scaleImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] toScale:0.5];
+
         }
     }];
 }
 
 - (void)zy_setSelectImageWithURL:(NSString *)urlString placeholderImage:(UIImage *)placeholderImage {
-    self.selectedImage = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.selectedImage = [placeholderImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self zy_setSelectImageWithURL:urlString withImage:placeholderImage];
 }
 
@@ -54,7 +54,7 @@
         [image drawInRect:CGRectIntegral(CGRectMake(0, 0, 25, 25))];
         UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    return [scaledImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    return [scaledImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 @end
