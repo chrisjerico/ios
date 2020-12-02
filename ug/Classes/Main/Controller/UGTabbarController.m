@@ -49,6 +49,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "SUCache.h"
+#import "UITabBarItem+WebCache.h"
 @implementation UIViewController (CanPush)
 
 _CCRuntimeProperty_Assign(BOOL, 允许未登录访问, set允许未登录访问)
@@ -535,8 +536,8 @@ static UGTabbarController *_tabBarVC = nil;
             nav.tabBarItem.image = image;
             nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         } else {
-            nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-            nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [nav.tabBarItem zy_setImageWithURL:mm.icon_log placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
+            [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_log placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         }
         [vcs addObject:nav];
         [mms addObject:mm];
@@ -737,15 +738,31 @@ static UGTabbarController *_tabBarVC = nil;
             nav.title = mm.name;
             nav.tabBarItem.title = mm.name;
             //
-            NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]];
-            if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
-                UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:key];
-                nav.tabBarItem.image = image;
-                nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            } else {
+            
+            if ([CMCommon stringIsNull:mm.icon_log]) {
                 nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
                 nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            } else {
+
+                [nav.tabBarItem zy_setImageWithURL:mm.icon_log placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
+                [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_log placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+            
             }
+            
+            //                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:mm.icon_log] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            //                    nav.tabBarItem.image = image;
+            //                    nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            //                }];
+//            NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon_log]];
+//            if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
+//                UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:key];
+//                nav.tabBarItem.image = image;
+//                nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//            }
+//            else {
+//                                nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+//                                nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//            }
             nav.viewControllers = @[vc];
             tabBarController.selectedViewController = nav;
             

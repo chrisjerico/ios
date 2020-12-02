@@ -2322,6 +2322,8 @@
 		D466533B24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D46653412430CD38000D5377 /* otherLotter.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533F2430CD38000D5377 /* otherLotter.wav */; };
 		D469CAD525109D5000AE976D /* MyChatRoomsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D469CAD225109D5000AE976D /* MyChatRoomsModel.m */; };
+		D46A7DA1257779A0002FD5C4 /* UITabBarItem+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */; };
+		D46A7DA2257779A0002FD5C4 /* ZYImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */; };
 		D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */; };
 		D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */; };
 		D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */; };
@@ -4526,6 +4528,10 @@
 		D466533F2430CD38000D5377 /* otherLotter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = otherLotter.wav; sourceTree = "<group>"; };
 		D469CAD225109D5000AE976D /* MyChatRoomsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChatRoomsModel.m; sourceTree = "<group>"; };
 		D469CAD425109D5000AE976D /* MyChatRoomsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChatRoomsModel.h; sourceTree = "<group>"; };
+		D46A7D9A2577799F002FD5C4 /* UITabBarItem+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+WebCache.h"; sourceTree = "<group>"; };
+		D46A7D9B2577799F002FD5C4 /* ZYImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageCacheManager.h; sourceTree = "<group>"; };
+		D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+WebCache.m"; sourceTree = "<group>"; };
+		D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageCacheManager.m; sourceTree = "<group>"; };
 		D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteMainViewController.h; sourceTree = "<group>"; };
 		D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromoteMainViewController.m; sourceTree = "<group>"; };
 		D476E5E82401671000BA0EA9 /* PromoteTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteTitleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -5287,6 +5293,7 @@
 		031E14DE23BE812300B0F813 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D46A7D992577799F002FD5C4 /* UITabbarItem-master */,
 				031E14FB23BE812300B0F813 /* STKit */,
 				031E14DB23BE812300B0F813 /* UILabel+YBAttributeTextTapAction */,
 				D4ACC04424701F6E005AB971 /* FDFullscreenPopGesture全屏滑动返回 */,
@@ -9607,6 +9614,17 @@
 			path = "给tab加badge分类";
 			sourceTree = "<group>";
 		};
+		D46A7D992577799F002FD5C4 /* UITabbarItem-master */ = {
+			isa = PBXGroup;
+			children = (
+				D46A7D9A2577799F002FD5C4 /* UITabBarItem+WebCache.h */,
+				D46A7D9B2577799F002FD5C4 /* ZYImageCacheManager.h */,
+				D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */,
+				D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */,
+			);
+			path = "UITabbarItem-master";
+			sourceTree = "<group>";
+		};
 		D476E5E7240166C600BA0EA9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -12199,12 +12217,14 @@
 				031E1B3023BE812800B0F813 /* UGNoticeModel.m in Sources */,
 				031E1E4E23BE812C00B0F813 /* UGSkinSeconCollectionHeadView.m in Sources */,
 				031E1D3A23BE812B00B0F813 /* UGPromotionTableController.m in Sources */,
+				D46A7DA2257779A0002FD5C4 /* ZYImageCacheManager.m in Sources */,
 				031E1CCA23BE812A00B0F813 /* UIScrollView+MJExtension.m in Sources */,
 				031E1A5A23BE812700B0F813 /* OpenUDID.m in Sources */,
 				03CF9B6023C8D6C800CDE142 /* PromotionAdvertisementVC.m in Sources */,
 				031E1AC423BE812800B0F813 /* WMDropDownView.m in Sources */,
 				031E1BBE23BE812900B0F813 /* UGfinancialView.m in Sources */,
 				D4122CC72504B8240009E602 /* TKLPlatformNoticeCell.m in Sources */,
+				D46A7DA1257779A0002FD5C4 /* UITabBarItem+WebCache.m in Sources */,
 				031E196E23BE812600B0F813 /* UGLHGalleryModel.m in Sources */,
 				031E1D0223BE812A00B0F813 /* NSArray+JSONModel.m in Sources */,
 				031E1DB223BE812B00B0F813 /* UGYuebaoInfoModel.m in Sources */,
