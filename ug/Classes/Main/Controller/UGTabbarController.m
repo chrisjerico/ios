@@ -530,14 +530,14 @@ static UGTabbarController *_tabBarVC = nil;
         nav.tabBarItem.title = mm.name;
         nav.title = mm.name;
         //
-        NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon]];
-        if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
-            UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:key];
-            nav.tabBarItem.image = image;
-            nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        if ([CMCommon stringIsNull:mm.icon_log]) {
+            nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+            nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         } else {
+
             [nav.tabBarItem zy_setImageWithURL:mm.icon_log placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
             [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_log placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        
         }
         [vcs addObject:nav];
         [mms addObject:mm];
