@@ -103,6 +103,7 @@
 {
     self = [super init];
     if (self) {
+        _ImageHost = @"https://appstatic.woyovr.com";//https://appstatic.guolaow.com 这个也可以用
         _allSites = [SiteModel allSites];
         _SiteId = __SiteID__;
 #ifdef APP_TEST

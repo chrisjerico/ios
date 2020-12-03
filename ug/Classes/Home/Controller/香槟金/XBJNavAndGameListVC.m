@@ -92,17 +92,17 @@
     subLabel(@"余额Label").font = [subLabel(@"余额Label").text fontWithFrameSize:CGSizeMake(90, 20) maxFont:[UIFont boldSystemFontOfSize:18]];
     
     NSDictionary *vipImages = @{
-        @"0":@"https://i.ibb.co/d6cWB9G/icon-mine-VIP0.png",
-        @"1":@"https://i.ibb.co/vXPbNPy/icon-mine-VIP1.png",
-        @"2":@"https://i.ibb.co/rmgdcxw/icon-mine-VIP2.png",
-        @"3":@"https://i.ibb.co/bs8d6Ls/icon-mine-VIP3.png",
-        @"4":@"https://i.ibb.co/kBy8Vf4/icon-mine-VIP4.png",
-        @"5":@"https://i.ibb.co/phtWt1b/icon-mine-VIP5.png",
-        @"6":@"https://i.ibb.co/P4hnZx9/icon-mine-VIP6.png",
-        @"7":@"https://i.ibb.co/mG3f4yM/icon-mine-VIP7.png",
-        @"8":@"https://i.ibb.co/tPVhCLh/icon-mine-VIP8.png",
-        @"9":@"https://i.ibb.co/6Y93J4W/icon-mine-VIP9.png",
-        @"10":@"https://i.ibb.co/c2vFLkN/icon-mine-VIP10.png",
+        @"0":UGImageURL(@"assets/vip/icon_mine_VIP0.png"),
+        @"1":UGImageURL(@"assets/vip/icon_mine_VIP1.png"),
+        @"2":UGImageURL(@"assets/vip/icon_mine_VIP2.png"),
+        @"3":UGImageURL(@"assets/vip/icon_mine_VIP3.png"),
+        @"4":UGImageURL(@"assets/vip/icon_mine_VIP4.png"),
+        @"5":UGImageURL(@"assets/vip/icon_mine_VIP5.png"),
+        @"6":UGImageURL(@"assets/vip/icon_mine_VIP6.png"),
+        @"7":UGImageURL(@"assets/vip/icon_mine_VIP7.png"),
+        @"8":UGImageURL(@"assets/vip/icon_mine_VIP8.png"),
+        @"9":UGImageURL(@"assets/vip/icon_mine_VIP9.png"),
+        @"10":UGImageURL(@"assets/vip/icon_mine_VIP10.png"),
     };
     [subImageView(@"VIPImageView") sd_setImageWithURL:[NSURL URLWithString:vipImages[UserI.curLevelInt]]];
     subImageView(@"VIPImageView").hidden = UserI.isTest || !isLogin;
@@ -258,13 +258,13 @@
                 })];
                 
                 NSDictionary *dict = @{
-                    @"34":@"https://i.ibb.co/qnWKCW5/bydw-p.png",
-                    @"36":@"https://i.ibb.co/Rj2pwv2/cptz-a.png",
-                    @"35":@"https://i.ibb.co/S5fZLCz/dzjj-a.png",
-                    @"33":@"https://i.ibb.co/YB9qp0K/qpyl-a.png",
-                    @"40":@"https://i.ibb.co/R4wB42n/rmyx-a.png",
-                    @"37":@"https://i.ibb.co/HBSkr03/tyyx-a.png",
-                    @"32":@"https://i.ibb.co/tp4bF7Q/zryl-a.png",
+                    @"34":UGImageURL(@"c245/bydw_p.png"),
+                    @"36":UGImageURL(@"c245/cptz_a.png"),
+                    @"35":UGImageURL(@"c245/dzjj_a.png"),
+                    @"33":UGImageURL(@"c245/qpyl_a.png"),
+                    @"40":UGImageURL(@"c245/rmyx_a.png"),
+                    @"37":UGImageURL(@"c245/tyyx_a.png"),
+                    @"32":UGImageURL(@"c245/zryl_a.png"),
                 };
                 NSString *selectedIcon = dict[gcm.iid];
                 if (selectedIcon.length) {
