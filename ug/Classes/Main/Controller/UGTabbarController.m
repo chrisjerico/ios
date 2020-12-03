@@ -530,15 +530,7 @@ static UGTabbarController *_tabBarVC = nil;
         nav.tabBarItem.title = mm.name;
         nav.title = mm.name;
         //
-        if ([CMCommon stringIsNull:mm.icon_log]) {
-            nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-            nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        } else {
-
-            [nav.tabBarItem zy_setImageWithURL:mm.icon_log placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
-            [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_log placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-        
-        }
+        [self setTabBarItemImage:mm Navgation:nav];
         [vcs addObject:nav];
         [mms addObject:mm];
     }
@@ -737,17 +729,9 @@ static UGTabbarController *_tabBarVC = nil;
             UINavigationController *nav = (UINavigationController *)viewController;
             nav.title = mm.name;
             nav.tabBarItem.title = mm.name;
-            //
             
-            if ([CMCommon stringIsNull:mm.icon_log]) {
-                nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-                nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            } else {
+            [self setTabBarItemImage:mm Navgation:nav];
 
-                [nav.tabBarItem zy_setImageWithURL:mm.icon_log placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
-                [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_log placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-            
-            }
             
             //                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:mm.icon_log] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             //                    nav.tabBarItem.image = image;
@@ -776,6 +760,18 @@ static UGTabbarController *_tabBarVC = nil;
     return [UGTabbarController canPushToViewController:vc];
 }
 
+
+-(void)setTabBarItemImage:( UGMobileMenu *)mm  Navgation:(UINavigationController *) nav{
+    if ([CMCommon stringIsNull:mm.icon_log]) {
+        nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
+        nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    } else {
+
+        [nav.tabBarItem zy_setImageWithURL:mm.icon_log placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
+        [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_log placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+    
+    }
+}
 
 #pragma mark - 每90秒获取一次站内信
 
