@@ -137,7 +137,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @interface UGMobileMenu :UGModel<UGMobileMenu>
 @property (nonatomic, copy) NSString *path;         /**<   界面 */
 @property (nonatomic, copy) NSString *icon;         /**<   图标 */
-@property (nonatomic, copy) NSString *icon_log;         /**<   tab图标 */
+@property (nonatomic, copy) NSString *icon_logo;         /**<   tab图标 */
 @property (nonatomic, copy) NSString *name;         /**<   标题 */
 @property (nonatomic) NSInteger sort;               /**<   排序 */
 @property (nonatomic) BOOL status;                  /**<   1=显示建设中页面；0=正常显示 */

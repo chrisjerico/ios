@@ -762,13 +762,13 @@ static UGTabbarController *_tabBarVC = nil;
 
 
 -(void)setTabBarItemImage:( UGMobileMenu *)mm  Navgation:(UINavigationController *) nav{
-    if ([CMCommon stringIsNull:mm.icon_log]) {
+    if ([CMCommon stringIsNull:mm.icon_logo]) {
         nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
         nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     } else {
 
-        [nav.tabBarItem zy_setImageWithURL:mm.icon_log placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
-        [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_log placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
+        [nav.tabBarItem zy_setImageWithURL:mm.icon_logo placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
+        [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_logo placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
     
     }
 }
