@@ -110,10 +110,12 @@
     self.headerImageView.image = [UIImage imageNamed:headerImageStr];
 }
 
+
 - (void)setItem:(UGpaymentModel *)item {
     _item = item;
     [self setNameStr:item.name];
     [self setTipStr:item.tip];
+    
     
     NSMutableDictionary *imgDict = @{
         @"wechat_online"            :@"wechat_online",  // 微信在线支付
@@ -165,6 +167,16 @@
         [imgDict setValue:@"transfer" forKey:@"bank_transfer"];// 银行转账
     }
 
-    [self setHeaderImageStr:imgDict[item.pid]];
+
+
+    if ([CMCommon stringIsNull:item.bank_sort_icon]) {
+        [self setHeaderImageStr:imgDict[item.pid]];
+    } else {
+        [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:item.bank_sort_icon] placeholderImage:[UIImage imageNamed:@"loading"]  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+        }] ;
+    }
+    
 }
+   
 @end

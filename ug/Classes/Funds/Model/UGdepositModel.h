@@ -61,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *prompt;         /**<   提示 ｜虚拟币按钮下提示 */
 @property (nonatomic, strong) NSString *transferPrompt; /**<   提示 */
 @property (nonatomic, strong) NSString *depositPrompt;  /**<   提示 */
+@property (nonatomic, strong) NSString *bank_sort_icon;  /**<   显示图片 */
 @property (nonatomic, strong) NSArray *quickAmount;     /**<   默认按钮的数组 */
 
 @property (nonatomic, strong) NSArray <UGchannelModel>*channel; /**<   呈现的数据数组 */
