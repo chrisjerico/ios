@@ -10,6 +10,7 @@
 
 #import <React/RCTRootView.h>
 #import "CodePush.h"
+#import "RegExCategories.h"
 
 @interface HotBranchView()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *currentBranchLabel;
@@ -26,8 +27,9 @@
     sv.frame = APP.Bounds;
     sv.tableView.delegate = sv;
     sv.tableView.dataSource = sv;
-    sv.currentBranchLabel.text = _NSString(@"当前环境：%@", [[ReactNativeHelper allCodePushKey] allKeysForObject:[ReactNativeHelper currentCodePushKey]].firstObject);
+    sv.currentBranchLabel.text = _NSString(@"当前环境：%@", [sv getCurrentEnvTitle]);
     [sv.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    sv.tableView.rowHeight = 35;
     [APP.Window addSubview:sv];
     
     // 取出标题
@@ -58,6 +60,22 @@
     }
     return sv;
 }
+
+- (NSString *)getCurrentEnvTitle {
+    NSString *env = [[ReactNativeHelper allCodePushKey] allKeysForObject:[ReactNativeHelper currentCodePushKey]].firstObject;
+    if ([env isMatch:RX(@"^[A-Za-z0-9_]+$")]) {
+        if ([env hasSuffix:@"_t"]) {
+            return [env stringByReplacingOccurrencesOfString:@"_t" withString:@"(未审)"];
+        } else {
+            return [env stringByAppendingString:@"(线上)"];
+        }
+    } else {
+        return env.length ? env : @"无";
+    }
+}
+
+
+#pragma mark - IBAction
 
 - (IBAction)onHideBtnClick:(UIButton *)sender {
     [self removeFromSuperview];
@@ -94,7 +112,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = _dataArray[indexPath.section][indexPath.row];
+    NSString *t = _dataArray[indexPath.section][indexPath.row];
+    
+    UILabel *lb = [cell viewWithTagString:@"二级标题"];
+    if (!lb) {
+        lb = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 100, cell.height)];
+        lb.tagString = @"二级标题";
+        lb.textColor = APP.TextColor3;
+        lb.font = [UIFont systemFontOfSize:11];
+        [cell.contentView addSubview:lb];
+    }
+    if ([t isMatch:RX(@"^[A-Za-z0-9_]+$")]) {
+        if ([t hasSuffix:@"_t"]) {
+            lb.text = @"(未审)";
+            cell.textLabel.font = [UIFont systemFontOfSize:13];
+            cell.textLabel.textColor = UIColor.lightGrayColor;
+        } else {
+            lb.text = @"(线上)";
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+            cell.textLabel.textColor = UIColor.blackColor;
+        }
+    } else {
+        lb.text = @"";
+    }
+    cell.textLabel.text = [t stringByReplacingOccurrencesOfString:@"_t" withString:@""];
     return cell;
 }
 
