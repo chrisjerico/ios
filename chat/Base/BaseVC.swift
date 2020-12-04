@@ -9,7 +9,9 @@
 import UIKit
 
 class BaseVC: UIViewController {
-	
+    deinit {
+        logger.debug("\(self)")
+    }
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		

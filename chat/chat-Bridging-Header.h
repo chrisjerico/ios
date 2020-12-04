@@ -56,3 +56,5 @@
 
 #import "LogVC.h"
 #import "UGNoticeTypeModel.h"
+#import "UGImgVcodeModel.h"
+#import "OpenUDID.h"

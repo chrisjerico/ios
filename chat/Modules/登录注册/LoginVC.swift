@@ -143,22 +143,13 @@ class LoginVC: BaseVC {
 
 		
 	}
-	deinit {
-		logger.debug("")
-	}
+	
 	@IBAction func goRegist(_ sender: Any) {
-		CMNetwork.getSystemConfig(withParams: ["sss": "sss"]) { [weak self] (result, error) in
-			if let error = error {
-				Alert.showTip(error.localizedDescription,  parenter: self?.view)
-			} else if let config = result?.data as? UGSystemConfigModel {
-				UGSystemConfigModel.setCurrentConfig(config)
-				let registerVC = UIStoryboard(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "UGRegisterViewController")
-				self?.navigationController?.pushViewController(registerVC, animated: true)
-			} else {
-				Alert.showTip("获取系统配置,数据解析失败", parenter: self?.view)
-			}
-		}
-		
+        
+//        let registerVC = UIStoryboard(name: "Mine", bundle: nil).instantiateViewController(withIdentifier: "UGRegisterViewController")
+        let registerVC = RegistVC()
+        navigationController?.pushViewController(registerVC, animated: true)
+   
 		
 		
 	}

@@ -58,6 +58,5 @@ extension BaseNav: UINavigationControllerDelegate {
 				navigationBar.setBackgroundImage(UIImage(color: .white), for: .default)
 				navigationBar.barStyle = .default
 			}
-		logger.debug(viewController.self)
 	}
 }
