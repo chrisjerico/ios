@@ -236,7 +236,7 @@
     _isRed = [@"c126" containsString:_SiteId];
     _isHideSQSM = [@"c245,test60f" containsString:_SiteId];
     _isShowSummary = [@"c163" containsString:_SiteId];//isNoAlert
-    _isNoAlert = [@"c126,test61f" containsString:_SiteId];
+    _isNoAlert = [@"c126" containsString:_SiteId];
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         [ReactNativeHelper sendEvent:@"AppDefine-SetupSiteAndSkinParams" params:@{}];
