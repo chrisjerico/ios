@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="2400"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-Ez-nEa">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2387.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2115.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="promotioninfo" translatesAutoresizingMaskIntoConstraints="NO" id="dA7-vm-bxV">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
@@ -157,6 +157,9 @@
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="推荐复制btn"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="homeUrlCopy:" destination="Jz2-od-eId" eventType="touchUpInside" id="BjP-jy-TX6"/>
+                                                        </connections>
                                                     </button>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S3Y-mE-6oH">
                                                         <rect key="frame" x="296.5" y="63" width="51" height="31"/>
@@ -167,6 +170,9 @@
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="推荐switch"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="homeSwitchClick:" destination="Jz2-od-eId" eventType="valueChanged" id="wlZ-5h-Yxg"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="二维码" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFF-QC-RYo">
                                                         <rect key="frame" x="360.5" y="70" width="43.5" height="17"/>
@@ -213,8 +219,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="首页推荐View"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apG-dn-nup" userLabel="2微码1">
-                                                <rect key="frame" x="0.0" y="509" width="414" height="180"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apG-dn-nup" userLabel="2微码1">
+                                                <rect key="frame" x="0.0" y="508" width="414" height="180"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="p8y-XC-vqI">
                                                         <rect key="frame" x="127" y="10" width="160" height="160"/>
@@ -238,7 +244,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5de-bG-UpP">
-                                                <rect key="frame" x="0.0" y="690" width="414" height="60"/>
+                                                <rect key="frame" x="0.0" y="509" width="414" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果想赚取丰厚的推荐佣金，请复制推荐链接发给您的好友注册。（推荐网址请用浏览器打开）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9w-T6-pwb">
                                                         <rect key="frame" x="15" y="10" width="384" height="40"/>
@@ -263,7 +269,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6a-bM-8XY" userLabel="注册推荐">
-                                                <rect key="frame" x="0.0" y="751" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="570" width="414" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册推荐地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vk-3Y-ZMX">
                                                         <rect key="frame" x="15" y="15" width="98" height="19.5"/>
@@ -294,6 +300,9 @@
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册复制btn"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="registerUrlCopy:" destination="Jz2-od-eId" eventType="touchUpInside" id="kyx-dc-7Zj"/>
+                                                        </connections>
                                                     </button>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uki-P9-uZs">
                                                         <rect key="frame" x="296.5" y="63" width="51" height="31"/>
@@ -304,6 +313,9 @@
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册switch"/>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="registerSwitchClick:" destination="Jz2-od-eId" eventType="valueChanged" id="D67-DS-fa4"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="二维码" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp6-JL-pyi">
                                                         <rect key="frame" x="360.5" y="70" width="43.5" height="17"/>
@@ -350,8 +362,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册推荐View"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74x-VG-qYD" userLabel="2微码2">
-                                                <rect key="frame" x="0.0" y="852" width="414" height="180"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74x-VG-qYD" userLabel="2微码2">
+                                                <rect key="frame" x="0.0" y="670" width="414" height="180"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="s55-Hi-n8j">
                                                         <rect key="frame" x="127" y="10" width="160" height="160"/>
@@ -370,9 +382,12 @@
                                                     <constraint firstItem="s55-Hi-n8j" firstAttribute="centerX" secondItem="74x-VG-qYD" secondAttribute="centerX" id="MpD-Em-EZM"/>
                                                     <constraint firstItem="s55-Hi-n8j" firstAttribute="centerY" secondItem="74x-VG-qYD" secondAttribute="centerY" id="yQ2-V8-zla"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="2微码2View"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QC-TY-hKm" userLabel="佣金比例">
-                                                <rect key="frame" x="0.0" y="1033" width="414" height="875.5"/>
+                                                <rect key="frame" x="0.0" y="671" width="414" height="875.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金比例" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwA-G9-q9K">
                                                         <rect key="frame" x="15" y="7" width="57.5" height="17"/>
@@ -393,10 +408,10 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="384" height="576.5"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwa-mY-7TM" userLabel="1">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="384" height="81.5"/>
-                                                                                <color key="backgroundColor" red="0.99949449300000004" green="1" blue="0.32939365510000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="384" height="54"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -404,10 +419,10 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QdT-jX-Uj0" userLabel="2" colorLabel="IBBuiltInLabel-Yellow">
-                                                                                <rect key="frame" x="0.0" y="92.5" width="384" height="81.5"/>
-                                                                                <color key="backgroundColor" red="0.93689066170000002" green="0.95278483629999999" blue="0.9647069573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <rect key="frame" x="0.0" y="93" width="384" height="54"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -415,10 +430,10 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-SE-Lfb" userLabel="3">
-                                                                                <rect key="frame" x="0.0" y="185.5" width="384" height="81.5"/>
-                                                                                <color key="backgroundColor" red="0.88140374420000001" green="0.47991526130000001" blue="0.36076888439999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <rect key="frame" x="0.0" y="186" width="384" height="54"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -426,10 +441,10 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKB-Cc-MrG" userLabel="4">
-                                                                                <rect key="frame" x="0.0" y="278" width="384" height="81.5"/>
-                                                                                <color key="backgroundColor" red="0.86275094750000003" green="0.86273467540000004" blue="0.86274570230000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                <rect key="frame" x="0.0" y="279.5" width="384" height="54"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -437,10 +452,10 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKy-qk-VZp" userLabel="5">
-                                                                                <rect key="frame" x="0.0" y="370.5" width="384" height="81.5"/>
-                                                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                                                <rect key="frame" x="0.0" y="372.5" width="384" height="54"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -448,10 +463,10 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcu-WV-uqp" userLabel="6">
-                                                                                <rect key="frame" x="0.0" y="463.5" width="384" height="81.5"/>
-                                                                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                                                                <rect key="frame" x="0.0" y="465.5" width="384" height="54"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -459,9 +474,9 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wr-5X-IPD" userLabel="7">
-                                                                                <rect key="frame" x="0.0" y="556" width="384" height="20.5"/>
-                                                                                <color key="backgroundColor" red="0.6761681437" green="0.76766020059999995" blue="0.84313982730000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <rect key="frame" x="0.0" y="558.5" width="384" height="18"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
@@ -564,7 +579,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80N-FQ-uky" userLabel="推荐收益">
-                                                <rect key="frame" x="0.0" y="1909.5" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="1547.5" width="414" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月推荐收益:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtU-Qj-TIj" userLabel="本月推荐收益">
                                                         <rect key="frame" x="15" y="13.5" width="90" height="17"/>
@@ -598,7 +613,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZ6-9H-Dn4" userLabel="推荐会员">
-                                                <rect key="frame" x="0.0" y="1954.5" width="414" height="70"/>
+                                                <rect key="frame" x="0.0" y="1592.5" width="414" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月推荐会员:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWw-DO-G8e" userLabel="本月推荐收益">
                                                         <rect key="frame" x="15" y="26.5" width="90" height="17"/>
@@ -606,7 +621,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="推荐会员label"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="推荐会员标题label"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一级下线:0，二级下线:0，三级下线:0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTb-Zg-s35">
@@ -635,7 +650,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNp-DV-I5r" userLabel="会员总计">
-                                                <rect key="frame" x="0.0" y="2025.5" width="414" height="70"/>
+                                                <rect key="frame" x="0.0" y="1663.5" width="414" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐会员总计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVC-T6-IIy" userLabel="推荐会员总计:">
                                                         <rect key="frame" x="15" y="26.5" width="90" height="17"/>
@@ -672,7 +687,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-WR-VYO">
-                                                <rect key="frame" x="0.0" y="2096.5" width="414" height="80"/>
+                                                <rect key="frame" x="0.0" y="1734.5" width="414" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您推荐的会员在下注结算后，佣金会自动按照比例加到您的资金账户上。例如：您所推荐的会员下注1000元，您的收益=1000元*(一级下线比例比如：0.15%）=1.5元。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5e-7d-5Zz">
                                                         <rect key="frame" x="15" y="10" width="384" height="60"/>
@@ -687,9 +702,8 @@
                                                 <color key="backgroundColor" red="0.94905644659999999" green="0.94877976180000001" blue="0.96862834689999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstItem="y5e-7d-5Zz" firstAttribute="top" secondItem="24Z-WR-VYO" secondAttribute="top" constant="10" id="0Gq-Vh-Gyb"/>
-                                                    <constraint firstAttribute="height" constant="80" id="EBK-76-elV"/>
                                                     <constraint firstAttribute="trailing" secondItem="y5e-7d-5Zz" secondAttribute="trailing" constant="15" id="ea3-W9-0EB"/>
-                                                    <constraint firstAttribute="bottom" secondItem="y5e-7d-5Zz" secondAttribute="bottom" constant="10" id="lqF-uT-bqm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="y5e-7d-5Zz" secondAttribute="bottom" priority="750" constant="10" id="lqF-uT-bqm"/>
                                                     <constraint firstItem="y5e-7d-5Zz" firstAttribute="leading" secondItem="24Z-WR-VYO" secondAttribute="leading" constant="15" id="ze9-gg-QAF"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -697,8 +711,11 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPc-HJ-fWm" userLabel="底部">
-                                                <rect key="frame" x="0.0" y="2177.5" width="414" height="210"/>
+                                                <rect key="frame" x="0.0" y="1815.5" width="414" height="300"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="fPS-pj-uSW"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="底View"/>
                                                 </userDefinedRuntimeAttributes>
@@ -732,13 +749,20 @@
                     </view>
                     <size key="freeformSize" width="414" height="2400"/>
                     <connections>
+                        <outlet property="big2View" destination="4MT-ev-3UP" id="v1F-q4-TWk"/>
+                        <outlet property="bigView" destination="IMO-2i-GvT" id="9zq-fa-DII"/>
+                        <outlet property="btnsBgView" destination="1bv-0L-P9V" id="KHa-fC-aAd"/>
+                        <outlet property="btnsView" destination="ktz-dn-fz7" id="7Jv-Na-wTN"/>
+                        <outlet property="headerImageView" destination="dA7-vm-bxV" id="LLI-LP-v5b"/>
+                        <outlet property="mContentLbl" destination="UO2-Yd-wtX" id="tfC-sj-xvg"/>
+                        <outlet property="stackHeight" destination="TLa-2u-Blg" id="teF-YU-DlB"/>
                         <outlet property="wm1View" destination="apG-dn-nup" id="mjX-t1-Pyg"/>
                         <outlet property="wm2View" destination="74x-VG-qYD" id="0Wq-39-Wqw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXi-SM-Civ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1168" y="-323"/>
+            <point key="canvasLocation" x="-1470" y="-459"/>
         </scene>
     </scenes>
     <resources>
@@ -746,12 +770,6 @@
         <image name="promotioninfo" width="497" height="370"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

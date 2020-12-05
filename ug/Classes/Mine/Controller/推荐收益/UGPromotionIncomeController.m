@@ -9,7 +9,7 @@
 #import "UGPromotionIncomeController.h"
 #import "XYYSegmentControl.h"
 #import "UGPromotionTableController.h"
-#import "UGPromotionInfoController.h"
+#import "newPromotionInfoController.h"
 #import "UGPormotionView.h"
 #import "PromotionCodeListVC.h"
 
@@ -173,8 +173,7 @@
 ///待加载的控制器
 - (UIViewController *)slideSwitchView:(XYYSegmentControl *)view viewOfTab:(NSUInteger)number {
     if (number == 0) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGPromotionInfoController" bundle:nil];
-        UGPromotionInfoController *infoVC = [storyboard instantiateInitialViewController];
+        newPromotionInfoController *infoVC = _LoadVC_from_storyboard_(@"newPromotionInfoController");
         return infoVC;
     } else if (number == 1) {
         return [[UGPromotionTableController alloc] initWithTableType:PromotionTableTypeMember];
