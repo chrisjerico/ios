@@ -40,6 +40,33 @@
     
     
 }
+//    设置样式
+-(void)selfViewStyle{
+    FastSubViewCode(self.view)
+    self.view.backgroundColor = Skin1.textColor4;
+    subButton(@"推荐复制btn").layer.cornerRadius = 3;
+    subButton(@"推荐复制btn").layer.masksToBounds = YES;
+    [subButton(@"推荐复制btn") setBackgroundColor:Skin1.navBarBgColor];
+    
+    subButton(@"注册复制btn").layer.cornerRadius = 3;
+    subButton(@"注册复制btn").layer.masksToBounds = YES;
+    [subButton(@"注册复制btn") setBackgroundColor:Skin1.navBarBgColor];
+    
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"推荐idView") setBackgroundColor:Skin1.textColor4];
+    [subView(@"首页推荐View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    [subView(@"用户名View") setBackgroundColor:Skin1.textColor4];
+    
+    
+}
+//    佣金比例样式
 
 //网络数据
 //UI数据

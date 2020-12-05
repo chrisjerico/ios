@@ -54,7 +54,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Mic-Gb-szU"/>
                                                     <constraint firstItem="pgb-jL-Tkx" firstAttribute="leading" secondItem="LG2-xQ-Wcs" secondAttribute="leading" constant="15" id="ZuC-AL-owI"/>
@@ -698,7 +698,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPc-HJ-fWm" userLabel="底部">
                                                 <rect key="frame" x="0.0" y="2177.5" width="414" height="210"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="底View"/>
                                                 </userDefinedRuntimeAttributes>
@@ -738,7 +738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXi-SM-Civ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="266.66666666666669" y="168.75"/>
+            <point key="canvasLocation" x="-1168" y="-323"/>
         </scene>
     </scenes>
     <resources>
