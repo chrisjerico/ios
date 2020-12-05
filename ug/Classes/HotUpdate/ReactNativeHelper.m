@@ -482,6 +482,12 @@ RCT_EXPORT_METHOD(launchFinish) {
 + (NSDictionary <NSString *, NSString *>*)allCodePushKey {
     return @{
         @".dev本地代码":@"LocalCode",
+        @"fish1":@"8gDdgqhNCZQkMS0CcaSr5oahwpTB4ksvOXqog",
+        @"fish1_t":@"YWG3t0cNiBSbR5fWTR2fV9Vy377q4ksvOXqog",
+        @"tars1":@"xXvZJJSmWwuD9CnMClPp1bzLHl8Y4ksvOXqog",
+        @"tars1_t":@"qhQhyCeI8SiBy178B8KJw8Ofr8oN4ksvOXqog",
+        @"ezer1":@"cNXLOIqJ0JiXGQD55RSBrqpYEqLg4ksvOXqog",
+        @"ezer1_t":@"GyX4k2k0De7hsvAnIOErX3CV0rOR4ksvOXqog",
         @"a002": @"iaSI4okfkRlB8wXVKMUTCMEitmYb4ksvOXqog",
         @"a002_t": @"24S3zQd72B3GLWHTh4Lje2qKIOXr4ksvOXqog",
         @"c001": @"8QmjutQYWePbzC8ChRgCSGaR2hhB4ksvOXqog",
