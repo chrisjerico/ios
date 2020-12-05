@@ -237,7 +237,7 @@
     _isHideSQSM = [@"c245,test60f" containsString:_SiteId];
     _isNoAlert = [@"c126" containsString:_SiteId];
     _isShowSummary = [@"c163" containsString:_SiteId];
-    _isShowAll = [@"test60f" containsString:_SiteId];
+    _isShowAll = [@"c085" containsString:_SiteId];
 
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
