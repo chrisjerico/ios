@@ -206,9 +206,6 @@
     _betBgIsWhite = (![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158,c115" containsString:_SiteId]) || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
     //下注页tab 为深色
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
-    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
-
-    
     _betSizeIsBig = [@"c169,c205,c211,c048,c115" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
@@ -237,7 +234,7 @@
     _isHideSQSM = [@"c245,test60f" containsString:_SiteId];
     _isNoAlert = [@"c126" containsString:_SiteId];
     _isShowSummary = [@"c163" containsString:_SiteId];
-    _isShowAll = [@"c085" containsString:_SiteId];
+    _isShowAll = [@"c085,test60f" containsString:_SiteId];
 
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {

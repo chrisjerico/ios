@@ -47,6 +47,10 @@
 }
 //    设置样式
 -(void)selfViewStyle{
+    
+    self.showHomeUrl = YES;
+    self.showRegisterUrl = YES;
+    
     FastSubViewCode(self.view)
     self.view.backgroundColor = Skin1.textColor4;
     subButton(@"推荐复制btn").layer.cornerRadius = 3;
@@ -68,6 +72,12 @@
     [subView(@"本月推荐会员View") setBackgroundColor:Skin1.textColor4];
     [subView(@"会员总计View") setBackgroundColor:Skin1.textColor4];
     [subView(@"底View") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"彩票返点label") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"真人返点label") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"捕鱼返点label") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"电子返点label") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"电竞返点label") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"棋牌返点label") setBackgroundColor:Skin1.textColor4];
     [subView(@"标题1View") setBackgroundColor:Skin1.CLBgColor];
     [subView(@"标题2View") setBackgroundColor:Skin1.CLBgColor];
     [subView(@"标题3View") setBackgroundColor:Skin1.CLBgColor];
@@ -95,9 +105,9 @@
     [subLabel(@"推荐会员label") setTextColor:Skin1.textColor1];
     [subLabel(@"推荐会员总计标题label") setTextColor:Skin1.textColor1];
     [subLabel(@"会员总计label") setTextColor:Skin1.textColor1];
-    [subLabel(@"标题1label") setTextColor:Skin1.textColor1];
-    [subLabel(@"标题2label") setTextColor:Skin1.textColor1];
-    [subLabel(@"佣金计算label") setTextColor:Skin1.textColor1];
+    [subLabel(@"标题1label") setTextColor:Skin1.textColor2];
+    [subLabel(@"标题2label") setTextColor:Skin1.textColor2];
+    [subLabel(@"佣金计算label") setTextColor:Skin1.textColor2];
     
     subLabel(@"我的用户label").text = @"";
     subLabel(@"我的推荐label").text = @"";
