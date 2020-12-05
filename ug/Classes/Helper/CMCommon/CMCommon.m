@@ -1980,4 +1980,23 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 
 
 
+/**
+*   自定义带2个请求
+*
+*
+*/
++(void)goTGWebUrl:(NSString *)url url2:(NSString *)url2 title :(NSString *)title{
+    
+    NSString* str = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+    webViewVC.允许未登录访问 = true;
+    webViewVC.允许游客访问 = true;
+    webViewVC.url = str;
+    webViewVC.url2 = url2;
+    webViewVC.isShow = YES;
+    if (title) {
+        webViewVC.webTitle = title;
+    }
+    [NavController1 pushViewController:webViewVC animated:YES];
+}
 @end

@@ -71,6 +71,7 @@ static NSString *realBetRecordCellId = @"UGRealBetRecordCell";
     [subLabel(@"单号label") setTextColor:Skin1.textColor1];
     [subLabel(@"下注金额label") setTextColor:Skin1.textColor1];
     [subLabel(@"输赢label") setTextColor:Skin1.textColor1];
+    [subLabel(@"详情label") setTextColor:Skin1.textColor1];
     [self.tableView setBackgroundColor:Skin1.textColor4];
     
     self.startDate = [[NSDate date] stringWithFormat:@"yyyy-MM-dd"];

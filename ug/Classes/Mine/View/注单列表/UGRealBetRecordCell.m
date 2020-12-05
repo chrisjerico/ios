@@ -35,6 +35,33 @@
     self.betAmountLabel.text = [NSString stringWithFormat:@"%@元",item.betAmount];
     self.winAmountLabel.text = [NSString stringWithFormat:@"%@元",item.winAmount];
     self.ticketNoLabel.text = item.ticketNo;
+    FastSubViewCode(self);
+    WeakSelf;
+    [subButton(@"详情Button") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
+    [subButton(@"详情Button") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        
+        NSString *url2 = [NSString stringWithFormat:@"%@%@",APP.Host,weakSelf.item.bet_details.url];
+        NSString *newUrl2 = [url2 stringByAppendingURLParams:@{
+               @"from":@"app",
+               @"color":Skin1.navBarBgColor.cc_userInfo[@"color"],
+               @"endColor":Skin1.navBarBgColor.cc_userInfo[@"endColor"],
+               @"back":@"hide",
+               @"loginsessid":[UGUserModel currentUser].sessid,
+               @"logintoken":[UGUserModel currentUser].token,
+               @"hideHead":[[NSNumber alloc] initWithBool:YES],
+           }];
+
+        
+        NSString *url1 = [NSString stringWithFormat:@"%@%@",APP.Host,@"/chat/appcheck?from=app"];
+        NSString *newUrl1 = [url1 stringByAppendingURLParams:@{
+               @"loginsessid":[UGUserModel currentUser].sessid,
+               @"logintoken":[UGUserModel currentUser].token,
+           }];
+        NSLog(@"newUrl1 = %@",newUrl1);
+        NSLog(@"newUrl2 = %@",newUrl2);
+        
+        [CMCommon goTGWebUrl:newUrl1 url2:newUrl2 title:@"注单详情"];
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

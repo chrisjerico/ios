@@ -7,6 +7,9 @@
 //
 
 #import "UGBetsRecordListModel.h"
+@implementation UGBetDetailsModel
+
+@end
 
 @implementation UGBetsRecordModel
 + (JSONKeyMapper *)keyMapper {

@@ -519,4 +519,11 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
 
 //虚拟币充值教程
 +(UITableViewCell *)xnbCell:(UITableViewCell *)cell model:(UGpaymentModel *)model;
+
+/**
+*   自定义带2个请求
+*
+*
+*/
++(void)goTGWebUrl:(NSString *)url url2:(NSString *)url2 title :(NSString *)title;
 @end

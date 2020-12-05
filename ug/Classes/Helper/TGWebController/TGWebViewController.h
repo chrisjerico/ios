@@ -11,8 +11,13 @@
 @interface TGWebViewController :  UIViewController
 
 @property (nonatomic,strong) TGWebProgressLayer *webProgressLayer;
-/** 相关链接*/
+/** 相关链接  第1条请求*/
 @property (nonatomic, strong) NSString *url;
+
+/** 相关链接  第2条请求    当第1条请求成功后请求*/
+@property (nonatomic, strong) NSString *url2;
+/** 相关链接  第2条请求    当第1条请求成功后请求,界面覆盖不显示内容*/
+@property (nonatomic)  BOOL isShow;
 
 @property (nonatomic,strong) WKWebView *tgWebView;
 
