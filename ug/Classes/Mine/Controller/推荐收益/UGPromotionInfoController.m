@@ -160,8 +160,6 @@
     _itemArry = [NSMutableArray new];
     btnH = 35.0;
     self.mContentLbl.text = @"";
-   
-  
 }
 
 - (void)cleanAllStack {

@@ -2324,6 +2324,10 @@
 		D469CAD525109D5000AE976D /* MyChatRoomsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D469CAD225109D5000AE976D /* MyChatRoomsModel.m */; };
 		D46A7DA1257779A0002FD5C4 /* UITabBarItem+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */; };
 		D46A7DA2257779A0002FD5C4 /* ZYImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */; };
+		D46A7E9E2578A485002FD5C4 /* newPromotionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */; };
+		D46A7E9F2578A485002FD5C4 /* newPromotionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */; };
+		D46A7EA42578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */; };
+		D46A7EA52578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */; };
 		D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */; };
 		D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */; };
 		D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */; };
@@ -4532,6 +4536,9 @@
 		D46A7D9B2577799F002FD5C4 /* ZYImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageCacheManager.h; sourceTree = "<group>"; };
 		D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+WebCache.m"; sourceTree = "<group>"; };
 		D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageCacheManager.m; sourceTree = "<group>"; };
+		D46A7E9C2578A484002FD5C4 /* newPromotionInfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newPromotionInfoController.h; sourceTree = "<group>"; };
+		D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newPromotionInfoController.m; sourceTree = "<group>"; };
+		D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newPromotionInfoController.storyboard; sourceTree = "<group>"; };
 		D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteMainViewController.h; sourceTree = "<group>"; };
 		D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromoteMainViewController.m; sourceTree = "<group>"; };
 		D476E5E82401671000BA0EA9 /* PromoteTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteTitleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -7031,6 +7038,9 @@
 				03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */,
 				031830282551E76000A63907 /* NSTextAttachment+UG.h */,
 				031830292551E76000A63907 /* NSTextAttachment+UG.m */,
+				D46A7E9C2578A484002FD5C4 /* newPromotionInfoController.h */,
+				D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */,
+				D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */,
 			);
 			path = "推荐收益";
 			sourceTree = "<group>";
@@ -9974,6 +9984,7 @@
 				031EF58923BE7B4D00B0F813 /* fenxiang.svg in Resources */,
 				031EF5A923BE7B4D00B0F813 /* zj_zhankai.svg in Resources */,
 				031EF57F23BE7B4D00B0F813 /* xiangce.svg in Resources */,
+				D46A7EA52578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */,
 				031E1C8D23BE812A00B0F813 /* UGRechargeTypeCell.xib in Resources */,
 				031E1CA723BE812A00B0F813 /* UGRechargeRecordCell.xib in Resources */,
 				036CA77A23C72657007BBD25 /* JS_TitleView.xib in Resources */,
@@ -10349,6 +10360,7 @@
 				031E1B6E23BE812800B0F813 /* UGPlatformTitleCollectionViewCell.xib in Resources */,
 				031E1E7423BE812C00B0F813 /* UGRecordFilterCollectionViewCell.xib in Resources */,
 				D422D67F22D9A766008E7065 /* address.json in Resources */,
+				D46A7EA42578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */,
 				CF4758AF239636D200966536 /* 94.gif in Resources */,
 				03B720B82520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */,
 				CF98879C253FF6A400DFFD49 /* HomeBetFormView.xib in Resources */,
@@ -11442,6 +11454,7 @@
 				031EF5DD23BE7B4E00B0F813 /* BetListCell.swift in Sources */,
 				0318302B2551E76000A63907 /* NSTextAttachment+UG.m in Sources */,
 				031E1BDF23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
+				D46A7E9F2578A485002FD5C4 /* newPromotionInfoController.m in Sources */,
 				0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */,
 				039D3CC425373FD0008511AA /* YNHLPrizeDetailView.m in Sources */,
 				031E1BA523BE812900B0F813 /* UGBMLoginViewController.m in Sources */,
@@ -12092,6 +12105,7 @@
 				031E1DFE23BE812C00B0F813 /* UGSignInHeaderView.m in Sources */,
 				031E1BFC23BE812900B0F813 /* UGLotteryHomeController.m in Sources */,
 				031E1C9C23BE812A00B0F813 /* UGFundsTransferView.m in Sources */,
+				D46A7E9E2578A485002FD5C4 /* newPromotionInfoController.m in Sources */,
 				031E1B7E23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
 				031E198A23BE812600B0F813 /* LHPostCommentInputView.m in Sources */,
 				031E1B9E23BE812900B0F813 /* UGGameListCollectionViewCell.m in Sources */,
