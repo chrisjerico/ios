@@ -802,8 +802,23 @@
                         weakSelf.gameNavigationViewHeight.constant = 0;
                         [weakSelf.view layoutIfNeeded];
                     }
+                    
+                    //去掉seriesId = 13 的数据 后台如设置内容管理-手机游戏图标下的“UG棋牌”，前台隐藏显示
+                    NSMutableArray *iconsArray = [NSMutableArray arrayWithArray:customGameModel.icons];
+                    for (GameCategoryModel *obj in iconsArray.reverseObjectEnumerator) {
+                        
+                        NSMutableArray *array = [NSMutableArray arrayWithArray:obj.list];
+                        for (GameModel *model in array.reverseObjectEnumerator) {
+                            if (model.seriesId == 13) {
+                                [array removeObject:model];
+                            }
+                        }
+                        obj.list = array.copy;
+                        
+                    }
+
                     // 游戏列表
-                    self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
+                    self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = iconsArray;
                     
                     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
                         NSMutableArray<GameCategoryModel*> *newGameTypeArray =
