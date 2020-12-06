@@ -2351,6 +2351,8 @@
 		D4DE3F1424C5E8D500DD3A69 /* UGPopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DE3F1224C5E8D500DD3A69 /* UGPopViewController.xib */; };
 		D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
+		D4E8C3CE257CF22A00DD8F53 /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */; };
+		D4E8C3CF257CF22A00DD8F53 /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */; };
 		D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0410423C773170070D2B5 /* UGLHPrizeView.m */; };
 		D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */; };
 		D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
@@ -4581,6 +4583,8 @@
 		D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGChatRoomModel.m; sourceTree = "<group>"; };
 		D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UG.h"; sourceTree = "<group>"; };
 		D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UG.m"; sourceTree = "<group>"; };
+		D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDragView.m; sourceTree = "<group>"; };
+		D4E8C3CC257CF22A00DD8F53 /* WMDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDragView.h; sourceTree = "<group>"; };
 		D4F0410323C773170070D2B5 /* UGLHPrizeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPrizeView.h; sourceTree = "<group>"; };
 		D4F0410423C773170070D2B5 /* UGLHPrizeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPrizeView.m; sourceTree = "<group>"; };
 		D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLHPrizeView.xib; sourceTree = "<group>"; };
@@ -4835,6 +4839,7 @@
 				4959677824E25C4A005D5B53 /* FacebookHelper */,
 				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
 				CF4169562557A74A00C2BAA1 /* 横向分页布局 */,
+				D4E8C3CA257CF22A00DD8F53 /* 可拖动View */,
 				CF4FAFB9252C7ECE004C47AB /* 教程 */,
 				D43DAF8224555B1C0014A301 /* 自定义拖动条 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
@@ -9850,6 +9855,15 @@
 			path = "可以画心的UIView分类";
 			sourceTree = "<group>";
 		};
+		D4E8C3CA257CF22A00DD8F53 /* 可拖动View */ = {
+			isa = PBXGroup;
+			children = (
+				D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */,
+				D4E8C3CC257CF22A00DD8F53 /* WMDragView.h */,
+			);
+			path = "可拖动View";
+			sourceTree = "<group>";
+		};
 		D4F0410123C772850070D2B5 /* 解码器 */ = {
 			isa = PBXGroup;
 			children = (
@@ -11598,6 +11612,7 @@
 				031E1D5523BE812B00B0F813 /* UGModifyLoginPlaceController.m in Sources */,
 				031E1AF523BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031EF56423BE7B4D00B0F813 /* TimeIntervalExtension+XFoundation.swift in Sources */,
+				D4E8C3CF257CF22A00DD8F53 /* WMDragView.m in Sources */,
 				036CA78223C75A02007BBD25 /* MyPromotionVC.m in Sources */,
 				031E1C3923BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				038A584B24A9D8790099D659 /* UIView+XFoundation.swift in Sources */,
@@ -12105,6 +12120,7 @@
 				031E1DFE23BE812C00B0F813 /* UGSignInHeaderView.m in Sources */,
 				031E1BFC23BE812900B0F813 /* UGLotteryHomeController.m in Sources */,
 				031E1C9C23BE812A00B0F813 /* UGFundsTransferView.m in Sources */,
+				D4E8C3CE257CF22A00DD8F53 /* WMDragView.m in Sources */,
 				D46A7E9E2578A485002FD5C4 /* newPromotionInfoController.m in Sources */,
 				031E1B7E23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
 				031E198A23BE812600B0F813 /* LHPostCommentInputView.m in Sources */,

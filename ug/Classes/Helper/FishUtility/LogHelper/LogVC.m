@@ -29,6 +29,7 @@
 #import "TKLMoneyViewController.h"
 #import "ChatListViewController.h"
 #import "ChatMainViewController.h"
+#import "WMDragView.h"
 @interface LogVC ()<NSMutableArrayDidChangeDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *reqTableView;     /**<    请求TableView */
 @property (weak, nonatomic) IBOutlet UITableView *paramsTableView;  /**<    参数TableView */
@@ -163,12 +164,24 @@ static LogVC *_logVC = nil;
 #pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"聊天室列表"];
+        [titles addObject:@"浮动按钮"];
         [titles addObject:@"查看当前页面名"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"聊天室列表" handler:^(UIAlertAction *aa) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"ChatMainViewController") animated:true];
+        [ac setActionAtTitle:@"浮动按钮" handler:^(UIAlertAction *aa) {
+            
+            WMDragView *logoView = [[WMDragView alloc] initWithFrame:CGRectMake(0, 200 , 70, 70)];
+            logoView.isKeepBounds = YES;
+            logoView.layer.cornerRadius = 35;
+            [logoView setBackgroundColor:RGBA(122, 113, 243, 0.8)];
+             [self.view addSubview:logoView];
+            logoView.button.titleLabel.font = [UIFont systemFontOfSize:22.0];
+            [logoView.button setTitle:@"投注" forState:UIControlStateNormal];
+            [logoView.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+             logoView.clickDragViewBlock = ^(WMDragView *dragView){
+                 [SVProgressHUD showInfoWithStatus:NavController1.topViewController.className];
+             };
+            
         }];
 
         [ac setActionAtTitle:@"查看当前页面名" handler:^(UIAlertAction *aa) {
