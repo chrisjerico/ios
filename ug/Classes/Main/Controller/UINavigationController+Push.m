@@ -102,7 +102,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
                              @"id":[NSString stringWithFormat:@"%ld",(long)game.subId],
-//                             @"game":game.gameCode
+                             @"game":game.gameCode
                              };
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
@@ -388,7 +388,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         NSDictionary *params = @{@"token":UserI.sessid,
                                  @"id":@(linkPosition).stringValue,
-//                                 @"game":gameCode,
+                                 @"game":gameCode,
         };
         [SVProgressHUD showWithStatus:nil];
       

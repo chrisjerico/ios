@@ -415,7 +415,7 @@
         }
         NSDictionary *params = @{@"token":UserI.sessid,
                                  @"id":number1,
-//                                 @"game":gameCode,
+                                 @"game":gameCode,
         };
         [SVProgressHUD showWithStatus:nil];
       
