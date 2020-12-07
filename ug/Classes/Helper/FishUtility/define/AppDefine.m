@@ -235,6 +235,7 @@
     _isNoAlert = [@"c126" containsString:_SiteId];
     _isShowSummary = [@"c163" containsString:_SiteId];
     _isShowAll = [@"c085,test60f" containsString:_SiteId];
+    _isShowDML = [@"c084,testadaf" containsString:_SiteId];
 
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {

@@ -63,6 +63,7 @@
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isC239B;                                   /**<  个人中心去掉真实名字，成长值，成长进度*/
 @property (nonatomic) BOOL isNoAlert;                                   /**<  个人中心自动转换额度的提示去除*/
+@property (nonatomic) BOOL isShowDML;                                   /**<  个人中心新增让会员查看提款所需打码量和实际打码量 */
 //==============================================下注界面
 @property (nonatomic,assign) BOOL isRed;                                 /**<   tab选中点为红色，内容选择边框为红色，已选中注数的 数量颜色也更换成红色 */
 @property (nonatomic,assign) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */

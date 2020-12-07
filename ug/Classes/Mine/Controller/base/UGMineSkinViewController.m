@@ -793,7 +793,7 @@ BOOL isOk = NO;
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-
+  
     if (Skin1.isTKL) {
         if ([config.missionSwitch isEqualToString:@"0"]) {
             [self.tkl_taskButton.superview setHidden:NO];
@@ -866,7 +866,16 @@ BOOL isOk = NO;
         self.uidLabel.text = @"";
     }
     
-    
+    {
+        if (APP.isShowDML) {
+            FastSubViewCode(self.userInfoView)
+            subLabel(@"打码Label").text = [NSString stringWithFormat:@"实际打码量/提款所需打码量：%@/%@",user.dml_real,user.dml_needed];
+            [CMLabelCommon setRichNumberWithLabel: subLabel(@"打码Label") Color:[UIColor yellowColor] FontSize:15.0];
+            [subLabel(@"打码Label") setHidden:NO];
+        }
+        
+
+    }
 
 }
 

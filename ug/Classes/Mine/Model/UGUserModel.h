@@ -79,7 +79,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL checkinSwitch;   /**<   是否签到开关： */
 @property (nonatomic, assign) BOOL allowMemberCancelBet;    /**<   是否允许会员撤单 */
 @property (nonatomic, assign) BOOL chatShareBet;    /**<   是否允许注单分享 */
-
+@property (nonatomic, strong) NSString *dml_real;   /**<   实际打码量 */
+@property (nonatomic, strong) NSString *dml_needed; /**<   所需打码量 */
 
 
 @property (nonatomic, assign) NSInteger ggCheck;    /**<   1 要google验证 */
