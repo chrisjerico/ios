@@ -127,15 +127,17 @@
             lb.text = @"(未审)";
             cell.textLabel.font = [UIFont systemFontOfSize:13];
             cell.textLabel.textColor = UIColor.lightGrayColor;
+            cell.textLabel.text = [t substringToIndex:t.length-2];
         } else {
             lb.text = @"(线上)";
             cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
             cell.textLabel.textColor = UIColor.blackColor;
+            cell.textLabel.text = t;
         }
     } else {
         lb.text = @"";
+        cell.textLabel.text = t;
     }
-    cell.textLabel.text = [t stringByReplacingOccurrencesOfString:@"_t" withString:@""];
     return cell;
 }
 
