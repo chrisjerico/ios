@@ -222,18 +222,18 @@
     
     NSLog(@"self.tableType = %ld",(long)self.tableType);
     NSLog(@"APP.SiteId = %@",APP.SiteId);
-    if ([APP.SiteId isEqualToString:@"c085"]) {
-        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:@[@"一级下线"] icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
-        popView.type = YBPopupMenuTypeDefault;
-        popView.fontSize = 15;
-        [popView showRelyOnView:self.levelButton];
-    }
-    else{
+//    if ([APP.SiteId isEqualToString:@"c085"]) {
+//        YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:@[@"一级下线"] icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
+//        popView.type = YBPopupMenuTypeDefault;
+//        popView.fontSize = 15;
+//        [popView showRelyOnView:self.levelButton];
+//    }
+//    else{
         YBPopupMenu *popView = [[YBPopupMenu alloc] initWithTitles:self.levelArray icons:nil menuWidth:CGSizeMake(UGScreenW / self.titleArray.count + 70, 180) delegate:self];
         popView.type = YBPopupMenuTypeDefault;
         popView.fontSize = 15;
         [popView showRelyOnView:self.levelButton];
-    }
+//    }
     
    
 }
