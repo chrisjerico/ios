@@ -209,8 +209,8 @@
     _betSizeIsBig = [@"c169,c205,c211,c048,c115" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
-    _addIcons = [@"c190,c134,c085,c193,a002,c006,c217,c115" containsString:_SiteId];
-    _isReplaceIcon = [@"c085,c193,a002,c006,c217,c115" containsString:_SiteId];
+    _addIcons = [@"c190,c134,c085,c193,a002,c006,c217,c115,l002" containsString:_SiteId];
+    _isReplaceIcon = [@"c085,c193,a002,c006,c217,c115,l002" containsString:_SiteId];
     _isC190Cell = [@"c190" containsString:_SiteId];
     _isC217RWDT = [@"c217" containsString:_SiteId];
     _isNoSubtitle = [@"c006" containsString:_SiteId];
