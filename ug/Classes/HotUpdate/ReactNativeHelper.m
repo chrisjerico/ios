@@ -64,11 +64,6 @@
         [[CodePushConfig current] setAppVersion:RNCheckVersion1];
         [[CodePushConfig current] setServerURL:CodePushHost];
         [[CodePushConfig current] setDeploymentKey:ReactNativeHelper.currentCodePushKey];
-#ifdef APP_TEST
-        if (![@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog,by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog" containsString:ReactNativeHelper.currentCodePushKey]) {
-            [[CodePushConfig current] setAppVersion:@"1.1.1"];
-        }
-#endif
 //        [[CodePushConfig current] configuration[@"publicKey"] = ;
         
         
@@ -558,7 +553,7 @@ RCT_EXPORT_METHOD(launchFinish) {
 #ifdef APP_TEST
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"a002"];
 #else
-    return self.allCodePushKey[APP.Host] ? : @"NvWd2a9glPunOO5sX9EUCt2hn5kWkpVXGP8d2";
+    return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";    
 #endif
 }
 
