@@ -69,16 +69,7 @@ static NSString *const footerId = @"footerId";
     
     {
         
-        if (Skin1.isLH) {
-            //六合内容
-            WSLWaterFlowLayout * _flow;
-            _flow = [[WSLWaterFlowLayout alloc] init];
-            _flow.delegate = self;
-            _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
-            self = [super initWithFrame:frame collectionViewLayout:_flow];
-            
-            [CMCommon setBorderWithView:self top:YES left:YES bottom:NO right:YES borderColor:RGBA(221, 221, 221, 1) borderWidth:1];
-        } else {
+
             UICollectionViewFlowLayout *layout = ({
                 layout = [[UICollectionViewFlowLayout alloc] init];
                 layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -88,7 +79,7 @@ static NSString *const footerId = @"footerId";
                 layout;
             });
             self = [super initWithFrame:frame collectionViewLayout:layout];
-        }
+
        
     }
     
@@ -135,11 +126,6 @@ static NSString *const footerId = @"footerId";
                  });
                  [self setCollectionViewLayout:layout];
                  
-//                 WSLWaterFlowLayout * _flow;
-//                 _flow = [[WSLWaterFlowLayout alloc] init];
-//                 _flow.delegate = self;
-//                 _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
-//                 [self setCollectionViewLayout:_flow];
 
             } else {
                 UICollectionViewFlowLayout *layout = ({
@@ -205,10 +191,13 @@ static NSString *const footerId = @"footerId";
         
     }
     else if ( Skin1.isLH) {
-        for (GameModel * game in dataArray) {
-            [self.sectionedDataArray addObject:@[game] ];
+        for (int i=0; i<dataArray.count; i++) {
+            [tempArray addObject:dataArray[i]];
+            if (((i + 1) % 2 == 0) || (i == dataArray.count - 1)) {
+                [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                [tempArray removeAllObjects];
+            }
         }
-        
     }
     else if (Skin1.isJY||Skin1.isTKL) {
 
@@ -271,23 +260,13 @@ static NSString *const footerId = @"footerId";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
-    if (Skin1.isLH) {
-        return 1;
-    } else {
         return self.sectionedDataArray.count;
-    }
-       
- 
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    if (Skin1.isLH) {
-        return self.sectionedDataArray.count;
-    } else {
         return ((NSArray *)self.sectionedDataArray[section]).count;
-    }
-       
 
 }
 
@@ -308,15 +287,15 @@ static NSString *const footerId = @"footerId";
     }
     else if (Skin1.isLH) {
         UGLHHomeContentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-        NSArray * arr = self.sectionedDataArray[indexPath.row];
-        GameModel *model = (GameModel *)[arr objectAtIndex:0];
+        NSArray * arr = self.sectionedDataArray[indexPath.section];
+        GameModel *model = (GameModel *)[arr objectAtIndex:indexPath.row];
         
         [cell setItem:model];
         [cell setBackgroundColor: [UIColor whiteColor]];
         cell.layer.borderWidth = 1;
         cell.layer.borderColor = [RGBA(221, 221, 221, 1) CGColor];
         return cell;
-        //    }
+
     }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
@@ -388,8 +367,11 @@ static NSString *const footerId = @"footerId";
         return CGSizeMake(itemW, 150);
     } else if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex != 0) {
         return CGSizeMake(UGScreenW, 80);
-    }else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
+    }else if ([Skin1.skitType isEqualToString:@"火山橙"] ) {
         return CGSizeMake((UGScreenW - 7)/2, 90);
+    }
+    else if (Skin1.isLH) {
+        return CGSizeMake((UGScreenW - 6)/2, 80);
     }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
@@ -418,6 +400,9 @@ static NSString *const footerId = @"footerId";
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return UIEdgeInsetsZero;
     }
+    else if (Skin1.isLH) {
+       return UIEdgeInsetsZero;
+   }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0) {
              return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -438,6 +423,9 @@ static NSString *const footerId = @"footerId";
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
     }
+    else if (Skin1.isLH) {
+        return 0.0f;
+    }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
             return 0.f;
@@ -456,6 +444,9 @@ static NSString *const footerId = @"footerId";
         return 1.0f;
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
+    }
+    else if (Skin1.isLH) {
+        return 0.0f;
     }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0) {
@@ -498,43 +489,6 @@ static NSString *const footerId = @"footerId";
 }
 
 
-#pragma mark - WSLWaterFlowLayoutDelegate
-//返回每个item大小
-- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-
-    if (Skin1.isLH) {
-        float itemW = (UGScreenW-7)/ 2.0;
-        CGSize size = {itemW, 80};
-        return size;
-    } else {
-        CGFloat itemW = (UGScreenW -7)/3.0;
-        return CGSizeMake(itemW, 120);
-    }
-    
-
-}
-
-    /** 列数*/
-    -(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-        return 1;
-    }
-    /** 行数*/
-    //-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    //    return 5;
-    //}
-    /** 列间距*/
-    -(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-        return 0;
-    }
-    /** 行间距*/
-    -(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-        return 0;
-    }
-    /** 边缘之间的间距*/
-    -(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-        
-        return UIEdgeInsetsMake(0, 0, 0,0);
-    }
 
 #pragma mark - WSLWaterFlowLayoutDelegate  end
     
@@ -544,14 +498,9 @@ static NSString *const footerId = @"footerId";
     
     
     GameModel * model ;
-    
-    if (Skin1.isLH) {
-        NSArray *arr = self.sectionedDataArray[indexPath.item];
-        model = [arr objectAtIndex:0];
-    } else {
-        model = self.sectionedDataArray[indexPath.section][indexPath.item];
-    }
-    
+
+    model = self.sectionedDataArray[indexPath.section][indexPath.item];
+
     if (_selectedPath == indexPath ) {
         _selectedPath = nil;
     } else if (model.subType.count > 0 ) {

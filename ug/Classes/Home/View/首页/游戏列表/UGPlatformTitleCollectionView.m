@@ -65,7 +65,7 @@
             layout.minimumInteritemSpacing = 0;
             layout.minimumLineSpacing = 0;
             layout.sectionInset = _isGPK || _isTKL ? UIEdgeInsetsZero : UIEdgeInsetsMake(0, 2, 0, 2);
-			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+			if ([Skin1.skitType isEqualToString:@"金沙主题"] || Skin1.isLH) {
 				layout.sectionInset = UIEdgeInsetsZero;
 			}
             layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -76,7 +76,7 @@
             collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, CollectionViewW, 55) collectionViewLayout:layout];
             collectionView.backgroundColor = Skin1.isGPK ? Skin1.bgColor : Skin1.homeContentColor;
 
-			if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+			if ([Skin1.skitType isEqualToString:@"金沙主题"]|| Skin1.isLH) {
 				collectionView.backgroundColor = UIColor.clearColor;
 			}
             if (_isTKL) {
@@ -85,7 +85,7 @@
  
             collectionView.dataSource = self;
             collectionView.delegate = self;
-            collectionView.layer.cornerRadius = (_isGPK ||_isTKL || [Skin1.skitType isEqualToString:@"金沙主题"]) ? 0 : 10;
+            collectionView.layer.cornerRadius = (_isGPK ||_isTKL || [Skin1.skitType isEqualToString:@"金沙主题"]|| Skin1.isLH) ? 0 : 10;
             collectionView.layer.masksToBounds = true;
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"默认Cell"];
             [collectionView registerNib:[UINib nibWithNibName:@"UGPlatformTitleBlackCell" bundle:nil] forCellWithReuseIdentifier:@"GPK版Cell"];
@@ -173,7 +173,7 @@
             make.height.mas_equalTo(self.mas_height);
         }];
 
-		if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
+		if ([Skin1.skitType isEqualToString:@"金沙主题"] || Skin1.isLH) {
 			[collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
 				make.edges.equalTo(self);
 			}];

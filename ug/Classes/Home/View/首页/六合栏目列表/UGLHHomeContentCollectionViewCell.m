@@ -40,7 +40,7 @@
     
     [self.hasSubSign mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.right.equalTo(self);
+        make.right.equalTo(self.mas_right).with.offset(-15);
     }];
 }
 
