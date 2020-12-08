@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GameCategoryDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGLHHomeContentCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong) GameModel *item;
 @end
 
 NS_ASSUME_NONNULL_END
