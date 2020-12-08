@@ -485,7 +485,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="体育返点label"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="棋牌返点label"/>
                                                                                     <userDefinedRuntimeAttribute type="point" keyPath="内边距">
                                                                                         <point key="value" x="5" y="5"/>
                                                                                     </userDefinedRuntimeAttribute>
@@ -498,7 +498,7 @@
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                                 <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="棋牌返点label"/>
+                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="体育返点label"/>
                                                                                     <userDefinedRuntimeAttribute type="point" keyPath="内边距">
                                                                                         <point key="value" x="5" y="5"/>
                                                                                     </userDefinedRuntimeAttribute>
