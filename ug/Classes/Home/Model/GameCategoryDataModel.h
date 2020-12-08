@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GameModel: UGModel<GameModel>
 @property (nonatomic, strong) NSString * game_id;     /**<   DOC ID */
 @property (nonatomic, strong) NSString * icon;        /**<   DOC logo */
-@property (nonatomic, strong) NSString * name;        /**<   DOC name */
+@property (nonatomic, strong) NSString * name;        /**<   DOC name   栏目名称*/
 @property (nonatomic, strong) NSString * subtitle;    /**<   2级标题 */
 @property (nonatomic, strong) NSString * url;         /**<   DOC链接 */
 @property (nonatomic, strong) NSString * levelType;   /**<   分类层级：1 无子类 2 有子类一级分类 3 子类 */
@@ -61,6 +61,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSArray<GameSubModel> * subType;
 
 @property(nonatomic, strong) GameModel * list;/**<  手机资料栏目l */
+
+//==================六合类型=============================
+@property (copy, nonatomic) NSString *alias;/**<   栏目别名" */
+@property (copy, nonatomic) NSString *cid;/**<   栏目ID" */
+@property (copy, nonatomic) NSString *isHot;/**<   是否热门 1是 0否" */
+@property (copy, nonatomic) NSString *link;     /**<   客服链接地址（app用不上） */
+@property (copy, nonatomic) NSString *appLink;  /**<   跳转链接地址，有值，则跳转至设置的地址" */
+@property (copy, nonatomic) NSString *desc;/**<  栏目简介" */
+@property (copy, nonatomic) NSString *contentId;/**<  帖子ID" */
+@property (nonatomic, assign) NSInteger appLinkCode;/**<   1存取款 2APP下载 3聊天室 4在线客服 5长龙助手 6推广收益 7开奖网 8利息宝 9优惠活动 10游戏记录 11QQ客服 13任务大厅 14站内信 15站内信 16投诉中心 */
+
+@property (copy, nonatomic) NSString *thread_type;/**<  thread_type =2 为多期" */
+@property (copy, nonatomic) NSString *baoma_type;/**<  报码器类型 amlhc 澳门六合彩  lhc香港六合彩 */
+
+// 自定义参数
+@property (nonatomic, readonly) NSString *categoryType; /**<   类型 */
 
 @property (nonatomic, strong) NSString * realGameId;      /**<   自定义参数   游戏ID */
 
