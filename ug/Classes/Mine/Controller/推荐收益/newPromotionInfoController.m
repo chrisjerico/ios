@@ -48,8 +48,8 @@
 //    设置样式
 -(void)selfViewStyle{
     
-    self.showHomeUrl = YES;
-    self.showRegisterUrl = YES;
+    self.showHomeUrl = NO;
+    self.showRegisterUrl = NO;
     
     FastSubViewCode(self.view)
     self.view.backgroundColor = Skin1.textColor4;
@@ -78,6 +78,7 @@
     [subLabel(@"电子返点label") setBackgroundColor:Skin1.textColor4];
     [subLabel(@"电竞返点label") setBackgroundColor:Skin1.textColor4];
     [subLabel(@"棋牌返点label") setBackgroundColor:Skin1.textColor4];
+    [subLabel(@"体育返点label") setBackgroundColor:Skin1.textColor4];
     [subView(@"标题1View") setBackgroundColor:Skin1.CLBgColor];
     [subView(@"标题2View") setBackgroundColor:Skin1.CLBgColor];
     [subView(@"标题3View") setBackgroundColor:Skin1.CLBgColor];

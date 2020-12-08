@@ -20,8 +20,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lkp-Of-EDq">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="2400"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-Ez-nEa">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2328.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-Ez-nEa">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1966.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="promotioninfo" translatesAutoresizingMaskIntoConstraints="NO" id="dA7-vm-bxV">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
@@ -161,7 +161,7 @@
                                                             <action selector="homeUrlCopy:" destination="Jz2-od-eId" eventType="touchUpInside" id="BjP-jy-TX6"/>
                                                         </connections>
                                                     </button>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3Y-mE-6oH">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="S3Y-mE-6oH">
                                                         <rect key="frame" x="296.5" y="63" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="49" id="da9-Gu-RCY"/>
@@ -219,8 +219,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="首页推荐View"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apG-dn-nup" userLabel="2微码1">
-                                                <rect key="frame" x="0.0" y="509" width="414" height="180"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apG-dn-nup" userLabel="2微码1">
+                                                <rect key="frame" x="0.0" y="508.5" width="414" height="180"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="p8y-XC-vqI">
                                                         <rect key="frame" x="127" y="10" width="160" height="160"/>
@@ -244,7 +244,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5de-bG-UpP">
-                                                <rect key="frame" x="0.0" y="690" width="414" height="60"/>
+                                                <rect key="frame" x="0.0" y="509" width="414" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果想赚取丰厚的推荐佣金，请复制推荐链接发给您的好友注册。（推荐网址请用浏览器打开）" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9w-T6-pwb">
                                                         <rect key="frame" x="15" y="10" width="384" height="40"/>
@@ -269,7 +269,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6a-bM-8XY" userLabel="注册推荐">
-                                                <rect key="frame" x="0.0" y="751" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="570" width="414" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册推荐地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vk-3Y-ZMX">
                                                         <rect key="frame" x="15" y="15" width="92" height="18"/>
@@ -304,7 +304,7 @@
                                                             <action selector="registerUrlCopy:" destination="Jz2-od-eId" eventType="touchUpInside" id="kyx-dc-7Zj"/>
                                                         </connections>
                                                     </button>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uki-P9-uZs">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uki-P9-uZs">
                                                         <rect key="frame" x="296.5" y="63" width="51" height="31"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="31" id="H08-1I-mPd"/>
@@ -362,8 +362,8 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="注册推荐View"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74x-VG-qYD" userLabel="2微码2">
-                                                <rect key="frame" x="0.0" y="852" width="414" height="180"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74x-VG-qYD" userLabel="2微码2">
+                                                <rect key="frame" x="0.0" y="670.5" width="414" height="180"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="s55-Hi-n8j">
                                                         <rect key="frame" x="127" y="10" width="160" height="160"/>
@@ -387,7 +387,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QC-TY-hKm" userLabel="佣金比例">
-                                                <rect key="frame" x="0.0" y="1033" width="414" height="876.5"/>
+                                                <rect key="frame" x="0.0" y="671" width="414" height="876.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="佣金比例" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwA-G9-q9K">
                                                         <rect key="frame" x="15" y="7" width="61.5" height="18"/>
@@ -473,7 +473,7 @@
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="电竞返点label"/>
                                                                                     <userDefinedRuntimeAttribute type="point" keyPath="内边距">
-                                                                                        <point key="value" x="0.0" y="5"/>
+                                                                                        <point key="value" x="5" y="5"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
@@ -601,7 +601,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80N-FQ-uky" userLabel="推荐收益">
-                                                <rect key="frame" x="0.0" y="1910.5" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="1548.5" width="414" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月推荐收益:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtU-Qj-TIj" userLabel="本月推荐收益">
                                                         <rect key="frame" x="15" y="13" width="96.5" height="18"/>
@@ -635,7 +635,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZ6-9H-Dn4" userLabel="推荐会员">
-                                                <rect key="frame" x="0.0" y="1955.5" width="414" height="70"/>
+                                                <rect key="frame" x="0.0" y="1593.5" width="414" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月推荐会员:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWw-DO-G8e" userLabel="本月推荐收益">
                                                         <rect key="frame" x="15" y="26" width="96.5" height="18"/>
@@ -672,7 +672,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNp-DV-I5r" userLabel="会员总计">
-                                                <rect key="frame" x="0.0" y="2026.5" width="414" height="70"/>
+                                                <rect key="frame" x="0.0" y="1664.5" width="414" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐会员总计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVC-T6-IIy" userLabel="推荐会员总计:">
                                                         <rect key="frame" x="15" y="26" width="96.5" height="18"/>
@@ -709,7 +709,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-WR-VYO">
-                                                <rect key="frame" x="0.0" y="2097.5" width="414" height="80"/>
+                                                <rect key="frame" x="0.0" y="1735.5" width="414" height="80"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您推荐的会员在下注结算后，佣金会自动按照比例加到您的资金账户上。例如：您所推荐的会员下注1000元，您的收益=1000元*(一级下线比例比如：0.15%）=1.5元。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5e-7d-5Zz">
                                                         <rect key="frame" x="15" y="10" width="384" height="60"/>
@@ -733,7 +733,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPc-HJ-fWm" userLabel="底部">
-                                                <rect key="frame" x="0.0" y="2178.5" width="414" height="150"/>
+                                                <rect key="frame" x="0.0" y="1816.5" width="414" height="150"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="fPS-pj-uSW"/>
