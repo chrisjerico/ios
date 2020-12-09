@@ -71,7 +71,7 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 				}
                 else {
                     make.top.equalTo(self);
-					if ([@"金沙主题" containsString:Skin1.skitType]) {
+					if ([@"金沙主题" containsString:Skin1.skitType] || Skin1.isLH) {
 						make.left.equalTo([self superview]);
 						make.width.mas_equalTo(UGScreenW);
 						make.height.equalTo(@50);
