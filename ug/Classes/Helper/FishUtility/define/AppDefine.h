@@ -120,6 +120,7 @@
 @property (nonatomic,assign) BOOL isC190Cell;                                /**<  首页中优惠活动列表c190，c012 图片贴边 */
 @property (nonatomic,assign) BOOL isNewLocation;                         /**<  首页刮刮乐，大转盘，砸金蛋移动到红包位置*/
 @property (nonatomic) BOOL isTwoOnline;                                  /**< 首页点击在线客服会弹出框2个在线客服*/
+@property (nonatomic,assign) BOOL isCanUploadAvatar;                /**<  提供给RN判断是否支持上传头像功能（2020-12-9添加）*/
 //==============================================推荐收益
 @property (nonatomic,assign) BOOL isShowAll;                           /**<  佣金比例全部展示样式*/
 // 热更新相关字段
@@ -128,7 +129,7 @@
 @property (nonatomic, strong) NSString *rnVersion;      /**<    jspatch热更新版本号 */
 @property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
 //@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
-
+- (void)addReplacePage:(RnPageModel *)rpm;/**<   提供给原生使用的替换页面函数 */
 
 + (instancetype)shared;
 

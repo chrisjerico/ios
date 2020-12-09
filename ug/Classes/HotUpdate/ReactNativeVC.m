@@ -103,9 +103,24 @@ static RCTRootView *_rnView;
 }
 
 static NSString *__lastRnPage = nil;
+static UIImageView *__snapshotImageView;
 + (void)showLastRnPage {
     if (__lastRnPage)
         [ReactNativeHelper selectVC:__lastRnPage params:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __snapshotImageView.hidden = true;
+    });
+}
+
++ (void)showSnapshotImageWhenRnIMMEDIATE {
+    if ([APP.Window.rootViewController isKindOfClass:[UGTabbarController class]] && [NavController1.topViewController isKindOfClass:[ReactNativeVC class]]) {
+        if (!__snapshotImageView) {
+            __snapshotImageView = [[UIImageView alloc] initWithFrame:APP.Bounds];
+        }
+        __snapshotImageView.image = APP.Window.snapshotImage;
+        [APP.Window addSubview:__snapshotImageView];
+        __snapshotImageView.hidden = false;
+    }
 }
 
 - (void)viewDidLoad {

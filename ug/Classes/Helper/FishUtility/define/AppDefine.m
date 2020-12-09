@@ -236,7 +236,8 @@
     _isShowSummary = [@"c163" containsString:_SiteId];
     _isShowAll = [@"c085,test60f" containsString:_SiteId];
     _isShowDML = [@"c084,testadaf" containsString:_SiteId];
-
+    _isCanUploadAvatar = true;
+    
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         [ReactNativeHelper sendEvent:@"AppDefine-SetupSiteAndSkinParams" params:@{}];
@@ -258,6 +259,13 @@
 
 #pragma mark - 热更新
 
+static NSArray<RnPageModel *> *_rnPageInfos;
+static NSMutableArray<RnPageModel *> *_replacePages;
+
+- (NSArray<RnPageModel *> *)rnPageInfos {
+    return [(_rnPageInfos ? : @[]) arrayByAddingObjectsFromArray:_replacePages];
+}
+
 - (void)setRnPageInfos:(NSArray<RnPageModel *> *)rnPageInfos {
     if ([rnPageInfos.firstObject isKindOfClass:[NSDictionary class]]) {
         NSMutableArray *temp = @[].mutableCopy;
@@ -268,6 +276,15 @@
     } else {
         _rnPageInfos = rnPageInfos;
     }
+}
+
+- (void)addReplacePage:(RnPageModel *)rpm {
+    if (!_replacePages) {
+        _replacePages = @[].mutableCopy;
+    }
+    RnPageModel *old = [_replacePages objectWithValue:rpm.vcName keyPath:@"vcName"];
+    [_replacePages removeObject:old];
+    [_replacePages addObject:rpm];
 }
 
 
