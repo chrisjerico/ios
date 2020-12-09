@@ -57,18 +57,18 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 }
 
 // 在自定义UITabBar中重写以下方法，其中self.button就是那个希望被触发点击事件的按钮
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    UIView *view = [super hitTest:point withEvent:event];
-    if (view == nil) {
-        // 转换坐标系
-        CGPoint newPoint = [self.closeButton convertPoint:point fromView:self];
-        // 判断触摸点是否在button上
-        if (CGRectContainsPoint(self.closeButton.bounds, newPoint)) {
-            view = self.closeButton;
-        }
-    }
-    return view;
-} 
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+//    UIView *view = [super hitTest:point withEvent:event];
+//    if (view == nil) {
+//        // 转换坐标系
+//        CGPoint newPoint = [self.closeButton convertPoint:point fromView:self];
+//        // 判断触摸点是否在button上
+//        if (CGRectContainsPoint(self.closeButton.bounds, newPoint)) {
+//            view = self.closeButton;
+//        }
+//    }
+//    return view;
+//}
 
 - (IBAction)close:(id)sender {
     [self hiddenSelf];
@@ -202,6 +202,8 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
             make.height.mas_equalTo(1);
         }];
     }
+    
+//    [cell setBackgroundColor:[UIColor yellowColor]];
     return cell;
 }
 
@@ -255,27 +257,51 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 }
 
 
-- (BOOL)webView:(UIWebView*)webView
-shouldStartLoadWithRequest:(NSURLRequest*)request
- navigationType:(UIWebViewNavigationType)navigationType {
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+//    NSLog(@"webViewDidFinishLoad0000");
+    // body.style背景色
+//    [webView stringByEvaluatingJavaScriptFromString:@"document.body.style.background='#FF1493'"];
+}
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+//    NSLog(@"0000");
+//
+//    NSString *url = [request.URL absoluteString];
+//
+//    NSLog(@"url = %@",url);
     
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {//跳转别的应用如系统浏览器
-        NSString *urlString = [[request URL] absoluteString];
-        NSLog(@"urlString = %@",urlString);
-        if (urlString.isURL) {
-            PlatWebViewController *webViewVC = [[PlatWebViewController alloc] init];
-            webViewVC.url = urlString;
-            webViewVC.supVC = _supVC;
+    
+    //判断是否是单击
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
 
-            [_supVC presentViewController:webViewVC animated:YES completion:^{
-                [self.tableView reloadData];
-            }];
-            
-      
+        NSString *url = [request.URL absoluteString];
+        
+        //拦截链接跳转到货源圈的动态详情
+        if ([url rangeOfString:@"http"].location != NSNotFound)
+        {
+            //跳转到你想跳转的页面
+            TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
+            webViewVC.url = url;
+            [NavController1 pushViewController:webViewVC animated:YES];
+            [self close:nil];
+            return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
         }
-   
-        return YES;
+        else{
+
+            if ([url containsString:@"?"]) {
+                
+                [CMCommon goVCWithUrl:url];
+
+                [self close:nil];
+                return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
+                
+            }
+            
+        }
+
+        return NO;
     }
     return YES;
 }
+
 @end
