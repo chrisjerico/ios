@@ -174,8 +174,13 @@
         
         NSMutableDictionary *dict = @{
             @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,],
+           //l002的分栏
+        #ifdef DEBUG
             @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview,_gameTypeView.superview, _promotionVC.view, _trademarkView],
-//            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview,_lhColumnView, _promotionVC.view, _trademarkView],
+        #else
+            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview,_lhColumnView, _promotionVC.view, _trademarkView],
+        #endif
+
             @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
