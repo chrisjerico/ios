@@ -19,20 +19,45 @@
 @end
 @implementation UGFunds2microcodeView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self = [[NSBundle mainBundle] loadNibNamed:@"UGFunds2microcodeView" owner:self options:0].firstObject;
+-(void)initSubView{
+    FastSubViewCode(self);
+    subLabel(@"二维码Label").textColor = Skin1.textColor1;
+    subLabel(@"扫码Label").textColor = Skin1.textColor1;
+}
+
+- (instancetype) UGFunds2microcodeView {
+    NSBundle *bundle=[NSBundle mainBundle];
+    NSArray *objs=[bundle loadNibNamed:@"UGFunds2microcodeView" owner:nil options:nil];
+    return [objs lastObject];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (!self.subviews.count) {
+        self = [self UGFunds2microcodeView];
+        CGRect frame = CGRectMake(0, 0, APP.Width, 208);
         self.frame = frame;
+        [self initSubView];
     }
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self = [self UGFunds2microcodeView];
+        self.frame = frame;
+        
+        [self initSubView];
+    }
+    return self;
+}
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
-    FastSubViewCode(self);
-    subLabel(@"二维码Label").textColor = Skin1.textColor1;
-    subLabel(@"扫码Label").textColor = Skin1.textColor1;
+
 }
 
 - (void)setHeaderImageStr:(NSString *)headerImageStr {
