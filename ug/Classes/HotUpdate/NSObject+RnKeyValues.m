@@ -78,6 +78,12 @@
             }
             return temp;
         }
+        else if ([obj isKindOfClass:[UIImage class]]) {
+            static long idx = 0;
+            NSString *path = [NSTemporaryDirectory() stringByAppendingFormat:@"%f-%ld.png", [[NSDate date] timeIntervalSince1970], idx++];
+            [UIImagePNGRepresentation(obj) writeToFile:path atomically:true];
+            return path;
+        }
         else if (isModelClass(obj)) {
             return [obj rn_keyValuesWithKeys:nil ignoredKeys:nil];
         }

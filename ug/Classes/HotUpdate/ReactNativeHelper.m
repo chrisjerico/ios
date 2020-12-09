@@ -365,6 +365,62 @@ RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver
                     else if ([valueType isEqualToString:@"UIOffset"]) {
                         return [NSValue valueWithUIOffset:UIOffsetFromString(temp[@"string"])];
                     }
+                    else if ([valueType isEqualToString:@"RNBlock"]) {
+                        NSString *bt = temp[@"string"];
+                        bt = [bt stringByReplacingOccurrencesOfString:@"Object" withString:@"1"];
+                        bt = [bt stringByReplacingOccurrencesOfString:@"Number" withString:@"0"];
+                        NSString *event = temp[@"event"];
+                        if ([bt isEqualToString:@"0,0"]) {
+                            return ^(double v1, double v2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":@(v2)}];
+                            };
+                        } else if ([bt isEqualToString:@"1,1"]) {
+                            return ^(NSObject *o1, NSObject *o2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":o2}];
+                            };
+                        } else if ([bt isEqualToString:@"1,0"]) {
+                            return ^(NSObject *o1, double v1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":@(v1)}];
+                            };
+                        } else if ([bt isEqualToString:@"0,1"]) {
+                            return ^(double v1, NSObject *o1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":o1}];
+                            };
+                        } else if ([bt isEqualToString:@"0,0,0"]) {
+                            return ^(double v1, double v2, double v3) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":@(v2), @"2":@(v3)}];
+                            };
+                        } else if ([bt isEqualToString:@"0,1,1"]) {
+                            return ^(double v1, NSObject *o1, NSObject *o2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":o1, @"2":o2}];
+                            };
+                        } else if ([bt isEqualToString:@"0,1,0"]) {
+                            return ^(double v1, NSObject *o1, double v2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":o1, @"2":@(v2)}];
+                            };
+                        } else if ([bt isEqualToString:@"0,0,1"]) {
+                            return ^(double v1, double v2, NSObject *o1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":@(v2), @"2":o1}];
+                            };
+                        } else if ([bt isEqualToString:@"1,0,0"]) {
+                            return ^(NSObject *o1, double v1, double v2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":@(v1), @"2":@(v2)}];
+                            };
+                        } else if ([bt isEqualToString:@"1,1,1"]) {
+                            return ^(NSObject *o1, NSObject *o2, NSObject *o3) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":o2, @"2":o3}];
+                            };
+                        } else if ([bt isEqualToString:@"1,1,0"]) {
+                            return ^(NSObject *o1, NSObject *o2, double v1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":o2, @"2":@(v1)}];
+                            };
+                        } else if ([bt isEqualToString:@"1,0,1"]) {
+                            return ^(NSObject *o1, double v1, NSObject *o2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":@(v1), @"2":o2}];
+                            };
+                        }
+                    }
+                    return [NSNull null];
                 }
                 return temp;
             }
