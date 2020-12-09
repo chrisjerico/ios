@@ -42,38 +42,46 @@
 }
 
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self = [[NSBundle mainBundle] loadNibNamed:@"UGFundsTransferView" owner:self options:0].firstObject;
-        self.frame = frame;
-        
-        _bgView.layer.cornerRadius = 8;
-        _bgView.layer.masksToBounds = YES;
-        _bgView.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
-        _bgView.layer.borderWidth=1;
-        _name1Label.textColor = Skin1.textColor1;
-        _name2Label.textColor = Skin1.textColor1;
-        _name3Label.textColor = Skin1.textColor1;
-        _name4Label.textColor = Skin1.textColor1;
-        _remark1Label.textColor = Skin1.textColor1;
-        _remark2Label.textColor = Skin1.textColor1;
-        _remark3Label.textColor = Skin1.textColor1;
-        _remark4Label.textColor = Skin1.textColor1;
-    }
-    return self;
-}
-
-- (instancetype)initView {
-    if (self = [super init]) {
-        self = [self UGFundsTransferView];
-    }
+-(void)initSubView{
     _bgView.layer.cornerRadius = 8;
     _bgView.layer.masksToBounds = YES;
     _bgView.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
     _bgView.layer.borderWidth=1;
+    _name1Label.textColor = Skin1.textColor1;
+    _name2Label.textColor = Skin1.textColor1;
+    _name3Label.textColor = Skin1.textColor1;
+    _name4Label.textColor = Skin1.textColor1;
+    _remark1Label.textColor = Skin1.textColor1;
+    _remark2Label.textColor = Skin1.textColor1;
+    _remark3Label.textColor = Skin1.textColor1;
+    _remark4Label.textColor = Skin1.textColor1;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (!self.subviews.count) {
+        self = [self UGFundsTransferView];
+        CGRect frame = CGRectMake(0, 0, APP.Width, 208);
+        self.frame = frame;
+        [self initSubView];
+    }
     return self;
 }
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self = [self UGFundsTransferView];
+        self.frame = frame;
+        
+        [self initSubView];
+    }
+    return self;
+}
+
+
+
 
 - (void)setItem:(UGchannelModel *)item {
     _item = item;

@@ -27,25 +27,49 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
+- (instancetype) UGFundsTransfer2View {
+    NSBundle *bundle=[NSBundle mainBundle];
+    NSArray *objs=[bundle loadNibNamed:@"UGFundsTransfer2View" owner:nil options:nil];
+    return [objs lastObject];
+}
+
+
+-(void)initSubView{
+    if ([APP.SiteId isEqualToString:@"c245"]) {
+        _my3TextField.placeholder = @"请填写实际转账人姓名（必填写）";
+    }
+    _myTextField.textColor = Skin1.textColor1;
+    _my2TextField.textColor = Skin1.textColor1;
+    _my3TextField.textColor = Skin1.textColor1;
+    _myTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_myTextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    _my2TextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_my2TextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    _my3TextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_my3TextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
+    
+    // 方式一
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_myTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_my2TextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_my3TextField];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (!self.subviews.count) {
+        self = [self UGFundsTransfer2View];
+        CGRect frame = CGRectMake(0, 0, APP.Width, 181);
+        self.frame = frame;
+        [self initSubView];
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFundsTransfer2View" owner:self options:0].firstObject;
         self.frame = frame;
-        if ([APP.SiteId isEqualToString:@"c245"]) {
-            _my3TextField.placeholder = @"请填写实际转账人姓名（必填写）";
-        }
-        _myTextField.textColor = Skin1.textColor1;
-        _my2TextField.textColor = Skin1.textColor1;
-        _my3TextField.textColor = Skin1.textColor1;
-        _myTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_myTextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
-        _my2TextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_my2TextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
-        _my3TextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_my3TextField.placeholder attributes:@{NSForegroundColorAttributeName:Skin1.textColor3}];
-        
-        // 方式一
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_myTextField];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_my2TextField];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeAction:) name:@"UITextFieldTextDidChangeNotification" object:_my3TextField];
+       
     }
     return self;
     
