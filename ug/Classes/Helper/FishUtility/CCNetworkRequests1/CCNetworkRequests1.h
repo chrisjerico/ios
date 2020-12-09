@@ -18,7 +18,7 @@
 + (instancetype)sharedManager;
 
 - (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST;
-
+- (CCSessionModel *)upload:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST :(NSDictionary <NSString *, CCUploadFileModel *>*)files;
 
 - (CCSessionModel *)getHotUpdateVersionList:(NSInteger)page;   /**<   获取热更新版本列表 */
 - (CCSessionModel *)downloadFile:(NSString *)url;

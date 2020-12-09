@@ -50,11 +50,11 @@
 @interface CCSessionModel ()
 
 @property (nonatomic) NSString *filePath;                     /**<    下载文件的存储地址 */
-@property (nonatomic) NSArray <CCUploadFileModel *>*files;    /**<    上传的文件列表 */
+@property (nonatomic) NSDictionary <NSString *, CCUploadFileModel *>*files;    /**<    上传的文件列表 */
 
 - (NSURLSessionDownloadTask *)downloadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req;
 - (NSURLSessionDownloadTask *)downloadTask:(AFHTTPSessionManager *)m resumeData:(NSData *)rd;
-- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSArray <CCUploadFileModel *>*)files;
+- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSDictionary <NSString *, CCUploadFileModel *>*)files;
 @end
 
 
@@ -79,9 +79,7 @@
  * 描述一个要上传的文件
  */
 @interface CCUploadFileModel : NSObject
-
 @property (nonatomic, copy) NSString *filePath;                /**<    文件本地路径 */
-@property (nonatomic, copy) NSString *name;                    /**<    key */
 @property (nonatomic, copy) NSString *filename;                /**<    上传后保存的文件名 */
 @property (nonatomic, copy) NSString *mimeType;                /**<    mimeType */
 @end

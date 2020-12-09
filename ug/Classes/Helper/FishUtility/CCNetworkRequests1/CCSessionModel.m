@@ -113,7 +113,7 @@ MJCodingImplementation
     return (id)_task;
 }
 
-- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSArray<CCUploadFileModel *> *)files {
+- (NSURLSessionUploadTask *)uploadTask:(AFHTTPSessionManager *)m request:(NSURLRequest *)req files:(NSDictionary<NSString *, CCUploadFileModel *> *)files {
     _files = files;
     
     __blockSelf_(__self);

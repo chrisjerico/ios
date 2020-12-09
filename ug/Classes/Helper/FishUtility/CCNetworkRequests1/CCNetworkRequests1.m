@@ -104,13 +104,18 @@
 - (CCSessionModel *)req:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST {
     NSString *host = APP.Host;
     NSString *string = [host stringByAppendingPathComponent:pathComponent];
-    NSLog(@"token = %@",UserI.sessid);
+    return [self sendRequest:string params:params isPOST:isPOST files:@{}];
+}
 
-    return [self sendRequest:string params:params isPOST:isPOST];
+// 简写接口
+- (CCSessionModel *)upload:(NSString *)pathComponent :(NSDictionary *)params :(BOOL)isPOST :(NSDictionary <NSString *, CCUploadFileModel *>*)files {
+    NSString *host = APP.Host;
+    NSString *string = [host stringByAppendingPathComponent:pathComponent];
+    return [self sendRequest:string params:params isPOST:isPOST files:files];
 }
 
 // 发起请求
-- (CCSessionModel *)sendRequest:(NSString *)urlString params:(NSDictionary *)_params isPOST:(BOOL)isPOST {
+- (CCSessionModel *)sendRequest:(NSString *)urlString params:(NSDictionary *)_params isPOST:(BOOL)isPOST files:(NSDictionary <NSString *, CCUploadFileModel *>*)files {
     NSMutableDictionary *params = ({
         NSMutableDictionary *temp = [NSMutableDictionary dictionary];
         [temp addEntriesFromDictionary:_params];
@@ -158,9 +163,21 @@
             policy.validatesDomainName = false;
             policy;
         });
-        m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-        NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:isPOST ? @"POST":@"GET" URLString:urlString parameters:params error:nil];
-        [[sm dataTask:m request:req] resume];
+        
+        if (files.count) {
+            m.requestSerializer = [AFHTTPRequestSerializer serializer];
+            NSMutableURLRequest *req = [m.requestSerializer multipartFormRequestWithMethod:isPOST ? @"POST":@"GET" URLString:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                for (NSString *key in files.allKeys) {
+                    CCUploadFileModel *ufm = files[key];
+                    [formData appendPartWithFileURL:[NSURL fileURLWithPath:ufm.filePath] name:key fileName:ufm.filename mimeType:ufm.mimeType error:nil];
+                }
+            } error:nil];
+            [[sm uploadTask:m request:req files:files] resume];
+        } else {
+            m.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+            NSMutableURLRequest *req = [m.requestSerializer requestWithMethod:isPOST ? @"POST":@"GET" URLString:urlString parameters:params error:nil];
+            [[sm dataTask:m request:req] resume];
+        }
     }
     
 #ifdef APP_TEST
