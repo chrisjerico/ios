@@ -15,14 +15,14 @@
             <objects>
                 <viewController storyboardIdentifier="NewDepositDetailsNoLineViewController" id="Rsb-vH-ptg" customClass="NewDepositDetailsNoLineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y8m-qa-sbj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="2200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1E-jo-r3b">
-                                <rect key="frame" x="0.0" y="44" width="414" height="2156"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="1556"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gLP-7r-fXa">
-                                        <rect key="frame" x="10" y="10" width="394" height="2136"/>
+                                        <rect key="frame" x="10" y="10" width="394" height="871"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDh-NR-sps">
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="18"/>
@@ -97,10 +97,17 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jl4-9R-vh6">
-                                                <rect key="frame" x="0.0" y="578" width="394" height="1558"/>
+                                                <rect key="frame" x="0.0" y="578" width="394" height="150"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="1558" id="C0u-7E-911"/>
+                                                    <constraint firstAttribute="height" constant="150" id="C0u-7E-911"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uz1-xG-fWM">
+                                                <rect key="frame" x="0.0" y="743" width="394" height="128"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="mNl-f8-eH7"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -115,6 +122,8 @@
                                             <constraint firstItem="lDh-NR-sps" firstAttribute="leading" secondItem="gLP-7r-fXa" secondAttribute="leading" id="eBd-i9-83N"/>
                                             <constraint firstItem="jrZ-Dr-dYr" firstAttribute="leading" secondItem="gLP-7r-fXa" secondAttribute="leading" id="fIx-8Q-hZG"/>
                                             <constraint firstAttribute="trailing" secondItem="JPQ-fO-VHm" secondAttribute="trailing" id="g7m-99-MUE"/>
+                                            <constraint firstAttribute="trailing" secondItem="uz1-xG-fWM" secondAttribute="trailing" id="hYf-zW-nvr"/>
+                                            <constraint firstItem="uz1-xG-fWM" firstAttribute="leading" secondItem="gLP-7r-fXa" secondAttribute="leading" id="r01-jz-bJV"/>
                                             <constraint firstAttribute="trailing" secondItem="W7w-gZ-vZm" secondAttribute="trailing" id="tsc-9d-ndR"/>
                                             <constraint firstItem="JPQ-fO-VHm" firstAttribute="leading" secondItem="gLP-7r-fXa" secondAttribute="leading" id="uc6-1V-H0D"/>
                                             <constraint firstAttribute="trailing" secondItem="c9a-lV-ptg" secondAttribute="trailing" id="vg3-d0-4gR"/>
@@ -125,8 +134,8 @@
                                     <constraint firstItem="gLP-7r-fXa" firstAttribute="leading" secondItem="k1E-jo-r3b" secondAttribute="leading" constant="10" id="Et1-5o-3Gk"/>
                                     <constraint firstAttribute="trailing" secondItem="gLP-7r-fXa" secondAttribute="trailing" constant="10" id="Rw8-5q-A4g"/>
                                     <constraint firstItem="gLP-7r-fXa" firstAttribute="top" secondItem="k1E-jo-r3b" secondAttribute="top" constant="10" id="W25-pu-pyq"/>
+                                    <constraint firstAttribute="bottom" secondItem="gLP-7r-fXa" secondAttribute="bottom" id="YLm-iU-4xx"/>
                                     <constraint firstItem="gLP-7r-fXa" firstAttribute="centerX" secondItem="k1E-jo-r3b" secondAttribute="centerX" id="aAp-yy-noH"/>
-                                    <constraint firstAttribute="bottom" secondItem="gLP-7r-fXa" secondAttribute="bottom" id="eUH-tF-zPC"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -140,7 +149,7 @@
                             <constraint firstItem="k1E-jo-r3b" firstAttribute="top" secondItem="eJp-5l-4Pa" secondAttribute="top" id="s1m-gs-L4M"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="2200"/>
+                    <size key="freeformSize" width="414" height="1600"/>
                     <connections>
                         <outlet property="colectionViewHeight" destination="jiB-cU-Lk7" id="5Pr-wC-xC9"/>
                         <outlet property="collectionView" destination="W7w-gZ-vZm" id="fkk-lf-uGx"/>
@@ -154,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npJ-nj-zAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2033" y="-615"/>
+            <point key="canvasLocation" x="-2033.3333333333335" y="-615.40178571428567"/>
         </scene>
     </scenes>
     <resources>
