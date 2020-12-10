@@ -258,7 +258,7 @@
     }
     if (![CMCommon stringIsNull:self.mUGinviteInfoModel.real_fandian_intro]) {
         [_itemArry addObject:[[HelpDocModel alloc] initWithBtnTitle:@"真人返点" WebName:self.mUGinviteInfoModel.real_fandian_intro]];
-        subLabel(@"真人返点label").text = [NSString stringWithFormat:@"真人返点:%@",self.mUGinviteInfoModel.real_fandian_intro];
+        subLabel(@"真人返点label").text = [NSString stringWithFormat:@"视讯返点:%@",self.mUGinviteInfoModel.real_fandian_intro];
         [subLabel(@"真人返点label") setHidden: NO];
     }
     if (![CMCommon stringIsNull:self.mUGinviteInfoModel.fish_fandian_intro]) {
