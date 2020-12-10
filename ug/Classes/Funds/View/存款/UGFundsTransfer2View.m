@@ -56,10 +56,12 @@
 {
     self = [super initWithCoder:coder];
     if (!self.subviews.count) {
-        self = [self UGFundsTransfer2View];
-        CGRect frame = CGRectMake(0, 0, APP.Width, 181);
-        self.frame = frame;
-        [self initSubView];
+  
+        UGFundsTransfer2View *v = [[UGFundsTransfer2View alloc] initWithFrame:CGRectMake(0, 0,  APP.Width, 181)];
+        [self addSubview:v];
+        [v mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
     }
     return self;
 }
@@ -69,7 +71,7 @@
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGFundsTransfer2View" owner:self options:0].firstObject;
         self.frame = frame;
-       
+        [self initSubView];
     }
     return self;
     

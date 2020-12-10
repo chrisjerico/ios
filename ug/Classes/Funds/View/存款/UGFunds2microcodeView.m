@@ -9,13 +9,7 @@
 #import "UGFunds2microcodeView.h"
 
 @interface UGFunds2microcodeView ()
-
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
-
-
-
+@property (strong, nonatomic)  UGFunds2microcodeView *contentView;
 @end
 @implementation UGFunds2microcodeView
 
@@ -23,6 +17,8 @@
     FastSubViewCode(self);
     subLabel(@"二维码Label").textColor = Skin1.textColor1;
     subLabel(@"扫码Label").textColor = Skin1.textColor1;
+    self.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
+    self.layer.borderWidth=1;
 }
 
 - (instancetype) UGFunds2microcodeView {
@@ -34,11 +30,15 @@
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
-    if (!self.subviews.count) {
-        self = [self UGFunds2microcodeView];
-        CGRect frame = CGRectMake(0, 0, APP.Width, 208);
-        self.frame = frame;
-        [self initSubView];
+    
+    NSLog(@"self = %@",self);
+//    if (!self.subviews.count) {
+    if (self) {
+        self.contentView = [[UGFunds2microcodeView alloc] initWithFrame:CGRectMake(0, 0,  APP.Width, 208)];
+        [self addSubview:self.contentView];
+        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
     }
     return self;
 }
@@ -61,14 +61,31 @@
 }
 
 - (void)setHeaderImageStr:(NSString *)headerImageStr {
-    _headerImageStr= headerImageStr;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:headerImageStr] placeholderImage:[UIImage imageNamed:@"bg_microcode"]];
+    self.contentView.headerImageStr = headerImageStr;
+    FastSubViewCode(self)
+    
+    [subImageView(@"图片imgV") sd_setImageWithURL:[NSURL URLWithString:headerImageStr] placeholderImage:[UIImage imageNamed:@"bg_microcode"]];
     
 }
 
 - (IBAction)showClick:(id)sender {
-    if (self.showBlock) {
-        self.showBlock();
+//    if (self.showBlock) {
+//        self.showBlock();
+//    }
+    
+    if ([CMCommon stringIsNull:self.contentView.headerImageStr]) {
+        return ;
+    } else {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 250, 250)];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:self.contentView.headerImageStr] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [LEEAlert alert].config
+        .LeeTitle(@"二维码")
+        .LeeAddCustomView(^(LEECustomView *custom) {
+            custom.view = imgView;
+            custom.isAutoWidth = YES;
+        })
+        .LeeCancelAction(@"关闭", nil)
+        .LeeShow();
     }
     
 }

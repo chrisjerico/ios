@@ -12,7 +12,7 @@
 #import "UGdepositModel.h"
 #import "UGDepositDetailsXNViewController.h"
 #import "UGDepositDetailsViewController.h"
-#import "UGDepositDetailsNoLineViewController.h"
+#import "NewDepositDetailsNoLineViewController.h"
 @interface TKLRechargeListViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSInteger myRow;
@@ -116,7 +116,7 @@
         
     }
     else {
-        UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+        NewDepositDetailsNoLineViewController *vc =  _LoadVC_from_storyboard_(@"NewDepositDetailsNoLineViewController");
         [self addChildViewController:vc];
         vc.item = model;
         [_contentView removeAllSubviews];

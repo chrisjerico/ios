@@ -141,7 +141,7 @@
     }
     
     
-    self.uGFunds2microcodeView .showBlock = ^{
+    self.uGFunds2microcodeView.showBlock = ^{
         
         
         if ([CMCommon stringIsNull:channelModel.qrcode]) {
