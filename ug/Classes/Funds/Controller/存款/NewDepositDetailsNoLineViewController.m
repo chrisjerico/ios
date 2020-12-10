@@ -15,6 +15,7 @@
 #import "UGdepositModel.h"
 #import "UGFundsBankView.h"
 #import "UGDepositDetailsCollectionViewCell.h"
+#import "UITextView+Extension.h"
 @interface NewDepositDetailsNoLineViewController ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *tishi1Label;/**<   最👆的提示 */
 @property (weak, nonatomic) IBOutlet UILabel *tishi2Label;/**<   最👇的提示 */
@@ -45,27 +46,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    FastSubViewCode(self.view)
     [self.view setBackgroundColor:Skin1.textColor4];
+    subView(@"用户昵称View").layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
+    subView(@"用户昵称View").layer.borderWidth=1;
+    subView(@"时间View").layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
+    subView(@"时间View").layer.borderWidth=1;
+    subView(@"备注View").layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
+    subView(@"备注View").layer.borderWidth=1;
     _blankDataArray = [NSMutableArray<UGrechargeBankModel> new];
     _amountDataArray = [NSMutableArray new];
-//    self.submit_button.backgroundColor = Skin1.navBarBgColor;
-//    self.blank_button.backgroundColor = Skin1.navBarBgColor;
-//    [self.submit_button.layer setBorderWidth:1];
-//    [self.blank_button.layer setBorderWidth:1];
-//    [self.submit_button.layer setBorderColor:Skin1.navBarBgColor.CGColor];
-//    [self.blank_button.layer setBorderColor:Skin1.navBarBgColor.CGColor];
-//    self.blank_button.layer.cornerRadius = 5;
-//    self.blank_button.layer.masksToBounds = YES;
-//    self.submit_button.layer.cornerRadius = 5;
-//    self.submit_button.layer.masksToBounds = YES;
+    self.submit_button.backgroundColor = Skin1.navBarBgColor;
+    self.blank_button.backgroundColor = Skin1.navBarBgColor;
+    [self.submit_button.layer setBorderWidth:1];
+    [self.blank_button.layer setBorderWidth:1];
+    [self.submit_button.layer setBorderColor:Skin1.navBarBgColor.CGColor];
+    [self.blank_button.layer setBorderColor:Skin1.navBarBgColor.CGColor];
+    self.blank_button.layer.cornerRadius = 5;
+    self.blank_button.layer.masksToBounds = YES;
+    self.submit_button.layer.cornerRadius = 5;
+    self.submit_button.layer.masksToBounds = YES;
     __weakSelf_(__self);
-//    [self.submit_button addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-//        [__self rechargeTransfer];
-//    }];
-//    [self.blank_button addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
-//        [__self submitAcion];
-//    }];
-//
+    [self.submit_button addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        [__self rechargeTransfer];
+    }];
+    [self.blank_button addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
+        [__self showBlackList];
+    }];
+
     __block NSTimer *__timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
 
         NSString *date = [[NSDate date] stringWithFormat:@"yyyy/MM/dd"];
@@ -80,6 +88,12 @@
     if (__timer.block) {
         __timer.block(nil);
     }
+    [self.timeLabel setTextColor:Skin1.textColor1];
+    [self.userNameTF setTextColor:Skin1.textColor1];
+    [self.remarkTV setTextColor:Skin1.textColor1];
+    [self.tishi2Label setTextColor:Skin1.textColor1];
+    [self.userNameTF setPlaceholderColor:Skin1.textColor3 ];
+    [self.remarkTV setPlaceholderWithText:@"请填写备用信息" Color:Skin1.textColor3];
 
     _tableDataArray = [NSMutableArray new];
     self.tableView.delegate = self;
@@ -101,8 +115,9 @@
     self.collectionView.backgroundColor = [UIColor clearColor];
     [self.collectionView registerNib:[UINib nibWithNibName:@"UGDepositDetailsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UGDepositDetailsCollectionViewCell"];
     [self.collectionView setCollectionViewLayout:layout];
-    self.textField.layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
-    self.textField.layer.borderWidth= 1;
+    subView(@"存款View").layer.borderColor= UGRGBColor(221, 221, 221).CGColor;
+    subView(@"存款View").layer.borderWidth= 1;
+
     
     if (self.item) {
         _tableDataArray = [[NSMutableArray alloc] initWithArray:_item.channel];
@@ -114,7 +129,6 @@
         [self setUIData:_selectChannelModel];
     }
 
-
 }
 
 
@@ -123,9 +137,9 @@
     FastSubViewCode(self.view)
     /**<   最👆的提示 */
     if ([CMCommon stringIsNull:self.item.depositPrompt]) {
-        [self.tishi1Label.superview setHidden:YES];
+        [self.tishi1Label setHidden:YES];
     } else {
-        [self.tishi1Label.superview setHidden:NO];
+        [self.tishi1Label setHidden:NO];
         
         self.tishi1Label.text = self.item.depositPrompt;
         if (self.item.depositPrompt.isHtmlStr) {
@@ -140,9 +154,9 @@
     }
     /**<    最👇的提示  */
     if ([CMCommon stringIsNull:self.item.prompt]) {
-        [self.tishi2Label.superview setHidden:YES];
+        [self.tishi2Label setHidden:YES];
     } else {
-        [self.tishi2Label.superview setHidden:NO];
+        [self.tishi2Label setHidden:NO];
         self.tishi2Label.text = self.item.prompt;
         if (self.item.prompt.isHtmlStr) {
                 self.tishi2Label.attributedText = ({
@@ -197,12 +211,12 @@
 //            .LeeShow();
 //        }
 //    };
-//    /**<  银行按钮 */
-//    if ([CMCommon arryIsNull:self.blankDataArray]) {
-//        [self.blank_button.superview setHidden:YES];
-//    } else {
-//        [self.blank_button.superview setHidden:NO];
-//    }
+    /**<  银行按钮 */
+    if ([CMCommon arryIsNull:self.blankDataArray]) {
+        [self.blank_button setHidden:YES];
+    } else {
+        [self.blank_button setHidden:NO];
+    }
 
     /**<  金额列表 */
     if ([CMCommon stringIsNull:bankModel.fixedAmount]) {
@@ -221,9 +235,9 @@
     }
 
     if ([CMCommon arryIsNull:self.amountDataArray]) {
-        [self.collectionView.superview setHidden:YES];
+        [self.collectionView setHidden:YES];
     } else {
-        [self.collectionView.superview setHidden:NO];
+        [self.collectionView setHidden:NO];
         float height ;
         if ([CMCommon judgeStr:(int)self.amountDataArray.count with:3]) {
             //能整除   高度
@@ -238,9 +252,9 @@
 
     if (APP.isHideText) {
         if ([CMCommon arryIsNull:self.amountDataArray]) {
-            [self.textField.superview setHidden:NO];
+            [subView(@"存款View") setHidden:NO];
         } else {
-            [self.textField.superview setHidden:YES];
+            [subView(@"存款View") setHidden:YES];
         }
     }
         /**<   支付通道 */
@@ -336,25 +350,22 @@
 }
 
 
-//#pragma mark - 其他方法
-//-(void)showBlackList{
-//    UGFundsBankView *notiveView = [[UGFundsBankView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
-//    notiveView.dataArray = self->_blankDataArray ;
-//    notiveView.nameStr = @"--- 请选择银行 ---";
-//    WeakSelf;
-//    notiveView.signInHeaderViewnBlock =  ^(id model) {
-//
-//        weakSelf.selectBank = (UGrechargeBankModel *)model;
-//        [weakSelf.blank_button setTitle:weakSelf.selectBank.name forState:UIControlStateNormal];
-//    };
-//    if (![CMCommon arryIsNull:self->_blankDataArray ]) {
-//        [notiveView show];
-//    }
-//}
+#pragma mark - 其他方法
+-(void)showBlackList{
+    UGFundsBankView *notiveView = [[UGFundsBankView alloc] initWithFrame:CGRectMake(20, 120, UGScreenW - 40, UGScerrnH - 260)];
+    notiveView.dataArray = self->_blankDataArray ;
+    notiveView.nameStr = @"--- 请选择银行 ---";
+    WeakSelf;
+    notiveView.signInHeaderViewnBlock =  ^(id model) {
 
--(void)submitAcion{
-    [self rechargeTransfer];
+        weakSelf.selectBank = (UGrechargeBankModel *)model;
+        [weakSelf.blank_button setTitle:weakSelf.selectBank.name forState:UIControlStateNormal];
+    };
+    if (![CMCommon arryIsNull:self->_blankDataArray ]) {
+        [notiveView show];
+    }
 }
+
 //线下支付
 - (void)rechargeTransfer{
     /**<  存款金额 */
