@@ -98,9 +98,112 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jl4-9R-vh6">
                                                 <rect key="frame" x="0.0" y="578" width="394" height="150"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="41E-Wj-cAf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="150"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVW-dF-u3Y">
+                                                                <rect key="frame" x="0.0" y="0.0" width="394" height="40"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写付款的银行支付宝用户昵称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="15b-el-F8p">
+                                                                        <rect key="frame" x="20" y="0.0" width="374" height="40"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="EFc-1A-ZrX"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="用户昵称TF"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="15b-el-F8p" secondAttribute="trailing" id="5xr-v2-Yx1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="15b-el-F8p" secondAttribute="bottom" id="O1V-Um-Wjg"/>
+                                                                    <constraint firstItem="15b-el-F8p" firstAttribute="top" secondItem="PVW-dF-u3Y" secondAttribute="top" id="rJ9-bs-kOI"/>
+                                                                    <constraint firstItem="15b-el-F8p" firstAttribute="leading" secondItem="PVW-dF-u3Y" secondAttribute="leading" constant="20" id="xW1-zO-2fd"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="ztg-Tx-WBV"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="用户昵称View"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ob1-ao-XrD">
+                                                                <rect key="frame" x="0.0" y="40" width="394" height="40"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020/10/01  下午 03:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJO-UR-wGQ">
+                                                                        <rect key="frame" x="20" y="0.0" width="374" height="40"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="hlm-s6-USH"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="时间label"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </label>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="eJO-UR-wGQ" secondAttribute="trailing" id="3r8-rw-0hR"/>
+                                                                    <constraint firstItem="eJO-UR-wGQ" firstAttribute="top" secondItem="Ob1-ao-XrD" secondAttribute="top" id="FhY-wy-ecq"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="eJO-UR-wGQ" secondAttribute="bottom" id="OAX-gX-tW3"/>
+                                                                    <constraint firstItem="eJO-UR-wGQ" firstAttribute="leading" secondItem="Ob1-ao-XrD" secondAttribute="leading" constant="20" id="h3t-mM-1ej"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="ygw-Cs-QcQ"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="时间View"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="19f-3O-FXB">
+                                                                <rect key="frame" x="0.0" y="80" width="394" height="70"/>
+                                                                <subviews>
+                                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gRE-4z-7Jm">
+                                                                        <rect key="frame" x="20" y="0.0" width="374" height="70"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <color key="textColor" systemColor="labelColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="请填写备用信息"/>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </textView>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="gRE-4z-7Jm" firstAttribute="leading" secondItem="19f-3O-FXB" secondAttribute="leading" constant="20" id="51z-2o-8Bb"/>
+                                                                    <constraint firstItem="gRE-4z-7Jm" firstAttribute="top" secondItem="19f-3O-FXB" secondAttribute="top" id="Pm7-Xx-zmg"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="gRE-4z-7Jm" secondAttribute="trailing" id="R40-4X-og3"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="gRE-4z-7Jm" secondAttribute="bottom" id="sQj-oV-1LD"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="备注View"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="19f-3O-FXB" firstAttribute="leading" secondItem="41E-Wj-cAf" secondAttribute="leading" id="HqH-zt-r16"/>
+                                                            <constraint firstItem="19f-3O-FXB" firstAttribute="top" secondItem="Ob1-ao-XrD" secondAttribute="bottom" id="No0-0c-hAk"/>
+                                                            <constraint firstItem="PVW-dF-u3Y" firstAttribute="leading" secondItem="41E-Wj-cAf" secondAttribute="leading" id="Xlr-72-tIH"/>
+                                                            <constraint firstItem="Ob1-ao-XrD" firstAttribute="top" secondItem="PVW-dF-u3Y" secondAttribute="bottom" id="aZx-Kn-WX5"/>
+                                                            <constraint firstItem="Ob1-ao-XrD" firstAttribute="leading" secondItem="41E-Wj-cAf" secondAttribute="leading" id="bMi-Tb-c75"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ob1-ao-XrD" secondAttribute="trailing" id="bvC-XN-mgG"/>
+                                                            <constraint firstAttribute="bottom" secondItem="19f-3O-FXB" secondAttribute="bottom" id="t1s-Sf-KJq"/>
+                                                            <constraint firstAttribute="trailing" secondItem="19f-3O-FXB" secondAttribute="trailing" id="w3b-GE-MaB"/>
+                                                            <constraint firstAttribute="trailing" secondItem="PVW-dF-u3Y" secondAttribute="trailing" id="wtq-aS-P21"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="41E-Wj-cAf" firstAttribute="top" secondItem="jl4-9R-vh6" secondAttribute="top" id="3tM-Lo-u1n"/>
                                                     <constraint firstAttribute="height" constant="150" id="C0u-7E-911"/>
+                                                    <constraint firstAttribute="bottom" secondItem="41E-Wj-cAf" secondAttribute="bottom" id="Cja-nq-WGZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="41E-Wj-cAf" secondAttribute="trailing" id="qyR-ID-Tk8"/>
+                                                    <constraint firstItem="41E-Wj-cAf" firstAttribute="leading" secondItem="jl4-9R-vh6" secondAttribute="leading" id="s7Z-jP-bAc"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uz1-xG-fWM">
@@ -153,12 +256,15 @@
                     <connections>
                         <outlet property="colectionViewHeight" destination="jiB-cU-Lk7" id="5Pr-wC-xC9"/>
                         <outlet property="collectionView" destination="W7w-gZ-vZm" id="fkk-lf-uGx"/>
+                        <outlet property="remarkTV" destination="gRE-4z-7Jm" id="c6e-Nu-aqI"/>
                         <outlet property="tableView" destination="jrZ-Dr-dYr" id="Mrt-4b-5eS"/>
                         <outlet property="tableViewHeight" destination="V1N-iU-17q" id="Sox-MN-Gqh"/>
                         <outlet property="textField" destination="2WE-Mj-P2M" id="7pw-77-n1i"/>
+                        <outlet property="timeLabel" destination="eJO-UR-wGQ" id="LTR-ph-XLe"/>
                         <outlet property="tishi1Label" destination="lDh-NR-sps" id="iV5-Mt-TeI"/>
                         <outlet property="tishi2Label" destination="c9a-lV-ptg" id="ba6-Op-yEx"/>
                         <outlet property="uGFundsTransferView" destination="JPQ-fO-VHm" id="2XN-fB-fUu"/>
+                        <outlet property="userNameTF" destination="15b-el-F8p" id="8nn-rO-oor"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npJ-nj-zAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -167,6 +273,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

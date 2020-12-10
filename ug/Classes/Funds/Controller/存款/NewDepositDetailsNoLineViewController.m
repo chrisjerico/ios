@@ -27,10 +27,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;/**<   支付通道table 高 */
 @property (weak, nonatomic) IBOutlet UITextView *remarkTV;/**<   备注 */
 @property (weak, nonatomic) IBOutlet UITextField *userNameTF;/**<   用户名称*/
-
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;            //时间
 @property (weak, nonatomic) IBOutlet UIButton *blank_button;/**<  银行按钮 */
 @property (weak, nonatomic) IBOutlet UIButton *submit_button;/**<  提交按钮 */
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;            //时间
+
 //===========================================数据=====================================================
 @property (nonatomic, strong) UGchannelModel *selectChannelModel ;/**<  选中的支付通道 */
 @property (nonatomic, strong) NSIndexPath *lastPath;/**<  最后选中table Index */
@@ -58,7 +58,7 @@
 //    self.blank_button.layer.masksToBounds = YES;
 //    self.submit_button.layer.cornerRadius = 5;
 //    self.submit_button.layer.masksToBounds = YES;
-//    __weakSelf_(__self);
+    __weakSelf_(__self);
 //    [self.submit_button addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
 //        [__self rechargeTransfer];
 //    }];
@@ -66,21 +66,21 @@
 //        [__self submitAcion];
 //    }];
 //
-//    __block NSTimer *__timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
-//
-//        NSString *date = [[NSDate date] stringWithFormat:@"yyyy/MM/dd"];
-//        NSString *time = [[NSDate date] stringWithFormat:@"HH:mm"];
-//        __self.timeLabel.text = [NSString stringWithFormat:@"%@ %@",date,time];
-//        
-//        if (!__self) {
-//            [__timer invalidate];
-//            __timer = nil;
-//        }
-//    }];
-//    if (__timer.block) {
-//        __timer.block(nil);
-//    }
-//
+    __block NSTimer *__timer = [NSTimer scheduledTimerWithInterval:1 repeats:true block:^(NSTimer *timer) {
+
+        NSString *date = [[NSDate date] stringWithFormat:@"yyyy/MM/dd"];
+        NSString *time = [[NSDate date] stringWithFormat:@"HH:mm"];
+        __self.timeLabel.text = [NSString stringWithFormat:@"%@ %@",date,time];
+        
+        if (!__self) {
+            [__timer invalidate];
+            __timer = nil;
+        }
+    }];
+    if (__timer.block) {
+        __timer.block(nil);
+    }
+
     _tableDataArray = [NSMutableArray new];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
