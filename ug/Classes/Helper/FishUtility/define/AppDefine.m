@@ -237,6 +237,7 @@
     _isShowAll = [@"c085,test60f" containsString:_SiteId];
     _isShowDML = [@"c084,testadaf" containsString:_SiteId];
     _isCanUploadAvatar = true;
+    _isHideBank = [@"c012" containsString:_SiteId];
     
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {

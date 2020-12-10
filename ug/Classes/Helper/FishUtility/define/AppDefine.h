@@ -59,6 +59,7 @@
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
 @property (nonatomic) BOOL isHideSQSM;                               /**<  申请彩金页 申请说明的栏位去掉*/
 @property (nonatomic) BOOL isShowSummary;                               /**<  我的推荐会员管理,添加一个盈亏汇总*/
+@property (nonatomic,assign) BOOL isHideBank;                           /**<  在线支付隐藏银行按钮*/
 //==============================================个人中心
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isC239B;                                   /**<  个人中心去掉真实名字，成长值，成长进度*/
