@@ -141,7 +141,7 @@
     }
     
     
-    self.uGFunds2microcodeView .showBlock = ^{
+    self.uGFunds2microcodeView.showBlock = ^{
         
         
         if ([CMCommon stringIsNull:channelModel.qrcode]) {
@@ -165,10 +165,7 @@
             .LeeCancelAction(@"关闭", nil)
             .LeeShow();
         }
-      
-        
-       
-        
+
     };
     
     //==============================================================不再使用
@@ -661,7 +658,7 @@
     
     [self rechargeTransfer];
     
-    //token money payId
+    
 }
 
 

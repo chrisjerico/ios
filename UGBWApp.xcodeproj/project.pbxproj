@@ -2321,6 +2321,9 @@
 		D466533A24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D466533B24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D46653412430CD38000D5377 /* otherLotter.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533F2430CD38000D5377 /* otherLotter.wav */; };
+		D4669F432580B5C000D5417C /* NewDepositDetailsNoLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4669F422580B5C000D5417C /* NewDepositDetailsNoLineViewController.m */; };
+		D4669F472580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */; };
+		D4669F482580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */; };
 		D469CAD525109D5000AE976D /* MyChatRoomsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D469CAD225109D5000AE976D /* MyChatRoomsModel.m */; };
 		D46A7DA1257779A0002FD5C4 /* UITabBarItem+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */; };
 		D46A7DA2257779A0002FD5C4 /* ZYImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */; };
@@ -4532,6 +4535,9 @@
 		D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineMainListCollectionViewCell.xib; sourceTree = "<group>"; };
 		D466533924305FAE000D5377 /* lottery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lottery.wav; sourceTree = "<group>"; };
 		D466533F2430CD38000D5377 /* otherLotter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = otherLotter.wav; sourceTree = "<group>"; };
+		D4669F412580B5C000D5417C /* NewDepositDetailsNoLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDepositDetailsNoLineViewController.h; sourceTree = "<group>"; };
+		D4669F422580B5C000D5417C /* NewDepositDetailsNoLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDepositDetailsNoLineViewController.m; sourceTree = "<group>"; };
+		D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DepositDetailsViewController.storyboard; sourceTree = "<group>"; };
 		D469CAD225109D5000AE976D /* MyChatRoomsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChatRoomsModel.m; sourceTree = "<group>"; };
 		D469CAD425109D5000AE976D /* MyChatRoomsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChatRoomsModel.h; sourceTree = "<group>"; };
 		D46A7D9A2577799F002FD5C4 /* UITabBarItem+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+WebCache.h"; sourceTree = "<group>"; };
@@ -6554,6 +6560,9 @@
 				031E172423BE812400B0F813 /* UGRechargeTypeTableViewController.m */,
 				CFBAAC572525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.h */,
 				CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */,
+				D4669F412580B5C000D5417C /* NewDepositDetailsNoLineViewController.h */,
+				D4669F422580B5C000D5417C /* NewDepositDetailsNoLineViewController.m */,
+				D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */,
 			);
 			path = "存款";
 			sourceTree = "<group>";
@@ -9994,6 +10003,7 @@
 				0372B59323C9984F00B564FF /* PromotionRecordCell1.xib in Resources */,
 				CF7E60942563C827005B6649 /* XBJHomeTitleView.xib in Resources */,
 				031EF5DC23BE7B4E00B0F813 /* BetBeanView.xib in Resources */,
+				D4669F482580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */,
 				CF4FB05C252EFA92004C47AB /* 火币.html in Resources */,
 				031EF58923BE7B4D00B0F813 /* fenxiang.svg in Resources */,
 				031EF5A923BE7B4D00B0F813 /* zj_zhankai.svg in Resources */,
@@ -10574,6 +10584,7 @@
 				031E1BC423BE812900B0F813 /* UGBMHeaderView.xib in Resources */,
 				CF4758DA239636D200966536 /* 152.gif in Resources */,
 				CF4758A7239636D200966536 /* 56.gif in Resources */,
+				D4669F472580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */,
 				CF4758EE239636D200966536 /* 149.gif in Resources */,
 				CF475898239636D200966536 /* 26.gif in Resources */,
 				CF475903239636D200966536 /* 72.gif in Resources */,
@@ -12285,6 +12296,7 @@
 				031E1A0C23BE812700B0F813 /* TextFieldAlertView.m in Sources */,
 				031E1C0E23BE812900B0F813 /* UGLotteryAdPopView.m in Sources */,
 				031E194023BE812600B0F813 /* UGSkinCollectionViewCell.m in Sources */,
+				D4669F432580B5C000D5417C /* NewDepositDetailsNoLineViewController.m in Sources */,
 				03B720B62520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */,
 				031E1A5423BE812700B0F813 /* CountDown.m in Sources */,
 				031E1DB623BE812B00B0F813 /* UGModel.m in Sources */,

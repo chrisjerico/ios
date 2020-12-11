@@ -17,8 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UGchannelModel *item;
 
 
--(instancetype)initView;
-
 @end
 
 NS_ASSUME_NONNULL_END
