@@ -449,5 +449,17 @@
    CMMETHOD_END;
 }
 
-
+//    红包转盘刮刮乐砸金蛋图片
+//    方式：GET
++ (void)activitySetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock{
+    CMMETHOD_BEGIN;
+    
+   [self.manager requestInMainThreadWithMethod:[activitySetUrl stringToRestfulUrlWithFlag:RESTFUL]
+                                        params:params
+                                         model:nil
+                                          post:NO
+                                    completion:completionBlock];
+   
+   CMMETHOD_END;
+}
 @end

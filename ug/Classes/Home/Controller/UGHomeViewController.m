@@ -301,8 +301,7 @@
             } else {
                 __self.titleView.showLoginView = YES;
             }
-            
-//            [__self.bigWheelView setHidden:YES];
+
         });
         // 登录超时
         SANotificationEventSubscribe(UGNotificationloginTimeout, self, ^(typeof (self) self, id obj) {

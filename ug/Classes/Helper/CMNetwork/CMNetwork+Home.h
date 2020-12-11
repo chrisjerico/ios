@@ -121,6 +121,10 @@ NS_ASSUME_NONNULL_BEGIN
 //   选传 numId（局号id 如果会员再本局接着砸金蛋 需要传这个参数 此参数在这个接口 第一次砸 会回传）
 + (void)activityScratchWinWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
 
+//    红包转盘刮刮乐砸金蛋图片
+//    方式：GET
++ (void)activitySetWithParams:(NSDictionary *)params completion:(CMNetworkBlock)completionBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

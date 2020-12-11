@@ -283,6 +283,7 @@
     [self getactivityCratchList];       // 刮刮乐
     [self getCheckinListData];  // 红包数据
     [self getfloatAdsList];     // 首页左右浮窗
+    [self getActivitySettings]; // 红包转盘刮刮乐砸金蛋图片
 }
 
 
@@ -388,7 +389,7 @@
                         weakSelf.bigWheelView.itemData = obj;
                         //设成网络图片
                         //                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
-                        [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]];
+//                        [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]];
                     });
                 }
             });
@@ -416,7 +417,7 @@
                 NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
                 DZPModel *obj = [data objectAtIndex:0];
                 weakSelf.goldEggView.itemData = obj;
-                [weakSelf.goldEggView.imgView setImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
+//                [weakSelf.goldEggView.imgView setImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
                 [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:false];
             });
         } failure:^(id msg) {
@@ -439,7 +440,7 @@
                     return;
                 }
                 weakSelf.scratchView.scratchDataModel = scratchData;
-                [weakSelf.scratchView.imgView setImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
+//                [weakSelf.scratchView.imgView setImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
                 [weakSelf setFloatingButtonView:weakSelf.scratchView hidden:false];
             });
         } failure:^(id msg) {
@@ -449,5 +450,42 @@
     
 }
 
+
+//全部图片
+- (void)getActivitySettings {
+    WeakSelf;
+    [CMNetwork activitySetWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 需要在主线程执行的代码
+                [SVProgressHUD dismiss];
+                NSLog(@"数据=%@",model.data);
+                NSDictionary *dicData = model.data;
+               
+                if (![CMCommon stringIsNull:[dicData objectForKey:@"redBagLogo"]]) {// 红包
+                    [weakSelf.uGredEnvelopeView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"redBagLogo"]]];
+                }
+                if (![CMCommon stringIsNull:[dicData objectForKey:@"turntableLogo"]]) {// 转盘
+                    [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"turntableLogo"]] placeholderImage:[UIImage imageNamed:@"dzp_btn"]];
+                }
+                else{
+                    [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]];
+                }
+                if (![CMCommon stringIsNull:[dicData objectForKey:@"scratchOffLogo"]]) {// 刮刮乐
+                    [weakSelf.scratchView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"scratchOffLogo"]] placeholderImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
+                }
+                if (![CMCommon stringIsNull:[dicData objectForKey:@"goldenEggLogo"]]) {// 砸金蛋
+                    [weakSelf.goldEggView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"goldenEggLogo"]] placeholderImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
+                }
+
+                
+            });
+            
+        } failure:^(id msg) {
+            
+        }];
+    }];
+}
 
 @end

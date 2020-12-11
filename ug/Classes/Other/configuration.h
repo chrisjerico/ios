@@ -273,6 +273,10 @@ static NSString *changlongUrl = @"/dist/index.html#/changLong/fastChanglong";
 // 刮
 #define  activityScratchWinUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=scratchWin"]
 
+// 红包转盘刮刮乐砸金蛋图片
+#define activitySetUrl  [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=activity&a=settings"]
+
+
 //彩票注单统计
 #define ticketlotteryStatisticsUrl [NSString stringWithFormat:@"%@/%@",APP.Host,@"wjapp/api.php?c=ticket&a=lotteryStatistics"]
 // 获得最后一次莫彩种的下注信息  请求参数 ： id  必填（int）
