@@ -836,7 +836,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
 
 - (void)updateCloseLabelText{
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
-    if (timeStr == nil) {
+    if (timeStr == nil &&  !self.nextIssueModel.isInstant) {//isInstant 是否是即开彩：1=是，0=否
         timeStr = @"已封盘";
         [self hiddenSelf];
         if (OBJOnceToken(self)) {
