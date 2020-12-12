@@ -228,6 +228,7 @@ static LogVC *_logVC = nil;
         [APP setValue:[APP.allSites objectWithValue:key keyPath:@"siteId"].host forKey:@"_Host"];
         [_logVC.currentSiteIdButton setTitle:key forState:UIControlStateNormal];
         [[NSUserDefaults standardUserDefaults] setObject:key forKey:@"当前站点Key"];
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"DynamicHost"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }];
 }

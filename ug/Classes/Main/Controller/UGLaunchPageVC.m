@@ -62,117 +62,6 @@
     }
 }
 
-// 获取系统配置
-- (void)getSystemConfig {
-    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-
-            UGSystemConfigModel *config = model.data;
-            UGSystemConfigModel.currentConfig = config;
-            
-            NSLog(@"chatShareBetMinAmount = %@",config.chatShareBetMinAmount);
-
-            if (config.easyRememberDomain.length) {
-                //是否是正确的域名
-                //和本地保存的进行比对，是否一样，不一样往下走
-                //保存到本地
-                //App.host
-                
-                if (!config.easyRememberDomain.isURL) {
-                   
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        // UI更新代码
-                        [self initMyLaunchPageVC];
-                    });
-                    return;
-                }
-                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                NSString *localStr = [userDefault stringForKey:@"easyRememberDomain" ];
-                
-                if ([localStr isEqualToString:config.easyRememberDomain]) {
-                    //不保存
-                    [APP setHost:UGSystemConfigModel.currentConfig.easyRememberDomain];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        // UI更新代码
-                        [self initMyLaunchPageVC];
-                    });
-                         
-                    return;
-                }
-                
-               
-                NSURL *result = [NSURL URLWithString:config.easyRememberDomain];
-                
-                if (result) {
-                   NSString *url =  [NSString stringWithFormat:@"%@/%@",[result absoluteString],@"wjapp/api.php?c=system&a=onlineCount"];
-                    
-                    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-                    [request setHTTPMethod:@"HEAD"];
-                    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-                    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                        NSLog(@"error %@",error);
-                        if (error) {
-                            NSLog(@"不可用");
-                            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                            NSString *localStr = [userDefault stringForKey:@"easyRememberDomain" ];
-                             
-                            if (localStr.length) {
-                                  [APP setHost:localStr];
-                            } else {
-                                  APP.Host = [APP.allSites objectWithValue:APP.SiteId.lowercaseString keyPath:@"siteId"].host;
-                            }
-      
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                // UI更新代码
-                                [self initMyLaunchPageVC];
-                            });
-                                 
-                        }else{
-                            NSLog(@"可用");
-                            
-                            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                            [userDefault setObject:UGSystemConfigModel.currentConfig.easyRememberDomain forKey:@"easyRememberDomain"];
-                            [userDefault synchronize];
-                            [APP setHost:UGSystemConfigModel.currentConfig.easyRememberDomain];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                // UI更新代码
-                                [self initMyLaunchPageVC];
-                            });
-                                 
-                                        
-                        }
-                    }];
-                    [task resume];
-                }
-                
-                
-                
-            }
-            else{
-                //删除本地的数据
-                NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-                [userDefault setObject:nil forKey:@"easyRememberDomain"];
-                [userDefault synchronize];
-                APP.Host = [APP.allSites objectWithValue:APP.SiteId.lowercaseString keyPath:@"siteId"].host;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                   // UI更新代码
-                  [self initMyLaunchPageVC];
-                });
-                
-            }
-            
-            SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-            dispatch_async(dispatch_get_main_queue(), ^{
-               // UI更新代码
-              [self initMyLaunchPageVC];
-            });
-        }];
-    }];
-}
-
-
 - (void)getLotteryGroupGamesData {
 
     [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
@@ -184,9 +73,7 @@
             int count = (int)lotteryGamesArray.count;
             UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
             
-            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
-                APP.isNewLotteryView = NO;
-            } else {
+            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {} else {
                 APP.isNewLotteryView = YES;
             }
           
@@ -434,10 +321,10 @@
 
 - (void)loadReactNative {
     __weakSelf_(__self);
-    [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
-        NSLog(@"RN初始化完毕");
+    SANotificationEventSubscribe(@"kRnVersionUpdateFinish", self, ^(typeof (self) self, id obj) {
+        NSLog(@"RN版本更新完毕");
         __self.waitReactNative = false;
-    }];
+    });
     
     ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
     [__self addChildViewController:vc];

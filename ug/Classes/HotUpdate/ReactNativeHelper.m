@@ -504,13 +504,19 @@ RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver
     });
 }
 
+// RN版本更新完毕
 RCT_EXPORT_METHOD(launchFinish) {
     dispatch_sync(dispatch_get_main_queue(), ^{
-        for (void (^b)(BOOL waited) in [ReactNativeHelper shared].launchFinishBlocks) {
-            b(true);
-        }
-        [ReactNativeHelper shared].launchFinishBlocks = nil;
+        [ReactNativeHelper launchFinish];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kRnVersionUpdateFinish" object:nil];
     });
+}
+// RN启动成功
++ (void)launchFinish {
+    for (void (^b)(BOOL waited) in [ReactNativeHelper shared].launchFinishBlocks) {
+        b(true);
+    }
+    [ReactNativeHelper shared].launchFinishBlocks = nil;
 }
 
 // 注册js常量
@@ -607,7 +613,7 @@ RCT_EXPORT_METHOD(launchFinish) {
 
 + (NSString *)currentCodePushKey {
 #ifdef APP_TEST
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"a002"];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@".master"];
 #else
     return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";    
 #endif

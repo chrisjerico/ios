@@ -202,40 +202,27 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"/customerService",   @"zaixiankefu",                 OnlineServiceViewController.className,          MM_在线客服,          @"在线客服"),
             item(@"/notSettle",         @"tzjl",                        UGBetRecordViewController.className,            MM_未结算,            @"未结算"),
             item(@"/winApply",         @"shenqing",                     UGMosaicGoldViewController.className,            MM_优惠申请,          @"优惠申请"),
-            
+            item(@"/gameHall",         @"dating",                       UGLotteryHomeController.className,              MM_彩票大厅,          @"彩票大厅"),
+            item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,          @"资金管理"),
+            item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,          @"额度转换"),
         ].mutableCopy;
         
-        UGMobileMenu * itemLine;
-        
-        if (Skin1.isTKL|| [APP.SiteId isEqualToString:@"c085"]) {
-//        if (Skin1.isTKL) {
-            itemLine = item(@"/conversion",        @"change",                      TKLMainViewController.className,               MM_额度转换,        @"额度转换");
-        } else {
-            if (APP.isNewConversion) {
-                itemLine = item(@"/conversion",        @"change",                      LineConversionHeaderVC.className,               MM_额度转换,        @"额度转换");
-            } else {
-                itemLine = item(@"/conversion",        @"change",                      UGBalanceConversionController.className,        MM_额度转换,        @"额度转换");
-            }
-        }
-       
-        
-        UGMobileMenu * itemLottery;
-        if (APP.isNewLotteryView) {
-            itemLottery = item(@"/gameHall",         @"dating",                       NewLotteryHomeViewController.className,               MM_彩票大厅,          @"彩票大厅");
-        } else {
-            itemLottery = item(@"/gameHall",         @"dating",                       UGLotteryHomeController.className,               MM_彩票大厅,          @"彩票大厅");
-        }
-        
-        UGMobileMenu * itemMoney;
-        if (Skin1.isTKL) {
-            itemMoney =  item(@"/funds",             @"jinlingyingcaiwangtubiao",    TKLMoneyViewController.className,                MM_资金管理,         @"资金管理");
-        } else {
-            itemMoney =  item(@"/funds",             @"jinlingyingcaiwangtubiao",    UGFundsViewController.className,                MM_资金管理,         @"资金管理");
-        }
-        NSArray *arrayTmp = @[itemLine,itemLottery,itemMoney];
-        // NSMakeRange(1, 2)：1表示要插入的位置，2表示插入数组的个数
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1,3)];
-        [_items insertObjects:arrayTmp atIndexes:indexSet];
+        // 彩票大厅
+        [AppDefine addYsReplacePage:UGLotteryHomeController.class toPage:^Class{
+            return APP.isNewLotteryView ? NewLotteryHomeViewController.class : nil;
+        }];
+        // 资金管理
+        [AppDefine addYsReplacePage:UGFundsViewController.class toPage:^Class{
+            return Skin1.isTKL ? TKLMoneyViewController.class : nil;
+        }];
+        // 额度转换
+        [AppDefine addYsReplacePage:UGBalanceConversionController.class toPage:^Class{
+            if (Skin1.isTKL|| [APP.SiteId isEqualToString:@"c085"])
+                return TKLMainViewController.class;
+            if (APP.isNewConversion)
+                return LineConversionHeaderVC.class;
+            return nil;
+        }];
     });
     return _items;
 }

@@ -121,7 +121,7 @@
 			_SiteId = @" t127-shiyu";
 		}
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
-        _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
+        _Host = [[NSUserDefaults standardUserDefaults] stringForKey:@"DynamicHost"] ? : [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
         if (!_Host.length) {
 #ifdef DEBUG
             @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
@@ -261,10 +261,14 @@
 #pragma mark - 热更新
 
 static NSArray<RnPageModel *> *_rnPageInfos;
-static NSMutableArray<RnPageModel *> *_replacePages;
+static NSMutableArray<RnPageModel *(^)(void)> *_ysReplacePages;
 
 - (NSArray<RnPageModel *> *)rnPageInfos {
-    return [(_rnPageInfos ? : @[]) arrayByAddingObjectsFromArray:_replacePages];
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:_rnPageInfos];
+    for (RnPageModel *(^getRpm)(void) in _ysReplacePages) {
+        [temp addObject:getRpm()];
+    }
+    return temp;
 }
 
 - (void)setRnPageInfos:(NSArray<RnPageModel *> *)rnPageInfos {
@@ -279,13 +283,24 @@ static NSMutableArray<RnPageModel *> *_replacePages;
     }
 }
 
-- (void)addReplacePage:(RnPageModel *)rpm {
-    if (!_replacePages) {
-        _replacePages = @[].mutableCopy;
-    }
-    RnPageModel *old = [_replacePages objectWithValue:rpm.vcName keyPath:@"vcName"];
-    [_replacePages removeObject:old];
-    [_replacePages addObject:rpm];
++ (void)addYsReplacePage:(Class)cls1 toPage:(Class (^)(void))block {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _ysReplacePages = @[].mutableCopy;
+    });
+    [_ysReplacePages addObject:^RnPageModel *{
+        return [RnPageModel rpmWithClass:cls1 toClass:block()];
+    }];
+}
+
+- (void)setHost:(NSString *)Host {
+    _Host = Host;
+    [CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [[NSUserDefaults standardUserDefaults] setObject:Host forKey:@"DynamicHost"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        } failure:^(id msg) {}];
+    }];
 }
 
 

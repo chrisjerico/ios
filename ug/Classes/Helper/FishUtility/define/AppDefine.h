@@ -130,7 +130,7 @@
 @property (nonatomic, strong) NSString *rnVersion;      /**<    jspatch热更新版本号 */
 @property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
 //@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
-- (void)addReplacePage:(RnPageModel *)rpm;/**<   提供给原生使用的替换页面函数 */
++ (void)addYsReplacePage:(Class)cls1 toPage:(Class (^)(void))block; /**<   提供给原生使用的替换页面函数 */
 
 + (instancetype)shared;
 
