@@ -2321,9 +2321,16 @@
 		D466533A24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D466533B24305FAE000D5377 /* lottery.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533924305FAE000D5377 /* lottery.wav */; };
 		D46653412430CD38000D5377 /* otherLotter.wav in Resources */ = {isa = PBXBuildFile; fileRef = D466533F2430CD38000D5377 /* otherLotter.wav */; };
+		D4669F432580B5C000D5417C /* NewDepositDetailsNoLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4669F422580B5C000D5417C /* NewDepositDetailsNoLineViewController.m */; };
+		D4669F472580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */; };
+		D4669F482580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */; };
 		D469CAD525109D5000AE976D /* MyChatRoomsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D469CAD225109D5000AE976D /* MyChatRoomsModel.m */; };
 		D46A7DA1257779A0002FD5C4 /* UITabBarItem+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */; };
 		D46A7DA2257779A0002FD5C4 /* ZYImageCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */; };
+		D46A7E9E2578A485002FD5C4 /* newPromotionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */; };
+		D46A7E9F2578A485002FD5C4 /* newPromotionInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */; };
+		D46A7EA42578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */; };
+		D46A7EA52578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */; };
 		D476E5E524014B2300BA0EA9 /* PromoteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */; };
 		D476E5EB2401671000BA0EA9 /* PromoteTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D476E5E92401671000BA0EA9 /* PromoteTitleCollectionViewCell.m */; };
 		D476E5EC2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D476E5EA2401671000BA0EA9 /* PromoteTitleCollectionViewCell.xib */; };
@@ -2347,6 +2354,8 @@
 		D4DE3F1424C5E8D500DD3A69 /* UGPopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4DE3F1224C5E8D500DD3A69 /* UGPopViewController.xib */; };
 		D4E6A61F23C4D340003E18B6 /* UGChatRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */; };
 		D4E6A62223C4D4DD003E18B6 /* CCNetworkRequests1+UG.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */; };
+		D4E8C3CE257CF22A00DD8F53 /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */; };
+		D4E8C3CF257CF22A00DD8F53 /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */; };
 		D4F0410523C773170070D2B5 /* UGLHPrizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0410423C773170070D2B5 /* UGLHPrizeView.m */; };
 		D4F0410723C7732A0070D2B5 /* UGLHPrizeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */; };
 		D4F0411723C868E20070D2B5 /* WHC_ModelSqlite.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F0411623C868E20070D2B5 /* WHC_ModelSqlite.m */; };
@@ -4526,12 +4535,18 @@
 		D4593B0A23FFB646008396BE /* LineMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineMainListCollectionViewCell.xib; sourceTree = "<group>"; };
 		D466533924305FAE000D5377 /* lottery.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lottery.wav; sourceTree = "<group>"; };
 		D466533F2430CD38000D5377 /* otherLotter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = otherLotter.wav; sourceTree = "<group>"; };
+		D4669F412580B5C000D5417C /* NewDepositDetailsNoLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDepositDetailsNoLineViewController.h; sourceTree = "<group>"; };
+		D4669F422580B5C000D5417C /* NewDepositDetailsNoLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDepositDetailsNoLineViewController.m; sourceTree = "<group>"; };
+		D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DepositDetailsViewController.storyboard; sourceTree = "<group>"; };
 		D469CAD225109D5000AE976D /* MyChatRoomsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyChatRoomsModel.m; sourceTree = "<group>"; };
 		D469CAD425109D5000AE976D /* MyChatRoomsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyChatRoomsModel.h; sourceTree = "<group>"; };
 		D46A7D9A2577799F002FD5C4 /* UITabBarItem+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+WebCache.h"; sourceTree = "<group>"; };
 		D46A7D9B2577799F002FD5C4 /* ZYImageCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYImageCacheManager.h; sourceTree = "<group>"; };
 		D46A7D9D2577799F002FD5C4 /* UITabBarItem+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+WebCache.m"; sourceTree = "<group>"; };
 		D46A7D9E2577799F002FD5C4 /* ZYImageCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYImageCacheManager.m; sourceTree = "<group>"; };
+		D46A7E9C2578A484002FD5C4 /* newPromotionInfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newPromotionInfoController.h; sourceTree = "<group>"; };
+		D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newPromotionInfoController.m; sourceTree = "<group>"; };
+		D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newPromotionInfoController.storyboard; sourceTree = "<group>"; };
 		D476E5E324014B2300BA0EA9 /* PromoteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteMainViewController.h; sourceTree = "<group>"; };
 		D476E5E424014B2300BA0EA9 /* PromoteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromoteMainViewController.m; sourceTree = "<group>"; };
 		D476E5E82401671000BA0EA9 /* PromoteTitleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromoteTitleCollectionViewCell.h; sourceTree = "<group>"; };
@@ -4574,6 +4589,8 @@
 		D4E6A61E23C4D340003E18B6 /* UGChatRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGChatRoomModel.m; sourceTree = "<group>"; };
 		D4E6A62023C4D4DD003E18B6 /* CCNetworkRequests1+UG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNetworkRequests1+UG.h"; sourceTree = "<group>"; };
 		D4E6A62123C4D4DD003E18B6 /* CCNetworkRequests1+UG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNetworkRequests1+UG.m"; sourceTree = "<group>"; };
+		D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMDragView.m; sourceTree = "<group>"; };
+		D4E8C3CC257CF22A00DD8F53 /* WMDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDragView.h; sourceTree = "<group>"; };
 		D4F0410323C773170070D2B5 /* UGLHPrizeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGLHPrizeView.h; sourceTree = "<group>"; };
 		D4F0410423C773170070D2B5 /* UGLHPrizeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGLHPrizeView.m; sourceTree = "<group>"; };
 		D4F0410623C7732A0070D2B5 /* UGLHPrizeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGLHPrizeView.xib; sourceTree = "<group>"; };
@@ -4828,6 +4845,7 @@
 				4959677824E25C4A005D5B53 /* FacebookHelper */,
 				CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */,
 				CF4169562557A74A00C2BAA1 /* 横向分页布局 */,
+				D4E8C3CA257CF22A00DD8F53 /* 可拖动View */,
 				CF4FAFB9252C7ECE004C47AB /* 教程 */,
 				D43DAF8224555B1C0014A301 /* 自定义拖动条 */,
 				D435F8FF23CEF940008648CE /* KMCGeigerCounter */,
@@ -6542,6 +6560,9 @@
 				031E172423BE812400B0F813 /* UGRechargeTypeTableViewController.m */,
 				CFBAAC572525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.h */,
 				CFBAAC582525CB5E00C5F6F6 /* UGDepositDetailsXNViewController.m */,
+				D4669F412580B5C000D5417C /* NewDepositDetailsNoLineViewController.h */,
+				D4669F422580B5C000D5417C /* NewDepositDetailsNoLineViewController.m */,
+				D4669F462580B5FC00D5417C /* DepositDetailsViewController.storyboard */,
 			);
 			path = "存款";
 			sourceTree = "<group>";
@@ -7031,6 +7052,9 @@
 				03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */,
 				031830282551E76000A63907 /* NSTextAttachment+UG.h */,
 				031830292551E76000A63907 /* NSTextAttachment+UG.m */,
+				D46A7E9C2578A484002FD5C4 /* newPromotionInfoController.h */,
+				D46A7E9D2578A484002FD5C4 /* newPromotionInfoController.m */,
+				D46A7EA32578A4AA002FD5C4 /* newPromotionInfoController.storyboard */,
 			);
 			path = "推荐收益";
 			sourceTree = "<group>";
@@ -9840,6 +9864,15 @@
 			path = "可以画心的UIView分类";
 			sourceTree = "<group>";
 		};
+		D4E8C3CA257CF22A00DD8F53 /* 可拖动View */ = {
+			isa = PBXGroup;
+			children = (
+				D4E8C3CB257CF22A00DD8F53 /* WMDragView.m */,
+				D4E8C3CC257CF22A00DD8F53 /* WMDragView.h */,
+			);
+			path = "可拖动View";
+			sourceTree = "<group>";
+		};
 		D4F0410123C772850070D2B5 /* 解码器 */ = {
 			isa = PBXGroup;
 			children = (
@@ -9970,10 +10003,12 @@
 				0372B59323C9984F00B564FF /* PromotionRecordCell1.xib in Resources */,
 				CF7E60942563C827005B6649 /* XBJHomeTitleView.xib in Resources */,
 				031EF5DC23BE7B4E00B0F813 /* BetBeanView.xib in Resources */,
+				D4669F482580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */,
 				CF4FB05C252EFA92004C47AB /* 火币.html in Resources */,
 				031EF58923BE7B4D00B0F813 /* fenxiang.svg in Resources */,
 				031EF5A923BE7B4D00B0F813 /* zj_zhankai.svg in Resources */,
 				031EF57F23BE7B4D00B0F813 /* xiangce.svg in Resources */,
+				D46A7EA52578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */,
 				031E1C8D23BE812A00B0F813 /* UGRechargeTypeCell.xib in Resources */,
 				031E1CA723BE812A00B0F813 /* UGRechargeRecordCell.xib in Resources */,
 				036CA77A23C72657007BBD25 /* JS_TitleView.xib in Resources */,
@@ -10349,6 +10384,7 @@
 				031E1B6E23BE812800B0F813 /* UGPlatformTitleCollectionViewCell.xib in Resources */,
 				031E1E7423BE812C00B0F813 /* UGRecordFilterCollectionViewCell.xib in Resources */,
 				D422D67F22D9A766008E7065 /* address.json in Resources */,
+				D46A7EA42578A4AA002FD5C4 /* newPromotionInfoController.storyboard in Resources */,
 				CF4758AF239636D200966536 /* 94.gif in Resources */,
 				03B720B82520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.xib in Resources */,
 				CF98879C253FF6A400DFFD49 /* HomeBetFormView.xib in Resources */,
@@ -10548,6 +10584,7 @@
 				031E1BC423BE812900B0F813 /* UGBMHeaderView.xib in Resources */,
 				CF4758DA239636D200966536 /* 152.gif in Resources */,
 				CF4758A7239636D200966536 /* 56.gif in Resources */,
+				D4669F472580B5FC00D5417C /* DepositDetailsViewController.storyboard in Resources */,
 				CF4758EE239636D200966536 /* 149.gif in Resources */,
 				CF475898239636D200966536 /* 26.gif in Resources */,
 				CF475903239636D200966536 /* 72.gif in Resources */,
@@ -11442,6 +11479,7 @@
 				031EF5DD23BE7B4E00B0F813 /* BetListCell.swift in Sources */,
 				0318302B2551E76000A63907 /* NSTextAttachment+UG.m in Sources */,
 				031E1BDF23BE812900B0F813 /* UGLotterySelectController.m in Sources */,
+				D46A7E9F2578A485002FD5C4 /* newPromotionInfoController.m in Sources */,
 				0315DC9724AD74A900D635E2 /* NotificationMessageCell.swift in Sources */,
 				039D3CC425373FD0008511AA /* YNHLPrizeDetailView.m in Sources */,
 				031E1BA523BE812900B0F813 /* UGBMLoginViewController.m in Sources */,
@@ -11585,6 +11623,7 @@
 				031E1D5523BE812B00B0F813 /* UGModifyLoginPlaceController.m in Sources */,
 				031E1AF523BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031EF56423BE7B4D00B0F813 /* TimeIntervalExtension+XFoundation.swift in Sources */,
+				D4E8C3CF257CF22A00DD8F53 /* WMDragView.m in Sources */,
 				036CA78223C75A02007BBD25 /* MyPromotionVC.m in Sources */,
 				031E1C3923BE812900B0F813 /* UGMarkSixLotteryBetItem0Cell.m in Sources */,
 				038A584B24A9D8790099D659 /* UIView+XFoundation.swift in Sources */,
@@ -12092,6 +12131,8 @@
 				031E1DFE23BE812C00B0F813 /* UGSignInHeaderView.m in Sources */,
 				031E1BFC23BE812900B0F813 /* UGLotteryHomeController.m in Sources */,
 				031E1C9C23BE812A00B0F813 /* UGFundsTransferView.m in Sources */,
+				D4E8C3CE257CF22A00DD8F53 /* WMDragView.m in Sources */,
+				D46A7E9E2578A485002FD5C4 /* newPromotionInfoController.m in Sources */,
 				031E1B7E23BE812900B0F813 /* UGPlatformNoticeCell.m in Sources */,
 				031E198A23BE812600B0F813 /* LHPostCommentInputView.m in Sources */,
 				031E1B9E23BE812900B0F813 /* UGGameListCollectionViewCell.m in Sources */,
@@ -12255,6 +12296,7 @@
 				031E1A0C23BE812700B0F813 /* TextFieldAlertView.m in Sources */,
 				031E1C0E23BE812900B0F813 /* UGLotteryAdPopView.m in Sources */,
 				031E194023BE812600B0F813 /* UGSkinCollectionViewCell.m in Sources */,
+				D4669F432580B5C000D5417C /* NewDepositDetailsNoLineViewController.m in Sources */,
 				03B720B62520CEDC0090FC98 /* UGBJPK10LotteryBetCollectionHeader.m in Sources */,
 				031E1A5423BE812700B0F813 /* CountDown.m in Sources */,
 				031E1DB623BE812B00B0F813 /* UGModel.m in Sources */,

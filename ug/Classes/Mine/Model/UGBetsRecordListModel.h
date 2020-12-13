@@ -9,6 +9,15 @@
 #import "UGModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol UGBetDetailsModel <NSObject>
+
+@end
+
+@interface UGBetDetailsModel : UGModel
+@property (nonatomic, assign) NSInteger status;              /**<   */
+@property (nonatomic, strong) NSString *url;     /**<   请求url */
+
+@end
 
 @protocol UGBetsRecordModel <NSObject>
 
@@ -34,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *playCateId;
 @property (nonatomic, strong) NSString *statusName;
 @property (nonatomic, strong) NSString *odds;           /**<   赔率（彩票） */
+@property (nonatomic, strong) NSString *bet_detail;      /**<   详情跳转url */
 
 @property (nonatomic, strong) NSString *betInfo;        /**<   下注号码 */
 @property (nonatomic, strong) NSString *expectAmount;   /**<   可赢金额 */
@@ -48,13 +58,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *winCount;   /**<   中奖笔数 */
 //@property (nonatomic, strong) NSString *winAmount;   /**<   中奖金额 */
 @property (nonatomic, strong) NSString *winLoseAmount;   /**<  输赢 */
-@property (nonatomic, strong) NSString *ticketNo;        /**<  单号*/
 //==========下注明细
 @property (nonatomic, strong) NSString *title;           /**<  彩種  */
 @property (nonatomic, strong) NSString *betCount;        /**<  笔数*/
 @property (nonatomic, strong) NSString *betMoney;          /**<   下注金额*/
 @property (nonatomic, strong) NSString *rewardRebate;        /**<  輸贏*/
-
+@property (nonatomic, strong) UGBetDetailsModel *bet_details; /**<  请求url*/
+@property (nonatomic, strong) NSString *token;              /**<    */
+@property (nonatomic, strong) NSString *ticketNo;         /**<   笔数*/
 
 @end
 
@@ -63,6 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *totalBetAmount;     /**<   总下注金额 */
 @property (nonatomic, strong) NSString *totalWinAmount;     /**<   输赢总金额 */
 @property (nonatomic, strong) NSString *totalBetCount;     /**<   总下注笔数 */
+@property (nonatomic, strong) NSString *token;              /**<    */
 @property (nonatomic, strong) NSArray<UGBetsRecordModel> *list;
 
 @property (nonatomic, strong) NSArray<UGBetsRecordModel> *tickets;

@@ -472,7 +472,9 @@
     
     NSString *timeStr = [CMCommon getNowTimeWithEndTimeStr:self.nextIssueModel.curCloseTime currentTimeStr:self.nextIssueModel.serverTime];
     FastSubViewCode(self.view)
-    if (self.nextIssueModel.isSeal || timeStr == nil) {
+    
+    NSLog(@"self.nextIssueModel.isInstant = %d",self.nextIssueModel.isInstant);
+    if ( (self.nextIssueModel.isSeal || timeStr == nil) && !self.nextIssueModel.isInstant ) {//isInstant 是否是即开彩：1=是，0=否    isSeal是否封盘:1=是，0=否
         timeStr = @"封盘中";
         
         self.lotteryView.closeView.hidden = NO;
@@ -774,7 +776,6 @@
     }
 
     self.nextIssueModel.title = self.selectTitle;
-    
     UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
     betDetailView.dataArray = objArray;
     betDetailView.nextIssueModel = self.nextIssueModel;

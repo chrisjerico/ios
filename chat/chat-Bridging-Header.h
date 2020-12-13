@@ -47,7 +47,7 @@
 #import "SANotificationEvent.h"
 #import "UGSystemConfigModel.h"
 #import "UGSkinManagers.h"
-
+#import "newPromotionInfoController.h"        // 推荐收益
 
 
 #import "CMNetwork.h"

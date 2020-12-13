@@ -64,11 +64,6 @@
         [[CodePushConfig current] setAppVersion:RNCheckVersion1];
         [[CodePushConfig current] setServerURL:CodePushHost];
         [[CodePushConfig current] setDeploymentKey:ReactNativeHelper.currentCodePushKey];
-#ifdef APP_TEST
-        if (![@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog,by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog" containsString:ReactNativeHelper.currentCodePushKey]) {
-            [[CodePushConfig current] setAppVersion:@"1.1.1"];
-        }
-#endif
 //        [[CodePushConfig current] configuration[@"publicKey"] = ;
         
         
@@ -370,6 +365,62 @@ RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver
                     else if ([valueType isEqualToString:@"UIOffset"]) {
                         return [NSValue valueWithUIOffset:UIOffsetFromString(temp[@"string"])];
                     }
+                    else if ([valueType isEqualToString:@"RNBlock"]) {
+                        NSString *bt = temp[@"string"];
+                        bt = [bt stringByReplacingOccurrencesOfString:@"Object" withString:@"1"];
+                        bt = [bt stringByReplacingOccurrencesOfString:@"Number" withString:@"0"];
+                        NSString *event = temp[@"event"];
+                        if ([bt isEqualToString:@"0,0"]) {
+                            return ^(double v1, double v2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":@(v2)}];
+                            };
+                        } else if ([bt isEqualToString:@"1,1"]) {
+                            return ^(NSObject *o1, NSObject *o2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":o2}];
+                            };
+                        } else if ([bt isEqualToString:@"1,0"]) {
+                            return ^(NSObject *o1, double v1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":@(v1)}];
+                            };
+                        } else if ([bt isEqualToString:@"0,1"]) {
+                            return ^(double v1, NSObject *o1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":o1}];
+                            };
+                        } else if ([bt isEqualToString:@"0,0,0"]) {
+                            return ^(double v1, double v2, double v3) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":@(v2), @"2":@(v3)}];
+                            };
+                        } else if ([bt isEqualToString:@"0,1,1"]) {
+                            return ^(double v1, NSObject *o1, NSObject *o2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":o1, @"2":o2}];
+                            };
+                        } else if ([bt isEqualToString:@"0,1,0"]) {
+                            return ^(double v1, NSObject *o1, double v2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":o1, @"2":@(v2)}];
+                            };
+                        } else if ([bt isEqualToString:@"0,0,1"]) {
+                            return ^(double v1, double v2, NSObject *o1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":@(v2), @"2":o1}];
+                            };
+                        } else if ([bt isEqualToString:@"1,0,0"]) {
+                            return ^(NSObject *o1, double v1, double v2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":@(v1), @"2":@(v2)}];
+                            };
+                        } else if ([bt isEqualToString:@"1,1,1"]) {
+                            return ^(NSObject *o1, NSObject *o2, NSObject *o3) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":o2, @"2":o3}];
+                            };
+                        } else if ([bt isEqualToString:@"1,1,0"]) {
+                            return ^(NSObject *o1, NSObject *o2, double v1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":o2, @"2":@(v1)}];
+                            };
+                        } else if ([bt isEqualToString:@"1,0,1"]) {
+                            return ^(NSObject *o1, double v1, NSObject *o2) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1, @"1":@(v1), @"2":o2}];
+                            };
+                        }
+                    }
+                    return [NSNull null];
                 }
                 return temp;
             }
@@ -453,13 +504,19 @@ RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver
     });
 }
 
+// RN版本更新完毕
 RCT_EXPORT_METHOD(launchFinish) {
     dispatch_sync(dispatch_get_main_queue(), ^{
-        for (void (^b)(BOOL waited) in [ReactNativeHelper shared].launchFinishBlocks) {
-            b(true);
-        }
-        [ReactNativeHelper shared].launchFinishBlocks = nil;
+        [ReactNativeHelper launchFinish];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kRnVersionUpdateFinish" object:nil];
     });
+}
+// RN启动成功
++ (void)launchFinish {
+    for (void (^b)(BOOL waited) in [ReactNativeHelper shared].launchFinishBlocks) {
+        b(true);
+    }
+    [ReactNativeHelper shared].launchFinishBlocks = nil;
 }
 
 // 注册js常量
@@ -482,35 +539,83 @@ RCT_EXPORT_METHOD(launchFinish) {
 + (NSDictionary <NSString *, NSString *>*)allCodePushKey {
     return @{
         @".dev本地代码":@"LocalCode",
-        @".dev模拟线上":@"iwDsp1YB7bcBov7KIaxDP9tLbuUQ4ksvOXqog",
-        @"`线上环境":@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
-        @"`预备上线":@"by5lebbE5vmYSJAdd5y0HRIFRcVJ4ksvOXqog",
-        @"fish1":@"Nu5AeIufjECzzYroZ1xaX0oYqZbl4ksvOXqog",
-        @"fish2":@"fY4dAKb8mxJkcLvTUtH0JpuyAWJ94ksvOXqog",
-        @"fish3":@"ynI3JzBw7aJyQ6YfabwwTY3FhAVd4ksvOXqog",
-        @"parker1":@"nBH5uXNMEvkZVzUOLKdzgul2xS134ksvOXqog",
-        @"parker2":@"djpZFtyRw7vswSHwiQ2vifHOs82G4ksvOXqog",
-        @"parker3":@"JzFvDUISZHKIeOeUHKgTVAwPnJOe4ksvOXqog",
-        @"tars1":@"G275knJSNe2VzJtWiEABcAs8qPGq4ksvOXqog",
-        @"tars2":@"WpkJXxo3Cye5yAO1hoSaGWBOuUmi4ksvOXqog",
-        @"tars3":@"5bC93JFt3mIo1hYtjER08AMZnwZb4ksvOXqog",
-        @"ezer1":@"EU5wjwXEOTQuI1ErQCHQ8mhzKPur4ksvOXqog",
-        @"ezer2":@"PtdtqigJTT6mOShzqiABXkYIdPop4ksvOXqog",
-        @"ezer3":@"hGaea8a4UVUJPBL0tKJGJat4yD8n4ksvOXqog",
-        @"andrew1":@"QxBMAXzrr7IAb8KNrHsHL322hh4G4ksvOXqog",
-        @"andrew2":@"CBJU3vsKEDDGvmmXx6cfCW87N6324ksvOXqog",
-        @"andrew3":@"oI1nTHrlKcL5wEkGh5mdRkBE07Gp4ksvOXqog",
-        @"arc1":@"nkFhELSoqcpHEvcIuwVEkoOiOWAh4ksvOXqog",
-        @"arc2":@"TWQY0Nf6z44N6wuXMleCXfVYXM274ksvOXqog",
-        @"arc3":@"StnHanrZU4z4TgwHxRu8T0dBDh0G4ksvOXqog",
+        @".master":@"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog",
+        @"_fish/dev1":@"vwZ46SpQTllu7Abj1G87cR3YeMBQ4ksvOXqog",
+        @"_fish/dev2":@"DuCk6Xw9lnn6FPrnGaPFNAx1kWhw4ksvOXqog",
+        @"_fish/dev3":@"iLFD6XqccMoxB815X7jSTD2FuAVa4ksvOXqog",
+        @"_tars/dev1":@"Ie1KY7PxCnh3hZTBzNtboLPXngWb4ksvOXqog",
+        @"_tars/dev2":@"Fjz5DvNVI9Ys6t03oB4NBAzSCNtO4ksvOXqog",
+        @"_tars/dev3":@"x5uUsG1y1tzV1XPCXxdP68aTf1fZ4ksvOXqog",
+        @"_ezer/dev1":@"F2WjxOH2AYoNreuPfF0xpNKCnMJ54ksvOXqog",
+        @"_ezer/dev2":@"WMRzGoSYNjP5K6kbeevDyF8K62IY4ksvOXqog",
+        @"_ezer/dev3":@"NL33yBkA1X96DaiEqDMyhNWS8xAA4ksvOXqog",
+        @"a002": @"iaSI4okfkRlB8wXVKMUTCMEitmYb4ksvOXqog",
+        @"c001": @"8QmjutQYWePbzC8ChRgCSGaR2hhB4ksvOXqog",
+        @"c002": @"0fgUHhzdmLyEvHdMoPuZOD0F5Du44ksvOXqog",
+        @"c006": @"VR3LgeUHoFwXsYlZF4xV4GfbyYrl4ksvOXqog",
+        @"c012": @"ZurU83NExX1d3z9i3gMs1AnApSVB4ksvOXqog",
+        @"c018": @"SWWowOvXZFBzA51QT9T0EJvxTqzl4ksvOXqog",
+        @"c035": @"V0V7ifQhwulss0olO02YAOjM8ZsB4ksvOXqog",
+        @"c035b": @"RB0tUpS0mtiuf0HZRRqOQHKZrXPR4ksvOXqog",
+        @"c035c": @"N07DK7z8WGhgtZpUly9ID9YUgfHG4ksvOXqog",
+        @"c048": @"HTwe4joVbx7AsFAwkuci1OO1UwGp4ksvOXqog",
+        @"c052": @"8syufclyfT9AZ04viyg4xwGJTAf24ksvOXqog",
+        @"c053": @"aEqCquLxuawzkH7neYkN0dh1DpIs4ksvOXqog",
+        @"c073": @"KWWu6nurIPrOE0FOCFVimnzMDMUh4ksvOXqog",
+        @"c084": @"I99Wcm9peNFSbOzIDeRVqdziJgkp4ksvOXqog",
+        @"c085": @"a6kpJwjOJj4C2gKib87JWaS2RhcH4ksvOXqog",
+        @"c092": @"Otcd2DTGK4IDHnFthgt0jrUAvRk24ksvOXqog",
+        @"c105b": @"271hxFuAq6OU4yxvrgz9qId4pAsq4ksvOXqog",
+        @"c108": @"7sImFPhNhNQvPcFUINXAYkYuvViy4ksvOXqog",
+        @"c114": @"8rlyBWkzJVpkelxQNIeXZjtw4Qwv4ksvOXqog",
+        @"c115": @"TOhSYQrtEQJFbg3BP7JG845APkE14ksvOXqog",
+        @"c116": @"KI1deBMQAKnNziQR4zUW6RYdc4af4ksvOXqog",
+        @"c117": @"OtAiocFH9MSTQR3DsmDDMhau71054ksvOXqog",
+        @"c120": @"tsNxGhObDgOHlb3yfc3aWq5iGRr24ksvOXqog",
+        @"c126": @"jJSxgtPyIpT8AHXTOO7wcjI5DF1n4ksvOXqog",
+        @"c126b": @"neFkvhqDr9fRh3xvIIbeVugEobDI4ksvOXqog",
+        @"c134": @"g2QFKrVt7lxkCBUSUOsh61iPyYLw4ksvOXqog",
+        @"c137": @"IZ4PcvoADGIQ5TM8lNvRrbAuQRdM4ksvOXqog",
+        @"c141": @"i1xgBTn3R9FSPWJ1YRGHpCnYGpwo4ksvOXqog",
+        @"c150": @"0L3y96UH9t160R21YKpqTYCWwoXf4ksvOXqog",
+        @"c153": @"wlko3T3TTZWnaFk5yy82uHLti6nm4ksvOXqog",
+        @"c158": @"mzfnn7GureDwzyTIYS5gpemFA2n14ksvOXqog",
+        @"c163": @"ovQJ5YMyLYkdjFnjjym0sAqHqyWr4ksvOXqog",
+        @"c165": @"o2d3kBQCVeSKZUUxyLn9yIfjsUsE4ksvOXqog",
+        @"c169": @"i3eRdnyXzkrec5HFPbesrXnJxbaP4ksvOXqog",
+        @"c175": @"01naK7VpEXb4bwpFvARXME9Jr0qW4ksvOXqog",
+        @"c186": @"QxKQKOwveHAaBdrIt7pMRfhbttwQ4ksvOXqog",
+        @"c190": @"N4H2NVCue6Xo0zONIdAhBhSJ18xP4ksvOXqog",
+        @"c193": @"eGnM5HMCaCcLreDSoObzyTZbBJSN4ksvOXqog",
+        @"c198": @"9Uqwe3Zs0nOzctJliZvwXxQqhrQG4ksvOXqog",
+        @"c200": @"ZqwfOJaS1R973bOPgwFtA01rclxX4ksvOXqog",
+        @"c201": @"yrsHtPt3wnYbHS6hwQz60GaTgafl4ksvOXqog",
+        @"c205": @"QoxN8swKKpN5HTMss5dO2qBt94EW4ksvOXqog",
+        @"c208": @"tNZAkdh071I2hLU0MA7gRdYW83HK4ksvOXqog",
+        @"c211": @"MJGvkLPhlJJfo5OGUh0eXL76uJ2C4ksvOXqog",
+        @"c213": @"zPlAOGLGcW4Ap4Asg4txtSJbfPKR4ksvOXqog",
+        @"c217": @"Hcq50yuvDjROgWY1CltiD4XM7LF14ksvOXqog",
+        @"c225": @"0am3VtCtodzzAxmKVOcnRh9kgnSa4ksvOXqog",
+        @"c235": @"6aJewjtLuYS1ugY0JAPCTF3Rd9rm4ksvOXqog",
+        @"c237": @"7kL1eATIXlS2IXbLBJ3NOxpAMpoS4ksvOXqog",
+        @"c239b": @"waelR75jAa59Z6CNIapR7MaGKBcM4ksvOXqog",
+        @"c242": @"5wx1XlEZBshmgpDiRPrhmNa9yojj4ksvOXqog",
+        @"c245": @"LoUEoNLb8gXz6P7YuWYz8cKW9e274ksvOXqog",
+        @"c246": @"G06EF3FC6xtoZSrfP2fA4H9LD8nc4ksvOXqog",
+        @"c251": @"qxwLkd7XqzszpTbBqXrO3QXPnj0D4ksvOXqog",
+        @"c252": @"spzTpSgi5H7ebn9SV7pZ4XV4oZl54ksvOXqog",
+        @"c254": @"NQoF3CTLMIK3l34dlDCUTeVcmUUG4ksvOXqog",
+        @"c257": @"YmkUvFvTTxCKblY9MxGBASL7XGkc4ksvOXqog",
+        @"h003b": @"6Ezn6jgJhZnOwslpQCeBp2hDFO6b4ksvOXqog",
+        @"l002": @"3pcbblg7f9ZygsdecDisvV2LwTRv4ksvOXqog",
     };
 }
 
 + (NSString *)currentCodePushKey {
 #ifdef APP_TEST
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@"`线上环境"];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"CodePushKey"] ? : self.allCodePushKey[@".master"];
 #else
-    return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";
+    return @"67f7hDao71zMjLy5xjilGx0THS4o4ksvOXqog";    
 #endif
 }
 

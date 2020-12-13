@@ -10,7 +10,7 @@
 #import "UGRechargeTypeCell.h"
 #import "UGdepositModel.h"
 #import "UGDepositDetailsViewController.h"
-#import "UGDepositDetailsNoLineViewController.h"
+#import "NewDepositDetailsNoLineViewController.h"
 #import "UGDepositDetailsXNViewController.h"
 #import "HelpDocViewController.h"
 @interface UGRechargeTypeTableViewController ()
@@ -109,7 +109,7 @@ static NSString *rechargeTypeCellid = @"UGRechargeTypeCell";
             [self.navigationController pushViewController:vc animated:YES];
         }
         else {
-            UGDepositDetailsNoLineViewController *vc = [UGDepositDetailsNoLineViewController new];
+            NewDepositDetailsNoLineViewController *vc = _LoadVC_from_storyboard_(@"NewDepositDetailsNoLineViewController");
             vc.item = model;
             [self.navigationController pushViewController:vc animated:YES];
         }

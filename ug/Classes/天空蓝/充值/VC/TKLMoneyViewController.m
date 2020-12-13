@@ -153,7 +153,7 @@
         __weakSelf_(__self);
         [CMNetwork needToTransferOutWithParams:@{@"token":UserI.token} completion:^(CMResult<id> *model, NSError *err) {
             BOOL needToTransferOut = [model.data[@"needToTransferOut"] boolValue];
-            if (needToTransferOut) {
+            if (needToTransferOut && !APP.isNoAlert) {
                 UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"真人游戏正在进行或有余额未成功转出，请确认是否需要转出游戏余额" btnTitles:@[@"取消", @"确认"]];
                 [ac setActionAtTitle:@"确认" handler:^(UIAlertAction *aa) {
                     [CMNetwork autoTransferOutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {

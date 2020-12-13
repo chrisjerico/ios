@@ -14,7 +14,7 @@
 
 //@property (nonatomic) WKWebView *tgWebView;
 @property (nonatomic, assign) BOOL willReloadURL;   // 是否需要重新加载URL
-
+@property (nonatomic, strong) UIView *hideView;   // 隐藏内容的View
 @end
 
 @implementation TGWebViewController
@@ -53,7 +53,15 @@
     [self.tgWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
     [self setUpUI];
     
+    self.hideView = [[UIView alloc] initWithFrame:self.view.bounds];
+    [self.hideView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:self.hideView];
+    [self.view bringSubviewToFront:self.hideView];
 
+}
+
+-(void)setIsShow:(BOOL)isShow{
+    [self.hideView setHidden: !self.isShow];
 }
 
 - (void)cancel {
@@ -113,11 +121,24 @@
 //    [HUDHelper hideLoadingView:self.view];
      [SVProgressHUD dismiss];
     [self.webProgressLayer tg_finishedLoadWithError:nil];
-    
-//    [CMCommon showToastTitle:[NSString stringWithFormat:@"url = %@",self.tgWebView.URL]];
-    
-    NSLog(@"self.tgWebView.URL = %@",self.tgWebView.URL);
-//      [CMCommon showTitle:[NSString stringWithFormat:@"didFinishNavigation 返回的url = %@",self.tgWebView.URL.absoluteString]];
+
+    if (self.url2.length) {
+        if (OBJOnceToken(self)) {
+            NSURL *url = [NSURL URLWithString:self.url2];
+            if (url.scheme == nil) {
+                url = [NSURL URLWithString:_NSString(@"http://%@", self.url2)];
+            }
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [self.tgWebView loadRequest:request];
+        } else {
+            [self hideViewStop];
+        }
+    }
+
+}
+
+-(void)hideViewStop{
+    [self.hideView setHidden: YES];
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {

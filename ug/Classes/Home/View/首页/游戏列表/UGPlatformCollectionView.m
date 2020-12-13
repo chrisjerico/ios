@@ -16,6 +16,7 @@
 #import "JYLotteryTitleCollectionView.h"
 #import "JYGameCollectionViewCell.h"
 #import "DocumentTypeList.h"
+#import "UGLHHomeContentCollectionViewCell.h"
 
 @interface UGPlatformCollectionView()<UICollectionViewDelegate, UICollectionViewDataSource,WSLWaterFlowLayoutDelegate>
 {
@@ -67,18 +68,23 @@ static NSString *const footerId = @"footerId";
     
     
     {
-        UICollectionViewFlowLayout *layout = ({
-            layout = [[UICollectionViewFlowLayout alloc] init];
-            layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-            layout.minimumInteritemSpacing = 1;
-            layout.minimumLineSpacing = 1;
-            
-            layout;
-        });
-        self = [super initWithFrame:frame collectionViewLayout:layout];
+        
+
+            UICollectionViewFlowLayout *layout = ({
+                layout = [[UICollectionViewFlowLayout alloc] init];
+                layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+                layout.minimumInteritemSpacing = 1;
+                layout.minimumLineSpacing = 1;
+                
+                layout;
+            });
+            self = [super initWithFrame:frame collectionViewLayout:layout];
+
+       
     }
     
     if (self) {
+        [self registerNib:[UINib nibWithNibName:@"UGLHHomeContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
         [self registerNib:[UINib nibWithNibName:@"UGGameTypeColletionViewCell" bundle:nil] forCellWithReuseIdentifier:gameCellid];
         [self registerNib:[UINib nibWithNibName:@"JS_HomeGameCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameCollectionCell"];
         [self registerNib:[UINib nibWithNibName:@"JS_HomeGameColletionCell_1" bundle:nil] forCellWithReuseIdentifier:@"JS_HomeGameColletionCell_1"];
@@ -93,7 +99,7 @@ static NSString *const footerId = @"footerId";
         } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
             self.backgroundColor = [UIColor colorWithHex:0xf2f2f2];
         }
-        else if (Skin1.isJY||Skin1.isTKL) {
+        else if (Skin1.isJY||Skin1.isTKL||Skin1.isLH) {
             self.backgroundColor = UIColor.whiteColor;
         }
         else {
@@ -120,11 +126,6 @@ static NSString *const footerId = @"footerId";
                  });
                  [self setCollectionViewLayout:layout];
                  
-//                 WSLWaterFlowLayout * _flow;
-//                 _flow = [[WSLWaterFlowLayout alloc] init];
-//                 _flow.delegate = self;
-//                 _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualHeight;
-//                 [self setCollectionViewLayout:_flow];
 
             } else {
                 UICollectionViewFlowLayout *layout = ({
@@ -179,7 +180,7 @@ static NSString *const footerId = @"footerId";
         for (GameModel * game in dataArray) {
             [self.sectionedDataArray addObject:@[game] ];
         }
-    } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
+    } else if ([Skin1.skitType isEqualToString:@"火山橙"] ) {
         for (int i=0; i<dataArray.count; i++) {
             [tempArray addObject:dataArray[i]];
             if (((i + 1) % 2 == 0) || (i == dataArray.count - 1)) {
@@ -188,6 +189,15 @@ static NSString *const footerId = @"footerId";
             }
         }
         
+    }
+    else if ( Skin1.isLH) {
+        for (int i=0; i<dataArray.count; i++) {
+            [tempArray addObject:dataArray[i]];
+            if (((i + 1) % 2 == 0) || (i == dataArray.count - 1)) {
+                [self.sectionedDataArray addObject: [tempArray mutableCopy]];
+                [tempArray removeAllObjects];
+            }
+        }
     }
     else if (Skin1.isJY||Skin1.isTKL) {
 
@@ -249,14 +259,13 @@ static NSString *const footerId = @"footerId";
 #pragma mark - UICollectionViewDelegate
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    NSLog(@"section 数量= %lu",(unsigned long)self.sectionedDataArray.count);
+
         return self.sectionedDataArray.count;
- 
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    NSLog(@"行数 = %lu",(unsigned long)((NSArray *)self.sectionedDataArray[section]).count);
         return ((NSArray *)self.sectionedDataArray[section]).count;
 
 }
@@ -275,6 +284,18 @@ static NSString *const footerId = @"footerId";
         [cell bind:((NSArray *)self.sectionedDataArray[indexPath.section])[indexPath.row]];
         
         return cell;
+    }
+    else if (Skin1.isLH) {
+        UGLHHomeContentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        NSArray * arr = self.sectionedDataArray[indexPath.section];
+        GameModel *model = (GameModel *)[arr objectAtIndex:indexPath.row];
+        
+        [cell setItem:model];
+        [cell setBackgroundColor: [UIColor whiteColor]];
+        cell.layer.borderWidth = 1;
+        cell.layer.borderColor = [RGBA(221, 221, 221, 1) CGColor];
+        return cell;
+
     }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
@@ -346,8 +367,11 @@ static NSString *const footerId = @"footerId";
         return CGSizeMake(itemW, 150);
     } else if ([Skin1.skitType isEqualToString:@"金沙主题"] && self.typeIndex != 0) {
         return CGSizeMake(UGScreenW, 80);
-    }else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
+    }else if ([Skin1.skitType isEqualToString:@"火山橙"] ) {
         return CGSizeMake((UGScreenW - 7)/2, 90);
+    }
+    else if (Skin1.isLH) {
+        return CGSizeMake((UGScreenW - 6)/2, 80);
     }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
@@ -376,6 +400,9 @@ static NSString *const footerId = @"footerId";
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return UIEdgeInsetsZero;
     }
+    else if (Skin1.isLH) {
+       return UIEdgeInsetsZero;
+   }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0) {
              return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -396,6 +423,9 @@ static NSString *const footerId = @"footerId";
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
     }
+    else if (Skin1.isLH) {
+        return 0.0f;
+    }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0 ) {
             return 0.f;
@@ -414,6 +444,9 @@ static NSString *const footerId = @"footerId";
         return 1.0f;
     } else if ([Skin1.skitType isEqualToString:@"火山橙"]) {
         return 1.0f;
+    }
+    else if (Skin1.isLH) {
+        return 0.0f;
     }
     else if (Skin1.isJY||Skin1.isTKL) {
         if (self.style.intValue == 0) {
@@ -456,43 +489,18 @@ static NSString *const footerId = @"footerId";
 }
 
 
-#pragma mark - WSLWaterFlowLayoutDelegate
-//返回每个item大小
-- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
 
-    CGFloat itemW = (UGScreenW -7)/3.0;
-    return CGSizeMake(itemW, 120);
-
-}
-
-/** 列数*/
--(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 1;
-}
-/** 行数*/
-//-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-//    return 5;
-//}
-/** 列间距*/
--(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 0;
-}
-/** 行间距*/
--(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 0;
-}
-/** 边缘之间的间距*/
--(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-
-    return UIEdgeInsetsMake(0, 0, 0,0);
-}
-
+#pragma mark - WSLWaterFlowLayoutDelegate  end
+    
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.gameTypeSelectBlock)
         self.gameTypeSelectBlock(indexPath.row);
     
-    GameModel * model = self.sectionedDataArray[indexPath.section][indexPath.item];
     
+    GameModel * model ;
+
+    model = self.sectionedDataArray[indexPath.section][indexPath.item];
+
     if (_selectedPath == indexPath ) {
         _selectedPath = nil;
     } else if (model.subType.count > 0 ) {

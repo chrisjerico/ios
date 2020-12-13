@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger linkPosition;
 
 + (instancetype)updateVersionPage;
++ (instancetype)rpmWithClass:(Class)cls1 toClass:(Class)cls2;
 @end
 
 

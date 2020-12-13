@@ -172,7 +172,7 @@
             __sm = sites.firstObject;
             [sites removeObject:__sm];
             
-            if ([[NSFileManager defaultManager] fileExistsAtPath:__sm.xcarchivePath]) {
+            if ([[NSFileManager defaultManager] fileExistsAtPath:__sm.ipaPath]) {
                 NSLog(@"已存在 %@ 安装包，无需再次打包", __sm.siteId);
                 [okSites addObject:__sm];
                 __sm = nil;

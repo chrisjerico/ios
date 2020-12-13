@@ -60,6 +60,19 @@
        return result;
 }
 
+// ===============六合类型============================
+- (NSString *)categoryType {
+    NSString *alias = [[_link componentsSeparatedByString:@"?"].firstObject componentsSeparatedByString:@"/"].lastObject;
+    alias = alias.length ? alias : _alias;
+    return alias;
+}
+
+- (void)setContentId:(NSString *)contentId {
+    if (![contentId isEqualToString:@"0"]) {
+        _contentId = contentId;
+    }
+}
+
 @end
 
 

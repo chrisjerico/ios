@@ -710,7 +710,7 @@ BOOL isOk = NO;
         __weakSelf_(__self);
         [CMNetwork needToTransferOutWithParams:@{@"token":UserI.token} completion:^(CMResult<id> *model, NSError *err) {
             BOOL needToTransferOut = [model.data[@"needToTransferOut"] boolValue];
-            if (needToTransferOut) {
+            if (needToTransferOut && !APP.isNoAlert) {
                 UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"真人游戏正在进行或有余额未成功转出，请确认是否需要转出游戏余额" btnTitles:@[@"取消", @"确认"]];
                 [ac setActionAtTitle:@"确认" handler:^(UIAlertAction *aa) {
                     [CMNetwork autoTransferOutWithParams:@{@"token":[UGUserModel currentUser].sessid} completion:^(CMResult<id> *model, NSError *err) {
@@ -793,7 +793,7 @@ BOOL isOk = NO;
 - (void)setupUserInfo:(BOOL)flag  {
     UGUserModel *user = [UGUserModel currentUser];
     UGSystemConfigModel *config = [UGSystemConfigModel currentConfig];
-
+  
     if (Skin1.isTKL) {
         if ([config.missionSwitch isEqualToString:@"0"]) {
             [self.tkl_taskButton.superview setHidden:NO];
@@ -866,7 +866,16 @@ BOOL isOk = NO;
         self.uidLabel.text = @"";
     }
     
-    
+    {
+        if (APP.isShowDML) {
+            FastSubViewCode(self.userInfoView)
+            subLabel(@"打码Label").text = [NSString stringWithFormat:@"实际打码量/提款所需打码量：%@/%@",user.dml_real,user.dml_needed];
+            [CMLabelCommon setRichNumberWithLabel: subLabel(@"打码Label") Color:[UIColor yellowColor] FontSize:15.0];
+            [subLabel(@"打码Label") setHidden:NO];
+        }
+        
+
+    }
 
 }
 

@@ -59,9 +59,12 @@
 @property (nonatomic) BOOL isWebRightMenu;                               /**<  侧边栏为网络数据*/
 @property (nonatomic) BOOL isHideSQSM;                               /**<  申请彩金页 申请说明的栏位去掉*/
 @property (nonatomic) BOOL isShowSummary;                               /**<  我的推荐会员管理,添加一个盈亏汇总*/
+@property (nonatomic,assign) BOOL isHideBank;                           /**<  在线支付隐藏银行按钮*/
 //==============================================个人中心
 @property (nonatomic) BOOL isSecondUrl;                               /**<  个人中心的在线客服跳转链接改为系统设置当中的在线客服2 */
 @property (nonatomic) BOOL isC239B;                                   /**<  个人中心去掉真实名字，成长值，成长进度*/
+@property (nonatomic) BOOL isNoAlert;                                   /**<  个人中心自动转换额度的提示去除*/
+@property (nonatomic) BOOL isShowDML;                                   /**<  个人中心新增让会员查看提款所需打码量和实际打码量 */
 //==============================================下注界面
 @property (nonatomic,assign) BOOL isRed;                                 /**<   tab选中点为红色，内容选择边框为红色，已选中注数的 数量颜色也更换成红色 */
 @property (nonatomic,assign) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
@@ -118,14 +121,16 @@
 @property (nonatomic,assign) BOOL isC190Cell;                                /**<  首页中优惠活动列表c190，c012 图片贴边 */
 @property (nonatomic,assign) BOOL isNewLocation;                         /**<  首页刮刮乐，大转盘，砸金蛋移动到红包位置*/
 @property (nonatomic) BOOL isTwoOnline;                                  /**< 首页点击在线客服会弹出框2个在线客服*/
-
+@property (nonatomic,assign) BOOL isCanUploadAvatar;                /**<  提供给RN判断是否支持上传头像功能（2020-12-9添加）*/
+//==============================================推荐收益
+@property (nonatomic,assign) BOOL isShowAll;                           /**<  佣金比例全部展示样式*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
 @property (nonatomic, strong) NSString *rnVersion;      /**<    jspatch热更新版本号 */
 @property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
 //@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
-
++ (void)addYsReplacePage:(Class)cls1 toPage:(Class (^)(void))block; /**<   提供给原生使用的替换页面函数 */
 
 + (instancetype)shared;
 

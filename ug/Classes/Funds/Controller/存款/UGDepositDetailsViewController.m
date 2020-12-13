@@ -159,6 +159,12 @@
             } else {
                 [self->_blank_button setHidden:NO];
             }
+             
+             if (APP.isHideBank) {
+                 [self->_blank_button setHidden:YES];
+             }
+             
+             
             
             [self.collectionView reloadData];
             

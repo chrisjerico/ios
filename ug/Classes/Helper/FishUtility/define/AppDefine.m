@@ -121,7 +121,7 @@
 			_SiteId = @" t127-shiyu";
 		}
         NSLog(@"%@",[_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"]);
-        _Host = [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
+        _Host = [[NSUserDefaults standardUserDefaults] stringForKey:@"DynamicHost"] ? : [_allSites objectWithValue:_SiteId.lowercaseString keyPath:@"siteId"].host;
         if (!_Host.length) {
 #ifdef DEBUG
             @throw [NSException exceptionWithName:@"缺少域名" reason:_NSString(@"（%@）该站点没有配置接口域名", _SiteId) userInfo:nil];
@@ -206,14 +206,11 @@
     _betBgIsWhite = (![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158,c115" containsString:_SiteId]) || [@"新年红,石榴红" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
     //下注页tab 为深色
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
-    _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151" containsString:_SiteId];
-
-    
     _betSizeIsBig = [@"c169,c205,c211,c048,c115" containsString:_SiteId];
     _isShowOtherJinbei =  [@"c208,c212,c200,c213,a002,c126,c116" containsString:_SiteId];
     _isShowJinbei = [@"c208,c212,c200,c213,c126,c116" containsString:_SiteId];
-    _addIcons = [@"c190,c134,c085,c193,a002,c006,c217,c115" containsString:_SiteId];
-    _isReplaceIcon = [@"c085,c193,a002,c006,c217,c115" containsString:_SiteId];
+    _addIcons = [@"c190,c134,c085,c193,a002,c006,c217,c115,l002" containsString:_SiteId];
+    _isReplaceIcon = [@"c085,c193,a002,c006,c217,c115,l002" containsString:_SiteId];
     _isC190Cell = [@"c190" containsString:_SiteId];
     _isC217RWDT = [@"c217" containsString:_SiteId];
     _isNoSubtitle = [@"c006" containsString:_SiteId];
@@ -235,7 +232,13 @@
     _isNewChat = [@"c117,c115" containsString:_SiteId];
     _isRed = [@"c126" containsString:_SiteId];
     _isHideSQSM = [@"c245,test60f" containsString:_SiteId];
+    _isNoAlert = [@"c126" containsString:_SiteId];
     _isShowSummary = [@"c163" containsString:_SiteId];
+    _isShowAll = [@"c085,test60f" containsString:_SiteId];
+    _isShowDML = [@"c084,testadaf" containsString:_SiteId];
+    _isCanUploadAvatar = true;
+    _isHideBank = [@"c012" containsString:_SiteId];
+    
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         [ReactNativeHelper sendEvent:@"AppDefine-SetupSiteAndSkinParams" params:@{}];
@@ -257,6 +260,17 @@
 
 #pragma mark - 热更新
 
+static NSArray<RnPageModel *> *_rnPageInfos;
+static NSMutableArray<RnPageModel *(^)(void)> *_ysReplacePages;
+
+- (NSArray<RnPageModel *> *)rnPageInfos {
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:_rnPageInfos];
+    for (RnPageModel *(^getRpm)(void) in _ysReplacePages) {
+        [temp addObject:getRpm()];
+    }
+    return temp;
+}
+
 - (void)setRnPageInfos:(NSArray<RnPageModel *> *)rnPageInfos {
     if ([rnPageInfos.firstObject isKindOfClass:[NSDictionary class]]) {
         NSMutableArray *temp = @[].mutableCopy;
@@ -267,6 +281,26 @@
     } else {
         _rnPageInfos = rnPageInfos;
     }
+}
+
++ (void)addYsReplacePage:(Class)cls1 toPage:(Class (^)(void))block {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _ysReplacePages = @[].mutableCopy;
+    });
+    [_ysReplacePages addObject:^RnPageModel *{
+        return [RnPageModel rpmWithClass:cls1 toClass:block()];
+    }];
+}
+
+- (void)setHost:(NSString *)Host {
+    _Host = Host;
+    [CMNetwork systemOnlineCountWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+        [CMResult processWithResult:model success:^{
+            [[NSUserDefaults standardUserDefaults] setObject:Host forKey:@"DynamicHost"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        } failure:^(id msg) {}];
+    }];
 }
 
 

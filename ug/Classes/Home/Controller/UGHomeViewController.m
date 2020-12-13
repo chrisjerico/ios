@@ -174,7 +174,13 @@
         
         NSMutableDictionary *dict = @{
             @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,],
-            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView],
+           //l002的分栏
+        #ifdef DEBUG
+            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview,_gameTypeView.superview, _promotionVC.view, _trademarkView],
+        #else
+            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview,_lhColumnView, _promotionVC.view, _trademarkView],
+        #endif
+
             @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
@@ -802,8 +808,23 @@
                         weakSelf.gameNavigationViewHeight.constant = 0;
                         [weakSelf.view layoutIfNeeded];
                     }
+                    
+                    //去掉seriesId = 13 的数据 后台如设置内容管理-手机游戏图标下的“UG棋牌”，前台隐藏显示
+                    NSMutableArray *iconsArray = [NSMutableArray arrayWithArray:customGameModel.icons];
+                    for (GameCategoryModel *obj in iconsArray.reverseObjectEnumerator) {
+                        
+                        NSMutableArray *array = [NSMutableArray arrayWithArray:obj.list];
+                        for (GameModel *model in array.reverseObjectEnumerator) {
+                            if (model.seriesId == 13) {
+                                [array removeObject:model];
+                            }
+                        }
+                        obj.list = array.copy;
+                        
+                    }
+
                     // 游戏列表
-                    self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = customGameModel.icons.mutableCopy;
+                    self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = iconsArray;
                     
                     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
                         NSMutableArray<GameCategoryModel*> *newGameTypeArray =

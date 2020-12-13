@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -348,6 +348,18 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8T-eR-Wwf">
+                                    <rect key="frame" x="10" y="130" width="35.5" height="17"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="17" id="Lf9-fY-JmF"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="打码Label"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" red="0.28788453339999998" green="0.58269137140000005" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
@@ -376,7 +388,9 @@
                                 <constraint firstAttribute="height" constant="153" id="gcf-5P-mYx"/>
                                 <constraint firstItem="fRX-ym-nsT" firstAttribute="leading" secondItem="pXQ-Wi-cBx" secondAttribute="trailing" constant="5" id="iAk-ZU-SHx"/>
                                 <constraint firstItem="hr0-LE-Odq" firstAttribute="leading" secondItem="zVS-Ap-TcP" secondAttribute="leading" id="iOi-3v-81E"/>
+                                <constraint firstItem="K8T-eR-Wwf" firstAttribute="top" secondItem="LUV-KW-CPQ" secondAttribute="bottom" constant="5" id="mF0-3K-Y0g"/>
                                 <constraint firstItem="Dpg-Ae-w1Z" firstAttribute="leading" secondItem="PIb-kh-Max" secondAttribute="leading" constant="15" id="myZ-qV-cBU"/>
+                                <constraint firstItem="K8T-eR-Wwf" firstAttribute="leading" secondItem="PIb-kh-Max" secondAttribute="leading" constant="10" id="q9v-pV-w5c"/>
                                 <constraint firstItem="zVS-Ap-TcP" firstAttribute="top" secondItem="Dpg-Ae-w1Z" secondAttribute="bottom" constant="10" id="tjc-S6-9OM"/>
                                 <constraint firstItem="yyH-Ux-h2O" firstAttribute="leading" secondItem="LUV-KW-CPQ" secondAttribute="trailing" constant="8" id="uJa-B7-cI3"/>
                                 <constraint firstItem="Dpg-Ae-w1Z" firstAttribute="top" secondItem="PIb-kh-Max" secondAttribute="top" id="wcr-dY-9Gb"/>

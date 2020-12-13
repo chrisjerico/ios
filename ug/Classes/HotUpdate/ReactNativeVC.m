@@ -23,6 +23,13 @@
     rpm.允许未登录访问 = true;
     return rpm;
 }
++ (instancetype)rpmWithClass:(Class)cls1 toClass:(Class)cls2 {
+    RnPageModel *rpm = [RnPageModel new];
+    rpm.vcName = cls1.className;
+    rpm.vcName2 = cls2.className;
+    if (!rpm.vcName.length || !rpm.vcName2.length) return nil;
+    return rpm;
+}
 - (NSString *)rnName { return _rnName.length ? _rnName : _vcName; }
 @end
 
@@ -47,8 +54,6 @@ static RCTRootView *_rnView;
         if (!vc) {
             vc = [NSClassFromString(rpm.vcName2) new];
         }
-        vc.允许游客访问 = rpm.允许游客访问;
-        vc.允许未登录访问 = rpm.允许未登录访问;
         [vc setValuesWithDictionary:params];
         return (id)vc;
     }
@@ -103,9 +108,24 @@ static RCTRootView *_rnView;
 }
 
 static NSString *__lastRnPage = nil;
+static UIImageView *__snapshotImageView;
 + (void)showLastRnPage {
     if (__lastRnPage)
         [ReactNativeHelper selectVC:__lastRnPage params:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        __snapshotImageView.hidden = true;
+    });
+}
+
++ (void)showSnapshotImageWhenRnIMMEDIATE {
+    if ([APP.Window.rootViewController isKindOfClass:[UGTabbarController class]] && [NavController1.topViewController isKindOfClass:[ReactNativeVC class]]) {
+        if (!__snapshotImageView) {
+            __snapshotImageView = [[UIImageView alloc] initWithFrame:APP.Bounds];
+        }
+        __snapshotImageView.image = APP.Window.snapshotImage;
+        [APP.Window addSubview:__snapshotImageView];
+        __snapshotImageView.hidden = false;
+    }
 }
 
 - (void)viewDidLoad {
@@ -147,6 +167,7 @@ static NSString *__lastRnPage = nil;
         [ReactNativeHelper refreshVC:_rpm.rnName params:__self.params];
     } else {
         [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
+            if (!__self) return;
             __lastRnPage = __self.rpm.rnName;
             [ReactNativeHelper selectVC:__self.rpm.rnName params:__self.params];
         }];

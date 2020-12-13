@@ -105,34 +105,6 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     });
 }
 
-
-
--(void)getisNewLotteryViewCompletion:(nonnull void (^)(BOOL ))completion {
-    [CMNetwork getLotteryGroupGamesWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        NSLog(@"model = %@",model);
-       
-        [CMResult processWithResult:model success:^{
-            NSArray * lotteryGamesArray =  model.data;
-            
-            int count = (int)lotteryGamesArray.count;
-            UGAllNextIssueListModel *obj = [lotteryGamesArray objectAtIndex:0];
-            
-            if ((count == 1) && [obj.gameId isEqualToString:@"0"] ) {
-                APP.isNewLotteryView = NO;
-            } else {
-                APP.isNewLotteryView = YES;
-            }
-            
-            if (completion)
-                completion(APP.isNewLotteryView);
-          
-
-        } failure:^(id msg) {
-            [SVProgressHUD dismiss];
-        }];
-    }];
-}
-
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 去RN页面
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"vcName"];
@@ -147,7 +119,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         if (rpm.vcName2.length) {
             UIViewController *vc = [ReactNativeVC reactNativeWithRPM:rpm params:[viewController rn_keyValues]];
             vc.hidesBottomBarWhenPushed = true;
-            [super pushViewController:vc animated:animated];
+            [NavController1 pushViewController:vc animated:animated];
             return;
         }
         // RN內push
