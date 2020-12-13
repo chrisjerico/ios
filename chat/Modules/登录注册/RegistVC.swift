@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import WebKit
+import RxOptional
 
 class RegistVC: BaseVC {
     @IBOutlet var registTitleView: UIView!
@@ -44,7 +45,7 @@ class RegistVC: BaseVC {
     
     @IBOutlet var mailField: UITextField!
     @IBOutlet var mailTipsLabel: UILabel!
-
+    
     @IBOutlet var phoneField: UITextField!
     @IBOutlet var phoneTipsLabel: UILabel!
     
@@ -73,13 +74,16 @@ class RegistVC: BaseVC {
     @IBOutlet var vcodeView: UIStackView!
     @IBOutlet var verifyCodeView: UIStackView!
     @IBOutlet var webBackdropView: UIView!
-  
+    
     @IBOutlet var webView: WKWebView!
     @IBOutlet var codeImageView: UITextView!
     
     
     var imgVcodeModel: UGImgVcodeModel?
-
+    var regType = "user"
+    deinit {
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: "postSwiperData")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,22 +95,24 @@ class RegistVC: BaseVC {
             } else if let config = result?.data as? UGSystemConfigModel {
                 UGSystemConfigModel.setCurrentConfig(config)
                 self?.configWith(config)
-
+                
             } else {
                 Alert.showTip("获取系统配置,数据解析失败", parenter: self?.view)
             }
         }
         msgCodeFetchButton.rx.tap.subscribe(onNext: {[weak self] in self?.getMessageCode() }).disposed(by: disposeBag)
-        registButton.rx.tap.subscribe(onNext: { [weak self] in self?.registButtonAction() }).disposed(by: disposeBag)
+        registButton.rx.tap.delay(DispatchTimeInterval.microseconds(200), scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] in self?.registButtonAction() }).disposed(by: disposeBag)
         passwordShowButton.addTarget(self, action: #selector(passwordShowButtonAction(_:)), for: .touchUpInside)
         passwordConfirmShowButton.addTarget(self, action: #selector(passwordShowButtonAction(_:)), for: .touchUpInside)
-
+        
     }
     
     private func configWith(_ config: UGSystemConfigModel) {
         
         if config.agentRegbutton == "1" {
             navigationItem.titleView = registTitleView
+        } else {
+            navigationItem.title = "注册"
         }
         
         if config.inviteCodeSwitch == 1 {
@@ -158,7 +164,7 @@ class RegistVC: BaseVC {
             qqNumberView.isHidden = false
             qqField.placeholder = "请输入QQ号码"
         }
-
+        
         if config.reg_wx == 0 {
             wxNumberView.isHidden = true
         } else if config.reg_wx == 1 {
@@ -178,7 +184,7 @@ class RegistVC: BaseVC {
             phoneNumberView.isHidden = false
             phoneField.placeholder = "请输入11位手机号码(选填)"
         }
-       
+        
         if config.smsVerify {
             vcodeView.isHidden = false
         } else {
@@ -225,36 +231,51 @@ class RegistVC: BaseVC {
         } else {
             passwordField.placeholder = "请输入\(config.pass_length_min)到\(config.pass_length_max)位数字字母符号组成的密码"
         }
-     
- 
+        
+        
         Observable.merge(registButton.rx.tap.asObservable(), msgCodeFetchButton.rx.tap.asObservable())
             .debug()
             .take(1)
             .subscribe(onNext: { [weak self] in
-            self?.addPhoneReview()
-        }).disposed(by: disposeBag)
+                self?.addPhoneReview(with: config)
+            }).disposed(by: disposeBag)
         registButton.rx.tap
             .debug()
             .take(1)
             .subscribe(onNext: { [weak self] in
-            self?.addContentReview(with: config)
-        }).disposed(by: disposeBag)
-      
+                self?.addContentReview(with: config)
+            }).disposed(by: disposeBag)
         
-
+        
+        
     }
     
-    private func addPhoneReview() {
+    private func addPhoneReview(with config: UGSystemConfigModel) {
         phoneField.rx.text.subscribe(onNext: { [unowned self] phone in
             if let phone = self.phoneField.text, phone.isPhone {
                 self.phoneTipsLabel.text = nil
-            } else {
+            } else if config.smsVerify || config.reg_phone == 2 {
                 self.phoneTipsLabel.text = self.phoneField.placeholder
+            } else {
+                self.phoneTipsLabel.text = nil
             }
         }).disposed(by: disposeBag)
         
     }
     private func addContentReview(with config: UGSystemConfigModel) {
+        
+        if config.inviteCodeSwitch == 2 {
+            inviteCodeField.rx.text
+                .map{ $0 != nil ? nil : "请输入\(config.inviteWord)" }
+                .bind(to: inviteCodeTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        if config.hide_reco == 2 {
+            recommendCodeField.rx.text
+                .map{ $0 != nil ? nil : "请输入推荐人ID" }
+                .bind(to: recommendCodeTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
         
         accountField.rx.text
             .map { ($0 ?? "").match("^(?=.*\\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,15}$") ? nil : "请输入6-15位英文数字组合的用户名"}
@@ -269,7 +290,7 @@ class RegistVC: BaseVC {
             } else if config.pass_limit == 1 {
                 regexSring = "^(?=.*\\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{\(config.pass_length_min),\(config.pass_length_max)}$"
             } else {
-                regexSring = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W).{\(config.pass_length_min),\(config.pass_length_max)}"
+                regexSring = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W).{\(config.pass_length_min),\(config.pass_length_max)}$"
             }
             guard let password = password, password.match(regexSring) else {
                 self.passwordTipsLabel.text = self.passwordField.placeholder
@@ -280,9 +301,56 @@ class RegistVC: BaseVC {
         
         
         passwordComfirmField.rx.text
-            .map { [unowned self] in $0 == self.passwordField.text ? nil: "两次输入的密码不一致" }
+            .map { [unowned self] in $0 == self.passwordField.text ? nil : "两次输入的密码不一致" }
             .bind(to: passwordConfirmTipsLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        if config.reg_name == 2 {
+            nameField.rx.text
+                .map { ($0 ?? "").match(Regex.chinese.rawValue) ? nil : "请输入真实姓名" }
+                .bind(to: nameTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        if config.reg_fundpwd == 2 {
+            fundPasswordField.rx.text
+                .map{ ($0 ?? "").match("^[0-9]{4}$") ? nil : "请输入4位数字的取款密码" }
+                .bind(to: fundPasswordTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        if config.reg_qq == 2 {
+            qqField.rx.text
+                .map{ ($0 ?? "").match("^[0-9]*$") ? nil : "请输入QQ号码" }
+                .bind(to: qqTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        if config.reg_wx == 2 {
+            wxField.rx.text
+                .map{ ($0 ?? "").match("^[A-Za-z0-9]+$") ? nil : "请输入微信号" }
+                .bind(to: wxTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        
+        if config.reg_email == 2 {
+            mailField.rx.text
+                .map { ($0 ?? "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$").match("") ? nil : "请输入合法的邮箱"}
+                .bind(to: mailTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        if config.reg_vcode == 1 || config.reg_vcode == 3 {
+            imageCodeField.rx.text
+                .map{ $0 != nil ? nil : "请输入验证码" }
+                .bind(to: imageCodeTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        if config.smsVerify == true {
+            msgCodeFiled.rx.text
+                .map{ $0 != nil ? nil : "请输入短信验证码" }
+                .bind(to: msgCodeTipsLabel.rx.text)
+                .disposed(by: disposeBag)
+        }
+        
+        
+        
         
     }
     
@@ -292,10 +360,129 @@ class RegistVC: BaseVC {
         NSLayoutConstraint.deactivate([animationLineCenterX])
         animationLineCenterX = NSLayoutConstraint(item: animationLineCenterX.firstItem!, attribute: animationLineCenterX.firstAttribute, relatedBy: NSLayoutConstraint.Relation.equal, toItem: sender, attribute: animationLineCenterX.secondAttribute, multiplier: 1, constant: 0)
         NSLayoutConstraint.activate([animationLineCenterX])
+        regType = regType == "user" ? "agent" : "user"
     }
     private func registButtonAction() {
         
+        guard (accountTipsLabel.text ?? "").count == 0,
+              (passwordTipsLabel.text ?? "").count == 0,
+              (passwordConfirmTipsLabel.text ?? "").count == 0,
+              (nameTipsLabel.text ?? "").count == 0,
+              (fundPasswordTipsLabel.text ?? "").count == 0,
+              (qqTipsLabel.text ?? "").count == 0,
+              (wxTipsLabel.text ?? "").count == 0,
+              (imageCodeTipsLabel.text ?? "").count == 0,
+              (msgCodeTipsLabel.text ?? "").count == 0
+        else {
+            return
+        }
         
+        var params: [String : Any] = ["inviter": inviteCodeField.text ?? "",
+                                      "usr": accountField.text ?? "",
+                                      "pwd": (passwordField.text ?? "").md5(),
+                                      "funcPwd": (fundPasswordField.text ?? "").md5(),
+                                      "fullName": nameField.text ?? "",
+                                      "qq": qqField.text ?? "",
+                                      "wx": wxField.text ?? "",
+                                      "phone": phoneField.text ?? "",
+                                      "device": 3,
+                                      "accessToken": OpenUDID.value() as String,
+                                      "smsCode":  msgCodeFiled.text ?? "",
+                                      "imgCode": imageCodeField.text ?? "",
+                                      "email": mailField.text ?? "",
+                                      "regType": regType,
+                                      "inviteCode": inviteCodeField.text ?? "" ]
+        if let imgVcodeModel = imgVcodeModel {
+            params["slideCode[nc_sid]"] = imgVcodeModel.nc_csessionid
+            params["slideCode[nc_token]"] = imgVcodeModel.nc_token
+            params["slideCode[nc_sig]"] = imgVcodeModel.nc_value
+        }
+        Alert.showStatus("正在注册。。。")
+        CMNetwork.register(withParams: params) { [weak self] (result, error) in
+            Alert.hide()
+            if let error = error {
+                Alert.showTip(error.localizedDescription)
+                return
+            }
+            guard let user = result?.data as? NSObject as? UGUserModel else {
+                Alert.showTip("数据解析失败")
+                return
+            }
+            UserDefaults.standard.set(true, forKey: "isRememberPsd")
+            UserDefaults.standard.set(self?.accountField.text ?? "", forKey: "userName")
+            UserDefaults.standard.set(self?.passwordField.text ?? "", forKey: "userPsw")
+            if user.autoLogin {
+                self?.login()
+            } else {
+                Alert.showTip("账号注册成功")
+                self?.navigationController?.popViewController(animated: true)
+            }
+
+        }
+        
+    }
+    
+    private func login() {
+        Alert.showStatus("正在登录。。。")
+        CMNetwork.userLogin(withParams: ["usr": accountField.text ?? "", "pwd": passwordField.text!.md5()]) { [weak self] (result, error) in
+            Alert.hide()
+            guard let weakSelf = self else { return }
+            if let error = error {
+                Alert.showTip(error.localizedDescription, parenter: weakSelf.view)
+                
+            } else if let user = result?.data as? UGUserModel {
+                let userInfoSuccess = PublishRelay<Bool>()
+                let systemConfigSuccess = PublishRelay<Bool>()
+                UGUserModel.setCurrentUser(user)
+
+                weakSelf.getUserInfo(sessid: user.sessid) { (userCopy) in
+                    userCopy.sessid = user.sessid
+                    userCopy.token = user.token
+                    UGUserModel.setCurrentUser(userCopy)
+                    userInfoSuccess.accept(true)
+                }
+                weakSelf.getConfigs(completion: { (config) in
+                    UGSystemConfigModel.setCurrentConfig(config)
+                    systemConfigSuccess.accept(true)
+                    
+                })
+                
+                Observable.combineLatest(userInfoSuccess, systemConfigSuccess).filter { $0&&$1 }.subscribe(onNext: { _ in
+                    Alert.showTip("用户登录成功")
+                    App.widow.rootViewController = ControllerProvider.rootTabViewController()
+                }).disposed(by: weakSelf.disposeBag)
+                
+            }
+            
+        }
+        
+        
+    }
+    func getConfigs(completion: @escaping (_ config: UGSystemConfigModel) -> Void) {
+        Alert.showLoading()
+        CMNetwork.getSystemConfig(withParams: ["sss": "sss"]) {(result, error) in
+            if let error = error {
+                Alert.showTip(error.localizedDescription)
+            } else if let config = result?.data as? UGSystemConfigModel {
+                completion(config)
+            } else {
+                Alert.showTip("获取系统配置,数据解析失败")
+            }
+        }
+        
+    }
+    
+    func getUserInfo(sessid: String,  completion: @escaping (_ user: UGUserModel) -> Void) {
+        Alert.showLoading()
+        CMNetwork.getUserInfo(withParams: ["token": sessid]) {(result, error) in
+            if let error = error {
+                Alert.showTip(error.localizedDescription)
+            } else if let user = result?.data as? UGUserModel {
+                completion(user)
+            } else {
+                Alert.showTip("获取用户信息,数据解析失败")
+            }
+        }
     }
     @objc
     private func passwordShowButtonAction(_ sender: UIButton) {
@@ -322,12 +509,26 @@ class RegistVC: BaseVC {
             Alert.showTip("请输入合法的手机号码")
             return
         }
+        Alert.showLoading()
+        CMNetwork.getSmsVcode(withParams: ["phone": phone]) { (result, error) in
+            Alert.hide()
+            if let error = error {
+                Alert.showTip(error.localizedDescription)
+                return
+            }
+            DispatchTimer(timeInterval: 1, repeatCount: 60 ) { [weak self] (timer, count)  in
+                guard count >= 0 else {
+                    self?.msgCodeFetchButton.setTitle("获取验证码", for: .normal)
+                    return
+                }
+                self?.msgCodeFetchButton.setTitle("\(count)s", for: .normal)
+            }
+            
+        }
         
     }
     
-    deinit {
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: "postSwiperData")
-    }
+    
 }
 
 extension RegistVC: WKScriptMessageHandler {

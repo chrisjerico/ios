@@ -36,6 +36,31 @@ public final class Alert: NSObject {
 		hud.show(animated: true)
 		hud.hide(animated: true, afterDelay: 2.0)
 	}
+    /// 提示信息
+    ///
+    /// - Parameters:
+    ///   - message: 信息文本
+    ///   - parentView: 显示的目标视图
+    public class func showStatus(_ message: String, parenter: UIView? = nil) {
+        let parenter = parenter ?? App.widow
+        
+        let hud: MBProgressHUD
+        if let oldHUD = MBProgressHUD(for: parenter) {
+            hud = oldHUD
+        } else {
+            hud = MBProgressHUD(view: parenter)
+            parenter.addSubview(hud)
+        }
+        
+        hud.mode = .text
+        hud.detailsLabel.text = message
+        hud.detailsLabel.font = UIFont.systemFont(ofSize: 16)
+        
+        hud.isUserInteractionEnabled = false
+        hud.removeFromSuperViewOnHide = true
+        
+        hud.show(animated: true)
+    }
 	
 	/// 提示指示器
 	///

@@ -469,7 +469,6 @@
 		031E1AF223BE812800B0F813 /* QDAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15A823BE812400B0F813 /* QDAlertView.m */; };
 		031E1AF323BE812800B0F813 /* QDAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15A823BE812400B0F813 /* QDAlertView.m */; };
 		031E1AF423BE812800B0F813 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15AC23BE812400B0F813 /* UIButton+touch.m */; };
-		031E1AF523BE812800B0F813 /* UIButton+touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15AC23BE812400B0F813 /* UIButton+touch.m */; };
 		031E1AF623BE812800B0F813 /* SANotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15AD23BE812400B0F813 /* SANotificationEvent.m */; };
 		031E1AF723BE812800B0F813 /* SANotificationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15AD23BE812400B0F813 /* SANotificationEvent.m */; };
 		031E1AF823BE812800B0F813 /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 031E15B423BE812400B0F813 /* UITextView+Extension.m */; };
@@ -11621,7 +11620,6 @@
 				031E1ADF23BE812800B0F813 /* SDCollectionViewCell.m in Sources */,
 				031E1E8E23BECD8500B0F813 /* BaseNav.swift in Sources */,
 				031E1D5523BE812B00B0F813 /* UGModifyLoginPlaceController.m in Sources */,
-				031E1AF523BE812800B0F813 /* UIButton+touch.m in Sources */,
 				031EF56423BE7B4D00B0F813 /* TimeIntervalExtension+XFoundation.swift in Sources */,
 				D4E8C3CF257CF22A00DD8F53 /* WMDragView.m in Sources */,
 				036CA78223C75A02007BBD25 /* MyPromotionVC.m in Sources */,
