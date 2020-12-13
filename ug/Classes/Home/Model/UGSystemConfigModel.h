@@ -203,6 +203,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) NSInteger reg_name;           /**<   真实姓名  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_fundpwd;        /**<   取款密码  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_qq;             /**<   QQ  0不填，1选填，2必填 */
+@property (nonatomic) NSInteger reg_fb;             /**<   FACEBOOK  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_wx;             /**<   微信  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_phone;          /**<   手机  0不填，1选填，2必填 */
 @property (nonatomic) NSInteger reg_email;          /**<   邮箱  0不填，1选填，2必填 */
