@@ -457,9 +457,12 @@
                 [SVProgressHUD dismiss];
                 NSLog(@"数据=%@",model.data);
                 NSDictionary *dicData = model.data;
-               
+                // 红包
                 if (![CMCommon stringIsNull:[dicData objectForKey:@"redBagLogo"]]) {// 红包
-                    [weakSelf.uGredEnvelopeView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"redBagLogo"]]];
+                    [weakSelf.uGredEnvelopeView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"redBagLogo"]] placeholderImage:[UIImage imageNamed:@"redBagLogo"]];
+                }
+                else{
+                    [weakSelf.uGredEnvelopeView.imgView setImage:[UIImage imageNamed:@"redBagLogo"]];
                 }
                 
                 // 转盘
