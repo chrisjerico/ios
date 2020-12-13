@@ -21,13 +21,15 @@ typedef void(^RedEnvelopeRedBlock)(void);
 @property (nonatomic, copy) void (^cancelClickBlock)(UGredEnvelopeView *rev);
 @property (nonatomic, copy) RedEnvelopeRedBlock redClickBlock;
 
-@property (nonatomic, strong) UGRedEnvelopeModel *item;
+
 
 @property (nonatomic, strong) UGhomeAdsModel *itemSuspension;
 
 @property (nonatomic, strong) id itemData;
 
 @property (nonatomic, strong) ScratchDataModel * scratchDataModel;
+
+- (void)setitem:(UGRedEnvelopeModel *)item showImg :(BOOL)showImg ;
 @end
 
 NS_ASSUME_NONNULL_END

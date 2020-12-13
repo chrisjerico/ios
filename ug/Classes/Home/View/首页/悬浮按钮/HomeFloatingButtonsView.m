@@ -102,12 +102,12 @@
             [CMNetwork activityRedBagDetailWithParams:params completion:^(CMResult<id> *model, NSError *err) {
                 [CMResult processWithResult:model success:^{
                     [SVProgressHUD dismiss];
-                    __self.uGredEnvelopeView.item = (UGRedEnvelopeModel*)model.data;
+                    [__self.uGredEnvelopeView setitem:(UGRedEnvelopeModel*)model.data showImg:NO];
                     
                     CGFloat h = UGScreenW-50+150;
                     __self.uGredActivityView = [[UGredActivityView alloc] initWithFrame:CGRectMake(20, (APP.Height-h-10)/2, UGScreenW-50, h) ];
-                    __self.uGredActivityView.item = __self.uGredEnvelopeView.item;
-                    if (__self.uGredEnvelopeView.item) {
+                    __self.uGredActivityView.item = (UGRedEnvelopeModel*)model.data;
+                    if ((UGRedEnvelopeModel*)model.data) {
                         [__self.uGredActivityView show];
                     }
                 } failure:^(id msg) {
@@ -304,7 +304,7 @@
         [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
             UGRedEnvelopeModel *rem = model.data;
-            weakSelf.uGredEnvelopeView.item = rem;
+            [weakSelf.uGredEnvelopeView setitem:rem showImg:NO];
             if ([rem.show_time intValue]) {
                 NSString *time1 = [CMTimeCommon timestampSwitchTime:[rem.show_time intValue] andFormatter:@"yyyy-MM-dd HH:mm"];
                 NSString *time2 = [CMTimeCommon currentDateStringWithFormat:@"yyyy-MM-dd HH:mm"];
@@ -387,9 +387,6 @@
                     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         // 需要在主线程执行的代码
                         weakSelf.bigWheelView.itemData = obj;
-                        //设成网络图片
-                        //                        [weakSelf.bigWheelView.imgView setImage:[UIImage imageNamed:@"dzp_btn"]];
-//                        [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]];
                     });
                 }
             });
@@ -417,7 +414,6 @@
                 NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
                 DZPModel *obj = [data objectAtIndex:0];
                 weakSelf.goldEggView.itemData = obj;
-//                [weakSelf.goldEggView.imgView setImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
                 [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:false];
             });
         } failure:^(id msg) {
@@ -440,7 +436,6 @@
                     return;
                 }
                 weakSelf.scratchView.scratchDataModel = scratchData;
-//                [weakSelf.scratchView.imgView setImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
                 [weakSelf setFloatingButtonView:weakSelf.scratchView hidden:false];
             });
         } failure:^(id msg) {
@@ -466,17 +461,27 @@
                 if (![CMCommon stringIsNull:[dicData objectForKey:@"redBagLogo"]]) {// 红包
                     [weakSelf.uGredEnvelopeView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"redBagLogo"]]];
                 }
+                
+                // 转盘
                 if (![CMCommon stringIsNull:[dicData objectForKey:@"turntableLogo"]]) {// 转盘
                     [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"turntableLogo"]] placeholderImage:[UIImage imageNamed:@"dzp_btn"]];
                 }
                 else{
                     [weakSelf.bigWheelView.imgView sd_setImageWithURL:[NSURL URLWithString:@"https://cdn01.mlqman.cn/views/home/images/c018dzp.gif"] placeholderImage:[UIImage imageNamed:@"dzp_btn"]];
                 }
-                if (![CMCommon stringIsNull:[dicData objectForKey:@"scratchOffLogo"]]) {// 刮刮乐
+                // 刮刮乐
+                if (![CMCommon stringIsNull:[dicData objectForKey:@"scratchOffLogo"]]) {
                     [weakSelf.scratchView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"scratchOffLogo"]] placeholderImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
                 }
-                if (![CMCommon stringIsNull:[dicData objectForKey:@"goldenEggLogo"]]) {// 砸金蛋
+                else{
+                    [weakSelf.scratchView.imgView setImage:[UIImage imageNamed:@"刮刮乐_悬浮按钮"]];
+                }
+                // 砸金蛋
+                if (![CMCommon stringIsNull:[dicData objectForKey:@"goldenEggLogo"]]) {
                     [weakSelf.goldEggView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"goldenEggLogo"]] placeholderImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
+                }
+                else{
+                    [weakSelf.goldEggView.imgView setImage:[UIImage imageNamed:@"砸金蛋_悬浮按钮"]];
                 }
 
                 
