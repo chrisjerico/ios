@@ -554,7 +554,7 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     
     UICollectionView *collectionView = ({
         
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 0, UGScreenW - 120 , 74) collectionViewLayout:flow];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(105 , 5, UGScreenW - 120 , 66) collectionViewLayout:flow];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;
@@ -595,8 +595,6 @@ static NSString *lotterySubResultCellid = @"UGPK10SubResultCollectionViewCell";
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
-    CGSize size = [self.nextIssueModel.preIssue sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
-    self.headerCollectionView.x = 25 + size.width;
     [self.headerCollectionView reloadData];
     
 }

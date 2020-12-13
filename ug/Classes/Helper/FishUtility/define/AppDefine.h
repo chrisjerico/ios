@@ -66,6 +66,7 @@
 @property (nonatomic) BOOL isNoAlert;                                   /**<  个人中心自动转换额度的提示去除*/
 @property (nonatomic) BOOL isShowDML;                                   /**<  个人中心新增让会员查看提款所需打码量和实际打码量 */
 //==============================================下注界面
+@property (nonatomic,assign) BOOL isOneRow;                         /**<   开奖数据只显示一行*/
 @property (nonatomic,assign) BOOL isRed;                                 /**<   tab选中点为红色，内容选择边框为红色，已选中注数的 数量颜色也更换成红色 */
 @property (nonatomic,assign) BOOL isBA;                                 /**<   六合彩的特码A 和特码B 换一下位置 */
 @property (nonatomic,assign) BOOL isC126CellStyle;                          /**<  下注测边栏，选中cell 背景为图*/

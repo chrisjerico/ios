@@ -38,12 +38,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self initcollectionView];
-    if (Skin1.isBlack) {
-        [_issueLabel setTextColor:Skin1.textColor1];
-    } else {
-        [_issueLabel setTextColor:[UIColor blackColor]];
-    }
-
+    _issueLabel.textColor = APP.betBgIsWhite ? Skin1.textColor1 : [UIColor whiteColor];
     [ self.tiemLabel setTextColor:Skin1.textColor2];
     self.backgroundColor = Skin1.textColor4;
     if (APP.betBgIsWhite && !Skin1.isGPK && !Skin1.isBlack && !Skin1.is23) {
@@ -58,6 +53,8 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
             
         }
     }
+    
+
 
 }
 
@@ -65,18 +62,23 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     _item = item;
     
     if (![CMCommon stringIsNull:item.displayNumber]) {
-        self.issueLabel.text = item.displayNumber;
+        self.issueLabel.text =  [NSString stringWithFormat:@"%@期",item.displayNumber];
     } else {
-        self.issueLabel.text = item.issue;
+        self.issueLabel.text = [NSString stringWithFormat:@"%@期",item.issue];
     }
 
     self.tiemLabel.text = item.openTime;
     self.numArray = [item.num componentsSeparatedByString:@","];
     self.resultArray = [item.result componentsSeparatedByString:@","];
-    if ([LanguageHelper shared].isCN) {
+    if ([LanguageHelper shared].isCN ) {
         self.collectionBgView.cc_constraints.height.constant = 75;
     } else {
         self.collectionBgView.cc_constraints.height.constant = 50;
+    }
+    
+    if (APP.isOneRow) {
+        [self.tiemLabel setHidden:YES];
+        self.collectionBgView.cc_constraints.height.constant = 36;
     }
     [self.collectionView reloadData];
 }
@@ -85,7 +87,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 #pragma mark UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [LanguageHelper shared].isCN ? 2 : 1;
+    return [LanguageHelper shared].isCN && !APP.isOneRow ? 2 : 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -210,13 +212,17 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
          return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 10));
     } else if ([@"jsk3" isEqualToString:self.item.gameType]) {
         if (indexPath.section == 0) {
-            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 8.5));
+            return CGSizeMake(28, 28);
         } else {
-            return CGSizeMake(((AvailableWidth - 2) / 6), ((AvailableWidth - 5) / 9));
+            return CGSizeMake(28, 28);
         }
     } else {
-        CGFloat w = AvailableWidth / 10;
-        return CGSizeMake(w, w);
+        if (APP.isBall6) {
+            return  CGSizeMake(28, 28);
+        } else {
+            return  CGSizeMake(24, 24);
+        }
+
     }
 }
 
@@ -227,17 +233,29 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 
 /** 列间距*/
 - (CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 1;
+    if ([@"jsk3" isEqualToString:self.item.gameType]) {
+        return 1.5;
+    } else {
+        return 1;
+    }
 }
 
 /** 行间距*/
 - (CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
-    return 1;
+    if ([@"jsk3" isEqualToString:self.item.gameType]) {
+        return 1.5;
+    } else {
+        return 1;
+    }
+    
 }
 
 /** 边缘之间的间距*/
 - (UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+  
     return UIEdgeInsetsMake(3, 1, 1, 1);
+
+    
 }
 
 
@@ -264,6 +282,14 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     
     self.collectionView = collectionView;
     [self.collectionBgView addSubview:collectionView];
+    
+    NSString *str = @"";
+    if (![CMCommon stringIsNull:_item.displayNumber]) {
+        str = _item.displayNumber;
+    } else {
+        str = _item.issue;
+    }
+    
     [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.collectionBgView);
     }];

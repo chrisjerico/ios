@@ -593,9 +593,9 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     UICollectionViewFlowLayout *layout = ({
         
         layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = CGSizeMake(30, 30);
-        layout.minimumInteritemSpacing = 2;
-        layout.minimumLineSpacing = 2;
+        layout.itemSize = CGSizeMake(28, 28);
+        layout.minimumInteritemSpacing = 1.5;
+        layout.minimumLineSpacing = 1.5;
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         layout.headerReferenceSize = CGSizeMake(300, 3);
         layout;
@@ -604,7 +604,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     
     UICollectionView *collectionView = ({
         
-        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(120 , 5, UGScreenW - 120 , 70) collectionViewLayout:layout];
+        collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(105 , 5, UGScreenW - 120 , 66) collectionViewLayout:layout];
         collectionView.backgroundColor = [UIColor clearColor];
         collectionView.dataSource = self;
         collectionView.delegate = self;
@@ -642,8 +642,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
     _nextIssueLabel.hidden = !self.nextIssueModel.curIssue.length;
     [self updateCloseLabelText];
     [self updateOpenLabelText];
-    CGSize size = [self.currentIssueLabel.text sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
-    self.headerCollectionView.x = 25 + size.width;
+
     [self.headerCollectionView reloadData];
 }
 
