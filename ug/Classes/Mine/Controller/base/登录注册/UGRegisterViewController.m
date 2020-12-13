@@ -39,6 +39,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *imgVcodeTextF;
 @property (weak, nonatomic) IBOutlet UIButton *smsVcodeButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imgVcodeImageView;
+@property (weak, nonatomic) IBOutlet UITextField *facebookTF;// facebook输入框
+@property (weak, nonatomic) IBOutlet UIView *facebookView;// facebookView
+
+
 
 @property (weak, nonatomic) IBOutlet UIView *invitationCodeView;
 @property (weak, nonatomic) IBOutlet UIView *inviterView;
@@ -148,7 +152,7 @@
     self.goLoginButton.layer.masksToBounds = YES;
     [self.goLoginButton setTitleColor:Skin1.navBarBgColor forState:UIControlStateNormal];
     
-    [self.myScrollView setBackgroundColor:[UIColor grayColor]];
+    [self.myScrollView setBackgroundColor:[UIColor whiteColor]];
     //    选中的颜色
     
 //     [self.mySegmentCV setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarBgColor} forState:UIControlStateSelected];
@@ -158,6 +162,7 @@
     self.checkPasswordTextF.delegate = self;
     self.realNameTextF.delegate = self;
     self.wechatTextF.delegate = self;
+    self.facebookTF.delegate = self;
     self.QQTextF.delegate = self;
     self.phoneTextF.delegate = self;
     self.inviterTextF.delegate = self;
@@ -350,6 +355,9 @@
         if (config.reg_wx == 2) {
             ck_parameter_non_empty(self.wechatTextF.text, @"请输入微信号");
         }
+        if (config.reg_fb == 2) {
+            ck_parameter_non_empty(self.facebookTF.text, @"请输入FASEBOOK账号");
+        }
         if (config.reg_phone == 2 || config.smsVerify) {
             ck_parameter_non_empty(self.phoneTextF.text, @"请输入11位手机号码");
         }
@@ -395,6 +403,7 @@
                 return;
             }
         }
+     
         
 //        （注册来源：0:未知, 1:PC, 2:原生安卓, 3:原生IOS, 4:安卓H5, 5:IOSH5, 6:豪华版安卓, 7:豪华版IOS）
         NSDictionary *params = @{@"inviter":self.inviterTextF.text.length ? self.inviterTextF.text : @"",
@@ -411,7 +420,8 @@
                                  @"imgCode":self.imgVcodeTextF.text ? self.imgVcodeTextF.text : @"",
                                  @"email":self.emailTextF.text ? self.emailTextF.text : @"",
 								 @"regType":self.regType,
-								 @"inviteCode":self.invitationCodeViewTextF.text.length ? self.invitationCodeViewTextF.text : @""
+								 @"inviteCode":self.invitationCodeViewTextF.text.length ? self.invitationCodeViewTextF.text : @"",
+                                 @"fb": self.facebookTF.text.length ?  self.facebookTF.text : @"",
                                  };
         
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
@@ -621,6 +631,13 @@
     } else {
         self.wechatView.hidden = YES;
         self.wechatViewHeightConstraint.constant = 0.1;
+    }
+    if (config.reg_fb) {
+        if (config.reg_fb == 1) {
+            self.facebookTF.placeholder = @"请输入FASEBOOK(选填)";
+        }
+    } else {
+        self.facebookView.hidden = YES;
     }
     if (config.reg_phone || config.smsVerify) {
         if (config.reg_phone == 1 && !config.smsVerify) {
