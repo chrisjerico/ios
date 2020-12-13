@@ -459,10 +459,10 @@
                 NSDictionary *dicData = model.data;
                 // 红包
                 if (![CMCommon stringIsNull:[dicData objectForKey:@"redBagLogo"]]) {// 红包
-                    [weakSelf.uGredEnvelopeView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"redBagLogo"]] placeholderImage:[UIImage imageNamed:@"redBagLogo"]];
+                    [weakSelf.uGredEnvelopeView.imgView sd_setImageWithURL:[NSURL URLWithString:[dicData objectForKey:@"redBagLogo"]] placeholderImage:[UIImage imageNamed:@"redpageImg"]];
                 }
                 else{
-                    [weakSelf.uGredEnvelopeView.imgView setImage:[UIImage imageNamed:@"redBagLogo"]];
+                    [weakSelf.uGredEnvelopeView.imgView setImage:[UIImage imageNamed:@"redpageImg"]];
                 }
                 
                 // 转盘
