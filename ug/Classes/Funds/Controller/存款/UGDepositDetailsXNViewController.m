@@ -49,7 +49,14 @@
     [self.inputTxf addTarget:self action:@selector(changedTextField:) forControlEvents:UIControlEventEditingChanged];
 
     self.moneyLabel.text = @"";
-    [self.inputTV setPlaceholderWithText:@"请填写备注信息" Color:Skin1.textColor3];
+    
+    if ([APP.SiteId isEqualToString:@"c200"]) {
+        [self.inputTV setPlaceholderWithText:@"交易号后5位" Color:[UIColor redColor]];
+        [self.inputTV setTextColor:[UIColor redColor]];
+    } else {
+        [self.inputTV setPlaceholderWithText:@"请填写备注信息" Color:Skin1.textColor3];
+    }
+   
     _tableDataArray = [NSMutableArray new];
     _amountDataArray = [NSMutableArray new];
     _selectChannelModel = [UGchannelModel new];
