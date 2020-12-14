@@ -83,7 +83,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
             [weakSelf.collectionView reloadData];
             [weakSelf.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
             
-            BOOL canUpload = resObject[@"data"][@"isAcceptUpload"];
+            BOOL canUpload = [resObject[@"data"][@"isAcceptUpload"] boolValue];
             if (canUpload) {
                 weakSelf.bigImgViewTopConstraint.constant = 60;
             }
