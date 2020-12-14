@@ -147,11 +147,8 @@
     return _hsc_titleView;
 }
 
-- (void)skin {
-    
-    //    return;
-    FastSubViewCode(self.view);
-    
+
+-(void)setUpView{
     // 根据模板显示对应内容
     {
         static NSMutableArray *allViews = nil;
@@ -173,14 +170,8 @@
         }
         
         NSMutableDictionary *dict = @{
-            @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView,],
-           //l002的分栏
-        #ifdef DEBUG
-            @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview,_gameTypeView.superview, _promotionVC.view, _trademarkView],
-        #else
+            @"默认":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"六合资料":@[_rollingView, _LhPrize_FView, _gameNavigationView.superview,_lhColumnView, _promotionVC.view, _trademarkView],
-        #endif
-
             @"GPK版":@[_bannerView, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"金沙主题":@[_bannerView, _rollingView,_jsWebmasterView,_waistAdsView, _homePromoteContainer, _gameTypeView.superview, _promotionVC.view, _rankingView, _trademarkView],
             @"火山橙":@[_bannerView, _rollingView, _waistAdsView, _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _betFormView, _trademarkView],
@@ -188,8 +179,19 @@
             @"天空蓝":@[_bannerView, _rollingView,_upRecommendedView, _gameNavigationView.superview,_downRecommendedView, _waistAdsView, _gameTypeView.superview, _promotionVC.view, _rankingView,],
         }.mutableCopy;
         
-        if ([@"l002" containsString:APP.SiteId]) {
+        
+        if (SysConf.lhcdocIsShowNav) {
+            dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _gameTypeView.superview, _trademarkView];
+        } else {
             dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _lhColumnView, _trademarkView];
+        }
+        
+        if ([@"l002" containsString:APP.SiteId]) {
+            if (SysConf.lhcdocIsShowNav) {
+                dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _gameTypeView.superview, _trademarkView];
+            } else {
+                dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _lhColumnView, _trademarkView];
+            }
         }
         if ([@"c245" containsString:APP.SiteId]) {
             dict[@"香槟金"] = @[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _trademarkView];
@@ -198,6 +200,14 @@
         [_contentStackView addArrangedSubviews:views];
     
     }
+}
+
+- (void)skin {
+    
+    //    return;
+    FastSubViewCode(self.view);
+    
+    [self setUpView];
     
     if ([Skin1.skitType isEqualToString:@"香槟金"]) {
         self.contentScrollView.backgroundColor = Skin1.bgColor;
@@ -878,6 +888,8 @@
             } else {
                 [weakSelf.titleView setImgName:config.mobile_logo];
             }
+            
+            [weakSelf setUpView];
             
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);
         } failure:^(id msg) {
