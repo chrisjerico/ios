@@ -534,6 +534,8 @@
         NSLog(@"参数：%@ ",mutDict);
         __weakSelf_(__self);
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
+            __self.imgVcodeModel = nil;
+           [__self.webView reload];
             [CMResult processWithResult:model success:^{
                 
                 [SVProgressHUD showSuccessWithStatus:model.msg];

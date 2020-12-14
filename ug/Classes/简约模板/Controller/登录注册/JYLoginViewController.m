@@ -218,6 +218,7 @@
     WeakSelf;
     [SVProgressHUD showWithStatus:@"正在登录..."];
      [CMNetwork userLoginWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
+        [weakSelf.webView reload];
          [CMResult processWithResult:model success:^{
              if (model.code == 0) {
                  [weakSelf loginOK:model];

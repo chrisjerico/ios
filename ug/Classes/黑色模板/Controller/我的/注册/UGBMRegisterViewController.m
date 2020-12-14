@@ -364,7 +364,7 @@
                 return;
             }
         }
-        
+
 //        （注册来源：0:未知, 1:PC, 2:原生安卓, 3:原生IOS, 4:安卓H5, 5:IOSH5, 6:豪华版安卓, 7:豪华版IOS）
         NSDictionary *params = @{@"inviter":self.inviterTextF.text.length ? self.inviterTextF.text : @"",
                                  @"usr":self.userNameTextF.text,
@@ -405,6 +405,8 @@
         [SVProgressHUD showWithStatus:@"正在注册..."];
         WeakSelf;
         [CMNetwork registerWithParams:mutDict completion:^(CMResult<id> *model, NSError *err) {
+             weakSelf.imgVcodeModel = nil;
+            [weakSelf.webView reload];
             [CMResult processWithResult:model success:^{
 
                 [SVProgressHUD showSuccessWithStatus:model.msg];
