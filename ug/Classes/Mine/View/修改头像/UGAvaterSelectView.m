@@ -39,7 +39,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:0].firstObject;
         self.frame = frame;
         self.oldFrame = frame;
-        self.selIndex = 0;
+        self.selIndex = -1;
         self.leftIndex= 1;
         self.reghtIndex= 4;
         self.submitButton.layer.cornerRadius = 3;
@@ -65,6 +65,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 }
 
 - (void)getAvatarList:(void (^)(BOOL canUpload))completed {
+    [_bigImgView sd_setImageWithURL:[NSURL URLWithString:UserI.avatar] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
     _bigImgViewTopConstraint.constant = 20;
     [SVProgressHUD showWithStatus: nil];
     WeakSelf;
@@ -81,7 +82,6 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
             }
             UGAvatarModel *avatar = self.dataArray.firstObject;
             [weakSelf.collectionView reloadData];
-            [weakSelf.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
             
             BOOL canUpload = [resObject[@"data"][@"isAcceptUpload"] boolValue];
             if (canUpload) {
@@ -138,7 +138,9 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 }
 
 - (IBAction)submitClick:(id)sender {
-    [self changAvatar:self.dataArray[self.selIndex]];
+    if (_selIndex > -1) {
+        [self changAvatar:self.dataArray[self.selIndex]];
+    }
 }
 
 - (IBAction)cancelClick:(id)sender {
