@@ -120,10 +120,7 @@ UGSystemConfigModel *currentConfig = nil;
             
             
         ];
-        
-//       if ( [@"l002" containsString:APP.SiteId]) {
-//           [_items addObject:item(@"chatRoom",        @"l002chat",     @"l002chat",         UCI_聊天室,        @"聊天室")];
-//        }
+
         
     });
     return _items;
