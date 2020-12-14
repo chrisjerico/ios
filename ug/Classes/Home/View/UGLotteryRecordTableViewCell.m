@@ -46,7 +46,6 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
     } else {
         if (APP.isLight) {
             self.backgroundColor = [Skin1.skitString containsString:@"六合"] ? [Skin1.navBarBgColor colorWithAlphaComponent:0.8] :[Skin1.bgColor colorWithAlphaComponent:0.8];
-            
         }
         else{
             self.backgroundColor = [Skin1.skitString containsString:@"六合"] ? Skin1.navBarBgColor : Skin1.bgColor;
@@ -76,7 +75,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
         self.collectionBgView.cc_constraints.height.constant = 50;
     }
     
-    if (APP.isOneRow) {
+    if (self.isOneRow) {
         [self.tiemLabel setHidden:YES];
         self.collectionBgView.cc_constraints.height.constant = 36;
     }
@@ -87,7 +86,7 @@ static NSString *lotteryOneCellId = @"UGFastThreeOneCollectionViewCell";
 #pragma mark UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return [LanguageHelper shared].isCN && !APP.isOneRow ? 2 : 1;
+    return [LanguageHelper shared].isCN && !self.isOneRow ? 2 : 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

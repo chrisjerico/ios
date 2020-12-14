@@ -782,6 +782,7 @@ static NSString *dwdheaderViewID = @"DWDCollectionReusableView";
          return cell;
      } else {
          UGLotteryRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UGLotteryRecordTableViewCell" forIndexPath:indexPath];
+         cell.isOneRow = APP.isOneRow;
          cell.item = self.dataArray[indexPath.row];
          return cell;
      }

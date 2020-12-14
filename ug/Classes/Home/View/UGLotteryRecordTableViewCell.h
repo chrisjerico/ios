@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGLotteryRecordTableViewCell : UITableViewCell
+@property (nonatomic) BOOL isOneRow;
 @property (nonatomic, strong) UGLotteryHistoryModel *item;
 
 @end
