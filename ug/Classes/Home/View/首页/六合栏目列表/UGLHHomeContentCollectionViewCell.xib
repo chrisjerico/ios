@@ -18,7 +18,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="216" height="80"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cp" translatesAutoresizingMaskIntoConstraints="NO" id="zar-7X-t6V" customClass="FLAnimatedImageView">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VCx-vr-5wQ" userLabel="中大奖" customClass="FLAnimatedImageView">
+                        <rect key="frame" x="5" y="0.0" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="9ur-l6-i0A"/>
+                            <constraint firstAttribute="width" constant="80" id="C6K-23-ZQv"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="中大奖imgV"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cp" translatesAutoresizingMaskIntoConstraints="NO" id="zar-7X-t6V" userLabel="头像" customClass="FLAnimatedImageView">
                         <rect key="frame" x="15" y="10" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="U2O-4k-GW6"/>
@@ -40,6 +50,16 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="标题Label"/>
                         </userDefinedRuntimeAttributes>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Xi-Ig-lRY" userLabel="热门" customClass="FLAnimatedImageView">
+                        <rect key="frame" x="50" y="0.0" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="Rql-M4-wg3"/>
+                            <constraint firstAttribute="height" constant="35" id="fcz-DB-c0C"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="热门imgV"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123123123123123123" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8i-s9-diJ">
                         <rect key="frame" x="89" y="44" width="119" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,12 +96,16 @@
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <color key="backgroundColor" systemColor="systemTealColor"/>
             <constraints>
+                <constraint firstItem="1Xi-Ig-lRY" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7UE-iK-pok"/>
                 <constraint firstItem="Pr9-bm-2vR" firstAttribute="leading" secondItem="zar-7X-t6V" secondAttribute="trailing" constant="14" id="9zY-al-dfS"/>
                 <constraint firstItem="N1D-mp-9h1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="FrJ-ue-pbx"/>
+                <constraint firstItem="VCx-vr-5wQ" firstAttribute="centerY" secondItem="zar-7X-t6V" secondAttribute="centerY" id="PMD-4K-4PH"/>
                 <constraint firstAttribute="trailing" secondItem="Pr9-bm-2vR" secondAttribute="trailing" constant="4" id="SGK-Lp-cQJ"/>
+                <constraint firstItem="VCx-vr-5wQ" firstAttribute="centerX" secondItem="zar-7X-t6V" secondAttribute="centerX" id="Tva-TN-fR8"/>
                 <constraint firstItem="zar-7X-t6V" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="WFI-fX-qLf"/>
                 <constraint firstAttribute="trailing" secondItem="B8i-s9-diJ" secondAttribute="trailing" constant="8" id="cNb-7z-JaH"/>
                 <constraint firstItem="Pr9-bm-2vR" firstAttribute="leading" secondItem="N1D-mp-9h1" secondAttribute="trailing" constant="4" id="gLK-if-iVl"/>
+                <constraint firstItem="1Xi-Ig-lRY" firstAttribute="trailing" secondItem="N1D-mp-9h1" secondAttribute="trailing" id="iKH-8L-l8C"/>
                 <constraint firstItem="B8i-s9-diJ" firstAttribute="top" secondItem="Pr9-bm-2vR" secondAttribute="bottom" id="rV3-F6-049"/>
                 <constraint firstItem="B8i-s9-diJ" firstAttribute="leading" secondItem="zar-7X-t6V" secondAttribute="trailing" constant="14" id="sDz-HA-kyu"/>
                 <constraint firstItem="Pr9-bm-2vR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="tUB-1Q-4Q7"/>
@@ -94,7 +118,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="cp" width="663.5" height="228.5"/>
+        <image name="cp" width="100" height="100"/>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
