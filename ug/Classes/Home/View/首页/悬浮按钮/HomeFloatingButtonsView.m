@@ -13,7 +13,7 @@
 
 #import "EggFrenzyViewController.h"
 #import "ScratchController.h"
-
+#import "UGTaskNoticeView.h"
 #import "CMTimeCommon.h"
 
 @interface HomeFloatingButtonsView ()
@@ -176,7 +176,9 @@
         self.taskView.cancelClickBlock = cancelClickBlock;
         self.taskView.redClickBlock = ^(void) {
             if (!checkLogin()) return;
-            
+            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+            UGTaskNoticeView *notiveView = [[UGTaskNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
+            [notiveView show];
         };
     }
     

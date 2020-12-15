@@ -2306,6 +2306,10 @@
 		D4468CA7245D3F1000EA7573 /* DZPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4468CA6245D3F1000EA7573 /* DZPModel.m */; };
 		D4486C1E241A545A00E5CCEA /* RoomChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4486C1D241A545A00E5CCEA /* RoomChatModel.m */; };
 		D4486C27241D082E00E5CCEA /* OnlineServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4486C26241D082E00E5CCEA /* OnlineServiceViewController.m */; };
+		D44CC8A625887A33000574F2 /* UGTaskNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44CC8A525887A33000574F2 /* UGTaskNoticeView.m */; };
+		D44CC8A725887A33000574F2 /* UGTaskNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44CC8A525887A33000574F2 /* UGTaskNoticeView.m */; };
+		D44CC8AC25887AF5000574F2 /* UGTaskNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44CC8AB25887AF5000574F2 /* UGTaskNoticeView.xib */; };
+		D44CC8AD25887AF5000574F2 /* UGTaskNoticeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44CC8AB25887AF5000574F2 /* UGTaskNoticeView.xib */; };
 		D451A46623F538B000CD0E36 /* JYGameCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D451A46523F538B000CD0E36 /* JYGameCollectionViewCell.m */; };
 		D451A46923F538D800CD0E36 /* JYGameCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D451A46823F538D700CD0E36 /* JYGameCollectionViewCell.xib */; };
 		D451A47C23F6667E00CD0E36 /* JYMineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D451A47B23F6667E00CD0E36 /* JYMineCollectionViewCell.m */; };
@@ -4516,6 +4520,9 @@
 		D4486C1D241A545A00E5CCEA /* RoomChatModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomChatModel.m; sourceTree = "<group>"; };
 		D4486C25241D082E00E5CCEA /* OnlineServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnlineServiceViewController.h; sourceTree = "<group>"; };
 		D4486C26241D082E00E5CCEA /* OnlineServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnlineServiceViewController.m; sourceTree = "<group>"; };
+		D44CC8A425887A33000574F2 /* UGTaskNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UGTaskNoticeView.h; sourceTree = "<group>"; };
+		D44CC8A525887A33000574F2 /* UGTaskNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UGTaskNoticeView.m; sourceTree = "<group>"; };
+		D44CC8AB25887AF5000574F2 /* UGTaskNoticeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UGTaskNoticeView.xib; sourceTree = "<group>"; };
 		D451A46423F538B000CD0E36 /* JYGameCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYGameCollectionViewCell.h; sourceTree = "<group>"; };
 		D451A46523F538B000CD0E36 /* JYGameCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYGameCollectionViewCell.m; sourceTree = "<group>"; };
 		D451A46823F538D700CD0E36 /* JYGameCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYGameCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -7354,6 +7361,7 @@
 		031E18B223BE812600B0F813 /* 任务大厅 */ = {
 			isa = PBXGroup;
 			children = (
+				D45DB5FF2588781100353A2C /* 任务弹窗 */,
 				031E18B523BE812600B0F813 /* UGMissionTitleCell.h */,
 				031E18BB23BE812600B0F813 /* UGMissionTitleCell.m */,
 				031E18C123BE812600B0F813 /* UGMissionTitleCell.xib */,
@@ -9637,6 +9645,16 @@
 			path = "给tab加badge分类";
 			sourceTree = "<group>";
 		};
+		D45DB5FF2588781100353A2C /* 任务弹窗 */ = {
+			isa = PBXGroup;
+			children = (
+				D44CC8A425887A33000574F2 /* UGTaskNoticeView.h */,
+				D44CC8A525887A33000574F2 /* UGTaskNoticeView.m */,
+				D44CC8AB25887AF5000574F2 /* UGTaskNoticeView.xib */,
+			);
+			path = "任务弹窗";
+			sourceTree = "<group>";
+		};
 		D46A7D992577799F002FD5C4 /* UITabbarItem-master */ = {
 			isa = PBXGroup;
 			children = (
@@ -10192,6 +10210,7 @@
 				031EF59F23BE7B4D00B0F813 /* qitazhudanjilu.svg in Resources */,
 				031E199B23BE812600B0F813 /* LHPostPayView.xib in Resources */,
 				CF533A84251B116000462E31 /* NewLotteryGameCollectionViewCell.xib in Resources */,
+				D44CC8AD25887AF5000574F2 /* UGTaskNoticeView.xib in Resources */,
 				031E1BC123BE812900B0F813 /* UGBMfinancialCollectionViewCell.xib in Resources */,
 				031E1B8123BE812900B0F813 /* UGPlatformNoticeView.xib in Resources */,
 				031EF54E23BE7B4D00B0F813 /* SimulateLocation.gpx in Resources */,
@@ -10417,6 +10436,7 @@
 				CF47589C239636D200966536 /* 30.gif in Resources */,
 				031E19FA23BE812700B0F813 /* MediaViewer.xib in Resources */,
 				CF4758AB239636D200966536 /* 143.gif in Resources */,
+				D44CC8AC25887AF5000574F2 /* UGTaskNoticeView.xib in Resources */,
 				CF19A5772518833500E2E659 /* NewLotteryHomeViewController.storyboard in Resources */,
 				031E19EA23BE812700B0F813 /* IndexesView.xib in Resources */,
 				CF4758EB239636D200966536 /* 74.gif in Resources */,
@@ -11197,6 +11217,7 @@
 				031EF55523BE7B4D00B0F813 /* Configuration.swift in Sources */,
 				03B71D6C251E30760090FC98 /* ScratchDataModel.m in Sources */,
 				031EF56023BE7B4D00B0F813 /* UIImagePickerController+Rx.swift in Sources */,
+				D44CC8A725887A33000574F2 /* UGTaskNoticeView.m in Sources */,
 				031EF53E23BE7B4D00B0F813 /* RequestTargetType.swift in Sources */,
 				031E1AC323BE812800B0F813 /* WMDropDown2View.m in Sources */,
 				031E1BFB23BE812900B0F813 /* UGBJPK10LotteryController.m in Sources */,
@@ -12430,6 +12451,7 @@
 				031E1A0023BE812700B0F813 /* MediaViewer.m in Sources */,
 				D43DAF7924545B270014A301 /* LYLuckyCardCellView.m in Sources */,
 				031E1B6A23BE812800B0F813 /* UGPlatformCollectionView.m in Sources */,
+				D44CC8A625887A33000574F2 /* UGTaskNoticeView.m in Sources */,
 				4959F2B62563AE2800A3F05B /* ChatListTableViewCell.m in Sources */,
 				031E1CA823BE812A00B0F813 /* UGFundRecordDetailView.m in Sources */,
 				031E194223BE812600B0F813 /* UGSkinManagers.m in Sources */,
