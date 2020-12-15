@@ -71,12 +71,12 @@ class RegistVC: BaseVC {
     @IBOutlet var wxNumberView: UIStackView!
     @IBOutlet var mailView: UIStackView!
     @IBOutlet var phoneNumberView: UIStackView!
-    @IBOutlet var vcodeView: UIStackView!
-    @IBOutlet var verifyCodeView: UIStackView!
+    @IBOutlet var msgCodeView: UIStackView!
+    @IBOutlet var imgCodeView: UIStackView!
     @IBOutlet var webBackdropView: UIView!
     
     @IBOutlet var webView: WKWebView!
-    @IBOutlet var codeImageView: UITextView!
+    @IBOutlet var imgCodeTextView: UITextView!
     
     
     var imgVcodeModel: UGImgVcodeModel?
@@ -180,15 +180,15 @@ class RegistVC: BaseVC {
         } else if config.smsVerify || config.reg_phone == 2 {
             phoneNumberView.isHidden = false
             phoneField.placeholder = "请输入11位手机号码"
-        } else if config.reg_fundpwd == 1 {
+        } else if config.reg_phone == 1 {
             phoneNumberView.isHidden = false
             phoneField.placeholder = "请输入11位手机号码(选填)"
         }
         
         if config.smsVerify {
-            vcodeView.isHidden = false
+            msgCodeView.isHidden = false
         } else {
-            vcodeView.isHidden = true
+            msgCodeView.isHidden = true
         }
         
         
@@ -210,18 +210,19 @@ class RegistVC: BaseVC {
         
         if config.reg_vcode == 2 {
             webBackdropView.isHidden = false
-            verifyCodeView.isHidden = true
+            imgCodeView.isHidden = true
             webView.load(URLRequest(url: URL(string: AppDefine.shared().host + swiperVerifyUrl)!))
             webView.configuration.userContentController.add(WeakScriptMessageDelegate(self), name: "postSwiperData")
         } else if config.reg_vcode == 1 {
-            verifyCodeView.isHidden = false
-            verifyCodeView.isHidden = true
+            imgCodeView.isHidden = false
             getImageCode()
-            codeImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImageCode)))
+            imgCodeTextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImageCode)))
         } else if config.reg_vcode == 3 {
-            verifyCodeView.isHidden = false
-            verifyCodeView.isHidden = true
-            codeImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImageCode)))
+            imgCodeView.isHidden = false
+            getImageCode()
+            imgCodeTextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(getImageCode)))
+        } else {
+            imgCodeView.isHidden = true
         }
         
         if config.pass_limit == 0 {
@@ -348,10 +349,7 @@ class RegistVC: BaseVC {
                 .bind(to: msgCodeTipsLabel.rx.text)
                 .disposed(by: disposeBag)
         }
-        
-        
-        
-        
+ 
     }
     
     @IBAction func titleButtonAction(_ sender: UIButton) {
@@ -498,7 +496,7 @@ class RegistVC: BaseVC {
             guard let imageData = result as AnyObject as? Data else { return }
             let uriSting = String(data: imageData, encoding: String.Encoding.utf8) ?? ""
             let attributedData = "<img src='\(uriSting)' width=100 height=40>".data(using: String.Encoding.unicode)
-            self?.codeImageView.attributedText = try? NSAttributedString(data: attributedData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+            self?.imgCodeTextView.attributedText = try? NSAttributedString(data: attributedData!, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
         }
         
     }
@@ -519,8 +517,10 @@ class RegistVC: BaseVC {
             DispatchTimer(timeInterval: 1, repeatCount: 60 ) { [weak self] (timer, count)  in
                 guard count >= 0 else {
                     self?.msgCodeFetchButton.setTitle("获取验证码", for: .normal)
+                    self?.msgCodeFetchButton.isEnabled = true
                     return
                 }
+                self?.msgCodeFetchButton.isEnabled = false
                 self?.msgCodeFetchButton.setTitle("\(count)s", for: .normal)
             }
             
