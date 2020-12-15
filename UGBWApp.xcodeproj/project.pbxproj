@@ -7037,6 +7037,7 @@
 		031E17F923BE812600B0F813 /* 推荐收益 */ = {
 			isa = PBXGroup;
 			children = (
+				D40826642588A1E20056FC72 /* 邀请码 */,
 				031E180023BE812600B0F813 /* UGAgentViewController.h */,
 				031E17FE23BE812600B0F813 /* UGAgentViewController.m */,
 				031E17FD23BE812600B0F813 /* UGAgentViewController.xib */,
@@ -7053,9 +7054,6 @@
 				03CF3065254FE44200D75721 /* PromotionCodeCell.h */,
 				03CF3066254FE44200D75721 /* PromotionCodeCell.m */,
 				03CF3067254FE44200D75721 /* PromotionCodeCell.xib */,
-				03CF307E2550F74A00D75721 /* InviteCodeGenerateVC.h */,
-				03CF307F2550F74A00D75721 /* InviteCodeGenerateVC.m */,
-				03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */,
 				031830282551E76000A63907 /* NSTextAttachment+UG.h */,
 				031830292551E76000A63907 /* NSTextAttachment+UG.m */,
 				D46A7E9C2578A484002FD5C4 /* newPromotionInfoController.h */,
@@ -9342,6 +9340,16 @@
 				D40745C32511F37800606EA3 /* YNCollectionFootView.m */,
 			);
 			path = "越南Foot";
+			sourceTree = "<group>";
+		};
+		D40826642588A1E20056FC72 /* 邀请码 */ = {
+			isa = PBXGroup;
+			children = (
+				03CF307E2550F74A00D75721 /* InviteCodeGenerateVC.h */,
+				03CF307F2550F74A00D75721 /* InviteCodeGenerateVC.m */,
+				03CF30802550F74A00D75721 /* InviteCodeGenerateVC.xib */,
+			);
+			path = "邀请码";
 			sourceTree = "<group>";
 		};
 		D4122CBE2504B4010009E602 /* 天空蓝 */ = {
