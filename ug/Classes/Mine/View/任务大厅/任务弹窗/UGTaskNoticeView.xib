@@ -35,10 +35,10 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvn-dq-kIs">
-                            <rect key="frame" x="15" y="40" width="292" height="433"/>
+                            <rect key="frame" x="10" y="40" width="302" height="433"/>
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gsk-KI-7vz">
-                                    <rect key="frame" x="0.0" y="40" width="292" height="393"/>
+                                    <rect key="frame" x="0.0" y="40" width="302" height="393"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="qy7-Z2-H5e"/>
@@ -59,10 +59,10 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="xDo-6k-gzt" secondAttribute="trailing" id="5EJ-lK-NqW"/>
                         <constraint firstItem="rvn-dq-kIs" firstAttribute="top" secondItem="Q0p-xx-q4d" secondAttribute="top" constant="40" id="9Bq-QW-WGB"/>
-                        <constraint firstItem="rvn-dq-kIs" firstAttribute="leading" secondItem="Q0p-xx-q4d" secondAttribute="leading" constant="15" id="L55-0E-ezo"/>
+                        <constraint firstItem="rvn-dq-kIs" firstAttribute="leading" secondItem="Q0p-xx-q4d" secondAttribute="leading" constant="10" id="L55-0E-ezo"/>
                         <constraint firstAttribute="trailing" secondItem="jbd-TX-dGN" secondAttribute="trailing" constant="15" id="Nt6-Ef-CrY"/>
                         <constraint firstItem="jbd-TX-dGN" firstAttribute="top" secondItem="Q0p-xx-q4d" secondAttribute="top" constant="15" id="e6v-vM-O3z"/>
-                        <constraint firstAttribute="trailing" secondItem="rvn-dq-kIs" secondAttribute="trailing" constant="15" id="eio-zn-EWA"/>
+                        <constraint firstAttribute="trailing" secondItem="rvn-dq-kIs" secondAttribute="trailing" constant="10" id="eio-zn-EWA"/>
                         <constraint firstAttribute="bottom" secondItem="rvn-dq-kIs" secondAttribute="bottom" constant="20" id="fCI-J6-NcR"/>
                         <constraint firstItem="xDo-6k-gzt" firstAttribute="top" secondItem="Q0p-xx-q4d" secondAttribute="top" id="iB6-4X-qzL"/>
                     </constraints>

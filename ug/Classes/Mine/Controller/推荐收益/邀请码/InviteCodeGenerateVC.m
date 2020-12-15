@@ -47,7 +47,6 @@
         [subLabel(@"说明label") setText:str ];
     } else {
         [subLabel(@"说明label") setHidden:YES];
-
     }
     
 
