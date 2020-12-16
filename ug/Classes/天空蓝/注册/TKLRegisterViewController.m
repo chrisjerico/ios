@@ -49,6 +49,8 @@
 @property (weak, nonatomic) IBOutlet UIView *imgVcodeView;              /**<   验证码View*/
 @property (weak, nonatomic) IBOutlet UIView *webBgView;                 /**<   阿里的条View*/
 @property (weak, nonatomic) IBOutlet UIView *webBGView;                 /**<   阿里的条背景*/
+@property (weak, nonatomic) IBOutlet UITextField *facebookTF;// facebook输入框
+@property (weak, nonatomic) IBOutlet UIView *facebookView;// facebookView
 
 @property (weak, nonatomic) IBOutlet UIImageView *pwdImgeView;              /**<   密码明文图片*/
 @property (weak, nonatomic) IBOutlet UIImageView *pwd2ImageView;            /**<   2次密码明文图片*/
@@ -122,6 +124,7 @@
     self.emailTextF.delegate = self;
     self.smsVcodeTextF.delegate = self;
     self.imgVcodeTextF.delegate = self;
+    self.facebookTF.delegate = self;
     self.regType = @"user";
     
     //限制弹出数字键盘
@@ -255,6 +258,14 @@
     } else {
         self.wechatView.hidden = YES;
     }
+    if (config.reg_fb) {
+        if (config.reg_fb == 1) {
+            self.facebookTF.placeholder = @"请输入facebook(选填)";
+        }
+    } else {
+        self.facebookView.hidden = YES;
+    }
+    
     if (config.reg_phone || config.smsVerify) {
         if (config.reg_phone == 1 && !config.smsVerify) {
             self.phoneTextF.placeholder = @"请输入11位手机号码(选填)";
@@ -398,6 +409,9 @@
         if (config.reg_wx == 2) {
             ck_parameter_non_empty(self.wechatTextF.text, @"请输入微信号");
         }
+        if (config.reg_fb == 2) {
+            ck_parameter_non_empty(self.facebookTF.text, @"请输入facebook账号");
+        }
         if (config.reg_phone == 2 || config.smsVerify) {
             ck_parameter_non_empty(self.phoneTextF.text, @"请输入11位手机号码");
         }
@@ -458,7 +472,8 @@
                                  @"smsCode":self.smsVcodeTextF.text ? self.smsVcodeTextF.text : @"",
                                  @"imgCode":self.imgVcodeTextF.text ? self.imgVcodeTextF.text : @"",
                                  @"email":self.emailTextF.text ? self.emailTextF.text : @"",
-                                 @"regType":self.regType
+                                 @"regType":self.regType,
+                                 @"fb": self.facebookTF.text.length ?  self.facebookTF.text : @"",
         };
         
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:params];
