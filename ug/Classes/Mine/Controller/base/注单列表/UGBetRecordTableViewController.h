@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL showFooterView;
 
 @property (nonatomic, strong) NSString *gameType;   /**<   游戏分类：lottery=彩票，real=真人，card=棋牌，game=电子游戏，sport=体育 */
-@property (nonatomic, strong) NSString *status;     /**<   注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单 */
+@property (nonatomic, strong) NSString *status;     /**<   注单状态：1=待开奖，2=已中奖，3=未中奖，4=已撤单  5：=已结 */
 @property (nonatomic, strong) NSString *startDate;
 @property (nonatomic, assign) BOOL loadData;
 

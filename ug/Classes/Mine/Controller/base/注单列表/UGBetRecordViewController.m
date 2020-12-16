@@ -155,10 +155,10 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
 - (void)buildSegment {
     if (!self.slideSwitchView) {
         if ([APP.SiteId isEqualToString:@"c084"]) {
-            self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖",@"注单统计"];
+            self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖",@"已结",@"注单统计"];
 //            self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖"];
         } else {
-            self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单",@"注单统计"];
+            self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖",@"已结",@"已撤单",@"注单统计"];
 //            self.itemArray = @[@"已中奖", @"未中奖", @"等待开奖", @"已撤单"];
         }
         self.slideSwitchView = [[XYYSegmentControl alloc] initWithFrame:CGRectMake(0 , 0, self.view.width, APP.Height-NavController1.navigationBar.by) channelName:self.itemArray source:self];
@@ -196,7 +196,9 @@ static NSString *recordFilterCellid = @"UGRecordFilterCollectionViewCell";
     } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGBetRecordTableViewController" bundle:nil];
         UGBetRecordTableViewController *recordVC = [storyboard instantiateInitialViewController];
-        recordVC.status = @[@"2", @"3", @"1", @"4"][number];
+        recordVC.status = @[@"2", @"3", @"1", @"5",@"4"][number];
+        
+        NSLog(@" recordVC.status = %@", recordVC.status);
         recordVC.startDate = number==2 ? self.dateArray[1] : self.dateArray[0]; // 等待开奖页默认加载最近三天，其他页面默认加载今天
         recordVC.gameType = @"lottery";
         recordVC.showFooterView = NO;

@@ -109,6 +109,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"kj_trend",               @"kj_trend",            @"kj_trend",                UCI_开奖走势,      @"开奖走势"),
             item(@"usrCenter_qq",           @"usrCenter_qq",        @"usrCenter_qq",            UCI_QQ客服,        @"QQ客服"),
             item(@"center_kaijiang",        @"center_kaijiang",     @"center_kaijiang",         UCI_开奖网,        @"开奖网"),
+            item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_已结注单,      @"UCI_已结注单"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_未结注单,      @"UCI_未结注单"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_电子注单,      @"UCI_电子注单"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_真人注单,      @"UCI_真人注单"),
@@ -117,6 +118,7 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_电竞注单,      @"UCI_电竞注单"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_体育注单,      @"UCI_体育注单"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_UG注单,       @"UCI_UG注单"),
+            
             
             
         ];

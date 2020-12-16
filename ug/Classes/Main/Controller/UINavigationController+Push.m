@@ -1241,6 +1241,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:betRecordVC animated:YES];
             return true;
         }
+        case UCI_已结注单: {
+            UGBetRecordViewController *betRecordVC = [UGBetRecordViewController new];
+            betRecordVC.selectIndex = 3;
+            [NavController1 pushViewController:betRecordVC animated:YES];
+            return true;
+        }
         case UCI_UG注单: {
             [SVProgressHUD showInfoWithStatus:@"敬请期待"];
             return true;
