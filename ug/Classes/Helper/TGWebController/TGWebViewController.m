@@ -53,10 +53,14 @@
     [self.tgWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
     [self setUpUI];
     
-    self.hideView = [[UIView alloc] initWithFrame:self.view.bounds];
-    [self.hideView setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:self.hideView];
-    [self.view bringSubviewToFront:self.hideView];
+    
+    if (self.url2.length) {
+        self.hideView = [[UIView alloc] initWithFrame:self.view.bounds];
+        [self.hideView setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:self.hideView];
+        [self.view bringSubviewToFront:self.hideView];
+        
+    }
 
 }
 
