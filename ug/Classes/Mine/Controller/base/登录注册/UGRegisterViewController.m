@@ -356,7 +356,7 @@
             ck_parameter_non_empty(self.wechatTextF.text, @"请输入微信号");
         }
         if (config.reg_fb == 2) {
-            ck_parameter_non_empty(self.facebookTF.text, @"请输入fasebook账号");
+            ck_parameter_non_empty(self.facebookTF.text, @"请输入facebook账号");
         }
         if (config.reg_phone == 2 || config.smsVerify) {
             ck_parameter_non_empty(self.phoneTextF.text, @"请输入11位手机号码");
