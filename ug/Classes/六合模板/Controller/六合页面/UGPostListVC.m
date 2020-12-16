@@ -15,12 +15,13 @@
 #import "STBarButtonItem.h"
 #import "LHPostPayView.h"   // 购买帖子弹框
 
+
 @interface UGPostListVC ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong)   UGPostDetailVC *postvc;                                   /**<   帖子 */
-
+                                     /**<   拖动的View */
 @end
 
 @implementation UGPostListVC
@@ -122,6 +123,8 @@
         }];
         [tv.mj_footer beginRefreshing];
     }
+    
+
 }
 
 - (IBAction)onSegmentedControlValueChanged:(UISegmentedControl *)sender {

@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger likeNum;      /**<   点赞数 */
 @property (nonatomic, assign) NSInteger viewNum;      /**<   阅读数 */
 @property (nonatomic, assign) NSInteger replyCount;   /**<   回复数 */
-
+@property (nonatomic, copy) NSString *baoma_type;   /**<   解码器类型（香港六合彩，澳门六合彩） */
 
 // 《获取帖子详情》
 // c=lhcdoc&a=contentDetail
