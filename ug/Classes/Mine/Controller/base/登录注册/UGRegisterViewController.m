@@ -356,7 +356,7 @@
             ck_parameter_non_empty(self.wechatTextF.text, @"请输入微信号");
         }
         if (config.reg_fb == 2) {
-            ck_parameter_non_empty(self.facebookTF.text, @"请输入FASEBOOK账号");
+            ck_parameter_non_empty(self.facebookTF.text, @"请输入fasebook账号");
         }
         if (config.reg_phone == 2 || config.smsVerify) {
             ck_parameter_non_empty(self.phoneTextF.text, @"请输入11位手机号码");
@@ -634,7 +634,7 @@
     }
     if (config.reg_fb) {
         if (config.reg_fb == 1) {
-            self.facebookTF.placeholder = @"请输入FASEBOOK(选填)";
+            self.facebookTF.placeholder = @"请输入facebook(选填)";
         }
     } else {
         self.facebookView.hidden = YES;
