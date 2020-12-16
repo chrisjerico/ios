@@ -372,7 +372,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     NSLog(@"model.gameCode= %@",model.gameCode);
     
-    if ([CMCommon stringIsNull:model.category]) {
+    if (![CMCommon stringIsNull:model.site_tags_id]) {
         //六合类型
         [self goLH:model];
         return true;
