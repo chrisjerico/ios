@@ -63,6 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) GameModel * list;/**<  手机资料栏目l */
 
 //==================六合类型=============================
+@property (copy, nonatomic) NSString *site_tags_id;/**<   判断是否为空，有表示是六合栏目，空为不是" */
 @property (copy, nonatomic) NSString *alias;/**<   栏目别名" */
 @property (copy, nonatomic) NSString *cid;/**<   栏目ID" */
 @property (copy, nonatomic) NSString *isHot;/**<   是否热门 1是 0否" */
