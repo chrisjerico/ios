@@ -56,7 +56,7 @@
     
     if (self.url2.length) {
         self.hideView = [[UIView alloc] initWithFrame:self.view.bounds];
-        [self.hideView setBackgroundColor:[UIColor redColor]];
+        [self.hideView setBackgroundColor:[UIColor whiteColor]];
         [self.view addSubview:self.hideView];
         [self.view bringSubviewToFront:self.hideView];
         
