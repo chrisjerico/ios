@@ -151,7 +151,9 @@
 
 - (void)goToPostDetailVC:(NSIndexPath *)indexPath willComment:(BOOL)willComment {
     UGLHPostModel *pm = _tableView.dataArray[indexPath.row];
-    
+    pm.link = _clm.link;
+    pm.baoma_type = _clm.baoma_type;
+    pm.read_pri = _clm.read_pri;
     __weakSelf_(__self);
     void (^push)(void) = ^{
         self.postvc = _LoadVC_from_storyboard_(@"UGPostDetailVC");

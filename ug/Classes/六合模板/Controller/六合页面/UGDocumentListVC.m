@@ -67,8 +67,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UGLHPostModel *pm = _tableView.dataArray[indexPath.row];
-//    pm.link = self.clm.link;
+    pm.link = self.clm.link;
     pm.baoma_type = self.clm.baoma_type;
+    pm.read_pri = self.clm.read_pri;
     __weakSelf_(__self);
     void (^push)(void) = ^{
         __self.postvc =  _LoadVC_from_storyboard_(@"UGPostDetailVC");

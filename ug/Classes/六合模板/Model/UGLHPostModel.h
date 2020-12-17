@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger viewNum;      /**<   阅读数 */
 @property (nonatomic, assign) NSInteger replyCount;   /**<   回复数 */
 @property (nonatomic, copy) NSString *baoma_type;   /**<   解码器类型（香港六合彩，澳门六合彩） */
-
+@property (copy, nonatomic) NSString *read_pri; /**<   可浏览会员类型：0是全部  1是正式会员 */
 // 《获取帖子详情》
 // c=lhcdoc&a=contentDetail
 //@property (nonatomic, copy) NSString *id;         /**<   帖子ID */

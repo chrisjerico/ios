@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic) NSString *thread_type;/**<  thread_type =2 为多期" */
 @property (copy, nonatomic) NSString *baoma_type;/**<  报码器类型 amlhc lhc */
+@property (copy, nonatomic) NSString *read_pri; /**<   可浏览会员类型：0是全部  1是正式会员 */
 
 // 自定义参数
 @property (nonatomic, readonly) NSString *categoryType; /**<   类型 */

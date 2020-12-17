@@ -104,6 +104,9 @@
     _contentVC.pm = ({
         UGLHPostModel *pm = [UGLHPostModel new];
         pm.cid = _dataArray[idx].jid;
+        pm.link = _clm.link;
+        pm.baoma_type = _clm.baoma_type;
+        pm.read_pri = _clm.read_pri;
         pm;
     });
     [self.view addSubview:_contentVC.view];
