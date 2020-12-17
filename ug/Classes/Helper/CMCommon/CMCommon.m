@@ -1404,6 +1404,14 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
                oc.title = @"幸运飞艇";
                nim = oc;
            }
+           else if ([@"c259" containsString:APP.SiteId]) {
+               UGNextIssueModel * oc = [UGNextIssueModel new];
+               oc.gameId = @"202";
+               oc.gameType = @"jsk3";
+               oc.name = @"jsk3";
+               oc.title = @"好运快3";
+               nim = oc;
+           }
            else {
                UGNextIssueModel * oc = [UGNextIssueModel new];
                oc.gameId = @"70";
