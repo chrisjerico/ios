@@ -59,6 +59,9 @@ _CCRuntimeProperty_Assign(BOOL, 允许游客访问, set允许游客访问)
 
 
 
+@interface ReactNativeVC ()
+@property (nonatomic, strong) RnPageModel *rpm;
+@end
 
 @interface UGTabbarController ()<UITabBarControllerDelegate>
 
@@ -95,24 +98,28 @@ static UGTabbarController *_tabBarVC = nil;
     }
     
     if (user) {
+        Class cls = vc.class;
+        if ([vc isKindOfClass:ReactNativeVC.class]) {
+            cls = NSClassFromString(((ReactNativeVC *)vc).rpm.vcName);
+        }
         // 聊天室
-        if (([vc isKindOfClass:[UGChatViewController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) && !user.chatRoomSwitch) {
+        if ((cls == UGChatViewController.class || cls == LotteryBetAndChatVC.class) && !user.chatRoomSwitch) {
             [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
             return false;
         }
         
         // 任务中心
-        else if ([vc isKindOfClass:[UGMissionCenterViewController class]] && [SysConf.missionSwitch isEqualToString:@"1"]) {
+        else if (cls == UGMissionCenterViewController.class && [SysConf.missionSwitch isEqualToString:@"1"]) {
             [AlertHelper showAlertView:@"温馨提示" msg:@"任务中心已关闭" btnTitles:@[@"确定"]];
             return false;
         }
         // 利息宝
-        else if ([vc isKindOfClass:[UGYubaoViewController class]] && !user.yuebaoSwitch) {
+        else if (cls == UGYubaoViewController.class && !user.yuebaoSwitch) {
             [AlertHelper showAlertView:@"温馨提示" msg:@"利息宝已关闭" btnTitles:@[@"确定"]];
             return false;
         }
         // 每日签到
-        else if ([vc isKindOfClass:[UGSigInCodeViewController class]] && [SysConf.checkinSwitch isEqualToString:@"0"]) {
+        else if (cls == UGSigInCodeViewController.class && [SysConf.checkinSwitch isEqualToString:@"0"]) {
             [AlertHelper showAlertView:@"温馨提示" msg:@"每日签到已关闭" btnTitles:@[@"确定"]];
             return false;
         }
