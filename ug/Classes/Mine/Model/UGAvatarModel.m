@@ -9,5 +9,7 @@
 #import "UGAvatarModel.h"
 
 @implementation UGAvatarModel
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{@"filename":@"id"};
+}
 @end

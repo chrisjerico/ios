@@ -10,6 +10,8 @@
 #import "UGAvaterCollectionViewCell.h"
 #import "UGAvatarModel.h"
 
+#import "TZImagePickerController.h"
+
 @interface UGAvaterSelectView ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bigImgView;
@@ -18,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
 @property (weak, nonatomic) IBOutlet UIView *avatersBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bigImgViewTopConstraint;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray <UGAvatarModel *> *dataArray;
@@ -36,7 +39,7 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         self = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:self options:0].firstObject;
         self.frame = frame;
         self.oldFrame = frame;
-        self.selIndex = 0;
+        self.selIndex = -1;
         self.leftIndex= 1;
         self.reghtIndex= 4;
         self.submitButton.layer.cornerRadius = 3;
@@ -46,7 +49,6 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
         self.cancelButton.layer.cornerRadius = 3;
         self.cancelButton.layer.masksToBounds = YES;
         [self initCollectionView];
-        [self getAvatarList];
         [self setBackgroundColor: Skin1.bgColor];
     }
     return self;
@@ -62,54 +64,83 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
     return view;
 }
 
-- (void)getAvatarList {
+- (void)getAvatarList:(void (^)(BOOL canUpload))completed {
+    [_bigImgView sd_setImageWithURL:[NSURL URLWithString:UserI.avatar] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
+    _bigImgViewTopConstraint.constant = 20;
     [SVProgressHUD showWithStatus: nil];
     WeakSelf;
-    [CMNetwork getAvatarListWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
+    [NetworkManager1 user_getAvatarSetting].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+        if (!err) {
             [SVProgressHUD dismiss];
-            weakSelf.dataArray = model.data;
+            NSMutableArray *temp = @[].mutableCopy;
+            for (NSDictionary *dict in resObject[@"data"][@"publicAvatarList"]) {
+                [temp addObject:[UGAvatarModel mj_objectWithKeyValues:dict]];
+            }
+            weakSelf.dataArray = temp;
             if (!weakSelf.dataArray.count) {
                 return ;
             }
             UGAvatarModel *avatar = self.dataArray.firstObject;
             [weakSelf.collectionView reloadData];
-            [weakSelf.bigImgView sd_setImageWithURL:[NSURL URLWithString:avatar.url] placeholderImage:[UIImage imageNamed:@"txp"] options:SDWebImageAllowInvalidSSLCertificates];
-        } failure:^(id msg) {
             
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
-    
+            BOOL canUpload = [resObject[@"data"][@"isAcceptUpload"] boolValue];
+            if (canUpload) {
+                weakSelf.bigImgViewTopConstraint.constant = 60;
+            }
+            
+            if (completed)
+                completed(canUpload);
+        }
+    };
 }
 
 - (void)changAvatar:(UGAvatarModel *)avatar {
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
-    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-                             @"filename":avatar.filename
-                             };
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
-    [CMNetwork changeAvatarWithParams:params completion:^(CMResult<id> *model, NSError *err) {
-        [CMResult processWithResult:model success:^{
-            [SVProgressHUD showSuccessWithStatus:model.msg];
+    [NetworkManager1 user_updateAvatar:avatar.filename].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+        if (!err) {
+            [SVProgressHUD showSuccessWithStatus:resObject[@"msg"]];
             UGUserModel *user = [UGUserModel currentUser];
             user.avatar = avatar.url;
             SANotificationEventPost(UGNotificationUserAvatarChanged, nil);
             [weakSelf hiddenSelf];
-        } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
-        }];
-    }];
+        }
+    };
 }
 
 
 #pragma mark - IBAction
 
+- (IBAction)onUploadAvatarBtnClick:(UIButton *)sender {
+    __weakSelf_(__self);
+    TZImagePickerController *ipc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:nil];
+    ipc.allowTakeVideo = false;
+    ipc.allowPickingVideo = false;
+    ipc.didFinishPickingPhotosHandle = ^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        NSString *path = [NSTemporaryDirectory() stringByAppendingFormat:@"%d.png", arc4random()%10000];
+        [UIImagePNGRepresentation(photos.firstObject) writeToFile:path atomically:true];
+        [SVProgressHUD show];
+        [NetworkManager1 user_uploadAvatar:path].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
+            if (!err) {
+                [SVProgressHUD showSuccessWithStatus:resObject[@"msg"]];
+                [__self hiddenSelf];
+                BOOL isReview = [resObject[@"data"][@"isReview"] boolValue];
+                if (!isReview) {
+                    SANotificationEventPost(UGNotificationGetUserInfo, nil);
+                }
+            }
+        };
+    };
+    [NavController1 presentViewController:ipc animated:true completion:^{}];
+}
+
 - (IBAction)submitClick:(id)sender {
-    [self changAvatar:self.dataArray[self.selIndex]];
+    if (_selIndex > -1) {
+        [self changAvatar:self.dataArray[self.selIndex]];
+    }
 }
 
 - (IBAction)cancelClick:(id)sender {
@@ -189,19 +220,21 @@ static NSString *avaterCellid = @"UGAvaterCollectionViewCell";
 }
 
 - (void)show {
-    UIWindow* window = UIApplication.sharedApplication.keyWindow;
-    UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
-    UIView* view = self;
-    
-    maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    
-    [maskView addSubview:view];
-    [window addSubview:maskView];
-    [UIView animateWithDuration:0.25 animations:^{
-        view.y = self.oldFrame.origin.y - view.height;
-    } completion:^(BOOL finished) {
+    __weakSelf_(__self);
+    [self getAvatarList:^(BOOL canUpload) {
+        UIWindow* window = UIApplication.sharedApplication.keyWindow;
+        UIView* maskView = [[UIView alloc] initWithFrame:window.bounds];
+        UIView* view = __self;
+        view.height += canUpload * 40;
         
+        maskView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+        maskView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        
+        [maskView addSubview:view];
+        [window addSubview:maskView];
+        [UIView animateWithDuration:0.25 animations:^{
+            view.y = __self.oldFrame.origin.y - view.height;
+        }];
     }];
 }
 

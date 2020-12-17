@@ -54,6 +54,15 @@ NS_ASSUME_NONNULL_BEGIN
 // 提款申请
 - (CCSessionModel *)withdraw_apply:(NSString *)wid amount:(NSString *)amount virtualAmount:(NSString *)vAmount pwd:(NSString *)pwd;
 
+// 获取头像配置
+- (CCSessionModel *)user_getAvatarSetting;
+
+// 修改头像
+- (CCSessionModel *)user_updateAvatar:(NSString *)publicAvatarId;
+
+// 上传头像
+- (CCSessionModel *)user_uploadAvatar:(NSString *)filePath;
+
 @end
 
 NS_ASSUME_NONNULL_END

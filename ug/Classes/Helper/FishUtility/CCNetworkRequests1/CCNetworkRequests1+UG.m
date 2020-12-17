@@ -109,4 +109,32 @@
                     :true];
 }
 
+// 获取头像配置
+- (CCSessionModel *)user_getAvatarSetting {
+    return [self req:@"wjapp/api.php?c=user&a=getAvatarSetting"
+                    :@{}
+                    :true];
+}
+
+// 修改头像
+- (CCSessionModel *)user_updateAvatar:(NSString *)publicAvatarId {
+    return [self req:@"wjapp/api.php?c=user&a=updateAvatar"
+                    :@{@"publicAvatarId":publicAvatarId,}
+                    :true];
+}
+
+// 上传头像
+- (CCSessionModel *)user_uploadAvatar:(NSString *)filePath {
+    return [self upload:@"wjapp/api.php?c=user&a=uploadAvatar"
+                       :@{}
+                       :true
+                       :@{@"files":({
+        CCUploadFileModel *ufm = [CCUploadFileModel new];
+        ufm.filename = filePath.lastPathComponent;
+        ufm.filePath = filePath;
+        ufm.mimeType = @"image/png";
+        ufm;
+    })}];
+}
+
 @end
