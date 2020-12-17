@@ -238,7 +238,9 @@
     _isShowDML = [@"c084,testadaf" containsString:_SiteId];
     _isCanUploadAvatar = true;
     _isHideBank = [@"c012" containsString:_SiteId];
-    _isOneRow  = [@"c115" containsString:_SiteId]; 
+    _isOneRow  = [@"c115" containsString:_SiteId];
+    
+    _isHideYQM = [@"c085" containsString:_SiteId];
     // 通知RN
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         [ReactNativeHelper sendEvent:@"AppDefine-SetupSiteAndSkinParams" params:@{}];

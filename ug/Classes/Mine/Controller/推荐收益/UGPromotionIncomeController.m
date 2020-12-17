@@ -106,7 +106,12 @@
     // 加载推荐收益信息
     placeholder.hidden = true;
     [self buildSegment];
-    [self setupRightItem];
+    
+    
+    if (!APP.isHideYQM) {
+        [self setupRightItem];
+    }
+   
 }
 
 

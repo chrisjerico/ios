@@ -125,6 +125,7 @@
 @property (nonatomic,assign) BOOL isCanUploadAvatar;                /**<  提供给RN判断是否支持上传头像功能（2020-12-9添加）*/
 //==============================================推荐收益
 @property (nonatomic,assign) BOOL isShowAll;                           /**<  佣金比例全部展示样式*/
+@property (nonatomic,assign) BOOL isHideYQM;                           /**<  隐藏邀请码按钮*/
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
