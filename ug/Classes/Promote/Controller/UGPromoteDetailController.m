@@ -398,16 +398,9 @@
 
             return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
         }
-        else{
-
-            if ([url containsString:@"?"]) {
-                
-                [CMCommon goVCWithUrl:url];
-
-                return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
-                
-            }
-            
+        else {
+            [CMCommon goVCWithUrl:url];
+            return NO; //返回NO，此页面的链接点击不会继续执行，只会执行跳转到你想跳转的页面
         }
 
         return NO;
@@ -415,3 +408,4 @@
     return YES;
 }
 @end
+

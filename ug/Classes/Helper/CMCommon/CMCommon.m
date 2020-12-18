@@ -1567,7 +1567,7 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     else  if ([url containsString:@"/mobile/#/lottery/ugGameList"]) {//【UG注单】
 //        [SVProgressHUD showInfoWithStatus:@"敬请期待"];
     }
-    else{
+    else if ([url containsString:@"?"]) {
         NSArray *params =[url componentsSeparatedByString:@"?"];
         NSMutableDictionary *tempDic = [NSMutableDictionary dictionary];
         for (NSString *paramStr in params) {
