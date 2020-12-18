@@ -229,6 +229,10 @@
             _topStackView.superview.hidden = true;
             _lefts = @[_scratchView, _uUpperLeftView, _ulowerLefttView];
             _rights = @[_uGredEnvelopeView, _bigWheelView, _goldEggView, _uUpperRightView, _uLowerRightView];
+            
+            if ([APP.SiteId isEqualToString:@"c150"]) {
+                _rights = @[_uGredEnvelopeView, _goldEggView, _uUpperRightView, _uLowerRightView, (id)[UIView new], _bigWheelView];
+            }
         }
         
         __weakSelf_(__self);
