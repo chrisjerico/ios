@@ -157,11 +157,11 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
                 [tableView beginUpdates];
                 [tableView endUpdates];
             }];
-            [cell addSubview:wv];
+            [cell.contentView addSubview:wv];
             
             [wv mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.equalTo(cell).offset(-2);
-                make.top.bottom.equalTo(cell).offset(2);
+                make.left.right.equalTo(cell.contentView).offset(-2);
+                make.top.bottom.equalTo(cell.contentView).offset(2);
                 make.height.mas_equalTo(60);
             }];
         }

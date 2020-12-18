@@ -179,13 +179,17 @@ static LogVC *_logVC = nil;
             [logoView.button setTitle:@"投注" forState:UIControlStateNormal];
             [logoView.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
              logoView.clickDragViewBlock = ^(WMDragView *dragView){
-                 [SVProgressHUD showInfoWithStatus:NavController1.topViewController.className];
+                 [AlertHelper showAlertView:NavController1.topViewController.className
+                                        msg:NavController1.topViewController.childViewControllers.description
+                                  btnTitles:@[@"确定"]];
              };
             
         }];
 
         [ac setActionAtTitle:@"查看当前页面名" handler:^(UIAlertAction *aa) {
-            [SVProgressHUD showInfoWithStatus:NavController1.topViewController.className];
+            [AlertHelper showAlertView:NavController1.topViewController.className
+                                   msg:NavController1.topViewController.childViewControllers.description
+                             btnTitles:@[@"确定"]];
         }];
         return;
     }

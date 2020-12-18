@@ -121,39 +121,31 @@
         
         // 加载html
         {
-            static UGPromoteModel *__nm = nil;
-            __nm = nm;
-            
             UIWebView *wv = [cell viewWithTagString:@"WebView"];
-            if (!wv) {
-                wv = [UIWebView new];
-                wv.backgroundColor = [UIColor clearColor];
-                wv.tagString = @"WebView";
-                [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(id  _Nonnull obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
-                    //                     NSLog(@"newH === %f",[newVal CGSizeValue].height);
-                    //                     NSLog(@"oldH === %f",[oldVal CGSizeValue].height);
-                    CGFloat h = __nm.webViewHeight = [newVal CGSizeValue].height;
-                    //                     NSLog(@"高度==========%f",h);
-                    [obj mas_updateConstraints:^(MASConstraintMaker *make) {
-                        make.height.mas_equalTo(h);
-                    }];
-                    [self->_tableView beginUpdates];
-                    [self->_tableView endUpdates];
+            [wv stopLoading];
+            [wv removeFromSuperview];
+            wv = [UIWebView new];
+            wv.backgroundColor = [UIColor clearColor];
+            wv.tagString = @"WebView";
+            [wv xw_removeObserverBlockForKeyPath:@"scrollView.contentSize"];
+            [wv xw_addObserverBlockForKeyPath:@"scrollView.contentSize" block:^(UIWebView *obj, id  _Nonnull oldVal, id  _Nonnull newVal) {
+                CGFloat h = nm.webViewHeight = [newVal CGSizeValue].height;
+                [obj mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.height.mas_equalTo(h);
                 }];
-                [cell addSubview:wv];
-                
-                [wv mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.right.equalTo(cell).offset(-2);
-                    make.top.bottom.equalTo(cell).offset(2);
-                    make.height.mas_equalTo(60);
-                }];
-            }
-            
-            wv.scrollView.contentSize = CGSizeMake(100, __nm.webViewHeight);
+                [self->_tableView beginUpdates];
+                [self->_tableView endUpdates];
+            }];
+            [cell.contentView addSubview:wv];
+            [wv mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(cell.contentView).offset(-2);
+                make.top.bottom.equalTo(cell.contentView).offset(2);
+                make.height.mas_equalTo(60);
+            }];
             if ([@"c200" containsString:APP.SiteId]) {
-                [wv loadHTMLString:_NSString(@"<head><style>p{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", __nm.content) baseURL:nil];
+                [wv loadHTMLString:_NSString(@"<head><style>p{margin:0}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", nm.content) baseURL:nil];
             } else {
-                [wv loadHTMLString:[APP htmlStyleString:__nm.content] baseURL:nil];
+                [wv loadHTMLString:[APP htmlStyleString:nm.content] baseURL:nil];
             }
         }
         
