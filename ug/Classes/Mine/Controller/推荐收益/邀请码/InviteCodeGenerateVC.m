@@ -41,12 +41,15 @@
     // Do any additional setup after loading the view from its nib.
     FastSubViewCode(self.view)
     [subLabel(@"说明label") setText:@""];
+    [subLabel(@"邀请码标题Label") setText:@""];
     if ([inviteCodeModel.noticeSwitch isEqualToString:@"1"]) {
         [subLabel(@"说明label") setHidden:NO];
-        NSString  *str = [NSString stringWithFormat:@"%@说明:%@",inviteCodeModel.displayWord,inviteCodeModel.noticeText];
-        [subLabel(@"说明label") setText:str ];
+        [subLabel(@"邀请码标题Label")setHidden:NO];
+        [subLabel(@"说明label") setText:inviteCodeModel.noticeText];
+        [subLabel(@"邀请码标题Label") setText:[NSString stringWithFormat:@"%@说明:",inviteCodeModel.displayWord] ];
     } else {
         [subLabel(@"说明label") setHidden:YES];
+        [subLabel(@"邀请码标题Label")setHidden:YES];
     }
     
 
