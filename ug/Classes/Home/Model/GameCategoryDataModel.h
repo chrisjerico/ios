@@ -63,6 +63,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) GameModel * list;/**<  手机资料栏目l */
 
 //==================六合类型=============================
+@property (copy, nonatomic) NSString *site_tags_id;/**<   判断是否为空，有表示是六合栏目，空为不是" */
 @property (copy, nonatomic) NSString *alias;/**<   栏目别名" */
 @property (copy, nonatomic) NSString *cid;/**<   栏目ID" */
 @property (copy, nonatomic) NSString *isHot;/**<   是否热门 1是 0否" */
@@ -74,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (copy, nonatomic) NSString *thread_type;/**<  thread_type =2 为多期" */
 @property (copy, nonatomic) NSString *baoma_type;/**<  报码器类型 amlhc 澳门六合彩  lhc香港六合彩 */
-
+@property (copy, nonatomic) NSString *read_pri; /**<   可浏览会员类型：0是全部  1是正式会员 */
 // 自定义参数
 @property (nonatomic, readonly) NSString *categoryType; /**<   类型 */
 

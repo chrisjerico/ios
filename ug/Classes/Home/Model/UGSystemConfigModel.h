@@ -223,6 +223,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL m_promote_pos;           /**<   优惠活动显示在首页还是内页，1首页，0内页 */
 @property (nonatomic) BOOL yuebaoSwitch;            /**<   未登录时是否允许访问利息宝 */
 @property (nonatomic) BOOL mBonsSwitch;            /**<   俸禄开关开启。0 为开启， 1 为 关闭*/
+@property (nonatomic) BOOL lhcdocIsShowNav;          /**<   是否开启分栏（六合模板   true 开启） */
 @property (nonatomic, copy) NSString *chatRoomName;           /**<   聊天室名称*/
 @property (nonatomic, assign) NSInteger chatFollowSwitch;                  /**<   0-不能分享 1- 允许分享 */
 @property (nonatomic) BOOL chatShareBet;                  /**<   是否允许注单分享 */

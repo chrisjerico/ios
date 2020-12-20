@@ -275,6 +275,9 @@
             if (!sm.error) {
                 UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                 pm.link = model.link;
+                pm.baoma_type = model.baoma_type;
+                pm.read_pri = model.read_pri;
+                
                 NSLog(@"获取帖子详情 = %@",pm.content);
                 void (^push)(void) = ^{
                     
@@ -361,6 +364,8 @@
                 if (!sm.error) {
                     UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                     pm.link = model.link;
+                    pm.baoma_type = model.baoma_type;
+                    pm.read_pri = model.read_pri;
                     NSLog(@"获取帖子详情 = %@",pm.content);
                     void (^push)(void) = ^{
                         

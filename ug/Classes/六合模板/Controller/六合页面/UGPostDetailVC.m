@@ -22,7 +22,7 @@
 // Tools
 #import "YYText.h"
 #import "CMTimeCommon.h"
-
+#import "WMDragView.h"
 #define ContentWidth (APP.Width-40)
 
 
@@ -38,14 +38,26 @@
 @property (nonatomic, copy) NSString *opCommentId;  /**<    被回复的评论ID（有值表示回复评论，没值表示评论动态） */
 @property (nonatomic, copy) NSMutableDictionary *textBuffer;
 @property (nonatomic,strong)NSMutableArray <MediaModel *>*image_list;
-
+@property (nonatomic, strong)   WMDragView *dragV;   
 
 @end
 
 @implementation UGPostDetailVC
 
-- (BOOL)允许游客访问   { return true; }
-- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问   {
+    if ([self.pm.read_pri isEqualToString:@"1"]) {//0是全部  1是正式会员
+        return false;
+    } else {
+        return true;
+    }
+}
+- (BOOL)允许未登录访问 {
+    if ([self.pm.read_pri isEqualToString:@"1"]) {
+        return false;
+    } else {
+        return true;
+    }
+}
 - (void)dealloc {
     
     if (_lhPrizeView.timer) {
@@ -117,11 +129,26 @@
     NSLog(@"link = %@",self.pm.link);
     FastSubViewCode(self.view);
     
-    //fourUnlike  CvB3zABB rundog humorGuess
-    //       subLabel(@"标题Label").hidden = [@"mystery,rule,sixpic,humorGuess,rundog,fourUnlike,sxbm,tjym,ptyx" containsString:pm.categoryType];
+
     
-    
-    //    [CMCommon showSystemTitle:self.pm.link];
+    if ([self.pm.baoma_type isEqualToString:@"amlhc"]) {
+        self.dragV = [[WMDragView alloc] initWithFrame:CGRectMake(UGScreenW-61, 0.4*UGScerrnH , 60, 60)];
+        _dragV.isKeepBounds = YES;
+        _dragV.layer.cornerRadius = 30;
+        [_dragV setBackgroundColor:RGBA(122, 113, 243, 0.8)];
+        [self.view addSubview:_dragV];
+        _dragV.button.titleLabel.font = [UIFont systemFontOfSize:20.0];
+        [_dragV.button setTitle:@"投注" forState:UIControlStateNormal];
+        [_dragV.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _dragV.clickDragViewBlock = ^(WMDragView *dragView){
+            
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = @"澳门六合彩";
+            m.gameId = @"222";
+            m.gameType = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+         };
+    }
 }
 
 -(BOOL)hasShow{

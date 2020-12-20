@@ -155,6 +155,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             if (!sm.error) {
                 UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                 pm.link = model.link;
+                pm.baoma_type = model.baoma_type;
+                pm.read_pri = model.read_pri;
+                
                 NSLog(@"获取帖子详情 = %@",pm.content);
                 void (^push)(void) = ^{
                     
@@ -227,6 +230,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
                 if (!sm.error) {
                     UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                     pm.link = model.link;
+                    pm.baoma_type = model.baoma_type;
+                    pm.read_pri = model.read_pri;
                     NSLog(@"获取帖子详情 = %@",pm.content);
                     void (^push)(void) = ^{
                         
@@ -370,7 +375,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     NSLog(@"model.gameCode= %@",model.gameCode);
     
-    if ([CMCommon stringIsNull:model.category]) {
+    if (![CMCommon stringIsNull:model.site_tags_id]) {
         //六合类型
         [self goLH:model];
         return true;

@@ -115,7 +115,7 @@
     skitType = Skin1.skitType;
     if ([skitType isEqualToString:@"经典"] || [skitType isEqualToString:@"六合资料"]|| Skin1.isJY) {
         self.topupView.hidden = YES;
-        self.topupViewNSLayoutConstraintHight.constant = 0.1;
+        self.topupViewNSLayoutConstraintHight.constant = 0;
     }
     else if(Skin1.isTKL) {
         self.topupView.hidden = NO;
@@ -338,7 +338,7 @@ BOOL isOk = NO;
     
     if (isOk) {
         self.topupView.hidden = YES;
-        self.topupViewNSLayoutConstraintHight.constant = 0.1;
+        self.topupViewNSLayoutConstraintHight.constant = 0;
         skitType = @"新年红";
     }
     else{
@@ -586,18 +586,18 @@ BOOL isOk = NO;
         return size;
     }
     else  if([skitType isEqualToString:@"经典"]||Skin1.isJY) {
-        CGSize size = {UGScreenW, 0.1};
+        CGSize size = {UGScreenW, 0};
         return size;
     }
     else{
-        CGSize size = {UGScreenW, 0.1};
+        CGSize size = {UGScreenW, 0};
         return size;
     }
 }
 
 //cell size
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    float itemW = (APP.Width - 0.0 )/ 3.0;
+    float itemW = (APP.Width - 1.0 )/ 3.0;
     if ([skitType isEqualToString:@"新年红"]) {
         CGSize size = {itemW, 100};
         return size;

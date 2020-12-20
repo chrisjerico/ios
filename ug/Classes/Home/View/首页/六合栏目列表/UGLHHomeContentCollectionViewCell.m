@@ -69,12 +69,40 @@
                 [subButton(@"hotButton") setTitle:@"hot" forState:(UIControlStateNormal)];
             }
         }
-    } else {
+        
+        [subImageView(@"中大奖imgV") setHidden:YES];
+        [subImageView(@"热门imgV") setHidden:YES];
+        
+    } else {//其他类型
         [self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
         [subImageView(@"图片ImgV") sd_setImageWithURL:[NSURL URLWithString:item.icon] placeholderImage:[UIImage imageNamed:@"loading"]];
         subLabel(@"标题Label").text =  [CMCommon stringIsNull:item.name] ? item.title : item.name;
         subLabel(@"详细Label").text =  [CMCommon stringIsNull:item.subtitle] ? @"" : item.subtitle;
         [subButton(@"hotButton") setHidden:YES];
+
+        
+        [subImageView(@"热门imgV") sd_setImageWithURL:[NSURL URLWithString:item.hotIcon] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (error) {
+                subImageView(@"热门imgV").image = [UIImage imageNamed:@"hot"];
+            }
+        }];
+        [subImageView(@"中大奖imgV") sd_setImageWithURL:[NSURL URLWithString:item.hotIcon] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (error) {
+                [subImageView(@"中大奖imgV") sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"effects" withExtension:@"gif"]];
+            }
+        }];
+        [subImageView(@"中大奖imgV") setHidden:!(item.tipFlag==4)];
+        BOOL isGPK = Skin1.isGPK;
+        if (item.tipFlag==1 || item.tipFlag==2 ||item.tipFlag==3) {
+            if (isGPK) {
+                subImageView(@"热门imgV") .hidden = YES;
+            } else {
+                subImageView(@"热门imgV") .hidden = NO;
+            }
+        }
+        else{
+            subImageView(@"热门imgV") .hidden = YES;
+        }
 
     }
    
