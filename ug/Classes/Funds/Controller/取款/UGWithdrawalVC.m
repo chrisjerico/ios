@@ -44,6 +44,7 @@
     subLabel(@"虚拟币汇率Label").hidden = true;
     subTextField(@"取款金额TextField").superview.hidden = true;
     subTextField(@"取款密码TextField").hidden = true;
+    subButton(@"切换到利息宝取款Button").hidden = !UserI.yuebaoSwitch;
     _bindAcctView.hidden = true;
     // 虚线边框
     {
