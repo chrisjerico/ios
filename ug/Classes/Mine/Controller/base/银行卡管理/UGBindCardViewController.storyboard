@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WqA-f3-xTN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WqA-f3-xTN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -145,7 +145,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghA-53-k8x">
                                 <rect key="frame" x="5" y="209" width="399" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpV-OA-9yk">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpV-OA-9yk">
                                         <rect key="frame" x="80" y="0.0" width="319" height="49.5"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户银行" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWi-MZ-FGQ">
@@ -326,7 +326,7 @@
                                     <constraint firstItem="UgQ-CF-uca" firstAttribute="leading" secondItem="1Js-1c-uss" secondAttribute="trailing" constant="10" id="oj1-gB-Une"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWL-hX-xv9">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWL-hX-xv9">
                                 <rect key="frame" x="30" y="449" width="354" height="44"/>
                                 <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -338,6 +338,7 @@
                                 </state>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="NRi-2q-Ski"/>
                         <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="43t-fp-OmC" firstAttribute="top" secondItem="8pN-Cv-Zcp" secondAttribute="bottom" id="20D-mD-HEN"/>
@@ -366,7 +367,6 @@
                             <constraint firstItem="8pN-Cv-Zcp" firstAttribute="top" secondItem="BvE-TA-njV" secondAttribute="bottom" id="xoH-IL-Ore"/>
                             <constraint firstItem="TWL-hX-xv9" firstAttribute="top" secondItem="Y63-WI-Xmc" secondAttribute="bottom" constant="40" id="yUz-MP-SRj"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="NRi-2q-Ski"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-1v-MNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -384,7 +384,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBu-mB-Urb">
                                 <rect key="frame" x="5" y="110.5" width="399" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jpb-IP-EgB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jpb-IP-EgB">
                                         <rect key="frame" x="80" y="0.0" width="319" height="49.5"/>
                                         <connections>
                                             <action selector="showBankList:" destination="WqA-f3-xTN" eventType="touchUpInside" id="2Pm-kT-K1O"/>
@@ -586,7 +586,7 @@
                                     <constraint firstItem="9HB-4D-plD" firstAttribute="top" secondItem="QwL-Pz-l9a" secondAttribute="top" id="xcO-jz-2SM"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qo-Pb-BBM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qo-Pb-BBM">
                                 <rect key="frame" x="30" y="350.5" width="354" height="44"/>
                                 <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -620,6 +620,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="A8x-4g-X46"/>
                         <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="WlW-wx-jW1" firstAttribute="leading" secondItem="YyB-0B-7cK" secondAttribute="leading" id="093-mb-Axh"/>
@@ -644,7 +645,6 @@
                             <constraint firstItem="QwL-Pz-l9a" firstAttribute="trailing" secondItem="WlW-wx-jW1" secondAttribute="trailing" id="vlx-Bu-Svq"/>
                             <constraint firstItem="WlW-wx-jW1" firstAttribute="trailing" secondItem="YyB-0B-7cK" secondAttribute="trailing" id="wuf-PF-yzx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="A8x-4g-X46"/>
                     </view>
                     <connections>
                         <outlet property="bankAddressTextF" destination="Arn-DP-kcS" id="qZO-d9-0nP"/>
@@ -744,11 +744,12 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的4位数字提款密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3uu-8N-NvO">
                                         <rect key="frame" x="100" y="0.0" width="294" height="49.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="限制长度">
                                                 <integer key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
@@ -794,11 +795,12 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请确认您的提款密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="k25-f0-C3Z">
                                         <rect key="frame" x="100" y="0.0" width="294" height="49.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="限制长度">
                                                 <integer key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="仅数字" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
@@ -816,7 +818,7 @@
                                     <constraint firstAttribute="height" constant="50" id="zD0-rf-YQq"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljy-kb-tjU">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljy-kb-tjU">
                                 <rect key="frame" x="30" y="300.5" width="354" height="44"/>
                                 <color key="backgroundColor" red="0.2839455307" green="0.57867711779999997" blue="0.92549556489999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -850,6 +852,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="hlb-fC-6z7"/>
                         <color key="backgroundColor" red="0.90598434209823608" green="0.90195208787918091" blue="0.90196138620376587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Ay3-aJ-rDk" firstAttribute="leading" secondItem="hlb-fC-6z7" secondAttribute="leading" constant="15" id="1an-Dd-wVg"/>
@@ -871,7 +874,6 @@
                             <constraint firstItem="Ljy-kb-tjU" firstAttribute="leading" secondItem="hlb-fC-6z7" secondAttribute="leading" constant="30" id="p6b-vq-txr"/>
                             <constraint firstItem="FKh-DY-iCJ" firstAttribute="trailing" secondItem="qUE-Rg-tJl" secondAttribute="trailing" id="u7H-NR-bhb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hlb-fC-6z7"/>
                     </view>
                     <connections>
                         <outlet property="checkPwdTextF" destination="k25-f0-C3Z" id="DRo-vl-v48"/>
@@ -909,7 +911,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwr-vM-41b">
-                                                <rect key="frame" x="10" y="17" width="98" height="21.5"/>
+                                                <rect key="frame" x="10" y="17" width="96" height="21.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
@@ -974,13 +976,13 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="jhm-5O-ldR"/>
                         <color key="backgroundColor" red="0.86284679174423218" green="0.85881531238555908" blue="0.85882407426834106" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="jhm-5O-ldR" firstAttribute="trailing" secondItem="AG6-bc-Y6A" secondAttribute="trailing" constant="25" id="6Ih-99-wAc"/>
                             <constraint firstItem="AG6-bc-Y6A" firstAttribute="leading" secondItem="jhm-5O-ldR" secondAttribute="leading" constant="25" id="R1R-2m-VDb"/>
                             <constraint firstItem="AG6-bc-Y6A" firstAttribute="top" secondItem="jhm-5O-ldR" secondAttribute="top" constant="40" id="XXf-SH-ohi"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="jhm-5O-ldR"/>
                     </view>
                     <connections>
                         <outlet property="accountLabel" destination="FhX-rW-Iau" id="tVB-Z6-ger"/>
