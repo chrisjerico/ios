@@ -192,6 +192,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic, copy) NSString *appPopupQqImg;        /**<   微信客服二维码 */
 @property (nonatomic, copy) NSString *domainBindAgentId;    /**<   如果这个属性大于0，则在注册邀请人输入框填入改ID，且无法更改 */
 @property (nonatomic, copy) NSString *homeTypeSelect;        /**<  是否开启前台分类*/
+@property (nonatomic, copy) NSString *missionPopUpSwitch;    /**<   开启后，首页会显示浮窗，点击弹出任务框  0未开启，1开启UGSystemConfigModel */
+@property (nonatomic, copy) NSString *mission_logo;        /**<  手机端首页显示浮窗 任务图片*/
 
 @property (nonatomic, copy) NSArray<UGMobileMenu *> *mobileMenu;
 

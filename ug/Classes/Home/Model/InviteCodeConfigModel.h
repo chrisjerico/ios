@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)NSString* canUseNum;
 @property(nonatomic, strong)NSString* randomSwitch;
 @property(nonatomic, strong)NSString* randomLength;
+@property(nonatomic, strong)NSString* noticeSwitch;//邀请码说明栏开关
+@property(nonatomic, strong)NSString* noticeText;//邀请码说明栏文字
 
 @end
 

@@ -25,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
 	self.segmentIndex = 0;
 	InviteCodeConfigModel *inviteCodeModel = UGSystemConfigModel.currentConfig.inviteCode;
 	self.titleLabel.text = inviteCodeModel.displayWord;
@@ -37,6 +39,20 @@
 	[self.randomButton setHidden: ![inviteCodeModel.randomSwitch isEqualToString:@"1"]];
 
     // Do any additional setup after loading the view from its nib.
+    FastSubViewCode(self.view)
+    [subLabel(@"说明label") setText:@""];
+    [subLabel(@"邀请码标题Label") setText:@""];
+    if ([inviteCodeModel.noticeSwitch isEqualToString:@"1"]) {
+        [subLabel(@"说明label") setHidden:NO];
+        [subLabel(@"邀请码标题Label")setHidden:NO];
+        [subLabel(@"说明label") setText:inviteCodeModel.noticeText];
+        [subLabel(@"邀请码标题Label") setText:[NSString stringWithFormat:@"%@说明:",inviteCodeModel.displayWord] ];
+    } else {
+        [subLabel(@"说明label") setHidden:YES];
+        [subLabel(@"邀请码标题Label")setHidden:YES];
+    }
+    
+
 }
 - (IBAction)dismissAction:(id)sender {
 	[self dismissViewControllerAnimated:true completion:nil];

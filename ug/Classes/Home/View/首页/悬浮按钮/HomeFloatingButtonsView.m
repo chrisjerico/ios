@@ -13,7 +13,7 @@
 
 #import "EggFrenzyViewController.h"
 #import "ScratchController.h"
-
+#import "UGTaskNoticeView.h"
 #import "CMTimeCommon.h"
 
 @interface HomeFloatingButtonsView ()
@@ -37,6 +37,8 @@
 @property (nonatomic, strong)  UGredEnvelopeView *uGredEnvelopeView;/**<   红包浮动按钮 */
 
 @property (nonatomic, strong)  UGredActivityView *uGredActivityView;/**<   红包弹框 */
+
+@property (nonatomic, strong)  UGredEnvelopeView *taskView;/**<   任务浮动按钮 */
 
 @end
 
@@ -168,6 +170,18 @@
         };
     }
     
+#pragma mark 任务
+    {//任务
+        self.taskView = [[UGredEnvelopeView alloc] initWithFrame:CGRectMake(UGScreenW-80, 150, 70, 70) ];
+        self.taskView.cancelClickBlock = cancelClickBlock;
+        self.taskView.redClickBlock = ^(void) {
+            if (!checkLogin()) return;
+            CGFloat h = UGScerrnH - APP.StatusBarHeight - APP.BottomSafeHeight - 150;
+            UGTaskNoticeView *notiveView = [[UGTaskNoticeView alloc] initWithFrame:CGRectMake(25, (UGScerrnH-h)/2, UGScreenW - 50, h)];
+            [notiveView show];
+        };
+    }
+    
 #pragma 悬浮按钮
     // 手机悬浮按钮
     {
@@ -204,6 +218,7 @@
             BOOL ret = [NavController1 pushViewControllerWithLinkCategory:[banner.linkCategory integerValue] linkPosition:[banner.linkPosition integerValue]];
         };
     }
+
 }
 
 - (void)didMoveToSuperview {
@@ -228,11 +243,13 @@
         } else {
             _topStackView.superview.hidden = true;
             _lefts = @[_scratchView, _uUpperLeftView, _ulowerLefttView];
-            _rights = @[_uGredEnvelopeView, _bigWheelView, _goldEggView, _uUpperRightView, _uLowerRightView];
+            
+            _rights = @[_uGredEnvelopeView,_taskView, _bigWheelView, _goldEggView, _uUpperRightView, _uLowerRightView];
             
             if ([APP.SiteId isEqualToString:@"c150"]) {
-                _rights = @[_uGredEnvelopeView, _goldEggView, _uUpperRightView, _uLowerRightView, (id)[UIView new], _bigWheelView];
+                _rights = @[_uGredEnvelopeView,_taskView, _goldEggView, _uUpperRightView, _uLowerRightView, (id)[UIView new], _bigWheelView];
             }
+
         }
         
         __weakSelf_(__self);
@@ -282,12 +299,16 @@
 }
 
 - (void)reloadData:(void (^)(BOOL succ))completion {
-    [self getactivityTurntableList];    // 大转盘
-    [self getactivityGoldenEggList];    // 砸金蛋
-    [self getactivityCratchList];       // 刮刮乐
-    [self getCheckinListData];  // 红包数据
-    [self getfloatAdsList];     // 首页左右浮窗
-    [self getActivitySettings]; // 红包转盘刮刮乐砸金蛋图片
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self getactivityTurntableList];    // 大转盘
+        [self getactivityGoldenEggList];    // 砸金蛋
+        [self getactivityCratchList];       // 刮刮乐
+        [self getCheckinListData];  // 红包数据
+        [self getfloatAdsList];     // 首页左右浮窗
+        [self getActivitySettings]; // 红包转盘刮刮乐砸金蛋图片
+        [self getSystemConfig];
+
+    });
 }
 
 
@@ -449,7 +470,6 @@
     
 }
 
-
 //全部图片
 - (void)getActivitySettings {
     WeakSelf;
@@ -500,4 +520,31 @@
     }];
 }
 
+
+// 获取系统配置
+- (void)getSystemConfig {
+    WeakSelf;
+    [CMNetwork getSystemConfigWithParams:@{} completion:^(CMResult<id> *model, NSError *err) {
+       
+        [CMResult processWithResult:model success:^{
+            UGSystemConfigModel *config = model.data;
+            UGSystemConfigModel.currentConfig = config;
+            // UI更新代码
+            // 任务
+            if ([SysConf.missionPopUpSwitch isEqualToString:@"1"]) {
+                [weakSelf  setFloatingButtonView:self.taskView hidden:NO];
+                if (![CMCommon stringIsNull:SysConf.mission_logo]) {
+                    [weakSelf.taskView.imgView sd_setImageWithURL:[NSURL URLWithString:SysConf.mission_logo] placeholderImage:[UIImage imageNamed:@"task_home"]];
+                }
+                else{
+                    [weakSelf.taskView.imgView setImage:[UIImage imageNamed:@"task_home"]];
+                }
+            } else {
+                [weakSelf  setFloatingButtonView:self.taskView hidden:YES];
+            }
+        } failure:^(id msg) {
+            [weakSelf  setFloatingButtonView:self.taskView hidden:YES];
+        }];
+    }];
+}
 @end

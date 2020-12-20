@@ -68,11 +68,13 @@
         }
     }
     
-    if ([item.type isEqualToString:@"0"]) {
-        self.typeLabel.text = @"一次性";
-    } else {
-        self.typeLabel.text = @"日常任务";
-    }
+//    if ([item.type isEqualToString:@"0"]) {
+//        self.typeLabel.text = @"一次性";
+//    } else {
+//        self.typeLabel.text = @"日常任务";
+//    }
+//    self.typeLabel.text = item.sortName;
+
     
     if ([item.status isEqualToString:@"3"]) {
         [self.goButton setTitle:@"领奖励" forState:UIControlStateNormal];

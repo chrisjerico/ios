@@ -12,9 +12,8 @@
 #import "UGMissionModel.h"
 @interface UGMissionMainViewController ()<XYYSegmentControlDelegate>
 @property (nonatomic, strong)XYYSegmentControl *slideSwitchView;
-@property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;
-@property (nonatomic,strong)  NSMutableArray <UGMissionListController *> *viewsArray;
-
+@property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;//slideSwitchView 的分栏标题
+@property (nonatomic,strong)  NSMutableArray <UGMissionListController *> *viewsArray;//slideSwitchView 的分栏视图
 @property (nonatomic,strong)  NSMutableArray <NSMutableDictionary *> *disArray;
 @end
 
