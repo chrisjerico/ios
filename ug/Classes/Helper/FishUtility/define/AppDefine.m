@@ -266,10 +266,11 @@ static NSArray<RnPageModel *> *_rnPageInfos;
 static NSMutableArray<RnPageModel *(^)(void)> *_ysReplacePages;
 
 - (NSArray<RnPageModel *> *)rnPageInfos {
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:_rnPageInfos];
+    NSMutableArray *temp = @[].mutableCopy;
     for (RnPageModel *(^getRpm)(void) in _ysReplacePages) {
         [temp addObject:getRpm()];
     }
+    [temp addObjectsFromArray:_rnPageInfos];
     return temp;
 }
 
