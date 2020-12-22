@@ -156,6 +156,7 @@
     FastSubViewCode(self.view);
     //=====================================
     subLabel(@"币种内容Label").text = channelModel.domain;
+    subLabel(@"币种Label2").text = channelModel.domain;
     [subLabel(@"链名称内容Label") setText:channelModel.address];
     subLabel(@"二微码Label").text = channelModel.account;
     
@@ -176,7 +177,7 @@
         self.currencyRate  = channelModel.currencyRate;
     }
 
-    [subLabel(@"汇率Label") setText:[NSString stringWithFormat:@"1 USDT = %@ CNY",[CMCommon randStr:[self currencyRateStr:self.currencyRate count:1.0] scale:2]]];
+    [subLabel(@"汇率Label") setText:[NSString stringWithFormat:@"1 %@ = %@ CNY", channelModel.domain, [CMCommon randStr:[self currencyRateStr:self.currencyRate count:1.0] scale:2]]];
     //=====================================
 
     UGparaModel *bankModel= channelModel.para;
@@ -331,7 +332,7 @@
         //清空数据
         
     }
-    
+    [self changedTextField:self.inputTxf];
 
 }
 #pragma mark - 事件 复制

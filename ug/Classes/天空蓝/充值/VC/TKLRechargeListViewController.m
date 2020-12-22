@@ -49,7 +49,20 @@
     [subView(@"无内容View") setHidden:YES];
     [self rechargeCashierData];
    
-    
+    __weakSelf_(__self);
+    void (^block)(UIButton *) = ^(UIButton *sender) {
+        BOOL isRight = sender == subButton(@"右边Button");
+        CGFloat max = __self.collectionView.contentSize.width - __self.collectionView.width;
+        CGFloat offsetX = __self.collectionView.contentOffset.x + __self.collectionView.width * (isRight ? 1 : -1);
+        offsetX = MAX(offsetX, 0);
+        offsetX = MIN(offsetX, max);
+        [__self.collectionView setContentOffset:CGPointMake(offsetX, 0) animated:true];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [__self scrollViewDidEndScroll];
+        });
+    };
+    [subButton(@"左边Button") addBlockForControlEvents:UIControlEventTouchUpInside block:block];
+    [subButton(@"右边Button") addBlockForControlEvents:UIControlEventTouchUpInside block:block];
 }
 
 #pragma mark - UICollectionViewDataSource
