@@ -13,7 +13,7 @@
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [SVProgressHUD jr_swizzleMethod:@selector(showErrorWithStatus:) withMethod:@selector(cc_showErrorWithStatus:) error:nil];
+        [SVProgressHUD jr_swizzleClassMethod:@selector(showErrorWithStatus:) withClassMethod:@selector(cc_showErrorWithStatus:) error:nil];
     });
 }
 
@@ -22,7 +22,12 @@
     if ([[status lowercaseString] containsString:@"token"]) {
         [SVProgressHUD dismiss];
     } else {
-        [self cc_showErrorWithStatus:status];
+        
+        NSLog(@"status ===== %@",status);
+        if (![status isEqualToString:@"NSCocoaErrorDomain"]) {
+            [self cc_showErrorWithStatus:status];
+        }
+       
     }
 }
 @end

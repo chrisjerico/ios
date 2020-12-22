@@ -287,21 +287,6 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
             [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"] forKey:@"LanguageUpdateTime"];
         }
     }
-    
-    // 上传
-    if (upload) {
-        NSDictionary *dict = self.notFoundStrings.copy;
-        [NetworkManager1 uploadLog:[dict.allKeys componentsJoinedByString:@"\n"] title:@"未翻译字段" tag:@"未翻译字段"].completionBlock = ^(CCSessionModel *sm, id resObject, NSError *err) {
-            if (!sm.error) {
-                [self.notFoundStrings removeObjectsForKeys:dict.allKeys];
-                [_temp addEntriesFromDictionary:dict];
-                [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"] forKey:@"LanguageUpdateTime"];
-                [[NSUserDefaults standardUserDefaults] setObject:self.notFoundStrings forKey:@"LanguageNotFoundStrings"];
-                [[NSUserDefaults standardUserDefaults] setObject:_temp forKey:@"LanguageNotFoundStringsTemp"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-        };
-    }
     return s;
 }
 

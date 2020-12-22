@@ -106,7 +106,7 @@
     }
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSLog(@"self.url============================ %@", url);
-//    [CMCommon showSystemTitle:[NSString stringWithFormat:@"我发送的url = %@",url]];
+    [CMCommon showSystemTitle:[NSString stringWithFormat:@"我发送的url = %@",url]];
     
 
     [self.tgWebView loadRequest:request];
