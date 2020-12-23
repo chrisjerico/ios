@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,13 +27,13 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8p-cx-8vR" customClass="ZZCircleProgress">
                     <rect key="frame" x="415" y="16" width="40" height="40"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="XiB-92-kYC"/>
                         <constraint firstAttribute="width" constant="40" id="dR7-xC-NLL"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-Dx-eYQ">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZD-Dx-eYQ">
                     <rect key="frame" x="0.0" y="0.0" width="80" height="72"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="8f7-g0-86o"/>
@@ -40,6 +41,7 @@
                     </constraints>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="FZD-Dx-eYQ" secondAttribute="bottom" id="B0L-Fo-wWh"/>
@@ -47,14 +49,13 @@
                 <constraint firstItem="FZD-Dx-eYQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="EP4-A9-FGP"/>
                 <constraint firstItem="V04-KP-4F5" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="M51-Z0-FWg"/>
                 <constraint firstItem="FZD-Dx-eYQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Uae-f6-7M7"/>
-                <constraint firstItem="V04-KP-4F5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-40" id="UwE-XW-ffV"/>
+                <constraint firstItem="V04-KP-4F5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" priority="750" constant="-40" id="UwE-XW-ffV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z8p-cx-8vR" secondAttribute="trailing" multiplier="1:1" constant="40" id="W9S-8k-SUw"/>
                 <constraint firstItem="FZD-Dx-eYQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="oef-qC-Ckn"/>
                 <constraint firstItem="Z8p-cx-8vR" firstAttribute="leading" secondItem="V04-KP-4F5" secondAttribute="trailing" id="ud9-I9-yzF"/>
                 <constraint firstItem="FZD-Dx-eYQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wlg-fi-Fvp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="progressView" destination="Z8p-cx-8vR" id="ivx-Oi-Be2"/>
                 <outlet property="returnButton" destination="FZD-Dx-eYQ" id="p7U-wq-dry"/>
@@ -63,4 +64,9 @@
             <point key="canvasLocation" x="496.37681159420293" y="123.88392857142857"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

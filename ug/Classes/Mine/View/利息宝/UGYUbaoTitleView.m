@@ -24,12 +24,21 @@
        self.progressView.pathFillColor = UGRGBColor(255, 255, 255);
        self.progressView.progress = 1;
        self.progressView.progressLabel.text = @"60";
-       self.progressView.progressLabel.textColor = Skin1.textColor1;
+       self.progressView.progressLabel.textColor = Skin1.navBarTitleColor;
        self.progressView.duration = 0;
        self.progressView.increaseFromLast = YES;
   
     }
     return self;
+}
+
+- (void)didMoveToSuperview {
+    [super didMoveToSuperview];
+    if (self.superview && OBJOnceToken(self)) {
+        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.superview);
+        }];
+    }
 }
 
 @end
