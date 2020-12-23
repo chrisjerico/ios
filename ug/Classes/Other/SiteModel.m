@@ -121,8 +121,8 @@
             site(@"c251",       @"c251hy",     @"348",      @"io.fhpt.YSAC251",         @"https://2420app.app",                         @"企业包",     @"新葡京娱乐城"),//
             site(@"c252",       @"c252hy",     @"355",      @"io.fhpt.YSAC252",         @"https://xggjapp8.com",                          @"企业包",     @"香港国际"),//
             site(@"c254",       @"c254hy",     @"357",      @"io.fhpt.YSFC254",         @"https://677888.org",                          @"企业包",     @"澳门皇冠"),//
-            site(@"c257",       @"c257hy",     @"363",      @"io.fhpt.YSFCc257",         @"https://hg88991.com",                          @"企业包",     @"皇冠现金网"),//
-            site(@"c259",       @"c259hy",     @"365",      @"io.fhpt.YSFCc365",         @"https://663638.com",                          @"企业包",     @"万发彩票"),//
+            site(@"c257",       @"c257hy",     @"363",      @"io.fhpt.YSAC257",         @"https://hg88991.com",                          @"企业包",     @"皇冠现金网"),//
+            site(@"c259",       @"c259hy",     @"365",      @"io.fhpt.YSAC259",         @"https://663638.com",                          @"企业包",     @"万发彩票"),//
 
             site(@" t05-fish",      @"",          @"",        @"com.UGGame.cp",           @"http://t134f.fhptcdn.com",                    @"内测包",     @"test05"),
             site(@" t30-andrew",    @"",          @"",        @"com.UGGame.cp",           @"http://test30.6yc.com",                       @"内测包",     @"test30"),
