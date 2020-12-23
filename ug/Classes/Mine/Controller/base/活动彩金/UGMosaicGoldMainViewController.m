@@ -95,7 +95,7 @@
             
             [SVProgressHUD dismiss];
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             NSLog(@"list = %@",list);
             
             NSMutableArray * dataArray = [UGMosaicGoldModel arrayOfModelsFromDictionaries:list error:nil];

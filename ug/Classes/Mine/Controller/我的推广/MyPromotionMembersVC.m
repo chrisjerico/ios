@@ -138,7 +138,7 @@ static NSString * promotionMemberItemKey = @"promotionMemberItemKey";
 			[SVProgressHUD dismiss];
 			 weakSelf.originalArr =[NSMutableArray new];
 			NSDictionary *data =  model.data;
-			NSArray *list = [data objectForKey:@"list"];
+			NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
 			weakSelf.originalArr =  [UGinviteLisModel arrayOfModelsFromDictionaries:list error:nil];
 			[weakSelf bind:weakSelf.originalArr];
 			

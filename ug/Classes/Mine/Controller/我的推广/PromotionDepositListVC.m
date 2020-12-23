@@ -244,7 +244,7 @@
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                 [weakSelf.items removeAllObjects];
             }
@@ -291,7 +291,7 @@
         [CMResult processWithResult:model success:^{
             [SVProgressHUD dismiss];
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                 [weakSelf.itemsOther removeAllObjects];
             }

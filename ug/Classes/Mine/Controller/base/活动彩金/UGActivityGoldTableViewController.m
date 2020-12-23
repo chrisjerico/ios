@@ -122,7 +122,7 @@
         [CMResult processWithResult:model success:^{
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             
             //            //字典转模型
             //            UserMembersShareBean *membersShare = [[UserMembersShareBean alloc]initWithDictionary:dic[kMsg]

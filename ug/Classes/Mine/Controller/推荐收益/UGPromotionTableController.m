@@ -741,7 +741,7 @@
             weakSelf.sunyi  =  [NSString stringWithFormat:@"%@",[data objectForKey:@"total_people_sunyi"]] ;
             NSLog(@"self.sunyi = %@",weakSelf.sunyi);
             weakSelf.memberLbl.text = [NSString stringWithFormat:@"下线盈亏汇总:%@",weakSelf.sunyi];
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             
             if (weakSelf.pageNumber == 1 ) {
                 
@@ -798,7 +798,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             
              if (weakSelf.pageNumber == 1 ) {
                           
@@ -855,7 +855,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             
              if (weakSelf.pageNumber == 1 ) {
                          
@@ -912,7 +912,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                 
                 [weakSelf.dataArray removeAllObjects];
@@ -966,7 +966,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                            
                [weakSelf.dataArray removeAllObjects];
@@ -1019,7 +1019,7 @@
         [SVProgressHUD dismiss];
         [CMResult processWithResult:model success:^{
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                 [weakSelf.dataArray removeAllObjects];
             }
@@ -1071,7 +1071,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                            
                [weakSelf.dataArray removeAllObjects];
@@ -1130,7 +1130,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                 
                 [weakSelf.dataArray removeAllObjects];
@@ -1188,7 +1188,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                           
               [weakSelf.dataArray removeAllObjects];
@@ -1249,7 +1249,7 @@
             [SVProgressHUD dismiss];
             
             NSDictionary *data =  model.data;
-            NSArray *list = [data objectForKey:@"list"];
+            NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
             if (weakSelf.pageNumber == 1 ) {
                          
                  [weakSelf.dataArray removeAllObjects];
