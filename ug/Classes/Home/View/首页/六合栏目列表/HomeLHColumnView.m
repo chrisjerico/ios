@@ -18,7 +18,7 @@
 
 #import "UGLHHomeContentCollectionViewCell.h"
 #import "LHPostPayView.h"
-
+#import "UGLHOldYearViewController.h"
 #import "UGAppVersionManager.h"
 
 @interface HomeLHColumnView ()<UICollectionViewDelegate, UICollectionViewDataSource, WSLWaterFlowLayoutDelegate>
@@ -484,7 +484,10 @@
             NSLog(@"六合图库");
         }
         else if([@"yellowCale" containsString:model.categoryType]) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+            
+            UGLHOldYearViewController *vc = _LoadVC_from_storyboard_(@"UGLHOldYearViewController");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
             NSLog(@"老黃历");
         }
         else if([@"rwzx" containsString:model.categoryType]) {

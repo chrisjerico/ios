@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UGLHOldYearViewController : UIViewController
-
+@property (nonatomic, strong) UGLHCategoryListModel *clm;
 @end
 
 NS_ASSUME_NONNULL_END

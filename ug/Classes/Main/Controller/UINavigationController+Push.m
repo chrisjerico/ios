@@ -57,6 +57,7 @@
 #import "UGDocumentListVC.h"
 #import "LHJournalDetailVC.h"
 #import "LHGalleryListVC2.h"
+#import "UGLHOldYearViewController.h"
 // Tools
 #import "UGAppVersionManager.h"
 @implementation UINavigationController (Push)
@@ -346,7 +347,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             NSLog(@"六合图库");
         }
         else if([@"yellowCale" containsString:model.categoryType]) {
-            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHOldYearViewController") animated:true];
+            UGLHOldYearViewController *vc = _LoadVC_from_storyboard_(@"UGLHOldYearViewController");
+            vc.clm = model;
+            [NavController1 pushViewController:vc animated:true];
             NSLog(@"老黃历");
         }
         else if([@"rwzx" containsString:model.categoryType]) {
