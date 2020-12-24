@@ -109,6 +109,7 @@ static NSString *kVersionModel = @"VersionModel";
         };
         
         if (isForce) {
+            // 强制更新
             showAlert();
             if (OBJOnceToken(self)) {
                 [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
@@ -117,14 +118,23 @@ static NSString *kVersionModel = @"VersionModel";
             }
         }
         else if (promptAlreadyLatest) {
+            // 用户点击了版本更新按钮
             showAlert();
         } else {
-            NSString *key = [NSString stringWithFormat:@"ver-%@", vm.versionCode];
-            BOOL shown = [[NSUserDefaults standardUserDefaults] boolForKey:key];
-            CGFloat interval = (shown ? 15 : 8) * 24 * 3600;
-            if (fabs([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptDate]]) > interval) {
+            NSString *verKey = [NSString stringWithFormat:@"ver-%@", vm.versionCode];
+            BOOL isPrompted = [[NSUserDefaults standardUserDefaults] boolForKey:verKey];//此版本是否有提示过
+            
+            // 若是客户手动配置的则直接提示
+            BOOL isManual = !isPrompted && [vm.versionCode isEqualToString:vm.versionName];
+            // 距离上次弹框已经过了半个月会再次提示
+            BOOL isTimeout = ({
+                CGFloat interval = (isPrompted ? 25 : 15) * 24 * 3600;
+                fabs([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptDate]]) > interval;
+            });
+            
+            if (isManual || isTimeout) {
                 [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastPromptDate];
-                [[NSUserDefaults standardUserDefaults] setBool:true forKey:key];
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:verKey];
                 showAlert();
             }
         }
