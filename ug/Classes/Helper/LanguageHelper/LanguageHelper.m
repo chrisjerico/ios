@@ -275,18 +275,6 @@ static NSMutableDictionary <NSString *, NSNumber *>*_temp = nil;
     if (s.length && !_temp[s]) {
         self.notFoundStrings[s] = @1;
     }
-    
-    BOOL upload = self.notFoundStrings.count >= 2000;
-    if (OBJOnceToken(self)) {
-        if ([[NSUserDefaults standardUserDefaults] containsKey:@"LanguageUpdateTime"]) {
-            NSDate *date = [[[NSUserDefaults standardUserDefaults] stringForKey:@"LanguageUpdateTime"] dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
-            if (fabs([date timeIntervalSinceDate:[NSDate date]]) > 24 * 60 * 60) {
-                upload = true;
-            }
-        } else {
-            [[NSUserDefaults standardUserDefaults] setObject:[[NSDate date] stringWithFormat:@"yyyy-MM-dd HH:mm:ss"] forKey:@"LanguageUpdateTime"];
-        }
-    }
     return s;
 }
 

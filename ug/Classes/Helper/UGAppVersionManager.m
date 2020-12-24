@@ -9,7 +9,6 @@
 
 static NSString *kLastPromptDate = @"kNowTimeKey";
 static NSString *kVersionModel = @"VersionModel";
-static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
 
 @implementation UGAppVersionManager
 + (UGAppVersionManager *)shareInstance {
@@ -67,7 +66,6 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
         };
         void (^showAlert)(void) = ^{
             __showUpdated = true;
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastPromptDate];
             
             if (promptAlreadyLatest && Skin1.isBlack) {
                 UIColor *blueColor = [UIColor colorWithRed:90/255.0f green:154/255.0f blue:239/255.0f alpha:1.0f];
@@ -118,8 +116,17 @@ static CGFloat PromptInterval = 15 * 24 * 3600;     // 新版本提示间隔
                 }];
             }
         }
-        else if (fabs([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptDate]]) > PromptInterval) {
+        else if (promptAlreadyLatest) {
             showAlert();
+        } else {
+            NSString *key = [NSString stringWithFormat:@"ver-%@", vm.versionCode];
+            BOOL shown = [[NSUserDefaults standardUserDefaults] boolForKey:key];
+            CGFloat interval = (shown ? 15 : 8) * 24 * 3600;
+            if (fabs([[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptDate]]) > interval) {
+                [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastPromptDate];
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:key];
+                showAlert();
+            }
         }
     }
     // 已是最新版本
