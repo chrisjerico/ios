@@ -26,8 +26,23 @@
 
 @implementation UGPostListVC
 
-- (BOOL)允许游客访问 { return true; }
-- (BOOL)允许未登录访问 { return true; }
+- (BOOL)允许游客访问   {
+    if ([self.clm.read_pri isEqualToString:@"1"]) {//0是全部  1是正式会员
+        return false;
+    } else {
+        return true;
+    }
+}
+- (BOOL)允许未登录访问 {
+    if ([self.clm.read_pri isEqualToString:@"1"]) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+//- (BOOL)允许游客访问 { return true; }
+//- (BOOL)允许未登录访问 { return true; }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
