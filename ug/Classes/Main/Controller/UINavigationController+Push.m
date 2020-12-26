@@ -60,6 +60,7 @@
 #import "UGLHOldYearViewController.h"
 // Tools
 #import "UGAppVersionManager.h"
+
 @implementation UINavigationController (Push)
 
 static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
@@ -540,11 +541,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
        }
 }
 
-- (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition {
+- (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(UGLinkPositionType)linkPosition {
     return [self pushViewControllerWithLinkCategory:linkCategory linkPosition:linkPosition gameCode:nil gameModel:nil];
 }
 
-- (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(NSInteger)linkPosition gameCode:(nullable NSString *)gameCode gameModel:(GameModel *)model{
+- (BOOL)pushViewControllerWithLinkCategory:(NSInteger)linkCategory linkPosition:(UGLinkPositionType)linkPosition gameCode:(nullable NSString *)gameCode gameModel:(GameModel *)model{
     if (!linkCategory) {
         return false;
     }
@@ -675,22 +676,22 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     // 去功能页面
     switch (linkPosition) {
-        case 1: {
+        case UGLinkPosition_资金管理: {
             // 资金管理
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFundsViewController") animated:true];
             break;
         }
-        case 2: {
+        case UGLinkPosition_APP下载: {
             // APP下载
             [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             break;
         }
-        case 3: {
+        case UGLinkPosition_聊天室: {
             // 去聊天室页
             [self gotoChatVC:@(linkPosition).stringValue roomName:@"聊天室"];
             break;
         }
-        case 4: {
+        case UGLinkPosition_在线客服: {
             // 在线客服
 
             if (APP.isTwoOnline  && UGSystemConfigModel.currentConfig.zxkfUrl.length && UGSystemConfigModel.currentConfig.zxkfUrl2.length) {
@@ -712,12 +713,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
             break;
         }
-        case 5: {
+        case UGLinkPosition_长龙助手: {
             // 长龙助手
             [NavController1 pushViewController:[UGChangLongController new] animated:YES];
             break;
         }
-        case 6: {
+        case UGLinkPosition_推广收益: {
             // 推广收益
             if (UserI.isTest) {
                 [NavController1 pushViewController:[UGPromotionIncomeController new] animated:YES];
@@ -753,7 +754,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             }
             break;
         }
-        case 7: {
+        case UGLinkPosition_开奖网: {
             // 开奖网
             if (![CMCommon stringIsNull:model.realGameId]) {
                 NSString *url = [NSString stringWithFormat:@"%@%@",lotteryByIdUrl,model.realGameId];
@@ -773,23 +774,23 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
             break;
         }
-        case 8: {
+        case UGLinkPosition_利息宝: {
             // 利息宝
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGYubaoViewController")  animated:YES];
             break;
         }
-        case 9: {
+        case UGLinkPosition_优惠活动: {
             // 优惠活动
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
             break;
         }
-        case 10: {
+        case UGLinkPosition_注单记录: {
             // 注单记录
             UGBetRecordViewController *vc = [[UGBetRecordViewController alloc] init];
             [NavController1 pushViewController:vc animated:true];
             break;
         }
-        case 11: {
+        case UGLinkPosition_QQ客服: {
             // QQ客服
             if (SysConf.appPopupQqImg.length) {
                 __block UIView *__v = _LoadView_from_nib_(@"客服AlertView");
@@ -816,7 +817,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             }
             break;
         }
-        case 12: {
+        case UGLinkPosition_微信客服: {
             // 微信客服
             __block UIView *__v = _LoadView_from_nib_(@"客服AlertView");
             __v.frame = APP.Bounds;
@@ -837,49 +838,49 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [APP.Window addSubview:__v];
             break;
         }
-        case 13: {
+        case UGLinkPosition_任务大厅: {
             // 任务大厅
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController") animated:true];
             break;
         }
-        case 14: {
+        case UGLinkPosition_站内信: {
             // 站内信
             [NavController1 pushViewController:[[UGMailBoxTableViewController alloc] init] animated:true];
             break;
         }
-        case 15: {
+        case UGLinkPosition_签到: {
             // 签到
             [NavController1 pushViewController:[UGSigInCodeViewController new] animated:YES];
             break;
         }
-        case 16: {
+        case UGLinkPosition_投诉中心: {
             // 投诉中心
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGFeedBackController") animated:YES];
             break;
         }
-        case 17: {
+        case UGLinkPosition_全民竞猜: {
             // 全民竞猜
             [SVProgressHUD showInfoWithStatus:@"敬请期待"];
             break;
         }
-        case 18: {
+        case UGLinkPosition_活动彩金: {
             // 活动彩金
             [NavController1 pushViewController:[UGMosaicGoldViewController new] animated:YES];
             break;
         }
-        case 19: {
+        case UGLinkPosition_游戏大厅: {
             // 游戏大厅
             UGYYLotteryHomeViewController*vc = [[UGYYLotteryHomeViewController alloc] init];
             [NavController1 pushViewController:vc animated:YES];
             break;
         }
-        case 20: {
+        case UGLinkPosition_会员中心: {
             //会员中心
             UGMineSkinViewController *vc = [UGMineSkinViewController new];
             [NavController1 pushViewController:vc animated:true];
             break;
         }
-        case 21: {
+        case UGLinkPosition_充值: {
             //21' => '充值',
             if (Skin1.isTKL) {
                 UGRechargeTypeTableViewController *rechargeVC = _LoadVC_from_storyboard_(@"UGRechargeTypeTableViewController");
@@ -892,7 +893,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            
             break;
         }
-        case 22: {
+        case UGLinkPosition_提现: {
             //22' => '提现',
             if (Skin1.isTKL) {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"UGWithdrawalViewController" bundle:nil];
@@ -906,26 +907,26 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
  
             break;
         }
-        case 23: {
+        case UGLinkPosition_额度转换: {
             //23' => '额度转换',
             [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGBalanceConversionController")  animated:YES];
             break;
         }
-        case 24: {
+        case UGLinkPosition_即时注单: {
             //24' => '即时注单',
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
             betRecordVC.selectIndex = 2;
             [NavController1 pushViewController:betRecordVC animated:true];
             break;
         }
-        case 25: {
+        case UGLinkPosition_今日输赢: {
             //25' => '今日输赢',
             UGBetRecordViewController *betRecordVC = [[UGBetRecordViewController alloc] init];
             [NavController1 pushViewController:betRecordVC animated:true];
 
             break;
         }
-        case 26: {
+        case UGLinkPosition_开奖记录: {
             //26' => '开奖结果',
 
             UGLotteryRecordController *recordVC = _LoadVC_from_storyboard_(@"UGLotteryRecordController");
@@ -938,12 +939,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
             break;
         }
-        case 27: {
+        case UGLinkPosition_当前版本号: {
             //27' => '当前版本号',
             [[UGAppVersionManager shareInstance] updateVersionApi:true completion:nil];
             break;
         }
-        case 28: {
+        case UGLinkPosition_资金明细: {
             //21' => '资金明细',
 //            [SVProgressHUD showInfoWithStatus:@"敬请期待"];
             
@@ -960,7 +961,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             
             break;
         }
-        case 29: {
+        case UGLinkPosition_回到电脑版: {
             //29' => '回到电脑版',
             TGWebViewController *qdwebVC = [[TGWebViewController alloc] init];
             qdwebVC.url = pcUrl;
@@ -968,12 +969,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:qdwebVC animated:YES];
             break;
         }
-        case 30: {
+        case UGLinkPosition_返回首页: {
             //30' => '返回首页',
             
             break;
         }
-        case 31: {
+        case UGLinkPosition_退出登录: {
             //31' => '退出登录',
             [QDAlertView showWithTitle:@"温馨提示" message:@"确定退出账号" cancelButtonTitle:@"取消" otherButtonTitle:@"确定" completionBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex) {
@@ -986,12 +987,12 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             }];
             break;
         }
-        case 32: {
+        case UGLinkPosition_投注记录: {
             //32' => '投注记录',
             [NavController1 pushViewController:[UGBetRecordViewController new] animated:true];
             break;
         }
-        case 33: {
+        case UGLinkPosition_彩种规则: {
             //33' => '彩种规则',
             if (![CMCommon stringIsNull:model.realGameId]) {
                 UGLotteryRulesView *rulesView = [[UGLotteryRulesView alloc] initWithFrame:CGRectMake(30, 120, UGScreenW - 60, UGScerrnH - 230)];
@@ -1003,21 +1004,21 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
   
             break;
         }
-        case 36: {
+        case UGLinkPosition_红包记录: {
             //34' => '红包记录',
             RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
             recordVC.type = 1;
             [NavController1 pushViewController:recordVC animated:true];
             break;
         }
-        case 37: {
+        case UGLinkPosition_扫雷记录: {
             //37' => '扫雷记录',
             RedEnvelopeVCViewController *recordVC = _LoadVC_from_storyboard_(@"RedEnvelopeVCViewController");
             recordVC.type = 2;
             [NavController1 pushViewController:recordVC animated:true];
             break;
         }
-        case 38: {
+        case UGLinkPosition_修改密码: {
             //38' => '修改密码',
 //            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGModifyLoginPwdController") animated:true];
             UGSecurityCenterViewController *vc = [UGSecurityCenterViewController new];
@@ -1025,7 +1026,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:vc animated:YES];
             break;
         }
-        case 39: {
+        case UGLinkPosition_修改提款密码: {
             //39' => '修改提款密码',
             
 //            UIViewController *vc  =  UserI.hasFundPwd ? _LoadVC_from_storyboard_(@"UGModifyPayPwdController") : [UGgoBindViewController new];   // 取款密码
@@ -1036,17 +1037,17 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:vc animated:YES];
             break;
         }
-        case 40: {
+        case UGLinkPosition_红包活动: {
             //40' => '红包活动',
             SANotificationEventPost(UGNotificationRedPageComplete, nil);
             break;
         }
-        case 41: {
+        case UGLinkPosition_试玩: {
             //40' => '试玩',
             SANotificationEventPost(UGNotificationTryPlay, nil);
             break;
         }
-        case 42: {
+        case UGLinkPosition_真人大厅: {
             //真人大厅,
             UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
             vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray objectWithValue:@"real" keyPath:@"category"].games error:nil];
@@ -1055,7 +1056,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             
             break;
         }
-        case 43: {
+        case UGLinkPosition_棋牌大厅: {
             //棋牌大厅,
             UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
             vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"card" keyPath:@"category"].games error:nil];
@@ -1064,7 +1065,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             
             break;
         }
-        case 44: {
+        case UGLinkPosition_电子大厅: {
             //电子大厅,
             UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
             vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"game" keyPath:@"category"].games error:nil];
@@ -1073,7 +1074,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             
             break;
         }
-        case 45: {
+        case UGLinkPosition_体育大厅: {
             //体育大厅,
             UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
             vc.title = @"体育大厅";
@@ -1081,7 +1082,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:vc animated:YES];
             break;
         }
-        case 46: {
+        case UGLinkPosition_电竞大厅: {
             //电竞大厅,
             UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
             vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray  objectWithValue:@"esport" keyPath:@"category"].games error:nil];
@@ -1089,7 +1090,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:vc animated:YES];
             break;
         }
-        case 47: {
+        case UGLinkPosition_彩票大厅: {
             [NavController1 pushViewController:[UGLotteryHomeController new] animated:YES];
             break;
         }
@@ -1148,7 +1149,11 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             return true;
         }
         case UCI_开奖走势: {
-            [HUDHelper showMsg:@"敬请期待"];
+            [NavController1 pushViewController:[ReactNativeVC reactNativeWithRPM:({
+                RnPageModel *rpm = [RnPageModel new];
+                rpm.rnName = @"TrendView";
+                rpm;
+            }) params:nil] animated:YES];
             return true;
         }
         case UCI_开奖网: {

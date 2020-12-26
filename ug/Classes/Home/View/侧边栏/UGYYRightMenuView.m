@@ -123,99 +123,103 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
 
 
 -(void)titleArrayAndimageNameArrayInit{
-    
-    NSString *str1;NSString *str2;
-    if (UGLoginIsAuthorized()) {//已经登录
-        str1 = [NSString stringWithFormat:@"即时注单(%@)",[UGUserModel currentUser].unsettleAmount];
-        str2 = [NSString stringWithFormat:@"今日输赢(%@)",[UGUserModel currentUser].todayWinAmount];
-    }
-    else{
-        str1 = @"即时注单";
-        str2 = @"今日输赢";
-    }
-    UGUserModel *user = [UGUserModel currentUser];
-    NSString *app_Version = [NSString stringWithFormat:@"当前版本号(%@)", APP.Version] ;
+    NSMutableArray *temp = @[].mutableCopy;
     if ([self.titleType isEqualToString:@"1"]) {
         if ([@"h005" containsString:APP.SiteId]) {
-            if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",@"站内信",@"优惠活动",@"退出登录",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"zhanneixin",@"礼品-(1)",@"tuichudenglu",@"appVicon", nil] ;
-            }
-            else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",@"站内信",@"优惠活动",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"zhanneixin",@"礼品-(1)",@"appVicon", nil] ;
-            }
-        }
-        else if (user.yuebaoSwitch) {
-            if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",@"退出登录",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-            }
-            else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"利息宝",@"站内信",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
-            }
-            
+            [temp addObjectsFromArray:@[
+                @(UGLinkPosition_返回首页),
+                @(UGLinkPosition_站内信),
+                @(UGLinkPosition_优惠活动),
+                @(UGLinkPosition_退出登录),
+                @(UGLinkPosition_当前版本号),
+            ]];
         } else {
-            if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",@"退出登录",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-            }
-            else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"站内信",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"zhanneixin",@"appVicon", nil] ;
-            }
+            [temp addObjectsFromArray:@[
+                @(UGLinkPosition_返回首页),
+                @(UGLinkPosition_即时注单),
+                @(UGLinkPosition_今日输赢),
+                @(UGLinkPosition_投注记录),
+                @(UGLinkPosition_开奖记录),
+                @(UGLinkPosition_长龙助手),
+                @(UGLinkPosition_利息宝),
+                @(UGLinkPosition_站内信),
+                @(UGLinkPosition_退出登录),
+                @(UGLinkPosition_当前版本号),
+            ]];
         }
-        
+    } else if ([self.titleType isEqualToString:@"2"]) {
+        [temp addObjectsFromArray:@[
+            @(UGLinkPosition_返回首页),
+            @(UGLinkPosition_即时注单),
+            @(UGLinkPosition_今日输赢),
+            @(UGLinkPosition_投注记录),
+            @(UGLinkPosition_开奖记录),
+            @(UGLinkPosition_彩种规则),
+            @(UGLinkPosition_长龙助手),
+            @(UGLinkPosition_开奖走势),
+            @(UGLinkPosition_红包记录),
+            @(UGLinkPosition_扫雷记录),
+            @(UGLinkPosition_利息宝),
+            @(UGLinkPosition_站内信),
+            @(UGLinkPosition_退出登录),
+            @(UGLinkPosition_当前版本号),
+        ]];
+    } else {
+        [temp addObjectsFromArray:@[
+            @(UGLinkPosition_返回首页),
+            @(UGLinkPosition_即时注单),
+            @(UGLinkPosition_今日输赢),
+            @(UGLinkPosition_投注记录),
+            @(UGLinkPosition_开奖记录),
+            @(UGLinkPosition_长龙助手),
+            @(UGLinkPosition_红包记录),
+            @(UGLinkPosition_扫雷记录),
+            @(UGLinkPosition_利息宝),
+            @(UGLinkPosition_站内信),
+            @(UGLinkPosition_退出登录),
+            @(UGLinkPosition_当前版本号),
+        ]];
     }
-    else  if([self.titleType isEqualToString:@"2"]){
-        
-        if (user.yuebaoSwitch) {
-            if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信",@"退出登录", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-            }
-            else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
-            }
-            
-        }
-        else{
-            if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信",@"退出登录", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-            }
-            else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"彩种规则",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信", app_Version,nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"gantanhao",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"appVicon", nil] ;
-            }
-            
-        }
-        
+    if (!UGLoginIsAuthorized()) {
+        [temp removeValue:@(UGLinkPosition_退出登录)];
     }
-    else{
-        if (user.yuebaoSwitch) {
-            if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信",@"退出登录",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-            }
-            else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"利息宝",@"站内信",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"lixibao",@"zhanneixin",@"appVicon", nil] ;
-            }
-            
-        } else {
-            if (UGLoginIsAuthorized()) {//已经登录
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信",@"退出登录",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"tuichudenglu",@"appVicon", nil] ;
-            }
-            else{
-                self.titleArray = [[NSMutableArray alloc] initWithObjects:@"返回首页",str1,str2,@"投注记录",@"开奖记录",@"长龙助手",@"红包记录",@"扫雷记录",@"站内信",app_Version, nil] ;
-                self.imageNameArray = [[NSMutableArray alloc] initWithObjects:@"home",@"gw",@"qk1",@"tzjl",@"kaijiangjieguo",@"changlong",@"cbl_hongbao",@"cbl_saolei",@"zhanneixin",@"appVicon", nil] ;
-            }
-            
+    if (!UserI.yuebaoSwitch) {
+        [temp removeValue:@(UGLinkPosition_利息宝)];
+    }
+    
+    // 标题、图片
+    NSDictionary <NSNumber *, NSDictionary *>*items = ({
+        NSString *str1 = @"即时注单";
+        NSString *str2 = @"今日输赢";
+        if (UGLoginIsAuthorized()) {//已经登录
+            str1 = [str1 stringByAppendingFormat:@"(%@)",[UGUserModel currentUser].unsettleAmount];
+            str2 = [str2 stringByAppendingFormat:@"(%@)",[UGUserModel currentUser].todayWinAmount];
         }
+        NSString *app_Version = [NSString stringWithFormat:@"当前版本号(%@)", APP.Version];
+        items = @{
+            @(UGLinkPosition_返回首页):@{@"返回首页":@"home"},
+            @(UGLinkPosition_站内信):@{@"站内信":@"zhanneixin"},
+            @(UGLinkPosition_优惠活动):@{@"优惠活动":@"礼品-(1)"},
+            @(UGLinkPosition_退出登录):@{@"退出登录":@"tuichudenglu"},
+            @(UGLinkPosition_当前版本号):@{app_Version:@"appVicon"},
+            @(UGLinkPosition_即时注单):@{str1:@"gw"},
+            @(UGLinkPosition_今日输赢):@{str2:@"qk1"},
+            @(UGLinkPosition_投注记录):@{@"投注记录":@"tzjl"},
+            @(UGLinkPosition_开奖记录):@{@"开奖记录":@"kaijiangjieguo"},
+            @(UGLinkPosition_长龙助手):@{@"长龙助手":@"changlong"},
+            @(UGLinkPosition_利息宝):@{@"利息宝":@"lixibao"},
+            @(UGLinkPosition_彩种规则):@{@"彩种规则":@"gantanhao"},
+            @(UGLinkPosition_红包记录):@{@"红包记录":@"cbl_hongbao"},
+            @(UGLinkPosition_扫雷记录):@{@"扫雷记录":@"cbl_saolei"},
+            @(UGLinkPosition_开奖走势):@{@"走势图":@"js_trends"},
+        };
+    });
+    
+    self.titleArray = @[].mutableCopy;
+    self.imageNameArray = @[].mutableCopy;
+    for (NSNumber *linkPosition in temp) {
+        [_titleArray addObject:items[linkPosition].allKeys.firstObject];
+        [_imageNameArray addObject:items[linkPosition].allValues.firstObject];
     }
 }
 
@@ -793,7 +797,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
     else if ([title isEqualToString:@"任务中心"]) {
         [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMissionCenterViewController")  animated:YES];
      }
-    
+    else if ([title containsString:@"走势"]) {
+        [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:UGLinkPosition_开奖走势];
+    }
 }
 
 - (void)didSelectCellWitModel:(GameModel *)modle {

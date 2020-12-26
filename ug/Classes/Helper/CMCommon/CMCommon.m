@@ -1532,7 +1532,11 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
         [NavController1 pushViewController:vc animated:YES];
     }
     else  if ([url containsString:@"/mobile/#/ucenter/lottoryTrend"]) {//【开奖走势】
-        
+        [NavController1 pushViewController:[ReactNativeVC reactNativeWithRPM:({
+            RnPageModel *rpm = [RnPageModel new];
+            rpm.rnName = @"TrendView";
+            rpm;
+        }) params:nil] animated:YES];
     }
     else  if ([url containsString:@"/mobile/#/lottery/changLongBet"]) {//【长龙助手】
         [NavController1 pushViewController:[UGChangLongController new] animated:YES];
