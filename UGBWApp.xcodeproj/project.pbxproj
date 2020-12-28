@@ -1601,6 +1601,10 @@
 		0372B59123C9984F00B564FF /* PromotionRecordCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0372B58E23C9984F00B564FF /* PromotionRecordCell1.m */; };
 		0372B59223C9984F00B564FF /* PromotionRecordCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0372B58F23C9984F00B564FF /* PromotionRecordCell1.xib */; };
 		0372B59323C9984F00B564FF /* PromotionRecordCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0372B58F23C9984F00B564FF /* PromotionRecordCell1.xib */; };
+		0379F5F52597737400ADC6B8 /* MailDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0379F5F32597737400ADC6B8 /* MailDetailVC.m */; };
+		0379F5F62597737400ADC6B8 /* MailDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0379F5F32597737400ADC6B8 /* MailDetailVC.m */; };
+		0379F5F72597737400ADC6B8 /* MailDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0379F5F42597737400ADC6B8 /* MailDetailVC.xib */; };
+		0379F5F82597737400ADC6B8 /* MailDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0379F5F42597737400ADC6B8 /* MailDetailVC.xib */; };
 		0382DEA42546AEAD001C4ED4 /* TKLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA1EC592542D78E003440CB /* TKLMainViewController.m */; };
 		038A584824A9C87F0099D659 /* MomentUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A584724A9C87F0099D659 /* MomentUserModel.swift */; };
 		038A584B24A9D8790099D659 /* UIView+XFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038A584A24A9D8790099D659 /* UIView+XFoundation.swift */; };
@@ -3822,6 +3826,9 @@
 		0372B58D23C9984F00B564FF /* PromotionRecordCell1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionRecordCell1.h; sourceTree = "<group>"; };
 		0372B58E23C9984F00B564FF /* PromotionRecordCell1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionRecordCell1.m; sourceTree = "<group>"; };
 		0372B58F23C9984F00B564FF /* PromotionRecordCell1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromotionRecordCell1.xib; sourceTree = "<group>"; };
+		0379F5F22597737400ADC6B8 /* MailDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailDetailVC.h; sourceTree = "<group>"; };
+		0379F5F32597737400ADC6B8 /* MailDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailDetailVC.m; sourceTree = "<group>"; };
+		0379F5F42597737400ADC6B8 /* MailDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailDetailVC.xib; sourceTree = "<group>"; };
 		038A584724A9C87F0099D659 /* MomentUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentUserModel.swift; sourceTree = "<group>"; };
 		038A584A24A9D8790099D659 /* UIView+XFoundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+XFoundation.swift"; sourceTree = "<group>"; };
 		038A584C24A9DD1D0099D659 /* FollowListVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FollowListVC.storyboard; sourceTree = "<group>"; };
@@ -7134,6 +7141,9 @@
 				D4426962249CABEC0006878C /* UGMailBoxTableViewController.h */,
 				D4426963249CABEC0006878C /* UGMailBoxTableViewController.m */,
 				D4426964249CABEC0006878C /* UGMailBoxTableViewController.xib */,
+				0379F5F22597737400ADC6B8 /* MailDetailVC.h */,
+				0379F5F32597737400ADC6B8 /* MailDetailVC.m */,
+				0379F5F42597737400ADC6B8 /* MailDetailVC.xib */,
 			);
 			path = "站内信";
 			sourceTree = "<group>";
@@ -10051,6 +10061,7 @@
 				031E1E7923BE812C00B0F813 /* UGCalenderAlertView.xib in Resources */,
 				CF5586BA2546B9AF00BE2576 /* TkLMoneyCollectionViewCell.xib in Resources */,
 				CF8508762466D71B0025672F /* PromotePopView.xib in Resources */,
+				0379F5F82597737400ADC6B8 /* MailDetailVC.xib in Resources */,
 				031EF56A23BE7B4D00B0F813 /* qunzu.svg in Resources */,
 				031EF57623BE7B4D00B0F813 /* yinhangkaguanli.svg in Resources */,
 				031AFC44253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */,
@@ -10801,6 +10812,7 @@
 				D42072372456B521008D0749 /* DZPTwoView.xib in Resources */,
 				031AFC43253C1DCF00092DFF /* ResetPasswordApplyVC.xib in Resources */,
 				CF624169252066BA00016A57 /* NewLotteryHeaderViewCollectionReusableView.xib in Resources */,
+				0379F5F72597737400ADC6B8 /* MailDetailVC.xib in Resources */,
 				CF475909239636D200966536 /* 73.gif in Resources */,
 				031E1AB423BE812800B0F813 /* tag_list_s@2x.png in Resources */,
 				D451A46923F538D800CD0E36 /* JYGameCollectionViewCell.xib in Resources */,
@@ -11282,6 +11294,7 @@
 				031E1DA723BE812B00B0F813 /* UGwithdrawListModel.m in Sources */,
 				031E1A2123BE812700B0F813 /* CCNetworkRequests1+UGLiuHe.m in Sources */,
 				031E1D9123BE812B00B0F813 /* UGYubaoViewController.m in Sources */,
+				0379F5F62597737400ADC6B8 /* MailDetailVC.m in Sources */,
 				031E1E3123BE812C00B0F813 /* UGPromotion5rowButtonTableViewCell.m in Sources */,
 				031E1DDF23BE812C00B0F813 /* UGinviteDomainModel.m in Sources */,
 				031E1B6D23BE812800B0F813 /* UGPlatformTitleBlackCell.m in Sources */,
@@ -12193,6 +12206,7 @@
 				031E1D6623BE812B00B0F813 /* UGgoBindViewController.m in Sources */,
 				03CF3070254FFBCA00D75721 /* InviteCodeModel.m in Sources */,
 				031E1B7223BE812800B0F813 /* UGGameTypeCollectionView.m in Sources */,
+				0379F5F52597737400ADC6B8 /* MailDetailVC.m in Sources */,
 				031E1D5A23BE812B00B0F813 /* UGRegisterViewController.m in Sources */,
 				D442590323E949600067E981 /* LHHornView.m in Sources */,
 				031E1A4023BE812700B0F813 /* UINavigationController+Extension.m in Sources */,
