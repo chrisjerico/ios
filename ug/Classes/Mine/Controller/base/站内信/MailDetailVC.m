@@ -17,7 +17,7 @@
 
 -(void)setContent:(NSString *)content{
     _content = content;
-    NSString *str = _NSString(@"<head><style>body{margin:20;vertical-align: middle;color: red}img{width:auto !important;max-width:100%%;height:auto !important}</style></head><body><text>%@</text></body>", _content);
+    NSString *str = _NSString(@"<head><style>body{margin:20;color: red}img{width:auto !important;max-width:100%%;height:auto !important}</style></head><body><text>%@</text></body>", _content);
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[str dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     self.textView.attributedText = attributedString;
 }
