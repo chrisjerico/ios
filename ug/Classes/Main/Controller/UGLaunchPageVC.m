@@ -30,6 +30,7 @@
 @property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
 @property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
 @property (nonatomic, assign) int waitCheckUpdate;  /**<   ⌛️等检查更新 */
+@property (nonatomic, assign) BOOL waitRnPageInfos; /**<   ⌛️等RN页面配置完毕（iPhone6机型性能差，可能进首页了配置还没好）*/
 @end
 
 
@@ -94,6 +95,7 @@
             _waitPic = true;
             _waitReactNative = true;
             _waitSysConf = true;
+            _waitRnPageInfos = true;
             
             [self loadLaunchImage];
             [self loadReactNative];
@@ -127,6 +129,7 @@
         while (1) {
             [NSThread sleepForTimeInterval:0.1];
             if (__self.waitReactNative) continue;
+            if (__self.waitRnPageInfos) continue;
             if (__self.waitSysConf) continue;
             if (__self.waitPic) continue;
             if (__self.waitLanguage) continue;
@@ -325,7 +328,10 @@
         NSLog(@"RN版本更新完毕");
         __self.waitReactNative = false;
     });
-    
+    SANotificationEventSubscribe(@"UGDidSetRnPageInfos", self, ^(typeof (self) self, id obj) {
+        NSLog(@"RN页面配置完毕");
+        __self.waitRnPageInfos = false;
+    });
     ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
     [__self addChildViewController:vc];
     [__self.view insertSubview:vc.view atIndex:0];

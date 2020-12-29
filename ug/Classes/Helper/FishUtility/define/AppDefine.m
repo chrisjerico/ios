@@ -284,6 +284,7 @@ static NSMutableArray<RnPageModel *(^)(void)> *_ysReplacePages;
     } else {
         _rnPageInfos = rnPageInfos;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"UGDidSetRnPageInfos" object:nil];
 }
 
 + (void)addYsReplacePage:(Class)cls1 toPage:(Class (^)(void))block {
