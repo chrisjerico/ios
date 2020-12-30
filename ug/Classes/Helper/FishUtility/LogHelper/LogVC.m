@@ -384,6 +384,10 @@ static LogVC *_logVC = nil;
         _selectedModelKeys = _selectedModel.params.allKeys;
         if (_selectedModel.resObject) {
             __block CCSessionModel *lastModel = _selectedModel;
+            if ([_selectedModel.resObject isKindOfClass:[NSDictionary class]]) {
+                _selectedModel.resObject = [_selectedModel.resObject mutableCopy];
+                _selectedModel.resObject[@"info"] = @"";
+            }
             NSData *data = [NSJSONSerialization dataWithJSONObject:_selectedModel.resObject options:NSJSONWritingPrettyPrinted error:nil];
             if (data.length > 10000) {
                 _retTextView.text = @"正在加载中。。。";
