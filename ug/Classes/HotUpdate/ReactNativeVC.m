@@ -192,8 +192,10 @@ static UIImageView *__snapshotImageView;
 }
 
 - (void)pushOrJump:(BOOL)pushOrJump rpm:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
+    __weakSelf_(__self);
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
         __lastRnPage = rpm.rnName;
+        __self.rpm = rpm;
         if (pushOrJump) {
             [ReactNativeHelper pushVC:rpm.rnName params:params];
         } else {

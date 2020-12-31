@@ -91,9 +91,21 @@
 
 //领红包
 - (void)activityGetRedBag{
-    
-    if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
-        return;
+    __weakSelf_(__self);
+    UGUserModel *user = [UGUserModel currentUser];
+    BOOL isLogin = UGLoginIsAuthorized();
+    if (!isLogin) {
+        SANotificationEventPost(UGNotificationShowLoginView, nil);
+        [self hiddenSelf];
+        return ;
+    }
+    if (user.isTest) {
+        UIAlertController *ac = [AlertHelper showAlertView:@"温馨提示" msg:@"请先登录您的正式账号" btnTitles:@[@"取消", @"马上登录"]];
+        [ac setActionAtTitle:@"马上登录" handler:^(UIAlertAction *aa) {
+            SANotificationEventPost(UGNotificationShowLoginView, nil);
+            [__self hiddenSelf];
+        }];
+        return ;
     }
     
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,

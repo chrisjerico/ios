@@ -84,7 +84,9 @@ static NSString *balanceCellid = @"UGPlatformBalanceTableViewCell";
 			self.conversionButton.backgroundColor = RGBA(0x62, 0x87, 0xff, 1);
 			[self.view viewWithTagString:@"一键提取Button"].backgroundColor = RGBA(0x62, 0x87, 0xff, 1);
 
-		} else if (Skin1.isBlack) {
+        } else if ([Skin1.skitType isEqualToString:@"乐FUN"]) {
+            _balanceView.backgroundColor = [Skin1.navBarBgColor colorWithAlphaComponent:0.5];
+        } else if (Skin1.isBlack) {
 			self.tarnsferInArrow.image = [UIImage imageNamed:@"baijiantou"] ;
 			self.transferOutArrow.image = [UIImage imageNamed:@"baijiantou"] ;
 			[self.refreshButton setImage:[UIImage imageNamed:@"BMrefresh"] forState:(UIControlStateNormal)];

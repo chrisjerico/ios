@@ -48,6 +48,9 @@
 #import "NSObject+RnKeyValues.h"
 #import "ReactNativeHelper.h"
 
+@interface ReactNativeVC ()
+@property (nonatomic, strong) RnPageModel *rpm;
+@end
 
 @interface UGNavigationController ()
 
@@ -108,6 +111,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 去RN页面
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:viewController.className keyPath:@"vcName"];
+    if (!rpm && [viewController isKindOfClass:[ReactNativeVC class]]) {
+        rpm = ((ReactNativeVC *)viewController).rpm;
+    }
     if (rpm) {
         // 判断push权限
         UIViewController *vc = [UIViewController new];
