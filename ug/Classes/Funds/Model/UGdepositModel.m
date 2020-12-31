@@ -29,6 +29,10 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"pid"
                                                        }];
 }
+
+- (NSString *)currencyRate {
+    return [_currencyRate isEqualToString:@"0"] && [_domain.lowercaseString.stringByTrim isEqualToString:@"cgp"] ? @"1" : _currencyRate;
+}
 @end
 
 @implementation UGpaymentModel
