@@ -33,10 +33,10 @@
         [self.introTextView setEditable:NO];
         [self.redButton setBackgroundColor:UGRGBColor(197, 88, 74)];
         //边框宽度,border:边框
-        self.redButton.layer.borderWidth = 2; 
+        self.redButton.layer.borderWidth = 2;
         self.redButton.layer.borderColor =  [UIColor whiteColor].CGColor;
         //将button的边框设置为圆角
-        self.redButton.layer.cornerRadius = 3; 
+        self.redButton.layer.cornerRadius = 3;
         self.redButton.layer.masksToBounds = YES;
         
        

@@ -157,7 +157,8 @@
     //=====================================
     subLabel(@"币种内容Label").text = channelModel.domain;
     subLabel(@"币种Label2").text = channelModel.domain;
-    [subLabel(@"链名称内容Label") setText:channelModel.address];
+    subLabel(@"链名称内容Label").text = channelModel.address;
+    subLabel(@"链名称内容Label").superview.hidden = !channelModel.address.stringByTrim.length;
     subLabel(@"二微码Label").text = channelModel.account;
     
     UIImage * image = [SGQRCodeObtain generateQRCodeWithData:channelModel.account size:160.0];
@@ -361,7 +362,7 @@
     NSLog(@"amount = %@",amount);
     NSString *remark = [self.inputTV.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSLog(@"remark = %@",remark);
-    NSString *payer = [NSString stringWithFormat:@"%@USDT",self.moneyLabel.text];
+    NSString *payer = [NSString stringWithFormat:@"%@%@",self.moneyLabel.text, _selectChannelModel.domain];
     
     if ([CMCommon stringIsNull:amount]) {
         [self.view makeToast:@"请输入金额"];

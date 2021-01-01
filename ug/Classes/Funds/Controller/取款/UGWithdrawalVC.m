@@ -90,7 +90,7 @@
         CGFloat amount = subTextField(@"取款金额TextField").text.doubleValue;
         __self.virtualAmount = currencyRate > 0.000001 ? [AppDefine stringWithFloat:currencyRate * amount decimal:2] : nil;
         subLabel(@"虚拟币汇率Label").hidden = !(__self.selectedWam.type == UGWithdrawalTypeVirtual && __self.virtualAmount && amount > 0.01);
-        subLabel(@"虚拟币汇率Label").text = _NSString(@"=%@ USDT　　1 USDT = %@ CNY", __self.virtualAmount, [AppDefine stringWithFloat:1/currencyRate decimal:2]);
+        subLabel(@"虚拟币汇率Label").text = _NSString(@"=%@ %@　　1 %@ = %@ CNY", __self.virtualAmount, __self.selectedWam.bankCode, __self.selectedWam.bankCode, [AppDefine stringWithFloat:1/currencyRate decimal:2]);
     }];
 }
 
