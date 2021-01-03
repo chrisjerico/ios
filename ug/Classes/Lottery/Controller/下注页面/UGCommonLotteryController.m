@@ -171,6 +171,7 @@
             make.height.mas_equalTo(45);
             make.width.mas_equalTo(235);
         }];
+        [_bargainingView setHidden:YES];
         
         self.bargainingView.itemSelectBlock = ^(HelpDocModel * _Nonnull item) {
             if (![CMCommon stringIsNull:item.btnTitle]) {
@@ -224,7 +225,7 @@
     [subButton(@"TKL筹码Btn") removeAllBlocksForControlEvents:UIControlEventTouchUpInside];
     [subButton(@"TKL筹码Btn") addBlockForControlEvents:UIControlEventTouchUpInside block:^(__kindof UIControl *sender) {
         sender.selected = !sender.selected;
-        [__self.bargainingView setHidden:sender.selected];
+        [__self.bargainingView setHidden:!sender.selected];
     }];
     
     [self.lotteryView setGameId:self.nextIssueModel.gameId];
