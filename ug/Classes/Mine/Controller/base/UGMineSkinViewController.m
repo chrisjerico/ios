@@ -872,7 +872,7 @@ BOOL isOk = NO;
         if (APP.isShowDML || [APP.SiteId  isEqualToString:@" t127-shiyu"]) {
             FastSubViewCode(self.userInfoView)
 //            subLabel(@"打码Label").text = [NSString stringWithFormat:@"实际打码量/提款所需打码量：%@/%@",user.dml_real,user.dml_needed];
-            subLabel(@"打码Label").text = [NSString stringWithFormat:@"实际打码量: %@\n提款所需打码量：%@",user.dml_real,user.dml_needed];
+            subLabel(@"打码Label").text = [NSString stringWithFormat:@"提款所需打码量：%@\n你的实际打码量: %@",user.dml_needed,user.dml_real];
             subLabel(@"打码Label").numberOfLines = 0;
             [CMLabelCommon setRichNumberWithLabel: subLabel(@"打码Label") Color:[UIColor yellowColor] FontSize:15.0];
             [subLabel(@"打码Label") setHidden:NO];
