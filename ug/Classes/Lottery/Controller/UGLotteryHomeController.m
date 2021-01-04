@@ -117,7 +117,12 @@ static NSString *headerViewID = @"UGTimeLotteryBetHeaderView";
     UGLotteryGameCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:letteryTicketCellID forIndexPath:indexPath];
     UGAllNextIssueListModel *model = self.lotteryGamesArray[indexPath.section];
     cell.item = model.list[indexPath.row];
-    [cell setBackgroundColor: Skin1.homeContentColor];
+    if([@"c108" isEqualToString:APP.SiteId]){
+        [cell setBackgroundColor: Skin1.CLBgColor];
+    }
+    else{
+        [cell setBackgroundColor: Skin1.homeContentColor];
+    }
     return cell;
 }
 
