@@ -526,16 +526,16 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
            
            // Push
            if ([UGTabbarController canPushToViewController:vc]) {
-               [NavController1 setViewControllers:({
-                   NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
-                   for (UIViewController *vc in NavController1.viewControllers) {
-                       if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
-                           [vcs removeObject:vc];
-                       }
+               NSMutableArray *vcs = NavController1.viewControllers.mutableCopy;
+               for (UIViewController *vc in NavController1.viewControllers) {
+                   if ([vc isKindOfClass:[UGCommonLotteryController class]] || [vc isKindOfClass:[LotteryBetAndChatVC class]]) {
+                       [vcs removeObject:vc];
                    }
-                   [vcs addObject:vc];
-                   vcs;
-               }) animated:YES];
+               }
+               if (vcs.count != NavController1.viewControllers.count) {
+                   [NavController1 setViewControllers:vcs animated:false];
+               }
+               [NavController1 pushViewController:vc animated:true];
            }
            return true;
        }
