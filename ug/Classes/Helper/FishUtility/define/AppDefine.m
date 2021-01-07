@@ -234,7 +234,7 @@
     _isHideSQSM = [@"c245,test60f" containsString:_SiteId];
     _isNoAlert = [@"c126" containsString:_SiteId];
     _isShowSummary = [@"c163" containsString:_SiteId];
-    _isShowAll = [@"c085,test60f" containsString:_SiteId];
+    _isShowAll = [@"c085, t30-andrew" containsString:_SiteId];
     _isShowDML = [@"c084,testadaf" containsString:_SiteId];
     _isCanUploadAvatar = true;
     _isHideBank = [@"c012" containsString:_SiteId];

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -637,7 +637,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZ6-9H-Dn4" userLabel="推荐会员">
                                                 <rect key="frame" x="0.0" y="1593.5" width="414" height="70"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月推荐会员:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWw-DO-G8e" userLabel="本月推荐收益">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="本月推荐会员:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWw-DO-G8e" userLabel="本月推荐收益">
                                                         <rect key="frame" x="15" y="26" width="96.5" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
@@ -646,8 +646,8 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="推荐会员标题label"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一级下线:0，二级下线:0，三级下线:0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTb-Zg-s35">
-                                                        <rect key="frame" x="166" y="0.0" width="238" height="70"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一级下线:0，二级下线:0，三级下线:0" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTb-Zg-s35">
+                                                        <rect key="frame" x="121.5" y="0.0" width="282.5" height="70"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <nil key="textColor"/>
@@ -664,6 +664,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="NTb-Zg-s35" secondAttribute="trailing" constant="10" id="Kk8-5a-OCr"/>
                                                     <constraint firstItem="NTb-Zg-s35" firstAttribute="top" secondItem="TZ6-9H-Dn4" secondAttribute="top" id="Lin-Uq-I7x"/>
                                                     <constraint firstItem="FWw-DO-G8e" firstAttribute="centerY" secondItem="TZ6-9H-Dn4" secondAttribute="centerY" id="ODK-nr-TYM"/>
+                                                    <constraint firstItem="NTb-Zg-s35" firstAttribute="leading" secondItem="FWw-DO-G8e" secondAttribute="trailing" constant="10" id="h3e-fP-stu"/>
                                                     <constraint firstItem="NTb-Zg-s35" firstAttribute="centerY" secondItem="TZ6-9H-Dn4" secondAttribute="centerY" id="l2g-G8-8qp"/>
                                                     <constraint firstAttribute="height" constant="70" id="vpQ-aq-EhP"/>
                                                 </constraints>
@@ -675,7 +676,7 @@
                                                 <rect key="frame" x="0.0" y="1664.5" width="414" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐会员总计:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVC-T6-IIy" userLabel="推荐会员总计:">
-                                                        <rect key="frame" x="15" y="26" width="96.5" height="18"/>
+                                                        <rect key="frame" x="15" y="26" width="141" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -683,7 +684,7 @@
                                                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="推荐会员总计标题label"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一级下线:0，二级下线:0，三级下线:0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asW-w4-JhC">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="一级下线:0，二级下线:0，三级下线:0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asW-w4-JhC">
                                                         <rect key="frame" x="166" y="0.0" width="238" height="70"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -700,6 +701,7 @@
                                                     <constraint firstItem="nVC-T6-IIy" firstAttribute="centerY" secondItem="pNp-DV-I5r" secondAttribute="centerY" id="8sO-or-gse"/>
                                                     <constraint firstItem="nVC-T6-IIy" firstAttribute="leading" secondItem="pNp-DV-I5r" secondAttribute="leading" constant="15" id="9dF-Tm-wpx"/>
                                                     <constraint firstAttribute="bottom" secondItem="asW-w4-JhC" secondAttribute="bottom" id="L9j-T2-jBK"/>
+                                                    <constraint firstItem="asW-w4-JhC" firstAttribute="leading" secondItem="nVC-T6-IIy" secondAttribute="trailing" constant="10" id="YVH-wR-bhR"/>
                                                     <constraint firstAttribute="height" constant="70" id="djh-Cd-tUs"/>
                                                     <constraint firstAttribute="trailing" secondItem="asW-w4-JhC" secondAttribute="trailing" constant="10" id="vIu-Fj-wHX"/>
                                                     <constraint firstItem="asW-w4-JhC" firstAttribute="top" secondItem="pNp-DV-I5r" secondAttribute="top" id="zSw-Oy-Xp2"/>
