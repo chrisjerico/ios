@@ -240,7 +240,7 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
     UGMessageModel *model = self.dataArray[indexPath.row];
     MailDetailVC * vc = [[MailDetailVC alloc] init];
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [self.navigationController presentViewController:vc animated:true completion:nil];
+    [self.navigationController presentViewController:vc animated:false completion:nil];
     vc.content = model.content;
     vc.titleLabel.text = model.title;
     if (model.isRead == 0) {

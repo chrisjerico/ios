@@ -146,8 +146,6 @@ static UIImageView *__snapshotImageView;
                 bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
             } else if (APP.isFish) {
                 bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
-            } else if ([APP.DevUser isEqualToString:@"xionghx"]) {
-                bundleURL = [NSURL URLWithString:@"http://192.168.100.139:8081/index.bundle?platform=ios"];
             }
         }
 #endif

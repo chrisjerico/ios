@@ -229,6 +229,12 @@
     self.userInteractionEnabled = false;
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         CGFloat top = APP.isNewLocation ? 135 : MIN(MAX(APP.Height-475, 0), 135);
+        if ([APP.SiteId isEqualToString:@"c085"]) {
+            top = 160;
+        }
+#ifdef APP_TEST
+        top = 160;
+#endif
         make.left.right.equalTo(self.superview);
         make.top.equalTo(self.superview).offset(top);
         make.height.mas_equalTo(500);
@@ -264,6 +270,19 @@
                 
                 [__self.superview addSubview:btn];
                 btn.hidden = true;
+
+                if ([APP.SiteId isEqualToString:@"c085"] && btn == __self.uGredEnvelopeView) {
+                    [v mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.width.height.mas_equalTo(120);
+                    }];
+                }
+#ifdef APP_TEST
+                if (btn == __self.uGredEnvelopeView) {
+                    [v mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.width.height.mas_equalTo(120);
+                    }];
+                }
+#endif
                 [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.center.equalTo(v);
                     make.width.height.equalTo(v);

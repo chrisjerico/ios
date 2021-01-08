@@ -23,7 +23,7 @@
 }
 
 - (IBAction)dismiss:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self dismissViewControllerAnimated:false completion:nil];
 }
 
 @end
