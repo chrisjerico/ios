@@ -231,10 +231,12 @@
         CGFloat top = APP.isNewLocation ? 135 : MIN(MAX(APP.Height-475, 0), 135);
         if ([APP.SiteId isEqualToString:@"c085"]) {
             top = 160;
+        } else if ([APP.SiteId isEqualToString:@"c117"]) {
+            top = 125;
         }
-#ifdef APP_TEST
-        top = 160;
-#endif
+//#ifdef APP_TEST
+//        top = 160;
+//#endif
         make.left.right.equalTo(self.superview);
         make.top.equalTo(self.superview).offset(top);
         make.height.mas_equalTo(500);
@@ -275,14 +277,18 @@
                     [v mas_remakeConstraints:^(MASConstraintMaker *make) {
                         make.width.height.mas_equalTo(120);
                     }];
-                }
-#ifdef APP_TEST
-                if (btn == __self.uGredEnvelopeView) {
+                } else if ([APP.SiteId isEqualToString:@"c117"] && btn == __self.uGredEnvelopeView) {
                     [v mas_remakeConstraints:^(MASConstraintMaker *make) {
-                        make.width.height.mas_equalTo(120);
+                        make.width.height.mas_equalTo(100);
                     }];
                 }
-#endif
+//#ifdef APP_TEST
+//                if (btn == __self.uGredEnvelopeView) {
+//                    [v mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                        make.width.height.mas_equalTo(120);
+//                    }];
+//                }
+//#endif
                 [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.center.equalTo(v);
                     make.width.height.equalTo(v);
