@@ -23,6 +23,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [_titleLabel setTextColor:Skin1.textColor1];
+    if ([Skin1.skitType isEqualToString:@"威尼斯"]) {
+        _titleLabel.textColor = [UIColor whiteColor];
+        self.imageArrowView.image = [self.imageArrowView.image qmui_imageWithTintColor:[UIColor whiteColor]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
