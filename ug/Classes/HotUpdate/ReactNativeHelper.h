@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)selectVC:(NSString *)vcName params:(NSDictionary *)params;    /**<   切换rn页面 */
 + (void)pushVC:(NSString *)vcName params:(NSDictionary *)params;
 + (void)refreshVC:(NSString *)vcName params:(NSDictionary *)params;
++ (void)leaveVC:(NSString *)vcName params:(NSDictionary *)params;
 + (void)removeVC:(NSString *)vcName;    /**<   移除页面 */
 
 // 切换热更新

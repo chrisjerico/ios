@@ -189,6 +189,13 @@ static UIImageView *__snapshotImageView;
     self.navigationController.navigationBarHidden = _navigationBarHidden;
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (![NavController1.topViewController isKindOfClass:[ReactNativeVC class]]) {
+        [ReactNativeHelper leaveVC:_rpm.rnName params:@{}];
+    }
+}
+
 - (void)pushOrJump:(BOOL)pushOrJump rpm:(RnPageModel *)rpm params:(NSDictionary<NSString *,id> *)params {
     __weakSelf_(__self);
     [ReactNativeHelper waitLaunchFinish:^(BOOL waited) {
