@@ -2160,6 +2160,12 @@
 		CF9887A3253FF6B200DFFD49 /* HomeBetFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9887A2253FF6B200DFFD49 /* HomeBetFormView.m */; };
 		CF9887B4254009E400DFFD49 /* HomeFloatingButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9887B3254009E400DFFD49 /* HomeFloatingButtonsView.xib */; };
 		CF9887C5254014A800DFFD49 /* HomeFloatingButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9887C4254014A800DFFD49 /* HomeFloatingButtonsView.m */; };
+		CF98CA1A25AD85B30086E90A /* UMCommonLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA0C25AD85B30086E90A /* UMCommonLog.framework */; };
+		CF98CA1B25AD85B30086E90A /* UMCommonLog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF98CA0D25AD85B30086E90A /* UMCommonLog.bundle */; };
+		CF98CA1C25AD85B30086E90A /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA1025AD85B30086E90A /* UTDID.framework */; };
+		CF98CA1D25AD85B30086E90A /* UMPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA1325AD85B30086E90A /* UMPush.framework */; };
+		CF98CA1F25AD85B30086E90A /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA1725AD85B30086E90A /* UMCommon.framework */; };
+		CF98CA2025AD85B30086E90A /* UMDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA1825AD85B30086E90A /* UMDevice.framework */; };
 		CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */; };
 		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CF9A93C42407F2C200D6E4F3 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C02407F2C200D6E4F3 /* FLAnimatedImage.m */; };
@@ -4317,6 +4323,12 @@
 		CF9887B3254009E400DFFD49 /* HomeFloatingButtonsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeFloatingButtonsView.xib; sourceTree = "<group>"; };
 		CF9887C3254014A800DFFD49 /* HomeFloatingButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeFloatingButtonsView.h; sourceTree = "<group>"; };
 		CF9887C4254014A800DFFD49 /* HomeFloatingButtonsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeFloatingButtonsView.m; sourceTree = "<group>"; };
+		CF98CA0C25AD85B30086E90A /* UMCommonLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommonLog.framework; sourceTree = "<group>"; };
+		CF98CA0D25AD85B30086E90A /* UMCommonLog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMCommonLog.bundle; sourceTree = "<group>"; };
+		CF98CA1025AD85B30086E90A /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
+		CF98CA1325AD85B30086E90A /* UMPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMPush.framework; sourceTree = "<group>"; };
+		CF98CA1725AD85B30086E90A /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		CF98CA1825AD85B30086E90A /* UMDevice.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMDevice.framework; sourceTree = "<group>"; };
 		CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGLHLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		CF997C2623CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHLotteryCollectionViewCell.h; sourceTree = "<group>"; };
@@ -4634,19 +4646,24 @@
 				D435F90923CEF996008648CE /* AudioToolbox.framework in Frameworks */,
 				D4463AC623A7740E008EF03D /* libresolv.tbd in Frameworks */,
 				495E622024E650A700BDC3CA /* FBSDKShareKit.framework in Frameworks */,
+				CF98CA1D25AD85B30086E90A /* UMPush.framework in Frameworks */,
 				D4463AC423A77404008EF03D /* UserNotifications.framework in Frameworks */,
+				CF98CA1F25AD85B30086E90A /* UMCommon.framework in Frameworks */,
 				D4463AC223A773F9008EF03D /* libz.tbd in Frameworks */,
 				495E621F24E650A700BDC3CA /* FBSDKLoginKit.framework in Frameworks */,
 				D4463AC023A773EF008EF03D /* Security.framework in Frameworks */,
+				CF98CA2025AD85B30086E90A /* UMDevice.framework in Frameworks */,
 				D4463ABE23A773E7008EF03D /* UIKit.framework in Frameworks */,
 				D4463ABC23A773DF008EF03D /* Foundation.framework in Frameworks */,
 				D4463ABA23A773D5008EF03D /* CoreGraphics.framework in Frameworks */,
 				D4463AB823A773CD008EF03D /* SystemConfiguration.framework in Frameworks */,
+				CF98CA1A25AD85B30086E90A /* UMCommonLog.framework in Frameworks */,
 				D4463AB623A773C5008EF03D /* CoreTelephony.framework in Frameworks */,
 				D4463AB423A773B9008EF03D /* CoreFoundation.framework in Frameworks */,
 				495E622124E650A700BDC3CA /* FBSDKCoreKit.framework in Frameworks */,
 				D4463AB223A773AF008EF03D /* CFNetwork.framework in Frameworks */,
 				21C23BE623A79DB2565145FB /* Pods_UGBWApp.framework in Frameworks */,
+				CF98CA1C25AD85B30086E90A /* UTDID.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8351,6 +8368,7 @@
 		2E2BF98637033623A296F5F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF98CA0925AD85B30086E90A /* um-download-on-20210112 */,
 				495E622224E650FC00BDC3CA /* facebook */,
 				D435F90823CEF996008648CE /* AudioToolbox.framework */,
 				D4463AC523A7740E008EF03D /* libresolv.tbd */,
@@ -9155,6 +9173,83 @@
 				CF9887B3254009E400DFFD49 /* HomeFloatingButtonsView.xib */,
 			);
 			path = "悬浮按钮";
+			sourceTree = "<group>";
+		};
+		CF98CA0925AD85B30086E90A /* um-download-on-20210112 */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA0A25AD85B30086E90A /* umcommonlog */,
+				CF98CA0E25AD85B30086E90A /* thirdparties */,
+				CF98CA1125AD85B30086E90A /* push */,
+				CF98CA1425AD85B30086E90A /* common */,
+			);
+			path = "um-download-on-20210112";
+			sourceTree = "<group>";
+		};
+		CF98CA0A25AD85B30086E90A /* umcommonlog */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA0B25AD85B30086E90A /* umcommonlog_ios_2.0.0 */,
+			);
+			path = umcommonlog;
+			sourceTree = "<group>";
+		};
+		CF98CA0B25AD85B30086E90A /* umcommonlog_ios_2.0.0 */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA0C25AD85B30086E90A /* UMCommonLog.framework */,
+				CF98CA0D25AD85B30086E90A /* UMCommonLog.bundle */,
+			);
+			path = umcommonlog_ios_2.0.0;
+			sourceTree = "<group>";
+		};
+		CF98CA0E25AD85B30086E90A /* thirdparties */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA0F25AD85B30086E90A /* thirdparties_ios_1.0.5 */,
+			);
+			path = thirdparties;
+			sourceTree = "<group>";
+		};
+		CF98CA0F25AD85B30086E90A /* thirdparties_ios_1.0.5 */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA1025AD85B30086E90A /* UTDID.framework */,
+			);
+			path = thirdparties_ios_1.0.5;
+			sourceTree = "<group>";
+		};
+		CF98CA1125AD85B30086E90A /* push */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA1225AD85B30086E90A /* push_ios_3.3.1 */,
+			);
+			path = push;
+			sourceTree = "<group>";
+		};
+		CF98CA1225AD85B30086E90A /* push_ios_3.3.1 */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA1325AD85B30086E90A /* UMPush.framework */,
+			);
+			path = push_ios_3.3.1;
+			sourceTree = "<group>";
+		};
+		CF98CA1425AD85B30086E90A /* common */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA1525AD85B30086E90A /* common_ios_7.2.5 */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		CF98CA1525AD85B30086E90A /* common_ios_7.2.5 */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CA1725AD85B30086E90A /* UMCommon.framework */,
+				CF98CA1825AD85B30086E90A /* UMDevice.framework */,
+			);
+			path = common_ios_7.2.5;
 			sourceTree = "<group>";
 		};
 		CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */ = {
@@ -10747,6 +10842,7 @@
 				CFCF6DDC23C8403F0039588D /* main.jsbundle in Resources */,
 				D46653412430CD38000D5377 /* otherLotter.wav in Resources */,
 				CF4758C8239636D200966536 /* 2.gif in Resources */,
+				CF98CA1B25AD85B30086E90A /* UMCommonLog.bundle in Resources */,
 				031E1C5823BE812A00B0F813 /* UGBetDetailTableViewCell.xib in Resources */,
 				CF475892239636D200966536 /* 33.gif in Resources */,
 				D4593B0C23FFB646008396BE /* LineMainListCollectionViewCell.xib in Resources */,
@@ -12723,6 +12819,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/ug/Classes/Frameworks/facebook",
+					"$(PROJECT_DIR)/um-download-on-20210112/umcommonlog/umcommonlog_ios_2.0.0",
+					"$(PROJECT_DIR)/um-download-on-20210112/thirdparties/thirdparties_ios_1.0.5",
+					"$(PROJECT_DIR)/um-download-on-20210112/push/push_ios_3.3.1",
+					"$(PROJECT_DIR)/um-download-on-20210112/common/common_ios_7.2.5",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(ug)/ug/Classes/Other/UGPCH.pch";
@@ -12764,6 +12864,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/ug/Classes/Frameworks/facebook",
+					"$(PROJECT_DIR)/um-download-on-20210112/umcommonlog/umcommonlog_ios_2.0.0",
+					"$(PROJECT_DIR)/um-download-on-20210112/thirdparties/thirdparties_ios_1.0.5",
+					"$(PROJECT_DIR)/um-download-on-20210112/push/push_ios_3.3.1",
+					"$(PROJECT_DIR)/um-download-on-20210112/common/common_ios_7.2.5",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(ug)/ug/Classes/Other/UGPCH.pch";

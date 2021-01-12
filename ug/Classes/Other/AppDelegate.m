@@ -38,10 +38,12 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
+#import <UMPush/UMessage.h>
+#import <UMCommon/UMCommon.h>
+#import <UTDID/UTDevice.h>
 
 
-
-@interface AppDelegate ()<UITabBarControllerDelegate,JPUSHRegisterDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate, UNUserNotificationCenterDelegate, JPUSHRegisterDelegate>
 {
     
 }
@@ -72,58 +74,10 @@
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
     // 极光推送
-    NSDictionary *dict = @{@"c049":@"6ee045aa7ffcf3320b396041",
-                           @"c084":@"865d65d06153a662e03a57d4",
-                           @"c008":@"07c42b09a5f1b3f80ccb9b0a",
-                           @"c053":@"370d706112f879592224e336",
-                           @"l001":@"704176e51cf8b2c37fe28834",
-                           @"c151":@"a7b7100d34f78632cc7dfbbe",
-                           @"l002":@"8b2a4bfdcf4665e11568ecc5",
-                           @"c213":@"2a5472a86daeef60423604fe",
-                           @"c116":@"7f2bd0c8a274309e5929e9c8",
-                           @"c092":@"f40ba329b3db2f53db929a63",
-                           @"c200":@"1ef3298b38418f7232668c37",
-                           @"c052":@"bc76977c162ffe40285b9dc7",
-                           @"c193":@"9cbb58d0eebcb5c1b421163e",
-                           @"c012":@"2772c653994de0f3faa0f4eb",
-                           @"c230":@"ac740711a824da1018ef0810",
-                           @"c085":@"c50224b5f533daabb09fbfc7",
-                           @"c002":@"216c64bd4631f22235cb8cc5",
-                           @"c175":@"e7d80ea4cf6ee9d2b39208f4",
-                           @"c217":@"854010b0c6c28834fe3f2c59",
-                           @"c205":@"5b3e0d686b6280279dd27046",
-                           @"c134":@"0a147cb4535e95735584df96",
-                           @"c073":@"152d1909dbdfc06852701573",
-                           @"c085yw":@"c4d57865261cf422a844cb6e",
-                           @"c206":@"5be94507f8ebcc99b2214d05",
-                           @"c006":@"9f74e61061ff6b7281026599",
-                           @"c245":@"10115d9f8171c4199d9f4e51",
-                           @"c115":@"5121ee36308813df753e8eaa",
-    };
-    
-    NSLog(@"APP.SiteId = %@",APP.SiteId);
-    NSLog(@"dict[APP.SiteId] = %@",dict[APP.SiteId]);
-    NSString *appKey = dict[APP.SiteId] ? dict[APP.SiteId] : @"21d1b87f65b557d2946af463";
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"lotteryHormIsOpen"];//下注界面默认喇叭开启
-    
-#ifdef DEBUG
-    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
-    [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
-     [self initBugly];
- 
-#else
-    [self initBugly];
-    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"dis" apsForProduction:1 advertisingIdentifier:nil];
-#endif
-    
-    
-    [JPUSHService registerForRemoteNotificationConfig:({
-        JPUSHRegisterEntity *entity = [[JPUSHRegisterEntity alloc] init];
-        entity.types = JPAuthorizationOptionAlert | JPAuthorizationOptionBadge | JPAuthorizationOptionSound | JPAuthorizationOptionProvidesAppNotificationSettings;
-        entity;
-    }) delegate:self];
-    
+    [self setupJPush:launchOptions];
+
+    // 友盟推送
+    [self setupUM:launchOptions];
 
     [self userAgent];
 #ifdef APP_TEST
@@ -159,10 +113,117 @@
 		[[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent": newAgent,@"HTTPUserAgent":appendAgent}];
 	}
 }
+
+// 极光推送
+- (void)setupJPush:(NSDictionary *)launchOptions {
+    NSDictionary *dict = @{@"c049":@"6ee045aa7ffcf3320b396041",
+                           @"c084":@"865d65d06153a662e03a57d4",
+                           @"c008":@"07c42b09a5f1b3f80ccb9b0a",
+                           @"c053":@"370d706112f879592224e336",
+                           @"l001":@"704176e51cf8b2c37fe28834",
+                           @"c151":@"a7b7100d34f78632cc7dfbbe",
+                           @"l002":@"8b2a4bfdcf4665e11568ecc5",
+                           @"c213":@"2a5472a86daeef60423604fe",
+                           @"c116":@"7f2bd0c8a274309e5929e9c8",
+                           @"c092":@"f40ba329b3db2f53db929a63",
+                           @"c200":@"1ef3298b38418f7232668c37",
+                           @"c052":@"bc76977c162ffe40285b9dc7",
+                           @"c193":@"9cbb58d0eebcb5c1b421163e",
+                           @"c012":@"2772c653994de0f3faa0f4eb",
+                           @"c230":@"ac740711a824da1018ef0810",
+                           @"c085":@"c50224b5f533daabb09fbfc7",
+                           @"c002":@"216c64bd4631f22235cb8cc5",
+                           @"c175":@"e7d80ea4cf6ee9d2b39208f4",
+                           @"c217":@"854010b0c6c28834fe3f2c59",
+                           @"c205":@"5b3e0d686b6280279dd27046",
+                           @"c134":@"0a147cb4535e95735584df96",
+                           @"c073":@"152d1909dbdfc06852701573",
+                           @"c085yw":@"c4d57865261cf422a844cb6e",
+                           @"c206":@"5be94507f8ebcc99b2214d05",
+                           @"c006":@"9f74e61061ff6b7281026599",
+                           @"c245":@"10115d9f8171c4199d9f4e51",
+                           @"c115":@"5121ee36308813df753e8eaa",
+    };
+    
+    NSLog(@"APP.SiteId = %@",APP.SiteId);
+    NSLog(@"dict[APP.SiteId] = %@",dict[APP.SiteId]);
+    NSString *appKey = dict[APP.SiteId] ? : @"21d1b87f65b557d2946af463";
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"lotteryHormIsOpen"];//下注界面默认喇叭开启
+    
+#ifdef DEBUG
+    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"develop" apsForProduction:0 advertisingIdentifier:nil];
+    [KMCGeigerCounter sharedGeigerCounter].enabled = NO;
+     [self initBugly];
+ 
+#else
+    [self initBugly];
+    [JPUSHService setupWithOption:launchOptions appKey:appKey channel:@"dis" apsForProduction:1 advertisingIdentifier:nil];
+#endif
+    
+    
+    [JPUSHService registerForRemoteNotificationConfig:({
+        JPUSHRegisterEntity *entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = JPAuthorizationOptionAlert | JPAuthorizationOptionBadge | JPAuthorizationOptionSound | JPAuthorizationOptionProvidesAppNotificationSettings;
+        entity;
+    }) delegate:self];
+}
+// 友盟推送
+- (void)setupUM:(NSDictionary *)launchOptions {
+    NSDictionary *dict = @{
+        @"c208":@"5ffd4b93dbc1cd0defd360fc",
+    };
+    NSString *appKey = dict[APP.SiteId] ? : @"5ffd4b93dbc1cd0defd360fc";
+    
+    [UMConfigure initWithAppkey:appKey channel:@"App Store"];
+#ifdef DEBUG
+    [UMConfigure setLogEnabled:true];
+#endif
+    // Push组件基本功能配置
+    UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
+    //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标
+    entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionSound|UMessageAuthorizationOptionAlert;
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+        }else{
+        }
+    }];
+}
+
+#pragma mark - UNUserNotificationCenterDelegate (友盟)
+
+//iOS10新增：处理前台收到通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [UMessage setAutoAlert:NO];
+        //应用处于前台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+    }else{
+        //应用处于前台时的本地推送接受
+    }
+    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
+}
+
+//iOS10新增：处理后台点击通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于后台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+    }else{
+        //应用处于后台时的本地推送接受
+    }
+}
+
 #pragma mark - 系统配置
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 	[JPUSHService registerDeviceToken:deviceToken];
+    [UMessage registerDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -187,6 +248,8 @@
 
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [UMessage setAutoAlert:NO];
+    [UMessage didReceiveRemoteNotification:userInfo];
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
