@@ -401,9 +401,13 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
     };
     [dict addEntriesFromDictionary:encrypt(params)];
     
-    // 带上sign
-    NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
-    [dict setValue:sign forKey:@"sign"];
+    // 带上sign（频繁加密可能会为空，这时取上一次的签名也可用）
+    {
+        static NSString *lastSign = nil;
+        NSString *sign = [UGEncryptUtil encryptString:[NSString stringWithFormat:@"iOS_%@",deskey] publicKey:RSAPublicKey];
+        sign = sign.length ? sign : lastSign;
+        [dict setValue:(lastSign = sign) forKey:@"sign"];
+    }
     
     // 带上token
     if (UGLoginIsAuthorized()) {
