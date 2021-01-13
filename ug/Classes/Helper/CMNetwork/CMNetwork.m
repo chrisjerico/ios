@@ -387,7 +387,7 @@ CMSpliteLimiter CMSpliteLimiterMax = {1, 65535};
         } else if ([obj isKindOfClass:[NSArray class]]) {
             NSMutableArray *arr = @[].mutableCopy;
             for (id ele in obj) {
-                [arr addObject:ele];
+                [arr addObject:__encrypt(ele)];
             }
             return arr;
         }
