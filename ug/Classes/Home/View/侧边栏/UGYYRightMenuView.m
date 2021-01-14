@@ -157,6 +157,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             @(UGLinkPosition_彩种规则),
             @(UGLinkPosition_长龙助手),
             @(UGLinkPosition_开奖走势),
+            @(UGLinkPosition_露珠),
             @(UGLinkPosition_红包记录),
             @(UGLinkPosition_扫雷记录),
             @(UGLinkPosition_利息宝),
@@ -172,6 +173,8 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             @(UGLinkPosition_投注记录),
             @(UGLinkPosition_开奖记录),
             @(UGLinkPosition_长龙助手),
+            @(UGLinkPosition_开奖走势),
+            @(UGLinkPosition_露珠),
             @(UGLinkPosition_红包记录),
             @(UGLinkPosition_扫雷记录),
             @(UGLinkPosition_利息宝),
@@ -212,6 +215,7 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
             @(UGLinkPosition_红包记录):@{@"红包记录":@"cbl_hongbao"},
             @(UGLinkPosition_扫雷记录):@{@"扫雷记录":@"cbl_saolei"},
             @(UGLinkPosition_开奖走势):@{@"走势图":@"js_trends"},
+            @(UGLinkPosition_露珠):@{@"露珠":@"shouye"},
         };
     });
     
@@ -799,6 +803,9 @@ static NSString *menuCellid = @"UGYYRightMenuTableViewCell";
      }
     else if ([title containsString:@"走势"]) {
         [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:UGLinkPosition_开奖走势];
+    }
+    else if ([title containsString:@"露珠"]) {
+        [NavController1 pushViewControllerWithLinkCategory:7 linkPosition:UGLinkPosition_露珠];
     }
 }
 
