@@ -104,7 +104,7 @@ static UGTabbarController *_tabBarVC = nil;
         }
         // 聊天室
         if ((cls == UGChatViewController.class || cls == LotteryBetAndChatVC.class) && !user.chatRoomSwitch) {
-            [AlertHelper showAlertView:@"温馨提示" msg:@"聊天室已关闭" btnTitles:@[@"确定"]];
+            [AlertHelper showAlertView:@"温馨提示" msg:@"尚未开启聊天室" btnTitles:@[@"确定"]];
             return false;
         }
         
@@ -115,7 +115,7 @@ static UGTabbarController *_tabBarVC = nil;
         }
         // 利息宝
         else if (cls == UGYubaoViewController.class && !user.yuebaoSwitch) {
-            [AlertHelper showAlertView:@"温馨提示" msg:@"利息宝已关闭" btnTitles:@[@"确定"]];
+            [AlertHelper showAlertView:@"温馨提示" msg:@"尚未开启利息宝" btnTitles:@[@"确定"]];
             return false;
         }
         // 每日签到
