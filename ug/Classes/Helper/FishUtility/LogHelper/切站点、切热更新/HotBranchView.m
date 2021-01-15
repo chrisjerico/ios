@@ -114,6 +114,51 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     NSString *t = _dataArray[indexPath.section][indexPath.row];
     
+    if (OBJOnceToken(cell)) {
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+        cell.textLabel.textColor = UIColor.blackColor;
+    }
+    cell.textLabel.text = t;
+    
+    __weakSelf_(__self);
+    UIButton *btn = [cell viewWithTagString:@"切换ipButton"];
+    if (!btn) {
+        btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.tagString = @"切换ipButton";
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.backgroundColor = APP.LoadingColor;
+//        btn.frame = CGRectMake(0, 4, 80, 30);
+        [btn setTitleColor:APP.ThemeColor1 forState:UIControlStateNormal];
+        [btn setTitle:@"切换ip" forState:UIControlStateNormal];
+        [btn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            UIAlertController *ac = [AlertHelper showAlertView:@"请选择ip" msg:nil btnTitles:@[@"192.168.2.1", @"手动输入", @"取消"]];
+            [ac setActionAtTitle:@"192.168.2.1" handler:^(UIAlertAction *aa) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"192.168.2.1" forKey:@"LocalRnCodeIP"];
+                [__self.tableView reloadData];
+            }];
+            __block  UITextField *__tf = nil;
+            [ac setActionAtTitle:@"手动输入" handler:^(UIAlertAction *aa) {
+                [LEEAlert alert].config
+                .LeeTitle(@"请输入ip")
+                .LeeAddTextField(^(UITextField *textField) {
+                    __tf = textField; //赋值
+                })
+                .LeeCancelAction(@"取消", nil) // 点击事件的Block如果不需要可以传nil
+                .LeeAction(@"确定", ^{
+                    [[NSUserDefaults standardUserDefaults] setObject:__tf.text forKey:@"LocalRnCodeIP"];
+                    [__self.tableView reloadData];
+                })
+                .LeeShow();
+            }];
+        }];
+        [cell.contentView addSubview:btn];
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(cell.contentView);
+            make.right.equalTo(cell.contentView).offset(-10);
+        }];
+    }
+    btn.hidden = TARGET_IPHONE_SIMULATOR || ![t containsString:@"本地代码"];
+    
     UILabel *lb = [cell viewWithTagString:@"二级标题"];
     if (!lb) {
         lb = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 100, cell.height)];
@@ -123,20 +168,13 @@
         [cell.contentView addSubview:lb];
     }
     if ([t isMatch:RX(@"^[A-Za-z0-9_]+$")]) {
-        if ([t hasSuffix:@"_t"]) {
-            lb.text = @"(未审)";
-            cell.textLabel.font = [UIFont systemFontOfSize:13];
-            cell.textLabel.textColor = UIColor.lightGrayColor;
-            cell.textLabel.text = [t substringToIndex:t.length-2];
-        } else {
-            lb.text = @"(线上)";
-            cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
-            cell.textLabel.textColor = UIColor.blackColor;
-            cell.textLabel.text = t;
-        }
+        lb.text = @"(线上)";
+        lb.x = 75;
+    } else if ([t containsString:@"本地代码"]) {
+        lb.text = TARGET_IPHONE_SIMULATOR ? @"" : ([[NSUserDefaults standardUserDefaults] stringForKey:@"LocalRnCodeIP"] ? : @"192.168.2.1");
+        lb.x = 115;
     } else {
         lb.text = @"";
-        cell.textLabel.text = t;
     }
     return cell;
 }

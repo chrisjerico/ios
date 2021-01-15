@@ -144,8 +144,9 @@ static UIImageView *__snapshotImageView;
         if ([ReactNativeHelper.currentCodePushKey isEqualToString:@"LocalCode"]) {
             if (TARGET_IPHONE_SIMULATOR) {
                 bundleURL = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
-            } else if (APP.isFish) {
-                bundleURL = [NSURL URLWithString:@"http://192.168.2.1:8081/index.bundle?platform=ios"];
+            } else {
+                NSString *ip = [[NSUserDefaults standardUserDefaults] stringForKey:@"LocalRnCodeIP"] ? : @"192.168.2.1";
+                bundleURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:8081/index.bundle?platform=ios", ip]];
             }
         }
 #endif
