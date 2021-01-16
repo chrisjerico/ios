@@ -30,6 +30,7 @@
 @property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
 @property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
 @property (nonatomic, assign) int waitCheckUpdate;  /**<   ⌛️等检查更新 */
+@property (nonatomic, assign) BOOL waitDomainValid; /**<   ⌛️等更换域名，若所有域名都无效则无法进入首页 */
 @property (nonatomic, assign) BOOL waitRnPageInfos; /**<   ⌛️等RN页面配置完毕（iPhone6机型性能差，可能进首页了配置还没好）*/
 @end
 
@@ -96,6 +97,7 @@
             _waitReactNative = true;
             _waitSysConf = true;
             _waitRnPageInfos = true;
+            _waitDomainValid = true;
             
             [self loadLaunchImage];
             [self loadReactNative];
@@ -113,6 +115,10 @@
                 __self.waitPic = false;
                 __self.waitLanguage = false;
                 __self.waitCheckUpdate = __self.waitCheckUpdate > 0;
+                
+                if (__self.waitDomainValid) {
+                    [SVProgressHUD showWithStatus:@"正在更新远程配置，请稍等片刻..."];
+                }
                 
                 if ([[NSUserDefaults standardUserDefaults] boolForKey:@"已更新过一次RN代码"]) {
 #ifndef APP_TEST
@@ -134,6 +140,7 @@
             if (__self.waitPic) continue;
             if (__self.waitLanguage) continue;
             if (__self.waitCheckUpdate) continue;
+            if (__self.waitDomainValid) continue;
             break;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -331,6 +338,10 @@
     SANotificationEventSubscribe(@"UGDidSetRnPageInfos", self, ^(typeof (self) self, id obj) {
         NSLog(@"RN页面配置完毕");
         __self.waitRnPageInfos = false;
+    });
+    SANotificationEventSubscribe(@"UGDidDomainNameChange", self, ^(typeof (self) self, id obj) {
+        NSLog(@"RN域名更换完毕");
+        __self.waitDomainValid = false;
     });
     ReactNativeVC *vc = [ReactNativeVC reactNativeWithRPM:[RnPageModel updateVersionPage] params:nil];
     [__self addChildViewController:vc];
