@@ -1475,10 +1475,10 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         collectionView;
         
     });
-    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
     self.betCollectionView = collectionView;
     [self.rightStackView addSubview:collectionView];
-    
+    // 这句话会导致提前刷新列表，找不到cellId导致闪退，要放到betCollectionView赋值之后
+    collectionView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0);
 }
 
 - (void)initHeaderCollectionView {
