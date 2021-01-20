@@ -335,6 +335,7 @@
         [CMCommon goSLWebUrl:url];
     }];
     
+    [subView(@"iconView") setHidden:!APP.addIcons];
     [subButton(@"长龙btn") setHidden:!APP.addIcons];
     [subButton(@"直播btn") setHidden:!APP.addIcons];
     [subButton(@"开奖btn") setHidden:!APP.addIcons];

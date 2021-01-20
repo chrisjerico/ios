@@ -97,7 +97,7 @@
     [SVProgressHUD showWithStatus:nil];
     WeakSelf;
     //投注记录信息
-    [CMNetwork userLotteryDayStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+    [CMNetwork           userLotteryDayStatWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         
         
         

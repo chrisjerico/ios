@@ -818,6 +818,11 @@
                         [weakSelf.view layoutIfNeeded];
                     }
                     
+                    if (!SysConf.mobileHomeGameTypeSwitch) {
+                        weakSelf.gameNavigationViewHeight.constant = 0;
+                        [weakSelf.view layoutIfNeeded];
+                    }
+                    
                     //去掉seriesId = 13 的数据 后台如设置内容管理-手机游戏图标下的“UG棋牌”，前台隐藏显示
                     NSMutableArray *iconsArray = [NSMutableArray arrayWithArray:customGameModel.icons];
                     for (GameCategoryModel *obj in iconsArray.reverseObjectEnumerator) {

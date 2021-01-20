@@ -48,6 +48,8 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
             [self addSubview:_titleView];
             
             [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                
                 if ([@"h005" containsString:APP.SiteId]) {
                     // 隐藏标题栏
                     make.top.left.right.equalTo(self);
@@ -83,6 +85,15 @@ static NSString *platformCellid = @"UGGamePlatformCollectionViewCell";
 						make.right.equalTo(self).offset(APP.isShowLogo ? 0 : -5);
 						make.height.equalTo(APP.isShowLogo ? @60 : @50 );
 					}
+                }
+                
+                if (!SysConf.mobileHomeGameTypeSwitch) {
+                    /**
+                     136395
+                     标题：    系统设置-内容管理-手机游戏图标，关闭开关时，只需隐藏前台分类tab，后台游戏图标内容不变 【普通】
+                     */
+                    make.top.left.right.equalTo(self);
+                    make.height.equalTo(@0);
                 }
             }];
             
