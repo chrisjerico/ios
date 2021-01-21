@@ -144,6 +144,7 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 @property (nonatomic) BOOL status;                  /**<   1=显示建设中页面；0=正常显示 */
 @property (nonatomic) NSInteger isHot;              /**<   1 代表是热门  */
 @property (nonatomic, copy) NSString *icon_hot;    /**<   热门图片路径 */
+@property (nonatomic, copy) NSString *roles;        /**<   用户观看层级 */
 // 自定义参数
 @property (nonatomic, readonly) MobileMenuType type;        /**<   页面类型 */
 @property (nonatomic, copy) NSString *defaultImgName;   /**<   本地图标 */

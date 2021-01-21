@@ -12,6 +12,7 @@
 
 @interface MultiTabbar ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray<UGMobileMenu *> *dataArray;
 @end
 
 
@@ -34,11 +35,33 @@
     [self xw_addNotificationForName:@"UGRefreshTabbarBadge" block:^(NSNotification * _Nonnull noti) {
         [__self.collectionView reloadData];
     }];
+    [self xw_addNotificationForName:UGNotificationLoginComplete block:^(NSNotification * _Nonnull noti) {
+        [__self refreshDataArray];
+    }];
+    [self xw_addNotificationForName:UGNotificationUserLogout block:^(NSNotification * _Nonnull noti) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [__self refreshDataArray];
+        });
+    }];
     block1(nil);
 }
 
 - (void)setItems:(NSArray<UGMobileMenu *> *)items {
     _items = items;
+    [self refreshDataArray];
+}
+
+- (void)refreshDataArray {
+    if (!_dataArray) {
+        _dataArray = @[].mutableCopy;
+    }
+    UGMobileMenu *mm = _dataArray[_selectedIndex];
+    if (UGLoginIsAuthorized()) {
+        [_dataArray setArray:_items];
+    } else {
+        [_dataArray setArray:[_items objectsWithValue:@"all" keyPath:@"roles"]];
+    }
+    _selectedIndex = [_dataArray indexOfValue:mm.path keyPath:@"path"];
     [_collectionView reloadData];
 }
 
@@ -49,13 +72,30 @@
 - (void)setSelectedIndex:(NSInteger)selectedIndex willCallback:(BOOL)willCallback {
     _selectedIndex = selectedIndex;
     if (willCallback && _didClick)
-        _didClick(_items[selectedIndex], selectedIndex);
+        _didClick(_dataArray[selectedIndex], selectedIndex);
     
     __weakSelf_(__self);
     NSIndexPath *ip = [NSIndexPath indexPathForItem:selectedIndex inSection:0];
     [_collectionView scrollToItemAtIndexPath:ip atScrollPosition:UICollectionViewScrollPositionNone animated:false];
     UICollectionViewCell *cell = [__self.collectionView cellForItemAtIndexPath:ip];
     ((UIButton *)[cell viewWithTagString:@"点击Button"]).selected = true;
+    if (!willCallback)
+        [self scrollToIndex:ip];
+}
+
+- (void)scrollToIndex:(NSIndexPath *)indexPath {
+    UICollectionView *collectionView = _collectionView;
+    [collectionView setContentOffset:({
+        CGFloat x = 2;
+        for (int i=0; i<indexPath.item; i++) {
+            x += [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]].width;
+        }
+        CGFloat w = [self collectionView:collectionView layout:collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath].width;;
+        x = x - collectionView.width/2 + w/2;
+        x = MAX(x, 0);
+        x = MIN(x, collectionView.contentSize.width - collectionView.width);
+        CGPointMake(x, 0);
+    }) animated:true];
 }
 
 
@@ -63,20 +103,20 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat h = 45;
-    if (_items.count < 7) {
-        return CGSizeMake(APP.Width/_items.count, h);
+    if (_dataArray.count < 7) {
+        return CGSizeMake(APP.Width/_dataArray.count, h);
     }
     CGFloat w1 = APP.Width/6;
     return CGSizeMake(MIN(w1, 100), h);
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _items.count;
+    return _dataArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    UGMobileMenu *mm = _items[indexPath.item];
+    UGMobileMenu *mm = _dataArray[indexPath.item];
     __weakSelf_(__self);
     FastSubViewCode(cell);
     // 图标
@@ -105,6 +145,7 @@
         if (__self.didClick && __self.didClick(mm, indexPath.item)) {
             sender.selected = true;
             __self.selectedIndex = indexPath.item;
+            [__self scrollToIndex:indexPath];
         }
     }];
     // 选中非选中样式

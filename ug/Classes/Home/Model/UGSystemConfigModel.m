@@ -399,6 +399,9 @@ UGSystemConfigModel *currentConfig = nil;
 
     }
     else {
+        if (!self.clsName.stringByTrim.length) {
+            self.clsName = @"LHStayTunedVC";
+        }
         UIViewController *vc = _LoadVC_from_storyboard_(self.clsName);
         if (!vc) {
             vc = [NSClassFromString(self.clsName) new];
