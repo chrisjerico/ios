@@ -46,7 +46,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="NHI-vc-kAs"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10.5"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
