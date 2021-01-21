@@ -47,7 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)shared;
 + (BOOL)canPushToViewController:(UIViewController *)vc;
 - (void)setTabbarHeight:(CGFloat)height;    /**<   改变tabbar高度 */
--(void)setUGMailBoxTableViewControllerBadge; /**<   设置站内信有红点 */
 @end
 
 NS_ASSUME_NONNULL_END
