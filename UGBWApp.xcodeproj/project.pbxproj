@@ -2166,6 +2166,9 @@
 		CF98CA1D25AD85B30086E90A /* UMPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA1325AD85B30086E90A /* UMPush.framework */; };
 		CF98CA1F25AD85B30086E90A /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA1725AD85B30086E90A /* UMCommon.framework */; };
 		CF98CA2025AD85B30086E90A /* UMDevice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF98CA1825AD85B30086E90A /* UMDevice.framework */; };
+		CF98CBFC25B2D3430086E90A /* MultiTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF98CBFB25B2D3430086E90A /* MultiTabbar.m */; };
+		CF98CC0025B2D34D0086E90A /* MultiTabbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF98CBFF25B2D34D0086E90A /* MultiTabbar.xib */; };
+		CF98CC0425B2D5090086E90A /* MultiTabItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF98CC0325B2D5090086E90A /* MultiTabItem.xib */; };
 		CF997C2723CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */; };
 		CF997C2823CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */; };
 		CF9A93C42407F2C200D6E4F3 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A93C02407F2C200D6E4F3 /* FLAnimatedImage.m */; };
@@ -4329,6 +4332,10 @@
 		CF98CA1325AD85B30086E90A /* UMPush.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMPush.framework; sourceTree = "<group>"; };
 		CF98CA1725AD85B30086E90A /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		CF98CA1825AD85B30086E90A /* UMDevice.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMDevice.framework; sourceTree = "<group>"; };
+		CF98CBFA25B2D3430086E90A /* MultiTabbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiTabbar.h; sourceTree = "<group>"; };
+		CF98CBFB25B2D3430086E90A /* MultiTabbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiTabbar.m; sourceTree = "<group>"; };
+		CF98CBFF25B2D34D0086E90A /* MultiTabbar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiTabbar.xib; sourceTree = "<group>"; };
+		CF98CC0325B2D5090086E90A /* MultiTabItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiTabItem.xib; sourceTree = "<group>"; };
 		CF997C2423CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UGLHLotteryCollectionViewCell.xib; sourceTree = "<group>"; };
 		CF997C2523CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UGLHLotteryCollectionViewCell.m; sourceTree = "<group>"; };
 		CF997C2623CA1A6E0079CA7C /* UGLHLotteryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UGLHLotteryCollectionViewCell.h; sourceTree = "<group>"; };
@@ -6717,6 +6724,7 @@
 		031E176223BE812500B0F813 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CF98CBF925B2D32B0086E90A /* View */,
 				031E176423BE812500B0F813 /* 客服AlertView.xib */,
 				031E176323BE812500B0F813 /* UGLaunchPageVC.h */,
 				031E176723BE812500B0F813 /* UGLaunchPageVC.m */,
@@ -9252,6 +9260,17 @@
 			path = common_ios_7.2.5;
 			sourceTree = "<group>";
 		};
+		CF98CBF925B2D32B0086E90A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF98CBFA25B2D3430086E90A /* MultiTabbar.h */,
+				CF98CBFB25B2D3430086E90A /* MultiTabbar.m */,
+				CF98CBFF25B2D34D0086E90A /* MultiTabbar.xib */,
+				CF98CC0325B2D5090086E90A /* MultiTabItem.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CF9A93BF2407F2C200D6E4F3 /* FLAnimatedImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -10786,6 +10805,7 @@
 				031E1A9E23BE812800B0F813 /* ZZCircleProgress.bundle in Resources */,
 				CF47588B239636D200966536 /* 22.gif in Resources */,
 				031E1B2223BE812800B0F813 /* UGLotteryAssistantController.storyboard in Resources */,
+				CF98CC0025B2D34D0086E90A /* MultiTabbar.xib in Resources */,
 				D434743A24AB270100B0F598 /* BetDetail.storyboard in Resources */,
 				CF4FAFD1252C8C87004C47AB /* 确认存款金额.html in Resources */,
 				CF8E242423DDBFD80054BF0F /* FontAwesome5_Brands.ttf in Resources */,
@@ -10833,6 +10853,7 @@
 				031E1E2023BE812C00B0F813 /* UGMosaicGoldTableViewCell.xib in Resources */,
 				031E1B9423BE812900B0F813 /* UGLotteryRulesView.xib in Resources */,
 				031E1B6223BE812800B0F813 /* UGHomeTitleView.xib in Resources */,
+				CF98CC0425B2D5090086E90A /* MultiTabItem.xib in Resources */,
 				CF43426525396AEA004708C3 /* HomePromotionsVC.storyboard in Resources */,
 				031E1C7223BE812A00B0F813 /* UGWithdrawalViewController.storyboard in Resources */,
 				031E1BF823BE812900B0F813 /* UGBJPK10LotteryController.storyboard in Resources */,
@@ -12393,6 +12414,7 @@
 				031E1B7623BE812800B0F813 /* UGGameTypeColletionViewCell.m in Sources */,
 				031E1DC023BE812B00B0F813 /* UGapplyWinLogDetail.m in Sources */,
 				031E1B3023BE812800B0F813 /* UGNoticeModel.m in Sources */,
+				CF98CBFC25B2D3430086E90A /* MultiTabbar.m in Sources */,
 				031E1E4E23BE812C00B0F813 /* UGSkinSeconCollectionHeadView.m in Sources */,
 				031E1D3A23BE812B00B0F813 /* UGPromotionTableController.m in Sources */,
 				D46A7DA2257779A0002FD5C4 /* ZYImageCacheManager.m in Sources */,

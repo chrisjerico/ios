@@ -31,6 +31,7 @@
 #import "UGBMLoginViewController.h"         // GPK版登录页
 #import "LotteryBetAndChatVC.h"             // 聊天室
 #import "UGBetRecordViewController.h"       // 投注记录
+#import "UGYYLotterySecondHomeViewController.h"
 //======================================================
 #import "UGLHMineViewController.h"         // 六合模板我的
 #import "UGSystemConfigModel.h"
@@ -50,6 +51,9 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "SUCache.h"
 #import "UITabBarItem+WebCache.h"
+
+#import "MultiTabbar.h"
+
 @implementation UIViewController (CanPush)
 
 _CCRuntimeProperty_Assign(BOOL, 允许未登录访问, set允许未登录访问)
@@ -65,7 +69,10 @@ _CCRuntimeProperty_Assign(BOOL, 允许游客访问, set允许游客访问)
 
 @interface UGTabbarController ()<UITabBarControllerDelegate>
 
-@property (nonatomic, copy) NSMutableArray<UGMobileMenu *> *mms;
+@property (nonatomic, strong) MultiTabbar *customTabbar;
+
+@property (nonatomic, strong) NSMutableArray<UGMobileMenu *> *mms;
+@property (nonatomic, copy) NSString *fixedItemPaths;   // 固定在底部的页面，不会被替换
 @end
 
 @implementation UGTabbarController
@@ -131,15 +138,44 @@ static UGTabbarController *_tabBarVC = nil;
     [super viewDidLoad];
 
     _tabBarVC = self;
-    
-    //通过这两个参数来调整badge位置
-    [_tabBarVC.tabBar setTabIconWidth:29];
-    [_tabBarVC.tabBar setBadgeTop:9];
-    [self beginMessageRequest];
     self.delegate = self;
     
-    // 注册成功
+    // 定时拉取站内信消息
+    [self beginMessageRequest];
+    
     __weakSelf_(__self);
+    {
+        // 自定义底部Tabbar，实现超5个item（实际上还是5个，页面会显示多个，点击时挑一个页面替换掉）
+        _fixedItemPaths = @"/home";
+        NSMutableArray *temp = @[].mutableCopy;
+        [self.tabBar addSubview:_customTabbar = _LoadView_from_nib_(@"MultiTabbar")];
+        _customTabbar.didClick = ^BOOL (UGMobileMenu * _Nonnull selectedMM, NSInteger idx) {
+            if (OBJOnceToken(__self))
+                [temp setArray:__self.mms];
+            if ([__self.mms containsValue:selectedMM.path keyPath:@"path"]) {
+                return [__self customSelectedIndex:[__self.mms indexOfValue:selectedMM.path keyPath:@"path"]];
+            }
+            
+            // 除了固定页面之外，从最早创建的页面开始替换
+            for (UGMobileMenu *mm in [temp copy]) {
+                if ([__self.fixedItemPaths containsString:mm.path]) continue;
+                
+                NSInteger idx = [__self.mms indexOfObject:mm];
+                [__self.mms removeObjectAtIndex:idx];
+                [__self.mms insertObject:selectedMM atIndex:idx];
+                [temp removeObjectAtIndex:[temp indexOfObject:mm]];
+                [temp addObject:selectedMM];
+                return [__self customSelectedIndex:idx];
+                break;
+            }
+            return false;
+        };
+        [self.tabBar aspect_hookSelector:@selector(didAddSubview:) withOptions:AspectPositionAfter usingBlock:^(id <AspectInfo>ai) {
+            [__self.tabBar bringSubviewToFront:__self.customTabbar];
+        } error:nil];
+    }
+    
+    // 注册成功
     SANotificationEventSubscribe(UGNotificationRegisterComplete, self, ^(typeof (self) self, id obj) {
         [self performSelector:@selector(loadMessageList) withObject:nil/*可传任意类型参数*/ afterDelay:5.0];
     });
@@ -264,152 +300,29 @@ static UGTabbarController *_tabBarVC = nil;
     });
     
     
-    // 更新GPK版状态栏
-    {
-        UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
-        if (!sv) {
-            sv = [[UIStackView alloc] initWithFrame:CGRectMake(0, 0, APP.Width, 65)];
-            sv.axis = UILayoutConstraintAxisHorizontal;
-            sv.distribution = UIStackViewDistributionFillEqually;
-            sv.spacing = -0.75;
-            sv.tagString = @"描边StackView";
-            for (int i=0; i<5; i++) {
-                UIView *v = [UIView new];
-                v.layer.borderWidth = 0.7;
-                v.layer.borderColor = APP.TextColor2.CGColor;
-                v.backgroundColor = [UIColor clearColor];
-                v.tagString = [NSString stringWithFormat:@"view_%d",i];
-                v.hidden = true;
-                {
-                    FLAnimatedImageView*  imgView = [[FLAnimatedImageView alloc] initWithFrame:v.bounds];
-                    imgView.contentMode = UIViewContentModeScaleAspectFit;
-                    imgView.tagString = [NSString stringWithFormat:@"ImageView_%d",i];
-                    [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
-                    [v addSubview:imgView];
-                    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.right.equalTo(v.mas_right).with.offset(-2);
-                        make.top.equalTo(v.mas_top).offset(1);
-                        make.width.mas_equalTo(26);
-                        make.height.mas_equalTo(14);
-                    }];
-                    [imgView setHidden:YES];
-                }
-                [sv addArrangedSubview:v];
-            }
-            sv.hidden = true;
-            sv.userInteractionEnabled = false;
-            [TabBarController1.tabBar addSubview:sv];
-        }
-        [self cc_hookSelector:@selector(setViewControllers:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo> ai) {
-            for (UIView *v in sv.arrangedSubviews) {
-                v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
-            }
-        } error:nil];
-        [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
-            
-            BOOL isGPK = Skin1.isGPK;
-            sv.hidden = !isGPK;
-            for (UIView *v in sv.arrangedSubviews) {
-                v.hidden = !([sv.arrangedSubviews indexOfObject:v] < TabBarController1.tabBar.items.count);
-                if (!Skin1.isGPK) {
-                    v.layer.borderWidth = 0;
-                    sv.hidden = NO;
-                }
-            }
-            [TabBarController1 setTabbarHeight:isGPK ? 53 : 50];
-        }];
-    }
+    // 更新GPK版Tabbar高度
+    [self xw_addNotificationForName:UGNotificationWithSkinSuccess block:^(NSNotification * _Nonnull noti) {
+        [TabBarController1 setTabbarHeight:Skin1.isGPK ? 53 : 50];
+        
+    }];
     
     {
         NSArray<UGMobileMenu *> *menus = [[UGMobileMenu arrayOfModelsFromDictionaries:SysConf.mobileMenu error:nil] sortedArrayUsingComparator:^NSComparisonResult(UGMobileMenu *obj1, UGMobileMenu *obj2) {
             return obj1.sort > obj2.sort;
         }];
-#ifdef DEBUG
-
-            if (menus.count > 3) {
-                // 后台配置的页面
-                if (Skin1.isJS && [APP.SiteId isEqualToString:@"c251"] ) {
-                    NSMutableArray *temp = @[].mutableCopy;
-                    // 首页 棋牌 购彩 开奖 走势 我的
-                    for (UGMobileMenu *mm in menus) {
-                        if ([@"/home,/chess,/lotteryList,/lotteryRecord,/user" containsString:mm.path]) {
-                            if ([mm.path isEqualToString:@"/home"]) {
-                                mm.defaultImgName = @"js_home";
-                            }
-                            if ([mm.path isEqualToString:@"/chess"]) {
-                                mm.defaultImgName = @"js_qp";
-                            }
-                            if ([mm.path isEqualToString:@"/lotteryList"]) {
-                                mm.defaultImgName = @"js_shopping-cart";
-                            }
-                            if ([mm.path isEqualToString:@"/lotteryRecord"]) {
-                                mm.defaultImgName = @"js_gift";
-                            }
-                            if ([mm.path isEqualToString:@"/user"]) {
-                                mm.defaultImgName = @"js_user";
-                            }
-                            [temp addObject:mm];
-                        }
-                    }
-                    [self resetUpChildViewController:temp];
-                } else {
-                    [self resetUpChildViewController:menus];
+        if (menus.count > 2) {
+            // 后台配置的页面
+            [self resetUpChildViewController:menus];
+        } else {
+            // 默认加载的页面
+            NSMutableArray *temp = @[].mutableCopy;
+            for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
+                if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
+                    [temp addObject:mm];
                 }
-               
-            } else {
-                // 默认加载的页面
-                NSMutableArray *temp = @[].mutableCopy;
-                
-                if (Skin1.isJS && [APP.SiteId isEqualToString:@"c251"] ) {
-                    for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                        if ([@"/home,/chess,/lotteryList,/lotteryRecord,/user" containsString:mm.path]) {
-                            if ([mm.path isEqualToString:@"/home"]) {
-                                mm.defaultImgName = @"js_home";
-                            }
-                            if ([mm.path isEqualToString:@"/chess"]) {
-                                mm.defaultImgName = @"js_qp";
-                            }
-                            if ([mm.path isEqualToString:@"/lotteryList"]) {
-                                mm.defaultImgName = @"js_shopping-cart";
-                            }
-                            if ([mm.path isEqualToString:@"/lotteryRecord"]) {
-                                mm.defaultImgName = @"js_gift";
-                            }
-                            if ([mm.path isEqualToString:@"/user"]) {
-                                mm.defaultImgName = @"js_user";
-                            }
-                            [temp addObject:mm];
-                        }
-                    }
-                } else {
-                    for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                        if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-                            [temp addObject:mm];
-                        }
-                    }
-                }
-               
-                [self resetUpChildViewController:temp];
             }
-        
- 
-#else
-            if (menus.count > 3) {
-                // 后台配置的页面
-                [self resetUpChildViewController:menus];
-            } else {
-                // 默认加载的页面
-                NSMutableArray *temp = @[].mutableCopy;
-                for (UGMobileMenu *mm in UGMobileMenu.allMenus) {
-                    if ([@"/home,/lotteryList,/chatRoomList,/activity,/user" containsString:mm.path]) {
-                        [temp addObject:mm];
-                    }
-                }
-                [self resetUpChildViewController:temp];
-            }
-#endif
-
-       
+            [self resetUpChildViewController:temp];
+        }
     }
     
     [self setTabbarStyle];
@@ -420,6 +333,13 @@ static UGTabbarController *_tabBarVC = nil;
     [self getAllNextIssueData]; // 彩票大厅数据
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    CGFloat h = APP.Height - [self.tabBar convertRect:self.tabBar.bounds toView:APP.Window].origin.y;
+    _customTabbar.frame = CGRectMake(0, 0, APP.Width, h);
+    [self.tabBar addSubview:_customTabbar];
+}
+
 - (void)setTabbarStyle {
     void (^block1)(NSNotification *) = ^(NSNotification *noti) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
@@ -428,19 +348,6 @@ static UGTabbarController *_tabBarVC = nil;
         for (UGNavigationController *nav in TabBarController1.viewControllers) {
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
              [nav.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
-        }
-        
-        [TabBarController1.tabBar setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
-        [TabBarController1.tabBar setSelectedImageTintColor: Skin1.tabSelectedColor];
-        [TabBarController1.tabBar setUnselectedItemTintColor:Skin1.tabNoSelectColor];
-        [[UITabBar appearance] setSelectedImageTintColor: Skin1.tabSelectedColor];
-        [[UITabBar appearance] setUnselectedItemTintColor:Skin1.tabNoSelectColor];
-        [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.tabBarBgColor]];
-        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
-        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
-        for (UIBarItem *item in TabBarController1.tabBar.items) {
-            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabNoSelectColor} forState:UIControlStateNormal];
-            [item setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.tabSelectedColor} forState:UIControlStateSelected];
         }
     };
     if (OBJOnceToken(self)) {
@@ -495,6 +402,7 @@ static UGTabbarController *_tabBarVC = nil;
         });
         [self.view layoutSubviews];
         [self.selectedViewController.view layoutSubviews];
+        self.customTabbar.frame = self.tabBar.bounds;
     }
 }
 
@@ -505,11 +413,8 @@ static UGTabbarController *_tabBarVC = nil;
     NSMutableArray <UIViewController *>*vcs = [NSMutableArray new];
     NSMutableArray *mms = @[].mutableCopy;
     NSMutableArray *currentVCs = self.viewControllers.mutableCopy;
-    for (UGMobileMenu *mm in menus) {
-        if (![[UGMobileMenu allMenus] objectWithValue:mm.path keyPath:@"path"]) {
-            continue;
-        }
-        
+    for (int i=0; i<5; i++) {
+        UGMobileMenu *mm = i < menus.count ? menus[i] : [UGMobileMenu.allMenus objectWithValue:@"/qpdz" keyPath:@"path"];
         // 判断优惠活动展示在首页还是内页（c001显示在内页）
 //        if ([mm.clsName isEqualToString:[UGPromotionsController className]] && SysConf.m_promote_pos && ![APP.SiteId isEqualToString:@"c001"] && !Skin1.isGPK)
 //            continue;
@@ -526,7 +431,6 @@ static UGTabbarController *_tabBarVC = nil;
             }
         }
         if (existed) continue;
-        if (mms.count >= 5) break;
         
         // 初始化控制器
         // （这里加载了一个假的控制器，在 tabBarController:shouldSelectViewController: 函数才会加载真正的控制器）
@@ -536,117 +440,23 @@ static UGTabbarController *_tabBarVC = nil;
         nav.view.backgroundColor = Skin1.bgColor;
         nav.tabBarItem.title = mm.name;
         nav.title = mm.name;
-        //
-        [self setTabBarItemImage:mm Navgation:nav];
         [vcs addObject:nav];
         [mms addObject:mm];
     }
     if (!_mms || vcs.count > 2) {
         self.mms = mms;
+        self.customTabbar.items = menus;
         self.viewControllers = vcs;
         [self setTabbarStyle];
         [self tabBarController:self shouldSelectViewController:vcs.firstObject];
     }
-
-    [self setHotImg];
-   
-}
-
--(void)setHotImg{
-    if (self.mms.count <= 2) {
-        return;
-    }
-    
-    for (int i = 0; i<self.mms .count; i++) {
-        UGMobileMenu *mm = [self.mms  objectAtIndex:i];
-        UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
-        sv.hidden = NO;
-        NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
-        UIView *v = (UIView *)[sv viewWithTagString:tagStr];
-        
-        if (!Skin1.isGPK) {
-            v.layer.borderWidth = 0;
-        }
-        
-        {
-            NSString *tagStr = [NSString stringWithFormat:@"ImageView_%d",i];
-            FLAnimatedImageView*  imgView = (FLAnimatedImageView *)[sv viewWithTagString:tagStr];
-  
-            
-            if (mm.isHot == 1) {
-                [imgView setHidden:NO];
-                if (mm.icon_hot.length) {
-                    [imgView sd_setImageWithURL:[NSURL URLWithString:mm.icon_hot] placeholderImage:nil completed:nil];
-                }
-                else{
-                     [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"hot_act" withExtension:@"gif"]];
-                }
-            } else {
-                [imgView setHidden:YES];
-                [imgView sd_setImageWithURL:nil placeholderImage:nil completed:nil];
-            }
-            
-        }
-    }
-    
-    if (APP.isTabHot) {
-        
-        UIStackView *sv = [TabBarController1.tabBar viewWithTagString:@"描边StackView"];
-        sv.hidden = NO;
-        
-        for (int i = 0; i<self.mms.count; i++) {
-            NSString *tagStr = [NSString stringWithFormat:@"view_%d",i];
-            UIView *v = (UIView *)[sv viewWithTagString:tagStr];
-            if (!Skin1.isGPK) {
-                v.layer.borderWidth = 0;
-            }
-            UGMobileMenu *mm = [self.mms objectAtIndex:i];
-            if ([mm.clsName isEqualToString:[LotteryBetAndChatVC className]] ){
-                
-                NSString *tagStr = [NSString stringWithFormat:@"ImageView_%d",i];
-                FLAnimatedImageView*  imgView = (FLAnimatedImageView *)[sv viewWithTagString:tagStr];
-                [imgView sd_setImageWithURL:[[NSBundle mainBundle] URLForResource:@"redbag_act" withExtension:@"gif"]];
-                [imgView setHidden:NO];
-                
-            }
-        }
-    }
-}
-
--(void)setUGMailBoxTableViewControllerBadge{
-    
-    if (!APP.isTabMassageBadge) {
-        return;
-    }
-
-     NSArray<UGMobileMenu *> *mobileMenu = SysConf.mobileMenu;
-    
-    for (int i= 0; i<mobileMenu.count; i++) {
-        UGMobileMenu *menu =  [UGMobileMenu mj_objectWithKeyValues:[mobileMenu objectAtIndex:i]];
-   
-        if ([menu.path isEqualToString:@"/message"]||[menu.path isEqualToString:@"/user"]) {
-            [self setTabBadgeIndex:i];
-        }
-    }
- 
-    
-}
-
--(void)setTabBadgeIndex:(NSInteger )index{
-    
-    NSInteger number = [UGUserModel currentUser].unreadMsg ? [UGUserModel currentUser].unreadMsg : 0;
-    CustomBadgeType type;
-    if (number == 0) {
-        type = kCustomBadgeStyleNone;
-    } else if (number > 0 && number < 100) {
-        type = kCustomBadgeStyleNumber;
-    } else {
-        type = kCustomBadgeStyleRedDot;
-    }
-    [TabBarController1.tabBar setBadgeStyle:type value:number atIndex:index];
 }
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    [_customTabbar setSelectedIndex:selectedIndex willCallback:true];
+}
+
+- (BOOL)customSelectedIndex:(NSUInteger)selectedIndex {
     if (selectedIndex < self.viewControllers.count) {
         if ([self tabBarController:self shouldSelectViewController:self.viewControllers[selectedIndex]]) {
             // 修复切换SelectedIndex后tabBar不显示bug
@@ -662,9 +472,12 @@ static UGTabbarController *_tabBarVC = nil;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [super setSelectedIndex:selectedIndex];
             });
+            return true;
         }
     }
+    return false;
 }
+
 
 #pragma mark -
 
@@ -722,8 +535,12 @@ static UGTabbarController *_tabBarVC = nil;
         }
     }
     
+    // 真人视讯、棋牌电子、电竞、电子、棋牌、捕鱼
+    BOOL isDifferentGameList = [vc isKindOfClass:UGYYLotterySecondHomeViewController.class] && ![vc.title isEqualToString:mm.name];
+    
     // 控制器需要重新加载
-    if (isDifferentRPM || ![vc.className isEqualToString:mm.clsName]) {
+    if (isDifferentRPM || isDifferentGameList || ![vc.className isEqualToString:mm.clsName]) {
+        __weakSelf_(__self);
         [mm createViewController:^(__kindof UIViewController * _Nonnull vc) {
             RnPageModel *rpm = [APP.rnPageInfos objectWithValue:vc.className keyPath:@"vcName"];
             if (rpm) {
@@ -736,29 +553,9 @@ static UGTabbarController *_tabBarVC = nil;
             UINavigationController *nav = (UINavigationController *)viewController;
             nav.title = mm.name;
             nav.tabBarItem.title = mm.name;
-            
-            [self setTabBarItemImage:mm Navgation:nav];
-
-            
-            //                [[SDWebImageManager sharedManager] loadImageWithURL:[NSURL URLWithString:mm.icon_log] options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
-            //                    nav.tabBarItem.image = image;
-            //                    nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            //                }];
-//            NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:mm.icon_log]];
-//            if ([[SDImageCache sharedImageCache] diskImageDataExistsWithKey:key]) {
-//                UIImage *image = [[SDImageCache sharedImageCache] imageFromCacheForKey:key];
-//                nav.tabBarItem.image = image;
-//                nav.tabBarItem.selectedImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//            }
-//            else {
-//                                nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-//                                nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//            }
             nav.viewControllers = @[vc];
             tabBarController.selectedViewController = nav;
-            
-            
-            
+            [__self.customTabbar setSelectedIndex:[__self.customTabbar.items indexOfValue:mm.path keyPath:@"path"] willCallback:false];
         }];
         return false;
     }
@@ -767,18 +564,6 @@ static UGTabbarController *_tabBarVC = nil;
     return [UGTabbarController canPushToViewController:vc];
 }
 
-
--(void)setTabBarItemImage:( UGMobileMenu *)mm  Navgation:(UINavigationController *) nav{
-    if ([CMCommon stringIsNull:mm.icon_logo]) {
-        nav.tabBarItem.image = [UIImage imageNamed:mm.defaultImgName];
-        nav.tabBarItem.selectedImage = [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    } else {
-
-        [nav.tabBarItem zy_setImageWithURL:mm.icon_logo placeholderImage:[UIImage imageNamed:mm.defaultImgName]];
-        [nav.tabBarItem zy_setSelectImageWithURL:mm.icon_logo placeholderImage: [[UIImage imageNamed:mm.defaultImgName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
-    
-    }
-}
 
 #pragma mark - 每90秒获取一次站内信
 

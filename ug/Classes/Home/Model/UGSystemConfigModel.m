@@ -236,6 +236,9 @@ UGSystemConfigModel *currentConfig = nil;
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
     return rpm.tabbarItemIcon.length ? rpm.tabbarItemIcon : _icon;
 }
+- (NSString *)roles {
+    return _roles.stringByTrim.length ? _roles : @"all";
+}
 - (NSString *)name {
     RnPageModel *rpm = [APP.rnPageInfos objectWithValue:_path keyPath:@"tabbarItemPath"];
     return rpm.tabbarItemTitle.length ? rpm.tabbarItemTitle : _name;
@@ -399,6 +402,9 @@ UGSystemConfigModel *currentConfig = nil;
 
     }
     else {
+        if (!self.clsName.stringByTrim.length) {
+            self.clsName = @"LHStayTunedVC";
+        }
         UIViewController *vc = _LoadVC_from_storyboard_(self.clsName);
         if (!vc) {
             vc = [NSClassFromString(self.clsName) new];
