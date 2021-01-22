@@ -13,6 +13,7 @@
 @interface MultiTabbar ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray<UGMobileMenu *> *dataArray;
+@property (nonatomic, assign) NSInteger maxItemCount;
 @end
 
 
@@ -23,6 +24,7 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"MultiTabItem" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    _maxItemCount = 6;
     
     __weakSelf_(__self);
     void (^block1)(NSNotification *) = ^(NSNotification *noti) {
@@ -61,6 +63,7 @@
     } else {
         [_dataArray setArray:[_items objectsWithValue:@"all" keyPath:@"roles"]];
     }
+    [_dataArray setArray:[_dataArray subarrayWithRange:NSMakeRange(0, MIN(_dataArray.count, _maxItemCount))]];
     _selectedIndex = [_dataArray indexOfValue:mm.path keyPath:@"path"];
     [_collectionView reloadData];
 }
