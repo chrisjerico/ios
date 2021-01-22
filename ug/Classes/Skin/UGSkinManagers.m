@@ -1505,16 +1505,16 @@ static UGSkinManagers *__initSkin1 = nil;
 
 #ifdef DEBUG
 	NSLog(@"============================skitType=%@",skitType);
-//    skitType = @"1";
-   skitType = @"GPK版0";
-    UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
-//    [sm getBlackSkin:true];
-    if (sm) {
-        return sm;
-    } else {
-        sm = [UGSkinManagers allSkin][@"1"];
-        return sm;
-    }
+////    skitType = @"1";
+//   skitType = @"GPK版0";
+//    UGSkinManagers *sm = [UGSkinManagers allSkin][skitType];
+////    [sm getBlackSkin:true];
+//    if (sm) {
+//        return sm;
+//    } else {
+//        sm = [UGSkinManagers allSkin][@"1"];
+//        return sm;
+//    }
 
 #endif
     
