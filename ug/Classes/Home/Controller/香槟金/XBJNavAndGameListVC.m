@@ -27,7 +27,7 @@
     
     _icons = [GameCategoryDataModel gameCategoryData].icons;
     _navs = [GameCategoryDataModel gameCategoryData].navs;
-    _navCollectionViewHeightConstraint.constant = (_navs.count/4 + !!(_navs.count%4)) * 70;
+    _navCollectionViewHeightConstraint.constant = MAX((_navs.count/4 + !!(_navs.count%4)), 1) * 70;
     _gameTableViewHeightConstraint.constant = _icons.count * 64;
     
     __weakSelf_(__self);
@@ -123,7 +123,7 @@
                     // 首页导航
                     NSArray <GameModel *>*navs =__self.navs = customGameModel.navs;
                     __self.icons = customGameModel.icons;
-                    __self.navCollectionViewHeightConstraint.constant = (navs.count/4 + !!(navs.count%4)) * 70;
+                    __self.navCollectionViewHeightConstraint.constant = MAX((navs.count/4 + !!(navs.count%4)), 1) * 70;
                     __self.gameTableViewHeightConstraint.constant = __self.icons.count * 64;
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         UITableViewCell *cell = [__self.gameTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];

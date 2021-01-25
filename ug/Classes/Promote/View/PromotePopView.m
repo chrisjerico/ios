@@ -98,7 +98,7 @@
     }
 
     [self.activity startAnimating];
-    NSString *str = _NSString(@"<head><style>body{margin:10}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", self.item.content);
+    NSString *str = _NSString(@"<head><style>body{margin:10}table{width:auto !important;max-width:100%%}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", self.item.content);
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
 
         dispatch_async(dispatch_get_main_queue(), ^{
