@@ -62,7 +62,11 @@
                         </userDefinedRuntimeAttributes>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot_act.gif" translatesAutoresizingMaskIntoConstraints="NO" id="zbL-Xa-far">
-                        <rect key="frame" x="65" y="0.0" width="30" height="16"/>
+                        <rect key="frame" x="80.5" y="0.0" width="28" height="18.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="28" id="Hmq-zI-7o6"/>
+                            <constraint firstAttribute="width" secondItem="zbL-Xa-far" secondAttribute="height" multiplier="3:2" id="PjY-cg-rwv"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="tagString" value="热门ImageView"/>
                         </userDefinedRuntimeAttributes>
@@ -90,10 +94,10 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="OLj-dd-Jgd" firstAttribute="centerX" secondItem="voS-wn-4zS" secondAttribute="centerX" id="4Ag-6h-7VC"/>
-                    <constraint firstAttribute="trailing" secondItem="zbL-Xa-far" secondAttribute="trailing" id="FdK-aD-nGu"/>
                     <constraint firstItem="uOD-4u-H3U" firstAttribute="leading" secondItem="voS-wn-4zS" secondAttribute="leading" id="H2K-qt-6Uf"/>
                     <constraint firstItem="6wX-4O-MeG" firstAttribute="top" secondItem="voS-wn-4zS" secondAttribute="top" constant="2" id="Pht-yO-qcw"/>
                     <constraint firstItem="OLj-dd-Jgd" firstAttribute="top" secondItem="voS-wn-4zS" secondAttribute="top" constant="-2" id="Pw1-5b-XX8"/>
+                    <constraint firstItem="zbL-Xa-far" firstAttribute="trailing" secondItem="NPr-nm-VO3" secondAttribute="trailing" constant="20" id="bDs-pZ-AQF"/>
                     <constraint firstAttribute="trailing" secondItem="uOD-4u-H3U" secondAttribute="trailing" id="bXP-vK-DKo"/>
                     <constraint firstItem="zbL-Xa-far" firstAttribute="top" secondItem="voS-wn-4zS" secondAttribute="top" id="eGU-jW-VVt"/>
                     <constraint firstItem="uOD-4u-H3U" firstAttribute="top" secondItem="voS-wn-4zS" secondAttribute="top" id="ePI-jU-wFe"/>
