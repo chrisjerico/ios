@@ -119,7 +119,6 @@
     NSDictionary *dict = @{@"c049":@"6ee045aa7ffcf3320b396041",
                            @"c084":@"865d65d06153a662e03a57d4",
                            @"c008":@"07c42b09a5f1b3f80ccb9b0a",
-                           @"c053":@"600bc5ceb3b4f6635de19353",
                            @"l001":@"704176e51cf8b2c37fe28834",
                            @"c151":@"a7b7100d34f78632cc7dfbbe",
                            @"l002":@"8b2a4bfdcf4665e11568ecc5",
@@ -172,9 +171,13 @@
 - (void)setupUM:(NSDictionary *)launchOptions {
     NSDictionary *dict = @{
         @"c208":@"5ffd4b93dbc1cd0defd360fc",
-        @"c053":@"600bc5ceb3b4f6635de19353",
+        @"c053":@"600eb473a3a44870349bbe16",
     };
-    NSString *appKey = dict[APP.SiteId] ? : @"5ffd4b93dbc1cd0defd360fc";
+    NSString *appKey = dict[APP.SiteId];
+    if (!appKey.length) {
+        NSLog(@"Error：该站点没有集成友盟推送！")
+        return;
+    }
     
     [UMConfigure initWithAppkey:appKey channel:@"App Store"];
 #ifdef DEBUG
@@ -186,6 +189,7 @@
     entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionSound|UMessageAuthorizationOptionAlert;
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        NSLog(@"友盟注册 = %d", granted);
         if (granted) {
         }else{
         }

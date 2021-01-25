@@ -53,7 +53,7 @@
             
             
             site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://70333e.com",                         @"企业包",     @"威尼斯人"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码
-            site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.YSAC053",       @"https://988c53.com",                          @"企业包",     @"0069彩票"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
+            site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.YSAC053",       @"https://988c53.com",                          @"企业包",     @"0069彩票"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402  // 友盟 c53555com c53qwe..
             site(@"c085",        @"c085hy",     @"165",     @"io.fhpt.H53F348DC",       @"https://x558.cc",                             @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
             site(@"c085yw",        @"c085ywhy",     @"316", @"io.fhpt.YSAC085YW",       @"https://x558.cc",                             @"企业包",     @"10000.AG"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
           
@@ -90,7 +90,7 @@
             site(@"c117",       @"c117hy",     @"352",      @"io.fhpt.YSAC117",         @"https://822323.com",                          @"企业包",     @"50.cc彩票网"),//
             site(@"c198",        @"c198hy",     @"185",     @"io.fhpt.H53E43223",       @"https://2909tycjt.com",                       @"企业包",     @"太阳城集团"),
             site(@"c205",        @"c205hy",     @"308",     @"io.fhpt.YSFC205",         @"https://494.cyou",                            @"企业包",     @"494集团"),//
-            site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771appappapp.com",                        @"企业包",     @"威尼斯人"),//
+            site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771appappapp.com",                        @"企业包",     @"威尼斯人"),//友盟 账号：hjj888 密码：huoji888..
             site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450vip15.com",                           @"企业包",     @"450集团"),//
             site(@"c217",        @"c217hy",     @"255",     @"io.fhpt.YSFC217",         @"https://9999app-sa5g6erty9r8ujtk5oi9rtg2k6e55uer9999-app.com",   @"企业包",     @"贵宾厅集团"),//xingxin6888@gmail.com  密码QAZzxc12,.
             site(@"c211",        @"c211hy",     @"259",     @"io.fhpt.YSFC211",         @"https://310310app.com",                       @"企业包",     @"4484娱乐城"),
