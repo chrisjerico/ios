@@ -175,7 +175,7 @@
     };
     NSString *appKey = dict[APP.SiteId];
     if (!appKey.length) {
-        NSLog(@"Error：该站点没有集成友盟推送！")
+        NSLog(@"Error：该站点没有集成友盟推送！");
         return;
     }
     
