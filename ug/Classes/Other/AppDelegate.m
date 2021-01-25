@@ -172,6 +172,7 @@
 - (void)setupUM:(NSDictionary *)launchOptions {
     NSDictionary *dict = @{
         @"c208":@"5ffd4b93dbc1cd0defd360fc",
+        @"c053":@"600bc5ceb3b4f6635de19353",
     };
     NSString *appKey = dict[APP.SiteId] ? : @"5ffd4b93dbc1cd0defd360fc";
     
