@@ -44,13 +44,7 @@
         // 站点编号 /              上传编号      / 上传ID    / 签名方式                 / APP名                     / bundleID                  / 接口域名
         __dataArray = @[
             site(@"a002",        @"a002hy",     @"129",     @"com.UGGame.cp",           @"https://5049uuu.com",                         @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 13265529007 | lihongwei599   超级签名
-            site(@"a002a",       @"",           @"",        @"io.fhpt.H52A8B80A",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
-            site(@"a002b",       @"",           @"",        @"io.fhpt.H53D2C0A9",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
-            site(@"a002c",       @"",           @"",        @"io.fhpt.H5069C7C0",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
-            site(@"a002d",       @"",           @"",        @"io.fhpt.H5E99F6BB",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index |
-            site(@"a002e",       @"",           @"",        @"io.fhpt.H5B2F70A9",       @"",                                            @"超级签名",    @"49彩票集团"),          // https://dev.app2.xin/index | 
             site(@"c001",        @"c001hy",     @"130",     @"io.fhpt.H5BAECCD9",       @"https://c47app1.com",                        @"超级签名",    @"彩47"),          // https://dev.app2.xin/index | 15697023521 | aa135246  | 123456   该网站域名根本没用，该客户应么有用原生
-            site(@"c105",        @"",           @"",        @"",                        @"",                                            @"超级签名",    @"澳⻔彩票"),          // https://dev.app2.xin/index | 15542484889 | aa168168
             site(@"c105b",       @"c105bhy",    @"268",     @"io.fhpt.YSAC105B",       @"https://390qp8.com",                           @"超级签名",    @"390棋牌"),          // https://dev.app2.xin/index | 15542484889 | aa168168
             site(@"c114",        @"c114hy",     @"157",     @"io.fhpt.YSAC114",                        @"https://c432019.com",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123   昨天才看到的arc 给的链接
             site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://306565.com",                          @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：xiaokeai190  
@@ -59,11 +53,7 @@
             
             
             site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://70333e.com",                         @"企业包",     @"威尼斯人"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码
-            site(@"h002",        @"",           @"",        @"",                        @"",                                            @"企业包",     @"⾹港赛⻢会"),          // https://dev.app2.xin/index | 15827947817 | dz990990
             site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.YSAC053",       @"https://988c53.com",                          @"企业包",     @"0069彩票"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402
-            site(@"c069",        @"",           @"",        @"io.fhpt.H5CC54076",       @"",                                            @"企业包",     @"360⼿游"),
-            site(@"c074",        @"c074hy",     @"154",     @"io.fhpt.H5016B05F",       @"",                                            @"企业包",     @"5360彩票"),
-            site(@"c080",        @"",           @"",        @"io.fhpt.H5C82F72A",       @"",                                            @"企业包",     @"007彩票"),
             site(@"c085",        @"c085hy",     @"165",     @"io.fhpt.H53F348DC",       @"https://x558.cc",                             @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
             site(@"c085yw",        @"c085ywhy",     @"316", @"io.fhpt.YSAC085YW",       @"https://x558.cc",                             @"企业包",     @"10000.AG"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
           
@@ -76,24 +66,18 @@
             site(@"c169",        @"c169hy",     @"162",     @"io.fhpt.H529081C9",       @"http://heixxqic169cqhmszw.playzone88.com",    @"企业包",     @"太阳城集团"),
             site(@"c175",        @"c175hy",     @"148",     @"io.fhpt.H57F31D1D",       @"http://7053fndsjfkn.com",                    @"企业包",     @"7053"), // 已上架  极光 lijinju6@gmail.com 密码Wo258258..
 
-            site(@"c185",        @"",           @"",        @"io.fhpt.H50BFF911",       @"",                                            @"企业包",     @"太阳城集团"),
             site(@"c186",        @"c186hy",     @"322",     @"io.fhpt.YSAC186",         @"https://200300b.com",                         @"企业包",     @"好彩网"),
             site(@"c225",        @"c225hy",     @"342",     @"io.fhpt.H50A96411",       @"https://8393483.com",                                            @"企业包",     @"51彩票"),
             site(@"c002",        @"c002hy",     @"173",     @"io.fhpt.YSAC002",         @"https://154977.com",                          @"企业包",     @"永利彩世界"),//极光推送 caishijie05022@163.com 密码Aa362400
             site(@"c084",        @"c084hy",     @"136",     @"io.fhpt.H599DB7B9",       @"https://papghawshugposwaughwsoohu.com",       @"企业包",     @"新2彩票"),//极光 jiguangx2c@gmail.com Qwe741123
             site(@"c012",        @"c012hy",     @"170",     @"io.fhpt.H5F0B8A01",       @"https://08492039.com",                        @"企业包",     @"8号彩票"),//极光账号：bahao   密码Qaz123123
-            site(@"c041",        @"c041hy",     @"131",     @"io.fhpt.H5AB7911E",       @"",                                            @"企业包",     @"福彩⽹"),
             site(@"c073",        @"c073hy",     @"135",     @"io.fhpt.H5AECD773",       @"https://c732.vip",                          @"企业包",     @"彩73"),
-            site(@"c077",        @"",           @"",        @"io.fhpt.H5167664E",       @"",                                            @"企业包",     @"彩95"),
-            site(@"c090",        @"c090hy",     @"176",     @"io.fhpt.H5D6E1F0A",       @"",                                            @"企业包",     @"⾦沙彩票"),
             site(@"c092",        @"c092hy",     @"156",     @"io.fhpt.H57B34489",       @"https://2013ddd.com",                         @"企业包",     @"2013彩票"),//极光账号：4366762@qq.com 密码：hdghFGDFGbdfbgf234
             site(@"c115",        @"c115hy",     @"356",    @"io.fhpt.H59BD7AE3",      @"https://6615322.com",                           @"企业包",     @"6615中彩网"),//极光账号：780821350@qq.com  密码：OKM88okm
             site(@"c116",        @"c116hy",     @"139",     @"io.fhpt.H50A85511",       @"https://13532037.com",                        @"企业包",     @"1353彩世界"),//极光推送，账号：wcai87089@gmail.com密码Csj13530 rn :https://13532037.com
             site(@"c126b",       @"c126bhy",    @"323",     @"io.fhpt.YSAC126B",         @"https://og878.vip",                        @"企业包",     @"新葡京娱乐场"),
             site(@"c126",        @"c126hy",     @"277",     @"io.fhpt.H5FD4D963",       @"https://jzcp055.com",                        @"企业包",     @"环球彩票网"),
-            site(@"h003",        @"",           @"",        @"io.fhpt.H591E28D0",       @"",                                            @"企业包",     @"华为彩票"),
             site(@"h003b",       @"h003bhy",    @"295",     @"io.fhpt.H591E28D0",       @"https://betv5.com",                          @"企业包",     @"威尼斯人"),//账号：395348255@qq.com     密码： Lyj678678
-            site(@"c139",        @"",           @"",        @"io.fhpt.H536040A9",       @"",                                            @"企业包",     @"68中彩⽹"),
             site(@"c035",        @"c035hy",     @"169",     @"io.fhpt.H5D70A94D",       @"https://5504707.com",                         @"企业包",     @"凤凰彩票"),
             site(@"c035b",       @"c035b",      @"264",     @"io.fhpt.YSAC035B",        @"https://5504596.com",                         @"企业包",     @"凤凰彩票"),
             site(@"c035c",       @"c035c",      @"265",     @"io.fhpt.YSAC035C",        @"https://5504597.com",                         @"企业包",     @"凤凰彩票"),
@@ -103,10 +87,8 @@
             site(@"c200",        @"c200hy",     @"183",     @"io.fhpt.H5830E440",       @"https://20181995.com",                        @"企业包",     @"澳门彩票"),
             site(@"c120",        @"c120hy",     @"140",     @"io.fhpt.H591E28D0",       @"https://asafew435yrtgre.net",                 @"企业包",     @"新葡京彩票"),
 
-            site(@"c089",        @"",           @"",        @"",                        @"",                                            @"企业包",     @"彩89"),
             site(@"c117",       @"c117hy",     @"352",      @"io.fhpt.YSAC117",         @"https://822323.com",                          @"企业包",     @"50.cc彩票网"),//
             site(@"c198",        @"c198hy",     @"185",     @"io.fhpt.H53E43223",       @"https://2909tycjt.com",                       @"企业包",     @"太阳城集团"),
-            site(@"h003a",       @"",           @"",        @"io.fhpt.H554013D2",       @"",                                            @"企业包",     @"澳⻔威尼斯⼈"),
             site(@"c205",        @"c205hy",     @"308",     @"io.fhpt.YSFC205",         @"https://494.cyou",                            @"企业包",     @"494集团"),//
             site(@"c208",        @"c208hy",     @"246",     @"io.fhpt.YSAC208",         @"https://771appappapp.com",                        @"企业包",     @"威尼斯人"),//
             site(@"c213",        @"c213hy",     @"248",     @"io.fhpt.YSAC213",         @"https://450vip15.com",                           @"企业包",     @"450集团"),//
@@ -118,7 +100,6 @@
             site(@"c242",       @"c242hy",     @"332",      @"io.fhpt.YSAC242",         @"https://460889.com",                         @"企业包",     @"新葡京娱乐场"),
             site(@"c243",       @"c243hy",     @"368",      @"io.fhpt.YSAC368",         @"https://55979711.vip",                       @"企业包",     @"开元棋牌"),
 			site(@"c245",       @"c245hy",     @"343",      @"io.fhpt.YSAC245",         @"https://4823app.com",                         @"企业包",     @"4823威尼斯人"),//极光账号 vn4823sym@gmail.com 密码 Aa362600.jg
-            site(@"c239b",      @"c239bhy",    @"340",      @"io.fhpt.YSAC239",         @"https://5566569.com",                         @"企业包",     @"银河国际"),//b 站
             site(@"c251",       @"c251hy",     @"348",      @"io.fhpt.YSAC251",         @"https://2420app.app",                         @"企业包",     @"新葡京娱乐城"),//
             site(@"c252",       @"c252hy",     @"355",      @"io.fhpt.YSAC252",         @"https://xggjapp8.com",                          @"企业包",     @"香港国际"),//
             site(@"c254",       @"c254hy",     @"357",      @"io.fhpt.YSFC254",         @"https://677888.org",                          @"企业包",     @"澳门皇冠"),//
