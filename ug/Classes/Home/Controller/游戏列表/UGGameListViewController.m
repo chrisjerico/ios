@@ -76,6 +76,8 @@ static NSString *gameListCellId = @"UGGameListCollectionViewCell";
 }
 
 - (void)getGotoGameUrl:(UGSubGameModel *)game {
+    
+    NSLog(@"game===%@",game);
     if (!UGLoginIsAuthorized()) {
         [[NSNotificationCenter defaultCenter] postNotificationName:UGNotificationShowLoginView object:nil];
         return;
