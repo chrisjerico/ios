@@ -142,7 +142,7 @@
             site(@"test36",      @"test36",     @"",        @"com.UGGame.cp",           @"http://test36.6yc.com",                       @"内测包",     @"test36"),//Michael
             site(@"test36a",     @"test36a",     @"",       @"com.UGGame.cp",           @"http://test36a.6yc.com",                      @"内测包",     @"test36a"),//Michael
             site(@"test60f",     @"test60f",    @"275",     @"com.uggame.qp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//
-            site(@"test61f",     @"test61f",    @"276",     @"com.cccaa1",           @"http://test61f.fhptcdn.com",                  @"内测包",     @"test61f"),//
+            site(@"test61f",     @"test61f",    @"276",     @"com.cccaa1",              @"http://test61f.6yc.com",                  @"内测包",     @"test61f"),//
             site(@"test58f",     @"test58f",    @"282",     @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
             site(@"test5801",     @"test5801",    @"",      @"com.UGGame.cp",           @"http://test5801.ccpt.site",                    @"内测包",     @"test5801"),//
             site(@"test5802",     @"test5802",    @"",      @"com.UGGame.cp",           @"http://test5802.ccpt.site",                    @"内测包",     @"test5802"),//
