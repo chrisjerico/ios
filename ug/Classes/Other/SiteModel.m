@@ -49,7 +49,7 @@
             site(@"c114",        @"c114hy",     @"157",     @"io.fhpt.YSAC114",                        @"https://c432019.com",                                            @"超级签名",    @"彩43"),          // https://dev.app2.xin/index | 19859553001 | wenxiang123123   昨天才看到的arc 给的链接
             site(@"c190",        @"c190hy",     @"167",     @"io.fhpt.H5F40948F",       @"https://306565.com",                          @"超级签名",    @"22333彩世界"),          // https://dev.app2.xin/index 账号：15559931943   密码：xiaokeai190  
             site(@"c190hyls",    @"c190hyls",   @"299",     @"io.fhpt.YSAC190hyls",     @"https://306565.com",                          @"企业包",    @"22333彩世界"),          //超级签名出问题，客户要求临时上一个
-            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"企业包",      @"凤凰彩票"),//用户15687374617  密码   qaz123123  超级苹果签
+            site(@"c048",        @"c048hy",     @"133",     @"io.fhpt.H5F00A9FA",       @"https://dsjf43-43-f14-345-36-g54t-gfh54.com", @"企业包",      @"凤凰彩票"),//用户15687374617  密码   qaz123123  超级苹果签  换成企业包 https://center001.fhptbet.net/gd.php?action=view&id=137907
             
             
             site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://70333e.com",                         @"企业包",     @"威尼斯人"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码
@@ -142,7 +142,7 @@
             site(@"test36",      @"test36",     @"",        @"com.UGGame.cp",           @"http://test36.6yc.com",                       @"内测包",     @"test36"),//Michael
             site(@"test36a",     @"test36a",     @"",       @"com.UGGame.cp",           @"http://test36a.6yc.com",                      @"内测包",     @"test36a"),//Michael
             site(@"test60f",     @"test60f",    @"275",     @"com.uggame.qp",           @"http://test60f.fhptcdn.com",                  @"内测包",     @"test60f"),//
-            site(@"test61f",     @"test61f",    @"276",     @"com.cccaa1",              @"http://test61f.6yc.com",                  @"内测包",     @"test61f"),//
+            site(@"test61f",     @"test61f",    @"276",     @"com.cccaa1",             @"http://test61f.6yc.com",                  @"内测包",     @"test61f"),//
             site(@"test58f",     @"test58f",    @"282",     @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
             site(@"test5801",     @"test5801",    @"",      @"com.UGGame.cp",           @"http://test5801.ccpt.site",                    @"内测包",     @"test5801"),//
             site(@"test5802",     @"test5802",    @"",      @"com.UGGame.cp",           @"http://test5802.ccpt.site",                    @"内测包",     @"test5802"),//
