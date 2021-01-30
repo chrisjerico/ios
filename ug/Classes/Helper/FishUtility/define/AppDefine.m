@@ -311,7 +311,7 @@ static NSMutableArray<RnPageModel *(^)(void)> *_ysReplacePages;
 #pragma mark - H5 url
 
 - (NSString *)htmlStyleString:(NSString *)content {
-    return _NSString(@"<head><style>table{border-collapse: collapse;}img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
+    return _NSString(@"<head><style>table{border-collapse: collapse;}p{margin: 5px auto} img{width:auto !important;max-width:100%%;height:auto !important}</style></head>%@", content);
 }
 
 - (NSString *)chatShareUrl {
