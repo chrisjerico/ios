@@ -59,7 +59,7 @@
         [subLabel(@"详细Label") setText:item.desc];
 
         [item.isHot isEqualToString:@"1"] ? [subButton(@"hotButton") setHidden:NO] : [subButton(@"hotButton") setHidden:YES];
-        [_hasSubSign setHidden:YES];
+        [self.hasSubSign setHidden: (item.subType.count > 0 ? false : true)];
         NSLog(@"model.name = %@ model.cid = %@,mode= %@",item.name,item.cid,item);
         
         if ([@"l002" containsString:APP.SiteId]) {
