@@ -129,7 +129,8 @@
 // 热更新相关字段
                                                    
 @property (nonatomic) BOOL Test;                        /**<   是否是测试环境 */
-@property (nonatomic, strong) NSString *rnVersion;      /**<    jspatch热更新版本号 */
+@property (nonatomic, strong) NSString *rnVersion;      /**<    rn版本信息 */
+@property (nonatomic, strong) NSArray *ocSupportKeyValues;/**<   rn_keyValues时额外支持的字段 */
 @property (nonatomic, copy) NSArray <RnPageModel *>*rnPageInfos;/**<   需要替换成rn的页面 */
 //@property (nonatomic, copy) NSString *publicKey;        /**<   公钥 */
 + (void)addYsReplacePage:(Class)cls1 toPage:(Class (^)(void))block; /**<   提供给原生使用的替换页面函数 */

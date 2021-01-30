@@ -23,10 +23,11 @@ static NSString *kVersionModel = @"VersionModel";
 //请求版本信息
 - (void)updateVersionApi:(BOOL)promptAlreadyLatest completion:(nullable void (^)(BOOL, BOOL))completion {
 #ifdef APP_TEST
-    if (completion) {
-        completion(false, false);
+    if (!promptAlreadyLatest) {
+        if (completion) 
+            completion(false, false);
+        return;
     }
-    return;
 #endif
         
     UGAPPVersionModel *vm = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:kVersionModel]];

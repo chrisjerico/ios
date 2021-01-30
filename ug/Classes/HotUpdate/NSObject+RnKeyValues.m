@@ -47,6 +47,18 @@
 #pragma mark -
 
 - (id)rn_keyValues {
+    id ret = [self rn_keyValues2];
+    if ([ret isKindOfClass:[NSDictionary class]]) {
+        ret = [ret mutableCopy];
+        for (NSString *key in APP.ocSupportKeyValues) {
+            if (!ret[key])
+                ret[key] = [self valueForKey:key];
+        }
+    }
+    return ret;
+}
+
+- (id)rn_keyValues2 {
     // 是否是数据模型类
     BOOL (^isModelClass)(id) = ^BOOL (id obj) {
         return true;
