@@ -255,7 +255,9 @@ static UGTabbarController *_tabBarVC = nil;
         [UGUserModel setCurrentUser:nil];
         
         [NavController1 popToRootViewControllerAnimated:true];
-        [TabBarController1 setSelectedIndex:0];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [TabBarController1 setSelectedIndex:0];
+        });
         
         [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomName"];
         [[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"roomId"];
