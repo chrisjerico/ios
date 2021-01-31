@@ -180,14 +180,14 @@
         }.mutableCopy;
         
         
-        if (SysConf.lhcdocIsShowNav) {
+        if (1) {
             dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _gameTypeView.superview, _promotionVC.view, _trademarkView];
         } else {
             dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _lhColumnView, _promotionVC.view, _trademarkView];
         }
         
         if ([@"l002" containsString:APP.SiteId]) {
-            if (SysConf.lhcdocIsShowNav) {
+            if (1) {
                 dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _gameTypeView.superview, _trademarkView];
             } else {
                 dict[@"六合资料"] = @[_bannerView, _rollingView,_LhPrize_FView,  _gameNavigationView.superview, _lhColumnView, _trademarkView];

@@ -21,6 +21,8 @@
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
+    
+    
     if (self) {
         self = [[NSBundle mainBundle] loadNibNamed:@"UGMessagePopView" owner:self options:nil].firstObject;
         self.frame = frame;
@@ -82,6 +84,12 @@
     
     NSString *meta = [NSString stringWithFormat:@"var meta = document.createElement('meta');meta.content='width=device-width,initial-scale=1.0,minimum-scale=.5,maximum-scale=3';meta.name='viewport';document.getElementsByTagName('head')[0].appendChild(meta);"];
     [_myWebView stringByEvaluatingJavaScriptFromString:meta];
+    
+    
+    CGFloat height = webView.scrollView.contentSize.height;
+    
+    NSLog(@"内容高度===================%f",height);
+
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
