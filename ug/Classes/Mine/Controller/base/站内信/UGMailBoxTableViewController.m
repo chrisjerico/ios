@@ -238,11 +238,29 @@ static NSString *messageCellid = @"UGMessageTableViewCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UGMessageModel *model = self.dataArray[indexPath.row];
-    MailDetailVC * vc = [[MailDetailVC alloc] init];
-    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [self.navigationController presentViewController:vc animated:false completion:nil];
-    vc.content = model.content;
-    vc.titleLabel.text = model.title;
+//    MailDetailVC * vc = [[MailDetailVC alloc] init];
+//    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    [self.navigationController presentViewController:vc animated:false completion:nil];
+//    vc.content = model.content;
+//    vc.titleLabel.text = model.title;
+
+    UGMessagePopView *popView = [[UGMessagePopView alloc] initWithFrame:CGRectMake(0, 0, 350,500 )];
+    popView.closeBlock = ^{
+        [LEEAlert closeWithCompletionBlock:nil];
+    };
+    WeakSelf;
+    [LEEAlert alert].config
+    .LeeTitle(model.title)
+    .LeeAddCustomView(^(LEECustomView *custom) {
+
+        popView.content = model.content;
+        custom.view = popView;
+        custom.positionType = LEECustomViewPositionTypeCenter;
+    })
+    .LeeAction(@"确定", ^{
+        [weakSelf readMsg:model.messageId];
+    })
+    .LeeShow();
     if (model.isRead == 0) {
         
         [self modifyMessageState:model];
