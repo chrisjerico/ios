@@ -144,7 +144,7 @@
             site(@"t502",        @"t502",       @"243",     @"com.UGGame.cp",           @"http://t502f.fhptcdn.com",                    @"内测包",     @"t502"),
             site(@"test36",      @"test36",     @"",        @"com.UGGame.cp",           @"http://test36.6yc.com",                       @"内测包",     @"test36"),//Michael
             site(@"test36a",     @"test36a",     @"",       @"com.UGGame.cp",           @"http://test36a.6yc.com",                      @"内测包",     @"test36a"),//Michael
-            site(@"test60f",     @"test60f",    @"275",     @"com.uggame.qp",           @"test60f.6yc.com",
+            site(@"test60f",     @"test60f",    @"275",     @"com.uggame.qp",           @"http://test60f.6yc.com",
                  @"内测包",     @"test60f"),//
             site(@"test61f",     @"test61f",    @"276",     @"com.cccaa1",             @"http://test61f.6yc.com",                  @"内测包",     @"test61f"),//
             site(@"test58f",     @"test58f",    @"282",     @"com.UGGame.cp",           @"http://test58f.ccpt.site",                    @"内测包",     @"test58f"),//
@@ -157,8 +157,7 @@
             site(@"t600f",        @"t600f",      @"",        @"com.UGGame.cp",           @"http://www.t600f.fhptcdn.com",                @"内测包",     @"t600f"),//
             site(@"wt600f",       @"wt600f",     @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                 @"内测包",     @"wt600f"),//
             site(@"test28f",      @"",           @"",        @"com.UGGame.cp",           @"http://test28f.fhptcdn.com",                  @"内测包",     @"test28f"),
-            site(@"testadaf",     @"testadaf",   @"285",     @"com.asiapoker.happy.hd",  @"testadaf.6yc.com",
-                @"内测包",     @"testadaf"),    // (ada)t059
+            site(@"testadaf",     @"testadaf",   @"285",     @"com.asiapoker.happy.hd",  @"http://testadaf.6yc.com",                     @"内测包",     @"testadaf"),    // (ada)t059
             site(@"test62",       @"test62",     @"289",     @"com.asiapoker.happy.qp650",@"http://test62f.ccpt.site",                   @"内测包",     @"test62"),
             site(@"test09",       @"test09",     @"",        @"com.UGGame.cp",            @"http://test09.6yc.com",                      @"内测包",     @"test09"),
             site(@"test61b",      @"test61bhy",  @"302",     @"com.UGGame.cp",            @"http://test61a.fhptcdn.com",                 @"内测包",     @"test61b"),
