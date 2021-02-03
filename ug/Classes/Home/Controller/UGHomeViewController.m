@@ -196,6 +196,9 @@
         if ([@"c245" containsString:APP.SiteId]) {
             dict[@"香槟金"] = @[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _trademarkView];
         }
+        if ([@"c243" containsString:APP.SiteId]) {
+            dict[@"香槟金"] =@[_bannerView, _rollingView, _waistAdsView, _xbjNavAndGameListView.view, _promotionVC.view, _trademarkView];
+        }
         NSArray *views = dict[Skin1.skitType] ? : dict[@"默认"];
         [_contentStackView addArrangedSubviews:views];
     
