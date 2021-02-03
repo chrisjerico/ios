@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *playName1;
 @property (nonatomic, strong) NSString *baseName;               /**<  最根级的名称 */
 @property (nonatomic, strong) NSString *baseCode;               /**<  最根级的code */
+@property (nonatomic,) BOOL isZH;              /**<   是否是追号，默认0*/
+
 @end
 
 @protocol UGGameBetModel <NSObject>
@@ -82,6 +84,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *baseName;               /**<  最根级的名称 */
 @property (nonatomic, strong) NSString *baseCode;               /**<  最根级的code */
+
+@property (nonatomic,) BOOL isZH;              /**<   是否是追号，默认0*/
+
 
 @end
 

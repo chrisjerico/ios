@@ -776,12 +776,17 @@
         [self.navigationController.view makeToast:@"请选择玩法" duration:1.5 position:CSToastPositionCenter];
         return ;
     }
+    
+    UGGameBetModel *obj = [objArray objectAtIndex:0];
+    NSLog(@"obj.isZH =%d",obj.isZH);
 
     self.nextIssueModel.title = self.selectTitle;
     UGBetDetailView *betDetailView = [[UGBetDetailView alloc] init];
+    betDetailView.isZH = obj.isZH;
     betDetailView.dataArray = objArray;
     betDetailView.nextIssueModel = self.nextIssueModel;
     betDetailView.code = selCode;
+  
     WeakSelf
     betDetailView.betClickBlock = ^{
         [weakSelf handleData];

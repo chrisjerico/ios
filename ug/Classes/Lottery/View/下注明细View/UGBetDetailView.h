@@ -23,6 +23,7 @@ typedef void(^BetDetailViewCancelBlock)(void);
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *followTag;  /**<   跟注标示，有值表示从聊天室跟注的注单 */
+@property (nonatomic,) BOOL isZH;              /**<   是否是追号，默认0*/
 - (void)show;
 @end
 

@@ -142,7 +142,16 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     
     if (SysConf.chaseNumber  == 1) {//追号开关  默认关
         NSMutableArray *dicArray = [UGGameBetModel mj_keyValuesArrayWithObjectArray:self.betArray];
-        [CMCommon saveLastGengHao:dicArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
+        NSMutableArray *newArray  = [NSMutableArray new];
+
+        for (NSMutableDictionary *object in dicArray) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithDictionary:object];
+            [newArray addObject:dic];
+        }
+        for (NSMutableDictionary *dic in newArray) {
+            [dic setValue:[NSNumber numberWithBool:YES] forKey:@"isZH"];
+        }
+        [CMCommon saveLastGengHao:newArray.copy gameId:self.nextIssueModel.gameId selCode:self.code];
         [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"resetGengHaoBtn" object:nil userInfo:nil]];
     }
 
@@ -151,7 +160,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     float totalAmount = 0.0;
     NSInteger totalNum = 0;
     for (UGBetModel *model in self.betArray) {
-        if ([@"连码" isEqualToString:model.typeName]) {
+        if ([@"连码" isEqualToString:model.typeName]&&!self.isZH) {
             if ([@"三中二" isEqualToString:model.title] ||
                 [@"三全中" isEqualToString:model.title]) {
                 
@@ -648,6 +657,8 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         bet.name = model.name;
         bet.baseName = model.baseName;
         bet.baseCode = model.baseCode;
+        bet.isZH = model.isZH;
+        
         
         if (SysConf.activeReturnCoinStatus) {//是否開啟拉條模式
             bet.odds = [[NSString stringWithFormat:@"%.4f",[CMCommon newOgOdds: [model.odds floatValue] rebate:[Global getInstanse].rebate]] removeFloatAllZero];
@@ -862,7 +873,11 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
     float totalAmount = 0.0;
     NSInteger num = 0;
     for (UGGameBetModel *model in self.betArray) {
-        if ([@"连码" isEqualToString:model.typeName]) {
+        
+        NSLog(@"model ==%@",model);
+        NSLog(@"self.isZH ==%d",self.isZH);
+        
+        if ([@"连码" isEqualToString:model.typeName] && !self.isZH) {
             if ([@"三中二" isEqualToString:model.title] ||
                 [@"三全中" isEqualToString:model.title]) {
                 
@@ -905,7 +920,6 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
             
         }
         else {
-            
             totalAmount += model.money.floatValue;
         }
     }
