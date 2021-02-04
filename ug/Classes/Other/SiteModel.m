@@ -138,7 +138,7 @@
             site(@"test30f",     @"",           @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",                  @"内测包",     @"test30"),
             site(@"test19",      @"test19",     @"214",     @"com.ug.test",             @"http://test19.6yc.com",                       @"内测包",     @"test19"),
             site(@"test31",      @"",           @"",        @"com.UGGame.cp",           @"http://test31.6yc.com",                       @"内测包",     @"test31"),
-            site(@"t005",        @"t005",       @"241",     @"com.asiapoker.happy.sswc", @"http://t005f.fhptcdn.com",                    @"内测包",     @"t005"),
+            site(@"t005",        @"t005",       @"241",     @"com.asiapoker.happy.sswc", @"https://t005f.fhptcdn.com",                    @"内测包",     @"t005"),
             site(@"t500",        @"t500",       @"240",     @"com.UGGame.cp",           @"http://t500f.fhptcdn.com",                    @"内测包",     @"t500"),
             site(@"t501",        @"t501",       @"242",     @"com.UGGame.cp",           @"http://t501f.fhptcdn.com",                    @"内测包",     @"t501"),
             site(@"t502",        @"t502",       @"243",     @"com.UGGame.cp",           @"http://t502f.fhptcdn.com",                    @"内测包",     @"t502"),
