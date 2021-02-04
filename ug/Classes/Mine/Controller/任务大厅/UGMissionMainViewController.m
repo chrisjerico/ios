@@ -72,6 +72,13 @@
             NSMutableArray * dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             
             
+//            dataArray = [[NSMutableArray alloc] initWithArray: [dataArray sortedArrayUsingComparator:^NSComparisonResult(UGMissionModel *p1, UGMissionModel *p2){
+//            //对数组进行排序（升序）
+////                return p1.sortId  > p2.sortId;
+//            //对数组进行排序（降序）
+//             return p1.sortId < p2.sortId;
+//            }]];
+            
             NSMutableArray *typeArray = [NSMutableArray new];
             
             //去除数组中重复sortId数据，得到多少任务类型
@@ -83,7 +90,10 @@
                 }
             }
             
-            sortArray = [sortArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+
+           
+            sortArray =  [[NSMutableArray alloc] initWithArray: [sortArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]];
             
             for (NSString *sortStr in sortArray) {
                 NSMutableDictionary *dic = [NSMutableDictionary new];
