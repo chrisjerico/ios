@@ -117,26 +117,6 @@
     }
 }
 
-/**
- *  当键盘改变了frame(位置和尺寸)的时候调用
- */
-//-(void)keyboardWillChangeFrameNotify:(NSNotification*)notify {
-//    FastSubViewCode(self.view);
-//    // 0.取出键盘动画的时间
-//    CGFloat duration = [notify.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-//    // 1.取得键盘最后的frame
-//    CGRect keyboardFrame = [notify.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    // 2.计算控制器的view需要平移的距离
-//    CGFloat transformY = keyboardFrame.origin.y - self.view.frame.size.height;
-//    // 3.执行动画
-//    [UIView animateWithDuration:duration animations:^{
-//        UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
-//        contentstackView.frame = CGRectMake(0, 0, UGScreenW, UGScerrnH + transformY - self.lotteryView.height);
-//        contentstackView.cc_constraints.bottom.constant = -transformY + 44;
-//        self.lotteryView.transform = CGAffineTransformMakeTranslation(0, transformY);
-//
-//    }];
-//}
 
 /**
  *   键盘弹出
@@ -165,7 +145,6 @@
     UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
     // 2.1取出键盘弹出的动画时间
     NSTimeInterval timte = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
     // 清空transform
     [UIView animateWithDuration:timte delay:0 options:7 << 16 animations:^{
         
@@ -179,9 +158,8 @@
     FastSubViewCode(self.view);
     self.fd_interactivePopDisabled = YES;
     //监听键盘的通知
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrameNotify:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGengHaoBtn) name:@"resetGengHaoBtn"object:nil];
 
