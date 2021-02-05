@@ -80,6 +80,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"resetGengHaoBtn" object:self];
     [self.nextIssueCountDown destoryTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"%s dealloc", object_getClassName(self));
     
 }
@@ -89,12 +90,15 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    //最后还设置回来,不要影响其他页面的效果
+    [IQKeyboardManager sharedManager].enable = YES;
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    //写入这个方法后,这个页面将没有这种效果
+    [IQKeyboardManager sharedManager].enable = NO;
     if (self.shoulHideHeader) {
         [self hideHeader];
         [self.historyBtn setEnabled:NO];
@@ -113,13 +117,71 @@
     }
 }
 
+/**
+ *  当键盘改变了frame(位置和尺寸)的时候调用
+ */
+//-(void)keyboardWillChangeFrameNotify:(NSNotification*)notify {
+//    FastSubViewCode(self.view);
+//    // 0.取出键盘动画的时间
+//    CGFloat duration = [notify.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//    // 1.取得键盘最后的frame
+//    CGRect keyboardFrame = [notify.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    // 2.计算控制器的view需要平移的距离
+//    CGFloat transformY = keyboardFrame.origin.y - self.view.frame.size.height;
+//    // 3.执行动画
+//    [UIView animateWithDuration:duration animations:^{
+//        UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
+//        contentstackView.frame = CGRectMake(0, 0, UGScreenW, UGScerrnH + transformY - self.lotteryView.height);
+//        contentstackView.cc_constraints.bottom.constant = -transformY + 44;
+//        self.lotteryView.transform = CGAffineTransformMakeTranslation(0, transformY);
+//
+//    }];
+//}
 
+/**
+ *   键盘弹出
+ */
+- (void)keyboardWillShow:(NSNotification *)note
+{
+    FastSubViewCode(self.view);
+    UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
+    // 1.取出键盘的高度
+    CGRect temp  = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat height = temp.size.height;
+    // 2.让工具条向上平移
+    // 2.1取出键盘弹出的动画时间
+    NSTimeInterval timte = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:timte delay:0 options:7 << 16 animations:^{
+      contentstackView.transform = CGAffineTransformMakeTranslation(0, -height);
+    } completion:nil];
+    
+}
+/**
+ *  键盘隐藏
+ */
+- (void)keyboardWillHide:(NSNotification *)note
+{
+    FastSubViewCode(self.view);
+    UIStackView *contentstackView = (UIStackView *)subView(@"内容stackView");
+    // 2.1取出键盘弹出的动画时间
+    NSTimeInterval timte = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    
+    // 清空transform
+    [UIView animateWithDuration:timte delay:0 options:7 << 16 animations:^{
+        
+      contentstackView.transform = CGAffineTransformIdentity;
+    } completion:nil];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     FastSubViewCode(self.view);
     self.fd_interactivePopDisabled = YES;
-    
+    //监听键盘的通知
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrameNotify:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetGengHaoBtn) name:@"resetGengHaoBtn"object:nil];
 
