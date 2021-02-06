@@ -71,7 +71,7 @@
             [subLabel(@"快捷金额Label") setTextColor:[UIColor whiteColor]];
             [subTextField(@"金额TextField") setTextColor:[UIColor whiteColor]];
             [_textView setTextColor:[UIColor whiteColor]];
-            [subTextField(@"验证码TextField") setTextColor:[UIColor whiteColor]];
+//            [subTextField(@"验证码TextField") setTextColor:[UIColor whiteColor]];
             [subButton(@"关闭btn") setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
             subButton(@"关闭btn").layer.borderColor = [UIColor whiteColor].CGColor;
             
@@ -82,12 +82,12 @@
             [subLabel(@"快捷金额Label") setTextColor:[UIColor blackColor]];
             [subTextField(@"金额TextField") setTextColor:[UIColor blackColor]];
             [_textView setTextColor:[UIColor blackColor]];
-            [subTextField(@"验证码TextField") setTextColor:[UIColor blackColor]];
+//            [subTextField(@"验证码TextField") setTextColor:[UIColor blackColor]];
             [subButton(@"关闭btn") setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             subButton(@"关闭btn").layer.borderColor = [UIColor blackColor].CGColor;
             
         }
-        [CMCommon textFieldSetPlaceholderLabelColor:RGBA(159, 166, 173, 1) TextField:subTextField(@"验证码TextField")];
+//        [CMCommon textFieldSetPlaceholderLabelColor:RGBA(159, 166, 173, 1) TextField:subTextField(@"验证码TextField")];
         [CMCommon textFieldSetPlaceholderLabelColor:RGBA(159, 166, 173, 1) TextField:subTextField(@"金额TextField")];
     }
     
@@ -104,8 +104,8 @@
             UITextField *tf = ({
                 if (subTextField(@"金额TextField").isFirstResponder)
                     tf = subTextField(@"金额TextField");
-                if (subTextField(@"验证码TextField").isFirstResponder)
-                    tf = subTextField(@"验证码TextField");
+//                if (subTextField(@"验证码TextField").isFirstResponder)
+//                    tf = subTextField(@"验证码TextField");
                 if (subTextField(@"说明TextView").isFirstResponder)
                     tf = subTextField(@"说明TextView");
                 tf;
@@ -159,7 +159,7 @@
         subLabel(@"快捷金额Label").hidden = true;
         _collectionView.hidden = true;
     }
-    subTextField(@"验证码TextField").hidden = false;
+//    subTextField(@"验证码TextField").hidden = false;
     
     
     NSLog(@"self.item.win_apply_content = %@", self.item.win_apply_content);
@@ -221,16 +221,16 @@
         }
     }
 
-    if ([CMCommon stringIsNull:subTextField(@"验证码TextField").text]) {
-        [self makeToast:@"验证码不能为空"];
-        return;
-    }
+//    if ([CMCommon stringIsNull:subTextField(@"验证码TextField").text]) {
+//        [self makeToast:@"验证码不能为空"];
+//        return;
+//    }
     
     NSString *pid = self.item.mid;
     
     NSString *amount = [subTextField(@"金额TextField").text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *userComment = [_textView.text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString *imgCode = [subTextField(@"验证码TextField").text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    NSString *imgCode = [subTextField(@"验证码TextField").text  stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if ([CMCommon stringIsNull:[UGUserModel currentUser].sessid]) {
         return;
     }
@@ -239,12 +239,12 @@
         params = @{@"token":[UGUserModel currentUser].sessid,
                    @"id":pid,
                    @"amount":amount,
-                   @"imgCode":imgCode
+//                   @"imgCode":imgCode
         }.mutableCopy;
     } else {
         params = @{@"token":[UGUserModel currentUser].sessid,
                    @"id":pid,
-                   @"imgCode":imgCode
+//                   @"imgCode":imgCode
         }.mutableCopy;
     }
     
