@@ -85,7 +85,9 @@
         
         [CodePushDownloadHandler cc_hookSelector:@selector(download:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo>  _Nonnull ai) {
             NSLog(@"CodePush原下载地址 = %@", ai.arguments.firstObject);
-            NSString *downloadURL = [[CodePushConfig current].serverURL stringByAppendingString:[NSURL URLWithString:ai.arguments.firstObject].path];
+            NSString *downloadURL = [[CodePushConfig current].serverURL stringByAppendingPathComponent:[NSURL URLWithString:ai.arguments.firstObject].path];
+            downloadURL = [downloadURL stringByReplacingOccurrencesOfString:@"http:/" withString:@"http://"];
+            downloadURL = [downloadURL stringByReplacingOccurrencesOfString:@"https:/" withString:@"https://"];
             NSLog(@"CodePush替换后的下载地址 = %@", downloadURL);
             [ai.originalInvocation setArgument:&downloadURL atIndex:2];
             [ai.originalInvocation invoke];
@@ -566,9 +568,6 @@ RCT_EXPORT_METHOD(launchFinish) {
         @"_ezer/dev1":@"F2WjxOH2AYoNreuPfF0xpNKCnMJ54ksvOXqog",
         @"_ezer/dev2":@"WMRzGoSYNjP5K6kbeevDyF8K62IY4ksvOXqog",
         @"_ezer/dev3":@"NL33yBkA1X96DaiEqDMyhNWS8xAA4ksvOXqog",
-        @"_shiyu/dev1":@"w8mjg8OFl3gBY4Iw3FCaQl3sWlAE4ksvOXqog",
-        @"_shiyu/dev2":@"zRB550Zz7nuIQmdcyjo177aUaijU4ksvOXqog",
-        @"_shiyu/dev3":@"3oTR0mTqwjDEiKe1vVDU2RahxGHD4ksvOXqog",
         @"_andrew/dev1":@"e9jfQgbriVQEL2GYvlhg7J4kiYnW4ksvOXqog",
         @"_andrew/dev2":@"5JnX4XYmWjRG1t4YuKKt8ZAMeVCA4ksvOXqog",
         @"_andrew/dev3":@"ev1LRvu8FpvRaTVCE6JPTSJpoYL34ksvOXqog",

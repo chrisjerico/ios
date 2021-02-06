@@ -168,7 +168,6 @@
             site(@"t039",         @"",           @"",        @"com.UGGame.cp",            @"http://test101f.fhptcdn.com",                @"内测包",     @"t039"),
 			
             site(@"test08",       @"test08",     @"",        @"com.UGGame.cp",           @"http://test08.6yc.com",                   @"内测包",     @"test08"),
-			site(@"shiyu",  	  @"shiyu",     @"",        @"com.UGGame.cp",           @"http://t127f.fhptcdn.com",                   @"内测包",     @"shiyu"),
             site(@"mj",           @"mj",         @"",        @"com.UGGame.cp",           @"http://test30f.fhptcdn.com",               @"内测包",       @"mj"),
             site(@"t501f",       @"t501f",     @"",        @"com.UGGame.cp",           @"http://t501f.fhptcdn.com/",                   @"内测包",     @"t501f"),
 

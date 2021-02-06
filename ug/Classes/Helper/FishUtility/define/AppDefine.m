@@ -112,8 +112,6 @@
         if (!_SiteId.length) {
 //			_SiteId = @" t133-smith";
 			_SiteId = @"c252";
-//			_SiteId = @" t127-shiyu";
-
         }
 
 #endif
