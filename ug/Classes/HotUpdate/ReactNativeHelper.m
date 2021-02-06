@@ -81,6 +81,15 @@
                 [__wvs removeFirstObject];
             }
         } error:nil];
+        
+        
+        [CodePushDownloadHandler cc_hookSelector:@selector(download:) withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            NSLog(@"CodePush原下载地址 = %@", ai.arguments.firstObject);
+            NSString *downloadURL = [[CodePushConfig current].serverURL stringByAppendingString:[NSURL URLWithString:ai.arguments.firstObject].path];
+            NSLog(@"CodePush替换后的下载地址 = %@", downloadURL);
+            [ai.originalInvocation setArgument:&downloadURL atIndex:2];
+            [ai.originalInvocation invoke];
+        } error:nil];
     });
 }
 @end
