@@ -54,8 +54,9 @@
             
             site(@"l002",        @"l002hy",     @"239",     @"io.fhpt.YSAL002",         @"https://70333e.com",                         @"企业包",     @"威尼斯人"),//wang70333@gmail.com   WANGzhongwang70333   极光账号跟密码
             site(@"c053",        @"c053ys",     @"152",     @"io.fhpt.YSAC053",       @"https://988c53.com",                          @"企业包",     @"0069彩票"),  // 极光 账号：xuduoduo2018402@gmail.com 密码：Xusiling2018402.| 封装是超级签名 https://dev.app2.xin/index  账号：14779887196  密码：Xusiling2018402  // 友盟 c53555com c53qwe..
-            site(@"c085",        @"c085hy",     @"165",     @"io.fhpt.H53F348DC",       @"https://x558.cc",                             @"企业包",     @"彩壹万"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
-            site(@"c085yw",        @"c085ywhy",     @"316", @"io.fhpt.YSAC085YW",       @"https://x558.cc",                             @"企业包",     @"10000.AG"),//已上架    https://c10000ll.com   极光推送hu178178 密码aA178178178  https://xn--10app-308h91u.com
+            site(@"c085a",       @"c085hy",      @"165",    @"io.fhpt.H53F348DC",       @"https://x558.cc",                             @"企业包",     @"彩壹万"),// 极光推送hu178178 密码aA178178178
+            site(@"c085",        @"c085ahy",     @"372",    @"io.fhpt.YSFC085A",        @"https://x558.cc",                             @"企业包",     @"金马城"),// 极光推送hu178178 密码aA178178178
+            site(@"c085yw",      @"c085ywhy",    @"316",    @"io.fhpt.YSAC085YW",       @"https://x558.cc",                             @"企业包",     @"10000.AG"),//极光推送hu178178 密码aA178178178
           
             site(@"c134",        @"c134hy",     @"142",     @"io.fhpt.H5B711E9A",       @"https://19972030.com",                        @"企业包",     @"1997⾹港彩票"),//极光推送 账号xgcp1997@163.com 密码Qaz369369
             site(@"c137",        @"c137hy",     @"158",     @"io.fhpt.H5B75458D",       @"https://7033005.com",                         @"企业包",     @"7033彩票"),
@@ -64,7 +65,7 @@
             site(@"c163",        @"c163hy",     @"160",     @"io.fhpt.H59BF8829",       @"https://c91398.com",                          @"企业包",     @"彩91"),
             site(@"c165",        @"c165hy",     @"146",     @"io.fhpt.H57D82AEF",       @"https://1875006.com",                         @"企业包",     @"天天彩票"),
             site(@"c169",        @"c169hy",     @"162",     @"io.fhpt.H529081C9",       @"http://heixxqic169cqhmszw.playzone88.com",    @"企业包",     @"太阳城集团"),
-            site(@"c175",        @"c175hy",     @"148",     @"io.fhpt.H57F31D1D",       @"http://7053fndsjfkn.com",                    @"企业包",     @"7053"), // 已上架  极光 lijinju6@gmail.com 密码Wo258258..
+            site(@"c175",        @"c175hy",     @"148",     @"io.fhpt.H57F31D1D",       @"http://7053fndsjfkn.com",                     @"企业包",     @"7053"), // 极光 lijinju6@gmail.com 密码Wo258258..
 
             site(@"c186",        @"c186hy",     @"322",     @"io.fhpt.YSAC186",         @"https://200300b.com",                         @"企业包",     @"好彩网"),
             site(@"c225",        @"c225hy",     @"342",     @"io.fhpt.H50A96411",       @"https://8393483.com",                                            @"企业包",     @"51彩票"),
