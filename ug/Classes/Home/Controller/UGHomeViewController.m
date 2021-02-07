@@ -102,7 +102,6 @@
 @property (weak, nonatomic) IBOutlet UGGameNavigationView *gameNavigationView;      /**<   游戏导航父视图 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *gameNavigationViewHeight;  /**<   游戏导航Height约束 */
 @property (weak, nonatomic) IBOutlet UGGameTypeCollectionView *gameTypeView;        /**<   游戏列表 */
-@property (nonatomic, strong) NSMutableArray<GameCategoryModel *> *gameCategorys;   /**<   游戏列表数据 */
 
 @property (nonatomic, strong) HomeMarqueeView *rollingView;             /**<   跑马灯公告 */
 @property (nonatomic, strong) HomeWaistAdsView *waistAdsView;           /**<   腰部广告 */
@@ -821,13 +820,8 @@
                         [weakSelf.view layoutIfNeeded];
                     }
                     
-                    if (!SysConf.mobileHomeGameTypeSwitch) {
-                        weakSelf.gameNavigationViewHeight.constant = 0;
-                        [weakSelf.view layoutIfNeeded];
-                    }
-                    
                     //去掉seriesId = 13 的数据 后台如设置内容管理-手机游戏图标下的“UG棋牌”，前台隐藏显示
-                    NSMutableArray *iconsArray = [NSMutableArray arrayWithArray:customGameModel.icons];
+                    NSMutableArray <GameCategoryModel *>*iconsArray = [NSMutableArray arrayWithArray:customGameModel.icons];
                     for (GameCategoryModel *obj in iconsArray.reverseObjectEnumerator) {
                         
                         NSMutableArray *array = [NSMutableArray arrayWithArray:obj.list];
@@ -839,9 +833,28 @@
                         obj.list = array.copy;
                         
                     }
+                    
+                    // 隐藏分类栏，直接显示所有数据
+                    if (!SysConf.mobileHomeGameTypeSwitch) {
+                        NSMutableArray <GameModel *>*list = @[].mutableCopy;
+                        for (GameCategoryModel *obj1 in iconsArray) {
+                            [list addObjectsFromArray:obj1.list];
+                            for (GameCategoryModel *obj2 in obj1.subType) {
+                                [list addObjectsFromArray:obj2.list];
+                            }
+                        }
+                        iconsArray = ({
+                            GameCategoryModel *gcm = iconsArray.firstObject;
+                            gcm.list = [list copy];
+                            @[gcm].mutableCopy;
+                        });
+                        
+                        weakSelf.gameNavigationViewHeight.constant = 0;
+                        [weakSelf.view layoutIfNeeded];
+                    }
 
                     // 游戏列表
-                    self.gameTypeView.gameTypeArray = weakSelf.gameCategorys = iconsArray;
+                    self.gameTypeView.gameTypeArray = iconsArray;
                     
                     if ([Skin1.skitType isEqualToString:@"金沙主题"]) {
                         NSMutableArray<GameCategoryModel*> *newGameTypeArray =
@@ -854,7 +867,7 @@
                             }
                         }
                         
-                        NSArray<GameModel *> * homePromoteItems = [weakSelf.gameCategorys filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                        NSArray<GameModel *> * homePromoteItems = [iconsArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
                             return [evaluatedObject.iid isEqualToString:@"7"];
                         }]][0].list;
                         if (homePromoteItems.count > 1) {
@@ -864,7 +877,7 @@
                             [weakSelf.contentStackView removeArrangedSubview:weakSelf.homePromoteContainer];
                             [weakSelf.homePromoteContainer removeFromSuperview];
                         }
-                        weakSelf.gameTypeView.gameTypeArray = weakSelf.gameCategorys = [newGameTypeArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel *  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                        weakSelf.gameTypeView.gameTypeArray = [newGameTypeArray filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(GameCategoryModel *  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
                             return ![evaluatedObject.iid isEqualToString:@"7"];
                         }]].mutableCopy;
                     }
@@ -1008,13 +1021,6 @@
     self.contentScrollView.scrollEnabled = YES;
     self.contentScrollView.bounces = YES;
 
-}
-
-- (NSMutableArray<GameCategoryModel *> *)gameCategorys {
-    if (_gameCategorys == nil) {
-        _gameCategorys = [NSMutableArray array];
-    }
-    return _gameCategorys;
 }
 
 - (IBAction)goRecommendedAction:(id)sender {
