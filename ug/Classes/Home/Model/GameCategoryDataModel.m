@@ -50,6 +50,7 @@
 - (NSString *)icon { return _icon.length ? _icon : _logo; }
 - (NSString *)hotIcon  { return _hotIcon.length ? _hotIcon : _hot_icon; }
 - (NSString *)hot_icon { return _hotIcon.length ? _hotIcon : _hot_icon; }
+- (NSString *)cid { return _cid.length ? _cid : _gameId; }
 // 自定义排序方法
 - (NSComparisonResult)compareParkInfo:(GameModel *)gameModel{
     // 升序

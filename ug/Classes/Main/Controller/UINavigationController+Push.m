@@ -130,7 +130,63 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }];
 }
 #pragma mark - 六合跳转老逻辑
--(void)goLH:(GameModel *)model{
+-(NSString *)judgmentGameType:(NSString *)gameType{
+
+    NSString * judgment;
+    if ([gameType containsString:@"cqssc" ]) {
+        judgment = @"cqssc";
+    }
+    else if ([gameType containsString:@"pk10"]) {
+        judgment =  @"pk10";
+    }
+    else if([gameType containsString:@"xyft"]){
+        judgment = @"xyft";
+    }
+    else if([gameType containsString:@"qxc"]){
+        judgment = @"qxc";
+    }
+    else if([gameType containsString:@"lhc"]){
+        judgment = @"lhc";
+    }
+    else if([gameType containsString:@"jsk3"]){
+        judgment = @"jsk3";
+    }
+    else if([gameType containsString:@"pcdd"]){
+        judgment = @"pcdd";
+    }
+    else if([gameType containsString:@"gd11x5"]){
+        judgment = @"gd11x5";
+    }
+    else if([gameType containsString:@"xync"]){
+        judgment = @"xync";
+    }
+    else if([gameType containsString:@"bjkl8" ]){
+        judgment = @"bjkl8";
+    }
+    else if([gameType containsString:@"gdkl10"]){
+        judgment = @"gdkl10";
+    }
+    else if([gameType containsString:@"fc3d"]){
+        judgment = @"fc3d";
+    }
+    else if([gameType containsString:@"pk10nn"]){
+        judgment = @"pk10nn";
+    }
+    else if([gameType containsString:@"dlt"]){
+        judgment = @"dlt";
+    }
+    else if([gameType containsString:@"qxc"]){
+        judgment = @"qxc";
+    }
+    else if([gameType containsString:@"ofclvn_hochiminhvip"]){
+        judgment = @"ofclvn_hochiminhvip";
+    }
+    else if([gameType containsString:@"ofclvn_haboivip" ]){
+        judgment = @"ofclvn_haboivip";
+    }
+    return judgment;
+}
+-(void)goLH:(UGLHCategoryListModel *)model{
     // 后台给的栏目ID可能不正确，要根据别名修正
     NSMutableDictionary *typeDict = @{@"sixpic":@"5",}.mutableCopy;
     // 以下别名，链接带alias的则修正
@@ -197,7 +253,24 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         return;
     }
 
-    if ([ model.link containsString:@"/mobile/#/lottery/index"]) {//    /mobile/#/lottery/index ===》彩种 1
+    //    /mobile/#/lottery/index ===》彩种 1
+    //    /mobile/#/lottery/mystery ===〉帖子  2
+    //    /mobile/real/goToGame ===》 游戏第3方  3
+    //    “”==〉其他
+    int judgment;
+    if ([model.link containsString:@"/mobile/#/lottery/index"]) {
+        judgment = 1;
+    }
+    else if ([model.link containsString:@"/mobile/#/lottery/mystery"]) {
+        judgment =  2;
+    }
+    else if([model.link containsString:@"/mobile/real/goToGame"]){
+        judgment = 3;
+    }
+    else{
+        judgment =  4;
+    }
+    if (judgment == 1) {
         
         NSLog(@"model.categoryType = %@",model.categoryType);
         if ([model.categoryType isEqualToString:@"187"]) {
@@ -214,11 +287,19 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             m.gameType = @"pk10";
             [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
         }
+        else{
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = model.name;
+            m.gameId = model.categoryType;
+            m.gameType = [self judgmentGameType:model.baoma_type];
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        }
+      
     }
-    else if ([model.link containsString:@"/mobile/#/lottery/mystery"]) { //    /mobile/#/lottery/mystery ===〉帖子  2
+    else  if (judgment == 2) { //    /mobile/#/lottery/mystery ===〉帖子  2
         if ([model.thread_type isEqualToString:@"2"]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-            vc.clm = (UGLHCategoryListModel *)model;
+            vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             return;
         }
@@ -273,13 +354,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         else{
             UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
-            vc.clm = (UGLHCategoryListModel *)model;
+            vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"每期资料,公式规律");
         }
     }
     //    /mobile/real/goToGame ===》 游戏第3方  3
-    else if([model.link containsString:@"/mobile/real/goToGame"]){
+    else  if (judgment == 3) {
         NSArray  *array = [model.link componentsSeparatedByString:@"/"];
         NSString *number1 = [array objectAtIndex:array.count-2];
         if (!UGLoginIsAuthorized()) {
@@ -310,7 +391,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
     }
     //    “”==〉其他
-    else   {
+    else  if (judgment == 4) {
 
         if([@"zxkf" containsString:model.alias]) {
             TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
@@ -323,13 +404,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         
         if ([@"forum,gourmet" containsString:model.categoryType]) {
             UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
-            vc.clm = (UGLHCategoryListModel *)model;
+            vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"高手论坛,极品专贴");
         }
         else if([@"mystery,rule" containsString:model.categoryType]) {
             UGDocumentListVC *vc = _LoadVC_from_storyboard_(@"UGDocumentListVC");
-            vc.clm = (UGLHCategoryListModel *)model;
+            vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"每期资料,公式规律");
         }
@@ -337,13 +418,13 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             //fourUnlike
             NSLog(@"model.categoryType = %@",model.categoryType);
             LHJournalDetailVC *vc = _LoadVC_from_storyboard_(@"LHJournalDetailVC");
-            vc.clm = (UGLHCategoryListModel *)model;
+            vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"幽默猜测,跑狗玄机,四不像");
         }
         else if([@"sixpic" containsString:model.categoryType]) {
             LHGalleryListVC2 *vc = _LoadVC_from_storyboard_(@"LHGalleryListVC2");
-            vc.clm = (UGLHCategoryListModel *)model;
+            vc.clm = model;
             [NavController1 pushViewController:vc animated:true];
             NSLog(@"六合图库");
         }
@@ -381,7 +462,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     
     if (![CMCommon stringIsNull:model.site_tags_id]) {
         //六合类型
-        [self goLH:model];
+        [self goLH:(id)model];
         return true;
     }
     
