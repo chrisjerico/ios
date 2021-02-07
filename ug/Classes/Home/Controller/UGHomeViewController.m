@@ -848,9 +848,6 @@
                             gcm.list = [list copy];
                             @[gcm].mutableCopy;
                         });
-                        
-                        weakSelf.gameNavigationViewHeight.constant = 0;
-                        [weakSelf.view layoutIfNeeded];
                     }
 
                     // 游戏列表
