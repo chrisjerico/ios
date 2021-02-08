@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) NSArray <DZPModel *> *dzpArray;   /**<   转盘活动数据 */
 @property (weak, nonatomic) IBOutlet UILabel *moenyNumberLabel; /**<   用户积分 */
+@property (weak, nonatomic) IBOutlet UILabel *countLabel; /**<   剩余次数 */
 
 @end
 
@@ -155,6 +156,7 @@
     } else {
         [self.imgBianBg setHidden:YES];
     }
+    self.countLabel.text = [NSString stringWithFormat:@"免费抽奖剩余次数：%@",item.freeNum];
 
 }
 
@@ -195,9 +197,48 @@
     }];
 }
 
+//大转盘 剩余次数
+- (void)getactivityTurntableList {
+
+    NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
+    };
+    [CMNetwork activityTurntableListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
+        
+        [CMResult processWithResult:model success:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSLog(@"model = %@",model);
+                NSArray <DZPModel *> *dzpArray = [NSArray new];
+                // 需要在主线程执行的代码
+                dzpArray = model.data;
+                
+                NSLog(@"dzpArray = %@",dzpArray);
+
+                if (dzpArray.count) {
+                    
+                    NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
+                    DZPModel *obj = [data objectAtIndex:0];
+                    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        // 需要在主线程执行的代码
+                        
+                    self.countLabel.text = [NSString stringWithFormat:@"免费抽奖剩余次数：%@",obj.freeNum];
+                        
+                    });
+                }
+            });
+            
+        } failure:^(id msg) {
+            //            [SVProgressHUD showErrorWithStatus:msg];
+          
+        }];
+    }];
+}
+
 //实现监听方法
 -(void)setMoenyNumber:(NSNotification *)notification
 {
+    [ self getactivityTurntableList ];
     NSNumber *moenyNumber = notification.userInfo[@"MoenyNumber"];//1316
     NSString *moenyNumberStr = [NSString stringWithFormat:@"%@",moenyNumber];
     if (![CMCommon stringIsNull:moenyNumberStr]) {
@@ -208,6 +249,8 @@
     }
 
     [self activityTurntableLog:[Global getInstanse].DZPid];
+    
+    
  }
 
 -(void)setDZPStar:(NSNotification *)notification {

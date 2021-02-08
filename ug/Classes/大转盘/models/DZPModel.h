@@ -114,6 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *update_time;   /**< 抽奖时间戳  */
 @property (nonatomic, strong) NSString *codeNum;  /**<   抽奖编号*/
+@property (nonatomic, strong) NSNumber *freeNum;  /**<  剩余次数*/
 
 @end
 

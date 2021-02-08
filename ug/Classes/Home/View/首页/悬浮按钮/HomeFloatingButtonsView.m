@@ -423,6 +423,8 @@
         [CMResult processWithResult:model success:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{
+                
+                NSLog(@"model = %@",model);
                 NSArray <DZPModel *> *dzpArray = [NSArray new];
                 // 需要在主线程执行的代码
                 dzpArray = model.data;
