@@ -56,11 +56,7 @@
     // 左上角255或大转盘底下，左上、右上、左下、右下
     
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-      
-//        [self getactivityCratchList];   // 刮刮乐
-//        [self getactivityGoldenEggList];// 砸金蛋
-//        [self getactivityTurntableList];// 大转盘
-//        [self getCheckinListData];      // 红包数据
+
         [self getactivityTurntableList];    // 大转盘
         [self getactivityGoldenEggList];    // 砸金蛋
         [self getactivityCratchList];       // 刮刮乐
@@ -262,15 +258,9 @@
             _rights = @[_uUpperRightView, _uLowerRightView];
         } else {
             _topStackView.superview.hidden = true;
-            BOOL isLogin = UGLoginIsAuthorized();
-            if (isLogin) {
-                _lefts = @[_scratchView, _uUpperLeftView, _ulowerLefttView];
 
-            } else {
-                _lefts = @[ _uUpperLeftView, _ulowerLefttView];
-            }
-           
-            
+            _lefts = @[_scratchView, _uUpperLeftView, _ulowerLefttView];
+
             _rights = @[_uGredEnvelopeView,_taskView, _bigWheelView, _goldEggView, _uUpperRightView, _uLowerRightView];
             
             if ([APP.SiteId isEqualToString:@"c150"]) {
