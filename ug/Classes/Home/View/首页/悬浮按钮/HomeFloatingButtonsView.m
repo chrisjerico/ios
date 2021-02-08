@@ -56,10 +56,18 @@
     // 左上角255或大转盘底下，左上、右上、左下、右下
     
     SANotificationEventSubscribe(UGNotificationLoginComplete, self, ^(typeof (self) self, id obj) {
-        [self getactivityCratchList];   // 刮刮乐
-        [self getactivityGoldenEggList];// 砸金蛋
-        [self getactivityTurntableList];// 大转盘
-        [self getCheckinListData];      // 红包数据
+      
+//        [self getactivityCratchList];   // 刮刮乐
+//        [self getactivityGoldenEggList];// 砸金蛋
+//        [self getactivityTurntableList];// 大转盘
+//        [self getCheckinListData];      // 红包数据
+        [self getactivityTurntableList];    // 大转盘
+        [self getactivityGoldenEggList];    // 砸金蛋
+        [self getactivityCratchList];       // 刮刮乐
+        [self getCheckinListData];  // 红包数据
+        [self getfloatAdsList];     // 首页左右浮窗
+        [self getActivitySettings]; // 红包转盘刮刮乐砸金蛋图片
+        [self getSystemConfig];
     });
     
     SANotificationEventSubscribe(UGNotificationRedPageComplete, self, ^(typeof (self) self, id obj) {
@@ -161,13 +169,16 @@
         self.scratchView.cancelClickBlock = cancelClickBlock;
         self.scratchView.redClickBlock = ^(void) {
             if (!checkLogin()) return;
-            
+
             ScratchController * vc = [[ScratchController alloc] init];
             vc.item = __self.scratchView.scratchDataModel;
             vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
             [[UINavigationController current] presentViewController:vc animated:true completion:nil];
-            
+
         };
+  
+    
+       
     }
     
 #pragma mark 任务
@@ -245,12 +256,20 @@
     
     if (OBJOnceToken(self)) {
         if (APP.isNewLocation) {
+            
             _tops = @[_scratchView, _goldEggView, _bigWheelView, _uGredEnvelopeView];
             _lefts = @[_uUpperLeftView, _ulowerLefttView];
             _rights = @[_uUpperRightView, _uLowerRightView];
         } else {
             _topStackView.superview.hidden = true;
-            _lefts = @[_scratchView, _uUpperLeftView, _ulowerLefttView];
+            BOOL isLogin = UGLoginIsAuthorized();
+            if (isLogin) {
+                _lefts = @[_scratchView, _uUpperLeftView, _ulowerLefttView];
+
+            } else {
+                _lefts = @[ _uUpperLeftView, _ulowerLefttView];
+            }
+           
             
             _rights = @[_uGredEnvelopeView,_taskView, _bigWheelView, _goldEggView, _uUpperRightView, _uLowerRightView];
             
