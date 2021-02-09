@@ -32,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *resultDescribleLabel;
 
 @property (strong, nonatomic)dispatch_group_t group;
-
+@property (strong, nonatomic)NSString * numId;
 @end
 
 @implementation EggFrenzyViewController
@@ -119,13 +119,18 @@
 - (void)frenzy: (void (^)(void)) completionHandle {
 	
 	NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid,
-							 @"activityId":self.item.DZPid};
+							 @"activityId":self.item.DZPid,
+                             @"numId":self.numId,
+    };
 	WeakSelf
 	[CMNetwork activityGoldenEggWinWithParams:params completion:^(CMResult<id> *model, NSError *err) {
 		[CMResult processWithResult:model success:^{
+            
+            NSLog(@"model.data====%@",model.data);
 			NSInteger code  = model.code;
 			dispatch_async(dispatch_get_main_queue(), ^{
 				if (code == 0) {
+                    weakSelf.numId = [model.data objectForKey:@"numId"];
 					if ([[model.data objectForKey:@"prizeflag"] isEqualToNumber:[[NSNumber alloc] initWithInt:1]]) {
 						weakSelf.resultDescribleLabel.text = @"手气不错";
 					} else  {
