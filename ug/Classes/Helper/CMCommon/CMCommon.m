@@ -116,12 +116,17 @@ static NSString *uuidKey =@"uuidKey";
 //    2020-04-15 16:23:13.868545+0800 UGBWApp[2076:128817] currentTime =2020-04-15 16:23:12
     // 截止时间date格式
     NSDate  *expireDate = [aTimeString dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    // 当前服务器时间date格式
+    NSDate  *currentDate = [currentTime dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     // 当前时间date格式
     NSDate *nowDate = [NSDate new];
-    NSTimeInterval timeInterval = [expireDate timeIntervalSinceDate:nowDate];
+    //计算当前时间与当前服务器时间的时间差
+    NSTimeInterval nowInterval = [currentDate timeIntervalSinceDate:nowDate];
     
-    // 时间不知道为什么快了一点点，这里手动加上，慢总比快好一点
-    timeInterval += 0.2;
+    NSTimeInterval timeInterval = [expireDate timeIntervalSinceDate:currentDate];
+    
+    // 时间不知道为什么快了一)点点，这里手动加上，慢总比快好一点
+    timeInterval += (nowInterval+0.2);
     
     int days = (int)(timeInterval/(3600*24));
     int hours = (int)((timeInterval)/3600);

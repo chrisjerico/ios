@@ -164,25 +164,21 @@ static LogVC *_logVC = nil;
 #pragma mark ----用来测试的
     {//切换按钮六合
         NSMutableArray *titles = @[].mutableCopy;
-        [titles addObject:@"浮动按钮"];
+        [titles addObject:@"时间差"];
         [titles addObject:@"查看当前页面名"];
         UIAlertController *ac = [AlertHelper showAlertView:nil msg:@"请选择操作" btnTitles:[titles arrayByAddingObject:@"取消"]];
         
-        [ac setActionAtTitle:@"浮动按钮" handler:^(UIAlertAction *aa) {
+        [ac setActionAtTitle:@"时间差" handler:^(UIAlertAction *aa) {
             
-            WMDragView *logoView = [[WMDragView alloc] initWithFrame:CGRectMake(0, 200 , 70, 70)];
-            logoView.isKeepBounds = YES;
-            logoView.layer.cornerRadius = 35;
-            [logoView setBackgroundColor:RGBA(122, 113, 243, 0.8)];
-             [self.view addSubview:logoView];
-            logoView.button.titleLabel.font = [UIFont systemFontOfSize:22.0];
-            [logoView.button setTitle:@"投注" forState:UIControlStateNormal];
-            [logoView.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-             logoView.clickDragViewBlock = ^(WMDragView *dragView){
-                 [AlertHelper showAlertView:NavController1.topViewController.className
-                                        msg:NavController1.topViewController.childViewControllers.description
-                                  btnTitles:@[@"确定"]];
-             };
+            //    2020-04-15 16:23:13.868372+0800 UGBWApp[2076:128817] aTimeString =2020-04-15 21:30:00
+            //    2020-04-15 16:23:13.868545+0800 UGBWApp[2076:128817] currentTime =2020-04-15 16:23:12
+            NSString *aTimeString = @"2021-02-09 13:53:00";
+                // 截止时间date格式
+                NSDate  *expireDate = [aTimeString dateWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+                // 当前时间date格式
+                NSDate *nowDate = [NSDate new];
+                NSTimeInterval timeInterval = [expireDate timeIntervalSinceDate:nowDate];
+            NSLog(@"时间戳：%f",timeInterval);//小： -  大 +
             
         }];
 

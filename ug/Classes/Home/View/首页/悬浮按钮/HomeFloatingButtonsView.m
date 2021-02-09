@@ -487,6 +487,12 @@
 #pragma mark +++++++++++++++++刮刮乐数据
 
 -(void)getactivityCratchList {
+    if (!UGLoginIsAuthorized()) {
+        return ;
+    }
+    if ([UGUserModel currentUser].isTest) {
+        return ;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     WeakSelf
     [CMNetwork activityScratchListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
