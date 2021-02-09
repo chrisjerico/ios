@@ -13,6 +13,16 @@
 #import "ReactNativeHelper.h"
 #import "UIView+AutoLocalizable.h"
 #import "UGAppVersionManager.h"
+#import <CodePush/CodePush.h>
+
+
+@interface CodePush () {
+    long long _latestExpectedContentLength;
+    long long _latestReceivedConentLength;
+}
+- (void)dispatchDownloadProgressEvent;
+@end
+
 
 @interface LaunchPageModel : UGModel
 @property (nonatomic) NSString *pic;
@@ -29,7 +39,7 @@
 @property (nonatomic, assign) BOOL waitLanguage;    /**<   ⌛️等语言包 */
 @property (nonatomic, assign) BOOL waitReactNative; /**<   ⌛️等热更新 */
 @property (nonatomic, assign) BOOL waitSysConf;     /**<   ⌛️等系统配置 */
-@property (nonatomic, assign) int waitCheckUpdate;  /**<   ⌛️等检查更新 */
+@property (nonatomic, assign) int waitCheckUpdate;  /**<   ⌛️等检查APP更新（非RN） */
 @property (nonatomic, assign) BOOL waitDomainValid; /**<   ⌛️等更换域名，若所有域名都无效则无法进入首页 */
 @property (nonatomic, assign) BOOL waitRnPageInfos; /**<   ⌛️等RN页面配置完毕（iPhone6机型性能差，可能进首页了配置还没好）*/
 @end
@@ -110,7 +120,9 @@
         __weakSelf_(__self);
         {
             int timeout = 5; // ⌛️超时时间
+            __block BOOL __isTimeout = false;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                __isTimeout = true;
                 __self.waitSysConf = false;
                 __self.waitPic = false;
                 __self.waitLanguage = false;
@@ -125,8 +137,61 @@
                     __self.waitReactNative = false;
 #endif
                 } else if (!__self.waitCheckUpdate && __self.waitReactNative) {
-                    [SVProgressHUD showWithStatus:@"正在下载资源文件，请稍等片刻..."];
+                    [SVProgressHUD showWithStatus:@"正在获取资源文件，请稍等片刻..."];
                 }
+            });
+            
+            
+            // 显示热更新下载进度
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                __block unsigned long long __lastReceived = 0;
+                __block NSDate *__lastTime = nil;
+                __block NSMutableArray <NSNumber *>*__lastDurs = @[].mutableCopy;
+                
+                [CodePushDownloadHandler cc_hookSelector:@selector(download:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+                    __lastTime = [NSDate date];
+                } error:nil];
+                
+                [CodePush cc_hookSelector:@selector(dispatchDownloadProgressEvent) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+                    long long total = [[ai.instance valueForKey:@"_latestExpectedContentLength"] doubleValue] / 1024;
+                    long long received = [[ai.instance valueForKey:@"_latestReceivedConentLength"] doubleValue] / 1024;
+                    if (received == __lastReceived) return;
+                    long long downloadSpeed = received - __lastReceived;
+                    __lastReceived = received;
+                    
+                    NSString *progress = [NSString stringWithFormat:@"%lld/%lld", received, total];
+                    NSDate *currentTime = [NSDate date];
+                    [__lastDurs addObject:@(({
+                        CGFloat dur = (total - received) / (CGFloat)downloadSpeed * [currentTime timeIntervalSinceDate:__lastTime];
+                        __lastTime = currentTime;
+                        dur = MAX(MIN(dur / 60, 60), 1);
+                        dur;
+                    }))];
+                    CGFloat dur = __lastDurs.firstObject.doubleValue;
+                    // 为了防止“预计剩余时间”波动太大，这里缓存多个值，只显示跟上次最接近的一个值
+                    if (__lastDurs.count > 4) {
+                        [__lastDurs removeFirstObject];
+                        CGFloat offset = 100;
+                        int idx = 0;
+                        for (int i=0; i<__lastDurs.count; i++) {
+                            CGFloat tmpOffset = fabs(dur - __lastDurs[i].doubleValue);
+                            if (tmpOffset < offset) {
+                                offset = tmpOffset;
+                                idx = i;
+                            }
+                        }
+                        dur = __lastDurs[idx].doubleValue;
+                        __lastDurs = @[@(dur)].mutableCopy;
+                    }
+                    NSString *tips = @"正在下载资源文件，请稍等片刻...";
+                    if (dur > 10) {
+                        tips = @"正在下载资源文件，当前网络较慢，请耐心等候，或换一个网络再试...";
+                    }
+                    if (__isTimeout && __self.waitReactNative) {
+                        [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"%@\n（预计剩余时间%d分钟）\n\n%@", progress, (int)dur, tips]];
+                    }
+                } error:nil];
             });
         }
         
