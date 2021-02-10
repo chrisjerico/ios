@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (weak, nonatomic) IBOutlet UILabel *lineLabel;
-
+@property (weak, nonatomic) IBOutlet UIView *pointView;
 @end
 
 @implementation UGNoticeHeaderView
@@ -21,6 +21,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.lineLabel.backgroundColor = Skin1.bgColor;
+    self.pointView.layer.cornerRadius = 8;
+    self.pointView.layer.masksToBounds = YES;
 }
 
 - (void)setItem:(UGNoticeModel *)item {

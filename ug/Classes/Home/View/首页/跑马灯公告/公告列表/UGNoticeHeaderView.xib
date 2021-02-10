@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,15 +14,15 @@
             <rect key="frame" x="0.0" y="0.0" width="412" height="59"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPN-1B-W47">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPN-1B-W47">
                     <rect key="frame" x="0.0" y="0.0" width="412" height="59"/>
                     <connections>
                         <action selector="showDetail:" destination="iN0-l3-epB" eventType="touchUpInside" id="sf9-Fo-VPs"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现金好礼送不停" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1I-es-o5j">
-                    <rect key="frame" x="0.0" y="19.5" width="121.5" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="26" y="19" width="128.5" height="21.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -43,25 +43,36 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9C-1K-ZL7">
+                    <rect key="frame" x="5" y="21.5" width="16" height="16"/>
+                    <color key="backgroundColor" red="0.37478053569999997" green="0.57581305500000002" blue="0.87059289220000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="CF9-je-79w"/>
+                        <constraint firstAttribute="width" constant="16" id="QhV-WX-Gou"/>
+                    </constraints>
+                </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
+                <constraint firstItem="J1I-es-o5j" firstAttribute="leading" secondItem="M9C-1K-ZL7" secondAttribute="trailing" constant="5" id="4Tc-Fk-11B"/>
                 <constraint firstAttribute="trailing" secondItem="brT-eD-cTi" secondAttribute="trailing" constant="10" id="BOt-rS-8On"/>
                 <constraint firstAttribute="bottom" secondItem="cPN-1B-W47" secondAttribute="bottom" id="Ixw-3b-ItW"/>
                 <constraint firstAttribute="bottom" secondItem="Iss-KJ-4y2" secondAttribute="bottom" id="Lfu-KQ-FZj"/>
                 <constraint firstAttribute="trailing" secondItem="cPN-1B-W47" secondAttribute="trailing" id="MB4-U4-pKX"/>
+                <constraint firstItem="M9C-1K-ZL7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="PqH-by-dda"/>
                 <constraint firstItem="cPN-1B-W47" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QaA-V0-vaA"/>
                 <constraint firstItem="Iss-KJ-4y2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XSO-EK-XP3"/>
-                <constraint firstItem="J1I-es-o5j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iAP-ai-a0R"/>
                 <constraint firstAttribute="trailing" secondItem="Iss-KJ-4y2" secondAttribute="trailing" id="pHq-BL-aoU"/>
                 <constraint firstItem="cPN-1B-W47" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="q50-AP-VTJ"/>
+                <constraint firstItem="M9C-1K-ZL7" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="tvP-kO-I7O"/>
                 <constraint firstItem="brT-eD-cTi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="x4h-4E-0HK"/>
                 <constraint firstItem="J1I-es-o5j" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="x4z-fb-EvN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="arrowImageView" destination="brT-eD-cTi" id="xJx-u1-8m8"/>
                 <outlet property="lineLabel" destination="Iss-KJ-4y2" id="edC-UK-jr1"/>
+                <outlet property="pointView" destination="M9C-1K-ZL7" id="Hcn-uz-mqf"/>
                 <outlet property="titleLabel" destination="J1I-es-o5j" id="LNU-Sj-HWf"/>
             </connections>
             <point key="canvasLocation" x="46.376811594202906" y="-244.75446428571428"/>

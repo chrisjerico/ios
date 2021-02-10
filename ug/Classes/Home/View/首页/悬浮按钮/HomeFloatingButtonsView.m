@@ -462,10 +462,7 @@
 #pragma mark +++++++++++++++++砸金蛋数据
 
 -(void)getactivityGoldenEggList {
-    if (!UGLoginIsAuthorized()) {
-//        [self  setFloatingButtonView:self.goldEggView hidden:true];
-        return ;
-    }
+
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     WeakSelf
     [CMNetwork activityGoldenEggListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -479,7 +476,7 @@
                 NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
                 DZPModel *obj = [data objectAtIndex:0];
                 weakSelf.goldEggView.itemData = obj;
-                if ([UGUserModel currentUser].isTest) {
+                if ([UGUserModel currentUser].isTest || !UGLoginIsAuthorized()) {
                     if ([obj.param.visitor_show isEqualToString:@"1"]) {
                         [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:true];
                     } else {
