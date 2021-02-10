@@ -462,6 +462,10 @@
 #pragma mark +++++++++++++++++砸金蛋数据
 
 -(void)getactivityGoldenEggList {
+    if (!UGLoginIsAuthorized()) {
+//        [self  setFloatingButtonView:self.goldEggView hidden:true];
+        return ;
+    }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     WeakSelf
     [CMNetwork activityGoldenEggListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
@@ -475,7 +479,16 @@
                 NSMutableArray *data =  [DZPModel mj_objectArrayWithKeyValuesArray:dzpArray];
                 DZPModel *obj = [data objectAtIndex:0];
                 weakSelf.goldEggView.itemData = obj;
-                [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:false];
+                if ([UGUserModel currentUser].isTest) {
+                    if ([obj.param.visitor_show isEqualToString:@"1"]) {
+                        [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:true];
+                    } else {
+                        [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:false];
+                    }
+                }
+                else{
+                    [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:false];
+                }
             });
         } failure:^(id msg) {
             [weakSelf setFloatingButtonView:weakSelf.goldEggView hidden:true];
@@ -488,9 +501,11 @@
 
 -(void)getactivityCratchList {
     if (!UGLoginIsAuthorized()) {
+//        [self setFloatingButtonView:self.scratchView hidden:true];
         return ;
     }
     if ([UGUserModel currentUser].isTest) {
+//        [self setFloatingButtonView:self.scratchView hidden:true];
         return ;
     }
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
