@@ -1515,7 +1515,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
             
             for (UGGameplaySectionModel *group in model.list) {
                 
-                NSArray *titles = @[@"鼠",@"牛",@"虎",@"兔",@"龙",@"蛇",@"马",@"羊",@"猴",@"鸡",@"狗",@"猪",];
+                NSArray *titles = @[@"牛",@"虎",@"兔",@"龙",@"蛇",@"马",@"羊",@"猴",@"鸡",@"狗",@"猪",@"鼠",];
                 NSMutableArray *mutArr = [NSMutableArray array];
                 for (int i = 0; i < titles.count; i++) {
                     UGGameBetModel *bet = [[UGGameBetModel alloc] init];
@@ -1661,7 +1661,7 @@ static NSString *lotterySubResultCellid = @"UGLotterySubResultCollectionViewCell
 - (UIScrollView *)zodiacScrollView {
     if (!_zodiacScrollView) {
         __weakSelf_(__self);
-        NSArray *titles = @[ @"鼠",@"牛", @"虎", @"兔", @"龙", @"蛇", @"马", @"羊", @"猴", @"鸡", @"狗", @"猪",];
+        NSArray *titles = @[ @"牛", @"虎", @"兔", @"龙", @"蛇", @"马", @"羊", @"猴", @"鸡", @"狗", @"猪",@"鼠",];
         NSMutableArray *btns = [NSMutableArray array];
         CGFloat totalW = 0, h = 45;
         UIScrollView *sv ;
