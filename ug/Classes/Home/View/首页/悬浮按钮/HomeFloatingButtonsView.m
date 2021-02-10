@@ -497,25 +497,34 @@
 #pragma mark +++++++++++++++++刮刮乐数据
 
 -(void)getactivityCratchList {
-    if (!UGLoginIsAuthorized()) {
-//        [self setFloatingButtonView:self.scratchView hidden:true];
-        return ;
-    }
-    if ([UGUserModel currentUser].isTest) {
-//        [self setFloatingButtonView:self.scratchView hidden:true];
-        return ;
-    }
+
     NSDictionary *params = @{@"token":[UGUserModel currentUser].sessid};
     WeakSelf
     [CMNetwork activityScratchListWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
+                
                 ScratchDataModel * scratchData = [[ScratchDataModel alloc] initWithDictionary:model.data error:nil];
                 if (!scratchData.scratchList.count) {
                     return;
                 }
+
+                ScratchModel *obj = [scratchData.scratchList objectAtIndex:0];
+                NSDictionary *dic =  obj.param;
+                NSString *visitor_show = [dic objectForKey:@"visitor_show"];
                 weakSelf.scratchView.scratchDataModel = scratchData;
-                [weakSelf setFloatingButtonView:weakSelf.scratchView hidden:false];
+                
+                if ([UGUserModel currentUser].isTest || !UGLoginIsAuthorized()) {
+                    if ([visitor_show isEqualToString:@"1"]) {
+                        [weakSelf setFloatingButtonView:weakSelf.scratchView hidden:true];
+                    } else {
+                        [weakSelf setFloatingButtonView:weakSelf.scratchView hidden:false];
+                    }
+                }
+                else{
+                    [weakSelf setFloatingButtonView:weakSelf.scratchView hidden:false];
+                }
+        
             });
         } failure:^(id msg) {
             [weakSelf setFloatingButtonView:weakSelf.scratchView hidden:true];
