@@ -14,6 +14,7 @@
 #import "RNSScreenContainer.h"
 #import "RNSScreenStack.h"
 #import "RNSScreenStackHeaderConfig.h"
+#import "UIViewController+RNScreens.h"
 
 FOUNDATION_EXPORT double RNScreensVersionNumber;
 FOUNDATION_EXPORT const unsigned char RNScreensVersionString[];
