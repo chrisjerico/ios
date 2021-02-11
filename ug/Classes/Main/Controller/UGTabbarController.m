@@ -54,6 +54,8 @@
 
 #import "MultiTabbar.h"
 
+#import "TZImagePickerController.h"
+
 @implementation UIViewController (CanPush)
 
 _CCRuntimeProperty_Assign(BOOL, 允许未登录访问, set允许未登录访问)
@@ -343,9 +345,20 @@ static UGTabbarController *_tabBarVC = nil;
 }
 
 - (void)setTabbarStyle {
+    // TZImagePickerController相册导航条背景色
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [TZImagePickerController cc_hookSelector:@selector(initWithMaxImagesCount:delegate:) withOptions:AspectPositionAfter usingBlock:^(id<AspectInfo>  _Nonnull ai) {
+            UINavigationController *nav = ai.instance;
+            [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+            [nav.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
+        } error:nil];
+    });
+    
     void (^block1)(NSNotification *) = ^(NSNotification *noti) {
-        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
+        // 这两句话在弹出系统相册的UI时会显示异常
+//        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
+//        [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:Skin1.navBarTitleColor}];
         
         for (UGNavigationController *nav in TabBarController1.viewControllers) {
             [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:Skin1.navBarBgColor size:APP.Size] forBarMetrics:UIBarMetricsDefault];
