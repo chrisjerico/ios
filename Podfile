@@ -37,7 +37,7 @@ pod 'YYCategories'      # Category 类型工具库（YYKit 组件之一）
 pod 'DateTools'         # 日期工具
 pod 'MJExtension'       # 字典转数据模型库
 pod 'FSCalendar'        # 日历控件
-pod 'TZImagePickerController', '~> 3.2.8' # 相册浏览器
+pod 'TZImagePickerController', '~> 3.4.3' # 相册浏览器
 pod 'YYText', '~> 1.0.7'# YY大神的富文本框架
 
 
@@ -129,7 +129,7 @@ pod 'CryptoSwift', '~>1.1.3'
 pod 'SwiftyJSON', '~>5.0.0'
 pod 'RxDataSources', '~> 4.0.1'
 pod 'SwiftGifOrigin', '~> 1.7.0'
-pod 'TZImagePickerController', '~> 3.2.8'
+pod 'TZImagePickerController', '~> 3.4.3'
 pod 'RxOptional', '~> 4.1.0'
 pod 'SVGKit', '~> 3.0.0-beta3'
 
