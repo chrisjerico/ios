@@ -20,8 +20,8 @@
                         <action selector="showDetail:" destination="iN0-l3-epB" eventType="touchUpInside" id="sf9-Fo-VPs"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现金好礼送不停" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1I-es-o5j">
-                    <rect key="frame" x="26" y="19" width="128.5" height="21.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现金好礼送不停现金好礼送不停现金好礼送不停现金好礼送不停现金好礼送不停现金好礼送不停现金好礼送不停" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1I-es-o5j">
+                    <rect key="frame" x="26" y="19" width="331" height="21.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -59,6 +59,7 @@
                 <constraint firstAttribute="bottom" secondItem="cPN-1B-W47" secondAttribute="bottom" id="Ixw-3b-ItW"/>
                 <constraint firstAttribute="bottom" secondItem="Iss-KJ-4y2" secondAttribute="bottom" id="Lfu-KQ-FZj"/>
                 <constraint firstAttribute="trailing" secondItem="cPN-1B-W47" secondAttribute="trailing" id="MB4-U4-pKX"/>
+                <constraint firstItem="brT-eD-cTi" firstAttribute="leading" secondItem="J1I-es-o5j" secondAttribute="trailing" constant="15" id="OS8-fC-5cC"/>
                 <constraint firstItem="M9C-1K-ZL7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="PqH-by-dda"/>
                 <constraint firstItem="cPN-1B-W47" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QaA-V0-vaA"/>
                 <constraint firstItem="Iss-KJ-4y2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XSO-EK-XP3"/>

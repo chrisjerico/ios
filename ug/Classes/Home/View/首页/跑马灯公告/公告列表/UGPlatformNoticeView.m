@@ -16,6 +16,7 @@
 @interface UGPlatformNoticeView ()<UITableViewDelegate,UITableViewDataSource, UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *bigView;
 
 
 @property (nonatomic, assign) NSInteger selectSection;
@@ -50,7 +51,10 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [self.tableView registerNib:[UINib nibWithNibName:@"UGNoticeHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:noticeHeaderViewid];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.layer.cornerRadius = 5;
+        self.bigView.layer.cornerRadius = 5;
+        self.bigView.layer.borderWidth = 4;
+        self.bigView.layer.borderColor = [RGBA(206, 206, 206, 1) CGColor];
+        [self.bgView setBackgroundColor:Skin1.navBarBgColor];
     }
     return self;
     
@@ -181,10 +185,11 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     UIView *topLineView = [cell viewWithTagString:@"topLineView"];
     if (!topLineView) {
         topLineView = [UIView new];
-        topLineView.backgroundColor = Skin1.navBarBgColor;
+        topLineView.backgroundColor = RGBA(220, 220, 220, 1);
+//        topLineView.backgroundColor = [UIColor redColor];
         topLineView.tagString = @"topLineView";
         [cell addSubview:topLineView];
-        
+
         [topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.right.equalTo(cell);
             make.height.mas_equalTo(1);
@@ -193,16 +198,16 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     UIView *bottomLineView = [cell viewWithTagString:@"bottomLineView"];
     if (!bottomLineView) {
         bottomLineView = [UIView new];
-        bottomLineView.backgroundColor = Skin1.navBarBgColor;
+        bottomLineView.backgroundColor = RGBA(239, 239, 239, 1);
         bottomLineView.tagString = @"bottomLineView";
         [cell addSubview:bottomLineView];
-        
+
         [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.right.equalTo(cell);
             make.height.mas_equalTo(1);
         }];
     }
-    
+//
 //    [cell setBackgroundColor:[UIColor yellowColor]];
     return cell;
 }
@@ -243,7 +248,7 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
     if (!line) {
         line = [UIView new];
         line.tagString = @"第一行的下划线View";
-        line.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
+        line.backgroundColor = RGBA(239, 239, 239, 1);
         [headerView addSubview:line];
     }
     line.frame = CGRectMake(0, 44, headerView.width, 1);

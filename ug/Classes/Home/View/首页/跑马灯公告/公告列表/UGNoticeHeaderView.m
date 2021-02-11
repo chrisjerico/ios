@@ -20,7 +20,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.lineLabel.backgroundColor = Skin1.bgColor;
+    self.lineLabel.backgroundColor = RGBA(239, 239, 239, 1);
     self.pointView.layer.cornerRadius = 8;
     self.pointView.layer.masksToBounds = YES;
 }
