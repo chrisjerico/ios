@@ -13,7 +13,6 @@
 #import "CoreModulesPlugins.h"
 #import "RCTAccessibilityManager.h"
 #import "RCTActionSheetManager.h"
-#import "RCTAlertController.h"
 #import "RCTAlertManager.h"
 #import "RCTAppearance.h"
 #import "RCTAppState.h"

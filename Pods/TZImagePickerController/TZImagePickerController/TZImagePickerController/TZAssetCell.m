@@ -41,7 +41,6 @@
         // Set the cell's thumbnail image if it's still showing the same asset.
         if ([self.representedAssetIdentifier isEqualToString:model.asset.localIdentifier]) {
             self.imageView.image = photo;
-            [self setNeedsLayout];
         } else {
             // NSLog(@"this cell is showing other asset");
             [[PHImageManager defaultManager] cancelImageRequest:self.imageRequestID];
@@ -169,12 +168,6 @@
     }
     
     _bigImageRequestID = [[TZImageManager manager] requestImageDataForAsset:_model.asset completion:^(NSData *imageData, NSString *dataUTI, UIImageOrientation orientation, NSDictionary *info) {
-        BOOL iCloudSyncFailed = !imageData && [TZCommonTools isICloudSyncError:info[PHImageErrorKey]];
-        self.model.iCloudFailed = iCloudSyncFailed;
-        if (iCloudSyncFailed && self.didSelectPhotoBlock) {
-            self.didSelectPhotoBlock(YES);
-            self.selectImageView.image = self.photoDefImage;
-        }
         [self hideProgressView];
     } progressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
         if (self.model.isSelected) {
@@ -192,18 +185,6 @@
             [self cancelBigImageRequest];
         }
     }];
-    if (_model.type == TZAssetCellTypeVideo) {
-        [[TZImageManager manager] getVideoWithAsset:_model.asset completion:^(AVPlayerItem *playerItem, NSDictionary *info) {
-            BOOL iCloudSyncFailed = !playerItem && [TZCommonTools isICloudSyncError:info[PHImageErrorKey]];
-            self.model.iCloudFailed = iCloudSyncFailed;
-            if (iCloudSyncFailed && self.didSelectPhotoBlock) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.didSelectPhotoBlock(YES);
-                    self.selectImageView.image = self.photoDefImage;
-                });
-            }
-        }];
-    }
 }
 
 - (void)cancelBigImageRequest {
@@ -266,7 +247,6 @@
         
         _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImageView)];
         [_imageView addGestureRecognizer:_tapGesture];
-        self.allowPreview = self.allowPreview;
     }
     return _imageView;
 }
@@ -286,7 +266,6 @@
     if (_bottomView == nil) {
         UIView *bottomView = [[UIView alloc] init];
         static NSInteger rgb = 0;
-        bottomView.userInteractionEnabled = NO;
         bottomView.backgroundColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.8];
         [self.contentView addSubview:bottomView];
         _bottomView = bottomView;
@@ -362,8 +341,8 @@
         _selectImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     _indexLabel.frame = _selectImageView.frame;
-    _imageView.frame = self.bounds;
-
+    _imageView.frame = CGRectMake(0, 0, self.tz_width, self.tz_height);
+    
     static CGFloat progressWH = 20;
     CGFloat progressXY = (self.tz_width - progressWH) / 2;
     _progressView.frame = CGRectMake(progressXY, progressXY, progressWH, progressWH);
@@ -409,17 +388,12 @@
 - (void)setModel:(TZAlbumModel *)model {
     _model = model;
     
-    UIColor *nameColor = UIColor.blackColor;
-    if (@available(iOS 13.0, *)) {
-        nameColor = UIColor.labelColor;
-    }
-    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:model.name attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:nameColor}];
+    NSMutableAttributedString *nameString = [[NSMutableAttributedString alloc] initWithString:model.name attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor blackColor]}];
     NSAttributedString *countString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"  (%zd)",model.count] attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
     [nameString appendAttributedString:countString];
     self.titleLabel.attributedText = nameString;
     [[TZImageManager manager] getPostImageWithAlbumModel:model completion:^(UIImage *postImage) {
         self.posterImageView.image = postImage;
-        [self setNeedsLayout];
     }];
     if (model.selectedCount) {
         self.selectedCountButton.hidden = NO;
@@ -466,11 +440,7 @@
     if (_titleLabel == nil) {
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.font = [UIFont boldSystemFontOfSize:17];
-        if (@available(iOS 13.0, *)) {
-            titleLabel.textColor = UIColor.labelColor;
-        } else {
-            titleLabel.textColor = [UIColor blackColor];
-        }
+        titleLabel.textColor = [UIColor blackColor];
         titleLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:titleLabel];
         _titleLabel = titleLabel;
