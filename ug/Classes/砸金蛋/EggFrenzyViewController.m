@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scoreDescribLabel;
 
 @property (strong, nonatomic) NSArray<GoldEggLogModel*> * recordArray;
+@property (strong, nonatomic) NSMutableArray<Prizeparam*> * logsArray; //记录的数据
 @property (weak, nonatomic) IBOutlet UIImageView *awardImageView;
 @property (weak, nonatomic) IBOutlet UILabel *awardDescribleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *resultDescribleLabel;
@@ -43,6 +44,7 @@
 }
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    self.logsArray = [NSMutableArray new];
 	[self.titleImageView sd_setImageWithURL: [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"砸金蛋标题" ofType:@"gif"] isDirectory:false]];
 	self.surplusAmountLabel.text = [NSString stringWithFormat:@"该局还可以砸%ld个金蛋", self.item.param.golden_egg_times];
 	
@@ -168,6 +170,16 @@
 				NSArray * dataArray = (NSArray *)model.data;
 				if (!dataArray.count) { return; }
 				weakSelf.recordArray = [[GoldEggLogModel mj_objectArrayWithKeyValuesArray:dataArray] copy];
+                
+                for (int i = 0; i< weakSelf.recordArray.count; i++) {
+                    GoldEggLogModel *obj = [weakSelf.recordArray objectAtIndex:i];
+                   NSMutableArray<Prizeparam*>  *modles = [[Prizeparam mj_objectArrayWithKeyValuesArray:obj.prize_param] copy];
+                    for (Prizeparam *object in modles) {
+                        object.logID = obj.logID;
+                        [weakSelf.logsArray addObject:object];
+                    }
+                }
+
 				[weakSelf.recordTableView reloadData];
 			});
 		} failure:^(id msg) {
@@ -219,11 +231,11 @@
 	return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.recordArray.count;
+	return self.logsArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	EggGrenzyRecordTableCell * cell = [tableView dequeueReusableCellWithIdentifier:@"EggGrenzyRecordTableCell" forIndexPath:indexPath];
-	[cell bind:self.recordArray[indexPath.row]];
+	[cell bind:self.logsArray[indexPath.row]];
 	return cell;
 }
 

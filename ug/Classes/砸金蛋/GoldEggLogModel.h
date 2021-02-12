@@ -11,11 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol LogParam <NSObject>
+@protocol Prizeparam <NSObject>
 
 @end
 
-@interface LogParam : UGModel<LogParam>
+@interface Prizeparam : UGModel
 @property (nonatomic, strong) NSString *prizeProbability;
 @property (nonatomic, strong) NSNumber *update_time;
 @property (nonatomic, strong) NSString *prizeAmount;
@@ -28,44 +28,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *prizeName;
 @property (nonatomic, strong) NSString *prizeflag;
 @property (nonatomic, strong) NSString *prizeIconName;
-
+@property (nonatomic, strong) NSString * logID;
 @end
 
 @protocol GoldEggLogModel <NSObject>
 
 @end
 
-//{
-//	"uid" : "1141",
-//	"id" : "33",
-//	"prize_param" : [
-//	  {
-//		"prizeProbability" : "7",
-//		"update_time" : 1598497613,
-//		"prizeAmount" : "10000",
-//		"integralOld" : 33700,
-//		"prizeType" : "2",
-//		"prizeIcon" : "https:\/\/cdn01.bingchonghai.com.cn\/upload\/t061\/customise\/images\/158951391920prizeIconNew.jpg?v=1589513919",
-//		"prizeId" : 1,
-//		"integral" : 43700,
-//		"prizeMsg" : "中奖",
-//		"prizeName" : "10000积分",
-//		"prizeflag" : 1,
-//		"prizeIconName" : "158951391920prizeIconNew"
-//	  }
-//	],
-//	"times" : "1",
-//	"aid" : "60",
-//	"username" : "bob001",
-//	"update_date" : "2020-08-27"
-//  },
-
 @interface GoldEggLogModel : UGModel<GoldEggLogModel>
 @property (nonatomic, strong) NSString * logID;
 
 @property (nonatomic, strong) NSString *uid;
 //@property (nonatomic, strong) NSString *id;
-@property (nonatomic, strong) NSArray<LogParam> *prize_param;
+@property (nonatomic, strong) NSArray<Prizeparam *> *prize_param;
 @property (nonatomic, strong) NSString *times;
 @property (nonatomic, strong) NSString *aid;
 @property (nonatomic, strong) NSString *username;

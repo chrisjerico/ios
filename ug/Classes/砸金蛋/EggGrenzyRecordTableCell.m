@@ -15,11 +15,11 @@
 @implementation EggGrenzyRecordTableCell
 
 
-- (void)bind: (GoldEggLogModel*)model {
+- (void)bind: (Prizeparam*)model {
 //	self.numberLabel.text = [NSString stringWithFormat:@"%@", model.prize_param[0][@"prizeId"]];
-	self.numberLabel.text = [NSString stringWithFormat:@"%@-%@", model.logID, model.prize_param[0][@"update_time"]];
+	self.numberLabel.text = [NSString stringWithFormat:@"%@-%@", model.logID, model.update_time];
 
-	self.describLabel.text = model.prize_param[0][@"prizeName"];
+	self.describLabel.text = model.prizeName;
 }
 
 - (void)bindScratchLog: (ScratchLogModel*)model type: (NSString *)logType {

@@ -7,6 +7,9 @@
 //
 
 #import "GoldEggLogModel.h"
+@implementation Prizeparam
+
+@end
 
 @implementation GoldEggLogModel
 + (JSONKeyMapper *)keyMapper {
