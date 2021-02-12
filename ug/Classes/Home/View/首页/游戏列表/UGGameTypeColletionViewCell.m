@@ -118,17 +118,25 @@
     FastSubViewCode(self);
     BOOL isGPK = Skin1.isGPK;
     
-    if (item.tipFlag==1 || item.tipFlag==2 ||item.tipFlag==3) {
-        if (isGPK) {
-               _hotImageView.hidden = YES;
-        } else {
-               _hotImageView.hidden = NO;
-        }
+    
+    if ([CMCommon stringIsNull:item.category]   ) {//六合类型
+        [item.isHot isEqualToString:@"1"] ? [_hotImageView setHidden:NO] : [_hotImageView setHidden:YES];
     }
     else{
-       _hotImageView.hidden = YES;
-    }
+        if (item.tipFlag==1 || item.tipFlag==2 ||item.tipFlag==3) {
+            if (isGPK) {
+                   _hotImageView.hidden = YES;
+            } else {
+                   _hotImageView.hidden = NO;
+            }
+        }
+        else{
+           _hotImageView.hidden = YES;
+        }
 
+    }
+    
+ 
     subImageView(@"活动ImageView").hidden = !(isGPK && item.tipFlag==2);
     subButton(@"热Button").superview.hidden = !(isGPK && item.tipFlag==1);
     subButton(@"大奖Button").superview.hidden = !(isGPK && item.tipFlag==3);
