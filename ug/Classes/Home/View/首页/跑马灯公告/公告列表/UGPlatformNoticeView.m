@@ -81,9 +81,10 @@ static NSString *noticeHeaderViewid = @"noticeHeaderViewid";
 - (void)setDataArray:(NSArray<UGNoticeModel *> *)dataArray {
     _dataArray = dataArray;
     UGNoticeModel *model = dataArray.firstObject;
-    if (![APP.SiteId isEqualToString:@"c085"]) {
-        // c085要求默认不展示第一条内容详情
-         model.hiddenBottomLine = YES;
+    if (SysConf.announce_first) {
+        model.hiddenBottomLine = YES;
+    } else {
+        model.hiddenBottomLine = NO;
     }
 
     [self.tableView reloadData];
