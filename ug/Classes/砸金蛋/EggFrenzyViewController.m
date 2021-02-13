@@ -169,8 +169,12 @@
 			dispatch_async(dispatch_get_main_queue(), ^{
 				NSArray * dataArray = (NSArray *)model.data;
 				if (!dataArray.count) { return; }
+         
 				weakSelf.recordArray = [[GoldEggLogModel mj_objectArrayWithKeyValuesArray:dataArray] copy];
-                
+                if (weakSelf.logsArray.count) {
+                    [weakSelf.logsArray  removeAllObjects];
+                }
+               
                 for (int i = 0; i< weakSelf.recordArray.count; i++) {
                     GoldEggLogModel *obj = [weakSelf.recordArray objectAtIndex:i];
                    NSMutableArray<Prizeparam*>  *modles = [[Prizeparam mj_objectArrayWithKeyValuesArray:obj.prize_param] copy];
