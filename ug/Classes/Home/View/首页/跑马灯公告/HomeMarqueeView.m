@@ -164,7 +164,11 @@
 - (IBAction)showNoticeInfo {
     NSMutableString *str = [[NSMutableString alloc] init];
     for (UGNoticeModel *notice in self.noticeTypeModel.scroll) {
+//        [str appendString:@"<center>"];
+//        [str appendString:notice.title];
+//        [str appendString:@"</center>"];
         [str appendString:notice.content];
+        [str appendString:@"<HR SIZE=2>"];
     }
     if (str.length) {
         float y;
