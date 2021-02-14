@@ -118,7 +118,11 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_电竞注单,      @"UCI_电竞注单"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_体育注单,      @"UCI_体育注单"),
             item(@"zdgl",                   @"LH_menu-rule",        @"zdgl",                    UCI_UG注单,       @"UCI_UG注单"),
-            
+            item(@"chongzhi",               @"LH_menu-cz",          @"chongzhi",                UCI_充值纪录,      @"充值纪录"),
+            item(@"chongzhi",               @"LH_menu-qk",          @"tixian",                  UCI_提现纪录,      @"提现纪录"),
+            item(@"chongzhi",               @"LH_menu-qk",          @"tixian",                  UCI_提现纪录,      @"提现纪录"),
+            item(@"chongzhi",               @"LH_menu-qk",          @"tixian",                  UCI_资金明细,      @"资金明细"),
+            item(@"zdgl",                   @"LH_money",            @"zdgl",                    UCI_活动大厅,      @"活动大厅"),
             
             
         ];

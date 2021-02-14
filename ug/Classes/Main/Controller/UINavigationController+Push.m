@@ -1423,6 +1423,31 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             }
             return true;
         }
+        case UCI_充值纪录: {
+
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+            fundsVC.selectIndex = 2;
+            [NavController1 pushViewController:fundsVC animated:YES];
+            return true;
+        }
+        case UCI_提现纪录: {
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+            fundsVC.selectIndex = 3;
+            [NavController1 pushViewController:fundsVC animated:YES];
+            return true;
+        }
+        case UCI_资金明细: {
+            UGFundsViewController *fundsVC = _LoadVC_from_storyboard_(@"UGFundsViewController");
+            fundsVC.selectIndex = 4;
+            [NavController1 pushViewController:fundsVC animated:YES];
+            return true;
+
+        }
+        case UCI_活动大厅: {
+            // 优惠活动
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGPromotionsController") animated:YES];
+            return true;
+        }
         case UCI_聊天室: {
             [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
             return true;

@@ -42,6 +42,10 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_体育注单     = 27,
     UCI_UG注单      = 28,
     UCI_已结注单     = 29,
+    UCI_充值纪录     = 30,
+    UCI_提现纪录     = 31,
+    UCI_资金明细     = 32,
+    UCI_活动大厅     = 33,
     UCI_聊天室     = 9001,//本地的
 };
 

@@ -168,7 +168,7 @@
 //        [str appendString:notice.title];
 //        [str appendString:@"</center>"];
         [str appendString:notice.content];
-        [str appendString:@"<HR SIZE=2>"];
+        [str appendString:@"<hr style='border:2px dashed #696969'/>"];
     }
     if (str.length) {
         float y;
