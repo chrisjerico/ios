@@ -62,15 +62,6 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
     _bottomStackView.axis = [LanguageHelper shared].isCN ? UILayoutConstraintAxisHorizontal : UILayoutConstraintAxisVertical;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if ([@"2" isEqualToString:self.status] || [@"3" isEqualToString:self.status]) {
-        self.winAmountLabel.hidden = NO;
-    } else {
-        self.winAmountLabel.hidden = YES;
-    }
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.countDown destoryTimer];
@@ -137,6 +128,7 @@ static NSString *betRecordCellid = @"UGLotteryRecordCell";
             NSArray *array = listModel.list;
             __self.totalBetAmountLabel.text = listModel.totalBetAmount;
             __self.winAmountLabel.text = listModel.totalWinAmount;
+            __self.winAmountLabel.superview.alpha = ![@"1,4" containsString:__self.status];
             if (__self.pageNumber == 1 ) {
                 [__self.dataArray removeAllObjects];
             }
