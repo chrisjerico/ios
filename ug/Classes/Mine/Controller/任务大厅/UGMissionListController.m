@@ -101,12 +101,13 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
     cell.receiveMissionBlock = ^(UGMissionTableViewCell *sender){
         
         
+        
         if ([model.status isEqualToString:@"3"]) {
             //领奖励
             [__self taskRewardDataWithType:model.missionId];
         }
         else if ([model.status isEqualToString:@"1"]) {
-            [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
+            [__self taskRewardDataWithType:model.missionId];
         }
         else if ([model.status isEqualToString:@"0"]) {
             //领任务
@@ -165,7 +166,7 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
                 [__self taskRewardDataWithType:model.missionId];
             }
             else if ([model.status isEqualToString:@"1"]) {
-                [QDAlertView showWithTitle:@"温馨提示" message:@"尚未达到任务完成条件，先去做任务吧"];
+                [__self taskRewardDataWithType:model.missionId];
             }
             else if ([model.status isEqualToString:@"0"]) {
                 //领任务
@@ -463,12 +464,14 @@ static NSString *taskCellid = @"UGTaskTableViewCell";
         WeakSelf;
     [CMNetwork taskRewardWithParams:params completion:^(CMResult<id> *model, NSError *err) {
         [CMResult processWithResult:model success:^{
-            [QDAlertView showWithTitle:@"温馨提示" message:@"领取奖励成功"];
+            [QDAlertView showWithTitle:@"温馨提示" message:model.msg];
             SANotificationEventPost(UGNotificationGetRewardsSuccessfully, nil);
             [weakSelf getCenterData];
             
         } failure:^(id msg) {
-            [SVProgressHUD showErrorWithStatus:msg];
+//            [SVProgressHUD showErrorWithStatus:msg];
+            [SVProgressHUD dismiss];
+            [QDAlertView showWithTitle:@"温馨提示" message:model.msg];
         }];
     }];
 }
