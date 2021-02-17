@@ -1137,6 +1137,15 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             
             break;
         }
+        case UGLinkPosition_捕鱼大厅: {
+            //捕鱼大厅,
+            UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];
+            vc.dataArray = [UGYYGames arrayOfModelsFromDictionaries:[[Global getInstanse].lotterydataArray objectWithValue:@"fish" keyPath:@"category"].games error:nil];
+            vc.title = @"捕鱼大厅";
+            [NavController1 pushViewController:vc animated:YES];
+            
+            break;
+        }
         case UGLinkPosition_棋牌大厅: {
             //棋牌大厅,
             UGYYLotterySecondHomeViewController *vc = [[UGYYLotterySecondHomeViewController alloc] init];

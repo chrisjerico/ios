@@ -57,6 +57,7 @@ typedef NS_ENUM(NSInteger, UGLinkPositionType) {
     UGLinkPosition_体育大厅 = 45,
     UGLinkPosition_电竞大厅 = 46,
     UGLinkPosition_彩票大厅 = 47,
+    UGLinkPosition_捕鱼大厅= 48,
     UGLinkPosition_开奖走势 = 54,
     UGLinkPosition_路珠 = 55,
 };

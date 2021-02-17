@@ -20,6 +20,7 @@
 #import "UGRealBetRecordViewController.h"
 #import "UGdepositModel.h"
 #import "HelpDocViewController.h"
+#import "UGLotteryHomeController.h"
 @implementation CMCommon
 /******************************************************************************
  函数名称 : + (BOOL)verifyPhoneNum:(NSString *)numStr
@@ -1575,6 +1576,9 @@ typedef CF_ENUM(CFIndex, CFNumberFormatterRoundingMode) {
     }
     else  if ([url containsString:@"/mobile/#/lottery/ugGameList"]) {//【UG注单】
 //        [SVProgressHUD showInfoWithStatus:@"敬请期待"];
+    }
+    else  if ([url containsString:@"/mobile/#/lottery/gameList"]) {//【游戏大厅】
+        [NavController1 pushViewController:[UGLotteryHomeController new] animated:YES];
     }
     else if ([url containsString:@"?"]) {
         NSArray *params =[url componentsSeparatedByString:@"?"];
