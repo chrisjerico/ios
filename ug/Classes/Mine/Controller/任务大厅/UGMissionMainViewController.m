@@ -14,7 +14,7 @@
 @property (nonatomic, strong)XYYSegmentControl *slideSwitchView;
 @property (nonatomic,strong)  NSMutableArray <NSString *> *itemArray;//slideSwitchView 的分栏标题
 @property (nonatomic,strong)  NSMutableArray <UGMissionListController *> *viewsArray;//slideSwitchView 的分栏视图
-@property (nonatomic,strong)  NSMutableArray <NSMutableDictionary *> *disArray;
+@property (nonatomic,strong)  NSMutableArray <UGMissionlistModel *> *disArray;
 @end
 
 @implementation UGMissionMainViewController
@@ -67,73 +67,73 @@
             [SVProgressHUD dismiss];
             NSDictionary *data =  model.data;
             NSArray *list = [data isKindOfClass:[NSDictionary class]] ? [data objectForKey:@"list"] : ([data isKindOfClass:[NSArray class]] ? data : nil);
-            NSLog(@"list = %@",list);
+//            NSLog(@"list = %@",list);
             
             NSMutableArray * dataArray = [UGMissionModel arrayOfModelsFromDictionaries:list error:nil];
             
-            
-//            dataArray = [[NSMutableArray alloc] initWithArray: [dataArray sortedArrayUsingComparator:^NSComparisonResult(UGMissionModel *p1, UGMissionModel *p2){
-//            //对数组进行排序（升序）
-////                return p1.sortId  > p2.sortId;
-//            //对数组进行排序（降序）
-//             return p1.sortId < p2.sortId;
-//            }]];
-            
+
             NSMutableArray *typeArray = [NSMutableArray new];
             
             //去除数组中重复sortId数据，得到多少任务类型
             NSMutableArray *sortArray = [NSMutableArray new];
+            NSMutableArray *sortObjArray = [NSMutableArray new];
             for (UGMissionModel *object in dataArray) {
                 
                 if (![sortArray containsObject:object.sortId]) {
                     [sortArray addObject:object.sortId];
+                    [sortObjArray addObject:object];
                 }
             }
-            
-
-
-           
-            sortArray =  [[NSMutableArray alloc] initWithArray: [sortArray sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]];
-            
-            for (NSString *sortStr in sortArray) {
-                NSMutableDictionary *dic = [NSMutableDictionary new];
-                [dic setValue:sortStr forKey:@"sortId"];
-                NSMutableArray *typeDataArray = [NSMutableArray new];
-                if (![dic objectForKey:@"typeData"]) {
-                    [dic setValue:typeDataArray forKey:@"typeData"];
+ 
+            for (int i = 0; i<  sortObjArray.count; i++) {
+                UGMissionModel *obj = [sortObjArray objectAtIndex:i];
+                UGMissionlistModel *dic = [UGMissionlistModel new];
+                [dic setSordId:obj.sortId];
+                [dic setTypeSort:obj.typeSort];
+                if ([CMCommon arryIsNull:dic.typeData]) {
+                    dic.typeData = [NSMutableArray new];
                 }
                 [typeArray addObject:dic];
+
             }
-            
+
             //全部数据组装
             for (UGMissionModel *object in dataArray) {
                 
-                for (NSMutableDictionary *dic in typeArray) {
-                    if ([dic[@"sortId"] isEqualToString:object.sortId]) {
-                        [dic setValue:object.sortName forKey:@"sortName"];
-                        NSMutableArray *typeDataArray = dic[@"typeData"];
-                        [typeDataArray addObject:object];
+                for (UGMissionlistModel *dic in typeArray) {
+                    if ([dic.sordId isEqualToString:object.sortId]) {
+                        [dic setSortName:object.sortName];
+                        [dic.typeData addObject:object];
                     }
                 }
             }
             
-            for (NSMutableDictionary *dd in typeArray) {
-                NSLog(@"sortName = %@",[dd objectForKey:@"sortName"]);
-                NSLog(@"typeData = %@",[dd objectForKey:@"typeData"]);
-                if (![CMCommon arryIsNull:[dd objectForKey:@"typeData"]]) {
+            for (UGMissionlistModel *dd in typeArray) {
+                if (![CMCommon arryIsNull:dd.typeData]) {
                     [weakSelf.disArray addObject:dd];
                 }
             }
             
-            if (![CMCommon arryIsNull:weakSelf.disArray]) {
-                for (NSMutableDictionary *dd in weakSelf.disArray) {
-                    if (dd[@"sortName"]) {
-                        [weakSelf.itemArray addObject:dd[@"sortName"] ];
+            if (!weakSelf.disArray.count) {
+                return;
+            }
+
+            // 排序key, 某个对象的属性名称，是否升序, YES-升序, NO-降序
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"typeSort" ascending:YES];
+            // 排序结果
+            NSArray <UGMissionlistModel *> * tempArr =  [NSArray new];
+            tempArr = [self.disArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+            
+//            NSLog(@"weakSelf.tempArr=====%@",tempArr);
+            if (![CMCommon arryIsNull:tempArr]) {
+                for (UGMissionlistModel *dd in tempArr) {
+                    if (dd.sortName) {
+                        [weakSelf.itemArray addObject:dd.sortName ];
                     } else {
-                        [weakSelf.itemArray addObject:dd[@"sortId"] ];
+                        [weakSelf.itemArray addObject:dd.sordId ];
                     }
                     UGMissionListController * realView  = [[UGMissionListController alloc] initWithStyle:UITableViewStyleGrouped]; ;
-                    realView.typeid = dd[@"sortId"];
+                    realView.typeid = dd.sordId;
                     [weakSelf.viewsArray addObject:realView];
                 }
                 [weakSelf buildSegment];

@@ -16,3 +16,8 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"missionId"}];
 }
 @end
+
+@implementation UGMissionlistModel
+
+
+@end

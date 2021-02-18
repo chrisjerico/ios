@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString* status;         /**<   0 待领任务 1 待完成 3 待领取奖励 2 已完成 */
 @property (nonatomic, strong) NSString* type;           /**<   类型 0一次性任务 1日常任务  5 限时任务*/
-
+@property (nonatomic, strong) NSString* typeSort;           /**<   任务分类的排序*/
 
 @property (nonatomic, strong) NSString *sortName2;         /**<   二级分类"Name */
 //自定义参数
@@ -53,6 +53,17 @@ typedef enum _CellType {
 } CellType;
 @property (nonatomic,assign) CellType celltype;           /**<   类型 0 标题  1 单行数据  2 有子数据*/
 @property (nonatomic, strong) NSString *sectionTitle;                        /**<   section"Name */
+@end
+
+
+@interface UGMissionlistModel : UGModel
+
+@property (nonatomic, strong) NSString *typeSort;      /**<   排序 */
+@property (nonatomic, strong) NSString *sortName;
+@property (nonatomic, strong) NSString *sordId;
+
+@property (nonatomic, strong) NSMutableArray<UGMissionModel *> *typeData;    /**<   type分类数据数组 */
+
 @end
 
 NS_ASSUME_NONNULL_END
