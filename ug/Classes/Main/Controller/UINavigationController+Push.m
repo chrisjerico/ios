@@ -1184,12 +1184,34 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewController:[UGLotteryHomeController new] animated:YES];
             break;
         }
+        case UGLinkPosition_我的关注: {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHMyAttentionViewController") animated:YES];
+            break;
+        }
+        case UGLinkPosition_我的动态: {
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.title = @"我的动态";
+            vc.request = ^CCSessionModel * _Nonnull(NSInteger page) {
+                if (UserI.isTest) {
+                    return nil;
+                }
+                return [NetworkManager1 lhdoc_historyContent:nil  page:page];
+            };
+            [NavController1 pushViewController:vc animated:true];
+            break;
+        }
+        case UGLinkPosition_我的粉丝: {
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMyFansViewController") animated:YES];
+            break;
+        }
         default: {
             return false;
         }
     }
     return true;
 }
+
+
 
 
 -(void)gotoChatVC:(NSString *)roomId roomName :(NSString *)roomName{

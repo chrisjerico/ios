@@ -60,6 +60,9 @@ typedef NS_ENUM(NSInteger, UGLinkPositionType) {
     UGLinkPosition_捕鱼大厅= 48,
     UGLinkPosition_开奖走势 = 54,
     UGLinkPosition_路珠 = 55,
+    UGLinkPosition_我的关注 = 56,
+    UGLinkPosition_我的动态 = 57,
+    UGLinkPosition_我的粉丝 = 58,
 };
 
 
