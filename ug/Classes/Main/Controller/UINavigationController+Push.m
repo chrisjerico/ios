@@ -1461,6 +1461,29 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             [NavController1 pushViewControllerWithNextIssueModel:nil isChatRoom:YES];
             return true;
         }
+        case UCI_我的关注: {
+            // 我的关注
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGLHMyAttentionViewController") animated:YES];
+            return true;
+        }
+        case UCI_我的动态: {
+            NSLog(@"我的动态");
+            UGPostListVC *vc = _LoadVC_from_storyboard_(@"UGPostListVC");
+            vc.title = @"我的动态";
+            vc.request = ^CCSessionModel * _Nonnull(NSInteger page) {
+                if (UserI.isTest) {
+                    return nil;
+                }
+                return [NetworkManager1 lhdoc_historyContent:nil  page:page];
+            };
+            [NavController1 pushViewController:vc animated:true];
+            return true;
+        }
+        case UCI_我的粉丝: {
+            // 我的粉丝
+            [NavController1 pushViewController:_LoadVC_from_storyboard_(@"UGMyFansViewController") animated:YES];
+            return true;
+        }
             
         default:
             return false;

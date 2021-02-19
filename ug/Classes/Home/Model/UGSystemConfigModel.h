@@ -46,6 +46,9 @@ typedef NS_ENUM(NSInteger, UserCenterItemType) {
     UCI_提现纪录     = 31,
     UCI_资金明细     = 32,
     UCI_活动大厅     = 33,
+    UCI_我的关注     = 35,
+    UCI_我的动态     = 36,
+    UCI_我的粉丝     = 37,
     UCI_聊天室     = 9001,//本地的
 };
 

@@ -123,6 +123,9 @@ UGSystemConfigModel *currentConfig = nil;
             item(@"chongzhi",               @"LH_menu-qk",          @"tixian",                  UCI_提现纪录,      @"提现纪录"),
             item(@"chongzhi",               @"LH_menu-qk",          @"tixian",                  UCI_资金明细,      @"资金明细"),
             item(@"zdgl",                   @"LH_money",            @"zdgl",                    UCI_活动大厅,      @"活动大厅"),
+            item(@"LH_invi",                @"LH_invi",             @"LH_invi",                 UCI_我的关注,      @"我的关注"),
+            item(@"LH_friend",              @"LH_friend",           @"LH_friend",               UCI_我的动态,      @"我的动态"),
+            item(@"LH_fans",                @"LH_fans",             @"LH_fans",                 UCI_我的粉丝,      @"活动大厅"),
             
             
         ];
