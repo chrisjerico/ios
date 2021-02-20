@@ -390,6 +390,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         @"一字定位":@1,
         @"二字定位":@1,
         @"三字定位":@1,
+        @"四字定位":@1,
         @"定位胆":@1,
         @"二字":@1,
         @"不定位":@1,
@@ -736,7 +737,7 @@ static NSString *betDetailCellid = @"UGBetDetailTableViewCell";
         if ([@"直选" isEqualToString:temp.typeName]) {
             break;
         }
-        if ([@"一字定位" isEqualToString:temp.typeName]||[@"不定位" isEqualToString:temp.typeName]||[@"二字定位" isEqualToString:temp.typeName]||[@"三字定位" isEqualToString:temp.typeName]||[@"二字" isEqualToString:temp.typeName]) {
+        if ([@"一字定位" isEqualToString:temp.typeName]||[@"不定位" isEqualToString:temp.typeName]||[@"二字定位" isEqualToString:temp.typeName]||[@"三字定位" isEqualToString:temp.typeName]||[@"四字定位" isEqualToString:temp.typeName]||[@"二字" isEqualToString:temp.typeName]) {
             break;
         }
         if ([@"定位胆" isEqualToString:temp.typeName]) {
