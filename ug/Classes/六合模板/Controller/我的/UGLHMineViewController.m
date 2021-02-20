@@ -49,6 +49,7 @@
 @property (nonatomic, strong) WavesView *waveView;            /**<   波浪 */
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgBV;      /**<   大V图片*/
+@property (weak, nonatomic) IBOutlet UIView *myView;/**<   我的面板*/
 
 @end
 
@@ -83,6 +84,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
     
     //模板
     FastSubViewCode(self.userInfoView)
@@ -304,6 +307,9 @@
             UGSystemConfigModel *config = model.data;
             UGSystemConfigModel.currentConfig = config;
             NSLog(@"签到==%@",[UGSystemConfigModel  currentConfig].checkinSwitch);
+            
+            [weakSelf.myView setHidden:![UGSystemConfigModel  currentConfig].lhcdocSwitchMobileHome];
+            
             [weakSelf setupUserInfo:YES];
             [weakSelf stopAnimation];
             SANotificationEventPost(UGNotificationGetSystemConfigComplete, nil);

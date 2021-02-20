@@ -275,6 +275,8 @@ typedef NS_ENUM(NSInteger, MobileMenuType) {
 
 @property (nonatomic) BOOL mobileHomeGameTypeSwitch;                /**<   系统设置-内容管理-手机游戏图标，关闭开关时，只需隐藏前台分类tab，后台游戏图标内容不变 */
 
+@property (nonatomic) BOOL lhcdocSwitchMobileHome;                /**<  六合个人中心我的面板是否隐藏 */
+
 //
 + (instancetype)currentConfig;
 
