@@ -134,13 +134,22 @@
                 }
             }
             
+            //删除未分类
+            for (NSMutableDictionary *dd in typeArray.reverseObjectEnumerator) {
+                if ([[dd objectForKey:@"categoryName"] isEqualToString:@"未分类"]) {
+                    [typeArray removeObject:dd];
+                }
+            }
+            
             for (NSMutableDictionary *dd in typeArray) {
                 NSLog(@"categoryName = %@",[dd objectForKey:@"categoryName"]);
-                NSLog(@"typeData = %@",[dd objectForKey:@"typeData"]);
+
                 if (![CMCommon arryIsNull:[dd objectForKey:@"typeData"]]) {
                     [weakSelf.disArray addObject:dd];
                 }
             }
+            
+            
             
             if (![CMCommon arryIsNull:weakSelf.disArray]) {
                  [weakSelf.itemArray addObject:@"全部"];
@@ -148,17 +157,27 @@
                 realView.typeid = @"";
                 [weakSelf.viewsArray addObject:realView];
                 
+                
 
                 for (NSMutableDictionary *dd in weakSelf.disArray) {
-                    if (dd[@"categoryName"]) {
-                        [weakSelf.itemArray addObject:dd[@"categoryName"] ];
-                    } else {
-                        [weakSelf.itemArray addObject:dd[@"category"] ];
+                    
+//                    if ([dd[@"categoryName"]  isEqualToString:@"未分类"]) {
+//                        break;
+//                    } else
+                    {
+                        if (dd[@"categoryName"]) {
+                            [weakSelf.itemArray addObject:dd[@"categoryName"] ];
+                        } else {
+                            [weakSelf.itemArray addObject:dd[@"category"] ];
+                        }
+                        UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped]; ;
+                        realView.typeid = dd[@"category"];
+                        [weakSelf.viewsArray addObject:realView];
                     }
-                    UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped]; ;
-                    realView.typeid = dd[@"category"];
-                    [weakSelf.viewsArray addObject:realView];
+                   
                 }
+                
+                
                 [weakSelf buildSegment];
             }
             
