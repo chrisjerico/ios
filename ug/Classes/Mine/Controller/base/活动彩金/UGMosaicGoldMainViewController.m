@@ -161,10 +161,6 @@
 
                 for (NSMutableDictionary *dd in weakSelf.disArray) {
                     
-//                    if ([dd[@"categoryName"]  isEqualToString:@"未分类"]) {
-//                        break;
-//                    } else
-                    {
                         if (dd[@"categoryName"]) {
                             [weakSelf.itemArray addObject:dd[@"categoryName"] ];
                         } else {
@@ -173,7 +169,7 @@
                         UGMosaicGoldController * realView  = [[UGMosaicGoldController alloc] initWithStyle:UITableViewStyleGrouped]; ;
                         realView.typeid = dd[@"category"];
                         [weakSelf.viewsArray addObject:realView];
-                    }
+
                    
                 }
                 
