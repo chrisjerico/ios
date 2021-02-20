@@ -106,7 +106,7 @@
 	
 	if (!_titleLabel) {
 		_titleLabel = [[UILabel alloc] init];
-		_titleLabel.textColor = UIColor.whiteColor;
+		_titleLabel.textColor = Skin1.textColor1;
 		_titleLabel.font = [UIFont boldSystemFontOfSize:13];
 		_titleLabel.textAlignment = NSTextAlignmentCenter;
 	}
