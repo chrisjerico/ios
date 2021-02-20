@@ -347,6 +347,18 @@ static NSMutableArray<RnPageModel *(^)(void)> *_ysReplacePages;
     }];
 }
 
+- (NSString *)zxjfUrl :(NSString *)url {
+    NSLog(@" url=%@", url);
+    
+    NSString *rUrl = [url stringByAppendingURLParams:@{
+        @"from":@"app",
+        @"hideHeader":[[NSNumber alloc] initWithBool:YES],
+    }];
+    
+    NSLog(@" 在线客服=%@", rUrl);
+    return rUrl;
+}
+
 - (NSString *)chatGameUrl:(NSString *)roomId hide:(BOOL )hideHead {
     NSMutableDictionary *dic = self.chatHomeUrl.urlParams.mutableCopy;
     [dic setValue:roomId forKey:@"roomId"];

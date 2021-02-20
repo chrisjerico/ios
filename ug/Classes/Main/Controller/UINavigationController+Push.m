@@ -395,7 +395,7 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
 
         if([@"zxkf" containsString:model.alias]) {
             TGWebViewController *webViewVC = [[TGWebViewController alloc] init];
-            webViewVC.url = model.link;
+            webViewVC.url =  [APP zxjfUrl:model.link];
             webViewVC.webTitle = model.name;
             [NavController1 pushViewController:webViewVC animated:YES];
             NSLog(@"在线客服");
@@ -1251,8 +1251,9 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             else if (!url.scheme.length) {
                 urlStr = _NSString(@"http://%@", SysConf.zxkfUrl);
             }
+            
             webViewVC.isCustomerService = YES;
-            webViewVC.urlStr = urlStr;
+            webViewVC.urlStr = [APP zxjfUrl:urlStr];
             [NavController1 pushViewController:webViewVC animated:YES];
             return true;
         }

@@ -651,8 +651,9 @@ BOOL isOk = NO;
                 else if (!url.scheme.length) {
                     urlStr = _NSString(@"http://%@", SysConf.zxkfUrl2);
                 }
+             
                 webViewVC.isCustomerService = YES;
-                webViewVC.urlStr = urlStr;
+                webViewVC.urlStr =   [APP zxjfUrl:urlStr];
                 [NavController1 pushViewController:webViewVC animated:YES];
             } else {
                 [NavController1 pushVCWithUserCenterItemType:uci.code];
