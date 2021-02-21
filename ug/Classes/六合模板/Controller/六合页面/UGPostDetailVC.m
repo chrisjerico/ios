@@ -178,7 +178,6 @@
         FastSubViewCode(_topView);
         [subButton(@"头像Button") sd_setImageWithURL:[NSURL URLWithString:pm.headImg] forState:UIControlStateNormal];
         subLabel(@"昵称Label").text = pm.nickname;
-        //subLabel(@"时间Label").text = pm.createTime;
         subButton(@"关注Button").backgroundColor = Skin1.navBarBgColor;
         subButton(@"关注Button").selected = _pm.isFollow;
         [subButton(@"关注Button") setTitle:_pm.isFollow ? @"已关注" : @"关注楼主" forState:UIControlStateNormal];
@@ -251,19 +250,16 @@
         }
         
         if ([@"l001" isEqualToString:APP.SiteId]) {
+            [subLabel(@"时间Label") setHidden:NO];
+            [subLabel(@"时间Label2")setHidden:NO];
             subLabel(@"时间Label").text = @"本站备用网址一:www.889777.com";
             subLabel(@"时间Label2").text = @"本站备用网址二:www.668000.com";
         }
-        else if([@"l002" isEqualToString:APP.SiteId]) {
-            subLabel(@"时间Label").text = @"本站备用网址一:www.300777.com";
-            subLabel(@"时间Label2").text = @"本站备用网址二:www.400777.com";
-        }
         else{
-            
+            [subLabel(@"时间Label") setHidden:YES];
+            [subLabel(@"时间Label2")setHidden:YES];
         }
-        //        subLabel(@"时间Label").text = _NSString(@"最后更新时间：%@", pm.createTime);
-        
-        //        subLabel(@"时间Label").hidden = [@"mystery,rule" containsString:pm.categoryType];
+
         
         UIView *cView = subView(@"内容View");
         WKWebView *wv = [cView viewWithTagString:@"内容WebView"];

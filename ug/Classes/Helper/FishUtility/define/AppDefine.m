@@ -353,6 +353,7 @@ static NSMutableArray<RnPageModel *(^)(void)> *_ysReplacePages;
     NSString *rUrl = [url stringByAppendingURLParams:@{
         @"from":@"app",
         @"hideHeader":[[NSNumber alloc] initWithBool:YES],
+        @"token":[UGUserModel currentUser].token,
     }];
     
     NSLog(@" 在线客服=%@", rUrl);
