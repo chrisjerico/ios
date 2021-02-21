@@ -159,6 +159,8 @@
             site(@"wt600f",       @"wt600f",     @"",        @"com.UGGame.cp",           @"http://wwwt600f.fhptcdn.com",                 @"内测包",     @"wt600f"),//
             site(@"test28f",      @"",           @"",        @"com.UGGame.cp",           @"http://test28f.fhptcdn.com",                  @"内测包",     @"test28f"),
             site(@"testadaf",     @"testadaf",   @"285",     @"com.asiapoker.happy.hd",  @"http://testadaf.6yc.com",                     @"内测包",     @"testadaf"),    // (ada)t059
+            site(@"test59b",     @"test59b",   @"373",      @"com.asiapoker.happy.hd",   @"http://t059b.6yc.com",                     @"内测包",     @"test59b"),    // (ada)t059
+            site(@"test59c",     @"test59c",   @"374",      @"com.asiapoker.happy.hd",   @"http://t059c.6yc.com",                     @"内测包",     @"test59c"),    // (ada)t059
             site(@"test62",       @"test62",     @"289",     @"com.asiapoker.happy.qp650",@"http://test62f.ccpt.site",                   @"内测包",     @"test62"),
             site(@"test09",       @"test09",     @"",        @"com.UGGame.cp",            @"http://test09.6yc.com",                      @"内测包",     @"test09"),
             site(@"test61b",      @"test61bhy",  @"302",     @"com.UGGame.cp",            @"http://test61a.fhptcdn.com",                 @"内测包",     @"test61b"),
