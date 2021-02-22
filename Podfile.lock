@@ -334,13 +334,13 @@ PODS:
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
-  - RNGestureHandler (1.9.0):
+  - RNGestureHandler (1.10.1):
     - React-Core
   - RNReactNativeModalPatch (1.0.0):
     - React
   - RNReanimated (1.13.2):
     - React-Core
-  - RNScreens (2.16.1):
+  - RNScreens (2.17.1):
     - React-Core
   - RNSVG (12.1.0):
     - React
@@ -725,10 +725,10 @@ SPEC CHECKSUMS:
   RNCPicker: 914b557e20b3b8317b084aca9ff4b4edb95f61e4
   RNCPushNotificationIOS: 61a7c72bd1ebad3568025957d001e0f0e7b32191
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
-  RNGestureHandler: 9b7e605a741412e20e13c512738a31bd1611759b
+  RNGestureHandler: 5e58135436aacc1c5d29b75547d3d2b9430d052c
   RNReactNativeModalPatch: fc3c9f788dfa44e1914edd380ade65f3eb2236fd
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
-  RNScreens: 45c457af3d2ee9e08fc01e70da87e653d46b1198
+  RNScreens: b6c9607e6fe47c1b6e2f1910d2acd46dd7ecea3a
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RxAlertController: ef75925a2a002f0f1fd03378ddeceaa9c1c5558f
@@ -761,4 +761,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c44aeccb704581a09b9b6cdf8e3e73bd246f0d88
 
-COCOAPODS: 1.10.0.rc.1
+COCOAPODS: 1.10.0

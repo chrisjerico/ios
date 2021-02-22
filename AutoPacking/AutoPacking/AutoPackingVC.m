@@ -65,6 +65,7 @@
 
                 NSString *ids = @"t005";    // 站点编号(可以批量打包用','号隔开)每天上班第一件事打t005
                 NSString *branch = @"dev_master";// 分支名dev_master_waitWithdrawal
+//                NSString *branch = @"andrew/六合";// 分支名dev_master_waitWithdrawal
                 BOOL willUpload = 1;        // 打包后是否上传审核
                 // 高权限操作
                 BOOL isReview = 0;      // 是否改为已审核
