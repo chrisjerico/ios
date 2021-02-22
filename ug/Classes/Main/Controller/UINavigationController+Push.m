@@ -1052,7 +1052,8 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
         }
         case UGLinkPosition_返回首页: {
             //30' => '返回首页',
-            
+            [NavController1 popToRootViewControllerAnimated:true];
+            TabBarController1.selectedIndex = 0;
             break;
         }
         case UGLinkPosition_退出登录: {
