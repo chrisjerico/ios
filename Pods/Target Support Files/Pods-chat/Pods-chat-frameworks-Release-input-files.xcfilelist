@@ -21,6 +21,7 @@ ${BUILT_PRODUCTS_DIR}/RCTTypeSafety/RCTTypeSafety.framework
 ${BUILT_PRODUCTS_DIR}/RNCAsyncStorage/RNCAsyncStorage.framework
 ${BUILT_PRODUCTS_DIR}/RNCMaskedView/RNCMaskedView.framework
 ${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework
+${BUILT_PRODUCTS_DIR}/RNCPushNotificationIOS/RNCPushNotificationIOS.framework
 ${BUILT_PRODUCTS_DIR}/RNFastImage/RNFastImage.framework
 ${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework
 ${BUILT_PRODUCTS_DIR}/RNReactNativeModalPatch/RNReactNativeModalPatch.framework
