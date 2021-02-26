@@ -275,7 +275,7 @@
             if (!sm.error) {
                 UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                 pm.link = model.link;
-                pm.baoma_type = model.baoma_type;
+                pm.baomaType = model.baomaType;
                 pm.read_pri = model.read_pri;
                 
                 NSLog(@"获取帖子详情 = %@",pm.content);
@@ -342,7 +342,7 @@
             UGNextIssueModel *m = [UGNextIssueModel new];
             m.title = model.name;
             m.gameId = model.categoryType;
-            m.gameType = [self judgmentGameType:model.baoma_type];
+            m.gameType = [self judgmentGameType:model.baomaType];
             [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
         }
       
@@ -364,7 +364,7 @@
                 if (!sm.error) {
                     UGLHPostModel *pm = [UGLHPostModel mj_objectWithKeyValues:sm.resObject[@"data"]];
                     pm.link = model.link;
-                    pm.baoma_type = model.baoma_type;
+                    pm.baomaType = model.baomaType;
                     pm.read_pri = model.read_pri;
                     NSLog(@"获取帖子详情 = %@",pm.content);
                     void (^push)(void) = ^{

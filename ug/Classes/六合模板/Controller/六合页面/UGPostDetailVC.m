@@ -131,7 +131,7 @@
     
 
     
-    if ([self.pm.baoma_type isEqualToString:@"amlhc"]) {
+    if ([self.pm.baomaType isEqualToString:@"amlhc"]) {
         self.dragV = [[WMDragView alloc] initWithFrame:CGRectMake(UGScreenW-61, 0.4*UGScerrnH , 60, 60)];
         _dragV.isKeepBounds = YES;
         _dragV.layer.cornerRadius = 30;
@@ -333,8 +333,11 @@
             return [NetworkManager1 lhdoc_contentReplyList:pm.cid replyPid:nil page:1];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
 
-            NSString *gid = pm.link.urlParams[@"id"] ? : SysConf.appSelectType;
+         
+            NSString *gid = pm.link.urlParams[@"id"] ? : pm.baomaId ? : SysConf.appSelectType;
             [__self.lhPrizeView setGid:gid];
+            NSLog(@"pm.baomaId  ==%@",pm.baomaId );
+            NSLog(@"gid  ==%@",gid );
             
             NSArray *array = sm.resObject[@"data"][@"list"];
             for (NSDictionary *dict in array) {

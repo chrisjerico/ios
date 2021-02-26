@@ -113,9 +113,17 @@
                 return [NetworkManager1 lhdoc_contentList:__self.clm.alias uid:nil sort:sortString() page:1];
             }
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
+            
             NSArray *array = sm.resObject[@"data"][@"list"];
-            for (NSDictionary *dict in array)
-                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            NSString *baomaId = sm.resObject[@"data"][@"baomaId"];
+            NSString *baomaType = sm.resObject[@"data"][@"baomaType"];
+            
+            for (NSDictionary *dict in array){
+                UGLHPostModel *obj = [UGLHPostModel mj_objectWithKeyValues:dict];
+                obj.baomaId = baomaId;
+                obj.baomaType = baomaType;
+                [tv.dataArray addObject:obj];
+            }
             return array;
         }];
         [tv setupFooterRefreshRequest:^CCSessionModel *(UITableView *tv) {
@@ -132,8 +140,15 @@
             }
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array = sm.resObject[@"data"][@"list"];
-            for (NSDictionary *dict in array)
-                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            NSString *baomaId = sm.resObject[@"data"][@"baomaId"];
+            NSString *baomaType = sm.resObject[@"data"][@"baomaType"];
+            
+            for (NSDictionary *dict in array){
+                UGLHPostModel *obj = [UGLHPostModel mj_objectWithKeyValues:dict];
+                obj.baomaId = baomaId;
+                obj.baomaType = baomaType;
+                [tv.dataArray addObject:obj];
+            }
             return array;
         }];
         [tv.mj_footer beginRefreshing];
@@ -167,7 +182,7 @@
 - (void)goToPostDetailVC:(NSIndexPath *)indexPath willComment:(BOOL)willComment {
     UGLHPostModel *pm = _tableView.dataArray[indexPath.row];
     pm.link = _clm.link;
-    pm.baoma_type = _clm.baoma_type;
+    pm.baomaType = _clm.baomaType;
     pm.read_pri = _clm.read_pri;
     __weakSelf_(__self);
     void (^push)(void) = ^{

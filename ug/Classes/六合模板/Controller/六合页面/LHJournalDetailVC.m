@@ -117,7 +117,7 @@
         UGLHPostModel *pm = [UGLHPostModel new];
         pm.cid = _dataArray[idx].jid;
         pm.link = _clm.link;
-        pm.baoma_type = _clm.baoma_type;
+        pm.baomaType = _clm.baomaType;
         pm.read_pri = _clm.read_pri;
         pm;
     });

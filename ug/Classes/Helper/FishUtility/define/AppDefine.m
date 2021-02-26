@@ -186,8 +186,8 @@
     
     _isShowHornView = [@"l001,l002" containsString:_SiteId];
     _isBorderNavBarBgColor = Skin1.isBlack ? NO : [@"c085,c212,c208,c134,c108" containsString:_SiteId]||[@"石榴红" containsString:Skin1.skitType];
-    _isBall = Skin1.isSLH ? YES : [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217,c115,c108" containsString:_SiteId];
-    _isBall6 = Skin1.isSLH ? YES : [@"c134,c200,c208,c213,a002,c193,c116,c115,c108" containsString:_SiteId];
+    _isBall = Skin1.isSLH ? YES : [@"c212,c085,c208,c134,c200,c213,a002,c193,c116,c092,c217,c115,c108,c084" containsString:_SiteId];
+    _isBall6 = Skin1.isSLH ? YES : [@"c134,c200,c208,c213,a002,c193,c116,c115,c108,c084" containsString:_SiteId];
     _isBallParty = [@"c092" containsString:_SiteId];
     _isWhite = Skin1.isBlack ? NO : [@"c213,c012" containsString:_SiteId];
     _isHideText = [@"c200" containsString:_SiteId];
@@ -201,7 +201,7 @@
     _betOddsIsRed = [@"c194,c005" containsString:_SiteId];
 
     //背景是白色
-    _betBgIsWhite = (![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158,c115" containsString:_SiteId]) || [@"新年红,石榴红,香槟金" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
+    _betBgIsWhite = (![@"c175,c085,c073,c169,a002,c190,c048,c200,c001,c208,c202,c212,c134,t032,c213,c126,c193,c116,c151,c158,c115,c084" containsString:_SiteId]) || [@"新年红,石榴红,香槟金" containsString:Skin1.skitType]||Skin1.isJY||Skin1.isTKL;
     //下注页tab 为深色
     _isGrey = [@"c212,c208,c134,c200,c213,a002,c193,c116,c151,c158" containsString:_SiteId];
     _betSizeIsBig = [@"c169,c205,c211,c048,c115,c108" containsString:_SiteId];
@@ -223,7 +223,7 @@
     _isNoOnLineDoc = [@"c213,c116" containsString:_SiteId];;
     _isHBDoc = [@"c012" containsString:_SiteId];
     _isAllCellStyle = [@"c126" containsString:_SiteId];
-    _isC126CellStyle = [@"c126,c115" containsString:_SiteId];
+    _isC126CellStyle = [@"c126,c115,c084" containsString:_SiteId];
     _isC239B = [@"c239b" containsString:_SiteId];
     _isTwoOnline = [@"c150,c115" containsString:_SiteId];
     

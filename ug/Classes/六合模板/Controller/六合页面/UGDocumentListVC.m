@@ -48,8 +48,14 @@
             return [NetworkManager1 lhdoc_contentList:clm.alias uid:nil sort:nil page:tv.pageIndex];
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             NSArray *array = sm.resObject[@"data"][@"list"];
-            for (NSDictionary *dict in array) {
-                [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+            NSString *baomaId = sm.resObject[@"data"][@"baomaId"];
+            NSString *baomaType = sm.resObject[@"data"][@"baomaType"];
+            
+            for (NSDictionary *dict in array){
+                UGLHPostModel *obj = [UGLHPostModel mj_objectWithKeyValues:dict];
+                obj.baomaId = baomaId;
+                obj.baomaType = baomaType;
+                [tv.dataArray addObject:obj];
             }
             return array;
         }];
@@ -80,7 +86,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UGLHPostModel *pm = _tableView.dataArray[indexPath.row];
     pm.link = self.clm.link;
-    pm.baoma_type = self.clm.baoma_type;
+    pm.baomaType = self.clm.baomaType;
     pm.read_pri = self.clm.read_pri;
     __weakSelf_(__self);
     void (^push)(void) = ^{

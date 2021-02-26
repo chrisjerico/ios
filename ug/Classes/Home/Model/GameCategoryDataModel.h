@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger appLinkCode;/**<   1存取款 2APP下载 3聊天室 4在线客服 5长龙助手 6推广收益 7开奖网 8利息宝 9优惠活动 10游戏记录 11QQ客服 13任务大厅 14站内信 15站内信 16投诉中心 */
 
 @property (copy, nonatomic) NSString *thread_type;/**<  thread_type =2 为多期" */
-@property (copy, nonatomic) NSString *baoma_type;/**<  报码器类型 amlhc 澳门六合彩  lhc香港六合彩 */
+@property (copy, nonatomic) NSString *baomaType;/**<  报码器类型 amlhc 澳门六合彩  lhc香港六合彩 */
 @property (copy, nonatomic) NSString *read_pri; /**<   可浏览会员类型：0是全部  1是正式会员 */
 // 自定义参数
 @property (nonatomic, readonly) NSString *categoryType; /**<   类型 */

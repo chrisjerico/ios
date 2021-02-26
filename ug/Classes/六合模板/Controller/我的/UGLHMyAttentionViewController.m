@@ -61,8 +61,14 @@
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             if (__self.mySegment.selectedSegmentIndex) {//帖
                 NSArray *array = sm.resObject[@"data"];
-                for (NSDictionary *dict in array) {
-                    [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+                NSString *baomaId = sm.resObject[@"data"][@"baomaId"];
+                NSString *baomaType = sm.resObject[@"data"][@"baomaType"];
+                
+                for (NSDictionary *dict in array){
+                    UGLHPostModel *obj = [UGLHPostModel mj_objectWithKeyValues:dict];
+                    obj.baomaId = baomaId;
+                    obj.baomaType = baomaType;
+                    [tv.dataArray addObject:obj];
                 }
                 return array;
             } else {
@@ -78,8 +84,14 @@
         } completion:^NSArray *(UITableView *tv, CCSessionModel *sm) {
             if (__self.mySegment.selectedSegmentIndex) {//帖
                 NSArray *array = sm.resObject[@"data"];
-                for (NSDictionary *dict in array) {
-                    [tv.dataArray addObject:[UGLHPostModel mj_objectWithKeyValues:dict]];
+                NSString *baomaId = sm.resObject[@"data"][@"baomaId"];
+                NSString *baomaType = sm.resObject[@"data"][@"baomaType"];
+                
+                for (NSDictionary *dict in array){
+                    UGLHPostModel *obj = [UGLHPostModel mj_objectWithKeyValues:dict];
+                    obj.baomaId = baomaId;
+                    obj.baomaType = baomaType;
+                    [tv.dataArray addObject:obj];
                 }
                 return array;
             } else {
