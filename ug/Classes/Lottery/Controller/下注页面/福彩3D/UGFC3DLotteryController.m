@@ -433,7 +433,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 
                 
             }
-            else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
+            else if([type.ezdwcode isEqualToString:@"DWDZXL"]||[type.ezdwcode isEqualToString:@"DWDZXSFS"]||[type.ezdwcode isEqualToString:@"DWDZXLFS"]){
                 
                 if (self.selArray.count) {
                     
@@ -749,7 +749,8 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
         
         if ([@"DWD" isEqualToString:model.code]) {
             type = model.list[self.segmentIndex];
-            if ([@"DWDZXS" isEqualToString:type.ezdwcode]||[@"DWDZXL" isEqualToString:type.ezdwcode] ) {
+            if ([@"DWDZXS" isEqualToString:type.ezdwcode]||[@"DWDZXL" isEqualToString:type.ezdwcode]
+                ||[@"DWDZXSFS" isEqualToString:type.ezdwcode] ||[@"DWDZXLFS" isEqualToString:type.ezdwcode] ) {
                 if (section == 0 || section == 1) {
                     return 0;
                 } else {
@@ -1161,7 +1162,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                 }
                 
             }
-            else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
+            else if([type.ezdwcode isEqualToString:@"DWDZXL"]||[type.ezdwcode isEqualToString:@"DWDZXSFS"]||[type.ezdwcode isEqualToString:@"DWDZXLFS"]){
                 UGGameplaySectionModel *obj = model.list[self.segmentIndex];
                 UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
                 UGGameBetModel *game = type.list[indexPath.row];
@@ -1214,7 +1215,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                      return;
                 }
             }
-            else if([type.ezdwcode isEqualToString:@"DWDZXL"]){
+            else if([type.ezdwcode isEqualToString:@"DWDZXL"]||[type.ezdwcode isEqualToString:@"DWDZXSFS"]||[type.ezdwcode isEqualToString:@"DWDZXLFS"]){
                 UGGameplaySectionModel *obj = model.list[self.segmentIndex];
                 UGGameplaySectionModel *type = obj.ezdwlist[indexPath.section];
                 NSInteger num = 0;
@@ -1431,6 +1432,13 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 }
 /** 头视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+    UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
+    if ([@"DWDZXSFS" isEqualToString:model.code]) {
+        if (section == 1) {
+            return CGSizeMake(UGScreenW / 4 * 3 - 1, 70);
+        }
+        return CGSizeMake(UGScreenW / 4 * 3 - 1, 35);
+    }
     return CGSizeMake(UGScreenW / 4 * 3 - 1, 35);
 }
 
@@ -1445,7 +1453,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     return 1;
 }
 /** 边缘之间的间距*/
--(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+-(UIEdgeInsets)edgeInset InWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
     
     return UIEdgeInsetsMake(1, 1, 1, 1);
 }
@@ -1676,7 +1684,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                             group.ezdwlist = sectionArray.copy;
                             group.ezdwcode = @"DWDZXS";
                         }
-                        else if([play.code isEqualToString:@"DWDZXL"]){
+                        else if([play.code isEqualToString:@"DWDZXL"]||[play.code isEqualToString:@"DWDZXSFS"]||[play.code isEqualToString:@"DWDZXLFS"]){
                             NSMutableArray *sectionArray = [NSMutableArray array];
                             for (int i = 0; i< 3; i++) {
                                 UGGameplaySectionModel * sectionModel = [[UGGameplaySectionModel alloc] init];
@@ -1685,7 +1693,17 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                                     
                                 }
                                 else if (i == 1 ) {
-                                    sectionModel.name = @"玩法提示：任选3个号码组成一注(号码不重复)";
+                                    if ([play.code isEqualToString:@"DWDZXL"]) {
+                                        sectionModel.name = @"玩法提示：任选3个号码组成一注(号码不重复)";
+                                    }
+                                    else if([play.code isEqualToString:@"DWDZXSFS"]){
+                                        sectionModel.name = @"玩法提示：从0~9选择两个号码(或以上)，系统会自动将所选号码的所有组三组合(即三个号中有两个号相同)进行购买，若当期开奖号码的形态为组三且包含了号码，即中奖";
+                                    }
+                                    else if([play.code isEqualToString:@"DWDZXLFS"]){
+                                        sectionModel.name = @"玩法提示:任选3个号码组成一注(号码不重复)";
+                                    }
+                                    
+                                  
                                 }
                                 else if (i == 2 ) {
                                     sectionModel.name = @"选号";
@@ -1706,7 +1724,16 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                                 sectionModel.list = array.copy;
                             }
                             group.ezdwlist = sectionArray.copy;
-                            group.ezdwcode = @"DWDZXL";
+                            if ([play.code isEqualToString:@"DWDZXL"]) {
+                                group.ezdwcode = @"DWDZXL";
+                            }
+                            else if([play.code isEqualToString:@"DWDZXSFS"]){
+                                group.ezdwcode = @"DWDZXSFS";
+                            }
+                            else if([play.code isEqualToString:@"DWDZXLFS"]){
+                                group.ezdwcode = @"DWDZXLFS";
+                            }
+                           
                         }
                         
                     }
