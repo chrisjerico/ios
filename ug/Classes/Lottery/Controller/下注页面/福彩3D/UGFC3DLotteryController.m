@@ -1433,11 +1433,15 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 /** 头视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
     UGGameplayModel *model = self.gameDataArray[self.typeIndexPath.row];
-    if ([@"DWDZXSFS" isEqualToString:model.code]) {
-        if (section == 1) {
-            return CGSizeMake(UGScreenW / 4 * 3 - 1, 70);
+    UGGameplaySectionModel *type = nil;
+
+    if ([@"DWD" isEqualToString:model.code]) {
+        type = model.list[self.segmentIndex];
+        if ([@"DWDZXSFS" isEqualToString:type.ezdwcode]) {
+            if (section == 1) {
+                return CGSizeMake(UGScreenW / 4 * 3 - 1, 70);
+            }
         }
-        return CGSizeMake(UGScreenW / 4 * 3 - 1, 35);
     }
     return CGSizeMake(UGScreenW / 4 * 3 - 1, 35);
 }
@@ -1453,7 +1457,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
     return 1;
 }
 /** 边缘之间的间距*/
--(UIEdgeInsets)edgeInset InWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
     
     return UIEdgeInsetsMake(1, 1, 1, 1);
 }
