@@ -212,7 +212,12 @@
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"已更新过一次RN代码"];
             NSLog(@"进入首页");
             [SVProgressHUD dismiss];
-            APP.Window.rootViewController = [[UGTabbarController alloc] init];
+//            APP.Window.rootViewController = [[UGTabbarController alloc] init];
+            APP.Window.rootViewController = [ReactNativeVC reactNativeWithRPM:({
+                RnPageModel *rpm = [RnPageModel new];
+                rpm.rnName = @"DoyLaunchPage";
+                rpm;
+            }) params:nil];
         });
     });
 }
