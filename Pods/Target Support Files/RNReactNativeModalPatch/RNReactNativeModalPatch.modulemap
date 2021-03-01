@@ -1,6 +1,0 @@
-framework module RNReactNativeModalPatch {
-  umbrella header "RNReactNativeModalPatch-umbrella.h"
-
-  export *
-  module * { export * }
-}
