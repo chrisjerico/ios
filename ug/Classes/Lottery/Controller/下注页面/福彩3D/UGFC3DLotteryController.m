@@ -1437,7 +1437,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
 
     if ([@"DWD" isEqualToString:model.code]) {
         type = model.list[self.segmentIndex];
-        if ([@"DWDZXSFS" isEqualToString:type.ezdwcode]) {
+        if ([@"DWDZXSFS" isEqualToString:type.ezdwcode]||[@"DWDZXLFS" isEqualToString:type.ezdwcode]) {
             if (section == 1) {
                 return CGSizeMake(UGScreenW / 4 * 3 - 1, 70);
             }
@@ -1704,7 +1704,7 @@ static NSString *linkNumCellId = @"UGLinkNumCollectionViewCell";
                                         sectionModel.name = @"玩法提示：从0~9选择两个号码(或以上)，系统会自动将所选号码的所有组三组合(即三个号中有两个号相同)进行购买，若当期开奖号码的形态为组三且包含了号码，即中奖";
                                     }
                                     else if([play.code isEqualToString:@"DWDZXLFS"]){
-                                        sectionModel.name = @"玩法提示:任选3个号码组成一注(号码不重复)";
+                                        sectionModel.name = @"玩法提示：从0~9选择三个号码或多个号码投注，所选号码与开奖号码的百位、十位、个位相同，顺序不限，即为中奖";
                                     }
                                     
                                   

@@ -130,58 +130,58 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
     }];
 }
 #pragma mark - 六合跳转老逻辑
--(NSString *)judgmentGameType:(NSString *)gameType{
+-(NSString *)judgmentGameType:(NSString *)name{
 
     NSString * judgment;
-    if ([gameType containsString:@"cqssc" ]) {
+    if ([name containsString:@"时时彩" ]) {
         judgment = @"cqssc";
     }
-    else if ([gameType containsString:@"pk10"]) {
+    else if ([name containsString:@"pk10"]) {
         judgment =  @"pk10";
     }
-    else if([gameType containsString:@"xyft"]){
+    else if([name containsString:@"幸运飞艇"]){
         judgment = @"xyft";
     }
-    else if([gameType containsString:@"qxc"]){
+    else if([name containsString:@"七星彩"]){
         judgment = @"qxc";
     }
-    else if([gameType containsString:@"lhc"]){
+    else if([name containsString:@"六合彩"]){
         judgment = @"lhc";
     }
-    else if([gameType containsString:@"jsk3"]){
+    else if([name containsString:@"快3"]){
         judgment = @"jsk3";
     }
-    else if([gameType containsString:@"pcdd"]){
+    else if([name containsString:@"蛋蛋"]){
         judgment = @"pcdd";
     }
-    else if([gameType containsString:@"gd11x5"]){
+    else if([name containsString:@"11选5"]){
         judgment = @"gd11x5";
     }
-    else if([gameType containsString:@"xync"]){
+    else if([name containsString:@"幸运农场"]){
         judgment = @"xync";
     }
-    else if([gameType containsString:@"bjkl8" ]){
+    else if([name containsString:@"快乐8" ]){
         judgment = @"bjkl8";
     }
-    else if([gameType containsString:@"gdkl10"]){
+    else if([name containsString:@"快乐10"]){
         judgment = @"gdkl10";
     }
-    else if([gameType containsString:@"fc3d"]){
+    else if([name containsString:@"3D"]){
         judgment = @"fc3d";
     }
-    else if([gameType containsString:@"pk10nn"]){
+    else if([name containsString:@"牛牛"]){
         judgment = @"pk10nn";
     }
-    else if([gameType containsString:@"dlt"]){
+    else if([name containsString:@"大乐透,赛车"]){
         judgment = @"dlt";
     }
-    else if([gameType containsString:@"qxc"]){
+    else if([name containsString:@"七星彩"]){
         judgment = @"qxc";
     }
-    else if([gameType containsString:@"ofclvn_hochiminhvip"]){
+    else if([name containsString:@"越南"]){
         judgment = @"ofclvn_hochiminhvip";
     }
-    else if([gameType containsString:@"ofclvn_haboivip" ]){
+    else if([name containsString:@"河内" ]){
         judgment = @"ofclvn_haboivip";
     }
     return judgment;
@@ -287,11 +287,32 @@ static NSMutableArray <GameModel *> *__browsingHistoryArray = nil;
             m.gameType = @"pk10";
             [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
         }
+        else if ([model.categoryType isEqualToString:@"222"]) {
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = model.name;
+            m.gameId = model.categoryType;
+            m.gameType = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        }
+        else if ([model.categoryType isEqualToString:@"185"]) {
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = model.name;
+            m.gameId = model.categoryType;
+            m.gameType = @"lhc";
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        }
+        else if ([model.categoryType isEqualToString:@"194"]) {
+            UGNextIssueModel *m = [UGNextIssueModel new];
+            m.title = model.name;
+            m.gameId = model.categoryType;
+            m.gameType = @"cqssc";
+            [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
+        }
         else{
             UGNextIssueModel *m = [UGNextIssueModel new];
             m.title = model.name;
             m.gameId = model.categoryType;
-            m.gameType = [self judgmentGameType:model.baomaType];
+            m.gameType = [self judgmentGameType:model.name];
             [NavController1 pushViewControllerWithNextIssueModel:m isChatRoom:NO];
         }
       

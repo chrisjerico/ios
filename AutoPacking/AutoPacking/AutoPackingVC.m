@@ -63,7 +63,7 @@
 //                NSString *ids = @"a002,c001,c105b,c190,c048,l002,c053,c085,c134,c137,c150,c158,c163,c165,c169,c175,c002,c012,c073,c092,c116,c126,h003b,c035";    //  andrew打包
 //                NSString *ids = @"c035b,c035c,c052,c108,c193,c200,c120,c198,c205,c208,c213,c217,c211,c235,c237,c246,c126b,c225,c245,c251,c252,c254,c257,c259,c261";    //  fish打包
 
-                NSString *ids = @"t005";    // 站点编号(可以批量打包用','号隔开)每天上班第一件事打t005
+                NSString *ids = @"l002";    // 站点编号(可以批量打包用','号隔开)每天上班第一件事打t005
                 NSString *branch = @"dev_master";// 分支名dev_master_waitWithdrawal
 //                NSString *branch = @"andrew/六合";// 分支名dev_master_waitWithdrawal
                 BOOL willUpload = 1;        // 打包后是否上传审核
