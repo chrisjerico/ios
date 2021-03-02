@@ -389,7 +389,15 @@ RCT_EXPORT_METHOD(performSelectors:(NSArray <NSDictionary *>*)selectors resolver
                         bt = [bt stringByReplacingOccurrencesOfString:@"Object" withString:@"1"];
                         bt = [bt stringByReplacingOccurrencesOfString:@"Number" withString:@"0"];
                         NSString *event = temp[@"event"];
-                        if ([bt isEqualToString:@"0,0"]) {
+                        if ([bt isEqualToString:@"0"]) {
+                            return ^(double v1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":@(v1)}];
+                            };
+                        } else if ([bt isEqualToString:@"1"]) {
+                            return ^(NSObject *o1) {
+                                [ReactNativeHelper sendEvent:event params:@{@"0":o1}];
+                            };
+                        } else if ([bt isEqualToString:@"0,0"]) {
                             return ^(double v1, double v2) {
                                 [ReactNativeHelper sendEvent:event params:@{@"0":@(v1), @"1":@(v2)}];
                             };
